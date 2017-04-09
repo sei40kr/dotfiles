@@ -1,0 +1,187 @@
+# ============ Interfaces ============
+[[plugins]]
+repo = 'shougo/denite.nvim'
+on_cmd = 'Denite'
+hook_add = '''
+nnoremap <silent> <Leader>f
+    \ :<C-u>Denite `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'` -default-action=tabopen<CR>
+nnoremap <silent> <Leader>F :<C-u>Denite grep -default-action=tabopen<CR>
+nnoremap <silent> <Leader>o :<C-u>Denite outline<CR>
+nnoremap <silent> <Leader>h :<C-u>Denite help<CR>
+
+augroup denite_hooks
+  autocmd!
+  autocmd FileType denite nnoremap <silent><buffer> <Esc><Esc> :<C-u>q<CR>
+  autocmd FileType denite inoremap <silent><buffer> <Esc><Esc> <Esc>:<C-u>q<CR>
+augroup END
+'''
+hook_post_source = '''
+call denite#custom#option('default', {
+    \   'cursor_shape': 1,
+    \   'cursor_wrap': 1,
+    \   'prompt': '>',
+    \   'short_source_names': 1,
+    \   'vertical_preview': 1,
+    \   'winheight': 10
+    \ })
+
+call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>', 'noremap')
+call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>', 'noremap')
+
+call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+
+call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+'''
+[[plugins]]
+repo = 'ozelentok/denite-gtags'
+depends = 'denite.nvim'
+hook_add = '''
+nnoremap <silent> <Leader>s :<C-u>Denite gtags_completion -default_action=tabopen<CR>
+nnoremap <silent> <Leader>S :<C-u>Denite gtags_completion -default_action=tabopen<CR>
+nnoremap <silent> gjK :<C-u>DeniteCursorWord gtags_def -default_action=tabopen<CR>
+nnoremap <silent> gji :<C-u>DeniteCursorWord gtags_def -default_action=tabopen<CR>
+nnoremap <silent> <C-k> :<C-u>DeniteCursorWord gtags_ref -default_action=tabopen<CR>
+'''
+[[plugins]]
+repo = 'koron/codic-vim'
+on_cmd = 'Codic'
+
+# ============ Coding Assistants ============
+[[plugins]]
+repo = 'tpope/vim-endwise'
+on_i = 1
+[[plugins]]
+repo = 'shougo/echodoc.vim'
+on_i = 1
+hook_add = '''
+let g:echodoc#enable_at_startup = 1
+'''
+[[plugins]]
+repo = 'shougo/neosnippet'
+depends = ['deoplete.nvim', 'neosnippet-snippets']
+on_i = 1
+on_ft = 'snippet'
+hook_add = '''
+set conceallevel=2 concealcursor=niv
+'''
+hook_post_source = '''
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+'''
+
+# ============ Code Completions ============
+[[plugins]]
+repo = 'shougo/deoplete.nvim'
+on_i = 1
+hook_add = '''
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#complete_method = 'omnifunc'
+let g:deoplete#enable_smart_case = 1
+'''
+[[plugins]]
+repo = 'shougo/neoinclude.vim'
+depends = 'deoplete.nvim'
+on_i = 1
+[[plugins]]
+repo = 'shougo/neopairs.vim'
+depends = 'deoplete.nvim'
+on_i = 1
+[[plugins]]
+repo = 'ujihisa/neco-look'
+depends = 'deoplete.nvim'
+on_i = 1
+
+# ============ Code Formatters ============
+[[plugins]]
+repo = 'chiel92/vim-autoformat'
+on_cmd = 'Autoformat'
+hook_add = '''
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+
+let g:formatdef_buildifier = "'buildifier -mode=fix'"
+let g:formatdef_clangformat = "'clang-format -assume-filename='.expand('%:p').' -style=Google'"
+let g:formatdef_stylish_haskell = "'stylish-haskell'"
+let g:formatdef_yapf = "'yapf --style google'"
+let g:formatdef_rubocop = "'rubocop --auto-correct -o /dev/null -s '.bufname('%').' | sed -n 2,\$p'"
+let g:formatdef_jsbeautify_html = "'js-beautify --type html'"
+let g:formatdef_jsbeautify_css = "'js-beautify --type css'"
+let g:formatdef_sassconvert_sass = "'sass-convert -F sass -T sass'"
+let g:formatdef_sassconvert_scss = "'sass-convert -F scss -T scss'"
+let g:formatdef_tsfmt = "'tsfmt --stdin'"
+let g:formatdef_jsbeautify_json = "'js-beautify --type json'"
+let g:formatdef_remark_markdown = "'remark --silent --no-color'"
+
+let g:formatters_bzl = ['buildifier']
+let g:formatters_c = ['clangformat']
+let g:formatters_cpp = ['clangformat']
+let g:formatters_objc = ['clangformat']
+let g:formatters_proto = ['clangformat']
+let g:formatters_haskell = ['stylish_haskell']
+let g:formatters_java = ['clangformat']
+let g:formatters_python = ['yapf']
+let g:formatters_python3 = ['yapf']
+let g:formatters_ruby = ['rubocop']
+let g:formatters_html = ['jsbeautify_html']
+let g:formatters_css = ['jsbeautify_css']
+let g:formatters_sass = ['sassconvert_sass']
+let g:formatters_scss = ['sassconvert_scss']
+let g:formatters_javascript = ['clangformat']
+let g:formatters_typescript = ['tsfmt']
+let g:formatters_json = ['jsbeautify_json']
+let g:formatters_markdown = ['remark_markdown']
+
+nnoremap <silent> <Leader>= :<C-u>Autoformat<CR>
+'''
+
+# ============ Build & Execution ============
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+on_cmd = 'QuickRun'
+hook_add = '''
+let g:quickrun_no_default_key_mappings = 1
+let g:quickrun_config = {
+      \   '_': {
+      \     'runner': 'vimproc',
+      \     'runner/vimproc/updatetime': 100,
+      \     'outputter': 'error',
+      \     'outputter/error/success': 'buffer',
+      \     'outputter/error/error': 'quickfix',
+      \     'outputter/buffer/split': ':rightbelow 8sp',
+      \     'outputter/quickfix/open_cmd': 'copen',
+      \   },
+      \ }
+
+nnoremap <silent> <Leader>r :<C-u>QuickRun -mode n<CR>
+vnoremap <silent> <Leader>r :<C-u>QuickRun -mode v<CR>
+'''
+hook_post_source = '''
+let s:qfclear = {
+    \   'name': 'clear_quickfix',
+    \   'kind': 'hook',
+    \ }
+
+function! s:qfclear.on_normalized(session, context)
+  call setqflist([])
+endfunction
+
+call quickrun#module#register(s:qfclear, 1)
+unlet s:qfclear
+'''
+
+# ============ Version Control ============
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+on_cmd = ['Git', 'Gcd', 'Glcd', 'Gstatus', 'Gcommit', 'Gmerge', 'Gpull', 'Gpush', 'Gfetch', 'Ggrep', 'Glgrep', 'Glog',
+    'Gllog', 'Gedit', 'Gsplit', 'Gvsplit', 'Gtabedit', 'Gpedit', 'Gread', 'Gwrite', 'Gwq', 'Gdiff', 'Gsdiff', 'Gvdiff',
+    'Gmove', 'Gdelete', 'Gremove', 'Gblame', 'Gbrowse']
+[[plugins]]
+repo = 'mattn/gist-vim'
+depends = 'webapi-vim'
+on_cmd = 'Gist'
+hook_add = '''
+let g:gist_detect_filetype = 1
+'''
+

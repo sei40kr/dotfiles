@@ -1,0 +1,8 @@
+# main.yml
+# author: Seong Yong-ju ( @sei40kr )
+---
+- name: Install Node packages
+  npm: { name: "{{ item }}", global: true, ignore_scripts: true }
+  with_items: "{{ npm_pkgs }}"
+  tags: npm-pkg
+

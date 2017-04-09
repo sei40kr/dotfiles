@@ -1,0 +1,40 @@
+# main.yml
+# author: Seong Yong-ju ( @sei40kr )
+---
+- name: Check dotfiles directory exists
+  stat:
+    path: "{{ dotfiles.dest }}"
+  register: repo
+  tags: dotfiles
+
+- name: Clone dotfiles repo
+  git: { repo: "{{ dotfiles.repo }}", version: HEAD, dest: "{{ dotfiles.dest }}" }
+  when: repo.stat.isdir is not defined or not repo.stat.isdir
+  tags: [dotfiles, skip_ansible_lint]
+
+- name: Create directories
+  file: { path: "{{ item }}", state: directory }
+  with_items:
+    - "~/.config"
+    - "~/.npm-global"
+  tags: dotfiles
+
+- name: Remove existing dotfiles
+  file: { path: "~{{ item }}", state: absent }
+  with_items: "{{ dotfiles.src }}"
+  tags: dotfiles
+
+- name: Link dotfiles
+  file: { src: "{{ dotfiles.dest }}{{ item }}", dest: "~{{ item }}", state: link }
+  with_items: "{{ dotfiles.src }}"
+  tags: dotfiles
+
+- name: Setup dotfiles manually
+  lineinfile: { path: "{{ item.path }}", create: true, line: "{{ item.line }}" }
+  with_items:
+    - { path: "~/.npmrc", create: true, line: "prefix=~/.npm-global" }
+    - { path: "~/.npmrc", create: true, line: "registry=http://registry.npmjs.org/" }
+    - { path: "~/.npmrc", create: true, line: "strict-ssl=false" }
+    - { path: "~/.npmrc", create: true, line: "progress=false" }
+  tags: dotfiles
+

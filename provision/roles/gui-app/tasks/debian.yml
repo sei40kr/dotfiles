@@ -1,0 +1,23 @@
+# debian.yml
+# author: Seong Yong-ju ( @sei40kr )
+---
+- include_vars: "debian.yml"
+
+- name: Add apt keys
+  apt_key: { id: "{{ item.id }}", url: "{{ item.url }}" }
+  become: true
+  with_items: "{{ gui_apt_keys }}"
+  tags: gui-app
+
+- name: Add apt repos
+  apt_repository: { repo: "{{ item }}" }
+  become: true
+  with_items: "{{ gui_apt_repos }}"
+  tags: gui-app
+
+- name: Install apt packages
+  apt: { cache_valid_time: 3600, name: "{{ item }}", update_cache: true }
+  with_items: "{{ gui_apt_pkgs }}"
+  become: true
+  tags: gui-app
+

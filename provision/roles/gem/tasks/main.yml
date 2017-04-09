@@ -1,0 +1,8 @@
+# main.yml
+# author: Seong Yong-ju ( @sei40kr )
+---
+- name: Install Gems
+  gem: { name: "{{ item }}", user_install: true, include_doc: false }
+  with_items: "{{ gems }}"
+  tags: gem
+

@@ -1,0 +1,26 @@
+# main.yml
+# author: Seong Yong-ju ( @sei40kr )
+---
+pip3_pkgs:
+  - ipython
+  - ptpython
+  - pygments
+  - cpplint
+  - cmakelint
+  - jedi
+  - yapf
+  - autopep8
+  - flake8
+  - pylint
+  - ansible-lint
+  - proselint
+  - vint
+  - mycli
+  - pgcli
+  - aws-shell
+  - yamllint
+  - neovim
+
+pip2_pkgs:
+  - neovim
+

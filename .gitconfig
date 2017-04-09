@@ -1,0 +1,18 @@
+[user]
+  email = "sei40kr@gmail.com"
+  name = "Seong Yong-ju"
+[core]
+  editor = nvim
+[diff]
+  algorithm = minimal
+[merge]
+  tool = fugitive
+[mergetool "fugitive"]
+  cmd = "nvim -fc Gdiff $MERGED"
+[push]
+  default = current
+[github]
+  user = "sei40kr"
+[ghq]
+  root = ~/dev/ws
+

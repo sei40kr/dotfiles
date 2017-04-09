@@ -1,0 +1,33 @@
+# playbook.yml
+# author: Seong Yong-ju ( @sei40kr )
+---
+- hosts: all
+  # vars_prompt:
+  #   - name: gui_yn
+  #     prompt: "Would you like to install GUI apps? [y/n]"
+  #     private: false
+
+  #   - name: virt_yn
+  #     prompt: "Would you like to install virtualization apps? [y/n]"
+  #     private: false
+
+  roles:
+    # - os-app
+    # - { role: gui-app, when: gui_yn == "y" }
+    # - { role: virt-app, when: virt_yn == "y" }
+    # - clone-repo
+    # - dotfiles
+    # - npm-pkg
+    # - pip-pkg
+    # - gem
+  tasks:
+    - name: Link Atom
+      file: { src: '~/dotfiles/.atom{{ item }}', dest: '~/.atom{{ item }}', state: link }
+      with_items:
+        - '/config.cson'
+        - '/init.coffee'
+        - '/keymap.cson'
+        - '/snippets.cson'
+        - '/styles.less'
+      tags: atom
+
