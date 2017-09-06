@@ -39,6 +39,10 @@ bindkey '^[[Z' reverse-menu-complete
 # Use working directory history
 add-zsh-hook chpwd chpwd_recent_dirs
 
+# Configure version managers for Python, Ruby
+eval "$(pyenv init -)"
+eval "$(rbenv init -)"
+
 # Configure package managers, Cargo, Golang, Cabal, NPM
 export GOPATH="${HOME}/.go"
 PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:${GOPATH}/bin:${HOME}/.cabal/bin:${HOME}/.npm-global/bin:${PATH}"
