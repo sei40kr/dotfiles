@@ -62,12 +62,10 @@ PATH="$(gem env GEM_PATHS):${PATH}"
 # Load zsh plugins
 source "${HOME}/.zsh/rc/plugins.rc.zsh"
 
-# Integrate zsh plugins with tmux
-[ -n "$TMUX" ] && {
-  FZF_TMUX=1;
-  FZF_TMUX_HEIGHT='25%';
-  zstyle ':anyframe:selector:fzf-tmux:' command 'fzf-tmux --extended -d 25%';
-}
+# Init fzf-tmux when tmux is running
+[ -n "$TMUX" ] && { FZF_TMUX=1; FZF_TMUX_HEIGHT='25%'; }
+# Load fzf fuzzy completions here if it's installed via Homebrew
+[ -f "${HOME}/.fzf.zsh" ] && . "${HOME}/.fzf.zsh"
 
 # Configure a zsh plugin, anyframe
 # https://github.com/mollifier/anyframe
