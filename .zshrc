@@ -53,16 +53,11 @@ which pyenv 1>/dev/null 2>/dev/null && eval "$(pyenv init -)"
 # Load rbenv if it's executable
 which rbenv 1>/dev/null 2>/dev/null && eval "$(rbenv init -)"
 
-NVM_DIR="${HOME}/.nvm"
-if [ -d "$NVM_DIR" ]
-then
-  if [ "$(uname)" = 'Darwin' ]
-  then
-    . /usr/local/opt/nvm/nvm.sh
-  else
-    . "${NVM_DIR}/nvm.sh"
-  fi
-fi
+# Configure the nvm root if it exists on default location
+[ -d "${HOME}/.nvm" ] && export NVM_DIR="${HOME}/.nvm"
+# Load nvm here if it's installed
+[ -f '/usr/local/opt/nvm/nvm.sh' ] && . '/usr/local/opt/nvm/nvm.sh' \
+  || { [ -f "${NVM_DIR}/nvm.sh" ] && . "${NVM_DIR}/nvm.sh"; }
 
 # Configure package managers, Cargo, Golang, Cabal, NPM
 export GOPATH="${HOME}/.go"
