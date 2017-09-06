@@ -16,7 +16,6 @@ source "${ZPLUG_HOME}/init.zsh"
 # ============ Interactive Interfaces ============
 zplug 'junegunn/fzf', hook-build:'./install --key-bindings --completion --no-update-rc'
 zplug 'mollifier/anyframe'
-zplug 'changyuheng/zsh-interactive-cd'
 
 # ============ Command Assistants ============
 zplug 'zdharma/fast-syntax-highlighting', defer:2
