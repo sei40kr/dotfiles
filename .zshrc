@@ -43,6 +43,17 @@ add-zsh-hook chpwd chpwd_recent_dirs
 eval "$(pyenv init -)"
 eval "$(rbenv init -)"
 
+NVM_DIR="${HOME}/.nvm"
+if [ -d "$NVM_DIR" ]
+then
+  if [ "$(uname)" = 'Darwin' ]
+  then
+    . /usr/local/opt/nvm/nvm.sh
+  else
+    . "${NVM_DIR}/nvm.sh"
+  fi
+fi
+
 # Configure package managers, Cargo, Golang, Cabal, NPM
 export GOPATH="${HOME}/.go"
 PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:${GOPATH}/bin:${HOME}/.cabal/bin:${HOME}/.npm-global/bin:${PATH}"
