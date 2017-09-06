@@ -39,6 +39,9 @@ bindkey '^[[Z' reverse-menu-complete
 # Use working directory history
 add-zsh-hook chpwd chpwd_recent_dirs
 
+# Configure GNU utilities as default if they're available
+[ -d '/usr/local/opt/coreutils/libexec/gnubin' ] && PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+
 # Configure version managers for Python, Ruby
 eval "$(pyenv init -)"
 eval "$(rbenv init -)"
