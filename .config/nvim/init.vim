@@ -1,10 +1,5 @@
 scriptencoding utf-8
 
-" ============ Executable Paths ============
-let g:python_host_prog = '~/.pyenv/shims/python2'
-let g:python3_host_prog = '~/.pyenv/shims/python3'
-let g:ruby_host_prog = '~/.rbenv/shims/ruby'
-
 let g:mapleader="\<Space>"
 
 " ============ Directory Paths ============
