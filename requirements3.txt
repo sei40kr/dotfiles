@@ -1,0 +1,17 @@
+ptpython
+mycli
+pgcli
+aws-shell
+neovim
+pygments
+cpplint
+cmakelint
+jedi
+yapf
+autopep8
+flake8
+pylint
+yamllint
+ansible-lint
+vint
+proselint
