@@ -14,11 +14,8 @@ export ZPLUG_HOME="${HOME}/.zplug"
 source "${ZPLUG_HOME}/init.zsh"
 
 # ============ Interactive Interfaces ============
-zplug 'junegunn/fzf-bin', from:gh-r, use:'*linux*amd64*', as:command, rename-to:fzf
-zplug 'junegunn/fzf', as:command, use:'bin/fzf-tmux'
-zplug 'junegunn/fzf', use:'shell/key-bindings.zsh'
+zplug 'junegunn/fzf', hook-build:'./install --key-bindings --completion --no-update-rc'
 zplug 'mollifier/anyframe'
-zplug 'changyuheng/zsh-interactive-cd'
 
 # ============ Command Assistants ============
 zplug 'zdharma/fast-syntax-highlighting', defer:2

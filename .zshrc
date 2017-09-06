@@ -39,6 +39,24 @@ bindkey '^[[Z' reverse-menu-complete
 # Use working directory history
 add-zsh-hook chpwd chpwd_recent_dirs
 
+# Configure GNU utilities as default if they're available
+[ -d '/usr/local/opt/coreutils/libexec/gnubin' ] && PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+
+# Configure version managers for Python, Ruby
+eval "$(pyenv init -)"
+eval "$(rbenv init -)"
+
+NVM_DIR="${HOME}/.nvm"
+if [ -d "$NVM_DIR" ]
+then
+  if [ "$(uname)" = 'Darwin' ]
+  then
+    . /usr/local/opt/nvm/nvm.sh
+  else
+    . "${NVM_DIR}/nvm.sh"
+  fi
+fi
+
 # Configure package managers, Cargo, Golang, Cabal, NPM
 export GOPATH="${HOME}/.go"
 PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:${GOPATH}/bin:${HOME}/.cabal/bin:${HOME}/.npm-global/bin:${PATH}"
@@ -47,12 +65,10 @@ PATH="$(gem env GEM_PATHS):${PATH}"
 # Load zsh plugins
 source "${HOME}/.zsh/rc/plugins.rc.zsh"
 
-# Integrate zsh plugins with tmux
-[ -n "$TMUX" ] && {
-  FZF_TMUX=1;
-  FZF_TMUX_HEIGHT='25%';
-  zstyle ':anyframe:selector:fzf-tmux:' command 'fzf-tmux --extended -d 25%';
-}
+# Init fzf-tmux when tmux is running
+[ -n "$TMUX" ] && { FZF_TMUX=1; FZF_TMUX_HEIGHT='25%'; }
+# Load fzf fuzzy completions here if it's installed via Homebrew
+[ -f "${HOME}/.fzf.zsh" ] && . "${HOME}/.fzf.zsh"
 
 # Configure a zsh plugin, anyframe
 # https://github.com/mollifier/anyframe

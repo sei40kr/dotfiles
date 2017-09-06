@@ -1,10 +1,11 @@
 scriptencoding utf-8
 
-" ============ Executable Paths ============
-let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python3'
-
 let g:mapleader="\<Space>"
+
+" ============ Executable Paths ============
+let g:ruby_host_prog = expand('~/.rbenv/shims/ruby')
+let g:python_host_prog = expand('~/.pyenv/shims/python2')
+let g:python3_host_prog = expand('~/.pyenv/shims/python3')
 
 " ============ Directory Paths ============
 let s:cache_dir = (empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME)

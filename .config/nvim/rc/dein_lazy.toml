@@ -185,3 +185,9 @@ hook_add = '''
 let g:gist_detect_filetype = 1
 '''
 
+# ============ External Tools ============
+[[plugins]]
+repo = 'rizzatti/dash.vim'
+on_if = "has('macunix')"
+on_cmd = ['Dash', 'DashKeywords']
+
