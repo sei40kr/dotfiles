@@ -56,8 +56,6 @@ zplug 'motemen/ghq', dir:"${GOPATH}/src/github.com/motemen/ghq", use:'zsh', hook
 zplug 'mollifier/cd-gitroot'
 # Use gitignore.io CLI, gitignore
 zplug 'plugins/gitignore', from:oh-my-zsh
-# Use GitHub Gist CLI, gist
-zplug 'b4b4r07/gist', dir:"${GOPATH}/src/github.com/b4b4r07/gist", use:'misc/completion/zsh', hook-build:'go get -u'
 # Use a workspace manager, ghq
 # Use command to go to root directory of current repo
 
