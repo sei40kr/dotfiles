@@ -43,8 +43,15 @@ add-zsh-hook chpwd chpwd_recent_dirs
 [ -d '/usr/local/opt/coreutils/libexec/gnubin' ] && PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
 
 # Configure version managers for Python, Ruby
-eval "$(pyenv init -)"
-eval "$(rbenv init -)"
+# Configure the pyenv root if it exists on default location
+[ -d "${HOME}/.pyenv" ] && { export PYENV_ROOT="${HOME}/.pyenv"; export PATH="${PYENV_ROOT}:${PATH}"; }
+# Load pyenv if it's executable
+which pyenv 1>/dev/null 2>/dev/null && eval "$(pyenv init -)"
+
+# Configure the rbenv root if it exists on default location
+[ -d "${HOME}/.rbenv" ] && { export RBENV_ROOT="${HOME}/.rbenv"; export PATH="${RBENV_ROOT}:${PATH}"; }
+# Load rbenv if it's executable
+which rbenv 1>/dev/null 2>/dev/null && eval "$(rbenv init -)"
 
 NVM_DIR="${HOME}/.nvm"
 if [ -d "$NVM_DIR" ]
