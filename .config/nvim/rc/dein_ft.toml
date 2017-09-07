@@ -210,6 +210,20 @@ repo = 'vim-scripts/SQLComplete.vim'
 depends = 'deoplete.nvim'
 on_ft = 'sql'
 
+# ============ Force.com Support ============
+[[plugins]]
+repo = 'neowit/vim-force.com'
+on_ft = ['apexcode', 'visualforce']
+on_cmd = ['ApexValidateJavaConfig', 'ApexMessages', 'ApexCompare', 'ApexCompareLocalProjects',
+    'ApexCompareWithPreRefreshVersion', 'ApexDeploy', 'ApexDeployAll', 'ApexDeployAllDestructive',
+    'ApexDeployDestructive', 'ApexDeployOpen', 'ApexDeployOne', 'ApexDeployStaged', 'ApexDiffWithRemoteFile',
+    'ApexDiffWithRemoteProject', 'ApexExecuteAnonymous', 'ApexExecuteAnonymousRepeat', 'ApexGitInit',
+    'ApexInitProject', 'ApexLog', 'ApexNewFile', 'ApexPrintChanged', 'ApexPrintConflicts', 'ApexQuery',
+    'ApexQueryRepeat', 'ApexRefreshFile', 'ApexRefreshProject', 'ApexRemoveStaged', 'ApexRetrieve', 'ApexSave',
+    'ApexSaveOne', 'ApexSaveOpen', 'ApexScratch', 'ApexStage', 'ApexStageAdd', 'ApexStageAddOpen', 'ApexStageClear',
+    'ApexStageRemove', 'ApexTest', 'ApexTestCoverageHideAll', 'ApexTestCoverageShow', 'ApexTestCoverageToggle',
+    'ApexTestWithCoverage', 'ApexTListToggle', 'ApexToolingVersion']
+
 # ============ Docker Support ============
 [[plugins]]
 repo = 'zchee/deoplete-docker'

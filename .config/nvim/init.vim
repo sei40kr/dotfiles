@@ -20,6 +20,7 @@ if !isdirectory(s:dein_repo_dir)
 endif
 " Add the repository root to runtime path
 set runtimepath&
+execute 'set runtimepath^=' . expand('~/.vim')
 execute 'set runtimepath^=' . s:dein_repo_dir
 
 execute 'source ' . s:vim_rc_dir . '/common.rc.vim'
