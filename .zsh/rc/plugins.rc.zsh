@@ -13,6 +13,9 @@ export ZPLUG_HOME="${HOME}/.zplug"
 # Load zplug
 source "${ZPLUG_HOME}/init.zsh"
 
+# ============ Frameworks ============
+zplug 'mafredri/zsh-async', defer:0
+
 # ============ Interactive Interfaces ============
 zplug 'junegunn/fzf', hook-build:'./install --key-bindings --completion --no-update-rc'
 zplug 'mollifier/anyframe'
@@ -60,7 +63,7 @@ zplug 'plugins/gitignore', from:oh-my-zsh
 # Use command to go to root directory of current repo
 
 # ============ Appearance ============
-zplug 'bhilburn/powerlevel9k', at:next, as:theme
+zplug 'sindresorhus/pure', use:pure.plugin.zsh, as:theme
 zplug 'sei40kr/dircolors-solarized', use:'*.ansi-dark.zsh'
 
 # Use alias tips

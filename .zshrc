@@ -84,16 +84,6 @@ bindkey '^x^b' anyframe-widget-checkout-git-branch
 bindkey '^xg' anyframe-widget-cd-ghq-repository
 bindkey '^x^g' anyframe-widget-cd-ghq-repository
 
-# Configure a zsh theme, powerlevel9k
-# https://github.com/bhilburn/powerlevel9k
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=( dir background_jobs )
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=( status vcs )
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-POWERLEVEL9K_SHORTEN_DELIMITER='…'
-POWERLEVEL9K_DIR_PATH_SEPARATOR=" $(print_icon 'LEFT_SUBSEGMENT_SEPARATOR') "
-POWERLEVEL9K_STATUS_NICE_EXIT_CODE=true
-ZLE_RPROMPT_INDENT=0
-
 # Configure a zsh plugin, alias-tips
 # https://github.com/djui/alias-tips
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='Use alias: '
