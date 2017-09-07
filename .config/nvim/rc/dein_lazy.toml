@@ -49,17 +49,17 @@ on_cmd = 'Codic'
 # ============ Coding Assistants ============
 [[plugins]]
 repo = 'tpope/vim-endwise'
-on_i = 1
+on_event = 'InsertEnter'
 [[plugins]]
 repo = 'shougo/echodoc.vim'
-on_i = 1
+on_event = 'InsertEnter'
 hook_add = '''
 let g:echodoc#enable_at_startup = 1
 '''
 [[plugins]]
 repo = 'shougo/neosnippet'
 depends = ['deoplete.nvim', 'neosnippet-snippets']
-on_i = 1
+on_event = 'InsertEnter'
 on_ft = 'snippet'
 hook_add = '''
 set conceallevel=2 concealcursor=niv
@@ -73,7 +73,7 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 # ============ Code Completions ============
 [[plugins]]
 repo = 'shougo/deoplete.nvim'
-on_i = 1
+on_event = 'InsertEnter'
 hook_add = '''
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#complete_method = 'omnifunc'
@@ -82,15 +82,15 @@ let g:deoplete#enable_smart_case = 1
 [[plugins]]
 repo = 'shougo/neoinclude.vim'
 depends = 'deoplete.nvim'
-on_i = 1
+on_event = 'InsertEnter'
 [[plugins]]
 repo = 'shougo/neopairs.vim'
 depends = 'deoplete.nvim'
-on_i = 1
+on_event = 'InsertEnter'
 [[plugins]]
 repo = 'ujihisa/neco-look'
 depends = 'deoplete.nvim'
-on_i = 1
+on_event = 'InsertEnter'
 
 # ============ Code Formatters ============
 [[plugins]]
