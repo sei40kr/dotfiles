@@ -11,7 +11,7 @@ let g:python3_host_prog = expand('~/.pyenv/shims/python3')
 let s:cache_dir = (empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME)
 let s:config_dir = (empty($XDG_CONFIG_HOME) ? expand('~/.config') : $XDG_CONFIG_HOME)
 let s:dein_cache_dir = s:cache_dir . '/dein'
-let s:dein_repo_dir = s:cache_dir . '/repos/github.com/Shougo/dein.vim'
+let s:dein_repo_dir = s:dein_cache_dir . '/repos/github.com/shougo/dein.vim'
 let s:nvim_rc_dir = s:config_dir . '/nvim/rc'
 let s:vim_rc_dir = expand('~/.vim/rc')
 " Install the plugin manager if it's not installed
