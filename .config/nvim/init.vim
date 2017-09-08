@@ -44,7 +44,7 @@ endif
 
 " Integrate with system clipboard
 set clipboard& clipboard^=unnamedplus,unnamed
-set cmdheight=2
+set noshowmode
 set colorcolumn=120 wrap
 set cursorline
 set expandtab smartindent
@@ -68,5 +68,5 @@ augroup user_hooks
   autocmd FileType help,qf nnoremap <buffer> q :<C-u>q<CR>
 augroup END
 
-colorscheme dracula
+colorscheme onedark
 

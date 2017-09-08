@@ -180,31 +180,13 @@ augroup END
 
 # ============ Appearance ============
 [[plugins]]
-repo = 'vim-airline/vim-airline'
-depends = 'vim'
-hook_add = '''
-let g:airline_theme = 'dracula'
-let g:airline_powerline_fonts = 1
-let g:airline_skip_empty_sections = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
-let g:airline#extensions#bufferline#enabled = 0
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#ale#error_symbol = 'E: '
-let g:airline#extensions#ale#warning_symbol = 'W: '
-'''
+repo = 'joshdick/onedark.vim'
 [[plugins]]
-repo = 'dracula/vim'
+repo = 'itchyny/lightline.vim'
 hook_add = '''
-set background=dark
-
-augroup dracula_vim_init
-  autocmd!
-  autocmd VimEnter * highlight NonText ctermfg=8 guifg=gray
-augroup END
+let g:lightline = {
+    \   'colorscheme': 'onedark'
+    \ }
 '''
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
