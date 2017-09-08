@@ -16,9 +16,10 @@ augroup denite_hooks
 augroup END
 '''
 hook_post_source = '''
-call denite#custom#option('default', {
+call denite#custom#option('_', {
     \   'cursor_shape': 1,
     \   'cursor_wrap': 1,
+    \   'highlight_mode_insert': 'WildMenu',
     \   'prompt': '>',
     \   'short_source_names': 1,
     \   'vertical_preview': 1,
