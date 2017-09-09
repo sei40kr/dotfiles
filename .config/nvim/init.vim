@@ -58,6 +58,13 @@ set noerrorbells visualbell t_vb=
 set splitbelow splitright
 set switchbuf=useopen
 
+set cursorline
+augroup cursorline_hooks
+  autocmd!
+  autocmd WinEnter,BufWinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+augroup END
+
 augroup user_hooks
   autocmd!
   autocmd WinEnter * checktime
