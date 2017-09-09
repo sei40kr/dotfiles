@@ -73,10 +73,6 @@ on_event = 'InsertEnter'
 repo = 'shougo/neopairs.vim'
 depends = 'deoplete.nvim'
 on_event = 'InsertEnter'
-[[plugins]]
-repo = 'ujihisa/neco-look'
-depends = 'deoplete.nvim'
-on_event = 'InsertEnter'
 
 # ============ Code Formatters ============
 [[plugins]]
