@@ -9,8 +9,8 @@ nnoremap <silent> [denite] <Nop>
 nnoremap <silent> [denite]f :<C-u>DeniteProjectDir
     \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'` -buffer-name=denite-file-rec<CR>
 nnoremap <silent> [denite]F :<C-u>DeniteProjectDir grep -buffer-name=denite-grep<CR>
-nnoremap <silent> [denite]n :<C-u>DeniteProjectDir grep -buffer-name=denite-grep -select=+1 -immediately<CR>
-nnoremap <silent> [denite]p :<C-u>DeniteProjectDir grep -buffer-name=denite-grep -select=-1 -immediately<CR>
+nnoremap <silent> [denite]n :<C-u>DeniteProjectDir grep -buffer-name=denite-grep -resume -select=+1 -immediately<CR>
+nnoremap <silent> [denite]p :<C-u>DeniteProjectDir grep -buffer-name=denite-grep -resume -select=-1 -immediately<CR>
 nnoremap <silent> [denite]o :<C-u>Denite outline -buffer-name=denite-outline<CR>
 nnoremap <silent> [denite]h :<C-u>Denite help -buffer-name=denite-help<CR>
 '''

@@ -21,7 +21,6 @@ call denite#custom#option('denite-file-rec', {
 call denite#custom#option('denite-grep', {
     \   'default_action': 'tabswitch',
     \   'direction': 'botright',
-    \   'resume': 1,
     \   'winheight': 10,
     \ })
 
