@@ -14,9 +14,7 @@ nnoremap <silent> [denite]p :<C-u>DeniteProjectDir grep -buffer-name=denite-grep
 nnoremap <silent> [denite]o :<C-u>Denite outline -buffer-name=denite-outline<CR>
 nnoremap <silent> [denite]h :<C-u>Denite help -buffer-name=denite-help<CR>
 '''
-hook_post_source = '''
-source ~/.vim/rc/plugins/denite.rc.vim
-'''
+hook_post_source = 'source ~/.vim/rc/plugins/denite.rc.vim'
 [[plugins]]
 repo = 'ozelentok/denite-gtags'
 depends = 'denite.nvim'
@@ -65,6 +63,10 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#complete_method = 'omnifunc'
 let g:deoplete#enable_smart_case = 1
 '''
+[[plugins]]
+repo = 'ozelentok/deoplete-gtags'
+depends = 'deoplete.nvim'
+on_source = 'deoplete.nvim'
 [[plugins]]
 repo = 'shougo/neoinclude.vim'
 depends = 'deoplete.nvim'
