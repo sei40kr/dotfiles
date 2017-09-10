@@ -8,8 +8,9 @@ augroup vimfiler_hooks
   autocmd!
   autocmd FileType vimfiler nnoremap <buffer><expr> v vimfiler#do_switch_action('vsplit')
       \ | nnoremap <buffer><expr> s vimfiler#do_switch_action('split')
-      \ | nmap <buffer><expr> <CR> vimfiler#smart_cursor_map("\<Plug>(vimfiler_cd_file)", "\<Plug>(vimfiler_edit_file)")
-      \ | nmap <buffer><expr> e vimfiler#smart_cursor_map("\<Plug>(vimfiler_cd_file)", "\<Plug>(vimfiler_edit_file)")
+      \ | nmap <buffer> <CR> <Plug>(vimfiler_expand_or_edit)
+      \ | nmap <buffer> <Tab> <Plug>(vimfiler_switch_to_other_window)
+      \ | nmap <buffer> e <Plug>(vimfiler_expand_or_edit)
 augroup END
 
 call vimfiler#custom#profile('default', 'context', {
@@ -26,7 +27,3 @@ call vimfiler#custom#profile('default', 'context', {
     \   'winwidth': 30,
     \ })
 
-augroup vimfiler_hooks
-  autocmd!
-  autocmd FileType vimfiler nmap <buffer> <Tab> <Plug>(vimfiler_switch_to_other_window)
-augroup END
