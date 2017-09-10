@@ -42,37 +42,44 @@ if has('vim_starting') && dein#check_install()
   call dein#install()
 endif
 
-" Integrate with system clipboard
 set clipboard& clipboard^=unnamedplus,unnamed
-set noshowmode
-set colorcolumn=120 wrap
+set colorcolumn=120
+set concealcursor=niv
+set conceallevel=2
 set cursorline
-set expandtab smartindent
+set cursorline
+set expandtab
 set fillchars& fillchars+=vert:│
 set formatoptions& formatoptions-=ro
 set list
-" Disable back-up files
-set nobackup nowritebackup noswapfile
-" Disable beeps and its visual effects
-set noerrorbells visualbell t_vb=
-set splitbelow splitright
+set nobackup
+set noerrorbells
+set noshowmode
+set noswapfile
+set nowritebackup
+set smartindent
+set splitbelow
+set splitright
 set switchbuf=useopen
+set t_vb=
+set visualbell
+set wrap
 
-set cursorline
+augroup checktime_hooks
+  autocmd!
+  autocmd WinEnter * checktime
+augroup END
+
 augroup cursorline_hooks
   autocmd!
   autocmd WinEnter,BufWinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
 augroup END
 
-augroup user_hooks
+augroup number_hooks
   autocmd!
-  autocmd WinEnter * checktime
-
   autocmd InsertEnter * set norelativenumber number
   autocmd InsertLeave * set nonumber relativenumber
-
-  autocmd FileType help,qf nnoremap <buffer> q :<C-u>q<CR>
 augroup END
 
 colorscheme onedark

@@ -1,9 +1,6 @@
 " denite.rc.vim
 " author: Seong Yong-ju ( @sei40kr )
 
-call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
-
 call denite#custom#option('_', {
     \   'cursor_wrap': 1,
     \   'highlight_mode_insert': 'WildMenu',
@@ -11,30 +8,37 @@ call denite#custom#option('_', {
     \   'smartcase': 1,
     \ })
 
-call denite#custom#option('denite-file-rec', {
+call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+call denite#custom#option('file-rec', {
     \   'auto_resize': 1,
     \   'default_action': 'tabswitch',
     \   'direction': 'topleft',
     \   'winheight': 10,
     \ })
 
-call denite#custom#option('denite-grep', {
+call denite#custom#option('grep', {
     \   'default_action': 'tabswitch',
     \   'direction': 'botright',
     \   'winheight': 10,
     \ })
 
-call denite#custom#option('denite-outline', {
+call denite#custom#option('help', {
+    \   'direction': 'botright',
+    \   'split': 'vertical',
+    \   'winwidth': 30,
+    \ })
+
+call denite#custom#option('outline', {
     \   'default_action': 'tabswitch',
     \   'direction': 'botright',
     \   'split': 'vertical',
     \   'winwidth': 30,
     \ })
 
-call denite#custom#option('denite-help', {
+call denite#custom#option('search', {
     \   'direction': 'botright',
-    \   'split': 'vertical',
-    \   'winwidth': 30,
+    \   'winheight': 10,
     \ })
 
 call denite#custom#map('normal', '<Esc>', '<denite:quit>', 'noremap')

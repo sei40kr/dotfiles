@@ -1,152 +1,20 @@
-# ============ General ============
 [[plugins]]
-repo = 'shougo/dein.vim'
-[[plugins]]
-repo = 'tpope/vim-sensible'
+repo = 'airblade/vim-gitgutter'
 
-# ============ Core Frameworks ============
 [[plugins]]
-repo = 'shougo/vimproc.vim'
-build = 'make'
-[[plugins]]
-repo = 'shougo/context_filetype.vim'
+repo = 'autozimu/languageclient-neovim'
 hook_add = '''
-let g:context_filetype#search_offset = 300
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {
+    \   'javascript': [systemlist('npm prefix -g')[0]
+    \       . '/lib/node_modules/javascript-typescript-langserver/lib/language-server-stdio.js']
+    \ }
 '''
-[[plugins]]
-repo = 'kana/vim-textobj-user'
-[[plugins]]
-repo = 'kana/vim-operator-user'
-[[plugins]]
-repo = 'vim-scripts/matchit.zip'
-[[plugins]]
-repo = 'mattn/webapi-vim'
+hook_post_update = 'UpdateRemotePlugins'
 
-# ============ Editor Overrides ============
-[[plugins]]
-repo = 'houtsnip/vim-emacscommandline'
-[[plugins]]
-repo = 'othree/eregex.vim'
 [[plugins]]
 repo = 'chaoren/vim-wordmotion'
-[[plugins]]
-repo = 'osyo-manga/vim-jplus'
-hook_add = '''
-let g:jplus#config = {
-    \   '_' : {'delimiter_format': ' %d'},
-    \ }
 
-augroup jplus_init
-  autocmd!
-  autocmd VimEnter *
-      \ nmap J <Plug>(jplus)
-      \ | vmap J <Plug>(jplus)
-augroup END
-'''
-
-# ============ File Types ============
-[[plugins]]
-repo = 'sheerun/vim-polyglot'
-
-# ============ Code Navigation ============
-[[plugins]]
-repo = 'rhysd/clever-f.vim'
-hook_add = '''
-let g:clever_f_across_no_line = 1
-let g:clever_f_ignore_case = 1
-let g:clever_f_smart_case = 1
-let g:clever_f_show_prompt = 1
-'''
-
-# ============ Coding Assistants ============
-[[plugins]]
-repo = 'easymotion/vim-easymotion'
-hook_add = '''
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_use_smartsign_jp = 1
-
-augroup easymotion_init
-  autocmd!
-  autocmd VimEnter * nmap <Leader><Leader> <Plug>(easymotion-s)
-augroup END
-'''
-[[plugins]]
-repo = 'tpope/vim-repeat'
-[[plugins]]
-repo = 'tpope/vim-commentary'
-[[plugins]]
-repo = 'tpope/vim-surround'
-[[plugins]]
-repo = 'kana/vim-textobj-entire'
-depends = 'vim-textobj-user'
-[[plugins]]
-repo = 'terryma/vim-expand-region'
-depends = 'vim-textobj-entire'
-[[plugins]]
-repo = 'terryma/vim-multiple-cursors'
-hook_add = '''
-function! g:Multiple_cursors_before()
-  let g:deoplete#disable_auto_complete = 1
-endfunction
-function! g:Multiple_cursors_after()
-  let g:deoplete#disable_auto_complete = 0
-endfunction
-'''
-[[plugins]]
-repo = 'junegunn/vim-easy-align'
-hook_add = '''
-augroup easy_align_init
-  autocmd!
-  autocmd VimEnter * xmap ga <Plug>(EasyAlign) | nmap ga <Plug>(EasyAlign)
-augroup END
-'''
-[[plugins]]
-repo = 'thinca/vim-template'
-hook_add = '''
-let g:template_files = 'template/template.*'
-
-let s:template_user = 'Seong Yong-ju'
-let s:template_user_id = '@sei40kr'
-let s:template_organization = 'TeamSpirit Inc.,'
-
-let s:template_datetime_format = '%Y-%m-%d %H:%M:%S'
-let s:template_date_format = '%Y-%m-%d'
-let s:template_time_format = '%H:%M:%S'
-let s:template_year_format = '%Y'
-
-function! s:template_keywords()
-  silent! %s/<+FILE_NAME+>/\=expand('%:t')/g
-
-  silent! %s/<+USER+>/\=s:template_user/g
-  silent! %s/<+USER_ID+>/\=s:template_user_id/g
-  silent! %s/<+ORGANIZATION+>/\=s:template_organization/g
-
-  silent! %s/<+DATETIME+>/\=strftime(s:template_datetime_format)/g
-  silent! %s/<+DATE+>/\=strftime(s:template_date_format)/g
-  silent! %s/<+TIME+>/\=strftime(s:template_time_format)/g
-  silent! %s/<+YEAR+>/\=strftime(s:template_year_format)/g
-
-  if search('<+CURSOR+>')
-    execute 'normal! "_da>'
-  endif
-endfunction
-
-augroup template_hooks
-  autocmd!
-  autocmd User plugin-template-loaded call s:template_keywords()
-augroup END
-'''
-[[plugins]]
-repo = 'shougo/neosnippet-snippets'
-[[plugins]]
-repo = 'osyo-manga/vim-precious'
-depends = ['context_filetype.vim', 'vim-textobj-user']
-hook_add = '''
-let g:precious_enable_switch_CursorHold = {'*': 0}
-'''
-
-# ============ Code Formatters ============
 [[plugins]]
 repo = 'editorconfig/editorconfig-vim'
 hook_add = '''
@@ -154,40 +22,81 @@ let g:EditorConfig_core_mode = 'python_external'
 let g:EditorConfig_exclude_patterns = ['scp://.*', 'fugitive://.*', 'gist:.*']
 '''
 
-# ============ Code Quality Tools ============
 [[plugins]]
-repo = 'w0rp/ale'
-hook_add = '''
-let g:ale_lint_on_save = 1
+repo = 'houtsnip/vim-emacscommandline'
 
-let g:ale_dockerfile_hadolint_use_docker = 'yes'
-
-let g:ale_linters = {
-    \   'cpp': ['clang', 'clangtidy', 'cppcheck', 'cpplint', 'gcc', 'clang-format'],
-    \ }
-
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s'
-
-augroup ale_init
-  autocmd!
-  autocmd VimEnter *
-      \ nmap <silent> gne <Plug>(ale_next_wrap)
-      \ | nmap <silent> gep <Plug>(ale_previous_wrap)
-augroup END
-'''
-
-# ============ Appearance ============
-[[plugins]]
-repo = 'joshdick/onedark.vim'
 [[plugins]]
 repo = 'itchyny/lightline.vim'
+depends = 'onedark.vim'
 hook_add = '''
 let g:lightline = {
     \   'colorscheme': 'onedark'
     \ }
 '''
+
 [[plugins]]
-repo = 'airblade/vim-gitgutter'
+repo = 'joshdick/onedark.vim'
+
+[[plugins]]
+repo = 'kana/vim-textobj-entire'
+depends = 'vim-textobj-user'
+
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+
+[[plugins]]
+repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'mattn/webapi-vim'
+
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+
+[[plugins]]
+repo = 'shougo/dein.vim'
+
+[[plugins]]
+repo = 'shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'terryma/vim-multiple-cursors'
+hook_add = '''
+function! g:Multiple_cursors_before()
+  let g:deoplete#disable_auto_complete = 1
+endfunction
+
+function! g:Multiple_cursors_after()
+  let g:deoplete#disable_auto_complete = 0
+endfunction
+'''
+
+[[plugins]]
+repo = 'thinca/vim-template'
+hook_add = 'source ~/.vim/rc/plugins/vim-template.rc.vim'
+
+[[plugins]]
+repo = 'tpope/vim-sensible'
+
+[[plugins]]
+repo = 'shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+let g:ale_lint_on_save = 1
+let g:ale_linters = {
+    \   'cpp': ['clang', 'clangtidy', 'cppcheck', 'cpplint', 'gcc', 'clang-format'],
+    \ }
+
+let g:ale_dockerfile_hadolint_use_docker = 'yes'
+
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_format = '[%linter%] %s'
+let g:ale_echo_msg_warning_str = 'W'
+
+nmap <silent> gne <Plug>(ale_next_wrap)
+nmap <silent> gep <Plug>(ale_previous_wrap)
+'''
 

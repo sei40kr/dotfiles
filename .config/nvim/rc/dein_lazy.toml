@@ -1,181 +1,19 @@
-# ============ Interfaces ============
-[[plugins]]
-repo = 'shougo/denite.nvim'
-on_cmd = ['Denite', 'DeniteBufferDir', 'DeniteCursorWord', 'DeniteProjectDir']
-hook_add = '''
-nmap <Space> [denite]
-
-nnoremap <silent> [denite] <Nop>
-nnoremap <silent> [denite]f :<C-u>DeniteProjectDir
-    \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'` -buffer-name=denite-file-rec<CR>
-nnoremap <silent> [denite]F :<C-u>DeniteProjectDir grep -buffer-name=denite-grep<CR>
-nnoremap <silent> [denite]n :<C-u>DeniteProjectDir grep -buffer-name=denite-grep -resume -select=+1 -immediately<CR>
-nnoremap <silent> [denite]p :<C-u>DeniteProjectDir grep -buffer-name=denite-grep -resume -select=-1 -immediately<CR>
-nnoremap <silent> [denite]o :<C-u>Denite outline -buffer-name=denite-outline<CR>
-nnoremap <silent> [denite]h :<C-u>Denite help -buffer-name=denite-help<CR>
-'''
-hook_post_source = 'source ~/.vim/rc/plugins/denite.rc.vim'
-[[plugins]]
-repo = 'ozelentok/denite-gtags'
-depends = 'denite.nvim'
-on_source = 'denite.nvim'
-hook_add = '''
-nnoremap <silent> <Leader>s :<C-u>Denite gtags_completion -default_action=tabopen<CR>
-nnoremap <silent> <Leader>S :<C-u>Denite gtags_completion -default_action=tabopen<CR>
-nnoremap <silent> gjK :<C-u>DeniteCursorWord gtags_def -default_action=tabopen<CR>
-nnoremap <silent> gji :<C-u>DeniteCursorWord gtags_def -default_action=tabopen<CR>
-nnoremap <silent> <C-k> :<C-u>DeniteCursorWord gtags_ref -default_action=tabopen<CR>
-'''
-[[plugins]]
-repo = 'koron/codic-vim'
-on_cmd = 'Codic'
-
-# ============ Coding Assistants ============
-[[plugins]]
-repo = 'tpope/vim-endwise'
-on_event = 'InsertEnter'
-[[plugins]]
-repo = 'shougo/echodoc.vim'
-on_event = 'InsertEnter'
-hook_add = '''
-let g:echodoc#enable_at_startup = 1
-'''
-[[plugins]]
-repo = 'shougo/neosnippet'
-depends = ['deoplete.nvim', 'neosnippet-snippets']
-on_event = 'InsertEnter'
-on_ft = 'snippet'
-hook_add = '''
-set conceallevel=2 concealcursor=niv
-'''
-hook_post_source = '''
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-'''
-
-# ============ Code Completions ============
-[[plugins]]
-repo = 'shougo/deoplete.nvim'
-on_event = 'InsertEnter'
-hook_add = '''
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#complete_method = 'omnifunc'
-let g:deoplete#enable_smart_case = 1
-'''
-[[plugins]]
-repo = 'ozelentok/deoplete-gtags'
-depends = 'deoplete.nvim'
-on_source = 'deoplete.nvim'
-[[plugins]]
-repo = 'shougo/neoinclude.vim'
-depends = 'deoplete.nvim'
-on_event = 'InsertEnter'
-[[plugins]]
-repo = 'shougo/neopairs.vim'
-depends = 'deoplete.nvim'
-on_event = 'InsertEnter'
-
-# ============ Code Formatters ============
 [[plugins]]
 repo = 'chiel92/vim-autoformat'
 on_cmd = 'Autoformat'
+hook_add = 'source ~/.vim/rc/plugins/vim-autoformat.rc.vim'
+
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+on_map = {nx = '<Plug>(easymotion-'}
 hook_add = '''
-let g:autoformat_autoindent = 0
-let g:autoformat_retab = 0
-let g:autoformat_remove_trailing_spaces = 0
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_smartsign_jp = 1
 
-let g:formatdef_buildifier = "'buildifier -mode=fix'"
-let g:formatdef_clangformat = "'clang-format -assume-filename='.expand('%:p').' -style=Google'"
-let g:formatdef_stylish_haskell = "'stylish-haskell'"
-let g:formatdef_yapf = "'yapf --style google'"
-let g:formatdef_rubocop = "'rubocop --auto-correct -o /dev/null -s '.bufname('%').' | sed -n 2,\$p'"
-let g:formatdef_jsbeautify_html = "'js-beautify --type html'"
-let g:formatdef_jsbeautify_css = "'js-beautify --type css'"
-let g:formatdef_sassconvert_sass = "'sass-convert -F sass -T sass'"
-let g:formatdef_sassconvert_scss = "'sass-convert -F scss -T scss'"
-let g:formatdef_tsfmt = "'tsfmt --stdin'"
-let g:formatdef_jsbeautify_json = "'js-beautify --type json'"
-let g:formatdef_remark_markdown = "'remark --silent --no-color'"
-
-let g:formatters_bzl = ['buildifier']
-let g:formatters_c = ['clangformat']
-let g:formatters_cpp = ['clangformat']
-let g:formatters_objc = ['clangformat']
-let g:formatters_proto = ['clangformat']
-let g:formatters_haskell = ['stylish_haskell']
-let g:formatters_java = ['clangformat']
-let g:formatters_python = ['yapf']
-let g:formatters_python3 = ['yapf']
-let g:formatters_ruby = ['rubocop']
-let g:formatters_html = ['jsbeautify_html']
-let g:formatters_css = ['jsbeautify_css']
-let g:formatters_sass = ['sassconvert_sass']
-let g:formatters_scss = ['sassconvert_scss']
-let g:formatters_javascript = ['clangformat']
-let g:formatters_typescript = ['tsfmt']
-let g:formatters_json = ['jsbeautify_json']
-let g:formatters_markdown = ['remark_markdown']
-
-nnoremap <silent> <Leader>= :<C-u>Autoformat<CR>
+nmap <Leader><Leader> <Plug>(easymotion-s)
 '''
 
-# ============ Build & Execution ============
-[[plugins]]
-repo = 'thinca/vim-quickrun'
-on_cmd = 'QuickRun'
-hook_add = '''
-let g:quickrun_no_default_key_mappings = 1
-let g:quickrun_config = {
-      \   '_': {
-      \     'runner': 'vimproc',
-      \     'runner/vimproc/updatetime': 100,
-      \     'outputter': 'error',
-      \     'outputter/error/success': 'buffer',
-      \     'outputter/error/error': 'quickfix',
-      \     'outputter/buffer/split': ':rightbelow 8sp',
-      \     'outputter/quickfix/open_cmd': 'copen',
-      \   },
-      \ }
-
-nnoremap <silent> <Leader>r :<C-u>QuickRun -mode n<CR>
-vnoremap <silent> <Leader>r :<C-u>QuickRun -mode v<CR>
-'''
-hook_post_source = '''
-let s:qfclear = {
-    \   'name': 'clear_quickfix',
-    \   'kind': 'hook',
-    \ }
-
-function! s:qfclear.on_normalized(session, context)
-  call setqflist([])
-endfunction
-
-call quickrun#module#register(s:qfclear, 1)
-unlet s:qfclear
-'''
-
-# ============ Version Control ============
-[[plugins]]
-repo = 'tpope/vim-fugitive'
-on_cmd = ['Git', 'Gcd', 'Glcd', 'Gstatus', 'Gcommit', 'Gmerge', 'Gpull', 'Gpush', 'Gfetch', 'Ggrep', 'Glgrep', 'Glog',
-    'Gllog', 'Gedit', 'Gsplit', 'Gvsplit', 'Gtabedit', 'Gpedit', 'Gread', 'Gwrite', 'Gwq', 'Gdiff', 'Gsdiff', 'Gvdiff',
-    'Gmove', 'Gdelete', 'Gremove', 'Gblame', 'Gbrowse']
-[[plugins]]
-repo = 'mattn/gist-vim'
-depends = 'webapi-vim'
-on_cmd = 'Gist'
-hook_add = '''
-let g:gist_detect_filetype = 1
-'''
-
-# ============ External Tools ============
-[[plugins]]
-repo = 'rizzatti/dash.vim'
-on_if = "has('macunix')"
-on_cmd = ['Dash', 'DashKeywords']
-
-# ============ Utilities ============
 [[plugins]]
 repo = 'edkolev/tmuxline.vim'
 on_cmd = ['Tmuxline', 'TmuxlineSnapshot']
@@ -205,4 +43,205 @@ let g:tmuxline_theme = {
     \   'bg': [145, 235],
     \ }
 '''
+
+[[plugins]]
+repo = 'junegunn/vim-easy-align'
+on_map = {nx = ['<Plug>(EasyAlign)', '<Plug>(LiveEasyAlign)']}
+hook_add = '''
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
+'''
+
+[[plugins]]
+repo = 'koron/codic-vim'
+on_cmd = 'Codic'
+
+[[plugins]]
+repo = 'mattn/gist-vim'
+depends = 'webapi-vim'
+on_cmd = 'Gist'
+hook_add = '''
+let g:gist_detect_filetype = 1
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-jplus'
+on_map = {nx = '<Plug>(jplus'}
+hook_add = '''
+let g:jplus#config = {
+    \   '_' : {'delimiter_format': '%d'},
+    \ }
+
+nmap J <Plug>(jplus)
+xmap J <Plug>(jplus)
+'''
+
+[[plugins]]
+repo = 'rhysd/clever-f.vim'
+on_map = {nox = '<Plug>(clever-'}
+hook_add = '''
+let g:clever_f_across_no_line = 1
+let g:clever_f_ignore_case = 1
+let g:clever_f_not_overwrites_standard_mappings = 1
+let g:clever_f_show_prompt = 1
+let g:clever_f_smart_case = 1
+
+nmap F <Plug>(clever-f-F)
+nmap T <Plug>(clever-f-T)
+nmap f <Plug>(clever-f-f)
+nmap t <Plug>(clever-f-t)
+omap F <Plug>(clever-f-F)
+omap T <Plug>(clever-f-T)
+omap f <Plug>(clever-f-f)
+omap t <Plug>(clever-f-t)
+xmap F <Plug>(clever-f-F)
+xmap T <Plug>(clever-f-T)
+xmap f <Plug>(clever-f-f)
+xmap t <Plug>(clever-f-t)
+'''
+
+[[plugins]]
+repo = 'rizzatti/dash.vim'
+on_if = "has('macunix')"
+on_cmd = ['Dash', 'DashKeywords']
+
+[[plugins]]
+repo = 'shougo/denite.nvim'
+on_cmd = ['Denite', 'DeniteBufferDir', 'DeniteCursorWord', 'DeniteProjectDir']
+hook_add = '''
+nnoremap <silent> <Space>f :<C-u>DeniteProjectDir
+    \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'` -buffer-name=file-rec<CR>
+nnoremap <silent> <Space>F :<C-u>DeniteProjectDir grep -buffer-name=grep<CR>
+nnoremap <silent> <Space>n :<C-u>DeniteProjectDir grep -buffer-name=grep -immediately -resume -select=+1<CR>
+nnoremap <silent> <Space>p :<C-u>DeniteProjectDir grep -buffer-name=grep -immediately -resume -select=-1<CR>
+nnoremap <silent> <Space>o :<C-u>Denite outline -buffer-name=outline<CR>
+nnoremap <silent> <Space>h :<C-u>Denite help -buffer-name=help<CR>
+nnoremap <silent> / :<C-u>Denite line -buffer-name=search -auto-highlight<CR>
+nnoremap <silent> * :<C-u>DeniteCursorWord line -auto-highlight -buffer-name=search -mode=normal<CR>
+nnoremap <silent> # :<C-u>DeniteCursorWord line -auto-highlight -buffer-name=search -mode=normal<CR>
+'''
+hook_source = 'source ~/.vim/rc/plugins/denite.rc.vim'
+hook_post_update = 'UpdateRemotePlugins'
+
+[[plugins]]
+repo = 'shougo/deoplete.nvim'
+on_event = 'InsertEnter'
+hook_source = 'source ~/.vim/rc/plugins/deoplete.rc.vim'
+hook_post_update = 'UpdateRemotePlugins'
+
+[[plugins]]
+repo = 'shougo/echodoc.vim'
+on_event = 'CompleteDone'
+hook_add = '''
+let g:echodoc#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'shougo/neoinclude.vim'
+depends = 'deoplete.nvim'
+on_event = 'InsertEnter'
+
+[[plugins]]
+repo = 'shougo/neopairs.vim'
+depends = 'deoplete.nvim'
+on_event = 'InsertEnter'
+
+[[plugins]]
+repo = 'shougo/neosnippet'
+depends = ['deoplete.nvim', 'neosnippet-snippets']
+on_event = 'InsertEnter'
+on_ft = 'snippet'
+hook_source = '''
+let g:neosnippet#enable_completed_snippet = 1
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#expand_word_boundary = 1
+let g:neosnippet#snippets_directory = '~/.vim/snippets'
+
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+'''
+
+[[plugins]]
+repo = 'shougo/unite.vim'
+on_cmd = ['Unite', 'UniteWithCurrentDir', 'UniteWithBufferDir', 'UniteWithProjectDir', 'UniteWithInput',
+    'UniteWithInputDirectory', 'UniteWithCursorWord', 'UniteResume', 'UniteClose', 'UniteNext', 'UnitePrevious',
+    'UniteFirst', 'UniteLast', 'UniteDo', 'UniteBookmarkAdd']
+hook_source = 'source ~/.vim/rc/plugins/unite.rc.vim'
+hook_post_update = 'UpdateRemotePlugins'
+
+[[plugins]]
+repo = 'shougo/vimfiler.vim'
+depends = 'unite.vim'
+on_if = "isdirectory(bufname('%'))"
+on_cmd = ['VimFiler', 'VimFilerCreate', 'VimFilerSimple', 'VimFilerSplit', 'VimFilerTab', 'VimFilerDouble',
+    'VimFilerCurrentDir', 'VimFilerBufferDir', 'VimFilerExplorer', 'VimFilerClose', 'VimFilerEdit', 'VimFilerWrite',
+    'VimFilerSource', 'VimFilerRead']
+hook_add = '''
+nnoremap <silent> <M-1> :<C-u>VimFiler<CR>
+'''
+hook_source = 'source ~/.vim/rc/plugins/vimfiler.rc.vim'
+
+[[plugins]]
+repo = 'terryma/vim-expand-region'
+on_map = {nov = '<Plug>(expand_region_'}
+hook_add = '''
+map + <Plug>(expand_region_expand)
+map _ <Plug>(expand_region_shrink)
+vmap v <Plug>(expand_region_expand)
+'''
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+on_cmd = 'QuickRun'
+hook_add = '''
+nnoremap <silent> <Space>r :<C-u>QuickRun -mode n<CR>
+vnoremap <silent> <Space>r :<C-u>QuickRun -mode v<CR>
+'''
+
+hook_source = 'source ~/.vim/rc/plugins/vim-quickrun.rc.vim'
+[[plugins]]
+repo = 'tpope/vim-commentary'
+on_map = {nox = '<Plug>Commentary'}
+hook_add = '''
+nmap gc <Plug>Commentary
+nmap gcc <Plug>CommentaryLine
+omap gc <Plug>Commentary
+xmap gc <Plug>Commentary
+'''
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+on_event = 'InsertEnter'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+on_cmd = ['Git', 'Gcd', 'Glcd', 'Gstatus', 'Gcommit', 'Gmerge', 'Gpull', 'Gpush', 'Gfetch', 'Ggrep', 'Glgrep', 'Glog',
+    'Gllog', 'Gedit', 'Gsplit', 'Gvsplit', 'Gtabedit', 'Gpedit', 'Gread', 'Gwrite', 'Gwq', 'Gdiff', 'Gsdiff', 'Gvdiff',
+    'Gmove', 'Gdelete', 'Gremove', 'Gblame', 'Gbrowse']
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
+on_map = {n = '<Plug>(Repeat'}
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+on_map = {invx = '<Plug>'}
+hook_add = '''
+let g:surround_no_mappings = 1
+
+nmap cS <Plug>CSurround
+nmap cs <Plug>Csurround
+nmap ds <Plug>Dsurround
+nmap yS <Plug>YSurround
+nmap ySS <Plug>YSsurround
+nmap ySs <Plug>YSsurround
+nmap ys <Plug>Ysurround
+nmap yss <Plug>Yssurround
+xmap S <Plug>VSurround
+xmap gS <Plug>VgSurround
+'''
+
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
 
