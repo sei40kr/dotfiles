@@ -20,6 +20,7 @@ call vimfiler#custom#profile('default', 'context', {
     \   'explorer': 1,
     \   'find': 1,
     \   'no_quit': 1,
+    \   'parent': 0,
     \   'project': 1,
     \   'safe': 0,
     \   'split': 1,
