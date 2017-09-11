@@ -242,6 +242,3 @@ xmap S <Plug>VSurround
 xmap gS <Plug>VgSurround
 '''
 
-[[plugins]]
-repo = 'vim-jp/vimdoc-ja'
-
