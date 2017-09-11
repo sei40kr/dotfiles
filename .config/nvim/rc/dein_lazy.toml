@@ -223,6 +223,12 @@ on_cmd = ['Git', 'Gcd', 'Glcd', 'Gstatus', 'Gcommit', 'Gmerge', 'Gpull', 'Gpush'
 [[plugins]]
 repo = 'tpope/vim-repeat'
 on_map = {n = '<Plug>(Repeat'}
+hook_add = '''
+nmap . <Plug>(RepeatDot)
+nmap u <Plug>(RepeatUndo)
+nmap U <Plug>(RepeatUndoLine)
+nmap <C-r> <Plug>(RepeatRedo)
+'''
 
 [[plugins]]
 repo = 'tpope/vim-surround'
