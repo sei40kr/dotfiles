@@ -1,48 +1,35 @@
 " .ideavimrc
 " author: Seong Yong-ju ( @sei40kr )
 
-" Don't quote this line or it won't work
 source ~/.vim/rc/common.rc.vim
 
-" Integrate with system clipboard
 set clipboard& clipboard^=unnamed
-" Use surround extension
 set surround
 
-" Disable code folding feature
-nnoremap <silent> zM <Nop>
-nnoremap <silent> zc <Nop>
 nnoremap <silent> zC <Nop>
-nnoremap <silent> zR <Nop>
-nnoremap <silent> zo <Nop>
+nnoremap <silent> zM <Nop>
 nnoremap <silent> zO <Nop>
+nnoremap <silent> zR <Nop>
+nnoremap <silent> zc <Nop>
+nnoremap <silent> zo <Nop>
 
-""" Misc
-"" Space + r to reload ~/.ideavimrc
-" nnoremap <silent> <Space>r :<C-u>source ~/.ideavimrc<CR>:echo 'Reloaded ~/.ideavimrc'<CR>
-
-" Move between method definitions
-nnoremap <silent> [m :<C-u>action MethodUp<CR>
-nnoremap <silent> ]m :<C-u>action MethodDown<CR>
-nnoremap <silent> [[ :<C-u>action MethodUp<CR>
-nnoremap <silent> ]] :<C-u>action MethodDown<CR>
-" Move between VCS change markers
-nnoremap <silent> [c :<C-u>action VcsShowPrevChangeMarker<CR>
-nnoremap <silent> ]c :<C-u>action VcsShowNextChangeMarker<CR>
-" Move between errors
 nnoremap <silent> gep :<C-u>action GotoPreviousError<CR>
 nnoremap <silent> gne :<C-u>action GotoNextError<CR>
 
-" Use native code navigation
-nnoremap <silent> <C-o> :<C-u>action Back<CR>
-nnoremap <silent> <C-i> :<C-u>action Forward<CR>
-nnoremap <silent> g; :<C-u>action JumpToLastChange<CR>
-nnoremap <silent> g, :<C-u>action JumpToNextChange<CR>
-" but preserve defaults
-nnoremap <silent> <C-S-o> <C-o>
-nnoremap <silent> <C-S-i> <C-i>
+nnoremap <silent> [c :<C-u>action VcsShowPrevChangeMarker<CR>
+nnoremap <silent> ]c :<C-u>action VcsShowNextChangeMarker<CR>
 
-nnoremap <silent> <Space>a :<C-u>action GotoAction<CR>
+nnoremap <silent> [m :<C-u>action MethodUp<CR>
+nnoremap <silent> ]m :<C-u>action MethodDown<CR>
+
+nnoremap <silent> g, :<C-u>action JumpToNextChange<CR>
+nnoremap <silent> g; :<C-u>action JumpToLastChange<CR>
+
+nnoremap <C-S-i> <C-i>
+nnoremap <C-S-o> <C-o>
+nnoremap <C-i> :<C-u>action Forward<CR>
+nnoremap <C-o> :<C-u>action Back<CR>
+
 nnoremap <silent> <Space>q :<C-u>action CloseContent<CR>
 nnoremap <silent> <Space>Q :<C-u>action ReopenClosedTab<CR>
 nnoremap <silent> <Space>e :<C-u>action SearchEverywhere<CR>
@@ -51,45 +38,24 @@ nnoremap <silent> <Space>F :<C-u>action FindInPath<CR>
 nnoremap <silent> <Space>s :<C-u>action GotoClass<CR>
 nnoremap <silent> <Space>S :<C-u>action GotoSymbol<CR>
 nnoremap <silent> <Space>b :<C-u>action ToggleLineBreakpoint<CR>
-nnoremap <silent> <Space>t :<C-u>action ActivateTerminalToolWindow<CR>
-nnoremap <silent> <Space>o :<C-u>action FileStructurePopup<CR>
-nnoremap <silent> <Space>P :<C-u>action ManageRecentProjects<CR>
 nnoremap <silent> <Space>= :<C-u>action OptimizeImports<CR>:action RearrangeCode<CR>:action ReformatCode<CR>
 
-"" Code Navigation
-nnoremap <silent> K :<C-u>action QuickJavaDoc<CR>
-nnoremap <silent> gjk :<C-u>action GotoDeclaration<CR>
+nnoremap <C-k> :<C-u>action QuickJavaDoc<CR>
+nnoremap <silent> gd :<C-u>action GotoDeclaration<CR>
 nnoremap <silent> gjK :<C-u>action GotoTypeDeclaration<CR>
 nnoremap <silent> gji :<C-u>action GotoImplementation<CR>
 nnoremap <silent> gjt :<C-u>action GotoTest<CR>
 nnoremap <silent> gjs :<C-u>action GotoSuperMethod<CR>
-nnoremap <silent> <C-S-u> :<C-u>action HighlightUsagesInFile<CR>
-nnoremap <silent> <C-k> :<C-u>action ShowUsages<CR>
 
-"" Code Generation
 nnoremap <silent> <Space>G :<C-u>action Generate<CR>
+nnoremap <silent> <Space>ga :<C-u>action GenerateGetterAndSetter<CR>
+nnoremap <silent> <Space>gc :<C-u>action GenerateConstructor<CR>
+nnoremap <silent> <Space>ge :<C-u>action GenerateEquals<CR>
+nnoremap <silent> <Space>gg :<C-u>action GenerateGetter<CR>
 nnoremap <silent> <Space>gn :<C-u>action NewClass<CR>
 nnoremap <silent> <Space>go :<C-u>action OverrideMethods<CR>
-nnoremap <silent> <Space>gc :<C-u>action GenerateConstructor<CR>
-nnoremap <silent> <Space>gg :<C-u>action GenerateGetter<CR>
 nnoremap <silent> <Space>gs :<C-u>action GenerateSetter<CR>
-nnoremap <silent> <Space>ga :<C-u>action GenerateGetterAndSetter<CR>
-nnoremap <silent> <Space>ge :<C-u>action GenerateEquals<CR>
 nnoremap <silent> <Space>gt :<C-u>action GenerateTestMethod<CR>
 
-"" Code Refactoring
-nnoremap <silent> cre :<C-u>action RenameElement<CR>
-nnoremap <silent> cS :<C-u>action ChangeSignature<CR>
-nnoremap <silent> cts :<C-u>action ChangeTypeSignature<CR>
-
-"" Execution, Test
 nnoremap <silent> <Space>r :<C-u>action Run<CR>
-nnoremap <silent> <Space>R :<C-u>action RunClass<CR>
 nnoremap <silent> <Space>d :<C-u>action Debug<CR>
-nnoremap <silent> <Space>D :<C-u>action DebugClass<CR>
-
-nnoremap <silent> / :<C-u>action Find<CR>
-
-nnoremap <silent> <Space><Space> :<C-u>action AceAction<CR>
-
-nnoremap <silent> <C-w>o :<C-u>action CloseAllEditorsButActive<CR>
