@@ -1,7 +1,8 @@
 " vim-template.rc.vim
 " author: Seong Yong-ju ( @sei40kr )
 
-let g:template_files = 'template/template.*'
+let g:template_basedir = expand('~/.vim/template')
+let g:template_files = 'template.*'
 
 let s:template_user = 'Seong Yong-ju'
 let s:template_user_id = '@sei40kr'
