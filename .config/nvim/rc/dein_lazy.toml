@@ -226,7 +226,8 @@ on_map = {n = '<Plug>(Repeat'}
 
 [[plugins]]
 repo = 'tpope/vim-surround'
-on_map = {invx = '<Plug>'}
+on_map = {nx = ['<Plug>CSurround', '<Plug>Csurround', '<Plug>Dsurround', '<Plug>YSurround', '<Plug>YSsurround',
+    '<Plug>Ysurround', '<Plug>VSurround', '<Plug>VgSurround']}
 hook_add = '''
 let g:surround_no_mappings = 1
 
