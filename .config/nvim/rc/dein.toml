@@ -4,13 +4,20 @@ repo = 'airblade/vim-gitgutter'
 [[plugins]]
 repo = 'autozimu/languageclient-neovim'
 hook_add = '''
+let s:go_bin_dir = $GO_PATH . '/bin'
+let s:python_bin_dir = $PYENV_ROOT . '/shims'
+let s:ruby_bin_dir = $RBENV_ROOT . '/shims'
+let s:nvm_bin_dir = $NVM_DIR . '/current/bin'
+
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
-    \   'javascript': [systemlist('npm prefix -g')[0]
-    \       . '/lib/node_modules/javascript-typescript-langserver/lib/language-server-stdio.js']
+    \   'dockerfile': [s:nvm_bin_dir . '/node', s:nvm_bin_dir . '/docker-langserver', '--stdin'],
+    \   'go': [s:go_bin_dir . '/go-langserver'],
+    \   'javascript': [s:nvm_bin_dir . '/node', s:nvm_bin_dir . '/javascript-typescript-stdio', '--cluster', '1'],
+    \   'python': [s:python_bin_dir . '/pyls'],
+    \   'ruby': [s:ruby_bin_dir . '/language_server'],
     \ }
 '''
-hook_post_update = 'UpdateRemotePlugins'
 
 [[plugins]]
 repo = 'chaoren/vim-wordmotion'

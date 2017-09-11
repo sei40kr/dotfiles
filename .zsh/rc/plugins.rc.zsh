@@ -52,6 +52,10 @@ zplug 'plugins/ubuntu', from:oh-my-zsh, if:'uname -a | grep -q ubuntu'
 zplug 'plugins/extract', from:oh-my-zsh
 zplug 'plugins/zsh_reload', from:oh-my-zsh
 
+zplug 'plugins/pyenv', from:oh-my-zsh
+zplug 'plugins/rbenv', from:oh-my-zsh
+zplug 'plugins/nvm', from:oh-my-zsh
+
 # ============= Version Control ============
 zplug 'plugins/gitfast', from:oh-my-zsh
 zplug 'plugins/git-flow', from:oh-my-zsh

@@ -121,13 +121,11 @@ nnoremap <silent> * :<C-u>DeniteCursorWord line -auto-highlight -buffer-name=sea
 nnoremap <silent> # :<C-u>DeniteCursorWord line -auto-highlight -buffer-name=search -mode=normal<CR>
 '''
 hook_source = 'source ~/.vim/rc/plugins/denite.rc.vim'
-hook_post_update = 'UpdateRemotePlugins'
 
 [[plugins]]
 repo = 'shougo/deoplete.nvim'
 on_event = 'InsertEnter'
 hook_source = 'source ~/.vim/rc/plugins/deoplete.rc.vim'
-hook_post_update = 'UpdateRemotePlugins'
 
 [[plugins]]
 repo = 'shougo/echodoc.vim'
@@ -168,7 +166,6 @@ on_cmd = ['Unite', 'UniteWithCurrentDir', 'UniteWithBufferDir', 'UniteWithProjec
     'UniteWithInputDirectory', 'UniteWithCursorWord', 'UniteResume', 'UniteClose', 'UniteNext', 'UnitePrevious',
     'UniteFirst', 'UniteLast', 'UniteDo', 'UniteBookmarkAdd']
 hook_source = 'source ~/.vim/rc/plugins/unite.rc.vim'
-hook_post_update = 'UpdateRemotePlugins'
 
 [[plugins]]
 repo = 'shougo/vimfiler.vim'
