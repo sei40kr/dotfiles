@@ -157,22 +157,6 @@ on_ft = ['python', 'python3']
 
 # ============ Web Development Support ============
 [[plugins]]
-repo = 'mattn/emmet-vim'
-on_cmd = 'EmmetInstall'
-hook_add = '''
-let g:user_emmet_install_global = 0
-let g:user_emmet_mode = 'i'
-let g:user_emmet_settings = {
-    \   'variables': {'lang': 'ja',},
-    \ }
-
-augroup emmet_hooks
-  autocmd!
-  autocmd FileType html,css,xml EmmetInstall
-      \ | imap <silent><buffer> <C-e> <Plug>(emmet-expand-abbr)
-augroup END
-'''
-[[plugins]]
 repo = 'jasonlong/vim-textobj-css'
 depends = 'vim-textobj-user'
 on_ft = 'css'
