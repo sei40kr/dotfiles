@@ -44,6 +44,8 @@ let g:lightline = {
 [[plugins]]
 repo = 'joshdick/onedark.vim'
 hook_add = '''
+let g:onedark_termcolors = 16
+
 autocmd ColorScheme onedark highlight NonText ctermbg=None
     \ | highlight LineNr ctermbg=None
     \ | highlight Normal ctermbg=None
