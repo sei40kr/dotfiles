@@ -222,7 +222,7 @@ on_cmd = ['ApexValidateJavaConfig', 'ApexMessages', 'ApexCompare', 'ApexCompareL
     'ApexTest', 'ApexTestCoverageHideAll', 'ApexTestCoverageShow', 'ApexTestCoverageToggle', 'ApexTestWithCoverage',
     'ApexTListToggle', 'ApexToolingVersion']
 hook_build = "silent call system('mkdir -p ~/.cache/apex/backup ~/.cache/apex/tmp')"
-hook_add = '''
+hook_source = '''
 let g:apex_backup_folder = expand('~/.cache/apex/backup')
 let g:apex_temp_folder = expand('~/.cache/apex/tmp')
 let g:apex_properties_folder = expand('~/.config/apex/secure')
@@ -233,6 +233,10 @@ let g:apex_conflict_check = 1
 let g:apex_tooling_force_dot_com_path = '~/.config/apex/build/tooling-force.com-0.4.0.2.jar'
 let g:apex_tooling_force_dot_com_java_params = '-Dorg.apache.commons.logging.simplelog.defaultlog=info'
 let g:apex_server_port = 8888
+
+let s:force_com_snippet_dir = dein#get('vim-force.com').rtp . '/snippets'
+execute 'NeoSnippetSource ' . s:force_com_snippet_dir . '/apexcode.snippets'
+execute 'NeoSnippetSource ' . s:force_com_snippet_dir . '/visualforce.snippets'
 '''
 
 # ============ SQL Support ============

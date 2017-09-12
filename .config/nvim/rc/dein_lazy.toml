@@ -151,6 +151,7 @@ repo = 'shougo/neosnippet'
 depends = ['deoplete.nvim', 'neosnippet-snippets']
 on_event = 'InsertEnter'
 on_ft = 'snippet'
+on_cmd = ['NeoSnippetMakeCache', 'NeoSnippetEdit', 'NeoSnippetSource', 'NeoSnippetClearMarker']
 hook_source = '''
 let g:neosnippet#enable_completed_snippet = 1
 let g:neosnippet#enable_snipmate_compatibility = 1
