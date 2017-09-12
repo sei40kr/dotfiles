@@ -5,7 +5,7 @@ hook_add = 'source ~/.vim/rc/plugins/vim-autoformat.rc.vim'
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
-on_map = {nx = '<Plug>(easymotion-'}
+on_map = {n = '<Leader><Leader>'}
 hook_add = '''
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
@@ -46,7 +46,7 @@ let g:tmuxline_theme = {
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
-on_map = {nx = ['<Plug>(EasyAlign)', '<Plug>(LiveEasyAlign)']}
+on_map = {nx = '<Plug>(EasyAlign'}
 hook_add = '''
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
@@ -66,7 +66,7 @@ let g:gist_detect_filetype = 1
 
 [[plugins]]
 repo = 'osyo-manga/vim-jplus'
-on_map = {nx = '<Plug>(jplus'}
+on_map = {nx = '<Plug>(jplus)'}
 hook_add = '''
 let g:jplus#config = {
     \   '_' : {'delimiter_format': '%d'},
@@ -78,26 +78,12 @@ xmap J <Plug>(jplus)
 
 [[plugins]]
 repo = 'rhysd/clever-f.vim'
-on_map = {nox = '<Plug>(clever-'}
+on_map = {nox = ['F', 'T', 'f', 't']}
 hook_add = '''
 let g:clever_f_across_no_line = 1
 let g:clever_f_ignore_case = 1
-let g:clever_f_not_overwrites_standard_mappings = 1
 let g:clever_f_show_prompt = 1
 let g:clever_f_smart_case = 1
-
-nmap F <Plug>(clever-f-F)
-nmap T <Plug>(clever-f-T)
-nmap f <Plug>(clever-f-f)
-nmap t <Plug>(clever-f-t)
-omap F <Plug>(clever-f-F)
-omap T <Plug>(clever-f-T)
-omap f <Plug>(clever-f-f)
-omap t <Plug>(clever-f-t)
-xmap F <Plug>(clever-f-F)
-xmap T <Plug>(clever-f-T)
-xmap f <Plug>(clever-f-f)
-xmap t <Plug>(clever-f-t)
 '''
 
 [[plugins]]
@@ -181,10 +167,8 @@ hook_source = 'source ~/.vim/rc/plugins/vimfiler.rc.vim'
 
 [[plugins]]
 repo = 'terryma/vim-expand-region'
-on_map = {nov = '<Plug>(expand_region_'}
+on_map = {nx = ['+', '_'], v = 'v'}
 hook_add = '''
-map + <Plug>(expand_region_expand)
-map _ <Plug>(expand_region_shrink)
 vmap v <Plug>(expand_region_expand)
 '''
 
@@ -199,13 +183,7 @@ vnoremap <silent> <Space>r :<C-u>QuickRun -mode v<CR>
 hook_source = 'source ~/.vim/rc/plugins/vim-quickrun.rc.vim'
 [[plugins]]
 repo = 'tpope/vim-commentary'
-on_map = {nox = '<Plug>Commentary'}
-hook_add = '''
-nmap gc <Plug>Commentary
-nmap gcc <Plug>CommentaryLine
-omap gc <Plug>Commentary
-xmap gc <Plug>Commentary
-'''
+on_map = {n = ['gc', 'gcc'], o = 'gc', x = 'gc'}
 
 [[plugins]]
 repo = 'tpope/vim-endwise'
@@ -219,30 +197,10 @@ on_cmd = ['Git', 'Gcd', 'Glcd', 'Gstatus', 'Gcommit', 'Gmerge', 'Gpull', 'Gpush'
 
 [[plugins]]
 repo = 'tpope/vim-repeat'
-on_map = {n = '<Plug>(Repeat'}
-hook_add = '''
-nmap . <Plug>(RepeatDot)
-nmap u <Plug>(RepeatUndo)
-nmap U <Plug>(RepeatUndoLine)
-nmap <C-r> <Plug>(RepeatRedo)
-'''
+on_map = {n = ['.', 'u', 'U', '<C-r>']}
 
 [[plugins]]
 repo = 'tpope/vim-surround'
-on_map = {nx = ['<Plug>CSurround', '<Plug>Csurround', '<Plug>Dsurround', '<Plug>YSurround', '<Plug>YSsurround',
-    '<Plug>Ysurround', '<Plug>VSurround', '<Plug>VgSurround']}
-hook_add = '''
-let g:surround_no_mappings = 1
-
-nmap cS <Plug>CSurround
-nmap cs <Plug>Csurround
-nmap ds <Plug>Dsurround
-nmap yS <Plug>YSurround
-nmap ySS <Plug>YSsurround
-nmap ySs <Plug>YSsurround
-nmap ys <Plug>Ysurround
-nmap yss <Plug>Yssurround
-xmap S <Plug>VSurround
-xmap gS <Plug>VgSurround
-'''
+depends = 'vim-repeat'
+on_map = {n = ['cS', 'cs', 'ds', 'yS', 'ySS', 'ySs', 'ys', 'yss'], x = ['S', 'gS']}
 
