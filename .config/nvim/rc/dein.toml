@@ -45,6 +45,15 @@ let g:lightline = {
 repo = 'joshdick/onedark.vim'
 hook_add = '''
 let g:onedark_termcolors = 16
+
+augroup onedark_hooks
+  autocmd!
+  autocmd ColorScheme onedark highlight LineNr ctermbg=none
+      \ | highlight NonText ctermbg=none
+      \ | highlight Normal ctermbg=none
+      \ | highlight SignColumn ctermbg=none
+      \ | highlight VertSplit ctermbg=none
+augroup END
 '''
 
 [[plugins]]
@@ -65,6 +74,9 @@ repo = 'sheerun/vim-polyglot'
 
 [[plugins]]
 repo = 'shougo/dein.vim'
+
+[[plugins]]
+repo = 'shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'shougo/vimproc.vim'
@@ -88,9 +100,6 @@ hook_add = 'source ~/.vim/rc/plugins/vim-template.rc.vim'
 
 [[plugins]]
 repo = 'tpope/vim-sensible'
-
-[[plugins]]
-repo = 'shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
