@@ -17,7 +17,6 @@ nnoremap ; :
 
 nnoremap Q <Nop>
 nnoremap <silent> q: <Nop>
-nnoremap <silent> ZQ <Nop>
 
 nnoremap <silent> [<Space> O<Esc>j
 nnoremap <silent> ]<Space> o<Esc>k
