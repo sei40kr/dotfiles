@@ -53,6 +53,11 @@ xmap ga <Plug>(EasyAlign)
 '''
 
 [[plugins]]
+repo = 'junegunn/vim-xmark'
+on_cmd = 'Xmark'
+hook_build = 'make'
+
+[[plugins]]
 repo = 'koron/codic-vim'
 on_cmd = 'Codic'
 
