@@ -12,8 +12,6 @@ proselint
 ptpython
 pygments
 pylint
-pyls
-pyls-mypy
 vint
 yamllint
 yapf
