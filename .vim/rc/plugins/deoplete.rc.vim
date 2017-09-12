@@ -1,8 +1,10 @@
 " deoplete.rc.vim
 " author: Seong Yong-ju ( @sei40kr )
 
+let g:deoplete#auto_complete_start_length = 1
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_camel_case = 1
+let g:deoplete#enable_fuzzy_completion = 1
 let g:deoplete#enable_ignore_case = 1
 let g:deoplete#enable_refresh_always = 0
 let g:deoplete#enable_smart_case = 1
