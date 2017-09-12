@@ -221,7 +221,7 @@ on_cmd = ['ApexValidateJavaConfig', 'ApexMessages', 'ApexCompare', 'ApexCompareL
     'ApexSaveOpen', 'ApexScratch', 'ApexStage', 'ApexStageAdd', 'ApexStageAddOpen', 'ApexStageClear', 'ApexStageRemove',
     'ApexTest', 'ApexTestCoverageHideAll', 'ApexTestCoverageShow', 'ApexTestCoverageToggle', 'ApexTestWithCoverage',
     'ApexTListToggle', 'ApexToolingVersion']
-hook_build = "silent! call system('mkdir -p ~/.cache/apex/backup ~/.cache/apex/tmp')"
+hook_build = "silent call system('mkdir -p ~/.cache/apex/backup ~/.cache/apex/tmp')"
 hook_add = '''
 let g:apex_backup_folder = expand('~/.cache/apex/backup')
 let g:apex_temp_folder = expand('~/.cache/apex/tmp')
