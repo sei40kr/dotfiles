@@ -76,11 +76,5 @@ augroup cursorline_hooks
   autocmd WinLeave * setlocal nocursorline
 augroup END
 
-augroup number_hooks
-  autocmd!
-  autocmd InsertEnter * set norelativenumber number
-  autocmd InsertLeave * set nonumber relativenumber
-augroup END
-
 colorscheme onedark
 

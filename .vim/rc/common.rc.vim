@@ -5,7 +5,7 @@ set hlsearch
 set ignorecase
 set iskeyword& iskeyword+=-,/,?
 set matchpairs& matchpairs+=<:>
-set nonumber
+set number
 set relativenumber
 set showmode
 set smartcase
