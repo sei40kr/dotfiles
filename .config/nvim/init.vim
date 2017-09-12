@@ -29,6 +29,9 @@ let g:dein#install_max_processes = 16
 let g:dein#install_progress_type = 'title'
 let g:dein#enable_notification = 1
 
+syntax enable
+filetype plugin indent on
+
 if dein#load_state(s:dein_cache_dir)
   call dein#begin(s:dein_cache_dir)
   call dein#load_toml(s:nvim_rc_dir . '/dein.toml')
@@ -75,9 +78,6 @@ augroup cursorline_hooks
   autocmd WinEnter,BufWinEnter * setlocal cursorline
   autocmd WinLeave * setlocal nocursorline
 augroup END
-
-syntax enable
-filetype plugin indent on
 
 colorscheme onedark
 
