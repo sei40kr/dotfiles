@@ -97,13 +97,13 @@ if = "has('macunix')"
 on_cmd = ['Dash', 'DashKeywords']
 hook_add = '''
 let g:dash_map = {
-  \   'apexcode': ['apex', 'html'],
+  \   'apex': ['apex', 'html'],
   \   'visualforce': ['vf'],
   \ }
 
 augroup dash_hooks
   autocmd!
-  autocmd FileType apexcode nnoremap <buffer> gK :<C-u>Dash<CR>
+  autocmd FileType apex nnoremap <buffer> gK :<C-u>Dash<CR>
 augroup END
 '''
 
