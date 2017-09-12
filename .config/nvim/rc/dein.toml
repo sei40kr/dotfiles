@@ -39,16 +39,17 @@ hook_add = '''
 let g:lightline = {
     \   'colorscheme': 'onedark'
     \ }
+'''
 
+[[plugins]]
+repo = 'joshdick/onedark.vim'
+hook_add = '''
 autocmd ColorScheme onedark highlight NonText ctermbg=None
     \ | highlight LineNr ctermbg=None
     \ | highlight Normal ctermbg=None
     \ | highlight SignColumn ctermbg=None
     \ | highlight VertSplit ctermbg=None
 '''
-
-[[plugins]]
-repo = 'joshdick/onedark.vim'
 
 [[plugins]]
 repo = 'kana/vim-textobj-entire'
