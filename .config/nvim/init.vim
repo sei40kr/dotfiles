@@ -76,5 +76,8 @@ augroup cursorline_hooks
   autocmd WinLeave * setlocal nocursorline
 augroup END
 
+syntax enable
+filetype plugin indent on
+
 colorscheme onedark
 
