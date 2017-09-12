@@ -103,7 +103,7 @@ let g:dash_map = {
 
 augroup dash_hooks
   autocmd!
-  autocmd FileType apexcode nnoremap <buffer> <C-k> :<C-u>Dash<CR>
+  autocmd FileType apexcode nnoremap <buffer> gK :<C-u>Dash<CR>
 augroup END
 '''
 
