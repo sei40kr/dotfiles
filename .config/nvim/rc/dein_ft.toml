@@ -204,6 +204,37 @@ repo = 'mhartington/nvim-typescript'
 depends = 'deoplete.nvim'
 on_ft = 'typescript'
 
+[[plugins]]
+repo = 'neowit/vim-force.com'
+rev = 'legacy-vim-sync'
+on_path = ['*.cls', '*.trigger', '*.resource', '*.page', '*.component', '*.scf', 'vim-force.com-scratch.txt',
+    '*JS.resource', '*/src/objects/*.object', '*/src/profiles/*.profile', '*/src/layouts/*.layout',
+    '*/src/workflows/*.workflow', '*/src/package.xml', '*/src/customMetadata/*.md', '*/resources_unpacked/*.js',
+    '*/resources_unpacked/*.html', '*/src/aura/*.app', '*/src/aura/*.cmp', '*/src/aura/*.evt', '*/src/aura/*.intf',
+    '*/src/aura/*.js', '*/src/aura/*.css', '*/src/aura/*.auradoc']
+on_cmd = ['ApexValidateJavaConfig', 'ApexMessages', 'ApexCompare', 'ApexCompareLocalProjects',
+    'ApexCompareWithPreRefreshVersion', 'ApexDeploy', 'ApexDeployAll', 'ApexDeployAllDestructive',
+    'ApexDeployDestructive', 'ApexDeployOpen', 'ApexDeployOne', 'ApexDeployStaged', 'ApexDiffWithRemoteFile',
+    'ApexDiffWithRemoteProject', 'ApexExecuteAnonymous', 'ApexExecuteAnonymousRepeat', 'ApexGitInit', 'ApexInitProject',
+    'ApexLog', 'ApexNewFile', 'ApexPrintChanged', 'ApexPrintConflicts', 'ApexQuery', 'ApexQueryRepeat',
+    'ApexRefreshFile', 'ApexRefreshProject', 'ApexRemoveStaged', 'ApexRetrieve', 'ApexSave', 'ApexSaveOne',
+    'ApexSaveOpen', 'ApexScratch', 'ApexStage', 'ApexStageAdd', 'ApexStageAddOpen', 'ApexStageClear', 'ApexStageRemove',
+    'ApexTest', 'ApexTestCoverageHideAll', 'ApexTestCoverageShow', 'ApexTestCoverageToggle', 'ApexTestWithCoverage',
+    'ApexTListToggle', 'ApexToolingVersion']
+hook_build = "silent! call system('mkdir -p ~/.cache/apex/backup ~/.cache/apex/tmp')"
+hook_add = '''
+let g:apex_backup_folder = expand('~/.cache/apex/backup')
+let g:apex_temp_folder = expand('~/.cache/apex/tmp')
+let g:apex_properties_folder = expand('~/.config/apex/secure')
+let g:apex_syntax_case_sensitive = 1
+let g:apex_API_version = '40.0'
+let g:apex_messages_split_size = 10
+let g:apex_conflict_check = 1
+let g:apex_tooling_force_dot_com_path = '~/.config/apex/build/tooling-force.com-0.4.0.2.jar'
+let g:apex_tooling_force_dot_com_java_params = '-Dorg.apache.commons.logging.simplelog.defaultlog=info'
+let g:apex_server_port = 8888
+'''
+
 # ============ SQL Support ============
 [[plugins]]
 repo = 'vim-scripts/SQLComplete.vim'
