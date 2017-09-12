@@ -42,23 +42,6 @@ add-zsh-hook chpwd chpwd_recent_dirs
 # Configure GNU utilities as default if they're available
 [ -d '/usr/local/opt/coreutils/libexec/gnubin' ] && PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
 
-# Configure version managers for Python, Ruby
-# Configure the pyenv root if it exists on default location
-[ -d "${HOME}/.pyenv" ] && { export PYENV_ROOT="${HOME}/.pyenv"; export PATH="${PYENV_ROOT}:${PATH}"; }
-# Load pyenv if it's executable
-which pyenv 1>/dev/null 2>/dev/null && eval "$(pyenv init -)"
-
-# Configure the rbenv root if it exists on default location
-[ -d "${HOME}/.rbenv" ] && { export RBENV_ROOT="${HOME}/.rbenv"; export PATH="${RBENV_ROOT}:${PATH}"; }
-# Load rbenv if it's executable
-which rbenv 1>/dev/null 2>/dev/null && eval "$(rbenv init -)"
-
-# Configure the nvm root if it exists on default location
-[ -d "${HOME}/.nvm" ] && export NVM_DIR="${HOME}/.nvm"
-# Load nvm here if it's installed
-[ -f '/usr/local/opt/nvm/nvm.sh' ] && . '/usr/local/opt/nvm/nvm.sh' \
-  || { [ -f "${NVM_DIR}/nvm.sh" ] && . "${NVM_DIR}/nvm.sh"; }
-
 # Configure package managers, Cargo, Golang, Cabal, NPM
 export GOPATH="${HOME}/.go"
 PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:${GOPATH}/bin:${HOME}/.cabal/bin:${HOME}/.npm-global/bin:${PATH}"
