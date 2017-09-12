@@ -93,8 +93,19 @@ let g:clever_f_smart_case = 1
 
 [[plugins]]
 repo = 'rizzatti/dash.vim'
-on_if = "has('macunix')"
+if = "has('macunix')"
 on_cmd = ['Dash', 'DashKeywords']
+hook_add = '''
+let g:dash_map = {
+  \   'apexcode': ['apex', 'html'],
+  \   'visualforce': ['vf'],
+  \ }
+
+augroup dash_hooks
+  autocmd!
+  autocmd FileType apexcode nnoremap <buffer> <C-k> :<C-u>Dash<CR>
+augroup END
+'''
 
 [[plugins]]
 repo = 'shougo/denite.nvim'
