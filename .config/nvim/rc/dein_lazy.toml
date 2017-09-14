@@ -97,8 +97,8 @@ if = "has('macunix')"
 on_cmd = ['Dash', 'DashKeywords']
 hook_add = '''
 let g:dash_map = {
-  \   'apex': ['apex', 'html'],
-  \   'visualforce': ['vf'],
+  \   'apex': ['apex'],
+  \   'visualforce': ['vf', 'html'],
   \ }
 
 augroup dash_hooks
