@@ -47,6 +47,8 @@ export GOPATH="${HOME}/.go"
 PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:${GOPATH}/bin:${HOME}/.cabal/bin:${HOME}/.npm-global/bin:${PATH}"
 PATH="$(gem env GEM_PATHS):${PATH}"
 
+[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
+
 export NVM_DIR="${HOME}/.nvm"
 export NVM_SYMLINK_CURRENT=true
 
