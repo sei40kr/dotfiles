@@ -5,7 +5,7 @@ hook_add = 'source ~/.vim/rc/plugins/vim-autoformat.rc.vim'
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
-on_map = {n = '<Leader><Leader>'}
+on_map = {n = '<Plug>(easymotion-'}
 hook_add = '''
 let g:EasyMotion_do_mapping = 0
 let g:EasyMotion_smartcase = 1
