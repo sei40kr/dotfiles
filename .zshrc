@@ -72,6 +72,9 @@ bindkey '^x^b' anyframe-widget-checkout-git-branch
 bindkey '^xg' anyframe-widget-cd-ghq-repository
 bindkey '^x^g' anyframe-widget-cd-ghq-repository
 
+export NVM_LAZY_LOAD=true
+export NVM_AUTO_USE=true
+
 # Configure a zsh plugin, alias-tips
 # https://github.com/djui/alias-tips
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='Use alias: '

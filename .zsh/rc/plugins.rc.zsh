@@ -54,6 +54,7 @@ zplug 'plugins/zsh_reload', from:oh-my-zsh
 
 zplug 'plugins/pyenv', from:oh-my-zsh
 zplug 'plugins/rbenv', from:oh-my-zsh
+zplug 'lukechilds/zsh-nvm'
 
 # ============= Version Control ============
 zplug 'plugins/gitfast', from:oh-my-zsh
