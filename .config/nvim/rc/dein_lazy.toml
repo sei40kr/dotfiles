@@ -46,7 +46,7 @@ let g:tmuxline_theme = {
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
-on_map = {nx = '<Plug>(EasyAlign'}
+on_map = {nx = '<Plug>(EasyAlign)'}
 hook_add = '''
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
