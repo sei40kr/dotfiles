@@ -67,7 +67,7 @@ zplug 'plugins/gitignore', from:oh-my-zsh
 # Use command to go to root directory of current repo
 
 # ============ Appearance ============
-zplug 'sindresorhus/pure', use:pure.plugin.zsh, as:theme
+zplug 'sindresorhus/pure', use:pure.zsh, as:theme
 zplug 'sei40kr/dircolors-solarized', use:'*.ansi-dark.zsh'
 
 # Use alias tips
