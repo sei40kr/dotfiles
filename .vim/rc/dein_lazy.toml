@@ -82,10 +82,6 @@ let g:gist_detect_filetype = 1
 repo = 'osyo-manga/vim-jplus'
 on_map = {nx = '<Plug>(jplus)'}
 hook_add = '''
-let g:jplus#config = {
-    \   '_' : {'delimiter_format': '%d'},
-    \ }
-
 nmap J <Plug>(jplus)
 xmap J <Plug>(jplus)
 '''
