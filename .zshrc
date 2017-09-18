@@ -15,7 +15,6 @@ zmodload zsh/zpty
 
 autoload -Uz add-zsh-hook \
     cdr \
-    chpwd \
     chpwd_recent_dirs \
     zmv
 
