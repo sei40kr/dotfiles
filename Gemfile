@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'bundler'
+gem 'circle-cli'
 gem 'fastri'
 gem 'mdl'
 gem 'neovim'

@@ -3,65 +3,81 @@
 # .zshrc
 # author: Seong Yong-ju ( @sei40kr )
 
-# Launch tmux if it's not running
-[ -z "$TMUX" ] && { tmux new-session; exit; }
+[ -z "$TMUX" ] && [ -z "$VIMRUNTIME" ] && [ -z "$ATOM_HOME" ] && {
+  export FZF_TMUX=true;
+  export FZF_TMUX_HEIGHT='25%';
+  tmux new-session;
+  exit;
+}
 
 # zmodload zsh/zprof
 zmodload zsh/zpty
 
-autoload -Uz add-zsh-hook cdr chpwd_recent_dirs zmv
+autoload -Uz add-zsh-hook \
+    cdr \
+    chpwd \
+    chpwd_recent_dirs \
+    zmv
 
-# Configure zsh features
-export TERM='screen-256color'
 export EDITOR="$(which nvim)"
 export HISTFILE="${HOME}/.histfile"
 export HISTSIZE=1000
-export SAVEHIST=1000
 export KEYTIMEOUT=1
+export SAVEHIST=1000
+export TERM='screen-256color'
 export XDG_CONFIG_HOME="${HOME}/.config"
-setopt append_history extended_history share_history hist_ignore_all_dups hist_ignore_space hist_reduce_blanks
-setopt auto_list auto_menu
-setopt auto_cd auto_pushd pushd_ignore_dups
-setopt glob_dots
-setopt interactive_comments
-setopt print_eight_bit
-setopt prompt_subst
-# Disable beep and its visual effect
-setopt no_beep
+export ZSH_RC_DIR="${HOME}/.zsh/rc"
+
+setopt append_history \
+    auto_cd \
+    auto_list \
+    auto_menu \
+    auto_pushd \
+    extended_history \
+    glob_dots \
+    hist_ignore_all_dups \
+    hist_ignore_space \
+    hist_reduce_blanks \
+    interactive_comments \
+    no_beep \
+    print_eight_bit \
+    prompt_subst \
+    pushd_ignore_dups \
+    share_history
 unsetopt list_beep
 
-# ============ Keymap =============
 bindkey -e
 bindkey '^[[1;3C' forward-word
 bindkey '^[[1;3D' backward-word
 bindkey '^[[Z' reverse-menu-complete
 
-# Use working directory history
-add-zsh-hook chpwd chpwd_recent_dirs
-
-# Configure GNU utilities as default if they're available
+# Configure coreutils
 [ -d '/usr/local/opt/coreutils/libexec/gnubin' ] && PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
 
-# Configure package managers, Cargo, Golang, Cabal, NPM
+# Configure package managers, Cargo, Golang, Cabal
 export GOPATH="${HOME}/.go"
-PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:${GOPATH}/bin:${HOME}/.cabal/bin:${HOME}/.npm-global/bin:${PATH}"
-PATH="$(gem env GEM_PATHS):${PATH}"
+PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:${GOPATH}/bin:${HOME}/.cabal/bin:${PATH}"
 
 [ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
 
-export NVM_DIR="${HOME}/.nvm"
+# Configure alias-tips
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT='Use alias: '
+
+# Configure emoji-cli
+EMOJI_CLI_FILTER="fzf-tmux -d ${FZF_TMUX_HEIGHT}" || EMOJI_CLI_FILTER='fzf'
+
+# Configure zsh-nvm
+export NVM_LAZY_LOAD=true
+export NVM_AUTO_USE=true
 export NVM_SYMLINK_CURRENT=true
 
+# Configure spaceship-zsh-theme
+export SPACESHIP_PACKAGE_SHOW=false
+
 # Load zsh plugins
-source "${HOME}/.zsh/rc/plugins.rc.zsh"
+source "${ZSH_RC_DIR}/plugins.rc.zsh"
 
-# Init fzf-tmux when tmux is running
-[ -n "$TMUX" ] && { FZF_TMUX=1; FZF_TMUX_HEIGHT='25%'; }
-# Load fzf fuzzy completions here if it's installed via Homebrew
-[ -f "${HOME}/.fzf.zsh" ] && . "${HOME}/.fzf.zsh"
-
-# Configure a zsh plugin, anyframe
-# https://github.com/mollifier/anyframe
+# Configure anyframe
 bindkey '^r' anyframe-widget-execute-history
 bindkey '^xb' anyframe-widget-cdr
 bindkey '^xk' anyframe-widget-kill
@@ -72,14 +88,5 @@ bindkey '^x^b' anyframe-widget-checkout-git-branch
 bindkey '^xg' anyframe-widget-cd-ghq-repository
 bindkey '^x^g' anyframe-widget-cd-ghq-repository
 
-export NVM_LAZY_LOAD=true
-export NVM_AUTO_USE=true
-
-# Configure a zsh plugin, alias-tips
-# https://github.com/djui/alias-tips
-export ZSH_PLUGINS_ALIAS_TIPS_TEXT='Use alias: '
-
-# Load user-defined aliases
-# Note: This should be the final line of this file
-source "${HOME}/.zsh/rc/aliases.rc.zsh"
+source "${ZSH_RC_DIR}/aliases.rc.zsh"
 

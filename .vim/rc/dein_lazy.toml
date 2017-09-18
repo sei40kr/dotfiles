@@ -221,3 +221,12 @@ repo = 'tpope/vim-surround'
 depends = 'vim-repeat'
 on_map = {n = ['cS', 'cs', 'ds', 'yS', 'ySS', 'ySs', 'ys', 'yss'], x = ['S', 'gS']}
 
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+on_cmd = ['OpenBrowser', 'OpenBrowserSearch', 'OpenBrowserSmartSearch']
+
+[[plugins]]
+repo = 'tyru/open-browser-github.vim'
+depends = 'open-browser.vim'
+on_cmd = ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq']
+
