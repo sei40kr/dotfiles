@@ -45,6 +45,10 @@ let g:tmuxline_theme = {
 '''
 
 [[plugins]]
+repo = 'jsfaint/gen_tags.vim'
+on_cmd = ['GenCtags', 'EditExt', 'ClearCtags']
+
+[[plugins]]
 repo = 'junegunn/vim-easy-align'
 on_map = {nx = '<Plug>(EasyAlign)'}
 hook_add = '''
@@ -56,6 +60,11 @@ xmap ga <Plug>(EasyAlign)
 repo = 'junegunn/vim-xmark'
 on_cmd = 'Xmark'
 hook_build = 'make'
+
+[[plugins]]
+repo = 'kannokanno/previm'
+depends = 'open-browser.vim'
+on_cmd = 'PrevimOpen'
 
 [[plugins]]
 repo = 'koron/codic-vim'
@@ -111,13 +120,13 @@ augroup END
 repo = 'shougo/denite.nvim'
 on_cmd = ['Denite', 'DeniteBufferDir', 'DeniteCursorWord', 'DeniteProjectDir']
 hook_add = '''
-nnoremap <silent> <Space>f :<C-u>DeniteProjectDir
+nnoremap <silent> <Leader>f :<C-u>DeniteProjectDir
     \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'` -buffer-name=file-rec<CR>
-nnoremap <silent> <Space>F :<C-u>DeniteProjectDir grep -buffer-name=grep<CR>
-nnoremap <silent> <Space>n :<C-u>DeniteProjectDir grep -buffer-name=grep -immediately -resume -select=+1<CR>
-nnoremap <silent> <Space>p :<C-u>DeniteProjectDir grep -buffer-name=grep -immediately -resume -select=-1<CR>
-nnoremap <silent> <Space>o :<C-u>Denite outline -buffer-name=outline<CR>
-nnoremap <silent> <Space>h :<C-u>Denite help -buffer-name=help<CR>
+nnoremap <silent> <Leader>F :<C-u>DeniteProjectDir grep -buffer-name=grep<CR>
+nnoremap <silent> <Leader>n :<C-u>DeniteProjectDir grep -buffer-name=grep -immediately -resume -select=+1<CR>
+nnoremap <silent> <Leader>p :<C-u>DeniteProjectDir grep -buffer-name=grep -immediately -resume -select=-1<CR>
+nnoremap <silent> <Leader>o :<C-u>Denite outline -buffer-name=outline<CR>
+nnoremap <silent> <Leader>h :<C-u>Denite help -buffer-name=help<CR>
 nnoremap <silent> / :<C-u>Denite line -buffer-name=search -auto-highlight<CR>
 nnoremap <silent> * :<C-u>DeniteCursorWord line -auto-highlight -buffer-name=search -mode=normal<CR>
 nnoremap <silent> # :<C-u>DeniteCursorWord line -auto-highlight -buffer-name=search -mode=normal<CR>
@@ -193,8 +202,8 @@ vmap v <Plug>(expand_region_expand)
 repo = 'thinca/vim-quickrun'
 on_cmd = 'QuickRun'
 hook_add = '''
-nnoremap <silent> <Space>r :<C-u>QuickRun -mode n<CR>
-vnoremap <silent> <Space>r :<C-u>QuickRun -mode v<CR>
+nnoremap <silent> <Leader>r :<C-u>QuickRun -mode n<CR>
+vnoremap <silent> <Leader>r :<C-u>QuickRun -mode v<CR>
 '''
 
 hook_source = 'source ~/.vim/rc/plugins/vim-quickrun.rc.vim'
