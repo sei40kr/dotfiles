@@ -34,7 +34,6 @@ zplug 'plugins/extract', from:oh-my-zsh
 zplug 'plugins/fancy-ctrl-z', from:oh-my-zsh
 zplug 'plugins/gem', from:oh-my-zsh
 zplug 'plugins/git-flow', from:oh-my-zsh
-zplug 'plugins/gitfast', from:oh-my-zsh
 zplug 'plugins/gitignore', from:oh-my-zsh
 zplug 'plugins/gradle', from:oh-my-zsh
 zplug 'plugins/gulp', from:oh-my-zsh
