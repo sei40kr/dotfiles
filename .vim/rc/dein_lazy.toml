@@ -58,6 +58,7 @@ xmap ga <Plug>(EasyAlign)
 
 [[plugins]]
 repo = 'junegunn/vim-xmark'
+if = "has('macunix')"
 on_cmd = 'Xmark'
 hook_build = 'make'
 
