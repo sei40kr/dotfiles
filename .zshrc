@@ -18,14 +18,11 @@ autoload -Uz add-zsh-hook \
     chpwd_recent_dirs \
     zmv
 
-export EDITOR="$(which nvim)"
-export HISTFILE="${HOME}/.histfile"
-export HISTSIZE=1000
-export KEYTIMEOUT=1
-export SAVEHIST=1000
-export TERM='screen-256color'
-export XDG_CONFIG_HOME="${HOME}/.config"
-export ZSH_RC_DIR="${HOME}/.zsh/rc"
+# Load environment variables
+source "${HOME}/.zshenv"
+
+# Load secret environment variables
+[ -e "${HOME}/.zshenv.secret" ] && . "${HOME}/.zshenv.secret"
 
 setopt append_history \
     auto_cd \

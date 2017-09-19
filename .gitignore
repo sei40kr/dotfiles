@@ -1,6 +1,6 @@
+/.zshenv.secret
+
 .xmark.*.html
-/.config/apex/secure/*
-!/.config/apex/secure/.gitkeep
 
 ### Tags template
 # Ignore tags created by etags, ctags, gtags (GNU global) and cscope
