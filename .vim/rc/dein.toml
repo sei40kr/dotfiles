@@ -35,11 +35,7 @@ repo = 'houtsnip/vim-emacscommandline'
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 depends = 'onedark.vim'
-hook_add = '''
-let g:lightline = {
-    \   'colorscheme': 'onedark'
-    \ }
-'''
+hook_add = 'source ~/.vim/rc/plugins/lightline.rc.vim'
 
 [[plugins]]
 repo = 'joshdick/onedark.vim'

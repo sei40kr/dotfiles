@@ -6,6 +6,7 @@ call denite#custom#option('_', {
     \   'highlight_mode_insert': 'WildMenu',
     \   'short_source_names': 1,
     \   'smartcase': 1,
+    \   'statusline': !exists('g:loaded_lightline'),
     \ })
 
 call denite#custom#alias('source', 'file_rec/git', 'file_rec')
