@@ -3,7 +3,7 @@
 
 function! LLUserMode()
   if &ft == 'denite'
-    let denite_mode = substitute(denite#get_status_mode(), '-\\| ', '', 'g')
+    let denite_mode = substitute(denite#get_status_mode(), '-\| ', '', 'g')
     call lightline#link(tolower(denite_mode[0]))
     return denite_mode
   else
