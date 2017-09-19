@@ -33,6 +33,7 @@ zplug 'plugins/docker-compose', from:oh-my-zsh
 zplug 'plugins/extract', from:oh-my-zsh
 zplug 'plugins/fancy-ctrl-z', from:oh-my-zsh
 zplug 'plugins/gem', from:oh-my-zsh
+zplug 'plugins/gitfast', from:oh-my-zsh
 zplug 'plugins/git-flow', from:oh-my-zsh
 zplug 'plugins/gitignore', from:oh-my-zsh
 zplug 'plugins/gradle', from:oh-my-zsh
@@ -50,7 +51,6 @@ zplug 'plugins/zsh_reload', from:oh-my-zsh
 zplug 'simonwhitaker/gibo', use:'gibo', as:command
 zplug 'simonwhitaker/gibo', use:'gibo-completion.zsh'
 zplug 'supercrabtree/k'
-zplug 'tevren/gitfast-zsh-plugin'
 zplug 'zdharma/fast-syntax-highlighting', defer:2
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'zsh-users/zsh-autosuggestions', defer:2
