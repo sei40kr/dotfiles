@@ -27,6 +27,9 @@ call dein#load_toml(g:vim_rc_dir . '/dein.toml')
 call dein#load_toml(g:vim_rc_dir . '/dein_lazy.toml', { 'lazy': 1 })
 call dein#load_toml(g:vim_rc_dir . '/dein_ft.toml', { 'lazy': 1 })
 
+call dein#local(expand('~/.vim/bundle'), {},
+      \ [])
+
 call dein#end()
 call dein#save_state()
 
