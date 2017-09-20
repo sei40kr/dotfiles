@@ -48,6 +48,7 @@ zplug 'plugins/rust', from:oh-my-zsh
 zplug 'plugins/spring', from:oh-my-zsh
 zplug 'plugins/ubuntu', from:oh-my-zsh, if:'uname -a | grep -q ubuntu'
 zplug 'plugins/zsh_reload', from:oh-my-zsh
+zplug 'sei40kr/zsh-tmux-rename', if:'[ -n "$TMUX" ]'
 zplug 'simonwhitaker/gibo', use:'gibo', as:command
 zplug 'simonwhitaker/gibo', use:'gibo-completion.zsh'
 zplug 'supercrabtree/k'
@@ -56,7 +57,7 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'zsh-users/zsh-autosuggestions', defer:2
 zplug 'zsh-users/zsh-completions'
 
-zplug '~/dev/ws/github.com/sei40kr/zsh-tmux-rename', from:local
+# zplug "${HOME}/dev/ws/github.com/sei40kr/zsh-tmux-rename", from:local, if:'[ -n "$TMUX" ]'
 
 zplug load
 
