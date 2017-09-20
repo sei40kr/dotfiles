@@ -15,6 +15,7 @@ let s:template_year_format = '%Y'
 
 function! s:template_set_keywords()
   silent! %s/<+FILE_NAME+>/\=expand('%:t')/g
+  silent! %s/<+FILE_BASE_NAME+>/\=expand('%:t:r')/g
 
   silent! %s/<+USER+>/\=s:template_user/g
   silent! %s/<+USER_ID+>/\=s:template_user_id/g
