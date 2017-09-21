@@ -11,10 +11,15 @@ function! LLUserMode()
   endif
 endfunction
 
+function! LLUserReadOnly()
+  return &readonly && &filetype !=# 'help' ? 'RO' : ''
+endfunction
+
 let g:lightline = {
     \   'colorscheme': 'onedark',
     \   'component_function': {
     \     'mode': 'LLUserMode',
+    \     'readonly': 'LLUserReadOnly',
     \   },
     \ }
 

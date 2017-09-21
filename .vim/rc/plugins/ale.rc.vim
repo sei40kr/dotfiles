@@ -11,6 +11,10 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_format = '[%linter%] %s'
 let g:ale_echo_msg_warning_str = 'W'
 
+let g:ale_fixers = {
+    \   'javascript': ['prettier', 'eslint'],
+    \   'json': ['prettier'],
+    \ }
 let g:ale_linters = {
     \   'ansible': ['ansible-lint'],
     \   'awk': ['gawk'],
@@ -21,6 +25,7 @@ let g:ale_linters = {
     \   'css': ['prettier', 'stylelint'],
     \   'crystal': ['crystal'],
     \   'go': ['go', 'golint'],
+    \   'html': ['htmlhint'],
     \   'javascript': ['eslint', 'prettier'],
     \   'json': ['jsonlint', 'prettier'],
     \   'kotlin': ['kotlinc', 'ktlint'],
