@@ -74,6 +74,8 @@ export SPACESHIP_PACKAGE_SHOW=false
 source "${ZSH_RC_DIR}/plugins.rc.zsh"
 
 # Configure anyframe
+zstyle ':anyframe:selector:fzf-tmux:' command "fzf-tmux -d ${FZF_TMUX_HEIGHT}"
+
 bindkey '^r' anyframe-widget-execute-history
 bindkey '^xb' anyframe-widget-cdr
 bindkey '^xk' anyframe-widget-kill
