@@ -1,4 +1,4 @@
-/.vim/bundle/*/
+/.vim/bundle/**/*
 /.zshenv.secret
 
 .xmark.*.html

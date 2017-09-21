@@ -42,6 +42,9 @@ repo = 'joshdick/onedark.vim'
 hook_add = 'source ~/.vim/rc/plugins/onedark.rc.vim'
 
 [[plugins]]
+repo = 'junegunn/vim-emoji'
+
+[[plugins]]
 repo = 'kana/vim-textobj-entire'
 depends = 'vim-textobj-user'
 
