@@ -1,32 +1,10 @@
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
-
-[[plugins]]
-repo = 'autozimu/languageclient-neovim'
 hook_add = '''
-let s:go_bin_dir = $GO_PATH . '/bin'
-let s:python_bin_dir = $PYENV_ROOT . '/shims'
-let s:ruby_bin_dir = $RBENV_ROOT . '/shims'
-let s:nvm_bin_dir = $NVM_DIR . '/current/bin'
-
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_serverCommands = {
-    \   'dockerfile': [s:nvm_bin_dir . '/node', s:nvm_bin_dir . '/docker-langserver', '--stdin'],
-    \   'go': [s:go_bin_dir . '/go-langserver'],
-    \   'javascript': [s:nvm_bin_dir . '/node', s:nvm_bin_dir . '/javascript-typescript-stdio', '--cluster', '1'],
-    \   'python': [s:python_bin_dir . '/pyls'],
-    \   'ruby': [s:ruby_bin_dir . '/language_server'],
-    \ }
-'''
-
-[[plugins]]
-repo = 'chaoren/vim-wordmotion'
-
-[[plugins]]
-repo = 'editorconfig/editorconfig-vim'
-hook_add = '''
-let g:EditorConfig_core_mode = 'python_external'
-let g:EditorConfig_exclude_patterns = ['scp://.*', 'fugitive://.*', 'gist:.*']
+let g:gitgutter_sign_added = '┃'
+let g:gitgutter_sign_modified = '┃'
+let g:gitgutter_sign_modified_removed = '┃'
+let g:gitgutter_sign_removed = '┃'
 '''
 
 [[plugins]]
@@ -97,5 +75,6 @@ repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]]
 repo = 'w0rp/ale'
+depends = 'vim-emoji'
 hook_add = 'source ~/.vim/rc/plugins/ale.rc.vim'
 

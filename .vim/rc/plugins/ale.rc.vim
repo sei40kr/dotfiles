@@ -1,19 +1,28 @@
 " ale.rc.vim
 " author: Seong Yong-ju ( @sei40kr )
 
-let g:ale_lint_on_save = 1
-
-let g:ale_sign_column_always = 1
-let g:ale_sign_info = '●'
-let g:ale_sign_error = '●'
-let g:ale_sign_warning = '●'
+let g:ale_completion_delay = 100
+let g:ale_completion_enabled = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_format = '[%linter%] %s'
 let g:ale_echo_msg_warning_str = 'W'
+let g:ale_lint_on_save = 1
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '●'
+let g:ale_sign_info = '●'
+let g:ale_sign_warning = '●'
 
 let g:ale_fixers = {
+    \   'c': ['clang-format'],
+    \   'cpp': ['clang-format'],
+    \   'css': ['prettier', 'stylelint'],
     \   'javascript': ['prettier', 'eslint'],
     \   'json': ['prettier'],
+    \   'python': ['autopep8', 'yapf', 'isort'],
+    \   'ruby': ['rubocop'],
+    \   'sass': ['stylelint'],
+    \   'scss': ['prettier', 'stylelint'],
+    \   'typescript': ['prettier'],
     \ }
 let g:ale_linters = {
     \   'ansible': ['ansible-lint'],
@@ -22,7 +31,7 @@ let g:ale_linters = {
     \   'c': ['clang', 'clang-format'],
     \   'cpp': ['clang', 'clang-format', 'cppcheck', 'cpplint'],
     \   'cmake': ['cmakelint'],
-    \   'css': ['prettier', 'stylelint'],
+    \   'css': ['stylelint', 'prettier'],
     \   'crystal': ['crystal'],
     \   'go': ['go', 'golint'],
     \   'html': ['htmlhint'],
@@ -30,6 +39,7 @@ let g:ale_linters = {
     \   'json': ['jsonlint', 'prettier'],
     \   'kotlin': ['kotlinc', 'ktlint'],
     \   'markdown': ['mdl'],
+    \   'python': ['autopep8', 'isort', 'yapf'],
     \   'ruby': ['rubocop', 'ruby'],
     \   'rust': ['rls', 'rustc'],
     \   'sass': ['sass-lint', 'stylelint'],
@@ -41,7 +51,6 @@ let g:ale_linters = {
     \   'vim': ['vint'],
     \   'xml': ['xmlint'],
     \   'yaml': ['yamllint'],
-    \   'zsh': ['shellcheck'],
     \ }
 let g:ale_dockerfile_hadolint_use_docker = 'yes'
 
