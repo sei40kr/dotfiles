@@ -14,12 +14,14 @@ export ZPLUG_HOME="${HOME}/.zplug"
 zplug 'b4b4r07/emoji-cli'
 zplug 'b4b4r07/gist', dir:"${GOPATH}/src/github.com/b4b4r07/gist", use:'misc/completion/zsh/_gist', as:command, \
     hook-build:'go get -u'
-zplug 'b4b4r07/gotcha', from:gh-r, as:command
+zplug 'b4b4r07/gotcha', from:gh-r, as:command, lazy:true
 zplug 'denysdovhan/spaceship-zsh-theme', use:spaceship.zsh, as:theme, defer:3
 zplug 'djui/alias-tips'
 zplug 'github/hub', dir:"${GOPATH}/src/github.com/github/hub", use:'etc/hub.zsh_completion', as:command, \
     rename-to:_hub, hook-build:'go get -u'
 zplug 'junegunn/fzf', dir:"${GOPATH}/src/github.com/junegunn/fzf", use:'shell/*.zsh', hook-build:'go get -u'
+zplug 'junegunn/fzf', dir:"${GOPATH}/src/github.com/junegunn/fzf", if:'[ -n "$TMUX" ]', use:'bin/fzf-tmux', \
+    as:command, lazy:true
 zplug 'lib/clipboard', from:oh-my-zsh
 zplug 'lib/completion', from:oh-my-zsh
 zplug 'lukechilds/zsh-better-npm-completion', defer:2
@@ -51,11 +53,10 @@ zplug 'plugins/spring', from:oh-my-zsh
 zplug 'plugins/ubuntu', from:oh-my-zsh, if:'uname -a | grep -q ubuntu'
 zplug 'plugins/zsh_reload', from:oh-my-zsh
 zplug 'sei40kr/zsh-tmux-rename', if:'[ -n "$TMUX" ]'
-zplug 'simonwhitaker/gibo', use:'gibo', as:command
+zplug 'simonwhitaker/gibo', use:'gibo', as:command, lazy:true
 zplug 'simonwhitaker/gibo', use:'gibo-completion.zsh'
 zplug 'supercrabtree/k'
 zplug 'zdharma/fast-syntax-highlighting', defer:2
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug 'zsh-users/zsh-autosuggestions', defer:2
 zplug 'zsh-users/zsh-completions'
 
