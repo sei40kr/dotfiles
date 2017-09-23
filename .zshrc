@@ -69,7 +69,8 @@ export NVM_AUTO_USE=true
 export NVM_SYMLINK_CURRENT=true
 
 # Configure spaceship-zsh-theme
-export SPACESHIP_PACKAGE_SHOW=false
+SPACESHIP_PACKAGE_SHOW=false
+SPACESHIP_BATTERY_SHOW=false
 
 # Load zsh plugins
 source "${ZSH_RC_DIR}/plugins.rc.zsh"

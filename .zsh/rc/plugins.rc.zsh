@@ -12,8 +12,6 @@ export ZPLUG_HOME="${HOME}/.zplug"
 . "${ZPLUG_HOME}/init.zsh"
 
 zplug 'b4b4r07/emoji-cli'
-zplug 'b4b4r07/gist', dir:"${GOPATH}/src/github.com/b4b4r07/gist", use:'misc/completion/zsh/_gist', as:command, \
-    hook-build:'go get -u'
 zplug 'b4b4r07/gotcha', from:gh-r, as:command, lazy:true
 zplug 'denysdovhan/spaceship-zsh-theme', use:spaceship.zsh, as:theme, defer:3
 zplug 'djui/alias-tips'
