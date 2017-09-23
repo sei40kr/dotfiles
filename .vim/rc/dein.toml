@@ -23,16 +23,6 @@ repo = 'joshdick/onedark.vim'
 hook_add = 'source ~/.vim/rc/plugins/onedark.rc.vim'
 
 [[plugins]]
-repo = 'junegunn/vim-emoji'
-
-[[plugins]]
-repo = 'kana/vim-textobj-entire'
-depends = 'vim-textobj-user'
-
-[[plugins]]
-repo = 'kana/vim-textobj-user'
-
-[[plugins]]
 repo = 'kana/vim-operator-user'
 
 [[plugins]]
@@ -43,9 +33,6 @@ repo = 'sheerun/vim-polyglot'
 
 [[plugins]]
 repo = 'shougo/dein.vim'
-
-[[plugins]]
-repo = 'shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'shougo/vimproc.vim'
@@ -78,6 +65,5 @@ repo = 'vim-jp/vimdoc-ja'
 
 [[plugins]]
 repo = 'w0rp/ale'
-depends = 'vim-emoji'
 hook_add = 'source ~/.vim/rc/plugins/ale.rc.vim'
 

@@ -64,6 +64,14 @@ on_map = {nv = ['gf', 'gF', '<C-w>f', '<C-w><C-f>', '<C-w>F', '<C-w>gf', '<C-w>g
 hook_source = 'source ~/.vim/rc/plugins/vim-gf-user.rc.vim'
 
 [[plugins]]
+repo = 'kana/vim-textobj-entire'
+depends = 'vim-textobj-user'
+on_map = {o = ['ae', 'ie']}
+
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+
+[[plugins]]
 repo = 'kannokanno/previm'
 depends = 'open-browser.vim'
 on_cmd = 'PrevimOpen'
@@ -169,6 +177,9 @@ imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
 '''
+
+[[plugins]]
+repo = 'shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'terryma/vim-expand-region'
