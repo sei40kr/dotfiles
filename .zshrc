@@ -61,7 +61,7 @@ ZSH_PLUGINS_ALIAS_TIPS_TEXT='alias-tips: '
 ZSH_PLUGINS_ALIAS_TIPS_FORCE=true
 
 # Configure emoji-cli
-[ "$FZF_TMUX" = false ] && EMOJI_CLI_FILTER="fzf-tmux -d ${FZF_TMUX_HEIGHT}" || EMOJI_CLI_FILTER='fzf'
+[ "$FZF_TMUX" != false ] && EMOJI_CLI_FILTER="fzf-tmux -d ${FZF_TMUX_HEIGHT}" || EMOJI_CLI_FILTER='fzf'
 
 # Configure zsh-nvm
 export NVM_LAZY_LOAD=true
