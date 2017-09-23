@@ -8,6 +8,9 @@ let g:gitgutter_sign_removed = '┃'
 '''
 
 [[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
 repo = 'houtsnip/vim-emacscommandline'
 
 [[plugins]]

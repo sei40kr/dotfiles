@@ -12,19 +12,21 @@ export ZPLUG_HOME="${HOME}/.zplug"
 . "${ZPLUG_HOME}/init.zsh"
 
 zplug 'b4b4r07/emoji-cli'
-zplug 'b4b4r07/gist', dir:"${GOPATH}/src/github.com/b4b4r07/gist", use:'misc/completion/zsh/_gist', as:command
+zplug 'b4b4r07/gist', dir:"${GOPATH}/src/github.com/b4b4r07/gist", use:'misc/completion/zsh/_gist', as:command, \
+    hook-build:'go get -u'
 zplug 'b4b4r07/gotcha', from:gh-r, as:command
 zplug 'denysdovhan/spaceship-zsh-theme', use:spaceship.zsh, as:theme, defer:3
 zplug 'djui/alias-tips'
-zplug 'github/hub', dir:"${GOPATH}/src/github.com/github/hub", use:'etc/hub.zsh_completion', as:command, rename-to:_hub
-zplug 'junegunn/fzf', dir:"${GOPATH}/src/github.com/junegunn/fzf", use:'shell/*.zsh'
+zplug 'github/hub', dir:"${GOPATH}/src/github.com/github/hub", use:'etc/hub.zsh_completion', as:command, \
+    rename-to:_hub, hook-build:'go get -u'
+zplug 'junegunn/fzf', dir:"${GOPATH}/src/github.com/junegunn/fzf", use:'shell/*.zsh', hook-build:'go get -u'
 zplug 'lib/clipboard', from:oh-my-zsh
 zplug 'lib/completion', from:oh-my-zsh
 zplug 'lukechilds/zsh-better-npm-completion', defer:2
 zplug 'lukechilds/zsh-nvm'
 zplug 'mollifier/anyframe'
 zplug 'mollifier/cd-gitroot'
-zplug 'motemen/ghq', dir:"${GOPATH}/src/github.com/motemen/ghq", use:'zsh/_ghq', as:command
+zplug 'motemen/ghq', dir:"${GOPATH}/src/github.com/motemen/ghq", use:'zsh/_ghq', as:command, hook-build:'go get -u'
 zplug 'plugins/cargo', from:oh-my-zsh
 zplug 'plugins/codeclimate', from:oh-my-zsh
 zplug 'plugins/command-not-found', from:oh-my-zsh
@@ -33,8 +35,8 @@ zplug 'plugins/docker-compose', from:oh-my-zsh
 zplug 'plugins/extract', from:oh-my-zsh
 zplug 'plugins/fancy-ctrl-z', from:oh-my-zsh
 zplug 'plugins/gem', from:oh-my-zsh
-zplug 'plugins/gitfast', from:oh-my-zsh
 zplug 'plugins/git-flow', from:oh-my-zsh
+zplug 'plugins/gitfast', from:oh-my-zsh
 zplug 'plugins/gitignore', from:oh-my-zsh
 zplug 'plugins/gradle', from:oh-my-zsh
 zplug 'plugins/gulp', from:oh-my-zsh
