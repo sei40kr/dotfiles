@@ -57,7 +57,8 @@ PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:${GOPATH}/bin:${HOME}/.cabal/bin:${P
 [ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
 
 # Configure alias-tips
-export ZSH_PLUGINS_ALIAS_TIPS_TEXT='Use alias: '
+ZSH_PLUGINS_ALIAS_TIPS_TEXT='alias-tips: '
+ZSH_PLUGINS_ALIAS_TIPS_FORCE=true
 
 # Configure emoji-cli
 [ "$FZF_TMUX" = false ] && EMOJI_CLI_FILTER="fzf-tmux -d ${FZF_TMUX_HEIGHT}" || EMOJI_CLI_FILTER='fzf'
