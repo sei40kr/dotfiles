@@ -45,10 +45,6 @@ let g:tmuxline_theme = {
 '''
 
 [[plugins]]
-repo = 'jsfaint/gen_tags.vim'
-on_cmd = ['GenCtags', 'EditExt', 'ClearCtags']
-
-[[plugins]]
 repo = 'junegunn/vim-easy-align'
 on_map = {nx = '<Plug>(EasyAlign)'}
 hook_add = '''
@@ -61,6 +57,11 @@ repo = 'junegunn/vim-xmark'
 if = "has('macunix')"
 on_cmd = 'Xmark'
 hook_build = 'make'
+
+[[plugins]]
+repo = 'kana/vim-gf-user'
+on_map = {nv = 'gf'}
+hook_source = 'source ~/.vim/rc/plugins/vim-gf-user.rc.vim'
 
 [[plugins]]
 repo = 'kannokanno/previm'
@@ -170,25 +171,6 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 '''
 
 [[plugins]]
-repo = 'shougo/unite.vim'
-on_cmd = ['Unite', 'UniteWithCurrentDir', 'UniteWithBufferDir', 'UniteWithProjectDir', 'UniteWithInput',
-    'UniteWithInputDirectory', 'UniteWithCursorWord', 'UniteResume', 'UniteClose', 'UniteNext', 'UnitePrevious',
-    'UniteFirst', 'UniteLast', 'UniteDo', 'UniteBookmarkAdd']
-hook_source = 'source ~/.vim/rc/plugins/unite.rc.vim'
-
-[[plugins]]
-repo = 'shougo/vimfiler.vim'
-depends = 'unite.vim'
-on_if = "isdirectory(bufname('%'))"
-on_cmd = ['VimFiler', 'VimFilerCreate', 'VimFilerSimple', 'VimFilerSplit', 'VimFilerTab', 'VimFilerDouble',
-    'VimFilerCurrentDir', 'VimFilerBufferDir', 'VimFilerExplorer', 'VimFilerClose', 'VimFilerEdit', 'VimFilerWrite',
-    'VimFilerSource', 'VimFilerRead']
-hook_add = '''
-nnoremap <silent> <M-1> :<C-u>VimFiler<CR>
-'''
-hook_source = 'source ~/.vim/rc/plugins/vimfiler.rc.vim'
-
-[[plugins]]
 repo = 'terryma/vim-expand-region'
 on_map = {nx = ['+', '_'], v = 'v'}
 hook_add = '''
@@ -202,8 +184,8 @@ hook_add = '''
 nnoremap <silent> <Leader>r :<C-u>QuickRun -mode n<CR>
 vnoremap <silent> <Leader>r :<C-u>QuickRun -mode v<CR>
 '''
-
 hook_source = 'source ~/.vim/rc/plugins/vim-quickrun.rc.vim'
+
 [[plugins]]
 repo = 'tpope/vim-commentary'
 on_map = {n = ['gc', 'gcc'], o = 'gc', x = 'gc'}
@@ -235,4 +217,8 @@ on_cmd = ['OpenBrowser', 'OpenBrowserSearch', 'OpenBrowserSmartSearch']
 repo = 'tyru/open-browser-github.vim'
 depends = 'open-browser.vim'
 on_cmd = ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq']
+
+[[plugins]]
+repo = 'vim-scripts/gtags.vim'
+on_cmd = ['Gtags', 'GtagsCursor', 'Gozilla']
 

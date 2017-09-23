@@ -39,6 +39,17 @@ set clipboard& clipboard^=unnamedplus,unnamed
     \ visualbell
     \ wrap
 
+function! <SID>UserFormat() abort
+  silent! let proceeded = ale#fix#Fix()
+  if proceeded
+    return
+  endif
+
+  silent Autoformat
+endfunction
+
+nnoremap <expr><Leader>= <SID>UserFormat()
+
 augroup user_hooks
   autocmd!
   autocmd WinEnter * checktime

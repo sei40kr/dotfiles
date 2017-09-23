@@ -26,3 +26,6 @@ nnoremap <silent> <Esc><Esc> :<C-u>nohlsearch<CR>
 nnoremap <silent> <Space>q :<C-u>q<CR>
 nnoremap <silent> <Space>w :<C-u>w<CR>
 
+vnoremap <silent> < <gv
+vnoremap <silent> > >gv
+
