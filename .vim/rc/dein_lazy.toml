@@ -60,7 +60,7 @@ hook_build = 'make'
 
 [[plugins]]
 repo = 'kana/vim-gf-user'
-on_map = {nv = 'gf'}
+on_map = {nv = ['gf', 'gF', '<C-w>f', '<C-w><C-f>', '<C-w>F', '<C-w>gf', '<C-w>gF']}
 hook_source = 'source ~/.vim/rc/plugins/vim-gf-user.rc.vim'
 
 [[plugins]]
