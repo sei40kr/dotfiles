@@ -58,3 +58,8 @@ let g:ale_dockerfile_hadolint_use_docker = 'yes'
 nmap <silent> gne <Plug>(ale_next_wrap)
 nmap <silent> gep <Plug>(ale_previous_wrap)
 
+augroup user-ale-hooks
+  autocmd!
+  autocmd User ALELint call lightline#update()
+augroup END
+
