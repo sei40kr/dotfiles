@@ -3,6 +3,7 @@
   name = "Seong Yong-ju"
 [core]
   editor = nvim
+  excludesfile = ~/.gitignore_global
 [diff]
   algorithm = minimal
 [merge]
