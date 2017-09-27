@@ -18,11 +18,22 @@ call denite#custom#option('file-rec', {
     \   'winheight': 10,
     \ })
 
-call denite#custom#option('grep', {
+let s:grep_opts = {
     \   'default_action': 'tabswitch',
     \   'direction': 'botright',
     \   'winheight': 10,
-    \ })
+    \ }
+
+if executable('hw')
+  let s:grep_opts.command = ['hw']
+  let s:grep_opts.default_opts = ['--follow-link', '--no-group', '--no-color']
+  let s:grep_opts.recursive_opts = []
+  let s:grep_opts.pattern_opt = []
+  let s:grep_opts.separator = []
+endif
+
+call denite#custom#option('grep', s:grep_opts)
+unlet s:grep_opts
 
 call denite#custom#option('help', {
     \   'direction': 'botright',
