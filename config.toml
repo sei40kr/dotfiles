@@ -1,6 +1,5 @@
 repos = [
     'github.com/b4b4r07/gist',
-    'github.com/b4b4r07/zgencomp',
     'github.com/bazelbuild/buildtools/buildifier',
     'github.com/github/hub',
     'github.com/golang/lint/golint',
@@ -8,5 +7,6 @@ repos = [
     'github.com/junegunn/fzf',
     'github.com/motemen/ghq',
     'github.com/nsf/gocode',
-    'golang.org/x/tools/cmd/goimports'
+    'golang.org/x/tools/cmd/goimports',
+    'gopkg.in/Netflix-Skunkworks/go-jira.v1/cmd/jira',
   ]
