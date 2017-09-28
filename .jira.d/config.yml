@@ -2,6 +2,10 @@
 # author: Seong Yong-ju ( @sei40kr )
 ---
 endpoint: https://teamspiritdev.atlassian.net
-user: sei.yongju
+user: &user sei.yongju
 project: GENIE
 custom-commands:
+  - name: mine
+    help: Display issues assigned to me
+    script: >
+      {{jira}} list --query "resolution = unresolved and assignee=currentuser() ORDER BY created"
