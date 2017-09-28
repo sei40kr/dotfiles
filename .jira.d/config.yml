@@ -3,3 +3,5 @@
 ---
 endpoint: https://teamspiritdev.atlassian.net
 user: sei.yongju
+project: GENIE
+custom-commands:
