@@ -5,6 +5,8 @@ set refresh-mode = auto
 set tab-size = 2
 set vertical-split = no
 
+color cursor black blue
+
 # Vim-style keybindings for Tig
 #
 # To use these keybindings copy the file to your HOME directory and include
@@ -77,8 +79,9 @@ bind generic um status-merge
 bind generic ul stage-update-line
 bind generic us stage-split-chunk
 
-bind generic c  !git commit
-# bind generic cc !git commit
+bind generic C  none
+bind generic C  !git commit
+bind generic cc !git commit
 bind generic ca !?@git commit --amend --no-edit
 
 bind generic K view-help
