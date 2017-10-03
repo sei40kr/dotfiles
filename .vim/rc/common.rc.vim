@@ -13,7 +13,6 @@ set ttimeout ttimeoutlen=100
 set wrapscan
 
 noremap <C-c> <Esc>
-nnoremap ; :
 
 nnoremap Q <Nop>
 nnoremap <silent> q: <Nop>

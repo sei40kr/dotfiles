@@ -6,6 +6,7 @@ source ~/.vim/rc/common.rc.vim
 set clipboard& clipboard^=unnamed
 set surround
 
+" Disable code folding
 nnoremap <silent> zC <Nop>
 nnoremap <silent> zM <Nop>
 nnoremap <silent> zO <Nop>
@@ -13,22 +14,26 @@ nnoremap <silent> zR <Nop>
 nnoremap <silent> zc <Nop>
 nnoremap <silent> zo <Nop>
 
-nnoremap <silent> gep :<C-u>action GotoPreviousError<CR>
-nnoremap <silent> gne :<C-u>action GotoNextError<CR>
-
-nnoremap <silent> [c :<C-u>action VcsShowPrevChangeMarker<CR>
-nnoremap <silent> ]c :<C-u>action VcsShowNextChangeMarker<CR>
-
-nnoremap <silent> [m :<C-u>action MethodUp<CR>
-nnoremap <silent> ]m :<C-u>action MethodDown<CR>
-
+" Configure IDE features as Vim features
+nnoremap <silent> gf :<C-u>action GotoDeclaration<CR>
 nnoremap <silent> g, :<C-u>action JumpToNextChange<CR>
 nnoremap <silent> g; :<C-u>action JumpToLastChange<CR>
 
+" Replace Vim features with IDE features
 nnoremap <C-S-i> <C-i>
 nnoremap <C-S-o> <C-o>
 nnoremap <C-i> :<C-u>action Forward<CR>
 nnoremap <C-o> :<C-u>action Back<CR>
+
+" Configure code navigation
+nnoremap <silent> [m :<C-u>action MethodUp<CR>
+nnoremap <silent> ]m :<C-u>action MethodDown<CR>
+nnoremap <silent> <C-[> :<C-u>action MethodUp<CR>
+nnoremap <silent> <C-]> :<C-u>action MethodDown<CR>
+nnoremap <silent> gep :<C-u>action GotoPreviousError<CR>
+nnoremap <silent> gne :<C-u>action GotoNextError<CR>
+nnoremap <silent> [c :<C-u>action VcsShowPrevChangeMarker<CR>
+nnoremap <silent> ]c :<C-u>action VcsShowNextChangeMarker<CR>
 
 nnoremap <silent> <Space>q :<C-u>action CloseContent<CR>
 nnoremap <silent> <Space>Q :<C-u>action ReopenClosedTab<CR>
@@ -38,12 +43,11 @@ nnoremap <silent> <Space>F :<C-u>action FindInPath<CR>
 nnoremap <silent> <Space>s :<C-u>action GotoClass<CR>
 nnoremap <silent> <Space>S :<C-u>action GotoSymbol<CR>
 nnoremap <silent> <Space>b :<C-u>action ToggleLineBreakpoint<CR>
-nnoremap <silent> <Space>= :<C-u>action OptimizeImports<CR>:action RearrangeCode<CR>:action ReformatCode<CR>
 
 nnoremap <C-k> :<C-u>action QuickJavaDoc<CR>
 nnoremap <silent> gd :<C-u>action GotoDeclaration<CR>
-nnoremap <silent> gjK :<C-u>action GotoTypeDeclaration<CR>
-nnoremap <silent> gji :<C-u>action GotoImplementation<CR>
+nnoremap <silent> gD :<C-u>action GotoTypeDeclaration<CR>
+nnoremap <silent> gi :<C-u>action GotoImplementation<CR>
 nnoremap <silent> gjt :<C-u>action GotoTest<CR>
 nnoremap <silent> gjs :<C-u>action GotoSuperMethod<CR>
 
@@ -57,5 +61,3 @@ nnoremap <silent> <Space>go :<C-u>action OverrideMethods<CR>
 nnoremap <silent> <Space>gs :<C-u>action GenerateSetter<CR>
 nnoremap <silent> <Space>gt :<C-u>action GenerateTestMethod<CR>
 
-nnoremap <silent> <Space>r :<C-u>action Run<CR>
-nnoremap <silent> <Space>d :<C-u>action Debug<CR>
