@@ -97,6 +97,16 @@ module.exports = {
 
     // Override the npm registry URL to use when installing plugins
     npmRegistry: 'yarn config get registry',
+
+    // Change the behaviour of modifier keys to act as meta key
+    modifierKeys: {
+      cmdIsMeta: false,
+      altIsMeta: true,
+    },
+
+    // Change the visibility of the hamburger menu.
+    // Available options are: true, false
+    showHamburgerMenu: true,
   },
 
   // a list of plugins to fetch and install from npm
@@ -105,7 +115,9 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: [],
+  plugins: [
+    'hyper-atom-dark-transparent',
+  ],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
