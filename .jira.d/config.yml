@@ -2,7 +2,7 @@
 # author: Seong Yong-ju ( @sei40kr )
 ---
 endpoint: https://teamspiritdev.atlassian.net
-user: &user sei.yongju
+user: sei.yongju
 project: GENIE
 custom-commands:
   - name: mine

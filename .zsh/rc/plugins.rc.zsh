@@ -54,6 +54,7 @@ zplug 'sei40kr/zsh-tmux-rename', if:'[ -n "$TMUX" ]'
 zplug 'simonwhitaker/gibo', use:'gibo', as:command, lazy:true
 zplug 'simonwhitaker/gibo', use:'gibo-completion.zsh'
 zplug 'supercrabtree/k'
+zplug 'tmuxinator/tmuxinator', use:'completion/*.zsh'
 zplug 'zdharma/fast-syntax-highlighting', defer:2
 zplug 'zsh-users/zsh-autosuggestions', defer:2
 zplug 'zsh-users/zsh-completions'
