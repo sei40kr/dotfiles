@@ -5,18 +5,6 @@ depends = 'deoplete.nvim'
 on_ft = 'zsh'
 
 # ============ C/C++/Objective-C Support ============
-# [[plugins]]
-# repo = 'tweekmonster/deoplete-clang2'
-# on_ft = ['c', 'cpp', 'objc', 'objcpp']
-# hook_add = '''
-# " let g:deoplete#sources#clang#executable = '/usr/bin/clang'
-# let g:deoplete#sources#clang#std = {
-#     \   'c': 'c14',
-#     \   'cpp': 'c++14',
-#     \   'objc': 'c14',
-#     \   'objcpp': 'c++14',
-#     \ }
-# '''
 [[plugins]]
 repo = 'zchee/deoplete-clang'
 depends = 'deoplete.nvim'
@@ -40,15 +28,6 @@ depends = 'deoplete.nvim'
 on_ft = ['rs']
 
 # ============ Golang Support ============
-[[plugins]]
-repo = 'vim-jp/vim-go-extra'
-on_ft = 'go'
-hook_post_source = '''
-augroup go_hooks
-  autocmd!
-  autocmd FileType go nnoremap <silent><buffer> <Leader>= :<C-u>Fmt<CR>
-augroup END
-'''
 [[plugins]]
 repo = 'zchee/deoplete-go'
 depends = 'deoplete.nvim'
@@ -122,20 +101,6 @@ on_cmd = ['Bundle', 'Bopen', 'Bsplit', 'Btabedit']
 repo = 'tpope/vim-rails'
 on_cmd = 'Rails'
 
-# ============ Crystal Support ============
-[[plugins]]
-repo = 'rhysd/vim-crystal'
-depends = 'deoplete.nvim'
-on_ft = 'crystal'
-hook_add = '''
-let g:crystal_define_mappings = 0
-
-augroup crystal_hooks
-  autocmd!
-  autocmd FileType crystal nnoremap <silent><buffer> <Leader>= :<C-u>CrystalFormat<CR>
-augroup END
-'''
-
 # ============ Python Support ============
 [[plugins]]
 repo = 'davidhalter/jedi-vim'
@@ -187,10 +152,6 @@ let g:deoplete#sources#ternjs#filetypes = ['javascript', 'javascript.jsx', 'jsx'
 repo = 'mhartington/nvim-typescript'
 depends = 'deoplete.nvim'
 on_ft = 'typescript'
-
-[[plugins]]
-repo = 'ejholmes/vim-forcedotcom'
-on_ft = ['apex', 'visualforce']
 
 # ============ SQL Support ============
 [[plugins]]

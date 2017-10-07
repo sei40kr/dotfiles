@@ -62,5 +62,10 @@ augroup user_hooks
   autocmd WinLeave * setlocal nocursorline
 augroup END
 
+augroup user_formatters
+  autocmd FileType crystal nnoremap <silent><buffer> <Leader>= :<C-u>CrystalFormat<CR>
+  autocmd FileType go nnoremap <silent><buffer> <Leader>= :<C-u>Fmt<CR>
+augroup END
+
 colorscheme onedark
 
