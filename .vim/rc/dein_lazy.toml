@@ -29,36 +29,6 @@ nmap <Leader><Leader> <Plug>(easymotion-s)
 '''
 
 [[plugins]]
-repo = 'edkolev/tmuxline.vim'
-on_cmd = ['Tmuxline', 'TmuxlineSnapshot']
-hook_add = '''
-let g:tmuxline_preset = {
-    \ 'win': '#I #W',
-    \ 'cwin': '#I #W',
-    \ 'z': '%R',
-    \ 'options': {'status-justify': 'centre'}
-    \ }
-let g:tmuxline_separators = {
-    \ 'left': '',
-    \ 'left_alt': '|',
-    \ 'right': '',
-    \ 'right_alt': '|',
-    \ 'space': ' '
-    \ }
-let g:tmuxline_theme = {
-    \   'a': [145, 235],
-    \   'b': [145, 235],
-    \   'c': [145, 235],
-    \   'x': [145, 235],
-    \   'y': [145, 235],
-    \   'z': [145, 235],
-    \   'win': [145, 235],
-    \   'cwin': [235, 4],
-    \   'bg': [145, 235],
-    \ }
-'''
-
-[[plugins]]
 repo = 'junegunn/vim-easy-align'
 on_map = {nx = '<Plug>(EasyAlign)'}
 hook_add = '''
