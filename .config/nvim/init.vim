@@ -52,8 +52,6 @@ function! <SID>UserFormat() abort
   silent Autoformat
 endfunction
 
-nnoremap <expr><Leader>= <SID>UserFormat()
-
 augroup user_hooks
   autocmd!
   autocmd WinEnter * checktime
@@ -62,7 +60,9 @@ augroup user_hooks
   autocmd WinLeave * setlocal nocursorline
 augroup END
 
-augroup user_formatter_hooks
+nnoremap <expr><Leader>= <SID>UserFormat()
+
+augroup formatter_hooks
   autocmd FileType crystal nnoremap <silent><buffer> <Leader>= :<C-u>CrystalFormat<CR>
   autocmd FileType go nnoremap <silent><buffer> <Leader>= :<C-u>Fmt<CR>
 augroup END
