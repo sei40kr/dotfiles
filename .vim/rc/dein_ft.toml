@@ -136,11 +136,11 @@ augroup END
 '''
 [[plugins]]
 repo = 'ternjs/tern_for_vim'
-on_ft = ['javascript', 'javascript.jsx', 'jsx', 'vue']
+on_ft = ['javascript', 'javascript.jsx']
 [[plugins]]
 repo = 'carlitux/deoplete-ternjs'
 depends = ['deoplete.nvim', 'tern_for_vim']
-on_ft = ['javascript', 'javascript.jsx', 'jsx', 'vue']
+on_ft = ['javascript', 'javascript.jsx']
 hook_add = '''
 let g:deoplete#sources#ternjs#tern_bin = '~/.npm-global/bin/tern'
 let g:deoplete#sources#ternjs#timeout = 1
