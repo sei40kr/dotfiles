@@ -53,8 +53,6 @@ let g:ale_linters = {
     \   'yaml': ['yamllint'],
     \ }
 
-let g:ale_dockerfile_hadolint_use_docker = 'yes'
-
 nmap <silent> gne <Plug>(ale_next_wrap)
 nmap <silent> gep <Plug>(ale_previous_wrap)
 

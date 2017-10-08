@@ -40,10 +40,6 @@ set clipboard& clipboard^=unnamedplus,unnamed
     \ wrap
 
 function! <SID>UserFormat() abort
-  if &filetype == 'go' && exists(':Fmt')
-    Fmt
-  endif
-
   silent! let proceeded = ale#fix#Fix()
   if proceeded
     return
