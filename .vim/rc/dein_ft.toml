@@ -151,9 +151,6 @@ repo = 'ternjs/tern_for_vim'
 on_ft = ['javascript', 'javascript.jsx']
 hook_build = 'npm install'
 hook_source = '''
-let g:tern#command = [dein#get('tern_for_vim').rtp . '/node_modules/.bin/tern']
-let g:tern#arguments = ['--persistent']
-
 augroup tern_hooks
   autocmd!
   autocmd FileType javascript,javascript.jsx
