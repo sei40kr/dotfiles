@@ -178,6 +178,10 @@ let g:deoplete#sources#ternjs#filetypes = ['javascript', 'javascript.jsx']
 repo = 'mhartington/nvim-typescript'
 depends = 'deoplete.nvim'
 on_ft = 'typescript'
+[[plugins]]
+repo = 'othree/jspc.vim'
+on_ft = ['javascript', 'javascript.jsx', 'typescript']
+
 
 # ============ SQL Support ============
 [[plugins]]
