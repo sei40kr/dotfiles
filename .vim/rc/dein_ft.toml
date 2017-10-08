@@ -135,18 +135,44 @@ augroup csscomplete_hooks
 augroup END
 '''
 [[plugins]]
+repo = 'othree/es.next.syntax.vim'
+on_ft = ['javascript', 'javascript.jsx']
+[[plugins]]
+repo = 'othree/javascript-libraries-syntax.vim'
+on_ft = ['javascript', 'javascript.jsx']
+hook_source = '''
+let g:used_javascript_libs = 'jquery,underscore,react,flux,requirejs'
+'''
+[[plugins]]
+repo = 'othree/yajs.vim'
+on_ft = ['javascript', 'javascript.jsx']
+[[plugins]]
 repo = 'ternjs/tern_for_vim'
 on_ft = ['javascript', 'javascript.jsx']
+hook_build = 'npm install'
+hook_source = '''
+let g:tern#command = [dein#get('tern_for_vim').rtp . '/node_modules/.bin/tern']
+let g:tern#arguments = ['--persistent']
+
+augroup tern_hooks
+  autocmd!
+  autocmd FileType javascript,javascript.jsx
+      \ nnoremap <silent><buffer> K :<C-u>TernDoc<CR>
+      \ | nnoremap <silent><buffer> gji :<C-u>TernDef<CR>
+      \ | nnoremap <silent><buffer> gjd :<C-u>TernDef<CR>
+      \ | nnoremap <silent><buffer> gK :<C-u>TernType<CR>
+      \ | nnoremap <silent><buffer> cre :<C-u>TernRename<CR>
+augroup END
+'''
 [[plugins]]
 repo = 'carlitux/deoplete-ternjs'
 depends = ['deoplete.nvim', 'tern_for_vim']
 on_ft = ['javascript', 'javascript.jsx']
-hook_add = '''
-let g:deoplete#sources#ternjs#tern_bin = '~/.npm-global/bin/tern'
+hook_source = '''
 let g:deoplete#sources#ternjs#timeout = 1
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#docs = 1
-let g:deoplete#sources#ternjs#filetypes = ['javascript', 'javascript.jsx', 'jsx', 'vue']
+let g:deoplete#sources#ternjs#filetypes = ['javascript', 'javascript.jsx']
 '''
 [[plugins]]
 repo = 'mhartington/nvim-typescript'
