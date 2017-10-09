@@ -63,6 +63,8 @@ hook_add = 'source ~/.vim/rc/plugins/vim-template.rc.vim'
 repo = 'tmux-plugins/vim-tmux-focus-events'
 if = '!empty($TMUX)'
 hook_add = '''
+set autoread
+
 augroup user_tmux_hooks
   autocmd!
   autocmd FocusGained * set cursorline
