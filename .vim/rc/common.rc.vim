@@ -27,4 +27,5 @@ nnoremap <silent> <Space>w :<C-u>w<CR>
 
 vnoremap <silent> < <gv
 vnoremap <silent> > >gv
+vnoremap <silent> = =gv
 
