@@ -40,6 +40,10 @@ set clipboard& clipboard^=unnamedplus,unnamed
     \ visualbell
     \ wrap
 
+if executable('tig')
+  command! Tig terminal tig
+endif
+
 augroup user_hooks
   autocmd!
   autocmd WinEnter * checktime
