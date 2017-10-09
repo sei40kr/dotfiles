@@ -20,6 +20,7 @@ function! LLUserFugitive() abort
   endif
   try
     if exists('*fugitive#head')
+      " TODO Load tpope/vim-fugitive
       return fugitive#head()
     endif
   catch
@@ -37,21 +38,23 @@ function! LLUserALEError() abort
     return ''
   endif
   let l:counts = ale#statusline#Count(bufnr('%'))
-  return printf(g:ale_statusline_format[0], counts.style_error + counts.error)
+  let l:errors = counts.style_error + counts.error
+  return l:errors ? printf(g:ale_statusline_format[0], l:errors) : ''
 endfunction
 function! LLUserALEWarning() abort
   if &filetype ==# 'denite'
     return ''
   endif
   let l:counts = ale#statusline#Count(bufnr('%'))
-  return printf(g:ale_statusline_format[1], counts.style_warning + counts.warning)
+  let l:warnings = counts.style_warning + counts.warning
+  return l:warnings ? printf(g:ale_statusline_format[1], l:warnings) : ''
 endfunction
 function! LLUserALEOK() abort
   if &filetype ==# 'denite'
     return ''
   endif
   let l:counts = ale#statusline#Count(bufnr('%'))
-  return printf(g:ale_statusline_format[2], counts.total)
+  return l:counts.total ? '' : g:ale_statusline_format[2]
 endfunction
 
 let g:lightline = {
