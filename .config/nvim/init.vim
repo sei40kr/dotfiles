@@ -39,15 +39,6 @@ set clipboard& clipboard^=unnamedplus,unnamed
     \ visualbell
     \ wrap
 
-function! <SID>UserFormat() abort
-  silent! let proceeded = ale#fix#Fix()
-  if proceeded
-    return
-  endif
-
-  silent Autoformat
-endfunction
-
 augroup user_hooks
   autocmd!
   autocmd WinEnter * checktime
@@ -56,11 +47,13 @@ augroup user_hooks
   autocmd WinLeave * setlocal nocursorline
 augroup END
 
-nnoremap <expr><Leader>= <SID>UserFormat()
+nnoremap <silent> <Leader>= :<C-u>Autoformat<CR>
 
 augroup formatter_hooks
   autocmd FileType crystal nnoremap <silent><buffer> <Leader>= :<C-u>CrystalFormat<CR>
   autocmd FileType go nnoremap <silent><buffer> <Leader>= :<C-u>Fmt<CR>
+  autocmd FileType c,cpp,css,javascript,json,python,ruby,sass,scss,typescript
+      \ nnoremap <silent><buffer> <Leader>= :<C-u>:ALEFix<CR>
 augroup END
 
 colorscheme onedark
