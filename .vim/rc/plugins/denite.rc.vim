@@ -10,7 +10,13 @@ call denite#custom#option('_', {
     \ })
 
 call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+
+if executable('fd')
+  call denite#custom#var('file_rec', 'command', ['fd', '-Hn', '', ':directory'])
+endif
+
+call denite#custom#var('file_rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard', '', ':directory'])
+
 call denite#custom#option('file-rec', {
     \   'auto_resize': 1,
     \   'default_action': 'tabswitch',
