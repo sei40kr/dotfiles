@@ -26,6 +26,7 @@ set clipboard& clipboard^=unnamedplus,unnamed
     \ fillchars& fillchars+=vert:│
     \ formatoptions& formatoptions-=ro
     \ list
+    \ listchars=tab:░\ ,trail:␣,eol:⏎,extends:→,precedes:←,nbsp:¯
     \ nobackup
     \ noerrorbells
     \ noshowmode
