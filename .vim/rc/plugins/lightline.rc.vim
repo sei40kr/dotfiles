@@ -31,17 +31,25 @@ function! LLUserModified() abort
   return &filetype ==# 'help' ? '' : (&modified ? '' : (&modifiable ? '' : '-'))
 endfunction
 
+" TODO Refactor these functions
 function! LLUserALEError() abort
+  if &filetype ==# 'denite'
+    return ''
+  endif
   let l:counts = ale#statusline#Count(bufnr('%'))
   return printf(g:ale_statusline_format[0], counts.style_error + counts.error)
 endfunction
-
 function! LLUserALEWarning() abort
+  if &filetype ==# 'denite'
+    return ''
+  endif
   let l:counts = ale#statusline#Count(bufnr('%'))
   return printf(g:ale_statusline_format[1], counts.style_warning + counts.warning)
 endfunction
-
 function! LLUserALEOK() abort
+  if &filetype ==# 'denite'
+    return ''
+  endif
   let l:counts = ale#statusline#Count(bufnr('%'))
   return printf(g:ale_statusline_format[2], counts.total)
 endfunction
