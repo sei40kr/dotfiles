@@ -65,6 +65,8 @@ ZSH_PLUGINS_ALIAS_TIPS_FORCE=true
 
 # Configure fzf
 export FZF_DEFAULT_COMMAND='(git ls-files -co --exclude-standard || fd -Hn)'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd -Hnt d'
 
 # Configure zsh-nvm
 export NVM_LAZY_LOAD=true
