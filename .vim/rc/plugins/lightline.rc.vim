@@ -15,17 +15,7 @@ function! LLUserReadOnly() abort
 endfunction
 
 function! LLUserFugitive() abort
-  if winwidth(0) < 100
-    return ''
-  endif
-  try
-    if exists('*fugitive#head')
-      " TODO Load tpope/vim-fugitive
-      return fugitive#head()
-    endif
-  catch
-  endtry
-  return ''
+  return winwidth(0) >= 100 ? gitbranch#name() : ''
 endfunction
 
 function! LLUserModified() abort
