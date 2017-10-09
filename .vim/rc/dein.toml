@@ -15,7 +15,7 @@ repo = 'houtsnip/vim-emacscommandline'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
-depends = 'onedark.vim'
+depends = ['onedark.vim', 'ale']
 hook_add = 'source ~/.vim/rc/plugins/lightline.rc.vim'
 
 [[plugins]]

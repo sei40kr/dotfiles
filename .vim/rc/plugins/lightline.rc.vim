@@ -3,46 +3,78 @@
 
 function! LLUserMode() abort
   if &ft == 'denite'
-    let denite_mode = substitute(denite#get_status_mode(), '-\| ', '', 'g')
-    call lightline#link(tolower(denite_mode[0]))
-    return denite_mode
-  else
-    return winwidth(0) > 60 ? lightline#mode() : ''
+    let l:mode = substitute(denite#get_status_mode(), '-\| ', '', 'g')
+    call lightline#link(tolower(l:mode[0]))
+    return l:mode
   endif
+  return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
 function! LLUserReadOnly() abort
-  return &readonly && &filetype !=# 'help' ? 'RO' : ''
+  return &filetype ==# 'help' ? '' : (&readonly ? 'RO' : '')
 endfunction
 
-function! LLUserALEWarning() abort
-  let l:temp = ale#statusline#Count(bufnr(''))
-  let l:num_warning = temp.style_warning + temp.warning
-  return l:temp.total == 0 ? '' : ' ⚠ ' . num_warning . ' '
+function! LLUserFugitive() abort
+  if winwidth(0) < 100
+    return ''
+  endif
+  try
+    if exists('*fugitive#head')
+      return fugitive#head()
+    endif
+  catch
+  endtry
+  return ''
+endfunction
+
+function! LLUserModified() abort
+  return &filetype ==# 'help' ? '' : (&modified ? '' : (&modifiable ? '' : '-'))
 endfunction
 
 function! LLUserALEError() abort
-  let l:temp = ale#statusline#Count(bufnr(''))
-  let l:num_errors = temp.style_error + temp.error
-  return l:temp.total == 0 ? '' : ' ⨉ ' . num_errors . ' '
+  let l:counts = ale#statusline#Count(bufnr('%'))
+  return printf(g:ale_statusline_format[0], counts.style_error + counts.error)
+endfunction
+
+function! LLUserALEWarning() abort
+  let l:counts = ale#statusline#Count(bufnr('%'))
+  return printf(g:ale_statusline_format[1], counts.style_warning + counts.warning)
+endfunction
+
+function! LLUserALEOK() abort
+  let l:counts = ale#statusline#Count(bufnr('%'))
+  return printf(g:ale_statusline_format[2], counts.total)
 endfunction
 
 let g:lightline = {
     \   'active': {
-    \     'right': [['lineinfo', 'ale_error', 'ale_warning'], ['filetype'], ['fileencoding']],
+    \     'left': [['mode', 'paste'], ['fugitive'], ['filepath'], ['filename']],
+    \     'right': [
+    \       ['lineinfo'],
+    \       ['percent'],
+    \       ['ale_error', 'ale_warning', 'ale_ok', 'fileencoding', 'filetype'],
+    \     ],
+    \   },
+    \   'inactive': {
+    \     'left': [['filepath', 'filename']],
+    \     'right': [['lineinfo'], ['percent']],
     \   },
     \   'colorscheme': 'onedark',
     \   'component_expand': {
-    \     'ale_warning': 'LLUserALEWarning',
     \     'ale_error': 'LLUserALEError',
+    \     'ale_warning': 'LLUserALEWarning',
+    \     'ale_ok': 'LLUserALEOK',
     \   },
     \   'component_function': {
+    \     'fugitive': 'LLUserFugitive',
     \     'mode': 'LLUserMode',
+    \     'modified': 'LLUserModified',
     \     'readonly': 'LLUserReadOnly',
     \   },
     \   'component_type': {
-    \     'ale_warning': 'warning',
     \     'ale_error': 'error',
+    \     'ale_warning': 'warning',
+    \     'ale_ok': 'ok',
     \   },
     \ }
 
