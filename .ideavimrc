@@ -44,10 +44,10 @@ nnoremap <silent> <Space>s :<C-u>action GotoClass<CR>
 nnoremap <silent> <Space>S :<C-u>action GotoSymbol<CR>
 nnoremap <silent> <Space>b :<C-u>action ToggleLineBreakpoint<CR>
 
-nnoremap <C-k> :<C-u>action QuickJavaDoc<CR>
-nnoremap <silent> gd :<C-u>action GotoDeclaration<CR>
-nnoremap <silent> gD :<C-u>action GotoTypeDeclaration<CR>
-nnoremap <silent> gi :<C-u>action GotoImplementation<CR>
+nnoremap K :<C-u>action QuickJavaDoc<CR>
+nnoremap <silent> gK :<C-u>action GotoTypeDeclaration<CR>
+nnoremap <silent> gjd :<C-u>action GotoDeclaration<CR>
+nnoremap <silent> gji :<C-u>action GotoImplementation<CR>
 nnoremap <silent> gjt :<C-u>action GotoTest<CR>
 nnoremap <silent> gjs :<C-u>action GotoSuperMethod<CR>
 
@@ -60,4 +60,6 @@ nnoremap <silent> <Space>gn :<C-u>action NewClass<CR>
 nnoremap <silent> <Space>go :<C-u>action OverrideMethods<CR>
 nnoremap <silent> <Space>gs :<C-u>action GenerateSetter<CR>
 nnoremap <silent> <Space>gt :<C-u>action GenerateTestMethod<CR>
+
+nnoremap <silent> cre :<C-u>action RenameElement<CR>
 
