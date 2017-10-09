@@ -24,6 +24,7 @@ zplug 'lib/clipboard', from:oh-my-zsh
 zplug 'lib/completion', from:oh-my-zsh
 zplug 'lukechilds/zsh-better-npm-completion', defer:2
 zplug 'lukechilds/zsh-nvm'
+zplug 'mafredri/zsh-async'
 zplug 'mollifier/anyframe'
 zplug 'mollifier/cd-gitroot'
 zplug 'motemen/ghq', dir:"${GOPATH}/src/github.com/motemen/ghq", use:'zsh/_ghq', as:command, hook-build:'go get -u'
