@@ -15,7 +15,8 @@ function! LLUserReadOnly() abort
 endfunction
 
 function! LLUserFugitive() abort
-  return winwidth(0) >= 100 ? gitbranch#name() : ''
+  let l:branch_name = gitbranch#name()
+  return winwidth(0) >= 100 && !empty(l:branch_name) ? ' ' . l:branch_name : ''
 endfunction
 
 function! LLUserModified() abort
