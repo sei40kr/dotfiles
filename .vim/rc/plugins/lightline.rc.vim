@@ -51,9 +51,9 @@ let g:lightline = {
     \   'active': {
     \     'left': [['mode', 'paste'], ['fugitive'], ['filepath'], ['filename']],
     \     'right': [
-    \       ['lineinfo'],
-    \       ['percent'],
-    \       ['ale_error', 'ale_warning', 'ale_ok', 'fileencoding', 'filetype'],
+    \       ['ale_error', 'ale_warning', 'ale_ok'],
+    \       ['percent', 'lineinfo'],
+    \       ['filetype', 'fileencoding'],
     \     ],
     \   },
     \   'inactive': {
