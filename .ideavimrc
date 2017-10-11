@@ -37,11 +37,7 @@ nnoremap <silent> ]c :<C-u>action VcsShowNextChangeMarker<CR>
 
 nnoremap <silent> <Space>q :<C-u>action CloseContent<CR>
 nnoremap <silent> <Space>Q :<C-u>action ReopenClosedTab<CR>
-nnoremap <silent> <Space>e :<C-u>action SearchEverywhere<CR>
-nnoremap <silent> <Space>f :<C-u>action GotoFile<CR>
-nnoremap <silent> <Space>F :<C-u>action FindInPath<CR>
-nnoremap <silent> <Space>s :<C-u>action GotoClass<CR>
-nnoremap <silent> <Space>S :<C-u>action GotoSymbol<CR>
+nnoremap <silent> <Space>d :<C-u>action ShowIntentionActions<CR>
 nnoremap <silent> <Space>b :<C-u>action ToggleLineBreakpoint<CR>
 
 nnoremap K :<C-u>action QuickJavaDoc<CR>
