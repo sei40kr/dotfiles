@@ -64,5 +64,10 @@ augroup formatter_hooks
       \ nnoremap <silent><buffer> <Leader>= :<C-u>:ALEFix<CR>
 augroup END
 
+augroup vim_script_hook
+  autocmd!
+  autocmd FileType vim nnoremap <silent><buffer> K :<C-u>exec 'help ' . expand('<cword>')<CR>
+augroup END
+
 colorscheme onedark
 
