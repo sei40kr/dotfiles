@@ -179,6 +179,17 @@ augroup tern_hooks
 augroup END
 '''
 [[plugins]]
+repo = 'Galooshi/vim-import-js'
+on_ft = ['javascript', 'javascript.jsx']
+hook_source = '''
+augroup import_js_hooks
+  autocmd!
+  autocmd FileType javascript,javascript.jsx
+      \ nnoremap <silent><buffer> <Leader>d :<C-u>ImportJSWord<CR>
+      \ | nnoremap <silent><buffer> <Leader>= :<C-u>ImportJSFix<CR>:<C-u>ALEFix<CR>
+augroup END
+'''
+[[plugins]]
 repo = 'carlitux/deoplete-ternjs'
 depends = ['deoplete.nvim', 'tern_for_vim']
 on_ft = ['javascript', 'javascript.jsx']
