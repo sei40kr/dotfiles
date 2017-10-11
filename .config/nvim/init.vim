@@ -58,8 +58,6 @@ augroup formatter_hooks
   autocmd FileType rust
       \ nnoremap <silent><buffer> <Leader>= :<C-u>RustFmt<CR>
       \ | vnoremap <silent><buffer> <Leader>= :RustFmt<CR>
-  autocmd FileType c,cpp,css,javascript,json,python,ruby,sass,scss,typescript
-      \ nnoremap <silent><buffer> <Leader>= :<C-u>:ALEFix<CR>
 augroup END
 
 augroup vim_script_hook
