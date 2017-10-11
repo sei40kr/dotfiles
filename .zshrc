@@ -52,7 +52,7 @@ bindkey '^[[Z' reverse-menu-complete
 
 # Configure package managers, Cargo, Golang, Cabal
 export GOPATH="${HOME}/.go"
-PATH="${HOME}/.local/bin:${HOME}/.cargo/bin:${GOPATH}/bin:${HOME}/.cabal/bin:${PATH}"
+PATH="${HOME}/.cargo/bin:${GOPATH}/bin:${HOME}/.cabal/bin:${PATH}"
 
 [ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
 
