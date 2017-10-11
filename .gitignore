@@ -1,6 +1,7 @@
 /.vim/bundle/**/*
 /.zshenv.secret
 
+/.jira.d/cookies.js
 
 ### Vagrant template
 .vagrant/
