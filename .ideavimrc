@@ -46,10 +46,11 @@ nnoremap <silent> <Space>b :<C-u>action ToggleLineBreakpoint<CR>
 
 nnoremap K :<C-u>action QuickJavaDoc<CR>
 nnoremap <silent> gK :<C-u>action GotoTypeDeclaration<CR>
-nnoremap <silent> gjd :<C-u>action GotoDeclaration<CR>
+nnoremap <silent> gd :<C-u>action GotoDeclaration<CR>
+nnoremap <silent> gje :<C-u>action GoToErrorGroup<CR>
 nnoremap <silent> gji :<C-u>action GotoImplementation<CR>
+nnoremap <silent> gs :<C-u>action GotoSuperMethod<CR>
 nnoremap <silent> gjt :<C-u>action GotoTest<CR>
-nnoremap <silent> gjs :<C-u>action GotoSuperMethod<CR>
 
 nnoremap <silent> <Space>G :<C-u>action Generate<CR>
 nnoremap <silent> <Space>ga :<C-u>action GenerateGetterAndSetter<CR>
