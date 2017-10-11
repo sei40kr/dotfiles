@@ -157,8 +157,8 @@ augroup tern_hooks
   autocmd!
   autocmd FileType javascript,javascript.jsx
       \ nnoremap <silent><buffer> K :<C-u>TernDoc<CR>
+      \ | nnoremap <silent><buffer> gd :<C-u>TernDef<CR>
       \ | nnoremap <silent><buffer> gji :<C-u>TernDef<CR>
-      \ | nnoremap <silent><buffer> gjd :<C-u>TernDef<CR>
       \ | nnoremap <silent><buffer> gK :<C-u>TernType<CR>
       \ | nnoremap <silent><buffer> cre :<C-u>TernRename<CR>
 augroup END
