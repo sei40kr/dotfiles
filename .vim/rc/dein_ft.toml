@@ -29,6 +29,21 @@ on_ft = ['rs']
 
 # ============ Golang Support ============
 [[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
+hook_source = '''
+augroup go_hooks
+  autocmd!
+  autocmd FileType go
+      \ nnoremap <silent><buffer> K :<C-u>GoDoc<CR>
+      \ | nnoremap <silent><buffer> gd :<C-u>GoDef<CR>
+      \ | nnoremap <silent><buffer> gji :<C-u>GoImplements<CR>
+      \ | nnoremap <silent><buffer> gjt :<C-u>GoTestFunc<CR>
+      \ | nnoremap <silent><buffer> cre :<C-u>GoRename<CR>
+      \ | nnoremap <silent><buffer> <Leader>= :<C-u>GoFmt<CR>
+augroup END
+'''
+[[plugins]]
 repo = 'zchee/deoplete-go'
 depends = 'deoplete.nvim'
 on_ft = 'go'
