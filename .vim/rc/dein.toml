@@ -34,7 +34,7 @@ repo = 'mattn/webapi-vim'
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
 hook_add = '''
-let g:polyglot_disabled = ['javascript']
+let g:polyglot_disabled = ['crystal', 'javascript']
 
 let g:crystal_define_mappings = 0
 '''

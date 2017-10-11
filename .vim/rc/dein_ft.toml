@@ -21,6 +21,20 @@ repo = 'libclang-vim/vim-textobj-clang'
 depends = ['vim-textobj-user', 'libclang-vim']
 on_ft = ['c', 'cpp', 'objc', 'objcpp']
 
+## Crystal
+[[plugins]]
+repo = 'rhysd/vim-crystal'
+on_ft = 'crystal'
+hook_source = '''
+augroup crystal_hooks
+  autocmd!
+  autocmd FileType crystal
+      \ nnoremap <silent><buffer> gd :<C-u>CrystalDef<CR>
+      \ | nnoremap <silent><buffer> gji :<C-u>CrystalImpl<CR>
+      \ | nnoremap <silent><buffer> <Leader>= :<C-u>CrystalFormat<CR>
+augroup END
+'''
+
 # ============ Rust Support ============
 [[plugins]]
 repo = 'sebastianmarkow/deoplete-rust'

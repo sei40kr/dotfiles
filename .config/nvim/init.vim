@@ -55,7 +55,6 @@ augroup END
 nnoremap <silent> <Leader>= :<C-u>Autoformat<CR>
 
 augroup formatter_hooks
-  autocmd FileType crystal nnoremap <silent><buffer> <Leader>= :<C-u>CrystalFormat<CR>
   autocmd FileType rust
       \ nnoremap <silent><buffer> <Leader>= :<C-u>RustFmt<CR>
       \ | vnoremap <silent><buffer> <Leader>= :RustFmt<CR>
