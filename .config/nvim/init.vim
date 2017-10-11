@@ -57,7 +57,9 @@ nnoremap <silent> <Leader>= :<C-u>Autoformat<CR>
 augroup formatter_hooks
   autocmd FileType crystal nnoremap <silent><buffer> <Leader>= :<C-u>CrystalFormat<CR>
   autocmd FileType go nnoremap <silent><buffer> <Leader>= :<C-u>Fmt<CR>
-  autocmd FileType rust nnoremap <silent><buffer> <Leader>= :<C-u>RustFmt<CR>
+  autocmd FileType rust
+      \ nnoremap <silent><buffer> <Leader>= :<C-u>RustFmt<CR>
+      \ | vnoremap <silent><buffer> <Leader>= :RustFmt<CR>
   autocmd FileType c,cpp,css,javascript,json,python,ruby,sass,scss,typescript
       \ nnoremap <silent><buffer> <Leader>= :<C-u>:ALEFix<CR>
 augroup END
