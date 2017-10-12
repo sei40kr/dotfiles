@@ -40,6 +40,8 @@ set clipboard& clipboard^=unnamedplus,unnamed
     \ visualbell
     \ wrap
 
+tnoremap <silent> <Esc><Esc> <C-\><C-n>
+
 if executable('tig')
   command! Tig terminal tig
 endif
