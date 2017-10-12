@@ -57,7 +57,7 @@ nmap <silent> gep <Plug>(ale_previous_wrap)
 
 augroup ale_hooks
   autocmd!
-  autocmd FileType c,cpp,css,javascript,json,python,ruby,sass,scss,typescript
+  autocmd FileType c,cpp,css,javascript,javascript.jsx,json,python,ruby,sass,scss,typescript
       \ nnoremap <silent><buffer> <Leader>= :<C-u>:ALEFix<CR>
   autocmd User ALELint call lightline#update()
 augroup END

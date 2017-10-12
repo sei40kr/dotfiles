@@ -201,7 +201,6 @@ augroup import_js_hooks
   autocmd!
   autocmd FileType javascript,javascript.jsx
       \ nnoremap <silent><buffer> <Leader>d :<C-u>ImportJSWord<CR>
-      \ | nnoremap <silent><buffer> <Leader>= :<C-u>ImportJSFix<CR>:<C-u>ALEFix<CR>
 augroup END
 '''
 [[plugins]]
