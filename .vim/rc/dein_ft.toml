@@ -177,10 +177,11 @@ repo = 'othree/yajs.vim'
 on_ft = ['javascript', 'javascript.jsx']
 [[plugins]]
 repo = 'ternjs/tern_for_vim'
-on_ft = ['javascript', 'javascript.jsx']
+on_cmd = ['TernDef' 'TernDoc' 'TernType' 'TernRefs' 'TernRename']
 hook_build = 'npm install'
-hook_source = '''
+hook_add = '''
 let g:tern#arguments = ['--persistent']
+let g:tern#is_show_argument_hints_enabled = 1
 
 augroup tern_hooks
   autocmd!
@@ -194,8 +195,8 @@ augroup END
 '''
 [[plugins]]
 repo = 'Galooshi/vim-import-js'
-on_ft = ['javascript', 'javascript.jsx']
-hook_source = '''
+on_cmd = ['ImportJSWord', 'ImportJSFix', 'ImportJSGoto']
+hook_add = '''
 augroup import_js_hooks
   autocmd!
   autocmd FileType javascript,javascript.jsx

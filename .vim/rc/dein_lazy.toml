@@ -29,10 +29,6 @@ nmap <Leader><Leader> <Plug>(easymotion-s)
 '''
 
 [[plugins]]
-repo = 'Galooshi/vim-import-js'
-on_cmd = ['ImportJSWord', 'ImportJSFix', 'ImportJSGoto']
-
-[[plugins]]
 repo = 'junegunn/vim-easy-align'
 on_map = {nx = '<Plug>(EasyAlign)'}
 hook_add = '''
