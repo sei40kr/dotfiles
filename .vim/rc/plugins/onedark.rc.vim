@@ -11,12 +11,14 @@ let g:onedark_color_overrides = {
     \   'blue': {'gui': '#61AFEF', 'cterm': '4', 'cterm16': '4'},
     \   'purple': {'gui': '#C678DD', 'cterm': '5', 'cterm16': '5'},
     \   'cyan': {'gui': '#56B6C2', 'cterm': '6', 'cterm16': '6'},
+    \   'vertsplit': {'gui': 'none', 'cterm': 'none', 'cterm16': 'none'},
     \ }
 
 augroup onedark_hooks
   autocmd!
-  autocmd ColorScheme onedark highlight NonText ctermbg=none
+  autocmd ColorScheme onedark
+      \ highlight NonText ctermbg=none
       \ | highlight Normal ctermbg=none
-      \ | highlight VertSplit ctermbg=none
+      \ | highlight CursorLine guibg=#282c34 ctermbg=235
 augroup END
 
