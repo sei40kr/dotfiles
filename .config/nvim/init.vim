@@ -62,7 +62,7 @@ augroup END
 
 augroup vim_script_hook
   autocmd!
-  autocmd FileType vim nnoremap <silent><buffer> K :<C-u>exec 'help ' . expand('<cword>')<CR>
+  autocmd FileType vim nnoremap <silent><buffer> K :<C-u>exec printf('help %s', expand('<cword>'))<CR>
 augroup END
 
 colorscheme onedark
