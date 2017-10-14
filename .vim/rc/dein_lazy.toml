@@ -92,6 +92,8 @@ augroup dash_hooks
 augroup END
 '''
 
+## Denite plugins
+
 [[plugins]]
 repo = 'shougo/denite.nvim'
 on_cmd = ['Denite', 'DeniteBufferDir', 'DeniteCursorWord', 'DeniteProjectDir']
@@ -103,11 +105,21 @@ nnoremap <silent> <Leader>n :<C-u>DeniteProjectDir grep -buffer-name=grep -immed
 nnoremap <silent> <Leader>p :<C-u>DeniteProjectDir grep -buffer-name=grep -immediately -resume -select=-1<CR>
 nnoremap <silent> <Leader>o :<C-u>Denite outline -buffer-name=outline<CR>
 nnoremap <silent> <Leader>h :<C-u>Denite help -buffer-name=help<CR>
+
+" Override Vim default behaviors
 nnoremap <silent> / :<C-u>Denite line -buffer-name=search -auto-highlight<CR>
 nnoremap <silent> * :<C-u>DeniteCursorWord line -auto-highlight -buffer-name=search -mode=normal<CR>
 nnoremap <silent> # :<C-u>DeniteCursorWord line -auto-highlight -buffer-name=search -mode=normal<CR>
 '''
 hook_source = 'source ~/.vim/rc/plugins/denite.rc.vim'
+
+[[plugins]]
+repo = 'Jagua/vim-denite-ghq'
+on_cmd = 'DeniteGhq'
+hook_add = '''
+nnoremap <silent> <Leader>g :<C-u>DeniteGhq<CR>
+'''
+
 
 [[plugins]]
 repo = 'shougo/deoplete.nvim'
