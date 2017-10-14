@@ -32,21 +32,6 @@ repo = 'kana/vim-operator-user'
 repo = 'mattn/webapi-vim'
 
 [[plugins]]
-repo = 'nathanaelkane/vim-indent-guides'
-hook_add = '''
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_default_mapping = 0
-
-augroup indent_guides_hooks
-  autocmd!
-  autocmd VimEnter,ColorScheme onedark
-      \ highlight link IndentGuidesOdd NONE
-      \ | highlight IndentGuidesEven guibg=#2c323c ctermbg=236
-augroup END
-'''
-
-[[plugins]]
 repo = 'sheerun/vim-polyglot'
 hook_add = '''
 let g:polyglot_disabled = ['crystal', 'javascript']
