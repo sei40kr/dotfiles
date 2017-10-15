@@ -3,12 +3,23 @@
 # .zshenv
 # author: Seong Yong-ju ( @sei40kr )
 
-export EDITOR="$(which nvim)"
-export HISTFILE="${HOME}/.histfile"
-export HISTSIZE=1000
-export KEYTIMEOUT=1
-export SAVEHIST=1000
-export TERM='screen-256color'
-export XDG_CONFIG_HOME="${HOME}/.config"
-export ZSH_RC_DIR="${HOME}/.zsh/rc"
+export EDITOR
+export HISTFILE
+export HISTSIZE
+export KEYTIMEOUT
+export SAVEHIST
+export TERM
+export XDG_CONFIG_HOME
 
+EDITOR="$(which nvim)"
+HISTFILE="${HOME}/.histfile"
+HISTSIZE=1000
+KEYTIMEOUT=1
+SAVEHIST=1000
+TERM='screen-256color'
+XDG_CONFIG_HOME="${HOME}/.config"
+ZSH_RC_DIR="${HOME}/.zsh/rc"
+
+[[ -d "${HOME}/.linuxbrew" ]] && {
+  XDG_DATA_DIRS="${HOME}/.linuxbrew/share:$XDG_DATA_DIRS";
+}
