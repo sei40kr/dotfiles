@@ -16,7 +16,6 @@ HISTFILE="${HOME}/.histfile"
 HISTSIZE=1000
 KEYTIMEOUT=1
 SAVEHIST=1000
-TERM='screen-256color'
 XDG_CONFIG_HOME="${HOME}/.config"
 ZSH_RC_DIR="${HOME}/.zsh/rc"
 
