@@ -1,3 +1,4 @@
+set line-graphics = utf-8
 set diff-options = -m --first-parent
 set editor-line-number = yes
 set ignore-case = true
