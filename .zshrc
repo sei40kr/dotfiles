@@ -74,6 +74,7 @@ export NVM_AUTO_USE=true
 export NVM_SYMLINK_CURRENT=true
 
 # Configure spaceship-zsh-theme
+SPACESHIP_PROMPT_SYMBOL='❯'
 SPACESHIP_PACKAGE_SHOW=false
 SPACESHIP_BATTERY_SHOW=false
 
