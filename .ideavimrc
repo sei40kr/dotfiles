@@ -1,39 +1,382 @@
 " .ideavimrc
 " author: Seong Yong-ju ( @sei40kr )
 
-source ~/.vim/rc/common.rc.vim
-
-set clipboard& clipboard^=unnamed
 set surround
+set relativenumber number
+set clipboard& clipboard^=unnamed
 
-" Disable code folding
-nnoremap <silent> zC <Nop>
-nnoremap <silent> zM <Nop>
-nnoremap <silent> zO <Nop>
-nnoremap <silent> zR <Nop>
-nnoremap <silent> zc <Nop>
-nnoremap <silent> zo <Nop>
+"""" Colorschemes
+" TODO switch to next random colorscheme listed in colorscheme layer.
+" select a theme using a unite buffer.
+nnoremap <silent> <Space>Ts :action ChangeColorScheme<CR>
 
-" Configure IDE features as Vim features
-nnoremap <silent> gf :<C-u>action GotoDeclaration<CR>
-nnoremap <silent> g, :<C-u>action JumpToNextChange<CR>
-nnoremap <silent> g; :<C-u>action JumpToLastChange<CR>
+"""" UI Toggles
+" TODO highlight any character past the 80th column
+" TODO display the fill column (by default the fill column is set to 80)
+" TODO toggle highlight of the current line
+" toggle highlight indentation levels
+nnoremap <silent> <Space>thi :action EditorToggleShowIndentLines<CR>
+" TODO toggle highlight indentation current column
+" TODO toggle syntax highlighting
+" TODO toggle indentation guide at point
+" TODO toggle line numbers
+" TODO toggle background
+" TODO open tabs manager
+" TODO display ~ in the fringe on empty lines
+" TODO toggle frame fullscreen
+" TODO toggle display of the fringe
+" TODO toggle menu bar
+" TODO toggle tool bar
 
-" Replace Vim features with IDE features
-nnoremap <C-S-i> <C-i>
-nnoremap <C-S-o> <C-o>
-nnoremap <C-i> :<C-u>action Forward<CR>
-nnoremap <C-o> :<C-u>action Back<CR>
+""" Unimpaired Bindings
+" Insert space above
+nnoremap <silent> [<Space> O<Esc>
+" Insert space below
+nnoremap <silent> ]<Space> o<Esc>
+" TODO Go to previous buffer
+" TODO Go to next buffer
+" TODO Go to previous file in directory
+" TODO Go to next file in directory
+" Go to the previous error
+nnoremap <silent> [l :action GotoPreviousError<CR>
+" Go to the next error
+nnoremap <silent> ]l :action GotoNextError<CR>
+" Go to the previous vcs hunk
+nnoremap <silent> [c :action VcsShowPrevChangeMarker<CR>
+" Go to the next vcs hunk
+nnoremap <silent> ]c :action VcsShowNextChangeMarker<CR>
+" Go to the previous error
+nnoremap <silent> [q :action GotoPreviousError<CR>
+" Go to the next error
+nnoremap <silent> ]q :action GotoNextError<CR>
+" Go to the previous frame
+nnoremap <silent> [t gT
+" Go to the next frame
+nnoremap <silent> ]t gt
+" TODO Go to the previous window
+" TODO Go to the next window
+" Move line up
+nnoremap <silent> [e :move -2<CR>
+" Move line down
+nnoremap <silent> ]e :move +<CR>
+" Paste above current line
+nnoremap <silent> [p P
+" Paste below current line
+nnoremap <silent> ]p p
+" TODO Select pasted text
+
+" Jumping Bindings
+" go to the beginning of line (and set a mark at the previous location in the line)
+nnoremap <silent> <Space>j0 m`^
+" go to the end of line (and set a mark at the previous location in the line)
+nnoremap <silent> <Space>j$ m`g_
+" jump backward
+nnoremap <silent> <Space>jb <C-o>
+" jump forward
+nnoremap <silent> <Space>jf <C-i>
+" TODO jump to a listing of the current directory
+" TODO jump to a listing of the current directory (other window)
+" jump to a definition in buffer (denite outline)
+nnoremap <silent> <Space>ji :action FileStructurePopup<CR>
+" jump to a definition in any buffer (denite outline)
+nnoremap <silent> <Space>jI :action GotoSymbol<CR>
+" TODO jump to a character in the buffer (easymotion)
+" TODO jump to a suite of two characters in the buffer (easymotion)
+" TODO jump to next line and indent it using auto-indent rules
+" TODO jump to a line with avy (easymotion)
+" TODO show the dumb-jump quick look tooltip
+" TODO jump to a URL in the current window
+" TODO jump to the definition/declaration of an Emacs Lisp variable
+" TODO jump to a word in the current buffer (easymotion)
+
+" Joining and Splitting Bindings
+" join the current line with the next line
+"	go to next line and indent it using auto-indent rules
+nnoremap <silent> <Space>jk j==
+"	split the current line at point, insert a new line and auto-indent
+nnoremap <silent> <Space>jn i<CR><Esc>
+"	split the current line at point but let point on current line
+nnoremap <silent> <Space>jo i<CR><Esc>k$
+"	TODO split a quoted string or s-expression in place
+"	TODO split a quoted string or s-expression, insert a new line and auto-indent
+
+"" Window Manipulation Bindings
+"	TODO go to window number 1
+"	TODO go to window number 2
+"	TODO go to window number 3
+"	TODO go to window number 4
+"	TODO go to window number 5
+"	TODO go to window number 6
+"	TODO go to window number 7
+"	TODO go to window number 8
+"	TODO go to window number 9
+" TODO switch to alternate window in the current frame (switch back and forth)
+" TODO balance split windows
+" TODO force the focus back to the minibuffer
+" TODO Distraction-free reading current window
+" TODO Distraction-free reading other windows via vim-choosewin
+" delete a window
+nnoremap <silent> <Space>wd :action Unsplit<CR>
+" delete a window and its current buffer (does not delete the file)
+nnoremap <silent> <Space>u<Space>wd :action CloseEditor<CR>
+" TODO delete another window using vim-choosewin
+" TODO delete another window and its current buffer using vim-choosewin
+" TODO toggle window dedication (dedicated window cannot be reused by a mode)
+" TODO toggle follow mode
+" TODO create new tab(frame)
+" move to window on the left
+nnoremap <silent> <Space>wh <C-w>h
+" TODO move window to the left
+" move to window below
+nnoremap <silent> <Space>wj <C-w>j
+" TODO move window to the bottom
+" move to window above
+nnoremap <silent> <Space>wk <C-w>k
+" TODO move window to the top
+" move to window on the right
+nnoremap <silent> <Space>wl <C-w>l
+" TODO move window to the right
+" TODO maximize/minimize a window (maximize is equivalent to delete other windows)
+" TODO swap windows using vim-choosewin
+" TODO cycle and focus between tabs
+" TODO open messages buffer in a popup window
+" TODO close the current sticky popup window
+" TODO rotate windows forward
+" TODO rotate windows backward
+" horizontal split
+nnoremap <silent> <Space>ws :action SplitHorizontally<CR>
+" horizontal split and focus new window
+nnoremap <silent> <Space>wS :split<CR>
+" TODO undo window layout (used to effectively undo a closed window)
+" TODO redo window layout
+" vertical split
+nnoremap <silent> <Space>wv :action SplitVertically<CR>
+" vertical split and focus new window
+nnoremap <silent> <Space>wV :vsplit<CR>
+" TODO cycle and focus between windows
+" TODO select window using vim-choosewin
+
+""" Buffers and Files
+"" Buffers manipulation key bindings
+" TODO switch to alternate buffer in the current window (switch back and forth)
+" TODO buffer transient state
+" switch to a buffer (via denite/unite)
+nnoremap <silent> <Space>bb :action Switcher<CR>
+" TODO kill the current buffer (does not delete the visited file)
+" TODO kill the current buffer and window (does not delete the visited file)
+" TODO kill a visible buffer using vim-choosewin
+" TODO kill a visible buffer and its window using ace-window
+" kill other buffers
+nnoremap <silent> <Space>b<C-d> :action CloseAllEditorsButActive<CR>
+" TODO kill buffers using a regular expression
+" TODO erase the content of the buffer (ask for confirmation)
+" TODO open IdeaVim home buffer
+" TODO switch to next buffer avoiding special buffers
+" TODO open Messages buffer
+" kill all buffers and windows except the current one
+nnoremap <silent> <Space>u<Space>bm :action VimWindowOnly<CR>
+" TODO switch to previous buffer avoiding special buffers
+" copy clipboard and replace buffer (useful when pasting from a browser)
+nnoremap <silent> <Space>bP ggdG"+P
+" revert the current buffer (reload from disk)
+nnoremap <silent> <Space>bR :action ReloadFromDisk<CR>
+" TODO switch to the scratch buffer (create it if needed)
+" toggle read-only (writable state)
+nnoremap <silent> <Space>bw :action ToggleReadOnlyAttribute<CR>
+" copy whole buffer to clipboard (useful when copying to a browser)
+nnoremap <silent> <Space>bY ggVG"+y
+" TODO Make current function or comments visible in buffer as much as possible
+
+"" Create a new empty buffer
+" TODO create new empty buffer in a new window on the left
+" TODO create new empty buffer in a new window at the bottom
+" TODO create new empty buffer in a new window above
+" TODO create new empty buffer in a new window below
+" TODO create new empty buffer in current window
+
+"" Files manipulations key bindings
+" TODO go to file bookmarks
+" TODO copy current file to a different location
+" TODO convert file from unix to dos encoding
+" TODO convert file from dos to unix encoding
+" TODO delete a file and the associated buffer (ask for confirmation)
+" TODO open a file with elevated privileges (sudo edit)
+" open file
+nnoremap <silent> <Space>ff :action GotoFile<CR>
+" try to open the file under point
+nnoremap <silent> <Space>fF gf
+" TODO open a file using the default external program
+" rename the current file
+nnoremap <silent> <Space>fR :action RenameFile<CR>
+" save a file
+nnoremap <silent> <Space>fs :qall<CR>
+" save all files
+nnoremap <silent> <Space>fS :wall<CR>
+" open a recent file
+nnoremap <silent> <Space>fr :action RecentFiles<CR>
+" toggle file tree side bar
+nnoremap <silent> <Space>ft :action ActivateProjectToolWindow<CR>
+" show file tree side bar
+nnoremap <silent> <Space>fT :action ActivateProjectToolWindow<CR>
+" show and copy current file absolute path in the cmdline
+nnoremap <silent> <Space>fy :action CopyPaths<CR>
+
+"" Vim and IdeaVim files
+" TODO display and copy SpaceVim version
+" open SpaceVim custom configuration file
+nnoremap <silent> <Space>fvd :edit ~/.ideavimrc<CR>
+
+""" File tree
+"" File tree navigation
+
+"""" Auto-saving
+
+"""" Searching
+""" With an external tool
+
+"" Useful key bindings
+
+"" Searching in current file
+
+"" Text manipulation commands
+
+"" Commenting
+
+"" Error Handling Bindings
+" TODO toggle syntax checker
+" TODO clear all errors
+" TODO describe a syntax checker
+" TODO toggle the display of the list of errors/warnings
+" go to the next error
+nnoremap <silent> <space>ep :action GotoPreviousError<cr>
+" go to the previous error
+nnoremap <silent> <Space>en :action GotoNextError<CR>
+" TODO verify syntax checker setup (useful to debug 3rd party tools configuration)
+" TODO error transient state
+
+"" Project Management Bindings
+" open a shell in project’s root (with the shell layer)
+nnoremap <silent> <Space>p' :action ActivateTerminalToolWindow<CR>
+
+"" Editor UI Bindings
+
+""" Custom Key Bindings
+" Copy selection to X11 clipboard (“+y)
+vnoremap <Leader>y "+y
+" Copy full path of current buffer to X11 clipboard
+nnoremap <C-c> :action CopyPaths<CR>
+" TODO Copy github.com url of current buffer to X11 clipboard(if it is a github repo)
+" TODO Copy github.com url of current lines to X11 clipboard(if it is a github repo)
+" Paste selection from X11 clipboard (“+p)
+vnoremap <Leader>p "+p
+" TODO Smart page forward (C-f/C-d)
+" TODO Smart page backwards (C-b/C-u)
+" TODO Smart scroll down (3C-e/j)
+" TODO Smart scroll up (3C-y/k)
+" Ctrl+w
+nnoremap <C-q> <C-w>
+" Switch buffer and placement
+nnoremap <C-x> <C-w>x
+" Smart up and down
+nnoremap <Up> gk
+nnoremap <Down> gj
+" After paragraph motion go to first non-blank char (}^)
+nnoremap } }^
+" Indent to left and re-select
+nnoremap < <<_
+xnoremap < <gv
+" Indent to right and re-select
+nnoremap > >>_
+xnoremap > >gv|
+" Indent to right and re-select
+xnoremap <Tab> >gv|
+" Indent to left and re-select
+xnoremap <S-Tab> <gv
+" TODO Select last paste
+" TODO Disable EX-mode ()
+" Navigation in command line
+cnoremap <C-a> <Home>
+" Move cursor backward in command line
+cnoremap <C-b> <Left>
+" Move cursor forward in command line
+cnoremap <C-f> <Right>
+
+"" File Operations
+" TODO Switch to the directory of the open buffer
+" Write (:w)
+noremap <silent> <Leader>w :<C-u>write<CR>
+" Write (:w)
+noremap <silent> <C-s> :<C-u>write<CR>
+cnoremap <silent> <C-s> :<C-u>write<CR>
+" TODO Command	Write as root (%!sudo tee > /dev/null %)
+
+"" Editor UI
+" TODO Toggle tagbar
+" TODO Toggle Vimfiler
+" TODO Jump to the buffer whit the num index
+" TODO Jump to the buffer whit the num index, this only works in neovim
+" TODO Jump to left buffer in the tabline, this only works in neovim
+" TODO Jump to Right buffer in the tabline, this only works in neovim
+" TODO Toggle spell-checker (:setlocal spell!)
+" TODO Toggle line numbers (:setlocal nonumber!)
+" TODO Toggle hidden characters (:setlocal nolist!)
+" TODO Toggle highlighted search (:set hlsearch!)
+" TODO Toggle wrap (:setlocal wrap! breakindent!)
+" TODO Go to first tab (:tabfirst)
+" TODO Go to last tab (:tablast)
+" TODO Go to previous tab (:tabprevious)
+" Move to split below (j)
+nnoremap <silent> <C-Down> <C-w>j
+" Move to upper split (k)
+nnoremap <silent> <C-Up> <C-w>k
+" Move to left split (h)
+nnoremap <silent> <C-Left> <C-w>h
+" Move to right split (l)
+nnoremap <silent> <C-Right> <C-w>l
+" TODO Search selection forwards
+" TODO Search selection backwards
+" TODO Remove all spaces at EOL
+" TODO Replace selection
+" TODO Next on location list
+" TODO Previous on location list
+" TODO Source selection
+
+"" Plugin: Bookmarks
+" Show list of all bookmarks
+nnoremap <silent> <M-a> :action ShowBookmarks<CR>
+" Toggle bookmark in current line
+nnoremap <silent> <M-a> :action ToggleBookmark<CR>
+" Jump to previous bookmark
+nnoremap <silent> <M-p> :action GotoPreviousBookmark<CR>
+" Jump to next bookmark
+nnoremap <silent> <M-n> :action GotoNextBookmark<CR>
+" TODO Annotate bookmark
+
+"" Plugin: ChooseWin
+" TODO Choose a window to edit
+" TODO Switch editing window with selected
+
+"" Plugin: Gina/Gita
+" TODO Git status
+" TODO Git diff
+" TODO Git commit
+" TODO Git blame
+" Git push
+nnoremap <silent> <Space>gp :action Vcs.Push<CR>
+" TODO Git add current buffer
+" TODO Git add all files
+
+"" Plugin: vim-signify
+" Jump to next hunk
+nnoremap <silent> <Leader>hj :action VcsShowNextChangeMarker<CR>
+" Jump to previous hunk
+nnoremap <silent> <Leader>hk :action VcsShowPrevChangeMarker<CR>
+" TODO Jump to last hunk
+" TODO Jump to first hunk
 
 " Configure code navigation
 nnoremap <silent> [m :<C-u>action MethodUp<CR>
 nnoremap <silent> ]m :<C-u>action MethodDown<CR>
-nnoremap <silent> <C-[> :<C-u>action MethodUp<CR>
-nnoremap <silent> <C-]> :<C-u>action MethodDown<CR>
-nnoremap <silent> gep :<C-u>action GotoPreviousError<CR>
-nnoremap <silent> gne :<C-u>action GotoNextError<CR>
-nnoremap <silent> [c :<C-u>action VcsShowPrevChangeMarker<CR>
-nnoremap <silent> ]c :<C-u>action VcsShowNextChangeMarker<CR>
 
 nnoremap <silent> <Space>q :<C-u>action CloseContent<CR>
 nnoremap <silent> <Space>Q :<C-u>action ReopenClosedTab<CR>
