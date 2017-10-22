@@ -71,14 +71,9 @@ let g:spacevim_disabled_plugins = [
       \ 'fcitx.vim',
       \ ]
 let g:spacevim_custom_plugins = [
-      \ ['Shougo/echodoc.vim', { 'lazy': 1, 'on_event': 'CompleteDone' }],
       \ ['w0rp/ale'],
-      \ ['joshdick/onedark.vim'],
-      \ ['vim-airline/vim-airline'],
-      \ ['tmux-plugins/vim-tmux-focus-events'],
-      \ ['vim-jp/vimdoc-ja'],
-      \ ['ejholmes/vim-forcedotcom', { 'lazy': 1, 'on_ft': ['apex', 'visualforce', 'apexlog'] }],
-      \ ['Galooshi/vim-import-js', { 'lazy': 1, 'on_cmd': ['ImportJSWord', 'ImportJSFix', 'ImportJSGoto'] }],
+      \ ['ejholmes/vim-forcedotcom', { 'on_ft': ['apex', 'visualforce', 'apexlog'] }],
+      \ ['Galooshi/vim-import-js', { 'on_cmd': ['ImportJSWord', 'ImportJSFix', 'ImportJSGoto'] }],
       \ ]
 let g:spacevim_enable_powerline_fonts = 1
 let g:spacevim_enable_vimfiler_welcome = 1
@@ -269,7 +264,6 @@ set autoread
 set nobackup
 set nowritebackup
 set noswapfile
-set noshowmode
 set clipboard& clipboard^=unnamed,unnamedplus
 set iminsert=0
 
