@@ -10,23 +10,14 @@ module.exports = {
     // font family with optional fallbacks
     fontFamily: '"FantasqueSansMono Nerd Font", monospace',
 
-    // terminal cursor background color and opacity (hex, rgb, hsl, hsv, hwb or cmyk)
-    cursorColor: 'rgba(248,28,229,0.8)',
+    // font family to use for the UI with optional fallbacks
+    uiFontFamily: '',
 
     // `BEAM` for |, `UNDERLINE` for _, `BLOCK` for █
     cursorShape: 'BLOCK',
 
     // set to true for blinking cursor
     cursorBlink: false,
-
-    // color of the text
-    foregroundColor: '#fff',
-
-    // terminal background color
-    backgroundColor: '#000',
-
-    // border color (window, tabs)
-    borderColor: '#333',
 
     // custom css to embed in the main window
     css: '',
@@ -36,37 +27,20 @@ module.exports = {
 
     // set to `true` (without backticks) if you're using a Linux setup that doesn't show native menus
     // default: `false` on Linux, `true` on Windows (ignored on macOS)
-    showHamburgerMenu: '',
+    showHamburgerMenu: true,
 
     // set to `false` if you want to hide the minimize, maximize and close buttons
     // additionally, set to `'left'` if you want them on the left, like in Ubuntu
     // default: `true` on windows and Linux (ignored on macOS)
-    showWindowControls: '',
+    showWindowControls: true,
 
     // custom padding (css format, i.e.: `top right bottom left`)
-    padding: '0',
+    padding: '8px 16px',
 
     // the full list. if you're going to provide the full color palette,
     // including the 6 x 6 color cubes and the grayscale map, just provide
     // an array here instead of a color map object
-    colors: {
-      black: '#000000',
-      red: '#ff0000',
-      green: '#33ff00',
-      yellow: '#ffff00',
-      blue: '#0066ff',
-      magenta: '#cc00ff',
-      cyan: '#00ffff',
-      white: '#d0d0d0',
-      lightBlack: '#808080',
-      lightRed: '#ff0000',
-      lightGreen: '#33ff00',
-      lightYellow: '#ffff00',
-      lightBlue: '#0066ff',
-      lightMagenta: '#cc00ff',
-      lightCyan: '#00ffff',
-      lightWhite: '#ffffff'
-    },
+    colors: {},
 
     // the shell to run when spawning a new session (i.e. /usr/local/bin/fish)
     // if left empty, your system's login shell will be used by default
@@ -106,7 +80,7 @@ module.exports = {
 
     // Change the visibility of the hamburger menu.
     // Available options are: true, false
-    showHamburgerMenu: true,
+    showHamburgerMenu: true
   },
 
   // a list of plugins to fetch and install from npm
@@ -115,7 +89,9 @@ module.exports = {
   //   `hyperpower`
   //   `@company/project`
   //   `project#1.0.1`
-  plugins: [],
+  plugins: [
+    'hyperterm-atom-dark'
+  ],
 
   // in development, you can create a directory under
   // `~/.hyper_plugins/local/` and include it here
