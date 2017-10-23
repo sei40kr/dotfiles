@@ -80,7 +80,11 @@ module.exports = {
 
     // Change the visibility of the hamburger menu.
     // Available options are: true, false
-    showHamburgerMenu: true
+    showHamburgerMenu: true,
+
+    hyperTransparentDynamic: {
+      alpha: 0.64
+    }
   },
 
   // a list of plugins to fetch and install from npm
@@ -90,7 +94,8 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-    'hyperterm-atom-dark'
+    'hyperterm-atom-dark',
+    'hyper-transparent-dynamic'
   ],
 
   // in development, you can create a directory under
