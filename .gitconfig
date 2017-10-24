@@ -6,6 +6,8 @@
   excludesfile = ~/.gitignore_global
 [diff]
 	compactionHeuristic = true
+[fetch]
+  prune = true
 [merge]
   tool = fugitive
 [mergetool "fugitive"]
