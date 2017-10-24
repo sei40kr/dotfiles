@@ -5,7 +5,7 @@
   editor = nvim
   excludesfile = ~/.gitignore_global
 [diff]
-  algorithm = minimal
+	compactionHeuristic = true
 [merge]
   tool = fugitive
 [mergetool "fugitive"]
