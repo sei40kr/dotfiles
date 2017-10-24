@@ -1,10 +1,10 @@
+set vertical-split = yes
 set line-graphics = utf-8
+set tab-size = 4
+set ignore-case = true
 set diff-options = -m --first-parent
 set editor-line-number = yes
-set ignore-case = true
-set refresh-mode = auto
-set tab-size = 2
-set vertical-split = no
+set refresh-mode = periodic
 
 color cursor black blue
 
