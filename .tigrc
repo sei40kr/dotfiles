@@ -1,11 +1,71 @@
 source ~/.tig/rc/large-repo.tigrc
 source ~/.tig/rc/vim.tigrc
 
-set vertical-split = yes
-set line-graphics = utf-8
-set tab-size = 4
-set ignore-case = true
-set diff-options = -m --first-parent
+set main-view  = id date author:email-user commit-title:graph=yes,refs=yes
+set blame-view = date:default author:email-user id:yes,color line-number:yes,interval=1 text
+set pager-view = line-number:yes,interval=1 text
+set stage-view = line-number:yes,interval=1 text
+set log-view   = line-number:yes,interval=1 text
+set blob-view  = line-number:yes,interval=1 text
+set diff-view  = line-number:yes,interval=1 text:yes,commit-title-overflow=no
+
+set line-graphics      = utf-8
+set tab-size           = 4
+set ignore-space       = at-eol
+set ignore-case        = true
+set split-view-height  = 80%
+set diff-options       = -m --first-parent
+set mouse              = true
 set editor-line-number = yes
-set refresh-mode = periodic
+set refresh-mode       = periodic
+
+bind generic gg none
+bind generic g  move-first-line
+
+bind status uu none
+bind status um none
+bind status ul none
+bind status us none
+bind status u  status-update
+bind status !  status-revert
+
+bind generic f ?git fetch %(remote)
+bind main    f ?git fetch %(remote)
+
+bind generic l ?git pull %(remote)
+bind main    l ?sh -c "git checkout %(branch) && git pull %(remote) --ff-only && git checkout -"
+bind diff    l ?sh -c "git checkout %(branch) && git pull %(remote) --ff-only && git checkout -"
+bind refs    l ?sh -c "git checkout %(branch) && git pull %(remote) --ff-only && git checkout -"
+
+bind generic p ?git push -u %(remote) %(repo:head)
+
+bind generic C  !git commit
+bind refs    C  !git commit
+bind main    C  !git commit
+bind generic c  none
+bind generic ca !git commit --amend --allow-empty
+
+bind generic vu !sh -c "git reflog --pretty=raw | tig --pretty=raw"
+bind generic _  ?git reset --hard HEAD@{"%(prompt Enter HEAD@{} number: )"}
+
+bind diff  P ?git stash pop %(stash)
+bind stash P ?git stash pop %(stash)
+bind diff  A ?git stash apply %(stash)
+
+bind generic d none
+bind refs    d ?git branch -d %(branch)
+bind status  d ?git clean -d -f -- %(file)
+bind tree    d ?git rm %(file)
+bind main    D ?git clean -d -f
+bind status  D ?git clean -d -f
+bind refs    D ?sh -c "git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %"
+
+bind main ! ?git revert %(commit)
+
+bind main cp ?git cherry-pick %(commit)
+bind diff cp ?git cherry-pick %(commit)
+
+bind main co ?git checkout %(branch)
+bind refs co ?git checkout %(branch)
+bind main co ?git checkout %(commit)
 
