@@ -53,6 +53,7 @@ let g:spacevim_unite_leader = 'f'
 let g:spacevim_denite_leader = 'F'
 let g:spacevim_realtime_leader_guide = 1
 let g:spacevim_enable_neomake = 0
+let g:spacevim_enable_ale = 1
 let g:spacevim_statusline_separator = 'nil'
 let g:spacevim_statusline_inactive_separator = 'bar'
 let g:spacevim_error_symbol = ''
@@ -134,14 +135,7 @@ let g:EasyMotion_keys = 'sdghklwertyuioxcvbnmfj'
 source ~/.SpaceVim.d/config/plugins_before/vim-template.vim
 
 " w0rp/ale
-let g:ale_lint_on_save = 1
-let g:ale_echo_msg_format = '%severity%: %linter%: %s'
-let g:ale_sign_column_always = 1
-let g:ale_change_sign_column_color = 1
-let g:ale_sign_error = ''
 let g:ale_sign_info = ''
-let g:ale_sign_warning = ''
-let g:ale_statusline_format = ['   %d ', '   %d ', '  ']
 let g:ale_fixers = {
       \ 'c': ['clang-format'],
       \ 'cpp': ['clang-format'],
