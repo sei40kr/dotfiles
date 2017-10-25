@@ -272,7 +272,7 @@ set formatoptions& formatoptions-=ro formatoptions+=j
 set history=1000
 set incsearch wrapscan
 set laststatus=2 tabpagemax=50
-set list listchars=trail:␣
+set list listchars=trail:␣,extends:→,precedes:←
 set nobackup noswapfile nowritebackup
 set noerrorbells
 set noshowmode
