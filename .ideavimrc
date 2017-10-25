@@ -80,10 +80,14 @@ nnoremap <silent> <Space>jf <C-i>
 nnoremap <silent> <Space>ji :action FileStructurePopup<CR>
 " jump to a definition in any buffer (denite outline)
 nnoremap <silent> <Space>jI :action GotoSymbol<CR>
-" TODO jump to a character in the buffer (easymotion)
+" jump to a character in the buffer (AceJump)
+nnoremap <silent> <Space>jj :action AceAction<CR>
+vnoremap <silent> <Space>jj :<C-u>action AceAction<CR>
 " TODO jump to a suite of two characters in the buffer (easymotion)
 " TODO jump to next line and indent it using auto-indent rules
-" TODO jump to a line with avy (easymotion)
+" jump to a line with avy (AceJump)
+nnoremap <silent> <Space>jl :action AceLineAction<CR>
+vnoremap <silent> <Space>jl :<C-u>action AceLineAction<CR>
 " TODO show the dumb-jump quick look tooltip
 " TODO jump to a URL in the current window
 " TODO jump to the definition/declaration of an Emacs Lisp variable
