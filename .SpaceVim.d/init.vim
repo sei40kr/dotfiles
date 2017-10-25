@@ -1,3 +1,5 @@
+set encoding=utf-8
+
 scriptencoding utf-8
 
 " init.vim
@@ -259,13 +261,25 @@ augroup END
 " elzr/vim-json
 let g:vim_json_syntax_conceal = 0
 
-set expandtab
+set autoindent expandtab smartindent smarttab
 set autoread
-set nobackup
-set nowritebackup
-set noswapfile
-set clipboard& clipboard^=unnamed,unnamedplus
-set iminsert=0
+set backspace=indent,eol,start
+set colorcolumn=80 wrap
+set complete& complete-=i
+set concealcursor=niv conceallevel=2
+set display& display+=lastline
+set formatoptions& formatoptions-=ro formatoptions+=j
+set history=1000
+set incsearch wrapscan
+set laststatus=2 tabpagemax=50
+set list listchars=trail:␣
+set nobackup noswapfile nowritebackup
+set noerrorbells
+set noshowmode
+set nrformats-=octal
+set ruler
+set scrolloff=1 sidescrolloff=5
+set wildmenu
 
 augroup user_hooks
   autocmd!
