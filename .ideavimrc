@@ -1,9 +1,17 @@
 " .ideavimrc
 " author: Seong Yong-ju ( @sei40kr )
 
+set history=1000
+set hlsearch ignorecase incsearch smartcase wrapscan
+set ignorecase smartcase
+set noerrorbells t_vb= visualbell
+set noshowmode
+set nrformats-=octal
+set number relativenumber
+set scrolloff=1 sidescrolloff=5
 set surround
-set relativenumber number
-set clipboard& clipboard^=unnamed
+
+nnoremap x "_x
 
 """" Colorschemes
 " TODO switch to next random colorscheme listed in colorscheme layer.
