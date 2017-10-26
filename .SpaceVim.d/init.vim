@@ -279,7 +279,7 @@ set concealcursor=niv conceallevel=2
 set display& display+=lastline
 set formatoptions& formatoptions-=ro formatoptions+=j
 set history=1000
-set incsearch wrapscan
+set hlsearch ignorecase incsearch smartcase wrapscan
 set laststatus=2 tabpagemax=50
 set list listchars=trail:␣,extends:→,precedes:←
 set nobackup noswapfile nowritebackup
@@ -289,6 +289,8 @@ set nrformats-=octal
 set ruler
 set scrolloff=1 sidescrolloff=5
 set wildmenu
+
+nnoremap x "_x
 
 augroup user_hooks
   autocmd!
