@@ -70,8 +70,6 @@ let g:spacevim_buffer_index_type = 4
 let g:spacevim_windows_index_type = 3
 let g:spacevim_github_username = 'sei40kr'
 let g:spacevim_disabled_plugins = [
-      \ 'neomake',
-      \ 'syntastic',
       \ 'vim-diminactive',
       \ 'fcitx.vim',
       \ ]
