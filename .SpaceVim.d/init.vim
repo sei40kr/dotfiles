@@ -191,50 +191,6 @@ let g:vimfiler_readonly_file_icon = '⭤'
 let g:vimfiler_file_icon = ' '
 let g:vimfiler_marked_file_icon = '✓'
 
-" vim-airline/vim-airline
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_detect_iminsert = 1
-let g:airline_inactive_collapse = 1
-let g:airline_theme = 'onedark'
-let g:airline_powerline_fonts = 1
-let g:airline_mode_map = {
-      \ '__' : '-',
-      \ 'n'  : 'N',
-      \ 'i'  : 'I',
-      \ 'R'  : 'R',
-      \ 'c'  : 'C',
-      \ 'v'  : 'V',
-      \ 'V'  : 'V',
-      \ '' : 'V',
-      \ 's'  : 'S',
-      \ 'S'  : 'S',
-      \ '' : 'S',
-      \ }
-let g:airline_symbols = { 'branch': '', 'readonly': '', 'linenr': '☰', 'maxlinenr': '' }
-
-let g:airline_section_x = '%{airline#util#wrap(airline#parts#filetype(),0)} | %{airline#util#wrap(airline#parts#ffenc(),0)}'
-let g:airline_section_y = '%{g:airline_symbols.linenr}  %l/%L : %v '
-" TODO Re-locate ALE section according to linting result
-let g:airline_section_z = '%{ALEGetStatusLine()}'
-let g:airline_section_warning = ''
-let g:airline_section_error = ''
-let g:airline#extensions#hunks#enabled = 0
-let g:airline#extensions#wordcount#enabled = 0
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#bufferline#enabled = 0
-let g:airline#extensions#tmuxline#enabled = 0
-let g:airline#extensions#promptline#enabled = 0
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#ale#error_symbol = g:spacevim_error_symbol
-let g:airline#extensions#ale#warning_symbol = g:spacevim_warning_symbol
-
 " joshdick/onedark.vim
 let g:onedark_terminal_italics = 1
 
