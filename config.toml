@@ -1,14 +1,7 @@
 repos = [
-    'github.com/b4b4r07/gist',
-    'github.com/bazelbuild/buildtools/buildifier',
-    'github.com/github/hub',
     'github.com/golang/lint/golint',
     'github.com/heroku/force',
-    'github.com/junegunn/fzf',
-    'github.com/motemen/ghq',
     'github.com/nsf/gocode',
     'golang.org/x/tools/cmd/goimports',
-    'golang.org/x/tools/cmd/guru',
     'gopkg.in/Netflix-Skunkworks/go-jira.v1/cmd/jira',
-    'mvdan.cc/sh/cmd/shfmt',
   ]
