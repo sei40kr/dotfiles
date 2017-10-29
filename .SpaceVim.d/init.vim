@@ -175,6 +175,7 @@ let g:ale_linters = {
       \ 'vim': ['vint'],
       \ 'xml': ['xmlint'],
       \ 'yaml': ['yamllint'],
+      \ 'zsh': ['shellcheck'],
       \ }
 
 " Shougo/denite.vim
