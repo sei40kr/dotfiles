@@ -15,14 +15,10 @@ zplug '~/.linuxbrew/share/git-core/contrib/diff-highlight', from:local, \
     if:'[[ -d "${HOME}/.linuxbrew" ]]', use:'diff-highlight', as:command
 
 zplug 'b4b4r07/emoji-cli'
-zplug 'b4b4r07/gotcha', from:gh-r, as:command, lazy:true
+zplug 'b4b4r07/gotcha', from:gh-r, as:command
 zplug 'denysdovhan/spaceship-zsh-theme', use:spaceship.zsh, as:theme, defer:3
 zplug 'djui/alias-tips'
-zplug 'github/hub', dir:"${GOPATH}/src/github.com/github/hub", use:'etc/hub.zsh_completion', as:command, \
-    rename-to:_hub, hook-build:'go get -u'
-zplug 'junegunn/fzf', dir:"${GOPATH}/src/github.com/junegunn/fzf", use:'shell/*.zsh', hook-build:'go get -u'
-zplug 'junegunn/fzf', dir:"${GOPATH}/src/github.com/junegunn/fzf", if:'[ -n "$TMUX" ]', use:'bin/fzf-tmux', \
-    as:command, lazy:true
+zplug 'jonas/tig', use:'contrib/tig-pick', as:command
 zplug 'lib/clipboard', from:oh-my-zsh
 zplug 'lib/completion', from:oh-my-zsh
 zplug 'lukechilds/zsh-better-npm-completion', defer:2
@@ -30,7 +26,6 @@ zplug 'lukechilds/zsh-nvm'
 zplug 'mafredri/zsh-async'
 zplug 'mollifier/anyframe'
 zplug 'mollifier/cd-gitroot'
-zplug 'motemen/ghq', dir:"${GOPATH}/src/github.com/motemen/ghq", use:'zsh/_ghq', as:command, hook-build:'go get -u'
 zplug 'plugins/cargo', from:oh-my-zsh
 zplug 'plugins/codeclimate', from:oh-my-zsh
 zplug 'plugins/command-not-found', from:oh-my-zsh
