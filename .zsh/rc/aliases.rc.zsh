@@ -5,7 +5,7 @@
 
 alias help='man'
 
-alias u='cd ..'
+alias u='\cd ..'
 alias t='tail -f'
 alias grep='grep --color'
 alias sortnr='sort -nr'
