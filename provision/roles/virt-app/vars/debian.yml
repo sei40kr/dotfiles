@@ -1,7 +1,0 @@
-# debian.yml
-# author: Seong Yong-ju ( @sei40kr )
----
-virt_apt_pkgs:
-  - virtualbox-5.1
-  - vagrant
-

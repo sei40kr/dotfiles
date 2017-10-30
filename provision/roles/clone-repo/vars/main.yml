@@ -1,8 +1,0 @@
-# main.yml
-# author: Seong Yong-ju ( @sei40kr )
----
-clone_repos:
-  - { repo: "https://github.com/tmux-plugins/tpm.git", version: HEAD, dest: "~/.tmux/plugins/tpm" }
-  - { repo: "https://github.com/zplug/zplug.git", version: HEAD, dest: "~/.zplug" }
-  - { repo: "https://github.com/Shougo/dein.vim.git", version: HEAD, dest: "~/.cache/repos/github.com/Shougo/dein.vim" }
-

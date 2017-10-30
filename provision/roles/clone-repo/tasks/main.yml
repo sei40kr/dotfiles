@@ -1,8 +1,0 @@
-# main.yml
-# author: Seong Yong-ju ( @sei40kr )
----
-- name: Clone necessary repos
-  git: { repo: "{{ item.repo }}", version: "{{ item.version }}", depth: 1, dest: "{{ item.dest }}" }
-  with_items: "{{ clone_repos }}"
-  tags: clone-repo
-
