@@ -5,13 +5,19 @@
   editor = nvim
   excludesfile = ~/.gitignore_global
 [diff]
-	compactionHeuristic = true
+  compactionHeuristic = true
 [fetch]
   prune = true
+[interactive]
+  diffFilter = diff-highlight
 [merge]
   tool = fugitive
 [mergetool "fugitive"]
   cmd = "nvim -fc Gdiff $MERGED"
+[pager]
+  log = "diff-highlight | less"
+  show = "diff-highlight | less"
+  diff = "diff-highlight | less"
 [push]
   default = current
 [github]

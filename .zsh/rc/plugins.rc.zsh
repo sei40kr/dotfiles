@@ -11,6 +11,9 @@ export ZPLUG_HOME="${HOME}/.zplug"
 
 . "${ZPLUG_HOME}/init.zsh"
 
+zplug '~/.linuxbrew/share/git-core/contrib/diff-highlight', from:local, \
+    if:'[[ -d "${HOME}/.linuxbrew" ]]', use:'diff-highlight', as:command
+
 zplug 'b4b4r07/emoji-cli'
 zplug 'b4b4r07/gotcha', from:gh-r, as:command, lazy:true
 zplug 'denysdovhan/spaceship-zsh-theme', use:spaceship.zsh, as:theme, defer:3
