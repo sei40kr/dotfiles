@@ -1,6 +1,8 @@
 " .ideavimrc
 " author: Seong Yong-ju ( @sei40kr )
 
+let g:mapleader = ';'
+
 set history=1000
 set hlsearch ignorecase incsearch smartcase wrapscan
 set ignorecase smartcase
