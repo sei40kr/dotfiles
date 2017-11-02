@@ -4,8 +4,6 @@
 [core]
   editor = nvim
   excludesfile = ~/.gitignore_global
-[diff]
-  compactionHeuristic = true
 [fetch]
   prune = true
 [interactive]
