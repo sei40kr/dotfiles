@@ -1,6 +1,7 @@
 repos = [
     'github.com/golang/lint/golint',
     'github.com/heroku/force',
+    'github.com/heppu/gkill',
     'github.com/nsf/gocode',
     'golang.org/x/tools/cmd/goimports',
     'gopkg.in/Netflix-Skunkworks/go-jira.v1/cmd/jira',
