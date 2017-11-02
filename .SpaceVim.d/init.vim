@@ -60,7 +60,7 @@ let g:spacevim_statusline_separator = 'nil'
 let g:spacevim_statusline_inactive_separator = 'bar'
 let g:spacevim_error_symbol = ''
 let g:spacevim_warning_symbol = ''
-let g:spacevim_vim_help_language = 'japanese'
+let g:spacevim_vim_help_language = 'ja'
 let g:spacevim_language = 'ja_JP.UTF-8'
 let g:spacevim_colorscheme = 'onedark'
 let g:spacevim_colorscheme_bg = 'dark'
@@ -70,6 +70,7 @@ let g:spacevim_buffer_index_type = 4
 let g:spacevim_windows_index_type = 3
 let g:spacevim_github_username = 'sei40kr'
 let g:spacevim_disabled_plugins = [
+      \ 'neco-look',
       \ 'vim-diminactive',
       \ 'fcitx.vim',
       \ ]
@@ -114,9 +115,6 @@ let g:neoformat_enabled_xml = []
 let g:deoplete#ignore_sources = {
       \ 'gitcommit': [],
       \ }
-
-" Shougo/echodoc.vim
-let g:echodoc#enable_at_startup = 1
 
 " Shougo/neosnippet.vim
 let g:neosnippet#disable_runtime_snippets = {
