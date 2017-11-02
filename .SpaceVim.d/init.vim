@@ -75,7 +75,8 @@ let g:spacevim_disabled_plugins = [
       \ ]
 let g:spacevim_custom_plugins = [
       \ ['ejholmes/vim-forcedotcom', { 'on_ft': ['apex', 'visualforce', 'apexlog'] }],
-      \ ['Galooshi/vim-import-js', { 'on_cmd': ['ImportJSWord', 'ImportJSFix', 'ImportJSGoto'] }],
+      \ ['maxmellon/vim-jsx-pretty', { 'on_ft': ['javascript'] }],
+      \ ['galooshi/vim-import-js',   { 'on_ft': ['javascript'] }],
       \ ]
 let g:spacevim_enable_powerline_fonts = 1
 let g:spacevim_enable_vimfiler_welcome = 1
