@@ -74,7 +74,6 @@ let g:spacevim_disabled_plugins = [
       \ 'fcitx.vim',
       \ ]
 let g:spacevim_custom_plugins = [
-      \ ['w0rp/ale'],
       \ ['ejholmes/vim-forcedotcom', { 'on_ft': ['apex', 'visualforce', 'apexlog'] }],
       \ ['Galooshi/vim-import-js', { 'on_cmd': ['ImportJSWord', 'ImportJSFix', 'ImportJSGoto'] }],
       \ ]
