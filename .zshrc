@@ -47,12 +47,16 @@ bindkey '^[[1;3C' forward-word
 bindkey '^[[1;3D' backward-word
 bindkey '^[[Z' reverse-menu-complete
 
-# Configure coreutils
-[ -d '/usr/local/opt/coreutils/libexec/gnubin' ] && PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
-
-# Configure package managers, Cargo, Golang, Cabal
 export GOPATH="${HOME}/.go"
-PATH="${HOME}/.cargo/bin:${GOPATH}/bin:${HOME}/.cabal/bin:${PATH}"
+
+path=(
+  '/usr/local/opt/coreutils/libexec/gnubin'
+  '/usr/local/share/git-core/contrib/diff-highlight'
+  "${HOME}/.cabal/bin"
+  "${HOME}/.cargo/bin"
+  "${GOPATH}/bin"
+  "${path[@]}"
+)
 
 [ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
 
