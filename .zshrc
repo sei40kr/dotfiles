@@ -68,9 +68,9 @@ ZSH_PLUGINS_ALIAS_TIPS_FORCE=true
 [ "$FZF_TMUX" != false ] && EMOJI_CLI_FILTER="fzf-tmux -d ${FZF_TMUX_HEIGHT}" || EMOJI_CLI_FILTER='fzf'
 
 # Configure fzf
-export FZF_DEFAULT_COMMAND='(git ls-files -co --exclude-standard || fd -Hn)'
+export FZF_DEFAULT_COMMAND='rg --files --follow --hidden --no-ignore --glob "!.git/*"'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND='fd -Hnt d'
+export FZF_ALT_C_COMMAND='bfs -nocolor -hidden -O4'
 
 # Configure zsh-nvm
 export NVM_LAZY_LOAD=true
