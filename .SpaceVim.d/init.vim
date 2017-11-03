@@ -1,5 +1,3 @@
-set encoding=utf-8
-
 scriptencoding utf-8
 
 " init.vim
@@ -70,6 +68,7 @@ let g:spacevim_buffer_index_type = 4
 let g:spacevim_windows_index_type = 3
 let g:spacevim_github_username = 'sei40kr'
 let g:spacevim_disabled_plugins = [
+      \ 'neco-look',
       \ 'vim-diminactive',
       \ 'fcitx.vim',
       \ ]
@@ -78,9 +77,12 @@ let g:spacevim_custom_plugins = [
       \ ['ejholmes/vim-forcedotcom',    { 'on_ft': ['apex', 'visualforce', 'apexlog'] }],
       \ ['Galooshi/vim-import-js',      { 'on_ft': 'javascript' }],
       \ ['MaxMEllon/vim-jsx-pretty',    { 'on_ft': 'javascript' }],
+      \ ['osyo-manga/shabadou.vim',     { 'lazy': 1 }],
       \ ['osyo-manga/vim-jplus',        { 'on_map': { 'nv': '<Plug>(jplus' } }],
       \ ['osyo-manga/vim-precious',     { 'depends': 'context_filetype.vim' }],
+      \ ['rhysd/github-complete.vim',   { 'on_ft': ['markdown', 'gitcommit'] }],
       \ ['Shougo/context_filetype.vim'],
+      \ ['thinca/vim-quickrun',         { 'depends': 'shabadou.vim', 'on_map': '<Plug>(quickrun' }],
       \ ['thinca/vim-template'],
       \ ]
 let g:spacevim_enable_powerline_fonts = 1
@@ -147,6 +149,10 @@ let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
 " }}}
 
+" rhysd/github-complete.vim {{{
+let g:github_complete_emoji_japanese_workaround = 1
+" }}}
+
 " sbdchd/neoformat {{{
 let g:neoformat_run_all_formatters = 1
 let g:neoformat_enabled_c = []
@@ -211,6 +217,25 @@ let g:vimfiler_file_icon = ' '
 let g:vimfiler_marked_file_icon = '✓'
 " }}}
 
+" thinca/vim-quickrun {{{
+let g:quickrun_no_default_key_mappings = 0
+let g:quickrun_config = {
+      \ '_': {
+      \ 'runner': 'vimproc',
+      \ 'runner/vimproc/updatetime': 50,
+      \ 'outputter': 'multi:buffer:quickfix',
+      \ 'outputter/buffer/split': ':botright 8',
+      \ 'outputter/quickfix/split': ':botright 8',
+      \ 'hook/close_buffer/enable_failure': 1,
+      \ 'hook/close_buffer/enable_empty_data': 1,
+      \ 'hook/close_quickfix/enable_hook_loaded': 1,
+      \ 'hook/close_quickfix/enable_success': 1,
+      \ }
+      \ }
+
+nmap <silent> <Leader>r <Plug>(quickrun)
+" }}}
+
 " thinca/vim-template {{{
 let g:template_basedir = expand('~/.SpaceVim.d/template')
 let g:template_files = 'template.*'
@@ -225,6 +250,7 @@ let s:template_time_format = '%H:%M:%S'
 let s:template_year_format = '%Y'
 
 function! s:template_keywords() abort
+  " vint: -ProhibitCommandRelyOnUser -ProhibitCommandWithUnintendedSideEffect
   silent! %s/<+FILE_NAME+>/\=expand('%:t')/g
   silent! %s/<+FILE_BASE_NAME+>/\=expand('%:t:r')/g
 
@@ -236,6 +262,7 @@ function! s:template_keywords() abort
   silent! %s/<+DATE+>/\=strftime(s:template_date_format)/g
   silent! %s/<+TIME+>/\=strftime(s:template_time_format)/g
   silent! %s/<+YEAR+>/\=strftime(s:template_year_format)/g
+  " vint: +ProhibitCommandRelyOnUser +ProhibitCommandWithUnintendedSideEffect
 
   if search('<+CURSOR+>')
     execute 'normal! "_da>'
@@ -289,8 +316,11 @@ let g:ale_linters = {
       \ 'yaml': ['yamllint'],
       \ 'zsh': ['shellcheck'],
       \ }
-let g:ale_javascript_stylelint_executable='stylelint_d'
-let g:ale_javascript_stylelint_use_global=1
+let g:ale_javascript_stylelint_executable = 'stylelint_d'
+let g:ale_javascript_stylelint_use_global = 1
+
+nnoremap <silent> [q :lprevious<CR>
+nnoremap <silent> ]q :lnext<CR>
 " }}}
 
 " Yggdroot/indentLine {{{
