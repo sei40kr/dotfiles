@@ -60,7 +60,7 @@ let g:spacevim_statusline_separator = 'nil'
 let g:spacevim_statusline_inactive_separator = 'bar'
 let g:spacevim_error_symbol = ''
 let g:spacevim_warning_symbol = ''
-let g:spacevim_vim_help_language = 'japanese'
+let g:spacevim_vim_help_language = 'ja'
 let g:spacevim_language = 'ja_JP.UTF-8'
 let g:spacevim_colorscheme = 'onedark'
 let g:spacevim_colorscheme_bg = 'dark'
@@ -74,131 +74,44 @@ let g:spacevim_disabled_plugins = [
       \ 'fcitx.vim',
       \ ]
 let g:spacevim_custom_plugins = [
-      \ ['ejholmes/vim-forcedotcom', { 'on_ft': ['apex', 'visualforce', 'apexlog'] }],
-      \ ['maxmellon/vim-jsx-pretty', { 'on_ft': ['javascript'] }],
-      \ ['galooshi/vim-import-js',   { 'on_ft': ['javascript'] }],
+      \ ['chrisbra/vim-zsh',            { 'on_ft': 'zsh' }],
+      \ ['ejholmes/vim-forcedotcom',    { 'on_ft': ['apex', 'visualforce', 'apexlog'] }],
+      \ ['Galooshi/vim-import-js',      { 'on_ft': 'javascript' }],
+      \ ['MaxMEllon/vim-jsx-pretty',    { 'on_ft': 'javascript' }],
+      \ ['osyo-manga/vim-jplus',        { 'on_map': { 'nv': '<Plug>(jplus' } }],
+      \ ['osyo-manga/vim-precious',     { 'depends': 'context_filetype.vim' }],
+      \ ['Shougo/context_filetype.vim'],
+      \ ['thinca/vim-template'],
       \ ]
 let g:spacevim_enable_powerline_fonts = 1
 let g:spacevim_enable_vimfiler_welcome = 1
 let g:spacevim_enable_vimfiler_gitstatus = 1
 
-" sbdchd/neoformat
-let g:neoformat_run_all_formatters = 1
-let g:neoformat_enabled_c = []
-let g:neoformat_enabled_cpp = []
-let g:neoformat_enabled_crystal = ['crystalformat']
-let g:neoformat_enabled_css = []
-let g:neoformat_enabled_csv = ['prettydiff']
-let g:neoformat_enabled_go = ['goimports', 'gofmt']
-let g:neoformat_enabled_graphql = ['prettier']
-let g:neoformat_enabled_haskell = ['stylishhaskell']
-let g:neoformat_enabled_html = []
-let g:neoformat_enabled_java = []
-let g:neoformat_enabled_javascript = []
-let g:neoformat_enabled_json = ['prettier']
-let g:neoformat_enabled_kotlin = ['ktlint']
-let g:neoformat_enabled_less = []
-let g:neoformat_enabled_markdown = ['remark']
-let g:neoformat_enabled_perl = ['perltidy']
-let g:neoformat_enabled_php = []
-let g:neoformat_enabled_python = []
-let g:neoformat_enabled_ruby = []
-let g:neoformat_enabled_rust = ['rustfmt']
-let g:neoformat_enabled_scss = []
-let g:neoformat_enabled_sh = ['shfmt']
-let g:neoformat_enabled_sql = ['sqlformat']
-let g:neoformat_enabled_typescript = ['tsfmt']
-let g:neoformat_enabled_xml = []
+" chrisbra/vim-zsh {{{
+let g:zsh_fold_enable = 1
+" }}}
 
-" Shougo/deoplete.nvim
-let g:deoplete#ignore_sources = {
-      \ 'gitcommit': [],
-      \ }
-
-" Shougo/echodoc.vim
-let g:echodoc#enable_at_startup = 1
-
-" Shougo/neosnippet.vim
-let g:neosnippet#disable_runtime_snippets = {
-      \ 'html': 1,
-      \ 'css': 1,
-      \ 'scss': 1,
-      \ }
-
-" mattn/emmet-vim
-let g:emmet_html5 = 1
-
-" easymotion/vim-easymotion
+" easymotion/vim-easymotion {{{
 let g:EasyMotion_keys = 'sdghklwertyuioxcvbnmfj'
+" }}}
 
-" thinca/vim-template
-source ~/.SpaceVim.d/config/plugins_before/vim-template.vim
+" elzr/vim-json {{{
+let g:vim_json_syntax_conceal = 0
+" }}}
 
-" w0rp/ale
-let g:ale_sign_info = ''
-let g:ale_fixers = {
-      \ 'c': ['clang-format'],
-      \ 'cpp': ['clang-format'],
-      \ 'css': ['stylelint'],
-      \ 'javascript': ['eslint'],
-      \ 'json': ['prettier'],
-      \ 'python': ['autopep8', 'yapf', 'isort'],
-      \ 'ruby': ['rubocop'],
-      \ 'sass': ['stylelint'],
-      \ 'scss': ['stylelint'],
-      \ 'typescript': ['prettier'],
-      \ }
-let g:ale_linters = {
-      \ 'ansible': ['ansible-lint'],
-      \ 'awk': ['gawk'],
-      \ 'bash': ['shellcheck'],
-      \ 'c': ['clang', 'clang-format'],
-      \ 'cpp': ['clang', 'clang-format', 'cppcheck', 'cpplint'],
-      \ 'cmake': ['cmakelint'],
-      \ 'css': ['stylelint', 'prettier'],
-      \ 'crystal': ['crystal'],
-      \ 'go': ['go', 'golint'],
-      \ 'html': ['htmlhint'],
-      \ 'javascript': ['eslint', 'prettier'],
-      \ 'json': ['jsonlint', 'prettier'],
-      \ 'kotlin': ['kotlinc', 'ktlint'],
-      \ 'markdown': ['mdl'],
-      \ 'python': ['autopep8', 'isort', 'yapf'],
-      \ 'ruby': ['rubocop', 'ruby'],
-      \ 'rust': ['rls', 'rustc'],
-      \ 'sass': ['sass-lint', 'stylelint'],
-      \ 'scss': ['sass-lint', 'stylelint', 'prettier'],
-      \ 'sh': ['shellcheck'],
-      \ 'sql': ['sqlint'],
-      \ 'thrift': ['thrift'],
-      \ 'typescript': ['tslint', 'tsserver', 'prettier'],
-      \ 'vim': ['vint'],
-      \ 'xml': ['xmlint'],
-      \ 'yaml': ['yamllint'],
-      \ 'zsh': ['shellcheck'],
-      \ }
-
-" Shougo/denite.vim
-
-" Shougo/vimfiler.vim
-let g:vimfiler_direction = 'topleft'
-let g:vimfiler_tree_leaf_icon = '⋮'
-let g:vimfiler_tree_opened_icon = '▾'
-let g:vimfiler_tree_closed_icon = '▹'
-let g:vimfiler_tree_indentation = 1
-let g:vimfiler_readonly_file_icon = '⭤'
-let g:vimfiler_file_icon = ' '
-let g:vimfiler_marked_file_icon = '✓'
-
-" joshdick/onedark.vim
+" joshdick/onedark.vim {{{
 let g:onedark_terminal_italics = 1
+" }}}
 
-" Yggdroot/indentLine
-let g:indentLine_color_term = 59
-let g:indentLine_color_gui = '#5c6370'
-let g:indentLine_char = '┆'
+" mattn/emmet-vim {{{
+let g:emmet_html5 = 1
+" }}}
 
-" mhinz/vim-signify
+" MAxMEllon/vim-jsx-pretty {{{
+let g:vim_jsx_pretty_colorful_config = 1
+" }}}
+
+" mhinz/vim-signify {{{
 let g:signify_update_on_bufenter = 1
 let g:signify_update_on_focusgained = 1
 let g:signify_sign_add = '▌'
@@ -208,16 +121,224 @@ let g:signify_sign_delete_first_line = g:signify_sign_delete
 let g:signify_sign_change = '▌'
 let g:signify_sign_changedelete = g:signify_sign_change
 let g:signify_sign_show_count = 0
+" }}}
 
-" tmux-plugins/vim-tmux-focus-events
-augroup vim_tmux_focus_events_hooks
+" osyo-manga/vim-jplus {{{
+nmap J <Plug>(jplus)
+vmap J <Plug>(jplus)
+" }}}
+
+" osyo-manga/vim-precious {{{
+let g:precious_enable_switch_CursorMoved = {
+      \ '*': 0
+      \ }
+let g:precious_enable_switch_CursorMoved_i = {
+      \ '*': 0
+      \ }
+" }}}
+
+" othree/javascript-libraries-syntax.vim {{{
+let g:used_javascript_libs = 'jquery,underscore,react,requirejs,d3'
+" }}}
+
+" pangloss/vim-javascript {{{
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+" }}}
+
+" sbdchd/neoformat {{{
+let g:neoformat_run_all_formatters = 1
+let g:neoformat_enabled_c = []
+let g:neoformat_enabled_cpp = []
+let g:neoformat_enabled_crystal = ['crystalformat']
+let g:neoformat_enabled_css = []
+let g:neoformat_enabled_csv = []
+let g:neoformat_enabled_go = ['goimports']
+let g:neoformat_enabled_graphql = []
+let g:neoformat_enabled_haskell = ['stylishhaskell']
+let g:neoformat_enabled_html = ['tidy']
+let g:neoformat_enabled_java = ['googlefmt']
+let g:neoformat_enabled_javascript = []
+let g:neoformat_enabled_json = []
+let g:neoformat_enabled_kotlin = ['ktlint']
+let g:neoformat_enabled_less = []
+let g:neoformat_enabled_markdown = ['remark']
+let g:neoformat_enabled_perl = ['perltidy']
+let g:neoformat_enabled_php = ['phpbeautifier', 'phpcsfixer']
+let g:neoformat_enabled_python = []
+let g:neoformat_enabled_ruby = []
+let g:neoformat_enabled_rust = ['rustfmt']
+let g:neoformat_enabled_sass = []
+let g:neoformat_enabled_scss = []
+let g:neoformat_enabled_sh = ['shfmt']
+let g:neoformat_enabled_sql = ['sqlformat']
+let g:neoformat_enabled_typescript = ['tsfmt']
+let g:neoformat_enabled_xhtml = ['tidy']
+let g:neoformat_enabled_xml = ['tidy']
+" }}}
+
+" Shougo/context_filetype.vim {{{
+let g:context_filetype#search_offset = 300
+" }}}
+
+" Shougo/deoplete.nvim {{{
+let g:deoplete#ignore_sources = {
+      \ 'gitcommit': [],
+      \ }
+" }}}
+
+" Shougo/echodoc.vim {{{
+let g:echodoc#enable_at_startup = 1
+" }}}
+
+" Shougo/neosnippet.vim {{{
+let g:neosnippet#disable_runtime_snippets = {
+      \ 'html': 1,
+      \ 'css': 1,
+      \ 'scss': 1,
+      \ }
+" }}}
+
+" Shougo/vimfiler.vim {{{
+let g:vimfiler_direction = 'topleft'
+let g:vimfiler_tree_leaf_icon = '⋮'
+let g:vimfiler_tree_opened_icon = '▾'
+let g:vimfiler_tree_closed_icon = '▹'
+let g:vimfiler_tree_indentation = 1
+let g:vimfiler_readonly_file_icon = '⭤'
+let g:vimfiler_file_icon = ' '
+let g:vimfiler_marked_file_icon = '✓'
+" }}}
+
+" thinca/vim-template {{{
+let g:template_basedir = expand('~/.SpaceVim.d/template')
+let g:template_files = 'template.*'
+
+let s:template_user = 'Seong Yong-ju'
+let s:template_user_id = '@sei40kr'
+let s:template_organization = 'TeamSpirit Inc.'
+
+let s:template_datetime_format = '%Y-%m-%d %H:%M:%S'
+let s:template_date_format = '%Y-%m-%d'
+let s:template_time_format = '%H:%M:%S'
+let s:template_year_format = '%Y'
+
+function! s:template_keywords() abort
+  silent! %s/<+FILE_NAME+>/\=expand('%:t')/g
+  silent! %s/<+FILE_BASE_NAME+>/\=expand('%:t:r')/g
+
+  silent! %s/<+USER+>/\=s:template_user/g
+  silent! %s/<+USER_ID+>/\=s:template_user_id/g
+  silent! %s/<+ORGANIZATION+>/\=s:template_organization/g
+
+  silent! %s/<+DATETIME+>/\=strftime(s:template_datetime_format)/g
+  silent! %s/<+DATE+>/\=strftime(s:template_date_format)/g
+  silent! %s/<+TIME+>/\=strftime(s:template_time_format)/g
+  silent! %s/<+YEAR+>/\=strftime(s:template_year_format)/g
+
+  if search('<+CURSOR+>')
+    execute 'normal! "_da>'
+  endif
+endfunction
+" }}}
+
+" w0rp/ale {{{
+let g:ale_sign_info = ''
+let g:ale_fixers = {
+      \ 'c': ['clang-format'],
+      \ 'cpp': ['clang-format'],
+      \ 'css': ['prettier', 'stylelint'],
+      \ 'go': ['gofmt'],
+      \ 'javascript': ['prettier', 'eslint'],
+      \ 'json': ['prettier'],
+      \ 'python': ['autopep8', 'yapf', 'isort'],
+      \ 'ruby': ['rubocop'],
+      \ 'sass': ['prettier', 'stylelint'],
+      \ 'scss': ['prettier', 'stylelint'],
+      \ 'typescript': ['prettier'],
+      \ }
+let g:ale_linters = {
+      \ 'ansible': ['ansible-lint'],
+      \ 'awk': ['gawk'],
+      \ 'bash': ['shellcheck'],
+      \ 'c': ['clang', 'clang-format'],
+      \ 'cpp': ['clang', 'clang-format', 'cppcheck', 'cpplint'],
+      \ 'cmake': ['cmakelint'],
+      \ 'css': ['stylelint'],
+      \ 'crystal': ['crystal'],
+      \ 'dockerfile': ['hadolint'],
+      \ 'go': ['go', 'golint'],
+      \ 'haskell': ['ghc', 'ghc-mod', 'hlint', 'hdevtools', 'hfmt'],
+      \ 'html': ['htmlhint'],
+      \ 'javascript': ['eslint'],
+      \ 'json': ['jsonlint'],
+      \ 'kotlin': ['kotlinc', 'ktlint'],
+      \ 'markdown': ['mdl', 'remark-lint'],
+      \ 'python': ['autopep8', 'isort', 'yapf'],
+      \ 'ruby': ['rubocop', 'ruby'],
+      \ 'rust': ['rls', 'rustc'],
+      \ 'sass': ['sass-lint', 'stylelint'],
+      \ 'scss': ['sass-lint', 'stylelint'],
+      \ 'sh': ['shellcheck'],
+      \ 'sql': ['sqlint'],
+      \ 'thrift': ['thrift'],
+      \ 'typescript': ['tslint', 'tsserver'],
+      \ 'vim': ['vint'],
+      \ 'xml': ['xmlint'],
+      \ 'yaml': ['yamllint'],
+      \ 'zsh': ['shellcheck'],
+      \ }
+let g:ale_javascript_stylelint_executable='stylelint_d'
+let g:ale_javascript_stylelint_use_global=1
+" }}}
+
+" Yggdroot/indentLine {{{
+let g:indentLine_color_term = 59
+let g:indentLine_color_gui = '#5c6370'
+let g:indentLine_char = '▏'
+" }}}
+
+function! s:javascript_mappings() abort
+  setlocal foldmethod=syntax
+
+  nnoremap <silent><buffer> K :TernDoc<CR>
+  nnoremap <silent><buffer> <Space>ld :TernDoc<CR>
+  nnoremap <silent><buffer> <Space>le :TernRename<CR>
+
+  nnoremap <silent><buffer> <F4> :ImportJSWord<CR>
+  inoremap <silent><buffer> <F4> <Esc>:ImportJSWord<CR>i
+
+  nnoremap <silent><buffer> <Leader>ji :ImportJSWord<CR>
+  nnoremap <silent><buffer> <Leader>jf :ImportJSFix<CR>
+  nnoremap <silent><buffer> <Leader>jg :ImportJSGoto<CR>
+  inoremap <silent><buffer> <C-j>i <Esc>:ImportJSWord<CR>i
+  inoremap <silent><buffer> <C-j>f <Esc>:ImportJSFix<CR>i
+  inoremap <silent><buffer> <C-j>g <Esc>:ImportJSGoto<CR>i
+endfunction
+
+augroup SpaceVim_d_colorscheme
   autocmd!
+  autocmd ColorScheme onedark
+      \ highlight link LineNr Normal
+      \ | highlight link CursorLineNr CursorLine
+augroup END
+
+augroup SpaceVim_d_lang_javascript
+  autocmd!
+  autocmd FileType javascript call s:javascript_mappings()
+augroup END
+
+augroup SpaceVim_d_tools
+  autocmd!
+  autocmd User plugin-template-loaded call s:template_keywords()
+
+  autocmd InsertEnter * PreciousSwitch
+  autocmd InsertLeave * PreciousReset
+
   autocmd FocusGained * set cursorline
   autocmd FocusLost * set nocursorline
 augroup END
-
-" elzr/vim-json
-let g:vim_json_syntax_conceal = 0
 
 set autoindent expandtab smartindent smarttab
 set autoread
@@ -240,12 +361,5 @@ set scrolloff=1 sidescrolloff=5
 set wildmenu
 
 nnoremap x "_x
-
-augroup user_hooks
-  autocmd!
-  autocmd ColorScheme onedark
-        \ highlight link LineNr Normal
-        \ | highlight link CursorLineNr CursorLine
-augroup END
 
 " vim: set et sw=2 cc=80
