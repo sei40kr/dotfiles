@@ -79,16 +79,59 @@ $(pyenv init - zsh --no-rehash)
 $(rbenv init - zsh --no-rehash)
 EOM
 
-. "${ZPLUG_HOME}/init.zsh"
+. "${HOME}/.zplugin/bin/zplugin.zsh"
 
-. "${HOME}/.zsh/rc/zplug_before.zsh"
-. "${HOME}/.zsh/rc/zplug.zsh"
-. "${HOME}/.zsh/rc/zplug_lazy.zsh"
+autoload -Uz _zplugin
 
-zplug load
+if [[ "${+_comps}" == 1 ]]
+then
+  _comps[zplugin]=_zplugin
+fi
 
-. "${HOME}/.zsh/rc/zplug_lazy_after.zsh"
+# zplugin: Commands {{{
+zplugin ice from'gh-r' as'command' mv'gotcha_* -> gotcha' pick'gotcha'; zplugin light 'b4b4r07/gotcha'
+zplugin ice as'command' cp'httpstat.sh -> httpstat' pick'httpstat'; zplugin light 'b4b4r07/httpstat'
+# }}}
 
-# if (which zprof > /dev/null 2>&1) ;then
-#   zprof
-# fi
+# zplugin: Libraries {{{
+zplugin snippet 'OMZ::lib/completion.zsh'
+zplugin snippet 'OMZ::lib/compfix.zsh'
+zplugin snippet 'OMZ::lib/git.zsh'
+zplugin snippet 'OMZ::lib/clipboard.zsh'
+zplugin snippet 'OMZ::lib/key-bindings.zsh'
+# }}}
+
+# zplugin: Plugins {{{
+zplugin light 'b4b4r07/emoji-cli'
+zplugin light 'b4b4r07/enhancd'
+zplugin light 'djui/alias-tips'
+zplugin light 'mollifier/anyframe'
+zplugin light 'mollifier/cd-gitroot'
+zplugin light 'zdharma/fast-syntax-highlighting'
+zplugin light 'zsh-users/zsh-autosuggestions'
+zplugin ice pick'k.sh'; zplugin light 'supercrabtree/k'
+zplugin snippet 'OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh'
+zplugin snippet 'OMZ::plugins/dotenv/dotenv.plugin.zsh'
+zplugin snippet 'OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
+zplugin snippet 'OMZ::plugins/gem/gem.plugin.zsh'
+zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
+zplugin snippet 'OMZ::plugins/gitignore/gitignore.plugin.zsh'
+zplugin snippet 'OMZ::plugins/jsontools/jsontools.plugin.zsh'
+zplugin snippet 'OMZ::plugins/pip/pip.plugin.zsh'
+zplugin snippet 'OMZ::plugins/rake/rake.plugin.zsh'
+zplugin snippet 'OMZ::plugins/react-native/react-native.plugin.zsh'
+zplugin ice if'[[ "${+commands[apt-get]}" ]]'; zplugin snippet 'OMZ::plugins/ubuntu/ubuntu.plugin.zsh'
+zplugin snippet 'OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh'
+zplugin snippet 'https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh'
+zplugin snippet 'https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh'
+# }}}
+
+# zplugin: Completions {{{
+zplugin ice blockf; zplugin light 'zsh-users/zsh-completions'
+# }}}
+
+autoload -Uz compinit; compinit
+
+# zplugin: Theme {{{
+zplugin ice pick'spaceship.zsh'; zplugin light 'denysdovhan/spaceship-zsh-theme'
+# }}}
