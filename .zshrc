@@ -83,10 +83,11 @@ EOM
 
 . "${HOME}/.zsh/rc/zplug_before.zsh"
 . "${HOME}/.zsh/rc/zplug.zsh"
-. "${HOME}/.zsh/rc/zplug_lazy_before.zsh"
 . "${HOME}/.zsh/rc/zplug_lazy.zsh"
 
 zplug load
+
+. "${HOME}/.zsh/rc/zplug_lazy_after.zsh"
 
 # if (which zprof > /dev/null 2>&1) ;then
 #   zprof
