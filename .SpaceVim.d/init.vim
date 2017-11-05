@@ -56,6 +56,7 @@ let g:spacevim_statusline_separator = 'nil'
 let g:spacevim_statusline_inactive_separator = 'bar'
 let g:spacevim_error_symbol = ''
 let g:spacevim_warning_symbol = ''
+let g:spacevim_terminal_cursor_shape = 1
 let g:spacevim_vim_help_language = 'ja'
 let g:spacevim_language = 'ja_JP.UTF-8'
 let g:spacevim_colorscheme = 'onedark'
@@ -77,15 +78,13 @@ let g:spacevim_custom_plugins = [
       \ ['chrisbra/vim-zsh',            { 'on_ft': 'zsh' }],
       \ ['ejholmes/vim-forcedotcom',    { 'on_ft': ['apex', 'visualforce', 'apexlog'] }],
       \ ['kannokanno/previm',           { 'depends': 'open-browser.vim', 'on_cmd': 'PrevimOpen' }],
-      \ ['osyo-manga/shabadou.vim',     { 'lazy': 1 }],
       \ ['osyo-manga/vim-jplus',        { 'on_map': '<Plug>(jplus' }],
       \ ['osyo-manga/vim-precious',     { 'depends': 'context_filetype.vim' }],
       \ ['rhysd/github-complete.vim',   { 'on_ft': ['markdown', 'gitcommit'] }],
-      \ ['thinca/vim-quickrun',         { 'depends': 'shabadou.vim', 'on_map': '<Plug>(quickrun' }],
       \ ['thinca/vim-template'],
       \ ]
 let g:spacevim_enable_powerline_fonts = 1
-let g:spacevim_enable_vimfiler_welcome = 1
+let g:spacevim_enable_vimfiler_welcome = 0
 let g:spacevim_enable_vimfiler_gitstatus = 1
 
 " chrisbra/vim-zsh {{{
@@ -213,25 +212,6 @@ let g:vimfiler_tree_indentation = 1
 let g:vimfiler_readonly_file_icon = '⭤'
 let g:vimfiler_file_icon = ' '
 let g:vimfiler_marked_file_icon = '✓'
-" }}}
-
-" thinca/vim-quickrun {{{
-let g:quickrun_no_default_key_mappings = 0
-let g:quickrun_config = {
-      \ '_': {
-      \ 'runner': 'vimproc',
-      \ 'runner/vimproc/updatetime': 50,
-      \ 'outputter': 'multi:buffer:quickfix',
-      \ 'outputter/buffer/split': ':botright 8',
-      \ 'outputter/quickfix/split': ':botright 8',
-      \ 'hook/close_buffer/enable_failure': 1,
-      \ 'hook/close_buffer/enable_empty_data': 1,
-      \ 'hook/close_quickfix/enable_hook_loaded': 1,
-      \ 'hook/close_quickfix/enable_success': 1,
-      \ }
-      \ }
-
-nmap <silent> <Leader>r <Plug>(quickrun)
 " }}}
 
 " thinca/vim-template {{{
