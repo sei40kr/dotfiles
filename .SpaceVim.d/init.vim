@@ -72,16 +72,17 @@ let g:spacevim_disabled_plugins = [
       \ 'fcitx.vim',
       \ ]
 let g:spacevim_custom_plugins = [
-      \ ['Galooshi/vim-import-js',      { 'on_ft': 'javascript' }],
-      \ ['MaxMEllon/vim-jsx-pretty',    { 'on_ft': 'javascript' }],
+      \ ['Galooshi/vim-import-js',        { 'on_ft': 'javascript' }],
+      \ ['MaxMEllon/vim-jsx-pretty',      { 'on_ft': 'javascript' }],
       \ ['Shougo/context_filetype.vim'],
-      \ ['chrisbra/vim-zsh',            { 'on_ft': 'zsh' }],
-      \ ['ejholmes/vim-forcedotcom',    { 'on_ft': ['apex', 'visualforce', 'apexlog'] }],
-      \ ['kannokanno/previm',           { 'depends': 'open-browser.vim', 'on_cmd': 'PrevimOpen' }],
-      \ ['osyo-manga/vim-jplus',        { 'on_map': '<Plug>(jplus' }],
-      \ ['osyo-manga/vim-precious',     { 'depends': 'context_filetype.vim' }],
-      \ ['rhysd/github-complete.vim',   { 'on_ft': ['markdown', 'gitcommit'] }],
+      \ ['chrisbra/vim-zsh',              { 'on_ft': 'zsh' }],
+      \ ['ejholmes/vim-forcedotcom',      { 'on_ft': ['apex', 'visualforce', 'apexlog'] }],
+      \ ['kannokanno/previm',             { 'depends': 'open-browser.vim', 'on_cmd': 'PrevimOpen' }],
+      \ ['osyo-manga/vim-jplus',          { 'on_map': '<Plug>(jplus' }],
+      \ ['osyo-manga/vim-precious',       { 'depends': 'context_filetype.vim' }],
+      \ ['rhysd/github-complete.vim',     { 'on_ft': ['markdown', 'gitcommit'] }],
       \ ['thinca/vim-template'],
+      \ ['tyru/open-browser-github.vim',  { 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'] }],
       \ ]
 let g:spacevim_enable_powerline_fonts = 1
 let g:spacevim_enable_vimfiler_welcome = 0
