@@ -89,7 +89,7 @@ then
 fi
 
 # zplugin: Commands {{{
-zplugin ice from'gh-r' as'command' mv'gotcha_* -> gotcha' pick'gotcha'; zplugin light 'b4b4r07/gotcha'
+zplugin ice from'gh-r' as'command' mv'gotcha_* -> gotcha'; zplugin light 'b4b4r07/gotcha'
 zplugin ice as'command' cp'httpstat.sh -> httpstat' pick'httpstat'; zplugin light 'b4b4r07/httpstat'
 # }}}
 
