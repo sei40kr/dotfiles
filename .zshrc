@@ -102,6 +102,7 @@ zplugin snippet 'OMZ::lib/key-bindings.zsh'
 # }}}
 
 # zplugin: Plugins {{{
+zplugin snippet "${HOME}/.zsh/rc/30_aliases.zsh"
 zplugin light 'b4b4r07/emoji-cli'
 zplugin light 'b4b4r07/enhancd'
 zplugin light 'djui/alias-tips'
@@ -113,13 +114,9 @@ zplugin ice pick'k.sh'; zplugin light 'supercrabtree/k'
 zplugin snippet 'OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh'
 zplugin snippet 'OMZ::plugins/dotenv/dotenv.plugin.zsh'
 zplugin snippet 'OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
-zplugin snippet 'OMZ::plugins/gem/gem.plugin.zsh'
 zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
 zplugin snippet 'OMZ::plugins/gitignore/gitignore.plugin.zsh'
 zplugin snippet 'OMZ::plugins/jsontools/jsontools.plugin.zsh'
-zplugin snippet 'OMZ::plugins/pip/pip.plugin.zsh'
-zplugin snippet 'OMZ::plugins/rake/rake.plugin.zsh'
-zplugin snippet 'OMZ::plugins/react-native/react-native.plugin.zsh'
 zplugin ice if'[[ "${+commands[apt-get]}" ]]'; zplugin snippet 'OMZ::plugins/ubuntu/ubuntu.plugin.zsh'
 zplugin snippet 'OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh'
 zplugin snippet 'https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh'
