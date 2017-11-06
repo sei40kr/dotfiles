@@ -20,8 +20,6 @@ autoload -Uz zmv
 export GOPATH="${HOME}/.go"
 
 path=(
-  '/usr/local/opt/coreutils/libexec/gnubin'
-  '/usr/local/share/git-core/contrib'
   "${HOME}/.cabal/bin"
   "${HOME}/.cargo/bin"
   "${GOPATH}/bin"
@@ -76,6 +74,7 @@ zplugin snippet 'OMZ::plugins/dotenv/dotenv.plugin.zsh'
 zplugin snippet 'OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
 zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
 zplugin snippet 'OMZ::plugins/gitignore/gitignore.plugin.zsh'
+zplugin snippet 'OMZ::plugins/gnu-utils/gnu-utils.plugin.zsh'
 zplugin snippet 'OMZ::plugins/jsontools/jsontools.plugin.zsh'
 zplugin snippet 'OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh'
 
@@ -96,6 +95,11 @@ fi
 # zplugin: Commands {{{
 zplugin ice from'gh-r' as'command' mv'gotcha_* -> gotcha'; zplugin light 'b4b4r07/gotcha'
 zplugin ice as'command' cp'httpstat.sh -> httpstat' pick'httpstat'; zplugin light 'b4b4r07/httpstat'
+
+if [[ -d '/usr/local/share/git-core' ]]
+then
+  zplugin ice as'command'; zplugin snippet '/usr/local/share/git-core/contrib/diff-highlight/diff-highlight'
+fi
 # }}}
 
 # zplugin: Completions {{{
