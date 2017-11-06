@@ -16,7 +16,6 @@ zmodload zsh/zpty
 
 autoload -Uz add-zsh-hook
 autoload -Uz cdr
-autoload -Uz chpwd
 autoload -Uz chpwd_recent_dirs
 autoload -Uz compinit
 autoload -Uz _zplugin
