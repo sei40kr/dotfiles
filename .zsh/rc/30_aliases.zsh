@@ -240,3 +240,7 @@ alias yui="yarn upgrade-interactive"
 # zmv {{{
 alias zmv='noglob zmv'
 # }}}
+
+# mollifier/anyframe {{{
+alias U='cd-gitroot'
+# }}}
