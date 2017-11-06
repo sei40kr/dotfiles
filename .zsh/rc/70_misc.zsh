@@ -12,6 +12,10 @@ SPACESHIP_PACKAGE_SHOW=0
 SPACESHIP_BATTERY_SHOW=0
 # }}}
 
+# djui/alias-tips {{{
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT='alias-tips: '
+# }}}
+
 # junegunn/fzf {{{
 FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g ".git/*"'
 FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
