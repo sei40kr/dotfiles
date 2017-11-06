@@ -17,3 +17,7 @@ if [[ -d "${HOME}/.linuxbrew" ]]
 then
   export XDG_DATA_DIRS="${HOME}/.linuxbrew/share:$XDG_DATA_DIRS";
 fi
+
+export GOPATH="${HOME}/.go"
+export PYENV_ROOT="${HOME}/.pyenv"
+export RBENV_ROOT="${HOME}/.rbenv"

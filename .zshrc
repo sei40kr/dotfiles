@@ -9,15 +9,12 @@ then
   exit
 fi
 
-# zmodload zsh/zprof
 zmodload zsh/zpty
 
 autoload -Uz add-zsh-hook
 autoload -Uz cdr
 autoload -Uz chpwd_recent_dirs
 autoload -Uz zmv
-
-export GOPATH="${HOME}/.go"
 
 path=(
   "${HOME}/.cabal/bin"
@@ -27,6 +24,10 @@ path=(
   "${RBENV_ROOT}/bin"
   "${path[@]}"
 )
+
+eval "
+$(pyenv init - zsh --no-rehash)
+$(rbenv init - zsh --no-rehash)"
 
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 
