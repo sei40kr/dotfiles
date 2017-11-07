@@ -215,16 +215,6 @@ let g:vimfiler_file_icon          = ' '
 let g:vimfiler_marked_file_icon   = '✓'
 " }}}
 
-" terryma/vim-multiple-cursors {{{
-function! g:Multiple_cursors_before() abort
-  let b:deoplete_disable_auto_complete = 1
-endfunction
-
-function! g:Multiple_cursors_after() abort
-  let b:deoplete_disable_auto_complete = 0
-endfunction
-" }}}
-
 " thinca/vim-template {{{
 let g:template_basedir = expand('~/.SpaceVim.d/template')
 let g:template_files = 'template.*'
