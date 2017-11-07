@@ -53,7 +53,7 @@ let g:spacevim_statusline_separator          = 'nil'
 let g:spacevim_statusline_inactive_separator = 'bar'
 let g:spacevim_error_symbol                  = ''
 let g:spacevim_warning_symbol                = ''
-let g:spacevim_terminal_cursor_shape         = 2
+let g:spacevim_terminal_cursor_shape         = 1
 let g:spacevim_vim_help_language             = 'ja'
 let g:spacevim_language                      = 'ja_JP.UTF-8'
 let g:spacevim_colorscheme                   = 'onedark'
@@ -83,7 +83,7 @@ let g:spacevim_custom_plugins = [
       \ ['osyo-manga/vim-precious',       { 'depends': 'context_filetype.vim' }],
       \ ['rhysd/github-complete.vim',     { 'on_ft': ['markdown', 'gitcommit'] }],
       \ ['thinca/vim-template'],
-      \ ['tyru/open-browser-github.vim',  { 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'] }],
+      \ ['tyru/open-browser-github.vim',  { 'depends': 'open-browser.vim', 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'] }],
       \ ]
 
 " chrisbra/vim-zsh {{{
