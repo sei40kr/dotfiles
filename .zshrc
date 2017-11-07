@@ -71,6 +71,7 @@ zplugin light 'djui/alias-tips'
 zplugin light 'lukechilds/zsh-nvm'
 zplugin light 'mollifier/anyframe'
 zplugin light 'mollifier/cd-gitroot'
+zplugin light 'sei40kr/zsh-tmux-rename'
 zplugin ice pick'k.sh'; zplugin light 'supercrabtree/k'
 
 zplugin snippet 'OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh'
