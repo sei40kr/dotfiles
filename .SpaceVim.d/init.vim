@@ -98,6 +98,14 @@ let g:EasyMotion_keys = 'sdghklwertyuioxcvbnmfj'
 let g:vim_json_syntax_conceal = 0
 " }}}
 
+" itchyny/calendar.vim {{{
+let g:calendar_first_day = 'monday'
+let g:calendar_task = 1
+let g:calendar_event_start_time = 0
+let g:calendar_google_task = 1
+let g:calendar_google_calendar = 1
+" }}}
+
 " joshdick/onedark.vim {{{
 let g:onedark_terminal_italics = 1
 " }}}
