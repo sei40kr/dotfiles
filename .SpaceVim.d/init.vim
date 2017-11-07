@@ -12,10 +12,7 @@ let g:mapleader = ';'
 call SpaceVim#layers#load('operator')
 call SpaceVim#layers#load('incsearch')
 call SpaceVim#layers#load('tags')
-call SpaceVim#layers#load('shell', {
-      \ 'default_position': 'top',
-      \ 'default_height': 30,
-      \ })
+call SpaceVim#layers#load('shell', { 'default_position': 'top', 'default_height': 30 })
 call SpaceVim#layers#load('lang#c')
 call SpaceVim#layers#load('lang#crystal')
 call SpaceVim#layers#load('lang#go')
@@ -45,27 +42,31 @@ let g:clang2_placeholder_next = ''
 let g:clang2_placeholder_prev = ''
 
 " SpaceVim configurations
-let g:spacevim_max_column = 80
-let g:spacevim_windows_leader = 's'
-let g:spacevim_unite_leader = 'f'
-let g:spacevim_denite_leader = 'F'
-let g:spacevim_realtime_leader_guide = 1
-let g:spacevim_enable_neomake = 0
-let g:spacevim_enable_ale = 1
-let g:spacevim_statusline_separator = 'nil'
+let g:spacevim_max_column                    = 80
+let g:spacevim_windows_leader                = 's'
+let g:spacevim_unite_leader                  = 'f'
+let g:spacevim_denite_leader                 = 'F'
+let g:spacevim_realtime_leader_guide         = 1
+let g:spacevim_enable_neomake                = 0
+let g:spacevim_enable_ale                    = 1
+let g:spacevim_statusline_separator          = 'nil'
 let g:spacevim_statusline_inactive_separator = 'bar'
-let g:spacevim_error_symbol = ''
-let g:spacevim_warning_symbol = ''
-let g:spacevim_terminal_cursor_shape = 1
-let g:spacevim_vim_help_language = 'ja'
-let g:spacevim_language = 'ja_JP.UTF-8'
-let g:spacevim_colorscheme = 'onedark'
-let g:spacevim_colorscheme_bg = 'dark'
-let g:spacevim_colorscheme_default = 'onedark'
-let g:spacevim_enable_debug = 0
-let g:spacevim_buffer_index_type = 4
-let g:spacevim_windows_index_type = 3
-let g:spacevim_github_username = 'sei40kr'
+let g:spacevim_error_symbol                  = ''
+let g:spacevim_warning_symbol                = ''
+let g:spacevim_terminal_cursor_shape         = 1
+let g:spacevim_vim_help_language             = 'ja'
+let g:spacevim_language                      = 'ja_JP.UTF-8'
+let g:spacevim_colorscheme                   = 'onedark'
+let g:spacevim_colorscheme_bg                = 'dark'
+let g:spacevim_colorscheme_default           = 'onedark'
+let g:spacevim_enable_debug                  = 0
+let g:spacevim_buffer_index_type             = 4
+let g:spacevim_windows_index_type            = 3
+let g:spacevim_github_username               = 'sei40kr'
+let g:spacevim_enable_powerline_fonts        = 1
+let g:spacevim_enable_vimfiler_welcome       = 0
+let g:spacevim_enable_vimfiler_gitstatus     = 1
+
 let g:spacevim_disabled_plugins = [
       \ 'neco-look',
       \ 'vim-diminactive',
@@ -84,9 +85,6 @@ let g:spacevim_custom_plugins = [
       \ ['thinca/vim-template'],
       \ ['tyru/open-browser-github.vim',  { 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'] }],
       \ ]
-let g:spacevim_enable_powerline_fonts = 1
-let g:spacevim_enable_vimfiler_welcome = 0
-let g:spacevim_enable_vimfiler_gitstatus = 1
 
 " chrisbra/vim-zsh {{{
 let g:zsh_fold_enable = 1
@@ -117,14 +115,15 @@ let g:vim_jsx_pretty_colorful_config = 1
 " }}}
 
 " mhinz/vim-signify {{{
-let g:signify_update_on_bufenter = 1
+let g:signify_update_on_bufenter    = 1
 let g:signify_update_on_focusgained = 1
-let g:signify_sign_add = '▌'
-let g:signify_sign_delete = '▸'
+let g:signify_sign_show_count       = 0
+
+let g:signify_sign_add               = '▌'
+let g:signify_sign_delete            = '▸'
 let g:signify_sign_delete_first_line = g:signify_sign_delete
-let g:signify_sign_change = '▌'
-let g:signify_sign_changedelete = g:signify_sign_change
-let g:signify_sign_show_count = 0
+let g:signify_sign_change            = '▌'
+let g:signify_sign_changedelete      = g:signify_sign_change
 " }}}
 
 " osyo-manga/vim-jplus {{{
@@ -148,7 +147,7 @@ let g:used_javascript_libs = 'jquery,underscore,react,requirejs,d3'
 " pangloss/vim-javascript {{{
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
-let g:javascript_plugin_flow = 1
+let g:javascript_plugin_flow  = 1
 " }}}
 
 " rhysd/github-complete.vim {{{
@@ -157,33 +156,34 @@ let g:github_complete_emoji_japanese_workaround = 1
 
 " sbdchd/neoformat {{{
 let g:neoformat_run_all_formatters = 1
-let g:neoformat_enabled_c = []
-let g:neoformat_enabled_cpp = []
-let g:neoformat_enabled_crystal = ['crystalformat']
-let g:neoformat_enabled_css = []
-let g:neoformat_enabled_csv = []
-let g:neoformat_enabled_go = ['goimports']
-let g:neoformat_enabled_graphql = []
-let g:neoformat_enabled_haskell = ['stylishhaskell', 'hindent']
-let g:neoformat_enabled_html = ['tidy']
-let g:neoformat_enabled_java = ['googlefmt']
+
+let g:neoformat_enabled_c          = []
+let g:neoformat_enabled_cpp        = []
+let g:neoformat_enabled_crystal    = ['crystalformat']
+let g:neoformat_enabled_css        = []
+let g:neoformat_enabled_csv        = []
+let g:neoformat_enabled_go         = ['goimports']
+let g:neoformat_enabled_graphql    = []
+let g:neoformat_enabled_haskell    = ['stylishhaskell', 'hindent']
+let g:neoformat_enabled_html       = ['tidy']
+let g:neoformat_enabled_java       = ['googlefmt']
 let g:neoformat_enabled_javascript = []
-let g:neoformat_enabled_json = []
-let g:neoformat_enabled_kotlin = ['ktlint']
-let g:neoformat_enabled_less = []
-let g:neoformat_enabled_markdown = ['remark']
-let g:neoformat_enabled_perl = ['perltidy']
-let g:neoformat_enabled_php = ['phpbeautifier', 'phpcsfixer']
-let g:neoformat_enabled_python = []
-let g:neoformat_enabled_ruby = []
-let g:neoformat_enabled_rust = ['rustfmt']
-let g:neoformat_enabled_sass = []
-let g:neoformat_enabled_scss = []
-let g:neoformat_enabled_sh = ['shfmt']
-let g:neoformat_enabled_sql = ['sqlformat']
+let g:neoformat_enabled_json       = []
+let g:neoformat_enabled_kotlin     = ['ktlint']
+let g:neoformat_enabled_less       = []
+let g:neoformat_enabled_markdown   = ['remark']
+let g:neoformat_enabled_perl       = ['perltidy']
+let g:neoformat_enabled_php        = ['phpbeautifier', 'phpcsfixer']
+let g:neoformat_enabled_python     = []
+let g:neoformat_enabled_ruby       = []
+let g:neoformat_enabled_rust       = ['rustfmt']
+let g:neoformat_enabled_sass       = []
+let g:neoformat_enabled_scss       = []
+let g:neoformat_enabled_sh         = ['shfmt']
+let g:neoformat_enabled_sql        = ['sqlformat']
 let g:neoformat_enabled_typescript = ['tsfmt']
-let g:neoformat_enabled_xhtml = ['tidy']
-let g:neoformat_enabled_xml = ['tidy']
+let g:neoformat_enabled_xhtml      = ['tidy']
+let g:neoformat_enabled_xml        = ['tidy']
 " }}}
 
 " Shougo/context_filetype.vim {{{
@@ -205,14 +205,14 @@ let g:neosnippet#disable_runtime_snippets = {
 " }}}
 
 " Shougo/vimfiler.vim {{{
-let g:vimfiler_direction = 'topleft'
-let g:vimfiler_tree_leaf_icon = '⋮'
-let g:vimfiler_tree_opened_icon = '▾'
-let g:vimfiler_tree_closed_icon = '▹'
-let g:vimfiler_tree_indentation = 1
+let g:vimfiler_direction          = 'topleft'
+let g:vimfiler_tree_leaf_icon     = '⋮'
+let g:vimfiler_tree_opened_icon   = '▾'
+let g:vimfiler_tree_closed_icon   = '▹'
+let g:vimfiler_tree_indentation   = 1
 let g:vimfiler_readonly_file_icon = '⭤'
-let g:vimfiler_file_icon = ' '
-let g:vimfiler_marked_file_icon = '✓'
+let g:vimfiler_file_icon          = ' '
+let g:vimfiler_marked_file_icon   = '✓'
 " }}}
 
 " terryma/vim-multiple-cursors {{{
@@ -229,14 +229,14 @@ endfunction
 let g:template_basedir = expand('~/.SpaceVim.d/template')
 let g:template_files = 'template.*'
 
-let s:template_user = 'Seong Yong-ju'
-let s:template_user_id = '@sei40kr'
+let s:template_user         = 'Seong Yong-ju'
+let s:template_user_id      = '@sei40kr'
 let s:template_organization = 'TeamSpirit Inc.'
 
 let s:template_datetime_format = '%Y-%m-%d %H:%M:%S'
-let s:template_date_format = '%Y-%m-%d'
-let s:template_time_format = '%H:%M:%S'
-let s:template_year_format = '%Y'
+let s:template_date_format     = '%Y-%m-%d'
+let s:template_time_format     = '%H:%M:%S'
+let s:template_year_format     = '%Y'
 
 function! s:template_keywords() abort
   " vint: -ProhibitCommandRelyOnUser -ProhibitCommandWithUnintendedSideEffect
@@ -262,48 +262,48 @@ endfunction
 " w0rp/ale {{{
 let g:ale_sign_info = ''
 let g:ale_fixers = {
-      \ 'c': ['clang-format'],
-      \ 'cpp': ['clang-format'],
-      \ 'css': ['prettier', 'stylelint'],
-      \ 'go': ['gofmt'],
-      \ 'haskell': ['hfmt'],
-      \ 'javascript': ['prettier', 'eslint'],
-      \ 'json': ['prettier'],
-      \ 'python': ['autopep8', 'yapf', 'isort'],
-      \ 'ruby': ['rubocop'],
-      \ 'sass': ['prettier', 'stylelint'],
-      \ 'scss': ['prettier', 'stylelint'],
-      \ 'typescript': ['prettier'],
+      \ 'c'          : ['clang-format'],
+      \ 'cpp'        : ['clang-format'],
+      \ 'css'        : ['prettier', 'stylelint'],
+      \ 'go'         : ['gofmt'],
+      \ 'haskell'    : ['hfmt'],
+      \ 'javascript' : ['prettier', 'eslint'],
+      \ 'json'       : ['prettier'],
+      \ 'python'     : ['autopep8', 'yapf', 'isort'],
+      \ 'ruby'       : ['rubocop'],
+      \ 'sass'       : ['prettier', 'stylelint'],
+      \ 'scss'       : ['prettier', 'stylelint'],
+      \ 'typescript' : ['prettier'],
       \ }
 let g:ale_linters = {
-      \ 'ansible': ['ansible-lint'],
-      \ 'awk': ['gawk'],
-      \ 'bash': ['shellcheck'],
-      \ 'c': ['clang', 'clang-format'],
-      \ 'cpp': ['clang', 'clang-format', 'cppcheck', 'cpplint'],
-      \ 'cmake': ['cmakelint'],
-      \ 'css': ['stylelint'],
-      \ 'crystal': ['crystal'],
-      \ 'dockerfile': ['hadolint'],
-      \ 'go': ['go', 'golint'],
-      \ 'haskell': ['ghc', 'ghc-mod', 'hlint', 'hdevtools', 'hfmt'],
-      \ 'html': ['htmlhint'],
-      \ 'javascript': ['eslint'],
-      \ 'json': ['jsonlint'],
-      \ 'kotlin': ['kotlinc', 'ktlint'],
-      \ 'markdown': ['mdl', 'remark-lint'],
-      \ 'python': ['autopep8', 'isort', 'yapf'],
-      \ 'ruby': ['rubocop', 'ruby'],
-      \ 'rust': ['rls', 'rustc'],
-      \ 'sass': ['sass-lint', 'stylelint'],
-      \ 'scss': ['sass-lint', 'stylelint'],
-      \ 'sh': ['shellcheck'],
-      \ 'sql': ['sqlint'],
-      \ 'thrift': ['thrift'],
-      \ 'typescript': ['tslint', 'tsserver'],
-      \ 'vim': ['vint'],
-      \ 'xml': ['xmlint'],
-      \ 'yaml': ['yamllint'],
+      \ 'ansible'    : ['ansible-lint'],
+      \ 'awk'        : ['gawk'],
+      \ 'bash'       : ['shellcheck'],
+      \ 'c'          : ['clang', 'clang-format'],
+      \ 'cpp'        : ['clang', 'clang-format', 'cppcheck', 'cpplint'],
+      \ 'cmake'      : ['cmakelint'],
+      \ 'css'        : ['stylelint'],
+      \ 'crystal'    : ['crystal'],
+      \ 'dockerfile' : ['hadolint'],
+      \ 'go'         : ['go', 'golint'],
+      \ 'haskell'    : ['ghc', 'ghc-mod', 'hlint', 'hdevtools', 'hfmt'],
+      \ 'html'       : ['htmlhint'],
+      \ 'javascript' : ['eslint'],
+      \ 'json'       : ['jsonlint'],
+      \ 'kotlin'     : ['kotlinc', 'ktlint'],
+      \ 'markdown'   : ['mdl', 'remark-lint'],
+      \ 'python'     : ['autopep8', 'isort', 'yapf'],
+      \ 'ruby'       : ['rubocop', 'ruby'],
+      \ 'rust'       : ['rls', 'rustc'],
+      \ 'sass'       : ['sass-lint', 'stylelint'],
+      \ 'scss'       : ['sass-lint', 'stylelint'],
+      \ 'sh'         : ['shellcheck'],
+      \ 'sql'        : ['sqlint'],
+      \ 'thrift'     : ['thrift'],
+      \ 'typescript' : ['tslint', 'tsserver'],
+      \ 'vim'        : ['vint'],
+      \ 'xml'        : ['xmlint'],
+      \ 'yaml'       : ['yamllint'],
       \ }
 let g:ale_javascript_stylelint_executable = 'stylelint_d'
 let g:ale_javascript_stylelint_use_global = 1
@@ -314,8 +314,8 @@ nnoremap <silent> ]q :lnext<CR>
 
 " Yggdroot/indentLine {{{
 let g:indentLine_color_term = 59
-let g:indentLine_color_gui = '#5c6370'
-let g:indentLine_char = '┆'
+let g:indentLine_color_gui  = '#5c6370'
+let g:indentLine_char       = '┆'
 " }}}
 
 function! s:javascript_mappings() abort
