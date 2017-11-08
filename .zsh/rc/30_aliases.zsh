@@ -42,6 +42,13 @@ alias sortnr='sort -n -r'
 alias unexport='unset'
 # }}}
 
+# directories {{{
+alias u='cd ..'
+
+alias md='mkdir -p'
+alias rd='rmdir'
+# }}}
+
 # docker-compose {{{
 alias dco='docker-compose'
 
