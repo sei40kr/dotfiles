@@ -17,6 +17,7 @@ zmodload zsh/zpty
 autoload -Uz add-zsh-hook
 autoload -Uz cdr
 autoload -Uz chpwd_recent_dirs
+autoload -Uz compinit
 autoload -Uz _zplugin
 
 # Don't use brew --prefix because it's too slow
@@ -97,6 +98,9 @@ zplugin ice as'command';                                             zplugin sni
 zplugin ice blockf; zplugin light 'zsh-users/zsh-completions'
 zplugin light 'lukechilds/zsh-better-npm-completion'
 # }}}
+
+compinit
+zplugin cdreplay -q
 
 # zplugin: Plugins loaded after compinit {{{
 zplugin light 'zdharma/fast-syntax-highlighting'
