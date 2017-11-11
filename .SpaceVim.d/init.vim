@@ -223,6 +223,12 @@ let g:vimfiler_file_icon          = ' '
 let g:vimfiler_marked_file_icon   = '✓'
 " }}}
 
+" ternjs/tern_for_vim {{{
+let g:tern_map_keys = 1
+let g:tern_show_argument_hints = 'on_move'
+let g:tern_show_signature_in_pum = 1
+" }}}
+
 " thinca/vim-template {{{
 let g:template_basedir = expand('~/.SpaceVim.d/template')
 let g:template_files = 'template.*'
