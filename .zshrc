@@ -33,6 +33,8 @@ fi
 
 zmodload zsh/zpty
 
+autoload -Uz compinit
+
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 
 autoload -Uz _zplugin
@@ -40,7 +42,6 @@ autoload -Uz _zplugin
 autoload -Uz add-zsh-hook
 autoload -Uz cdr
 autoload -Uz chpwd_recent_dirs
-autoload -Uz compinit
 
 if [[ "${+_comps}" == true ]]
 then
