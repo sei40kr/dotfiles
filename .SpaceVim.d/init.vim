@@ -3,9 +3,9 @@ scriptencoding utf-8
 " init.vim
 " author: Seong Yong-ju ( @sei40kr )
 
-let g:ruby_host_prog = $HOME . '/.rbenv/shims/ruby'
-let g:python_host_prog = $HOME . '/.pyenv/shims/python2'
-let g:python3_host_prog = $HOME . '/.pyenv/shims/python3'
+let g:ruby_host_prog = $RBENV_ROOT . '/shims/ruby'
+let g:python_host_prog = $PYENV_ROOT . '/shims/python2'
+let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
 
 let g:mapleader = ';'
 
@@ -73,22 +73,13 @@ let g:spacevim_disabled_plugins = [
       \ 'fcitx.vim',
       \ ]
 let g:spacevim_custom_plugins = [
-      \ ['Galooshi/vim-import-js',        { 'on_ft': 'javascript' }],
-      \ ['MaxMEllon/vim-jsx-pretty',      { 'on_ft': 'javascript' }],
       \ ['Shougo/context_filetype.vim'],
-      \ ['chrisbra/vim-zsh',              { 'on_ft': 'zsh' }],
       \ ['ejholmes/vim-forcedotcom',      { 'on_ft': ['apex', 'visualforce', 'apexlog'] }],
-      \ ['kannokanno/previm',             { 'depends': 'open-browser.vim', 'on_cmd': 'PrevimOpen' }],
       \ ['osyo-manga/vim-jplus',          { 'on_map': '<Plug>(jplus' }],
       \ ['osyo-manga/vim-precious',       { 'depends': 'context_filetype.vim' }],
-      \ ['rhysd/github-complete.vim',     { 'on_ft': ['markdown', 'gitcommit'] }],
       \ ['thinca/vim-template'],
       \ ['tyru/open-browser-github.vim',  { 'depends': 'open-browser.vim', 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'] }],
       \ ]
-
-" chrisbra/vim-zsh {{{
-let g:zsh_fold_enable = 1
-" }}}
 
 " easymotion/vim-easymotion {{{
 let g:EasyMotion_keys = 'sdghklwertyuioxcvbnmfj'
@@ -108,18 +99,6 @@ let g:calendar_google_calendar = 1
 
 " joshdick/onedark.vim {{{
 let g:onedark_terminal_italics = 1
-" }}}
-
-" kannokanno/previm {{{
-let g:previm_show_header = 0
-" }}}
-
-" mattn/emmet-vim {{{
-let g:emmet_html5 = 1
-" }}}
-
-" MAxMEllon/vim-jsx-pretty {{{
-let g:vim_jsx_pretty_colorful_config = 1
 " }}}
 
 " mhinz/vim-signify {{{
@@ -150,16 +129,6 @@ let g:precious_enable_switch_CursorMoved_i = {
 
 " othree/javascript-libraries-syntax.vim {{{
 let g:used_javascript_libs = 'jquery,underscore,react,requirejs,d3'
-" }}}
-
-" pangloss/vim-javascript {{{
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_ngdoc = 1
-let g:javascript_plugin_flow  = 1
-" }}}
-
-" rhysd/github-complete.vim {{{
-let g:github_complete_emoji_japanese_workaround = 1
 " }}}
 
 " sbdchd/neoformat {{{
@@ -224,7 +193,6 @@ let g:vimfiler_marked_file_icon   = '✓'
 " }}}
 
 " ternjs/tern_for_vim {{{
-let g:tern_map_keys = 1
 let g:tern_show_argument_hints = 'on_hold'
 let g:tern_show_signature_in_pum = 1
 " }}}
