@@ -13,11 +13,11 @@ then
   typeset -U path PATH
 
   export path=(
-    "${HOMEBREW_PREFIX}/bin"
-    "${HOME}/.cabal/bin"
-    "${HOME}/.cargo/bin"
-    "${GOPATH}/bin"
-    "${ANYENV_ROOT}/bin"
+    "${HOME}/.cabal/bin"(N-/)
+    "${HOME}/.cargo/bin"(N-/)
+    "${GOPATH}/bin"(N-/)
+    "${ANYENV_ROOT}/bin"(N-/)
+    "${HOMEBREW_PREFIX}/bin"(N-/)
 
     "${path[@]}"
   )
