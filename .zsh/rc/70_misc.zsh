@@ -3,19 +3,6 @@
 # 70_misc.zsh
 # author: Seong Yong-ju ( @sei40kr )
 
-# creationix/nvm {{{
-export NVM_SYMLINK_CURRENT=1
-# }}}
-
-# denysdovhan/spaceship-zsh-theme {{{
-SPACESHIP_PACKAGE_SHOW=0
-SPACESHIP_BATTERY_SHOW=0
-# }}}
-
-# djui/alias-tips {{{
-export ZSH_PLUGINS_ALIAS_TIPS_TEXT='alias-tips: '
-# }}}
-
 # junegunn/fzf {{{
 FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g ".git/*"'
 FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -28,11 +15,7 @@ then
 fi
 # }}}
 
-# lukechilds/zsh-nvm {{{
-export NVM_LAZY_LOAD=1
-export NVM_AUTO_USE=1
-# }}}
-
 # mollifier/anyframe {{{
 zstyle ':anyframe:selector:fzf-tmux:' command "fzf-tmux -d ${FZF_TMUX_HEIGHT}"
 # }}}
+

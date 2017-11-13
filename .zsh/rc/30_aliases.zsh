@@ -24,18 +24,14 @@ alias bcn='bundle clean'
 # common-aliases {{{
 alias zshrc='$EDITOR ~/.zshrc'
 
-alias grep='grep --color'
-alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
-
 alias t='tail -f'
 
 alias dud='du -d 1 -h'
 alias duf='du -sh *'
-alias fd='find . -type d -name'
-alias ff='find . -type f -name'
+alias fd='bfs . -type d -name'
+alias ff='bfs . -type f -name'
 
 alias h='history'
-alias hgrep="fc -El 0 | grep"
 alias help='man'
 alias p='ps -f'
 alias sortnr='sort -n -r'
@@ -43,7 +39,7 @@ alias unexport='unset'
 # }}}
 
 # directories {{{
-alias u='cd ..'
+alias u='builtin cd ..'
 
 alias md='mkdir -p'
 alias rd='rmdir'
@@ -141,8 +137,7 @@ alias ple='perl -wlne'
 # }}}
 
 # python {{{
-alias pyfind='find . -name "*.py"'
-alias pygrep='grep --include="*.py"'
+alias pyfind='bfs . -name "*.py"'
 # }}}
 
 # postgres {{{
@@ -166,7 +161,6 @@ alias rc='rails console'
 alias rcs='rails console --sandbox'
 alias rd='rails destroy'
 alias rdb='rails dbconsole'
-# alias rg='rails generate'
 alias rgm='rails generate migration'
 alias rp='rails plugin'
 alias ru='rails runner'
@@ -188,7 +182,6 @@ alias rdsl='rake db:schema:load'
 alias rlc='rake log:clear'
 alias rn='rake notes'
 alias rr='rake routes'
-alias rrg='rake routes | grep'
 alias rt='rake test'
 alias rmd='rake middleware'
 alias rsts='rake stats'
@@ -223,10 +216,6 @@ alias rsync-copy="rsync -avz --progress -h"
 alias rsync-move="rsync -avz --progress -h --remove-source-files"
 alias rsync-update="rsync -avzu --progress -h"
 alias rsync-synchronize="rsync -avzu --delete --progress -h"
-# }}}
-
-# ruby {{{
-alias rfind='find . -name "*.rb" | xargs grep -n'
 # }}}
 
 # tig {{{
