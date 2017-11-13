@@ -14,10 +14,10 @@ set tab-size           = 4
 set ignore-space       = at-eol
 set ignore-case        = true
 set split-view-height  = 80%
-set diff-options       = -m --first-parent
+set diff-highlight     = true
 set mouse              = true
 set editor-line-number = yes
-set refresh-mode       = periodic
+set refresh-mode       = auto
 
 bind generic gg none
 bind generic g  move-first-line
