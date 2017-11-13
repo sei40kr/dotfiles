@@ -3,32 +3,53 @@
 # .zshrc
 # author: Seong Yong-ju ( @sei40kr )
 
-if [[ -z "$TMUX" ]] && [[ "${+commands[tmux]}" == 1 ]]
+if [[ -z "$TMUX" ]]
 then
-  export GOPATH="${HOME}/.go"
-  export ANYENV_ROOT="${HOME}/.anyenv"
-
-  export HOMEBREW_PREFIX="$(brew --prefix)"
+  if [[ -d "${HOME}/.linuxbrew" ]]
+  then
+    HOMEBREW_PREFIX="${HOME}/.linuxbrew"
+  elif [[ -x '/usr/local/bin/brew' ]]
+  then
+    HOMEBREW_PREFIX='/usr/local'
+  fi
 
   typeset -U path PATH
 
-  export path=(
+  if [[ -n "$HOMEBREW_PREFIX" ]]
+  then
+    export HOMEBREW_PREFIX
+    path=( "${HOMEBREW_PREFIX}/bin" "${path[@]}" )
+
+    export XDG_DATA_DIRS="${HOMEBREW_PREFIX}/share:${XDG_DATA_DIRS}"
+  fi
+  export XDG_CONFIG_HOME="${HOME}/.config"
+
+  if [[ -d "${HOME}/.anyenv" ]]
+  then
+    export ANYENV_ROOT="${HOME}/.anyenv"
+    path=( "${ANYENV_ROOT}/bin" "${path[@]}" )
+
+    eval "$(anyenv init - zsh)"
+  fi
+
+  if [[ -d "${HOME}/.go" ]]
+  then
+    export GOPATH="${HOME}/.go"
+    path=( "${GOPATH}/bin" "${path[@]}" )
+  fi
+
+  path=(
     "${HOME}/.cabal/bin"(N-/)
     "${HOME}/.cargo/bin"(N-/)
-    "${GOPATH}/bin"(N-/)
-    "${ANYENV_ROOT}/bin"(N-/)
-    "${HOMEBREW_PREFIX}/bin"(N-/)
-
     "${path[@]}"
   )
+  export path
 
-  export XDG_CONFIG_HOME="${HOME}/.config"
-  export XDG_DATA_DIRS="${HOMEBREW_PREFIX}/share:${XDG_DATA_DIRS}"
-
-  eval "$(anyenv init - zsh)"
-
-  tmux new-session
-  exit
+  if [[ "${+commands[tmux]}" == 1 ]]
+  then
+    tmux new-session
+    exit
+  fi
 fi
 
 zmodload zsh/zpty
