@@ -66,6 +66,10 @@ alias gemb='gem build *.gemspec'
 alias gemp='gem push *.gem'
 # }}}
 
+# git {{{
+alias git='env TERM=xterm git'
+# }}}
+
 # golang {{{
 alias gob='go build'
 alias goc='go clean'
