@@ -184,6 +184,8 @@ let g:neosnippet#disable_runtime_snippets = {
       \ 'html': 1,
       \ 'css': 1,
       \ 'scss': 1,
+      \ 'sass': 1,
+      \ 'less': 1,
       \ }
 " }}}
 
