@@ -137,6 +137,7 @@ zplugin ice pick''; zplugin light 'sei40kr/new-my-zsh'
 zplugin ice pick''; zplugin light 'zsh-users/zsh-completions'
 
 zplugin ice if'[[ -n "$ANYENV_ROOT" ]]'; zplugin snippet "${ANYENV_ROOT}/completions/anyenv.zsh"
+zplugin ice if'[[ -n "$JENV_ROOT" ]]'; zplugin snippet "${JENV_ROOT}/completions/jenv.zsh"
 zplugin ice if'[[ -n "$GOENV_ROOT" ]]'; zplugin snippet "${GOENV_ROOT}/completions/goenv.zsh"
 zplugin ice if'[[ -n "$PYENV_ROOT" ]]'; zplugin snippet "${PYENV_ROOT}/completions/pyenv.zsh"
 zplugin ice if'[[ -n "$RBENV_ROOT" ]]'; zplugin snippet "${RBENV_ROOT}/completions/rbenv.zsh"
