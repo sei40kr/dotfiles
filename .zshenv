@@ -5,7 +5,8 @@
 
 export TERM='xterm-256color-italic'
 
-export EDITOR="${commands[nvim]}"
+export EDITOR="${commands[nvim]:-$EDITOR}"
+export PAGER="${commands[less]:-$PAGER}"
 export HISTFILE="${HOME}/.histfile"
 export HISTSIZE=1000
 export KEYTIMEOUT=1
