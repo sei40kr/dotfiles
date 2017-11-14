@@ -38,6 +38,12 @@ then
     path=( "${GOPATH}/bin" "${path[@]}" )
   fi
 
+  if [[ -d "${HOME}/.nvm" ]]
+  then
+    export NVM_DIR="${HOME}/.nvm"
+    path=( "${NVM_DIR}/current/bin" "${path[@]}" )
+  fi
+
   path=(
     "${HOME}/.cabal/bin"(N-/)
     "${HOME}/.cargo/bin"(N-/)
