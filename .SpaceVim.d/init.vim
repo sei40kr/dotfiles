@@ -3,9 +3,14 @@ scriptencoding utf-8
 " init.vim
 " author: Seong Yong-ju ( @sei40kr )
 
-let g:ruby_host_prog = $RBENV_ROOT . '/shims/ruby'
-let g:python_host_prog = $PYENV_ROOT . '/shims/python2'
-let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
+if has('$RBENV_ROOT')
+  let g:ruby_host_prog = $RBENV_ROOT . '/shims/ruby'
+endif
+
+if has('$PYENV_ROOT')
+  let g:python_host_prog = $PYENV_ROOT . '/shims/python2'
+  let g:python3_host_prog = $PYENV_ROOT . '/shims/python3'
+endif
 
 let g:mapleader = ';'
 
@@ -65,7 +70,7 @@ let g:spacevim_windows_index_type            = 3
 let g:spacevim_github_username               = 'sei40kr'
 let g:spacevim_enable_powerline_fonts        = 1
 let g:spacevim_enable_vimfiler_welcome       = 0
-let g:spacevim_enable_vimfiler_gitstatus     = 1
+let g:spacevim_enable_vimfiler_gitstatus     = 0
 
 let g:spacevim_disabled_plugins = [
       \ 'neco-look',
@@ -107,7 +112,7 @@ let g:signify_update_on_focusgained = 1
 let g:signify_sign_show_count       = 0
 
 let g:signify_sign_add               = '▌'
-let g:signify_sign_delete            = '▸'
+let g:signify_sign_delete            = ''
 let g:signify_sign_delete_first_line = g:signify_sign_delete
 let g:signify_sign_change            = '▌'
 let g:signify_sign_changedelete      = g:signify_sign_change
@@ -182,14 +187,27 @@ let g:neosnippet#disable_runtime_snippets = {
 " }}}
 
 " Shougo/vimfiler.vim {{{
-let g:vimfiler_direction          = 'topleft'
-let g:vimfiler_tree_leaf_icon     = '⋮'
-let g:vimfiler_tree_opened_icon   = '▾'
-let g:vimfiler_tree_closed_icon   = '▹'
 let g:vimfiler_tree_indentation   = 1
-let g:vimfiler_readonly_file_icon = '⭤'
-let g:vimfiler_file_icon          = ' '
-let g:vimfiler_marked_file_icon   = '✓'
+let g:vimfiler_tree_leaf_icon     = ''
+let g:vimfiler_tree_opened_icon   = '  '
+let g:vimfiler_tree_closed_icon   = '  '
+let g:vimfiler_file_icon          = '   '
+let g:vimfiler_readonly_file_icon = '  '
+let g:vimfiler_marked_file_icon   = '  '
+
+let g:vimfiler_direction = 'topleft'
+
+let g:vimfiler_ignore_pattern = [
+      \ '\.class$',
+      \ '^\.DS_Store$',
+      \ '^\.git$',
+      \ '^\.init\.vim-rplugin\~$',
+      \ '^\.netrwhist$'
+      \ ]
+
+if has('mac')
+  let g:vimfiler_quick_look_command = 'qlmanage -p'
+endif
 " }}}
 
 " ternjs/tern_for_vim {{{
@@ -287,7 +305,7 @@ nnoremap <silent> ]q :lnext<CR>
 " Yggdroot/indentLine {{{
 let g:indentLine_color_term = 59
 let g:indentLine_color_gui  = '#5c6370'
-let g:indentLine_char       = '┆'
+let g:indentLine_char       = '▏'
 " }}}
 
 function! s:javascript_mappings() abort
