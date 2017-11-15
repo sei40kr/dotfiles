@@ -49,6 +49,16 @@ then
   )
   export path
 
+  typeset -U fpath PATH
+
+  if [[ -d "${HOME}/.zsh" ]]
+  then
+    export fpath=(
+      "${HOME}/.zsh/completions"
+      "${HOME}/.zsh/functions"
+    )
+  fi
+
   if [[ "${+commands[tmux]}" == 1 ]]
   then
     tmux new-session
