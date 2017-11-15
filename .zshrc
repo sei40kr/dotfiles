@@ -139,7 +139,6 @@ zplugin snippet --command "${HOMEBREW_PREFIX}/share/git-core/contrib/diff-highli
 
 # zplugin: Completions {{{
 zplugin ice pick''; zplugin light 'robbyrussell/oh-my-zsh'
-zplugin ice pick''; zplugin light 'sei40kr/new-my-zsh'
 zplugin ice pick''; zplugin light 'zsh-users/zsh-completions'
 
 zplugin ice if'[[ -n "$ANYENV_ROOT" ]]'; zplugin snippet "${ANYENV_ROOT}/completions/anyenv.zsh"
