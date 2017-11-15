@@ -21,7 +21,7 @@ man() {
 # mollifier/anyframe {{{
 anyframe-widget-cd-ghq-repository() {
   anyframe-source-ghq-repository | \
-      anyframe-selector-auto | \
-      anyframe-action-execute builtin cd --
+    anyframe-selector-auto | \
+    anyframe-action-execute builtin cd --
 }
 # }}}
