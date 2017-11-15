@@ -301,8 +301,8 @@ let g:ale_linters = {
 let g:ale_javascript_stylelint_executable = 'stylelint_d'
 let g:ale_javascript_stylelint_use_global = 1
 
-nnoremap <silent> [q :lprevious<CR>
-nnoremap <silent> ]q :lnext<CR>
+nnoremap <silent> [q :ALEPrevious<CR>
+nnoremap <silent> ]q :ALENext<CR>
 " }}}
 
 " Yggdroot/indentLine {{{
