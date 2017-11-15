@@ -311,31 +311,9 @@ let g:indentLine_color_gui  = '#5c6370'
 let g:indentLine_char       = '▏'
 " }}}
 
-function! s:javascript_mappings() abort
-  setlocal foldmethod=syntax
-
-  nnoremap <silent><buffer> K          :TernDoc<CR>
-  nnoremap <silent><buffer> <Space>ld  :TernDoc<CR>
-  nnoremap <silent><buffer> <Space>le  :TernRename<CR>
-
-  nnoremap <silent><buffer> <F4>        :ImportJSWord<CR>
-  nnoremap <silent><buffer> <Leader>ji  :ImportJSWord<CR>
-  nnoremap <silent><buffer> <Leader>jf  :ImportJSFix<CR>
-  nnoremap <silent><buffer> <Leader>jg  :ImportJSGoto<CR>
-  inoremap <silent><buffer> <F4>        <Esc>:ImportJSWord<CR>i
-  inoremap <silent><buffer> <C-j>i      <Esc>:ImportJSWord<CR>i
-  inoremap <silent><buffer> <C-j>f      <Esc>:ImportJSFix<CR>i
-  inoremap <silent><buffer> <C-j>g      <Esc>:ImportJSGoto<CR>i
-endfunction
-
 augroup SpaceVim_d_colorscheme
   autocmd!
   autocmd ColorScheme onedark call onedark#set_highlight('Normal', { 'fg': onedark#GetColors().white })
-augroup END
-
-augroup SpaceVim_d_lang_javascript
-  autocmd!
-  autocmd FileType javascript call s:javascript_mappings()
 augroup END
 
 augroup SpaceVim_d_tools
