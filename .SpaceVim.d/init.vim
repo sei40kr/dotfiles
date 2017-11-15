@@ -309,7 +309,7 @@ nnoremap <silent> ]q :ALENext<CR>
 " }}}
 
 " Yggdroot/indentLine {{{
-let g:indentLine_color_term = 59
+let g:indentLine_color_term = 236
 let g:indentLine_color_gui  = '#2c323c'
 let g:indentLine_char       = '▏'
 " }}}
