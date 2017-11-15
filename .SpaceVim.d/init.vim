@@ -17,7 +17,10 @@ let g:mapleader = ';'
 call SpaceVim#layers#load('operator')
 call SpaceVim#layers#load('incsearch')
 call SpaceVim#layers#load('tags')
-call SpaceVim#layers#load('shell', { 'default_position': 'top', 'default_height': 30 })
+call SpaceVim#layers#load('shell', {
+    \ 'default_position': 'bottom',
+    \ 'default_height': 30
+    \ })
 call SpaceVim#layers#load('lang#c')
 call SpaceVim#layers#load('lang#crystal')
 call SpaceVim#layers#load('lang#go')
