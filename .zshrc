@@ -77,7 +77,7 @@ autoload -Uz add-zsh-hook
 autoload -Uz cdr
 autoload -Uz chpwd_recent_dirs
 
-if [[ "${+_comps}" == true ]]
+if [[ "${+_comps}" == 1 ]]
 then
   _comps[zplugin]=_zplugin
 fi
