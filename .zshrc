@@ -36,12 +36,6 @@ then
     path=( "${GOPATH}/bin" "${path[@]}" )
   fi
 
-  if [[ -d "${HOME}/.nvm" ]]
-  then
-    export NVM_DIR="${HOME}/.nvm"
-    path=( "${NVM_DIR}/current/bin" "${path[@]}" )
-  fi
-
   path=(
     "${HOME}/.cabal/bin"(N-/)
     "${HOME}/.cargo/bin"(N-/)
@@ -116,12 +110,6 @@ zplugin snippet "${HOME}/.zsh/rc/80_custom.zsh"
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='alias-tips: '
 # }}}
 
-# lukechilds/zsh-nvm {{{
-NVM_SYMLINK_CURRENT=true
-NVM_LAZY_LOAD=true
-NVM_AUTO_USE=true
-# }}}
-
 # sindresorhus/pure {{{
 PURE_PROMPT_SYMBOL='➔'
 # }}}
@@ -129,7 +117,6 @@ PURE_PROMPT_SYMBOL='➔'
 zplugin light 'b4b4r07/emoji-cli'
 zplugin light 'b4b4r07/enhancd'
 zplugin light 'djui/alias-tips'
-zplugin light 'lukechilds/zsh-nvm'
 zplugin light 'mollifier/anyframe'
 zplugin light 'mollifier/cd-gitroot'
 zplugin light 'sei40kr/zsh-tmux-rename'
