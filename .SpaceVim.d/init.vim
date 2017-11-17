@@ -84,7 +84,6 @@ let g:spacevim_disabled_plugins = [
 let g:spacevim_custom_plugins = [
       \ ['Shougo/context_filetype.vim'],
       \ ['ejholmes/vim-forcedotcom',      { 'on_ft': ['apex', 'visualforce', 'apexlog'] }],
-      \ ['osyo-manga/vim-jplus',          { 'on_map': '<Plug>(jplus' }],
       \ ['osyo-manga/vim-precious',       { 'depends': 'context_filetype.vim' }],
       \ ['thinca/vim-template'],
       \ ['tyru/open-browser-github.vim',  { 'depends': 'open-browser.vim', 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'] }],
@@ -120,11 +119,6 @@ let g:signify_sign_delete            = ''
 let g:signify_sign_delete_first_line = g:signify_sign_delete
 let g:signify_sign_change            = '▌'
 let g:signify_sign_changedelete      = g:signify_sign_change
-" }}}
-
-" osyo-manga/vim-jplus {{{
-nmap J <Plug>(jplus)
-vmap J <Plug>(jplus)
 " }}}
 
 " osyo-manga/vim-precious {{{
