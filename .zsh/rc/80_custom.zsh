@@ -3,6 +3,12 @@
 # 80_custom.zsh
 # author: Seong Yong-ju ( @sei40kr )
 
+# jonas/tig {{{
+tig() {
+  env TERM=screen-256color-italic tig "$@"
+}
+# }}}
+
 # robbyrussell/oh-my-zsh/colored-man-pages {{{
 man() {
   command env \
