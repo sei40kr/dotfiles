@@ -5,7 +5,7 @@
 
 # jonas/tig {{{
 tig() {
-  env TERM=screen-256color-italic tig "$@"
+  env TERM='screen-256color-italic' command tig "$@"
 }
 # }}}
 
