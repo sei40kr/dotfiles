@@ -37,6 +37,7 @@ then
   fi
 
   path=(
+    "${HOME}/.local/bin"(N-/)
     "${HOME}/.cabal/bin"(N-/)
     "${HOME}/.cargo/bin"(N-/)
     "${path[@]}"
