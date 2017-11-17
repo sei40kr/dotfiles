@@ -69,3 +69,4 @@ bind main co ?git checkout %(branch)
 bind refs co ?git checkout %(branch)
 bind main co ?git checkout %(commit)
 
+color cursor black blue
