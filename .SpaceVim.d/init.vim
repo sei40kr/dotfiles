@@ -123,9 +123,14 @@ let g:signify_sign_changedelete      = g:signify_sign_change
 
 " osyo-manga/vim-precious {{{
 let g:precious_enable_switch_CursorMoved = {
-      \ '*': 0
+      \ '*': 0,
+      \ 'markdown': 1,
+      \ 'help': 1,
       \ }
 let g:precious_enable_switch_CursorMoved_i = {
+      \ '*': 0
+      \ }
+let g:precious_enable_switch_CursorHold = {
       \ '*': 0
       \ }
 " }}}
