@@ -308,9 +308,13 @@ nnoremap <silent> ]q :ALENext<CR>
 " }}}
 
 " Yggdroot/indentLine {{{
+let g:indentLine_char = '▏'
 let g:indentLine_color_term = 236
-let g:indentLine_color_gui  = '#2c323c'
-let g:indentLine_char       = '▏'
+let g:indentLine_bgcolor_term = 'NONE'
+let g:indentLine_color_gui = '#2c323c'
+let g:indentLine_bgcolor_gui = 'NONE'
+let g:indentLine_fileTypeExclude = []
+let g:indentLine_setConceal = 0
 " }}}
 
 augroup SpaceVim_d_colorscheme
