@@ -3,6 +3,7 @@ repos = [
     'github.com/heroku/force',
     'github.com/heppu/gkill',
     'github.com/nsf/gocode',
+    'github.com/sourcegraph/go-langserver',
     'golang.org/x/tools/cmd/goimports',
     'gopkg.in/Netflix-Skunkworks/go-jira.v1/cmd/jira',
   ]

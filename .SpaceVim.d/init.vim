@@ -61,6 +61,7 @@ let g:spacevim_statusline_separator          = 'nil'
 let g:spacevim_statusline_inactive_separator = 'nil'
 let g:spacevim_error_symbol                  = ''
 let g:spacevim_warning_symbol                = ''
+let g:spacevim_info_symbol                   = ''
 let g:spacevim_terminal_cursor_shape         = 1
 let g:spacevim_vim_help_language             = 'ja'
 let g:spacevim_language                      = 'ja_JP.UTF-8'
@@ -215,6 +216,29 @@ if has('mac')
 endif
 " }}}
 
+" SpaceVim/LanguageClient-neovim {{{
+let g:LanguageClient_diagnosticsDisplay = {
+      \ 1: { 'name': 'Error',        'texthl': 'ALEError',    'signText': g:spacevim_error_symbol,    'signTexthl': 'ALEErrorSign' },
+      \ 2: { 'name': 'Warning',      'texthl': 'ALEWarning',  'signText': g:spacevim_warning_symbol,  'signTexthl': 'ALEWarningSign' },
+      \ 3: { 'name': 'Information',  'texthl': 'ALEInfo',     'signText': g:spacevim_info_symbol,     'signTexthl': 'ALEInfoSign' },
+      \ 4: { 'name': 'Hint',         'texthl': 'ALEInfo',     'signText': g:spacevim_info_symbol,     'signTexthl': 'ALEInfoSign' },
+      \ }
+let g:LanguageClient_serverCommands = {
+      \ 'css':        ['css-language-server', '--stdio'],
+      \ 'dockerfile': ['docker-langserver', '--stdio'],
+      \ 'go':         ['go-langserver'],
+      \ 'haskell':    ['hie', '--lsp'],
+      \ 'javascript': ['javascript-typescript-stdio'],
+      \ 'less':       ['css-language-server', '--stdio'],
+      \ 'python':     ['pyls'],
+      \ 'sass':       ['css-language-server', '--stdio'],
+      \ 'scss':       ['css-language-server', '--stdio'],
+      \ 'typescript': ['javascript-typescript-stdio'],
+      \ }
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_selectionUI = 'location-list'
+" }}}
+
 " ternjs/tern_for_vim {{{
 let g:tern_show_argument_hints = 'on_hold'
 let g:tern_show_signature_in_pum = 1
@@ -255,7 +279,7 @@ endfunction
 " }}}
 
 " w0rp/ale {{{
-let g:ale_sign_info = ''
+let g:ale_sign_info = g:spacevim_info_symbol
 let g:ale_fixers = {
       \ 'c'          : ['clang-format'],
       \ 'cpp'        : ['clang-format'],
