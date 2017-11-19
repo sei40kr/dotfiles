@@ -116,7 +116,7 @@ PURE_PROMPT_SYMBOL='➔'
 # }}}
 
 zplugin light 'b4b4r07/emoji-cli'
-zplugin light 'b4b4r07/enhancd'
+# zplugin light 'b4b4r07/enhancd'
 zplugin light 'djui/alias-tips'
 zplugin light 'mollifier/anyframe'
 zplugin light 'mollifier/cd-gitroot'
