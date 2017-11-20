@@ -111,15 +111,15 @@ let g:onedark_terminal_italics = 1
 " }}}
 
 " mhinz/vim-signify {{{
-let g:signify_update_on_bufenter    = 1
-let g:signify_update_on_focusgained = 1
-let g:signify_sign_show_count       = 0
+let g:gitgutter_sign_added = '▌'
+let g:gitgutter_sign_modified = '▌'
+let g:gitgutter_sign_removed = ''
+let g:gitgutter_sign_modified_removed = '▌'
 
-let g:signify_sign_add               = '▌'
-let g:signify_sign_delete            = ''
-let g:signify_sign_delete_first_line = g:signify_sign_delete
-let g:signify_sign_change            = '▌'
-let g:signify_sign_changedelete      = g:signify_sign_change
+let g:gitgutter_map_keys = 0
+
+nmap [c <Plug>GitGutterPrevHunk
+nmap ]c <Plug>GitGutterNextHunk
 " }}}
 
 " osyo-manga/vim-precious {{{
