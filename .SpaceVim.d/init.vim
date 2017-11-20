@@ -83,7 +83,7 @@ let g:spacevim_disabled_plugins = [
       \ ]
 let g:spacevim_custom_plugins = [
       \ ['Shougo/context_filetype.vim'],
-      \ ['ejholmes/vim-forcedotcom',      { 'on_ft': ['apex', 'visualforce', 'apexlog'] }],
+      \ ['ejholmes/vim-forcedotcom'],
       \ ['osyo-manga/vim-precious',       { 'depends': 'context_filetype.vim' }],
       \ ['thinca/vim-template'],
       \ ['tyru/open-browser-github.vim',  { 'depends': 'open-browser.vim', 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'] }],
