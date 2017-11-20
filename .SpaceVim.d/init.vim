@@ -21,6 +21,7 @@ call SpaceVim#layers#load('shell', {
     \ 'default_position': 'bottom',
     \ 'default_height': 30
     \ })
+call SpaceVim#layers#load('lsp')
 call SpaceVim#layers#load('lang#c')
 call SpaceVim#layers#load('lang#crystal')
 call SpaceVim#layers#load('lang#go')
@@ -77,14 +78,14 @@ let g:spacevim_enable_vimfiler_welcome       = 0
 let g:spacevim_enable_vimfiler_gitstatus     = 0
 
 let g:spacevim_disabled_plugins = [
-      \ 'neosnippet-snippets',
+      \ 'vim-snippets',
       \ 'neco-look',
       \ 'vim-diminactive',
       \ 'fcitx.vim',
       \ ]
 let g:spacevim_custom_plugins = [
       \ ['Shougo/context_filetype.vim'],
-      \ ['ejholmes/vim-forcedotcom',      { 'on_ft': ['apex', 'visualforce', 'apexlog'] }],
+      \ ['ejholmes/vim-forcedotcom'],
       \ ['osyo-manga/vim-precious',       { 'depends': 'context_filetype.vim' }],
       \ ['thinca/vim-template'],
       \ ['tyru/open-browser-github.vim',  { 'depends': 'open-browser.vim', 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'] }],
@@ -111,15 +112,15 @@ let g:onedark_terminal_italics = 1
 " }}}
 
 " mhinz/vim-signify {{{
-let g:signify_update_on_bufenter    = 1
-let g:signify_update_on_focusgained = 1
-let g:signify_sign_show_count       = 0
+let g:gitgutter_sign_added = '▌'
+let g:gitgutter_sign_modified = '▌'
+let g:gitgutter_sign_removed = ''
+let g:gitgutter_sign_modified_removed = '▌'
 
-let g:signify_sign_add               = '▌'
-let g:signify_sign_delete            = ''
-let g:signify_sign_delete_first_line = g:signify_sign_delete
-let g:signify_sign_change            = '▌'
-let g:signify_sign_changedelete      = g:signify_sign_change
+let g:gitgutter_map_keys = 0
+
+nmap [c <Plug>GitGutterPrevHunk
+nmap ]c <Plug>GitGutterNextHunk
 " }}}
 
 " osyo-manga/vim-precious {{{
@@ -217,13 +218,12 @@ endif
 " }}}
 
 " SpaceVim/LanguageClient-neovim {{{
-let g:LanguageClient_diagnosticsDisplay = {
-      \ 1: { 'name': 'Error',        'texthl': 'ALEError',    'signText': g:spacevim_error_symbol,    'signTexthl': 'ALEErrorSign' },
-      \ 2: { 'name': 'Warning',      'texthl': 'ALEWarning',  'signText': g:spacevim_warning_symbol,  'signTexthl': 'ALEWarningSign' },
-      \ 3: { 'name': 'Information',  'texthl': 'ALEInfo',     'signText': g:spacevim_info_symbol,     'signTexthl': 'ALEInfoSign' },
-      \ 4: { 'name': 'Hint',         'texthl': 'ALEInfo',     'signText': g:spacevim_info_symbol,     'signTexthl': 'ALEInfoSign' },
-      \ }
 let g:LanguageClient_serverCommands = {
+      \ 'apex': ['java',
+      \ '-cp', expand('~/.SpaceVim.d/libexec/apex-jorje-lsp.jar'),
+      \ '-Ddebug.internal.errors=true',
+      \ '-Ddebug.semantic.errors=false',
+      \ 'apex.jorje.lsp.ApexLanguageServerLauncher'],
       \ 'css':        ['css-language-server', '--stdio'],
       \ 'dockerfile': ['docker-langserver', '--stdio'],
       \ 'go':         ['go-langserver'],
@@ -235,8 +235,6 @@ let g:LanguageClient_serverCommands = {
       \ 'scss':       ['css-language-server', '--stdio'],
       \ 'typescript': ['javascript-typescript-stdio'],
       \ }
-let g:LanguageClient_autoStart = 1
-let g:LanguageClient_selectionUI = 'location-list'
 " }}}
 
 " ternjs/tern_for_vim {{{
