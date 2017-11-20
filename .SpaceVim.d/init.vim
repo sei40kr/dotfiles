@@ -216,6 +216,16 @@ if has('mac')
 endif
 " }}}
 
+" SpaceVim/LanguageClient-neovim {{{
+let g:LanguageClient_serverCommands = {
+      \ 'apex': ['java',
+      \ '-cp', expand('~/.SpaceVim.d/libexec/apex-jorje-lsp.jar'),
+      \ '-Ddebug.internal.errors=true',
+      \ '-Ddebug.semantic.errors=false',
+      \ 'apex.jorje.lsp.ApexLanguageServerLauncher']
+      \ }
+" }}}
+
 " ternjs/tern_for_vim {{{
 let g:tern_show_argument_hints = 'on_hold'
 let g:tern_show_signature_in_pum = 1
