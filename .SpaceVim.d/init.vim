@@ -141,6 +141,10 @@ let g:precious_enable_switch_CursorHold = {
 let g:used_javascript_libs = 'jquery,underscore,react,requirejs,d3'
 " }}}
 
+" pangloss/vim-javascript {{{
+let g:javascript_plugin_flow = 1
+" }}}
+
 " sbdchd/neoformat {{{
 let g:neoformat_run_all_formatters = 1
 
