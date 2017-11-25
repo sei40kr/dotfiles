@@ -4,7 +4,7 @@
 # author: Seong Yong-ju ( @sei40kr )
 
 # junegunn/fzf {{{
-FZF_DEFAULT_COMMAND='rg --files --hidden --follow -g ".git/*"'
+FZF_DEFAULT_COMMAND='rg --files --hidden --follow --iglob "!.git/**"'
 FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 FZF_ALT_C_COMMAND='bfs -nocolor -hidden -type d -O4 | sed "s/\.\///"'
 
