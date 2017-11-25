@@ -148,33 +148,20 @@ let g:javascript_plugin_flow = 1
 " sbdchd/neoformat {{{
 let g:neoformat_run_all_formatters = 1
 
-let g:neoformat_enabled_c          = []
-let g:neoformat_enabled_cpp        = []
-let g:neoformat_enabled_crystal    = ['crystalformat']
-let g:neoformat_enabled_css        = ['prettier']
-let g:neoformat_enabled_csv        = []
-let g:neoformat_enabled_go         = ['goimports']
+let g:neoformat_enabled_c          = ['clang-format']
+let g:neoformat_enabled_cpp        = ['clang-format']
+let g:neoformat_enabled_css        = ['stylefmt']
+let g:neoformat_enabled_go         = ['gofmt', 'goimports']
 let g:neoformat_enabled_graphql    = ['prettier']
-let g:neoformat_enabled_haskell    = ['stylishhaskell', 'hindent']
-let g:neoformat_enabled_html       = ['tidy']
+let g:neoformat_enabled_haskell    = ['stylishhaskell', 'hindent', 'hfmt']
 let g:neoformat_enabled_java       = ['googlefmt']
 let g:neoformat_enabled_javascript = ['prettiereslint']
 let g:neoformat_enabled_json       = ['prettier']
-let g:neoformat_enabled_kotlin     = ['ktlint']
-let g:neoformat_enabled_less       = []
-let g:neoformat_enabled_markdown   = ['prettier']
-let g:neoformat_enabled_perl       = ['perltidy']
-let g:neoformat_enabled_php        = ['phpbeautifier', 'phpcsfixer']
-let g:neoformat_enabled_python     = []
-let g:neoformat_enabled_ruby       = []
-let g:neoformat_enabled_rust       = ['rustfmt']
-let g:neoformat_enabled_sass       = []
-let g:neoformat_enabled_scss       = ['prettier']
-let g:neoformat_enabled_sh         = ['shfmt']
-let g:neoformat_enabled_sql        = ['sqlformat']
+let g:neoformat_enabled_markdown   = ['remark']
+let g:neoformat_enabled_python     = ['autopep8', 'yapf', 'isort']
+let g:neoformat_enabled_ruby       = ['rubocop']
+let g:neoformat_enabled_scss       = ['stylefmt']
 let g:neoformat_enabled_typescript = ['prettier', 'tsfmt']
-let g:neoformat_enabled_xhtml      = ['tidy']
-let g:neoformat_enabled_xml        = ['tidy']
 " }}}
 
 " Shougo/context_filetype.vim {{{
@@ -283,18 +270,18 @@ endfunction
 " w0rp/ale {{{
 let g:ale_sign_info = g:spacevim_info_symbol
 let g:ale_fixers = {
-      \ 'c'          : ['clang-format'],
-      \ 'cpp'        : ['clang-format'],
-      \ 'css'        : ['prettier', 'stylelint'],
-      \ 'go'         : ['gofmt'],
-      \ 'haskell'    : ['hfmt'],
-      \ 'javascript' : ['prettier', 'eslint'],
-      \ 'json'       : ['prettier'],
-      \ 'python'     : ['autopep8', 'yapf', 'isort'],
-      \ 'ruby'       : ['rubocop'],
-      \ 'sass'       : ['prettier', 'stylelint'],
-      \ 'scss'       : ['prettier', 'stylelint'],
-      \ 'typescript' : ['prettier'],
+      \ 'c'          : [],
+      \ 'cpp'        : [],
+      \ 'css'        : [],
+      \ 'go'         : [],
+      \ 'haskell'    : [],
+      \ 'javascript' : [],
+      \ 'json'       : [],
+      \ 'python'     : [],
+      \ 'ruby'       : [],
+      \ 'sass'       : [],
+      \ 'scss'       : [],
+      \ 'typescript' : [],
       \ }
 let g:ale_linters = {
       \ 'ansible'    : ['ansible-lint'],
