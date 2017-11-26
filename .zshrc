@@ -51,6 +51,7 @@ then
     export fpath=(
       "${HOME}/.zsh/completions"
       "${HOME}/.zsh/functions"
+      "${fpath[@]}"
     )
   fi
 
