@@ -91,10 +91,6 @@ let g:spacevim_custom_plugins = [
       \ ['tyru/open-browser-github.vim',  { 'depends': 'open-browser.vim', 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'] }],
       \ ]
 
-" easymotion/vim-easymotion {{{
-let g:EasyMotion_keys = 'sdghklwertyuioxcvbnmfj'
-" }}}
-
 " elzr/vim-json {{{
 let g:vim_json_syntax_conceal = 0
 " }}}
