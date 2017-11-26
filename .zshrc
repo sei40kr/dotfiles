@@ -99,7 +99,8 @@ zplugin snippet 'OMZ::lib/compfix.zsh'
 zplugin snippet "${HOMEBREW_PREFIX}/opt/fzf/shell/completion.zsh"
 zplugin snippet "${HOME}/.zsh/rc/50_options.zsh"
 
-zplugin ice pick'async.zsh'; zplugin light 'mafredri/zsh-async'
+zplugin ice pick'async.zsh'
+zplugin light 'mafredri/zsh-async'
 zplugin snippet "${HOME}/.zsh/rc/70_misc.zsh"
 
 zplugin snippet "${HOME}/.zsh/rc/80_custom.zsh"
@@ -121,7 +122,8 @@ zplugin light 'djui/alias-tips'
 zplugin light 'mollifier/anyframe'
 zplugin light 'mollifier/cd-gitroot'
 zplugin light 'sei40kr/zsh-tmux-rename'
-zplugin ice pick'k.sh'; zplugin light 'supercrabtree/k'
+zplugin ice pick'k.sh'
+zplugin light 'supercrabtree/k'
 
 zplugin snippet 'OMZ::plugins/dotenv/dotenv.plugin.zsh'
 zplugin snippet 'OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
@@ -132,16 +134,28 @@ zplugin snippet 'OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh'
 # }}}
 
 # zplugin: Commands {{{
-zplugin ice from'gh-r' as'command' mv'gotcha_* -> gotcha'; zplugin light 'b4b4r07/gotcha'
-zplugin ice as'command' cp'httpstat.sh -> httpstat' pick'httpstat'; zplugin light 'b4b4r07/httpstat'
+zplugin ice from'gh-r' as'command' mv'gotcha_* -> gotcha'
+zplugin light 'b4b4r07/gotcha'
+zplugin ice as'command' cp'httpstat.sh -> httpstat' pick'httpstat'
+zplugin light 'b4b4r07/httpstat'
 
-zplugin snippet --command "${HOMEBREW_PREFIX}/share/git-core/contrib/diff-highlight/diff-highlight"
+zplugin snippet --command \
+    'https://raw.githubusercontent.com/jonas/tig/master/contrib/tig-pick'
+zplugin snippet --command \
+    'https://raw.githubusercontent.com/Russell91/sshrc/master/moshrc'
+zplugin snippet --command \
+    'https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc'
+zplugin snippet --command \
+    "${HOMEBREW_PREFIX}/share/git-core/contrib/diff-highlight/diff-highlight"
 # }}}
 
 # zplugin: Completions {{{
-zplugin ice pick''; zplugin light 'jsforce/jsforce-zsh-completions'
-zplugin ice pick''; zplugin light 'robbyrussell/oh-my-zsh'
-zplugin ice pick''; zplugin light 'zsh-users/zsh-completions'
+zplugin ice pick''
+zplugin light 'jsforce/jsforce-zsh-completions'
+zplugin ice pick''
+zplugin light 'robbyrussell/oh-my-zsh'
+zplugin ice pick''
+zplugin light 'zsh-users/zsh-completions'
 # }}}
 
 compinit
@@ -151,7 +165,9 @@ zplugin cdreplay -q
 zplugin light 'zdharma/fast-syntax-highlighting'
 zplugin light 'zsh-users/zsh-autosuggestions'
 
-# zplugin ice pick'spaceship.zsh'; zplugin light 'denysdovhan/spaceship-zsh-theme'
-zplugin ice pick'pure.zsh'; zplugin light 'sindresorhus/pure'
+# zplugin ice pick'spaceship.zsh'
+# zplugin light 'denysdovhan/spaceship-zsh-theme'
+zplugin ice pick'pure.zsh'
+zplugin light 'sindresorhus/pure'
 # }}}
 
