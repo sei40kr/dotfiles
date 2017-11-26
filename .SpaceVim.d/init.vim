@@ -114,7 +114,7 @@ let g:onedark_terminal_italics = 1
 " mhinz/vim-signify {{{
 let g:gitgutter_sign_added = '▌'
 let g:gitgutter_sign_modified = '▌'
-let g:gitgutter_sign_removed = ''
+let g:gitgutter_sign_removed = '➡'
 let g:gitgutter_sign_modified_removed = '▌'
 
 let g:gitgutter_map_keys = 0
