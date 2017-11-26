@@ -60,9 +60,10 @@ let g:spacevim_enable_neomake                = 0
 let g:spacevim_enable_ale                    = 1
 let g:spacevim_statusline_separator          = 'nil'
 let g:spacevim_statusline_inactive_separator = 'nil'
-let g:spacevim_error_symbol                  = ''
-let g:spacevim_warning_symbol                = ''
-let g:spacevim_info_symbol                   = ''
+let g:spacevim_statusline_unicode_symbols = 0
+let g:spacevim_error_symbol                  = '!'
+let g:spacevim_warning_symbol                = '?'
+let g:spacevim_info_symbol                   = 'i'
 let g:spacevim_terminal_cursor_shape         = 1
 let g:spacevim_vim_help_language             = 'ja'
 let g:spacevim_language                      = 'ja_JP.UTF-8'
@@ -73,9 +74,11 @@ let g:spacevim_enable_debug                  = 0
 let g:spacevim_buffer_index_type             = 4
 let g:spacevim_windows_index_type            = 3
 let g:spacevim_github_username               = 'sei40kr'
-let g:spacevim_enable_powerline_fonts        = 1
+let g:spacevim_enable_powerline_fonts        = 0
 let g:spacevim_enable_vimfiler_welcome       = 0
 let g:spacevim_enable_vimfiler_gitstatus     = 0
+let g:spacevim_buffer_index_type = 4
+let g:spacevim_windows_index_type = 3
 
 let g:spacevim_disabled_plugins = [
       \ 'vim-snippets',
@@ -108,10 +111,10 @@ let g:onedark_terminal_italics = 1
 " }}}
 
 " mhinz/vim-signify {{{
-let g:gitgutter_sign_added = '▌'
-let g:gitgutter_sign_modified = '▌'
-let g:gitgutter_sign_removed = '➡'
-let g:gitgutter_sign_modified_removed = '▌'
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_modified_removed = '~'
 
 let g:gitgutter_map_keys = 0
 
