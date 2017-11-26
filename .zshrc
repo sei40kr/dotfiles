@@ -13,8 +13,6 @@ then
     HOMEBREW_PREFIX='/usr/local'
   fi
 
-  typeset -U path PATH
-
   if [[ -n "$HOMEBREW_PREFIX" ]]
   then
     export HOMEBREW_PREFIX
@@ -42,17 +40,16 @@ then
     "${HOME}/.cargo/bin"(N-/)
     "${path[@]}"
   )
-  export path
-
-  typeset -U fpath PATH
+  export PATH
 
   if [[ -d "${HOME}/.zsh" ]]
   then
-    export fpath=(
+    fpath=(
       "${HOME}/.zsh/completions"
       "${HOME}/.zsh/functions"
       "${fpath[@]}"
     )
+    export FPATH
   fi
 
   if [[ "${+commands[tmux]}" == 1 ]]
