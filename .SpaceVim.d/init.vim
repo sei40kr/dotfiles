@@ -60,9 +60,10 @@ let g:spacevim_enable_neomake = 0
 let g:spacevim_enable_ale = 1
 let g:spacevim_statusline_separator = 'nil'
 let g:spacevim_statusline_inactive_separator = 'nil'
-let g:spacevim_error_symbol = ''
-let g:spacevim_warning_symbol = ''
-let g:spacevim_info_symbol = ''
+let g:spacevim_statusline_unicode_symbols = 0
+let g:spacevim_error_symbol = '!'
+let g:spacevim_warning_symbol = '?'
+let g:spacevim_info_symbol = 'i'
 let g:spacevim_terminal_cursor_shape = 1
 let g:spacevim_vim_help_language = 'ja'
 let g:spacevim_language = 'ja_JP.UTF-8'
@@ -73,7 +74,7 @@ let g:spacevim_enable_debug = 0
 let g:spacevim_buffer_index_type = 4
 let g:spacevim_windows_index_type = 3
 let g:spacevim_github_username = 'sei40kr'
-let g:spacevim_enable_powerline_fonts = 1
+let g:spacevim_enable_powerline_fonts = 0
 let g:spacevim_enable_vimfiler_welcome = 0
 let g:spacevim_enable_vimfiler_gitstatus = 0
 
@@ -90,10 +91,6 @@ let g:spacevim_custom_plugins = [
       \ ['thinca/vim-template'],
       \ ['tyru/open-browser-github.vim',  { 'depends': 'open-browser.vim', 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'] }],
       \ ]
-
-" easymotion/vim-easymotion {{{
-let g:EasyMotion_keys = 'sdghklwertyuioxcvbnmfj'
-" }}}
 
 " elzr/vim-json {{{
 let g:vim_json_syntax_conceal = 0
@@ -112,10 +109,10 @@ let g:onedark_terminal_italics = 1
 " }}}
 
 " mhinz/vim-signify {{{
-let g:gitgutter_sign_added = '▌'
-let g:gitgutter_sign_modified = '▌'
-let g:gitgutter_sign_removed = ''
-let g:gitgutter_sign_modified_removed = '▌'
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_removed = '-'
+let g:gitgutter_sign_modified_removed = '~'
 
 let g:gitgutter_map_keys = 0
 
@@ -309,13 +306,13 @@ nnoremap <silent> ]q :ALENext<CR>
 " }}}
 
 " Yggdroot/indentLine {{{
-let g:indentLine_char = '▏'
-let g:indentLine_color_term = 236
-let g:indentLine_bgcolor_term = 'NONE'
-let g:indentLine_color_gui = '#2c323c'
-let g:indentLine_bgcolor_gui = 'NONE'
-let g:indentLine_fileTypeExclude = []
-let g:indentLine_setConceal = 0
+let g:indentLine_char = ' '
+let g:indentLine_first_char = ' '
+let g:indentLine_color_term = 'NONE'
+let g:indentLine_bgcolor_term = 236
+let g:indentLine_color_gui = 'NONE'
+let g:indentLine_bgcolor_gui = '#2c323c'
+let g:indentLine_showFirstIndentLevel = 1
 " }}}
 
 augroup SpaceVim_d_colorscheme
