@@ -80,6 +80,14 @@ alias got='go test'
 alias gov='go vet'
 # }}}
 
+# jonas/tig {{{
+alias tig='env TERM="screen-256color-italic" tig'
+
+alias tis='tig status'
+alias til='tig log'
+alias tib='tig blame -C'
+# }}}
+
 # mvn {{{
 alias mvncie='mvn clean install eclipse:eclipse'
 alias mvnci='mvn clean install'
@@ -216,12 +224,6 @@ alias rsync-copy="rsync -avz --progress -h"
 alias rsync-move="rsync -avz --progress -h --remove-source-files"
 alias rsync-update="rsync -avzu --progress -h"
 alias rsync-synchronize="rsync -avzu --delete --progress -h"
-# }}}
-
-# tig {{{
-alias tis='tig status'
-alias til='tig log'
-alias tib='tig blame -C'
 # }}}
 
 # yarn {{{
