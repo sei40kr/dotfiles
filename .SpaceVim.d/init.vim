@@ -182,7 +182,7 @@ let g:neosnippet#disable_runtime_snippets = {
 " }}}
 
 " Shougo/vimfiler.vim {{{
-let g:vimfiler_tree_indentation   = 1
+let g:vimfiler_tree_indentation   = 2
 let g:vimfiler_tree_leaf_icon     = ''
 let g:vimfiler_tree_opened_icon   = '-'
 let g:vimfiler_tree_closed_icon   = '+'
