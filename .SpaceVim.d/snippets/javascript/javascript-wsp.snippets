@@ -1,0 +1,9 @@
+snippet api
+	Api.invoke(req)
+			.then(res => dispatch(${1:fetchSuccess}(res)))
+			.catch(err => dispatch(catchApiError(err, { isContinuable: ${2:true} })))
+			.then(() => dispatch(loadingEnd()))
+snippet msg
+	msg().${0}
+# vi: noet sw=2 cc=80
+
