@@ -1,3 +1,8 @@
+snippet action
+	(${1}) => ({
+		type: '${2:actionType}',
+		payload: {${3}},
+	})${0}
 snippet reducer
 	(state = ${1:initialState}, action) => {
 		switch (action.type) {
