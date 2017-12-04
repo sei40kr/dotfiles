@@ -3,6 +3,17 @@ snippet api
 			.then(res => dispatch(${1:fetchSuccess}(res)))
 			.catch(err => dispatch(catchApiError(err, { isContinuable: ${2:true} })))
 			.then(() => dispatch(loadingEnd()))
+snippet converter
+	${1:res} => ({
+		allIds: $1.map(${2:item} => $2.${3:id}),
+		byId: Object.assign({}, ...$1.map($2 => ({ [$2.$3]: $2 })),
+	})${0}
+snippet selector
+	createSelector(
+		state => state.${1}.allIds,
+		state => state.$1.byId,
+		(allIds, byId) => allIds.map(id => byId[id])
+	)${0}
 snippet msg
 	msg().${0}
 # vi: noet sw=2 cc=80
