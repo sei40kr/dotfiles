@@ -1,0 +1,31 @@
+snippet proptypes
+	static get propTypes() {
+		return {
+			${1}: PropTypes.${2:type},
+		};
+	}
+snippet defaultprops
+	static get defaultProps() {
+		return {
+			${1}: PropTypes.${2:type},
+		};
+	}
+snippet component
+	class ${1:ClassName} extends React.Component {
+		render() {
+			return (
+				${0:<div />}
+			);
+		}
+	}
+snippet render
+	render() {
+		return (
+			${1:<div />}
+		);
+	}
+snippet props i
+	this.props.${1}
+snippet state i
+	this.state.${1}
+# vi: noet sw=2 cc=80
