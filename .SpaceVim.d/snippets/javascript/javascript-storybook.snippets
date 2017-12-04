@@ -1,0 +1,17 @@
+snippet story
+	storiesOf('${1:componentName}')
+			.addDecorator(checkA11y)
+			.add(
+				'$1',
+				withInfo({
+					${2}
+				})
+			)${0}
+snippet add
+	.add(
+		'$1',
+		withInfo({
+			${2}
+		})
+	)${0}
+# vi: noet sw=2 cc=80
