@@ -1,3 +1,11 @@
+snippet component
+	class ${1:ClassName} extends React.Component {
+		render() {
+			return (
+				${0:<div />}
+			);
+		}
+	}
 snippet proptypes
 	static get propTypes() {
 		return {
@@ -10,22 +18,16 @@ snippet defaultprops
 			${1}: PropTypes.${2:type},
 		};
 	}
-snippet component
-	class ${1:ClassName} extends React.Component {
-		render() {
-			return (
-				${0:<div />}
-			);
-		}
-	}
+snippet props
+	this.props.${1}
+snippet state
+	this.state.${1}
 snippet render
 	render() {
 		return (
 			${1:<div />}
 		);
 	}
-snippet props i
-	this.props.${1}
-snippet state i
-	this.state.${1}
+snippet cssroot
+	\${COMPONENT_ROOT}${0}
 # vi: noet sw=2 cc=80
