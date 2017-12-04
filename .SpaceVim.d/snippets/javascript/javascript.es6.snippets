@@ -1,0 +1,23 @@
+snippet const
+	const ${1} = ${0};
+snippet constfunc
+	const ${1:function_name} = (${2}) => {
+		${0:${VISUAL}}
+	}
+snippet constsym
+	const ${1} = Symbol('${0}');
+snippet let
+	let ${1} = ${0};
+snippet class
+	class ${1} {
+		${0:${VISUAL}}
+	}
+snippet subclass
+	class ${1} extends ${2} {
+		${0:${VISUAL}}
+	}
+snippet ctor
+	constructor(${1}) {
+		${0:${VISUAL}}
+	}
+# vi: noet sw=2 cc=80
