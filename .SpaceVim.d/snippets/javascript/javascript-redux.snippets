@@ -1,0 +1,21 @@
+snippet reducer
+	(state = ${1:initialState}, action) => {
+		switch (action.type) {
+			${0}
+
+			default:
+				return state;
+		}
+	}
+snippet statetoprops
+	const mapStateToProps = (state${1:, ownProps}) => ({
+		${0}
+	});
+snippet dispatchtoprops
+	const mapDispatchToProps = (dispatch${1:, ownProps}) => ({
+		${0}
+	});
+snippet connect
+	connect(mapStateToProps, mapDispatchToProps${1:, mergeProps})(${0:componentClass})
+# vi: noet sw=2 cc=80
+
