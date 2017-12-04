@@ -27,7 +27,7 @@ call SpaceVim#layers#load('lang#crystal')
 call SpaceVim#layers#load('lang#go')
 call SpaceVim#layers#load('lang#haskell')
 call SpaceVim#layers#load('lang#java')
-call SpaceVim#layers#load('lang#javascript', { 'autofix': 1 })
+call SpaceVim#layers#load('lang#javascript')
 call SpaceVim#layers#load('lang#json')
 call SpaceVim#layers#load('lang#kotlin')
 call SpaceVim#layers#load('lang#perl')
@@ -86,6 +86,7 @@ let g:spacevim_disabled_plugins = [
 let g:spacevim_custom_plugins = [
       \ ['Shougo/context_filetype.vim'],
       \ ['ejholmes/vim-forcedotcom'],
+      \ ['moll/vim-node', { 'on_ft': 'javascript' }],
       \ ['osyo-manga/vim-precious',       { 'depends': 'context_filetype.vim' }],
       \ ['thinca/vim-template'],
       \ ['tyru/open-browser-github.vim',  { 'depends': 'open-browser.vim', 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'] }],
@@ -181,7 +182,7 @@ let g:neosnippet#disable_runtime_snippets = {
 " }}}
 
 " Shougo/vimfiler.vim {{{
-let g:vimfiler_tree_indentation   = 1
+let g:vimfiler_tree_indentation   = 2
 let g:vimfiler_tree_leaf_icon     = ''
 let g:vimfiler_tree_opened_icon   = '-'
 let g:vimfiler_tree_closed_icon   = '+'
