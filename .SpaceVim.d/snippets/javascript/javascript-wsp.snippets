@@ -6,7 +6,7 @@ snippet api
 snippet converter
 	${1:res} => ({
 		allIds: $1.map(${2:item} => $2.${3:id}),
-		byId: Object.assign({}, ...$1.map($2 => ({ [$2.$3]: $2 })),
+		byId: Object.assign({}, ...$1.map($2 => ({ [$2.$3]: $2 }))),
 	})${0}
 snippet selector
 	createSelector(
