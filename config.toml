@@ -2,6 +2,7 @@ repos = [
     'github.com/golang/lint/golint',
     'github.com/heroku/force',
     'github.com/heppu/gkill',
+    'github.com/jackc/sqlfmt',
     'github.com/nsf/gocode',
     'github.com/sourcegraph/go-langserver',
     'golang.org/x/tools/cmd/goimports',
