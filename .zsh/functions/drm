@@ -1,0 +1,12 @@
+#autoload
+
+function drm() {
+  docker container ls \
+      | fzf --header-lines=1 --multi --reverse \
+      | perl -alne '{ print $F[0] }' \
+      | xargs docker rm
+}
+
+drm "$@"
+
+# vi: ft=zsh et sw=2 cc=80
