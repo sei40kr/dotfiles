@@ -331,6 +331,7 @@ augroup SpaceVim_d_tools
   autocmd FocusLost * set nocursorline
 augroup END
 
+set autochdir
 set autoindent expandtab smartindent smarttab
 set autoread
 set backspace=indent,eol,start
