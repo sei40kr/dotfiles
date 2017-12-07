@@ -74,7 +74,7 @@ let g:spacevim_enable_debug = 0
 let g:spacevim_buffer_index_type = 4
 let g:spacevim_windows_index_type = 3
 let g:spacevim_github_username = 'sei40kr'
-let g:spacevim_enable_powerline_fonts = 0
+let g:spacevim_enable_powerline_fonts = 1
 let g:spacevim_enable_vimfiler_welcome = 0
 let g:spacevim_enable_vimfiler_gitstatus = 0
 
