@@ -54,7 +54,9 @@ then
 
   if [[ "${+commands[tmux]}" == 1 ]]
   then
-    tmux new-session
+    tmux has-session -t global 2>/dev/null \
+      || tmux new-session -ds global
+    tmux attach-session -t global
     exit
   fi
 fi
