@@ -208,7 +208,7 @@ endif
 " SpaceVim/LanguageClient-neovim {{{
 let g:LanguageClient_serverCommands = {
       \ 'apex': ['java',
-      \ '-cp', expand('~/.SpaceVim.d/libexec/apex-jorje-lsp.jar'),
+      \ '-cp', expand('~/.SpaceVim.d/lib/apex-jorje-lsp.jar'),
       \ '-Ddebug.internal.errors=true',
       \ '-Ddebug.semantic.errors=false',
       \ 'apex.jorje.lsp.ApexLanguageServerLauncher'],
