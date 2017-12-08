@@ -99,8 +99,6 @@ zplugin snippet 'OMZ::lib/compfix.zsh'
 zplugin snippet "${HOMEBREW_PREFIX}/opt/fzf/shell/completion.zsh"
 zplugin snippet "${HOME}/.zsh/rc/50_options.zsh"
 
-zplugin ice pick'async.zsh'
-zplugin light 'mafredri/zsh-async'
 zplugin snippet "${HOME}/.zsh/rc/70_misc.zsh"
 
 zplugin snippet "${HOME}/.zsh/rc/80_custom.zsh"
@@ -165,9 +163,7 @@ zplugin cdreplay -q
 zplugin light 'zdharma/fast-syntax-highlighting'
 zplugin light 'zsh-users/zsh-autosuggestions'
 
-# zplugin ice pick'spaceship.zsh'
-# zplugin light 'denysdovhan/spaceship-zsh-theme'
-zplugin ice pick'pure.zsh'
-zplugin light 'sindresorhus/pure'
+zplugin ice pick'spaceship.zsh'
+zplugin light 'denysdovhan/spaceship-zsh-theme'
 # }}}
 
