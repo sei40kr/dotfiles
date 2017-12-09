@@ -108,7 +108,9 @@ compinit
 zplugin cdreplay -q
 
 # zplugin: Plugins loaded after compinit {{{
+zplugin ice wait'1' atload'_zsh_highlight'
 zplugin light 'zdharma/fast-syntax-highlighting'
+zplugin ice wait'1' atload'_zsh_autosuggest_start'
 zplugin light 'zsh-users/zsh-autosuggestions'
 
 zplugin ice pick'spaceship.zsh'
