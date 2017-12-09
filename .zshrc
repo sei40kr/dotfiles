@@ -5,60 +5,8 @@
 
 if [[ -z "$TMUX" ]]
 then
-  if [[ -d "${HOME}/.linuxbrew" ]]
-  then
-    HOMEBREW_PREFIX="${HOME}/.linuxbrew"
-  elif [[ -x '/usr/local/bin/brew' ]]
-  then
-    HOMEBREW_PREFIX='/usr/local'
-  fi
-
-  if [[ -n "$HOMEBREW_PREFIX" ]]
-  then
-    export HOMEBREW_PREFIX
-    path=( "${HOMEBREW_PREFIX}/bin" "${path[@]}" )
-
-    export XDG_DATA_DIRS="${HOMEBREW_PREFIX}/share:${XDG_DATA_DIRS}"
-  fi
-  export XDG_CONFIG_HOME="${HOME}/.config"
-
-  if [[ -d "${HOME}/.anyenv" ]]
-  then
-    export ANYENV_ROOT="${HOME}/.anyenv"
-    path=( "${ANYENV_ROOT}/bin" "${path[@]}" )
-  fi
-
-  if [[ -d "${HOME}/.go" ]]
-  then
-    export GOPATH="${HOME}/.go"
-    path=( "${GOPATH}/bin" "${path[@]}" )
-  fi
-
-  path=(
-    "${HOME}/.local/bin"(N-/)
-    "${HOME}/.cabal/bin"(N-/)
-    "${HOME}/.cargo/bin"(N-/)
-    "${path[@]}"
-  )
-  export PATH
-
-  if [[ -d "${HOME}/.zsh" ]]
-  then
-    fpath=(
-      "${HOME}/.zsh/completions"
-      "${HOME}/.zsh/functions"
-      "${fpath[@]}"
-    )
-    export FPATH
-  fi
-
-  if [[ "${+commands[tmux]}" == 1 ]]
-  then
-    tmux has-session -t global 2>/dev/null \
-      || tmux new-session -ds global
-    tmux attach-session -t global
-    exit
-  fi
+  . "${HOME}/.zsh/rc/exports.rc.zsh"
+  . "${HOME}/.zsh/rc/tmux.rc.zsh"
 fi
 
 zmodload zsh/zpty
