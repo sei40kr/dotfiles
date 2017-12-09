@@ -25,9 +25,9 @@ call SpaceVim#layers#load('lsp')
 call SpaceVim#layers#load('lang#c')
 call SpaceVim#layers#load('lang#crystal')
 call SpaceVim#layers#load('lang#go')
-call SpaceVim#layers#load('lang#haskell')
+call SpaceVim#layers#load('lang#haskell', { 'use_lsp': 1 })
 call SpaceVim#layers#load('lang#java')
-call SpaceVim#layers#load('lang#javascript')
+call SpaceVim#layers#load('lang#javascript', { 'use_lsp': 1 })
 call SpaceVim#layers#load('lang#json')
 call SpaceVim#layers#load('lang#kotlin')
 call SpaceVim#layers#load('lang#perl')
@@ -206,23 +206,21 @@ endif
 " }}}
 
 " SpaceVim/LanguageClient-neovim {{{
-let g:LanguageClient_serverCommands = {
-      \ 'apex': ['java',
-      \ '-cp', expand('~/.SpaceVim.d/lib/apex-jorje-lsp.jar'),
-      \ '-Ddebug.internal.errors=true',
-      \ '-Ddebug.semantic.errors=false',
-      \ 'apex.jorje.lsp.ApexLanguageServerLauncher'],
-      \ 'css': ['css-language-server', '--stdio'],
-      \ 'dockerfile': ['docker-langserver', '--stdio'],
-      \ 'go': ['go-langserver'],
-      \ 'haskell': ['hie', '--lsp'],
-      \ 'javascript': ['javascript-typescript-stdio'],
-      \ 'less': ['css-language-server', '--stdio'],
-      \ 'python': ['pyls'],
-      \ 'sass': ['css-language-server', '--stdio'],
-      \ 'scss': ['css-language-server', '--stdio'],
-      \ 'typescript': ['javascript-typescript-stdio'],
-      \ }
+" let g:LanguageClient_serverCommands = {
+"       \ 'apex': ['java',
+"       \ '-cp', expand('~/.SpaceVim.d/lib/apex-jorje-lsp.jar'),
+"       \ '-Ddebug.internal.errors=true',
+"       \ '-Ddebug.semantic.errors=false',
+"       \ 'apex.jorje.lsp.ApexLanguageServerLauncher'],
+"       \ 'css': ['css-language-server', '--stdio'],
+"       \ 'dockerfile': ['docker-langserver', '--stdio'],
+"       \ 'go': ['go-langserver'],
+"       \ 'less': ['css-language-server', '--stdio'],
+"       \ 'python': ['pyls'],
+"       \ 'sass': ['css-language-server', '--stdio'],
+"       \ 'scss': ['css-language-server', '--stdio'],
+"       \ 'typescript': ['javascript-typescript-stdio'],
+"       \ }
 " }}}
 
 " ternjs/tern_for_vim {{{
