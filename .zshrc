@@ -99,8 +99,6 @@ zplugin snippet --command \
 zplugin ice pick''
 zplugin light 'jsforce/jsforce-zsh-completions'
 zplugin ice pick''
-zplugin light 'robbyrussell/oh-my-zsh'
-zplugin ice pick''
 zplugin light 'zsh-users/zsh-completions'
 # }}}
 
