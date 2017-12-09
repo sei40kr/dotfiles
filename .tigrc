@@ -1,26 +1,88 @@
+# Tig default configuration
+#
+# Please see 'man tigrc' for a complete reference.
+
 source ~/.tig/rc/large-repo.tigrc
 source ~/.tig/rc/vim.tigrc
 
-set main-view  = id date author:email-user commit-title:graph=yes,refs=yes
-set blame-view = date:default author:email-user id:yes,color line-number:yes,interval=1 text
-set pager-view = line-number:yes,interval=1 text
-set stage-view = line-number:yes,interval=1 text
-set log-view   = line-number:yes,interval=1 text
-set blob-view  = line-number:yes,interval=1 text
-set diff-view  = line-number:yes,interval=1 text:yes,commit-title-overflow=no
+# Settings
+# --------
+# Most of these settings can be toggleable, either via the toggle-*
+# actions or via the option menu (bound to `o` by default).
 
-set line-graphics      = utf-8
-set tab-size           = 4
-set ignore-space       = at-eol
-set ignore-case        = true
-set split-view-height  = 80%
-set diff-highlight     = true
-set mouse              = true
+# View settings
+#
+# Supported column types and their options:
+#
+#   author
+#    - display (enum) [no|full|abbreviated|email|email-user]
+#					: Show author information?
+#   commit-title
+#    - display (bool)			: Show the commit title?
+#    - graph (enum) [no|v2|v1]		: Show the commit graph? (main view only)
+#    - refs (bool)			: Show branches, tags and remotes? (main view only)
+#    - overflow (boolint)		: Highlight overflows? Defaults to 50 when enabled.
+#
+#   date
+#    - display (enum) [no|default|relative|relative-compact|custom]
+#					: Show dates?
+#    - local (bool)			: Show local dates?
+#    - format (string)			: Custom strftime(3) format
+#
+#   file-name
+#    - display (enum) [no|always|auto]	: Show file names?
+#
+#   file-size
+#    - display (enum) [no|default|units]	: Show file sizes?
+#
+#   id
+#    - display (bool)			: Show commit/tree ID?
+#
+#   line-number
+#    - display (bool)			: Show line numbers?
+#    - interval (int)			: Interval between line numbers; defaults to 5
+#
+#   mode
+#    - display (bool)			: Show file modes?
+#
+#   status
+#    - display (enum) [no|short|long]	: Show status label?
+#
+#   text
+#    - display (bool)			: Show text?
+#    - commit-title-overflow (boolint)	: Highlight overflow in log and diff view?
+#
+# All columns also support a width option to configure the max width of
+# the column. Use zero (the default value) to auto-size the column based
+# on the content.
+
+set blame-view  = date:default author:email-user file-name:auto id:yes,color line-number:no,interval=5 text
+set grep-view   = file-name:no line-number:yes,interval=1 text
+set main-view   = line-number:no,interval=5 id date author:email-user commit-title:yes,graph,refs,overflow=no
+set refs-view   = line-number:no id:no date:default author:email-user ref commit-title
+set stash-view  = line-number:no,interval=5 id:no date:default author:email-user commit-title
+set status-view = line-number:no,interval=5 status:short file-name
+set tree-view   = line-number:no,interval=5 mode author:email-user file-size date:default id:no file-name
+
+# Pager based views
+set pager-view = line-number:no,interval=5 text
+set stage-view = line-number:no,interval=5 text
+set log-view   = line-number:no,interval=5 text
+set blob-view  = line-number:no,interval=5 text
+set diff-view  = line-number:no,interval=5 text:yes,commit-title-overflow=no
+
+# UI display settings
+set tab-size      = 4
+set line-graphics = utf-8
+
+# Settings controlling how content is read from Git
+set diff-highlight = true
+
+# Misc
+set refresh-mode = auto
+set ignore-case  = smart-case
+
 set editor-line-number = yes
-set refresh-mode       = auto
-
-bind generic gg none
-bind generic g  move-first-line
 
 bind status uu none
 bind status um none
@@ -29,8 +91,40 @@ bind status us none
 bind status u  status-update
 bind status !  status-revert
 
-bind generic f ?git fetch %(remote)
-bind main    f ?git fetch %(remote)
+# User-defined commands
+# ---------------------
+# These commands allow to run shell commands directly from within Tig.
+# Unless otherwise specified, commands are run in the foreground with
+# their console output shown (as if '!' was specified). When multiple
+# command options are specified their behavior are combined, e.g. "?<git
+# commit" will prompt the user whether to execute the command and will
+# exit Tig after completion.
+#
+#   !	Run the command in the foreground with output shown.
+#   @	Run the command in the background with no output.
+#   ?	Prompt the user before executing the command.
+#   <	Exit Tig after executing the command.
+#
+# User-defined commands can optionally refer to Tig's internal state
+# using the following variable names, which are substituted before
+# commands are run:
+#
+#   %(head)		The current ref ID. Defaults to HEAD
+#   %(commit)		The current commit ID.
+#   %(blob)		The current blob ID.
+#   %(branch)		The current branch name.
+#   %(remote)		The current remote name.
+#   %(tag)		The current tag name.
+#   %(stash)		The current stash name.
+#   %(directory)	The current directory path in the tree view;
+#			empty for the root directory.
+#   %(file)		The currently selected file.
+#   %(ref)		The reference given to blame or HEAD if undefined.
+#   %(revargs)		The revision arguments passed on the command line.
+#   %(fileargs)		The file arguments passed on the command line.
+#   %(cmdlineargs)	All other options passed on the command line.
+#   %(diffargs)		The diff options from `diff-options` or `TIG_DIFF_OPTS`
+#   %(prompt)		Prompt for the argument value.
 
 bind generic l ?git pull %(remote)
 bind main    l ?sh -c "git checkout %(branch) && git pull %(remote) --ff-only && git checkout -"
@@ -51,14 +145,22 @@ bind generic _  ?git reset --hard HEAD@{"%(prompt Enter HEAD@{} number: )"}
 bind diff  P ?git stash pop %(stash)
 bind stash P ?git stash pop %(stash)
 bind diff  A ?git stash apply %(stash)
-
-bind generic d none
 bind refs    d ?git branch -d %(branch)
 bind status  d ?git clean -d -f -- %(file)
 bind tree    d ?git rm %(file)
 bind main    D ?git clean -d -f
 bind status  D ?git clean -d -f
 bind refs    D ?sh -c "git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %"
+bind refs    dd ?git branch -d %(branch)
+bind status  dd ?git clean -d -f -- %(file)
+bind tree    dd ?git rm %(file)
+bind status D ?git clean -d -f
+bind refs   D ?sh -c "git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %"
+
+# Misc
+
+# Normal commands
+# ---------------
 
 bind main ! ?git revert %(commit)
 
@@ -69,4 +171,14 @@ bind main co ?git checkout %(branch)
 bind refs co ?git checkout %(branch)
 bind main co ?git checkout %(commit)
 
-color cursor black blue
+# View switching
+
+# Colors
+# ------
+
+color cursor 0 4
+color status default default
+color line-number 59 default
+color title-blur default default
+color title-focus default default
+
