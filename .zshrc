@@ -3,7 +3,7 @@
 # .zshrc
 # author: Seong Yong-ju ( @sei40kr )
 
-if [[ -z "$TMUX" ]]
+if [[ -z "$TMUX" ]] && [[ -z "$STY" ]]
 then
   . "${HOME}/.zsh/rc/exports.rc.zsh"
   . "${HOME}/.zsh/rc/tmux.rc.zsh"
