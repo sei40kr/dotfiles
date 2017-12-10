@@ -66,6 +66,14 @@ alias gemb='gem build *.gemspec'
 alias gemp='gem push *.gem'
 # }}}
 
+# git {{{
+gcd='git checkout dev'
+glud='git pull upstream dev'
+gmod='git merge origin/dev'
+gmud='git merge upstream/dev'
+grbd='git rebase dev'
+# }}}
+
 # golang {{{
 alias gob='go build'
 alias goc='go clean'
