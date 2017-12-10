@@ -148,8 +148,8 @@ let g:javascript_plugin_flow = 1
 " sbdchd/neoformat {{{
 let g:neoformat_run_all_formatters = 1
 
-let g:neoformat_enabled_c = ['clang-format']
-let g:neoformat_enabled_cpp = ['clang-format']
+let g:neoformat_enabled_c = ['clangformat']
+let g:neoformat_enabled_cpp = ['clangformat']
 let g:neoformat_enabled_css = ['stylefmt']
 let g:neoformat_enabled_go = ['gofmt', 'goimports']
 let g:neoformat_enabled_graphql = ['prettier']
