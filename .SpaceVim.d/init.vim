@@ -226,11 +226,6 @@ endif
 "       \ }
 " }}}
 
-" ternjs/tern_for_vim {{{
-let g:tern_show_argument_hints = 'on_hold'
-let g:tern_show_signature_in_pum = 1
-" }}}
-
 " thinca/vim-template {{{
 let g:template_basedir = expand('~/.SpaceVim.d/template')
 let g:template_files = 'template.*'
