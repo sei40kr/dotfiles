@@ -11,7 +11,6 @@ setopt auto_pushd
 setopt auto_param_keys
 setopt auto_param_slash
 setopt auto_resume
-setopt complete_aliases
 setopt equals
 setopt extended_history
 setopt glob_dots
