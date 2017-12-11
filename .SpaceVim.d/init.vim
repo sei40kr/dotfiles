@@ -322,9 +322,6 @@ augroup SpaceVim_d_tools
 
   autocmd InsertEnter * PreciousSwitch
   autocmd InsertLeave * PreciousReset
-
-  autocmd FocusGained * set cursorline
-  autocmd FocusLost * set nocursorline | redraw!
 augroup END
 
 set autochdir
