@@ -58,10 +58,6 @@ zplugin snippet "${HOME}/.zsh/rc/80_custom.zsh"
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='alias-tips: '
 # }}}
 
-# sindresorhus/pure {{{
-PURE_PROMPT_SYMBOL='➔'
-# }}}
-
 zplugin light 'b4b4r07/emoji-cli'
 # zplugin light 'b4b4r07/enhancd'
 zplugin light 'djui/alias-tips'
