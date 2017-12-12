@@ -1,10 +1,3 @@
-.env
-
-.importjs.js
-
-.tern-config
-.tern-project
-
 ### https://raw.github.com/github/gitignore/055194192edb9ace9bedf5e6bf6e49f6ab824c6e/Global/macOS.gitignore
 
 # General
