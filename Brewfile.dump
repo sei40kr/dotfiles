@@ -34,6 +34,7 @@ brew "proctools"
 brew "pyenv"
 brew "rbenv"
 brew "reattach-to-user-namespace"
+brew "yarn", args: ['without-node']
 brew "shellcheck"
 brew "tig"
 brew "tmux"
