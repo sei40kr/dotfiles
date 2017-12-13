@@ -19,7 +19,6 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 call SpaceVim#layers#load('operator')
 call SpaceVim#layers#load('incsearch')
-call SpaceVim#layers#load('tags')
 call SpaceVim#layers#load('shell', {
     \ 'default_position': 'bottom',
     \ 'default_height': 30
