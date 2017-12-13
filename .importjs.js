@@ -1,6 +1,6 @@
 module.exports = {
   excludes: ["**/build/**"],
   enviroments: ["browser", "jest"],
-  groupImports: true,
+  groupImports: false,
   sortImports: false
 };
