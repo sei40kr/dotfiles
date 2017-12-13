@@ -66,14 +66,6 @@ alias gemb='gem build *.gemspec'
 alias gemp='gem push *.gem'
 # }}}
 
-# git {{{
-gcd='git checkout dev'
-glud='git pull upstream dev'
-gmod='git merge origin/dev'
-gmud='git merge upstream/dev'
-grbd='git rebase dev'
-# }}}
-
 # golang {{{
 alias gob='go build'
 alias goc='go clean'
@@ -89,8 +81,6 @@ alias gov='go vet'
 # }}}
 
 # jonas/tig {{{
-alias tig='env TERM="screen-256color-italic" tig'
-
 alias tis='tig status'
 alias til='tig log'
 alias tib='tig blame -C'

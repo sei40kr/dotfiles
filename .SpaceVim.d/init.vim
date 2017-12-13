@@ -101,14 +101,6 @@ let g:diminactive_enable_focus = 1
 let g:vim_json_syntax_conceal = 0
 " }}}
 
-" itchyny/calendar.vim {{{
-let g:calendar_first_day = 'monday'
-let g:calendar_task = 1
-let g:calendar_event_start_time = 0
-let g:calendar_google_task = 1
-let g:calendar_google_calendar = 1
-" }}}
-
 " joshdick/onedark.vim {{{
 let g:onedark_terminal_italics = 1
 " }}}
@@ -140,11 +132,7 @@ let g:precious_enable_switch_CursorHold = {
 " }}}
 
 " othree/javascript-libraries-syntax.vim {{{
-let g:used_javascript_libs = 'jquery,underscore,react,requirejs,d3'
-" }}}
-
-" pangloss/vim-javascript {{{
-let g:javascript_plugin_flow = 1
+let g:used_javascript_libs = ''
 " }}}
 
 " sbdchd/neoformat {{{
@@ -208,24 +196,6 @@ let g:vimfiler_ignore_pattern = [
 if has('mac')
   let g:vimfiler_quick_look_command = 'qlmanage -p'
 endif
-" }}}
-
-" SpaceVim/LanguageClient-neovim {{{
-" let g:LanguageClient_serverCommands = {
-"       \ 'apex': ['java',
-"       \ '-cp', expand('~/.SpaceVim.d/lib/apex-jorje-lsp.jar'),
-"       \ '-Ddebug.internal.errors=true',
-"       \ '-Ddebug.semantic.errors=false',
-"       \ 'apex.jorje.lsp.ApexLanguageServerLauncher'],
-"       \ 'css': ['css-language-server', '--stdio'],
-"       \ 'dockerfile': ['docker-langserver', '--stdio'],
-"       \ 'go': ['go-langserver'],
-"       \ 'less': ['css-language-server', '--stdio'],
-"       \ 'python': ['pyls'],
-"       \ 'sass': ['css-language-server', '--stdio'],
-"       \ 'scss': ['css-language-server', '--stdio'],
-"       \ 'typescript': ['javascript-typescript-stdio'],
-"       \ }
 " }}}
 
 " thinca/vim-template {{{
@@ -315,7 +285,8 @@ let g:indentLine_showFirstIndentLevel = 1
 
 augroup SpaceVim_d_colorscheme
   autocmd!
-  autocmd ColorScheme onedark call onedark#set_highlight('Normal', { 'fg': onedark#GetColors().white })
+  autocmd ColorScheme onedark call onedark#set_highlight('Normal', {
+        \ 'fg': onedark#GetColors().white })
 augroup END
 
 augroup SpaceVim_d_tools
