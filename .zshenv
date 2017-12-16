@@ -3,7 +3,7 @@
 # .zshenv
 # author: Seong Yong-ju ( @sei40kr )
 
-export TERM='xterm-256color-italic'
+export TERM='screen-256color-italic'
 
 export EDITOR="${commands[nvim]:-$EDITOR}"
 export PAGER="${commands[less]:-$PAGER}"
