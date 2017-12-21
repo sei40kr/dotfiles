@@ -1,2 +1,15 @@
 EditorConfig.EditorConfig
+PeterJausovec.vscode-docker
+dbaeumer.vscode-eslint
+eamodio.gitlens
+esbenp.prettier-vscode
+faustinoaq.crystal-lang
+ms-python.python
+ms-vscode.cpptools
+patrys.vscode-code-outline
+redhat.java
+vsciot-vscode.vscode-arduino
+vscjava.vscode-java-debug
 vscodevim.vim
+vscoss.vscode-ansible
+zhuangtongfa.Material-theme
