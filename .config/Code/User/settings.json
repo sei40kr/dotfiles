@@ -11,6 +11,12 @@
   "editor.renderControlCharacters": true,
   // 折り返し行のインデントを制御します。'none'、'same'、または 'indent' のいずれかを指定できます。
   "editor.wrappingIndent": "indent",
+  // Enable Emmet abbreviations in languages that are not supported by default. Add a mapping here between the language and emmet supported language.
+  //  Eg: {"vue-html": "html", "javascript": "javascriptreact"}
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "javascript": "javascriptreact",
+  },
   // When typing a command show the initial colon ':' character
   "vim.cmdLineInitialColon": true,
   // Enable the EasyMotion plugin for Vim.
@@ -21,6 +27,8 @@
   "vim.easymotionMarkerFontSize": "16",
   // Set the font weight of the marker text.
   "vim.easymotionMarkerFontWeight": "normal",
+  // Uses a hack to move around folds properly
+  "vim.foldfix": true,
   // Option to delegate certain key combinations back to VSCode to be handled natively
   "vim.handleKeys": {
     "<C-]>": false,
@@ -43,6 +51,8 @@
   "vim.insertModeKeyBindingsNonRecursive": [],
   // What key should <leader> map to in remappings?
   "vim.leader": ";",
+  // Does dragging with the mouse put you into visual mode
+  "vim.mouseSelectionGoesIntoVisualMode": false,
   // Remapped keys in normal mode. Allows mapping to vim commands or vscode actions. See README for more.
   "vim.otherModesKeyBindings": [],
   // Non-recursive remapped keys in normal mode. Allows mapping to vim commands or vscode actions. See README for more.
@@ -71,11 +81,14 @@
     "editorGroup.background": "#282c34",
     "sideBar.background": "#282c34",
     "statusBar.background": "#98c379",
+    "statusBar.foreground": "#282c34",
     "statusBar.noFolderBackground": "#98c379",
     "statusBar.debuggingBackground": "#98c379"
   },
   // ワークベンチで使用する配色テーマを指定します。
   "workbench.colorTheme": "One Dark Pro",
+  // Controls if opened editors should show with an icon or not. This requires an icon theme to be enabled as well.
+  "workbench.editor.showIcons": false,
   // エディター タブの閉じるボタンの位置を制御するか、[off] に設定した場合に無効にします。
   "workbench.editor.tabCloseButton": "off",
   // 前のセッションからエディターが復元されていない場合に、起動時に表示するかどうかを制御します。'none' を選択するとエディターなしで開始します。'welcomePage' を選択するとウェルカム ページを開きます (既定)。'newUntitledFile' を選択すると新しい無題のファイルを開きます (空のワークスペースを開いているときのみ)。
