@@ -91,12 +91,62 @@
       "after": ["}", "^"]
     },
     {
+      "before": ["<Space>", "s", "c"],
+      "after": [],
+      "commands": [
+        {
+          "command": ":nohlsearch",
+          "args": []
+        }
+      ]
+    },
+    {
       "before": [";", "y"],
       "after": ["\"", "+", "y"]
     },
     {
       "before": [";", "p"],
       "after": ["\"", "+", "p"]
+    },
+    {
+      "before": ["<Space>", "f", "s"],
+      "after": [],
+      "commands": [
+        {
+          "command": ":write",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": ["<Leader>", "w"],
+      "after": [],
+      "commands": [
+        {
+          "command": ":write",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": ["<C-s>"],
+      "after": [],
+      "commands": [
+        {
+          "command": ":write",
+          "args": []
+        }
+      ]
+    },
+    {
+      "before": ["<Space>", "f", "S"],
+      "after": [],
+      "commands": [
+        {
+          "command": ":wall",
+          "args": []
+        }
+      ]
     }
   ],
   // Number of lines to scroll with CTRL-U and CTRL-D commands.
