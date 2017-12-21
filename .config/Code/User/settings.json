@@ -29,6 +29,20 @@
     "suppressUpdateNotice": false,
     "suppressWelcomeNotice": true
   },
+  // Whether to enable bold text within the terminal, note that this requires support from the terminal shell.
+  "terminal.integrated.enableBold": false,
+  // Object with environment variables that will be added to the VS Code process to be used by the terminal on Linux
+  "terminal.integrated.env.linux": {},
+  // Object with environment variables that will be added to the VS Code process to be used by the terminal on OS X
+  "terminal.integrated.env.osx": {},
+  // Object with environment variables that will be added to the VS Code process to be used by the terminal on Windows
+  "terminal.integrated.env.windows": {},
+  // Controls the font family of the terminal, this defaults to editor.fontFamily's value.
+  "terminal.integrated.fontFamily": "'FantasqueSansMono Nerd Font', monospace",
+  // Controls the font size in pixels of the terminal.
+  "terminal.integrated.fontSize": 16,
+  // Controls the line height of the terminal, this number is multiplied by the terminal font size to get the actual line-height in pixels.
+  "terminal.integrated.lineHeight": 1,
   // When typing a command show the initial colon ':' character
   "vim.cmdLineInitialColon": true,
   // Enable the EasyMotion plugin for Vim.
