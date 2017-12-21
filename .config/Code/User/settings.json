@@ -19,6 +19,16 @@
     "vue-html": "html",
     "javascript": "javascriptreact"
   },
+  "gitlens.advanced.messages": {
+    "suppressCommitHasNoPreviousCommitWarning": false,
+    "suppressCommitNotFoundWarning": false,
+    "suppressFileNotUnderSourceControlWarning": false,
+    "suppressGitVersionWarning": false,
+    "suppressLineUncommittedWarning": false,
+    "suppressNoRepositoryWarning": false,
+    "suppressUpdateNotice": false,
+    "suppressWelcomeNotice": true
+  },
   // When typing a command show the initial colon ':' character
   "vim.cmdLineInitialColon": true,
   // Enable the EasyMotion plugin for Vim.
