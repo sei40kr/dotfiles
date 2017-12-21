@@ -17,7 +17,7 @@
   //  Eg: {"vue-html": "html", "javascript": "javascriptreact"}
   "emmet.includeLanguages": {
     "vue-html": "html",
-    "javascript": "javascriptreact",
+    "javascript": "javascriptreact"
   },
   // When typing a command show the initial colon ':' character
   "vim.cmdLineInitialColon": true,
@@ -33,20 +33,15 @@
   "vim.foldfix": true,
   // Option to delegate certain key combinations back to VSCode to be handled natively
   "vim.handleKeys": {
-    "<C-]>": false,
+    "<C-]>": false
   },
   // Show all matches of the most recent search pattern
   "vim.hlsearch": true,
   // Remapped keys in insert mode. Allows mapping to vim commands or vscode actions. See README for more.
   "vim.insertModeKeyBindings": [
     {
-      "before": [
-        "j",
-        "k"
-      ],
-      "after": [
-        "<Esc>"
-      ]
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
     }
   ],
   // Non-recursive keybinding overrides to use for insert mode. Allows mapping to vim commands or vscode actions. See README for more.
@@ -58,7 +53,52 @@
   // Remapped keys in normal mode. Allows mapping to vim commands or vscode actions. See README for more.
   "vim.otherModesKeyBindings": [],
   // Non-recursive remapped keys in normal mode. Allows mapping to vim commands or vscode actions. See README for more.
-  "vim.otherModesKeyBindingsNonRecursive": [],
+  "vim.otherModesKeyBindingsNonRecursive": [
+    {
+      "before": ["[", "p"],
+      "after": ["P"]
+    },
+    {
+      "before": ["]", "p"],
+      "after": ["p"]
+    },
+    {
+      "before": ["[", "<Space>"],
+      "after": ["O", "<Esc>"]
+    },
+    {
+      "before": ["]", "<Space>"],
+      "after": ["o", "<Esc>"]
+    },
+    {
+      "before": ["[", "t"],
+      "after": ["g", "T"]
+    },
+    {
+      "before": ["]", "t"],
+      "after": ["g", "t"]
+    },
+    {
+      "before": ["<Up>"],
+      "after": ["g", "k"]
+    },
+    {
+      "before": ["<Down>"],
+      "after": ["g", "j"]
+    },
+    {
+      "before": ["}"],
+      "after": ["}", "^"]
+    },
+    {
+      "before": [";", "y"],
+      "after": ["\"", "+", "y"]
+    },
+    {
+      "before": [";", "p"],
+      "after": ["\"", "+", "p"]
+    }
+  ],
   // Number of lines to scroll with CTRL-U and CTRL-D commands.
   "vim.scroll": 30,
   // Allow VSCodeVim to change status bar color based on mode
@@ -94,5 +134,5 @@
   // エディター タブの閉じるボタンの位置を制御するか、[off] に設定した場合に無効にします。
   "workbench.editor.tabCloseButton": "off",
   // 前のセッションからエディターが復元されていない場合に、起動時に表示するかどうかを制御します。'none' を選択するとエディターなしで開始します。'welcomePage' を選択するとウェルカム ページを開きます (既定)。'newUntitledFile' を選択すると新しい無題のファイルを開きます (空のワークスペースを開いているときのみ)。
-  "workbench.startupEditor": "newUntitledFile",
+  "workbench.startupEditor": "newUntitledFile"
 }
