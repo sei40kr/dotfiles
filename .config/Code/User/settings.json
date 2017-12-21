@@ -9,6 +9,8 @@
   "editor.minimap.enabled": false,
   // エディターで制御文字を表示する必要があるかどうかを制御します
   "editor.renderControlCharacters": true,
+  // Insert snippets when their prefix matches. Works best when 'quickSuggestions' aren't enabled.
+  "editor.tabCompletion": true,
   // 折り返し行のインデントを制御します。'none'、'same'、または 'indent' のいずれかを指定できます。
   "editor.wrappingIndent": "indent",
   // Enable Emmet abbreviations in languages that are not supported by default. Add a mapping here between the language and emmet supported language.
