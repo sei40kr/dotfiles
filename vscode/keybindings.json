@@ -1,3 +1,8 @@
 // 既定値を上書きするには、このファイル内にキー バインドを挿入します
 [
+    {
+        "key": "ctrl+]",
+        "command": "extension.vim_escape",
+        "when": "editorTextFocus"
+    }
 ]

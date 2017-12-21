@@ -1,1 +1,101 @@
-{}
+{
+  // フォント サイズをピクセル単位で制御します。
+  "editor.fontSize": 16,
+  // フォント ファミリを制御します。
+  "editor.fontFamily": "'FantasqueSansMono Nerd Font', monospace",
+  // 行番号の表示を制御します。使用可能な値は、'on'、'off'、および 'relative' です。
+  "editor.lineNumbers": "relative",
+  // ミニマップを表示するかどうかを制御します
+  "editor.minimap.enabled": false,
+  // エディターで制御文字を表示する必要があるかどうかを制御します
+  "editor.renderControlCharacters": true,
+  // 折り返し行のインデントを制御します。'none'、'same'、または 'indent' のいずれかを指定できます。
+  "editor.wrappingIndent": "indent",
+  // When typing a command show the initial colon ':' character
+  "vim.cmdLineInitialColon": true,
+  // Enable the EasyMotion plugin for Vim.
+  "vim.easymotion": true,
+  // Set the font family of the marker text.
+  "vim.easymotionMarkerFontFamily": "'FantasqueSansMono Nerd Font', monospace",
+  // Set the font size of the marker text.
+  "vim.easymotionMarkerFontSize": "16",
+  // Set the font weight of the marker text.
+  "vim.easymotionMarkerFontWeight": "normal",
+  // Option to delegate certain key combinations back to VSCode to be handled natively
+  "vim.handleKeys": {
+    "<C-]>": false,
+  },
+  // Show all matches of the most recent search pattern
+  "vim.hlsearch": true,
+  // Remapped keys in insert mode. Allows mapping to vim commands or vscode actions. See README for more.
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "k"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
+  // Non-recursive keybinding overrides to use for insert mode. Allows mapping to vim commands or vscode actions. See README for more.
+  "vim.insertModeKeyBindingsNonRecursive": [],
+  // What key should <leader> map to in remappings?
+  "vim.leader": ";",
+  // Remapped keys in normal mode. Allows mapping to vim commands or vscode actions. See README for more.
+  "vim.otherModesKeyBindings": [],
+  // Non-recursive remapped keys in normal mode. Allows mapping to vim commands or vscode actions. See README for more.
+  "vim.otherModesKeyBindingsNonRecursive": [],
+  // Number of lines to scroll with CTRL-U and CTRL-D commands.
+  "vim.scroll": 30,
+  // Allow VSCodeVim to change status bar color based on mode
+  "vim.statusBarColorControl": true,
+  // Customize colors per mode when VSCodeVim controls status bar colors
+  "vim.statusBarColors": {
+    "normal": "#98c379",
+    "insert": "#00af87",
+    "visual": "#ff8700",
+    "visualline": "#ff8700",
+    "visualblock": "#ff8700",
+    "replace": "#af5f5f"
+  },
+  "terminal.background": "#abb2bf",
+  "terminal.foreground": "",
+  "terminal.ansiBlack": "",
+  "terminal.ansiBlue": "",
+  "terminal.ansiBrightBlack": "",
+  "terminal.ansiBrightBlue": "",
+  "terminal.ansiBrightCyan": "",
+  "terminal.ansiBrightGreen": "",
+  "terminal.ansiBrightMagenta": "",
+  "terminal.ansiBrightRed": "",
+  "terminal.ansiBrightWhite": "",
+  "terminal.ansiBrightYellow": "",
+  "terminal.ansiCyan": "",
+  "terminal.ansiGreen": "",
+  "terminal.ansiMagenta": "",
+  "terminal.ansiRed": "",
+  "terminal.ansiWhite": "",
+  "terminal.ansiYellow": "",
+  // Enable the Surround plugin for Vim.
+  "vim.surround": true,
+  // Width to word-wrap to when using gq.
+  "vim.textwidth": 80,
+  // 現在選択している配色テーマで配色を上書きします。
+  "workbench.colorCustomizations": {
+    "tab.activeBackground": "#282c34",
+    "activityBar.background": "#282c34",
+    "editorGroup.background": "#282c34",
+    "sideBar.background": "#282c34",
+    "statusBar.background": "#98c379",
+    "statusBar.noFolderBackground": "#98c379",
+    "statusBar.debuggingBackground": "#98c379"
+  },
+  // ワークベンチで使用する配色テーマを指定します。
+  "workbench.colorTheme": "One Dark Pro",
+  // エディター タブの閉じるボタンの位置を制御するか、[off] に設定した場合に無効にします。
+  "workbench.editor.tabCloseButton": "off",
+  // 前のセッションからエディターが復元されていない場合に、起動時に表示するかどうかを制御します。'none' を選択するとエディターなしで開始します。'welcomePage' を選択するとウェルカム ページを開きます (既定)。'newUntitledFile' を選択すると新しい無題のファイルを開きます (空のワークスペースを開いているときのみ)。
+  "workbench.startupEditor": "newUntitledFile",
+}
