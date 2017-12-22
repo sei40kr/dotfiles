@@ -21,6 +21,8 @@
   },
   // 有効にすると、TAB キーを押したときに Eemmet 省略記法が展開されます。
   "emmet.triggerExpansionOnTab": true,
+  // Run the linter on save (onSave) or on type (onType)
+  "eslint.run": "onSave",
   // Specifies which messages should be suppressed
   "gitlens.advanced.messages": {
     "suppressCommitHasNoPreviousCommitWarning": false,
@@ -65,9 +67,7 @@
   // Uses a hack to move around folds properly
   "vim.foldfix": true,
   // Option to delegate certain key combinations back to VSCode to be handled natively
-  "vim.handleKeys": {
-    "<C-]>": false
-  },
+  "vim.handleKeys": {},
   // Show all matches of the most recent search pattern
   "vim.hlsearch": true,
   // Remapped keys in insert mode. Allows mapping to vim commands or vscode actions. See README for more.
