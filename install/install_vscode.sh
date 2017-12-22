@@ -4,7 +4,16 @@
 # @author Seong Yong-ju ( @sei40kr )
 
 DOTFILES_PREFIX="${HOME}/dotfiles"
-VSCODE_SETTING_PREFIX="${HOME}/.config/Code/User"
+
+if [ -d "${HOME}/.config/Code/User" ]
+then
+  VSCODE_SETTING_PREFIX="${HOME}/.config/Code/User"
+elif [ -d "${HOME}/Library/Application Support/Code/User" ]
+then
+  VSCODE_SETTING_PREFIX="${HOME}/Library/Application Support/Code/User"
+else
+  echo "Warning: Could not found VSCode" >&2
+fi
 
 # Create Symlinks
 # ---------------
