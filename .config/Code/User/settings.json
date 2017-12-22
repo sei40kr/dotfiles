@@ -19,6 +19,9 @@
     "vue-html": "html",
     "javascript": "javascriptreact"
   },
+  // 有効にすると、TAB キーを押したときに Eemmet 省略記法が展開されます。
+  "emmet.triggerExpansionOnTab": true,
+  // Specifies which messages should be suppressed
   "gitlens.advanced.messages": {
     "suppressCommitHasNoPreviousCommitWarning": false,
     "suppressCommitNotFoundWarning": false,
@@ -29,6 +32,12 @@
     "suppressUpdateNotice": false,
     "suppressWelcomeNotice": true
   },
+  // Use 'prettier-eslint' instead of 'prettier'. Other settings will only be fallbacks in case they could not be inferred from eslint rules.
+  "prettier.eslintIntegration": true,
+  // Require a 'prettierconfig' to format
+  "prettier.requireConfig": true,
+  // Use 'prettier-stylelint' instead of 'prettier'. Other settings will only be fallbacks in case they could not be inferred from stylelint rules.
+  "prettier.stylelintIntegration": true,
   // Whether to enable bold text within the terminal, note that this requires support from the terminal shell.
   "terminal.integrated.enableBold": false,
   // Object with environment variables that will be added to the VS Code process to be used by the terminal on Linux
