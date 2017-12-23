@@ -1,8 +1,16 @@
 // 既定値を上書きするには、このファイル内にキー バインドを挿入します
 [
-    {
-        "key": "ctrl+]",
-        "command": "extension.vim_escape",
-        "when": "editorTextFocus"
-    }
+  {
+    "key": "ctrl+]",
+    "command": "extension.vim_escape",
+    "when": "editorTextFocus && vim.active && !inDebugRepl"
+  },
+  {
+    "key": "alt+left",
+    "command": "workbench.action.previousEditorInGroup"
+  },
+  {
+    "key": "alt+right",
+    "command": "workbench.action.nextEditorInGroup"
+  }
 ]
