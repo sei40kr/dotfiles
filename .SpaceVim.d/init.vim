@@ -100,7 +100,13 @@ let g:diminactive_enable_focus = 1
 " }}}
 
 " elzr/vim-json {{{
+
+" conceal by default
 let g:vim_json_syntax_conceal = 0
+
+" have warnings by default
+let g:vim_json_warnings = 0
+
 " }}}
 
 " heavenshell/vim-jsdoc {{{
