@@ -88,6 +88,7 @@ let g:spacevim_disabled_plugins = [
 let g:spacevim_custom_plugins = [
       \ ['Shougo/context_filetype.vim'],
       \ ['ejholmes/vim-forcedotcom'],
+      \ ['heavenshell/vim-jsdoc', { 'on_cmd': 'JsDoc' }],
       \ ['moll/vim-node', { 'on_ft': 'javascript' }],
       \ ['osyo-manga/vim-precious',       { 'depends': 'context_filetype.vim' }],
       \ ['thinca/vim-template'],
@@ -100,6 +101,22 @@ let g:diminactive_enable_focus = 1
 
 " elzr/vim-json {{{
 let g:vim_json_syntax_conceal = 0
+" }}}
+
+" heavenshell/vim-jsdoc {{{
+
+" Allow prompt for interactive input.
+let g:jsdoc_allow_input_prompt = 1
+
+" Prompt for a function description
+let g:jsdoc_input_description = 1
+
+" Set value to 1 to turn on detecting underscore starting functions as private convention
+let g:jsdoc_underscore_private = 1
+
+" Enable to use ECMAScript6's Shorthand function, Arrow function.
+let g:jsdoc_enable_es6 = 1
+
 " }}}
 
 " joshdick/onedark.vim {{{
