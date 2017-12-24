@@ -104,9 +104,6 @@
   // Uses a hack to move around folds properly
   "vim.foldfix": true,
 
-  // Use neovim on backend. (only works for Ex commands right now). You should restart VScode after enable/disabling this for the changes to take effect. NOTE: Neovim must be installed (v0.2.0) and neovimPath must be set the executable in order for this setting to work. Otherwise, vscodevim will crash.
-  "vim.enableNeovim": true,
-
   // Option to delegate certain key combinations back to VSCode to be handled natively
   "vim.handleKeys": {
     "<C-p>": true,
