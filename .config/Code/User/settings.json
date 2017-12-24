@@ -20,9 +20,6 @@
   // エディターで制御文字を表示する必要があるかどうかを制御します
   "editor.renderControlCharacters": true,
 
-  // Controls if the editor will scroll beyond the last line
-  "editor.scrollBeyondLastLine": false,
-
   // Insert snippets when their prefix matches. Works best when 'quickSuggestions' aren't enabled.
   "editor.tabCompletion": true,
 
@@ -105,10 +102,7 @@
   "vim.foldfix": true,
 
   // Option to delegate certain key combinations back to VSCode to be handled natively
-  "vim.handleKeys": {
-    "<C-p>": true,
-    "<C-s>": true
-  },
+  "vim.handleKeys": {},
 
   // Show all matches of the most recent search pattern
   "vim.hlsearch": true,
@@ -413,6 +407,18 @@
 
     // TODO revert the curent buffer (reload from disk)
 
+    // Format the current buffer
+    {
+      "before": ["<Leader>", "b", "f"],
+      "after": [],
+      "commands": [
+        {
+          "command": "editor.action.formatDocument",
+          "args": []
+        }
+      ]
+    },
+
     // Create A New Empty Buffer
     // -------------------------
 
@@ -505,6 +511,41 @@
     // TODO copy current file to a different location
 
     // TODO delete a file and the associated buffer (ask for confirmation)
+
+    // Searching in Current File
+    // -------------------------
+
+    // TODO search with the first found tool
+
+    // TODO search with the first found tool with default input
+
+    // Searching in an Arbitrary Directory
+    // -----------------------------------
+
+    // TODO search with the first found tool
+
+    // TODO search with the first found tool with default input
+
+    // Searching in a Project
+    // ----------------------
+
+    // TODO search with the first found tool
+
+    // TODO search with the first found tool with default input
+
+    // Persistent Highlighting
+    // -----------------------
+
+    // Clear the highlighting
+    {
+      "before": ["<Leader>", "s", "c"],
+      "after": [],
+      "commands": [
+        {
+          "command": ":nohlsearch"
+        }
+      ]
+    },
 
     // Commenting
     // ----------
@@ -781,10 +822,6 @@
     {
       "before": ["<C-n>"],
       "after": ["g", "b"]
-    },
-    {
-      "before": ["g", "b"],
-      "after": []
     }
   ],
 
