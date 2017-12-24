@@ -81,6 +81,8 @@ alias gov='go vet'
 # }}}
 
 # jonas/tig {{{
+alias tig='env TERM=screen tig'
+
 alias tis='tig status'
 alias til='tig log'
 alias tib='tig blame -C'
