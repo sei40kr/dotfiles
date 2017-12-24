@@ -5,19 +5,35 @@
     "command": "extension.vim_escape",
     "when": "editorTextFocus && vim.active && !inDebugRepl"
   },
+
+  // Editor UI
+  // ---------
+
+  // Go to previous tab
   {
     "key": "alt+left",
     "command": "workbench.action.previousEditorInGroup"
   },
+  // Go to next tab
   {
     "key": "alt+right",
     "command": "workbench.action.nextEditorInGroup"
   },
+
+  // Searching Files in Project
+  // --------------------------
+
+  // find files in current project
   {
     "key": "ctrl+p",
     "command": "workbench.action.quickOpen",
     "when": "!inDebugRepl"
   },
+
+  // Custom Key Bindings
+  // -------------------
+
+  // save a file
   {
     "key": "ctrl+s",
     "command": "workbench.action.files.save",
