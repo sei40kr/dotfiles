@@ -3,7 +3,7 @@
   {
     "key": "ctrl+]",
     "command": "extension.vim_escape",
-    "when": "editorTextFocus && vim.active && !inDebugRepl"
+    "when": "vim.active && editorTextFocus && !inDebugRepl"
   },
 
   // Editor UI
@@ -12,13 +12,69 @@
   // Go to previous tab
   {
     "key": "alt+left",
-    "command": "workbench.action.previousEditorInGroup"
+    "command": "workbench.action.previousEditorInGroup",
+    "when": "vim.active && !inDebugRepl"
   },
   // Go to next tab
   {
     "key": "alt+right",
-    "command": "workbench.action.nextEditorInGroup"
+    "command": "workbench.action.nextEditorInGroup",
+    "when": "vim.active && !inDebugRepl"
   },
+
+  // File Tree Navigation
+  // --------------------
+
+  // Toggle file explorer
+  {
+    "key": "f3",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "vim.active && !inDebugRepl"
+  },
+
+
+  // go to parent node and collapse expanded directory
+  {
+    "key": "h",
+    "command": "list.collapse",
+    "when": "vim.active && listFocus && !inputFocus && !inDebugRepl"
+  },
+
+  // open selected file or expand directory
+  {
+    "key": "l",
+    "command": "list.expand",
+    "when": "vim.active && listFocus && !inputFocus && !inDebugRepl"
+  },
+
+  // Create new directory under cursor
+  {
+    "key": "shift+k",
+    "command": "explorer.newFolder",
+    "when": "vim.active && explorerViewletVisible && explorerViewletFocus && !inputFocus && !inDebugRepl"
+  },
+
+  // Create new file under cursor
+  {
+    "key": "shift+n",
+    "command": "explorer.newFile",
+    "when": "vim.active && explorerViewletVisible && explorerViewletFocus && !inputFocus && !inDebugRepl"
+  },
+
+  // Paste file to the position under the cursor
+  {
+    "key": "shift+p",
+    "command": "filesExplorer.paste",
+    "when": "vim.active && explorerViewletVisible && explorerViewletFocus && !inputFocus && !inDebugRepl"
+  },
+
+  // Redraw
+  {
+    "key": "ctrl+r",
+    "command": "workbench.files.action.refreshFilesExplorer",
+    "when": "vim.active && explorerViewletVisible && explorerViewletFocus && !inputFocus && !inDebugRepl"
+  },
+
 
   // Searching Files in Project
   // --------------------------
@@ -27,7 +83,7 @@
   {
     "key": "ctrl+p",
     "command": "workbench.action.quickOpen",
-    "when": "!inDebugRepl"
+    "when": "vim.active && !inDebugRepl"
   },
 
   // Custom Key Bindings
@@ -37,6 +93,6 @@
   {
     "key": "ctrl+s",
     "command": "workbench.action.files.save",
-    "when": "editorTextFocus && vim.active && !inDebugRepl"
+    "when": "vim.active && editorTextFocus && vim.active && !inDebugRepl"
   }
 ]
