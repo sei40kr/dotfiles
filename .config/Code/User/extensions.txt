@@ -29,6 +29,7 @@ salesforce.salesforcedx-vscode-visualforce
 vsciot-vscode.vscode-arduino
 vscjava.vscode-java-debug
 vscjava.vscode-java-pack
+vscjava.vscode-java-test
 vscodevim.vim
 vscoss.vscode-ansible
 vsmobile.vscode-react-native
