@@ -81,6 +81,7 @@ let g:spacevim_enable_vimfiler_welcome = 0
 let g:spacevim_enable_vimfiler_gitstatus = 0
 
 let g:spacevim_disabled_plugins = [
+      \ 'vim-snippets',
       \ 'neco-look',
       \ 'fcitx.vim',
       \ ]
