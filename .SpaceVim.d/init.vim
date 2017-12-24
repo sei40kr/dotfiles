@@ -307,6 +307,11 @@ let g:indentLine_bgcolor_gui = '#2c323c'
 let g:indentLine_showFirstIndentLevel = 1
 " }}}
 
+augroup SpaceVim_d_lang_json
+  autocmd!
+  autocmd FileType json setlocal foldmethod=syntax
+augroup END
+
 augroup SpaceVim_d_colorscheme
   autocmd!
   autocmd ColorScheme onedark call onedark#set_highlight('Normal', {
