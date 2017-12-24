@@ -136,6 +136,49 @@
 
   // Remapped keys in normal mode. Allows mapping to vim commands or vscode actions. See README for more.
   "vim.otherModesKeyBindings": [
+    // UI Toggles
+    // ----------
+
+    // TODO highlight any character past the 80th column
+
+    // TODO display the fill column (by default the fill column is set to 80)
+
+    // TODO toggle highlight of the current line
+
+    // TODO toggle highlight indentation levels (TODO)
+
+    // TODO toggle highlight indentation current column
+
+    // TODO toggle syntax highlighting
+
+    // TODO toggle indentation guide at point
+
+    // TODO toggle line numbers
+
+    // TODO toggle background
+
+    // TODO open tabs manager
+
+    // TODO display ~ in the fringe on empty lines
+
+    // toggle frame fullscreen
+    {
+      "before": ["<Leader>", "T", "f"],
+      "after": [],
+      "commands": [
+        {
+          "command": "workbench.action.toggleFullScreen",
+          "args": []
+        }
+      ]
+    },
+
+    // TODO toggle display of the fringe
+
+    // TODO toggle menu bar
+
+    // TODO toggle tool bar
+
     // Unimpaired Bindings
     // -------------------
 
@@ -365,13 +408,46 @@
     // Buffer Manipulation Key Bindings
     // --------------------------------
 
+    // Close the current tab without saving
+    {
+      "before": ["Z", "Q"],
+      "after": [],
+      "commands": [
+        {
+          "command": ":quit!",
+          "args": []
+        }
+      ]
+    },
+
+    // Save and close the current buffer tab
+    {
+      "before": ["Z", "Z"],
+      "after": [],
+      "commands": [
+        {
+          "command": ":wq",
+          "args": []
+        }
+      ]
+    },
+
     // TODO switch to alternate buffer in the current window (switch back and forth)
 
     // TODO buffer transient state
 
     // TODO switch to a buffer (via denite/unite)
 
-    // TODO kill the current buffer (does not delete the visited file)
+    // kill the current buffer (does not delete the visited file)
+    {
+      "before": ["<Leader>", "b", "d"],
+      "after": [],
+      "commands": [
+        {
+          "command": ":quit"
+        }
+      ]
+    },
 
     // TODO kill the current buffer and window (does not delete the visited file) (TODO)
 
@@ -379,43 +455,107 @@
 
     // TODO kill a visible buffer and its window using ace-window(TODO)
 
-    // TODO kill other buffers
+    // kill other buffers
+    {
+      "before": ["<Leader>", "b", "<C-d>"],
+      "after": [],
+      "commands": [
+        {
+          "command": "workbench.action.closeOtherEditors",
+          "args": []
+        }
+      ]
+    },
 
     // TODO kill buffers using a regular expression(TODO)
 
-    // TODO erase the content of the buffer (ask for confirmation)
+    // erase the content of the buffer (ask for confirmation)
+    {
+      "before": ["<Leader>", "b", "e"],
+      "after": ["g", "g", "d", "G"]
+    },
 
     // TODO open SpaceVim home buffer
 
-    // TODO switch to next buffer avoiding special buffers
+    // switch to next buffer avoiding special buffers
+    {
+      "before": ["<Leader>", "b", "n"],
+      "after": ["<C-i>"]
+    },
 
     // TODO open Messages buffer
 
-    // TODO kill all buffers and windows except the current one(TODO)
+    // kill all buffers and windows except the current one
+    {
+      "before": ["<Leader>", "b", "<C-S-d>"],
+      "after": [],
+      "commands": [
+        {
+          "command": "workbench.action.closeEditorsInOtherGroups",
+          "args": []
+        },
+        {
+          "command": "workbench.action.closeOtherEditors",
+          "args": []
+        }
+      ]
+    },
 
-    // TODO switch to previous buffer avoiding special buffers
+    // switch to previous buffer avoiding special buffers
+    {
+      "before": ["<Leader>", "b", "p"],
+      "after": ["<C-o>"]
+    },
 
-    // TODO copy clipboard and replace buffer (useful when pasting from a browser)
+    // copy clipboard and replace buffer (useful when pasting from a browser)
+    {
+      "before": ["<Leader>", "b", "P"],
+      "after": ["g", "g", "V", "G", "\"", "+", "P"]
+    },
 
-    // TODO revert the current buffer (reload from disk)
+    // revert the current buffer (reload from disk)
+    {
+      "before": ["<Leader>", "b", "R"],
+      "after": [],
+      "commands": [
+        {
+          "command": "workbench.action.files.revert",
+          "args": []
+        }
+      ]
+    },
 
-    // TODO switch to the scratch buffer (create it if needed)
+    // switch to the scratch buffer (create it if needed)
+    {
+      "before": ["<Leader>", "b", "s"],
+      "after": [],
+      "commands": [
+        {
+          "command": "workbench.action.files.newUntitledFile",
+          "args": []
+        }
+      ]
+    },
 
-    // TODO toggle read-only (writable state)
+    // toggle read-only (writable state)
+    {
+      "before": ["<Leader>", "b", "w"],
+      "after": [],
+      "commands": [
+        {
+          "command": "readOnly.changeFileAccess",
+          "args": []
+        }
+      ]
+    },
 
     // copy whole buffer to clipboard (useful when copying to a browser)
     {
       "before": ["<Leader>", "b", "Y"],
       "after": ["g", "g", "V", "G", "\"", "+", "y"]
     },
-    {
-      "before": ["<Leader>", "b", "P"],
-      "after": ["g", "g", "V", "G", "\"", "+", "P"]
-    },
 
     // TODO Make current function or comments visible in buffer as much as possible (TODO)
-
-    // TODO revert the curent buffer (reload from disk)
 
     // Format the current buffer
     {
@@ -444,27 +584,6 @@
 
     // File Manipulations Key Bindings
     // -------------------------------
-
-    {
-      "before": ["Z", "Q"],
-      "after": [],
-      "commands": [
-        {
-          "command": ":quit!",
-          "args": []
-        }
-      ]
-    },
-    {
-      "before": ["Z", "Z"],
-      "after": [],
-      "commands": [
-        {
-          "command": ":wq",
-          "args": []
-        }
-      ]
-    },
 
     // TODO rename the current file
 
