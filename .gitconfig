@@ -21,11 +21,11 @@
 [fetch]
   prune = true
 [interactive]
-  diffFilter = "diff-so-fancy"
+  diffFilter = diff-so-fancy
 [merge]
   tool = fugitive
 [mergetool "fugitive"]
-  cmd = "nvim -fc Gdiff $MERGED"
+  cmd = "vim -f -c \"Gdiff\" \"$MERGED\""
 [pager]
   log = "diff-so-fancy | less --tabs=4 -RFX"
   show = "diff-so-fancy | less --tabs=4 -RFX"
