@@ -2,6 +2,9 @@
   // Name of the predefined style used as a fallback in case clang-format is invoked with style "file" but the .clang-format file is not found. Possible values are Visual Studio, LLVM, Google, Chromium, Mozilla, WebKit, none, or use "{key: value, ...}" to set specific parameters, e.g.: "{ BasedOnStyle: LLVM, IndentWidth: 8 }"
   "C_Cpp.clang_format_fallbackStyle": "Google",
 
+  // Absolute path for Crystal compiler executable.
+  "crystal-lang.compiler": "~/.anyenv/envs/crenv/shims/crystal",
+
   // Control the cursor animation style, possible values are 'blink', 'smooth', 'phase', 'expand' and 'solid'
   "editor.cursorBlinking": "solid",
 
@@ -49,18 +52,25 @@
   // Specifies whether or not to provide a blame annotation for the current line, by default
   // Use the `Toggle Line Blame Annotations` command (`gitlens.toggleLineBlame`) to toggle the annotations on and off for the current session
   "gitlens.blame.line.enabled": false,
+
   // Use 'prettier-eslint' instead of 'prettier'. Other settings will only be fallbacks in case they could not be inferred from eslint rules.
-
   "prettier.eslintIntegration": true,
-
-  // Require a 'prettierconfig' to format
-  "prettier.requireConfig": true,
 
   // If true, will use single instead of double quotes
   "prettier.singleQuote": true,
 
   // Use 'prettier-stylelint' instead of 'prettier'. Other settings will only be fallbacks in case they could not be inferred from stylelint rules.
   "prettier.stylelintIntegration": true,
+
+  // Controls the printing of trailing commas wherever possible.
+  //  Valid options:
+  //     'none' - No trailing commas
+  //     'es5' - Trailing commas where valid in ES5 (objects, arrays, etc)
+  //     'all' - Trailing commas wherever possible (function arguments)
+  "prettier.trailingComma": "es5",
+
+  // Path to folder with a list of Virtual Environments (e.g. ~/.pyenv, ~/Envs, ~/.virtualenvs).
+  "python.venvPath": "~/.anyenv/envs/pyenv",
 
   // Whether to enable bold text within the terminal, note that this requires support from the terminal shell.
   "terminal.integrated.enableBold": false,
