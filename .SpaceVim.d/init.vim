@@ -23,13 +23,13 @@ call SpaceVim#layers#load('shell', {
     \ 'default_position': 'bottom',
     \ 'default_height': 30
     \ })
-call SpaceVim#layers#load('lsp')
+call SpaceVim#layers#load('lsp', { 'filetypes': ['haskell', 'javascript'] })
 call SpaceVim#layers#load('lang#c')
 call SpaceVim#layers#load('lang#crystal')
 call SpaceVim#layers#load('lang#go')
-call SpaceVim#layers#load('lang#haskell', { 'use_lsp': 1 })
+call SpaceVim#layers#load('lang#haskell')
 call SpaceVim#layers#load('lang#java')
-call SpaceVim#layers#load('lang#javascript', { 'use_lsp': 1 })
+call SpaceVim#layers#load('lang#javascript')
 call SpaceVim#layers#load('lang#json')
 call SpaceVim#layers#load('lang#kotlin')
 call SpaceVim#layers#load('lang#perl')
