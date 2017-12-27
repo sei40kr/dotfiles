@@ -332,6 +332,9 @@ augroup SpaceVim_d_tools
 
   autocmd InsertEnter * PreciousSwitch
   autocmd InsertLeave * PreciousReset
+
+  autocmd User MultipleCursorsPre :
+  autocmd User MultipleCursorsPost :
 augroup END
 
 set autochdir
