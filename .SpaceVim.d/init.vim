@@ -88,6 +88,7 @@ let g:spacevim_custom_plugins = [
       \ ['heavenshell/vim-jsdoc', { 'on_cmd': 'JsDoc' }],
       \ ['moll/vim-node', { 'on_ft': 'javascript' }],
       \ ['osyo-manga/vim-precious',       { 'depends': 'context_filetype.vim' }],
+      \ ['rhysd/committia.vim', { 'on_path': ['COMMIT_EDITMSG', 'MERGE_MSG'] }],
       \ ['thinca/vim-template'],
       \ ['tyru/open-browser-github.vim',  { 'depends': 'open-browser.vim', 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'] }],
       \ ]
