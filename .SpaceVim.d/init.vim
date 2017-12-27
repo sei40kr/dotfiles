@@ -220,6 +220,16 @@ if has('mac')
 endif
 " }}}
 
+" terryma/vim-multiple-cursors {{{
+
+" If set to 0, then pressing g:multi_cursor_quit_key in Visual mode will not quit and delete all existing cursors. This is useful if you want to press Escape and go back to Normal mode, and still be able to operate on all the cursors.
+let g:multi_cursor_exit_from_visual_mode = 0
+
+" If set to 0, then pressing g:multi_cursor_quit_key in Insert mode will not quit and delete all existing cursors. This is useful if you want to press Escape and go back to Normal mode, and still be able to operate on all the cursors.
+let g:multi_cursor_exit_from_insert_mode = 0
+
+" }}}
+
 " thinca/vim-template {{{
 let g:template_basedir = expand('~/.SpaceVim.d/template')
 let g:template_files = 'template.*'
