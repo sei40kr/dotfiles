@@ -7,26 +7,26 @@
 1. Install Powerline fonts
 
     ```sh
-# clone
-git clone https://github.com/powerline/fonts.git --depth=1
-# install
-cd fonts
-./install.sh
-# clean-up a bit
-cd ..
-rm -rf fonts
+    # clone
+    git clone https://github.com/powerline/fonts.git --depth=1
+    # install
+    cd fonts
+    ./install.sh
+    # clean-up a bit
+    cd ..
+    rm -rf fonts
     ```
 
 1. Install Nerd fonts
 
     ```sh
-# macOS
-brew tap caskroom/fonts
-brew cask install font-hack-nerd-font
-# Linux
-git clone https://github.com/ryanoasis/nerd-fonts fonts --depth=1 &&
-    ./fonts/install.sh &&
-    rm -rf fonts
+    # macOS
+    brew tap caskroom/fonts
+    brew cask install font-hack-nerd-font
+    # Linux
+    git clone https://github.com/ryanoasis/nerd-fonts fonts --depth=1 &&
+        ./fonts/install.sh &&
+        rm -rf fonts
     ```
 
 ### macOS: Install Homebrew
@@ -34,7 +34,7 @@ git clone https://github.com/ryanoasis/nerd-fonts fonts --depth=1 &&
 1. Install Homebrew
 
     ```sh
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     ```
 
 ### Linux: Install Linuxbrew
@@ -42,7 +42,7 @@ git clone https://github.com/ryanoasis/nerd-fonts fonts --depth=1 &&
 1. Install Linuxbrew
 
     ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
     ```
 
 ### Add SSH key to GitHub account
@@ -50,22 +50,22 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/i
 1. Install OpenSSL via Homebrew.
 
     ```sh
-brew install openssl
+    brew install openssl
     ```
 
 1. Generate new SSH key (ECDSA 256-bit)
 
     ```sh
-ssh-keygen -t ecdsa -b 256 -C "sei40kr@gmail.com"
+    ssh-keygen -t ecdsa -b 256 -C "sei40kr@gmail.com"
     ```
 
 1. Copy the key
 
     ```sh
-# macOS
-pbcopy <~/.ssh/id_ecdsa
-# Linux
-xclip -sel clip ~/.ssh/id_ecdsa
+    # macOS
+    pbcopy <~/.ssh/id_ecdsa
+    # Linux
+    xclip -sel clip ~/.ssh/id_ecdsa
     ```
 
     and add it to [GitHub SSH keys](https://github.com/settings/keys) of the account.
@@ -96,8 +96,8 @@ xclip -sel clip ~/.ssh/id_ecdsa
 1. Install terminal profiles
 
     ```sh
-tic ~/dotfiles/terminfo/screen-256color-italic.terminfo
-tic ~/dotfiles/terminfo/xterm-256color-italic.terminfo
+    tic ~/dotfiles/terminfo/screen-256color-italic.terminfo
+    tic ~/dotfiles/terminfo/xterm-256color-italic.terminfo
     ```
 
 ### Install ZSH
@@ -105,36 +105,36 @@ tic ~/dotfiles/terminfo/xterm-256color-italic.terminfo
 1. Install ZSH via brew command
 
     ```sh
-brew install zsh
+    brew install zsh
     ```
 
 1. Check the latest version of ZSH is successfully installed
 
     ```sh
-# /path/to/.linuxbrew/bin/zsh
-which zsh
-zsh --version
+    # /path/to/.linuxbrew/bin/zsh
+    which zsh
+    zsh --version
     ```
 
     and set it as default shell
 
     ```sh
-which zsh | sudo tee -a /etc/shells >/dev/null
-chsh -s "$(which zsh)"
+    which zsh | sudo tee -a /etc/shells >/dev/null
+    chsh -s "$(which zsh)"
     ```
 
 1. Install zplugin (plugin manager & loader for ZSH)
 
     ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
     ```
 
 1. Create symlinks
 
     ```sh
-ln -sf ~/dotfiles/.zsh ~/.zsh
-ln -sf ~/dotfiles/.zshenv ~/.zshenv
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
+    ln -sf ~/dotfiles/.zsh ~/.zsh
+    ln -sf ~/dotfiles/.zshenv ~/.zshenv
+    ln -sf ~/dotfiles/.zshrc ~/.zshrc
     ```
 
 ### Install TMUX
@@ -142,21 +142,21 @@ ln -sf ~/dotfiles/.zshrc ~/.zshrc
 1. Install TMUX via brew command
 
     ```sh
-brew install tmux
-# macOS
-brew install reattach-to-user-namespace
+    brew install tmux
+    # macOS
+    brew install reattach-to-user-namespace
     ```
 
 1. Install TPM
 
     ```sh
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     ```
 
 1. Create symlink
 
     ```sh
-ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
+    ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
     ```
 
 ### Install Git
@@ -164,13 +164,13 @@ ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 1. Install the latest version of Git via brew command
 
     ```sh
-brew install git
+    brew install git
     ```
 
 1. Create symlink
 
     ```sh
-ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
+    ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
     ```
 
 ### Install tig
@@ -178,14 +178,14 @@ ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 1. Install tig via brew command
 
     ```sh
-brew install tig
+    brew install tig
     ```
 
 1. Create symlinks
 
     ```sh
-ln -sf ~/dotfiles/.tig ~/.tig
-ln -sf ~/dotfiles/.tigrc ~/.tigrc
+    ln -sf ~/dotfiles/.tig ~/.tig
+    ln -sf ~/dotfiles/.tigrc ~/.tigrc
     ```
 
 ### Install version managers
@@ -193,35 +193,35 @@ ln -sf ~/dotfiles/.tigrc ~/.tigrc
 1. Install anyenv (manager for version managers)
 
     ```sh
-git clone https://github.com/riywo/anyenv ~/.anyenv
+    git clone https://github.com/riywo/anyenv ~/.anyenv
     ```
 
 1. Install SDKMAN!
 
     ```sh
-curl -s "https://get.sdkman.io" | bash
+    curl -s "https://get.sdkman.io" | bash
     ```
 
 1. Reload the shell
 
     ```sh
-exec "$SHELL" -l
+    exec "$SHELL" -l
     ```
 
 1. Install version managers via anyenv
 
     ```sh
-anyenv install goenv
-anyenv install pyenv
-anyenv install rbenv
-anyenv install crenv
-anyenv install ndenv
+    anyenv install goenv
+    anyenv install pyenv
+    anyenv install rbenv
+    anyenv install crenv
+    anyenv install ndenv
     ```
 
 1. Reload the shell again
 
     ```sh
-exec "$SHELL" -l
+    exec "$SHELL" -l
     ```
 
 ### Set up Go
@@ -229,7 +229,7 @@ exec "$SHELL" -l
 1. Install the latest version of Go (check versions via `goenv install -l`)
 
     ```sh
-goenv install 1.9.2 && goenv global 1.9.2
+    goenv install 1.9.2 && goenv global 1.9.2
     ```
 
 ### Set up Java
@@ -237,16 +237,16 @@ goenv install 1.9.2 && goenv global 1.9.2
 1. Install Java
 
     ```sh
-sdk install java
+    sdk install java
     ```
 
 1. Install command-line tools for Java (& Kotlin) development
 
     ```sh
-sdk install kotlin
-sdk install ant
-sdk install maven
-sdk install gradle
+    sdk install kotlin
+    sdk install ant
+    sdk install maven
+    sdk install gradle
     ```
 
 ### Set up Python
@@ -254,10 +254,10 @@ sdk install gradle
 1. Install the latest versions of Python 2 and 3
     (check versions via `pyenv install -l`)
 
-```sh
-pyenv install 3.6.4 &&
-    pyenv install 2.7.14 &&
-    pyenv global 3.6.4 2.7.14
+    ```sh
+    pyenv install 3.6.4 &&
+        pyenv install 2.7.14 &&
+        pyenv global 3.6.4 2.7.14
     ```
 
 ### Set up Ruby
@@ -265,13 +265,13 @@ pyenv install 3.6.4 &&
 1. Install the latest version of Ruby (check versions via `rbenv install -l`)
 
     ```sh
-rbenv install 2.5.0 && rbenv global 2.5.0
+    rbenv install 2.5.0 && rbenv global 2.5.0
     ```
 
 1. Create symlink
 
     ```sh
-ln -sf ~/dotfiles/.gemrc ~/.gemrc
+    ln -sf ~/dotfiles/.gemrc ~/.gemrc
     ```
 
 ### Set up Node.js
@@ -279,13 +279,13 @@ ln -sf ~/dotfiles/.gemrc ~/.gemrc
 1. Install the latest version of Node.js (check versions via `ndenv install -l`)
 
     ```sh
-ndenv install v9.3.0 && ndenv global v9.3.0
+    ndenv install v9.3.0 && ndenv global v9.3.0
     ```
 
 1. Install Yarn
 
     ```sh
-brew install yarn --without-node
+    brew install yarn --without-node
     ```
 
 ### Install global
@@ -293,20 +293,20 @@ brew install yarn --without-node
 1. Install global via brew command
 
     ```sh
-brew install global
+    brew install global
     ```
 
 1. Install Pygments
 
     ```sh
-pip install pygments
-pyenv rehash
+    pip install pygments
+    pyenv rehash
     ```
 
 1. Create symlink
 
     ```sh
-ln -sf ~/dotfiles/.globalrc ~/.globalrc
+    ln -sf ~/dotfiles/.globalrc ~/.globalrc
     ```
 
 ### Install Vim and Neovim
@@ -314,17 +314,17 @@ ln -sf ~/dotfiles/.globalrc ~/.globalrc
 1. Install Vim and Neovim via brew command
 
     ```sh
-brew install vim neovim
+    brew install vim neovim
     ```
 
 1. Install neovim packages
 
     ```sh
-pip2 install neovim
-pip3 install neovim
-pyenv rehash
-gem install neovim
-rbenv rehash
+    pip2 install neovim
+    pip3 install neovim
+    pyenv rehash
+    gem install neovim
+    rbenv rehash
     ```
 
 ### Install SpaceVim
@@ -332,13 +332,13 @@ rbenv rehash
 1. Install SpaceVim
 
     ```sh
-curl -sLf https://spacevim.org/install.sh | bash
+    curl -sLf https://spacevim.org/install.sh | bash
     ```
 
 1. Create symlink
 
     ```sh
-ln -sf ~/dotfiles/.SpaceVim.d ~/.SpaceVim.d
+    ln -sf ~/dotfiles/.SpaceVim.d ~/.SpaceVim.d
     ```
 
 ### Install other command-line tools
@@ -346,74 +346,74 @@ ln -sf ~/dotfiles/.SpaceVim.d ~/.SpaceVim.d
 1. Install other command-line tools via brew command
 
     ```sh
-brew bundle --file=~/dotfiles/Brewfile
+    brew bundle --file=~/dotfiles/Brewfile
     ```
 
 1. Install gotcha
 
     ```sh
-brew install gotcha
+    brew install gotcha
     ```
 
 1. Install command-line tools via gotcha
 
     ```sh
-gotcha ~/dotfiles/config.toml
+    gotcha ~/dotfiles/config.toml
     ```
 
 1. Install Python dependencies
 
     ```sh
-pip2 install -r ~/dotfiles/requirements.txt
-pip3 install -r ~/dotfiles/requirements3.txt
-pyenv rehash
+    pip2 install -r ~/dotfiles/requirements.txt
+    pip3 install -r ~/dotfiles/requirements3.txt
+    pyenv rehash
     ```
 
 1. Install Bundler
 
     ```sh
-gem install bundler
-rbenv rehash
+    gem install bundler
+    rbenv rehash
     ```
 
 1. Install Rubygems of command-line tools via Bundler
 
     ```sh
-bundler install --gemfile=~/dotfiles/Gemfile
-rbenv rehash
+    bundler install --gemfile=~/dotfiles/Gemfile
+    rbenv rehash
     ```
 
 1. Install Node packages of command-line tools globally
 
     ```sh
-yarn global add \
-    generate \
-    generate-gitignore \
-    generate-license \
-    generate-editorconfig \
-    import-js \
-    typescript \
-    typescript-language-server \
-    flow-bin \
-    eslint-cli \
-    prettier \
-    prettier-eslint-cli \
-    stylelint-cli \
-    stylefmt
-ndenv rehash
+    yarn global add \
+        generate \
+        generate-gitignore \
+        generate-license \
+        generate-editorconfig \
+        import-js \
+        typescript \
+        typescript-language-server \
+        flow-bin \
+        eslint-cli \
+        prettier \
+        prettier-eslint-cli \
+        stylelint-cli \
+        stylefmt
+    ndenv rehash
     ```
 
 1. Create symlinks
 
     ```sh
-ln -sf ~/dotfiles/.jira.d ~/.jira.d
-ln -sf ~/dotfiles/prettier.config.js ~/prettier.config.js
+    ln -sf ~/dotfiles/.jira.d ~/.jira.d
+    ln -sf ~/dotfiles/prettier.config.js ~/prettier.config.js
     ```
 
 1. Copy `.importjs.js` (creating symlink doesn't work)
 
     ```sh
-cp -f ~/dotfiles/.importjs.js ~/.importjs.js
+    cp -f ~/dotfiles/.importjs.js ~/.importjs.js
     ```
 
 ### Install GUI applications
