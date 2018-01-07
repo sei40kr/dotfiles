@@ -84,10 +84,8 @@ let g:spacevim_disabled_plugins = [
       \ 'fcitx.vim',
       \ ]
 let g:spacevim_custom_plugins = [
-      \ ['Shougo/context_filetype.vim'],
       \ ['ejholmes/vim-forcedotcom'],
       \ ['heavenshell/vim-jsdoc', { 'on_cmd': 'JsDoc' }],
-      \ ['osyo-manga/vim-precious', { 'depends': 'context_filetype.vim' }],
       \ ['rhysd/committia.vim', { 'on_path': ['COMMIT_EDITMSG', 'MERGE_MSG'] }],
       \ ['thinca/vim-template'],
       \ ['tyru/open-browser-github.vim',  { 'depends': 'open-browser.vim', 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'] }],
@@ -143,20 +141,6 @@ let g:gitgutter_map_keys = 0
 
 nmap [c <Plug>GitGutterPrevHunk
 nmap ]c <Plug>GitGutterNextHunk
-" }}}
-
-" osyo-manga/vim-precious {{{
-let g:precious_enable_switch_CursorMoved = {
-      \ '*': 0,
-      \ 'markdown': 1,
-      \ 'help': 1,
-      \ }
-let g:precious_enable_switch_CursorMoved_i = {
-      \ '*': 0
-      \ }
-let g:precious_enable_switch_CursorHold = {
-      \ '*': 0
-      \ }
 " }}}
 
 " othree/javascript-libraries-syntax.vim {{{
@@ -335,9 +319,6 @@ augroup END
 augroup SpaceVim_d_tools
   autocmd!
   autocmd User plugin-template-loaded call s:template_keywords()
-
-  autocmd InsertEnter * PreciousSwitch
-  autocmd InsertLeave * PreciousReset
 
   autocmd User MultipleCursorsPre :
   autocmd User MultipleCursorsPost :
