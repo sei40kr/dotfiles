@@ -387,19 +387,33 @@
 
     ```sh
     yarn global add \
+        create-react-app \
+        create-react-native-app \
+        dockerfile-language-server-nodejs \
+        eslint-cli \
+        eslint_d \
+        flow-bin \
+        flow-language-server \
+        gatsby-cli \
         generate \
+        generate-editorconfig \
         generate-gitignore \
         generate-license \
-        generate-editorconfig \
+        generate-project \
+        gulp \
         import-js \
-        typescript \
-        typescript-language-server \
-        flow-bin \
-        eslint-cli \
         prettier \
         prettier-eslint-cli \
+        stylefmt \
         stylelint-cli \
-        stylefmt
+        stylelint_d \
+        typescript \
+        typescript-language-server \
+        webpack \
+        vscode-css-languageserver-bin \
+        vscode-html-languageserver-bin \
+        vscode-json-languageserver-bin \
+        yaml-language-server
     ndenv rehash
     ```
 
