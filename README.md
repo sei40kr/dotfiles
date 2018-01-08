@@ -436,7 +436,7 @@
 
     * [Google Chrome](https://www.google.co.jp/chrome/browser/desktop)
     * [Visual Studio Code](https://code.visualstudio.com/download)
-    * [Slack](https://slack.com/intl/ja-jp/downloads/linux)
+    * [Slack](https://slack.com/intl/ja-jp/downloads)
 
 ## TODO
 
