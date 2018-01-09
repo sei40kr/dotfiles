@@ -421,7 +421,7 @@
 
     ```sh
     ln -sf ~/dotfiles/.jira.d ~/.jira.d
-    ln -sf ~/dotfiles/prettier.config.js ~/prettier.config.js
+    ln -sf ~/dotfiles/.prettierrc.js ~/.prettierrc.js
     ```
 
 1. Copy `.importjs.js` (creating symlink doesn't work)
