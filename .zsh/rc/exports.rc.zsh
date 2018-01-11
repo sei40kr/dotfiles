@@ -8,18 +8,25 @@
 
 if [[ -d "${HOME}/.linuxbrew" ]]
 then
-  HOMEBREW_PREFIX="${HOME}/.linuxbrew"
+  BREW_PREFIX="${HOME}/.linuxbrew"
 elif [[ -x '/usr/local/bin/brew' ]]
 then
-  HOMEBREW_PREFIX='/usr/local'
+  BREW_PREFIX='/usr/local'
 fi
 
-if [[ -n "$HOMEBREW_PREFIX" ]]
+if [[ -n "$BREW_PREFIX" ]]
 then
-  export HOMEBREW_PREFIX
-  path=( "${HOMEBREW_PREFIX}/bin" "${path[@]}" )
+  export BREW_PREFIX
+  path=(
+    "${BREW_PREFIX}/bin"
+    "${BREW_PREFIX}/sbin"
+    "${path[@]}"
+  )
 
-  export XDG_DATA_DIRS="${HOMEBREW_PREFIX}/share:${XDG_DATA_DIRS}"
+  export MANPATH="${BREW_PREFIX}/share/man:${MANPATH}"
+  export INFOPATH="${BREW_PREFIX}/share/info:${INFOPATH}"
+
+  export XDG_DATA_DIRS="${BREW_PREFIX}/share:${XDG_DATA_DIRS}"
 fi
 
 
