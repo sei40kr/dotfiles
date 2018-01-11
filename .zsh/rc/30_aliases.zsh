@@ -61,6 +61,10 @@ alias dcl='docker-compose logs'
 alias dclf='docker-compose logs -f'
 # }}}
 
+# emacs {{{
+alias e='emacs'
+# }}}
+
 # gem {{{
 alias gemb='gem build *.gemspec'
 alias gemp='gem push *.gem'
