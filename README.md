@@ -164,7 +164,7 @@
 1. Install the latest version of Git via brew command
 
     ```sh
-    brew install git
+    brew install git diff-so-fancy
     ```
 
 1. Create symlink
