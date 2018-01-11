@@ -166,6 +166,7 @@ let g:context_filetype#search_offset = 300
 " }}}
 
 " Shougo/deoplete.nvim {{{
+let g:deoplete#complete_method = 'omnifunc'
 let g:deoplete#ignore_sources = {
       \ 'gitcommit': [],
       \ }
