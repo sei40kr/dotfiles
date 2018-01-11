@@ -370,6 +370,14 @@
     brew install emacs
     ```
 
+### Install Spacemacs
+
+1. Install Spacemacs
+
+    ```sh
+    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+    ```
+
 ### Install other command-line tools
 
 1. Install other command-line tools via brew command
