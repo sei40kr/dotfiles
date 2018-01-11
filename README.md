@@ -365,7 +365,7 @@
     ```sh
     # macOS
     brew tap d12frosted/emacs-plus
-    brew install emacs-plus --with-natural-title-bar
+    brew install emacs-plus --with-natural-title-bars
     # Linux
     brew install emacs
     ```
