@@ -341,6 +341,15 @@
     ln -sf ~/dotfiles/.SpaceVim.d ~/.SpaceVim.d
     ```
 
+### Install Emacs
+
+1. Install Emacs via brew command
+
+    ```sh
+    brew tap d12frosted/emacs-plus
+    brew install emacs-plus --with-natural-title-bar
+    ```
+
 ### Install other command-line tools
 
 1. Install other command-line tools via brew command
