@@ -3,6 +3,11 @@
 # exports.rc.zsh
 # author: Seong Yong-ju ( @sei40kr )
 
+typeset -U path
+typeset -U fpath
+typeset -U manpath
+typeset -U infopath
+
 # Homebrew/Linuxbrew
 # ------------------
 
@@ -16,17 +21,34 @@ fi
 
 if [[ -n "$BREW_PREFIX" ]]
 then
-  export BREW_PREFIX
   path=(
     "${BREW_PREFIX}/bin"
     "${BREW_PREFIX}/sbin"
     "${path[@]}"
   )
+  manpath=(
+    "${BREW_PREFIX}/share/man:${MANPATH}"
+    "${manpath[@]}"
+  )
+  infopath=(
+    "${BREW_PREFIX}/share/info:${INFOPATH}"
+    "${infopath[@]}"
+  )
 
-  export MANPATH="${BREW_PREFIX}/share/man:${MANPATH}"
-  export INFOPATH="${BREW_PREFIX}/share/info:${INFOPATH}"
+  XDG_DATA_DIRS="${BREW_PREFIX}/share:${XDG_DATA_DIRS}"
+fi
 
-  export XDG_DATA_DIRS="${BREW_PREFIX}/share:${XDG_DATA_DIRS}"
+# If GNU commands are installed via brew command
+if [[ -d "${BREW_PREFIX}/opt/coreutils" ]]
+then
+  path=(
+    "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
+    "${path[@]}"
+  )
+  manpath=(
+    "${BREW_PREFIX}/opt/coreutils/libexec/gnuman:${MANPATH}"
+    "${manpath[@]}"
+  )
 fi
 
 
@@ -35,7 +57,7 @@ fi
 
 if [[ -d "${HOME}/.anyenv" ]]
 then
-  export ANYENV_ROOT="${HOME}/.anyenv"
+  ANYENV_ROOT="${HOME}/.anyenv"
   path=( "${ANYENV_ROOT}/bin" "${path[@]}" )
 fi
 
@@ -45,7 +67,7 @@ fi
 
 if [[ -d "${HOME}/.go" ]]
 then
-  export GOPATH="${HOME}/.go"
+  GOPATH="${HOME}/.go"
   path=( "${GOPATH}/bin" "${path[@]}" )
 fi
 
@@ -55,7 +77,6 @@ path=(
   "${HOME}/.cargo/bin"(N-/)
   "${path[@]}"
 )
-export PATH
 
 
 # Misc
@@ -68,9 +89,18 @@ then
     "${HOME}/.zsh/functions"
     "${fpath[@]}"
   )
-  export FPATH
 fi
 
-export XDG_CONFIG_HOME="${HOME}/.config"
+XDG_CONFIG_HOME="${HOME}/.config"
+
+export PATH
+export FPATH
+export MANPATH
+export INFOPATH
+export GOPATH
+export BREW_PREFIX
+export ANYENV_ROOT
+export XDG_CONFIG_HOME
+export XDG_DATA_DIRS
 
 # vi: et sw=2 cc=80
