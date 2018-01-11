@@ -96,12 +96,6 @@ let g:spacevim_custom_plugins = [
 let g:diminactive_enable_focus = 1
 " }}}
 
-" easymotion/vim-easymotion {{{
-
-map <silent> <Space><Space> <Plug>(easymotion-s)
-
-" }}}
-
 " elzr/vim-json {{{
 
 " conceal by default
