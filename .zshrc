@@ -73,7 +73,6 @@ zplugin snippet 'OMZ::plugins/dotenv/dotenv.plugin.zsh'
 zplugin snippet 'OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
 zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
 zplugin snippet 'OMZ::plugins/github/github.plugin.zsh'
-zplugin snippet 'OMZ::plugins/gnu-utils/gnu-utils.plugin.zsh'
 zplugin snippet 'OMZ::plugins/jsontools/jsontools.plugin.zsh'
 zplugin snippet 'OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh'
 # }}}
