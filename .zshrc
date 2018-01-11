@@ -37,6 +37,7 @@ zplugin snippet 'OMZ::lib/clipboard.zsh'
 zplugin snippet "${HOME}/.zsh/rc/10_utilities.zsh"
 
 zplugin snippet 'OMZ::lib/key-bindings.zsh'
+zplugin ice if'[[ -f "${BREW_PREFIX}/opt/fzf/shell/key-bindings.zsh" ]]'
 zplugin snippet "${BREW_PREFIX}/opt/fzf/shell/key-bindings.zsh"
 zplugin snippet "${HOME}/.zsh/rc/20_key-bindings.zsh"
 
@@ -44,6 +45,7 @@ zplugin snippet "${HOME}/.zsh/rc/30_aliases.zsh"
 
 zplugin snippet 'OMZ::lib/completion.zsh'
 zplugin snippet 'OMZ::lib/compfix.zsh'
+zplugin ice if'[[ -f "${BREW_PREFIX}/opt/fzf/shell/completion.zsh" ]]'
 zplugin snippet "${BREW_PREFIX}/opt/fzf/shell/completion.zsh"
 zplugin snippet "${HOME}/.zsh/rc/50_options.zsh"
 
@@ -88,6 +90,7 @@ zplugin snippet --command \
     'https://raw.githubusercontent.com/Russell91/sshrc/master/moshrc'
 zplugin snippet --command \
     'https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc'
+zplugin ice if'[[ -x "${BREW_PREFIX}/share/git-core/contrib/diff-highlight/diff-highlight" ]]'
 zplugin snippet --command \
     "${BREW_PREFIX}/share/git-core/contrib/diff-highlight/diff-highlight"
 # }}}
