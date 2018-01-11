@@ -363,8 +363,11 @@
 1. Install Emacs via brew command
 
     ```sh
+    # macOS
     brew tap d12frosted/emacs-plus
     brew install emacs-plus --with-natural-title-bar
+    # Linux
+    brew install emacs
     ```
 
 ### Install other command-line tools
