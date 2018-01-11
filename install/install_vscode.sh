@@ -18,9 +18,9 @@ fi
 # Create Symlinks
 # ---------------
 
-ln -sf "${DOTFILES_PREFIX}/.config/Code/User/keybindings.json" \
+ln -sf "${DOTFILES_PREFIX}/vscode/keybindings.json" \
     "${VSCODE_SETTING_PREFIX}/keybindings.json"
-ln -sf "${DOTFILES_PREFIX}/.config/Code/User/settings.json" \
+ln -sf "${DOTFILES_PREFIX}/vscode/settings.json" \
     "${VSCODE_SETTING_PREFIX}/settings.json"
 
 # Install Extensions
@@ -29,5 +29,5 @@ ln -sf "${DOTFILES_PREFIX}/.config/Code/User/settings.json" \
 while read -r line
 do
   code --install-extension "$line"
-done <"${DOTFILES_PREFIX}/.config/Code/User/extensions.txt"
+done <"${DOTFILES_PREFIX}/vscode/extensions.txt"
 
