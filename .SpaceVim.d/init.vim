@@ -77,7 +77,7 @@ let g:spacevim_enable_powerline_fonts = 1
 let g:spacevim_enable_vimfiler_welcome = 0
 let g:spacevim_enable_vimfiler_gitstatus = 0
 let g:spacevim_enable_vimfiler_filetypeicon = 1
-let g:spacevim_wildignore .= ',*/node_modules/*'
+let g:spacevim_wildignore .= ',*/.bundle/*,*/vendor/bundle/*,*/node_modules/*,*/out/*,*/build/*,*/dist/*,*/coverage/*,*/log/*,*/.tmp/*,*/tmp/*'
 
 let g:spacevim_disabled_plugins = [
       \ 'vim-snippets',
