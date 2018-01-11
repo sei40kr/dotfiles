@@ -202,6 +202,12 @@
     curl -s "https://get.sdkman.io" | bash
     ```
 
+1. Install Haskell Tool Stack
+
+    ```sh
+    curl -sSL https://get.haskellstack.org/ | sh
+    ```
+
 1. Reload the shell
 
     ```sh
@@ -222,6 +228,17 @@
 
     ```sh
     exec "$SHELL" -l
+    ```
+
+### Set up Haskell
+
+1. Install Haskell IDE Engine
+
+    ```sh
+    git clone https://github.com/haskell/haskell-ide-engine hie
+    cd haskell-ide-engine
+    stack install
+    rm -rf hie
     ```
 
 ### Set up Go
@@ -450,5 +467,4 @@
 
 ## TODO
 
-* Add installation guide for Haskell
 * Create one-command installer
