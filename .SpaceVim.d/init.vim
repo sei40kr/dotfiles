@@ -79,7 +79,9 @@ let g:spacevim_enable_vimfiler_gitstatus = 0
 let g:spacevim_enable_vimfiler_filetypeicon = 1
 let g:spacevim_wildignore .= ',*/.bundle/*,*/vendor/bundle/*,*/node_modules/*,*/out/*,*/build/*,*/dist/*,*/coverage/*,*/log/*,*/.tmp/*,*/tmp/*'
 
+" TODO re-enable chromatica.nvim
 let g:spacevim_disabled_plugins = [
+      \ 'chromatica.nvim',
       \ 'vim-snippets',
       \ 'neco-look',
       \ 'fcitx.vim',
