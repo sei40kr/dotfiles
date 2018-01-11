@@ -154,8 +154,6 @@ bind refs    D ?sh -c "git branch --merged | grep -vE '^\\*|master$|develop$' | 
 bind refs    dd ?git branch -d %(branch)
 bind status  dd ?git clean -d -f -- %(file)
 bind tree    dd ?git rm %(file)
-bind status D ?git clean -d -f
-bind refs   D ?sh -c "git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %"
 
 # Misc
 
