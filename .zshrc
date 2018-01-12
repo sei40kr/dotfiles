@@ -95,9 +95,9 @@ zplugin snippet --command \
 # }}}
 
 # zplugin: Completions {{{
-zplugin ice pick''
+zplugin ice blockf
 zplugin light 'jsforce/jsforce-zsh-completions'
-zplugin ice pick''
+zplugin ice blockf
 zplugin light 'zsh-users/zsh-completions'
 # }}}
 
