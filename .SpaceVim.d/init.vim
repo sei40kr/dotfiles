@@ -88,7 +88,6 @@ let g:spacevim_disabled_plugins = [
       \ ]
 let g:spacevim_custom_plugins = [
       \ ['ejholmes/vim-forcedotcom'],
-      \ ['heavenshell/vim-jsdoc', { 'on_cmd': 'JsDoc' }],
       \ ['rhysd/committia.vim', { 'on_path': ['COMMIT_EDITMSG', 'MERGE_MSG'] }],
       \ ['thinca/vim-template'],
       \ ['tyru/open-browser-github.vim',  { 'depends': 'open-browser.vim', 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'] }],
@@ -105,22 +104,6 @@ let g:vim_json_syntax_conceal = 0
 
 " have warnings by default
 let g:vim_json_warnings = 0
-
-" }}}
-
-" heavenshell/vim-jsdoc {{{
-
-" Allow prompt for interactive input.
-let g:jsdoc_allow_input_prompt = 1
-
-" Prompt for a function description
-let g:jsdoc_input_description = 1
-
-" Set value to 1 to turn on detecting underscore starting functions as private convention
-let g:jsdoc_underscore_private = 1
-
-" Enable to use ECMAScript6's Shorthand function, Arrow function.
-let g:jsdoc_enable_es6 = 1
 
 " }}}
 
