@@ -232,7 +232,6 @@ endfunction
 " }}}
 
 " w0rp/ale {{{
-let g:ale_sign_info = g:spacevim_info_symbol
 let g:ale_fixers = {
       \ 'c': [],
       \ 'cpp': [],
