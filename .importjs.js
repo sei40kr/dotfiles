@@ -3,7 +3,7 @@ module.exports = {
   excludes: ['**/build/**'],
 
   // This list of environments controls what core modules are available when importing, and what variables are considered global by default. The supported values right now are
-  enviroments: ['browser', 'jest'],
+  environments: ['browser', 'jest'],
 
   // By default, ImportJS will put imports into groups:
   //   1. Core modules
