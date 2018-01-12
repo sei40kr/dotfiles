@@ -146,10 +146,6 @@ let g:neoformat_enabled_scss = ['stylefmt']
 let g:neoformat_enabled_typescript = ['prettier', 'tsfmt']
 " }}}
 
-" Shougo/context_filetype.vim {{{
-let g:context_filetype#search_offset = 300
-" }}}
-
 " Shougo/deoplete.nvim {{{
 let g:deoplete#complete_method = 'omnifunc'
 let g:deoplete#ignore_sources = {
