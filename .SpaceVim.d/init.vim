@@ -20,7 +20,9 @@ call SpaceVim#layers#load('shell', {
     \ 'default_position': 'bottom',
     \ 'default_height': 30
     \ })
-call SpaceVim#layers#load('lsp', { 'filetypes': ['haskell', 'javascript'] })
+call SpaceVim#layers#load('lsp', {
+      \ 'filetypes': ['rust', 'haskell', 'python', 'javascript', 'php']
+      \ })
 call SpaceVim#layers#load('lang#c')
 call SpaceVim#layers#load('lang#crystal')
 call SpaceVim#layers#load('lang#go')
