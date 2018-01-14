@@ -302,7 +302,6 @@ augroup SpaceVim_d_tools
   autocmd User MultipleCursorsPost :
 augroup END
 
-set autochdir
 set autoindent expandtab smartindent smarttab
 set autoread
 set backspace=indent,eol,start
