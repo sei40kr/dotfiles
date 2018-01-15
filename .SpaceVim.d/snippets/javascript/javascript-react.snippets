@@ -9,24 +9,20 @@ snippet component
 snippet sfc
   const ${1:componentName} = props => (
 	  <div className={\`${COMPONENT_ROOT}__${2:elementName}\`}>
-	    $0
+		$0
 		</div>
   );
 
   $1.propTypes = {
   };
 snippet proptypes
-	static get propTypes() {
-		return {
-			${1}: PropTypes.${2:type},
-		};
-	}
+	static propTypes = {
+		${1}: PropTypes.${2:type},
+	}${0}
 snippet defaultprops
-	static get defaultProps() {
-		return {
-			${1}: ${2:value},
-		};
-	}
+	static defaultProps = {
+		${1}: ${2:value},
+	}${0}
 snippet props
 	this.props.${1}
 snippet state
