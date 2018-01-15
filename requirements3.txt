@@ -5,6 +5,7 @@ cmakelint
 cpplint
 flake8
 jedi
+jupyter
 mycli
 neovim
 pgcli
