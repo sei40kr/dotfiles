@@ -323,6 +323,4 @@ set ruler
 set scrolloff=1 sidescrolloff=5
 set wildmenu
 
-nnoremap x "_x
-
 " vim: set et sw=2 cc=80
