@@ -440,6 +440,7 @@
         gulp \
         import-js \
         prettier \
+        prettier_d \
         prettier-eslint-cli \
         stylefmt \
         stylelint-cli \
