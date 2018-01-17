@@ -130,22 +130,24 @@ let g:used_javascript_libs = ''
 " }}}
 
 " sbdchd/neoformat {{{
+let g:neoformat_try_formatprg = 1
 let g:neoformat_run_all_formatters = 1
 
 let g:neoformat_enabled_c = ['clangformat']
 let g:neoformat_enabled_cpp = ['clangformat']
-let g:neoformat_enabled_css = ['stylefmt']
+let g:neoformat_enabled_css = []
 let g:neoformat_enabled_go = ['gofmt', 'goimports']
-let g:neoformat_enabled_graphql = ['prettier']
+let g:neoformat_enabled_graphql = []
 let g:neoformat_enabled_haskell = ['stylishhaskell', 'hindent', 'hfmt']
 let g:neoformat_enabled_java = ['googlefmt']
-let g:neoformat_enabled_javascript = ['prettiereslint']
+let g:neoformat_enabled_javascript = []
 let g:neoformat_enabled_json = ['fixjson', 'prettier']
-let g:neoformat_enabled_markdown = ['remark']
+let g:neoformat_enabled_less = []
+let g:neoformat_enabled_markdown = []
 let g:neoformat_enabled_python = ['autopep8', 'yapf', 'isort']
 let g:neoformat_enabled_ruby = ['rubocop']
-let g:neoformat_enabled_scss = ['stylefmt']
-let g:neoformat_enabled_typescript = ['prettier', 'tsfmt']
+let g:neoformat_enabled_scss = []
+let g:neoformat_enabled_typescript = []
 " }}}
 
 " Shougo/deoplete.nvim {{{
@@ -300,6 +302,11 @@ augroup SpaceVim_d_tools
 
   autocmd User MultipleCursorsPre :
   autocmd User MultipleCursorsPost :
+
+  autocmd FileType javascript
+        \ let &l:formatprg='prettier_d --stdin | eslint_d --stdin --fix-to-stdout'
+  autocmd FileType typescript,css,scss,less,graphql,markdown
+        \ let &l:formatprg='prettier_d --stdin --parser ' . &l:filetype
 augroup END
 
 set autoindent expandtab smartindent smarttab
