@@ -256,7 +256,7 @@ let g:ale_linters = {
       \ 'go': ['go', 'golint'],
       \ 'haskell': ['ghc', 'ghc-mod', 'hlint', 'hfmt'],
       \ 'html': ['htmlhint', 'tidy'],
-      \ 'javascript': ['flow', 'eslint'],
+      \ 'javascript': ['flow', 'eslint_d'],
       \ 'json': ['jsonlint'],
       \ 'kotlin': ['kotlinc', 'ktlint'],
       \ 'markdown': ['mdl', 'remark_lint'],
