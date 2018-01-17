@@ -83,12 +83,18 @@ let g:spacevim_wildignore .= ',*/.bundle/*,*/vendor/bundle/*,*/node_modules/*,*/
 
 " TODO re-enable chromatica.nvim
 let g:spacevim_disabled_plugins = [
+      \ 'SpaceVim/LanguageClient-neovim',
       \ 'chromatica.nvim',
       \ 'vim-snippets',
       \ 'neco-look',
       \ 'fcitx.vim',
       \ ]
 let g:spacevim_custom_plugins = [
+      \ ['autozimu/LanguageClient-neovim', {
+      \ 'build': 'bash install.sh',
+      \ 'merged': 0,
+      \ 'if': has('python3'),
+      \ }],
       \ ['ejholmes/vim-forcedotcom'],
       \ ['rhysd/committia.vim', { 'on_path': ['COMMIT_EDITMSG', 'MERGE_MSG'] }],
       \ ['thinca/vim-template'],
