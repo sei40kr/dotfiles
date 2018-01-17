@@ -236,6 +236,9 @@ endfunction
 " }}}
 
 " w0rp/ale {{{
+let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_javascript_eslint_use_global = 1
+
 let g:ale_fixers = {
       \ 'c': [],
       \ 'cpp': [],
@@ -258,7 +261,7 @@ let g:ale_linters = {
       \ 'go': ['go', 'golint'],
       \ 'haskell': ['ghc', 'ghc-mod', 'hlint', 'hfmt'],
       \ 'html': ['htmlhint', 'tidy'],
-      \ 'javascript': ['flow', 'eslint_d'],
+      \ 'javascript': ['flow', 'eslint'],
       \ 'json': ['jsonlint'],
       \ 'kotlin': ['kotlinc', 'ktlint'],
       \ 'markdown': ['mdl', 'remark_lint'],
