@@ -21,7 +21,9 @@ call SpaceVim#layers#load('shell', {
     \ 'default_height': 30
     \ })
 call SpaceVim#layers#load('lsp', {
-      \ 'filetypes': ['rust', 'haskell', 'python', 'javascript', 'php']
+      \ 'filetypes': ['rust', 'haskell', 'python', 'javascript', 'php'],
+      \ 'override_cmd': {
+      \ }
       \ })
 call SpaceVim#layers#load('lang#c')
 call SpaceVim#layers#load('lang#crystal')
