@@ -21,11 +21,11 @@ call SpaceVim#layers#load('shell', {
     \ 'default_height': 30
     \ })
 call SpaceVim#layers#load('lsp', {
-      \ 'filetypes': ['haskell', 'javascript', 'php', 'python', 'rust'],
+      \ 'filetypes': ['css', 'haskell', 'html', 'javascript', 'json', 'less', 'php', 'python', 'rust', 'scss'],
       \ 'override_cmd': {
       \ 'css': ['css-languageserver', '--stdio'],
-      \ 'flow': ['flow-language-server', '--stdio'],
       \ 'html': ['html-languageserver', '--stdio'],
+      \ 'javascript': ['flow-language-server', '--stdio'],
       \ 'json': ['json-languageserver', '--stdio'],
       \ 'less': ['css-languageserver', '--stdio'],
       \ 'scss': ['css-languageserver', '--stdio'],
@@ -91,18 +91,12 @@ let g:spacevim_wildignore .= ',*/.bundle/*,*/vendor/bundle/*,*/node_modules/*,*/
 
 " TODO re-enable chromatica.nvim
 let g:spacevim_disabled_plugins = [
-      \ 'SpaceVim/LanguageClient-neovim',
       \ 'chromatica.nvim',
       \ 'vim-snippets',
       \ 'neco-look',
       \ 'fcitx.vim',
       \ ]
 let g:spacevim_custom_plugins = [
-      \ ['autozimu/LanguageClient-neovim', {
-      \ 'build': 'bash install.sh',
-      \ 'merged': 0,
-      \ 'if': has('python3'),
-      \ }],
       \ ['ejholmes/vim-forcedotcom'],
       \ ['rhysd/committia.vim', { 'on_path': ['COMMIT_EDITMSG', 'MERGE_MSG'] }],
       \ ['thinca/vim-template'],
@@ -144,8 +138,13 @@ let g:used_javascript_libs = ''
 " }}}
 
 " sbdchd/neoformat {{{
-let g:neoformat_try_formatprg = 1
 let g:neoformat_run_all_formatters = 1
+
+let g:neoformat_javascript_prettier_d = {
+        \ 'exe': 'prettier_d',
+        \ 'args': ['--stdin', '--stdin-filepath', '%:p'],
+        \ 'stdin': 1,
+        \ }
 
 let g:neoformat_enabled_c = ['clangformat']
 let g:neoformat_enabled_cpp = ['clangformat']
@@ -154,7 +153,7 @@ let g:neoformat_enabled_go = ['gofmt', 'goimports']
 let g:neoformat_enabled_graphql = []
 let g:neoformat_enabled_haskell = ['stylishhaskell', 'hindent', 'hfmt']
 let g:neoformat_enabled_java = ['googlefmt']
-let g:neoformat_enabled_javascript = []
+let g:neoformat_enabled_javascript = ['prettier_d', 'eslint_d']
 let g:neoformat_enabled_json = ['fixjson', 'prettier']
 let g:neoformat_enabled_less = []
 let g:neoformat_enabled_markdown = []
@@ -275,7 +274,7 @@ let g:ale_linters = {
       \ 'go': ['go', 'golint'],
       \ 'haskell': ['ghc', 'ghc-mod', 'hlint', 'hfmt'],
       \ 'html': ['htmlhint', 'tidy'],
-      \ 'javascript': ['flow', 'eslint'],
+      \ 'javascript': ['eslint'],
       \ 'json': ['jsonlint'],
       \ 'kotlin': ['kotlinc', 'ktlint'],
       \ 'markdown': ['mdl', 'remark_lint'],
@@ -320,8 +319,6 @@ augroup SpaceVim_d_tools
   autocmd User MultipleCursorsPre :
   autocmd User MultipleCursorsPost :
 
-  autocmd FileType javascript
-        \ let &l:formatprg='prettier_d --stdin | eslint_d --stdin --fix-to-stdout'
   autocmd FileType typescript,css,scss,less,graphql,markdown
         \ let &l:formatprg='prettier_d --stdin --parser ' . &l:filetype
 augroup END
