@@ -140,12 +140,6 @@ let g:used_javascript_libs = ''
 " sbdchd/neoformat {{{
 let g:neoformat_run_all_formatters = 1
 
-let g:neoformat_javascript_prettier_d = {
-        \ 'exe': 'prettier_d',
-        \ 'args': ['--stdin', '--stdin-filepath', '%:p'],
-        \ 'stdin': 1,
-        \ }
-
 let g:neoformat_enabled_c = ['clangformat']
 let g:neoformat_enabled_cpp = ['clangformat']
 let g:neoformat_enabled_css = []
@@ -153,7 +147,7 @@ let g:neoformat_enabled_go = ['gofmt', 'goimports']
 let g:neoformat_enabled_graphql = []
 let g:neoformat_enabled_haskell = ['stylishhaskell', 'hindent', 'hfmt']
 let g:neoformat_enabled_java = ['googlefmt']
-let g:neoformat_enabled_javascript = ['prettier_d', 'eslint_d']
+let g:neoformat_enabled_javascript = ['prettiereslint']
 let g:neoformat_enabled_json = ['fixjson', 'prettier']
 let g:neoformat_enabled_less = []
 let g:neoformat_enabled_markdown = []
@@ -274,7 +268,7 @@ let g:ale_linters = {
       \ 'go': ['go', 'golint'],
       \ 'haskell': ['ghc', 'ghc-mod', 'hlint', 'hfmt'],
       \ 'html': ['htmlhint', 'tidy'],
-      \ 'javascript': ['eslint'],
+      \ 'javascript': ['flow', 'eslint'],
       \ 'json': ['jsonlint'],
       \ 'kotlin': ['kotlinc', 'ktlint'],
       \ 'markdown': ['mdl', 'remark_lint'],
@@ -318,9 +312,6 @@ augroup SpaceVim_d_tools
 
   autocmd User MultipleCursorsPre :
   autocmd User MultipleCursorsPost :
-
-  autocmd FileType typescript,css,scss,less,graphql,markdown
-        \ let &l:formatprg='prettier_d --stdin --parser ' . &l:filetype
 augroup END
 
 set autoindent expandtab smartindent smarttab
