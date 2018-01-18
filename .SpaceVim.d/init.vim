@@ -21,8 +21,14 @@ call SpaceVim#layers#load('shell', {
     \ 'default_height': 30
     \ })
 call SpaceVim#layers#load('lsp', {
-      \ 'filetypes': ['rust', 'haskell', 'python', 'javascript', 'php'],
+      \ 'filetypes': ['haskell', 'javascript', 'php', 'python', 'rust'],
       \ 'override_cmd': {
+      \ 'css': ['css-languageserver', '--stdio'],
+      \ 'flow': ['flow-language-server', '--stdio'],
+      \ 'html': ['html-languageserver', '--stdio'],
+      \ 'json': ['json-languageserver', '--stdio'],
+      \ 'less': ['css-languageserver', '--stdio'],
+      \ 'scss': ['css-languageserver', '--stdio'],
       \ }
       \ })
 call SpaceVim#layers#load('lang#c')
