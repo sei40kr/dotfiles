@@ -111,6 +111,6 @@ zplugin ice wait'1' atload'_zsh_autosuggest_start'
 zplugin light 'zsh-users/zsh-autosuggestions'
 
 zplugin ice pick'spaceship.zsh' wait'!0'
-zplugin light 'denysdovhan/spaceship-zsh-theme'
+zplugin light 'denysdovhan/spaceship-prompt'
 # }}}
 
