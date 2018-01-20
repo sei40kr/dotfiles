@@ -243,23 +243,15 @@ endfunction
 " }}}
 
 " w0rp/ale {{{
-let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_javascript_eslint_use_global = 1
 
-let g:ale_fixers = {
-      \ 'c': [],
-      \ 'cpp': [],
-      \ 'css': [],
-      \ 'go': [],
-      \ 'haskell': [],
-      \ 'javascript': [],
-      \ 'json': [],
-      \ 'python': [],
-      \ 'ruby': [],
-      \ 'sass': [],
-      \ 'scss': [],
-      \ 'typescript': [],
-      \ }
+" This variable defines a message format for echoed messages.
+let g:ale_echo_msg_format = '[%linter%] %severity%: %s [%code%]'
+
+" The strings for `%severity%`
+let g:ale_echo_msg_error_str = 'error'
+let g:ale_echo_msg_info_str = 'info'
+let g:ale_echo_msg_warning_str = 'warn'
+
 let g:ale_linters = {
       \ 'bash': ['shellcheck'],
       \ 'c': ['clang'],
@@ -281,8 +273,27 @@ let g:ale_linters = {
       \ 'vim': ['vint'],
       \ }
 
+let g:ale_fixers = {
+      \ 'c': [],
+      \ 'cpp': [],
+      \ 'css': [],
+      \ 'go': [],
+      \ 'haskell': [],
+      \ 'javascript': [],
+      \ 'json': [],
+      \ 'python': [],
+      \ 'ruby': [],
+      \ 'sass': [],
+      \ 'scss': [],
+      \ 'typescript': [],
+      \ }
+
+let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_javascript_eslint_use_global = 1
+
 nnoremap <silent> [q :ALEPrevious<CR>
 nnoremap <silent> ]q :ALENext<CR>
+
 " }}}
 
 " Yggdroot/indentLine {{{
