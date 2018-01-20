@@ -85,7 +85,7 @@ alias gov='go vet'
 # }}}
 
 # jonas/tig {{{
-alias tig='env TERM=screen tig'
+alias tig='env TERM=screen-256color tig'
 
 alias tis='tig status'
 alias til='tig log'
