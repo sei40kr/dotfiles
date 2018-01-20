@@ -63,6 +63,7 @@ export ZSH_PLUGINS_ALIAS_TIPS_TEXT='alias-tips: '
 zplugin light 'b4b4r07/emoji-cli'
 # zplugin light 'b4b4r07/enhancd'
 zplugin light 'djui/alias-tips'
+zplugin light 'mafredri/zsh-async'
 zplugin light 'mollifier/anyframe'
 zplugin light 'mollifier/cd-gitroot'
 zplugin light 'sei40kr/zsh-tmux-rename'
@@ -110,7 +111,7 @@ zplugin light 'zdharma/fast-syntax-highlighting'
 zplugin ice wait'1' atload'_zsh_autosuggest_start'
 zplugin light 'zsh-users/zsh-autosuggestions'
 
-zplugin ice pick'spaceship.zsh' wait'!0'
-zplugin light 'denysdovhan/spaceship-prompt'
+zplugin ice pick'pure.zsh' wait'!0'
+zplugin light 'sindresorhus/pure'
 # }}}
 
