@@ -378,6 +378,12 @@
     git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
     ```
 
+1. Create symlink
+
+    ```sh
+    ln -sf ~/dotfiles/.spacemacs.d ~/.spacemacs.d
+    ```
+
 ### Install other command-line tools
 
 1. Install other command-line tools via brew command
