@@ -11,7 +11,10 @@ typeset -U infopath
 # Homebrew/Linuxbrew
 # ------------------
 
-if [[ -d "${HOME}/.linuxbrew" ]]
+if [[ -d "/home/linuxbrew/.linuxbrew" ]]
+then
+  BREW_PREFIX="/home/linuxbrew/.linuxbrew"
+elif [[ -d "${HOME}/.linuxbrew" ]]
 then
   BREW_PREFIX="${HOME}/.linuxbrew"
 elif [[ -x '/usr/local/bin/brew' ]]
