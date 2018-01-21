@@ -49,7 +49,6 @@ call SpaceVim#layers#load('lang#tmux')
 call SpaceVim#layers#load('lang#typescript')
 call SpaceVim#layers#load('lang#vim')
 call SpaceVim#layers#load('lang#xml')
-call SpaceVim#layers#load('tmux')
 
 let g:deoplete#auto_complete_delay = 150
 if has('python3')
