@@ -16,6 +16,11 @@ then
   eval "$(anyenv init - zsh)"
 fi
 
+if [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]]
+then
+  . "${HOME}/.sdkman/bin/sdkman-init.sh"
+fi
+
 autoload -Uz compinit
 
 . "${HOME}/.zplugin/bin/zplugin.zsh"
