@@ -86,13 +86,8 @@ nnoremap <silent> <Space>jb <C-o>
 " jump forward
 nnoremap <silent> <Space>jf <C-i>
 
-" jump to a character in the buffer (AceJump)
-nnoremap <silent> <Space>jj :action AceAction<CR>
-vnoremap <silent> <Space>jj :<C-u>action AceAction<CR>
-
-" jump to a line with avy (AceJump)
-nnoremap <silent> <Space>jl :action AceLineAction<CR>
-vnoremap <silent> <Space>jl :<C-u>action AceLineAction<CR>
+" jump to a character in the buffer (CharJump)
+noremap <silent> <Space>jj :<C-u>action CharJumpAction<CR>
 
 " Go to the previous vcs hunk
 nnoremap <silent> <Leader>hk :action VcsShowPrevChangeMarker<CR>
