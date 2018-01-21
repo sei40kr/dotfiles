@@ -182,8 +182,6 @@ let g:vimfiler_file_icon          = ' '
 let g:vimfiler_readonly_file_icon = ' '
 let g:vimfiler_marked_file_icon   = '*'
 
-let g:vimfiler_direction = 'topleft'
-
 let g:vimfiler_ignore_pattern = [
       \ '\.class$',
       \ '^\.DS_Store$',
