@@ -287,9 +287,6 @@ let g:ale_fixers = {
       \ 'typescript': [],
       \ }
 
-let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_javascript_eslint_use_global = 1
-
 nnoremap <silent> [q :ALEPrevious<CR>
 nnoremap <silent> ]q :ALENext<CR>
 
