@@ -330,6 +330,8 @@ key_bindings:
   - {key: F10, mods: Command, chars: "\x1b[21;3~"}
   - {key: F11, mods: Command, chars: "\x1b[23;3~"}
   - {key: F12, mods: Command, chars: "\x1b[24;3~"}
+  - {key: C, mods: Control|Shift, action: Copy}
+  - {key: V, mods: Control|Shift, action: Paste}
   - {key: Space, mods: Control, chars: "\x00"}
   - {key: A, mods: Alt, chars: "\x1ba"}
   - {key: B, mods: Alt, chars: "\x1bb"}
