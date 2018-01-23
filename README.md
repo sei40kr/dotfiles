@@ -100,6 +100,13 @@
     tic ~/dotfiles/terminfo/xterm-256color-italic.terminfo
     ```
 
+1. Create symlink (if you're going to use Alacritty)
+
+  ```sh
+  mkdir -p ~/.config/alacritty
+  ln -sf ~/dotfiles/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+  ```
+
 ### Install ZSH
 
 1. Install ZSH via brew command
@@ -381,7 +388,7 @@
 1. Create symlink
 
     ```sh
-    ln -sf ~/dotfiles/.spacemacs.d ~/.spacemacs.d
+    ln -sf ~/dotfiles/.spacemacs ~/.spacemacs
     ```
 
 ### Install other command-line tools

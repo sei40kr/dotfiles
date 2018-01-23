@@ -36,19 +36,72 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     ;; Chat
+     slack
+     ;; Checkers
+     spell-checking
+     syntax-checking
+     ;; Completion
+     auto-completion
      helm
-     ;; auto-completion
-     ;; better-defaults
+     ;; Emacs
+     better-defaults
+     org
+     ;; Framework
+     react
+     ruby-on-rails
+     ;; Programming and markup languages
+     c-c++
+     csv
      emacs-lisp
-     ;; git
-     ;; markdown
-     ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
-     ;; version-control
+     go
+     haskell
+     html
+     ipython-notebook
+     java
+     javascript
+     latex
+     lua
+     markdown
+     php
+     plantuml
+     purescript
+     python
+     ruby
+     scala
+     shell-scripts
+     sql
+     typescript
+     vimscript
+     yaml
+     ;; Operating systems
+     osx
+     ;; Pair programming
+     floobits
+     ;; Source control
+     git
+     version-control
+     ;; Tags
+     cscope
+     gtags
+     ;; Tools
+     ansible
+     chrome
+     dash
+     docker
+     nginx
+     pandoc
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
+     tmux
+     vagrant
+     ;; Vim
+     evil-commentary
+     evil-snipe
+     ;; WebServices
+     spotify
+     twitter
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -132,8 +185,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+   dotspacemacs-default-font '("MesloLGM Nerd Font"
+                               :size 22
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -320,7 +373,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (projectile-rails inflections org-projectile org-category-capture org-present org-pomodoro org-mime org-download htmlize gnuplot feature-mode evil-snipe evil-commentary yapfify yaml-mode xterm-color web-mode web-beautify vimrc-mode vagrant-tramp vagrant unfill twittering-mode tide typescript-mode tagedit sql-indent spotify smeargle slim-mode slack emojify circe oauth2 shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder rbenv rake pyvenv pytest pyenv-mode py-isort pug-mode psci purescript-mode psc-ide plantuml-mode pip-requirements phpunit phpcbf php-extras php-auto-yasnippets pbcopy pandoc-mode ox-pandoc ht osx-trash osx-dictionary orgit noflet nginx-mode mwim multi-term mmm-mode minitest markdown-toc magit-gitflow lua-mode livid-mode live-py-mode less-css-mode launchctl js2-refactor multiple-cursors js-doc jinja2-mode intero insert-shebang hy-mode hlint-refactor hindent helm-spotify-plus multi helm-pydoc helm-hoogle helm-gtags helm-gitignore helm-dash helm-css-scss helm-cscope xcscope helm-company helm-c-yasnippet haskell-snippets haml-mode go-guru go-eldoc gmail-message-mode ham-mode markdown-mode html-to-markdown gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md ggtags fuzzy flyspell-correct-helm flyspell-correct flymd flycheck-pos-tip pos-tip flycheck-haskell flycheck floobits fish-mode evil-magit magit git-commit ghub let-alist with-editor eshell-z eshell-prompt-extras esh-help ensime sbt-mode scala-mode emmet-mode ein skewer-mode request-deferred websocket deferred js2-mode simple-httpd edit-server drupal-mode php-mode dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat disaster diff-hl dash-at-point dactyl-mode cython-mode csv-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-shell company-go go-mode company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal company-c-headers company-auctex company-ansible company-anaconda company coffee-mode cmm-mode cmake-mode clang-format chruby bundler inf-ruby auto-yasnippet yasnippet auto-dictionary auctex ansible-doc ansible anaconda-mode pythonic alert log4e gntp ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

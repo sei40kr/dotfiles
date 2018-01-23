@@ -35,6 +35,7 @@ call SpaceVim#layers#load('lang#c')
 call SpaceVim#layers#load('lang#crystal')
 call SpaceVim#layers#load('lang#go')
 call SpaceVim#layers#load('lang#haskell')
+call SpaceVim#layers#load('lang#html')
 call SpaceVim#layers#load('lang#java')
 call SpaceVim#layers#load('lang#javascript')
 call SpaceVim#layers#load('lang#json')
@@ -285,9 +286,6 @@ let g:ale_fixers = {
       \ 'scss': [],
       \ 'typescript': [],
       \ }
-
-let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_javascript_eslint_use_global = 1
 
 nnoremap <silent> [q :ALEPrevious<CR>
 nnoremap <silent> ]q :ALENext<CR>
