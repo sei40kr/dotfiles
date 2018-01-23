@@ -388,7 +388,7 @@
 1. Create symlink
 
     ```sh
-    ln -sf ~/dotfiles/.spacemacs.d ~/.spacemacs.d
+    ln -sf ~/dotfiles/.spacemacs ~/.spacemacs
     ```
 
 ### Install other command-line tools
