@@ -36,13 +36,11 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; Chat
-     slack
      ;; Checkers
-     spell-checking
      syntax-checking
      ;; Completion
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-tab-key-behavior nil)
      helm
      ;; Emacs
      better-defaults
@@ -50,14 +48,18 @@ values."
      ;; Framework
      react
      ruby-on-rails
+     ;; Fun
+     emoji
      ;; Programming and markup languages
-     c-c++
+     (c-c++ :variables
+            c-c++-enable-clang-support t)
      csv
      emacs-lisp
-     go
-     haskell
+     (go :variables
+         gofmt-command "goimports")
+     (haskell :variables
+              haskell-completion-backend 'ghc-mod)
      html
-     ipython-notebook
      java
      javascript
      latex
@@ -66,31 +68,37 @@ values."
      php
      plantuml
      purescript
-     python
-     ruby
-     scala
+     (python :variables
+             python-test-runner '(pytest nose))
+     (ruby :variables
+           ruby-version-manager 'rbenv)
+     (scala :variables
+            scala-use-java-doc-style t
+            scala-auto-insert-asterisk-in-comments t)
      shell-scripts
      sql
      typescript
      vimscript
      yaml
      ;; Operating systems
-     osx
+     (osx :variables
+          osx-use-option-as-meta nil
+          osx-dictionary-dictionary-choice "English")
      ;; Pair programming
      floobits
      ;; Source control
      git
+     github
      version-control
-     ;; Tags
-     cscope
-     gtags
+     ;; Themes
+     colors
      ;; Tools
      ansible
      chrome
      dash
      docker
+     imenu-list
      nginx
-     pandoc
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
@@ -98,10 +106,11 @@ values."
      vagrant
      ;; Vim
      evil-commentary
-     evil-snipe
+     (evil-snipe :variables
+                 evil-snipe-enable-alternate-f-and-t-behaviors t
+                 evil-snipe-repeat-scope t)
      ;; WebServices
      spotify
-     twitter
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -284,11 +293,11 @@ values."
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-active-transparency 90
+   dotspacemacs-active-transparency 96
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-inactive-transparency 90
+   dotspacemacs-inactive-transparency 96
    ;; If non nil show the titles of transient states. (default t)
    dotspacemacs-show-transient-state-title t
    ;; If non nil show the color guide hint for transient state keys. (default t)
@@ -298,7 +307,7 @@ values."
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
-   dotspacemacs-smooth-scrolling t
+   dotspacemacs-smooth-scrolling nil
    ;; Control line numbers activation.
    ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
    ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
@@ -356,13 +365,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 
 (defun dotspacemacs/user-config ()
-  "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
-  )
+  ;; Set escape keybinding to "jk"
+  (setq-default evil-escape-key-sequence "jk")
+  (setq powerline-default-separator nil)
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -373,7 +379,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (projectile-rails inflections org-projectile org-category-capture org-present org-pomodoro org-mime org-download htmlize gnuplot feature-mode evil-snipe evil-commentary yapfify yaml-mode xterm-color web-mode web-beautify vimrc-mode vagrant-tramp vagrant unfill twittering-mode tide typescript-mode tagedit sql-indent spotify smeargle slim-mode slack emojify circe oauth2 shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder rbenv rake pyvenv pytest pyenv-mode py-isort pug-mode psci purescript-mode psc-ide plantuml-mode pip-requirements phpunit phpcbf php-extras php-auto-yasnippets pbcopy pandoc-mode ox-pandoc ht osx-trash osx-dictionary orgit noflet nginx-mode mwim multi-term mmm-mode minitest markdown-toc magit-gitflow lua-mode livid-mode live-py-mode less-css-mode launchctl js2-refactor multiple-cursors js-doc jinja2-mode intero insert-shebang hy-mode hlint-refactor hindent helm-spotify-plus multi helm-pydoc helm-hoogle helm-gtags helm-gitignore helm-dash helm-css-scss helm-cscope xcscope helm-company helm-c-yasnippet haskell-snippets haml-mode go-guru go-eldoc gmail-message-mode ham-mode markdown-mode html-to-markdown gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md ggtags fuzzy flyspell-correct-helm flyspell-correct flymd flycheck-pos-tip pos-tip flycheck-haskell flycheck floobits fish-mode evil-magit magit git-commit ghub let-alist with-editor eshell-z eshell-prompt-extras esh-help ensime sbt-mode scala-mode emmet-mode ein skewer-mode request-deferred websocket deferred js2-mode simple-httpd edit-server drupal-mode php-mode dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat disaster diff-hl dash-at-point dactyl-mode cython-mode csv-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-shell company-go go-mode company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal company-c-headers company-auctex company-ansible company-anaconda company coffee-mode cmm-mode cmake-mode clang-format chruby bundler inf-ruby auto-yasnippet yasnippet auto-dictionary auctex ansible-doc ansible anaconda-mode pythonic alert log4e gntp ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (rainbow-mode rainbow-identifiers color-identifiers-mode zeal-at-point helm-spotify projectile-rails inflections org-projectile org-category-capture org-present org-pomodoro org-mime org-download htmlize gnuplot feature-mode evil-snipe evil-commentary yapfify yaml-mode xterm-color web-mode web-beautify vimrc-mode vagrant-tramp vagrant unfill twittering-mode tide typescript-mode tagedit sql-indent spotify smeargle slim-mode slack emojify circe oauth2 shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder rbenv rake pyvenv pytest pyenv-mode py-isort pug-mode psci purescript-mode psc-ide plantuml-mode pip-requirements phpunit phpcbf php-extras php-auto-yasnippets pbcopy pandoc-mode ox-pandoc ht osx-trash osx-dictionary orgit noflet nginx-mode mwim multi-term mmm-mode minitest markdown-toc magit-gitflow lua-mode livid-mode live-py-mode less-css-mode launchctl js2-refactor multiple-cursors js-doc jinja2-mode intero insert-shebang hy-mode hlint-refactor hindent helm-spotify-plus multi helm-pydoc helm-hoogle helm-gtags helm-gitignore helm-dash helm-css-scss helm-cscope xcscope helm-company helm-c-yasnippet haskell-snippets haml-mode go-guru go-eldoc gmail-message-mode ham-mode markdown-mode html-to-markdown gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md ggtags fuzzy flyspell-correct-helm flyspell-correct flymd flycheck-pos-tip pos-tip flycheck-haskell flycheck floobits fish-mode evil-magit magit git-commit ghub let-alist with-editor eshell-z eshell-prompt-extras esh-help ensime sbt-mode scala-mode emmet-mode ein skewer-mode request-deferred websocket deferred js2-mode simple-httpd edit-server drupal-mode php-mode dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat disaster diff-hl dash-at-point dactyl-mode cython-mode csv-mode company-web web-completion-data company-tern dash-functional tern company-statistics company-shell company-go go-mode company-ghci company-ghc ghc haskell-mode company-emacs-eclim eclim company-cabal company-c-headers company-auctex company-ansible company-anaconda company coffee-mode cmm-mode cmake-mode clang-format chruby bundler inf-ruby auto-yasnippet yasnippet auto-dictionary auctex ansible-doc ansible anaconda-mode pythonic alert log4e gntp ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
