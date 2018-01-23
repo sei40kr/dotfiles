@@ -333,7 +333,7 @@ set history=1000
 set hlsearch ignorecase incsearch smartcase wrapscan
 set imdisable
 set laststatus=2 tabpagemax=50
-set list listchars=trail:␣,extends:→,precedes:←
+set list listchars=eol:¬,tab:»\ ,trail:·
 set nobackup noswapfile nowritebackup
 set noerrorbells
 set noshowmode
