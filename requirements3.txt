@@ -13,6 +13,7 @@ proselint
 ptpython
 pygments
 pylint
+python-language-server
 vint
 yamllint
 yapf
