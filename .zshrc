@@ -124,16 +124,16 @@ then
   zplugin snippet OMZ::plugins/ubuntu/ubuntu.plugin.zsh
 fi
 
-compinit
-zplugin cdreplay -q
-
 ## Commands and UI widgets
 ENHANCD_FILTER=fzf
 alias u='command cd ..'
-zplugin ice pick'init.sh'
-zplugin light b4b4r07/enhancd
+zplugin ice pick'init.sh'; zplugin light b4b4r07/enhancd
 
-zplugin ice pick'k.sh'; zplugin light 'supercrabtree/k'
+export TMUXIFIER_LAYOUT_PATH="${HOME}/.tmux-layouts"
+zplugin ice pick'init.sh' atinit'ln -sf "$PWD" "${HOME}/.tmuxifier"'
+zplugin light jimeh/tmuxifier
+
+zplugin ice pick'k.sh'; zplugin light supercrabtree/k
 zplugin light mollifier/anyframe
 
 zplugin snippet \
@@ -174,3 +174,6 @@ zplugin light b4b4r07/zsh-vimode-visual
 ## Theme
 zplugin light mafredri/zsh-async
 zplugin ice pick'pure.zsh' wait'!0'; zplugin light sindresorhus/pure
+
+compinit
+zplugin cdreplay -q
