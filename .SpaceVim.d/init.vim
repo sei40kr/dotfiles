@@ -14,6 +14,9 @@ endif
 
 let g:mapleader = ';'
 
+call SpaceVim#layers#load('autocomplete', {
+      \ 'auto-completion-tab-key-behavior': 'nil',
+      \ })
 call SpaceVim#layers#load('operator')
 call SpaceVim#layers#load('incsearch')
 call SpaceVim#layers#load('shell', {
@@ -52,6 +55,7 @@ call SpaceVim#layers#load('lang#typescript')
 call SpaceVim#layers#load('lang#vim')
 call SpaceVim#layers#load('lang#xml')
 call SpaceVim#layers#load('tmux')
+call SpaceVim#layers#load('tools#docker')
 
 let g:deoplete#auto_complete_delay = 150
 if has('python3')
