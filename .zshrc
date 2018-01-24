@@ -3,11 +3,7 @@
 # .zshrc
 # author: Seong Yong-ju ( @sei40kr )
 
-if [[ -z "$TMUX" ]] && [[ -z "$STY" ]]
-then
-  . "${HOME}/.zsh/rc/exports.rc.zsh"
-  . "${HOME}/.zsh/rc/tmux.rc.zsh"
-fi
+. "${HOME}/.zsh/rc/exports.rc.zsh"
 
 zmodload zsh/zpty
 
@@ -25,98 +21,156 @@ autoload -Uz compinit
 
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 
-autoload -Uz _zplugin
-
-autoload -Uz add-zsh-hook
-autoload -Uz cdr
-autoload -Uz chpwd_recent_dirs
+autoload -Uz add-zsh-hook cdr chpwd_recent_dirs _zplugin
 
 if [[ "${+_comps}" == 1 ]]
 then
   _comps[zplugin]=_zplugin
 fi
 
-# zplugin: Utilities {{{
-zplugin snippet 'OMZ::lib/git.zsh'
-zplugin snippet 'OMZ::lib/clipboard.zsh'
 zplugin snippet "${HOME}/.zsh/rc/10_utilities.zsh"
-
-zplugin snippet 'OMZ::lib/key-bindings.zsh'
-zplugin ice if'[[ -f "${BREW_PREFIX}/opt/fzf/shell/key-bindings.zsh" ]]'
-zplugin snippet "${BREW_PREFIX}/opt/fzf/shell/key-bindings.zsh"
 zplugin snippet "${HOME}/.zsh/rc/20_key-bindings.zsh"
-
 zplugin snippet "${HOME}/.zsh/rc/30_aliases.zsh"
-
-zplugin snippet 'OMZ::lib/completion.zsh'
-zplugin snippet 'OMZ::lib/compfix.zsh'
-zplugin ice if'[[ -f "${BREW_PREFIX}/opt/fzf/shell/completion.zsh" ]]'
-zplugin snippet "${BREW_PREFIX}/opt/fzf/shell/completion.zsh"
 zplugin snippet "${HOME}/.zsh/rc/50_options.zsh"
-
 zplugin snippet "${HOME}/.zsh/rc/70_misc.zsh"
-
 zplugin snippet "${HOME}/.zsh/rc/80_custom.zsh"
-# }}}
 
-# zplugin: Plugins {{{
+## Environments
+# Launch tmux if not running
+zstyle ':prezto:module:tmux:auto-start' local 'yes'
+zstyle ':prezto:module:tmux:session' name 'default'
+zplugin ice svn; zplugin snippet PZT::modules/tmux
 
-# djui/alias-tips {{{
-export ZSH_PLUGINS_ALIAS_TIPS_TEXT='alias-tips: '
-# }}}
+# Setup Oh My Zsh
+ZSH="${HOME}/.zsh"
+ZSH_CUSTOM="${ZSH}/custom"
+ZSH_CACHE_DIR="${HOME}/.cache/zsh"
+typeset -U fpath
+fpath=( "${ZSH}/completions" "${ZSH}/functions" "${fpath[@]}" )
+[[ -d "$ZSH_CACHE_DIR" ]] || mkdir -p "$ZSH_CACHE_DIR"
 
-zplugin light 'b4b4r07/emoji-cli'
-# zplugin light 'b4b4r07/enhancd'
-zplugin light 'djui/alias-tips'
-zplugin light 'mafredri/zsh-async'
-zplugin light 'mollifier/anyframe'
-zplugin light 'mollifier/cd-gitroot'
-zplugin light 'sei40kr/zsh-tmux-rename'
-zplugin ice pick'k.sh'
-zplugin light 'supercrabtree/k'
+# Setup Prezto
+zplugin ice svn; zplugin snippet PZT::modules/helper
 
-zplugin snippet 'OMZ::plugins/dotenv/dotenv.plugin.zsh'
-zplugin snippet 'OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
-zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
-zplugin snippet 'OMZ::plugins/github/github.plugin.zsh'
-zplugin snippet 'OMZ::plugins/jsontools/jsontools.plugin.zsh'
-zplugin snippet 'OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh'
-# }}}
+zplugin snippet PZT::modules/environment/init.zsh
 
-# zplugin: Commands {{{
-zplugin ice from'gh-r' as'command' mv'gotcha_* -> gotcha'
-zplugin light 'b4b4r07/gotcha'
-zplugin ice as'command' cp'httpstat.sh -> httpstat' pick'httpstat'
-zplugin light 'b4b4r07/httpstat'
+zplugin snippet PZT::modules/directory/init.zsh
+zplugin snippet PZT::modules/history/init.zsh
 
-zplugin snippet --command \
-    'https://raw.githubusercontent.com/jonas/tig/master/contrib/tig-pick'
-zplugin snippet --command \
-    'https://raw.githubusercontent.com/Russell91/sshrc/master/moshrc'
-zplugin snippet --command \
-    'https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc'
-zplugin ice if'[[ -x "${BREW_PREFIX}/share/git-core/contrib/diff-highlight/diff-highlight" ]]'
-zplugin snippet --command \
-    "${BREW_PREFIX}/share/git-core/contrib/diff-highlight/diff-highlight"
-# }}}
+zstyle ':prezto:module:editor' key-bindings 'vi'
+zstyle ':prezto:module:editor' dot-expansion 'yes'
+zplugin snippet PZT::modules/editor/init.zsh
 
-# zplugin: Completions {{{
-zplugin ice blockf
-zplugin light 'jsforce/jsforce-zsh-completions'
-zplugin ice blockf
-zplugin light 'zsh-users/zsh-completions'
-# }}}
+## Completions and aliases
+zplugin snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
+# Remove unwanted aliases
+unalias rm cp mv
+
+zstyle ':prezto:module:completion:*:hosts' etc-host-ignores \
+    '0.0.0.0' '127.0.0.1'
+zplugin ice blockf; zplugin snippet PZT::modules/completion/init.zsh
+
+zplugin ice svn pick'init.zsh'; zplugin snippet PZT::modules/docker
+zplugin ice svn pick'init.zsh'; zplugin snippet PZT::modules/git
+zplugin ice svn pick'init.zsh'; zplugin snippet PZT::modules/ssh
+zplugin snippet PZT::modules/rsync/init.zsh
+zplugin snippet PZT::modules/homebrew/init.zsh
+
+zplugin ice svn; zplugin snippet OMZ::plugins/autopep8
+zplugin ice svn; zplugin snippet OMZ::plugins/bundler
+zplugin ice svn; zplugin snippet OMZ::plugins/capistrano
+zplugin ice svn; zplugin snippet OMZ::plugins/docker-compose
+zplugin ice svn; zplugin snippet OMZ::plugins/extract
+zplugin ice svn; zplugin snippet OMZ::plugins/gem
+zplugin ice svn; zplugin snippet OMZ::plugins/golang
+zplugin ice svn; zplugin snippet OMZ::plugins/python
+zplugin ice svn; zplugin snippet OMZ::plugins/rails
+zplugin ice svn; zplugin snippet OMZ::plugins/react-native
+zplugin ice svn; zplugin snippet OMZ::plugins/sbt
+zplugin snippet OMZ::plugins/ant/ant.plugin.zsh
+zplugin snippet OMZ::plugins/composer/composer.plugin.zsh
+zplugin snippet OMZ::plugins/dircycle/dircycle.plugin.zsh
+zplugin snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
+zplugin snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
+zplugin snippet OMZ::plugins/gradle/gradle.plugin.zsh
+zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
+zplugin snippet OMZ::plugins/mosh/mosh.plugin.zsh
+zplugin snippet OMZ::plugins/mvn/mvn.plugin.zsh
+zplugin snippet OMZ::plugins/npm/npm.plugin.zsh
+zplugin snippet OMZ::plugins/postgres/postgres.plugin.zsh
+zplugin snippet OMZ::plugins/rake/rake.plugin.zsh
+zplugin snippet OMZ::plugins/ruby/ruby.plugin.zsh
+zplugin snippet OMZ::plugins/stack/stack.plugin.zsh
+zplugin snippet OMZ::plugins/tig/tig.plugin.zsh
+zplugin snippet OMZ::plugins/yarn/yarn.plugin.zsh
+zplugin snippet OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh
+
+zplugin ice blockf; zplugin light zsh-users/zsh-completions
+
+if [[ "$OSTYPE" == darwin* ]]
+then
+  # macOS
+  zplugin ice svn; zplugin snippet PZT::modules/osx
+elif [[ "${+commands[apt]}" == 1 ]] && [[ "${+commands[lsb_release]}" == 1 ]]
+then
+  LSB_RELEASE="$(lsb_release -is)"
+
+  # Debian
+  zplugin ice if'[[ "$LSB_RELEASE" == "Debian" ]]'
+  zplugin snippet OMZ::plugins/debian/debian.plugin.zsh
+
+  # Ubuntu
+  zplugin ice if'[[ "$LSB_RELEASE" =~ ^(Ubuntu|elementary)$ ]]'
+  zplugin snippet OMZ::plugins/ubuntu/ubuntu.plugin.zsh
+fi
 
 compinit
 zplugin cdreplay -q
 
-# zplugin: Plugins loaded after compinit {{{
-zplugin ice wait'1' atload'_zsh_highlight'
-zplugin light 'zdharma/fast-syntax-highlighting'
-zplugin ice wait'1' atload'_zsh_autosuggest_start'
-zplugin light 'zsh-users/zsh-autosuggestions'
+## Commands and UI widgets
+ENHANCD_FILTER=fzf
+alias u='command cd ..'
+zplugin ice pick'init.sh'
+zplugin light b4b4r07/enhancd
 
-zplugin ice pick'pure.zsh' wait'!0'
-zplugin light 'sindresorhus/pure'
-# }}}
+zplugin ice pick'k.sh'; zplugin light 'supercrabtree/k'
+zplugin light mollifier/anyframe
 
+zplugin snippet \
+    'https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh'
+
+## Executables
+zplugin ice from'gh-r' as'command' mv'gotcha_* -> gotcha'
+zplugin light b4b4r07/gotcha
+
+zplugin ice cp'httpstat.sh -> httpstat'
+zplugin snippet --command \
+    'https://raw.githubusercontent.com/b4b4r07/httpstat/master/httpstat.sh'
+
+zplugin ice svn make'diff-highlight' pick'diff-highlight'
+zplugin snippet --command \
+    'https://github.com/git/git/trunk/contrib/diff-highlight'
+
+zplugin snippet --command \
+    'https://raw.githubusercontent.com/jonas/tig/master/contrib/tig-pick'
+
+zplugin snippet --command \
+    'https://raw.githubusercontent.com/Russell91/sshrc/master/moshrc'
+zplugin snippet --command \
+    'https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc'
+
+## Lazy plugins
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT='alias-tips: '
+zplugin ice wait'1'; zplugin light djui/alias-tips
+
+zplugin ice wait'1'
+zplugin light zsh-users/zsh-autosuggestions
+zplugin ice wait'1'
+zplugin light zdharma/fast-syntax-highlighting
+
+zplugin ice wait'[[ -n "$FAST_HIGHLIGHT_STYLES" ]]'
+zplugin light b4b4r07/zsh-vimode-visual
+
+## Theme
+zplugin light mafredri/zsh-async
+zplugin ice pick'pure.zsh' wait'!0'; zplugin light sindresorhus/pure

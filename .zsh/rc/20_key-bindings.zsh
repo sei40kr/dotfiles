@@ -3,9 +3,6 @@
 # 20_key-bindings.zsh
 # author: Seong Yong-ju ( @sei40kr )
 
-bindkey '^[[1;3C' forward-word
-bindkey '^[[1;3D' backward-word
-
 # mollifier/anyframe {{{
 bindkey '^xb' anyframe-widget-cdr
 bindkey '^x^b' anyframe-widget-checkout-git-branch
