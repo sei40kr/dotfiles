@@ -66,6 +66,10 @@ zstyle ':prezto:module:completion:*:hosts' etc-host-ignores \
     '0.0.0.0' '127.0.0.1'
 zplugin ice blockf; zplugin snippet PZT::modules/completion/init.zsh
 
+zstyle ':prezto:module:editor' key-bindings emacs
+zstyle ':prezto:module:editor' dot-expansion yes
+zplugin snippet PZT::modules/editor/init.zsh
+
 zplugin ice svn pick'init.zsh'; zplugin snippet PZT::modules/docker
 zplugin ice svn pick'init.zsh'; zplugin snippet PZT::modules/ssh
 zplugin snippet PZT::modules/rsync/init.zsh
