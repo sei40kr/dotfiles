@@ -71,7 +71,6 @@ zstyle ':prezto:module:completion:*:hosts' etc-host-ignores \
 zplugin ice blockf; zplugin snippet PZT::modules/completion/init.zsh
 
 zplugin ice svn pick'init.zsh'; zplugin snippet PZT::modules/docker
-zplugin ice svn pick'init.zsh'; zplugin snippet PZT::modules/git
 zplugin ice svn pick'init.zsh'; zplugin snippet PZT::modules/ssh
 zplugin snippet PZT::modules/rsync/init.zsh
 zplugin snippet PZT::modules/homebrew/init.zsh
@@ -92,6 +91,7 @@ zplugin snippet OMZ::plugins/composer/composer.plugin.zsh
 zplugin snippet OMZ::plugins/dircycle/dircycle.plugin.zsh
 zplugin snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
 zplugin snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
+zplugin snippet OMZ::plugins/git/git.plugin.zsh
 zplugin snippet OMZ::plugins/gradle/gradle.plugin.zsh
 zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 zplugin snippet OMZ::plugins/mosh/mosh.plugin.zsh
