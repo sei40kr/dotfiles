@@ -1,19 +1,25 @@
 snippet api
-	Api.invoke(req)
-			.then(res => dispatch(${1:fetchSuccess}(res)))
-			.catch(err => dispatch(catchApiError(err, { isContinuable: ${2:true} })))
-			.then(() => dispatch(loadingEnd()))${0}
+  dispatch(loadingStart());
+
+  return Api.invoke({
+    path: '${1:path}',
+    param: {
+      ${2:param}
+    },
+  })
+      .then((body: ResponseBody) => dispatch(${3:action}Success(body)))
+      .catch((err: Error) => dispatch(catchApiError(err, { isContinuable: ${4:true} })))
+      .then(() => dispatch(loadingEnd()))${0}
 snippet converter
-	${1:res} => ({
-		allIds: $1.map(${2:item} => $2.${3:id}),
-		byId: Object.assign({}, ...$1.map($2 => ({ [$2.$3]: $2 }))),
-	})${0}
+  const convert${1:Entities} = (${2:records}: ${3:RecordType}[]) => ({
+    allIds: $2.map((${4:record}: $3) => $4.${5:id}),
+    byId: Object.assign({}, ...$2.map(($4: $3) => ({ [$4.$5]: $4 }))),
+  });
+  ${0}
 snippet selector
-	createSelector(
-		state => state.${1}.allIds,
-		state => state.$1.byId,
-		(allIds, byId) => allIds.map(id => byId[id])
-	)${0}
-snippet msg
-	msg().${0}
-# vi: noet sw=2 cc=80
+  export const ${1:entity}Selector = createSelector(
+    state => state.${2}.allIds,
+    state => state.$2.byId,
+    (allIds, byId) => allIds.map(id => byId[id])
+  );
+  ${0}
