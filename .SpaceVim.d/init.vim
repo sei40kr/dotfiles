@@ -173,12 +173,20 @@ let g:neoformat_enabled_scss = []
 let g:neoformat_enabled_typescript = []
 " }}}
 
-" Shougo/deoplete.nvim {{{
+"" Shougo/deoplete.nvim {{{
+" If it is "complete", deoplete use |complete()|.
 let g:deoplete#complete_method = 'omnifunc'
+" If it is 1, file source complete the files from the buffer
+" path instead of the current directory.
+let g:deoplete#file#enable_buffer_path = 1
+" It is a dictionary to decide ignore source names.
+" The key is filetype and the value is source names list.
 let g:deoplete#ignore_sources = {
+      \ '_': ['buffer', 'tag', 'dictionary'],
       \ 'gitcommit': [],
       \ }
-" }}}
+set completeopt-=preview
+"" }}}
 
 " Shougo/neosnippet.vim {{{
 let g:neosnippet#disable_runtime_snippets = {
