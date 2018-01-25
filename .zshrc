@@ -57,10 +57,6 @@ zplugin snippet PZT::modules/environment/init.zsh
 zplugin snippet PZT::modules/directory/init.zsh
 zplugin snippet PZT::modules/history/init.zsh
 
-zstyle ':prezto:module:editor' key-bindings 'vi'
-zstyle ':prezto:module:editor' dot-expansion 'yes'
-zplugin snippet PZT::modules/editor/init.zsh
-
 ## Completions and aliases
 zplugin snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
 # Remove unwanted aliases
@@ -75,6 +71,10 @@ zplugin ice svn pick'init.zsh'; zplugin snippet PZT::modules/ssh
 zplugin snippet PZT::modules/rsync/init.zsh
 zplugin snippet PZT::modules/homebrew/init.zsh
 
+zplugin ice svn; zplugin snippet OMZ::plugins/rails
+# Remove unwanted alias
+unalias rg
+
 zplugin ice svn; zplugin snippet OMZ::plugins/autopep8
 zplugin ice svn; zplugin snippet OMZ::plugins/bundler
 zplugin ice svn; zplugin snippet OMZ::plugins/capistrano
@@ -83,7 +83,6 @@ zplugin ice svn; zplugin snippet OMZ::plugins/extract
 zplugin ice svn; zplugin snippet OMZ::plugins/gem
 zplugin ice svn; zplugin snippet OMZ::plugins/golang
 zplugin ice svn; zplugin snippet OMZ::plugins/python
-zplugin ice svn; zplugin snippet OMZ::plugins/rails
 zplugin ice svn; zplugin snippet OMZ::plugins/react-native
 zplugin ice svn; zplugin snippet OMZ::plugins/sbt
 zplugin snippet OMZ::plugins/ant/ant.plugin.zsh
@@ -167,9 +166,6 @@ zplugin ice wait'1'
 zplugin light zsh-users/zsh-autosuggestions
 zplugin ice wait'1'
 zplugin light zdharma/fast-syntax-highlighting
-
-zplugin ice wait'[[ -n "$FAST_HIGHLIGHT_STYLES" ]]'
-zplugin light b4b4r07/zsh-vimode-visual
 
 ## Theme
 zplugin light mafredri/zsh-async
