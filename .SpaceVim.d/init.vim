@@ -89,10 +89,23 @@ let g:spacevim_buffer_index_type = 4
 let g:spacevim_windows_index_type = 3
 let g:spacevim_github_username = 'sei40kr'
 let g:spacevim_enable_powerline_fonts = 1
+let g:spacevim_project_rooter_patterns = ['.git/']
+let g:spacevim_project_rooter_automatically = 1
 let g:spacevim_enable_vimfiler_welcome = 0
 let g:spacevim_enable_vimfiler_gitstatus = 0
 let g:spacevim_enable_vimfiler_filetypeicon = 1
-let g:spacevim_wildignore .= ',*/.bundle/*,*/vendor/bundle/*,*/node_modules/*,*/out/*,*/build/*,*/dist/*,*/coverage/*,*/log/*,*/.tmp/*,*/tmp/*'
+let g:spacevim_wildignore .= ',' . join([
+      \ '*/.bundle/*',
+      \ '*/vendor/bundle/*',
+      \ '*/node_modules/*',
+      \ '*/out/*',
+      \ '*/build/*',
+      \ '*/dist/*',
+      \ '*/coverage/*',
+      \ '*/log/*',
+      \ '*/.tmp/*',
+      \ '*/tmp/*'
+      \ ], ',')
 
 " TODO re-enable chromatica.nvim
 let g:spacevim_disabled_plugins = [
@@ -311,10 +324,21 @@ augroup SpaceVim_d_lang_json
   autocmd FileType json setlocal foldmethod=syntax
 augroup END
 
+function s:setup_onedark() abort
+  let s:colors = onedark#GetColors()
+
+  call onedark#set_highlight('Normal', { 'fg': s:colors.white })
+  call onedark#extend_highlight('LineNr', { 'bg': s:colors.black })
+  call onedark#extend_highlight('CursorLineNr', { 'bg': s:colors.black })
+  call onedark#extend_highlight('SignColumn', { 'bg': s:colors.black })
+  call onedark#extend_highlight('SignifySignAdd', { 'bg': s:colors.black })
+  call onedark#extend_highlight('SignifySignChange', { 'bg': s:colors.black })
+  call onedark#extend_highlight('SignifySignDelete', { 'bg': s:colors.black })
+endfunction
+
 augroup SpaceVim_d_colorscheme
   autocmd!
-  autocmd ColorScheme onedark call onedark#set_highlight('Normal', {
-        \ 'fg': onedark#GetColors().white })
+  autocmd ColorScheme onedark call s:setup_onedark()
 augroup END
 
 augroup SpaceVim_d_tools
