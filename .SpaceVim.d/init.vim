@@ -307,15 +307,22 @@ nnoremap <silent> ]q :ALENext<CR>
 
 " }}}
 
-" Yggdroot/indentLine {{{
-let g:indentLine_char = '▏'
-let g:indentLine_first_char = ' '
-let g:indentLine_color_term = 236
+"" Yggdroot/indentLine {{{
+" Specify a character to be used as indent line.
+let g:indentLine_char = '·'
+" Specify terminal vim indent line color.
+let g:indentLine_color_term = 59
+" Specify terminal vim indent line background color.
 let g:indentLine_bgcolor_term = 'NONE'
-let g:indentLine_color_gui = '#2c323c'
+" Specify GUI vim indent line color.
+let g:indentLine_color_gui = '#5c6370'
+" Specify GUI vim indent line background color.
 let g:indentLine_bgcolor_gui = 'NONE'
-let g:indentLine_showFirstIndentLevel = 1
-" }}}
+" Specify a character to show for leading spaces.
+let g:indentLine_leadingSpaceChar = '·'
+" Specify whether to show leading spaces by default.
+let g:indentLine_leadingSpaceEnabled = 1
+"" }}}
 
 augroup SpaceVim_d_lang_json
   autocmd!
