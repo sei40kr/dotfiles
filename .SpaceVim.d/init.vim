@@ -14,9 +14,7 @@ endif
 
 let g:mapleader = ';'
 
-call SpaceVim#layers#load('autocomplete', {
-      \ 'auto-completion-tab-key-behavior': 'nil',
-      \ })
+call SpaceVim#layers#load('autocomplete')
 call SpaceVim#layers#load('operator')
 call SpaceVim#layers#load('incsearch')
 call SpaceVim#layers#load('shell', {
