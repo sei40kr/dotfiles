@@ -54,7 +54,6 @@ call SpaceVim#layers#load('lang#vim')
 call SpaceVim#layers#load('lang#xml')
 call SpaceVim#layers#load('tmux')
 
-let g:deoplete#auto_complete_delay = 150
 if has('python3')
   let g:ctrlp_map = ''
   nnoremap <silent> <C-p> :Denite file_rec<CR>
@@ -114,6 +113,10 @@ let g:spacevim_disabled_plugins = [
       \ ]
 let g:spacevim_custom_plugins = [
       \ ['ejholmes/vim-forcedotcom'],
+      \ ['kana/vim-textobj-help', {
+      \ 'depends': 'vim-textobj-user',
+      \ 'on_ft': 'help',
+      \ }],
       \ ['rhysd/committia.vim', { 'on_path': ['COMMIT_EDITMSG', 'MERGE_MSG'] }],
       \ ['thinca/vim-template'],
       \ ['tyru/open-browser-github.vim',  { 'depends': 'open-browser.vim', 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'] }],
@@ -174,6 +177,9 @@ let g:neoformat_enabled_typescript = []
 " }}}
 
 "" Shougo/deoplete.nvim {{{
+" Delay the completion after input in milliseconds.
+" Requires |+timers| (Neovim 0.1.5)
+let g:deoplete#auto_complete_delay = 150
 " If it is "complete", deoplete use |complete()|.
 let g:deoplete#complete_method = 'omnifunc'
 " If it is 1, file source complete the files from the buffer
@@ -185,6 +191,7 @@ let g:deoplete#ignore_sources = {
       \ '_': ['buffer', 'tag', 'dictionary'],
       \ 'gitcommit': [],
       \ }
+
 set completeopt-=preview
 "" }}}
 
@@ -220,15 +227,12 @@ if has('mac')
 endif
 " }}}
 
-" terryma/vim-multiple-cursors {{{
-
+"" terryma/vim-multiple-cursors {{{
 " If set to 0, then pressing g:multi_cursor_quit_key in Visual mode will not quit and delete all existing cursors. This is useful if you want to press Escape and go back to Normal mode, and still be able to operate on all the cursors.
 let g:multi_cursor_exit_from_visual_mode = 0
-
 " If set to 0, then pressing g:multi_cursor_quit_key in Insert mode will not quit and delete all existing cursors. This is useful if you want to press Escape and go back to Normal mode, and still be able to operate on all the cursors.
 let g:multi_cursor_exit_from_insert_mode = 0
-
-" }}}
+"" }}}
 
 " thinca/vim-template {{{
 let g:template_basedir = expand('~/.SpaceVim.d/template')
@@ -264,16 +268,41 @@ function! s:template_keywords() abort
 endfunction
 " }}}
 
-" w0rp/ale {{{
-
+"" w0rp/ale {{{
 " This variable defines a message format for echoed messages.
 let g:ale_echo_msg_format = '[%linter%] %severity%: %s [%code%]'
-
 " The strings for `%severity%`
 let g:ale_echo_msg_error_str = 'error'
 let g:ale_echo_msg_info_str = 'info'
 let g:ale_echo_msg_warning_str = 'warn'
-
+" When set to `1` in your vimrc file, this option will cause ALE to run
+" linters when you leave insert mode.
+let g:ale_lint_on_insert_leave = 1
+" A mapping from filetypes to |List| values for functions for fixing errors.
+" See |ale-fix| for more information.
+let g:ale_fixers = {
+      \ 'c': [],
+      \ 'cpp': [],
+      \ 'css': [],
+      \ 'go': [],
+      \ 'haskell': [],
+      \ 'javascript': [],
+      \ 'json': [],
+      \ 'python': [],
+      \ 'ruby': [],
+      \ 'sass': [],
+      \ 'scss': [],
+      \ 'typescript': [],
+      \ }
+" The |g:ale_linter_aliases| option can be used to set aliases from one
+" filetype to another. A given filetype can be mapped to use the linters
+" run for another given filetype.
+let g:ale_linter_aliases = {
+      \ 'bash': 'sh',
+      \ 'zsh': 'sh',
+      \ }
+" The |g:ale_linters| option sets a |Dictionary| mapping a filetype to a
+" |List| of linter programs to be run when checking particular filetypes.
 let g:ale_linters = {
       \ 'bash': ['shellcheck'],
       \ 'c': ['clang'],
@@ -294,26 +323,13 @@ let g:ale_linters = {
       \ 'typescript': ['tsserver', 'tslint'],
       \ 'vim': ['vint'],
       \ }
-
-let g:ale_fixers = {
-      \ 'c': [],
-      \ 'cpp': [],
-      \ 'css': [],
-      \ 'go': [],
-      \ 'haskell': [],
-      \ 'javascript': [],
-      \ 'json': [],
-      \ 'python': [],
-      \ 'ruby': [],
-      \ 'sass': [],
-      \ 'scss': [],
-      \ 'typescript': [],
-      \ }
+" A maximum file size in bytes for ALE to check. If set to any positive
+" number, ALE will skip checking files larger than the given size.
+let g:ale_maximum_file_size = 1024 * 1024 * 1024
 
 nnoremap <silent> [q :ALEPrevious<CR>
 nnoremap <silent> ]q :ALENext<CR>
-
-" }}}
+"" }}}
 
 "" Yggdroot/indentLine {{{
 " Specify a character to be used as indent line.
@@ -326,6 +342,19 @@ let g:indentLine_bgcolor_term = 'NONE'
 let g:indentLine_color_gui = '#5c6370'
 " Specify GUI vim indent line background color.
 let g:indentLine_bgcolor_gui = 'NONE'
+" This variable specify a list of file types.
+" When opening these types of files, the plugin is enabled by
+" default.
+let g:indentLine_fileTypeExclude = [
+      \ 'tagbar',
+      \ 'vimfiler',
+      \ 'SpaceVimRunner',
+      \ 'SpaceVimREPL',
+      \ 'SpaceVimQuickFix',
+      \ 'HelpDescribe',
+      \ 'VebuggerShell',
+      \ 'VebuggerTerminal',
+      \ ]
 " Specify a character to show for leading spaces.
 let g:indentLine_leadingSpaceChar = '·'
 " Specify whether to show leading spaces by default.
