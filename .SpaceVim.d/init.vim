@@ -117,30 +117,20 @@ let g:spacevim_custom_plugins = [
       \ 'depends': 'vim-textobj-user',
       \ 'on_ft': 'help',
       \ }],
+      \ ['kana/vim-textobj-jabraces', { 'depends': 'vim-textobj-user' }],
+      \ ['raimon49/requirements.txt.vim', { 'on_ft': 'requirements' }],
       \ ['rhysd/committia.vim', { 'on_path': ['COMMIT_EDITMSG', 'MERGE_MSG'] }],
+      \ ['rhysd/github-complete.vim', {
+      \ 'on_ft': ['gitcommit', 'markdown', 'magit'],
+      \ }],
       \ ['thinca/vim-template'],
-      \ ['tyru/open-browser-github.vim',  { 'depends': 'open-browser.vim', 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'] }],
+      \ ['tyru/open-browser-github.vim',  {
+      \ 'depends': 'open-browser.vim',
+      \ 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'],
+      \ }],
       \ ]
 
-" blueyed/vim-diminactive {{{
-let g:diminactive = 0
-" }}}
-
-" elzr/vim-json {{{
-
-" conceal by default
-let g:vim_json_syntax_conceal = 0
-
-" have warnings by default
-let g:vim_json_warnings = 0
-
-" }}}
-
-" joshdick/onedark.vim {{{
-let g:onedark_terminal_italics = 1
-" }}}
-
-" mhinz/vim-signify {{{
+"" airblade/vim-gitgutter {{{
 let g:gitgutter_sign_added = '▍'
 let g:gitgutter_sign_modified = '▍'
 let g:gitgutter_sign_removed = ''
@@ -150,15 +140,115 @@ let g:gitgutter_map_keys = 0
 
 nmap [c <Plug>GitGutterPrevHunk
 nmap ]c <Plug>GitGutterNextHunk
-" }}}
+"" }}}
 
-" othree/javascript-libraries-syntax.vim {{{
+"" blueyed/vim-diminactive {{{
+let g:diminactive = 0
+"" }}}
+
+"" elzr/vim-json {{{
+" conceal by default
+let g:vim_json_syntax_conceal = 0
+" have warnings by default
+let g:vim_json_warnings = 0
+
+augroup SpaceVim_d_lang_json
+  autocmd!
+  autocmd FileType json setlocal foldmethod=syntax
+augroup END
+"" }}}
+
+"" jaxbot/github-issues.vim {{{
+" When this is set to any value, github-issues will not set Neocomplete and
+" Omnicomplete hooks.
+let g:github_issues_no_omni = 1
+"" }}}
+
+"" joshdick/onedark.vim {{{
+let g:onedark_terminal_italics = 1
+let g:onedark_color_overrides = {
+  \ 'black': { 'gui': '#343742', 'cterm': '235', 'cterm16': '0' },
+  \ }
+
+function s:h(group, style) abort
+  call onedark#set_highlight(a:group, a:style)
+endfunction
+
+function s:setup_onedark() abort
+  let s:colors = onedark#GetColors()
+
+  call s:h('Pmenu', { 'fg': s:colors.black, 'bg': s:colors.white })
+  call s:h('PmenuSel', { 'fg': s:colors.black, 'bg': s:colors.blue })
+  call s:h('PmenuSbar', { 'bg': s:colors.white })
+
+  call s:h('StartifyBracket', { 'fg': s:colors.white })
+  call s:h('StartifyFile', { 'fg': s:colors.white })
+  call s:h('StartifyHeader', { 'fg': s:colors.white })
+  call s:h('StartifyNumber', { 'fg': s:colors.purple })
+  call s:h('StartifyPath', { 'fg': s:colors.blue })
+  call s:h('StartifySection', { 'fg': s:colors.green })
+  call s:h('StartifySlash', { 'fg': s:colors.white })
+  call s:h('StartifySpecial', { 'fg': s:colors.comment_grey })
+
+  call s:h('LeaderGuideDesc', { 'fg': s:colors.white })
+  call s:h('LeaderGuideKeys', { 'fg': s:colors.purple })
+  call s:h('LeaderGuideBrackets', { 'fg': s:colors.white })
+
+  call s:h('LeaderGuideGroupName', { 'fg': s:colors.blue })
+
+  call s:h('EasyMotionTarget', { 'fg': s:colors.blue })
+
+  call s:h('EasyMotionTarget2First', { 'fg': s:colors.blue })
+  call s:h('EasyMotionTarget2Second', { 'fg': s:colors.purple })
+
+  call s:h('vimfilerStatus', { 'fg': s:colors.green })
+  call s:h('vimfilerCurrentDirectory', { 'fg': s:colors.green })
+
+  call s:h('vimfilerNonMark', { 'fg': s:colors.blue })
+  call s:h('vimfilerMark', { 'fg': s:colors.yellow })
+
+  call s:h('vimfilerNormalFile', { 'fg': s:colors.white })
+  call s:h('vimfilerMarkedFile', { 'fg': s:colors.yellow })
+  call s:h('vimfilerDirectory', { 'fg': s:colors.blue })
+  call s:h('vimfilerOpenedFile', { 'fg': s:colors.blue })
+  call s:h('vimfilerClosedFile', { 'fg': s:colors.blue })
+endfunction
+
+augroup SpaceVim_d_colorscheme
+  autocmd!
+  autocmd ColorScheme onedark call s:setup_onedark()
+augroup END
+"" }}}
+
+"" junegunn/vim-github-dashboard {{{
+let g:github_dashboard = {
+      \ 'username': g:spacevim_github_username,
+      \ }
+"" }}}
+
+"" majutsushi/tagbar {{{
+" The number of spaces by which each level is indented. This allows making the
+" display more compact or more spacious.
+let g:tagbar_indent = 1
+" Show the visibility symbols (public/protected/private) to the left of the tag
+" name.
+let g:tagbar_show_visibility = 1
+" Whether line numbers should be shown in the Tagbar window.
+let g:tagbar_show_linenumbers = 0
+" If this variable is set to 1 then moving the cursor in the Tagbar window will
+" automatically show the current tag in the preview window.
+let g:tagbar_autopreview = 1
+"" }}}
+
+"" othree/javascript-libraries-syntax.vim {{{
 let g:used_javascript_libs = ''
-" }}}
+"" }}}
 
-" sbdchd/neoformat {{{
+"" sbdchd/neoformat {{{
+" Run all enabled formatters (by default Neoformat stops after the first
+" formatter succeeds)
 let g:neoformat_run_all_formatters = 1
-
+" Define custom formatters.
 let g:neoformat_enabled_c = ['clangformat']
 let g:neoformat_enabled_cpp = ['clangformat']
 let g:neoformat_enabled_css = []
@@ -174,7 +264,7 @@ let g:neoformat_enabled_python = ['autopep8', 'yapf', 'isort']
 let g:neoformat_enabled_ruby = ['rubocop']
 let g:neoformat_enabled_scss = []
 let g:neoformat_enabled_typescript = []
-" }}}
+"" }}}
 
 "" Shougo/deoplete.nvim {{{
 " Delay the completion after input in milliseconds.
@@ -195,7 +285,7 @@ let g:deoplete#ignore_sources = {
 set completeopt-=preview
 "" }}}
 
-" Shougo/neosnippet.vim {{{
+"" Shougo/neosnippet.vim {{{
 let g:neosnippet#disable_runtime_snippets = {
       \ 'html': 1,
       \ 'css': 1,
@@ -203,7 +293,7 @@ let g:neosnippet#disable_runtime_snippets = {
       \ 'sass': 1,
       \ 'less': 1,
       \ }
-" }}}
+"" }}}
 
 "" Shougo/vimfiler.vim {{{
 " This variable controls vimfiler tree leaf icon.
@@ -346,7 +436,7 @@ nnoremap <silent> ]q :ALENext<CR>
 
 "" Yggdroot/indentLine {{{
 " Specify a character to be used as indent line.
-let g:indentLine_char = '·'
+let g:indentLine_char = '¦'
 " Specify terminal vim indent line color.
 let g:indentLine_color_term = 59
 " Specify terminal vim indent line background color.
@@ -374,62 +464,6 @@ let g:indentLine_leadingSpaceChar = '·'
 " Specify whether to show leading spaces by default.
 let g:indentLine_leadingSpaceEnabled = 1
 "" }}}
-
-augroup SpaceVim_d_lang_json
-  autocmd!
-  autocmd FileType json setlocal foldmethod=syntax
-augroup END
-
-function s:h(group, style) abort
-  call onedark#set_highlight(a:group, a:style)
-endfunction
-
-function s:setup_onedark() abort
-  let s:colors = onedark#GetColors()
-
-  call s:h('Normal', { 'fg': s:colors.white })
-
-  call s:h('Pmenu', { 'fg': s:colors.black, 'bg': s:colors.white })
-  call s:h('PmenuSel', { 'fg': s:colors.black, 'bg': s:colors.blue })
-  call s:h('PmenuSbar', { 'bg': s:colors.white })
-
-  call s:h('StartifyBracket', { 'fg': s:colors.white })
-  call s:h('StartifyFile', { 'fg': s:colors.white })
-  call s:h('StartifyHeader', { 'fg': s:colors.white })
-  call s:h('StartifyNumber', { 'fg': s:colors.purple })
-  call s:h('StartifyPath', { 'fg': s:colors.blue })
-  call s:h('StartifySection', { 'fg': s:colors.green })
-  call s:h('StartifySlash', { 'fg': s:colors.white })
-  call s:h('StartifySpecial', { 'fg': s:colors.comment_grey })
-
-  call s:h('LeaderGuideDesc', { 'fg': s:colors.white })
-  call s:h('LeaderGuideKeys', { 'fg': s:colors.purple })
-  call s:h('LeaderGuideBrackets', { 'fg': s:colors.white })
-
-  call s:h('LeaderGuideGroupName', { 'fg': s:colors.blue })
-
-  call s:h('EasyMotionTarget', { 'fg': s:colors.blue })
-
-  call s:h('EasyMotionTarget2First', { 'fg': s:colors.blue })
-  call s:h('EasyMotionTarget2Second', { 'fg': s:colors.purple })
-
-  call s:h('vimfilerStatus', { 'fg': s:colors.green })
-  call s:h('vimfilerCurrentDirectory', { 'fg': s:colors.green })
-
-  call s:h('vimfilerNonMark', { 'fg': s:colors.blue })
-  call s:h('vimfilerMark', { 'fg': s:colors.yellow })
-
-  call s:h('vimfilerNormalFile', { 'fg': s:colors.white })
-  call s:h('vimfilerMarkedFile', { 'fg': s:colors.yellow })
-  call s:h('vimfilerDirectory', { 'fg': s:colors.blue })
-  call s:h('vimfilerOpenedFile', { 'fg': s:colors.blue })
-  call s:h('vimfilerClosedFile', { 'fg': s:colors.blue })
-endfunction
-
-augroup SpaceVim_d_colorscheme
-  autocmd!
-  autocmd ColorScheme onedark call s:setup_onedark()
-augroup END
 
 augroup SpaceVim_d_tools
   autocmd!
