@@ -205,15 +205,24 @@ let g:neosnippet#disable_runtime_snippets = {
       \ }
 " }}}
 
-" Shougo/vimfiler.vim {{{
-let g:vimfiler_tree_indentation   = 1
-let g:vimfiler_tree_leaf_icon     = ''
-let g:vimfiler_tree_opened_icon   = ''
-let g:vimfiler_tree_closed_icon   = ''
-let g:vimfiler_file_icon          = ' '
+"" Shougo/vimfiler.vim {{{
+" This variable controls vimfiler tree leaf icon.
+let g:vimfiler_tree_leaf_icon = ''
+" This variable controls vimfiler opened directory tree icon.
+let g:vimfiler_tree_opened_icon = ''
+" This variable controls vimfiler closed directory tree icon.
+let g:vimfiler_tree_closed_icon = ''
+" This variable controls vimfiler file icon.
+let g:vimfiler_file_icon = ' '
+" This variable controls vimfiler readonly file icon.
 let g:vimfiler_readonly_file_icon = ''
-let g:vimfiler_marked_file_icon   = ''
-
+" This variable controls vimfiler marked file icon.
+let g:vimfiler_marked_file_icon = ''
+" This variable controls vimfiler indentation length of tree.
+let g:vimfiler_tree_indentation = 1
+" Specify the regexp pattern string or list to ignore candidates
+" of the source.  This applies on the filenames of candidates.
+" It's not case sensitive.
 let g:vimfiler_ignore_pattern = [
       \ '\.class$',
       \ '^\.DS_Store$',
@@ -223,9 +232,13 @@ let g:vimfiler_ignore_pattern = [
       \ ]
 
 if has('mac')
+  " It is quick look command for |<Plug>(vimfiler_quick_look)|.
+  " Default value is "", so you must set it to use
+  " |<Plug>(vimfiler_quick_look)| after installing quick look
+  " command.
   let g:vimfiler_quick_look_command = 'qlmanage -p'
 endif
-" }}}
+"" }}}
 
 "" terryma/vim-multiple-cursors {{{
 " If set to 0, then pressing g:multi_cursor_quit_key in Visual mode will not quit and delete all existing cursors. This is useful if you want to press Escape and go back to Normal mode, and still be able to operate on all the cursors.
@@ -366,16 +379,45 @@ augroup SpaceVim_d_lang_json
   autocmd FileType json setlocal foldmethod=syntax
 augroup END
 
+function s:h(group, style) abort
+  call onedark#set_highlight(a:group, a:style)
+endfunction
+
 function s:setup_onedark() abort
   let s:colors = onedark#GetColors()
 
-  call onedark#set_highlight('Normal', { 'fg': s:colors.white })
-  call onedark#extend_highlight('LineNr', { 'bg': s:colors.black })
-  call onedark#extend_highlight('CursorLineNr', { 'bg': s:colors.black })
-  call onedark#extend_highlight('SignColumn', { 'bg': s:colors.black })
-  call onedark#extend_highlight('SignifySignAdd', { 'bg': s:colors.black })
-  call onedark#extend_highlight('SignifySignChange', { 'bg': s:colors.black })
-  call onedark#extend_highlight('SignifySignDelete', { 'bg': s:colors.black })
+  call s:h('Normal', { 'fg': s:colors.white })
+
+  call s:h('Pmenu', { 'fg': s:colors.black, 'bg': s:colors.white })
+  call s:h('PmenuSel', { 'fg': s:colors.black, 'bg': s:colors.blue })
+  call s:h('PmenuSbar', { 'bg': s:colors.white })
+
+  call s:h('StartifyBracket', { 'fg': s:colors.white })
+  call s:h('StartifyFile', { 'fg': s:colors.white })
+  call s:h('StartifyHeader', { 'fg': s:colors.white })
+  call s:h('StartifyNumber', { 'fg': s:colors.purple })
+  call s:h('StartifyPath', { 'fg': s:colors.blue })
+  call s:h('StartifySection', { 'fg': s:colors.green })
+  call s:h('StartifySlash', { 'fg': s:colors.white })
+  call s:h('StartifySpecial', { 'fg': s:colors.comment_grey })
+
+  call s:h('LeaderGuideDesc', { 'fg': s:colors.white })
+  call s:h('LeaderGuideKeys', { 'fg': s:colors.purple })
+  call s:h('LeaderGuideBrackets', { 'fg': s:colors.white })
+
+  call s:h('LeaderGuideGroupName', { 'fg': s:colors.blue })
+
+  call s:h('vimfilerStatus', { 'fg': s:colors.green })
+  call s:h('vimfilerCurrentDirectory', { 'fg': s:colors.green })
+
+  call s:h('vimfilerNonMark', { 'fg': s:colors.blue })
+  call s:h('vimfilerMark', { 'fg': s:colors.yellow })
+
+  call s:h('vimfilerNormalFile', { 'fg': s:colors.white })
+  call s:h('vimfilerMarkedFile', { 'fg': s:colors.yellow })
+  call s:h('vimfilerDirectory', { 'fg': s:colors.blue })
+  call s:h('vimfilerOpenedFile', { 'fg': s:colors.blue })
+  call s:h('vimfilerClosedFile', { 'fg': s:colors.blue })
 endfunction
 
 augroup SpaceVim_d_colorscheme
@@ -410,6 +452,7 @@ set noshowmode
 set nrformats-=octal
 set ruler
 set scrolloff=1 sidescrolloff=5
+set showcmd
 set wildmenu
 
 " vim: set et sw=2 cc=80
