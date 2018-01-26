@@ -359,6 +359,7 @@ let g:indentLine_bgcolor_gui = 'NONE'
 " When opening these types of files, the plugin is enabled by
 " default.
 let g:indentLine_fileTypeExclude = [
+      \ 'text',
       \ 'tagbar',
       \ 'vimfiler',
       \ 'SpaceVimRunner',
@@ -406,6 +407,11 @@ function s:setup_onedark() abort
   call s:h('LeaderGuideBrackets', { 'fg': s:colors.white })
 
   call s:h('LeaderGuideGroupName', { 'fg': s:colors.blue })
+
+  call s:h('EasyMotionTarget', { 'fg': s:colors.blue })
+
+  call s:h('EasyMotionTarget2First', { 'fg': s:colors.blue })
+  call s:h('EasyMotionTarget2Second', { 'fg': s:colors.purple })
 
   call s:h('vimfilerStatus', { 'fg': s:colors.green })
   call s:h('vimfilerCurrentDirectory', { 'fg': s:colors.green })
