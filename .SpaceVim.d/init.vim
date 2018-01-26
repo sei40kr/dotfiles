@@ -107,12 +107,17 @@ let g:spacevim_wildignore .= ',' . join([
 " TODO re-enable chromatica.nvim
 let g:spacevim_disabled_plugins = [
       \ 'chromatica.nvim',
-      \ 'vim-snippets',
-      \ 'neco-look',
       \ 'fcitx.vim',
+      \ 'neco-look',
+      \ 'vim-jsx-pretty',
+      \ 'vim-snippets',
       \ ]
 let g:spacevim_custom_plugins = [
+      \ ['chemzqm/vim-jsx-improve'],
       \ ['ejholmes/vim-forcedotcom'],
+      \ ['janko-m/vim-test', {
+      \ 'on_cmd': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'],
+      \ }],
       \ ['kana/vim-textobj-help', {
       \ 'depends': 'vim-textobj-user',
       \ 'on_ft': 'help',
@@ -123,6 +128,7 @@ let g:spacevim_custom_plugins = [
       \ ['rhysd/github-complete.vim', {
       \ 'on_ft': ['gitcommit', 'markdown', 'magit'],
       \ }],
+      \ ['ryanss/vim-hackernews', { 'on_cmd': 'HackerNews' }],
       \ ['thinca/vim-template'],
       \ ['tyru/open-browser-github.vim',  {
       \ 'depends': 'open-browser.vim',
@@ -156,6 +162,10 @@ augroup SpaceVim_d_lang_json
   autocmd!
   autocmd FileType json setlocal foldmethod=syntax
 augroup END
+"" }}}
+
+"" janko-m/vim-test {{{
+let test#strategy = "neovim"
 "" }}}
 
 "" jaxbot/github-issues.vim {{{
