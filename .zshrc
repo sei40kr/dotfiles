@@ -28,13 +28,6 @@ then
   _comps[zplugin]=_zplugin
 fi
 
-zplugin snippet "${HOME}/.zsh/rc/10_utilities.zsh"
-zplugin snippet "${HOME}/.zsh/rc/20_key-bindings.zsh"
-zplugin snippet "${HOME}/.zsh/rc/30_aliases.zsh"
-zplugin snippet "${HOME}/.zsh/rc/50_options.zsh"
-zplugin snippet "${HOME}/.zsh/rc/70_misc.zsh"
-zplugin snippet "${HOME}/.zsh/rc/80_custom.zsh"
-
 ## Environments
 # Launch tmux if not running
 zstyle ':prezto:module:tmux:auto-start' local 'yes'
@@ -129,7 +122,7 @@ fi
 
 ## Commands and UI widgets
 ENHANCD_FILTER=fzf
-alias u='command cd ..'
+alias u='builtin cd ..'
 zplugin ice pick'init.sh'; zplugin light b4b4r07/enhancd
 
 export TMUXIFIER_LAYOUT_PATH="${HOME}/.tmux-layouts"
@@ -137,8 +130,18 @@ zplugin ice pick'init.sh' atinit'ln -sf "$PWD" "${HOME}/.tmuxifier"'
 zplugin light jimeh/tmuxifier
 
 zplugin ice pick'k.sh'; zplugin light supercrabtree/k
-zplugin light mollifier/anyframe
 
+zplugin light mollifier/anyframe
+bindkey '^x^b' anyframe-widget-checkout-git-branch
+bindkey '^xr' anyframe-widget-execute-history
+bindkey '^x^r' anyframe-widget-execute-history
+bindkey '^xi' anyframe-widget-put-history
+bindkey '^x^i' anyframe-widget-put-history
+bindkey '^xg' anyframe-widget-cd-ghq-repository
+bindkey '^x^g' anyframe-widget-cd-ghq-repository
+
+FZF_DEFAULT_COMMAND='rg --files --hidden --follow --iglob "!.git/**"'
+FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 zplugin snippet \
     'https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh'
 
@@ -162,6 +165,13 @@ zplugin snippet --command \
 zplugin snippet --command \
     'https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc'
 
+zplugin snippet "${HOME}/.zsh/rc/10_utilities.zsh"
+zplugin snippet "${HOME}/.zsh/rc/20_key-bindings.zsh"
+zplugin snippet "${HOME}/.zsh/rc/30_aliases.zsh"
+zplugin snippet "${HOME}/.zsh/rc/50_options.zsh"
+zplugin snippet "${HOME}/.zsh/rc/70_misc.zsh"
+zplugin snippet "${HOME}/.zsh/rc/80_custom.zsh"
+
 ## Lazy plugins
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='alias-tips: '
 zplugin ice wait'1'; zplugin light djui/alias-tips
@@ -177,3 +187,18 @@ zplugin ice pick'pure.zsh' wait'!0'; zplugin light sindresorhus/pure
 
 compinit
 zplugin cdreplay -q
+
+setopt APPEND_HISTORY
+setopt AUTO_PARAM_KEYS
+setopt AUTO_RESUME
+setopt EQUALS
+setopt EXTENDED_HISTORY
+setopt GLOB_DOTS
+setopt HIST_REDUCE_BLANKS
+setopt INTERACTIVE_COMMENTS
+setopt NO_BEEP
+setopt NUMERIC_GLOB_SORT
+setopt PRINT_EIGHT_BIT
+setopt PROMPT_SUBST
+setopt SHARE_HISTORY
+unsetopt LIST_BEEP
