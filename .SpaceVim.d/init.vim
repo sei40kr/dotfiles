@@ -217,7 +217,7 @@ let g:github_dashboard = {
 "" majutsushi/tagbar {{{
 " The number of spaces by which each level is indented. This allows making the
 " display more compact or more spacious.
-let g:tagbar_indent = 1
+let g:tagbar_indent = 2
 " Show the visibility symbols (public/protected/private) to the left of the tag
 " name.
 let g:tagbar_show_visibility = 1
@@ -297,7 +297,7 @@ let g:vimfiler_readonly_file_icon = ''
 " This variable controls vimfiler marked file icon.
 let g:vimfiler_marked_file_icon = ''
 " This variable controls vimfiler indentation length of tree.
-let g:vimfiler_tree_indentation = 1
+let g:vimfiler_tree_indentation = 2
 " Specify the regexp pattern string or list to ignore candidates
 " of the source.  This applies on the filenames of candidates.
 " It's not case sensitive.
