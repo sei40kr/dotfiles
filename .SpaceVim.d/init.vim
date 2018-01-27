@@ -109,11 +109,13 @@ let g:spacevim_disabled_plugins = [
       \ 'chromatica.nvim',
       \ 'fcitx.vim',
       \ 'neco-look',
+      \ 'onedark.vim',
       \ 'vim-jsx-pretty',
       \ 'vim-snippets',
       \ ]
 let g:spacevim_custom_plugins = [
-      \ ['chemzqm/vim-jsx-improve'],
+      \ ['chemzqm/vim-jsx-improve', { 'on_ft': 'javascript' }],
+      \ ['codeindulgence/vim-tig', { 'if': has('nvim') && executable('tig') }],
       \ ['ejholmes/vim-forcedotcom'],
       \ ['janko-m/vim-test', {
       \ 'on_cmd': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'],
@@ -129,6 +131,7 @@ let g:spacevim_custom_plugins = [
       \ 'on_ft': ['gitcommit', 'markdown', 'magit'],
       \ }],
       \ ['ryanss/vim-hackernews', { 'on_cmd': 'HackerNews' }],
+      \ ['sei40kr/SpaceVim-onedark'],
       \ ['thinca/vim-template'],
       \ ['tyru/open-browser-github.vim',  {
       \ 'depends': 'open-browser.vim',
@@ -150,6 +153,13 @@ nmap ]c <Plug>GitGutterNextHunk
 
 "" blueyed/vim-diminactive {{{
 let g:diminactive = 0
+"" }}}
+
+"" codeindulgence {{{
+let g:tig_executable = 'tig'
+let g:tig_default_command = 'status'
+let g:tig_on_exit = 'bw!'
+let g:tig_open_command = 'enew'
 "" }}}
 
 "" elzr/vim-json {{{
@@ -190,38 +200,6 @@ function s:setup_onedark() abort
   call s:h('Pmenu', { 'fg': s:colors.black, 'bg': s:colors.white })
   call s:h('PmenuSel', { 'fg': s:colors.black, 'bg': s:colors.blue })
   call s:h('PmenuSbar', { 'bg': s:colors.white })
-
-  call s:h('StartifyBracket', { 'fg': s:colors.white })
-  call s:h('StartifyFile', { 'fg': s:colors.white })
-  call s:h('StartifyHeader', { 'fg': s:colors.white })
-  call s:h('StartifyNumber', { 'fg': s:colors.purple })
-  call s:h('StartifyPath', { 'fg': s:colors.blue })
-  call s:h('StartifySection', { 'fg': s:colors.green })
-  call s:h('StartifySlash', { 'fg': s:colors.white })
-  call s:h('StartifySpecial', { 'fg': s:colors.comment_grey })
-
-  call s:h('LeaderGuideDesc', { 'fg': s:colors.white })
-  call s:h('LeaderGuideKeys', { 'fg': s:colors.purple })
-  call s:h('LeaderGuideBrackets', { 'fg': s:colors.white })
-
-  call s:h('LeaderGuideGroupName', { 'fg': s:colors.blue })
-
-  call s:h('EasyMotionTarget', { 'fg': s:colors.blue })
-
-  call s:h('EasyMotionTarget2First', { 'fg': s:colors.blue })
-  call s:h('EasyMotionTarget2Second', { 'fg': s:colors.purple })
-
-  call s:h('vimfilerStatus', { 'fg': s:colors.green })
-  call s:h('vimfilerCurrentDirectory', { 'fg': s:colors.green })
-
-  call s:h('vimfilerNonMark', { 'fg': s:colors.blue })
-  call s:h('vimfilerMark', { 'fg': s:colors.yellow })
-
-  call s:h('vimfilerNormalFile', { 'fg': s:colors.white })
-  call s:h('vimfilerMarkedFile', { 'fg': s:colors.yellow })
-  call s:h('vimfilerDirectory', { 'fg': s:colors.blue })
-  call s:h('vimfilerOpenedFile', { 'fg': s:colors.blue })
-  call s:h('vimfilerClosedFile', { 'fg': s:colors.blue })
 endfunction
 
 augroup SpaceVim_d_colorscheme
