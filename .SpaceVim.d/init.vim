@@ -470,6 +470,8 @@ augroup SpaceVim_d_tools
 
   autocmd User MultipleCursorsPre :
   autocmd User MultipleCursorsPost :
+
+  autocmd BufEnter * syntax sync maxlines=200
 augroup END
 
 set autoindent expandtab smartindent smarttab
