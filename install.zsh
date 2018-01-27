@@ -13,5 +13,6 @@ dotfiles_dir="${HOME}/dotfiles"
   exit 1
 }
 
+. ./alacritty/alacritty-setup.zsh
 . ./vscode/vscode-setup.zsh
 
