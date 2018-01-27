@@ -165,13 +165,6 @@ zplugin snippet --command \
 zplugin snippet --command \
     'https://raw.githubusercontent.com/Russell91/sshrc/master/sshrc'
 
-zplugin snippet "${HOME}/.zsh/rc/10_utilities.zsh"
-zplugin snippet "${HOME}/.zsh/rc/20_key-bindings.zsh"
-zplugin snippet "${HOME}/.zsh/rc/30_aliases.zsh"
-zplugin snippet "${HOME}/.zsh/rc/50_options.zsh"
-zplugin snippet "${HOME}/.zsh/rc/70_misc.zsh"
-zplugin snippet "${HOME}/.zsh/rc/80_custom.zsh"
-
 ## Lazy plugins
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='alias-tips: '
 zplugin ice wait'1'; zplugin light djui/alias-tips
