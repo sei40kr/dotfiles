@@ -149,7 +149,7 @@ bindkey '^x^i' anyframe-widget-put-history
 bindkey '^xg' anyframe-widget-cd-ghq-repository
 bindkey '^x^g' anyframe-widget-cd-ghq-repository
 
-FZF_DEFAULT_COMMAND='rg --files --hidden --follow --iglob "!.git/**"'
+FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*" --glob "!*/node_modules/*"'
 FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 zplugin snippet \
     'https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh'
