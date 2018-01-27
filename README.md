@@ -1,5 +1,36 @@
 # dotfiles
 
+<!-- vim-markdown-toc GFM -->
+
+- [Installation](#installation)
+  - [Install fonts](#install-fonts)
+  - [macOS: Install Homebrew](#macos-install-homebrew)
+  - [Linux: Install Linuxbrew](#linux-install-linuxbrew)
+  - [Add SSH key to GitHub account](#add-ssh-key-to-github-account)
+  - [Clone dotfiles](#clone-dotfiles)
+  - [Set up terminal emulator](#set-up-terminal-emulator)
+  - [Install ZSH](#install-zsh)
+  - [Install TMUX](#install-tmux)
+  - [Install Git](#install-git)
+  - [Install tig](#install-tig)
+  - [Install version managers](#install-version-managers)
+  - [Set up Haskell](#set-up-haskell)
+  - [Set up Go](#set-up-go)
+  - [Set up Java](#set-up-java)
+  - [Set up Python](#set-up-python)
+  - [Set up Ruby](#set-up-ruby)
+  - [Set up Node.js](#set-up-nodejs)
+  - [Install global](#install-global)
+  - [Install Vim and Neovim](#install-vim-and-neovim)
+  - [Install SpaceVim](#install-spacevim)
+  - [Install Emacs](#install-emacs)
+  - [Install Spacemacs](#install-spacemacs)
+  - [Install other command-line tools](#install-other-command-line-tools)
+  - [Install GUI applications](#install-gui-applications)
+- [TODO](#todo)
+
+<!-- vim-markdown-toc -->
+
 ## Installation
 
 ### Install fonts
