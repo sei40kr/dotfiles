@@ -17,11 +17,18 @@ then
   . "${HOME}/.sdkman/bin/sdkman-init.sh"
 fi
 
-autoload -Uz compinit
+autoload -Uz add-zsh-hook \
+    cdr \
+    chpwd_recent_dirs \
+    compinit \
+    _zplugin
 
+# Install zplugin if not installed
+[[ -d "${HOME}/.zplugin" ]] || \
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+
+# Load zplugin
 . "${HOME}/.zplugin/bin/zplugin.zsh"
-
-autoload -Uz add-zsh-hook cdr chpwd_recent_dirs _zplugin
 
 if [[ "${+_comps}" == 1 ]]
 then
