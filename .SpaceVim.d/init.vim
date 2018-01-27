@@ -14,6 +14,7 @@ endif
 
 let g:mapleader = ';'
 
+"" SpaceVim/SpaceVim {{{
 call SpaceVim#layers#load('autocomplete')
 call SpaceVim#layers#load('operator')
 call SpaceVim#layers#load('incsearch')
@@ -54,14 +55,6 @@ call SpaceVim#layers#load('lang#vim')
 call SpaceVim#layers#load('lang#xml')
 call SpaceVim#layers#load('tmux')
 
-if has('python3')
-  let g:ctrlp_map = ''
-  nnoremap <silent> <C-p> :Denite file_rec<CR>
-endif
-let g:clang2_placeholder_next = ''
-let g:clang2_placeholder_prev = ''
-
-" SpaceVim configurations
 let g:spacevim_max_column = 80
 let g:spacevim_windows_leader = 's'
 let g:spacevim_unite_leader = 'f'
@@ -92,19 +85,16 @@ let g:spacevim_enable_vimfiler_welcome = 0
 let g:spacevim_enable_vimfiler_gitstatus = 0
 let g:spacevim_enable_vimfiler_filetypeicon = 1
 let g:spacevim_wildignore .= ',' . join([
-      \ '*/.bundle/*',
-      \ '*/vendor/bundle/*',
+      \ '*/tmp/*',
+      \ '*.so',
+      \ '*.swp',
+      \ '*.zip',
+      \ '*.pyc',
+      \ '*.log',
+      \ '*.db',
+      \ '*.sqlite',
       \ '*/node_modules/*',
-      \ '*/out/*',
-      \ '*/build/*',
-      \ '*/dist/*',
-      \ '*/coverage/*',
-      \ '*/log/*',
-      \ '*/.tmp/*',
-      \ '*/tmp/*'
       \ ], ',')
-
-" TODO re-enable chromatica.nvim
 let g:spacevim_disabled_plugins = [
       \ 'chromatica.nvim',
       \ 'fcitx.vim',
@@ -138,6 +128,12 @@ let g:spacevim_custom_plugins = [
       \ 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'],
       \ }],
       \ ]
+
+if has('python3')
+  let g:ctrlp_map = ''
+  nnoremap <silent> <C-p> :Denite file_rec<CR>
+endif
+"" }}}
 
 "" airblade/vim-gitgutter {{{
 let g:gitgutter_sign_added = '▍'
@@ -302,11 +298,17 @@ let g:vimfiler_tree_indentation = 2
 " of the source.  This applies on the filenames of candidates.
 " It's not case sensitive.
 let g:vimfiler_ignore_pattern = [
-      \ '\.class$',
       \ '^\.DS_Store$',
       \ '^\.git$',
+      \ '^\.netrwhist$',
       \ '^\.init\.vim-rplugin\~$',
-      \ '^\.netrwhist$'
+      \ '\.class$',
+      \ '\.rbc$',
+      \ '\~$',
+      \ '\.pyc$',
+      \ '\.db$',
+      \ '\.sqlite$',
+      \ '^__pycache__$',
       \ ]
 
 if has('mac')
@@ -316,6 +318,11 @@ if has('mac')
   " command.
   let g:vimfiler_quick_look_command = 'qlmanage -p'
 endif
+"" }}}
+
+"" SpaceVim/deoplete-clang2 {{{
+let g:clang2_placeholder_next = ''
+let g:clang2_placeholder_prev = ''
 "" }}}
 
 "" terryma/vim-multiple-cursors {{{
