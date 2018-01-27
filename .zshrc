@@ -79,6 +79,9 @@ zplugin ice svn; zplugin snippet OMZ::plugins/rails
 # Remove unwanted alias
 unalias rg
 
+zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
+unalias k
+
 zplugin ice svn; zplugin snippet OMZ::plugins/autopep8
 zplugin ice svn; zplugin snippet OMZ::plugins/bundler
 zplugin ice svn; zplugin snippet OMZ::plugins/capistrano
@@ -96,7 +99,6 @@ zplugin snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
 zplugin snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
 zplugin snippet OMZ::plugins/git/git.plugin.zsh
 zplugin snippet OMZ::plugins/gradle/gradle.plugin.zsh
-zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 zplugin snippet OMZ::plugins/mosh/mosh.plugin.zsh
 zplugin snippet OMZ::plugins/mvn/mvn.plugin.zsh
 zplugin snippet OMZ::plugins/npm/npm.plugin.zsh
