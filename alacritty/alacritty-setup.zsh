@@ -12,10 +12,10 @@ uname="$(uname -s)"
 if [ "$uname" = 'Darwin' ]
 then
   ln -sfv "${dotfiles_dir}/alacritty/alacritty-macos.yml" \
-      "${alacritty_home_dir}/alacritty/alacritty.yml"
+      "${alacritty_home_dir}/alacritty.yml"
 else
   ln -sfv "${dotfiles_dir}/alacritty/alacritty.yml" \
-      "${alacritty_home_dir}/alacritty/alacritty.yml"
+      "${alacritty_home_dir}/alacritty.yml"
 fi
 
 -log-done "Symlinks were successfully created."
