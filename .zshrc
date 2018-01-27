@@ -173,6 +173,7 @@ zplugin ice wait'1'
 zplugin light zsh-users/zsh-autosuggestions
 zplugin ice wait'1'
 zplugin light zdharma/fast-syntax-highlighting
+
 zplugin ice wait'1' if'[[ -n "$TMUX" ]]'
 zplugin light sei40kr/zsh-tmux-rename
 
