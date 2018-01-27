@@ -433,6 +433,10 @@ let g:indentLine_bgcolor_term = 'NONE'
 let g:indentLine_color_gui = '#5c6370'
 " Specify GUI vim indent line background color.
 let g:indentLine_bgcolor_gui = 'NONE'
+" Specify whether the first indent level should be shown.
+" This is useful if you use indentLine in combination with
+" |listchars| in order to show tabs.
+let g:indentLine_showFirstIndentLevel = 1
 " This variable specify a list of file types.
 " When opening these types of files, the plugin is enabled by
 " default.
