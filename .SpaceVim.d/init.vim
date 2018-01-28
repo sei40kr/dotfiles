@@ -127,6 +127,10 @@ let g:spacevim_custom_plugins = [
       \ 'depends': 'open-browser.vim',
       \ 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'],
       \ }],
+      \ ['tyru/eskk.vim', {
+      \ 'on_map': { 'icl': '<Plug>(eskk:toggle)' },
+      \ 'on_cmd': 'EskkUpdateDictionary',
+      \ }],
       \ ]
 
 if has('python3')
@@ -332,7 +336,7 @@ let g:multi_cursor_exit_from_visual_mode = 0
 let g:multi_cursor_exit_from_insert_mode = 0
 "" }}}
 
-" thinca/vim-template {{{
+"" thinca/vim-template {{{
 let g:template_basedir = expand('~/.SpaceVim.d/template')
 let g:template_files = 'template.*'
 
@@ -364,7 +368,16 @@ function! s:template_keywords() abort
     execute 'normal! "_da>'
   endif
 endfunction
-" }}}
+"" }}}
+
+"" tyru/eskk.vim {{{
+let g:eskk#no_default_mappings = 1
+let g:eskk#enable_completion = 1
+
+imap <unique> <C-j> <Plug>(eskk:toggle)
+cmap <unique> <C-j> <Plug>(eskk:toggle)
+lmap <unique> <C-j> <Plug>(eskk:toggle)
+"" }}}
 
 "" w0rp/ale {{{
 " This variable defines a message format for echoed messages.
