@@ -139,6 +139,7 @@ zplugin ice pick'init.sh' atinit'ln -sf "$PWD" "${HOME}/.tmuxifier"'
 zplugin light jimeh/tmuxifier
 
 zplugin ice pick'k.sh'; zplugin light supercrabtree/k
+alias k='k -Ah --no-vcs'
 
 zplugin light mollifier/anyframe
 bindkey '^x^b' anyframe-widget-checkout-git-branch
