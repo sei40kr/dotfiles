@@ -26,6 +26,7 @@ brew "reattach-to-user-namespace"
 brew "yarn", args: ['without-node']
 brew "shellcheck"
 brew "shfmt"
+brew "skktools"
 brew "tig"
 brew "tldr"
 brew "tmux"
