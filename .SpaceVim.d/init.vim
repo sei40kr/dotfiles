@@ -371,8 +371,16 @@ endfunction
 "" }}}
 
 "" tyru/eskk.vim {{{
+set imdisable
+
+let g:eskk#enable_completion = 1
+let g:eskk#egg_like_newline = 1
+let g:eskk#directory = expand('~/.cache/eskk')
 let g:eskk#no_default_mappings = 1
 let g:eskk#enable_completion = 1
+let g:eskk#egg_like_newline = 1
+let g:eskk#show_annotation = 1
+let g:eskk#use_color_cursor = 0
 
 imap <unique> <C-j> <Plug>(eskk:toggle)
 cmap <unique> <C-j> <Plug>(eskk:toggle)
