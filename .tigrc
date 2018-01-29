@@ -175,10 +175,27 @@ bind main co ?git checkout %(commit)
 # Colors
 # ------
 
+color "Author: " default default
+color "Commit: " default default
+color "Tagger: " default default
+color "Merge: " default default
+color "Date: " default default
+color "AuthorDate: " default default
+color "CommitDate: " default default
+color "TaggerDate: " default default
+color "Refs: " default default
+color "Reflog: " default default
+color "Reflog message: "	yellow	default
 color "author " magenta default
 color cursor black blue
 color header cyan default
 color date default default
 color id blue default
 color section green default
+color title-blur blue default bold
+color title-focus blue default bold
+color main-remote green default
+color main-tracked green default
+color main-ref blue default bold
+color main-head blue default bold
 
