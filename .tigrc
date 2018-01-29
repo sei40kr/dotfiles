@@ -81,11 +81,6 @@ set ignore-case  = smart-case
 
 set editor-line-number = yes
 
-# bind status um none
-# bind status ul none
-# bind status us none
-# bind status !  status-revert
-
 
 # User-defined commands
 # ---------------------
