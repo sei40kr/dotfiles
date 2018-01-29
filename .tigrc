@@ -2,9 +2,6 @@
 #
 # Please see 'man tigrc' for a complete reference.
 
-source ~/.tig/rc/large-repo.tigrc
-source ~/.tig/rc/vim.tigrc
-
 # Settings
 # --------
 # Most of these settings can be toggleable, either via the toggle-*
@@ -84,12 +81,10 @@ set ignore-case  = smart-case
 
 set editor-line-number = yes
 
-bind status uu none
-bind status um none
-bind status ul none
-bind status us none
-bind status u  status-update
-bind status !  status-revert
+# bind status um none
+# bind status ul none
+# bind status us none
+# bind status !  status-revert
 
 
 # User-defined commands
@@ -127,54 +122,81 @@ bind status !  status-revert
 #   %(diffargs)		The diff options from `diff-options` or `TIG_DIFF_OPTS`
 #   %(prompt)		Prompt for the argument value.
 
-bind generic l ?git pull %(remote)
-bind main    l ?sh -c "git checkout %(branch) && git pull %(remote) --ff-only && git checkout -"
-bind diff    l ?sh -c "git checkout %(branch) && git pull %(remote) --ff-only && git checkout -"
-bind refs    l ?sh -c "git checkout %(branch) && git pull %(remote) --ff-only && git checkout -"
+# View manipulation
 
-bind generic p ?git push -u %(remote) %(repo:head)
-
-bind generic C  !git commit
-bind refs    C  !git commit
-bind main    C  !git commit
-bind generic c  none
-bind generic ca !git commit --amend --allow-empty
-
-bind generic vu !sh -c "git reflog --pretty=raw | tig --pretty=raw"
-bind generic _  ?git reset --hard HEAD@{"%(prompt Enter HEAD@{} number: )"}
-
-bind diff  P ?git stash pop %(stash)
-bind stash P ?git stash pop %(stash)
-bind diff  A ?git stash apply %(stash)
-bind refs    d ?git branch -d %(branch)
-bind status  d ?git clean -d -f -- %(file)
-bind tree    d ?git rm %(file)
-bind main    D ?git clean -d -f
-bind status  D ?git clean -d -f
-bind refs    D ?sh -c "git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %"
-bind refs    dd ?git branch -d %(branch)
-bind status  dd ?git clean -d -f -- %(file)
-bind tree    dd ?git rm %(file)
-
-# Misc
-
-# Normal commands
-# ---------------
-
-bind main ! ?git revert %(commit)
-
-bind main cp ?git cherry-pick %(commit)
-bind diff cp ?git cherry-pick %(commit)
-
-bind main co ?git checkout %(branch)
-bind refs co ?git checkout %(branch)
-bind main co ?git checkout %(commit)
+bind generic <F5> none
 
 # View switching
+
+bind generic m none
+bind generic d none
+bind generic t none
+bind generic f none
+bind generic b none
+bind generic r none
+bind generic s none
+bind generic S none
+bind generic y none
+bind generic p none
+
+# Option toggling
+
+bind generic I none
+bind generic i none
+bind generic D none
+bind generic A none
+bind generic ~ none
+bind generic F none
+bind generic W none
+bind generic X none
+bind generic $ none
+bind generic % none
+bind diff [ none
+bind diff ] none
+bind stage [ none
+bind stage ] none
+
+# External commands
+
+bind main P ?git push -u %(remote) %(repo:head)
+bind main co ?git checkout %(commit)
+bind main cp ?git cherry-pick %(commit)
+bind main ! ?git revert %(commit)
+bind diff cp ?git cherry-pick %(commit)
+bind tree dd ?git rm %(file)
+bind refs dd ?git branch -d %(branch)
+bind refs D ?sh -c "git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %"
+bind refs co ?git checkout %(branch)
+bind status dd ?git clean -d -f -- %(file)
+bind status D ?git clean -d -f
+bind status P ?git push -u %(remote) %(repo:head)
+
+# Vi-style key bindings
+source ~/.tig/rc/vim.tigrc
+bind generic K none
+bind generic oo none
+bind generic os none
+bind generic on none
+bind generic od none
+bind generic oa none
+bind generic og none
+bind generic of none
+bind generic op none
+bind generic oi none
+bind generic ot none
+bind generic oF none
+bind generic or none
+bind generic @- none
+bind generic @+ none
 
 # Colors
 # ------
 
+color "---" default default
+color "diff --" default default
+color "--- " cyan default
+color "+++ " cyan default
+color "@@" blue default
 color "Author: " default default
 color "Commit: " default default
 color "Tagger: " default default
@@ -187,7 +209,9 @@ color "Refs: " default default
 color "Reflog: " default default
 color "Reflog message: "	yellow	default
 color "author " magenta default
+color "commit " cyan default
 color cursor black blue
+color status default default
 color header cyan default
 color date default default
 color id blue default
@@ -198,4 +222,9 @@ color main-remote green default
 color main-tracked green default
 color main-ref blue default bold
 color main-head blue default bold
+color diff-stat default default
+color help-group blue default
+color help-action magenta default
+
+source ~/.tig/rc/large-repo.tigrc
 
