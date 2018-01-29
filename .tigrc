@@ -159,7 +159,7 @@ bind main cp ?git cherry-pick %(commit)
 bind main ! ?git revert %(commit)
 bind diff cp ?git cherry-pick %(commit)
 bind tree dd ?git rm %(file)
-bind refs dd ?git branch -d %(branch)
+bind refs dd ?git branch -D %(branch)
 bind refs D ?sh -c "git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %"
 bind refs co ?git checkout %(branch)
 bind status dd ?git clean -d -f -- %(file)
