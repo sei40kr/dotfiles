@@ -183,6 +183,18 @@ bind generic oF none
 bind generic or none
 bind generic @- none
 bind generic @+ none
+bind status uu none
+bind status ur none
+bind status um none
+bind status ul none
+bind status us none
+bind status u status-update
+bind stage uu none
+bind stage ur none
+bind stage um none
+bind stage ul none
+bind stage us none
+bind stage u status-update
 
 # Colors
 # ------
