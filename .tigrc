@@ -91,6 +91,28 @@ bind status us none
 bind status u  status-update
 bind status !  status-revert
 
+# Colors
+# ------
+
+# The colors in the UI can be customized. In addition to the colors used
+# for the UI you can also define new colors to use in the pager, blob,
+# diff, and stage views by placing the text to match for in quotes.
+#
+# Prefix the name of a view to set a color only for that view, e.g.
+#
+#	color grep.file blue default
+#
+# As an example, this setting will to color Signed-off-by lines with a
+# yellow foreground color and use the default background color.
+#
+#	color "    Signed-off-by"	yellow	default
+#
+# Note the four leading spaces in the string to match. This is because
+# Git automatically indents commit messages by four spaces.
+
+color header cyan default
+color section green default
+
 # User-defined commands
 # ---------------------
 # These commands allow to run shell commands directly from within Tig.
