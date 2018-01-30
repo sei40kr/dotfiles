@@ -220,9 +220,6 @@ let g:tagbar_indent = 2
 let g:tagbar_show_visibility = 1
 " Whether line numbers should be shown in the Tagbar window.
 let g:tagbar_show_linenumbers = 0
-" If this variable is set to 1 then moving the cursor in the Tagbar window will
-" automatically show the current tag in the preview window.
-let g:tagbar_autopreview = 1
 "" }}}
 
 "" neomake/neomake {{{
