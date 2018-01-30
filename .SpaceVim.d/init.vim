@@ -60,8 +60,8 @@ let g:spacevim_windows_leader = 's'
 let g:spacevim_unite_leader = 'f'
 let g:spacevim_denite_leader = 'F'
 let g:spacevim_realtime_leader_guide = 1
-let g:spacevim_enable_neomake = 0
-let g:spacevim_enable_ale = 1
+let g:spacevim_enable_neomake = 1
+let g:spacevim_enable_ale = 0
 let g:spacevim_statusline_separator = 'nil'
 let g:spacevim_statusline_inactive_separator = 'nil'
 let g:spacevim_statusline_unicode_symbols = 1
@@ -79,8 +79,10 @@ let g:spacevim_buffer_index_type = 4
 let g:spacevim_windows_index_type = 3
 let g:spacevim_github_username = 'sei40kr'
 let g:spacevim_enable_powerline_fonts = 1
+let g:spacevim_project_lint_on_save = 1
 let g:spacevim_project_rooter_patterns = ['.git/']
 let g:spacevim_project_rooter_automatically = 1
+let g:spacevim_lint_on_the_fly = 1
 let g:spacevim_enable_vimfiler_welcome = 0
 let g:spacevim_enable_vimfiler_gitstatus = 0
 let g:spacevim_enable_vimfiler_filetypeicon = 0
@@ -127,10 +129,6 @@ let g:spacevim_custom_plugins = [
       \ 'depends': 'open-browser.vim',
       \ 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'],
       \ }],
-      \ ['tyru/eskk.vim', {
-      \ 'on_map': { 'icl': '<Plug>(eskk:toggle)' },
-      \ 'on_cmd': 'EskkUpdateDictionary',
-      \ }],
       \ ]
 
 if has('python3')
@@ -175,7 +173,7 @@ augroup END
 "" }}}
 
 "" janko-m/vim-test {{{
-let test#strategy = "neovim"
+let g:test#strategy = 'neovim'
 "" }}}
 
 "" jaxbot/github-issues.vim {{{
@@ -226,6 +224,42 @@ let g:tagbar_show_linenumbers = 0
 " If this variable is set to 1 then moving the cursor in the Tagbar window will
 " automatically show the current tag in the preview window.
 let g:tagbar_autopreview = 1
+"" }}}
+
+"" neomake/neomake {{{
+let g:neomake_ansible_enabled_makers = ['ansiblelint']
+let g:neomake_apiblueprint_enabled_makers = ['drafter']
+let g:neomake_c_enabled_makers = executable('clang') ? ['clang', 'clangtidy', 'clangcheck'] : ['gcc']
+call extend(g:neomake_c_enabled_makers, ['checkpatch', 'cppcheck'])
+let g:neomake_cpp_enabled_makers = executable('clang++') ? ['clang', 'clangtidy', 'clangcheck'] : ['gcc']
+call add(g:neomake_cpp_enabled_makers, 'cppcheck')
+let g:neomake_crystal_enabled_makers = ['crystal']
+let g:neomake_css_enabled_makers = ['csslint', 'stylelint']
+let g:neomake_go_enabled_makers = ['go', 'gometalinter']
+let g:neomake_haskell_enabled_makers = ['ghc-mod', 'hdevtools', 'hlint', 'liquid']
+let g:neomake_help_enabled_makers = ['writegood']
+let g:neomake_html_enabled_makers = ['tidy', 'htmlhint']
+let g:neomake_java_enabled_makers = ['javac']
+let g:neomake_javascript_enabled_makers = ['flow', 'eslint_d']
+let g:neomake_json_enabled_makers = ['jsonlint']
+let g:neomake_jsx_enabled_makers = ['flow', 'eslint_d']
+let g:neomake_less_enabled_makers = ['stylelint']
+let g:neomake_markdown_enabled_makers = ['mdl']
+let g:neomake_perl_enabled_makers = ['perl', 'perlcritic']
+let g:neomake_php_enabled_makers = ['php', 'phpmd', 'phpcs', 'phpstan']
+let g:neomake_purescript_enabled_makers = ['pulp']
+let g:neomake_python_enabled_makers = ['python', 'frosted', 'pylama']
+let g:neomake_ruby_enabled_makers = ['mri', 'rubocop', 'rubocop_rails', 'reek', 'rubylint']
+let g:neomake_scss_enabled_makers = ['stylelint', 'sasslint']
+let g:neomake_sh_enabled_makers = ['sh', 'shellcheck']
+let g:neomake_sql_enabled_makers = ['sqlint']
+let g:neomake_toml_enabled_makers = ['tomlcheck']
+let g:neomake_tsx_enabled_makers = ['tsc', 'tslint']
+let g:neomake_typescript_enabled_makers = ['tsc', 'tslint']
+let g:neomake_vim_enabled_makers = ['vint']
+let g:neomake_vue_enabled_makers = ['eslint_d']
+let g:neomake_yaml_enabled_makers = ['yamllint']
+let g:neomake_zsh_enabled_makers = ['zsh']
 "" }}}
 
 "" othree/javascript-libraries-syntax.vim {{{
@@ -368,86 +402,6 @@ function! s:template_keywords() abort
     execute 'normal! "_da>'
   endif
 endfunction
-"" }}}
-
-"" tyru/eskk.vim {{{
-set imdisable
-
-let g:eskk#enable_completion = 1
-let g:eskk#egg_like_newline = 1
-let g:eskk#directory = expand('~/.cache/eskk')
-let g:eskk#no_default_mappings = 1
-let g:eskk#enable_completion = 1
-let g:eskk#egg_like_newline = 1
-let g:eskk#show_annotation = 1
-let g:eskk#use_color_cursor = 0
-
-imap <unique> <C-j> <Plug>(eskk:toggle)
-cmap <unique> <C-j> <Plug>(eskk:toggle)
-lmap <unique> <C-j> <Plug>(eskk:toggle)
-"" }}}
-
-"" w0rp/ale {{{
-" This variable defines a message format for echoed messages.
-let g:ale_echo_msg_format = '[%linter%] %severity%: %s [%code%]'
-" The strings for `%severity%`
-let g:ale_echo_msg_error_str = 'error'
-let g:ale_echo_msg_info_str = 'info'
-let g:ale_echo_msg_warning_str = 'warn'
-" When set to `1` in your vimrc file, this option will cause ALE to run
-" linters when you leave insert mode.
-let g:ale_lint_on_insert_leave = 1
-" A mapping from filetypes to |List| values for functions for fixing errors.
-" See |ale-fix| for more information.
-let g:ale_fixers = {
-      \ 'c': [],
-      \ 'cpp': [],
-      \ 'css': [],
-      \ 'go': [],
-      \ 'haskell': [],
-      \ 'javascript': [],
-      \ 'json': [],
-      \ 'python': [],
-      \ 'ruby': [],
-      \ 'sass': [],
-      \ 'scss': [],
-      \ 'typescript': [],
-      \ }
-" The |g:ale_linter_aliases| option can be used to set aliases from one
-" filetype to another. A given filetype can be mapped to use the linters
-" run for another given filetype.
-let g:ale_linter_aliases = {
-      \ 'bash': 'sh',
-      \ 'zsh': 'sh',
-      \ }
-" The |g:ale_linters| option sets a |Dictionary| mapping a filetype to a
-" |List| of linter programs to be run when checking particular filetypes.
-let g:ale_linters = {
-      \ 'bash': ['shellcheck'],
-      \ 'c': ['clang'],
-      \ 'cpp': ['clang', 'cpplint', 'cppcheck'],
-      \ 'css': ['stylelint'],
-      \ 'go': ['go', 'golint'],
-      \ 'haskell': ['ghc', 'ghc-mod', 'hlint', 'hfmt'],
-      \ 'html': ['htmlhint', 'tidy'],
-      \ 'javascript': ['flow', 'eslint'],
-      \ 'json': ['jsonlint'],
-      \ 'kotlin': ['kotlinc', 'ktlint'],
-      \ 'markdown': ['mdl', 'remark_lint'],
-      \ 'python': ['pylint', 'pyls'],
-      \ 'ruby': ['ruby', 'rubocop', 'rails_best_practices'],
-      \ 'rust': ['rls', 'rustc'],
-      \ 'sass': ['sass-lint', 'stylelint'],
-      \ 'scss': ['scss-lint', 'stylelint'],
-      \ 'typescript': ['tsserver', 'tslint'],
-      \ 'vim': ['vint'],
-      \ }
-" A maximum file size in bytes for ALE to check. If set to any positive
-" number, ALE will skip checking files larger than the given size.
-let g:ale_maximum_file_size = 1024 * 1024 * 1024
-
-nnoremap <silent> [q :ALEPrevious<CR>
-nnoremap <silent> ]q :ALENext<CR>
 "" }}}
 
 "" Yggdroot/indentLine {{{
