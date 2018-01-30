@@ -65,7 +65,7 @@ let g:spacevim_statusline_separator = 'nil'
 let g:spacevim_statusline_inactive_separator = 'nil'
 let g:spacevim_statusline_unicode_symbols = 1
 let g:spacevim_error_symbol = ''
-let g:spacevim_warning_symbol = ''
+let g:spacevim_warning_symbol = ''
 let g:spacevim_info_symbol = ''
 let g:spacevim_terminal_cursor_shape = 1
 let g:spacevim_vim_help_language = 'ja'
@@ -84,7 +84,7 @@ let g:spacevim_project_rooter_automatically = 1
 let g:spacevim_lint_on_the_fly = 1
 let g:spacevim_enable_vimfiler_welcome = 0
 let g:spacevim_enable_vimfiler_gitstatus = 0
-let g:spacevim_enable_vimfiler_filetypeicon = 0
+let g:spacevim_enable_vimfiler_filetypeicon = 1
 let g:spacevim_wildignore .= ',' . join([
       \ '*/tmp/*',
       \ '*.so',
@@ -106,11 +106,7 @@ let g:spacevim_disabled_plugins = [
       \ ]
 let g:spacevim_custom_plugins = [
       \ ['chemzqm/vim-jsx-improve', { 'on_ft': 'javascript' }],
-      \ ['codeindulgence/vim-tig', { 'if': has('nvim') && executable('tig') }],
       \ ['ejholmes/vim-forcedotcom'],
-      \ ['janko-m/vim-test', {
-      \ 'on_cmd': ['TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit'],
-      \ }],
       \ ['kana/vim-textobj-help', {
       \ 'depends': 'vim-textobj-user',
       \ 'on_ft': 'help',
@@ -121,7 +117,6 @@ let g:spacevim_custom_plugins = [
       \ ['rhysd/github-complete.vim', {
       \ 'on_ft': ['gitcommit', 'markdown', 'magit'],
       \ }],
-      \ ['ryanss/vim-hackernews', { 'on_cmd': 'HackerNews' }],
       \ ['sei40kr/SpaceVim-onedark'],
       \ ['thinca/vim-template'],
       \ ['tyru/open-browser-github.vim',  {
@@ -137,10 +132,10 @@ endif
 "" }}}
 
 "" airblade/vim-gitgutter {{{
-let g:gitgutter_sign_added = '▍'
-let g:gitgutter_sign_modified = '▍'
-let g:gitgutter_sign_removed = ''
-let g:gitgutter_sign_modified_removed = '▍'
+let g:gitgutter_sign_added = '▎'
+let g:gitgutter_sign_modified = '▎'
+let g:gitgutter_sign_removed = ''
+let g:gitgutter_sign_modified_removed = '▎'
 
 let g:gitgutter_map_keys = 0
 
@@ -150,13 +145,6 @@ nmap ]c <Plug>GitGutterNextHunk
 
 "" blueyed/vim-diminactive {{{
 let g:diminactive = 0
-"" }}}
-
-"" codeindulgence {{{
-let g:tig_executable = 'tig'
-let g:tig_default_command = 'status'
-let g:tig_on_exit = 'bw!'
-let g:tig_open_command = 'enew'
 "" }}}
 
 "" elzr/vim-json {{{
@@ -169,10 +157,6 @@ augroup SpaceVim_d_lang_json
   autocmd!
   autocmd FileType json setlocal foldmethod=syntax
 augroup END
-"" }}}
-
-"" janko-m/vim-test {{{
-let g:test#strategy = 'neovim'
 "" }}}
 
 "" jaxbot/github-issues.vim {{{
@@ -324,9 +308,9 @@ let g:neosnippet#disable_runtime_snippets = {
 " This variable controls vimfiler tree leaf icon.
 let g:vimfiler_tree_leaf_icon = ''
 " This variable controls vimfiler opened directory tree icon.
-let g:vimfiler_tree_opened_icon = ''
+let g:vimfiler_tree_opened_icon = '▾'
 " This variable controls vimfiler closed directory tree icon.
-let g:vimfiler_tree_closed_icon = ''
+let g:vimfiler_tree_closed_icon = '▸'
 " This variable controls vimfiler file icon.
 let g:vimfiler_file_icon = ' '
 " This variable controls vimfiler readonly file icon.
