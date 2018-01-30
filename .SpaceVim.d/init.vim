@@ -404,8 +404,8 @@ endfunction
 "" }}}
 
 "" Yggdroot/indentLine {{{
-" Specify a character to be used as indent line.
-let g:indentLine_char = '¦'
+" Specify whether to enable indentLine plugin by default.
+let g:indentLine_enabled = 0
 " Specify terminal vim indent line color.
 let g:indentLine_color_term = 59
 " Specify terminal vim indent line background color.
@@ -414,28 +414,15 @@ let g:indentLine_bgcolor_term = 'NONE'
 let g:indentLine_color_gui = '#5c6370'
 " Specify GUI vim indent line background color.
 let g:indentLine_bgcolor_gui = 'NONE'
-" Specify whether the first indent level should be shown.
-" This is useful if you use indentLine in combination with
-" |listchars| in order to show tabs.
-let g:indentLine_showFirstIndentLevel = 1
-" This variable specify a list of file types.
-" When opening these types of files, the plugin is enabled by
-" default.
-let g:indentLine_fileTypeExclude = [
-      \ 'text',
-      \ 'tagbar',
-      \ 'vimfiler',
-      \ 'SpaceVimRunner',
-      \ 'SpaceVimREPL',
-      \ 'SpaceVimQuickFix',
-      \ 'HelpDescribe',
-      \ 'VebuggerShell',
-      \ 'VebuggerTerminal',
-      \ ]
 " Specify a character to show for leading spaces.
 let g:indentLine_leadingSpaceChar = '·'
 " Specify whether to show leading spaces by default.
 let g:indentLine_leadingSpaceEnabled = 1
+
+augroup SpaceVim_d_indentLine
+  autocmd!
+  autocmd FileType tagbar,vimfiler LeadingSpaceDisable
+augroup END
 "" }}}
 
 augroup SpaceVim_d_tools
