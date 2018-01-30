@@ -284,6 +284,13 @@ let g:neoformat_enabled_scss = []
 let g:neoformat_enabled_typescript = []
 "" }}}
 
+"" pangloss/vim-javascript {{{
+augroup SpaceVim_d_lang_javascript
+  autocmd!
+  autocmd FileType javascript setlocal foldmethod=syntax
+augroup END
+"" }}}
+
 "" Shougo/deoplete.nvim {{{
 " Delay the completion after input in milliseconds.
 " Requires |+timers| (Neovim 0.1.5)
