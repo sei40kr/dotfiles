@@ -168,7 +168,7 @@ bind status P ?git push -u %(remote) %(repo:head)
 
 # Vi-style key bindings
 source ~/.tig/rc/vim.tigrc
-bind generic K none
+bind generic K back
 bind generic oo none
 bind generic os none
 bind generic on none
