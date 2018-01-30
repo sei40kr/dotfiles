@@ -26,7 +26,6 @@ call SpaceVim#layers#load('lsp', {
       \ 'filetypes': ['css', 'haskell', 'html', 'javascript', 'json', 'less', 'php', 'python', 'rust', 'scss'],
       \ 'override_cmd': {
       \ 'css': ['css-languageserver', '--stdio'],
-      \ 'html': ['html-languageserver', '--stdio'],
       \ 'javascript': ['flow-language-server', '--stdio'],
       \ 'json': ['json-languageserver', '--stdio'],
       \ 'less': ['css-languageserver', '--stdio'],
