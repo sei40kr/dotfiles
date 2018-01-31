@@ -16,12 +16,9 @@ let g:mapleader = ';'
 
 "" SpaceVim/SpaceVim {{{
 call SpaceVim#layers#load('autocomplete')
-call SpaceVim#layers#load('operator')
+call SpaceVim#layers#load('debug')
 call SpaceVim#layers#load('incsearch')
-call SpaceVim#layers#load('shell', {
-    \ 'default_position': 'bottom',
-    \ 'default_height': 30
-    \ })
+" lsp layer should be loaded before lang layers
 call SpaceVim#layers#load('lsp', {
       \ 'filetypes': ['css', 'haskell', 'html', 'javascript', 'json', 'less', 'php', 'python', 'rust', 'scss'],
       \ 'override_cmd': {
@@ -52,6 +49,11 @@ call SpaceVim#layers#load('lang#tmux')
 call SpaceVim#layers#load('lang#typescript')
 call SpaceVim#layers#load('lang#vim')
 call SpaceVim#layers#load('lang#xml')
+call SpaceVim#layers#load('operator')
+call SpaceVim#layers#load('shell', {
+    \ 'default_position': 'bottom',
+    \ 'default_height': 30
+    \ })
 call SpaceVim#layers#load('tmux')
 
 let g:spacevim_max_column = 80
@@ -167,25 +169,12 @@ let g:github_issues_no_omni = 1
 
 "" joshdick/onedark.vim {{{
 let g:onedark_terminal_italics = 1
-let g:onedark_color_overrides = {
-  \ 'black': { 'gui': '#343742', 'cterm': '235', 'cterm16': '0' },
-  \ }
 
-function s:h(group, style) abort
-  call onedark#set_highlight(a:group, a:style)
-endfunction
-
-function s:setup_onedark() abort
-  let s:colors = onedark#GetColors()
-
-  call s:h('Pmenu', { 'fg': s:colors.black, 'bg': s:colors.white })
-  call s:h('PmenuSel', { 'fg': s:colors.black, 'bg': s:colors.blue })
-  call s:h('PmenuSbar', { 'bg': s:colors.white })
-endfunction
-
-augroup SpaceVim_d_colorscheme
+augroup SpaceVim_d_onedark
   autocmd!
-  autocmd ColorScheme onedark call s:setup_onedark()
+  autocmd ColorScheme onedark call onedark#set_highlight('Normal', {
+        \ 'fg': onedark#GetColors().white,
+        \ })
 augroup END
 "" }}}
 
@@ -207,6 +196,13 @@ let g:tagbar_show_linenumbers = 0
 "" }}}
 
 "" neomake/neomake {{{
+let g:neomake_eslint_d_maker = {
+      \ 'args': ['-f', 'compact'],
+      \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
+      \ '%W%f: line %l\, col %c\, Warning - %m',
+      \ 'cwd': '%:p:h',
+      \ }
+
 let g:neomake_ansible_enabled_makers = ['ansiblelint']
 let g:neomake_apiblueprint_enabled_makers = ['drafter']
 let g:neomake_c_enabled_makers = executable('clang') ? ['clang', 'clangtidy', 'clangcheck'] : ['gcc']
