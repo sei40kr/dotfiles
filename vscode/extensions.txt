@@ -1,14 +1,10 @@
 DavidAnson.vscode-markdownlint
 EditorConfig.EditorConfig
 PeterJausovec.vscode-docker
-alefragnani.Bookmarks
-alefragnani.project-manager
-alefragnani.read-only-indicator
 bierner.markdown-preview-github-styles
 dabbott.vscode-import-js
 dbaeumer.vscode-eslint
 eamodio.gitlens
-eamodio.restore-editors
 esbenp.prettier-vscode
 faustinoaq.crystal-lang
 felixfbecker.php-debug
@@ -34,4 +30,3 @@ vscodevim.vim
 vscoss.vscode-ansible
 vsmobile.vscode-react-native
 zhuangtongfa.Material-theme
-ziyasal.vscode-open-in-github
