@@ -89,6 +89,7 @@ zplugin ice svn; zplugin snippet OMZ::plugins/docker-compose
 zplugin ice svn; zplugin snippet OMZ::plugins/extract
 zplugin ice svn; zplugin snippet OMZ::plugins/gem
 zplugin ice svn; zplugin snippet OMZ::plugins/golang
+zplugin ice svn; zplugin snippet OMZ::plugins/pip
 zplugin ice svn; zplugin snippet OMZ::plugins/python
 zplugin ice svn; zplugin snippet OMZ::plugins/react-native
 zplugin ice svn; zplugin snippet OMZ::plugins/sbt
