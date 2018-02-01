@@ -16,6 +16,7 @@ let g:mapleader = ';'
 
 "" SpaceVim/SpaceVim {{{
 call SpaceVim#layers#load('autocomplete')
+call SpaceVim#layers#load('checkers', { 'show_cursor_error': 0 })
 call SpaceVim#layers#load('debug')
 call SpaceVim#layers#load('incsearch')
 " lsp layer should be loaded before lang layers
