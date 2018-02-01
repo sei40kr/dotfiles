@@ -150,6 +150,9 @@ bindkey '^x^i' anyframe-widget-put-history
 bindkey '^xg' anyframe-widget-cd-ghq-repository
 bindkey '^x^g' anyframe-widget-cd-ghq-repository
 
+zplugin light mollifier/cd-gitroot
+alias U='cd-gitroot'
+
 FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*" --glob "!*/node_modules/*"'
 FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 zplugin snippet \
