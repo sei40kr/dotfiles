@@ -141,6 +141,15 @@ zplugin light jimeh/tmuxifier
 zplugin ice pick'k.sh'; zplugin light supercrabtree/k
 alias k='k -Ah --no-vcs'
 
+zplugin light mollifier/anyframe
+bindkey '^x^b' anyframe-widget-checkout-git-branch
+bindkey '^xr' anyframe-widget-execute-history
+bindkey '^x^r' anyframe-widget-execute-history
+bindkey '^xi' anyframe-widget-put-history
+bindkey '^x^i' anyframe-widget-put-history
+bindkey '^xg' anyframe-widget-cd-ghq-repository
+bindkey '^x^g' anyframe-widget-cd-ghq-repository
+
 zplugin light mollifier/cd-gitroot
 alias U='cd-gitroot'
 
