@@ -56,6 +56,7 @@ call SpaceVim#layers#load('shell', {
     \ 'default_height': 30
     \ })
 call SpaceVim#layers#load('tmux')
+call SpaceVim#layers#load('tools#dash')
 
 let g:spacevim_max_column = 80
 let g:spacevim_windows_leader = 's'
@@ -197,6 +198,8 @@ let g:tagbar_show_linenumbers = 0
 "" }}}
 
 "" neomake/neomake {{{
+let g:neomake_open_list = 0
+
 let g:neomake_eslint_d_maker = {
       \ 'args': ['-f', 'compact'],
       \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
