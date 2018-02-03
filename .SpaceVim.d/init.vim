@@ -200,13 +200,6 @@ let g:tagbar_show_linenumbers = 0
 "" neomake/neomake {{{
 let g:neomake_open_list = 0
 
-let g:neomake_eslint_d_maker = {
-      \ 'args': ['-f', 'compact'],
-      \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
-      \ '%W%f: line %l\, col %c\, Warning - %m',
-      \ 'cwd': '%:p:h',
-      \ }
-
 let g:neomake_ansible_enabled_makers = ['ansiblelint']
 let g:neomake_apiblueprint_enabled_makers = ['drafter']
 let g:neomake_c_enabled_makers = executable('clang') ? ['clang', 'clangtidy', 'clangcheck'] : ['gcc']
