@@ -21,7 +21,7 @@ call SpaceVim#layers#load('debug')
 call SpaceVim#layers#load('incsearch')
 " lsp layer should be loaded before lang layers
 call SpaceVim#layers#load('lsp', {
-      \ 'filetypes': ['css', 'haskell', 'html', 'javascript', 'json', 'less', 'php', 'python', 'rust', 'scss'],
+      \ 'filetypes': ['c', 'cpp', 'css', 'haskell', 'javascript', 'json', 'php', 'python', 'rust'],
       \ 'override_cmd': {
       \ 'css': ['css-languageserver', '--stdio'],
       \ 'javascript': ['flow-language-server', '--stdio'],
