@@ -131,10 +131,6 @@ then
 fi
 
 ## Commands and UI widgets
-ENHANCD_FILTER=fzf
-alias u='builtin cd ..'
-zplugin ice pick'init.sh'; zplugin light b4b4r07/enhancd
-
 export TMUXIFIER_LAYOUT_PATH="${HOME}/.tmux-layouts"
 zplugin ice pick'init.sh' atinit'ln -sf "$PWD" "${HOME}/.tmuxifier"'
 zplugin light jimeh/tmuxifier
@@ -197,6 +193,9 @@ zplugin ice pick'pure.zsh' wait'!0'; zplugin light sindresorhus/pure
 
 compinit
 zplugin cdreplay -q
+
+# Define aliases
+alias u='cd ..'
 
 setopt APPEND_HISTORY
 setopt AUTO_PARAM_KEYS
