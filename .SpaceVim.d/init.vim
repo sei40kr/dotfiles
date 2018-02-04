@@ -129,7 +129,10 @@ let g:spacevim_custom_plugins = [
       \ 'on_ft': 'help',
       \ }],
       \ ['kana/vim-textobj-jabraces', { 'depends': 'vim-textobj-user' }],
-      \ ['libclang-vim/vim-textobj-clang'],
+      \ ['libclang-vim/libclang-vim', { 'build': 'make' }],
+      \ ['libclang-vim/vim-textobj-clang', {
+      \ 'depends': ['vim-textobj-user', 'libclang-vim'],
+      \ }],
       \ ['raimon49/requirements.txt.vim', { 'on_ft': 'requirements' }],
       \ ['rhysd/committia.vim', { 'on_path': ['COMMIT_EDITMSG', 'MERGE_MSG'] }],
       \ ['rhysd/github-complete.vim', {
@@ -355,6 +358,21 @@ endif
 "" SpaceVim/deoplete-clang2 {{{
 let g:clang2_placeholder_next = ''
 let g:clang2_placeholder_prev = ''
+"" }}}
+
+"" terryma/vim-expand-region {{{
+let s:libclang_text_objects = {
+      \ 'i;': 1,
+      \ 'a;': 1,
+      \ }
+" Dictionary containing the text objects the plugin uses to search for the
+" available regions to expand/shrink to. The value corresponding to each plugin
+" indicates whether text object is recursive. A recursive text object is
+" continually expanded until the region no longer gets larger.
+let g:expand_region_text_objects_c = s:libclang_text_objects
+let g:expand_region_text_objects_cpp = s:libclang_text_objects
+let g:expand_region_text_objects_objc = s:libclang_text_objects
+let g:expand_region_text_objects_objcpp = s:libclang_text_objects
 "" }}}
 
 "" terryma/vim-multiple-cursors {{{
