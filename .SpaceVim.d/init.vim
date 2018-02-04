@@ -14,6 +14,16 @@ endif
 
 let g:mapleader = ';'
 
+" Locate libclang
+let s:libclang_path = ''
+if has('macunix')
+  if exists('$BREW_PREFIX') && isdirectory($BREW_PREFIX . '/opt/llvm')
+    let s:libclang_path = $BREW_PREFIX . '/opt/llvm/libclang.dylib'
+  elseif isdirectory('/Library/Developer/CommandLineTools')
+    let s:libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+  endif
+endif
+
 "" SpaceVim/SpaceVim {{{
 call SpaceVim#layers#load('autocomplete')
 call SpaceVim#layers#load('checkers', { 'show_cursor_error': 0 })
@@ -30,7 +40,10 @@ call SpaceVim#layers#load('lsp', {
       \ 'scss': ['css-languageserver', '--stdio'],
       \ }
       \ })
-call SpaceVim#layers#load('lang#c')
+call SpaceVim#layers#load('lang#c', !empty(s:libclang_path) ? {
+      \ 'enable_libclang': 1,
+      \ 'libclang_path': s:libclang_path,
+      \ } : {})
 call SpaceVim#layers#load('lang#crystal')
 call SpaceVim#layers#load('lang#go')
 call SpaceVim#layers#load('lang#haskell')
@@ -116,6 +129,7 @@ let g:spacevim_custom_plugins = [
       \ 'on_ft': 'help',
       \ }],
       \ ['kana/vim-textobj-jabraces', { 'depends': 'vim-textobj-user' }],
+      \ ['libclang-vim/vim-textobj-clang'],
       \ ['raimon49/requirements.txt.vim', { 'on_ft': 'requirements' }],
       \ ['rhysd/committia.vim', { 'on_path': ['COMMIT_EDITMSG', 'MERGE_MSG'] }],
       \ ['rhysd/github-complete.vim', {
