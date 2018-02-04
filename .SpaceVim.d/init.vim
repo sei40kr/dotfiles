@@ -18,7 +18,7 @@ let g:mapleader = ';'
 let s:libclang_path = ''
 if has('macunix')
   if exists('$BREW_PREFIX') && isdirectory($BREW_PREFIX . '/opt/llvm')
-    let s:libclang_path = $BREW_PREFIX . '/opt/llvm/libclang.dylib'
+    let s:libclang_path = $BREW_PREFIX . '/opt/llvm/lib/libclang.dylib'
   elseif isdirectory('/Library/Developer/CommandLineTools')
     let s:libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
   endif
