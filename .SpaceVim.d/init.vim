@@ -212,6 +212,12 @@ let g:tagbar_indent = 2
 let g:tagbar_show_visibility = 1
 " Whether line numbers should be shown in the Tagbar window.
 let g:tagbar_show_linenumbers = 0
+" Since the display of the icons used to indicate open or closed folds depends
+" on the actual font used, different characters may be optimal for different
+" fonts. With this variable you can set the icons to characters of your liking.
+" The first character in the list specifies the icon to use for a closed fold,
+" and the second one for an open fold.
+let g:tagbar_iconchars = ['▸', '▾']
 "" }}}
 
 "" neomake/neomake {{{
