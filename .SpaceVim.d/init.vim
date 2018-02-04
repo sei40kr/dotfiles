@@ -31,13 +31,10 @@ call SpaceVim#layers#load('debug')
 call SpaceVim#layers#load('incsearch')
 " lsp layer should be loaded before lang layers
 call SpaceVim#layers#load('lsp', {
-      \ 'filetypes': ['c', 'cpp', 'css', 'haskell', 'javascript', 'json', 'php', 'python', 'rust'],
+      \ 'filetypes': ['c', 'cpp', 'haskell', 'javascript', 'json', 'php', 'python', 'rust'],
       \ 'override_cmd': {
-      \ 'css': ['css-languageserver', '--stdio'],
       \ 'javascript': ['flow-language-server', '--stdio'],
       \ 'json': ['json-languageserver', '--stdio'],
-      \ 'less': ['css-languageserver', '--stdio'],
-      \ 'scss': ['css-languageserver', '--stdio'],
       \ }
       \ })
 call SpaceVim#layers#load('lang#c', !empty(s:libclang_path) ? {
@@ -114,7 +111,6 @@ let g:spacevim_wildignore .= ',' . join([
       \ '*/node_modules/*',
       \ ], ',')
 let g:spacevim_disabled_plugins = [
-      \ 'chromatica.nvim',
       \ 'fcitx.vim',
       \ 'neco-look',
       \ 'onedark.vim',
