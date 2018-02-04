@@ -14,14 +14,18 @@ endif
 
 let g:mapleader = ';'
 
+" Locate *brew
+let s:brew_prefix = $BREW_PREFIX
+if empty(s:brew_prefix) && executable('brew')
+  let s:brew_prefix = system('brew --prefix')
+endif
+
 " Locate libclang
 let s:libclang_path = ''
-if has('macunix')
-  if exists('$BREW_PREFIX') && isdirectory($BREW_PREFIX . '/opt/llvm')
-    let s:libclang_path = $BREW_PREFIX . '/opt/llvm/lib/libclang.dylib'
-  elseif isdirectory('/Library/Developer/CommandLineTools')
-    let s:libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
-  endif
+if filereadable(s:brew_prefix . '/opt/llvm/lib/libclang.dylib')
+  let s:libclang_path = s:brew_prefix . '/opt/llvm/lib/libclang.dylib'
+elseif filereadable(s:brew_prefix . '/opt/llvm/lib/libclang.so')
+  let s:libclang_path = s:brew_prefix . '/opt/llvm/lib/libclang.so'
 endif
 
 "" SpaceVim/SpaceVim {{{
