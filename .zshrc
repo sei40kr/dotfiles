@@ -82,6 +82,9 @@ unalias rg
 zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 unalias k
 
+zplugin snippet OMZ::plugins/tig/tig.plugin.zsh
+alias tig='env TERM=screen-256color tig'
+
 zplugin ice svn; zplugin snippet OMZ::plugins/autopep8
 zplugin ice svn; zplugin snippet OMZ::plugins/bundler
 zplugin ice svn; zplugin snippet OMZ::plugins/capistrano
@@ -107,7 +110,6 @@ zplugin snippet OMZ::plugins/postgres/postgres.plugin.zsh
 zplugin snippet OMZ::plugins/rake/rake.plugin.zsh
 zplugin snippet OMZ::plugins/ruby/ruby.plugin.zsh
 zplugin snippet OMZ::plugins/stack/stack.plugin.zsh
-zplugin snippet OMZ::plugins/tig/tig.plugin.zsh
 zplugin snippet OMZ::plugins/yarn/yarn.plugin.zsh
 zplugin snippet OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh
 
