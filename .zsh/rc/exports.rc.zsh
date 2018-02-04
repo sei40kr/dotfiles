@@ -41,6 +41,15 @@ then
   XDG_DATA_DIRS="${BREW_PREFIX}/share:${XDG_DATA_DIRS}"
 fi
 
+# If LLVM was installed via Homebrew
+if [[ -d "${BREW_PREFIX}/opt/llvm" ]]
+then
+  path=(
+    "${BREW_PREFIX}/opt/llvm/bin"
+    "${path[@]}"
+  )
+fi
+
 # If GNU commands are installed via brew command
 if [[ -d "${BREW_PREFIX}/opt/coreutils" ]]
 then
