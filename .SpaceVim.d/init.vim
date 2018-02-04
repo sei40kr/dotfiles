@@ -135,15 +135,8 @@ let g:spacevim_custom_plugins = [
       \ }],
       \ ['raimon49/requirements.txt.vim', { 'on_ft': 'requirements' }],
       \ ['rhysd/committia.vim', { 'on_path': ['COMMIT_EDITMSG', 'MERGE_MSG'] }],
-      \ ['rhysd/github-complete.vim', {
-      \ 'on_ft': ['gitcommit', 'markdown', 'magit'],
-      \ }],
       \ ['sei40kr/SpaceVim-onedark'],
       \ ['thinca/vim-template'],
-      \ ['tyru/open-browser-github.vim',  {
-      \ 'depends': 'open-browser.vim',
-      \ 'on_cmd': ['OpenGithubFile', 'OpenGithubIssue', 'OpenGithubPullReq'],
-      \ }],
       \ ]
 
 if has('python3')
