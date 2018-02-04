@@ -193,8 +193,32 @@ augroup SpaceVim_d_onedark
   autocmd!
   autocmd ColorScheme onedark call onedark#set_highlight('Normal', {
         \ 'fg': onedark#GetColors().white,
-        \ })
+        \ }) | call s:setup_onedark()
 augroup END
+
+function! s:setup_onedark() abort
+  let l:colors = onedark#GetColors()
+
+  highlight link TagbarComment Comment
+  highlight link TagbarHighlight CursorLine
+
+  call onedark#set_highlight('TagbarFoldIcon', { 'fg': l:colors.blue })
+  call onedark#set_highlight('TagbarKind', { 'fg': l:colors.blue })
+  call onedark#set_highlight('TagbarNestedKind', { 'fg': l:colors.white })
+  call onedark#set_highlight('TagbarScope', { 'fg': l:colors.white })
+  call onedark#set_highlight('TagbarType', { 'fg': l:colors.white })
+  call onedark#set_highlight('TagbarSignature', { 'fg': l:colors.white })
+  call onedark#set_highlight('TagbarPseudoID', { 'fg': l:colors.white })
+  call onedark#set_highlight('TagbarVisibilityPublic', {
+        \ 'fg': l:colors.white,
+        \ })
+  call onedark#set_highlight('TagbarVisibilityPrivate', {
+        \ 'fg': l:colors.white,
+        \ })
+  call onedark#set_highlight('TagbarVisibilityProtected', {
+        \ 'fg': l:colors.white,
+        \ })
+endfunction
 "" }}}
 
 "" junegunn/vim-github-dashboard {{{
