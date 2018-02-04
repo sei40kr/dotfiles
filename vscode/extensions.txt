@@ -10,11 +10,11 @@ faustinoaq.crystal-lang
 felixfbecker.php-debug
 felixfbecker.php-intellisense
 felixfbecker.php-pack
+llvm-vs-code-extensions.vscode-clangd
 lukehoban.Go
 ms-python.python
 ms-vscode.cpptools
 ms-vscode.node-debug2
-patrys.vscode-code-outline
 redhat.java
 salesforce.salesforcedx-vscode
 salesforce.salesforcedx-vscode-apex
