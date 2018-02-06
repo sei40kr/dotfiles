@@ -1,4 +1,5 @@
 repos = [
+    'github.com/alecthomas/gometalinter',
     'github.com/golang/lint/golint',
     'github.com/heroku/force',
     'github.com/heppu/gkill',
