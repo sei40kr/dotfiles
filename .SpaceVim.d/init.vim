@@ -118,15 +118,10 @@ let g:spacevim_disabled_plugins = [
       \ 'fcitx.vim',
       \ 'neco-look',
       \ 'onedark.vim',
-      \ 'SpaceVim/LanguageClient-neovim',
       \ 'vim-jsx-pretty',
       \ 'vim-snippets',
       \ ]
 let g:spacevim_custom_plugins = [
-      \ ['autozimu/LanguageClient-neovim', {
-      \ 'rev': 'next',
-      \ 'build': 'bash install.sh',
-      \ }],
       \ ['chemzqm/vim-jsx-improve', { 'on_ft': 'javascript' }],
       \ ['ejholmes/vim-forcedotcom'],
       \ ['kana/vim-textobj-help', {
