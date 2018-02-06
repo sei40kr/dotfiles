@@ -97,7 +97,9 @@ zplugin ice svn; zplugin snippet OMZ::plugins/python
 zplugin ice svn; zplugin snippet OMZ::plugins/react-native
 zplugin ice svn; zplugin snippet OMZ::plugins/sbt
 zplugin snippet OMZ::plugins/ant/ant.plugin.zsh
-zplugin snippet OMZ::plugins/composer/composer.plugin.zsh
+# Disable composer plugin because it invokes composer to locate binary dir
+# and it's very slow.
+# zplugin snippet OMZ::plugins/composer/composer.plugin.zsh
 zplugin snippet OMZ::plugins/dircycle/dircycle.plugin.zsh
 zplugin snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
 zplugin snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
