@@ -467,7 +467,7 @@
 1. Install Node packages of command-line tools globally
 
     ```sh
-    yarn global add \
+    npm install -g \
         create-react-app \
         create-react-native-app \
         dockerfile-language-server-nodejs \
@@ -484,16 +484,12 @@
         gulp \
         import-js \
         prettier \
-        prettier_d \
         prettier-eslint-cli \
         stylefmt \
         stylelint-cli \
-        stylelint_d \
         typescript \
         typescript-language-server \
         webpack \
-        vscode-css-languageserver-bin \
-        vscode-html-languageserver-bin \
         vscode-json-languageserver-bin \
         yaml-language-server
     ndenv rehash
