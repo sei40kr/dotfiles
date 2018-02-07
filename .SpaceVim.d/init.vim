@@ -31,7 +31,6 @@ endif
 "" SpaceVim/SpaceVim {{{
 call SpaceVim#layers#load('autocomplete')
 call SpaceVim#layers#load('checkers', { 'show_cursor_error': 0 })
-call SpaceVim#layers#load('debug')
 call SpaceVim#layers#load('incsearch')
 " lsp layer should be loaded before lang layers
 call SpaceVim#layers#load('lsp', {
@@ -91,7 +90,6 @@ let g:spacevim_language = 'ja_JP.UTF-8'
 let g:spacevim_colorscheme = 'onedark'
 let g:spacevim_colorscheme_bg = 'dark'
 let g:spacevim_colorscheme_default = 'onedark'
-let g:spacevim_enable_debug = 1
 let g:spacevim_buffer_index_type = 4
 let g:spacevim_windows_index_type = 3
 let g:spacevim_github_username = 'sei40kr'
