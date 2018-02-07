@@ -52,12 +52,10 @@ call SpaceVim#layers#load('lang#java')
 call SpaceVim#layers#load('lang#javascript')
 call SpaceVim#layers#load('lang#json')
 call SpaceVim#layers#load('lang#kotlin')
-call SpaceVim#layers#load('lang#lisp')
 call SpaceVim#layers#load('lang#perl')
 call SpaceVim#layers#load('lang#php')
 call SpaceVim#layers#load('lang#python')
 call SpaceVim#layers#load('lang#ruby')
-call SpaceVim#layers#load('lang#rust')
 call SpaceVim#layers#load('lang#sh')
 call SpaceVim#layers#load('lang#tmux')
 call SpaceVim#layers#load('lang#typescript')
@@ -68,8 +66,12 @@ call SpaceVim#layers#load('shell', {
     \ 'default_position': 'bottom',
     \ 'default_height': 30
     \ })
-call SpaceVim#layers#load('tmux')
-call SpaceVim#layers#load('tools#dash')
+if exists('$TMUX')
+  call SpaceVim#layers#load('tmux')
+endif
+if has('macunix')
+  call SpaceVim#layers#load('tools#dash')
+endif
 
 let g:spacevim_max_column = 80
 let g:spacevim_windows_leader = 's'
