@@ -153,18 +153,26 @@ bind stage ] none
 
 # External commands
 
-bind main P ?git push -u %(remote) %(repo:head)
+bind main ! ?git revert %(commit)
+bind main cb ?git checkout -b "%(prompt Enter branch name: )" %(branch)
 bind main co ?git checkout %(commit)
 bind main cp ?git cherry-pick %(commit)
-bind main ! ?git revert %(commit)
-bind diff cp ?git cherry-pick %(commit)
-bind tree dd ?git rm %(file)
-bind refs dd ?git branch -D %(branch)
-bind refs D ?sh -c "git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %"
+bind main p ?git push -u %(remote) %(repo:head)
+bind main rbi ?git rebase -i %(commit)
+bind main rh ?git reset --hard %(commit)
+bind main ru ?git reset %(commit)
+bind refs da ?sh -c "git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %"
+bind refs cb ?git checkout -b "%(prompt Enter branch name: )" %(branch)
 bind refs co ?git checkout %(branch)
+bind refs dd ?git branch -D %(branch)
+bind refs rbi ?git rebase -i %(commit)
+bind refs rh ?git reset --hard %(branch)
+bind refs ru ?git reset %(branch)
+bind status da ?git clean -d -f
+bind status p ?git push -u %(remote) %(repo:head)
 bind status dd ?git clean -d -f -- %(file)
-bind status D ?git clean -d -f
-bind status P ?git push -u %(remote) %(repo:head)
+bind status rhh ?git reset --hard HEAD
+bind tree dd ?git rm %(file)
 
 # Vi-style key bindings
 source ~/.tig/rc/vim.tigrc
