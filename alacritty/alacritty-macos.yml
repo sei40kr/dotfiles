@@ -13,18 +13,19 @@ env:
   # `infocmp xterm-256color`.
   TERM: xterm-256color-italic
 
-# Window dimensions in character columns and lines
-# (changes require restart)
-dimensions:
-  columns: 160
-  lines: 48
+window:
+  # Window dimensions in character columns and lines
+  # (changes require restart)
+  dimensions:
+    columns: 160
+    lines: 48
 
-# Adds this many blank pixels of padding around the window
-# Units are physical pixels; this is not DPI aware.
-# (change requires restart)
-padding:
-  x: 0
-  y: 0
+  # Adds this many blank pixels of padding around the window
+  # Units are physical pixels; this is not DPI aware.
+  # (change requires restart)
+  padding:
+    x: 0
+    y: 0
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 4
