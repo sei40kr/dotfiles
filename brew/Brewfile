@@ -7,16 +7,16 @@ brew "coreutils"
 brew "cppcheck"
 brew "ctags"
 brew "diffutils"
-brew "findutils", args: ["with-default-names"]
+brew "findutils"
 brew "git"
 brew "fzf"
 brew "gawk"
 brew "ghq"
 brew "git"
 brew "global"
-brew "gnu-sed", args: ["with-default-names"]
-brew "gnu-tar", args: ["with-default-names"]
-brew "grep", args: ["with-default-names"]
+brew "gnu-sed"
+brew "gnu-tar"
+brew "grep"
 brew "gzip"
 brew "jq"
 brew "neovim"
@@ -26,10 +26,9 @@ brew "reattach-to-user-namespace"
 brew "yarn", args: ['without-node']
 brew "shellcheck"
 brew "shfmt"
-brew "skktools"
 brew "tig"
 brew "tldr"
 brew "tmux"
 brew "unzip"
 brew "wget"
-brew "zsh"
+brew "zsh", args: ['without-etcdir']
