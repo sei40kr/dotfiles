@@ -1,38 +1,28 @@
 snippet component
-	class ${1:className} extends React.Component {
+	export type Props = {
+	  ${1}
+	};
+
+	export class ${2:componentName} extends React.Component<Props> {
 		render() {
 			return (
 				${0:<div />}
 			);
 		}
-	}
+	};
 snippet sfc
-  const ${1:componentName} = props => (
-	  <div className={\`${COMPONENT_ROOT}__${2:elementName}\`}>
-		$0
-		</div>
-  );
-
-  $1.propTypes = {
+  type ${1:componentName}Props = {
+	${2}
   };
-snippet proptypes
-	static propTypes = {
-		${1}: PropTypes.${2:type},
-	}${0}
+
+  const ${1} = (props: ${1}Props) => (
+	${0:<div />}
+  );
 snippet defaultprops
 	static defaultProps = {
-		${1}: ${2:value},
-	}${0}
-snippet props
-	this.props.${1}
-snippet state
-	this.state.${1}
-snippet render
-	render() {
-		return (
-			${1:<div />}
-		);
+	  ${0}
 	}
-snippet cssroot
-	\${COMPONENT_ROOT}${0}
-# vi: noet sw=2 cc=80
+snippet props
+	this.props.${0}
+snippet state
+	this.state.${0}

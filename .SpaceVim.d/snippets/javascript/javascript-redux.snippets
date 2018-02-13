@@ -1,10 +1,18 @@
 snippet action
   (${1}) => ({
     type: '${2:actionType}',
-    payload: {${3}},
-  })${0}
+    ${0}
+  })
 snippet reducer
-  (state = initialState, action) => {
+  export type State = {
+    ${1}
+  };
+
+  export const initialState: State = {
+    ${2}
+  };
+
+  export default (state: State = initialState, action: Action) => {
     switch (action.type) {
       ${0}
 
@@ -28,5 +36,6 @@ snippet mergeprops
     ${0}
   })
 snippet connect
-  connect(mapStateToProps, mapDispatchToProps, mergeProps)(${0:componentClass})
-# vi: et sw=2 cc=80
+  export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(
+    ${0:containerClass}
+  );
