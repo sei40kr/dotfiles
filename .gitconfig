@@ -1,6 +1,8 @@
 [user]
   email = "sei40kr@gmail.com"
   name = "Seong Yong-ju"
+[branch]
+  autosetuprebase = always
 [color]
   ui = true
 [color "diff"]
@@ -15,14 +17,20 @@
   oldHighlight = "red bold 52"
   newNormal = "green bold"
   newHighlight = "green bold 22"
+[commit]
+  verbose = true
 [core]
   editor = nvim
   excludesfile = ~/.gitignore-global
+[diff]
+  compactionHeuristic = true
+  indentHeuristic = on
 [fetch]
   prune = true
 [interactive]
   diffFilter = diff-so-fancy
 [merge]
+  conflictstyle = diff3
   tool = fugitive
 [mergetool "fugitive"]
   cmd = "vim -f -c \"Gdiff\" \"$MERGED\""
@@ -32,6 +40,16 @@
   diff = "diff-so-fancy | less --tabs=4 -RFX"
 [push]
   default = current
+[rebase]
+  autostash = true
+[rerere]
+  enabled = true
+[stash]
+  showPatch = true
+[submodule]
+  fetchJobs = 8
+[url "ssh://git@github.com/"]
+  insteadOf = "https://github.com/"
 [github]
   user = "sei40kr"
 [ghq]
