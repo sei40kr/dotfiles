@@ -170,7 +170,7 @@
 1. Create symlinks
 
     ```sh
-    ln -sf ~/dotfiles/.zsh ~/.zsh
+    ln -sf ~/dotfiles/_zsh ~/.zsh
     ln -sf ~/dotfiles/.zshenv ~/.zshenv
     ln -sf ~/dotfiles/.zshrc ~/.zshrc
     ```
@@ -222,7 +222,7 @@
 1. Create symlinks
 
     ```sh
-    ln -sf ~/dotfiles/.tig ~/.tig
+    ln -sf ~/dotfiles/_tig ~/.tig
     ln -sf ~/dotfiles/.tigrc ~/.tigrc
     ```
 
@@ -393,7 +393,7 @@
 1. Create symlink
 
     ```sh
-    ln -sf ~/dotfiles/.SpaceVim.d ~/.SpaceVim.d
+    ln -sf ~/dotfiles/_SpaceVim.d ~/.SpaceVim.d
     ```
 
 ### Install Emacs
@@ -419,7 +419,7 @@
 1. Create symlink
 
     ```sh
-    ln -sf ~/dotfiles/.spacemacs ~/.spacemacs
+    ln -sf ~/dotfiles/_spacemacs.d ~/.spacemacs.d
     ```
 
 ### Install other command-line tools
@@ -477,7 +477,7 @@
         flow-language-server \
         gatsby-cli \
         generate \
-        generate-editorconfig \
+        
         generate-gitignore \
         generate-license \
         generate-project \
@@ -498,7 +498,7 @@
 1. Create symlinks
 
     ```sh
-    ln -sf ~/dotfiles/.jira.d ~/.jira.d
+    ln -sf ~/dotfiles/_jira.d ~/.jira.d
     ln -sf ~/dotfiles/.prettierrc.js ~/.prettierrc.js
     ln -sf ~/dotfiles/.prettierignore ~/.prettierignore
     ```
