@@ -5,7 +5,7 @@
 
 autoload -Uz colors; colors
 
-. ./lib/log-helper.zsh
+. ./libexec/log-helper.zsh
 
 dotfiles_dir="${HOME}/dotfiles"
 [ -d "$dotfiles_dir" ] || {
