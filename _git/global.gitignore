@@ -9,3 +9,5 @@
 
 ### Ansible template
 *.retry
+
+# vi: ft=gitignore

@@ -208,6 +208,7 @@
 1. Create symlink
 
     ```sh
+    ln -sf ~/dotfiles/_git ~/.git
     ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
     ```
 
