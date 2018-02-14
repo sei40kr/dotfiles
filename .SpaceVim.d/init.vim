@@ -115,6 +115,7 @@ let g:spacevim_wildignore .= ',' . join([
       \ '*/node_modules/*',
       \ ], ',')
 let g:spacevim_disabled_plugins = [
+      \ 'SpaceVim/LanguageClient-neovim',
       \ 'fcitx.vim',
       \ 'neco-look',
       \ 'onedark.vim',
@@ -122,6 +123,10 @@ let g:spacevim_disabled_plugins = [
       \ 'vim-snippets',
       \ ]
 let g:spacevim_custom_plugins = [
+      \ ['autozimu/LanguageClient-neovim', {
+      \ 'rev': 'next',
+      \ 'build': 'bash install.sh',
+      \ }],
       \ ['chemzqm/vim-jsx-improve', { 'on_ft': 'javascript' }],
       \ ['ejholmes/vim-forcedotcom'],
       \ ['kana/vim-textobj-help', {
