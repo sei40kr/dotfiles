@@ -56,6 +56,7 @@ zplugin snippet PZT::modules/environment/init.zsh
 
 zplugin snippet PZT::modules/directory/init.zsh
 zplugin snippet PZT::modules/history/init.zsh
+zplugin snippet PZT::modules/gnu-utility/init.zsh
 
 ## Completions and aliases
 zplugin snippet OMZ::plugins/common-aliases/common-aliases.plugin.zsh
