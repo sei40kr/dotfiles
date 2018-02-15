@@ -27,6 +27,10 @@ window:
     x: 0
     y: 0
 
+  # Window decorations
+  # Setting this to false will result in window without borders and title bar.
+  decorations: true
+
 # Display tabs using this many cells (changes require restart)
 tabspaces: 4
 
@@ -37,7 +41,7 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: FuraCode Nerd Font Mono
+    family: OperatorMono Nerd Font
     # Style can be specified to pick a specific face.
     style: Book
 
@@ -59,7 +63,7 @@ font:
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    x: -2.5
+    x: -2.4
     y: 0.0
 
   # Glyph offset determines the locations of the glyphs within their cells with
