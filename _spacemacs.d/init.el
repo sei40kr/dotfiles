@@ -94,7 +94,6 @@ values."
      colors
      ;; Tools
      ansible
-     chrome
      dash
      docker
      imenu-list
@@ -110,7 +109,6 @@ values."
                  evil-snipe-enable-alternate-f-and-t-behaviors t
                  evil-snipe-repeat-scope t)
      ;; WebServices
-     spotify
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -172,7 +170,7 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner 'random
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
@@ -222,7 +220,7 @@ values."
    ;; works in the GUI. (default nil)
    dotspacemacs-distinguish-gui-tab nil
    ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
-   dotspacemacs-remap-Y-to-y$ nil
+   dotspacemacs-remap-Y-to-y$ t
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
    ;; there. (default t)
    dotspacemacs-retain-visual-state-on-shift t
@@ -366,8 +364,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 (defun dotspacemacs/user-config ()
   ;; Set escape keybinding to "jk"
-  (setq-default evil-escape-key-sequence "jk")
-  (setq powerline-default-separator nil)
+  (setq-default
+   evil-escape-key-sequence "jk"
+   powerline-default-separator nil
+   )
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
