@@ -175,47 +175,6 @@ augroup SpaceVim_d_lang_json
 augroup END
 "" }}}
 
-"" jaxbot/github-issues.vim {{{
-" When this is set to any value, github-issues will not set Neocomplete and
-" Omnicomplete hooks.
-let g:github_issues_no_omni = 1
-"" }}}
-
-"" joshdick/onedark.vim {{{
-let g:onedark_terminal_italics = 1
-
-augroup SpaceVim_d_onedark
-  autocmd!
-  autocmd ColorScheme onedark call onedark#set_highlight('Normal', {
-        \ 'fg': onedark#GetColors().white,
-        \ }) | call s:setup_onedark()
-augroup END
-
-function! s:setup_onedark() abort
-  let l:colors = onedark#GetColors()
-
-  highlight link TagbarComment Comment
-  highlight link TagbarHighlight CursorLine
-
-  call onedark#set_highlight('TagbarFoldIcon', { 'fg': l:colors.blue })
-  call onedark#set_highlight('TagbarKind', { 'fg': l:colors.blue })
-  call onedark#set_highlight('TagbarNestedKind', { 'fg': l:colors.white })
-  call onedark#set_highlight('TagbarScope', { 'fg': l:colors.white })
-  call onedark#set_highlight('TagbarType', { 'fg': l:colors.white })
-  call onedark#set_highlight('TagbarSignature', { 'fg': l:colors.white })
-  call onedark#set_highlight('TagbarPseudoID', { 'fg': l:colors.white })
-  call onedark#set_highlight('TagbarVisibilityPublic', {
-        \ 'fg': l:colors.white,
-        \ })
-  call onedark#set_highlight('TagbarVisibilityPrivate', {
-        \ 'fg': l:colors.white,
-        \ })
-  call onedark#set_highlight('TagbarVisibilityProtected', {
-        \ 'fg': l:colors.white,
-        \ })
-endfunction
-"" }}}
-
 "" junegunn/vim-github-dashboard {{{
 let g:github_dashboard = {
       \ 'username': g:spacevim_github_username,
@@ -322,7 +281,7 @@ let g:deoplete#file#enable_buffer_path = 1
 " It is a dictionary to decide ignore source names.
 " The key is filetype and the value is source names list.
 let g:deoplete#ignore_sources = {
-      \ '_': ['buffer', 'tag', 'dictionary'],
+      \ '_': ['buffer', 'dictionary'],
       \ 'gitcommit': [],
       \ }
 
@@ -383,6 +342,41 @@ endif
 "" SpaceVim/deoplete-clang2 {{{
 let g:clang2_placeholder_next = ''
 let g:clang2_placeholder_prev = ''
+"" }}}
+
+"" sei40kr/SpaceVim-onedark {{{
+let g:onedark_terminal_italics = 1
+
+augroup SpaceVim_d_onedark
+  autocmd!
+  autocmd ColorScheme onedark call onedark#set_highlight('Normal', {
+        \ 'fg': onedark#GetColors().white,
+        \ }) | call s:setup_onedark()
+augroup END
+
+function! s:setup_onedark() abort
+  let l:colors = onedark#GetColors()
+
+  highlight link TagbarComment Comment
+  highlight link TagbarHighlight CursorLine
+
+  call onedark#set_highlight('TagbarFoldIcon', { 'fg': l:colors.blue })
+  call onedark#set_highlight('TagbarKind', { 'fg': l:colors.blue })
+  call onedark#set_highlight('TagbarNestedKind', { 'fg': l:colors.white })
+  call onedark#set_highlight('TagbarScope', { 'fg': l:colors.white })
+  call onedark#set_highlight('TagbarType', { 'fg': l:colors.white })
+  call onedark#set_highlight('TagbarSignature', { 'fg': l:colors.white })
+  call onedark#set_highlight('TagbarPseudoID', { 'fg': l:colors.white })
+  call onedark#set_highlight('TagbarVisibilityPublic', {
+        \ 'fg': l:colors.white,
+        \ })
+  call onedark#set_highlight('TagbarVisibilityPrivate', {
+        \ 'fg': l:colors.white,
+        \ })
+  call onedark#set_highlight('TagbarVisibilityProtected', {
+        \ 'fg': l:colors.white,
+        \ })
+endfunction
 "" }}}
 
 "" terryma/vim-expand-region {{{
