@@ -34,11 +34,8 @@ call SpaceVim#layers#load('checkers', { 'show_cursor_error': 0 })
 call SpaceVim#layers#load('incsearch')
 " lsp layer should be loaded before lang layers
 call SpaceVim#layers#load('lsp', {
-      \ 'filetypes': ['c', 'cpp', 'javascript', 'json', 'python', 'rust'],
-      \ 'override_cmd': {
-      \ 'javascript': ['flow-language-server', '--stdio'],
-      \ 'json': ['json-languageserver', '--stdio'],
-      \ }
+      \ 'filetypes': ['c', 'cpp', 'haskell', 'javascript', 'python'],
+      \ 'override_cmd': { 'javascript': ['flow-language-server', '--stdio'] }
       \ })
 call SpaceVim#layers#load('lang#c', !empty(s:libclang_path) ? {
       \ 'enable_libclang': 1,
