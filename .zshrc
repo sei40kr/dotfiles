@@ -103,6 +103,7 @@ zplugin snippet OMZ::plugins/ant/ant.plugin.zsh
 # zplugin snippet OMZ::plugins/composer/composer.plugin.zsh
 zplugin snippet OMZ::plugins/dircycle/dircycle.plugin.zsh
 zplugin snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
+zplugin snippet OMZ::plugins/emacs/emacs.plugin.zsh
 zplugin snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
 zplugin snippet OMZ::plugins/git/git.plugin.zsh
 zplugin snippet OMZ::plugins/gradle/gradle.plugin.zsh
