@@ -372,9 +372,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
 (defun dotspacemacs/user-config ()
   ;; Set escape keybinding to "jk"
   (setq-default
-   evil-escape-key-sequence "jk"
+   ;; emacs-evil/evil
    evil-want-C-u-scroll t
+   ;; milkypostman/powerline
    powerline-default-separator nil
+   ;; syn20bnr/evil-escape
+   evil-escape-key-sequence "jk"
    )
 )
 
