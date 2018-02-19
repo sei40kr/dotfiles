@@ -22,6 +22,7 @@ brew "jq"
 brew "neovim"
 brew "parallel"
 brew "proctools"
+brew "pt"
 brew "reattach-to-user-namespace"
 brew "yarn", args: ['without-node']
 brew "shellcheck"
