@@ -8,6 +8,7 @@ jedi
 jupyter
 mycli
 neovim
+neovim-remote
 pgcli
 proselint
 ptpython
