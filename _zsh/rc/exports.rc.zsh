@@ -50,19 +50,6 @@ then
   )
 fi
 
-# If GNU commands are installed via brew command
-if [[ -d "${BREW_PREFIX}/opt/coreutils" ]]
-then
-  path=(
-    "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
-    "${path[@]}"
-  )
-  manpath=(
-    "${BREW_PREFIX}/opt/coreutils/libexec/gnuman:${MANPATH}"
-    "${manpath[@]}"
-  )
-fi
-
 
 # anyenv
 # ------
