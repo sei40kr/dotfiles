@@ -37,9 +37,12 @@ fi
 
 ## Environments
 # Launch tmux if not running
-zstyle ':prezto:module:tmux:auto-start' local 'yes'
-zstyle ':prezto:module:tmux:session' name 'default'
-zplugin ice svn; zplugin snippet PZT::modules/tmux
+if [[ "$VIM" == "" ]] && [[ "$VSCODE_PID" == "" ]]
+then
+  zstyle ':prezto:module:tmux:auto-start' local 'yes'
+  zstyle ':prezto:module:tmux:session' name 'default'
+  zplugin ice svn; zplugin snippet PZT::modules/tmux
+fi
 
 # Setup Oh My Zsh
 ZSH="${HOME}/.zsh"
