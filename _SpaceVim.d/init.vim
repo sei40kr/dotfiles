@@ -116,7 +116,6 @@ let g:spacevim_disabled_plugins = [
       \ 'fcitx.vim',
       \ 'neco-look',
       \ 'onedark.vim',
-      \ 'vim-jsx-pretty',
       \ 'vim-snippets',
       \ ]
 let g:spacevim_custom_plugins = [
@@ -124,7 +123,6 @@ let g:spacevim_custom_plugins = [
       \ 'rev': 'next',
       \ 'build': 'bash install.sh',
       \ }],
-      \ ['chemzqm/vim-jsx-improve', { 'on_ft': 'javascript' }],
       \ ['ejholmes/vim-forcedotcom'],
       \ ['kana/vim-textobj-help', {
       \ 'depends': 'vim-textobj-user',
@@ -153,10 +151,13 @@ let g:gitgutter_sign_modified = '▎'
 let g:gitgutter_sign_removed = ''
 let g:gitgutter_sign_modified_removed = '▎'
 
-let g:gitgutter_map_keys = 0
+set updatetime=100
+"" }}}
 
-nmap [c <Plug>GitGutterPrevHunk
-nmap ]c <Plug>GitGutterNextHunk
+"" autozimu/LanguageClient-neovim {{{
+" Whether to handle diagnostic messages, including gutter, highlight and
+" quickfix/location list.
+let g:LanguageClient_diagnosticsEnable = 0
 "" }}}
 
 "" blueyed/vim-diminactive {{{
@@ -173,12 +174,6 @@ augroup SpaceVim_d_lang_json
   autocmd!
   autocmd FileType json setlocal foldmethod=syntax
 augroup END
-"" }}}
-
-"" junegunn/vim-github-dashboard {{{
-let g:github_dashboard = {
-      \ 'username': g:spacevim_github_username,
-      \ }
 "" }}}
 
 "" majutsushi/tagbar {{{
