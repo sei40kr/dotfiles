@@ -194,7 +194,7 @@
 1. Create symlink
 
     ```sh
-    ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
+    ln -sf ~/dotfiles/_tmux.conf ~/.tmux.conf
     ```
 
 ### Install Git
