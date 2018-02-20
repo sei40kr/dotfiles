@@ -7,13 +7,11 @@
 
 zmodload zsh/zpty
 
-if [[ "${+commands[anyenv]}" == 1 ]]
-then
+if [[ "${+commands[anyenv]}" == 1 ]]; then
   eval "$(anyenv init - zsh)"
 fi
 
-if [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]]
-then
+if [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]]; then
   . "${HOME}/.sdkman/bin/sdkman-init.sh"
 fi
 
@@ -30,15 +28,13 @@ autoload -Uz add-zsh-hook \
 # Load zplugin
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 
-if [[ "${+_comps}" == 1 ]]
-then
+if [[ "${+_comps}" == 1 ]]; then
   _comps[zplugin]=_zplugin
 fi
 
 ## Environments
 # Launch tmux if not running
-if [[ "$VIM" == "" ]] && [[ "$VSCODE_PID" == "" ]]
-then
+if [[ "$VIM" == "" ]] && [[ "$VSCODE_PID" == "" ]]; then
   zstyle ':prezto:module:tmux:auto-start' local 'yes'
   zstyle ':prezto:module:tmux:session' name 'default'
   zplugin ice svn; zplugin snippet PZT::modules/tmux
@@ -124,12 +120,10 @@ zplugin snippet OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh
 
 zplugin ice blockf; zplugin light zsh-users/zsh-completions
 
-if [[ "$OSTYPE" == darwin* ]]
-then
+if [[ "$OSTYPE" == darwin* ]]; then
   # macOS
   zplugin ice svn; zplugin snippet PZT::modules/osx
-elif [[ "${+commands[apt]}" == 1 ]] && [[ "${+commands[lsb_release]}" == 1 ]]
-then
+elif [[ "${+commands[apt]}" == 1 ]] && [[ "${+commands[lsb_release]}" == 1 ]]; then
   LSB_RELEASE="$(lsb_release -is)"
 
   # Debian
