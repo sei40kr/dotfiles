@@ -7,10 +7,6 @@
 
 zmodload zsh/zpty
 
-if [[ "${+commands[anyenv]}" == 1 ]]; then
-  eval "$(anyenv init - zsh)"
-fi
-
 if [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]]; then
   . "${HOME}/.sdkman/bin/sdkman-init.sh"
 fi

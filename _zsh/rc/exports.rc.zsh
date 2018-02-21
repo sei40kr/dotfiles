@@ -51,16 +51,6 @@ then
 fi
 
 
-# anyenv
-# ------
-
-if [[ -d "${HOME}/.anyenv" ]]
-then
-  ANYENV_ROOT="${HOME}/.anyenv"
-  path=( "${ANYENV_ROOT}/bin" "${path[@]}" )
-fi
-
-
 # Golang
 # ------
 
