@@ -4,7 +4,7 @@ scriptencoding utf-8
 " author: Seong Yong-ju ( @sei40kr )
 
 if has('$RBENV_ROOT')
-  let g:ruby_host_prog = $RBENV_ROOT . '/shims/ruby'
+  let g:ruby_host_prog = $ASDF_DIR . '/shims/ruby'
 endif
 
 if has('$PYENV_ROOT')
