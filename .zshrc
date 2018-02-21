@@ -67,6 +67,7 @@ zstyle ':prezto:module:editor' dot-expansion yes
 zplugin snippet PZT::modules/editor/init.zsh
 
 zplugin ice svn pick'init.zsh'; zplugin snippet PZT::modules/docker
+zplugin ice svn pick'init.zsh'; zplugin snippet PZT::modules/python
 zplugin ice svn pick'init.zsh'; zplugin snippet PZT::modules/ssh
 zplugin snippet PZT::modules/rsync/init.zsh
 zplugin snippet PZT::modules/homebrew/init.zsh
