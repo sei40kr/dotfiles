@@ -84,6 +84,7 @@ unalias k
 zplugin snippet OMZ::plugins/tig/tig.plugin.zsh
 alias tig='env TERM=screen-256color tig'
 
+zplugin ice svn; zplugin snippet OMZ::plugins/asdf
 zplugin ice svn; zplugin snippet OMZ::plugins/autopep8
 zplugin ice svn; zplugin snippet OMZ::plugins/bundler
 zplugin ice svn; zplugin snippet OMZ::plugins/capistrano
