@@ -88,7 +88,6 @@ export MANPATH
 export INFOPATH
 export GOPATH
 export BREW_PREFIX
-export ANYENV_ROOT
 export XDG_CONFIG_HOME
 export XDG_DATA_DIRS
 
