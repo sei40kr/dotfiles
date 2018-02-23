@@ -75,8 +75,6 @@ let g:spacevim_windows_leader = 's'
 let g:spacevim_unite_leader = 'f'
 let g:spacevim_denite_leader = 'F'
 let g:spacevim_realtime_leader_guide = 1
-let g:spacevim_enable_neomake = 1
-let g:spacevim_enable_ale = 0
 let g:spacevim_statusline_separator = 'nil'
 let g:spacevim_statusline_inactive_separator = 'nil'
 let g:spacevim_statusline_unicode_symbols = 1
@@ -94,23 +92,9 @@ let g:spacevim_windows_index_type = 3
 let g:spacevim_github_username = 'sei40kr'
 let g:spacevim_enable_powerline_fonts = 1
 let g:spacevim_project_lint_on_save = 1
-let g:spacevim_project_rooter_patterns = ['.git/']
-let g:spacevim_project_rooter_automatically = 1
-let g:spacevim_lint_on_the_fly = 1
 let g:spacevim_enable_vimfiler_welcome = 0
 let g:spacevim_enable_vimfiler_gitstatus = 0
 let g:spacevim_enable_vimfiler_filetypeicon = 1
-let g:spacevim_wildignore .= ',' . join([
-      \ '*/tmp/*',
-      \ '*.so',
-      \ '*.swp',
-      \ '*.zip',
-      \ '*.pyc',
-      \ '*.log',
-      \ '*.db',
-      \ '*.sqlite',
-      \ '*/node_modules/*',
-      \ ], ',')
 let g:spacevim_disabled_plugins = [
       \ 'SpaceVim/LanguageClient-neovim',
       \ 'fcitx.vim',
@@ -165,15 +149,8 @@ let g:diminactive = 0
 "" }}}
 
 "" elzr/vim-json {{{
-" conceal by default
-let g:vim_json_syntax_conceal = 0
 " have warnings by default
 let g:vim_json_warnings = 0
-
-augroup SpaceVim_d_lang_json
-  autocmd!
-  autocmd FileType json setlocal foldmethod=syntax
-augroup END
 "" }}}
 
 "" majutsushi/tagbar {{{
@@ -257,13 +234,6 @@ let g:neoformat_enabled_scss = []
 let g:neoformat_enabled_typescript = []
 "" }}}
 
-"" pangloss/vim-javascript {{{
-augroup SpaceVim_d_lang_javascript
-  autocmd!
-  autocmd FileType javascript setlocal foldmethod=syntax
-augroup END
-"" }}}
-
 "" Shougo/deoplete.nvim {{{
 " Delay the completion after input in milliseconds.
 " Requires |+timers| (Neovim 0.1.5)
@@ -308,22 +278,6 @@ let g:vimfiler_readonly_file_icon = ''
 let g:vimfiler_marked_file_icon = ''
 " This variable controls vimfiler indentation length of tree.
 let g:vimfiler_tree_indentation = 2
-" Specify the regexp pattern string or list to ignore candidates
-" of the source.  This applies on the filenames of candidates.
-" It's not case sensitive.
-let g:vimfiler_ignore_pattern = [
-      \ '^\.DS_Store$',
-      \ '^\.git$',
-      \ '^\.netrwhist$',
-      \ '^\.init\.vim-rplugin\~$',
-      \ '\.class$',
-      \ '\.rbc$',
-      \ '\~$',
-      \ '\.pyc$',
-      \ '\.db$',
-      \ '\.sqlite$',
-      \ '^__pycache__$',
-      \ ]
 
 if has('mac')
   " It is quick look command for |<Plug>(vimfiler_quick_look)|.
@@ -390,9 +344,15 @@ let g:expand_region_text_objects_objcpp = s:libclang_text_objects
 "" }}}
 
 "" terryma/vim-multiple-cursors {{{
-" If set to 0, then pressing g:multi_cursor_quit_key in Visual mode will not quit and delete all existing cursors. This is useful if you want to press Escape and go back to Normal mode, and still be able to operate on all the cursors.
+" If set to 0, then pressing g:multi_cursor_quit_key in Visual mode will not
+" quit and delete all existing cursors. This is useful if you want to press
+" Escape and go back to Normal mode, and still be able to operate on all the
+" cursors.
 let g:multi_cursor_exit_from_visual_mode = 0
-" If set to 0, then pressing g:multi_cursor_quit_key in Insert mode will not quit and delete all existing cursors. This is useful if you want to press Escape and go back to Normal mode, and still be able to operate on all the cursors.
+" If set to 0, then pressing g:multi_cursor_quit_key in Insert mode will not
+" quit and delete all existing cursors. This is useful if you want to press
+" Escape and go back to Normal mode, and still be able to operate on all
+" the cursors.
 let g:multi_cursor_exit_from_insert_mode = 0
 "" }}}
 
