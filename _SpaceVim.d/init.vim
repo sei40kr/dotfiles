@@ -278,14 +278,6 @@ let g:vimfiler_readonly_file_icon = ''
 let g:vimfiler_marked_file_icon = ''
 " This variable controls vimfiler indentation length of tree.
 let g:vimfiler_tree_indentation = 2
-
-if has('mac')
-  " It is quick look command for |<Plug>(vimfiler_quick_look)|.
-  " Default value is "", so you must set it to use
-  " |<Plug>(vimfiler_quick_look)| after installing quick look
-  " command.
-  let g:vimfiler_quick_look_command = 'qlmanage -p'
-endif
 "" }}}
 
 "" SpaceVim/deoplete-clang2 {{{
