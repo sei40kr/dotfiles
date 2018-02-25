@@ -278,6 +278,9 @@ let g:vimfiler_readonly_file_icon = ''
 let g:vimfiler_marked_file_icon = ''
 " This variable controls vimfiler indentation length of tree.
 let g:vimfiler_tree_indentation = 2
+" Specify the regexp pattern string or list to ignore candidates
+" of the source.
+let g:vimfiler_ignore_pattern = ['^\.git$', '^\.DS_Store$']
 "" }}}
 
 "" SpaceVim/deoplete-clang2 {{{
