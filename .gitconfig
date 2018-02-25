@@ -12,8 +12,6 @@
   indentHeuristic = on
 [fetch]
   prune = true
-[ghq]
-  root = ~/dev/ws
 [github]
   user = "sei40kr"
 [include]

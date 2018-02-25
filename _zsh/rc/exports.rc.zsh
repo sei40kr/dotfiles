@@ -69,6 +69,15 @@ path=(
 )
 
 
+# ghq
+# ---
+if [[ "$OSTYPE" == darwin* ]]; then
+  GHQ_ROOT="${HOME}/Develop"
+else
+  GHQ_ROOT="${HOME}/dev/ws"
+fi
+
+
 # Misc
 # ----
 
