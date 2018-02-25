@@ -229,10 +229,10 @@
 
 ### Install version managers
 
-1. Install anyenv (manager for version managers)
+1. Install asdf v0.4.2
 
     ```sh
-    git clone https://github.com/riywo/anyenv ~/.anyenv
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.4.2
     ```
 
 1. Install SDKMAN!
@@ -251,16 +251,6 @@
 
     ```sh
     exec "$SHELL" -l
-    ```
-
-1. Install version managers via anyenv
-
-    ```sh
-    anyenv install goenv
-    anyenv install pyenv
-    anyenv install rbenv
-    anyenv install crenv
-    anyenv install ndenv
     ```
 
 1. Reload the shell again
