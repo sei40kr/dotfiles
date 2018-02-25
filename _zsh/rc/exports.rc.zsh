@@ -48,6 +48,7 @@ then
     "${BREW_PREFIX}/opt/llvm/bin"
     "${path[@]}"
   )
+  LD_LIBRARY_PATH="${BREW_PREFIX}/opt/llvm/lib"
 fi
 
 
