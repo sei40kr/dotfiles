@@ -501,7 +501,6 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (evil-leader/set-key "q q" 'spacemacs/frame-killer)
   (custom-set-variables '(spacemacs-theme-comment-italic t)))
 
 
@@ -509,6 +508,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq evil-escape-key-sequence "jk")
   (setq evil-want-C-i-jump t)
   (setq evil-want-C-u-scroll t)
+  (evil-leader/set-leader-keys "qq" 'spacemacs/frame-killer)
   (push '(?\[ "[[{(]") evil-snipe-aliases)
   (push '(?\] "[]})]") evil-snipe-aliases)
   (unless (display-graphic-p) (evil-terminal-cursor-changer-activate))
