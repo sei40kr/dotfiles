@@ -501,6 +501,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 (defun dotspacemacs/user-config ()
   (setq evil-escape-key-sequence "jk")
+  (setq evil-want-C-i-jump t)
   (setq evil-want-C-u-scroll t)
   (setq powerline-default-separator nil)
   (define-key evil-normal-state-map (kbd "C-s") 'evil-write-all)
