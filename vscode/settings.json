@@ -1299,7 +1299,21 @@
     // Editor UI
     // ---------
     // TODO Toggle tagbar
-    // TODO Toggle Vimfiler
+    // Toggle Vimfiler
+    {
+      "before": [
+        "<Leader>",
+        "f",
+        "t"
+      ],
+      "after": [],
+      "commands": [
+        {
+          "command": "workbench.view.explorer",
+          "args": []
+        }
+      ]
+    },
     // Jump to the buffer with the num index
     {
       "before": [
@@ -1513,7 +1527,6 @@
     "sideBar.background": "#282c34",
     "statusBar.background": "#98c379",
     "statusBar.debuggingBackground": "#98c379",
-    "statusBar.foreground": "#282c34",
     "statusBar.noFolderBackground": "#98c379",
     "tab.activeBackground": "#282c34",
     "terminal.ansiBlack": "#282c34",
@@ -1546,5 +1559,7 @@
   "workbench.iconTheme": null,
   // 前のセッションからエディターが復元されていない場合に、起動時に表示するかどうかを制御します。'none' を選択するとエディターなしで開始します。'welcomePage' を選択するとウェルカム ページを開きます (既定)。'newUntitledFile' を選択すると新しい無題のファイルを開きます (空のワークスペースを開いているときのみ)。
   "workbench.startupEditor": "newUntitledFile",
-  "window.menuBarVisibility": "toggle"
+  "window.menuBarVisibility": "toggle",
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.enabled": false
 }
