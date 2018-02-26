@@ -508,6 +508,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq evil-escape-key-sequence "jk")
   (setq evil-want-C-i-jump t)
   (setq evil-want-C-u-scroll t)
+  (push '(?\[ "[[{(]") evil-snipe-aliases)
+  (push '(?\] "[]})]") evil-snipe-aliases)
   (setq powerline-default-separator nil)
   (define-key evil-normal-state-map (kbd "C-s") 'evil-write-all)
   (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
@@ -518,6 +520,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
                              (push '(?` . ("`" . "'")) evil-surround-pairs-alist)))
   (add-hook 'js-mode-hook #'lsp-typescript-enable)
   (add-hook 'js2-mode-hook #'lsp-typescript-enable)
+  (add-hook 'python-mode-hook
+    (lambda ()
+      (make-variable-buffer-local 'evil-snipe-aliases)
+      (push '(?: "def .+:") evil-snipe-aliases)))
   (add-hook 'rjsx-mode-hook #'lsp-typescript-enable)
   )
 
