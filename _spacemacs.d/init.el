@@ -496,6 +496,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 
 (defun dotspacemacs/user-config ()
+  (setq woman-manpath (split-string (getenv "MANPATH") ":"))
   (setq woman-cache-filename "~/.emacs.d/woman_cache.el")
   (setq evil-escape-key-sequence "jk")
   (setq evil-want-C-i-jump t)
