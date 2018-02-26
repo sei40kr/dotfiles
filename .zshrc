@@ -76,9 +76,6 @@ zplugin ice svn; zplugin snippet OMZ::plugins/rails
 # Remove unwanted alias
 unalias rg
 
-zplugin snippet OMZ::plugins/emacs/emacs.plugin.zsh
-alias emacs="${EMACS_PLUGIN_LAUNCHER}"
-
 zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 unalias k
 
