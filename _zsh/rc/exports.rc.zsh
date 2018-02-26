@@ -98,7 +98,9 @@ export MANPATH
 export INFOPATH
 export GOPATH
 export BREW_PREFIX
+export LD_LIBRARY_PATH
 export XDG_CONFIG_HOME
 export XDG_DATA_DIRS
+export GHQ_ROOT
 
 # vi: et sw=2 cc=80
