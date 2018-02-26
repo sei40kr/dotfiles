@@ -30,7 +30,7 @@ fi
 
 ## Environments
 # Launch tmux if not running
-if [[ "$VIM" == "" ]] && [[ "$VSCODE_PID" == "" ]]; then
+if [[ "$VIM" == "" && "$EMACS" == "" && "$VSCODE_PID" == "" ]]; then
   zstyle ':prezto:module:tmux:auto-start' local 'yes'
   zstyle ':prezto:module:tmux:session' name 'default'
   zplugin ice svn; zplugin snippet PZT::modules/tmux
