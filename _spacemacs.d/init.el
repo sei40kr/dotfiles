@@ -497,6 +497,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq powerline-default-separator nil)
   (define-key evil-normal-state-map (kbd "C-s") 'evil-write-all)
   (define-key evil-normal-state-map (kbd "C-p") 'helm-ls-git-ls)
+  (add-hook 'c++-mode-hook (lambda ()
+                             (push '(?< . ("<" . ">")) evil-surround-pairs-alist)))
+  (add-hook 'emacs-lisp-mode-hook (lambda ()
+                             (push '(?` . ("`" . "'")) evil-surround-pairs-alist)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
