@@ -67,10 +67,11 @@ values."
                                            c-c++-enable-google-newline t)
                                          csv
                                          emacs-lisp
-                                         (go :variables go-use-gometalinter
-                                           t gofmt-command "goimports")
-                                         (haskell :variables haskell-enable-hindent
-                                           t)
+                                         (go :variables
+                                           go-use-gometalinter t
+                                           gofmt-command "goimports")
+                                         (haskell :variables
+                                           haskell-enable-hindent t)
                                          html
                                          java
                                          (javascript :variables
@@ -86,14 +87,16 @@ values."
                                          php
                                          plantuml
                                          purescript
-                                         (python :variables python-test-runner'(pytest nose))
+                                         (python :variables
+                                           python-test-runner'(pytest nose))
                                          ruby
-                                         (scala :variables scala-use-java-doc-style
-                                           t scala-auto-insert-asterisk-in-comments t)
+                                         (scala :variables
+                                           scala-use-java-doc-style t
+                                           scala-auto-insert-asterisk-in-comments t)
                                          shell-scripts
                                          sql
-                                         (typescript :variables typescript-fmt-on-save
-                                           t)
+                                         (typescript :variables
+                                           typescript-fmt-on-save t)
                                          vimscript
                                          yaml
 
@@ -118,15 +121,17 @@ values."
                                          imenu-list
                                          lsp
                                          nginx
-                                         (shell :variables shell-default-height
-                                           30 shell-default-position 'bottom)
+                                         (shell :variables
+                                           shell-default-height 30
+                                           shell-default-position 'bottom)
                                          tmux
                                          vagrant
 
                                          ;; Vim
                                          evil-commentary
-                                         (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors
-                                           t evil-snipe-repeat-scope t)
+                                         (evil-snipe :variables
+                                           evil-snipe-enable-alternate-f-and-t-behaviors t
+                                           evil-snipe-repeat-scope t)
 
                                          ;; WebServices
                                          )
