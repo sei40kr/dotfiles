@@ -119,7 +119,6 @@ values."
                                          dash
                                          docker
                                          imenu-list
-                                         lsp
                                          nginx
                                          (shell :variables
                                            shell-default-height 30
@@ -141,13 +140,7 @@ values."
     ;; configuration in `dotspacemacs/user-config'.
     dotspacemacs-additional-packages '(
                                         evil-terminal-cursor-changer
-                                        helm-ls-git
-                                        lsp-go
-                                        lsp-haskell
-                                        lsp-java
-                                        lsp-javascript-typescript
-                                        lsp-php
-                                        lsp-python)
+                                        helm-ls-git)
 
     ;; A list of packages that cannot be updated.
     dotspacemacs-frozen-packages '()
@@ -520,13 +513,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
                              (push '(?< . ("<" . ">")) evil-surround-pairs-alist)))
   (add-hook 'emacs-lisp-mode-hook (lambda ()
                              (push '(?` . ("`" . "'")) evil-surround-pairs-alist)))
-  (add-hook 'js-mode-hook #'lsp-typescript-enable)
-  (add-hook 'js2-mode-hook #'lsp-typescript-enable)
   (add-hook 'python-mode-hook
     (lambda ()
       (make-variable-buffer-local 'evil-snipe-aliases)
       (push '(?: "def .+:") evil-snipe-aliases)))
-  (add-hook 'rjsx-mode-hook #'lsp-typescript-enable)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
