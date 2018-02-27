@@ -521,10 +521,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (add-hook 'c++-mode-hook (lambda ()
                              (push '(?< . ("<" . ">")) evil-surround-pairs-alist)))
   (add-hook 'emacs-lisp-mode-hook (lambda ()
-                             (push '(?` . ("`" . "'")) evil-surround-pairs-alist)))
+                                    (push '(?` . ("`" . "'")) evil-surround-pairs-alist)))
   (add-hook 'python-mode-hook (lambda ()
-      (make-variable-buffer-local 'evil-snipe-aliases)
-      (push '(?: "def .+:") evil-snipe-aliases)))
+                                (make-variable-buffer-local 'evil-snipe-aliases)
+                                (push '(?: "def .+:") evil-snipe-aliases)))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
