@@ -18,5 +18,6 @@ stylefmt
 stylelint-cli
 typescript
 typescript-language-server
+vmd
 webpack
 yaml-language-server
