@@ -135,8 +135,7 @@ values."
     ;; packages, then consider creating a layer. You can also put the
     ;; configuration in `dotspacemacs/user-config'.
     dotspacemacs-additional-packages '(
-                                        evil-terminal-cursor-changer
-                                        helm-ls-git)
+                                        evil-terminal-cursor-changer)
 
     ;; A list of packages that cannot be updated.
     dotspacemacs-frozen-packages '()
@@ -493,6 +492,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq evil-escape-key-sequence "jk")
   (setq evil-want-C-i-jump t)
   (setq evil-want-C-u-scroll t)
+  (setq magit-repository-directories
+    (if (equal system-type 'darwin)
+      `(((expand-file-name "~/Develop") . 3)))
+      `(((expand-file-name "~/dev/ws") . 3)))
   (setq powerline-default-separator nil)
   (setq projectile-enable-caching t)
   (setq shell-file-name "/bin/sh")
