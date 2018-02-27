@@ -43,21 +43,15 @@ values."
                                            auto-completion-return-key-behavior 'complete
                                            auto-completion-tab-key-behavior 'cycle)
                                          helm
-
                                          ;; Emacs
                                          org
-
                                          ;; E-mail
                                          gnus
-
                                          ;; Framework
                                          react
                                          ruby-on-rails
-
                                          ;; Fun
-
                                          ;; International support
-
                                          ;; Programming and markup languages
                                          (c-c++ :variables
                                            c-c++-default-mode-for-headers 'c++-mode
@@ -100,55 +94,50 @@ values."
                                            typescript-fmt-on-save t)
                                          vimscript
                                          yaml
-
                                          ;; Operating systems
-
                                          ;; Pair programming
                                          floobits
-
                                          ;; Source control
                                          (git :variables
                                            git-magit-status-fullscreen t)
                                          github
                                          version-control
-
                                          ;; Tags
                                          (gtags :variables
                                            gtags-enable-by-default nil)
-
                                          ;; Themes
                                          colors
-
                                          ;; Tools
                                          ansible
                                          cmake
                                          dash
                                          docker
                                          imenu-list
+                                         lsp
                                          nginx
                                          (shell :variables
                                            shell-default-height 30
                                            shell-default-position 'bottom)
                                          tmux
                                          vagrant
-
                                          ;; Vim
                                          evil-commentary
                                          (evil-snipe :variables
                                            evil-snipe-enable-alternate-f-and-t-behaviors t
                                            evil-snipe-repeat-scope t)
-
                                          ;; WebServices
                                          (confluence :variables
                                            confluence-xml-convert-to-wiki-on-load t)
                                          twitter)
+
     ;; List of additional packages that will be installed without being
     ;; wrapped in a layer. If you need some configuration for these
     ;; packages, then consider creating a layer. You can also put the
     ;; configuration in `dotspacemacs/user-config'.
     dotspacemacs-additional-packages '(
                                         evil-terminal-cursor-changer
-                                        helm-ls-git)
+                                        helm-ls-git
+                                        lsp-javascript-flow)
 
     ;; A list of packages that cannot be updated.
     dotspacemacs-frozen-packages '()
@@ -522,6 +511,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
                              (push '(?< . ("<" . ">")) evil-surround-pairs-alist)))
   (add-hook 'emacs-lisp-mode-hook (lambda ()
                                     (push '(?` . ("`" . "'")) evil-surround-pairs-alist)))
+  (add-hook 'js2-mode-hook #'lsp-javascript-flow-enable)
   (add-hook 'python-mode-hook (lambda ()
                                 (make-variable-buffer-local 'evil-snipe-aliases)
                                 (push '(?: "def .+:") evil-snipe-aliases))))
@@ -540,7 +530,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (twittering-mode helm-gtags ggtags web-mode overseer go-tag dumb-jump company-auctex browse-at-remote ace-link ac-php-core counsel swiper ivy smartparens helm helm-core inf-ruby flycheck which-key exec-path-from-shell evil org-plus-contrib yasnippet-snippets yapfify yaml-mode xterm-color xcscope ws-butler winum web-beautify volatile-highlights vmd-mode vimrc-mode vi-tilde-fringe vagrant-tramp vagrant uuidgen use-package undo-tree toc-org tide tagedit symon string-inflection sql-indent spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs realgud rbenv rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails popwin plantuml-mode pippel pipenv pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode perl6-mode password-generator paradox orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file noflet nginx-mode neotree nameless mvn multi-term move-text mmm-mode minitest meghanada maven-test-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode kotlin-mode js2-refactor js-doc jinja2-mode intero insert-shebang indent-guide importmagic impatient-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-ls-git helm-hoogle helm-gitignore helm-flx helm-descbinds helm-dash helm-ctest helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets groovy-mode groovy-imports gradle-mode goto-chg google-translate google-c-style golden-ratio godoctor go-rename go-guru go-eldoc gnuplot github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy font-lock+ flycheck-rtags flycheck-pos-tip flycheck-perl6 flycheck-kotlin flycheck-haskell flycheck-gometalinter flycheck-bashate flx-ido floobits fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-terminal-cursor-changer evil-surround evil-snipe evil-search-highlight-persist evil-org evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emmet-mode elisp-slime-nav editorconfig drupal-mode dockerfile-mode docker disaster diminish diff-hl define-word dash-at-point dante dactyl-mode cython-mode csv-mode counsel-projectile confluence company-web company-tern company-statistics company-shell company-rtags company-plsense company-php company-lua company-go company-ghci company-ghc company-emacs-eclim company-cabal company-c-headers company-ansible company-anaconda column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode cmake-ide clean-aindent-mode clang-format chruby centered-cursor-mode bundler auto-yasnippet auto-highlight-symbol auto-compile auctex ansible-doc ansible aggressive-indent add-node-modules-path adaptive-wrap ace-window ace-jump-helm-line ac-ispell)))
+    (lsp-ui lsp-python company-lsp lsp-mode twittering-mode helm-gtags ggtags web-mode overseer go-tag dumb-jump company-auctex browse-at-remote ace-link ac-php-core counsel swiper ivy smartparens helm helm-core inf-ruby flycheck which-key exec-path-from-shell evil org-plus-contrib yasnippet-snippets yapfify yaml-mode xterm-color xcscope ws-butler winum web-beautify volatile-highlights vmd-mode vimrc-mode vi-tilde-fringe vagrant-tramp vagrant uuidgen use-package undo-tree toc-org tide tagedit symon string-inflection sql-indent spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs realgud rbenv rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails popwin plantuml-mode pippel pipenv pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode perl6-mode password-generator paradox orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file noflet nginx-mode neotree nameless mvn multi-term move-text mmm-mode minitest meghanada maven-test-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode kotlin-mode js2-refactor js-doc jinja2-mode intero insert-shebang indent-guide importmagic impatient-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-ls-git helm-hoogle helm-gitignore helm-flx helm-descbinds helm-dash helm-ctest helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets groovy-mode groovy-imports gradle-mode goto-chg google-translate google-c-style golden-ratio godoctor go-rename go-guru go-eldoc gnuplot github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md fuzzy font-lock+ flycheck-rtags flycheck-pos-tip flycheck-perl6 flycheck-kotlin flycheck-haskell flycheck-gometalinter flycheck-bashate flx-ido floobits fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-terminal-cursor-changer evil-surround evil-snipe evil-search-highlight-persist evil-org evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emmet-mode elisp-slime-nav editorconfig drupal-mode dockerfile-mode docker disaster diminish diff-hl define-word dash-at-point dante dactyl-mode cython-mode csv-mode counsel-projectile confluence company-web company-tern company-statistics company-shell company-rtags company-plsense company-php company-lua company-go company-ghci company-ghc company-emacs-eclim company-cabal company-c-headers company-ansible company-anaconda column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode cmake-ide clean-aindent-mode clang-format chruby centered-cursor-mode bundler auto-yasnippet auto-highlight-symbol auto-compile auctex ansible-doc ansible aggressive-indent add-node-modules-path adaptive-wrap ace-window ace-jump-helm-line ac-ispell)))
  '(spacemacs-theme-comment-italic t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
