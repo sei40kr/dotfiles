@@ -524,8 +524,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
                                     (push '(?` . ("`" . "'")) evil-surround-pairs-alist)))
   (add-hook 'python-mode-hook (lambda ()
                                 (make-variable-buffer-local 'evil-snipe-aliases)
-                                (push '(?: "def .+:") evil-snipe-aliases)))
-  )
+                                (push '(?: "def .+:") evil-snipe-aliases))))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
