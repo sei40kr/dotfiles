@@ -496,7 +496,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq powerline-default-separator nil)
   (setq projectile-enable-caching t)
   (setq shell-file-name "/bin/sh")
-  (custom-set-variables '(spacemacs-theme-comment-italic t)))
+  (custom-set-variables '(spacemacs-theme-comment-italic t))
+  (with-eval-after-load 'projectile
+    (when (require 'magit)
+      (mapc #'projectile-add-known-project
+        (mapcar #'file-name-as-directory (magit-list-repos)))
+      (projectile-save-known-projects))))
 
 
 (defun dotspacemacs/user-config ()
@@ -504,12 +509,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (spacemacs/toggle-golden-ratio-on)
   (unless (display-graphic-p)
     evil-terminal-cursor-changer-activate)
-  (mapc #'projectile-add-known-project
-    (mapcar #'file-name-as-directory (magit-list-repos)))
-  (projectile-save-known-projects)
-  (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
   (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
+  (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
+  (evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute)
+  (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)
   (add-hook 'haskell-interactive-mode-hook
     (lambda ()
       (setq-local evil-move-cursor-back nil)))
