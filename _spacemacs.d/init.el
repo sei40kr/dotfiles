@@ -365,7 +365,7 @@ values."
     ;; another same-purpose window is available. If non-nil, `switch-to-buffer'
     ;; displays the buffer in a same-purpose window even if the buffer can be
     ;; displayed in the current window. (default nil)
-    dotspacemacs-switch-to-buffer-prefers-purpose nil
+    dotspacemacs-switch-to-buffer-prefers-purpose t
 
     ;; If non nil a progress bar is displayed when spacemacs is loading. This
     ;; may increase the boot time on some systems and emacs builds, set it to
