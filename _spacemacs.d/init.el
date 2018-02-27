@@ -50,7 +50,8 @@ values."
        ;; E-mail
        gnus
        ;; Framework
-       react
+       (react
+         :packages (not company-tern tern web-beautify))
        ruby-on-rails
        ;; Fun
        ;; International support
@@ -70,7 +71,9 @@ values."
          haskell-enable-hindent t)
        html
        java
-       (javascript :variables
+       (javascript
+         :packages (not company-tern tern web-beautify)
+         :variables
          js2-basic-offset 2
          js-indent-level 2
          node-add-modules-path t)
@@ -85,11 +88,13 @@ values."
        plantuml
        purescript
        (python :variables
-         python-test-runner'(pytest nose))
+         python-backend 'lsp
+         python-test-runner '(pytest nose))
        ruby
        (scala :variables
          scala-use-java-doc-style t
          scala-auto-insert-asterisk-in-comments t)
+       (windows-scripts :toggle (eq system-type 'windows-nt))
        shell-scripts
        sql
        (typescript :variables
@@ -103,7 +108,10 @@ values."
        (git :variables
          git-magit-status-fullscreen t)
        github
-       version-control
+       (version-control :variables
+         version-control-diff-tool 'diff-hl
+         version-control-diff-side 'left
+         version-control-global-margin t)
        ;; Tags
        (gtags :variables
          gtags-enable-by-default nil)
@@ -242,7 +250,8 @@ values."
 
     ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
     ;; quickly tweak the mode-line size to make separators look not too crappy.
-    dotspacemacs-default-font '("FantasqueSansMono Nerd Font" :size 22
+    dotspacemacs-default-font '("FantasqueSansMono Nerd Font"
+                                 :size 22
                                  :weight normal
                                  :width normal
                                  :powerline-scale 1.1)
@@ -492,6 +501,17 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq evil-escape-key-sequence "jk")
   (setq evil-want-C-i-jump t)
   (setq evil-want-C-u-scroll t)
+  (setq flycheck-disabled-checkers
+    '(
+       javascript-jshint
+       javascript-standard
+       json-python-json
+       markdown-markdownlint-cli
+       ruby-jruby
+       scss-lint
+       sass/scss-sass-lint
+       xml-xmlstarlet
+       ))
   (setq magit-repository-directories `(("~/dev/ws" . 3) ("~/Develop" . 3)))
   (setq powerline-default-separator nil)
   (setq projectile-enable-caching t)
@@ -505,6 +525,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 
 (defun dotspacemacs/user-config ()
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
   (spacemacs/toggle-fill-column-indicator-on)
   (spacemacs/toggle-golden-ratio-on)
   (unless (display-graphic-p)
@@ -517,7 +538,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (add-hook 'haskell-interactive-mode-hook
     (lambda ()
       (setq-local evil-move-cursor-back nil)))
-  (when (equal system-type 'darwin)
+  (when (eq system-type 'darwin)
     (add-hook 'edit-server-done-hook
       (lambda ()
         (shell-command "open -a \"Google Chrome\"")))))
