@@ -29,105 +29,106 @@ values."
     dotspacemacs-configuration-layer-path '()
 
     ;; List of configuration layers to load.
-    dotspacemacs-configuration-layers '(
-                                         ;; ----------------------------------------------------------------
-                                         ;; Example of useful layers you may want to use right away.
-                                         ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-                                         ;; <M-m f e R> (Emacs style) to install them.
-                                         ;; ----------------------------------------------------------------
-                                         ;; Checkers
-                                         (syntax-checking :variables
-                                           syntax-checking-enable-tooltips nil)
-                                         ;; Completion
-                                         (auto-completion :variables
-                                           auto-completion-return-key-behavior 'complete
-                                           auto-completion-tab-key-behavior 'cycle)
-                                         helm
-                                         ;; Emacs
-                                         org
-                                         ;; E-mail
-                                         gnus
-                                         ;; Framework
-                                         react
-                                         ruby-on-rails
-                                         ;; Fun
-                                         ;; International support
-                                         ;; Programming and markup languages
-                                         (c-c++ :variables
-                                           c-c++-default-mode-for-headers 'c++-mode
-                                           c-c++-enable-clang-support t
-                                           c-c++-enable-clang-format-on-save t
-                                           c-c++-enable-google-style t
-                                           c-c++-enable-google-newline t)
-                                         csv
-                                         emacs-lisp
-                                         (go :variables
-                                           go-use-gometalinter t
-                                           gofmt-command "goimports")
-                                         (haskell :variables
-                                           haskell-enable-hindent t)
-                                         html
-                                         java
-                                         (javascript :variables
-                                           js2-basic-offset 2
-                                           js-indent-level 2
-                                           node-add-modules-path t)
-                                         kotlin
-                                         latex
-                                         lua
-                                         (markdown :variables
-                                           markdown-live-preview-engine 'vmd)
-                                         perl5
-                                         perl6
-                                         php
-                                         plantuml
-                                         purescript
-                                         (python :variables
-                                           python-test-runner'(pytest nose))
-                                         ruby
-                                         (scala :variables
-                                           scala-use-java-doc-style t
-                                           scala-auto-insert-asterisk-in-comments t)
-                                         shell-scripts
-                                         sql
-                                         (typescript :variables
-                                           typescript-fmt-on-save t)
-                                         vimscript
-                                         yaml
-                                         ;; Operating systems
-                                         ;; Pair programming
-                                         floobits
-                                         ;; Source control
-                                         (git :variables
-                                           git-magit-status-fullscreen t)
-                                         github
-                                         version-control
-                                         ;; Tags
-                                         (gtags :variables
-                                           gtags-enable-by-default nil)
-                                         ;; Themes
-                                         colors
-                                         ;; Tools
-                                         ansible
-                                         chrome
-                                         cmake
-                                         dash
-                                         docker
-                                         imenu-list
-                                         lsp
-                                         nginx
-                                         (shell :variables
-                                           shell-default-height 30
-                                           shell-default-position 'bottom)
-                                         tmux
-                                         vagrant
-                                         ;; Vim
-                                         evil-commentary
-                                         (evil-snipe :variables
-                                           evil-snipe-enable-alternate-f-and-t-behaviors t
-                                           evil-snipe-repeat-scope t)
-                                         ;; WebServices
-                                         twitter)
+    dotspacemacs-configuration-layers
+    '(
+       ;; ----------------------------------------------------------------
+       ;; Example of useful layers you may want to use right away.
+       ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
+       ;; <M-m f e R> (Emacs style) to install them.
+       ;; ----------------------------------------------------------------
+       ;; Checkers
+       (syntax-checking :variables
+         syntax-checking-enable-tooltips nil)
+       ;; Completion
+       (auto-completion :variables
+         auto-completion-return-key-behavior 'complete
+         auto-completion-tab-key-behavior 'cycle)
+       helm
+       ;; Emacs
+       org
+       ;; E-mail
+       gnus
+       ;; Framework
+       react
+       ruby-on-rails
+       ;; Fun
+       ;; International support
+       ;; Programming and markup languages
+       (c-c++ :variables
+         c-c++-default-mode-for-headers 'c++-mode
+         c-c++-enable-clang-support t
+         c-c++-enable-clang-format-on-save t
+         c-c++-enable-google-style t
+         c-c++-enable-google-newline t)
+       csv
+       emacs-lisp
+       (go :variables
+         go-use-gometalinter t
+         gofmt-command "goimports")
+       (haskell :variables
+         haskell-enable-hindent t)
+       html
+       java
+       (javascript :variables
+         js2-basic-offset 2
+         js-indent-level 2
+         node-add-modules-path t)
+       kotlin
+       latex
+       lua
+       (markdown :variables
+         markdown-live-preview-engine 'vmd)
+       perl5
+       perl6
+       php
+       plantuml
+       purescript
+       (python :variables
+         python-test-runner'(pytest nose))
+       ruby
+       (scala :variables
+         scala-use-java-doc-style t
+         scala-auto-insert-asterisk-in-comments t)
+       shell-scripts
+       sql
+       (typescript :variables
+         typescript-fmt-on-save t)
+       vimscript
+       yaml
+       ;; Operating systems
+       ;; Pair programming
+       floobits
+       ;; Source control
+       (git :variables
+         git-magit-status-fullscreen t)
+       github
+       version-control
+       ;; Tags
+       (gtags :variables
+         gtags-enable-by-default nil)
+       ;; Themes
+       colors
+       ;; Tools
+       ansible
+       chrome
+       cmake
+       dash
+       docker
+       imenu-list
+       lsp
+       nginx
+       (shell :variables
+         shell-default-height 30
+         shell-default-position 'bottom)
+       tmux
+       vagrant
+       ;; Vim
+       evil-commentary
+       (evil-snipe :variables
+         evil-snipe-enable-alternate-f-and-t-behaviors t
+         evil-snipe-repeat-scope t)
+       ;; WebServices
+       twitter)
 
     ;; List of additional packages that will be installed without being
     ;; wrapped in a layer. If you need some configuration for these
@@ -490,8 +491,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq evil-escape-key-sequence "jk")
   (setq evil-want-C-i-jump t)
   (setq evil-want-C-u-scroll t)
-  (setq magit-repository-directories
-    `(("~/dev/ws" . 3) ("~/Develop" . 3)))
+  (setq magit-repository-directories `(("~/dev/ws" . 3) ("~/Develop" . 3)))
   (setq powerline-default-separator nil)
   (setq projectile-enable-caching t)
   (setq shell-file-name "/bin/sh")
@@ -501,16 +501,21 @@ before packages are loaded. If you are unsure, you should try in setting them in
 (defun dotspacemacs/user-config ()
   (spacemacs/toggle-fill-column-indicator-on)
   (spacemacs/toggle-golden-ratio-on)
-  (unless (display-graphic-p) evil-terminal-cursor-changer-activate)
+  (unless (display-graphic-p)
+    evil-terminal-cursor-changer-activate)
   (mapc #'projectile-add-known-project
     (mapcar #'file-name-as-directory (magit-list-repos)))
   (projectile-save-known-projects)
   (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
   (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
+  (add-hook 'haskell-interactive-mode-hook
+    (lambda ()
+      (setq-local evil-move-cursor-back nil)))
   (when (equal system-type 'darwin)
-    (add-hook 'edit-server-done-hook (lambda ()
-                                       (shell-command "open -a \"Google Chrome\"")))))
+    (add-hook 'edit-server-done-hook
+      (lambda ()
+        (shell-command "open -a \"Google Chrome\"")))))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
