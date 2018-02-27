@@ -500,6 +500,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 
 (defun dotspacemacs/user-config ()
+  (spacemacs/toggle-fill-column-indicator-on)
+  (spacemacs/toggle-golden-ratio-on)
   (push '(?\[ "[[{(]") evil-snipe-aliases)
   (push '(?\] "[]})]") evil-snipe-aliases)
   (unless (display-graphic-p) evil-terminal-cursor-changer-activate)
