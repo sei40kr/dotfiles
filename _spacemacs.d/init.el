@@ -126,8 +126,6 @@ values."
                                            evil-snipe-enable-alternate-f-and-t-behaviors t
                                            evil-snipe-repeat-scope t)
                                          ;; WebServices
-                                         (confluence :variables
-                                           confluence-xml-convert-to-wiki-on-load t)
                                          twitter)
 
     ;; List of additional packages that will be installed without being
@@ -488,14 +486,11 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (setq confluence-url "https://teamspiritdev.atlassian.net/wiki/rpc/xmlrpc")
   (setq evil-escape-key-sequence "jk")
   (setq evil-want-C-i-jump t)
   (setq evil-want-C-u-scroll t)
   (setq magit-repository-directories
-    (if (equal system-type 'darwin)
-      `(((expand-file-name "~/Develop") . 3)))
-      `(((expand-file-name "~/dev/ws") . 3)))
+    `(("~/dev/ws" . 3) ("~/Develop" . 3)))
   (setq powerline-default-separator nil)
   (setq projectile-enable-caching t)
   (setq shell-file-name "/bin/sh")
@@ -505,20 +500,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
 (defun dotspacemacs/user-config ()
   (spacemacs/toggle-fill-column-indicator-on)
   (spacemacs/toggle-golden-ratio-on)
-  (push '(?\[ "[[{(]") evil-snipe-aliases)
-  (push '(?\] "[]})]") evil-snipe-aliases)
   (unless (display-graphic-p) evil-terminal-cursor-changer-activate)
+  (mapc #'projectile-add-known-project
+    (mapcar #'file-name-as-directory (magit-list-repos)))
+  (projectile-save-known-projects)
   (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
   (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
-  (add-hook 'c++-mode-hook (lambda ()
-                             (push '(?< . ("<" . ">")) evil-surround-pairs-alist)))
-  (add-hook 'emacs-lisp-mode-hook (lambda ()
-                                    (push '(?` . ("`" . "'")) evil-surround-pairs-alist)))
-  (add-hook 'js2-mode-hook #'lsp-javascript-flow-enable)
-  (add-hook 'python-mode-hook (lambda ()
-                                (make-variable-buffer-local 'evil-snipe-aliases)
-                                (push '(?: "def .+:") evil-snipe-aliases))))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
