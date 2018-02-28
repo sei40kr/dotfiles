@@ -7,6 +7,9 @@
 [submodule "tag-linux/linuxbrew"]
 	path = tag-linux/linuxbrew
 	url = https://github.com/Linuxbrew/brew.git
+[submodule "tmux/plugins/tpm"]
+	path = tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
 [submodule "zplugin/bin"]
 	path = zplugin/bin
 	url = https://github.com/zdharma/zplugin.git
