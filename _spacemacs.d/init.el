@@ -513,6 +513,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
        sass/scss-sass-lint
        xml-xmlstarlet
        ))
+  (setq linum-relative-format " %3s ")
   (setq magit-repository-directories `(("~/dev/ws" . 3) ("~/Develop" . 3)))
   (setq projectile-enable-caching t)
   (setq shell-file-name "/bin/sh")
