@@ -143,8 +143,7 @@ values."
     ;; wrapped in a layer. If you need some configuration for these
     ;; packages, then consider creating a layer. You can also put the
     ;; configuration in `dotspacemacs/user-config'.
-    dotspacemacs-additional-packages '(
-                                        evil-terminal-cursor-changer)
+    dotspacemacs-additional-packages '(evil-terminal-cursor-changer)
 
     ;; A list of packages that cannot be updated.
     dotspacemacs-frozen-packages '()
@@ -243,7 +242,9 @@ values."
     ;; to create your own spaceline theme. Value can be a symbol or list with\
     ;; additional properties.
     ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-    dotspacemacs-mode-line-theme '(spacemacs :separator nil :separator-scale 1.5)
+    dotspacemacs-mode-line-theme '(spacemacs
+                                    :separator slant
+                                    :separator-scale 1.3)
 
     ;; If non nil the cursor color matches the state color in GUI Emacs.
     dotspacemacs-colorize-cursor-according-to-state t
@@ -251,7 +252,7 @@ values."
     ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
     ;; quickly tweak the mode-line size to make separators look not too crappy.
     dotspacemacs-default-font '("FantasqueSansMono Nerd Font"
-                                 :size 22
+                                 :size 20
                                  :weight normal
                                  :width normal
                                  :powerline-scale 1.1)
@@ -513,7 +514,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
        xml-xmlstarlet
        ))
   (setq magit-repository-directories `(("~/dev/ws" . 3) ("~/Develop" . 3)))
-  (setq powerline-default-separator nil)
   (setq projectile-enable-caching t)
   (setq shell-file-name "/bin/sh")
   (custom-set-variables '(spacemacs-theme-comment-italic t))
@@ -527,19 +527,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
 (defun dotspacemacs/user-config ()
   (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
   (spaceline-toggle-evil-state-on)
-  (spaceline-toggle-window-number-off)
-  (spacemacs/toggle-fill-column-indicator-on)
-  (spacemacs/toggle-golden-ratio-on)
-  (unless (display-graphic-p)
-    evil-terminal-cursor-changer-activate)
   (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
   (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
   (evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute)
   (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)
-  (add-hook 'haskell-interactive-mode-hook
-    (lambda ()
-      (setq-local evil-move-cursor-back nil)))
   (when (eq system-type 'darwin)
     (add-hook 'edit-server-done-hook
       (lambda ()
