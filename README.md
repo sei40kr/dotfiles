@@ -470,7 +470,6 @@
         flow-language-server \
         gatsby-cli \
         generate \
-        
         generate-gitignore \
         generate-license \
         generate-project \
