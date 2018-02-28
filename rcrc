@@ -1,5 +1,5 @@
 COPY_ALWAYS="importjs.js"
 DOTFILES_DIRS="$HOME/dotfiles $HOME/dotfiles-local"
 EXCLUDES="doc etc README.md"
-SYMLINK_DIRS="asdf git linuxbrew pyenv spacemacs.d SpaceVim.d tig tmux/plugins/tpm zplugin/bin zsh"
+SYMLINK_DIRS="asdf emacs.d git linuxbrew pyenv spacemacs.d SpaceVim.d tig tmux/plugins/tpm zplugin/bin zsh"
 UNDOTTED="Library"
