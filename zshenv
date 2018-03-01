@@ -36,6 +36,7 @@ path=(
     "${HOME}/.local/bin"
     # asdf
     "${ASDF_DIR}/bin"
+    "${ASDF_DIR}/shims"
     # Cargo
     "${HOME}/.cargo/bin"
     # Cabal
