@@ -3,6 +3,8 @@
 # exports.rc.zsh
 # author: Seong Yong-ju ( @sei40kr )
 
+export TERM='xterm-256color-italic'
+
 typeset -U path
 typeset -U fpath
 typeset -U manpath
