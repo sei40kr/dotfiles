@@ -3,9 +3,9 @@ export ZDOTDIR="${HOME}/.zsh"
 
 # Homebrew/Linuxbrew
 if [[ "$OSTYPE" == darwin* ]]; then
-    BREW_PREFIX="${HOME}/.linuxbrew"
-else
     BREW_PREFIX='/usr/local'
+else
+    BREW_PREFIX="${HOME}/.linuxbrew"
 fi
 typeset -U path
 typeset -U manpath
