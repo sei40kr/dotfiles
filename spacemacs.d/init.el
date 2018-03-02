@@ -143,7 +143,8 @@ values."
     ;; wrapped in a layer. If you need some configuration for these
     ;; packages, then consider creating a layer. You can also put the
     ;; configuration in `dotspacemacs/user-config'.
-    dotspacemacs-additional-packages '()
+    dotspacemacs-additional-packages '(
+                                       import-js)
 
     ;; A list of packages that cannot be updated.
     dotspacemacs-frozen-packages '()
@@ -552,9 +553,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
    ;; For backward compatibility reasons an element may be a string,
    ;; instead of a cons-cell, in which case the value of the obsolete
    ;; option ‘magit-repository-directories-depth’ specifies the depth.
-   ;; magit-repository-directories `(("~/dev/ws" . 3) ("~/Develop" . 3))
-   ;; spacemacs-theme-comment-italic t)
-   magit-repository-directories `(("~/dev/ws" . 3) ("~/Develop" . 3)))
+   magit-repository-directories `(("~/dev/ws" . 3) ("~/Develop" . 3))
+
+   ;; Enable italics for comments and also disable background.
+   spacemacs-theme-comment-italic t)
+
   (with-eval-after-load 'projectile
     (when (require 'magit)
       (mapc #'projectile-add-known-project
