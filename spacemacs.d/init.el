@@ -143,8 +143,9 @@ values."
     ;; wrapped in a layer. If you need some configuration for these
     ;; packages, then consider creating a layer. You can also put the
     ;; configuration in `dotspacemacs/user-config'.
-    dotspacemacs-additional-packages '(
-                                       import-js)
+    dotspacemacs-additional-packages
+    '(
+      import-js)
 
     ;; A list of packages that cannot be updated.
     dotspacemacs-frozen-packages '()
@@ -558,11 +559,20 @@ before packages are loaded. If you are unsure, you should try in setting them in
    ;; Enable italics for comments and also disable background.
    spacemacs-theme-comment-italic t)
 
-  (with-eval-after-load 'projectile
+  (eval-after-load 'projectile
     (when (require 'magit)
       (mapc #'projectile-add-known-project
             (mapcar #'file-name-as-directory (magit-list-repos)))
-      (projectile-save-known-projects))))
+      (projectile-save-known-projects)))
+  (with-eval-after-load 'import-js
+    (spacemacs/declare-prefix-for-mode 'js2-mode "mi" "imports")
+    (spacemacs/set-leader-keys-for-major-mode 'js2-mode
+      "ii" 'import-js-import
+      "ig" 'import-js-goto)
+    (spacemacs/declare-prefix-for-mode 'react-mode "mi" "imports")
+    (spacemacs/set-leader-keys-for-major-mode 'react-mode
+      "ii" 'import-js-import
+      "ig" 'import-js-goto)))
 
 
 (defun dotspacemacs/user-config ()
