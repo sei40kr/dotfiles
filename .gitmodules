@@ -3,7 +3,7 @@
 	url = https://github.com/asdf-vm/asdf.git
 [submodule "emacs.d"]
 	path = emacs.d
-	url = https://github.com/syl20bnr/spacemacs
+	url = https://github.com/sei40kr/spacemacs.git
 [submodule "pyenv"]
 	path = pyenv
 	url = https://github.com/pyenv/pyenv.git
