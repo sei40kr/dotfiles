@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: file-header
+# key: file-header
+# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# --
+
+;;; $1 - $2
+;;
+;; Copyright (c) $3 Seong Yong-ju
+;;
+;; Author: Seong Yong-ju <sei40kr@gmail.com>
+;;
+;; This file is not part of GNU Emacs
+;;
+;;; License: MIT
+$0
