@@ -11,7 +11,6 @@
 
 (setq quickrun-packages
       '(
-        helm
         popwin
         quickrun))
 
