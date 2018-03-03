@@ -4,7 +4,7 @@
 # contributor: Seong Yong-ju <sei40kr@gmail.com>
 # --
 
-;;; `(file-name-nondirectory (buffer-file-name))` - $2
+;;; `(file-name-nondirectory (buffer-file-name))` - $1
 ;;
 ;; Copyright (c) `(calendar-extract-year (calendar-current-date))` Seong Yong-ju
 ;;
