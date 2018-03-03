@@ -4,11 +4,11 @@
 # contributor: Seong Yong-ju <sei40kr@gmail.com>
 # --
 
-;;; $1 - $2
+;;; `(file-name-nondirectory (buffer-file-name))` - $2
 ;;
 ;; Copyright (c) $3 Seong Yong-ju
 ;;
-;; Author: Seong Yong-ju <sei40kr@gmail.com>
+;; author: Seong Yong-ju <sei40kr@gmail.com>
 ;;
 ;; This file is not part of GNU Emacs
 ;;
