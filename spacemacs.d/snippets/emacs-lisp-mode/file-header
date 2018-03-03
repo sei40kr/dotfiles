@@ -6,9 +6,9 @@
 
 ;;; `(file-name-nondirectory (buffer-file-name))` - $2
 ;;
-;; Copyright (c) $3 Seong Yong-ju
+;; Copyright (c) `(calendar-extract-year (calendar-current-date))` Seong Yong-ju
 ;;
-;; author: Seong Yong-ju <sei40kr@gmail.com>
+;; Author: Seong Yong-ju <sei40kr@gmail.com>
 ;;
 ;; This file is not part of GNU Emacs
 ;;
