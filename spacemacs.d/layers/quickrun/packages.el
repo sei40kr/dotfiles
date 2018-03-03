@@ -2,7 +2,8 @@
 ;;
 ;; Copyright (c) 2018 Seong Yong-ju
 ;;
-;; author: Seong Yong-ju <sei40kr@gmail.com>
+;; Author: Seong Yong-ju <sei40kr@gmail.com>
+;; URL: https://github.com/sei40kr/dotfiles
 ;;
 ;; This file is not part of GNU Emacs
 ;;
@@ -24,7 +25,7 @@
       (setq quickrun-option-shebang t)
       (spacemacs/declare-prefix "cq" "quickrun")
       (spacemacs/set-leader-keys
-        "cqq" 'quickrun
+        "cqq" 'quickrun-maybe-region
         "cqa" 'quickrun-with-arg
         "cqs" 'quickrun-shell
         "cqh" 'helm-quickrun))))
