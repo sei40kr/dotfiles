@@ -19,12 +19,13 @@
 
 (defun quickrun/init-quickrun ()
   (use-package quickrun
+    :defer t
     :init
     (progn
       (setq quickrun-option-shebang t)
       (spacemacs/declare-prefix "cq" "quickrun")
       (spacemacs/set-leader-keys
-        "cqq" 'quickrun-maybe-region
+        "cqq" 'quickrun
         "cqa" 'quickrun-with-arg
         "cqs" 'quickrun-shell
         "cqh" 'helm-quickrun))))
