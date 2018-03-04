@@ -28,4 +28,7 @@
         "cqq" 'quickrun
         "cqa" 'quickrun-with-arg
         "cqs" 'quickrun-shell
-        "cqh" 'helm-quickrun))))
+        "cqh" 'helm-quickrun)
+      (eval-after-load 'evil
+        (evil-define-key 'normal quickrun/mode-map
+          "q" 'delete-window)))))
