@@ -14,8 +14,10 @@
         popwin
         quickrun))
 
-(defun quickrun/post-init-popwin ()
-  (add-to-list 'popwin:special-display-config '("*quickrun*")))
+(defun quickrun/pre-init-popwin ()
+  (spacemacs|use-package-add-hook popwin
+     :post-config
+     (push '("*quickrun*") popwin:special-display-config)))
 
 (defun quickrun/init-quickrun ()
   (use-package quickrun
@@ -28,7 +30,4 @@
         "cqq" 'quickrun
         "cqa" 'quickrun-with-arg
         "cqs" 'quickrun-shell
-        "cqh" 'helm-quickrun)
-      (eval-after-load 'evil
-        (evil-define-key 'normal quickrun/mode-map
-          "q" 'delete-window)))))
+        "cqh" 'helm-quickrun))))
