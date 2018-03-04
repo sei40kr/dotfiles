@@ -1,4 +1,4 @@
-;; -*- mode: emacs-lisp -*-
+;; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -26,118 +26,120 @@ values."
     ;; If non-nil layers with lazy install support are lazy installed.
     ;; List of additional paths where to look for configuration layers.
     ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-    dotspacemacs-configuration-layer-path '()
+    dotspacemacs-configuration-layer-path '("~/.spacemacs.d/layers")
 
     ;; List of configuration layers to load.
     dotspacemacs-configuration-layers
     '(
-       ;; ----------------------------------------------------------------
-       ;; Example of useful layers you may want to use right away.
-       ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-       ;; <M-m f e R> (Emacs style) to install them.
-       ;; ----------------------------------------------------------------
-       ;; Checkers
-       (syntax-checking :variables
-         syntax-checking-enable-tooltips nil)
-       ;; Completion
-       (auto-completion :variables
-         auto-completion-return-key-behavior 'complete
-         auto-completion-tab-key-behavior 'cycle)
-       helm
-       ;; Emacs
-       org
-       semantic
-       ;; E-mail
-       gnus
-       ;; Framework
-       (react
-         :packages (not company-tern tern web-beautify))
-       ruby-on-rails
-       ;; Fun
-       ;; International support
-       ;; Programming and markup languages
-       (c-c++ :variables
-         c-c++-default-mode-for-headers 'c++-mode
-         c-c++-enable-clang-support t
-         c-c++-enable-clang-format-on-save t
-         c-c++-enable-google-style t
-         c-c++-enable-google-newline t)
-       csv
-       emacs-lisp
-       (go :variables
-         go-use-gometalinter t
-         gofmt-command "goimports")
-       (haskell :variables
-         haskell-enable-hindent t)
-       html
-       java
-       (javascript
-         :packages (not company-tern tern web-beautify)
-         :variables
-         js2-basic-offset 2
-         js-indent-level 2
-         node-add-modules-path t)
-       kotlin
-       latex
-       lua
-       (markdown :variables
-         markdown-live-preview-engine 'vmd)
-       perl5
-       perl6
-       php
-       plantuml
-       purescript
-       (python :variables
-         python-backend 'lsp
-         python-test-runner '(pytest nose))
-       ruby
-       (scala :variables
-         scala-use-java-doc-style t
-         scala-auto-insert-asterisk-in-comments t)
-       (windows-scripts :toggle (eq system-type 'windows-nt))
-       shell-scripts
-       sql
-       (typescript :variables
-         typescript-fmt-on-save t)
-       vimscript
-       yaml
-       ;; Operating systems
-       ;; Pair programming
-       floobits
-       ;; Source control
-       (git :variables
-         git-magit-status-fullscreen t)
-       github
-       (version-control :variables
-         version-control-diff-tool 'diff-hl
-         version-control-diff-side 'left
-         version-control-global-margin t)
-       ;; Tags
-       (gtags :variables
-         gtags-enable-by-default nil)
-       ;; Themes
-       colors
-       ;; Tools
-       ansible
-       chrome
-       cmake
-       dash
-       docker
-       imenu-list
-       lsp
-       nginx
-       (shell :variables
-         shell-default-height 30
-         shell-default-position 'bottom)
-       tmux
-       vagrant
-       ;; Vim
-       evil-commentary
-       (evil-snipe :variables
-         evil-snipe-enable-alternate-f-and-t-behaviors t
-         evil-snipe-repeat-scope t)
-       ;; WebServices
-       twitter)
+      ;; ----------------------------------------------------------------
+      ;; Example of useful layers you may want to use right away.
+      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
+      ;; <M-m f e R> (Emacs style) to install them.
+      ;; ----------------------------------------------------------------
+      ;; Checkers
+      (spell-checking :variables
+                      spell-checking-enable-by-default nil)
+      (syntax-checking :variables
+                       syntax-checking-enable-tooltips nil)
+      ;; Completion
+      (auto-completion :variables
+                       auto-completion-enable-snippets-in-popup t
+                       auto-completion-enable-sort-by-usage t
+                       auto-completion-return-key-behavior 'complete
+                       auto-completion-tab-key-behavior 'cycle)
+      helm
+      ;; Emacs
+      org
+      semantic
+      ;; E-mail
+      gnus
+      ;; Framework
+      react
+      ruby-on-rails
+      ;; Fun
+      ;; International support
+      ;; Programming and markup languages
+      (c-c++ :variables
+             c-c++-default-mode-for-headers 'c++-mode
+             c-c++-enable-clang-support t
+             c-c++-enable-clang-format-on-save t
+             c-c++-enable-google-style t
+             c-c++-enable-google-newline t)
+      csv
+      emacs-lisp
+      (go :variables
+          go-use-gometalinter t
+          gofmt-command "goimports")
+      (haskell :variables
+               haskell-enable-hindent t)
+      html
+      java
+      javascript
+      kotlin
+      latex
+      lua
+      (markdown :variables
+                markdown-live-preview-engine 'vmd)
+      perl5
+      perl6
+      php
+      plantuml
+      purescript
+      (python :variables
+              python-backend 'lsp
+              python-test-runner '(pytest nose))
+      ruby
+      (scala :variables
+             scala-use-java-doc-style t
+             scala-auto-insert-asterisk-in-comments t)
+      (windows-scripts :toggle (eq system-type 'windows-nt))
+      shell-scripts
+      sql
+      (typescript :variables
+                  typescript-fmt-on-save t)
+      vimscript
+      yaml
+      ;; Operating systems
+      ;; Pair programming
+      floobits
+      ;; Source control
+      (git :variables
+           git-magit-status-fullscreen t
+           magit-save-repository-buffers 'dontask)
+      github
+      (version-control :variables
+                       version-control-diff-tool 'diff-hl
+                       version-control-diff-side 'left
+                       version-control-global-margin t)
+      ;; Tags
+      (gtags :variables
+             gtags-enable-by-default nil)
+      ;; Themes
+      colors
+      ;; Tools
+      ansible
+      chrome
+      cmake
+      dash
+      docker
+      imenu-list
+      lsp
+      nginx
+      (shell :variables
+             shell-default-height 30
+             shell-default-position 'bottom)
+      tmux
+      vagrant
+      ;; Vim
+      evil-commentary
+      (evil-snipe :variables
+                  evil-snipe-enable-alternate-f-and-t-behaviors t
+                  evil-snipe-repeat-scope t)
+      ;; WebServices
+      twitter
+      ;; Custom
+      quickrun
+      wsp)
 
     ;; List of additional packages that will be installed without being
     ;; wrapped in a layer. If you need some configuration for these
@@ -182,7 +184,7 @@ values."
     ;; This is an advanced option and should not be changed unless you suspect
     ;; performance issues due to garbage collection operations.
     ;; (default '(100000000 0.1))
-    dotspacemacs-gc-cons '(100000000 0.1)
+    dotspacemacs-gc-cons '(200000000 0.1)
 
     ;; If non nil then spacemacs will check for updates at startup
     ;; when the current branch is not `develop'. Note that checking for
@@ -504,15 +506,15 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq
    ;; Two keys sequence to escape from insert state.
    evil-escape-key-sequence "jk"
-
    ;; Whether "C-i" jumps forward like in Vim.
    evil-want-C-i-jump t
-
    ;; Whether "C-u" scrolls like in Vim.
    evil-want-C-u-scroll t
-
    ;; Additional arguments to pass to the shell.
    exec-path-from-shell-arguments '("-l")
+   ;; The key used to change to and from Emacs state.
+   ;; Must be readable by ‘read-kbd-macro’. For example: "C-z".
+   evil-toggle-key ""
 
    ;; Syntax checkers excluded from automatic selection.
    ;;
@@ -529,8 +531,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
    ;; this option as a file or directory local variable to disable
    ;; specific checkers in individual files and directories
    ;; respectively.
-   flycheck-disabled-checkers '(javascript-jshint
-                                javascript-standard
+   flycheck-disabled-checkers '(
                                 json-python-json
                                 markdown-markdownlint-cli
                                 ruby-jruby
@@ -554,36 +555,34 @@ before packages are loaded. If you are unsure, you should try in setting them in
    ;; For backward compatibility reasons an element may be a string,
    ;; instead of a cons-cell, in which case the value of the obsolete
    ;; option ‘magit-repository-directories-depth’ specifies the depth.
-   magit-repository-directories `(("~/dev/ws" . 3) ("~/Develop" . 3))
+   magit-repository-directories (if (eq system-type 'darwin) '(("~/Develop" . 3)) '(("~/dev/ws" . 3)))
 
    ;; Enable italics for comments and also disable background.
    spacemacs-theme-comment-italic t)
 
-  (eval-after-load 'projectile
-    (when (require 'magit)
-      (mapc #'projectile-add-known-project
-            (mapcar #'file-name-as-directory (magit-list-repos)))
-      (projectile-save-known-projects)))
-  (with-eval-after-load 'import-js
-    (spacemacs/declare-prefix-for-mode 'js2-mode "mi" "imports")
-    (spacemacs/set-leader-keys-for-major-mode 'js2-mode
-      "ii" 'import-js-import
-      "ig" 'import-js-goto)
-    (spacemacs/declare-prefix-for-mode 'react-mode "mi" "imports")
-    (spacemacs/set-leader-keys-for-major-mode 'react-mode
-      "ii" 'import-js-import
-      "ig" 'import-js-goto)))
+  (with-eval-after-load 'projectile
+    (require 'magit)
+    (mapc #'projectile-add-known-project
+          (mapcar #'file-name-as-directory (magit-list-repos)))))
 
 
 (defun dotspacemacs/user-config ()
-  (global-git-commit-mode t)
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
-  (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
-  (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
-  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
-  (evil-leader/set-key "qq" 'spacemacs/frame-killer)
-  (evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute)
-  (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region))
+  (with-eval-after-load 'evil
+    (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
+    (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
+    (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
+    (evil-leader/set-key "qq" 'spacemacs/frame-killer)
+    (evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute)
+    (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region))
+  (eval-after-load 'fill-column-indicator
+    (spacemacs/toggle-fill-column-indicator-on))
+  (eval-after-load 'git-commit
+    (global-git-commit-mode t))
+  (eval-after-load 'golden-ratio
+    (spacemacs/toggle-golden-ratio-on))
+  (eval-after-load 'spacemacs-whitespace-cleanup
+    (spacemacs/toggle-whitespace-cleanup-on)))
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -599,8 +598,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (tide helm-projectile evil-snipe dumb-jump rtags helm-core lsp-mode php-mode company js2-mode which-key zeal-at-point yasnippet-snippets yapfify yaml-mode xterm-color ws-butler winum web-mode volatile-highlights vmd-mode vimrc-mode vi-tilde-fringe vagrant-tramp vagrant uuidgen use-package typescript-mode twittering-mode toc-org tagedit symon string-inflection stickyfunc-enhance srefactor sql-indent spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs realgud rbenv rainbow-mode rainbow-identifiers rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails powershell popwin plantuml-mode pippel pipenv pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode perl6-mode password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file noflet nginx-mode neotree nameless mvn multi-term move-text mmm-mode minitest meghanada maven-test-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lsp-ui lsp-python lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode kotlin-mode js2-refactor js-doc jinja2-mode intero insert-shebang indent-guide importmagic impatient-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-mode-manager helm-make helm-hoogle helm-gtags helm-gitignore helm-flx helm-descbinds helm-dash helm-ctest helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets groovy-mode groovy-imports gradle-mode google-translate google-c-style golden-ratio godoctor go-tag go-rename go-guru go-eldoc gnuplot gmail-message-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md ggtags fuzzy font-lock+ flymd flycheck-rtags flycheck-pos-tip flycheck-perl6 flycheck-kotlin flycheck-haskell flycheck-gometalinter flycheck-bashate flx-ido floobits fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-terminal-cursor-changer evil-surround evil-search-highlight-persist evil-org evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emmet-mode elisp-slime-nav editorconfig edit-server drupal-mode dockerfile-mode docker disaster diminish diff-hl define-word dante dactyl-mode cython-mode csv-mode counsel-projectile company-web company-statistics company-shell company-rtags company-plsense company-php company-lua company-lsp company-go company-ghci company-ghc company-emacs-eclim company-cabal company-c-headers company-auctex company-ansible company-anaconda column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode cmake-ide clean-aindent-mode clang-format chruby centered-cursor-mode bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile ansible-doc ansible aggressive-indent add-node-modules-path adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
- '(spacemacs-theme-comment-italic t))
+    (import-js grizzl zeal-at-point yasnippet-snippets yapfify yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vmd-mode vimrc-mode vi-tilde-fringe vagrant-tramp vagrant uuidgen use-package twittering-mode toc-org tide tagedit symon string-inflection stickyfunc-enhance srefactor sql-indent spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe restart-emacs realgud rbenv rainbow-mode rainbow-identifiers rainbow-delimiters quickrun pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails powershell popwin plantuml-mode pippel pipenv pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode perl6-mode password-generator paradox overseer orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file noflet nginx-mode neotree nameless mvn multi-term move-text mmm-mode minitest meghanada maven-test-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lsp-ui lsp-python lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode kotlin-mode js2-refactor js-doc jinja2-mode intero insert-shebang indent-guide importmagic impatient-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-hoogle helm-gtags helm-gitignore helm-flx helm-descbinds helm-dash helm-ctest helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets groovy-mode groovy-imports gradle-mode google-translate google-c-style golden-ratio godoctor go-tag go-rename go-guru go-eldoc gnuplot gmail-message-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md ggtags fuzzy font-lock+ flyspell-correct-helm flymd flycheck-rtags flycheck-pos-tip flycheck-perl6 flycheck-kotlin flycheck-haskell flycheck-gometalinter flycheck-bashate flx-ido floobits fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-org evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emmet-mode elisp-slime-nav editorconfig edit-server dumb-jump drupal-mode dockerfile-mode docker disaster diminish diff-hl define-word dante dactyl-mode cython-mode csv-mode counsel-projectile company-web company-tern company-statistics company-shell company-rtags company-plsense company-php company-lua company-lsp company-go company-ghci company-ghc company-emacs-eclim company-cabal company-c-headers company-auctex company-ansible company-anaconda column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode cmake-ide clean-aindent-mode clang-format chruby centered-cursor-mode bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile ansible-doc ansible aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
