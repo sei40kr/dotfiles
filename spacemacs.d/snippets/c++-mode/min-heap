@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Min heap using C++ STL
+# key: min-heap
+# --
+
+priority_queue<long long, std::vector<long long>, std::greater<long long>> $1;
+$0
