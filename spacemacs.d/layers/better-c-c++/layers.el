@@ -1,4 +1,4 @@
-;;; layers.el - c-c++-improve layer file for Spacemacs
+;;; layers.el - better-c-c++ layer file for Spacemacs
 ;;
 ;; Copyright (c) 2018 Seong Yong-ju
 ;;

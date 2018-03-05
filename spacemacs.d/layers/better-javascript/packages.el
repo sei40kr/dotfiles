@@ -1,4 +1,4 @@
-;;; packages.el - javascript-improve layer file for Spacemacs
+;;; packages.el - better-javascript layer file for Spacemacs
 ;;
 ;; Copyright (c) 2018 Seong Yong-ju
 ;;
@@ -8,14 +8,14 @@
 ;;
 ;;; License: MIT
 
-(setq javascript-improve-packages
+(setq better-javascript-packages
       '(
         (import-js :toggle (spacemacs//import-js-detect))
         js2-mode))
 
-(setq javascript-improve-excluded-packages '(company-tern tern web-beautify))
+(setq better-javascript-excluded-packages '(company-tern tern web-beautify))
 
-(defun javascript-improve/init-import-js ()
+(defun better-javascript/init-import-js ()
   (use-package import-js
     :defer t
     :init
@@ -26,7 +26,7 @@
         "ii" 'import-js-import
         "ig" 'import-js-goto))))
 
-(defun javascript-improve/pre-init-js2-mode ()
+(defun better-javascript/pre-init-js2-mode ()
   (setq-default
    js-indent-level 2
    js2-basic-offset 2

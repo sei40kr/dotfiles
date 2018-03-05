@@ -62,6 +62,12 @@ values."
       games
       ;; International support
       ;; Programming and markup languages
+      (c-c++ :variables
+             c-c++-default-mode-for-headers 'c++-mode
+             c-c++-enable-clang-support t
+             c-c++-enable-clang-format-on-save t
+             c-c++-enable-google-style t
+             c-c++-enable-google-newline t)
       csv
       emacs-lisp
       (go :variables
@@ -138,13 +144,8 @@ values."
       evernote
       twitter
       ;; Custom
-      (c-c++-improve :variables
-                     c-c++-default-mode-for-headers 'c++-mode
-                     c-c++-enable-clang-support t
-                     c-c++-enable-clang-format-on-save t
-                     c-c++-enable-google-style t
-                     c-c++-enable-google-newline t)
-      javascript-improve
+      better-c-c++
+      better-javascript
       (jira :variables
             jiralib-url "https://teamspiritdev.atlassian.net")
       quickrun
@@ -156,8 +157,7 @@ values."
     ;; packages, then consider creating a layer. You can also put the
     ;; configuration in `dotspacemacs/user-config'.
     dotspacemacs-additional-packages
-    '(
-      import-js)
+    '()
 
     ;; A list of packages that cannot be updated.
     dotspacemacs-frozen-packages '()

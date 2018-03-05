@@ -1,4 +1,4 @@
-;;; funcs.el - javascript-improve layer file for Spacemacs
+;;; funcs.el - better-javascript layer file for Spacemacs
 ;;
 ;; Copyright (c) 2018 Seong Yong-ju
 ;;

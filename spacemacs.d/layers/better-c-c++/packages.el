@@ -1,4 +1,4 @@
-;;; packages.el - c-c++-improve layer file for Spacemacs
+;;; packages.el - better-c-c++ layer file for Spacemacs
 ;;
 ;; Copyright (c) 2018 Seong Yong-ju
 ;;
@@ -8,8 +8,8 @@
 ;;
 ;;; License: MIT
 
-(setq c-c++-improve-packages '(c-eldoc))
+(setq better-c-c++-packages '(c-eldoc))
 
-(defun c-c++-improve/init-c-eldoc ()
+(defun better-c-c++/init-c-eldoc ()
   (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
   (add-hook 'c++-mode-hook 'c-turn-on-eldoc-mode))

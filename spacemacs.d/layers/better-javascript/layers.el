@@ -1,4 +1,4 @@
-;;; layers.el - javascript-improve layer file for Spacemacs
+;;; layers.el - better-javascript layer file for Spacemacs
 ;;
 ;; Copyright (c) 2018 Seong Yong-ju
 ;;
@@ -8,4 +8,4 @@
 ;;
 ;;; License: MIT
 
-(configuration-layer/declare-layer '(javascript))
+(configuration-layer/declare-layer '(react javascript))
