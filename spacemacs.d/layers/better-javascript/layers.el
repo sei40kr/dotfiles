@@ -8,4 +8,4 @@
 ;;
 ;;; License: MIT
 
-(configuration-layer/declare-layer '(react javascript))
+(configuration-layer/declare-layer '(javascript))
