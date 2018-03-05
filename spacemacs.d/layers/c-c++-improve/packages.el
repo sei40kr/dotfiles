@@ -8,4 +8,8 @@
 ;;
 ;;; License: MIT
 
-(setq c-c++-improve-packages '())
+(setq c-c++-improve-packages '(c-eldoc))
+
+(defun c-c++-improve/init-c-eldoc ()
+  (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)
+  (add-hook 'c++-mode-hook 'c-turn-on-eldoc-mode))
