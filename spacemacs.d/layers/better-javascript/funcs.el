@@ -14,8 +14,6 @@
   "Lazy load js-doc"
   (require 'js-doc))
 
-(add-hook 'rjsx-mode-hook 'spacemacs/js-doc-require)
-
 (defun spacemacs/js-doc-set-key-bindings (mode)
   "Setup the key bindings for `js-doc' for the given MODE."
   (spacemacs/declare-prefix-for-mode mode "mrd" "documentation")
