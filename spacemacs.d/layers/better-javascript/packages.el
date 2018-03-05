@@ -14,7 +14,6 @@
         emmet-mode
         evil-matchit
         flycheck
-        impatient-mode
         (import-js :toggle (spacemacs//import-js-detect))
         js-doc
         js2-refactor
@@ -47,17 +46,12 @@
   (dolist (mode '(rjsx-mode json-mode))
     (spacemacs/enable-flycheck mode)))
 
-(defun better-javascript/post-init-impatient-mode ()
-  (spacemacs/declare-prefix-for-mode 'rjsx-mode "mi" "import/impatient")
-  (spacemacs/set-leader-keys-for-major-mode 'rjsx-mode
-    "I" 'spacemacs/impatient-mode))
-
 (defun better-javascript/init-import-js ()
   (use-package import-js
     :defer t
     :config
     (progn
-      (spacemacs/declare-prefix-for-mode 'rjsx-mode "mi" "import/impatient")
+      (spacemacs/declare-prefix-for-mode 'rjsx-mode "mi" "import")
       (spacemacs/set-leader-keys-for-major-mode 'rjsx-mode
         "if" 'import-js-fix
         "ii" 'import-js-import
