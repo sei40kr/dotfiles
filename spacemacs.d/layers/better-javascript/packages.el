@@ -48,15 +48,16 @@
     (spacemacs/enable-flycheck mode)))
 
 (defun better-javascript/post-init-impatient-mode ()
+  (spacemacs/declare-prefix-for-mode 'rjsx-mode "mi" "import/impatient")
   (spacemacs/set-leader-keys-for-major-mode 'rjsx-mode
-    "i" 'spacemacs/impatient-mode))
+    "I" 'spacemacs/impatient-mode))
 
 (defun better-javascript/init-import-js ()
   (use-package import-js
     :defer t
-    :init
+    :config
     (progn
-      (spacemacs/declare-prefix-for-mode 'rjsx-mode "mi" "import")
+      (spacemacs/declare-prefix-for-mode 'rjsx-mode "mi" "import/impatient")
       (spacemacs/set-leader-keys-for-major-mode 'rjsx-mode
         "if" 'import-js-fix
         "ii" 'import-js-import
