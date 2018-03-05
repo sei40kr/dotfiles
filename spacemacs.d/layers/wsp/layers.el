@@ -9,4 +9,4 @@
 ;;
 ;;; License: MIT
 
-(configuration-layer/declare-layer '(javascript react))
+(configuration-layer/declare-layer '(better-javascript))
