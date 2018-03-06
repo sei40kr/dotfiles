@@ -16,3 +16,6 @@
 [submodule "zplugin/bin"]
 	path = zplugin/bin
 	url = https://github.com/zdharma/zplugin.git
+[submodule "spacemacs.d/layers/better-javascript"]
+	path = spacemacs.d/layers/better-javascript
+	url = git@github.com:sei40kr/better-javascript.git
