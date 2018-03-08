@@ -7,6 +7,9 @@
 [submodule "pyenv"]
 	path = pyenv
 	url = https://github.com/pyenv/pyenv.git
+[submodule "spacemacs.d/layers/better-c-cpp"]
+	path = spacemacs.d/layers/better-c-cpp
+	url = https://github.com/sei40kr/better-c-cpp.git
 [submodule "spacemacs.d/layers/better-javascript"]
 	path = spacemacs.d/layers/better-javascript
 	url = https://github.com/sei40kr/better-javascript.git
@@ -22,6 +25,3 @@
 [submodule "zplugin/bin"]
 	path = zplugin/bin
 	url = https://github.com/zdharma/zplugin.git
-[submodule "spacemacs.d/layers/better-c-cpp"]
-	path = spacemacs.d/layers/better-c-cpp
-	url = https://github.com/sei40kr/better-c-cpp.git
