@@ -1,5 +1,7 @@
 tap "homebrew/core"
 tap "homebrew/services"
+tap "burntsushi/ripgrep", "https://github.com/BurntSushi/ripgrep.git"
+brew "ag"
 brew "colordiff"
 brew "coreutils"
 brew "cppcheck"
@@ -18,9 +20,9 @@ brew "grep"
 brew "gzip"
 brew "jq"
 brew "llvm", args: ['with-clang', 'with-lld', 'with-python']
-brew "neovim"
+brew "pandoc"
 brew "parallel"
-brew "ripgrep"
+brew "ripgrep-bin"
 brew "yarn", args: ['without-node']
 brew "shellcheck"
 brew "shfmt"
@@ -28,5 +30,7 @@ brew "tig"
 brew "tldr"
 brew "tmux"
 brew "unzip"
+brew "wdiff", args: ['with-gettext']
 brew "wget"
+brew "xmlstarlet"
 brew "zsh", args: ['without-etcdir']
