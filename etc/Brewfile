@@ -1,6 +1,7 @@
+tap "burntsushi/ripgrep", "https://github.com/BurntSushi/ripgrep.git"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "burntsushi/ripgrep", "https://github.com/BurntSushi/ripgrep.git"
+tap "thoughtbot/formulae"
 brew "ag"
 brew "colordiff"
 brew "coreutils"
@@ -22,6 +23,7 @@ brew "jq"
 brew "llvm", args: ['with-clang', 'with-lld', 'with-python']
 brew "pandoc"
 brew "parallel"
+brew "rcm"
 brew "ripgrep-bin"
 brew "yarn", args: ['without-node']
 brew "shellcheck"
