@@ -25,3 +25,6 @@
 [submodule "zplugin/bin"]
 	path = zplugin/bin
 	url = https://github.com/zdharma/zplugin.git
+[submodule "better-c-cpp"]
+	path = spacemacs.d/layers/better-c-cpp
+	url = https://github.com/sei40kr/better-c-cpp.git
