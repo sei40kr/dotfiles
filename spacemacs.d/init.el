@@ -559,6 +559,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
                                     '(("~/dotfiles" . 5) ("~/Develop" . 3))
                                   '(("~/dotfiles" . 5) ("~/dev/ws" . 3)))
 
+   ;; Command used by projectile to get the files in a git project.
+   projectile-git-command "git ls-files -zco --exclude-standard"
+
    ;; Enable italics for comments and also disable background.
    spacemacs-theme-comment-italic t)
 
