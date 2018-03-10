@@ -1,12 +1,9 @@
-[submodule "asdf"]
-	path = asdf
-	url = https://github.com/asdf-vm/asdf.git
-[submodule "spacemacs"]
-	path = emacs.d
-	url = https://github.com/sei40kr/spacemacs.git
-[submodule "pyenv"]
-	path = pyenv
-	url = https://github.com/pyenv/pyenv.git
+[submodule "anyenv"]
+	path = anyenv
+	url = https://github.com/riywo/anyenv.git
+[submodule "better-c-cpp"]
+	path = spacemacs.d/layers/better-c-cpp
+	url = https://github.com/sei40kr/better-c-cpp.git
 [submodule "better-c-cpp"]
 	path = spacemacs.d/layers/better-c-cpp
 	url = https://github.com/sei40kr/better-c-cpp.git
@@ -16,6 +13,9 @@
 [submodule "linuxbrew"]
 	path = tag-linux/linuxbrew
 	url = https://github.com/Linuxbrew/brew.git
+[submodule "spacemacs"]
+	path = emacs.d
+	url = https://github.com/sei40kr/spacemacs.git
 [submodule "tmux-simple"]
 	path = tmux/plugins/tmux-simple
 	url = https://github.com/sei40kr/tmux-simple.git
@@ -25,6 +25,3 @@
 [submodule "zplugin"]
 	path = zplugin/bin
 	url = https://github.com/zdharma/zplugin.git
-[submodule "better-c-cpp"]
-	path = spacemacs.d/layers/better-c-cpp
-	url = https://github.com/sei40kr/better-c-cpp.git
