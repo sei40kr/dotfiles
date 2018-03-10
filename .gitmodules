@@ -4,9 +4,6 @@
 [submodule "better-c-cpp"]
 	path = spacemacs.d/layers/better-c-cpp
 	url = https://github.com/sei40kr/better-c-cpp.git
-[submodule "better-c-cpp"]
-	path = spacemacs.d/layers/better-c-cpp
-	url = https://github.com/sei40kr/better-c-cpp.git
 [submodule "better-javascript"]
 	path = spacemacs.d/layers/better-javascript
 	url = https://github.com/sei40kr/better-javascript.git
