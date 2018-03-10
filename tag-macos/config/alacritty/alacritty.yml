@@ -85,7 +85,7 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: true
 
-# Colors (Tomorrow Night Bright)
+# Colors (Spacemacs Dark)
 colors:
   # Default colors
   primary:
