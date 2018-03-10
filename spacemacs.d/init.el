@@ -558,6 +558,21 @@ before packages are loaded. If you are unsure, you should try in setting them in
    magit-repository-directories (if (eq system-type 'darwin)
                                     '(("~/dotfiles" . 5) ("~/Develop" . 3))
                                   '(("~/dotfiles" . 5) ("~/dev/ws" . 3)))
+   ;; List of columns displayed by ‘magit-list-repositories’.
+   ;;
+   ;; Each element has the form (HEADER WIDTH FORMAT PROPS).
+   ;;
+   ;; HEADER is the string displayed in the header.  WIDTH is the width
+   ;; of the column.  FORMAT is a function that is called with one
+   ;; argument, the repository identification (usually its basename),
+   ;; and with ‘default-directory’ bound to the toplevel of its working
+   ;; tree.  It has to return a string to be inserted or nil.  PROPS is
+   ;; an alist that supports the keys ‘:right-align’ and ‘:pad-right’.
+   ;; Some entries also use ‘:help-echo’, but ‘tabulated-list’ does not
+   ;; actually support that yet.
+   magit-repolist-columns '(("Name" 25 magit-repolist-column-ident nil)
+                           ("Version" 25 magit-repolist-column-version nil)
+                           ("Path" 99 magit-repolist-column-path nil))
 
    ;; Command used by projectile to get the files in a git project.
    projectile-git-command "git ls-files -zco --exclude-standard"
