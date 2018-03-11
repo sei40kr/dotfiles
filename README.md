@@ -7,13 +7,12 @@
 
 - [dotfiles](#dotfiles)
     - [Installation](#installation)
-        - [Install fonts](#install-fonts)
+        - [Terminal emulator](#terminal-emulator)
         - [Add SSH key to GitHub account](#add-ssh-key-to-github-account)
         - [Clone dotfiles](#clone-dotfiles)
-        - [Terminal emulator](#terminal-emulator)
         - [Set up CLI environments](#set-up-cli-environments)
-        - [Install SpaceVim](#install-spacevim)
         - [Haskell IDE Engine](#haskell-ide-engine)
+        - [Install fonts](#install-fonts)
         - [Install GUI applications](#install-gui-applications)
     - [TODO](#todo)
 
