@@ -541,6 +541,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (with-eval-after-load 'helm
     (define-key helm-map (kbd "C-h") 'delete-backward-char)
     (define-key helm-map (kbd "C-w") 'backward-kill-word))
+  (with-eval-after-load 'semantic
+    (require 'mode-local)
+    (setq-mode-local emacs-lisp-mode
+      semanticdb-find-default-throttle
+      '(file local project unloaded system)))
   (eval-after-load 'spacemacs-whitespace-cleanup
     (spacemacs/toggle-whitespace-cleanup-on)))
 
