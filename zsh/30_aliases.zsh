@@ -1,0 +1,1 @@
+alias u='builtin cd ..'
