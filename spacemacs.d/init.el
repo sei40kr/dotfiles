@@ -445,17 +445,13 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (if (configuration-layer/package-used-p 'avy)
-    (setq avy-timeout-seconds 0.0))
-  (if (configuration-layer/package-used-p 'evil)
+    (setq avy-timeout-seconds 0.0)
     (setq
       evil-escape-key-sequence "jk"
       evil-want-C-i-jump t
       evil-want-C-u-scroll t
-      evil-toggle-key ""))
-  (if (configuration-layer/package-used-p 'exec-path-from-shell)
-    (setq exec-path-from-shell-arguments '("-l")))
-  (if (configuration-layer/package-used-p 'flycheck)
+      evil-toggle-key "")
+    (setq exec-path-from-shell-arguments '("-l"))
     (setq
       flycheck-disabled-checkers
       '(
@@ -464,10 +460,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
          ruby-jruby
          scss-lint
          sass/scss-sass-lint
-         xml-xmlstarlet)))
-  (if (configuration-layer/package-used-p 'linum-relative)
-    (setq linum-relative-format " %3s "))
-  (if (configuration-layer/package-used-p 'magit)
+         xml-xmlstarlet))
+    (setq
+      helm-ls-git-status-command 'magit-status-internal
+      helm-ls-git-fuzzy-match t)
+    (setq linum-relative-format " %3s ")
     (setq
       magit-repository-directories (if (eq system-type 'darwin)
                                      '(("~/dotfiles" . 5) ("~/Develop" . 3))
@@ -476,9 +473,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
       '(
          ("Name" 25 magit-repolist-column-ident nil)
          ("Version" 25 magit-repolist-column-version nil)
-         ("Path" 99 magit-repolist-column-path nil))))
-  (if (configuration-layer/package-used-p 'spacemacs-theme)
-    (setq spacemacs-theme-comment-italic t)))
+         ("Path" 99 magit-repolist-column-path nil)))
+    (setq spacemacs-theme-comment-italic t))
 
 
 (defun dotspacemacs/user-config ()
