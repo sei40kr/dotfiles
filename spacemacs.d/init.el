@@ -31,123 +31,123 @@ values."
     ;; List of configuration layers to load.
     dotspacemacs-configuration-layers
     '(
-      ;; ----------------------------------------------------------------
-      ;; Example of useful layers you may want to use right away.
-      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-      ;; <M-m f e R> (Emacs style) to install them.
-      ;; ----------------------------------------------------------------
-      ;; Chat
-      slack
-      ;; Checkers
-      (spell-checking :variables
-                      spell-checking-enable-by-default nil)
-      (syntax-checking :variables
-                       syntax-checking-enable-tooltips nil)
-      ;; Completion
-      (auto-completion :variables
-                       auto-completion-enable-snippets-in-popup t
-                       auto-completion-enable-sort-by-usage t
-                       auto-completion-return-key-behavior 'complete
-                       auto-completion-tab-key-behavior 'cycle)
-      helm
-      ;; Emacs
-      org
-      semantic
-      ;; E-mail
-      gnus
-      ;; Framework
-      ruby-on-rails
-      ;; Fun
-      games
-      ;; International support
-      ;; Programming and markup languages
-      csv
-      emacs-lisp
-      (go :variables
-          go-use-gometalinter t
-          gofmt-command "goimports")
-      (haskell :variables
-               haskell-enable-hindent t)
-      html
-      java
-      kotlin
-      latex
-      lua
-      (markdown :variables
-                markdown-live-preview-engine 'vmd)
-      perl5
-      perl6
-      php
-      plantuml
-      purescript
-      (python :variables
-              python-backend 'lsp
-              python-test-runner '(pytest nose))
-      ruby
-      (scala :variables
-             scala-use-java-doc-style t
-             scala-auto-insert-asterisk-in-comments t)
-      (windows-scripts :toggle (eq system-type 'windows-nt))
-      shell-scripts
-      sql
-      (typescript :variables
-                  typescript-fmt-on-save t)
-      vimscript
-      yaml
-      ;; Operating systems
-      ;; Pair programming
-      floobits
-      ;; Source control
-      (git :variables
-           git-magit-status-fullscreen t
-           magit-save-repository-buffers 'dontask)
-      github
-      (version-control :variables
-                       version-control-diff-tool 'diff-hl
-                       version-control-diff-side 'left
-                       version-control-global-margin t)
-      ;; Tags
-      (gtags :variables
-             gtags-enable-by-default nil)
-      ;; Themes
-      colors
-      ;; Tools
-      ansible
-      chrome
-      cmake
-      dash
-      docker
-      imenu-list
-      lsp
-      nginx
-      (shell :variables
-             shell-default-height 30
-             shell-default-position 'bottom)
-      tmux
-      vagrant
-      ;; Vim
-      evil-commentary
-      (evil-snipe :variables
-                  evil-snipe-enable-alternate-f-and-t-behaviors t
-                  evil-snipe-repeat-scope t)
-      ;; WebServices
-      (confluence :variables
-                  confluence-url "https://teamspiritdev.atlassian.net/wiki/rpc/xmlrpc")
-      evernote
-      twitter
-      ;; Custom
-      (better-c-cpp :variables
-                    c-c++-default-mode-for-headers 'c++-mode
-                    c-c++-enable-clang-support t
-                    c-c++-enable-clang-format-on-save t
-                    c-c++-enable-google-style t
-                    c-c++-enable-google-newline t)
-      better-javascript
-      (jira :variables
-            jiralib-url "https://teamspiritdev.atlassian.net")
-      quickrun
-      ;; Projects
-      wsp)
+       ;; ----------------------------------------------------------------
+       ;; Example of useful layers you may want to use right away.
+       ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
+       ;; <M-m f e R> (Emacs style) to install them.
+       ;; ----------------------------------------------------------------
+       ;; Chat
+       slack
+       ;; Checkers
+       (spell-checking :variables
+         spell-checking-enable-by-default nil)
+       (syntax-checking :variables
+         syntax-checking-enable-tooltips nil)
+       ;; Completion
+       (auto-completion :variables
+         auto-completion-enable-snippets-in-popup t
+         auto-completion-enable-sort-by-usage t
+         auto-completion-return-key-behavior 'complete
+         auto-completion-tab-key-behavior 'cycle)
+       helm
+       ;; Emacs
+       org
+       semantic
+       ;; E-mail
+       gnus
+       ;; Framework
+       ruby-on-rails
+       ;; Fun
+       games
+       ;; International support
+       ;; Programming and markup languages
+       csv
+       emacs-lisp
+       (go :variables
+         go-use-gometalinter t
+         gofmt-command "goimports")
+       (haskell :variables
+         haskell-enable-hindent t)
+       html
+       java
+       kotlin
+       latex
+       lua
+       (markdown :variables
+         markdown-live-preview-engine 'vmd)
+       perl5
+       perl6
+       php
+       plantuml
+       purescript
+       (python :variables
+         python-backend 'lsp
+         python-test-runner '(pytest nose))
+       ruby
+       (scala :variables
+         scala-use-java-doc-style t
+         scala-auto-insert-asterisk-in-comments t)
+       (windows-scripts :toggle (eq system-type 'windows-nt))
+       shell-scripts
+       sql
+       (typescript :variables
+         typescript-fmt-on-save t)
+       vimscript
+       yaml
+       ;; Operating systems
+       ;; Pair programming
+       floobits
+       ;; Source control
+       (git :variables
+         git-magit-status-fullscreen t
+         magit-save-repository-buffers 'dontask)
+       github
+       (version-control :variables
+         version-control-diff-tool 'diff-hl
+         version-control-diff-side 'left
+         version-control-global-margin t)
+       ;; Tags
+       (gtags :variables
+         gtags-enable-by-default nil)
+       ;; Themes
+       colors
+       ;; Tools
+       ansible
+       chrome
+       cmake
+       dash
+       docker
+       imenu-list
+       lsp
+       nginx
+       (shell :variables
+         shell-default-height 30
+         shell-default-position 'bottom)
+       tmux
+       vagrant
+       ;; Vim
+       evil-commentary
+       (evil-snipe :variables
+         evil-snipe-enable-alternate-f-and-t-behaviors t
+         evil-snipe-repeat-scope t)
+       ;; WebServices
+       (confluence :variables
+         confluence-url "https://teamspiritdev.atlassian.net/wiki/rpc/xmlrpc")
+       evernote
+       twitter
+       ;; Custom
+       (better-c-cpp :variables
+         c-c++-default-mode-for-headers 'c++-mode
+         c-c++-enable-clang-support t
+         c-c++-enable-clang-format-on-save t
+         c-c++-enable-google-style t
+         c-c++-enable-google-newline t)
+       better-javascript
+       (jira :variables
+         jiralib-url "https://teamspiritdev.atlassian.net")
+       quickrun
+       ;; Projects
+       wsp)
 
     ;; List of additional packages that will be installed without being
     ;; wrapped in a layer. If you need some configuration for these
@@ -155,7 +155,7 @@ values."
     ;; configuration in `dotspacemacs/user-config'.
     dotspacemacs-additional-packages
     '(
-      helm-ls-git)
+       helm-ls-git)
 
     ;; A list of packages that cannot be updated.
     dotspacemacs-frozen-packages '()
@@ -163,9 +163,9 @@ values."
     ;; A list of packages that will not be installed and loaded.
     dotspacemacs-excluded-packages
     '(
-      counsel-gtags
-      ggtags
-      helm-gtags)
+       counsel-gtags
+       ggtags
+       helm-gtags)
 
     ;; Defines the behaviour of Spacemacs when installing packages.
     ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -268,16 +268,16 @@ values."
     ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
     ;; quickly tweak the mode-line size to make separators look not too crappy.
     dotspacemacs-default-font (if (eq system-type 'darwin)
-                                  '("MesloLGM Nerd Font Mono"
-                                    :size 20
-                                    :weight normal
-                                    :width normal
-                                    :powerline-scale 1.1)
+                                '("MesloLGM Nerd Font Mono"
+                                   :size 20
+                                   :weight normal
+                                   :width normal
+                                   :powerline-scale 1.1)
                                 '("UbuntuMono Nerd Font Mono"
-                                  :size 20
-                                  :weight normal
-                                  :width normal
-                                  :powerline-scale 1.1))
+                                   :size 20
+                                   :weight normal
+                                   :width normal
+                                   :powerline-scale 1.1))
 
     ;; The leader key
     ;; These variables control whether separate commands are bound in the GUI to
@@ -501,99 +501,98 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (setq
-   ;; How many seconds to wait for the second char.
-   avy-timeout-seconds 0.0
+    ;; How many seconds to wait for the second char.
+    avy-timeout-seconds 0.0
 
-   ;; Two keys sequence to escape from insert state.
-   evil-escape-key-sequence "jk"
-   ;; Whether "C-i" jumps forward like in Vim.
-   evil-want-C-i-jump t
-   ;; Whether "C-u" scrolls like in Vim.
-   evil-want-C-u-scroll t
-   ;; Additional arguments to pass to the shell.
-   exec-path-from-shell-arguments '("-l")
-   ;; The key used to change to and from Emacs state.
-   ;; Must be readable by ‘read-kbd-macro’. For example: "C-z".
-   evil-toggle-key ""
+    ;; Two keys sequence to escape from insert state.
+    evil-escape-key-sequence "jk"
+    ;; Whether "C-i" jumps forward like in Vim.
+    evil-want-C-i-jump t
+    ;; Whether "C-u" scrolls like in Vim.
+    evil-want-C-u-scroll t
+    ;; Additional arguments to pass to the shell.
+    exec-path-from-shell-arguments '("-l")
+    ;; The key used to change to and from Emacs state.
+    ;; Must be readable by ‘read-kbd-macro’. For example: "C-z".
+    evil-toggle-key ""
 
-   ;; Syntax checkers excluded from automatic selection.
-   ;;
-   ;; A list of Flycheck syntax checkers to exclude from automatic
-   ;; selection.  Flycheck will never automatically select a syntax
-   ;; checker in this list, regardless of the value of
-   ;; ‘flycheck-checkers’.
-   ;;
-   ;; However, syntax checkers in this list are still available for
-   ;; manual selection with ‘flycheck-select-checker’.
-   ;;
-   ;; Use this variable to disable syntax checkers, instead of removing
-   ;; the syntax checkers from ‘flycheck-checkers’.  You may also use
-   ;; this option as a file or directory local variable to disable
-   ;; specific checkers in individual files and directories
-   ;; respectively.
-   flycheck-disabled-checkers '(
-                                json-python-json
-                                markdown-markdownlint-cli
-                                ruby-jruby
-                                scss-lint
-                                sass/scss-sass-lint
-                                xml-xmlstarlet)
+    ;; Syntax checkers excluded from automatic selection.
+    ;;
+    ;; A list of Flycheck syntax checkers to exclude from automatic
+    ;; selection.  Flycheck will never automatically select a syntax
+    ;; checker in this list, regardless of the value of
+    ;; ‘flycheck-checkers’.
+    ;;
+    ;; However, syntax checkers in this list are still available for
+    ;; manual selection with ‘flycheck-select-checker’.
+    ;;
+    ;; Use this variable to disable syntax checkers, instead of removing
+    ;; the syntax checkers from ‘flycheck-checkers’.  You may also use
+    ;; this option as a file or directory local variable to disable
+    ;; specific checkers in individual files and directories
+    ;; respectively.
+    flycheck-disabled-checkers '(
+                                  json-python-json
+                                  markdown-markdownlint-cli
+                                  ruby-jruby
+                                  scss-lint
+                                  sass/scss-sass-lint
+                                  xml-xmlstarlet)
 
-   ;; Format for each line. Good for adding spaces/paddings like so: " %3s "
-   ;;
-   ;; This won’t take effect if you choose ‘display-line-numbers-mode’ backend.
-   linum-relative-format " %3s "
+    ;; Format for each line. Good for adding spaces/paddings like so: " %3s "
+    ;;
+    ;; This won’t take effect if you choose ‘display-line-numbers-mode’ backend.
+    linum-relative-format " %3s "
 
-   ;; List of directories that are or contain Git repositories.
-   ;;
-   ;; Each element has the form (DIRECTORY . DEPTH) or, for backward
-   ;; compatibility, just DIRECTORY.  DIRECTORY has to be a directory
-   ;; or a directory file-name, a string.  DEPTH, an integer, specifies
-   ;; the maximum depth to look for Git repositories.  If it is 0, then
-   ;; only add DIRECTORY itself.
-   ;;
-   ;; For backward compatibility reasons an element may be a string,
-   ;; instead of a cons-cell, in which case the value of the obsolete
-   ;; option ‘magit-repository-directories-depth’ specifies the depth.
-   magit-repository-directories (if (eq system-type 'darwin)
-                                    '(("~/dotfiles" . 5) ("~/Develop" . 3))
-                                  '(("~/dotfiles" . 5) ("~/dev/ws" . 3)))
-   ;; List of columns displayed by ‘magit-list-repositories’.
-   ;;
-   ;; Each element has the form (HEADER WIDTH FORMAT PROPS).
-   ;;
-   ;; HEADER is the string displayed in the header.  WIDTH is the width
-   ;; of the column.  FORMAT is a function that is called with one
-   ;; argument, the repository identification (usually its basename),
-   ;; and with ‘default-directory’ bound to the toplevel of its working
-   ;; tree.  It has to return a string to be inserted or nil.  PROPS is
-   ;; an alist that supports the keys ‘:right-align’ and ‘:pad-right’.
-   ;; Some entries also use ‘:help-echo’, but ‘tabulated-list’ does not
-   ;; actually support that yet.
-   magit-repolist-columns '(("Name" 25 magit-repolist-column-ident nil)
-                           ("Version" 25 magit-repolist-column-version nil)
-                           ("Path" 99 magit-repolist-column-path nil))
+    ;; List of directories that are or contain Git repositories.
+    ;;
+    ;; Each element has the form (DIRECTORY . DEPTH) or, for backward
+    ;; compatibility, just DIRECTORY.  DIRECTORY has to be a directory
+    ;; or a directory file-name, a string.  DEPTH, an integer, specifies
+    ;; the maximum depth to look for Git repositories.  If it is 0, then
+    ;; only add DIRECTORY itself.
+    ;;
+    ;; For backward compatibility reasons an element may be a string,
+    ;; instead of a cons-cell, in which case the value of the obsolete
+    ;; option ‘magit-repository-directories-depth’ specifies the depth.
+    magit-repository-directories (if (eq system-type 'darwin)
+                                   '(("~/dotfiles" . 5) ("~/Develop" . 3))
+                                   '(("~/dotfiles" . 5) ("~/dev/ws" . 3)))
+    ;; List of columns displayed by ‘magit-list-repositories’.
+    ;;
+    ;; Each element has the form (HEADER WIDTH FORMAT PROPS).
+    ;;
+    ;; HEADER is the string displayed in the header.  WIDTH is the width
+    ;; of the column.  FORMAT is a function that is called with one
+    ;; argument, the repository identification (usually its basename),
+    ;; and with ‘default-directory’ bound to the toplevel of its working
+    ;; tree.  It has to return a string to be inserted or nil.  PROPS is
+    ;; an alist that supports the keys ‘:right-align’ and ‘:pad-right’.
+    ;; Some entries also use ‘:help-echo’, but ‘tabulated-list’ does not
+    ;; actually support that yet.
+    magit-repolist-columns
+    '(
+       ("Name" 25 magit-repolist-column-ident nil)
+       ("Version" 25 magit-repolist-column-version nil)
+       ("Path" 99 magit-repolist-column-path nil))
 
-   ;; Command used by projectile to get the files in a git project.
-   projectile-git-command "git ls-files -zco --exclude-standard"
+    ;; Command used by projectile to get the files in a git project.
+    projectile-git-command "git ls-files -zco --exclude-standard"
 
-   ;; Enable italics for comments and also disable background.
-   spacemacs-theme-comment-italic t)
+    ;; Enable italics for comments and also disable background.
+    spacemacs-theme-comment-italic t)
 
   (with-eval-after-load 'projectile
     (require 'magit)
     (mapc #'projectile-add-known-project
-          (mapcar #'file-name-as-directory (magit-list-repos)))))
+      (mapcar #'file-name-as-directory (magit-list-repos)))))
 
 
 (defun dotspacemacs/user-config ()
   (with-eval-after-load 'evil
     (define-key evil-normal-state-map (kbd "C-p") 'helm-ls-git-ls)
     (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
-    (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
-    (evil-leader/set-key "qq" 'spacemacs/frame-killer)
-    (evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute)
-    (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region))
+    (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char))
   (eval-after-load 'fill-column-indicator
     (spacemacs/toggle-fill-column-indicator-on))
   (eval-after-load 'git-commit
@@ -611,18 +610,18 @@ before packages are loaded. If you are unsure, you should try in setting them in
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (import-js grizzl zeal-at-point yasnippet-snippets yapfify yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vmd-mode vimrc-mode vi-tilde-fringe vagrant-tramp vagrant uuidgen use-package typit twittering-mode toc-org tide tagedit symon sudoku string-inflection stickyfunc-enhance srefactor sql-indent spaceline-all-the-icons smeargle slim-mode slack shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe rjsx-mode restart-emacs realgud rbenv rainbow-mode rainbow-identifiers rainbow-delimiters quickrun pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails powershell popwin plantuml-mode pippel pipenv pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode perl6-mode password-generator paradox pacmacs overseer orgit org-projectile org-present org-pomodoro org-mime org-jira org-download org-bullets org-brain open-junk-file noflet nginx-mode neotree nameless mvn multi-term move-text mmm-mode minitest meghanada maven-test-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lsp-ui lsp-python lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode kotlin-mode js2-refactor js-doc jinja2-mode intero insert-shebang indent-guide importmagic impatient-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-ls-git helm-hoogle helm-gitignore helm-flx helm-descbinds helm-dash helm-ctest helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets groovy-mode groovy-imports gradle-mode google-translate google-c-style golden-ratio godoctor go-tag go-rename go-guru go-eldoc gnuplot gmail-message-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geeknote fuzzy font-lock+ flyspell-correct-helm flymd flycheck-rtags flycheck-pos-tip flycheck-perl6 flycheck-kotlin flycheck-haskell flycheck-gometalinter flycheck-bashate flx-ido floobits fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-org evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emoji-cheat-sheet-plus emmet-mode elisp-slime-nav editorconfig edit-server dumb-jump drupal-mode dockerfile-mode docker disaster diminish diff-hl define-word dante dactyl-mode cython-mode csv-mode counsel-projectile confluence company-web company-tern company-statistics company-shell company-rtags company-plsense company-php company-lua company-lsp company-go company-ghci company-ghc company-emoji company-emacs-eclim company-cabal company-c-headers company-auctex company-ansible company-anaconda column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode cmake-ide clean-aindent-mode clang-format chruby centered-cursor-mode c-eldoc bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile ansible-doc ansible aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell 2048-game))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-)
+  (custom-set-variables
+    ;; custom-set-variables was added by Custom.
+    ;; If you edit it by hand, you could mess it up, so be careful.
+    ;; Your init file should contain only one such instance.
+    ;; If there is more than one, they won't work right.
+    '(package-selected-packages
+       (quote
+         (import-js grizzl zeal-at-point yasnippet-snippets yapfify yaml-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vmd-mode vimrc-mode vi-tilde-fringe vagrant-tramp vagrant uuidgen use-package typit twittering-mode toc-org tide tagedit symon sudoku string-inflection stickyfunc-enhance srefactor sql-indent spaceline-all-the-icons smeargle slim-mode slack shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe rjsx-mode restart-emacs realgud rbenv rainbow-mode rainbow-identifiers rainbow-delimiters quickrun pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails powershell popwin plantuml-mode pippel pipenv pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode perl6-mode password-generator paradox pacmacs overseer orgit org-projectile org-present org-pomodoro org-mime org-jira org-download org-bullets org-brain open-junk-file noflet nginx-mode neotree nameless mvn multi-term move-text mmm-mode minitest meghanada maven-test-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lsp-ui lsp-python lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode kotlin-mode js2-refactor js-doc jinja2-mode intero insert-shebang indent-guide importmagic impatient-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-ls-git helm-hoogle helm-gitignore helm-flx helm-descbinds helm-dash helm-ctest helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets groovy-mode groovy-imports gradle-mode google-translate google-c-style golden-ratio godoctor go-tag go-rename go-guru go-eldoc gnuplot gmail-message-mode github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geeknote fuzzy font-lock+ flyspell-correct-helm flymd flycheck-rtags flycheck-pos-tip flycheck-perl6 flycheck-kotlin flycheck-haskell flycheck-gometalinter flycheck-bashate flx-ido floobits fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-org evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help ensime emoji-cheat-sheet-plus emmet-mode elisp-slime-nav editorconfig edit-server dumb-jump drupal-mode dockerfile-mode docker disaster diminish diff-hl define-word dante dactyl-mode cython-mode csv-mode counsel-projectile confluence company-web company-tern company-statistics company-shell company-rtags company-plsense company-php company-lua company-lsp company-go company-ghci company-ghc company-emoji company-emacs-eclim company-cabal company-c-headers company-auctex company-ansible company-anaconda column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode cmake-ide clean-aindent-mode clang-format chruby centered-cursor-mode c-eldoc bundler browse-at-remote auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile ansible-doc ansible aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell 2048-game))))
+  (custom-set-faces
+    ;; custom-set-faces was added by Custom.
+    ;; If you edit it by hand, you could mess it up, so be careful.
+    ;; Your init file should contain only one such instance.
+    ;; If there is more than one, they won't work right.
+    )
+  )
