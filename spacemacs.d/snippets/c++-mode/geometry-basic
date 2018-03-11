@@ -11,6 +11,7 @@ typedef complex<double> point;
 double dot(point a, point b) { return (conj(a) * b).x; }
 double cross(point a, point b) { return (conj(a) * b).y; }
 double dist(point a, point b) { return abs(a - b); }
+
 double dist(point a, point b, point c, bool issegment = false) {
   double d = cross(b - a, c - a) / dist(a, b);
 
