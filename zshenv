@@ -102,9 +102,10 @@ fi
 ## Golang
 
 export GOPATH="${HOME}/.go"
-if [[ -d "$GOPATH" ]]; then
-    path=( "${GOPATH}/bin" $path )
+if [[ ! -d "${GOPATH}/bin" ]]; then
+    mkdir -p "${GOPATH}/bin"
 fi
+path=( "${GOPATH}/bin" $path )
 
 
 ## rustup
