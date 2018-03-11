@@ -99,12 +99,25 @@ else
 fi
 
 
+## rustup
+
+export CARGO_HOME="${HOME}/.cargo"
+if [[ -d "$CARGO_HOME" ]]; then
+    path=( "${CARGO_HOME}/bin" $path )
+fi
+
+
 ## SDKMAN!
 
 export SDKMAN_DIR="${HOME}/.sdkman"
 if [[ -d "$SDKMAN_DIR" ]]; then
     path=( "$SDKMAN_DIR"/candidates/*/current/bin $path )
 fi
+
+
+## The Haskell Tool Stack
+
+# path=( "${HOME}/.local/bin" $path )
 
 
 ## XDG
