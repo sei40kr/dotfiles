@@ -100,8 +100,17 @@ zplugin ice pick'async.zsh' lucid src'pure.zsh' wait'!0'
 zplugin light sindresorhus/pure
 
 
-# ZSH enhancements
-function cd() {
+## ZSH enhancements
+
+man() {
+    unhash -f man
+
+    zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+
+    man "$@"
+}
+
+cd() {
     unhash -f cd
 
     export ENHANCD_FILTER="fzf --height 50% --reverse"
