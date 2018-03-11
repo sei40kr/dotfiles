@@ -99,6 +99,14 @@ else
 fi
 
 
+## Golang
+
+export GOPATH="${HOME}/.go"
+if [[ -d "$GOPATH" ]]; then
+    path=( "${GOPATH}/bin" $path )
+fi
+
+
 ## rustup
 
 export CARGO_HOME="${HOME}/.cargo"
