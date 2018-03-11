@@ -20,8 +20,6 @@
 
 ## Installation
 
-and add it to [GitHub SSH keys](https://github.com/settings/keys) of the account.
-
 ### Terminal emulator
 
 1. Install [Alacritty](https://github.com/jwilm/alacritty). It needs to build from source code.
