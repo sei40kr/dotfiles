@@ -22,8 +22,14 @@ zplugin ice as'program' pick'*shrc'; zplugin light Russell91/sshrc
 zplugin ice atload'alias U="cd-gitroot"'
 zplugin light mollifier/cd-gitroot
 
-zplugin ice pick'k.sh' atload'alias k="k -Ah --no-vcs"'
-zplugin light supercrabtree/k
+k() {
+    unhash -f k
+
+    zplugin ice pick'k.sh'; zplugin light supercrabtree/k
+    alias k="k -Ah --no-vcs"
+
+    k "$@"
+}
 
 
 ## ZSH environments
