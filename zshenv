@@ -1,60 +1,118 @@
-export EDITOR='emacsclient'
+typeset -gU fpath infopath manpath path
+export TERM='screen-256color-italic'
 export ZDOTDIR="${HOME}/.zsh"
 
-# Homebrew/Linuxbrew
+
+## Browser
+
 if [[ "$OSTYPE" == darwin* ]]; then
-    BREW_PREFIX='/usr/local'
+    export BROWSER='open'
+elif [[ "${+commands[xdg-open]}" == 1 ]]; then
+    export BROWSER='xdg-open'
+fi
+
+
+## Editor
+
+export EDITOR=emacsclient
+export CVSEDITOR="$EDITOR"
+export SVN_EDITOR="$EDITOR"
+export GIT_EDITOR="$EDITOR"
+
+
+## Language
+
+export LANGUAGE='en_US.UTF-8'
+export LANG="$LANGUAGE"
+export LC_ALL="$LANGUAGE"
+export LC_CTYPE="$LANGUAGE"
+
+
+## Pager
+
+export PAGER=less
+
+# Set the default Less options.
+# Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
+# Remove -X and -F (exit if the content fits on one screen) to enable it.
+export LESS='-F -g -i -M -R -S -w -X -z-4'
+
+# Set the Less input preprocessor.
+# Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
+if (( $#commands[(i)lesspipe(|.sh)] )); then
+    export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
+fi
+
+## Paths
+
+path=( "${HOME}/.local/bin" $path )
+fpath=( "${ZDOTDIR}"/{completions,functions} $path )
+
+
+## Homebrew/Linuxbrew
+
+if [[ "$OSTYPE" == darwin* ]]; then
+    export BREW_PREFIX='/usr/local'
 else
-    BREW_PREFIX="${HOME}/.linuxbrew"
-fi
-typeset -U path
-typeset -U manpath
-typeset -U infopath
-if [[ "$BREW_PREFIX" != "" ]]; then
-    path=(
-        "${BREW_PREFIX}/bin"
-        "${BREW_PREFIX}/sbin"
-        "${BREW_PREFIX}/opt/llvm/bin"
-        "${path[@]}"
-    )
-    manpath=(
-        "${BREW_PREFIX}/share/man"
-        "${manpath[@]}"
-    )
-    infopath=(
-        "${BREW_PREFIX}/share/info"
-        "${infopath[@]}"
-    )
+    export BREW_PREFIX="${HOME}/.linuxbrew"
 fi
 
-ASDF_DIR="${HOME}/.asdf"
-GOPATH="${HOME}/.go"
-SDKMAN_DIR="${HOME}/.sdkman"
-PYENV_ROOT="${HOME}/.pyenv"
+if [[ -x "${BREW_PREFIX}/bin/brew" ]]; then
+    infopath=( "${BREW_PREFIX}/share/info" $infopath )
+    manpath=( "${BREW_PREFIX}/share/man" $manpath )
+    path=( "$BREW_PREFIX"/{bin,sbin} $path )
 
-path=(
-    "${HOME}/.local/bin"
-    # asdf
-    "${ASDF_DIR}/bin"
-    "${ASDF_DIR}/shims"
-    # Cargo
-    "${HOME}/.cargo/bin"
-    # Cabal
-    "${HOME}/.cabal/bin"
-    # Go
-    "${GOPATH}/bin"
-    # SDKMAN!
-    "${SDKMAN_DIR}/candidates/ant/current/bin"
-    "${SDKMAN_DIR}/candidates/gradle/current/bin"
-    "${SDKMAN_DIR}/candidates/java/current/bin"
-    "${SDKMAN_DIR}/candidates/kotlin/current/bin"
-    "${SDKMAN_DIR}/candidates/maven/current/bin"
-    # pyenv
-    "${PYENV_ROOT}/bin"
-    "${PYENV_ROOT}/shims"
-    "${path[@]}"
-)
+    # llvm
+    if [[ -d "${BREW_PREFIX}/opt/llvm" ]]; then
+        path=( "${BREW_PREFIX}/opt/llvm/bin" $path )
+        export LD_LIBRARY_PATH="${BREW_PREFIX}/opt/llvm/lib"
+    fi
+fi
 
-export PATH
-export MANPATH
-export INFOPATH
+
+## anyenv
+
+export ANYENV_ROOT="${HOME}/.anyenv"
+if [[ -d "$ANYENV_ROOT" ]]; then
+    export NDENV_ROOT="${ANYENV_ROOT}/envs/ndenv"
+    export PYENV_ROOT="${ANYENV_ROOT}/envs/pyenv"
+    export RBENV_ROOT="${ANYENV_ROOT}/envs/rbenv"
+
+    if [[ -d "$NDENV_ROOT" ]]; then
+        path=( "${NDENV_ROOT}/shims" $path )
+    fi
+    if [[ -d "$PYENV_ROOT" ]]; then
+        path=( "${PYENV_ROOT}/shims" $path )
+    fi
+    if [[ -d "$RBENV_ROOT" ]]; then
+        path=( "${RBENV_ROOT}/shims" $path )
+    fi
+fi
+
+
+## ghq
+
+if [[ "$OSTYPE" == darwin* ]]; then
+    export GHQ_ROOT="${HOME}/Develop"
+else
+    export GHQ_ROOT="${HOME}/dev/ws"
+fi
+
+
+## SDKMAN!
+
+export SDKMAN_DIR="${HOME}/.sdkman"
+if [[ -d "$SDKMAN_DIR" ]]; then
+    path=( "$SDKMAN_DIR"/candidates/*/current/bin $path )
+fi
+
+
+## XDG
+
+if [[ -n "$XDG_SESSION_ID" ]]; then
+    export XDG_CONFIG_HOME="${HOME}/.config"
+
+    if [[ -x "${BREW_PREFIX}/bin/brew" ]]; then
+        export XDG_DATA_DIRS="${BREW_PREFIX}/share:${XDG_DATA_DIRS}"
+    fi
+fi
