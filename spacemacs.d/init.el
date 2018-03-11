@@ -528,16 +528,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 
 (defun dotspacemacs/user-config ()
+  (spacemacs/toggle-fill-column-indicator-on)
+  (spacemacs/toggle-golden-ratio-on)
+  (spacemacs/toggle-whitespace-cleanup-on)
   (with-eval-after-load 'evil
     (define-key evil-normal-state-map (kbd "C-p") 'helm-ls-git-ls)
     (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
     (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char))
-  (eval-after-load 'fill-column-indicator
-    (spacemacs/toggle-fill-column-indicator-on))
-  (eval-after-load 'git-commit
-    (global-git-commit-mode t))
-  (eval-after-load 'golden-ratio
-    (spacemacs/toggle-golden-ratio-on))
   (with-eval-after-load 'helm
     (define-key helm-map (kbd "C-h") 'delete-backward-char)
     (define-key helm-map (kbd "C-w") 'backward-kill-word))
@@ -545,9 +542,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (require 'mode-local)
     (setq-mode-local emacs-lisp-mode
       semanticdb-find-default-throttle
-      '(file local project unloaded system)))
-  (eval-after-load 'spacemacs-whitespace-cleanup
-    (spacemacs/toggle-whitespace-cleanup-on)))
+      '(file local project unloaded system))))
 
 
 ;; Do not write anything past this comment. This is where Emacs will
