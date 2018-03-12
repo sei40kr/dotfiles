@@ -72,7 +72,7 @@ zplugin ice svn; zplugin snippet OMZ::plugins/extract
 zplugin ice svn; zplugin snippet OMZ::plugins/gem
 zplugin snippet OMZ::plugins/git/git.plugin.zsh
 zplugin ice svn; zplugin snippet OMZ::plugins/golang
-zplugin ice svn wait''; zplugin snippet OMZ::plugins/gradle/gradle.plugin.zsh
+zplugin ice svn wait''; zplugin snippet OMZ::plugins/gradle
 zplugin ice wait''; zplugin snippet OMZ::plugins/mosh/mosh.plugin.zsh
 zplugin snippet OMZ::plugins/mvn/mvn.plugin.zsh
 zplugin snippet OMZ::plugins/npm/npm.plugin.zsh
