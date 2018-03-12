@@ -1,6 +1,7 @@
 typeset -gU fpath infopath manpath path
 export TERM='screen-256color-italic'
 export ZDOTDIR="${HOME}/.zsh"
+export ZSH_CACHE_DIR="${HOME}/.cache/zsh"
 
 
 ## Browser
