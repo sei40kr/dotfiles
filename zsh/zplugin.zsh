@@ -22,14 +22,8 @@ zplugin ice as'program' pick'*shrc'; zplugin light Russell91/sshrc
 zplugin ice atload'alias U="cd-gitroot"'
 zplugin light mollifier/cd-gitroot
 
-k() {
-    unhash -f k
-
-    zplugin ice pick'k.sh'; zplugin light supercrabtree/k
-    alias k="k -Ah --no-vcs"
-
-    k "$@"
-}
+zplugin ice pick'k.sh'; zplugin light supercrabtree/k
+alias k="k -Ah --no-vcs"
 
 
 ## ZSH environments
@@ -108,23 +102,11 @@ zplugin light sindresorhus/pure
 
 ## ZSH enhancements
 
-man() {
-    unhash -f man
+zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
-    zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
-
-    man "$@"
-}
-
-cd() {
-    unhash -f cd
-
-    export ENHANCD_FILTER="fzf --height 50% --reverse"
-    export ENHANCD_DOT_SHOW_FULLPATH=1
-    zplugin ice pick'init.sh'; zplugin light b4b4r07/enhancd
-
-    cd "$@"
-}
+export ENHANCD_FILTER="fzf --height 50% --reverse"
+export ENHANCD_DOT_SHOW_FULLPATH=1
+zplugin ice pick'init.sh'; zplugin light b4b4r07/enhancd
 
 zplugin ice lucid atinit'
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT="alias-tips: "' wait'1'
