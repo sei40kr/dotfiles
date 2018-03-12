@@ -241,7 +241,7 @@ values."
     ;; quickly tweak the mode-line size to make separators look not too crappy.
     dotspacemacs-default-font (if (eq system-type 'darwin)
                                 '("MesloLGM Nerd Font Mono"
-                                   :size 16
+                                   :size 18
                                    :weight normal
                                    :width normal
                                    :powerline-scale 1.1)
