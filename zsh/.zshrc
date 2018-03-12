@@ -27,6 +27,7 @@ zplugin cdreplay -q
 ## anyenv
 
 if [[ -d "$ANYENV_ROOT" ]]; then
+    path=( "${ANYENV_ROOT}/bin" $path )
     . "${ANYENV_ROOT}/bin"
     eval "$(anyenv init - zsh)"
 fi
