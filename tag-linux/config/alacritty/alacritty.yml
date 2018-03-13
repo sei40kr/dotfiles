@@ -85,39 +85,39 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: true
 
-# Colors (Spacemacs Dark)
+# Colors (Snazzy)
 colors:
   # Default colors
   primary:
-    background: '0x292b2e'
-    foreground: '0xb2b2b2'
+    background: '0x282a36'
+    foreground: '0xeff0eb'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x000000'
-    cursor: '0xb2b2b2'
+    text: '0x97979b'
+    cursor: '0x97979b'
 
   # Normal colors
   normal:
-    black: '0x0a0814'
-    red: '0xf2241f'
-    green: '0x67b11d'
-    yellow: '0xb1951d'
-    blue: '0x4f97d7'
-    magenta: '0xa31db1'
-    cyan: '0x28def0'
-    white: '0xb2b2b2'
+    black: '0x282a36'
+    red: '0xff5c57'
+    green: '0x5af78e'
+    yellow: '0xf3f99d'
+    blue: '0x57c7ff'
+    magenta: '0xff6ac1'
+    cyan: '0xff6ac1'
+    white: '0xf1f1f0'
 
   # Bright colors
   bright:
-    black: '0x0a0814'
-    red: '0xf2241f'
-    green: '0x67b11d'
-    yellow: '0xb1951d'
-    blue: '0x4f97d7'
-    magenta: '0xa31db1'
-    cyan: '0x28def0'
-    white: '0xb2b2b2'
+    black: '0x686868'
+    red: '0xff5c57'
+    green: '0x5af78e'
+    yellow: '0xf3f99d'
+    blue: '0x57c7ff'
+    magenta: '0xff6ac1'
+    cyan: '0xff6ac1'
+    white: '0xeff0eb'
 
 
 # Visual Bell
