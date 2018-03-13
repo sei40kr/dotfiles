@@ -47,7 +47,7 @@ fi
 ## Paths
 
 path=( "${HOME}/.local/bin" $path )
-fpath=( "${ZDOTDIR}"/{completions,functions} $path )
+fpath=( "${ZDOTDIR}"/{completions,functions} $fpath )
 
 
 ## Homebrew/Linuxbrew
