@@ -72,7 +72,8 @@ zplugin snippet OMZ::plugins/mvn/mvn.plugin.zsh
 zplugin snippet OMZ::plugins/npm/npm.plugin.zsh
 zplugin ice svn; zplugin snippet OMZ::plugins/pip
 zplugin snippet OMZ::plugins/postgres/postgres.plugin.zsh
-zplugin ice svn atload 'unalias rg'; zplugin snippet OMZ::plugins/rails
+zplugin ice svn; zplugin snippet OMZ::plugins/rails
+unalias rg
 zplugin snippet OMZ::plugins/rake/rake.plugin.zsh
 zplugin ice wait''; zplugin snippet OMZ::plugins/rake-fast/rake-fast.plugin.zsh
 zplugin snippet OMZ::plugins/ruby/ruby.plugin.zsh
@@ -108,9 +109,8 @@ export ENHANCD_FILTER="fzf --height 50% --reverse"
 export ENHANCD_DOT_SHOW_FULLPATH=1
 zplugin ice pick'init.sh'; zplugin light b4b4r07/enhancd
 
-zplugin ice lucid atinit'
-export ZSH_PLUGINS_ALIAS_TIPS_TEXT="alias-tips: "' wait'1'
-zplugin light djui/alias-tips
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT="alias-tips: "
+zplugin ice lucid wait'1'; zplugin light djui/alias-tips
 
 zplugin ice lucid wait'1' load'[[ -n "$TMUX" ]]' unload'[[ -z "$TMUX" ]]'
 zplugin load sei40kr/zsh-tmux-rename
