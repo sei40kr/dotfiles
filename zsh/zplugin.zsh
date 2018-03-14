@@ -120,3 +120,6 @@ zplugin light zsh-users/zsh-autosuggestions
 
 zplugin ice lucid atload'zpcompinit' wait'0'
 zplugin light zdharma/fast-syntax-highlighting
+
+fpath=( "${HOME}/.zsh/plugins/zsh-better-run-help" $fpath )
+. "${HOME}/.zsh/plugins/zsh-better-run-help/zsh-better-run-help.plugin.zsh"
