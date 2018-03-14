@@ -1,4 +1,5 @@
 ansible-lint
+asciinema
 autopep8
 aws-shell
 cmakelint
