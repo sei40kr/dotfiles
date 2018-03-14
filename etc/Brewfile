@@ -21,7 +21,7 @@ brew "gnu-tar"
 brew "grep"
 brew "gzip"
 brew "jq"
-brew "llvm", args: ['with-clang', 'with-lld', 'with-python']
+brew "llvm", args: ['with-clang', 'with-lld']
 brew "pandoc"
 brew "parallel"
 brew "rcm"
