@@ -104,6 +104,7 @@ values."
          version-control-diff-side 'left
          version-control-global-margin t)
        ;; Tags
+       (gtags :variables gtags-enable-by-default nil)
        ;; Themes
        colors
        ;; Tools
