@@ -22,3 +22,6 @@
 [submodule "zplugin"]
 	path = zplugin/bin
 	url = https://github.com/zdharma/zplugin.git
+[submodule "zsh/plugins/zsh-better-run-help"]
+	path = zsh/plugins/zsh-better-run-help
+	url = https://github.com/sei40kr/zsh-better-run-help.git
