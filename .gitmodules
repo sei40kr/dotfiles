@@ -12,7 +12,7 @@
 	url = https://github.com/Linuxbrew/brew.git
 [submodule "spacemacs"]
 	path = emacs.d
-	url = https://github.com/sei40kr/spacemacs.git
+	url = https://github.com/syl20bnr/spacemacs.git
 [submodule "tmux-simple"]
 	path = tmux/plugins/tmux-simple
 	url = https://github.com/sei40kr/tmux-simple.git
