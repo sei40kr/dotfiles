@@ -1,11 +1,11 @@
 URxvt*termName: screen-256color-italic
-URxvt*font: xft:UbuntuMono\ Nerd\ Font:pixelsize=18
+URxvt*font: xft:UbuntuMono\ Nerd\ Font:pixelsize=20
 URxvt*lineSpace: 1
 URxvt.scrollBar: false
 URxvt*loginShell: true
 
 !! Colors (Snazzy)
-*background: [96]#282a36
+*background: #282a36
 *foreground: #eff0eb
 *cursorColor: #9aedfe
 
