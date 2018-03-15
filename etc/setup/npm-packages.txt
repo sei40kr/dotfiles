@@ -14,7 +14,6 @@ gulp
 import-js
 prettier
 prettier-eslint-cli
-stylefmt
 stylelint-cli
 typescript
 typescript-language-server
