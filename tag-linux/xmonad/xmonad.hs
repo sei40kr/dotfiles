@@ -1,7 +1,7 @@
 import XMonad
 
 myTerminal :: String
-myTerminal = "urxvtc"
+myTerminal = "urxvt"
 
 main :: IO ()
 main = do
