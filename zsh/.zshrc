@@ -3,7 +3,7 @@
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 
-if [[ -z "$VSCODE_PID" ]]; then
+if [[ "$XDG_SESSION_DESKTOP" !=  "xmonad" && "$VSCODE_PID" == "" ]]; then
     zstyle ':prezto:module:tmux:auto-start' local 'yes'
     zstyle ':prezto:module:tmux:session' name 'default'
     zplugin ice svn; zplugin snippet PZT::modules/tmux
