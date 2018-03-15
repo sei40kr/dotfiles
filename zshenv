@@ -15,7 +15,8 @@ fi
 
 ## Editor
 
-export EDITOR=emacsclient
+EMACS_PLUGIN_LAUNCHER="${ZDOTDIR}/plugins/emacs/emacsclient.sh"
+export EDITOR="${EMACS_PLUGIN_LAUNCHER} -nw"
 export CVSEDITOR="$EDITOR"
 export SVN_EDITOR="$EDITOR"
 export GIT_EDITOR="$EDITOR"
