@@ -484,6 +484,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (spacemacs/toggle-fill-column-indicator-on)
   (spacemacs/toggle-golden-ratio-on)
   (spacemacs/toggle-whitespace-cleanup-on)
+  (evil-leader/set-key "q q" 'spacemacs/frame-killer)
   (with-eval-after-load 'evil
     (define-key evil-normal-state-map (kbd "C-p") 'helm-ls-git-ls)
     (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
