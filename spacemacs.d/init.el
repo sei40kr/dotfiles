@@ -476,6 +476,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
        ("Name" 25 magit-repolist-column-ident nil)
        ("Version" 25 magit-repolist-column-version nil)
        ("Path" 99 magit-repolist-column-path nil)))
+  (setq neo-theme 'arrow)
   (setq spacemacs-theme-comment-italic t))
 
 
