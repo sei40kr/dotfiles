@@ -11,6 +11,8 @@ alias eeval='${EMACS_PLUGIN_LAUNCHER} -e'
 # create a new X frame
 alias eframe='emacsclient -a "" -c'
 
+alias ekill='emacsclient -e "(kill-emacs)"'
+
 efile() {
   # TODO: Implement this
 }
