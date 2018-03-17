@@ -482,18 +482,28 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 (defun dotspacemacs/user-config ()
   (when (file-exists-p custom-file) (load-file custom-file))
+
+
   (spacemacs/toggle-fill-column-indicator-on)
   (spacemacs/toggle-golden-ratio-on)
   (spacemacs/toggle-whitespace-cleanup-on)
+
   (evil-leader/set-key "q q" 'spacemacs/frame-killer)
-  (define-key evil-normal-state-map (kbd "C-p") 'helm-ls-git-ls)
-  (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
-  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
-  (define-key helm-map (kbd "C-h") 'delete-backward-char)
-  (define-key helm-map (kbd "C-w") 'backward-kill-word)
+
+  (spacemacs|do-after-display-system-init (spacemacs-modeline/init-spaceline))
+
+
+  (with-eval-after-load 'evil
+    (define-key evil-normal-state-map (kbd "C-p") 'helm-ls-git-ls)
+    (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
+    (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char))
+
+  (with-eval-after-load 'helm
+    (define-key helm-map (kbd "C-h") 'delete-backward-char)
+    (define-key helm-map (kbd "C-w") 'backward-kill-word))
+
   (with-eval-after-load 'semantic
     (require 'mode-local)
     (setq-mode-local emacs-lisp-mode
       semanticdb-find-default-throttle
-      '(file local project unloaded system)))
-  (spacemacs|do-after-display-system-init (spacemacs-modeline/init-spaceline)))
+      '(file local project unloaded system))))
