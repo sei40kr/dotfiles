@@ -144,8 +144,7 @@ values."
     ;; packages, then consider creating a layer. You can also put the
     ;; configuration in `dotspacemacs/user-config'.
     dotspacemacs-additional-packages
-    '(
-       helm-ls-git)
+    '()
 
     ;; A list of packages that cannot be updated.
     dotspacemacs-frozen-packages '()
@@ -482,11 +481,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
        sass/scss-sass-lint
        xml-xmlstarlet))
 
-  ;; helm-ls-git
-  (setq
-    helm-ls-git-status-command 'magit-status-internal
-    helm-ls-git-fuzzy-match t)
-
   ;; linum-relative
   (setq linum-relative-format " %3s ")
 
@@ -503,6 +497,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;; neotree
   (setq neo-theme 'arrow)
+
+  ;; projectile
+  (setq projectile-enable-caching nil)
 
   ;; spacemacs-theme
   (setq spacemacs-theme-comment-italic t))
@@ -522,7 +519,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 
   (with-eval-after-load 'evil
-    (define-key evil-normal-state-map (kbd "C-p") 'helm-ls-git-ls)
+    (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file)
     (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
     (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char))
 
