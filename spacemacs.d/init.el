@@ -496,7 +496,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
        ("Path" 99 magit-repolist-column-path nil)))
 
   ;; neotree
-  (setq neo-theme 'arrow)
+  (setq
+    neo-smart-open t
+    neo-theme 'arrow)
 
   ;; projectile
   (setq projectile-enable-caching nil)
