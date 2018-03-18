@@ -501,7 +501,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
     neo-theme 'arrow)
 
   ;; projectile
-  (setq projectile-enable-caching nil)
+  (setq
+    projectile-enable-caching nil
+    projectile-switch-project-action 'neotree-projectile-action)
 
   ;; spacemacs-theme
   (setq spacemacs-theme-comment-italic t))
