@@ -452,7 +452,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (setq
     auto-save-default nil
-    create-lockfiles nil)
+    create-lockfiles nil
+    vc-handled-backends nil)
 
 
   ;;; Plugins
@@ -486,9 +487,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;; magit
   (setq
-    magit-repository-directories (if (eq system-type 'darwin)
-                                   '(("~/dotfiles" . 5) ("~/Develop" . 3))
-                                   '(("~/dotfiles" . 5) ("~/dev/ws" . 3)))
+    magit-refresh-status-buffer nil
+    magit-repository-directories
+    (if (eq system-type 'darwin)
+      '(("~/dotfiles" . 5) ("~/Develop" . 3))
+      '(("~/dotfiles" . 5) ("~/dev/ws" . 3)))
     magit-repolist-columns
     '(
        ("Name" 25 magit-repolist-column-ident nil)
@@ -530,6 +533,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (with-eval-after-load 'helm
     (define-key helm-map (kbd "C-h") 'delete-backward-char)
     (define-key helm-map (kbd "C-w") 'backward-kill-word))
+
+  (eval-after-load 'magit
+    (remove-hook 'magit-refs-sections-hook 'magit-insert-tags))
 
   (with-eval-after-load 'semantic
     (require 'mode-local)
