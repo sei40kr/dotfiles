@@ -447,13 +447,31 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
+
+
+  ;;; Emacs
+
+  (setq
+    auto-save-default nil
+    create-lockfiles nil)
+
+
+  ;;; Plugins
+
+  ;; avy
   (setq avy-timeout-seconds 0.0)
+
+  ;; evil
   (setq
     evil-escape-key-sequence "jk"
     evil-want-C-i-jump t
     evil-want-C-u-scroll t
     evil-toggle-key "")
+
+  ;; exec-path-from-shell
   (setq exec-path-from-shell-arguments '("-l"))
+
+  ;; flycheck
   (setq
     flycheck-disabled-checkers
     '(
@@ -463,10 +481,16 @@ before packages are loaded. If you are unsure, you should try in setting them in
        scss-lint
        sass/scss-sass-lint
        xml-xmlstarlet))
+
+  ;; helm-ls-git
   (setq
     helm-ls-git-status-command 'magit-status-internal
     helm-ls-git-fuzzy-match t)
+
+  ;; linum-relative
   (setq linum-relative-format " %3s ")
+
+  ;; magit
   (setq
     magit-repository-directories (if (eq system-type 'darwin)
                                    '(("~/dotfiles" . 5) ("~/Develop" . 3))
@@ -476,7 +500,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
        ("Name" 25 magit-repolist-column-ident nil)
        ("Version" 25 magit-repolist-column-version nil)
        ("Path" 99 magit-repolist-column-path nil)))
+
+  ;; neotree
   (setq neo-theme 'arrow)
+
+  ;; spacemacs-theme
   (setq spacemacs-theme-comment-italic t))
 
 
