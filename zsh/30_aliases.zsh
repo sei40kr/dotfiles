@@ -2,6 +2,9 @@ alias u='builtin cd ..'
 
 # Emacs
 # cf https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/emacs/emacs.plugin.zsh
+
+EMACS_PLUGIN_LAUNCHER="${ZDOTDIR}/plugins/emacs/emacsclient.sh"
+
 alias emacs='${EMACS_PLUGIN_LAUNCHER} -n'
 alias e=emacs
 # open terminal ${EMACS_PLUGIN_LAUNCHER}
