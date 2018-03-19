@@ -16,7 +16,9 @@ if [ -x '/usr/bin/urxvtd' ]; then
   urxvtd -f -o -q
 fi
 
-emacs --daemon
+if [ -x '/usr/bin/emacs' ]; then
+  emacs --daemon
+fi
 
 if [ -x "/usr/bin/nm-applet" ]; then
   nm-applet --sm-disable &
