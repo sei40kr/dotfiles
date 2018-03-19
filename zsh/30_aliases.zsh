@@ -12,11 +12,3 @@ alias eeval='${EMACS_PLUGIN_LAUNCHER} -e'
 alias eframe='emacsclient -a "" -c'
 
 alias ekill='emacsclient -e "(kill-emacs)"'
-
-efile() {
-  # TODO: Implement this
-}
-
-ecd() {
-  # TODO: Implement this
-}
