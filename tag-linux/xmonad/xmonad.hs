@@ -1,4 +1,5 @@
 import XMonad
+import XMonad.Hooks.EwmhDesktops
 
 myBorderWidth :: Dimension
 myBorderWidth = 2
@@ -16,7 +17,7 @@ myLayoutHook = tiled ||| Mirror tiled ||| Full
 
 main :: IO ()
 main = do
-  xmonad $ def {
+  xmonad $ ewmh def {
     borderWidth = myBorderWidth
     , terminal = myTerminal
     , layoutHook = myLayoutHook
