@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# cf http://beginners-guide-to-xmonad.readthedocs.io/configure_xsessionrc.html
+
+# Load resources
+xrdb -merge "${HOME}/.Xresources"
+xmodmap "${HOME}/.Xmodmap"
+
+# Set up an icon tray
+stalonetray &
+
+# Fire up apps
+xscreensaver -no-splash &
+
+if [[ -x "/usr/bin/nm-applet" ]]; then
+  nm-applet --sm-disable &
+fi
+
+exec xmonad
