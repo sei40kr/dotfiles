@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # cf http://beginners-guide-to-xmonad.readthedocs.io/configure_xsessionrc.html
 
@@ -12,7 +12,13 @@ stalonetray &
 # Fire up apps
 xscreensaver -no-splash &
 
-if [[ -x "/usr/bin/nm-applet" ]]; then
+if [ -x '/usr/bin/urxvtd' ]; then
+  urxvtd -f -o -q
+fi
+
+emacs --daemon
+
+if [ -x "/usr/bin/nm-applet" ]; then
   nm-applet --sm-disable &
 fi
 
