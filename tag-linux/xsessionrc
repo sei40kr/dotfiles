@@ -22,4 +22,4 @@ if [ -x "/usr/bin/nm-applet" ]; then
   nm-applet --sm-disable &
 fi
 
-exec xmonad
+exec dbus-launch xmonad
