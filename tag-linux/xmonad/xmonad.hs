@@ -1,10 +1,14 @@
 import XMonad
 
+myBorderWidth :: Dimension
+myBorderWidth = 2
+
 myTerminal :: String
-myTerminal = "urxvtc"
+myTerminal = "urxvt"
 
 main :: IO ()
 main = do
   xmonad $ def {
-    terminal = myTerminal
+    borderWidth = myBorderWidth
+    , terminal = myTerminal
   }
