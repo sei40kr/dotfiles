@@ -452,6 +452,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;;; Emacs
 
   (setq
+    auto-insert-query nil
+    auto-insert-alist nil
     auto-save-default nil
     create-lockfiles nil
     vc-handled-backends nil)
@@ -544,6 +546,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   (eval-after-load 'magit
     (remove-hook 'magit-refs-sections-hook 'magit-insert-tags))
+
+  (with-eval-after-load 'yatemplate
+    (auto-insert-mode t)
+    (yatemplate-fill-alist))
 
   (with-eval-after-load 'semantic
     (require 'mode-local)
