@@ -144,7 +144,8 @@ values."
     ;; packages, then consider creating a layer. You can also put the
     ;; configuration in `dotspacemacs/user-config'.
     dotspacemacs-additional-packages
-    '()
+    '(
+       yatemplate)
 
     ;; A list of packages that cannot be updated.
     dotspacemacs-frozen-packages '()
@@ -507,6 +508,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq
     projectile-enable-caching nil
     projectile-switch-project-action 'neotree-projectile-action)
+
+
+  ;; yatemplate
+  (setq
+    yatemplate-dir "~/.spacemacs.d/templates"
+    yatemplate-separator "_")
+
 
   ;; spacemacs-theme
   (setq spacemacs-theme-comment-italic t))
