@@ -513,12 +513,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
     projectile-switch-project-action 'neotree-projectile-action
     projectile-use-git-grep t)
 
-
   ;; yatemplate
   (setq
     yatemplate-dir "~/.spacemacs.d/templates"
     yatemplate-separator "_")
-
 
   ;; spacemacs-theme
   (setq spacemacs-theme-comment-italic t))
