@@ -535,15 +535,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 
   ;; evil
-  (with-eval-after-load 'evil
-    (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file)
-    (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
-    (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char))
+  (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file)
+  (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
+  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char)
 
   ;; helm
-  (with-eval-after-load 'helm
-    (define-key helm-map (kbd "C-h") 'delete-backward-char)
-    (define-key helm-map (kbd "C-w") 'backward-kill-word))
+  (define-key helm-map (kbd "C-h") 'delete-backward-char)
+  (define-key helm-map (kbd "C-w") 'backward-kill-word)
 
   ;; magit
   (eval-after-load 'magit
