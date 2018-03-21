@@ -130,7 +130,8 @@ values."
          evil-snipe-enable-alternate-f-and-t-behaviors t
          evil-snipe-repeat-scope t)
        ;; WebServices
-       evernote
+       (confluence
+         confluence-url "https://teamspiritdev.atlassian.net/wiki/rpc/xmlrpc")
        ;; Custom
        (better-c-cpp :variables
          c-c++-default-mode-for-headers 'c++-mode
