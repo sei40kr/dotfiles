@@ -16,12 +16,15 @@
 [submodule "spacemacs"]
 	path = emacs.d
 	url = https://github.com/syl20bnr/spacemacs.git
+[submodule "spacemacs-salesforce"]
+	path = spacemacs.d/layers/spacemacs-salesforce
+	url = https://github.com/sei40kr/spacemacs-salesforce.git
 [submodule "tmux-simple"]
 	path = tmux/plugins/tmux-simple
 	url = https://github.com/sei40kr/tmux-simple.git
 [submodule "tpm"]
 	path = tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
+	url = https://github.com/tmux-plugins/tpm.git
 [submodule "zplugin"]
 	path = zplugin/bin
 	url = https://github.com/zdharma/zplugin.git
