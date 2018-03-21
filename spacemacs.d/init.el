@@ -517,6 +517,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
     projectile-use-git-grep t)
 
   ;; semantic
+  (require 'mode-local)
   (setq-mode-local emacs-lisp-mode semanticdb-find-default-throttle
     '(
        file
@@ -559,6 +560,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; magit
   (eval-after-load 'magit
     (remove-hook 'magit-refs-sections-hook 'magit-insert-tags))
+
+  ;; projectile
+  (with-eval-after-load 'projectile
+    (require 'magit)
+    (mapc #'projectile-add-known-project
+      (mapcar #'file-name-as-directory (magit-list-repos))))
 
   ;; yatemplate
   (auto-insert-mode t)
