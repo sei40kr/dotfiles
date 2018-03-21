@@ -473,10 +473,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;; evil
   (setq
-    evil-escape-key-sequence "jk"
     evil-want-C-i-jump t
     evil-want-C-u-scroll t
     evil-toggle-key "")
+
+  ;; evil-escape
+  (setq evil-escape-key-sequence "jk")
 
   ;; exec-path-from-shell
   (setq exec-path-from-shell-arguments '("-l"))
@@ -548,23 +550,41 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (spacemacs/toggle-golden-ratio-on)
   (spacemacs/toggle-whitespace-cleanup-on)
 
+  ;; https://medium.com/@bobbypriambodo/blazingly-fast-spacemacs-with-persistent-server-92260f2118b7
   (evil-leader/set-key "q q" 'spacemacs/frame-killer)
 
   (spacemacs|do-after-display-system-init (spacemacs-modeline/init-spaceline))
 
   ;; company
-  (eval-after-load
-    ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
-    (define-key company-active-map (kbd "C-w") 'evil-delete-backward-word))
+  ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
+  ;; (define-key company-active-map (kbd "C-w") 'evil-delete-backward-word)
 
   ;; evil
-  (with-eval-after-load
-    (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file)
-    (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
-    (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char))
+  (evil-global-set-key 'normal (kbd "C-p") 'projectile-find-file)
+  (evil-global-set-key 'normal (kbd "C-s") 'save-buffer)
+  (evil-global-set-key 'insert (kbd "C-h") 'evil-delete-backward-char)
+
+  ;; evil-mc
+  (global-evil-mc-mode)
+  (define-key evil-mc-key-map (kbd "C-g") 'evil-mc-undo-all-cursors)
+  (evil-global-set-key 'visual (kbd "C-n") 'evil-mc-make-and-goto-next-match)
+  (evil-global-set-key 'visual (kbd "C-p") 'evil-mc-make-and-goto-prev-match)
+  (evil-global-set-key 'visual (kbd "C-t") 'evil-mc-skip-and-goto-next-match)
+  (eval-after-load 'evil-mc
+    (evil-define-key 'normal evil-mc-key-map
+      (kbd "<escape>") 'evil-mc-undo-all-cursors))
+
+  ;; evil-surround
+  (evil-define-key 'visual evil-surround-mode-map
+    (kbd "s") 'evil-substitute
+    (kbd "S") 'evil-surround-region)
+
+  ;; expand-region
+  (evil-global-set-key 'visual (kbd "v") 'er/expand-region)
+  (evil-global-set-key 'visual (kbd "V") 'er/contract-region)
 
   ;; helm
-  (with-eval-after-load
+  (with-eval-after-load 'helm
     (define-key helm-map (kbd "C-h") 'evil-delete-backward-char)
     ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
     (define-key helm-map (kbd "C-w") 'evil-delete-backward-word))
@@ -579,8 +599,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (mapc #'projectile-add-known-project
       (mapcar #'file-name-as-directory (magit-list-repos)))
     (require 'neotree)
-    (setq projectile-switch-project-action #'neotree-projectile-action))
+    (setq projectile-switch-project-action 'neotree-projectile-action))
 
   ;; yatemplate
   (auto-insert-mode t)
-  (yatemplate-fill-alist))
+  (eval-after-load 'yatemplate
+    (yatemplate-fill-alist)))
