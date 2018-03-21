@@ -543,6 +543,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
     projectile-enable-caching t
     projectile-find-dir-includes-top-level t
     projectile-git-submodule-command nil
+    projectile-ignored-project-function 'file-remote-p
+    projectile-switch-project-action 'projectile-commander
     projectile-use-git-grep t)
 
   ;; semantic
@@ -617,8 +619,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (with-eval-after-load 'projectile
     (require 'magit)
     (mapc 'projectile-add-known-project
-      (mapcar 'file-name-as-directory (magit-list-repos)))
-    (setq projectile-switch-project-action 'neotree-projectile-action))
+      (mapcar 'file-name-as-directory (magit-list-repos))))
 
   ;; yatemplate
   (auto-insert-mode t)
