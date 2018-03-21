@@ -114,6 +114,7 @@ values."
        dash
        docker
        (lsp :variables
+         lsp-ui-doc-include-signature nil
          lsp-ui-sideline-enable nil
          lsp-ui-sideline-ignore-duplicate t
          lsp-ui-sideline-show-symbol nil)
