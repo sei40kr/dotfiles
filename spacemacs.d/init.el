@@ -141,6 +141,7 @@ values."
          c-c++-enable-google-newline t)
        better-javascript
        better-lsp
+       spacemacs-salesforce
        (jira :variables
          jiralib-url "https://teamspiritdev.atlassian.net")
        quickrun)
