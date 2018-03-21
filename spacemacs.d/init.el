@@ -139,6 +139,7 @@ values."
          c-c++-enable-google-style t
          c-c++-enable-google-newline t)
        better-javascript
+       better-lsp
        (jira :variables
          jiralib-url "https://teamspiritdev.atlassian.net")
        quickrun)
