@@ -512,13 +512,22 @@ before packages are loaded. If you are unsure, you should try in setting them in
     projectile-git-submodule-command nil
     projectile-use-git-grep t)
 
+  ;; semantic
+  (setq-mode-local emacs-lisp-mode semanticdb-find-default-throttle
+    '(
+       file
+       local
+       project
+       unloaded
+       system))
+
+  ;; spacemacs-theme
+  (setq spacemacs-theme-comment-italic t)
+
   ;; yatemplate
   (setq
     yatemplate-dir "~/.spacemacs.d/templates"
-    yatemplate-separator "_")
-
-  ;; spacemacs-theme
-  (setq spacemacs-theme-comment-italic t))
+    yatemplate-separator "_"))
 
 
 (defun dotspacemacs/user-config ()
@@ -546,17 +555,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; magit
   (eval-after-load 'magit
     (remove-hook 'magit-refs-sections-hook 'magit-insert-tags))
-
-  ;; semantic
-  (with-eval-after-load 'semantic
-    (require 'mode-local)
-    (setq-mode-local emacs-lisp-mode semanticdb-find-default-throttle
-      '(
-         file
-         local
-         project
-         unloaded
-         system)))
 
   ;; yatemplate
   (auto-insert-mode t)
