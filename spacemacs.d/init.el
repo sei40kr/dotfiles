@@ -565,7 +565,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (evil-global-set-key 'insert (kbd "C-h") 'evil-delete-backward-char)
 
   ;; evil-mc
-  (global-evil-mc-mode)
+  (global-evil-mc-mode +1)
+  (evil-define-key 'normal evil-mc-key-map (kbd "C-p") nil)
+  (evil-define-key 'normal evil-mc-key-map (kbd "C-t") nil)
   (define-key evil-mc-key-map (kbd "C-g") 'evil-mc-undo-all-cursors)
   (evil-global-set-key 'visual (kbd "C-n") 'evil-mc-make-and-goto-next-match)
   (evil-global-set-key 'visual (kbd "C-p") 'evil-mc-make-and-goto-prev-match)
