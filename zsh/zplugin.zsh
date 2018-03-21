@@ -9,6 +9,10 @@ zplugin light b4b4r07/copy
 zplugin ice from'gh-r' as'program' mv'gotcha_* -> gotcha'
 zplugin light b4b4r07/gotcha
 
+zplugin ice from'gh-r' as'program' mv'gomi_* -> gomi'
+zplugin light b4b4r07/gomi
+alias rm='gomi'
+
 zplugin ice as'program' pick'httpstat' mv'httpstat.sh -> httpstat'
 zplugin light b4b4r07/httpstat
 
@@ -90,9 +94,6 @@ zplugin snippet https://raw.githubusercontent.com/docker/compose/master/contrib/
 
 # jsforce
 zplugin ice pick'' wait''; zplugin light jsforce/jsforce-zsh-completions
-
-# npm
-zplugin ice wait''; zplugin light lukechilds/zsh-better-npm-completion
 
 
 ## ZSH theme
