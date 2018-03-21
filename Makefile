@@ -3,9 +3,7 @@ all: ;
 
 .PHONY: update
 update:
-	git pull origin master
-	git submodule init
-	git submodule update
+	@./update.bash
 
 .PHONY: install
 install: update
