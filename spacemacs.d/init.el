@@ -560,11 +560,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (with-eval-after-load
     (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file)
     (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
+    ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
     (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char))
 
   ;; helm
   (with-eval-after-load
-    (define-key helm-map (kbd "C-h") 'delete-backward-char)
+    (define-key helm-map (kbd "C-h") 'evil-delete-backward-char)
+    ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
     (define-key helm-map (kbd "C-w") 'evil-delete-backward-word))
 
   ;; magit
