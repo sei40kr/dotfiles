@@ -7,6 +7,9 @@
 [submodule "better-javascript"]
 	path = spacemacs.d/layers/better-javascript
 	url = https://github.com/sei40kr/better-javascript.git
+[submodule "better-lsp"]
+	path = spacemacs.d/layers/better-lsp
+	url = https://github.com/sei40kr/better-lsp.git
 [submodule "linuxbrew"]
 	path = tag-linux/linuxbrew
 	url = https://github.com/Linuxbrew/brew.git
