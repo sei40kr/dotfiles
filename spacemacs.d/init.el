@@ -510,7 +510,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq
     projectile-find-dir-includes-top-level t
     projectile-git-submodule-command nil
-    projectile-switch-project-action #'neotree-projectile-action
     projectile-use-git-grep t)
 
   ;; yatemplate
