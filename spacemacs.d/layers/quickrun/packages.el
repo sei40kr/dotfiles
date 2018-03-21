@@ -14,10 +14,15 @@
         popwin
         quickrun))
 
-(defun quickrun/pre-init-popwin ()
-  (spacemacs|use-package-add-hook popwin
-     :post-config
-     (push '("*quickrun*") popwin:special-display-config)))
+(defun quickrun/post-init-popwin ()
+  (push
+    '("*quickrun*"
+       :dedicated t
+       :position bottom
+       :stick t
+       :noselect nil
+       :height 0.4)
+    popwin:special-display-config))
 
 (defun quickrun/init-quickrun ()
   (use-package quickrun
