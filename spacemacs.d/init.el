@@ -241,8 +241,8 @@ values."
     ;; additional properties.
     ;; (default '(spacemacs :separator wave :separator-scale 1.5))
     dotspacemacs-mode-line-theme '(spacemacs
-                                    :separator slant
-                                    :separator-scale 1.5)
+                                    :separator utf-8
+                                    :separator-scale 1.0)
     ;; If non nil the cursor color matches the state color in GUI Emacs.
     dotspacemacs-colorize-cursor-according-to-state t
     ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
