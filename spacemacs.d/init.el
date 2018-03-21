@@ -485,8 +485,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
     auto-insert-query nil
     auto-save-default nil
     backup-inhibited t
-    create-lockfiles nil
-    vc-handled-backends nil)
+    create-lockfiles nil)
 
 
   ;;; Plugins
