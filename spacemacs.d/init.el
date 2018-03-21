@@ -547,10 +547,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (eval-after-load 'magit
     (remove-hook 'magit-refs-sections-hook 'magit-insert-tags))
 
-  ;; yatemplate
-  (auto-insert-mode t)
-  (yatemplate-fill-alist)
-
   ;; semantic
   (with-eval-after-load 'semantic
     (require 'mode-local)
@@ -560,4 +556,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
          local
          project
          unloaded
-         system))))
+         system)))
+
+  ;; yatemplate
+  (auto-insert-mode t)
+  (yatemplate-fill-alist))
