@@ -97,7 +97,30 @@ values."
        ;; Source control
        (git :variables
          git-magit-status-fullscreen t
-         magit-save-repository-buffers 'dontask)
+         magit-refs-sections-hook
+         '(
+            magit-insert-branch-description
+            magit-insert-error-header
+            magit-insert-local-branches
+            magit-insert-remote-branches)
+         magit-status-sections-hook
+         '(
+            magit-insert-status-headers
+            magit-insert-merge-log
+            magit-insert-rebase-sequence
+            magit-insert-am-sequence
+            magit-insert-sequencer-sequence
+            magit-insert-bisect-output
+            magit-insert-bisect-rest
+            magit-insert-bisect-log
+            magit-insert-untracked-files
+            magit-insert-unstaged-changes
+            magit-insert-staged-changes
+            magit-insert-stashes
+            magit-insert-unpulled-from-upstream
+            magit-insert-unpulled-from-pushremote
+            magit-insert-unpushed-to-upstream
+            magit-insert-unpushed-to-pushremote))
        github
        (version-control :variables
          version-control-diff-tool 'diff-hl
@@ -590,10 +613,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (define-key helm-map (kbd "C-h") 'evil-delete-backward-char)
     ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
     (define-key helm-map (kbd "C-w") 'evil-delete-backward-word))
-
-  ;; magit
-  (eval-after-load 'magit
-    (remove-hook 'magit-refs-sections-hook 'magit-insert-tags))
 
   ;; projectile
   (with-eval-after-load 'projectile
