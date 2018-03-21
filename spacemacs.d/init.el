@@ -402,7 +402,7 @@ values."
     ;; List of search tool executable names. Spacemacs uses the first installed
     ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
     ;; (default '("ag" "pt" "ack" "grep"))
-    dotspacemacs-search-tools '("ag" "grep")
+    dotspacemacs-search-tools '("grep" "ag")
     ;; Format specification for setting the frame title.
     ;; %a - the `abbreviated-file-name', or `buffer-name'
     ;; %t - `projectile-project-name'
