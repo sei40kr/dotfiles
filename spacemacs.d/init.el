@@ -554,13 +554,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;; company
   (eval-after-load
+    ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
     (define-key company-active-map (kbd "C-w") 'evil-delete-backward-word))
 
   ;; evil
   (with-eval-after-load
     (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file)
     (define-key evil-normal-state-map (kbd "C-s") 'save-buffer)
-    ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
     (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char))
 
   ;; helm
