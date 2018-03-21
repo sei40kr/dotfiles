@@ -515,6 +515,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;; projectile
   (setq
+    projectile-create-missing-test-files t
+    projectile-enable-caching t
     projectile-find-dir-includes-top-level t
     projectile-git-submodule-command nil
     projectile-use-git-grep t)
