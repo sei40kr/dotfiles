@@ -508,8 +508,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;; projectile
   (setq
-    projectile-enable-caching nil
-    projectile-switch-project-action 'neotree-projectile-action
+    projectile-find-dir-includes-top-level t
+    projectile-git-submodule-command nil
+    projectile-switch-project-action #'neotree-projectile-action
     projectile-use-git-grep t)
 
   ;; yatemplate
