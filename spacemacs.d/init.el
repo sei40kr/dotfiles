@@ -598,9 +598,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; projectile
   (with-eval-after-load 'projectile
     (require 'magit)
-    (mapc #'projectile-add-known-project
-      (mapcar #'file-name-as-directory (magit-list-repos)))
-    (require 'neotree)
+    (mapc 'projectile-add-known-project
+      (mapcar 'file-name-as-directory (magit-list-repos)))
     (setq projectile-switch-project-action 'neotree-projectile-action))
 
   ;; yatemplate
