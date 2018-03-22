@@ -516,6 +516,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
        sass/scss-sass-lint
        xml-xmlstarlet))
 
+  ;; linum
+  (setq linum-delay t)
+
   ;; linum-relative
   (setq linum-relative-format " %3s ")
 
