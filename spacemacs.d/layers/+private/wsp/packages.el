@@ -9,4 +9,13 @@
 ;;
 ;;; License: MIT
 
-(setq wsp-packages '())
+(setq wsp-packages
+  '(
+     confluence
+     org-jira))
+
+(defun wsp/pre-init-confluence ()
+  (setq confluence-url "https://teamspiritdev.atlassian.net/wiki/rpc/xmlrpc"))
+
+(defun wsp/pre-init-org-jira ()
+  (setq jiralib-url "https://teamspiritdev.atlassian.net"))

@@ -153,8 +153,6 @@ values."
          evil-snipe-enable-alternate-f-and-t-behaviors t
          evil-snipe-repeat-scope t)
        ;; WebServices
-       (confluence
-         confluence-url "https://teamspiritdev.atlassian.net/wiki/rpc/xmlrpc")
        ;; Custom
        (better-c-cpp :variables
          c-c++-default-mode-for-headers 'c++-mode
@@ -164,8 +162,6 @@ values."
          c-c++-enable-google-newline t)
        better-javascript
        better-lsp
-       (jira :variables
-         jiralib-url "https://teamspiritdev.atlassian.net")
        spacemacs-quickrun
        spacemacs-salesforce)
 
