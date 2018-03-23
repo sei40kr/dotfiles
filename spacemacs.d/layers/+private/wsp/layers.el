@@ -9,4 +9,4 @@
 ;;
 ;;; License: MIT
 
-(configuration-layer/declare-layer '(better-javascript))
+(configuration-layer/declare-layer '(better-javascript confluence jira))
