@@ -164,10 +164,10 @@ values."
          c-c++-enable-google-newline t)
        better-javascript
        better-lsp
-       spacemacs-salesforce
        (jira :variables
          jiralib-url "https://teamspiritdev.atlassian.net")
-       quickrun)
+       spacemacs-quickrun
+       spacemacs-salesforce)
 
     ;; List of additional packages that will be installed without being
     ;; wrapped in a layer. If you need some configuration for these
