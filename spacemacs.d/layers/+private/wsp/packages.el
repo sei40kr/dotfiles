@@ -10,5 +10,3 @@
 ;;; License: MIT
 
 (setq wsp-packages '())
-
-(setq wsp-excluded-packages '())
