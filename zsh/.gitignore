@@ -2,3 +2,6 @@
 /*.zwc
 /.zcompdump
 /.zhistory
+
+# zplugin
+/.zplugin/
