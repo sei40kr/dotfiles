@@ -70,6 +70,8 @@ pip3_packages=(
   pygments
   pylint
   python-language-server
+  pyls-mypy
+  pyls-isort
   vim-vint
   yamllint
   yapf
