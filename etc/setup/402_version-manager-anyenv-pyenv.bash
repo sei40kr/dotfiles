@@ -6,40 +6,47 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+# shellcheck source=helpers/init-helpers.bash
+. "$(dirname "${BASH_SOURCE[0]}")/helpers/init-helpers.bash"
+
 
 ## Check dependencies
 
+TRACE 'Checking anyenv is installed.'
 if [[ ! -x "${HOME}/.anyenv/bin/anyenv" ]]; then
-  echo 'Error: pyenv installer requires anyenv.' 1>&2
+  FATAL 'pyenv installer requires anyenv. Install anyenv first.'
   exit 1
 fi
 
 # Initialize anyenv.
-eval "$("${HOME}/.anyenv/bin/anyenv" init - bash)"
+TRACE 'Initializing anyenv.'
+eval "$("${HOME}/.anyenv/bin/anyenv" init - bash)" | TRACE
 
 
 ## Install pyenv
 
-echo 'Info: Installing pyenv.'
-anyenv install -s pyenv
+INFO 'Installing pyenv.'
+anyenv install -s pyenv | DEBUG
 
 # Initialize pyenv
-eval "$("${ANYENV_ROOT}/envs/pyenv/bin/pyenv" init - bash)"
+TRACE 'Initializing pyenv.'
+eval "$("${ANYENV_ROOT}/envs/pyenv/bin/pyenv" init - bash)" | TRACE
 
 
-## Install the stable versions of Python2/3
+## Install the stable versions of Python2/3.
 
 py2_version='2.7.14'
 py3_version='3.6.4'
 
-echo "Info: Installing Python v${py2_version}"
-pyenv install -s "$py2_version"
+INFO "Installing Python v${py2_version}"
+pyenv install -s "$py2_version" | DEBUG
 
-echo "Info: Installing Python v${py3_version}"
-pyenv install -s "$py3_version"
+INFO "Installing Python v${py3_version}"
+pyenv install -s "$py3_version" | DEBUG
 
-# Set the installed versions of Python2/3 as default
-pyenv global "${py2_version}" "${py3_version}"
+# Set the installed versions of Python2/3 as defaults.
+INFO "Setting Python v${py2_version} and v${py3_version} as defaults."
+pyenv global "${py2_version}" "${py3_version}" | DEBUG
 
 
 ## Install Python packages
@@ -69,11 +76,12 @@ pip3_packages=(
 )
 
 # Install Python2 packages
-echo 'Info: Install Python2 packages'
-pip2 install "${pip2_packages[@]}"
+INFO 'Install Python2 packages'
+pip2 install "${pip2_packages[@]}" | DEBUG
 
 # Install Python3 packages
-echo 'Info: Install Python3 packages'
-pip3 install "${pip3_packages[@]}"
+INFO 'Install Python3 packages'
+pip3 install "${pip3_packages[@]}" | DEBUG
 
-pyenv rehash
+INFO 'Rehashing Python packages.'
+pyenv rehash | DEBUG

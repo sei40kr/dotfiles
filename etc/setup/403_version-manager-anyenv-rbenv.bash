@@ -6,36 +6,43 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+# shellcheck source=helpers/init-helpers.bash
+. "$(dirname "${BASH_SOURCE[0]}")/helpers/init-helpers.bash"
+
 
 ## Check dependencies
 
+TRACE 'Checking anyenv is installed.'
 if [[ ! -x "${HOME}/.anyenv/bin/anyenv" ]]; then
-  echo 'Error: rbenv installer requires anyenv.' 1>&2
+  FATAL 'Error: rbenv installer requires anyenv.'
   exit 1
 fi
 
 # Initialize anyenv.
-eval "$("${HOME}/.anyenv/bin/anyenv" init - bash)"
+TRACE 'Initializing anyenv.'
+eval "$("${HOME}/.anyenv/bin/anyenv" init - bash)" | TRACE
 
 
 ## Install rbenv
 
-echo 'Info: Installing rbenv.'
-anyenv install -s rbenv
+INFO 'Installing rbenv.'
+anyenv install -s rbenv | DEBUG
 
 # Initialize rbenv
-eval "$("${ANYENV_ROOT}/envs/rbenv/bin/rbenv" init - bash)"
+TRACE 'Initializing rbenv.'
+eval "$("${ANYENV_ROOT}/envs/rbenv/bin/rbenv" init - bash)" | TRACE
 
 
 ## Install the stable version of Ruby
 
 ruby_version='2.5.0'
 
-echo "Info: Installing Ruby v${ruby_version}"
-rbenv install -s "$ruby_version"
+INFO "Installing Ruby v${ruby_version}"
+rbenv install -s "$ruby_version" | DEBUG
 
 # Set the installed version of Ruby as default
-rbenv global "${ruby_version}"
+INFO "Setting Ruby v${ruby_version} as default."
+rbenv global "${ruby_version}" | DEBUG
 
 
 ## Install Ruby gems
@@ -54,9 +61,10 @@ ruby_gems=(
   travis
 )
 
-echo "Info: Installing Ruby gems."
-for gem in $ruby_gems; do
-  gem install "$gem"
+INFO 'Installing Ruby gems.'
+for gem in "${ruby_gems[@]}"; do
+  gem install "$gem" | DEBUG
 done
 
-rbenv rehash
+INFO 'Rehashing Ruby gems.'
+rbenv rehash | DEBUG
