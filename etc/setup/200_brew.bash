@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# 20_brew.bash
+# 200_brew.bash
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 set -euo pipefail
