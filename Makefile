@@ -3,7 +3,7 @@ all: ;
 
 .PHONY: update
 update:
-	@./update.bash
+	@git submodule update --init
 
 .PHONY: install
 install: update
