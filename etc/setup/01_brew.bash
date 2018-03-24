@@ -8,10 +8,12 @@ IFS=$'\n\t'
 
 case "$OSTYPE" in
   darwin*)
+    echo 'Info: Installing Homebrew.'
     # cf https://brew.sh
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     ;;
   linux*)
+    echo 'Info: Installing Linuxbrew.'
     # cf http://linuxbrew.sh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
     ;;
