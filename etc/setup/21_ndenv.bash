@@ -68,7 +68,7 @@ npm_packages=(
 
 echo 'Info: Installing NPM packages'
 
-# Use yarn command if available. Add --global-folder option to tell yarn
+# Use yarn command if it's available. Add --global-folder option to tell yarn
 # destination directory.
 # cf https://github.com/yarnpkg/yarn/issues/1027
 if command -v yarn 2>/dev/null; then
