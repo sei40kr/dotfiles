@@ -1,5 +1,14 @@
 #!/usr/bin/env zsh
 
+# .zshrc
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+# Install zplugin if not exists.
+if [[ ! -d "${HOME}/.zplugin" ]]; then
+  echo 'Info: Installing zplugin.'
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+fi
+
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 
