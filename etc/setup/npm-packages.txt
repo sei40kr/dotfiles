@@ -12,8 +12,10 @@ generate-license
 generate-project
 gulp
 import-js
+jsforce
 prettier
 prettier-eslint-cli
+sfdx-cli
 stylelint-cli
 typescript
 typescript-language-server
