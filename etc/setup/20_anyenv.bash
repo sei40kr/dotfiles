@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# 02_anyenv.bash
+# 20_anyenv.bash
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 set -euo pipefail

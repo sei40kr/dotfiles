@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# 03_spacemacs.bash
+# 30_spacemacs.bash
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 set -euo pipefail
