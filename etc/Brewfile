@@ -6,35 +6,32 @@ brew "ag"
 brew "colordiff"
 brew "coreutils"
 brew "cppcheck"
-brew "ctags"
 brew "diffutils"
-brew "extract_url"
 brew "findutils"
-brew "git"
+brew "git", args: ['with-subversion']
 brew "fzf"
 brew "gawk"
 brew "ghq"
 brew "git"
-brew "global"
+brew "global", args: ['with-ctags']
 brew "gnu-sed"
 brew "gnu-tar"
 brew "grep"
 brew "gzip"
 brew "jq"
-brew "llvm", args: ['with-clang', 'with-lld']
+brew "llvm", args: ['with-glibc', 'with-libcxx', 'with-lldb']
 brew "pandoc"
 brew "parallel"
 brew "rcm"
 brew "ripgrep-bin"
 brew "yarn", args: ['without-node']
+brew "scalastyle"
 brew "shellcheck"
 brew "shfmt"
-brew "tig"
 brew "tldr"
 brew "tmux"
 brew "unzip"
-brew "urlview"
 brew "wdiff", args: ['with-gettext']
 brew "wget"
 brew "xmlstarlet"
-brew "zsh", args: ['without-etcdir']
+brew "zsh", args: ['with-pcre', 'without-etcdir']
