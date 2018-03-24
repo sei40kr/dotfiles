@@ -3,16 +3,19 @@ tap "homebrew/core"
 tap "homebrew/services"
 tap "thoughtbot/formulae"
 brew "ag"
+brew "ansible-lint"
+brew "clang-format"
 brew "colordiff"
 brew "coreutils"
 brew "cppcheck"
 brew "diffutils"
 brew "findutils"
-brew "git", args: ['with-subversion']
+brew "flawfinder"
 brew "fzf"
 brew "gawk"
 brew "ghq"
 brew "git"
+brew "git", args: ['with-subversion']
 brew "global", args: ['with-ctags']
 brew "gnu-sed"
 brew "gnu-tar"
@@ -24,7 +27,6 @@ brew "pandoc"
 brew "parallel"
 brew "rcm"
 brew "ripgrep-bin"
-brew "yarn", args: ['without-node']
 brew "scalastyle"
 brew "shellcheck"
 brew "shfmt"
@@ -34,4 +36,5 @@ brew "unzip"
 brew "wdiff", args: ['with-gettext']
 brew "wget"
 brew "xmlstarlet"
+brew "yarn", args: ['without-node']
 brew "zsh", args: ['with-pcre', 'without-etcdir']
