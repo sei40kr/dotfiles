@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# 20_anyenv.bash
+# 400_version-manager-anyenv.bash - anyenv installer
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 set -euo pipefail
