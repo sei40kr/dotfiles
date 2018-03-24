@@ -51,8 +51,10 @@ fpath=( "${ZDOTDIR}"/{completions,functions} $fpath )
 
 ## Homebrew/Linuxbrew
 
-if [[ "$OSTYPE" == darwin* ]]; then
+if [[ -x '/usr/local/bin/brew' ]]; then
     export BREW_PREFIX='/usr/local'
+elif [[ -d '/home/linuxbrew/.linuxbrew/' ]]; then
+    export BREW_PREFIX='/home/linuxbrew/.linuxbrew'
 else
     export BREW_PREFIX="${HOME}/.linuxbrew"
 fi
