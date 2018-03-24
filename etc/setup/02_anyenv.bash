@@ -6,6 +6,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-echo 'Info: Installing anyenv.'
-
-git clone --depth=1 -- https://github.com/riywo/anyenv "${HOME}/.anyenv"
+if [[ ! -d "${HOME}/.anyenv" ]]; then
+  echo 'Info: Installing anyenv.'
+  git clone --depth=1 -- https://github.com/riywo/anyenv "${HOME}/.anyenv"
+fi
