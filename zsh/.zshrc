@@ -9,7 +9,7 @@ if [[ ! -d "${HOME}/.zplugin" ]]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
 fi
 
-. "${HOME}/.zplugin/bin/zplugin.zsh"
+. "${ZDOTDIR}/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 
 if [[ "$XDG_SESSION_DESKTOP" !=  "xmonad" && "$VSCODE_PID" == "" ]]; then
