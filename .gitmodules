@@ -1,8 +1,3 @@
-[submodule "anyenv"]
-  branch = master
-  depth = 1
-	path = anyenv
-	url = https://github.com/riywo/anyenv.git
 [submodule "better-c-cpp"]
   branch = master
   depth = 1
@@ -18,16 +13,6 @@
   depth = 1
 	path = spacemacs.d/layers/better-lsp
 	url = https://github.com/sei40kr/better-lsp.git
-[submodule "linuxbrew"]
-  branch = master
-  depth = 1
-	path = tag-linux/linuxbrew
-	url = https://github.com/Linuxbrew/brew.git
-[submodule "spacemacs"]
-  branch = develop
-  depth = 1
-	path = emacs.d
-	url = https://github.com/syl20bnr/spacemacs.git
 [submodule "spacemacs-kotlin"]
   branch = master
   depth = 1
@@ -48,16 +33,6 @@
   depth = 1
 	path = tmux/plugins/tmux-simple
 	url = https://github.com/sei40kr/tmux-simple.git
-[submodule "tpm"]
-  branch = master
-  depth = 1
-	path = tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm.git
-[submodule "zplugin"]
-  branch = master
-  depth = 1
-	path = zplugin/bin
-	url = https://github.com/zdharma/zplugin.git
 [submodule "zsh-better-run-help"]
   branch = master
   depth = 1
