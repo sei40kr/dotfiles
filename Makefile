@@ -3,7 +3,7 @@ all: ;
 
 .PHONY: update
 update:
-	@git submodule update --init
+	@git submodule update --init --remote
 
 .PHONY: install
 install: update
