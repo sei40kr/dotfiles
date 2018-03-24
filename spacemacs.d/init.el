@@ -498,6 +498,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; evil-escape
   (setq evil-escape-key-sequence "jk")
 
+  ;; evil-mc
+  (setq evil-mc-one-cursor-show-mode-line-text nil)
+
   ;; exec-path-from-shell
   (setq exec-path-from-shell-arguments '("-l"))
 
