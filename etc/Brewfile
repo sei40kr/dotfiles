@@ -21,7 +21,7 @@ brew "gnu-tar"
 brew "grep"
 brew "gzip"
 brew "jq"
-brew "llvm-hs/llvm/llvm-6.0", args: ['with-glibc', 'with-libcxx', 'with-lldb']
+brew "llvm-hs/llvm/llvm-6.0"
 brew "pandoc"
 brew "parallel"
 brew "rcm"
