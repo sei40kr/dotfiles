@@ -8,5 +8,5 @@ IFS=$'\n\t'
 
 if [[ ! -d "${HOME}/.emacs.d" ]]; then
   echo 'Info: Installing Spacemacs.'
-  git clone -b develop https://github.com/syl20bnr/spacemacs ~/.emacs.d
+  git clone --depth 1 -b develop -- https://github.com/syl20bnr/spacemacs ~/.emacs.d
 fi
