@@ -13,7 +13,6 @@ brew "flawfinder"
 brew "fzf"
 brew "gawk"
 brew "ghq"
-brew "git"
 brew "git", args: ['with-subversion']
 brew "global", args: ['with-ctags']
 brew "gnu-sed"
