@@ -64,7 +64,6 @@ npm_packages=(
   typescript-language-server
   vmd
   webpack
-  yaml-language-server
 )
 
 echo 'Info: Installing NPM packages'
