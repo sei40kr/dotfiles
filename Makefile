@@ -3,6 +3,8 @@ all: ;
 
 .PHONY: update
 update:
+	@git fetch origin
+	@git pull origin master
 	@git submodule update --init --remote
 
 .PHONY: install
