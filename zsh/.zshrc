@@ -4,7 +4,7 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 # Install zplugin if not exists.
-if [[ ! -d "${HOME}/.zplugin" ]]; then
+if [[ ! -d "${ZDOTDIR}/.zplugin" ]]; then
   echo 'Info: Installing zplugin.'
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
 fi
