@@ -162,6 +162,7 @@ values."
          c-c++-enable-google-newline t)
        better-javascript
        better-lsp
+       spacemacs-kotlin
        spacemacs-quickrun
        spacemacs-salesforce)
 
