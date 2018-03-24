@@ -15,13 +15,14 @@ if [[ ! -d "${DOTFILES_DIR}" ]]; then
   git clone git@github.com:sei40kr/dotfiles.git "${DOTFILES_DIR}"
 fi
 
-cd "${DOTFILES_DIR}"
+cd "$DOTFILES_DIR"
 
 find "${DOTFILES_DIR}/etc/setup" \
      -mindepth 1 \
      -maxdepth 1 \
      -type f \
-     -name '*.bash' | while read -r script_path; do
+     -name '*.bash' \
+  | while read -r script_path; do
   if [[ -x "$script_path" ]]; then
     bash "${script_path}"
   fi

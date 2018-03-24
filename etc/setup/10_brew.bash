@@ -8,13 +8,18 @@ IFS=$'\n\t'
 
 case "$OSTYPE" in
   darwin*)
-    echo 'Info: Installing Homebrew.'
-    # cf https://brew.sh
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    if [[ ! -x '/usr/local/bin/brew' ]]; then
+      echo 'Info: Installing Homebrew.'
+      # cf https://brew.sh
+      /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
     ;;
   linux*)
-    echo 'Info: Installing Linuxbrew.'
-    # cf http://linuxbrew.sh
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+    if [[ ! -d '/home/linuxbrew/.linuxbrew' ]] \
+         && [[ ! -d "${HOME}/.linuxbrew" ]]; then
+      echo 'Info: Installing Linuxbrew.'
+      # cf http://linuxbrew.sh
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+    fi
     ;;
 esac
