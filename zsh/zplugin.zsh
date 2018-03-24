@@ -95,6 +95,9 @@ zplugin snippet https://raw.githubusercontent.com/docker/compose/master/contrib/
 # jsforce
 zplugin ice pick'' wait''; zplugin light jsforce/jsforce-zsh-completions
 
+# salesforce-cli-zsh-completion
+zplugin ice pick'' wait''; zplugin light wadewegner/salesforce-cli-zsh-completion
+
 
 ## ZSH theme
 
