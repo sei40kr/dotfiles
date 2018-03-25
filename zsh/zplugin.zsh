@@ -3,15 +3,8 @@ zplugin ice svn; zplugin snippet PZT::modules/helper
 
 ## Commands
 
-zplugin ice as'program' pick'copy' mv'copy.sh -> copy'
-zplugin light b4b4r07/copy
-
 zplugin ice from'gh-r' as'program' mv'gotcha_* -> gotcha'
 zplugin light b4b4r07/gotcha
-
-zplugin ice from'gh-r' as'program' mv'gomi_* -> gomi'
-zplugin light b4b4r07/gomi
-alias rm='gomi'
 
 zplugin ice as'program' pick'httpstat' mv'httpstat.sh -> httpstat'
 zplugin light b4b4r07/httpstat
