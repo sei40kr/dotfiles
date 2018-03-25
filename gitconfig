@@ -1,3 +1,4 @@
+# -*- mode: gitconfig -*-
 [branch]
   autosetuprebase = always
 [color]
@@ -5,7 +6,6 @@
 [commit]
   verbose = true
 [core]
-  editor = nvim
   excludesfile = ~/.git/global.gitignore
 [diff]
   compactionHeuristic = true
@@ -14,8 +14,6 @@
   prune = true
 [github]
   user = "sei40kr"
-[include]
-  path = ~/.git/diff-colors.gitconfig
 [interactive]
   diffFilter = diff-so-fancy
 [merge]
@@ -39,4 +37,3 @@
 [user]
   email = "sei40kr@gmail.com"
   name = "Seong Yong-ju"
-# vi: et sw=2 cc=80
