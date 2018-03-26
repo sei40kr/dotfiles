@@ -1,21 +1,17 @@
 [submodule "better-c-cpp"]
   branch = master
-  depth = 1
 	path = spacemacs.d/layers/better-c-cpp
 	url = https://github.com/sei40kr/better-c-cpp.git
 [submodule "better-javascript"]
   branch = master
-  depth = 1
 	path = spacemacs.d/layers/better-javascript
 	url = https://github.com/sei40kr/better-javascript.git
 [submodule "better-lsp"]
   branch = master
-  depth = 1
 	path = spacemacs.d/layers/better-lsp
 	url = https://github.com/sei40kr/better-lsp.git
 [submodule "spacemacs-kotlin"]
   branch = master
-  depth = 1
 	path = spacemacs.d/layers/spacemacs-kotlin
 	url = https://github.com/sei40kr/spacemacs-kotlin.git
 [submodule "spacemacs"]
@@ -24,17 +20,14 @@
 	branch = develop
 [submodule "spacemacs-quickrun"]
   branch = master
-  depth = 1
 	path = spacemacs.d/layers/spacemacs-quickrun
 	url = https://github.com/sei40kr/spacemacs-quickrun.git
 [submodule "spacemacs-salesforce"]
   branch = master
-  depth = 1
 	path = spacemacs.d/layers/spacemacs-salesforce
 	url = https://github.com/sei40kr/spacemacs-salesforce.git
 [submodule "tmux-simple"]
   branch = master
-  depth = 1
 	path = tmux/plugins/tmux-simple
 	url = https://github.com/sei40kr/tmux-simple.git
 [submodule "tpm"]
@@ -47,6 +40,5 @@
 	branch = master
 [submodule "zsh-better-run-help"]
   branch = master
-  depth = 1
 	path = zsh/plugins/zsh-better-run-help
 	url = https://github.com/sei40kr/zsh-better-run-help.git
