@@ -57,6 +57,7 @@ values."
        ;; Fun
        games
        ;; International support
+       (japanese :packages '(not avy-migemo helm-migemo-mode))
        ;; Programming and markup languages
        csv
        emacs-lisp
