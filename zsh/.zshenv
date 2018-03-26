@@ -6,9 +6,9 @@ export ZSH_CACHE_DIR="${HOME}/.cache/zsh"
 ## Browser
 
 if [[ "$OSTYPE" == darwin* ]]; then
-    export BROWSER='open'
+  export BROWSER='open'
 elif [[ "${+commands[xdg-open]}" == 1 ]]; then
-    export BROWSER='xdg-open'
+  export BROWSER='xdg-open'
 fi
 
 
@@ -37,106 +37,84 @@ export PAGER=less
 # Remove -X and -F (exit if the content fits on one screen) to enable it.
 export LESS='-F -g -i -M -R -S -w -X -z-4'
 
-# Set the Less input preprocessor.
-# Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
-if (( $#commands[(i)lesspipe(|.sh)] )); then
-    export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
-fi
 
 ## Paths
 
 path=( "${HOME}/.local/bin" $path )
 fpath=( "${ZDOTDIR}"/{completions,functions} $fpath )
 
+() {
+  for candidate in '/usr/local' '/home/linuxbrew/.linuxbrew' "${HOME}/.linuxbrew"; do
+    if [[ -x "${candidate}/bin/brew" ]]; then
+      export BREW_PREFIX="$candidate"
+      break
+    fi
+  done
+}
 
-## Homebrew/Linuxbrew
+if [[ -n "$BREW_PREFIX" ]]; then
+  path=( "$BREW_PREFIX"/{bin,sbin} $path )
+  manpath=( "${BREW_PREFIX}/share/man" $manpath )
+  infopath=( "${BREW_PREFIX}/share/info" $infopath )
 
-if [[ -x '/usr/local/bin/brew' ]]; then
-    export BREW_PREFIX='/usr/local'
-elif [[ -d '/home/linuxbrew/.linuxbrew/' ]]; then
-    export BREW_PREFIX='/home/linuxbrew/.linuxbrew'
-else
-    export BREW_PREFIX="${HOME}/.linuxbrew"
+  # lesspipe
+  if [[ -x "${BREW_PREFIX}/bin/lesspipe.sh" ]]; then
+    export LESSOPEN="|${BREW_PREFIX}/bin/lesspipe.sh %s"
+    export LESS_ADVANCED_PREPROCESSOR=1
+  fi
+
+  # llvm
+  if [[ -d "${BREW_PREFIX}/opt/llvm" ]]; then
+    export LD_LIBRARY_PATH="${BREW_PREFIX}/opt/llvm/lib"
+    export LDFLAGS="-L${LD_LIBRARY_PATH} -Wl,-rpath,${LD_LIBRARY_PATH}"
+    export CPPFLAGS="-I${BREW_PREFIX}/opt/llvm/include"
+    path=( "${BREW_PREFIX}/opt/llvm/bin" $path )
+  fi
+
+  # goenv
+  if [[ -x "${BREW_PREFIX}/opt/goenv/bin/goenv" ]]; then
+    export GOENV_ROOT="${BREW_PREFIX}/opt/goenv"
+    export GOPATH="${HOME}/.go"
+    path=( "${GOENV_ROOT}/shims" "${GOPATH}/bin" $path )
+  fi
+
+  # nvm
+  if [[ -s "${BREW_PREFIX}/opt/nvm/nvm.sh" ]]; then
+    export NVM_DIR="${BREW_PREFIX}/opt/nvm"
+    path=( "${NVM_DIR}/current/bin" $path )
+  fi
+
+  # pyenv
+  if [[ -x "${BREW_PREFIX}/opt/pyenv/bin/pyenv" ]]; then
+    export PYENV_ROOT="${BREW_PREFIX}/opt/pyenv"
+    path=( "${PYENV_ROOT}/shims" $path )
+  fi
+
+  # rbenv
+  if [[ -x "${BREW_PREFIX}/opt/rbenv/bin/rbenv" ]]; then
+    export RBENV_ROOT="${BREW_PREFIX}/opt/rbenv"
+    path=( "${RBENV_ROOT}/shims" $path )
+  fi
+
+  # xdg
+  if [[ -n "$XDG_SESSION_ID" ]]; then
+    export XDG_DATA_DIRS="${BREW_PREFIX}/share:${XDG_DATA_DIRS}"
+  fi
 fi
 
-if [[ -x "${BREW_PREFIX}/bin/brew" ]]; then
-    infopath=( "${BREW_PREFIX}/share/info" $infopath )
-    manpath=( "${BREW_PREFIX}/share/man" $manpath )
-    path=( "$BREW_PREFIX"/{bin,sbin} $path )
-
-    # llvm
-    if [[ -d "${BREW_PREFIX}/opt/llvm" ]]; then
-        path=( "${BREW_PREFIX}/opt/llvm/bin" $path )
-        export LD_LIBRARY_PATH="${BREW_PREFIX}/opt/llvm/lib"
-    fi
+# SDKMAN!
+if [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]]; then
+  export SDKMAN_DIR="${HOME}/.sdkman"
+  path=( "$SDKMAN_DIR"/candidates/*/current/bin $path )
 fi
 
-
-## anyenv
-
-export ANYENV_ROOT="${HOME}/.anyenv"
-if [[ -d "$ANYENV_ROOT" ]]; then
-    export NDENV_ROOT="${ANYENV_ROOT}/envs/ndenv"
-    export PYENV_ROOT="${ANYENV_ROOT}/envs/pyenv"
-    export RBENV_ROOT="${ANYENV_ROOT}/envs/rbenv"
-
-    if [[ -d "$NDENV_ROOT" ]]; then
-        path=( "${NDENV_ROOT}/shims" $path )
-    fi
-    if [[ -d "$PYENV_ROOT" ]]; then
-        path=( "${PYENV_ROOT}/shims" $path )
-    fi
-    if [[ -d "$RBENV_ROOT" ]]; then
-        path=( "${RBENV_ROOT}/shims" $path )
-    fi
-fi
-
-
-## ghq
-
+# ghq
 if [[ "$OSTYPE" == darwin* ]]; then
-    export GHQ_ROOT="${HOME}/Develop"
+  export GHQ_ROOT="${HOME}/Develop"
 else
-    export GHQ_ROOT="${HOME}/dev/ws"
+  export GHQ_ROOT="${HOME}/dev/ws"
 fi
 
-
-## Golang
-
-export GOPATH="${HOME}/.go"
-if [[ ! -d "${GOPATH}/bin" ]]; then
-    mkdir -p "${GOPATH}/bin"
-fi
-path=( "${GOPATH}/bin" $path )
-
-
-## rustup
-
-export CARGO_HOME="${HOME}/.cargo"
-if [[ -d "$CARGO_HOME" ]]; then
-    path=( "${CARGO_HOME}/bin" $path )
-fi
-
-
-## SDKMAN!
-
-export SDKMAN_DIR="${HOME}/.sdkman"
-if [[ -d "$SDKMAN_DIR" ]]; then
-    path=( "$SDKMAN_DIR"/candidates/*/current/bin $path )
-fi
-
-
-## The Haskell Tool Stack
-
-# path=( "${HOME}/.local/bin" $path )
-
-
-## XDG
-
-if [[ -n "$XDG_SESSION_ID" ]]; then
-    export XDG_CONFIG_HOME="${HOME}/.config"
-
-    if [[ -x "${BREW_PREFIX}/bin/brew" ]]; then
-        export XDG_DATA_DIRS="${BREW_PREFIX}/share:${XDG_DATA_DIRS}"
-    fi
-fi
+export PATH
+export MANPATH
+export INFOPATH

@@ -3,12 +3,6 @@
 # .zshrc
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-# Install zplugin if not exists.
-if [[ ! -d "${ZDOTDIR}/.zplugin" ]]; then
-  echo 'Info: Installing zplugin.'
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
-fi
-
 . "${ZDOTDIR}/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 
@@ -32,22 +26,35 @@ fi
 compinit
 zplugin cdreplay -q
 
-
-## anyenv
-
-if [[ -d "$ANYENV_ROOT" ]]; then
-    path=( "${ANYENV_ROOT}/bin" $path )
-    . "${ANYENV_ROOT}/bin"
-    eval "$(anyenv init - zsh)"
+# goenv
+if [[ -n "$GOENV_ROOT" ]]; then
+  path=( "${GOENV_ROOT}/bin" $path )
+  eval "$(goenv init - zsh --no-rehash)"
+  zplugin ice wait''; zplugin snippet "${GOENV_ROOT}/completions/goenv.zsh"
 fi
 
+# nvm
+if [[ -n "$NVM_DIR" ]]; then
+  export NVM_SYMLINK_CURRENT=true
+  export NVM_LAZY_LOAD=true
+  zplugin light lukechilds/zsh-nvm
+fi
 
-## rustup
+# pyenv
+if [[ -n "$PYENV_ROOT" ]]; then
+  path=( "${PYENV_ROOT}/bin" $path )
+  eval "$(pyenv init - zsh --no-rehash)"
+  zplugin ice wait''; zplugin snippet "${PYENV_ROOT}/completions/pyenv.zsh"
+fi
 
+# rbenv
+if [[ -n "$RBENV_ROOT" ]]; then
+  path=( "${RBENV_ROOT}/bin" $path )
+  eval "$(rbenv init - zsh --no-rehash)"
+  zplugin ice wait''; zplugin snippet "${RBENV_ROOT}/completions/rbenv.zsh"
+fi
 
-
-## SDKMAN!
-
-if [[ -d "$SDKMAN_DIR" ]]; then
-    . "${SDKMAN_DIR}/bin/sdkman-init.sh"
+# SDKMAN!
+if [[ -n "$SDKMAN_DIR" ]]; then
+  . "${SDKMAN_DIR}/bin/sdkman-init.sh"
 fi

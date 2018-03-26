@@ -10,7 +10,14 @@ zplugin ice as'program' pick'httpstat' mv'httpstat.sh -> httpstat'
 zplugin light b4b4r07/httpstat
 
 zplugin ice as'program' pick'bin/ssh-keyreg'; zplugin light b4b4r07/ssh-keyreg
-zplugin ice as'program' pick'bin/gomi'; zplugin light b4b4r07/zsh-gomi
+
+zplugin ice from'gh-r' as'program' mv'direnv* -> direnv' atload'eval "$(direnv hook zsh)"'
+zplugin light direnv/direnv
+
+zplugin ice as'program' pick'bin/fzf-tmux' src'shell/key-bindings.zsh'
+zplugin light junegunn/fzf
+
+zplugin ice from'gh-r' as'program'; zplugin light junegunn/fzf-bin
 zplugin ice as'program' pick'*shrc'; zplugin light Russell91/sshrc
 
 
@@ -79,17 +86,25 @@ zplugin snippet OMZ::plugins/yarn/yarn.plugin.zsh
 zplugin ice svn; zplugin snippet OMZ::plugins/react-native
 
 # docker
-zplugin ice wait''
-zplugin snippet https://raw.githubusercontent.com/docker/docker-ce/master/components/cli/contrib/completion/zsh/_docker
-# docker-compose
-zplugin ice wait''
-zplugin snippet https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose
+() {
+  if [[ "$OSTYPE" != darwin* ]]; then
+    return
+  fi
+
+  for candidate in \
+    '/Applications/Docker.app' \
+    "${HOME}/Applications/Docker.app"
+  do
+    if [[ -d "$candidate" ]]; then
+      zplugin ice wait''
+      zplugin snippet '${candidate}/Contents/Resources/etc/docker.zsh-completion'
+      break
+    fi
+  done
+}
 
 # jsforce
 zplugin ice pick'' wait''; zplugin light jsforce/jsforce-zsh-completions
-
-# salesforce-cli-zsh-completion
-zplugin ice pick'' wait''; zplugin light wadewegner/salesforce-cli-zsh-completion
 
 
 ## ZSH theme
