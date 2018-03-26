@@ -19,6 +19,7 @@ brew "git", args: ['with-subversion']
 brew "global", args: ['with-ctags']
 brew "gnu-sed"
 brew "gnu-tar"
+brew "goenv"
 brew "grep"
 brew "gzip"
 brew "haskell-stack"
