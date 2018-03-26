@@ -18,6 +18,10 @@
   depth = 1
 	path = spacemacs.d/layers/spacemacs-kotlin
 	url = https://github.com/sei40kr/spacemacs-kotlin.git
+[submodule "spacemacs"]
+	path = emacs.d
+	url = https://github.com/syl20bnr/spacemacs.git
+	branch = develop
 [submodule "spacemacs-quickrun"]
   branch = master
   depth = 1
