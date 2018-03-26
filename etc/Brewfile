@@ -11,7 +11,6 @@ brew "diffutils"
 brew "diff-so-fancy"
 brew "findutils"
 brew "flawfinder"
-brew "fzf"
 brew "gawk"
 brew "gcc", args: ['without-fortran']
 brew "ghq"
