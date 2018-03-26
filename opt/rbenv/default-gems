@@ -1,0 +1,11 @@
+bundler
+circle-cli
+fastri
+mdl
+pry
+pry-coolline
+pry-doc
+rake
+rcodetools
+rubocop
+travis
