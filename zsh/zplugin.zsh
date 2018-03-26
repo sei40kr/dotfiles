@@ -116,7 +116,6 @@ zplugin light sindresorhus/pure
 ## ZSH enhancements
 
 zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
-zplugin snippet OMZ::plugins/dotenv/dotenv.plugin.zsh
 
 export ENHANCD_FILTER="fzf --height 50% --reverse"
 export ENHANCD_DOT_SHOW_FULLPATH=1
