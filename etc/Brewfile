@@ -24,6 +24,7 @@ brew "grep"
 brew "gzip"
 brew "haskell-stack"
 brew "jq"
+brew "lesspipe", args: ['with-syntax-highlighting']
 brew "llvm", args: ['with-glibc', 'with-libcxx', 'with-lldb', 'with-toolchain']
 brew "nvm"
 brew "pandoc"
