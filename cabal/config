@@ -25,18 +25,18 @@ repository hackage.haskell.org
 -- ignore-expiry: False
 -- http-transport:
 -- nix: False
-remote-repo-cache: /home/sei40kr/.cabal/packages
+remote-repo-cache: $HOME/.cabal/packages
 -- local-repo:
--- logs-dir: /home/sei40kr/.cabal/logs
-world-file: /home/sei40kr/.cabal/world
+-- logs-dir: $HOME/.cabal/logs
+world-file: $HOME/.cabal/world
 -- store-dir:
 -- verbose: 1
 -- compiler: ghc
 -- cabal-file:
 -- with-compiler:
 -- with-hc-pkg:
--- program-prefix: 
--- program-suffix: 
+-- program-prefix:
+-- program-suffix:
 -- library-vanilla: True
 -- library-profiling:
 -- shared:
@@ -60,7 +60,7 @@ world-file: /home/sei40kr/.cabal/world
 -- cid:
 -- extra-lib-dirs:
 -- extra-framework-dirs:
-extra-prog-path: /home/sei40kr/.cabal/bin
+extra-prog-path: $HOME/.cabal/bin
 -- instantiate-with:
 -- tests: False
 -- coverage: False
@@ -89,7 +89,7 @@ extra-prog-path: /home/sei40kr/.cabal/bin
 -- index-state:
 -- root-cmd:
 -- symlink-bindir:
-build-summary: /home/sei40kr/.cabal/logs/build.log
+build-summary: $HOME/.cabal/logs/build.log
 -- build-log:
 remote-build-reporting: anonymous
 -- report-planning-failure: False
@@ -122,7 +122,7 @@ haddock
   -- contents-location:
 
 install-dirs user
-  -- prefix: /home/sei40kr/.cabal
+  -- prefix: $HOME/.cabal
   -- bindir: $prefix/bin
   -- libdir: $prefix/lib
   -- libsubdir: $abi/$libname
