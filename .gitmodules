@@ -33,6 +33,10 @@
   depth = 1
 	path = tmux/plugins/tmux-simple
 	url = https://github.com/sei40kr/tmux-simple.git
+[submodule "zplugin"]
+	path = zsh/.zplugin/bin
+	url = https://github.com/zdharma/zplugin.git
+	branch = master
 [submodule "zsh-better-run-help"]
   branch = master
   depth = 1
