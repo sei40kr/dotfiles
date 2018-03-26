@@ -97,7 +97,7 @@ zplugin ice svn; zplugin snippet OMZ::plugins/react-native
   do
     if [[ -d "$candidate" ]]; then
       zplugin ice wait''
-      zplugin snippet '${candidate}/Contents/Resources/etc/docker.zsh-completion'
+      zplugin snippet "${candidate}/Contents/Resources/etc/docker.zsh-completion"
       break
     fi
   done
