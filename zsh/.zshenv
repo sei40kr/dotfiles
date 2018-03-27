@@ -75,7 +75,7 @@ if [[ -n "$BREW_PREFIX" ]]; then
   if [[ -x "${BREW_PREFIX}/opt/goenv/bin/goenv" ]]; then
     export GOENV_ROOT="${BREW_PREFIX}/opt/goenv"
     export GOPATH="${HOME}/.go"
-    path=( "${GOENV_ROOT}/shims" "${GOPATH}/bin" $path )
+    path=( "${GOENV_ROOT}/bin" "${GOENV_ROOT}/shims" "${GOPATH}/bin" $path )
   fi
 
   # nvm
@@ -87,13 +87,13 @@ if [[ -n "$BREW_PREFIX" ]]; then
   # pyenv
   if [[ -x "${BREW_PREFIX}/opt/pyenv/bin/pyenv" ]]; then
     export PYENV_ROOT="${BREW_PREFIX}/opt/pyenv"
-    path=( "${PYENV_ROOT}/shims" $path )
+    path=( "${PYENV_ROOT}/bin" "${PYENV_ROOT}/shims" $path )
   fi
 
   # rbenv
   if [[ -x "${BREW_PREFIX}/opt/rbenv/bin/rbenv" ]]; then
     export RBENV_ROOT="${BREW_PREFIX}/opt/rbenv"
-    path=( "${RBENV_ROOT}/shims" $path )
+    path=( "${RBENV_ROOT}/bin" "${RBENV_ROOT}/shims" $path )
   fi
 
   # xdg
