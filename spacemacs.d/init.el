@@ -80,7 +80,9 @@ values."
        purescript
        (python :variables
          python-backend 'lsp
-         python-test-runner '(pytest nose))
+         python-enable-yapf-format-on-save t
+         python-test-runner 'pytest
+         python-sort-imports-on-save t)
        (ruby :variables
          ruby-enable-enh-ruby-mode t
          ruby-version-manager 'rbenv)
