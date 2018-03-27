@@ -81,7 +81,9 @@ values."
        (python :variables
          python-backend 'lsp
          python-test-runner '(pytest nose))
-       ruby
+       (ruby :variables
+         ruby-enable-enh-ruby-mode t
+         ruby-version-manager 'rbenv)
        (scala :variables
          scala-use-java-doc-style t
          scala-auto-insert-asterisk-in-comments t)
