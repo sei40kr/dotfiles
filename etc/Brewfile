@@ -15,7 +15,6 @@ brew "docker-compose", args: ['without-docker', 'without-docker-machine']
 brew "findutils"
 brew "flawfinder"
 brew "gawk"
-brew "gcc", args: ['without-fortran']
 brew "ghq"
 brew "git", args: ['with-subversion']
 brew "global", args: ['with-ctags']
