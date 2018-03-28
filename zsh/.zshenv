@@ -71,6 +71,11 @@ if [[ -n "$BREW_PREFIX" ]]; then
     path=( "${BREW_PREFIX}/opt/llvm/bin" $path )
   fi
 
+  # cabal
+  if [[ -x "${BREW_PREFIX}/bin/cabal" ]]; then
+    path=( "${HOME}/.cabal/bin" $path )
+  fi
+
   # goenv
   if [[ -x "${BREW_PREFIX}/opt/goenv/bin/goenv" ]]; then
     export GOENV_ROOT="${BREW_PREFIX}/opt/goenv"
