@@ -44,6 +44,14 @@ path=( "${HOME}/.local/bin" $path )
 fpath=( "${ZDOTDIR}"/{completions,functions} $fpath )
 
 () {
+  for candidate in '/usr/share/man' '/usr/local/share/man' '/usr/local/man'; do
+    if [[ -d "$candidate" ]]; then
+      manpath=( "$candidate" $manpath )
+    fi
+  done
+}
+
+() {
   for candidate in '/usr/local' '/home/linuxbrew/.linuxbrew' "${HOME}/.linuxbrew"; do
     if [[ -x "${candidate}/bin/brew" ]]; then
       export BREW_PREFIX="$candidate"
