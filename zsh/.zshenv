@@ -76,11 +76,6 @@ if [[ -n "$BREW_PREFIX" ]]; then
     path=( "${HOME}/.cabal/bin" $path )
   fi
 
-  # ghc@8.2
-  if [[ -x "${BREW_PREFIX}/opt/ghc@8.2/bin/ghc" ]]; then
-    path=( "${BREW_PREFIX}/opt/ghc@8.2/bin" $path )
-  fi
-
   # goenv
   if [[ -x "${BREW_PREFIX}/opt/goenv/bin/goenv" ]]; then
     export GOENV_ROOT="${BREW_PREFIX}/opt/goenv"
