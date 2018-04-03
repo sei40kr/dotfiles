@@ -1,0 +1,3 @@
+#!/bin/sh
+
+feh --bg-fill "${HOME}/.local/share/backgrounds/arch-linux.jpg" --no-fehbg

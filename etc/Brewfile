@@ -3,7 +3,6 @@ tap "homebrew/core"
 tap "homebrew/services"
 tap "jawshooah/pyenv"
 tap "thoughtbot/formulae"
-brew "the_silver_searcher"
 brew "autoconf"
 brew "colordiff"
 brew "coreutils"
@@ -15,7 +14,6 @@ brew "docker-compose", args: ['without-docker', 'without-docker-machine']
 brew "findutils"
 brew "flawfinder"
 brew "gawk"
-brew "gcc", args: ['without-fortran']
 brew "ghq"
 brew "git", args: ['with-subversion']
 brew "global", args: ['with-ctags']
@@ -24,7 +22,6 @@ brew "gnu-tar"
 brew "goenv"
 brew "grep"
 brew "gzip"
-brew "haskell-stack"
 brew "jq"
 brew "lesspipe", args: ['with-syntax-highlighting']
 brew "llvm", args: ['with-glibc', 'with-libcxx', 'with-lldb', 'with-toolchain']
@@ -45,6 +42,7 @@ brew "scalastyle"
 brew "shellcheck"
 brew "shfmt"
 brew "spotbugs"
+brew "the_silver_searcher"
 brew "tldr"
 brew "tmux"
 brew "unzip"

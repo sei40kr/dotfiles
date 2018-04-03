@@ -44,6 +44,14 @@ path=( "${HOME}/.local/bin" $path )
 fpath=( "${ZDOTDIR}"/{completions,functions} $fpath )
 
 () {
+  for candidate in '/usr/share/man' '/usr/local/share/man' '/usr/local/man'; do
+    if [[ -d "$candidate" ]]; then
+      manpath=( "$candidate" $manpath )
+    fi
+  done
+}
+
+() {
   for candidate in '/usr/local' '/home/linuxbrew/.linuxbrew' "${HOME}/.linuxbrew"; do
     if [[ -x "${candidate}/bin/brew" ]]; then
       export BREW_PREFIX="$candidate"
@@ -69,6 +77,11 @@ if [[ -n "$BREW_PREFIX" ]]; then
     export LDFLAGS="-L${LD_LIBRARY_PATH} -Wl,-rpath,${LD_LIBRARY_PATH}"
     export CPPFLAGS="-I${BREW_PREFIX}/opt/llvm/include"
     path=( "${BREW_PREFIX}/opt/llvm/bin" $path )
+  fi
+
+  # cabal
+  if [[ -x "${BREW_PREFIX}/bin/cabal" ]]; then
+    path=( "${HOME}/.cabal/bin" $path )
   fi
 
   # goenv
