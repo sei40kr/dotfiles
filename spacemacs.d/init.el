@@ -55,7 +55,6 @@ values."
        ;; Framework
        ruby-on-rails
        ;; Fun
-       games
        ;; International support
        (japanese :packages '(not avy-migemo helm-migemo-mode))
        ;; Programming and markup languages
@@ -86,6 +85,8 @@ values."
        (ruby :variables
          ruby-enable-enh-ruby-mode t
          ruby-version-manager 'rbenv)
+       (rust :variables
+         rust-format-on-save t)
        (scala :variables
          scala-use-java-doc-style t
          scala-auto-insert-asterisk-in-comments t)
