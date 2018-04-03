@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# `(file-name-nondirectory (buffer-file-name))` --- $0
+# `(file-name-nondirectory (buffer-file-name))`
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 import sys
