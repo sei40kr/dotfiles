@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name : WSP entity selector
+# key: selector
+# --
+
+export const ${1:entity}Selector = createSelector(
+  state => state.${2}.allIds,
+  state => state.$2.byId,
+  (allIds, byId) => allIds.map(id => byId[id])
+);
+$0
