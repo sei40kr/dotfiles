@@ -15,7 +15,7 @@
      evil
      evil-escape
      evil-mc
-     evil-path-from-shell
+     exec-path-from-shell
      linum
      linum-relative
      neotree
