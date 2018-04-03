@@ -170,7 +170,8 @@ values."
        better-lsp
        spacemacs-kotlin
        spacemacs-quickrun
-       spacemacs-salesforce)
+       spacemacs-salesforce
+       custom)
 
     ;; List of additional packages that will be installed without being
     ;; wrapped in a layer. If you need some configuration for these
@@ -501,24 +502,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;;; Plugins
 
-  ;; avy
-  (setq avy-timeout-seconds 0.0)
-
-  ;; evil
-  (setq
-    evil-want-C-i-jump t
-    evil-want-C-u-scroll t
-    evil-toggle-key "")
-
-  ;; evil-escape
-  (setq evil-escape-key-sequence "jk")
-
-  ;; evil-mc
-  (setq evil-mc-one-cursor-show-mode-line-text nil)
-
-  ;; exec-path-from-shell
-  (setq exec-path-from-shell-arguments '("-l"))
-
   ;; flycheck
   (setq
     flycheck-disabled-checkers
@@ -529,12 +512,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
        scss-lint
        sass/scss-sass-lint
        xml-xmlstarlet))
-
-  ;; linum
-  (setq linum-delay t)
-
-  ;; linum-relative
-  (setq linum-relative-format " %3s ")
 
   ;; magit
   (setq
@@ -549,21 +526,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
        ("Version" 25 magit-repolist-column-version nil)
        ("Path" 99 magit-repolist-column-path nil)))
 
-  ;; neotree
-  (setq
-    neo-smart-open t
-    neo-theme 'arrow)
-
-  ;; projectile
-  (setq
-    projectile-create-missing-test-files t
-    projectile-enable-caching t
-    projectile-find-dir-includes-top-level t
-    projectile-git-submodule-command nil
-    projectile-ignored-project-function 'file-remote-p
-    projectile-switch-project-action 'projectile-commander
-    projectile-use-git-grep t)
-
   ;; semantic
   (require 'mode-local)
   (setq-mode-local emacs-lisp-mode semanticdb-find-default-throttle
@@ -572,15 +534,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
        local
        project
        unloaded
-       system))
-
-  ;; spacemacs-theme
-  (setq spacemacs-theme-comment-italic t)
-
-  ;; yatemplate
-  (setq
-    yatemplate-dir "~/.spacemacs.d/templates"
-    yatemplate-separator "_"))
+       system)))
 
 
 (defun dotspacemacs/user-config ()
