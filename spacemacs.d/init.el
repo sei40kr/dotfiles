@@ -178,6 +178,10 @@ values."
     ;; configuration in `dotspacemacs/user-config'.
     dotspacemacs-additional-packages
     '(
+       evil-tutor-ja
+       mozc
+       mozc-im
+       mozc-popup
        yatemplate)
 
     ;; A list of packages that cannot be updated.
