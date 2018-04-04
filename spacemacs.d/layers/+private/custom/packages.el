@@ -28,6 +28,7 @@
      (mozc
        :requires mozc-popup
        :toggle (spacemacs//mozc-detect))
+     (mozc-mode-line-indicator :location local)
      mozc-popup
      neotree
      projectile
@@ -127,6 +128,9 @@
       (setq default-input-method "japanese-mozc"))
     :config
     (evil-global-set-key 'insert (kbd "C-j") 'toggle-input-method)))
+
+(defun custom/init-mozc-mode-line-indicator ()
+  (use-package mozc-mode-line-indicator))
 
 (defun custom/init-mozc-popup ()
   (use-package mozc-popup
