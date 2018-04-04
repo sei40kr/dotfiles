@@ -25,9 +25,14 @@
      linum
      linum-relative
      magit
+     (mozc
+       :requires mozc-popup
+       :toggle (spacemacs//mozc-detect))
+     mozc-popup
      neotree
      projectile
      semantic
+     spaceline
      spacemacs-theme
      yatemplate))
 
@@ -114,6 +119,21 @@
        ("Version" 25 magit-repolist-column-version nil)
        ("Path" 99 magit-repolist-column-path nil))))
 
+(defun custom/init-mozc ()
+  (use-package mozc
+    :init
+    (progn
+      (set-language-environment "japanese")
+      (setq default-input-method "japanese-mozc"))
+    :config
+    (evil-global-set-key 'insert (kbd "C-j") 'toggle-input-method)))
+
+(defun custom/init-mozc-popup ()
+  (use-package mozc-popup
+    :defer t
+    :init
+    (setq mozc-candidate-style 'popup)))
+
 (defun custom/post-init-neotree ()
   (setq
     neo-smart-open t
@@ -133,6 +153,9 @@
   (require 'mode-local)
   (setq-mode-local emacs-lisp-mode
     semanticdb-find-default-throttle '(file local project unloaded system)))
+
+(defun custom/post-init-spaceline ()
+  (setq spaceline-show-default-input-method t))
 
 (defun custom/post-init-spacemacs-theme ()
   (setq spacemacs-theme-comment-italic t))
