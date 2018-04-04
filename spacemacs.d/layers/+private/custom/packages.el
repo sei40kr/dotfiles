@@ -12,6 +12,7 @@
 (setq custom-packages
   '(
      avy
+     company
      evil
      evil-escape
      evil-mc
@@ -34,6 +35,13 @@
 (defun custom/post-init-avy ()
   (setq avy-timeout-seconds 0.0))
 
+(defun custom/post-init-company ()
+  ;; Fix the behaviors of C-h, C-w on auto-completing.
+  ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
+  (with-eval-after-load 'company
+    (define-key company-active-map (kbd "C-h") 'delete-backward-char)
+    (define-key company-active-map (kbd "C-w") 'backward-kill-word)))
+
 (defun custom/post-init-evil ()
   (setq
     evil-want-C-i-jump t
@@ -53,11 +61,7 @@
     (evil-define-key 'normal evil-mc-key-map
       (kbd "C-p") nil
       (kbd "C-t") nil
-      (kbd "<escape>") 'evil-mc-undo-all-cursors)
-    (evil-define-key 'visual evil-mc-key-map
-      (kbd "C-n") 'evil-mc-make-and-goto-next-match
-      (kbd "C-p") 'evil-mc-make-and-goto-prev-match
-      (kbd "C-t") 'evil-mc-skip-and-goto-next-match)))
+      (kbd "<escape>") 'evil-mc-undo-all-cursors)))
 
 (defun custom/post-init-evil-surround ()
   (eval-after-load 'evil-surround
@@ -78,11 +82,13 @@
   (evil-global-set-key 'visual (kbd "V") 'er/contract-region))
 
 (defun custom/post-init-helm ()
-  (eval-after-load 'helm
-    (with-eval-after-load 'evil
-      ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
-      (define-key helm-map (kbd "C-h") nil)
-      (define-key helm-map (kbd "C-w") nil))))
+  ;; Fix the behaviors of C-h, C-w in helm.
+  ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
+  (with-eval-after-load 'helm
+    (define-key helm-map (kbd "C-h") 'delete-backward-char)
+    (define-key helm-map (kbd "C-w") 'backward-kill-word)
+    (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
+    (define-key helm-find-files-map (kbd "C-w") 'backward-kill-word)))
 
 (defun custom/post-init-linum ()
   (setq linum-delay t))
@@ -122,8 +128,8 @@
 
 (defun custom/post-init-semantic ()
   (require 'mode-local)
-  (setq-mode-local emacs-lisp-mode semanticdb-find-default-throttle
-    '(file local project unloaded system)))
+  (setq-mode-local emacs-lisp-mode
+    semanticdb-find-default-throttle '(file local project unloaded system)))
 
 (defun custom/post-init-spacemacs-theme ()
   (setq spacemacs-theme-comment-italic t))
