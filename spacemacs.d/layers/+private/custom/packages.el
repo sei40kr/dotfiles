@@ -32,22 +32,22 @@
 (setq custom-excluded-packages '())
 
 (defun custom/post-init-avy ()
-  (custom-set-variables '(avy-timeout-seconds 0.0)))
+  (setq avy-timeout-seconds 0.0))
 
 (defun custom/post-init-evil ()
-  (custom-set-variables
-    '(evil-want-C-i-jump t)
-    '(evil-want-C-u-scroll t)
-    '(evil-toggle-key ""))
+  (setq
+    evil-want-C-i-jump t
+    evil-want-C-u-scroll t
+    evil-toggle-key "")
   (with-eval-after-load 'evil
     (evil-global-set-key 'normal (kbd "C-s") 'save-buffer)
     (evil-global-set-key 'insert (kbd "C-h") 'evil-delete-backward-char)))
 
 (defun custom/post-init-evil-escape ()
-  (custom-set-variables '(evil-escape-key-sequence "jk")))
+  (setq evil-escape-key-sequence "jk"))
 
 (defun custom/post-init-evil-mc ()
-  (custom-set-variables '(evil-mc-one-cursor-show-mode-line-text nil))
+  (setq evil-mc-one-cursor-show-mode-line-text nil)
   (with-eval-after-load 'evil-mc
     (global-evil-mc-mode +1)
     (evil-define-key 'normal evil-mc-key-map
@@ -69,9 +69,9 @@
   (use-package evil-tutor-ja :defer t))
 
 (defun custom/pre-init-exec-path-from-shell ()
-  (custom-set-variables
-    '(exec-path-from-shell-arguments '("-l"))
-    '(exec-path-from-shell-check-startup-files nil)))
+  (setq
+    exec-path-from-shell-arguments '("-l")
+    exec-path-from-shell-check-startup-files nil))
 
 (defun custom/post-init-expand-region ()
   (evil-global-set-key 'visual (kbd "v") 'er/expand-region)
@@ -85,34 +85,34 @@
       (define-key helm-map (kbd "C-w") nil))))
 
 (defun custom/post-init-linum ()
-  (custom-set-variables '(linum-delay t)))
+  (setq linum-delay t))
 
 (defun custom/post-init-linum-relative ()
-  (custom-set-variables '(linum-relative-format " %3s ")))
+  (setq linum-relative-format " %3s "))
 
 (defun custom/post-init-magit ()
-  (custom-set-variables
-    '(magit-refresh-status-buffer nil)
-    '(magit-repository-directories
+  (setq
+    magit-refresh-status-buffer nil
+    magit-repository-directories
        (if (spacemacs/system-is-mac)
          '(("~/dotfiles" . 5) ("~/Develop" . 3))
-         '(("~/dotfiles" . 5) ("~/dev/ws" . 3))))
-    '(magit-repolist-columns
+         '(("~/dotfiles" . 5) ("~/dev/ws" . 3)))
+    magit-repolist-columns
        '(
           ("Name" 25 magit-repolist-column-ident nil)
           ("Version" 25 magit-repolist-column-version nil)
-          ("Path" 99 magit-repolist-column-path nil)))))
+          ("Path" 99 magit-repolist-column-path nil))))
 
 (defun custom/post-init-neotree ()
-  (custom-set-variables
-    '(neo-smart-open t)
-    '(neo-theme 'arrow)))
+  (setq
+    neo-smart-open t
+    neo-theme 'arrow))
 
 (defun custom/post-init-projectile ()
-  (custom-set-variables
-    '(projectile-find-dir-includes-top-level t)
-    '(projectile-git-submodule-command nil)
-    '(projectile-use-git-grep t))
+  (setq
+    projectile-find-dir-includes-top-level t
+    projectile-git-submodule-command nil
+    projectile-use-git-grep t)
   (with-eval-after-load 'projectile
     (require 'magit)
     (mapc 'projectile-add-known-project
@@ -126,11 +126,11 @@
     '(file local project unloaded system)))
 
 (defun custom/post-init-spacemacs-theme ()
-  (custom-set-variables '(spacemacs-theme-comment-italic t)))
+  (setq spacemacs-theme-comment-italic t))
 
 (defun custom/post-init-yatemplate ()
-  (custom-set-variables
-    '(yatemplate-dir (expand-file-name "templates" dotspacemacs-directory))
-    '(yatemplate-separator "_"))
+  (setq
+    yatemplate-dir (expand-file-name "templates" dotspacemacs-directory)
+    yatemplate-separator "_")
   (auto-insert-mode t)
   (eval-after-load 'yatemplate (yatemplate-fill-alist)))
