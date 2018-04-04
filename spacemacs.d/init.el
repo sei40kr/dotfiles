@@ -178,12 +178,7 @@ values."
     ;; packages, then consider creating a layer. You can also put the
     ;; configuration in `dotspacemacs/user-config'.
     dotspacemacs-additional-packages
-    '(
-       evil-tutor-ja
-       mozc
-       mozc-im
-       mozc-popup
-       yatemplate)
+    '()
 
     ;; A list of packages that cannot be updated.
     dotspacemacs-frozen-packages '()
@@ -282,17 +277,11 @@ values."
     dotspacemacs-colorize-cursor-according-to-state t
     ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
     ;; quickly tweak the mode-line size to make separators look not too crappy.
-    dotspacemacs-default-font (if (eq system-type 'darwin)
-                                '("MesloLGM Nerd Font Mono"
-                                   :size 18
-                                   :weight normal
-                                   :width normal
-                                   :powerline-scale 1.1)
-                                '("UbuntuMono Nerd Font Mono"
-                                   :size 20
-                                   :weight normal
-                                   :width normal
-                                   :powerline-scale 1.1))
+    dotspacemacs-default-font '("FantasqueSansMono Nerd Font Mono"
+                                 :size 20
+                                 :weight normal
+                                 :width normal
+                                 :powerline-scale 1.1)
     ;; The leader key
     dotspacemacs-leader-key "SPC"
     ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -511,30 +500,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
        ruby-jruby
        scss-lint
        sass/scss-sass-lint
-       xml-xmlstarlet))
-
-  ;; magit
-  (setq
-    magit-refresh-status-buffer nil
-    magit-repository-directories
-    (if (eq system-type 'darwin)
-      '(("~/dotfiles" . 5) ("~/Develop" . 3))
-      '(("~/dotfiles" . 5) ("~/dev/ws" . 3)))
-    magit-repolist-columns
-    '(
-       ("Name" 25 magit-repolist-column-ident nil)
-       ("Version" 25 magit-repolist-column-version nil)
-       ("Path" 99 magit-repolist-column-path nil)))
-
-  ;; semantic
-  (require 'mode-local)
-  (setq-mode-local emacs-lisp-mode semanticdb-find-default-throttle
-    '(
-       file
-       local
-       project
-       unloaded
-       system)))
+       xml-xmlstarlet)))
 
 
 (defun dotspacemacs/user-config ()
@@ -553,46 +519,4 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; company
   ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
   ;; (define-key company-active-map (kbd "C-w") 'evil-delete-backward-word)
-
-  ;; evil
-  (evil-global-set-key 'normal (kbd "C-p") 'projectile-find-file)
-  (evil-global-set-key 'normal (kbd "C-s") 'save-buffer)
-  (evil-global-set-key 'insert (kbd "C-h") 'evil-delete-backward-char)
-
-  ;; evil-mc
-  (global-evil-mc-mode +1)
-  (evil-define-key 'normal evil-mc-key-map (kbd "C-p") nil)
-  (evil-define-key 'normal evil-mc-key-map (kbd "C-t") nil)
-  (define-key evil-mc-key-map (kbd "C-g") 'evil-mc-undo-all-cursors)
-  (evil-global-set-key 'visual (kbd "C-n") 'evil-mc-make-and-goto-next-match)
-  (evil-global-set-key 'visual (kbd "C-p") 'evil-mc-make-and-goto-prev-match)
-  (evil-global-set-key 'visual (kbd "C-t") 'evil-mc-skip-and-goto-next-match)
-  (eval-after-load 'evil-mc
-    (evil-define-key 'normal evil-mc-key-map
-      (kbd "<escape>") 'evil-mc-undo-all-cursors))
-
-  ;; evil-surround
-  (evil-define-key 'visual evil-surround-mode-map
-    (kbd "s") 'evil-substitute
-    (kbd "S") 'evil-surround-region)
-
-  ;; expand-region
-  (evil-global-set-key 'visual (kbd "v") 'er/expand-region)
-  (evil-global-set-key 'visual (kbd "V") 'er/contract-region)
-
-  ;; helm
-  (with-eval-after-load 'helm
-    (define-key helm-map (kbd "C-h") 'evil-delete-backward-char)
-    ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
-    (define-key helm-map (kbd "C-w") 'evil-delete-backward-word))
-
-  ;; projectile
-  (with-eval-after-load 'projectile
-    (require 'magit)
-    (mapc 'projectile-add-known-project
-      (mapcar 'file-name-as-directory (magit-list-repos))))
-
-  ;; yatemplate
-  (auto-insert-mode t)
-  (eval-after-load 'yatemplate
-    (yatemplate-fill-alist)))
+  )
