@@ -479,44 +479,26 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 
-
-  ;;; Emacs
-
   (setq
     auto-insert-query nil
     auto-save-default nil
     backup-inhibited t
     create-lockfiles nil)
 
-
-  ;;; Plugins
-
-  ;; flycheck
   (setq
-    flycheck-disabled-checkers
-    '(
-       json-python-json
-       markdown-markdownlint-cli
-       ruby-jruby
-       scss-lint
-       sass/scss-sass-lint
-       xml-xmlstarlet)))
+    browse-url-browser-function 'browse-url-generic
+    browse-url-generic-program "google-chrome"))
 
 
 (defun dotspacemacs/user-config ()
   (when (file-exists-p custom-file) (load-file custom-file))
 
-
   (spacemacs/toggle-fill-column-indicator-on)
   (spacemacs/toggle-golden-ratio-on)
   (spacemacs/toggle-whitespace-cleanup-on)
 
-  ;; https://medium.com/@bobbypriambodo/blazingly-fast-spacemacs-with-persistent-server-92260f2118b7
+  ;; Keep the persistent server after the frame killed.
+  ;; cf https://medium.com/@bobbypriambodo/blazingly-fast-spacemacs-with-persistent-server-92260f2118b7
   (evil-leader/set-key "q q" 'spacemacs/frame-killer)
 
-  (spacemacs|do-after-display-system-init (spacemacs-modeline/init-spaceline))
-
-  ;; company
-  ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
-  ;; (define-key company-active-map (kbd "C-w") 'evil-delete-backward-word)
-  )
+  (spacemacs|do-after-display-system-init (spacemacs-modeline/init-spaceline)))
