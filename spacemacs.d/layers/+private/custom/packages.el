@@ -21,6 +21,7 @@
      exec-path-from-shell
      expand-region
      helm
+     helm-projectile
      linum
      linum-relative
      magit
@@ -90,6 +91,10 @@
     (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
     (define-key helm-find-files-map (kbd "C-w") 'backward-kill-word)))
 
+(defun custom/post-init-helm-projectile ()
+  (eval-after-load 'helm-projectile
+    (evil-global-set-key 'normal (kbd "C-p") 'helm-projectile-find-file)))
+
 (defun custom/post-init-linum ()
   (setq linum-delay t))
 
@@ -100,14 +105,14 @@
   (setq
     magit-refresh-status-buffer nil
     magit-repository-directories
-       (if (spacemacs/system-is-mac)
-         '(("~/dotfiles" . 5) ("~/Develop" . 3))
-         '(("~/dotfiles" . 5) ("~/dev/ws" . 3)))
+    (if (spacemacs/system-is-mac)
+      '(("~/dotfiles" . 5) ("~/Develop" . 3))
+      '(("~/dotfiles" . 5) ("~/dev/ws" . 3)))
     magit-repolist-columns
-       '(
-          ("Name" 25 magit-repolist-column-ident nil)
-          ("Version" 25 magit-repolist-column-version nil)
-          ("Path" 99 magit-repolist-column-path nil))))
+    '(
+       ("Name" 25 magit-repolist-column-ident nil)
+       ("Version" 25 magit-repolist-column-version nil)
+       ("Path" 99 magit-repolist-column-path nil))))
 
 (defun custom/post-init-neotree ()
   (setq
@@ -122,9 +127,7 @@
   (with-eval-after-load 'projectile
     (require 'magit)
     (mapc 'projectile-add-known-project
-      (mapcar 'file-name-as-directory (magit-list-repos)))
-    (eval-after-load 'evil
-      (evil-global-set-key 'normal (kbd "C-p") 'projectile-find-file))))
+      (mapcar 'file-name-as-directory (magit-list-repos)))))
 
 (defun custom/post-init-semantic ()
   (require 'mode-local)
