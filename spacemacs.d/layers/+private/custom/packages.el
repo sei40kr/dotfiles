@@ -62,7 +62,7 @@
   (custom-set-variables
     '(projectile-find-dir-includes-top-level t)
     '(projectile-git-submodule-command nil)
-    '(projectile-switch-project-action 'projectile-commander)
+    ;; '(projectile-switch-project-action 'projectile-commander)
     '(projectile-use-git-grep t)))
 
 (defun custom/post-init-spacemacs-theme ()
