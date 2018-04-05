@@ -12,10 +12,22 @@
 (setq wsp-packages
   '(
      confluence
+     jenkins
      org-jira))
 
-(defun wsp/pre-init-confluence ()
+(defun wsp/post-init-confluence ()
   (setq confluence-url "https://teamspiritdev.atlassian.net/wiki/rpc/xmlrpc"))
 
-(defun wsp/pre-init-org-jira ()
+(defun wsp/init-jenkins ()
+  (use-package jenkins
+    :commands jenkins
+    :init
+    (progn
+      (setq
+        ;; TODO Set the Jenkins URL
+        jenkins-url ""
+        jenkins-username "sei.yongju")
+      (spacemacs/set-leader-keys "aJ" 'jenkins))))
+
+(defun wsp/post-init-org-jira ()
   (setq jiralib-url "https://teamspiritdev.atlassian.net"))
