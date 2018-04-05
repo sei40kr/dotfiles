@@ -141,16 +141,16 @@
 (defun custom/post-init-neotree ()
   (setq
     neo-smart-open t
-    neo-theme 'arrow))
+    neo-theme 'arrow)
+  (eval-after-load 'neotree
+    (if (and (eq system-type 'gnu/linux) (executable-find "xdg-open"))
+      (define-key neotree-mode-map (kbd "o") nil))
+    (setq projectile-switch-project-action 'neotree-projectile-action)))
 
 (defun custom/post-init-projectile ()
   (setq
     projectile-find-dir-includes-top-level t
     projectile-git-submodule-command nil
-    projectile-switch-project-action
-    '(lambda ()
-       (require 'neotree)
-       (neotree-projectile-action))
     projectile-use-git-grep t)
   (with-eval-after-load 'projectile
     (require 'magit)
