@@ -46,3 +46,7 @@
 	path = dotsync
 	url = git@github.com:dotphiles/dotsync.git
 	branch = master
+[submodule "dotphiles"]
+	path = dotphiles
+	url = https://github.com/dotphiles/dotphiles.git
+	branch = master

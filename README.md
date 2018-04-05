@@ -7,18 +7,38 @@
 
 - [dotfiles](#dotfiles)
     - [Installation](#installation)
+    - [Setup the computer](#setup-the-computer)
         - [Terminal emulator](#terminal-emulator)
         - [Add SSH key to GitHub account](#add-ssh-key-to-github-account)
         - [Clone dotfiles](#clone-dotfiles)
         - [Set up CLI environments](#set-up-cli-environments)
-        - [Haskell IDE Engine](#haskell-ide-engine)
-        - [Install fonts](#install-fonts)
-        - [Install GUI applications](#install-gui-applications)
+- [Install Homebrew (macOS only)](#install-homebrew-macos-only)
+- [Install Homebrew/Linuxbrew packages](#install-homebrewlinuxbrew-packages)
+- [Install Emacs and reattach-to-user-namespace (macOS only)](#install-emacs-and-reattach-to-user-namespace-macos-only)
+    - [-](#-)
+    - [Install fonts](#install-fonts)
+    - [Install GUI applications](#install-gui-applications)
     - [TODO](#todo)
 
 <!-- markdown-toc end -->
 
 ## Installation
+
+## Setup the computer
+
+1. dotsync works only on specified hosts. You should change the hostname at first.
+
+```session
+$ # eg
+$ sudo hostname sei40kr-home
+```
+
+1. Run dotsync
+
+```session
+$ # In dotfiles
+$ DOTSYNCRC=dotsyncrc ./dotsync/bin/dotsync -L
+```
 
 ### Terminal emulator
 
