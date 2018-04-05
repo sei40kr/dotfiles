@@ -16,7 +16,7 @@ DOTFILES=dotfiles
 # dstfile will be '.$srcfile' by default (with path removed)
 #
 [files]
-clang/clang-format
+c-c++/clang-format
 dotphiles/ctags/ctags
 dotphiles/curl/curlrc
 dotphiles/git/gitattributes
@@ -44,8 +44,8 @@ git/gitconfig
 git/gitignore
 global/globalrc
 go/go-version
-node/importjs.js
-node/nvmrc
+javascript/importjs.js
+javascript/nvmrc
 python/python-version
 ripgrep/ripgreprc
 ruby/ruby-version
