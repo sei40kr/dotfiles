@@ -147,6 +147,10 @@
   (setq
     projectile-find-dir-includes-top-level t
     projectile-git-submodule-command nil
+    projectile-switch-project-action
+    '(lambda ()
+       (require 'neotree)
+       (neotree-projectile-action))
     projectile-use-git-grep t)
   (with-eval-after-load 'projectile
     (require 'magit)
