@@ -40,8 +40,7 @@ values."
        ;; Checkers
        (spell-checking :variables
          spell-checking-enable-by-default nil)
-       (syntax-checking :variables
-         syntax-checking-enable-tooltips nil)
+       syntax-checking
        ;; Completion
        (auto-completion :variables
          auto-completion-enable-snippets-in-popup t
