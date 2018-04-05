@@ -1,1 +1,30 @@
-dotphiles/.rsyncignore
+#
+# dotphiles : https://github.com/dotphiles/dotphiles
+#
+# Ignore these files when rsyncing to remote machines
+#
+
+.git/
+dotphiles/*.d/localhost
+dotphiles/aptitude/cache
+dotphiles/cmus/autosave
+dotphiles/cmus/cache
+dotphiles/cmus/*-history
+dotphiles/cmus/*.pl
+dotphiles/ssh/id*
+dotphiles/ssh/environment*
+dotphiles/ssh/known_hosts
+dotphiles/ssh/master/*
+dotphiles/gnupg/secring.gpg
+dotphiles/gnupg/sshcontrol
+dotphiles/gnupg/gpg-agent.env
+dotphiles/gnupg/private*
+dotphiles/vim/.*
+dotphiles/vim/*.swp
+dotphiles/vim/backup/
+dotphiles/mutt/cache/.*
+dotphiles/mutt/mailboxes.*
+dotphiles/mutt/smime/*
+dotphiles/mutt/certificates
+dotphiles/subversion/auth/
+dotphiles/task/*.data
