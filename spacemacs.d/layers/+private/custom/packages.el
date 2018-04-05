@@ -143,7 +143,7 @@
     neo-smart-open t
     neo-theme 'arrow)
   (with-eval-after-load 'neotree
-    (if (and (eq system-type 'gnu/linux) (executable-find "xdg-open"))
+    (unless (and (eq system-type 'gnu/linux) (executable-find "xdg-open"))
       (define-key neotree-mode-map (kbd "o") nil))
     (setq projectile-switch-project-action 'neotree-projectile-action)))
 
