@@ -1,4 +1,4 @@
-# .travis.yml --- Travis CI configuration filec
+# .travis.yml --- Travis CI configuration file
 # author: Seong Yong-ju <sei40kr@gmail.com>
 ---
 language: node_js
