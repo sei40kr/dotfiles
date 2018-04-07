@@ -17,6 +17,7 @@ DOTFILES=dotfiles
 #
 [files]
 alacritty/alacritty.yml:.config/alacritty/alacritty.yml
+bin/urxvtc-float:.local/bin/urxvtc-float
 c-c++/clang-format
 dotphiles/ctags/ctags
 dotphiles/curl/curlrc
