@@ -41,6 +41,7 @@ dotphiles/wget/wgetrc
 dotsync/bin/dotsync:.local/bin/dotsync
 dotsyncrc
 editorconfig/editorconfig
+feh/fehbg
 git/gitconfig
 git/gitignore
 global/globalrc
