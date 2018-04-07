@@ -1,3 +1,9 @@
+# config.toml --- Go package list for gotcha
+# author: Seong Yong-ju <sei40kr@gmail.com>
+#
+# gotcha is a simple tool that grabs Go packages
+# cf https://github.com/b4b4r07/gotcha
+
 repos = [
     'github.com/alecthomas/gometalinter',
     'github.com/golang/lint/golint',
