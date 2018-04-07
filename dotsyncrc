@@ -16,6 +16,7 @@ DOTFILES=dotfiles
 # dstfile will be '.$srcfile' by default (with path removed)
 #
 [files]
+alacritty/alacritty.yml:.config/alacritty/alacritty.yml
 c-c++/clang-format
 dotphiles/ctags/ctags
 dotphiles/curl/curlrc
