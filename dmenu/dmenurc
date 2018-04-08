@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# -*- mode: bash -*-
+
+# dmenurc --- Run dmenu_run with some options
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+set -euo pipefail
+IFS=$'\n\t'
+
+dmenu_run -b \
+    -i \
+    -l 15 \
+    -p '>' \
+    -fn 'MigMix 2P:pixelsize=14' \
+    -nb '#222' \
+    -nf '#fff' \
+    -sb '#08c' \
+    -sf '#fff'

@@ -1,0 +1,32 @@
+-- -*- mode: haskell -*-
+
+-- xmobarrc --- xmobar configuration file
+
+-- author: Seong Yonng-ju <sei40kr@gmail.com>
+
+Config
+  { font = "xft:MigMix 2P:pixelsize=14"
+  , additionalFonts = []
+  , bgColor = "#222222"
+  , fgColor = "#ffffff"
+  , alpha = 255
+  , position = Top
+  , textOffset = -1
+  , iconOffset = -1
+  , lowerOnStart = True
+  , hideOnStart = False
+  , allDesktops = True
+  , overrideRedirect = True
+  , pickBroadest = False
+  , persistent = True
+  , border = NoBorder
+  , iconRoot = "."
+  , commands =
+    [ Run StdinReader
+    , Run Date "%m/%d %a %H:%M" "date" 10
+    -- , Run Com "xmobar-fcitx-mode" [] "fcitx" 10
+    ]
+  , sepChar = "%"
+  , alignSep = "}{"
+  , template = "%StdinReader% }{ %date%  "
+  }

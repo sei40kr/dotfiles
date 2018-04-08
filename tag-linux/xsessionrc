@@ -1,27 +1,54 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
+# xsession --- Xfce session configuration file
+# author: Seong Yong-ju <sei40kr@gmail.com>
+#
 # cf http://beginners-guide-to-xmonad.readthedocs.io/configure_xsessionrc.html
 
-# Load resources
+# Use the Cabal packages
+typeset -gU path
+export path=( "${HOME}/.cabal/bin" $path )
+
+
+## Load resources
+
 xrdb -merge "${HOME}/.Xresources"
-xmodmap "${HOME}/.Xmodmap"
+# Set the keyboard layout to HHKB US.
+setxkbmap -model hhk -layout us
 
-# Set up an icon tray
-stalonetray &
 
-# Fire up apps
-xscreensaver -no-splash &
+## Launch daemons
 
-if [ -x '/usr/bin/urxvtd' ]; then
+# Launch urxvt daemon.
+if hash urxvtd 2>/dev/null; then
   urxvtd -f -o -q
 fi
 
-if [ -x '/usr/bin/emacs' ]; then
-  emacs --daemon
+# Launch Emacs server.
+if hash emacs 2>/dev/null; then
+  emacs --daemon &
 fi
 
-if [ -x "/usr/bin/nm-applet" ]; then
-  nm-applet --sm-disable &
+# Launch screensaver.
+if hash xscreensaver 2>/dev/null; then
+  xscreensaver -no-splash &
 fi
 
-exec dbus-launch xmonad
+
+## Launch apps
+
+# Launch feh to set the desktop wallpaper.
+if hash feh 2>/dev/null && [[ -s "${HOME}/.fehbg" ]]; then
+  "${HOME}/.fehbg"
+fi
+
+# Use dbus-launch if available
+if hash dbus-launch 2>/dev/null; then
+  if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
+    eval "$(dbus-launch --sh-syntax)"
+  fi
+
+  exec dbus-launch xmonad
+else
+  exec xmonad
+fi

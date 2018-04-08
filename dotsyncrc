@@ -18,7 +18,9 @@ DOTFILES=dotfiles
 [files]
 alacritty/alacritty.yml:.config/alacritty/alacritty.yml
 bin/urxvtc-float:.local/bin/urxvtc-float
+bin/xmobar-fcitx-mode:.local/bin/xmobar-fcitx-mode
 c-c++/clang-format
+dmenu/dmenurc
 dotphiles/ctags/ctags
 dotphiles/curl/curlrc
 dotphiles/git/gitattributes
@@ -53,6 +55,8 @@ prettier/prettierrc.js
 python/python-version
 ripgrep/ripgreprc
 ruby/ruby-version
+xmonad/xmonad.hs:.xmonad/xmonad.hs
+xmobar/xmobarrc:.config/xmobar/xmobarrc
 [endfiles]
 
 # Hosts to sync
