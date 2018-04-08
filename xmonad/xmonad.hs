@@ -61,7 +61,7 @@ myLogHook h =
     , ppTitle = xmobarColor myColorWhite "" . wrap "  " "  "
     , ppOutput = hPutStrLn h
     , ppWsSep = ""
-    , ppSep = xmobarColor myColorGray "" "|"
+    , ppSep = xmobarColor myColorGray "" " |"
     }
 
 myManageHookShift :: ManageHook
