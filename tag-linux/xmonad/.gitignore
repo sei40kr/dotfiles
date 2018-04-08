@@ -1,7 +1,0 @@
-# Ignore files created by XMonad
-# cf https://github.com/AngusP/Xmonad/blob/master/.gitignore
-xmonad-x86_64-linux
-xmonad.errors
-xmonad.hi
-xmonad.o
-xmonad.state
