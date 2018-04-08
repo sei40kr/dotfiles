@@ -21,6 +21,7 @@ autoload -Uz _zplugin
     *)
       return 1
       ;;
+  esac
 }
 
 if -should-run-tmux; then
