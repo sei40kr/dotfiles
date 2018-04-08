@@ -38,7 +38,7 @@ dotphiles/ruby/pryrc
 dotphiles/ruby/railsrc
 dotphiles/ruby/rdebugrc
 dotphiles/sqlite/sqliterc
-dotphiles/ssh
+dotphiles/ssh/config:.ssh/config
 dotphiles/subversion
 dotphiles/wget/wgetrc
 dotsync/bin/dotsync:.local/bin/dotsync
