@@ -10,7 +10,7 @@ IFS=$'\n\t'
 dmenu_run -b \
     -i \
     -l 15 \
-    -p '>' \
+    -p '' \
     -fn 'MigMix 2P:pixelsize=14' \
     -nb '#222' \
     -nf '#fff' \
