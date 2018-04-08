@@ -6,7 +6,9 @@
 
 Config
   { font = "xft:MigMix 2P:pixelsize=14"
-  , additionalFonts = []
+  , additionalFonts = [
+    "xft:mplus Nerd Font,M+ 2p:pixelsize=16"
+    ]
   , bgColor = "#222222"
   , fgColor = "#ffffff"
   , alpha = 255
@@ -23,10 +25,10 @@ Config
   , iconRoot = "."
   , commands =
     [ Run StdinReader
-    , Run Date "%m/%d %a %H:%M" "date" 10
+    , Run Date "%m/%d %a %H:%M" "datetime" 10
     -- , Run Com "xmobar-fcitx-mode" [] "fcitx" 10
     ]
   , sepChar = "%"
   , alignSep = "}{"
-  , template = "%StdinReader% }{ %date%  "
+  , template = "<fc=#ffffff,#0088cc><fn=1>    </fn></fc>   %StdinReader% }{ %datetime%   "
   }

@@ -52,16 +52,16 @@ myLogHook :: Handle -> X ()
 myLogHook h =
   dynamicLogWithPP
     xmobarPP
-    { ppOrder = \(ws:_:t:_) -> [ws, t]
-    , ppCurrent = xmobarColor myColorWhite myColorBlue . wrap "  " "  "
-    , ppUrgent = xmobarColor myColorWhite "" . wrap "  " "  "
-    , ppVisible = xmobarColor myColorBlue "" . wrap "  " "  "
-    , ppHidden = xmobarColor myColorGray "" . wrap "  " "  "
+    { ppCurrent = xmobarColor myColorWhite "" . myWorkspaceTransform
+    , ppVisible = xmobarColor myColorGray "" . myWorkspaceTransform
+    , ppHidden = xmobarColor myColorGray "" . myWorkspaceTransform
     , ppHiddenNoWindows = const ""
-    , ppTitle = xmobarColor myColorWhite "" . wrap "  " "  "
+    , ppUrgent = xmobarColor myColorGray "" . myWorkspaceTransform
+    , ppSep = xmobarColor myColorGray "" "   |   "
+    , ppWsSep = "   "
+    , ppTitle = xmobarColor myColorWhite ""
+    , ppOrder = \(ws:_:t:_) -> [ws, t]
     , ppOutput = hPutStrLn h
-    , ppWsSep = ""
-    , ppSep = xmobarColor myColorGray "" " |"
     }
 
 myManageHookShift :: ManageHook
@@ -83,6 +83,13 @@ myTerminal = "urxvtc"
 myWorkspaces :: [String]
 myWorkspaces = ["1", "2"]
 
+myWorkspaceTransform :: String -> String
+myWorkspaceTransform =
+  wrap "<fn=1>" "</fn>" . \ws ->
+    case ws of
+      "1" -> "1:  \xf489"
+      "2" -> "2:  \xf484"
+      _   -> ws
 
 main :: IO ()
 main = do
