@@ -1,14 +1,4 @@
-URxvt*cursorBlink: off
-URxvt*loginShell: true
-URxvt*termName: screen-256color-italic
-URxvt.scrollBar: false
-
-!! Font
-URxvt*font: xft:FantasqueSansMono\ Nerd\ Font Mono:pixelsize=20
-URxvt*lineSpace: 1
-URxvt.letterSpace: 0
-
-!! Colors (Snazzy)
+!! Colors (Snazzy colorscheme)
 *cursorColor: #9aedfe
 
 *background: #282a36
@@ -37,7 +27,16 @@ URxvt.letterSpace: 0
 ! white
 *color7: #eff0eb
 *color15: #eff0eb
-! transparency
-URxvt.transparent: false
-URxvt.shading: 0
-URxvt.blurRadius: 0
+
+!! URxvt
+URxvt*cursorBlink: off
+URxvt*loginShell: true
+URxvt*termName: screen-256color-italic
+URxvt.scrollBar: false
+! Font
+URxvt*font: xft:CourierBitmapZS\-ja:pixelsize=19
+URxvt*lineSpace: 1
+URxvt.letterSpace: 0
+
+!! Emacs
+Emacs*UseXIM: false
