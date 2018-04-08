@@ -174,6 +174,9 @@ zplugin ice blockf pick'' wait''; zplugin light zsh-users/zsh-completions
 # jsforce
 zplugin ice pick'' wait''; zplugin light jsforce/jsforce-zsh-completions
 
+# sdkman
+zplugin ice pick'' wait''; zplugin light nobeans/zsh-sdkman
+
 
 ## Other plugins
 
