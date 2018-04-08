@@ -130,7 +130,9 @@
     (evil-global-set-key 'insert (kbd "C-j") 'toggle-input-method)))
 
 (defun custom/init-mozc-mode-line-indicator ()
-  (use-package mozc-mode-line-indicator))
+  (use-package mozc-mode-line-indicator
+    :init
+    (custom-set-variables '(mozc-mode-line-indicator-title-format "%s"))))
 
 (defun custom/init-mozc-popup ()
   (use-package mozc-popup
