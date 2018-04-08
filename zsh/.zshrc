@@ -11,17 +11,10 @@ autoload -Uz _zplugin
        || [[ -n "$EMACS" ]] \
        || [[ -n "$VIM" ]] \
        || [[ -n "$INSIDE_EMACS" ]] \
-       || [[ -n "$VSCODE_PID" ]]; then
+       || [[ -n "$VSCODE_PID" ]] \
+       || [[ "$XDG_SESSION_DESKTOP" =~ ^(xfce|xmonad)$ ]]; then
     return 1
   fi
-
-  case "$XDG_SESSION_DESKTOP" in
-    xfce|xmonad)
-      ;;
-    *)
-      return 1
-      ;;
-  esac
 }
 
 if -should-run-tmux; then
