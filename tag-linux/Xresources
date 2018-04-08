@@ -1,4 +1,5 @@
 !! Colors (Snazzy colorscheme)
+
 *cursorColor: #9aedfe
 
 *background: #282a36
@@ -28,13 +29,15 @@
 *color7: #eff0eb
 *color15: #eff0eb
 
+
 !! URxvt
+
 URxvt*cursorBlink: off
 URxvt*loginShell: true
 URxvt*termName: screen-256color-italic
 URxvt.scrollBar: false
 ! Font
-URxvt.font: xft:PowerlineSymbols
+URxvt.font: xft:MigMix 2M:pixelsize=16,xft:PowerlineSymbols
 
 URxvt*lineSpace: 1
 URxvt.letterSpace: 0
@@ -42,5 +45,7 @@ URxvt.letterSpace: 0
 URXvt.inputMethod: fcitx
 URXvt.preeditType: OnTheSpot
 
+
 !! Emacs
+
 Emacs*UseXIM: false
