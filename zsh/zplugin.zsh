@@ -1,6 +1,3 @@
-zplugin ice svn; zplugin snippet PZT::modules/helper
-
-
 ## Commands
 
 zplugin ice from'gh-r' as'program' mv'gotcha_* -> gotcha'
@@ -18,7 +15,6 @@ zplugin ice as'program' pick'bin/fzf-tmux' src'shell/key-bindings.zsh'
 zplugin light junegunn/fzf
 
 zplugin ice from'gh-r' as'program'; zplugin light junegunn/fzf-bin
-zplugin ice as'program' pick'*shrc'; zplugin light Russell91/sshrc
 
 
 ## ZSH functions
@@ -26,85 +22,176 @@ zplugin ice as'program' pick'*shrc'; zplugin light Russell91/sshrc
 zplugin ice atload'alias U="cd-gitroot"'
 zplugin light mollifier/cd-gitroot
 
-zplugin ice pick'k.sh'; zplugin light supercrabtree/k
-alias k="k -Ah --no-vcs"
 
 
-## ZSH environments
+## Prezto
 
-# Prezto
-zplugin snippet PZT::modules/environment/init.zsh
-
-zstyle ':prezto:module:completion:*:hosts' etc-host-ignores \
-       '0.0.0.0' '127.0.0.1'
-zplugin ice blockf; zplugin snippet PZT::modules/completion/init.zsh
-
-zstyle ':prezto:module:editor' key-bindings emacs
-zstyle ':prezto:module:editor' dot-expansion yes
-zplugin snippet PZT::modules/editor/init.zsh
-
-zplugin snippet PZT::modules/directory/init.zsh
-zplugin snippet PZT::modules/history/init.zsh
-zplugin snippet PZT::modules/gnu-utility/init.zsh
-
-# Oh My Zsh
-zplugin snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
-
-## Completions and aliases
-
-zplugin ice blockf pick''; zplugin light zsh-users/zsh-completions
-
-# Prezto
-zplugin ice svn pick'init.zsh'; zplugin snippet PZT::modules/docker
-zplugin snippet PZT::modules/homebrew/init.zsh
-zplugin snippet PZT::modules/rsync/init.zsh
-zplugin ice svn pick'init.zsh'; zplugin snippet PZT::modules/ssh
-
-# Oh My Zsh
-zplugin ice wait''; zplugin snippet OMZ::plugins/ant/ant.plugin.zsh
-zplugin ice svn; zplugin snippet OMZ::plugins/autopep8
-zplugin ice svn; zplugin snippet OMZ::plugins/bundler
-zplugin ice svn; zplugin snippet OMZ::plugins/capistrano
-zplugin snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
-zplugin ice svn; zplugin snippet OMZ::plugins/extract
-zplugin ice svn; zplugin snippet OMZ::plugins/gem
-zplugin snippet OMZ::plugins/git/git.plugin.zsh
-zplugin ice svn; zplugin snippet OMZ::plugins/golang
-zplugin ice svn wait''; zplugin snippet OMZ::plugins/gradle
-zplugin ice wait''; zplugin snippet OMZ::plugins/mosh/mosh.plugin.zsh
-zplugin snippet OMZ::plugins/mvn/mvn.plugin.zsh
-zplugin snippet OMZ::plugins/npm/npm.plugin.zsh
-zplugin ice svn; zplugin snippet OMZ::plugins/pip
-zplugin snippet OMZ::plugins/postgres/postgres.plugin.zsh
-zplugin ice svn; zplugin snippet OMZ::plugins/rails
-unalias rg
-zplugin snippet OMZ::plugins/rake/rake.plugin.zsh
-zplugin ice wait''; zplugin snippet OMZ::plugins/rake-fast/rake-fast.plugin.zsh
-zplugin snippet OMZ::plugins/ruby/ruby.plugin.zsh
-zplugin ice wait''; zplugin snippet OMZ::plugins/stack/stack.plugin.zsh
-zplugin snippet OMZ::plugins/yarn/yarn.plugin.zsh
-zplugin ice svn; zplugin snippet OMZ::plugins/react-native
-
-# docker
 () {
-  if [[ "$OSTYPE" != darwin* ]]; then
-    return
+  local modules=(
+    # Prezto
+    helper
+    # ZSH
+    completion
+    directory
+    editor
+    environment
+    utility
+    # Haskell
+    haskell
+    # Perl
+    perl
+    # Python
+    python
+    # Ruby
+    rails
+    ruby
+    # Tools
+    docker
+    git
+    gnu-utility
+    homebrew
+    rsync
+    ssh
+  )
+
+  # Load OS-specified modules.
+  if [[ "$OSTYPE" == darwin* ]]; then
+    modules=( osx $modules )
+  elif [[ "${+commands[pacman]}" == 1 ]]; then
+    modules=( pacman $modules )
   fi
 
-  for candidate in \
-    '/Applications/Docker.app' \
-    "${HOME}/Applications/Docker.app"
-  do
-    if [[ -d "$candidate" ]]; then
-      zplugin ice wait''
-      zplugin snippet "${candidate}/Contents/Resources/etc/docker.zsh-completion"
-      break
+  # Load tmux module unless the session is Xfce or XMonad.
+  if [[ ! "$XDG_SESSION_DESKTOP" =~ ^(xfce|xmonad)$ ]]; then
+    zstyle ':prezto:module:tmux:auto-start' local 'yes'
+    zstyle ':prezto:module:tmux:session' name 'default'
+
+    modules=( tmux $modules )
+  fi
+
+  for module in $modules; do
+    zplugin ice svn pick'init.zsh'; zplugin snippet PZT::"modules/${module}"
+  done
+}
+
+
+## Oh My Zsh
+
+() {
+  local plugins=(
+    # ZSH
+    common-aliases
+    fancy-ctrl-z
+    # Go
+    golang
+    # Java
+    mvn
+    # Node
+    npm
+    npx
+    yarn
+    react-native
+    # Python
+    autopep8
+    pylint
+    pip
+    # Ruby
+    capistrano
+    gem
+    rake
+    # Scala
+    sbt
+    # Database & other middlewares
+    postgres
+    # Tools
+    colored-man-pages
+    extract
+    nmap
+  )
+
+  # Load OS-specified plugins.
+  if [[ "${+commands[aptitude]}" == 1 ]] \
+         || [[ "${+commands[apt-get]}" == 1 ]]; then
+    plugins=( debian $plugins )
+  fi
+
+  # Load plugins.
+  for plugin in $plugins; do
+    zplugin ice svn; zplugin snippet OMZ::"plugins/${plugin}"
+  done
+
+  local snippets=()
+
+  # Load snippets.
+  for snippet in $snippets; do
+    zplugin snippet OMZ::"plugins/${snippet}/${snippet}.plugin.zsh"
+  done
+
+  local completions=(
+    # Haskell
+    stack
+    # Java
+    ant
+    gradle
+    # Ruby
+    rake-fast
+    # Tools
+    mosh
+  )
+
+  # Load completions lazily.
+  for completion in $completions; do
+    zplugin ice svn wait''; zplugin snippet OMZ::"plugins/${completion}"
+  done
+
+  # Unalias rm='rm -i', cp='cp -i', mv='mv -i'.
+  unalias rm cp mv
+}
+
+
+## Local completions
+
+() {
+  local paths=(
+    "${GOENV_ROOT}/completions/goenv.zsh"
+    "${PYENV_ROOT}/completions/pyenv.zsh"
+    "${RBENV_ROOT}/completions/rbenv.zsh"
+  )
+
+  # Load local completions.
+  for local_path in $paths; do
+    if [[ -s "$local_path" ]]; then
+      zplugin ice wait''; zplugin snippet "$local_path"
     fi
   done
 }
 
+
+## Completions
+
+zplugin ice blockf pick'' wait''; zplugin light zsh-users/zsh-completions
+
 # jsforce
 zplugin ice pick'' wait''; zplugin light jsforce/jsforce-zsh-completions
+
+
+## Other plugins
+
+# k
+k() {
+  zplugin ice pick'k.sh'; zplugin light supercrabtree/k
+  unhash -f k
+
+  alias k='k -Ah --no-vcs'
+
+  k
+}
+
+# Initialize nvm.
+if [[ -n "$NVM_DIR" ]]; then
+  export NVM_SYMLINK_CURRENT=true
+  zplugin light lukechilds/zsh-nvm
+fi
 
 
 ## ZSH theme
@@ -114,8 +201,6 @@ zplugin light sindresorhus/pure
 
 
 ## ZSH enhancements
-
-zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
 export ENHANCD_FILTER="fzf --height 50% --reverse"
 export ENHANCD_DOT_SHOW_FULLPATH=1
