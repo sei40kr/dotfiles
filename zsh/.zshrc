@@ -6,7 +6,24 @@
 . "${ZDOTDIR}/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 
-if [[ "$XDG_SESSION_DESKTOP" !=  "xmonad" && "$VSCODE_PID" == "" ]]; then
+-should-run-tmux() {
+  if [[ -n "$TMUX" ]] \
+       || [[ -n "$EMACS" ]] \
+       || [[ -n "$VIM" ]] \
+       || [[ -n "$INSIDE_EMACS" ]] \
+       || [[ -n "$VSCODE_PID" ]]; then
+    return 1
+  fi
+
+  case "$XDG_SESSION_DESKTOP" in
+    xfce|xmonad)
+      ;;
+    *)
+      return 1
+      ;;
+}
+
+if -should-run-tmux; then
     zstyle ':prezto:module:tmux:auto-start' local 'yes'
     zstyle ':prezto:module:tmux:session' name 'default'
     zplugin ice svn; zplugin snippet PZT::modules/tmux
