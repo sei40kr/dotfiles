@@ -26,9 +26,10 @@ Config
   , commands =
     [ Run StdinReader
     , Run Date "%m/%d %a %H:%M" "datetime" 10
+    , Run Com "whoami" [] "user" 10
     -- , Run Com "xmobar-fcitx-mode" [] "fcitx" 10
     ]
   , sepChar = "%"
   , alignSep = "}{"
-  , template = "<fc=#ffffff,#0088cc><fn=1>    </fn></fc>   %StdinReader% }{ %datetime%   "
+  , template = "<fc=#ffffff,#0088cc><fn=1>    </fn></fc>   %StdinReader% } %datetime% { <fn=1></fn>  %user%   "
   }
