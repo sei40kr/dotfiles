@@ -187,7 +187,7 @@ k() {
   k
 }
 
-# Initialize nvm.
+# zsh-nvm
 if [[ -n "$NVM_DIR" ]]; then
   export NVM_SYMLINK_CURRENT=true
   zplugin light lukechilds/zsh-nvm
