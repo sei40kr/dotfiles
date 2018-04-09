@@ -109,9 +109,9 @@ main = do
       , normalBorderColor = myNormalBorderColor
       , terminal = myTerminal
       , workspaces = myWorkspaces
-      } `additionalKeysP`
-    [ ("M-<Return>", spawn "urxvtc")
-    , ("M-S-<Return>", spawn "urxvtc-float")
-    , ("M-p", spawn "~/.dmenurc")
-    , ("<Print>", spawn "xmonad-screenshot")
+      } `additionalKeys`
+    [ ((mod1Mask, xK_Return), spawn "urxvtc")
+    , ((mod1Mask .|. shiftMask, xK_Return), spawn "urxvtc-float")
+    , ((mod1Mask, xK_p), spawn "~/.dmenurc")
+    , ((mod1Mask, xK_Print), spawn "xmonad-screenshot")
     ]
