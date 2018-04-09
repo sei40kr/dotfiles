@@ -6,7 +6,10 @@
 
 Config
 { font = "xft:MigMix 2P:pixelsize=14"
-, additionalFonts = ["xft:mplus Nerd Font,M+ 2p:pixelsize=16"]
+, additionalFonts = [
+    "xft:mplus Nerd Font,M+ 2p:pixelsize=16"
+    , "xft:MigMix 2P:style=bold:pixelsize=14"
+    ]
 , bgColor = "#222222t"
 , fgColor = "#ffffff"
 , alpha = 255
@@ -30,5 +33,5 @@ Config
 , sepChar = "%"
 , alignSep = "}{"
 , template =
-    "<fc=#ffffff,#0088cc><fn=1>    </fn></fc>   %StdinReader%   }   %datetime%   {   <fn=1></fn>  %user%   "
+    "<fc=#ffffff,#0088cc><fn=1>    </fn></fc>   %StdinReader%   }   <fn=2>%datetime%</fn>   {   <fn=1></fn>  %user%   "
 }
