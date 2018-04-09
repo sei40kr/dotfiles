@@ -6,6 +6,7 @@ import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
 import           XMonad.Layout.LayoutModifier
 import           XMonad.Layout.Spacing
+import qualified XMonad.StackSet              as W
 import           XMonad.Util.EZConfig
 import           XMonad.Util.Run
 
@@ -71,6 +72,7 @@ myManageHookFloat :: ManageHook
 myManageHookFloat =
   composeAll
     [ className =? "feh" --> doCenterFloat
+    , className =? "Zeal" --> doRectFloat (W.RationalRect 0.1 0.1 0.8 0.8)
     , title =? "urxvtc-float" --> doCenterFloat
     ]
 
