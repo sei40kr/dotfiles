@@ -10,7 +10,7 @@ Config
     "xft:mplus Nerd Font,M+ 2p:pixelsize=16"
     , "xft:MigMix 2P:style=bold:pixelsize=14"
     ]
-, bgColor = "#222222t"
+, bgColor = "#222222"
 , fgColor = "#ffffff"
 , alpha = 255
 , position = Top
@@ -23,6 +23,7 @@ Config
 , pickBroadest = False
 , persistent = True
 , border = NoBorder
+, borderColor = "#000000"
 , iconRoot = "."
 , commands =
     [ Run StdinReader
