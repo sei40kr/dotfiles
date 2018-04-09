@@ -30,5 +30,5 @@ Config
 , sepChar = "%"
 , alignSep = "}{"
 , template =
-    "<fc=#ffffff,#0088cc><fn=1>    </fn></fc>   %StdinReader% } %datetime% { <fn=1></fn>  %user%   "
+    "<fc=#ffffff,#0088cc><fn=1>    </fn></fc>   %StdinReader%   }   %datetime%   {   <fn=1></fn>  %user%   "
 }
