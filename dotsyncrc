@@ -55,6 +55,8 @@ prettier/prettierrc.js
 python/python-version
 ripgrep/ripgreprc
 ruby/ruby-version
+spacemacs/emacs.d
+spacemacs/spacemacs.d
 xmonad/xmonad.hs:.xmonad/xmonad.hs
 xmobar/xmobarrc:.config/xmobar/xmobarrc
 [endfiles]

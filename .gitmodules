@@ -1,30 +1,30 @@
 [submodule "better-c-cpp"]
   branch = master
-	path = spacemacs.d/layers/better-c-cpp
+	path = spacemacs/spacemacs.d/layers/better-c-cpp
 	url = https://github.com/sei40kr/better-c-cpp.git
 [submodule "better-javascript"]
   branch = master
-	path = spacemacs.d/layers/better-javascript
+	path = spacemacs/spacemacs.d/layers/better-javascript
 	url = https://github.com/sei40kr/better-javascript.git
 [submodule "better-lsp"]
   branch = master
-	path = spacemacs.d/layers/better-lsp
+	path = spacemacs/spacemacs.d/layers/better-lsp
 	url = https://github.com/sei40kr/better-lsp.git
 [submodule "spacemacs-kotlin"]
   branch = master
-	path = spacemacs.d/layers/spacemacs-kotlin
+	path = spacemacs/spacemacs.d/layers/spacemacs-kotlin
 	url = https://github.com/sei40kr/spacemacs-kotlin.git
 [submodule "spacemacs"]
-	path = emacs.d
+	path = spacemacs/emacs.d
 	url = https://github.com/syl20bnr/spacemacs.git
 	branch = develop
 [submodule "spacemacs-quickrun"]
   branch = master
-	path = spacemacs.d/layers/spacemacs-quickrun
+	path = spacemacs/spacemacs.d/layers/spacemacs-quickrun
 	url = https://github.com/sei40kr/spacemacs-quickrun.git
 [submodule "spacemacs-salesforce"]
   branch = master
-	path = spacemacs.d/layers/spacemacs-salesforce
+	path = spacemacs/spacemacs.d/layers/spacemacs-salesforce
 	url = https://github.com/sei40kr/spacemacs-salesforce.git
 [submodule "tmux-simple"]
   branch = master
