@@ -188,7 +188,7 @@ k() {
 
   alias k='k -Ah --no-vcs'
 
-  k
+  k "$@"
 }
 
 # zsh-nvm
