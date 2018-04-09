@@ -1,0 +1,29 @@
+#!/usr/bin/env perl
+# -*- mode: perl -*-
+use utf8;
+use strict;
+use warnings;
+
+# xmonad-screenshot --- Take a screenshot
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+use constant {
+  DEST_DIR => "$ENV{'HOME'}/Pictures",
+  QUALITY => 96,
+};
+
+sub read_max_seq() {
+  my @files = glob(DEST_DIR . "/screenshot_*.png");
+  my $max_seq = -1;
+
+  foreach (@files) {
+    my $seq = $1 + 0 if m/\/screenshot_(\d{5})\.png$/;
+    $max_seq = $seq if $max_seq < $seq;
+  }
+
+  return $max_seq;
+}
+
+my $next_seq = &read_max_seq + 1;
+my $dest = sprintf(DEST_DIR . "/screenshot_%05d.png", $next_seq);
+exit system("import -window root -quality " . QUALITY . " ${dest}");

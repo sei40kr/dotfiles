@@ -113,4 +113,5 @@ main = do
     [ ("M-<Return>", spawn "urxvtc")
     , ("M-S-<Return>", spawn "urxvtc-float")
     , ("M-p", spawn "~/.dmenurc")
+    , ("<Print>", spawn "xmonad-screenshot")
     ]

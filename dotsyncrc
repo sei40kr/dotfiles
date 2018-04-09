@@ -20,6 +20,7 @@ alacritty/alacritty.yml:.config/alacritty/alacritty.yml
 bin/urxvtc-float:.local/bin/urxvtc-float
 bin/xmobar-amixer-volume:.local/bin/xmobar-amixer-volume
 bin/xmobar-fcitx-mode:.local/bin/xmobar-fcitx-mode
+bin/xmonad-screenshot:.local/bin/xmonad-screenshot
 clang/clang-format
 dmenu/dmenurc
 dotphiles/ctags/ctags
