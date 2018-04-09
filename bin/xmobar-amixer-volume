@@ -1,0 +1,52 @@
+#!/usr/bin/env perl
+# -*- mode: perl -*-
+use utf8;
+use strict;
+use warnings;
+use POSIX ('ceil');
+
+# xmobar-amixer-volume --- Print the current volume in percentage of master
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+use constant TEMPLATE => "<fn=1>%s</fn>  %s\n";
+
+use constant {
+  WHITE_CIRCLE => "\x{26aa}",
+  BLACK_CIRCLE => "\x{26ab}",
+};
+
+use constant ICON_MUTE => "\x{fc5d}";
+use constant ICON_REST => ("\x{fa80}", "\x{fa7e}", "\x{fa7f}", "\x{fa7d}");
+
+
+## Formatters
+
+sub value_to_icon {
+  my ($value) = @_;
+
+  return (ICON_REST)[ceil($value / 100 * 3)];
+}
+
+sub value_to_indicator {
+  my ($value) = @_;
+  my $fill_factor = ceil($value / 100 * 5);
+
+  return BLACK_CIRCLE x $fill_factor . WHITE_CIRCLE x (5 - $fill_factor);
+}
+
+
+# Output as UTF-8
+binmode(STDOUT, ':utf8');
+
+my $value;
+
+open(CMD, 'amixer sget Master |') or die("$!");
+while (<CMD>) {
+  $value = "$1" + 0 if m/\[(\d{1,3})%\]/;
+}
+close(CMD);
+
+
+my $icon = value_to_icon($value);
+my $indicator = value_to_indicator($value);
+printf(TEMPLATE, $icon, $indicator);
