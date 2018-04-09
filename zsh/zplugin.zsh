@@ -35,6 +35,7 @@ zplugin light mollifier/cd-gitroot
     directory
     editor
     environment
+    history
     utility
     # Haskell
     haskell
