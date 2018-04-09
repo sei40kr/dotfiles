@@ -1,6 +1,9 @@
 ---
+system-ghc: false
+install-ghc: true
 templates:
   params:
     author-email: sei40kr@gmail.com
     author-name: Seong Yong-ju
+    copyright: 'Copyright (c) 2018 Seong Yong-ju.'
     github-username: sei40kr
