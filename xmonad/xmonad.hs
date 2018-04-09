@@ -9,6 +9,7 @@ import           XMonad.Layout.Spacing
 import qualified XMonad.StackSet              as W
 import           XMonad.Util.EZConfig
 import           XMonad.Util.Run
+import           XMonad.Util.SpawnOnce
 
 
 -- xmonad.hs --- XMonad configuration file
@@ -79,6 +80,9 @@ myManageHookFloat =
 myManageHookIgnore :: ManageHook
 myManageHookIgnore = composeAll []
 
+myStartupHook :: X ()
+myStartupHook = spawnOnce "dunst"
+
 myTerminal :: String
 myTerminal = "urxvtc"
 
@@ -109,6 +113,7 @@ main = do
           myManageHookFloat <+>
           myManageHookIgnore <+> manageDocks <+> manageHook def
       , normalBorderColor = myNormalBorderColor
+      , startupHook = myStartupHook
       , terminal = myTerminal
       , workspaces = myWorkspaces
       } `additionalKeys`
