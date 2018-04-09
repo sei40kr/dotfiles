@@ -18,6 +18,7 @@ DOTFILES=dotfiles
 [files]
 alacritty/alacritty.yml:.config/alacritty/alacritty.yml
 bin/urxvtc-float:.local/bin/urxvtc-float
+bin/xmobar-amixer-volume:.local/bin/xmobar-amixer-volume
 bin/xmobar-fcitx-mode:.local/bin/xmobar-fcitx-mode
 clang/clang-format
 dmenu/dmenurc
