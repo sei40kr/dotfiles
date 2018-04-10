@@ -194,7 +194,11 @@ k() {
 # zsh-nvm
 if [[ -n "$NVM_DIR" ]]; then
   export NVM_SYMLINK_CURRENT=true
+  export NVM_NO_USE=true
   zplugin light lukechilds/zsh-nvm
+
+  # Initialize zsh-nvm.
+  nvm use --silent --delete-prefix v8.10.0
 fi
 
 
