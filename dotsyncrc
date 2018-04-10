@@ -16,7 +16,7 @@ DOTFILES=dotfiles
 # dstfile will be '.$srcfile' by default (with path removed)
 #
 [files]
-alacritty/alacritty.yml:.config/alacritty/alacritty.yml
+alacritty:.config/alacritty
 bin/urxvtc-float:.local/bin/urxvtc-float
 bin/xmobar-amixer-volume:.local/bin/xmobar-amixer-volume
 bin/xmobar-fcitx-mode:.local/bin/xmobar-fcitx-mode
@@ -67,4 +67,5 @@ xmobar/xmobarrc:.config/xmobar/xmobarrc
 ## hostname                     type=masterhost, ANY or NONE    files=dotfile:tolink,another:tolink
 [hosts]
 sei40kr-home                    git=NONE
+sei40kr-work                    git=NONE
 [endhosts]
