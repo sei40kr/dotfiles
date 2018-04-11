@@ -48,7 +48,6 @@ zplugin light mollifier/cd-gitroot
     ruby
     # Tools
     docker
-    git
     gnu-utility
     homebrew
     rsync
@@ -81,8 +80,8 @@ zplugin light mollifier/cd-gitroot
 () {
   local plugins=(
     # ZSH
-    common-aliases
     fancy-ctrl-z
+    git
     # Go
     golang
     # Java
