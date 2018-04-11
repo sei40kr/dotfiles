@@ -49,7 +49,9 @@ values."
          auto-completion-tab-key-behavior 'cycle)
        helm
        ;; Emacs
-       org
+       (org :variables
+         org-enable-github-support t
+         org-enable-reveal-js-support t)
        ;; E-mail
        ;; Framework
        ruby-on-rails
