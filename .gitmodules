@@ -12,7 +12,7 @@
 	url = https://github.com/sei40kr/better-lsp.git
 [submodule "spacemacs-kotlin"]
   branch = master
-	path = spacemacs/spacemacs.d/layers/spacemacs-kotlin
+	path = spacemacs/spacemacs.d/layers/+lang/spacemacs-kotlin
 	url = https://github.com/sei40kr/spacemacs-kotlin.git
 [submodule "spacemacs"]
 	path = spacemacs/emacs.d
@@ -20,11 +20,11 @@
 	branch = develop
 [submodule "spacemacs-quickrun"]
   branch = master
-	path = spacemacs/spacemacs.d/layers/spacemacs-quickrun
+	path = spacemacs/spacemacs.d/layers/+lang/spacemacs-quickrun
 	url = https://github.com/sei40kr/spacemacs-quickrun.git
 [submodule "spacemacs-salesforce"]
   branch = master
-	path = spacemacs/spacemacs.d/layers/spacemacs-salesforce
+	path = spacemacs/spacemacs.d/layers/+lang/spacemacs-salesforce
 	url = https://github.com/sei40kr/spacemacs-salesforce.git
 [submodule "tmux-simple"]
   branch = master
