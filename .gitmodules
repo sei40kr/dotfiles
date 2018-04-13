@@ -20,7 +20,7 @@
 	branch = develop
 [submodule "spacemacs-quickrun"]
   branch = master
-	path = spacemacs/spacemacs.d/layers/+lang/spacemacs-quickrun
+	path = spacemacs/spacemacs.d/layers/+tools/spacemacs-quickrun
 	url = https://github.com/sei40kr/spacemacs-quickrun.git
 [submodule "spacemacs-salesforce"]
   branch = master
