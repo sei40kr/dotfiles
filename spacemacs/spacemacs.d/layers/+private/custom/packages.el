@@ -173,9 +173,13 @@
 (defun custom/post-init-spacemacs-theme ()
   (setq spacemacs-theme-comment-italic t))
 
-(defun custom/post-init-yatemplate ()
-  (setq
-    yatemplate-dir (expand-file-name "templates" dotspacemacs-directory)
-    yatemplate-separator "_")
-  (auto-insert-mode t)
-  (eval-after-load 'yatemplate (yatemplate-fill-alist)))
+(defun custom/init-yatemplate ()
+  (use-package yatemplate
+    :init
+    (progn
+      (setq
+        yatemplate-dir (expand-file-name "templates" dotspacemacs-directory)
+        yatemplate-separator "_")
+      (eval-after-load 'yatemplate (yatemplate-fill-alist)))
+    :config
+    (auto-insert-mode t)))
