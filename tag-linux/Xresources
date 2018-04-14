@@ -37,9 +37,9 @@ URxvt*loginShell: true
 URxvt*termName: screen-256color-italic
 URxvt.scrollBar: false
 ! Font
-URxvt.font: xft:MigMix 2M:pixelsize=16,xft:PowerlineSymbols
+URxvt.font: xft:UbuntuMono Nerd Font Mono:pixelsize=18
 
-URxvt*lineSpace: 1
+URxvt.lineSpace: 0
 URxvt.letterSpace: 0
 ! IME
 URXvt.inputMethod: fcitx
@@ -48,4 +48,4 @@ URXvt.preeditType: OnTheSpot
 
 !! Emacs
 
-Emacs*UseXIM: false
+Emacs.FontBackend: xft
