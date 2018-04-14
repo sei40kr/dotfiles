@@ -11,7 +11,7 @@ dmenu_run -b \
     -i \
     -l 15 \
     -p '' \
-    -fn 'MigMix 2P:pixelsize=14' \
+    -fn 'Ubuntu Nerd Font:pixelsize=16' \
     -nb '#222' \
     -nf '#fff' \
     -sb '#08c' \
