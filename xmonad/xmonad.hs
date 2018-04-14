@@ -90,12 +90,11 @@ myWorkspaces :: [String]
 myWorkspaces = ["1", "2"]
 
 myWorkspaceTransform :: String -> String
-myWorkspaceTransform =
-  wrap "<fn=1>" "</fn>" . \ws ->
-    case ws of
-      "1" -> "1:  \xf489"
-      "2" -> "2:  \xf484"
-      _   -> ws
+myWorkspaceTransform ws =
+  case ws of
+    "1" -> "1:  <fn=1>\xf489</fn>"
+    "2" -> "2:  <fn=1>\xf484</fn>"
+    _   -> ws
 
 main :: IO ()
 main = do

@@ -5,10 +5,10 @@
 -- author: Seong Yonng-ju <sei40kr@gmail.com>
 
 Config
-{ font = "xft:MigMix 2P:pixelsize=14"
+{ font = "xft:Ubuntu:pixelsize=16"
 , additionalFonts = [
-    "xft:mplus Nerd Font,M+ 2p:pixelsize=16"
-    , "xft:MigMix 2P:style=bold:pixelsize=14"
+    "xft:UbuntuMono Nerd Font Mono:pixelsize=28"
+    , "xft:Ubuntu:style=bold:pixelsize=16"
     ]
 , bgColor = "#222222"
 , fgColor = "#ffffff"
@@ -35,5 +35,5 @@ Config
 , sepChar = "%"
 , alignSep = "}{"
 , template =
-    "<fc=#ffffff,#0088cc><fn=1>    </fn></fc>   %StdinReader%   }   <fn=2>%datetime%</fn>   {   %volume%   <fc=#999999>|</fc>   <fn=1></fn>  %user%   "
+    "<fc=#ffffff,#0088cc><fn=1>  </fn></fc>   %StdinReader%   }   <fn=2>%datetime%</fn>   {   %volume%   <fc=#999999>|</fc>   <fn=1></fn>  %user%   "
 }
