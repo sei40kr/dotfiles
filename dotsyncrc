@@ -66,5 +66,5 @@ xmobar/xmobarrc:.config/xmobar/xmobarrc
 ## hostname                     type=masterhost, ANY or NONE    files=dotfile:tolink,another:tolink
 [hosts]
 sei40kr-home                    git=NONE                        files=alacritty/alacritty-linux.yml:.config/alacritty/alacritty.yml
-sei40kr-work                    git=NONE                        files=alacritty/alacritty-macos.yml:.config/alacritty/alacritty.yml
+sei40kr-work                    git=NONE                        files=alacritty/alacritty-macos.yml:.config/alacritty/alacritty.yml,dunst/dunstrc
 [endhosts]
