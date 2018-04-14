@@ -7,7 +7,7 @@
 Config
 { font = "xft:Ubuntu:pixelsize=16"
 , additionalFonts = [
-    "xft:UbuntuMono Nerd Font Mono:pixelsize=28"
+    "xft:Ubuntu Nerd Font Mono:pixelsize=16"
     , "xft:Ubuntu:style=bold:pixelsize=16"
     , "xft:Symbola:pixelsize=16"
     ]
