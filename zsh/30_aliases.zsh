@@ -5,7 +5,7 @@ alias u='builtin cd ..'
 
 EMACS_PLUGIN_LAUNCHER="${ZDOTDIR}/plugins/emacs/emacsclient.sh"
 
-alias emacs='${EMACS_PLUGIN_LAUNCHER} -n'
+alias emacs='LC_CTYPE=ja-JP.UTF-8 ${EMACS_PLUGIN_LAUNCHER} -n'
 alias e=emacs
 # open terminal ${EMACS_PLUGIN_LAUNCHER}
 alias te='${EMACS_PLUGIN_LAUNCHER} -nw'
