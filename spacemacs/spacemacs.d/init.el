@@ -140,7 +140,8 @@ values."
        ansible
        chrome
        cmake
-       dash
+       (dash :variables
+         helm-dash-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
        docker
        (lsp :variables
          lsp-ui-doc-include-signature nil
