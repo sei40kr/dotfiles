@@ -36,7 +36,7 @@ fi
 
 # Launch Emacs server.
 if hash emacs 2>/dev/null; then
-  emacs --daemon &
+  LC_CTYPE=ja-JP.UTF-8 emacs --daemon &
 fi
 
 
