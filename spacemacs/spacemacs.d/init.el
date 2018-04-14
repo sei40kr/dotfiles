@@ -483,12 +483,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
     auto-insert-query nil
     auto-save-default nil
     backup-inhibited t
-    create-lockfiles nil)
-
-  (setq
     browse-url-browser-function 'browse-url-generic
-    browse-url-generic-program "google-chrome"))
-
+    browse-url-generic-program "google-chrome"
+    create-lockfiles nil
+    tooltip-delay 0.3
+    tooltip-hide-delay 999
+    tooltip-short-delay 0.1))
 
 (defun dotspacemacs/user-config ()
   (when (file-exists-p custom-file) (load-file custom-file))
