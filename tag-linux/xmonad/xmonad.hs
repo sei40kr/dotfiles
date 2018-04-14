@@ -1,1 +1,0 @@
-/home/sei40kr/dotfiles/xmonad/xmonad.hs
