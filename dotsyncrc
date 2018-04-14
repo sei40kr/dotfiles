@@ -58,6 +58,7 @@ ripgrep/ripgreprc
 ruby/ruby-version
 spacemacs/emacs.d
 spacemacs/spacemacs.d
+tmux/tmux.conf
 xmonad/xmonad.hs:.xmonad/xmonad.hs
 xmobar/xmobarrc:.config/xmobar/xmobarrc
 [endfiles]
