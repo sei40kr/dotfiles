@@ -9,6 +9,7 @@ Config
 , additionalFonts = [
     "xft:UbuntuMono Nerd Font Mono:pixelsize=28"
     , "xft:Ubuntu:style=bold:pixelsize=16"
+    , "xft:Symbola:pixelsize=16"
     ]
 , bgColor = "#222222"
 , fgColor = "#ffffff"
