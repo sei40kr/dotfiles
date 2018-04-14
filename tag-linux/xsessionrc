@@ -24,14 +24,19 @@ if hash urxvtd 2>/dev/null; then
   urxvtd -f -o -q
 fi
 
+# Launch dunst service.
+if hash dunst 2>/dev/null; then
+  dunst &
+fi
+
+# Launch screensaver service.
+if hash xscreensaver 2>/dev/null; then
+  xscreensaver -no-splash &
+fi
+
 # Launch Emacs server.
 if hash emacs 2>/dev/null; then
   emacs --daemon &
-fi
-
-# Launch screensaver.
-if hash xscreensaver 2>/dev/null; then
-  xscreensaver -no-splash &
 fi
 
 
