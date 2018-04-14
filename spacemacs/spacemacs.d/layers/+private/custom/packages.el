@@ -146,10 +146,11 @@
   (setq
     neo-smart-open t
     neo-theme 'arrow
-    projectile-switch-project-action
-    '(lambda ()
-       (require 'neotree)
-       (neotree-projectile-action)))
+    projectile-switch-project-action #'(lambda ()
+                                         (interactive)
+                                         (projectile-dired)
+                                         (require 'neotree)
+                                         (neotree-hide)))
   (unless (and (eq system-type 'gnu/linux) (executable-find "xdg-open"))
     (with-eval-after-load 'neotree
       (define-key neotree-mode-map (kbd "o") nil))))
