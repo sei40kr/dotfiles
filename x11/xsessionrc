@@ -11,7 +11,7 @@ export path=( "${HOME}/.cabal/bin" $path )
 ## Load resources
 
 xrdb -merge "${HOME}/.Xresources"
-xmodmap "${HOME}/.Xmodmap"
+xmodmap "${HOME}/.xmodmaprc"
 
 
 ## Launch daemons
