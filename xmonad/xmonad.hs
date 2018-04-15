@@ -6,7 +6,9 @@ import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
 import           XMonad.Layout.LayoutModifier
 import           XMonad.Layout.Spacing
-import qualified XMonad.StackSet              as W
+import           XMonad.Layout.ThreeColumns
+import           XMonad.Layout.WindowNavigation
+import qualified XMonad.StackSet                as W
 import           XMonad.Util.EZConfig
 import           XMonad.Util.Run
 import           XMonad.Util.SpawnOnce
@@ -45,10 +47,9 @@ myFocusFollowsMouse = False
 -- Use golden ratio for window resizing
 -- cf https://wiki.haskell.org/Xmonad/Config_archive/Octoploid%27s_xmonad.hs
 myLayoutHook ::
-     ModifiedLayout AvoidStruts (Choose (ModifiedLayout SmartSpacing Tall) (Choose (Mirror (ModifiedLayout SmartSpacing Tall)) Full)) Window
-myLayoutHook = avoidStruts $ tiled ||| Mirror tiled ||| Full
+     ModifiedLayout AvoidStruts (ModifiedLayout WindowNavigation (Choose (ModifiedLayout SmartSpacing ThreeCol) Full)) Window
+myLayoutHook = avoidStruts $ windowNavigation $ smartSpacing 16 (ThreeColMid nmaster delta ratio) ||| Full
   where
-    tiled = smartSpacing 10 $ Tall nmaster delta ratio
     nmaster = 1
     ratio = toRational (2 / (1 + sqrt 5) :: Double)
     delta = 0.03
@@ -82,6 +83,9 @@ myManageHookFloat =
 
 myManageHookIgnore :: ManageHook
 myManageHookIgnore = composeAll []
+
+myModMask :: KeyMask
+myModMask = mod4Mask
 
 myStartupHook :: X ()
 myStartupHook = do
@@ -117,13 +121,23 @@ main = do
           myManageHookShift <+>
           myManageHookFloat <+>
           myManageHookIgnore <+> manageDocks <+> manageHook def
+      , modMask = myModMask
       , normalBorderColor = myNormalBorderColor
       , startupHook = myStartupHook
       , terminal = myTerminal
       , workspaces = myWorkspaces
       } `additionalKeys`
-    [ ((mod1Mask, xK_Return), spawn "urxvtc")
-    , ((mod1Mask .|. shiftMask, xK_Return), spawn "urxvtc-float")
-    , ((mod1Mask, xK_p), spawn "~/.dmenurc")
-    , ((mod1Mask, xK_Print), spawn "xmonad-screenshot")
+    -- Open a terminal
+    [ ((mod4Mask, xK_Return), spawn "urxvtc")
+    -- Open a terminal in floating window
+    , ((mod4Mask .|. shiftMask, xK_Return), spawn "urxvtc-float")
+    -- Open application launcher
+    , ((mod4Mask, xK_p), spawn "~/.dmenurc")
+    -- Take a screenshot
+    , ((0, xK_Print), spawn "xmonad-screenshot")
+    ] `additionalKeysP`
+    -- Increase brightness
+    [ ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10")
+    -- Decrease brightness
+    , ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10")
     ]
