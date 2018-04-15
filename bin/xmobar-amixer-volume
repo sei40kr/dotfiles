@@ -8,7 +8,7 @@ use POSIX ('ceil');
 # xmobar-amixer-volume --- Print the current volume in percentage of master
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-use constant TEMPLATE => "<fn=1>%s</fn>   <fn=3>%s</fn>\n";
+use constant TEMPLATE => "<fn=1>%s</fn>  <fn=3>%s</fn>\n";
 
 use constant {
   WHITE_CIRCLE => "\x{26aa}",
