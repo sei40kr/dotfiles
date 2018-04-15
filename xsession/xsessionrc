@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-# xsession --- Xfce session configuration file
+# xsessionrc --- xsession initialization
 # author: Seong Yong-ju <sei40kr@gmail.com>
 #
 # cf http://beginners-guide-to-xmonad.readthedocs.io/configure_xsessionrc.html
