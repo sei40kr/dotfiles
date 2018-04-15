@@ -59,11 +59,17 @@ ruby/ruby-version
 spacemacs/emacs.d
 spacemacs/spacemacs.d
 tmux/tmux.conf
+x11/Xresources
+x11/xinitrc
+x11/xsessionrc
+xmodmap/xmodmaprc
+xmonad/xmonad.hs:.xmonad/xmonad.hs
+xmobar/xmobarrc
 [endfiles]
 
 # Hosts to sync
 ## hostname                     type=masterhost, ANY or NONE    files=dotfile:tolink,another:tolink
 [hosts]
-sei40kr-home                    git=NONE                        files=xmonad/xmonad.hs:.xmonad/xmonad.hs,xmobar/xmobarrc,xsession/Xmodmap,xsession/Xresources,xsession/xsessionrc
+sei40kr-home                    git=NONE
 sei40kr-work                    git=NONE                        files=alacritty/alacritty-macos.yml:.config/alacritty/alacritty.yml,dunst/dunstrc
 [endhosts]

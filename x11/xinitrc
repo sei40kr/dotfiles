@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+
+# xinit --- xinit
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+## Initialize
+
+export LANG=ja-JP.UTF-8
+export LC_CTYPE=ja-JP.UTF-8
+
+
+## Launch daemons
+
+# Launch Emacs server.
+if hash emacs 2>/dev/null; then
+   emacs --daemon &
+fi

@@ -2,8 +2,6 @@
 
 # xsessionrc --- xsession initialization
 # author: Seong Yong-ju <sei40kr@gmail.com>
-#
-# cf http://beginners-guide-to-xmonad.readthedocs.io/configure_xsessionrc.html
 
 # Use the Cabal packages
 typeset -gU path
@@ -13,43 +11,44 @@ export path=( "${HOME}/.cabal/bin" $path )
 ## Load resources
 
 xrdb -merge "${HOME}/.Xresources"
-
-# Initialize key mapping
-setxkbmap -model hhk -layout us
-xmodmap ~/.Xmodmap
+xmodmap "${HOME}/.Xmodmap"
 
 
 ## Launch daemons
 
-# Launch urxvt daemon.
-if hash urxvtd 2>/dev/null; then
-  urxvtd -f -o -q
-fi
-
-# Launch dunst service.
+# Launch notification service
 if hash dunst 2>/dev/null; then
   dunst &
 fi
 
-# Launch screensaver service.
+# Launch screensaver service
 if hash xscreensaver 2>/dev/null; then
   xscreensaver -no-splash &
 fi
 
-# Launch Emacs server.
-if hash emacs 2>/dev/null; then
-  LC_CTYPE=ja-JP.UTF-8 emacs --daemon &
+# Launch urxvt daemon
+if hash urxvtd 2>/dev/null; then
+  urxvtd -f -o -q
 fi
+
+
+## Initialize IM
+
+export GTK_IM_MODULE='fcitx'
+export QT_IM_MODULE='fcitx'
+export XMODIFIERS='@im=fcitx'
+fcitx -rd &
 
 
 ## Launch apps
 
-# Launch feh to set the desktop wallpaper.
 if hash feh 2>/dev/null && [[ -s "${HOME}/.fehbg" ]]; then
   "${HOME}/.fehbg"
 fi
 
-# Use dbus-launch if available
+
+## XMonad
+
 if hash dbus-launch 2>/dev/null; then
   if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
     eval "$(dbus-launch --sh-syntax)"
