@@ -84,7 +84,9 @@ myManageHookIgnore :: ManageHook
 myManageHookIgnore = composeAll []
 
 myStartupHook :: X ()
-myStartupHook = spawnOnce "dunst"
+myStartupHook = do
+  spawnOnce "compton --backend glx --vsync opengl"
+  spawnOnce "dunst"
 
 myTerminal :: String
 myTerminal = "urxvtc"
