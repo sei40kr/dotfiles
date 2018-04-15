@@ -5,6 +5,7 @@ import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
 import           XMonad.Layout.LayoutModifier
+import           XMonad.Layout.IndependentScreens
 import           XMonad.Layout.Spacing
 import           XMonad.Layout.ThreeColumns
 import           XMonad.Layout.WindowNavigation
@@ -54,8 +55,8 @@ myLayoutHook = avoidStruts $ windowNavigation $ smartSpacing 16 (ThreeColMid nma
     ratio = toRational (2 / (1 + sqrt 5) :: Double)
     delta = 0.03
 
-myLogHook :: Handle -> X ()
-myLogHook h =
+myLogHook :: [Handle] -> X ()
+myLogHook hs =
   dynamicLogWithPP
     xmobarPP
     { ppCurrent = xmobarColor myColorWhite "" . myWorkspaceTransform
@@ -67,7 +68,7 @@ myLogHook h =
     , ppWsSep = "   "
     , ppTitle = xmobarColor myColorWhite ""
     , ppOrder = \(ws:_:t:_) -> [ws, t]
-    , ppOutput = hPutStrLn h
+    , ppOutput = \s -> mapM_ (`hPutStrLn` s) hs
     }
 
 myManageHookShift :: ManageHook
@@ -107,7 +108,8 @@ myWorkspaceTransform ws =
 
 main :: IO ()
 main = do
-  xmproc <- spawnPipe "xmobar"
+  nScreens <- countScreens :: IO Integer
+  xmprocs <- mapM (spawnPipe . ("xmobar -x" ++) . show) [0 .. (nScreens - 1)]
   xmonad $
     ewmh $
     docks
@@ -116,7 +118,7 @@ main = do
       , focusedBorderColor = myFocusedBorderColor
       , focusFollowsMouse = myFocusFollowsMouse
       , layoutHook = myLayoutHook
-      , logHook = myLogHook xmproc
+      , logHook = myLogHook xmprocs
       , manageHook =
           myManageHookShift <+>
           myManageHookFloat <+>
