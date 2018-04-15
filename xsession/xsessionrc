@@ -9,6 +9,10 @@
 typeset -gU path
 export path=( "${HOME}/.cabal/bin" $path )
 
+# Use fcitx for IM.
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS='@im=fcitx'
 
 ## Load resources
 
