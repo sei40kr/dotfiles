@@ -64,6 +64,6 @@ tmux/tmux.conf
 # Hosts to sync
 ## hostname                     type=masterhost, ANY or NONE    files=dotfile:tolink,another:tolink
 [hosts]
-sei40kr-home                    git=NONE                        files=xmonad/xmonad.hs:.xmonad/xmonad.hs,xmobar/xmobarrc:.config/xmobar/xmobarrc,xsession/Xresources,xsession/xsessionrc
+sei40kr-home                    git=NONE                        files=xmonad/xmonad.hs:.xmonad/xmonad.hs,xmobar/xmobarrc,xsession/Xresources,xsession/xsessionrc
 sei40kr-work                    git=NONE                        files=alacritty/alacritty-macos.yml:.config/alacritty/alacritty.yml,dunst/dunstrc
 [endhosts]
