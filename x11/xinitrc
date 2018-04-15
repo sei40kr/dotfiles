@@ -13,7 +13,7 @@ export UNICODEMAP_JP='cp932,nec-vdc'
 ## Load resources
 
 userresources="${HOME}/.Xresources"
-usermodmap="${HOME}/.xmodmaprc"
+usermodmap="${HOME}/.Xmodmap"
 sysresources='/etc/X11/xinit/Xresources'
 sysmodmap='/etc/X11/xinit/Xmodmap'
 
@@ -32,11 +32,11 @@ if [[ -s "$sysmodmap" ]]; then
   xmodmap "$sysmodmap"
 fi
 
-if [ -s "$userresources" ]; then
+if [[ -s "$userresources" ]]; then
   xrdb -merge "$userresources"
 fi
 
-if [ -s "$usermodmap" ]; then
+if [[ -s "$usermodmap" ]]; then
   xmodmap "$usermodmap"
 fi
 

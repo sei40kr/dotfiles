@@ -62,7 +62,7 @@ tmux/tmux.conf
 x11/Xresources
 x11/xinitrc
 x11/xsessionrc
-xmodmap/xmodmaprc
+xmodmap/Xmodmap
 xmonad/xmonad.hs:.xmonad/xmonad.hs
 xmobar/xmobarrc
 [endfiles]
