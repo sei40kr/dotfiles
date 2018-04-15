@@ -52,6 +52,7 @@ global/globalrc
 go/go-version
 javascript/importjs.js
 javascript/nvmrc
+luakit/rc.lua:.config/luakit/rc.lua
 prettier/prettierrc.js
 python/python-version
 ripgrep/ripgreprc
