@@ -1,15 +1,16 @@
+import           Control.Monad
 import           System.IO
 import           XMonad
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
-import           XMonad.Layout.LayoutModifier
 import           XMonad.Layout.IndependentScreens
+import           XMonad.Layout.LayoutModifier
 import           XMonad.Layout.Spacing
 import           XMonad.Layout.ThreeColumns
 import           XMonad.Layout.WindowNavigation
-import qualified XMonad.StackSet                as W
+import qualified XMonad.StackSet                  as W
 import           XMonad.Util.EZConfig
 import           XMonad.Util.Run
 import           XMonad.Util.SpawnOnce
@@ -68,7 +69,7 @@ myLogHook hs =
     , ppWsSep = "   "
     , ppTitle = xmobarColor myColorWhite ""
     , ppOrder = \(ws:_:t:_) -> [ws, t]
-    , ppOutput = \s -> mapM_ (`hPutStrLn` s) hs
+    , ppOutput = forM_ hs . flip hPutStrLn
     }
 
 myManageHookShift :: ManageHook
