@@ -39,6 +39,9 @@ myFocusedBorderColor = myColorBlue
 myBorderWidth :: Dimension
 myBorderWidth = 3
 
+myFocusFollowsMouse :: Bool
+myFocusFollowsMouse = False
+
 -- Use golden ratio for window resizing
 -- cf https://wiki.haskell.org/Xmonad/Config_archive/Octoploid%27s_xmonad.hs
 myLayoutHook ::
@@ -105,6 +108,7 @@ main = do
       def
       { borderWidth = myBorderWidth
       , focusedBorderColor = myFocusedBorderColor
+      , focusFollowsMouse = myFocusFollowsMouse
       , layoutHook = myLayoutHook
       , logHook = myLogHook xmproc
       , manageHook =
