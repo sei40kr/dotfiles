@@ -95,7 +95,8 @@ keycode  98 = Katakana NoSymbol Katakana
 keycode  99 = Hiragana NoSymbol Hiragana
 keycode 100 = Henkan_Mode NoSymbol Henkan_Mode
 keycode 101 = Hiragana_Katakana NoSymbol Hiragana_Katakana
-keycode 102 = Muhenkan NoSymbol Muhenkan
+! Use Muhenkan as Super key
+keycode 102 = Super_L Super_R
 keycode 103 =
 keycode 104 = KP_Enter NoSymbol KP_Enter
 keycode 105 = Control_R NoSymbol Control_R
@@ -249,9 +250,3 @@ keycode 252 =
 keycode 253 =
 keycode 254 =
 keycode 255 =
-
-
-!! Custom
-
-! Use Muhenkan as Super key
-keycode 102 = Super_L Super_R
