@@ -8,12 +8,6 @@ typeset -gU path
 export path=( "${HOME}/.cabal/bin" $path )
 
 
-## Load resources
-
-xrdb -merge "${HOME}/.Xresources"
-xmodmap "${HOME}/.xmodmaprc"
-
-
 ## Launch daemons
 
 # Launch notification service
