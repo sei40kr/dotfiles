@@ -131,7 +131,8 @@ main = do
       , workspaces = myWorkspaces
       } `additionalKeys`
     -- Open a terminal
-    [ ((mod4Mask, xK_Return), spawn "urxvtc")
+    [ ((mod1Mask, xK_Return), spawn "urxvtc")
+    , ((mod4Mask, xK_Return), spawn "urxvtc")
     -- Open a terminal in floating window
     , ((mod4Mask .|. shiftMask, xK_Return), spawn "urxvtc-float")
     -- Open application launcher
