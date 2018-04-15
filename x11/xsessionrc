@@ -42,6 +42,12 @@ fcitx -rd &
 
 ## Launch apps
 
+# Set the cursor
+if hash xsetroot 2>/dev/null; then
+  xsetroot -cursor_name left_ptr
+fi
+
+# Set the background image
 if hash feh 2>/dev/null && [[ -s "${HOME}/.fehbg" ]]; then
   "${HOME}/.fehbg"
 fi
