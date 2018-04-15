@@ -9,16 +9,14 @@
 typeset -gU path
 export path=( "${HOME}/.cabal/bin" $path )
 
-# Use fcitx for IM.
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS='@im=fcitx'
 
 ## Load resources
 
 xrdb -merge "${HOME}/.Xresources"
-# Set the keyboard layout to HHKB US.
+
+# Initialize key mapping
 setxkbmap -model hhk -layout us
+xmodmap ~/.Xmodmap
 
 
 ## Launch daemons
