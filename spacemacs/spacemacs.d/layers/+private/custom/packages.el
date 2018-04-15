@@ -172,7 +172,11 @@
     semanticdb-find-default-throttle '(file local project unloaded system)))
 
 (defun custom/post-init-spaceline ()
-  (setq spaceline-show-default-input-method t))
+  (setq spaceline-show-default-input-method t)
+  (advice-add 'spaceline-compile
+    :before
+    #'(lambda (&rest _)
+        (setq powerline-default-separator nil))))
 
 (defun custom/post-init-spacemacs-theme ()
   (setq spacemacs-theme-comment-italic t))
