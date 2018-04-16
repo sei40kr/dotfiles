@@ -478,8 +478,6 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
-
   (setq
     auto-insert-query nil
     auto-save-default nil
@@ -487,9 +485,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
     browse-url-browser-function 'browse-url-generic
     browse-url-generic-program "google-chrome"
     create-lockfiles nil
+    custom-file (expand-file-name "custom.el" dotspacemacs-directory)
     tooltip-delay 0.3
     tooltip-hide-delay 999
-    tooltip-short-delay 0.1))
+    tooltip-short-delay 0.1)
+  (defalias 'yes-or-no-p 'y-or-n-p))
 
 (defun dotspacemacs/user-config ()
   (when (file-exists-p custom-file) (load-file custom-file))
