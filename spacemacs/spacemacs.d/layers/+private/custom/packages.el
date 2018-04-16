@@ -20,6 +20,7 @@
      evil-tutor-ja
      exec-path-from-shell
      expand-region
+     flycheck
      helm
      helm-projectile
      linum
@@ -89,6 +90,9 @@
 (defun custom/post-init-expand-region ()
   (evil-global-set-key 'visual (kbd "v") 'er/expand-region)
   (evil-global-set-key 'visual (kbd "V") 'er/contract-region))
+
+(defun custom/post-init-flycheck ()
+  (setq flycheck-pos-tip-timeout 999))
 
 (defun custom/post-init-helm ()
   ;; Fix the behaviors of C-h, C-w in helm.
