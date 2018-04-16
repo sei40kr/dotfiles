@@ -140,6 +140,7 @@ values."
        (dash :variables
          helm-dash-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
        docker
+       imenu-list
        (lsp :variables
          lsp-ui-doc-include-signature nil
          lsp-ui-sideline-enable nil
