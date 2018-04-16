@@ -150,6 +150,7 @@ values."
          lsp-ui-sideline-show-symbol nil)
        nginx
        (shell :variables
+         shell-default-shell 'multi-term
          shell-default-height 30
          shell-default-position 'bottom)
        tmux
