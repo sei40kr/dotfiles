@@ -115,6 +115,12 @@ if [[ -n "$BREW_PREFIX" ]]; then
   fi
 fi
 
+# cargo
+if [[ -x "${HOME}/.cargo/bin/cargo" ]]; then
+  path=( "${HOME}/.cargo/bin" $path )
+  export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+fi
+
 # SDKMAN!
 if [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]]; then
   export SDKMAN_DIR="${HOME}/.sdkman"
