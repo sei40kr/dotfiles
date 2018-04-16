@@ -5,10 +5,10 @@
 -- author: Seong Yonng-ju <sei40kr@gmail.com>
 
 Config
-{ font = "xft:Ubuntu:pixelsize=16"
+{ font = "xft:Ubuntu:pixelsize=16,xft:TakaoPGothic:pixelsize=16"
 , additionalFonts = [
-    "xft:Ubuntu Nerd Font Mono:pixelsize=16"
-    , "xft:Ubuntu:style=bold:pixelsize=16"
+    "xft:Ubuntu Nerd Font Mono:pixelsize=16,xft:TakaoGothic:pixelsize=16"
+    , "xft:Ubuntu:style=bold:pixelsize=16,xft:TakaoPGothic:pixelsize=16"
     , "xft:Symbola:pixelsize=16"
     ]
 , bgColor = "#222222"
