@@ -79,9 +79,7 @@ values."
        purescript
        (python :variables
          python-backend 'lsp
-         python-enable-yapf-format-on-save t
-         python-test-runner 'pytest
-         python-sort-imports-on-save t)
+         python-test-runner 'pytest)
        (ruby :variables
          ruby-enable-enh-ruby-mode t
          ruby-version-manager 'rbenv)
@@ -93,8 +91,7 @@ values."
        (windows-scripts :toggle (eq system-type 'windows-nt))
        shell-scripts
        sql
-       (typescript :variables
-         typescript-fmt-on-save t)
+       typescript
        vimscript
        yaml
        ;; Operating systems
