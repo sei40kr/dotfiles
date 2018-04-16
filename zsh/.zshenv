@@ -121,6 +121,9 @@ if [[ -x "${HOME}/.cargo/bin/cargo" ]]; then
   export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
 
+# Haskell Tool Stack
+path=( "${HOME}/bin" "${HOME}/.local/bin" $path )
+
 # SDKMAN!
 if [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]]; then
   export SDKMAN_DIR="${HOME}/.sdkman"
