@@ -112,7 +112,9 @@
   (evil-global-set-key 'visual (kbd "V") 'er/contract-region))
 
 (defun custom/post-init-flycheck ()
-  (setq flycheck-pos-tip-timeout 999))
+  (setq
+    flycheck-check-syntax-automatically '(save mode-enabled)
+    flycheck-pos-tip-timeout 999))
 
 (defun custom/post-init-helm ()
   ;; Fix the behaviors of C-h, C-w in helm.
