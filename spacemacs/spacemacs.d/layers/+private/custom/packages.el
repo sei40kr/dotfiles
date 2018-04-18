@@ -74,9 +74,7 @@
         (interactive (list (region-beginning) (region-end)))
         (if (= (line-number-at-pos beginning) (line-number-at-pos end))
           (spacemacs/evil-mc-make-and-goto-next-match)
-          (spacemacs/evil-mc-make-vertical-cursors)))
-    (kbd "C-p") nil
-    (kbd "C-t") nil)
+          (spacemacs/evil-mc-make-vertical-cursors))))
   (with-eval-after-load 'evil-mc
     (advice-add 'evil-mc-define-vars
       :after
