@@ -58,6 +58,12 @@ values."
        ;; Fun
        ;; International support
        ;; Programming and markup languages
+       (c-c++ :variables
+         c-c++-default-mode-for-headers 'c++-mode
+         c-c++-enable-clang-support t
+         c-c++-enable-clang-format-on-save t
+         c-c++-enable-google-style t
+         c-c++-enable-google-newline t)
        csv
        emacs-lisp
        (go :variables
@@ -160,12 +166,7 @@ values."
          evil-snipe-repeat-scope t)
        ;; WebServices
        ;; Custom
-       (better-c-cpp :variables
-         c-c++-default-mode-for-headers 'c++-mode
-         c-c++-enable-clang-support t
-         c-c++-enable-clang-format-on-save t
-         c-c++-enable-google-style t
-         c-c++-enable-google-newline t)
+       better-c-cpp
        better-javascript
        better-lsp
        spacemacs-kotlin
