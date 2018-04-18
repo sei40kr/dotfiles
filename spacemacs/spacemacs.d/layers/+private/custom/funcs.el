@@ -9,6 +9,8 @@
 ;;
 ;;; License: MIT
 
+;; mozc
+
 (defun spacemacs//mozc-detect ()
   "Detect mozc_emacs_helper binary and warn if not found."
   (and (eq system-type 'gnu/linux)
@@ -16,3 +18,38 @@
       (unless found
         (spacemacs-buffer/warning "mozc_emacs_helper binary not found!"))
       found)))
+
+
+;; evil-mc
+
+(defun spacemacs//evil-mc-make-cursor-at-col (col _ line-number)
+  (move-to-column col)
+  (unless (= (line-number-at-pos) line-number)
+    (evil-mc-make-cursor-here)))
+
+(defun spacemacs/evil-mc-make-and-goto-next-match ()
+  (interactive)
+  (require 'evil-mc)
+  (turn-on-evil-mc-mode)
+  (evil-mc-make-and-goto-next-match))
+
+;; cf https://github.com/gabesoft/evil-mc/issues/22
+
+(defun spacemacs/evil-mc-make-vertical-cursors (beginning end)
+  (interactive (list (region-beginning) (region-end)))
+  (require 'evil-mc)
+  (turn-on-evil-mc-mode)
+  (evil-mc-pause-cursors)
+  (evil-apply-on-rectangle
+    #'spacemacs//evil-mc-make-cursor-at-col
+    beginning
+    end
+    (line-number-at-pos (point)))
+  (evil-mc-resume-cursors)
+  (evil-normal-state)
+  (move-to-column (evil-mc-column-number (if (> end beginning) beginning end))))
+
+(defun spacemacs/evil-mc-undo-all-cursors ()
+  (interactive)
+  (evil-mc-undo-all-cursors)
+  (turn-off-evil-mc-mode))

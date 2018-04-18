@@ -66,12 +66,33 @@
 
 (defun custom/post-init-evil-mc ()
   (setq evil-mc-one-cursor-show-mode-line-text nil)
+  (evil-global-set-key 'normal
+    (kbd "C-n") #'spacemacs/evil-mc-make-and-goto-next-match)
+  (evil-global-set-key 'visual
+    (kbd "C-n")
+    #'(lambda (beginning end)
+        (interactive (list (region-beginning) (region-end)))
+        (if (= (line-number-at-pos beginning) (line-number-at-pos end))
+          (spacemacs/evil-mc-make-and-goto-next-match)
+          (spacemacs/evil-mc-make-vertical-cursors)))
+    (kbd "C-p") nil
+    (kbd "C-t") nil)
   (with-eval-after-load 'evil-mc
-    (global-evil-mc-mode +1)
+    (advice-add 'evil-mc-define-vars
+      :after
+      #'(lambda (&rest _)
+          (push 'evil-escape-mode evil-mc-incompatible-minor-modes)))
     (evil-define-key 'normal evil-mc-key-map
+      (kbd "C-n") #'evil-mc-make-and-goto-next-match
+      (kbd "C-m") #'evil-mc-make-and-goto-prev-match
+      (kbd "C-x") #'evil-mc-skip-and-goto-next-match
       (kbd "C-p") nil
       (kbd "C-t") nil
-      (kbd "<escape>") 'evil-mc-undo-all-cursors)))
+      (kbd "<escape>") #'spacemacs/evil-mc-undo-all-cursors)
+    (evil-define-key 'visual evil-mc-key-map
+      (kbd "C-n") nil
+      (kbd "C-p") nil
+      (kbd "C-t") nil)))
 
 (defun custom/post-init-evil-surround ()
   (eval-after-load 'evil-surround
