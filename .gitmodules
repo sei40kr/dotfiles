@@ -50,3 +50,7 @@
 	path = dotphiles
 	url = https://github.com/dotphiles/dotphiles.git
 	branch = master
+[submodule "competitive-programming-snippets"]
+	path = spacemacs/spacemacs.d/layers/+private/custom/local/competitive-programming-snippets
+	url = git@github.com:sei40kr/competitive-programming-snippets.git
+	branch = master

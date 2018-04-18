@@ -13,6 +13,7 @@
   '(
      avy
      company
+     (competitive-programming-snippets :location local)
      evil
      evil-escape
      evil-mc
@@ -49,6 +50,9 @@
   (with-eval-after-load 'company
     (define-key company-active-map (kbd "C-h") 'delete-backward-char)
     (define-key company-active-map (kbd "C-w") 'backward-kill-word)))
+
+(defun custom/init-competitive-programming-snippets ()
+  (use-package competitive-programming-snippets))
 
 (defun custom/post-init-evil ()
   (setq
