@@ -148,8 +148,16 @@
 (defun custom/post-init-linum-relative ()
   (setq linum-relative-format " %3s "))
 
+(defun custom/post-init-lsp-mode ()
+  (custom-set-variables
+    '(lsp-document-sync-method 'incremental)
+    '(lsp-highlight-symbol-at-point nil)
+    '(lsp-response-timeout 5)))
+
 (defun custom/post-init-lsp-ui ()
-  (custom-set-variables '(lsp-ui-doc-enable nil)))
+  (custom-set-variables
+    '(lsp-ui-doc-enable nil)
+    '(lsp-ui-flycheck-live-reporting t)))
 
 (defun custom/post-init-magit ()
   (setq
