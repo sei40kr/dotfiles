@@ -99,7 +99,7 @@
 
 (defun custom/post-init-evil-surround ()
   (eval-after-load 'evil-surround
-    (evil-define-key 'visual evil-surround-mode-map
+    '(evil-define-key 'visual evil-surround-mode-map
       (kbd "s") 'evil-substitute
       (kbd "S") 'evil-surround-region)))
 
@@ -195,8 +195,8 @@
         (require 'neotree)
         (neotree-hide)))
   (unless (and (eq system-type 'gnu/linux) (executable-find "xdg-open"))
-    (with-eval-after-load 'neotree
-      (define-key neotree-mode-map (kbd "o") nil))))
+    (eval-after-load 'neotree
+      '(define-key neotree-mode-map (kbd "o") nil))))
 
 (defun custom/post-init-projectile ()
   (custom-set-variables
@@ -231,6 +231,7 @@
       (setq
         yatemplate-dir (expand-file-name "templates" dotspacemacs-directory)
         yatemplate-separator "_")
-      (eval-after-load 'yatemplate (yatemplate-fill-alist)))
+      (eval-after-load 'yatemplate
+        '(yatemplate-fill-alist)))
     :config
     (auto-insert-mode t)))
