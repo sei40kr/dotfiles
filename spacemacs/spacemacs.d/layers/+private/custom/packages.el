@@ -26,6 +26,7 @@
      helm-projectile
      linum
      linum-relative
+     lsp-ui
      magit
      (mozc
        :requires mozc-popup
@@ -138,6 +139,9 @@
 
 (defun custom/post-init-linum-relative ()
   (setq linum-relative-format " %3s "))
+
+(defun custom/post-init-lsp-ui ()
+  (custom-set-variables '(lsp-ui-doc-mode nil)))
 
 (defun custom/post-init-magit ()
   (setq
