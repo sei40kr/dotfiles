@@ -23,7 +23,7 @@
      expand-region
      flycheck
      helm
-     helm-projectile
+     helm-ls-git
      linum
      linum-relative
      lsp-ui
@@ -132,9 +132,15 @@
     (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
     (define-key helm-find-files-map (kbd "C-w") 'backward-kill-word)))
 
-(defun custom/post-init-helm-projectile ()
-  (eval-after-load 'helm-projectile
-    (evil-global-set-key 'normal (kbd "C-p") 'helm-projectile-find-file)))
+(defun custom/init-helm-ls-git ()
+  (use-package helm-ls-git
+    :defer t
+    :init
+    (eval-after-load 'evil
+      '(evil-global-set-key 'normal (kbd "C-p") 'helm-ls-git-ls))
+    :custom
+    (helm-ls-git-fuzzy-match t)
+    (helm-ls-git-default-sources '(helm-source-ls-git))))
 
 (defun custom/post-init-linum ()
   (setq linum-delay t))
