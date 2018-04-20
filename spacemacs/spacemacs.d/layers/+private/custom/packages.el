@@ -141,7 +141,7 @@
   (setq linum-relative-format " %3s "))
 
 (defun custom/post-init-lsp-ui ()
-  (custom-set-variables '(lsp-ui-doc-mode nil)))
+  (custom-set-variables '(lsp-ui-doc-enable nil)))
 
 (defun custom/post-init-magit ()
   (setq
