@@ -122,6 +122,8 @@
     flycheck-pos-tip-timeout 999))
 
 (defun custom/post-init-helm ()
+  (custom-set-variables
+    '(helm-mini-default-sources '(helm-source-buffers-list)))
   ;; Fix the behaviors of C-h, C-w in helm.
   ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
   (with-eval-after-load 'helm
