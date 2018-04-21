@@ -72,6 +72,12 @@ zplugin light mollifier/cd-gitroot
   for module in $modules; do
     zplugin ice svn pick'init.zsh'; zplugin snippet PZT::"modules/${module}"
   done
+
+  # Disable spell correction.
+  unsetopt CORRECT
+
+  # Disable an alias to avoid confliction.
+  unalias e;
 }
 
 
