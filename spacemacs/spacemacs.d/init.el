@@ -169,6 +169,7 @@ values."
        better-c-cpp
        better-javascript
        better-lsp
+       spacemacs-ghq
        spacemacs-kotlin
        spacemacs-quickrun
        spacemacs-salesforce
