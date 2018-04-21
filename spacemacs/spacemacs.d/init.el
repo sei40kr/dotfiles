@@ -46,7 +46,7 @@ values."
          auto-completion-enable-snippets-in-popup t
          auto-completion-enable-sort-by-usage t
          auto-completion-return-key-behavior 'complete
-         auto-completion-tab-key-behavior 'cycle)
+         auto-completion-tab-key-behavior 'complete)
        helm
        ;; Emacs
        (org :variables
