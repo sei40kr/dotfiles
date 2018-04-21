@@ -496,6 +496,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 (defun dotspacemacs/user-config ()
   (when (file-exists-p custom-file) (load-file custom-file))
 
+  (spacemacs/enable-transparency)
   (spacemacs/toggle-fill-column-indicator-on)
   (spacemacs/toggle-golden-ratio-on)
   (spacemacs/toggle-whitespace-cleanup-on)
