@@ -94,7 +94,6 @@ zplugin light mollifier/cd-gitroot
     mvn
     # Node
     npm
-    npx
     yarn
     react-native
     # Python
