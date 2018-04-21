@@ -139,7 +139,8 @@
       '(evil-global-set-key 'normal (kbd "C-p") 'helm-ls-git-ls))
     :custom
     (helm-ls-git-fuzzy-match t)
-    (helm-ls-git-default-sources '(helm-source-ls-git))))
+    (helm-ls-git-default-sources '(helm-source-ls-git))
+    (helm-ls-git-ls-switches '("ls-files" "-co" "--exclude-standard" "--"))))
 
 (defun custom/post-init-linum ()
   (setq linum-delay t))
