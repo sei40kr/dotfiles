@@ -58,3 +58,7 @@
 	path = spacemacs/spacemacs.d/layers/+tools/spacemacs-ghq
 	url = https://github.com/sei40kr/spacemacs-ghq.git
 	branch = master
+[submodule "better-web"]
+	path = spacemacs/spacemacs.d/layers/+lang/better-web
+	url = https://github.com/sei40kr/better-web.git
+	branch = master
