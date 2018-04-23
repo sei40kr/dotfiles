@@ -65,3 +65,11 @@
           (string-prefix-p "github.com/sei40kr/" repository t))
       (ghq--get-repository-ssh repository)
       (ghq--get-repository repository))))
+
+;; projectile
+
+(defun spacemacs/projectile-switch-project-action ()
+  (interactive)
+  (projectile-dired)
+  (require 'neotree)
+  (neotree-hide))

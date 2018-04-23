@@ -185,12 +185,7 @@
   (setq
     neo-smart-open t
     neo-theme 'arrow
-    projectile-switch-project-action
-    #'(lambda ()
-        (interactive)
-        (projectile-dired)
-        (require 'neotree)
-        (neotree-hide)))
+    projectile-switch-project-action #'spacemacs/projectile-switch-project-action)
   (unless (and (eq system-type 'gnu/linux) (executable-find "xdg-open"))
     (eval-after-load 'neotree
       '(define-key neotree-mode-map (kbd "o") nil))))
