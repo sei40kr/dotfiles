@@ -191,11 +191,11 @@
       '(define-key neotree-mode-map (kbd "o") nil))))
 
 (defun custom/post-init-projectile ()
-  (custom-set-variables
-    '(projectile-find-dir-includes-top-level t)
-    '(projectile-git-submodule-command nil)
-    '(projectile-sort-order 'default)
-    '(projectile-use-git-grep t))
+  (setq
+    projectile-find-dir-includes-top-level t
+    projectile-git-submodule-command nil
+    projectile-sort-order 'default
+    projectile-use-git-grep t)
   (with-eval-after-load 'projectile
     (require 'magit)
     (mapc 'projectile-add-known-project
