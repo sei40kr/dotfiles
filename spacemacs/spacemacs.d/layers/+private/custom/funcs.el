@@ -53,3 +53,15 @@
   (interactive)
   (evil-mc-undo-all-cursors)
   (turn-off-evil-mc-mode))
+
+;; ghq
+
+(defun spacemacs/ghq ()
+  (interactive)
+  (let ((repository (read-string "Enter the repository: ")))
+    (require 'ghq)
+    (if (or
+          (string-prefix-p "sei40kr/" repository t)
+          (string-prefix-p "github.com/sei40kr/" repository t))
+      (ghq--get-repository-ssh repository)
+      (ghq--get-repository repository))))
