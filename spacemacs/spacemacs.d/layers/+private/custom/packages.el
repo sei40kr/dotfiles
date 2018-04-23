@@ -112,8 +112,8 @@
     exec-path-from-shell-variables '("PATH" "MANPATH" "RUST_SRC_PATH")))
 
 (defun custom/post-init-expand-region ()
-  (evil-global-set-key 'visual (kbd "v") 'er/expand-region)
-  (evil-global-set-key 'visual (kbd "V") 'er/contract-region))
+  (evil-global-set-key 'visual (kbd "v") #'er/expand-region)
+  (evil-global-set-key 'visual (kbd "V") #'er/contract-region))
 
 (defun custom/post-init-flycheck ()
   (setq
