@@ -208,10 +208,7 @@
 
 (defun custom/post-init-spaceline ()
   (setq spaceline-show-default-input-method t)
-  (advice-add 'spaceline-compile
-    :before
-    #'(lambda (&rest _)
-        (setq powerline-default-separator nil))))
+  (advice-add 'spaceline-compile :before #'spacemacs//spaceline-compile-before))
 
 (defun custom/post-init-spacemacs-theme ()
   (setq spacemacs-theme-comment-italic t))

@@ -73,3 +73,8 @@
   (projectile-dired)
   (require 'neotree)
   (neotree-hide))
+
+;; spaceline
+
+(defun spacemacs//spaceline-compile-before (&rest _)
+  (setq powerline-default-separator nil))
