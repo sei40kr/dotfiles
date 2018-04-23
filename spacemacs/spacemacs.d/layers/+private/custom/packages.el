@@ -184,8 +184,7 @@
 (defun custom/post-init-neotree ()
   (setq
     neo-smart-open t
-    neo-theme 'arrow
-    projectile-switch-project-action #'spacemacs/projectile-switch-project-action)
+    neo-theme 'arrow)
   (unless (and (eq system-type 'gnu/linux) (executable-find "xdg-open"))
     (eval-after-load 'neotree
       '(define-key neotree-mode-map (kbd "o") nil))))
@@ -195,6 +194,7 @@
     projectile-find-dir-includes-top-level t
     projectile-git-submodule-command nil
     projectile-sort-order 'default
+    projectile-switch-project-action #'spacemacs/projectile-switch-project-action
     projectile-use-git-grep t)
   (with-eval-after-load 'projectile
     (require 'magit)
