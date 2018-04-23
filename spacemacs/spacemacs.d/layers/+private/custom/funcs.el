@@ -22,6 +22,9 @@
 
 ;; evil-mc
 
+(defun spacemacs//evil-mc-define-vars-after (&rest _)
+  (push 'evil-escape-mode evil-mc-incompatible-minor-modes))
+
 (defun spacemacs//evil-mc-make-cursor-at-col (col _ line-number)
   (move-to-column col)
   (unless (= (line-number-at-pos) line-number)

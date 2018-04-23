@@ -81,9 +81,7 @@
           (spacemacs/evil-mc-make-vertical-cursors))))
   (with-eval-after-load 'evil-mc
     (advice-add 'evil-mc-define-vars
-      :after
-      #'(lambda (&rest _)
-          (push 'evil-escape-mode evil-mc-incompatible-minor-modes)))
+      :after #'spacemacs//evil-mc-define-vars-after)
     (evil-define-key 'normal evil-mc-key-map
       (kbd "C-n") #'evil-mc-make-and-goto-next-match
       (kbd "C-m") #'evil-mc-make-and-goto-prev-match
