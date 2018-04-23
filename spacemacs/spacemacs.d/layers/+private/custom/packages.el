@@ -215,12 +215,10 @@
 
 (defun custom/init-yatemplate ()
   (use-package yatemplate
-    :init
-    (progn
-      (setq
-        yatemplate-dir (expand-file-name "templates" dotspacemacs-directory)
-        yatemplate-separator "_")
-      (eval-after-load 'yatemplate
-        '(yatemplate-fill-alist)))
     :config
-    (auto-insert-mode t)))
+    (progn
+      (auto-insert-mode t)
+      (yatemplate-fill-alist))
+    :custom
+    (yatemplate-dir (expand-file-name "templates" dotspacemacs-directory))
+    (yatemplate-separator "_")))
