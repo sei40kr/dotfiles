@@ -14,3 +14,10 @@
   (require 'projectile)
   (projectile-run-async-shell-command-in-root
     (concat "jest -c jest.config.json --findRelatedTests " (buffer-file-name))))
+
+(defun spacemacs/wsp-run-jest-watch ()
+  (interactive)
+  (require 'projectile)
+  (projectile-run-async-shell-command-in-root
+    (concat "jest -c jest.config.json --findRelatedTests --watch "
+      (buffer-file-name))))
