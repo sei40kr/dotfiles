@@ -23,7 +23,6 @@ bin/xmonad-screenshot:.local/bin/xmonad-screenshot
 clang/clang-format
 dmenu/dmenurc
 dotphiles/ctags/ctags
-dotphiles/curl/curlrc
 dotphiles/git/gitattributes
 dotphiles/git/gitk
 dotphiles/input/editrc
@@ -41,7 +40,6 @@ dotphiles/ruby/rdebugrc
 dotphiles/sqlite/sqliterc
 dotphiles/ssh/config:.ssh/config
 dotphiles/subversion
-dotphiles/wget/wgetrc
 dotsync/bin/dotsync:.local/bin/dotsync
 dotsyncrc
 editorconfig/editorconfig
