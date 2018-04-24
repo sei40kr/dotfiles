@@ -191,9 +191,8 @@
     neo-force-change-root t
     neo-smart-open t
     neo-theme 'arrow)
-  (unless (and (eq system-type 'gnu/linux) (executable-find "xdg-open"))
-    (eval-after-load 'neotree
-      '(define-key neotree-mode-map (kbd "o") nil))))
+  (if (eq system-type 'darwin)
+    (setq neo-default-system-application "qlmanage -p")))
 
 (defun custom/post-init-projectile ()
   (setq
