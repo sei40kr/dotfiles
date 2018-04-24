@@ -11,4 +11,6 @@
 
 (defun spacemacs/wsp-run-jest ()
   (interactive)
-  (async-shell-command (concat "jest --findRelatedTests " (buffer-file-name))))
+  (require 'projectile)
+  (projectile-run-async-shell-command-in-root
+    (concat "jest -c jest.config.json --findRelatedTests " (buffer-file-name))))
