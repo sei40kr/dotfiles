@@ -62,7 +62,3 @@
 	path = spacemacs/spacemacs.d/layers/+lang/better-web
 	url = https://github.com/sei40kr/better-web.git
 	branch = master
-[submodule "SpaceVim"]
-	path = spacevim/SpaceVim
-	url = https://github.com/SpaceVim/SpaceVim.git
-	branch = master
