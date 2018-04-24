@@ -21,3 +21,7 @@
   (projectile-run-async-shell-command-in-root
     (concat "jest -c jest.config.json --findRelatedTests --watch "
       (buffer-file-name))))
+
+(defun spacemacs/parse-salesforce-object ()
+  (interactive)
+  (async-shell-command (concat "parse-salesforce-object " (buffer-file-name))))
