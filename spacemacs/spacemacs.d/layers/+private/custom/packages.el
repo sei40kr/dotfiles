@@ -22,6 +22,7 @@
      exec-path-from-shell
      expand-region
      flycheck
+     flycheck-popup-tip
      helm
      helm-ls-git
      linum
@@ -114,9 +115,15 @@
   (evil-global-set-key 'visual (kbd "V") #'er/contract-region))
 
 (defun custom/post-init-flycheck ()
-  (setq
-    flycheck-check-syntax-automatically '(save mode-enabled)
-    flycheck-pos-tip-timeout 999))
+  (setq flycheck-check-syntax-automatically '(save mode-enabled)))
+
+(defun custom/init-flycheck-popup-tip ()
+  (use-package flycheck-popup-tip
+    :defer t
+    :init
+    (add-hook 'flycheck-mode-hook #'flycheck-popup-tip-mode)
+    :custom
+    (flycheck-popup-tip-error-prefix "* ")))
 
 (defun custom/post-init-helm ()
   (custom-set-variables

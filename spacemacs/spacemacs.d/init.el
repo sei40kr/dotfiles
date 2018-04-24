@@ -192,6 +192,7 @@ values."
     dotspacemacs-excluded-packages
     '(
        counsel-gtags
+       flycheck-pos-tip
        ggtags
        helm-gtags)
 
