@@ -188,6 +188,7 @@
 
 (defun custom/post-init-neotree ()
   (setq
+    neo-force-change-root t
     neo-smart-open t
     neo-theme 'arrow)
   (unless (and (eq system-type 'gnu/linux) (executable-find "xdg-open"))
