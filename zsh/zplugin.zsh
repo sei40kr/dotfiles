@@ -187,8 +187,8 @@ zplugin ice pick'' wait''; zplugin light nobeans/zsh-sdkman
 
 # k
 k() {
-  zplugin ice pick'k.sh'; zplugin light supercrabtree/k
   unhash -f k
+  zplugin ice pick'k.sh'; zplugin light supercrabtree/k
 
   alias k='k -Ah --no-vcs'
 
