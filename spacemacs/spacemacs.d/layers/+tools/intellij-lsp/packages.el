@@ -19,4 +19,7 @@
 
 (defun intellij-lsp/init-lsp-intellij ()
   (use-package lsp-intellij
-    :commands lsp-intellij-enable))
+    :commands lsp-intellij-enable
+    :config
+    (advice-add 'lsp-intellij-enable
+      :after #'spacemacs//set-jump-handlers-for-lsp-intellij)))
