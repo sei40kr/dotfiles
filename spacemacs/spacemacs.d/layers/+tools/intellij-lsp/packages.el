@@ -9,7 +9,13 @@
 ;;
 ;;; License: MIT
 
-(setq intellij-lsp-packages '((lsp-intellij :location local)))
+(setq intellij-lsp-packages
+  '(
+     (lsp-intellij
+       :location
+       (recipe
+         :fetcher github
+         :repo "Ruin0x11/lsp-intellij"))))
 
 (defun intellij-lsp/init-lsp-intellij ()
   (use-package lsp-intellij
