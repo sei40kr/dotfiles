@@ -11,6 +11,7 @@ brew "cppcheck"
 brew "diffutils"
 brew "diff-so-fancy"
 brew "docker-compose", args: ['without-docker', 'without-docker-machine']
+brew "fd"
 brew "findutils"
 brew "flawfinder"
 brew "gawk"
