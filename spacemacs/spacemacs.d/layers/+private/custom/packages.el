@@ -61,7 +61,7 @@
     evil-want-C-u-scroll t
     evil-toggle-key "")
   (with-eval-after-load 'evil
-    (evil-global-set-key 'normal (kbd "C-s") #'save-some-buffers)
+    (evil-global-set-key 'normal (kbd "C-s") #'spacemacs/save-some-buffers)
     (evil-global-set-key 'insert (kbd "C-h") #'evil-delete-backward-char)
     (define-key minibuffer-local-map (kbd "C-h") #'delete-backward-char)
     (define-key minibuffer-local-map (kbd "C-w") #'backward-kill-word)))

@@ -9,6 +9,10 @@
 ;;
 ;;; License: MIT
 
+(defun spacemacs/save-some-buffers ()
+  (interactive)
+  (save-some-buffers t))
+
 ;; mozc
 
 (defun spacemacs//mozc-detect ()
