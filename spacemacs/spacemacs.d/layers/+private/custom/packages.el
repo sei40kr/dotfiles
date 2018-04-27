@@ -49,8 +49,8 @@
   ;; Fix the behaviors of C-h, C-w on auto-completing.
   ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
   (with-eval-after-load 'company
-    (define-key company-active-map (kbd "C-h") 'delete-backward-char)
-    (define-key company-active-map (kbd "C-w") 'backward-kill-word)))
+    (define-key company-active-map (kbd "C-h") #'delete-backward-char)
+    (define-key company-active-map (kbd "C-w") #'backward-kill-word)))
 
 (defun custom/init-competitive-programming-snippets ()
   (use-package competitive-programming-snippets))
@@ -61,10 +61,10 @@
     evil-want-C-u-scroll t
     evil-toggle-key "")
   (with-eval-after-load 'evil
-    (evil-global-set-key 'normal (kbd "C-s") 'save-buffer)
-    (evil-global-set-key 'insert (kbd "C-h") 'evil-delete-backward-char)
-    (define-key minibuffer-local-map (kbd "C-h") 'delete-backward-char)
-    (define-key minibuffer-local-map (kbd "C-w") 'backward-kill-word)))
+    (evil-global-set-key 'normal (kbd "C-s") #'save-some-buffers)
+    (evil-global-set-key 'insert (kbd "C-h") #'evil-delete-backward-char)
+    (define-key minibuffer-local-map (kbd "C-h") #'delete-backward-char)
+    (define-key minibuffer-local-map (kbd "C-w") #'backward-kill-word)))
 
 (defun custom/post-init-evil-escape ()
   (setq evil-escape-key-sequence "jk"))
@@ -131,10 +131,10 @@
   ;; Fix the behaviors of C-h, C-w in helm.
   ;; cf https://github.com/syl20bnr/spacemacs/issues/4243
   (with-eval-after-load 'helm
-    (define-key helm-map (kbd "C-h") 'delete-backward-char)
-    (define-key helm-map (kbd "C-w") 'backward-kill-word)
-    (define-key helm-find-files-map (kbd "C-h") 'delete-backward-char)
-    (define-key helm-find-files-map (kbd "C-w") 'backward-kill-word)))
+    (define-key helm-map (kbd "C-h") #'delete-backward-char)
+    (define-key helm-map (kbd "C-w") #'backward-kill-word)
+    (define-key helm-find-files-map (kbd "C-h") #'delete-backward-char)
+    (define-key helm-find-files-map (kbd "C-w") #'backward-kill-word)))
 
 (defun custom/init-helm-ls-git ()
   (use-package helm-ls-git
