@@ -457,7 +457,7 @@ values."
     ;; %z - mnemonics of buffer, terminal, and keyboard coding systems
     ;; %Z - like %z, but including the end-of-line format
     ;; (default "%I@%S")
-    dotspacemacs-frame-title-format "%I@%S"
+    dotspacemacs-frame-title-format "Spacemacs@%t"
     ;; Format specification for setting the icon title format
     ;; (default nil - same as frame-title-format)
     dotspacemacs-icon-title-format nil
@@ -508,4 +508,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; cf https://medium.com/@bobbypriambodo/blazingly-fast-spacemacs-with-persistent-server-92260f2118b7
   (evil-leader/set-key "q q" 'spacemacs/frame-killer)
 
-  (spacemacs|do-after-display-system-init (spacemacs-modeline/init-spaceline)))
+  (spacemacs|do-after-display-system-init
+    (progn
+      (setq frame-title-format
+        '((:eval (spacemacs/title-prepare dotspacemacs-frame-title-format))))
+      (spacemacs-modeline/init-spaceline))))
