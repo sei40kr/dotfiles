@@ -26,10 +26,6 @@
   branch = master
 	path = spacemacs/spacemacs.d/layers/+lang/spacemacs-salesforce
 	url = https://github.com/sei40kr/spacemacs-salesforce.git
-[submodule "tmux-simple"]
-  branch = master
-	path = tmux/plugins/tmux-simple
-	url = https://github.com/sei40kr/tmux-simple.git
 [submodule "tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
