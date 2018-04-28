@@ -18,7 +18,7 @@ zplugin ice from'gh-r' as'program'; zplugin light junegunn/fzf-bin
 
 # powerline
 
-zplugin ice lucid wait'!0'
+zplugin ice lucid atload'powerline-daemon -q' wait'!0'
 zplugin light "${PYENV_ROOT}/versions/3.6.4/lib/python3.6/site-packages/powerline/bindings/zsh"
 
 # zsh-autosuggestions
