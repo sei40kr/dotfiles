@@ -52,6 +52,7 @@ javascript/importjs.js
 javascript/nvmrc
 luakit/theme.lua:.config/luakit/theme.lua
 luakit/userconf.lua:.config/luakit/userconf.lua
+powerline:.config/powerline
 prettier/prettierrc.js
 python/python-version
 ripgrep/ripgreprc
