@@ -4,7 +4,7 @@
 # cd-gitroot
 
 cd-gitroot() {
-  unhash -f k
+  unhash -f cd-gitroot
   zplugin light mollifier/cd-gitroot
 
   cd-gitroot "$@"
