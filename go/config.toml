@@ -5,6 +5,7 @@
 # cf https://github.com/b4b4r07/gotcha
 
 repos = [
+    'github.com/ForceCLI/force',
     'github.com/alecthomas/gometalinter',
     'github.com/golang/lint/golint',
     'github.com/heroku/force',
