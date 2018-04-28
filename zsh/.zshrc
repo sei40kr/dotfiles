@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 # .zshrc
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
@@ -7,18 +5,18 @@
 autoload -Uz _zplugin
 
 if [[ "${+_comps}" == 1 ]]; then
-    _comps[zplugin]=_zplugin
+  _comps[zplugin]=_zplugin
 fi
 
-. "${ZDOTDIR}/30_aliases.zsh"
-. "${ZDOTDIR}/50_options.zsh"
-. "${ZDOTDIR}/80_custom.zsh"
-. "${ZDOTDIR}/zplugin.zsh"
+. "${ZDOTDIR}/zplugin_commands.zsh"
+. "${ZDOTDIR}/zplugin_completions.zsh"
+. "${ZDOTDIR}/zplugin_omz.zsh"
+. "${ZDOTDIR}/zplugin_prezto.zsh"
+. "${ZDOTDIR}/zplugin_others.zsh"
 
 compinit
 zplugin cdreplay -q
 
-# SDKMAN!
-if [[ -n "$SDKMAN_DIR" ]]; then
-  . "${SDKMAN_DIR}/bin/sdkman-init.sh"
-fi
+. "${ZDOTDIR}/custom.zsh"
+. "${ZDOTDIR}/custom_fzf.zsh"
+. "${ZDOTDIR}/custom_emacs.zsh"

@@ -1,3 +1,6 @@
+# custom.zsh
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
 setopt APPEND_HISTORY \
        AUTO_PARAM_KEYS \
        AUTO_RESUME \
@@ -12,3 +15,9 @@ setopt APPEND_HISTORY \
        PROMPT_SUBST \
        SHARE_HISTORY
 unsetopt LIST_BEEP
+
+alias u='cd ..'
+
+reload() {
+  . "${HOME}/.zshrc"
+}
