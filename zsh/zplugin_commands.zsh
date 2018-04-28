@@ -16,6 +16,10 @@ alias U='cd-gitroot'
 zplugin ice from'gh-r' as'program' mv'direnv* -> direnv' atclone'./direnv hook zsh >zhook.zsh' atpull'%atclone' src'zhook.zsh'
 zplugin light direnv/direnv
 
+# fzf-widgets
+
+zplugin light ytet5uy4/fzf-widgets
+
 # gotcha
 
 zplugin ice from'gh-r' as'program' mv'gotcha_* -> gotcha'

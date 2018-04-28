@@ -16,9 +16,6 @@ zplugin light zdharma/fast-syntax-highlighting
 
 zplugin ice from'gh-r' as'program'; zplugin light junegunn/fzf-bin
 
-zplugin ice pick'shell/completion.zsh' src'shell/key-bindings.zsh'
-zplugin light junegunn/fzf
-
 # pure
 
 zplugin ice pick'async.zsh' lucid src'pure.zsh' wait'!0'
