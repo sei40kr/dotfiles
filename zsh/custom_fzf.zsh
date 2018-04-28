@@ -12,3 +12,5 @@ fzf-kill() {
     | awk '{ print $1 }' \
     | xargs kill
 }
+zle -N fzf-kill
+bindkey '^x^k' fzf-kill
