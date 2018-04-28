@@ -16,8 +16,6 @@ setopt APPEND_HISTORY \
        SHARE_HISTORY
 unsetopt LIST_BEEP
 
-ZLE_RPROMPT_INDENT=0
-
 alias u='cd ..'
 
 reload() {
