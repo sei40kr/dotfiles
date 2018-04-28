@@ -6,11 +6,8 @@ export FZF_DEFAULT_OPTS='--reverse --inline-info'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="bfs -nocolor -mindepth 1 -type d"
 
-fzf-kill() {
-  ps -u "$USER" -o pid,command,%cpu,%mem \
-    | fzf --reverse --inline-info --header-lines=1 \
-    | awk '{ print $1 }' \
-    | xargs kill
-}
-zle -N fzf-kill
-bindkey '^x^k' fzf-kill
+bindkey '^r' fzf-insert-history
+bindkey '^t' fzf-insert-files
+bindkey '\ec' fzf-change-directory
+
+bindkey '^x^b' fzf-git-checkout-branch
