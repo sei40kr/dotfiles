@@ -11,3 +11,10 @@ bindkey '^t' fzf-insert-files
 bindkey '\ec' fzf-change-directory
 
 bindkey '^x^b' fzf-git-checkout-branch
+
+fzf-ghq-look() {
+  BUFFER="ghq look $(ghq list | fzf --reverse --inline-info)"
+  zle accept-line
+}
+zle -N fzf-ghq-look
+bindkey '^x^g' fzf-ghq-look
