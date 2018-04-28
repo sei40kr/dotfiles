@@ -5,7 +5,6 @@ aws-shell
 cmakelint
 cpplint
 flake8
-i3-py
 i3ipc
 jedi
 jupyter
