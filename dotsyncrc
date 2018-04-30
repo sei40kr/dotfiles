@@ -48,6 +48,7 @@ git/gitconfig
 git/gitignore
 global/globalrc
 go/go-version
+i3:.config/i3
 javascript/importjs.js
 javascript/nvmrc
 luakit/theme.lua:.config/luakit/theme.lua
@@ -60,12 +61,6 @@ ruby/ruby-version
 spacemacs/emacs.d
 spacemacs/spacemacs.d
 tmux/tmux.conf
-x11/Xresources
-x11/xinitrc
-x11/xsessionrc
-xmodmap/Xmodmap
-xmonad/xmonad.hs:.xmonad/xmonad.hs
-xmobar/xmobarrc
 [endfiles]
 
 # Hosts to sync
