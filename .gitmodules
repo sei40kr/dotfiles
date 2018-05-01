@@ -62,7 +62,3 @@
 	path = spacemacs/spacemacs.d/layers/+tools/intellij-lsp/local/lsp-intellij
 	url = https://github.com/Ruin0x11/intellij-lsp-server.git
 	branch = master
-[submodule "spacemacs-os"]
-	path = spacemacs/spacemacs.d/layers/+tools/spacemacs-os
-	url = https://github.com/sei40kr/spacemacs-os.git
-	branch = master
