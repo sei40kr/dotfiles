@@ -40,7 +40,7 @@
 	url = https://github.com/sei40kr/zsh-better-run-help.git
 [submodule "dotsync"]
 	path = dotsync
-	url = git@github.com:dotphiles/dotsync.git
+	url = https://github.com/dotphiles/dotsync.git
 	branch = master
 [submodule "dotphiles"]
 	path = dotphiles
@@ -48,7 +48,7 @@
 	branch = master
 [submodule "competitive-programming-snippets"]
 	path = spacemacs/spacemacs.d/layers/+private/custom/local/competitive-programming-snippets
-	url = git@github.com:sei40kr/competitive-programming-snippets.git
+	url = https://github.com/sei40kr/competitive-programming-snippets.git
 	branch = master
 [submodule "spacemacs-ghq"]
 	path = spacemacs/spacemacs.d/layers/+tools/spacemacs-ghq
