@@ -115,7 +115,9 @@
   (evil-global-set-key 'visual (kbd "V") #'er/contract-region))
 
 (defun custom/post-init-flycheck ()
-  (setq flycheck-check-syntax-automatically '(save mode-enabled)))
+  (setq
+    flycheck-display-errors-delay 0.3
+    flycheck-check-syntax-automatically '(save mode-enabled)))
 
 (defun custom/init-flycheck-popup-tip ()
   (use-package flycheck-popup-tip
