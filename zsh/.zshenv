@@ -1,5 +1,5 @@
 typeset -gU fpath infopath manpath path
-export TERM='screen-256color-italic'
+export TERM='xterm-256color-italic'
 export ZSH_CACHE_DIR="${HOME}/.cache/zsh"
 
 
