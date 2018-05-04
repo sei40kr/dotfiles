@@ -1,6 +1,11 @@
 # .zshrc
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
+# Automatic transparency
+if [[ -n "$XTERM_VERSION" ]] && [[ "${+commands[transset-df]}" == 1 ]]; then
+  transset-df 0.96 --id "$WINDOWID" >/dev/null
+fi
+
 . "${ZDOTDIR}/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 
