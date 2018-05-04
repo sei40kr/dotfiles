@@ -16,6 +16,19 @@ alias U='cd-gitroot'
 zplugin ice from'gh-r' as'program' mv'direnv* -> direnv' atclone'./direnv hook zsh >zhook.zsh' atpull'%atclone' src'zhook.zsh'
 zplugin light direnv/direnv
 
+# extract
+
+extract() {
+  unhash -f extract
+  unalias x
+
+  zplugin ice svn
+  zplugin snippet OMZ::plugins/extract
+
+  extract "$@"
+}
+alias x='extract'
+
 # fzf-widgets
 
 zplugin light ytet5uy4/fzf-widgets

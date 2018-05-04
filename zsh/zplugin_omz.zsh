@@ -28,7 +28,6 @@
     postgres
     # Tools
     colored-man-pages
-    extract
     nmap
   )
 
