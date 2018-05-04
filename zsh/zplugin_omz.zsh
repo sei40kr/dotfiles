@@ -12,7 +12,6 @@
     # Java
     mvn
     # Node
-    npm
     yarn
     react-native
     # Python

@@ -26,6 +26,11 @@ zplugin snippet 'https://github.com/docker/docker-ce/trunk/components/cli/contri
 zplugin ice pick'' wait''
 zplugin light jsforce/jsforce-zsh-completions
 
+# npm
+
+zplugin ice wait''
+zplugin light lukechilds/zsh-better-npm-completion
+
 # sdkman
 
 zplugin ice pick'' wait''
