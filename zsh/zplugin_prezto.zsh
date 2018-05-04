@@ -27,6 +27,7 @@
     homebrew
     rsync
     ssh
+    tmux
   )
 
   # Load OS-specified modules
@@ -36,10 +37,9 @@
     modules=( pacman $modules )
   fi
 
-  if [[ ! "$XDG_SESSION_DESKTOP" =~ ^(xfce|xmonad)$ ]]; then
-    modules=( tmux $modules )
-    zstyle ':prezto:module:tmux:auto-start' local 'yes'
-    zstyle ':prezto:module:tmux:session' name 'default'
+  zstyle ':prezto:module:tmux:session' name 'default'
+  if [[ "$XDG_SESSION_DESKTOP" = 'i3' ]]; then
+    zstyle ':prezto:module:tmux:auto-start' local 'no'
   fi
 
   for module in $modules; do
