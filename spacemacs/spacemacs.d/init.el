@@ -284,7 +284,7 @@ values."
     ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
     ;; quickly tweak the mode-line size to make separators look not too crappy.
     dotspacemacs-default-font '("Source Han Code JP"
-                                 :size 15
+                                 :size 14
                                  :weight normal
                                  :width normal
                                  :powerline-scale 1.0)
@@ -499,7 +499,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
 (defun dotspacemacs/user-config ()
   (when (file-exists-p custom-file) (load-file custom-file))
 
-  (spacemacs/enable-transparency)
   (spacemacs/toggle-fill-column-indicator-on)
   (spacemacs/toggle-golden-ratio-on)
   (spacemacs/toggle-whitespace-cleanup-on)
@@ -512,4 +511,5 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (progn
       (setq frame-title-format
         '((:eval (spacemacs/title-prepare dotspacemacs-frame-title-format))))
+      (spacemacs/enable-transparency)
       (spacemacs-modeline/init-spaceline))))
