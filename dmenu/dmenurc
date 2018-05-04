@@ -1,18 +1,11 @@
-#!/usr/bin/env bash
-# -*- mode: bash -*-
+#!/bin/sh
 
-# dmenurc --- Run dmenu_run with some options
+# dmenurc
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 set -euo pipefail
 IFS=$'\n\t'
 
-dmenu_run -b \
-    -i \
+dmenu -i \
     -l 15 \
-    -p '' \
-    -fn 'Ubuntu Nerd Font:pixelsize=16' \
-    -nb '#222' \
-    -nf '#fff' \
-    -sb '#08c' \
-    -sf '#fff'
+    -fn 'Terminus\-ja-12'
