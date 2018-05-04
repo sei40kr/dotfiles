@@ -161,3 +161,7 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+exec_always --no-startup-id compton -b --xrender-sync --xrender-sync-fence
+exec_always --no-startup-id ~/.fehbg
+exec_always --no-startup-id fcitx-autostart
