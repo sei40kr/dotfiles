@@ -33,8 +33,6 @@
   # Load OS-specified modules
   if [[ "$OSTYPE" == darwin* ]]; then
     modules=( osx $modules )
-  elif [[ "${+commands[pacman]}" == 1 ]]; then
-    modules=( pacman $modules )
   fi
 
   zstyle ':prezto:module:tmux:session' name 'default'
