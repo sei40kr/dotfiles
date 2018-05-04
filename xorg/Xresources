@@ -1,0 +1,63 @@
+#define S_base #b2b2b2
+#define S_bg1 #292b2e
+#define S_bg4 #100a14
+#define S_keyword #4f97d7
+
+#define S_green #67b11d
+#define S_cyan #28def0
+#define S_red #f2241f
+#define S_magenta #a31db1
+#define S_yellow #b1951d
+
+!! UXTerm
+
+! TERM Environmental Variable
+UXTerm.termName: xterm-256color-italic
+! Make 'Alt' key behave as on other terminal emulators
+UXTerm.vt100.metaSendsEscape: true
+! Fix the backspace key
+UXTerm.vt100.backarrowKey: false
+UXTerm.ttyModes: erase ^?
+! Default fonts
+UXTerm.vt100.faceName: xos4 Terminus:pixelsize=16:antialias=false
+UXTerm.vt100.faceNameDoublesize: Terminus\\-ja:pixelsize=16:antialias=false
+! Adjust line spacing
+UXTerm.scaleHeight: 1.01
+! Scrollbar
+UXTerm.vt100.scrollBar: false
+! Colors
+UXTerm.vt100.background: S_bg1
+UXTerm.vt100.foreground: S_base
+UXTerm.vt100.cursorColor: S_base
+! black
+UXTerm.vt100.color0: S_bg4
+UXTerm.vt100.color8: S_bg4
+! red
+UXTerm.vt100.color1: S_red
+UXTerm.vt100.color9: S_red
+! green
+UXTerm.vt100.color2: S_green
+UXTerm.vt100.color10: S_green
+! yellow
+UXTerm.vt100.color3: S_yellow
+UXTerm.vt100.color11: S_yellow
+! blue
+UXTerm.vt100.color4: S_keyword
+UXTerm.vt100.color12: S_keyword
+! magenta
+UXTerm.vt100.color5: S_magenta
+UXTerm.vt100.color13: S_magenta
+! cyan
+UXTerm.vt100.color6: S_cyan
+UXTerm.vt100.color14: S_cyan
+! white
+UXTerm.vt100.color7: S_base
+UXTerm.vt100.color15: S_base
+
+
+!! Xft
+
+Xft.antialias: 1
+Xft.hintstyle: hintnone
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
