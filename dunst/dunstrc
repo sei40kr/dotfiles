@@ -16,7 +16,7 @@
     #
     # If this option is set to mouse or keyboard, the monitor option
     # will be ignored.
-    follow = mouse
+    follow = keyboard
 
     # The geometry of the window:
     #   [{width}]x{height}[+/-{x}+/-{y}]
@@ -30,7 +30,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "320x5-10+30"
+    geometry = "300x5-30+20"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -52,20 +52,20 @@
     # Draw a line of "separator_height" pixel height between two
     # notifications.
     # Set to 0 to disable.
-    separator_height = 3
+    separator_height = 2
 
     # Padding between text and separator.
     padding = 8
 
     # Horizontal padding.
-    horizontal_padding = 16
+    horizontal_padding = 8
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
     frame_width = 3
 
     # Defines color of the frame around the notification window.
-    frame_color = "#222222"
+    frame_color = "#aaaaaa"
 
     # Define a color for the separator.
     # possible values are:
@@ -86,7 +86,7 @@
 
     ### Text ###
 
-    font = Ubuntu 12
+    font = Terminus-ja 12
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -114,7 +114,7 @@
     #
     # It's important to note that markup inside the format option will be parsed
     # regardless of what this is set to.
-    markup = no
+    markup = full
 
     # The format of the message.  Possible variables are:
     #   %a  appname
@@ -132,18 +132,18 @@
     # Possible values are "left", "center" and "right".
     alignment = left
 
-    # Show age of melder than show_age_threshold
+    # Show age of message if message is older than show_age_threshold
     # seconds.
     # Set to -1 to disable.
     show_age_threshold = 60
 
     # Split notifications into multiple lines if they don't fit into
     # geometry.
-    word_wrap = middle
+    word_wrap = yes
 
     # When word_wrap is set to no, specify where to ellipsize long lines.
     # Possible values are "start", "middle" and "end".
-    ellipsize = start
+    ellipsize = middle
 
     # Ignore newlines '\n' in notifications.
     ignore_newline = no
@@ -163,7 +163,7 @@
     icon_position = off
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 0
+    max_icon_size = 32
 
     # Paths to default icons.
     icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
@@ -183,7 +183,7 @@
     dmenu = /usr/bin/dmenu -p dunst:
 
     # Browser for opening urls in context menu.
-    browser = google-chrome
+    browser = /usr/bin/chromium
 
     # Always run rule-defined scripts, even if the notification is suppressed
     always_run_script = true
@@ -198,15 +198,6 @@
     # This is mainly for error detection, since dbus (re-)starts dunst
     # automatically after a crash.
     startup_notification = false
-
-    # Manage dunst's desire for talking
-    # Can be one of the following values:
-    #  crit: Critical features. Dunst aborts
-    #  warn: Only non-fatal warnings
-    #  mesg: Important Messages
-    #  info: all unimportant stuff
-    # debug: all less than unimportant stuff
-    verbosity = mesg
 
     ### Legacy
 
@@ -256,24 +247,22 @@
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#222222"
-    foreground = "#ffffff"
-    frame_color = "#999999"
+    foreground = "#888888"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_normal]
-    background = "#0088cc"
+    background = "#285577"
     foreground = "#ffffff"
-    frame_color = "#0088cc"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_critical]
-    background = "#cc0088"
+    background = "#900000"
     foreground = "#ffffff"
-    frame_color = "#cc0088"
+    frame_color = "#ff0000"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
     #icon = /path/to/icon
@@ -282,7 +271,7 @@
 # override settings for certain messages.
 # Messages can be matched by "appname", "summary", "body", "icon", "category",
 # "msg_urgency" and you can override the "timeout", "urgency", "foreground",
-# "background", "frame_color", "new_icon" and "format", "fullscreen".
+# "background", "new_icon" and "format".
 # Shell-like globbing will get expanded.
 #
 # SCRIPTING
@@ -296,19 +285,6 @@
 # to "".
 # NOTE: It might be helpful to run dunst -print in a terminal in order
 # to find fitting options for rules.
-
-# fullscreen values
-# show: show the notifications, regardless if there is a fullscreen window opened
-# delay: displays the new notification, if there is there is no fullscreen window active
-#        If the notification is already drawn, it won't get undrawn.
-# pushback: same as delay, but when switching into fullscreen, the notification will get
-#           withdrawn from screen again and will get delayed like a new notification
-
-#[fullscreen_delay_everything]
-#    fullscreen = delay
-#[fullscreen_show_critical]
-#    msg_urgency = critical
-#    fullscreen = show
 
 #[espeak]
 #    summary = "*"
