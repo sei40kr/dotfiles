@@ -5,6 +5,7 @@
 
 cd-gitroot() {
   unhash -f cd-gitroot
+
   zplugin light mollifier/cd-gitroot
 
   cd-gitroot "$@"
@@ -52,6 +53,7 @@ zplugin light b4b4r07/ssh-keyreg
 
 k() {
   unhash -f k
+
   zplugin ice pick'k.sh'
   zplugin light supercrabtree/k
 
