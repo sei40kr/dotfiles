@@ -162,8 +162,15 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+bar {
+  status_command i3status
+  i3bar_command i3bar -t
+  position top
+}
+
 # gaps
-gaps inner 8
+gaps outer 4
+gaps inner 12
 
 # Smart Gaps
 smart_gaps on
