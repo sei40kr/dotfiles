@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-# urxvtc-float --- Create a new window of urxvtc named urxvtc-float
-# author: Seong Yong-ju <sei40kr@gmail.com>
-
-set -euo pipefail
-IFS=$'\n\t'
-
-urxvtc -g 90x25 -name urxvtc-float "$@"
