@@ -3,9 +3,14 @@
 # dmenurc
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-set -euo pipefail
-IFS=$'\n\t'
+BASE='#b2b2b2'
+BG1='#292b2e'
+HIGHLIGHT='#444155'
 
 dmenu -i \
     -l 15 \
-    -fn 'Terminus\-ja-12'
+    -fn 'Terminus\-ja-12' \
+    -nb "$BG1" \
+    -nf "$BASE" \
+    -sb "$HIGHLIGHT" \
+    -sf "$BASE"
