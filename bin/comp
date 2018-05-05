@@ -1,7 +1,6 @@
 #!/bin/sh
-#
-# Start a composition manager.
-# (xcompmgr in this case)
+
+# comp -- Start a composition manager
 
 comphelp() {
   cat <<EOM
@@ -14,16 +13,16 @@ EOM
 }
 
 checkcomp() {
-  pgrep xcompmgr >/dev/null
+  pgrep compton >/dev/null
 }
 
 stopcomp() {
-  checkcomp && killall xcompmgr
+  checkcomp && killall compton
 }
 
 startcomp() {
   stopcomp
-  xcompmgr -c &
+  compton -b --xrender-sync --xrender-sync-fence
   exit
 }
 
