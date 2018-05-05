@@ -241,6 +241,5 @@ gaps inner 12
 # Smart Gaps
 smart_gaps on
 
-exec_always --no-startup-id compton -b --xrender-sync --xrender-sync-fence
 exec_always --no-startup-id ~/.fehbg
 exec_always --no-startup-id fcitx-autostart
