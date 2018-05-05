@@ -71,14 +71,6 @@ if [[ -n "$BREW_PREFIX" ]]; then
     export LESS_ADVANCED_PREPROCESSOR=1
   fi
 
-  # llvm
-  if [[ -d "${BREW_PREFIX}/opt/llvm" ]]; then
-    export LD_LIBRARY_PATH="${BREW_PREFIX}/opt/llvm/lib"
-    export LDFLAGS="-L${LD_LIBRARY_PATH} -Wl,-rpath,${LD_LIBRARY_PATH}"
-    export CPPFLAGS="-I${BREW_PREFIX}/opt/llvm/include"
-    path=( "${BREW_PREFIX}/opt/llvm/bin" $path )
-  fi
-
   # cabal
   if [[ -x "${BREW_PREFIX}/bin/cabal" ]]; then
     path=( "${HOME}/.cabal/bin" $path )
