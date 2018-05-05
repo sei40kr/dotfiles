@@ -1,0 +1,43 @@
+#!/bin/sh
+#
+# Start a composition manager.
+# (xcompmgr in this case)
+
+comphelp() {
+  cat <<EOM
+Composition Manager:
+   (re)start: COMP
+   stop:      COMP -s
+   query:     COMP -q
+              returns 0 if composition manager is running, else 1
+EOM
+}
+
+checkcomp() {
+  pgrep xcompmgr >/dev/null
+}
+
+stopcomp() {
+  checkcomp && killall xcompmgr
+}
+
+startcomp() {
+  stopcomp
+  xcompmgr -c &
+  exit
+}
+
+case "$1" in
+  '')
+    startcomp
+    ;;
+  '-q')
+    checkcomp
+    ;;
+  '-s')
+    stopcomp
+    ;;
+  *)
+    comphelp
+    ;;
+esac
