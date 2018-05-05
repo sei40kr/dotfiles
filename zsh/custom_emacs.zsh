@@ -3,6 +3,7 @@
 
 if [[ "$OSTYPE" = linux* ]]; then
   alias e='XLIB_SKIP_ARGB_VISUALS=1 e'
+  export EDITOR='XLIB_SKIP_ARGB_VISUALS=1 e -nw'
 fi
 
 alias emacs='e -n'

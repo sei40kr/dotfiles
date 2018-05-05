@@ -14,7 +14,7 @@ fi
 
 ## Editor
 
-export EDITOR="${EMACS_PLUGIN_LAUNCHER} -nw"
+export EDITOR='e -nw'
 export CVSEDITOR="$EDITOR"
 export SVN_EDITOR="$EDITOR"
 export GIT_EDITOR="$EDITOR"
