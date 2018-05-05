@@ -1,5 +1,0 @@
-COPY_ALWAYS="importjs.js"
-DOTFILES_DIRS="$HOME/dotfiles $HOME/dotfiles-local"
-EXCLUDES="LICENSE-MIT Makefile README.md archive doc etc install.bash opt"
-SYMLINK_DIRS="emacs.d git spacemacs.d tmux/plugins/tpm tmux/plugins/tmux-simple xmonad zsh"
-UNDOTTED="Library *.desktop *.svg"
