@@ -6,6 +6,7 @@ cmakelint
 cpplint
 flake8
 i3ipc
+ipython
 jedi
 jupyter
 mycli
