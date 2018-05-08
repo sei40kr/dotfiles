@@ -7,8 +7,17 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[{Makefile,**.mk}]
+[*.bat]
 indent_style = tab
+
+[*.json]
+insert_final_newline = ignore
 
 [*.md]
 trim_trailing_whitespace = false
+
+[*.py]
+indent_size = 4
+
+[Makefile]
+indent_style = tab
