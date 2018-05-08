@@ -493,8 +493,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
     auto-insert-query nil
     auto-save-default nil
     backup-inhibited t
-    browse-url-browser-function 'browse-url-generic
-    browse-url-generic-program "google-chrome"
+    browse-url-browser-function #'browse-url-generic
+    browse-url-generic-program (getenv "BROWSER")
     create-lockfiles nil
     custom-file (expand-file-name "custom.el" dotspacemacs-directory)
     tooltip-delay 0.3
