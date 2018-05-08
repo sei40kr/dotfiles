@@ -146,6 +146,7 @@ values."
        cmake
        (dash :variables
          helm-dash-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
+       deft
        docker
        imenu-list
        (lsp :variables
