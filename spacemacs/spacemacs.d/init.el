@@ -161,6 +161,8 @@ values."
          shell-default-height 30
          shell-default-position 'bottom)
        tmux
+       (transmission :variables
+         transmission-auto-refresh-all t)
        vagrant
        ;; Vim
        evil-commentary
