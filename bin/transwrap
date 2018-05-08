@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# transwrap
+
 killall transmission-daemon 2> /dev/null
 
 transmission-daemon --foreground --log-info 2>&1 | while read -r line; do
