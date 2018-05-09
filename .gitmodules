@@ -89,3 +89,6 @@
 [submodule "rbenv-bundler"]
 	path = rbenv/rbenv-bundler
 	url = https://github.com/carsomyr/rbenv-bundler.git
+[submodule "rbenv-default-gems"]
+	path = rbenv/rbenv-default-gems
+	url = https://github.com/rbenv/rbenv-default-gems.git
