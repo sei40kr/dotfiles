@@ -74,3 +74,6 @@
 [submodule "pyenv-virtualenv"]
 	path = pyenv/pyenv-virtualenv
 	url = https://github.com/pyenv/pyenv-virtualenv.git
+[submodule "goenv"]
+	path = goenv/goenv
+	url = https://github.com/syndbg/goenv.git

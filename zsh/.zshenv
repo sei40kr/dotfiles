@@ -79,13 +79,6 @@ if [[ -n "$BREW_PREFIX" ]]; then
     path=( "${HOME}/.cabal/bin" $path )
   fi
 
-  # goenv
-  if [[ -x "${BREW_PREFIX}/opt/goenv/bin/goenv" ]]; then
-    export GOENV_ROOT="${BREW_PREFIX}/opt/goenv"
-    export GOPATH="${HOME}/.go"
-    path=( "${GOENV_ROOT}/bin" "${GOENV_ROOT}/shims" "${GOPATH}/bin" $path )
-  fi
-
   # nvm
   if [[ -s "${BREW_PREFIX}/opt/nvm/nvm.sh" ]]; then
     export NVM_DIR="${BREW_PREFIX}/opt/nvm"
@@ -108,6 +101,13 @@ fi
 if [[ -x "${HOME}/.cargo/bin/cargo" ]]; then
   path=( "${HOME}/.cargo/bin" $path )
   export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+fi
+
+# goenv
+if [[ -x "${HOME}/.goenv/bin/goenv" ]]; then
+  export GOENV_ROOT="${HOME}/.goenv"
+  export GOPATH="${HOME}/.go"
+  path=( "${GOENV_ROOT}/bin" "${GOENV_ROOT}/shims" "${GOPATH}/bin" $path )
 fi
 
 # Haskell Tool Stack
