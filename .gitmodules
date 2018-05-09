@@ -62,3 +62,15 @@
 	path = spacemacs/spacemacs.d/layers/+tools/intellij-lsp/local/lsp-intellij
 	url = https://github.com/Ruin0x11/intellij-lsp-server.git
 	branch = master
+[submodule "pyenv"]
+	path = pyenv/pyenv
+	url = https://github.com/pyenv/pyenv.git
+[submodule "pyenv-default-packages"]
+	path = pyenv/pyenv-default-packages
+	url = https://github.com/jawshooah/pyenv-default-packages.git
+[submodule "pyenv-ccache"]
+	path = pyenv/pyenv-ccache
+	url = https://github.com/yyuu/pyenv-ccache.git
+[submodule "pyenv-virtualenv"]
+	path = pyenv/pyenv-virtualenv
+	url = https://github.com/pyenv/pyenv-virtualenv.git
