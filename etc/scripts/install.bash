@@ -29,6 +29,10 @@ GOENV_ROOT="${HOME}/.goenv"
 ln -sf "${DOTFILES_PATH}/goenv/goenv" "${GOENV_ROOT}"
 eval "$("${GOENV_ROOT}/bin/goenv" init - --no-rehash bash)" && goenv install -s 1.10.1 && goenv global 1.10.1
 
+# Haskell Tool Stack
+mkdir -p "${HOME}/.stack"
+ln -sf "${DOTFILES_PATH}/stack/config.yml" "${HOME}/.stack/config.yml"
+
 # nvm
 NVM_DIR="${HOME}/.nvm"
 ln -sf "${DOTFILES_PATH}/nvm/nvm" "${NVM_DIR}"
