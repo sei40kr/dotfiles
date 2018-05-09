@@ -56,6 +56,7 @@ ln -sf "${DOTFILES_PATH}/pyenv/pyenv-virtualenv" "${PYENV_ROOT}/plugins/pyenv-vi
 eval "$("${PYENV_ROOT}/bin/pyenv" init - --no-rehash bash)" && pyenv install -s 3.6.5 && pyenv global 3.6.5
 
 # ranger
+mkdir -p "${HOME}/.config/ranger"
 ln -sf "${DOTFILES_PATH}/ranger/commands.py" "${HOME}/.config/ranger/commands.py"
 ln -sf "${DOTFILES_PATH}/ranger/rifle.conf" "${HOME}/.config/ranger/rifle.conf"
 
