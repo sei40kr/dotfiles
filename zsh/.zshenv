@@ -79,12 +79,6 @@ if [[ -n "$BREW_PREFIX" ]]; then
     path=( "${HOME}/.cabal/bin" $path )
   fi
 
-  # rbenv
-  if [[ -x "${BREW_PREFIX}/opt/rbenv/bin/rbenv" ]]; then
-    export RBENV_ROOT="${BREW_PREFIX}/opt/rbenv"
-    path=( "${RBENV_ROOT}/bin" "${RBENV_ROOT}/shims" $path )
-  fi
-
   # xdg
   if [[ -n "$XDG_SESSION_ID" ]]; then
     export XDG_DATA_DIRS="${BREW_PREFIX}/share:${XDG_DATA_DIRS}"
@@ -117,6 +111,12 @@ fi
 if [[ -x "${HOME}/.pyenv/bin/pyenv" ]]; then
   export PYENV_ROOT="${HOME}/.pyenv"
   path=( "${PYENV_ROOT}/bin" "${PYENV_ROOT}/shims" $path )
+fi
+
+# rbenv
+if [[ -x "${HOME}/.rbenv/bin/rbenv" ]]; then
+  export RBENV_ROOT="${HOME}/.rbenv"
+  path=( "${RBENV_ROOT}/bin" "${RBENV_ROOT}/shims" $path )
 fi
 
 # SDKMAN!

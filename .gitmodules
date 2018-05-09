@@ -80,3 +80,12 @@
 [submodule "nvm"]
 	path = nvm/nvm
 	url = https://github.com/creationix/nvm.git
+[submodule "rbenv"]
+	path = rbenv/rbenv
+	url = https://github.com/rbenv/rbenv.git
+[submodule "rbenv-build"]
+	path = rbenv/rbenv-build
+	url = https://github.com/rbenv/ruby-build.git
+[submodule "rbenv-bundler"]
+	path = rbenv/rbenv-bundler
+	url = https://github.com/carsomyr/rbenv-bundler.git
