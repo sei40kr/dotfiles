@@ -92,12 +92,6 @@ if [[ -n "$BREW_PREFIX" ]]; then
     path=( "${NVM_DIR}/current/bin" $path )
   fi
 
-  # pyenv
-  if [[ -x "${BREW_PREFIX}/opt/pyenv/bin/pyenv" ]]; then
-    export PYENV_ROOT="${BREW_PREFIX}/opt/pyenv"
-    path=( "${PYENV_ROOT}/bin" "${PYENV_ROOT}/shims" $path )
-  fi
-
   # rbenv
   if [[ -x "${BREW_PREFIX}/opt/rbenv/bin/rbenv" ]]; then
     export RBENV_ROOT="${BREW_PREFIX}/opt/rbenv"
@@ -118,6 +112,12 @@ fi
 
 # Haskell Tool Stack
 path=( "${HOME}/bin" "${HOME}/.local/bin" $path )
+
+# pyenv
+if [[ -x "${HOME}/.pyenv/bin/pyenv" ]]; then
+  export PYENV_ROOT="${HOME}/.pyenv"
+  path=( "${PYENV_ROOT}/bin" "${PYENV_ROOT}/shims" $path )
+fi
 
 # SDKMAN!
 if [[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]]; then
