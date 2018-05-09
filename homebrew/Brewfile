@@ -29,7 +29,6 @@ brew "grep"
 brew "gzip"
 brew "jq"
 brew "lesspipe", args: ['with-syntax-highlighting']
-brew "nvm"
 brew "pandoc"
 brew "parallel"
 brew "ranger"

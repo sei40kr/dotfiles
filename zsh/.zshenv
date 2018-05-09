@@ -79,12 +79,6 @@ if [[ -n "$BREW_PREFIX" ]]; then
     path=( "${HOME}/.cabal/bin" $path )
   fi
 
-  # nvm
-  if [[ -s "${BREW_PREFIX}/opt/nvm/nvm.sh" ]]; then
-    export NVM_DIR="${BREW_PREFIX}/opt/nvm"
-    path=( "${NVM_DIR}/current/bin" $path )
-  fi
-
   # rbenv
   if [[ -x "${BREW_PREFIX}/opt/rbenv/bin/rbenv" ]]; then
     export RBENV_ROOT="${BREW_PREFIX}/opt/rbenv"
@@ -112,6 +106,12 @@ fi
 
 # Haskell Tool Stack
 path=( "${HOME}/bin" "${HOME}/.local/bin" $path )
+
+# nvm
+if [[ -s "${HOME}/.nvm/nvm.sh" ]]; then
+  export NVM_DIR="${HOME}/.nvm"
+  path=( "${NVM_DIR}/current/bin" $path )
+fi
 
 # pyenv
 if [[ -x "${HOME}/.pyenv/bin/pyenv" ]]; then

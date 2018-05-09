@@ -77,3 +77,6 @@
 [submodule "goenv"]
 	path = goenv/goenv
 	url = https://github.com/syndbg/goenv.git
+[submodule "nvm"]
+	path = nvm/nvm
+	url = https://github.com/creationix/nvm.git
