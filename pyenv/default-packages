@@ -11,7 +11,7 @@ jedi
 jupyter
 mycli
 pgcli
--e git+ssh://git@github.com:powerline/powerline.git@master
+-e git+git://github.com/powerline/powerline.git#egg=powerline
 proselint
 psutil
 ptpython
