@@ -16,10 +16,10 @@ zplugin light zdharma/fast-syntax-highlighting
 
 zplugin ice from'gh-r' as'program'; zplugin light junegunn/fzf-bin
 
-# powerline
+# pure
 
-zplugin ice lucid atload'powerline-daemon -q' wait'!0'
-zplugin light "${PYENV_ROOT}/versions/3.6.4/lib/python3.6/site-packages/powerline/bindings/zsh"
+zplugin ice pick'async.zsh' lucid src'pure.zsh' wait'!0'
+zplugin light sindresorhus/pure
 
 # zsh-autosuggestions
 
