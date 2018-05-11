@@ -156,8 +156,8 @@ values."
          lsp-ui-sideline-ignore-duplicate t
          lsp-ui-sideline-show-symbol nil)
        nginx
-       (ranger :variables
-         ranger-show-hidden t)
+       ;; (ranger :variables
+       ;;   ranger-show-hidden t)
        (shell :variables
          shell-default-shell 'multi-term
          shell-default-height 30
