@@ -16,6 +16,7 @@
      company
      (competitive-programming-snippets :location local)
      evil
+     evil-collection
      evil-escape
      evil-mc
      evil-surround
@@ -70,6 +71,15 @@
     (evil-global-set-key 'insert (kbd "C-h") #'evil-delete-backward-char)
     (define-key minibuffer-local-map (kbd "C-h") #'delete-backward-char)
     (define-key minibuffer-local-map (kbd "C-w") #'backward-kill-word)))
+
+(defun custom/init-evil-collection ()
+  (use-package evil-collection
+    :after evil
+    :ensure t
+    :config
+    (with-eval-after-load 'quickrun
+      (require 'evil-collection-quickrun)
+      (evil-collection-quickrun-setup))))
 
 (defun custom/post-init-evil-escape ()
   (setq evil-escape-key-sequence "jk"))
