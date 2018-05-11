@@ -61,11 +61,11 @@
 (defun custom/init-competitive-programming-snippets ()
   (use-package competitive-programming-snippets))
 
-(defun custom/post-init-evil ()
+(defun custom/pre-init-evil ()
   (setq
     evil-want-C-i-jump t
     evil-want-C-u-scroll t
-    evil-toggle-key "")
+    evil-want-integration nil)
   (with-eval-after-load 'evil
     (evil-global-set-key 'normal (kbd "C-s") #'spacemacs/save-some-buffers)
     (evil-global-set-key 'insert (kbd "C-h") #'evil-delete-backward-char)
@@ -77,9 +77,16 @@
     :after evil
     :ensure t
     :config
-    (with-eval-after-load 'quickrun
-      (require 'evil-collection-quickrun)
-      (evil-collection-quickrun-setup))))
+    (evil-collection-init)
+    :custom
+    (evil-collection-setup-minibuffer t)
+    (evil-collection-mode-list
+      '(
+         company
+         python
+         quickrun
+         ruby
+         (term term ansi-term multi-term)))))
 
 (defun custom/post-init-evil-escape ()
   (setq evil-escape-key-sequence "jk"))
