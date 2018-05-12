@@ -31,7 +31,6 @@ brew "jq"
 brew "lesspipe", args: ['with-syntax-highlighting']
 brew "pandoc"
 brew "parallel"
-brew "ranger"
 brew "reattach-to-user-namespace"
 brew "ripgrep-bin"
 brew "rustup-init"
