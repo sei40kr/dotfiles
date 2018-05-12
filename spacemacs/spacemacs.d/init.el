@@ -166,6 +166,7 @@ values."
        (transmission :variables
          transmission-auto-refresh-all t)
        vagrant
+       xclipboard
        ;; Vim
        evil-commentary
        (evil-snipe :variables
