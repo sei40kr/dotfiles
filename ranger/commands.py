@@ -8,11 +8,13 @@
 # -----------------------------------------------------------------------------
 
 from __future__ import (absolute_import, division, print_function)
-import os, time
+import os
+import time
 from ranger.core.loader import CommandLoader, Loadable
 from ranger.api.commands import Command
 from ranger.ext.signals import SignalDispatcher
-from ranger.ext.shell_escape import *
+from ranger.ext.shell_escape import shell_escape
+
 
 # Any class that is a subclass of "Command" will be integrated into ranger as a
 # command.  Try typing ":my_edit<ENTER>" in ranger!
@@ -86,8 +88,9 @@ class extracthere(Command):
         else:
             descr = "extracting files from: " + os.path.basename(
                 one_file.dirname)
-        obj = CommandLoader(args=['aunpack'] + au_flags \
-                + [f.path for f in copied_files], descr=descr)
+        obj = CommandLoader(
+            args=['aunpack'] + au_flags + [f.path for f in copied_files],
+            descr=descr)
 
         obj.signal_bind('after', refresh)
         self.fm.loader.add(obj)
@@ -111,8 +114,10 @@ class compress(Command):
         au_flags = parts[1:]
 
         descr = "compressing files in: " + os.path.basename(parts[1])
-        obj = CommandLoader(args=['apack'] + au_flags + \
-                [os.path.relpath(f.path, cwd.path) for f in marked_files], descr=descr)
+        obj = CommandLoader(
+            args=['apack'] + au_flags +
+            [os.path.relpath(f.path, cwd.path) for f in marked_files],
+            descr=descr)
 
         obj.signal_bind('after', refresh)
         self.fm.loader.add(obj)
@@ -141,11 +146,8 @@ class MountLoader(Loadable, SignalDispatcher):
     def generate(self):
         available = False
         while not available:
-            try:
-                if os.path.ismount(self.path):
-                    available = True
-            except:
-                pass
+            if os.path.ismount(self.path):
+                available = True
             yield
             time.sleep(0.03)
         self.signal_emit('after')
@@ -160,8 +162,8 @@ class mount(Command):
 
         space = ' '
         self.fm.execute_command("cdemu -b system unload 0")
-        self.fm.execute_command("cdemu -b system load 0 " + \
-                space.join([shell_escape(f.path) for f in selected_files]))
+        self.fm.execute_command("cdemu -b system load 0 " + space.join(
+            [shell_escape(f.path) for f in selected_files]))
 
         mountpath = "/media/virtualrom/"
 
