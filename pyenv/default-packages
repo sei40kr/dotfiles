@@ -11,7 +11,6 @@ jedi
 jupyter
 mycli
 pgcli
--e git+git://github.com/powerline/powerline.git#egg=powerline
 proselint
 psutil
 ptpython
@@ -20,6 +19,7 @@ pylint
 pyls-isort
 pyls-mypy
 python-language-server
+ranger-fm
 vim-vint
 yamllint
 yapf
