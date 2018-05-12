@@ -88,3 +88,6 @@
 [submodule "rbenv-default-gems"]
 	path = rbenv/rbenv-default-gems
 	url = https://github.com/rbenv/rbenv-default-gems.git
+[submodule "lsp-intellij"]
+	path = spacemacs/spacemacs.d/layers/+tools/lsp-intellij
+	url = https://github.com/Ruin0x11/lsp-intellij-spacemacs.git
