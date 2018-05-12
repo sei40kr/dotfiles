@@ -1,7 +1,6 @@
 tap "burntsushi/ripgrep", "https://github.com/BurntSushi/ripgrep.git"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "jawshooah/pyenv"
 tap "tavianator/tap"
 
 brew "autoconf"

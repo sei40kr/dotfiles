@@ -3,7 +3,6 @@ tap "caskroom/cask"
 tap "d12frosted/emacs-plus"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "jawshooah/pyenv"
 tap "tavianator/tap"
 
 brew "autoconf"
