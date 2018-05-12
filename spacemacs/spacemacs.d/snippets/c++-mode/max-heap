@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Max heap using C++ STL
-# key: max-heap
-# --
-
-priority_queue<long long, std::vector<long long>, std::less<long long>> $1;
-$0
