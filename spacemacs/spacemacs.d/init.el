@@ -178,7 +178,7 @@ values."
        better-javascript
        better-lsp
        better-web
-       intellij-lsp
+       lsp-intellij
        spacemacs-ghq
        spacemacs-kotlin
        spacemacs-quickrun
