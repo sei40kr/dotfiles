@@ -178,10 +178,10 @@ values."
          evil-snipe-repeat-scope t)
        ;; WebServices
        ;; Custom
-       better-c-cpp
-       better-javascript
-       better-lsp
-       better-web
+       ;; better-c-cpp
+       ;; better-javascript
+       ;; better-lsp
+       ;; better-web
        lsp-intellij
        spacemacs-ghq
        spacemacs-kotlin
