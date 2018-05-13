@@ -30,11 +30,6 @@
      linum
      linum-relative
      magit
-     (mozc
-       :requires mozc-popup
-       :toggle (spacemacs//mozc-detect))
-     (mozc-mode-line-indicator :location local)
-     mozc-popup
      neotree
      projectile
      ranger
@@ -190,26 +185,6 @@
        ("Name" 25 magit-repolist-column-ident nil)
        ("Version" 25 magit-repolist-column-version nil)
        ("Path" 99 magit-repolist-column-path nil))))
-
-(defun custom/init-mozc ()
-  (use-package mozc
-    :init
-    (progn
-      (set-language-environment "japanese")
-      (setq default-input-method "japanese-mozc"))
-    :config
-    (evil-global-set-key 'insert (kbd "C-j") 'toggle-input-method)))
-
-(defun custom/init-mozc-mode-line-indicator ()
-  (use-package mozc-mode-line-indicator
-    :init
-    (custom-set-variables '(mozc-mode-line-indicator-title-format "%s"))))
-
-(defun custom/init-mozc-popup ()
-  (use-package mozc-popup
-    :defer t
-    :init
-    (setq mozc-candidate-style 'popup)))
 
 (defun custom/post-init-neotree ()
   (setq
