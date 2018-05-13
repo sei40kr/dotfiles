@@ -162,6 +162,7 @@ values."
          shell-default-shell 'multi-term
          shell-default-height 30
          shell-default-position 'bottom)
+       terraform
        tmux
        (transmission :variables
          transmission-auto-refresh-all t)
