@@ -13,16 +13,6 @@
   (interactive)
   (save-some-buffers t))
 
-;; mozc
-
-(defun spacemacs//mozc-detect ()
-  "Detect mozc_emacs_helper binary and warn if not found."
-  (and (eq system-type 'gnu/linux)
-    (let (found (executable-find "mozc_emacs_helper"))
-      (unless found
-        (spacemacs-buffer/warning "mozc_emacs_helper binary not found!"))
-      found)))
-
 
 ;; evil-mc
 
