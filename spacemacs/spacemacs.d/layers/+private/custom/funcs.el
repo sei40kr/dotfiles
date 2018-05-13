@@ -73,10 +73,12 @@
       (ghq--get-repository-ssh repository)
       (ghq--get-repository repository))))
 
+
 ;; projectile
 
-(defun spacemacs/projectile-switch-project-action ()
+(defun spacemacs//projectile-switch-project-action ()
   (interactive)
+  (require 'projectile)
   (projectile-dired)
   (require 'neotree)
   (neotree-hide))

@@ -191,7 +191,7 @@
     projectile-find-dir-includes-top-level t
     projectile-git-submodule-command nil
     projectile-sort-order 'default
-    projectile-switch-project-action #'spacemacs/projectile-switch-project-action
+    projectile-switch-project-action #'spacemacs//projectile-switch-project-action
     projectile-use-git-grep t)
   (with-eval-after-load 'projectile
     (require 'magit)
