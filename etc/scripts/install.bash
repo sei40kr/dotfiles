@@ -43,9 +43,6 @@ ln -sf "${DOTFILES_PATH}/nvm/default-packages" "${NVM_DIR}/default-packages"
 # shellcheck disable=SC1090
 . "${NVM_DIR}/nvm.sh" && nvm install stable && nvm alias default stable
 
-# Powerline
-ln -sf "${DOTFILES_PATH}/powerline" "${HOME}/.config/powerline"
-
 # Prettier
 ln -sf "${DOTFILES_PATH}/prettier/prettierrc.js" "${HOME}/.prettierrc.js"
 
