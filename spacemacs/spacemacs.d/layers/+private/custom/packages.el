@@ -109,7 +109,7 @@
 (defun custom/init-evil-tutor-ja ()
   (use-package evil-tutor-ja :defer t))
 
-(defun custom/post-init-exec-path-from-shell ()
+(defun custom/pre-init-exec-path-from-shell ()
   (setq
     exec-path-from-shell-arguments '("-l")
     exec-path-from-shell-check-startup-files nil
