@@ -15,6 +15,7 @@
      cc-mode
      company
      (competitive-programming-snippets :location local)
+     edit-server
      evil
      evil-collection
      evil-escape
@@ -56,6 +57,10 @@
 
 (defun custom/init-competitive-programming-snippets ()
   (use-package competitive-programming-snippets))
+
+(defun custom/post-init-edit-server ()
+  (setq edit-server-url-major-mode-alist
+    '("aidemy\\.net" . python-mode)))
 
 (defun custom/pre-init-evil ()
   (setq
