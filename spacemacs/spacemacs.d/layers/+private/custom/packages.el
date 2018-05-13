@@ -37,6 +37,7 @@
      solidity-mode
      spaceline
      spacemacs-theme
+     tabbar
      yatemplate))
 
 (setq custom-excluded-packages '())
@@ -215,6 +216,18 @@
 
 (defun custom/post-init-spacemacs-theme ()
   (setq spacemacs-theme-comment-italic t))
+
+(defun custom/init-tabbar ()
+  (use-package tabbar
+    :config
+    (progn
+      (tabbar-mode)
+      (global-set-key [M-left] 'tabbar-backward-tab)
+      (global-set-key [M-right] 'tabbar-forward-tab))
+    :custom
+    (tabbar-buffer-groups-function #'spacemacs//git-tabbar-buffer-groups)
+    (tabbar-buffer-list-function #'spacemacs//tabbar-buffer-list)
+    (tabbar-use-images nil)))
 
 (defun custom/init-yatemplate ()
   (use-package yatemplate

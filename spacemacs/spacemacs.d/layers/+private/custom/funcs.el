@@ -77,3 +77,27 @@
 
 (defun spacemacs//spaceline-compile-before (&rest _)
   (setq powerline-default-separator nil))
+
+
+;; tabbar
+
+(defun spacemacs//find-git-dir (dir)
+  "Search up the directory tree looking for a .git folder."
+  (cond
+    ((eq major-mode 'dired-mode) "Dired")
+    ((not dir) "process")
+    ((string= dir "/") "no-git")
+    ((file-exists-p (concat dir "/.git")) dir)
+    (t (spacemacs//find-git-dir (directory-file-name (file-name-directory dir))))))
+
+(defun spacemacs//git-tabbar-buffer-groups ()
+  "Groups tabs in tabbar-mode by the git repository they are in."
+  (list (spacemacs//find-git-dir (buffer-file-name (current-buffer)))))
+
+(defun spacemacs//tabbar-buffer-list ()
+  (remove-if
+    (lambda (buffer)
+      (and
+        (not (eq buffer (current-buffer)))
+        (find (aref (buffer-name buffer) 0) " *")))
+    (buffer-list)))
