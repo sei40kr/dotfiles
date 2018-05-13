@@ -141,6 +141,8 @@ values."
        (gtags :variables gtags-enable-by-default nil)
        ;; Themes
        colors
+       themes-megapack
+       theming
        ;; Tools
        ansible
        chrome
