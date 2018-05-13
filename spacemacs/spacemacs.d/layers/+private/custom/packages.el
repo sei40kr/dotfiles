@@ -39,6 +39,7 @@
      projectile
      ranger
      semantic
+     solidity-mode
      spaceline
      spacemacs-theme
      yatemplate))
@@ -242,6 +243,9 @@
   (require 'mode-local)
   (setq-mode-local emacs-lisp-mode
     semanticdb-find-default-throttle '(file local project unloaded system)))
+
+(defun custom/init-solidity-mode ()
+  (use-package solidity-mode))
 
 (defun custom/post-init-spaceline ()
   (setq spaceline-show-default-input-method t)
