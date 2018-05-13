@@ -69,6 +69,7 @@ values."
        (go :variables
          go-use-gometalinter t
          gofmt-command "goimports")
+       gpu
        (haskell :variables
          haskell-enable-hindent t)
        html
