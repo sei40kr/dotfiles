@@ -50,8 +50,7 @@ values."
        helm
        ;; Emacs
        (org :variables
-         org-enable-github-support t
-         org-enable-reveal-js-support t)
+         org-enable-github-support t)
        ;; E-mail
        ;; Framework
        ruby-on-rails
