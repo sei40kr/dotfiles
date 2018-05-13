@@ -177,6 +177,7 @@ values."
          evil-snipe-enable-alternate-f-and-t-behaviors t
          evil-snipe-repeat-scope t)
        ;; WebServices
+       search-engine
        ;; Custom
        ;; better-c-cpp
        ;; better-javascript
