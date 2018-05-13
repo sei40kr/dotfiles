@@ -17,7 +17,6 @@
      (competitive-programming-snippets :location local)
      edit-server
      evil
-     evil-collection
      evil-escape
      evil-mc
      evil-surround
@@ -65,29 +64,12 @@
 (defun custom/pre-init-evil ()
   (setq
     evil-want-C-i-jump t
-    evil-want-C-u-scroll t
-    evil-want-integration nil)
+    evil-want-C-u-scroll t)
   (with-eval-after-load 'evil
     (evil-global-set-key 'normal (kbd "C-s") #'spacemacs/save-some-buffers)
     (evil-global-set-key 'insert (kbd "C-h") #'backward-delete-char-untabify)
     (define-key minibuffer-local-map (kbd "C-h") #'backward-delete-char)
     (define-key minibuffer-local-map (kbd "C-w") #'backward-kill-word)))
-
-(defun custom/init-evil-collection ()
-  (use-package evil-collection
-    :after evil
-    :ensure t
-    :config
-    (evil-collection-init)
-    :custom
-    (evil-collection-setup-minibuffer t)
-    (evil-collection-mode-list
-      '(
-         company
-         python
-         quickrun
-         ruby
-         (term term ansi-term multi-term)))))
 
 (defun custom/post-init-evil-escape ()
   (setq evil-escape-key-sequence "jk"))
