@@ -33,6 +33,9 @@ eval "$("${GOENV_ROOT}/bin/goenv" init - --no-rehash bash)" && goenv install -s 
 mkdir -p "${HOME}/.stack"
 ln -sf "${DOTFILES_PATH}/stack/config.yml" "${HOME}/.stack/config.yml"
 
+# matplotlib
+ln -sf "${DOTFILES_PATH}/matplotlib/matplotlibrc" "${HOME}/.config/matplotlib"
+
 # nvm
 NVM_DIR="${HOME}/.nvm"
 ln -sf "${DOTFILES_PATH}/nvm/nvm" "${NVM_DIR}"
