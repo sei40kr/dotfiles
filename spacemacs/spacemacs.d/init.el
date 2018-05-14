@@ -73,6 +73,7 @@ values."
          haskell-enable-hindent t)
        html
        java
+       json
        ipython-notebook
        kotlin
        latex
