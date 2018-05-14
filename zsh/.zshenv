@@ -86,7 +86,7 @@ if [[ -n "$BREW_PREFIX" ]]; then
 fi
 
 # cargo
-if [[ -x "${HOME}/.cargo/bin/cargo" ]]; then
+if [[ -d "${HOME}/.cargo/bin" ]]; then
   path=( "${HOME}/.cargo/bin" $path )
   export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
