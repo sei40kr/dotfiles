@@ -71,6 +71,21 @@
       (ghq--get-repository repository))))
 
 
+;; lsp-intellij
+
+(defun spacemacs//lsp-intellij-setup-company-rjsx-mode ()
+  (spacemacs|add-company-backends
+    :backends company-lsp
+    :modes rjsx-mode
+    :variables
+    company-lsp-enable-snippet t
+    company-transformers nil
+    company-lsp-async t
+    company-idle-delay 0.5
+    company-minimum-prefix-length 1
+    company-lsp-cache-candidates t))
+
+
 ;; projectile
 
 (defun spacemacs//projectile-switch-project-action ()
