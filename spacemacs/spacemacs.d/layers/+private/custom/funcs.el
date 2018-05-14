@@ -83,7 +83,7 @@
 
 (defun spacemacs//tabbar-buffer-groups-by-projectile-project ()
   "Groups tabs in tabbar-mode by the projectile project they are in."
-  (projectile-project-name))
+  (list (projectile-project-name)))
 
 (defun spacemacs//tabbar-buffer-list ()
   (remove-if
