@@ -14,6 +14,13 @@
   (save-some-buffers t))
 
 
+;; evil-magit
+
+(defun spacemacs/magit-mode-kill-buffer ()
+  (interactive)
+  (magit-mode-bury-buffer t))
+
+
 ;; evil-mc
 
 (defun spacemacs//evil-mc-define-vars-after (&rest _)

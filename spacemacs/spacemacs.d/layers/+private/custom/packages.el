@@ -18,6 +18,7 @@
      edit-server
      evil
      evil-escape
+     evil-magit
      evil-mc
      evil-surround
      evil-tutor-ja
@@ -74,6 +75,11 @@
 
 (defun custom/post-init-evil-escape ()
   (setq evil-escape-key-sequence "jk"))
+
+(defun custom/pre-init-evil-magit ()
+  (eval-after-load 'evil-magit
+    '(evil-define-key evil-magit-state magit-mode-map
+       "q" #'spacemacs/magit-mode-kill-buffer)))
 
 (defun custom/post-init-evil-mc ()
   (setq evil-mc-one-cursor-show-mode-line-text nil)
