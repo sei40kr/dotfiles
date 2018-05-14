@@ -73,6 +73,9 @@ values."
          haskell-enable-hindent t)
        html
        java
+       (javascript :variables
+         javascript-backend 'tern
+         node-add-modules-path t)
        json
        ipython-notebook
        kotlin
