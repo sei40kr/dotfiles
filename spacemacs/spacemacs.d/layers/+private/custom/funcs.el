@@ -81,18 +81,9 @@
 
 ;; tabbar
 
-(defun spacemacs//find-git-dir (dir)
-  "Search up the directory tree looking for a .git folder."
-  (cond
-    ((eq major-mode 'dired-mode) "Dired")
-    ((not dir) "process")
-    ((string= dir "/") "no-git")
-    ((file-exists-p (concat dir "/.git")) dir)
-    (t (spacemacs//find-git-dir (directory-file-name (file-name-directory dir))))))
-
-(defun spacemacs//git-tabbar-buffer-groups ()
-  "Groups tabs in tabbar-mode by the git repository they are in."
-  (list (spacemacs//find-git-dir (buffer-file-name (current-buffer)))))
+(defun spacemacs//tabbar-buffer-groups-by-projectile-project ()
+  "Groups tabs in tabbar-mode by the projectile project they are in."
+  (projectile-project-name))
 
 (defun spacemacs//tabbar-buffer-list ()
   (remove-if

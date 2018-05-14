@@ -225,7 +225,8 @@
       (global-set-key [M-left] 'tabbar-backward-tab)
       (global-set-key [M-right] 'tabbar-forward-tab))
     :custom
-    (tabbar-buffer-groups-function #'spacemacs//git-tabbar-buffer-groups)
+    (tabbar-buffer-groups-function
+      #'spacemacs//tabbar-buffer-groups-by-projectile-project)
     (tabbar-buffer-list-function #'spacemacs//tabbar-buffer-list)
     (tabbar-use-images nil)))
 
