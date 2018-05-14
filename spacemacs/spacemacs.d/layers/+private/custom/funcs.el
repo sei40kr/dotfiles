@@ -90,5 +90,5 @@
     (lambda (buffer)
       (and
         (not (eq buffer (current-buffer)))
-        (find (aref (buffer-name buffer) 0) " *")))
-    (buffer-list)))
+        (string-prefix-p "*" (string-trim (buffer-name buffer)))))
+      (buffer-list)))
