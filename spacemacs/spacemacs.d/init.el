@@ -183,7 +183,7 @@ values."
        search-engine
        ;; Custom
        ;; better-c-cpp
-       ;; better-javascript
+       better-javascript
        ;; better-lsp
        ;; better-web
        lsp-intellij
