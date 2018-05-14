@@ -1,7 +1,8 @@
+# -*- mode: gitignore; -*-
+
 # Created by https://www.gitignore.io/api/emacs
 
 ### Emacs ###
-# -*- mode: gitignore; -*-
 *~
 \#*\#
 /.emacs.desktop
@@ -68,3 +69,7 @@ anaconda-mode/
 
 
 # End of https://www.gitignore.io/api/emacs
+
+
+# org-projectile
+/TODOs.org
