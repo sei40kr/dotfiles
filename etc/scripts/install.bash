@@ -83,5 +83,6 @@ ln -sF "${DOTFILES_PATH}/tmux" "${HOME}/.tmux"
 ln -sF "${DOTFILES_PATH}/tmux/tmux.conf" "${HOME}/.tmux.conf"
 
 # ZSH
+mkdir -p "${HOME}/.config/zsh"
 ln -sF "${DOTFILES_PATH}/zsh" "${HOME}/.zsh"
 ln -sF "${DOTFILES_PATH}/zshenv" "${HOME}/.zshenv"
