@@ -505,7 +505,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
     auto-save-default nil
     backup-inhibited t
     browse-url-browser-function #'browse-url-generic
-    browse-url-generic-program (getenv "BROWSER")
+    browse-url-generic-program
+    (cond
+      (getenv "BROWSER")
+      (executable-find "google-chrome")
+      (executable-find "chromium"))
     create-lockfiles nil
     custom-file (expand-file-name "custom.el" dotspacemacs-directory)
     select-enable-clipboard nil
