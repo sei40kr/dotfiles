@@ -9,6 +9,9 @@
     git
     # Go
     golang
+    # Haskell
+    cabal
+    stack
     # Java
     mvn
     # Node
@@ -55,10 +58,15 @@
     # Java
     ant
     gradle
+    spring
     # Ruby
     rake-fast
+    # Rust
+    cargo
+    rust
     # Tools
     mosh
+    redis-cli
   )
 
   for completion in $completions; do
