@@ -20,3 +20,6 @@ alias u='cd ..'
 alias reload='. ~/.zsh/.zshrc'
 
 alias ranger='[ -z "$RANGER_LEVEL" ] && \ranger'
+
+alias tl='todoist --color list'
+alias tgs='toggl stop'
