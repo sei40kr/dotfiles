@@ -12,6 +12,7 @@ repos = [
     'github.com/heppu/gkill',
     'github.com/jackc/sqlfmt',
     'github.com/nsf/gocode',
+    'github.com/sachaos/toggl',
     'github.com/sourcegraph/go-langserver',
     'golang.org/x/tools/cmd/goimports',
     'gopkg.in/Netflix-Skunkworks/go-jira.v1/cmd/jira',
