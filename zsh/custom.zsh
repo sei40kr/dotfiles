@@ -17,8 +17,6 @@ setopt APPEND_HISTORY \
 unsetopt LIST_BEEP
 
 alias u='cd ..'
-alias ranger='[ -z "$RANGER_LEVEL" ] && \ranger'
+alias reload='. ~/.zsh/.zshrc'
 
-reload() {
-  . "${HOME}/.zshrc"
-}
+alias ranger='[ -z "$RANGER_LEVEL" ] && \ranger'
