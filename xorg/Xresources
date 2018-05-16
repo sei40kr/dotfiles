@@ -13,6 +13,8 @@
 
 ! TERM Environmental Variable
 UXTerm.termName: xterm-256color-italic
+! Remove black borders
+UXTerm*borderWidth: 0
 ! Make 'Alt' key behave as on other terminal emulators
 UXTerm.vt100.metaSendsEscape: true
 ! Fix the backspace key
