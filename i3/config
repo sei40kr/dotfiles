@@ -143,6 +143,10 @@ mode "resize" {
 
 # bindsym $mod+r mode "resize"
 
+# Screen capture
+bindsym --release Print exec --no-startup-id scrot
+bindsym --release Shift+Print exec --no-startup-id scrot -s
+
 # Jump to urgent window
 bindsym $mod+x [urgent=latest] focus
 
