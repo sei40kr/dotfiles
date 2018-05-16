@@ -74,6 +74,10 @@ eval "$("${RBENV_ROOT}/bin/rbenv" init - --no-rehash bash)" && rbenv install -s 
 # ripgrep
 ln -sF "${DOTFILES_PATH}/ripgrep/ripgreprc" "${HOME}/.ripgreprc"
 
+# rustup
+rustup default nightly
+rustup component add rust-src
+
 # Spacemacs
 ln -sF "${DOTFILES_PATH}/spacemacs/emacs.d" "${HOME}/.emacs.d"
 ln -sF "${DOTFILES_PATH}/spacemacs/spacemacs.d" "${HOME}/.spacemacs.d"
