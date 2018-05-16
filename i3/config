@@ -143,6 +143,11 @@ mode "resize" {
 
 # bindsym $mod+r mode "resize"
 
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+# Show the first scratchpad window
+bindsym $mod+Control+minus scratchpad show
+
 # Screen capture
 bindsym --release Print exec --no-startup-id scrot
 bindsym --release Shift+Print exec --no-startup-id scrot -s
@@ -152,6 +157,7 @@ bindsym $mod+x [urgent=latest] focus
 
 for_window [class="Thunar"] floating enable
 for_window [class="Zeal"] floating enable
+for_window [title="LINE"] floating enable
 
 assign [class="^Chromium$"] $ws2
 assign [class="^Emacs$"] $ws1
