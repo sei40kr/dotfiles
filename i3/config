@@ -143,6 +143,16 @@ mode "resize" {
 
 # bindsym $mod+r mode "resize"
 
+# Jump to urgent window
+bindsym $mod+x [urgent=latest] focus
+
+for_window [class="Thunar"] floating enable
+for_window [class="Zeal"] floating enable
+
+assign [class="^Chromium$"] $ws2
+assign [class="^Emacs$"] $ws1
+assign [class="^UXTerm$"] $ws1
+
 # class                 border  backgr. text    indicator child_border
 client.focused          #5d4d7e #5d4d7e #b2b2b2 #5d4d7e   #5d4d7e
 client.focused_inactive #444155 #444155 #b2b2b2 #444155   #444155
