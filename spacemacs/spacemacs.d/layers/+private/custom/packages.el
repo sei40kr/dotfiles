@@ -12,7 +12,6 @@
 (setq custom-packages
   '(
      avy
-     cc-mode
      company
      (competitive-programming-snippets :location local)
      edit-server
@@ -53,9 +52,6 @@
   (with-eval-after-load 'company
     (define-key company-active-map (kbd "C-h") #'delete-backward-char)
     (define-key company-active-map (kbd "C-w") #'backward-kill-word)))
-
-(defun custom/post-init-cc-mode ()
-  (add-hook 'c-mode-common-hook #'(lambda () (c-toggle-auto-newline -1)) t))
 
 (defun custom/init-competitive-programming-snippets ()
   (use-package competitive-programming-snippets))
