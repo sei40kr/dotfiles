@@ -167,7 +167,7 @@ assign [class="^UXTerm$"] $ws1
 client.focused          #5d4d7e #5d4d7e #b2b2b2 #5d4d7e   #5d4d7e
 client.focused_inactive #444155 #444155 #b2b2b2 #444155   #444155
 client.unfocused        #222226 #222226 #b2b2b2 #222226   #222226
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.urgent           #222226 #222226 #bc6ec5 #222226   #222226
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #212026
@@ -187,7 +187,7 @@ bar {
     focused_workspace  #5d4d7e #5d4d7e #b2b2b2
     active_workspace   #444155 #444155 #b2b2b2
     inactive_workspace #292b2e #292b2e #b2b2b2
-    urgent_workspace   #2f343a #900000 #ffffff
+    urgent_workspace   #222226 #222226 #bc6ec5
     binding_mode       #2f343a #900000 #ffffff
   }
 }
