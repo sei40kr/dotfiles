@@ -95,6 +95,18 @@
   (require 'neotree)
   (neotree-hide))
 
+;; python-mode
+
+(defun spacemacs//python-set-evil-shift-width ()
+  "Set `evil-shift-width' according to `python-indent-offset'."
+  (setq evil-shift-width python-indent-offset))
+
+;; ruby-mode
+
+(defun spacemacs//ruby-set-evil-shift-width ()
+  "Set `evil-shift-width' according to `ruby-indent-level'."
+  (setq evil-shift-width ruby-indent-level))
+
 ;; spaceline
 
 (defun spacemacs//spaceline-compile-before (&rest _)
