@@ -221,6 +221,9 @@
 (defun custom/pre-init-ruby-mode ()
   (add-hook 'ruby-mode-hook #'spacemacs//ruby-set-evil-shift-width))
 
+(defun custom/pre-init-rust-mode ()
+  (add-hook 'rust-mode-hook #'spacemacs//rust-set-evil-shift-width))
+
 (defun custom/post-init-semantic ()
   (require 'mode-local)
   (setq-mode-local emacs-lisp-mode

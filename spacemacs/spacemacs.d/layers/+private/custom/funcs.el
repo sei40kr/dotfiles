@@ -107,6 +107,12 @@
   "Set `evil-shift-width' according to `ruby-indent-level'."
   (setq evil-shift-width ruby-indent-level))
 
+;; rust-mode
+
+(defun spacemacs//rust-set-evil-shift-width ()
+  "Set `evil-shift-width' according to `rust-indent-offset'."
+  (setq evil-shift-width rust-indent-offset))
+
 ;; spaceline
 
 (defun spacemacs//spaceline-compile-before (&rest _)
