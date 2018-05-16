@@ -199,5 +199,6 @@ gaps inner 16
 # Smart Gaps
 smart_gaps on
 
+exec_always --no-startup-id ~/.local/bin/comp
 exec_always --no-startup-id ~/.fehbg
 exec_always --no-startup-id fcitx-autostart
