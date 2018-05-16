@@ -56,6 +56,7 @@ values."
        ruby-on-rails
        ;; Fun
        ;; International support
+       japanese
        ;; Programming and markup languages
        (c-c++ :variables
          c-c++-default-mode-for-headers 'c++-mode
@@ -208,10 +209,13 @@ values."
     ;; A list of packages that will not be installed and loaded.
     dotspacemacs-excluded-packages
     '(
+       avy-migemo
        counsel-gtags
+       ddskk
        flycheck-pos-tip
        ggtags
        helm-gtags
+       migemo
        persp-mode)
 
     ;; Defines the behaviour of Spacemacs when installing packages.
