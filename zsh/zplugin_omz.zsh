@@ -70,7 +70,7 @@
   )
 
   for completion in $completions; do
-    zplugin ice svn wait''
+    zplugin ice svn pick'' wait''
     zplugin snippet OMZ::"plugins/${completion}"
   done
 }
