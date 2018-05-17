@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# install.bash
+# install.bash --- dotfiles installer
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 set -euo pipefail
