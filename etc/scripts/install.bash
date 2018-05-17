@@ -41,7 +41,10 @@ NVM_DIR="${HOME}/.nvm"
 ln -sF "${DOTFILES_PATH}/nvm/nvm" "${NVM_DIR}"
 ln -sF "${DOTFILES_PATH}/nvm/default-packages" "${NVM_DIR}/default-packages"
 # shellcheck disable=SC1090
-. "${NVM_DIR}/nvm.sh" && nvm install stable && nvm alias default stable
+. "${NVM_DIR}/nvm.sh"
+nvm install stable
+npm config delete prefix
+nvm alias default stable
 
 # Prettier
 ln -sF "${DOTFILES_PATH}/prettier/prettierrc.js" "${HOME}/.prettierrc.js"
