@@ -68,7 +68,7 @@
   (with-eval-after-load 'evil
     (evil-global-set-key 'normal (kbd "C-s") #'spacemacs/save-some-buffers)
     (evil-global-set-key 'insert (kbd "C-h") #'backward-delete-char-untabify)
-    (define-key minibuffer-local-map (kbd "C-h") #'backward-delete-char)
+    (define-key minibuffer-local-map (kbd "C-h") #'evil-ex-delete-backward-char)
     (define-key minibuffer-local-map (kbd "C-w") #'backward-kill-word)))
 
 (defun custom/post-init-evil-escape ()
