@@ -56,6 +56,7 @@ values."
        ruby-on-rails
        ;; Fun
        ;; International support
+       japanese
        ;; Programming and markup languages
        (c-c++ :variables
          c-c++-default-mode-for-headers 'c++-mode
@@ -208,10 +209,14 @@ values."
     ;; A list of packages that will not be installed and loaded.
     dotspacemacs-excluded-packages
     '(
+       avy-migemo
        counsel-gtags
+       ddskk
        flycheck-pos-tip
        ggtags
-       helm-gtags)
+       helm-gtags
+       migemo
+       persp-mode)
 
     ;; Defines the behaviour of Spacemacs when installing packages.
     ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -515,8 +520,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
     select-enable-clipboard nil
     tooltip-delay 0.3
     tooltip-hide-delay 999
-    tooltip-short-delay 0.1)
-  (defalias 'yes-or-no-p 'y-or-n-p))
+    tooltip-short-delay 0.1))
 
 (defun dotspacemacs/user-config ()
   (when (file-exists-p custom-file) (load-file custom-file))

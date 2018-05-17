@@ -73,7 +73,7 @@ bindsym $mod+Shift+Right move right
 # bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+# bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+space layout toggle tabbed splith splitv
@@ -143,77 +143,34 @@ mode "resize" {
 
 # bindsym $mod+r mode "resize"
 
-## Colors
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+# Show the first scratchpad window
+bindsym $mod+Control+minus scratchpad show
 
-# generic
-set $act1          "#222226"
-set $act2          "#5d4d7a"
-set $base          "#b2b2b2"
-set $base-dim      "#686868"
-set $bg1           "#292b2e"
-set $bg2           "#212026"
-set $bg3           "#100a14"
-set $bg4           "#0a0814"
-set $border        "#5d4d7a"
-set $cblk          "#cbc1d5"
-set $cblk-bg       "#2f2b33"
-set $cblk-ln       "#827591"
-set $cblk-ln-bg    "#373040"
-set $cursor        "#e3dedd"
-set $const         "#a45bad"
-set $comment       "#2aa1ae"
-set $comment-light "#2aa1ae"
-set $comment-bg    "#292e34"
-set $comp          "#c56ec3"
-set $err           "#e0211d"
-set $func          "#bc6ec5"
-set $head1         "#4f97d7"
-set $head1-bg      "#293239"
-set $head2         "#2d9574"
-set $head2-bg      "#293235"
-set $head3         "#67b11d"
-set $head3-bg      "#293235"
-set $head4         "#b1951d"
-set $head4-bg      "#32322c"
-set $highlight     "#444155"
-set $highlight-dim "#3b314d"
-set $keyword       "#4f97d7"
-set $lnum          "#44505c"
-set $mat           "#86dc2f"
-set $meta          "#9f8766"
-set $str           "#2d9574"
-set $suc           "#86dc2f"
-set $ttip          "#9a9aba"
-set $ttip-sl       "#5e5079"
-set $ttip-bg       "#34323e"
-set $type          "#ce537a"
-set $var           "#7590db"
-set $war           "#dc752f"
+# Screen capture
+bindsym --release Print exec --no-startup-id scrot
+bindsym --release Shift+Print exec --no-startup-id scrot -s
 
-set $aqua          "#2d9574"
-set $aqua-bg       "#293235"
-set $green         "#67b11d"
-set $green-bg      "#293235"
-set $green-bg-s    "#29422d"
-set $cyan          "#28def0"
-set $red           "#f2241f"
-set $red-bg        "#3c2a2c"
-set $red-bg-s      "#512e31"
-set $blue          "#4f97d7"
-set $blue-bg       "#293239"
-set $blue-bg-s     "#2d4252"
-set $magenta       "#a31db1"
-set $yellow        "#b1951d"
-set $yellow-bg     "#32322c"
+# Jump to urgent window
+bindsym $mod+x [urgent=latest] focus
+
+for_window [class="Thunar"] floating enable
+for_window [class="Zeal"] floating enable
+for_window [title="LINE"] floating enable
+
+assign [class="^Chromium$"] $ws2
+assign [class="^Emacs$"] $ws1
+assign [class="^UXTerm$"] $ws1
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.focused          #5d4d7e #5d4d7e #b2b2b2 #5d4d7e   #5d4d7e
+client.focused_inactive #444155 #444155 #b2b2b2 #444155   #444155
+client.unfocused        #222226 #222226 #b2b2b2 #222226   #222226
+client.urgent           #222226 #222226 #bc6ec5 #222226   #222226
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
-client.background       #ffffff
+client.background       #212026
 
 bar {
   status_command i3status
@@ -222,24 +179,26 @@ bar {
 
   # Colors
   colors {
-    background #000000
-    statusline #ffffff
+    background #222226
+    statusline #b2b2b2
     separator #666666
 
-    focused_workspace  #4c7899 #285577 #ffffff
-    active_workspace   #333333 #5f676a #ffffff
-    inactive_workspace #333333 #222222 #888888
-    urgent_workspace   #2f343a #900000 #ffffff
+    # class            border  backgr. text
+    focused_workspace  #5d4d7e #5d4d7e #b2b2b2
+    active_workspace   #444155 #444155 #b2b2b2
+    inactive_workspace #292b2e #292b2e #b2b2b2
+    urgent_workspace   #222226 #222226 #bc6ec5
     binding_mode       #2f343a #900000 #ffffff
   }
 }
 
 # gaps
 gaps outer 4
-gaps inner 12
+gaps inner 16
 
 # Smart Gaps
 smart_gaps on
 
+exec_always --no-startup-id ~/.local/bin/comp
 exec_always --no-startup-id ~/.fehbg
 exec_always --no-startup-id fcitx-autostart

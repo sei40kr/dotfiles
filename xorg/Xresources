@@ -1,18 +1,20 @@
-#define S_base #b2b2b2
-#define S_bg1 #292b2e
-#define S_bg4 #100a14
-#define S_keyword #4f97d7
+#define color_base #b2b2b2
+#define color_bg1 #292b2e
+#define color_bg4 #100a14
+#define color_keyword #4f97d7
 
-#define S_green #67b11d
-#define S_cyan #28def0
-#define S_red #f2241f
-#define S_magenta #a31db1
-#define S_yellow #b1951d
+#define color_green #67b11d
+#define color_cyan #28def0
+#define color_red #f2241f
+#define color_magenta #a31db1
+#define color_yellow #b1951d
 
 !! UXTerm
 
 ! TERM Environmental Variable
 UXTerm.termName: xterm-256color-italic
+! Remove black borders
+UXTerm*borderWidth: 0
 ! Make 'Alt' key behave as on other terminal emulators
 UXTerm.vt100.metaSendsEscape: true
 ! Fix the backspace key
@@ -30,33 +32,33 @@ UXTerm.vt100.translations: #override \n\
 ! Scrollbar
 UXTerm.vt100.scrollBar: false
 ! Colors
-UXTerm.vt100.background: S_bg1
-UXTerm.vt100.foreground: S_base
-UXTerm.vt100.cursorColor: S_base
+UXTerm.vt100.background: color_bg1
+UXTerm.vt100.foreground: color_base
+UXTerm.vt100.cursorColor: color_base
 ! black
-UXTerm.vt100.color0: S_bg4
-UXTerm.vt100.color8: S_bg4
+UXTerm.vt100.color0: color_bg4
+UXTerm.vt100.color8: color_bg4
 ! red
-UXTerm.vt100.color1: S_red
-UXTerm.vt100.color9: S_red
+UXTerm.vt100.color1: color_red
+UXTerm.vt100.color9: color_red
 ! green
-UXTerm.vt100.color2: S_green
-UXTerm.vt100.color10: S_green
+UXTerm.vt100.color2: color_green
+UXTerm.vt100.color10: color_green
 ! yellow
-UXTerm.vt100.color3: S_yellow
-UXTerm.vt100.color11: S_yellow
+UXTerm.vt100.color3: color_yellow
+UXTerm.vt100.color11: color_yellow
 ! blue
-UXTerm.vt100.color4: S_keyword
-UXTerm.vt100.color12: S_keyword
+UXTerm.vt100.color4: color_keyword
+UXTerm.vt100.color12: color_keyword
 ! magenta
-UXTerm.vt100.color5: S_magenta
-UXTerm.vt100.color13: S_magenta
+UXTerm.vt100.color5: color_magenta
+UXTerm.vt100.color13: color_magenta
 ! cyan
-UXTerm.vt100.color6: S_cyan
-UXTerm.vt100.color14: S_cyan
+UXTerm.vt100.color6: color_cyan
+UXTerm.vt100.color14: color_cyan
 ! white
-UXTerm.vt100.color7: S_base
-UXTerm.vt100.color15: S_base
+UXTerm.vt100.color7: color_base
+UXTerm.vt100.color15: color_base
 
 
 !! Xft
