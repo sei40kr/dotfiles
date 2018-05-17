@@ -49,6 +49,8 @@ values."
          auto-completion-tab-key-behavior 'complete)
        helm
        ;; Emacs
+       (ibuffer :variables
+         ibuffer-group-buffers-by 'projects)
        (org :variables
          org-enable-github-support t)
        ;; E-mail
