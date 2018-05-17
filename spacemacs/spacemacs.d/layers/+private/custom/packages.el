@@ -20,7 +20,6 @@
      evil-magit
      evil-mc
      evil-surround
-     evil-tutor-ja
      exec-path-from-shell
      expand-region
      flycheck
@@ -111,9 +110,6 @@
     '(evil-define-key 'visual evil-surround-mode-map
       (kbd "s") 'evil-substitute
       (kbd "S") 'evil-surround-region)))
-
-(defun custom/init-evil-tutor-ja ()
-  (use-package evil-tutor-ja :defer t))
 
 (defun custom/pre-init-exec-path-from-shell ()
   (setq
