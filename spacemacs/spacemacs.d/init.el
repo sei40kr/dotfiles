@@ -62,16 +62,16 @@ values."
        japanese
        ;; Programming and markup languages
        (c-c++ :variables
-         c-c++-default-mode-for-headers 'c++-mode
          c-c++-enable-clang-support t
-         c-c++-enable-clang-format-on-save t
          c-c++-enable-google-style t
-         c-c++-enable-google-newline t)
+         c-c++-enable-google-newline t
+         c-c++-enable-clang-format-on-save t
+         c-c++-enable-c++11 t
+         c-c++-default-mode-for-headers 'c++-mode)
        csv
        emacs-lisp
        (go :variables
-         go-use-gometalinter t
-         gofmt-command "goimports")
+         go-use-gometalinter t)
        gpu
        (haskell :variables
          haskell-enable-hindent t)
@@ -84,65 +84,41 @@ values."
        kotlin
        latex
        lua
-       (markdown :variables
-         markdown-live-preview-engine 'vmd)
+       major-modes
+       markdown
        perl5
        perl6
        php
        plantuml
        purescript
        (python :variables
-         python-backend 'lsp
-         python-test-runner 'pytest)
+         python-backend 'lsp)
        (ruby :variables
          ruby-enable-enh-ruby-mode t
          ruby-version-manager 'rbenv)
        (rust :variables
          rust-format-on-save t)
        (scala :variables
-         scala-use-java-doc-style t
-         scala-auto-insert-asterisk-in-comments t)
-       (windows-scripts :toggle (eq system-type 'windows-nt))
+         scala-enable-eldoc t
+         scala-auto-insert-asterisk-in-comments t
+         scala-auto-start-ensime t)
        shell-scripts
        sql
-       typescript
-       vimscript
+       (typescript :variables
+         typescript-fmt-tool 'typescript-formatter
+         typescript-backend 'lsp)
        yaml
        ;; Operating systems
        ;; Pair programming
        floobits
        ;; Source control
        (git :variables
-         git-magit-status-fullscreen t
-         magit-refs-sections-hook
-         '(
-            magit-insert-branch-description
-            magit-insert-error-header
-            magit-insert-local-branches
-            magit-insert-remote-branches)
-         magit-status-sections-hook
-         '(
-            magit-insert-status-headers
-            magit-insert-merge-log
-            magit-insert-rebase-sequence
-            magit-insert-am-sequence
-            magit-insert-sequencer-sequence
-            magit-insert-bisect-output
-            magit-insert-bisect-rest
-            magit-insert-bisect-log
-            magit-insert-untracked-files
-            magit-insert-unstaged-changes
-            magit-insert-staged-changes
-            magit-insert-stashes
-            magit-insert-unpulled-from-upstream
-            magit-insert-unpulled-from-pushremote
-            magit-insert-unpushed-to-upstream
-            magit-insert-unpushed-to-pushremote))
+         git-magit-status-fullscreen t)
        github
        (version-control :variables
+         version-control-global-margin t
          version-control-diff-tool 'diff-hl
-         version-control-diff-side 'left
-         version-control-global-margin t)
+         version-control-diff-side 'left)
        ;; Tags
        (gtags :variables gtags-enable-by-default nil)
        ;; Themes
@@ -152,18 +128,15 @@ values."
        ;; Tools
        ansible
        chrome
-       cmake
+       (cmake :variables
+         cmake-enable-cmake-ide-support t)
        (dash :variables
          helm-dash-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
        (deft :variables
          deft-directory "~/Dropbox/notes")
        docker
        imenu-list
-       (lsp :variables
-         lsp-ui-doc-include-signature nil
-         lsp-ui-sideline-enable nil
-         lsp-ui-sideline-ignore-duplicate t
-         lsp-ui-sideline-show-symbol nil)
+       lsp
        nginx
        (node :variables
          node-add-modules-path t)
@@ -188,14 +161,14 @@ values."
        search-engine
        ;; Custom
        ;; better-c-cpp
-       better-javascript
+       ;; better-javascript
        ;; better-lsp
        ;; better-web
        lsp-intellij
        spacemacs-ghq
        ;; spacemacs-kotlin
        spacemacs-quickrun
-       spacemacs-salesforce
+       ;; spacemacs-salesforce
        custom
        ;; wsp
        )
