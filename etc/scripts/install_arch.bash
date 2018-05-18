@@ -30,6 +30,9 @@ mkdir -p "${HOME}/.local/share/backgrounds"
 cp -sF "${DOTFILES_PATH}/share/backgrounds"/*.png "${HOME}/.local/share/backgrounds"
 ln -sF "${DOTFILES_PATH}/feh/fehbg" "${HOME}/.fehbg"
 
+# fontconfig
+ln -sF "${DOTFILES_PATH}/fontconfig" "${HOME}/.config/fontconfig"
+
 # i3
 mkdir -p "${HOME}/.config/i3"
 ln -sF "${DOTFILES_PATH}/i3/config" "${HOME}/.config/i3/config"
