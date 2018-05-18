@@ -44,7 +44,6 @@ values."
        ;; Completion
        (auto-completion :variables
          auto-completion-enable-snippets-in-popup t
-         auto-completion-enable-sort-by-usage t
          auto-completion-return-key-behavior 'complete
          auto-completion-tab-key-behavior 'complete)
        helm
@@ -52,6 +51,7 @@ values."
        (ibuffer :variables
          ibuffer-group-buffers-by 'projects)
        (org :variables
+         org-want-todo-bindings t
          org-enable-github-support t)
        ;; E-mail
        ;; Framework
@@ -142,6 +142,7 @@ values."
          node-add-modules-path t)
        ;; (ranger :variables
        ;;   ranger-show-hidden t)
+       restclient
        (shell :variables
          shell-default-shell 'multi-term
          shell-default-height 30
