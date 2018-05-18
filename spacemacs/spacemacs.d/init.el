@@ -55,6 +55,7 @@ values."
          org-enable-github-support t)
        ;; E-mail
        ;; Framework
+       react
        ruby-on-rails
        ;; Fun
        ;; International support
@@ -77,8 +78,7 @@ values."
        html
        java
        (javascript :variables
-         javascript-backend 'tern
-         node-add-modules-path t)
+         javascript-backend 'lsp)
        json
        ipython-notebook
        kotlin
@@ -165,6 +165,8 @@ values."
          lsp-ui-sideline-ignore-duplicate t
          lsp-ui-sideline-show-symbol nil)
        nginx
+       (node :variables
+         node-add-modules-path t)
        ;; (ranger :variables
        ;;   ranger-show-hidden t)
        (shell :variables
