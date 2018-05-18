@@ -8,6 +8,9 @@ IFS=$'\n\t'
 
 DOTFILES_PATH="$(realpath "$(dirname "$0")/../..")"
 
+# dropbox
+systemctl --user enable dropbox
+
 # i3
 mkdir -p "${HOME}/.config/i3"
 ln -sF "${DOTFILES_PATH}/i3/config" "${HOME}/.config/i3/config"
