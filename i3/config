@@ -24,7 +24,7 @@ font pango:Terminus-ja 12
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, its unicode glyph coverage is limited, the old
 # X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
+# font, it doesn ’ t scale on retina/hidpi displays.
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -121,10 +121,10 @@ bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
+        # Pressing left will shrink the window ’ s width.
+        # Pressing right will grow the window ’ s width.
+        # Pressing up will shrink the window ’ s height.
+        # Pressing down will grow the window ’ s height.
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
@@ -149,8 +149,8 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+Control+minus scratchpad show
 
 # Screen capture
-bindsym --release Print exec --no-startup-id scrot
-bindsym --release Shift+Print exec --no-startup-id scrot -s
+bindsym --release Print exec --no-startup-id scrot '%Y-%m-%d-%T-screenshot.png'
+bindsym --release Shift+Print exec --no-startup-id scrot -s '%Y-%m-%d-%T-screenshot.png'
 
 # Jump to urgent window
 bindsym $mod+x [urgent=latest] focus
