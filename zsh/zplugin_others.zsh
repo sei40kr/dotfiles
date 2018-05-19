@@ -30,7 +30,7 @@ zplugin light sindresorhus/pure
 
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 zplugin ice lucid wait'0' atload'
-  bindkey -M viins "^i" autosuggest-accept
+  bindkey -M viins "^f" autosuggest-accept
   _zsh_autosuggest_start'
 zplugin light zsh-users/zsh-autosuggestions
 
