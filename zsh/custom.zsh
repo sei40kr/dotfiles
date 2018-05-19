@@ -3,8 +3,6 @@
 
 autoload -Uz surround
 
-KEYTIMEOUT=1
-
 setopt APPEND_HISTORY \
        AUTO_PARAM_KEYS \
        AUTO_RESUME \
@@ -28,11 +26,12 @@ alias ranger='[ -z "$RANGER_LEVEL" ] && \ranger'
 alias tl='todoist --color list'
 alias tgs='toggl stop'
 
+zle -N delete-surround surround
 zle -N add-surround surround
 zle -N change-surround surround
-zle -N delete-surround surround
 
 bindkey -v
+bindkey -M viins jk vi-cmd-mode
 bindkey -a cs change-surround
 bindkey -a ds delete-surround
 bindkey -a ys add-surround
