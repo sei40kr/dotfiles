@@ -3,6 +3,8 @@
 
 autoload -Uz surround
 
+KEYTIMEOUT=1
+
 setopt APPEND_HISTORY \
        AUTO_PARAM_KEYS \
        AUTO_RESUME \
