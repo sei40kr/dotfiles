@@ -218,6 +218,7 @@
   (add-hook 'ruby-mode-hook #'spacemacs//ruby-set-evil-shift-width))
 
 (defun custom/pre-init-rust-mode ()
+  (push 'rust-cargo flycheck-disabled-checkers)
   (add-hook 'rust-mode-hook #'spacemacs//rust-set-evil-shift-width))
 
 (defun custom/post-init-semantic ()
