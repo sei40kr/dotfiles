@@ -496,10 +496,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
     tooltip-short-delay 0.1))
 
 (defun dotspacemacs/user-config ()
-  (spacemacs/toggle-fill-column-indicator-on)
-  (spacemacs/toggle-golden-ratio-on)
-  (spacemacs/toggle-whitespace-cleanup-on)
-
   ;; Keep the persistent server after the frame killed.
   ;; cf https://medium.com/@bobbypriambodo/blazingly-fast-spacemacs-with-persistent-server-92260f2118b7
   (evil-leader/set-key "q q" 'spacemacs/frame-killer)
