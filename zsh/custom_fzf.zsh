@@ -39,7 +39,7 @@ my-fzf-toggl-start-todoist() {
   todoist --csv list | \
     awk -F',' '{ print $6 }' | \
     __fzf::widget::select | \
-    __fzf::widget::insert
+    __fzf::widget::insert -q
 
   __fzf::widget::exec
 }
