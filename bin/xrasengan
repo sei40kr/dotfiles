@@ -1,0 +1,544 @@
+#!/bin/bash
+
+# -*- mode: sh -*-
+
+#
+# Copyright 2014 Geyslan G. Bem
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+#
+# xrasengan - An xrandr wrapper to make your multi-monitor setup easier
+#
+
+script=xrasengan
+xrandr=$(which xrandr 2> /dev/null)
+awk=$(which awk 2> /dev/null)
+who=$(which who 2> /dev/null)
+unxrandr=$(which unxrandr 2> /dev/null)
+notifier=$(which notify-send 2> /dev/null)
+force=""
+display=$DISPLAY
+
+set_display() {
+	if ! [[ $display ]]; then
+		local tty
+		local pids
+		tty=$(cat /sys/class/tty/tty0/active)
+		pids=$(ps u | $awk "/$tty/ { print \$2 }")
+
+		for pid in $pids
+		do
+			display=$($awk -v RS='\0' -F= "/DISPLAY/ { print \$2 }" /proc/"$pid"/environ 2>/dev/null)
+			[[ "$display" != "" ]] && break
+		done
+	fi
+}
+set_display
+
+notify() {
+	$notifier "$@"
+}
+
+if ! [ -x "$notifier" ] || [ "$display" == "" ]; then
+	notifier="echo"
+else
+	notifier="$notifier -i video-display $script"
+fi
+
+if ! [[ $display ]]; then
+	notify "display was not found"
+	exit 2
+fi
+
+if ! [ -x "$xrandr" ]; then
+	notify "$script uses xrandr. Please, install it"
+	exit 2
+fi
+xrandr="$xrandr -d $display"
+
+
+if ! [ -x "$awk" ]; then
+	notify "$script uses awk. Please, install it"
+	exit 2
+fi
+
+if ! [ -x "$who" ]; then
+	notify "$script uses who. Please, install it"
+	exit 2
+fi
+
+if ! [ -x "$unxrandr" ]; then
+	notify "$script uses unxrandr that is part of arandr. Please, install it"
+	exit 2
+fi
+
+error_clone="clone option demands one or two outputs
+When one: all connected outputs will be a clone of the informed output
+  $0 --clone HDMI-0
+
+When two: the second output will be a clone of the first
+  $0 -c HDMI-0 HDMI-1"
+
+error_turn_on="turn-on option demands one or two arguments
+When one: the informed output will be turned on with xrandr --auto option
+  $0 --turn-on HDMI-0
+When two: the informed output will be turned on with the informed --mode
+  $0 -on DisplayPort-0 1920x1080"
+
+error_turn_off="turn-off option demands one argument
+The informed output will be turned off with xrandr --off option
+  $0 --turn-off HDMI-0
+Or
+  $0 -off DisplayPort-0"
+
+error_left="left option demands two arguments
+First is the base output, second is the one to be on the left side of the base output
+Here, HDMI-0 is the base and DVI-1 the left
+  $0 --left HDMI-0 DVI-1"
+
+error_right="right option demands two arguments
+First is the base output, second is the one to be on the right side of the base output
+Here, HDMI-0 is the base and DVI-1 the right
+  $0 --right HDMI-0 DVI-1"
+
+error_above="above option demands two arguments
+First is the base output, second is the one to be on the above side of the base output
+Here, HDMI-0 is the base and DVI-1 the above
+  $0 --above HDMI-0 DVI-1"
+
+error_below="below option demands two arguments
+First is the base output, second is the one to be on the below side of the base output
+Here, HDMI-0 is the base and DVI-1 the below
+  $0 --below HDMI-0 DVI-1"
+
+error_primary="primary option demands one argument
+The informed output will be set as primary with xrandr --primary option
+  $0 --primary HDMI-0
+or
+  $0 -p DisplayPort-0"
+
+invalid_argument() {
+	notify "$@"
+	exit 22
+}
+
+list_contains() {
+	local list=$1
+	local value=$2
+
+	for word in $list; do
+		[ "$word" == "$value" ] && return 0
+	done
+	return 1
+}
+
+workaround() {
+	# Workaround to turn on connected outputs that may be in suspend mode
+	# and hence shown as disconnected
+	local seconds=$1
+
+	$xrandr 1> /dev/null
+	sleep "$seconds"
+	$xrandr 1> /dev/null
+}
+
+update_outputs_all() {
+	if ! [[ $force ]]; then
+		outputs_all=$($xrandr | $awk "/connected/ { print \$1 }")
+		return
+	fi
+
+	workaround 3
+	outputs_all=$($xrandr | $awk "/connected/ { print \$1 }")
+}
+
+update_outputs_all_num() {
+	outputs_all_num=$(echo "$outputs_all" | wc -w)
+}
+
+update_outputs_connected() {
+	outputs_connected=$($xrandr | $awk "/ connected/ { print \$1 }")
+}
+
+update_outputs_active() {
+	outputs_active=$($xrandr | $awk "/mm$/ { print \$1 }")
+}
+
+update_outputs_active_num() {
+	outputs_active_num=$(echo "$outputs_active" | wc -w)
+}
+
+update_outputs_disconnected() {
+	outputs_disconnected=$($xrandr | $awk "/disconnected/ { print \$1 }")
+}
+
+is_mode_available() {
+	if ! [ "$1" ] || ! [ "$2" ]; then
+		invalid_argument "${FUNCNAME[0]}: needs two arguments (output and mode)"
+	fi
+
+	local output=$1
+	local modes
+	modes=$($xrandr | $awk '/'"$output"'/{f=1;next} !/^ /{f=0} f {print $1}')
+
+	if ! list_contains "$modes" "$2"; then
+		return 1
+	else
+		return 0
+	fi
+}
+
+check_output_valid() {
+	if ! [ "$1" ]; then
+		invalid_argument "${FUNCNAME[0]}: needs one argument"
+	fi
+
+	if ! list_contains "$outputs_all" "$1"; then
+		return 1
+	else
+		return 0
+	fi
+}
+
+check_output_connected() {
+	if ! [ "$1" ]; then
+		invalid_argument "${FUNCNAME[0]}: needs one argument"
+	fi
+
+	if ! check_output_valid "$1"; then
+		invalid_argument "$1 is not a valid output"
+	fi
+
+	if ! list_contains "$outputs_connected" "$1"; then
+		return 1
+	else
+		return 0
+	fi
+}
+
+check_output_active() {
+	if ! [ "$1" ]; then
+		invalid_argument "${FUNCNAME[0]}: needs one argument"
+	fi
+
+	if ! check_output_connected "$1"; then
+		invalid_argument "$1 is not a connected output"
+	fi
+
+	if ! list_contains "$outputs_active" "$1"; then
+		return 1
+	else
+		return 0
+	fi
+}
+
+clone() {
+	if [ $# -eq 0 ] || [ $# -gt 2 ]; then
+		invalid_argument "$error_clone"
+	fi
+
+	check_output_active "$1"
+
+	if [ "$2" ]; then
+		check_output_connected "$2"
+		$xrandr --output "$2" --auto --same-as "$1" --auto
+	else
+		$xrandr --output "$1" --primary
+		for output in $outputs_connected
+		do
+			if [ "$output" != "$1" ]; then
+				$xrandr --output "$output" --auto --same-as "$1" --auto
+			fi
+		done
+	fi
+}
+
+turn_on() {
+	if [ $# -eq 0 ] || [ $# -gt 2 ]; then
+		invalid_argument "$error_turn_on"
+	fi
+
+	check_output_active "$1"
+
+	if [ "$2" ]; then
+		if ! is_mode_available "$1" "$2"; then
+			invalid_argument "$2 is not an available mode for $1 output"
+		fi
+		$xrandr --output "$1" --mode "$2" --auto
+	else
+		$xrandr --output "$1" --auto
+	fi
+}
+
+turn_off() {
+	if [ $# -ne 1 ]; then
+		invalid_argument "$error_turn_off"
+	fi
+
+	if ! check_output_active "$1"; then
+		invalid_argument "$1 is already an inactive output"
+	fi
+
+	if [ "$outputs_active_num" -eq 1 ]; then
+		invalid_argument "$1 is the unique active output. It's impossible to turn it off"
+	fi
+
+	$xrandr --output "$1" --off
+}
+
+left() {
+	if [ $# -ne 2 ]; then
+		invalid_argument "$error_left"
+	fi
+
+	if ! check_output_active "$1"; then
+		invalid_argument "$1 is not an active output"
+	fi
+
+	check_output_connected "$2"
+	$xrandr --output "$2" --auto --left-of "$1" --auto
+}
+
+right() {
+	if [ $# -ne 2 ]; then
+		invalid_argument "$error_right"
+	fi
+
+	if ! check_output_active "$1"; then
+		invalid_argument "$1 is not an active output"
+	fi
+
+	check_output_connected "$2"
+	$xrandr --output "$2" --auto --right-of "$1" --auto
+}
+
+above() {
+	if [ $# -ne 2 ]; then
+		invalid_argument "$error_above"
+	fi
+
+	if ! check_output_active "$1"; then
+		invalid_argument "$1 is not an active output"
+	fi
+
+	check_output_connected "$2"
+	$xrandr --output "$2" --auto --above "$1" --auto
+}
+
+below() {
+	if [ $# -ne 2 ]; then
+		invalid_argument "$error_below"
+	fi
+
+	if ! check_output_active "$1"; then
+		invalid_argument "$1 is not an active output"
+	fi
+
+	check_output_connected "$2"
+	$xrandr --output "$2" --auto --below "$1" --auto
+}
+
+primary() {
+	if [ $# -ne 1 ]; then
+		invalid_argument "$error_primary"
+	fi
+
+	if ! check_output_active "$1"; then
+		invalid_argument "$1 is not an active output"
+	fi
+
+	$xrandr --output "$1" --primary
+}
+
+try_reload_current_layout() {
+	local command=""
+
+	command=$(DISPLAY=$display $unxrandr)
+
+	workaround 3
+
+	if ! [[ $command ]]; then
+		notify "$unxrandr could not retrieve current layout"
+		exit 2
+	fi
+
+	command="$xrandr ${command/xrandr/}"
+
+	$command
+
+	ret=$?
+	if ! [ $ret == 0 ]; then
+		notify "ERROR in $command (RETURN VALUE: $ret)"
+		exit 22
+	fi
+}
+
+usage() {
+	echo "usage: $script [options]
+  where options are:
+  --help or -h
+  --force or -f (workaround to turn on suspended outputs; will hang for 3 seconds)
+  --force-only or -fo (same as --force/-fo but as a single option)
+  --try-reload-active-layout or -tral (uses force and unxrandr)
+  --list-all or -la
+  --list-connected or -lc
+  --list-active or -lac
+  --list-disconnected or -ld
+  --clone <base-output> or -c <base-output> <cloned-output>
+  --turn-on <output> or -on <output> <mode>
+  --turn-off <output> or -off <output>
+  --left <base-output> <left-output> or -l <base-output> <left-output>
+  --right <base-output> <right-output> or -r <base-output> <right-output>
+  --above <base-output> <above-above> or -a <base-output> <above-output>
+  --below <base-output> <below-output> or -b <base-output> <below-output>
+  --primary <output> or -p <output>"
+}
+
+
+if [[ $# -eq 0 ]] || list_contains "$*" "--help" || list_contains "$*" "-h"; then
+	usage
+	exit 0
+fi
+
+if list_contains "$*" "--force" || list_contains "$*" "-f"; then
+	set -- ${@/--force/}
+	set -- ${@/-f/}
+	force="force";
+	if [[ $# -eq 0 ]]; then
+		usage
+		exit 0
+	fi
+fi
+
+if list_contains "$*" "--force-only" || list_contains "$*" "-fo"; then
+	set -- ${@/--force-only/}
+	set -- ${@/-fo/}
+	force="force"
+	if [[ $# -gt 0 ]]; then
+		usage
+		exit 0
+	fi
+
+	workaround 3
+	notify "successful force"
+	exit 0
+fi
+
+if list_contains "$*" "--try-reload-active-layout" || list_contains "$*" "-tral"; then
+	set -- ${@/--try-reload-active-layout/}
+	set -- ${@/-tral/}
+
+	if [[ $# -gt 0 ]]; then
+		usage
+		exit 0
+	fi
+
+	try_reload_current_layout
+	notify "current layout reloaded"
+	exit 0
+fi
+
+
+
+update_outputs_all
+update_outputs_all_num
+update_outputs_connected
+update_outputs_disconnected
+
+if [ "$outputs_all_num" -eq 1 ]; then
+	notify "You have only one output! $script can't do nothing for you!
+For more options use xrandr. Bye!"
+	exit 0
+fi
+
+while [[ $# -ge 1 ]]
+do
+	key="$1"
+	shift
+
+	update_outputs_active
+	update_outputs_active_num
+
+	case $key in
+	--list-all | -la)
+		echo "$outputs_all"
+		;;
+	--list-connected | -lc)
+		echo "$outputs_connected"
+		;;
+	--list-active | -lac)
+		echo "$outputs_active"
+		;;
+	--list-disconnected | -ld)
+		echo "$outputs_disconnected"
+		;;
+	--clone | -c)
+		if [[ $2 ]] && ! [[ $2 == -* ]]; then
+			clone "$1" "$2"
+			notify "$2 is clone of $1"
+			shift
+		else
+			clone "$1"
+			notify "$1 cloned"
+		fi
+		shift
+		;;
+	--turn-on | -on)
+		if [[ $2 ]] && ! [[ $2 == -* ]]; then
+			turn_on "$1" "$2"
+			notify "$1 turned on with mode $2"
+			shift
+		else
+			turn_on "$1"
+			notify "$1 turned on"
+		fi
+		shift
+		;;
+	--turn-off | -off)
+		turn_off "$1"
+		notify "$1 turned off"
+		shift
+		;;
+	--left | -l)
+		left "$1" "$2"
+		notify "$2 is on left of $1"
+		shift 2
+		;;
+	--right | -r)
+		right "$1" "$2"
+		notify "$2 is on right of $1"
+		shift 2
+		;;
+	--above | -a)
+		above "$1" "$2"
+		notify "$2 is above of $1"
+		shift 2
+		;;
+	--below | -b)
+		below "$1" "$2"
+		notify "$2 is below of $1"
+		shift 2
+		;;
+	--primary | -p)
+		primary "$1"
+		notify "$1 set as primary"
+		shift
+		;;
+	*)
+		usage
+		break
+		;;
+	esac
+done
