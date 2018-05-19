@@ -30,7 +30,6 @@ zle -N delete-surround surround
 zle -N add-surround surround
 zle -N change-surround surround
 
-bindkey -v
 bindkey -M viins jk vi-cmd-mode
 bindkey -a cs change-surround
 bindkey -a ds delete-surround

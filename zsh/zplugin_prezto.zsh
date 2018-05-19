@@ -8,6 +8,7 @@
     # ZSH
     completion
     directory
+    editor
     environment
     history
     utility
@@ -34,6 +35,7 @@
     modules=( osx $modules )
   fi
 
+  zstyle ':prezto:module:editor' key-bindings 'vi'
   zstyle ':prezto:module:tmux:session' name 'default'
 
   for module in $modules; do
