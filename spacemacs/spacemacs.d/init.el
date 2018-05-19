@@ -161,15 +161,11 @@ values."
        ;; WebServices
        search-engine
        ;; Custom
-       ;; better-c-cpp
-       ;; better-javascript
-       ;; better-lsp
-       ;; better-web
+       better-c-cpp
+       better-javascript
        lsp-intellij
        spacemacs-ghq
-       ;; spacemacs-kotlin
        spacemacs-quickrun
-       ;; spacemacs-salesforce
        custom
        ;; wsp
        )
