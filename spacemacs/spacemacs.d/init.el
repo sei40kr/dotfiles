@@ -496,7 +496,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
         (executable-find "google-chrome"))))
 
 (defun dotspacemacs/user-config ()
-  ;; Keep the persistent server after the frame killed.
   ;; cf https://medium.com/@bobbypriambodo/blazingly-fast-spacemacs-with-persistent-server-92260f2118b7
   (evil-leader/set-key "q q" 'spacemacs/frame-killer)
 
