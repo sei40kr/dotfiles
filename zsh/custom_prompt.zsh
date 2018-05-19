@@ -8,7 +8,6 @@ print_toggl_duration() {
     awk -F',' '$1 == "Duration" { split($2, t, ":"); print (t[1] + 0) "h " (t[2] + 0) "m " (t[3] + 0) "s" }'
 }
 
-ZLE_RPROMPT_INDENT=0
 RPROMPT='%F{yellow}$(print_toggl_duration)%f'
 
 TMOUT=1
