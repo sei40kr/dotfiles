@@ -28,6 +28,7 @@ zplugin light sindresorhus/pure
 
 # zsh-autosuggestions
 
+ZSH_AUTOSUGGEST_USE_ASYNC=1
 zplugin ice lucid wait'0' atload'
   bindkey -M viins "^i" autosuggest-accept
   _zsh_autosuggest_start'
