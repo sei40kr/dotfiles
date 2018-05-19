@@ -8,7 +8,6 @@
     # ZSH
     completion
     directory
-    editor
     environment
     history
     utility
