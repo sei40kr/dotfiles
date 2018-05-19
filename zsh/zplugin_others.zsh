@@ -24,6 +24,8 @@ PURE_GIT_UP_ARROW='↓'
 zplugin ice pick'async.zsh' lucid src'pure.zsh' wait'!0' atload'
 PROMPT="%(?.%F{magenta}.%F{red})\${VIM_PROMPT}%f "
 
+prompt_pure_set_title() {}
+
 prompt_pure_update_vim_prompt() {
     zle || {
         print "error: pure_update_vim_prompt must be called when zle is active"
