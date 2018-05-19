@@ -173,7 +173,7 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #212026
 
 bar {
-  status_command i3status
+  status_command i3blocks
   i3bar_command i3bar -t
   position top
 
