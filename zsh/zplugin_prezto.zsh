@@ -36,9 +36,6 @@
   fi
 
   zstyle ':prezto:module:tmux:session' name 'default'
-  if [[ "$XDG_SESSION_DESKTOP" = 'i3' ]]; then
-    zstyle ':prezto:module:tmux:auto-start' local 'no'
-  fi
 
   for module in $modules; do
     zplugin ice svn pick'init.zsh'
