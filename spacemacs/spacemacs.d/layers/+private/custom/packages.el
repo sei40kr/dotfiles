@@ -58,7 +58,8 @@
 
 (defun custom/post-init-edit-server ()
   (setq edit-server-url-major-mode-alist
-    '("aidemy\\.net" . python-mode)))
+    '(
+       ("aidemy\\.net" . python-mode))))
 
 (defun custom/pre-init-evil ()
   (setq
