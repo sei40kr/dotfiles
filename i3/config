@@ -192,6 +192,9 @@ bar {
   }
 }
 
+# Hide bordeers adjacent to the screen edges
+hide_edge_borders smart
+
 # gaps
 gaps outer 4
 gaps inner 16
