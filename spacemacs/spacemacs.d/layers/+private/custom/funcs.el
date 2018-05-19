@@ -98,11 +98,6 @@
   "Set `evil-shift-width' according to `rust-indent-offset'."
   (setq evil-shift-width rust-indent-offset))
 
-;; spaceline
-
-(defun spacemacs//spaceline-compile-before (&rest _)
-  (setq powerline-default-separator nil))
-
 
 ;; tabbar
 

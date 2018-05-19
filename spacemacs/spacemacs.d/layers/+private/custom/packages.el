@@ -36,7 +36,6 @@
      ruby-mode
      semantic
      solidity-mode
-     spaceline
      spacemacs-theme
      ;; tabbar
      yatemplate))
@@ -220,10 +219,6 @@
 
 (defun custom/init-solidity-mode ()
   (use-package solidity-mode))
-
-(defun custom/post-init-spaceline ()
-  (setq spaceline-show-default-input-method t)
-  (advice-add 'spaceline-compile :before #'spacemacs//spaceline-compile-before))
 
 (defun custom/post-init-spacemacs-theme ()
   (setq spacemacs-theme-comment-italic t))
