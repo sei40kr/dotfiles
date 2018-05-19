@@ -11,10 +11,13 @@ export FZF_DEFAULT_OPTS="
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="bfs -nocolor -mindepth 1 -type d"
 
+export DOT_BASE_DIR="$(realpath "$(dirname "${(%):-%N}")/..")"
+
 bindkey '^r' fzf-insert-history
 bindkey '\ec' fzf-change-directory
 
 bindkey '^x^b' fzf-git-checkout-branch
+bindkey '^x.' fzf-edit-dotfiles
 
 my-fzf-insert-files() {
   __fzf::widget::init || return 1
