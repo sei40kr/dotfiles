@@ -32,3 +32,16 @@ my-fzf-ghq-look() {
 }
 zle -N my-fzf-ghq-look
 bindkey '^x^g' my-fzf-ghq-look
+
+my-fzf-toggl-start-todoist() {
+  __fzf::widget::init 'toggl start' || return 1
+
+  todoist --csv list | \
+    perl -F',' -alne 'print $F[5]' | \
+    __fzf::widget::select | \
+    __fzf::widget::insert
+
+  __fzf::widget::exec
+}
+zle -N my-fzf-toggl-start-todoist
+bindkey '^x^t' my-fzf-toggl-start-todoist
