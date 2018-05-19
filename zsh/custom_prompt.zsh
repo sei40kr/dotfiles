@@ -12,5 +12,7 @@ RPROMPT='%F{yellow}$(print_toggl_duration)%f'
 
 TMOUT=1
 TRAPALRM() {
-  zle reset-prompt
+  [[ "$WIDGET" = 'expand-or-complete-with-indicator' ]] && \
+    [[ "$_lastcomp[insert]" =~ "^automenu$|^menu:" ]] || \
+    zle reset-prompt
 }
