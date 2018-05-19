@@ -22,24 +22,7 @@ VIM_PROMPT='»'
 PURE_GIT_DOWN_ARROW='↑'
 PURE_GIT_UP_ARROW='↓'
 zplugin ice pick'async.zsh' lucid src'pure.zsh' wait'!0' atload'
-PROMPT="%(?.%F{magenta}.%F{red})\${VIM_PROMPT}%f "
-
-prompt_pure_set_title() {}
-
-prompt_pure_update_vim_prompt() {
-    zle || {
-        print "error: pure_update_vim_prompt must be called when zle is active"
-        return 1
-    }
-    VIM_PROMPT=${${KEYMAP/vicmd/«}/(main|viins)/»}
-    zle .reset-prompt
-}
-
-function zle-line-init zle-keymap-select {
-    prompt_pure_update_vim_prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select'
+  PROMPT="%(?.%F{magenta}.%F{red})\${editor_info[keymap]}%f "'
 
 zplugin light sindresorhus/pure
 
