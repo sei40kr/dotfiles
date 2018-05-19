@@ -28,7 +28,6 @@
      helm-ls-git
      linum
      linum-relative
-     lsp-intellij
      magit
      neotree
      projectile
@@ -161,14 +160,6 @@
 
 (defun custom/post-init-linum-relative ()
   (setq linum-relative-format " %3s "))
-
-(defun custom/pre-init-lsp-intellij ()
-  (if (configuration-layer/layer-used-p 'lsp)
-    (progn
-      (if (configuration-layer/package-used-p 'company)
-        (spacemacs//lsp-intellij-setup-company-rjsx-mode))
-      (spacemacs//lsp-intellij-setup-leader-keys 'rjsx-mode)
-      (add-hook 'rjsx-mode-hook #'lsp-intellij-enable))))
 
 (defun custom/post-init-magit ()
   (setq
