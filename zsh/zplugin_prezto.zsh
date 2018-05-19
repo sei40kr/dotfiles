@@ -35,9 +35,7 @@
     modules=( osx $modules )
   fi
 
-  zstyle ':prezto:module:editor' key-bindings 'vi'
-  zstyle ':prezto:module:editor:info:keymap:primary' format '»'
-  zstyle ':prezto:module:editor:info:keymap:alternate' format '«'
+  zstyle ':prezto:module:editor' key-bindings 'emacs'
   zstyle ':prezto:module:tmux:session' name 'default'
 
   for module in $modules; do

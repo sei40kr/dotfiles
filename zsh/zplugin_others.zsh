@@ -18,20 +18,17 @@ zplugin ice from'gh-r' as'program'; zplugin light junegunn/fzf-bin
 
 # pure
 
-VIM_PROMPT='»'
+PURE_PROMPT_SYMBOL='»'
 PURE_GIT_DOWN_ARROW='↑'
 PURE_GIT_UP_ARROW='↓'
-zplugin ice pick'async.zsh' lucid src'pure.zsh' wait'!0' atload'
-  PROMPT="%(?.%F{magenta}.%F{red})\${editor_info[keymap]}%f "'
+zplugin ice pick'async.zsh' lucid src'pure.zsh' wait'!0'
 
 zplugin light sindresorhus/pure
 
 # zsh-autosuggestions
 
 ZSH_AUTOSUGGEST_USE_ASYNC=1
-zplugin ice lucid wait'0' atload'
-  bindkey -M viins "^f" autosuggest-accept
-  _zsh_autosuggest_start'
+zplugin ice lucid atload'_zsh_autosuggest_start' wait'0'
 zplugin light zsh-users/zsh-autosuggestions
 
 # zsh-better-run-help
