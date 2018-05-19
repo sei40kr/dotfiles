@@ -23,3 +23,5 @@ alias ranger='[ -z "$RANGER_LEVEL" ] && \ranger'
 
 alias tl='todoist --color list'
 alias tgs='toggl stop'
+
+bindkey -v
