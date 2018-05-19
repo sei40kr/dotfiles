@@ -28,7 +28,9 @@ zplugin light sindresorhus/pure
 
 # zsh-autosuggestions
 
-zplugin ice lucid atload'_zsh_autosuggest_start' wait'0'
+zplugin ice lucid wait'0' atload'
+  bindkey -M viins "^i" autosuggest-accept
+  _zsh_autosuggest_start'
 zplugin light zsh-users/zsh-autosuggestions
 
 # zsh-better-run-help
