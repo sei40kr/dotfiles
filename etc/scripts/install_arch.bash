@@ -8,6 +8,9 @@ IFS=$'\n\t'
 
 DOTFILES_PATH="$(realpath "$(dirname "$0")/../..")"
 
+# chromium
+ln -sF "${DOTFILES_PATH}/chromium/chromium-flags.conf" "${HOME}/.config/chromium-flags.conf"
+
 # compton
 ln -sF "${DOTFILES_PATH}/compton/compton.conf" "${HOME}/.config/compton.conf"
 
