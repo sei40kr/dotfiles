@@ -55,3 +55,7 @@ mkdir -p "${HOME}/screenshots"
 # xorg
 ln -sF "${DOTFILES_PATH}/xorg/Xresources" "${HOME}/.Xresources"
 ln -sF "${DOTFILES_PATH}/xorg/xprofile" "${HOME}/.xprofile"
+
+# xrasengan
+mkdir -p "${HOME}/.local/bin"
+ln -sF "${DOTFILES_PATH}/bin/xrasengan" "${HOME}/.local/bin/xrasengan"
