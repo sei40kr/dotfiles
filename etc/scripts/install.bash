@@ -29,6 +29,13 @@ GOENV_ROOT="${HOME}/.goenv"
 ln -sF "${DOTFILES_PATH}/goenv/goenv" "${GOENV_ROOT}"
 eval "$("${GOENV_ROOT}/bin/goenv" init - --no-rehash bash)" && goenv install -s 1.10.1 && goenv global 1.10.1
 
+# gtk2
+ln -sF "${DOTFILES_PATH}/gtk-2.0/gtkrc" "${HOME}/.config/gtk-2.0/gtkrc"
+ln -sF "${DOTFILES_PATH}/gtk-2.0/gtkfilechooser.ini" "${HOME}/.config/gtk-2.0/gtkfilechooser.ini"
+
+# gtk3
+ln -sF "${DOTFILES_PATH}/gtk-3.0/settings.ini" "${HOME}/.config/gtk-3.0/settings.ini"
+
 # Haskell Tool Stack
 mkdir -p "${HOME}/.stack"
 ln -sF "${DOTFILES_PATH}/stack/config.yml" "${HOME}/.stack/config.yml"
