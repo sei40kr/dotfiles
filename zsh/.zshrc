@@ -18,5 +18,6 @@ compinit
 zplugin cdreplay -q
 
 . "${ZDOTDIR}/custom.zsh"
+. "${ZDOTDIR}/custom_prompt.zsh"
 . "${ZDOTDIR}/custom_fzf.zsh"
 . "${ZDOTDIR}/custom_emacs.zsh"
