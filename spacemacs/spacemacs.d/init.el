@@ -490,15 +490,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
       (executable-find "google-chrome")
       (executable-find "chromium"))
     create-lockfiles nil
-    custom-file (expand-file-name "custom.el" dotspacemacs-directory)
     select-enable-clipboard nil
     tooltip-delay 0.3
     tooltip-hide-delay 999
     tooltip-short-delay 0.1))
 
 (defun dotspacemacs/user-config ()
-  (when (file-exists-p custom-file) (load-file custom-file))
-
   (spacemacs/toggle-fill-column-indicator-on)
   (spacemacs/toggle-golden-ratio-on)
   (spacemacs/toggle-whitespace-cleanup-on)
