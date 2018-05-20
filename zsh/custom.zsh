@@ -23,7 +23,10 @@ alias reload='. ~/.zsh/.zshrc'
 
 alias ranger='[ -z "$RANGER_LEVEL" ] && \ranger'
 
-alias tl='todoist --color list'
+alias tdl='todoist --color list'
+alias tda='todoist add'
+alias tdc='todoist close'
+
 alias tgs='toggl stop'
 
 zle -N delete-surround surround
