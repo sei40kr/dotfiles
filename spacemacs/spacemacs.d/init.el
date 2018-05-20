@@ -166,6 +166,9 @@ values."
        lsp-intellij
        spacemacs-ghq
        spacemacs-quickrun
+       (spacemacs-solidity :variables
+         solidity-flycheck-solc-checker-active t
+         solidity-flycheck-solium-checker-active t)
        custom
        ;; wsp
        )
