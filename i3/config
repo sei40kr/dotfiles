@@ -30,7 +30,8 @@ font pango:Terminus-ja 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec uxterm
+bindsym $mod+Shift+Return exec uxterm -title uxterm-float -geometry 90x25
 
 # kill focused window
 bindsym $mod+Shift+c kill
@@ -158,6 +159,7 @@ bindsym $mod+x [urgent=latest] focus
 for_window [class="Thunar"] floating enable
 for_window [class="Zeal"] floating enable
 for_window [title="LINE"] floating enable
+for_window [title="uxterm-float"] floating enable
 
 assign [class="^Chromium$"] $ws2
 assign [class="^Emacs$"] $ws1
