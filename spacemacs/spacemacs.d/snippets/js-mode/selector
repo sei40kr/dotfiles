@@ -1,0 +1,15 @@
+# name : Redux state selector
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: selector
+# --
+
+const ${1:...}Selector = createSelector(
+  (state) => state.${2:...}.allIds,
+  (state) => state.$2.byId,
+  (
+    allIds: String[],
+    byId: {
+      [String]: ${3:...}
+    }
+  ) => allIds.map((id: String) => byId[id])
+);$0
