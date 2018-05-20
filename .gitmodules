@@ -91,3 +91,6 @@
 [submodule "lsp-intellij-spacemacs"]
 	path = spacemacs/spacemacs.d/layers/+tools/lsp-intellij
 	url = https://github.com/Ruin0x11/lsp-intellij-spacemacs.git
+[submodule "spacemacs-solidity"]
+	path = spacemacs/spacemacs.d/layers/+lang/spacemacs-solidity
+	url = https://github.com/sei40kr/spacemacs-solidity.git
