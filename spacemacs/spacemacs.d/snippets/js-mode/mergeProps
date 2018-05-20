@@ -1,0 +1,10 @@
+# name : mergeProps(stateProps, dispatchProps, ownProps) { ... }
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: mergeProps
+# --
+
+const mergeProps = (stateProps, dispatchProps, ownProps) => ({
+  ...stateProps,
+  ...dispatchProps,
+  ...ownProps,
+});
