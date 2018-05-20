@@ -1,0 +1,8 @@
+# name : unsafe { ... }
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: unsafe
+# --
+
+unsafe {
+  $0
+}
