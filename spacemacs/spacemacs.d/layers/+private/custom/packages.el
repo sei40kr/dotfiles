@@ -1,4 +1,4 @@
-;;; funcs.el - custom layer file for Spacemacs
+;;; packages.el - custom layer file for Spacemacs
 ;;
 ;; Copyright (c) 2018 Seong Yong-ju
 ;;
