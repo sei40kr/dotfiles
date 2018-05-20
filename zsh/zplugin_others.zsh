@@ -25,6 +25,10 @@ zplugin ice pick'async.zsh' lucid src'pure.zsh' wait'!0'
 
 zplugin light sindresorhus/pure
 
+# zsh-autopairs
+
+zplugin light hlissner/zsh-autopair
+
 # zsh-autosuggestions
 
 ZSH_AUTOSUGGEST_USE_ASYNC=1
