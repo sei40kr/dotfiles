@@ -19,8 +19,8 @@ zplugin ice from'gh-r' as'program'; zplugin light junegunn/fzf-bin
 # pure
 
 PURE_PROMPT_SYMBOL='»'
-PURE_GIT_DOWN_ARROW='↑'
-PURE_GIT_UP_ARROW='↓'
+PURE_GIT_DOWN_ARROW='↓'
+PURE_GIT_UP_ARROW='↑'
 zplugin ice pick'async.zsh' lucid src'pure.zsh' wait'!0'
 
 zplugin light sindresorhus/pure
