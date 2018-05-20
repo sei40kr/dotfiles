@@ -1,0 +1,8 @@
+# name : describe('...', () => { ... })
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: describe
+# --
+
+describe('${1:...}', () => {
+  $0
+});

@@ -1,0 +1,8 @@
+# name : afterAll(() => { ... })
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: afterAll
+# --
+
+afterAll(() => {
+  $0
+});

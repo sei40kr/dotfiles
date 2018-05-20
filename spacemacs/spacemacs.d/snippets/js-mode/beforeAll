@@ -1,0 +1,8 @@
+# name : beforeAll(() => { ... })
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: beforeAll
+# --
+
+beforeAll(() => {
+  $0
+});
