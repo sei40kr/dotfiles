@@ -1,0 +1,8 @@
+# name : componentWillMount() { ... }
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: componentWillMount
+# --
+
+componentWillMount() {
+  $0
+}

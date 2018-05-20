@@ -1,0 +1,8 @@
+# name : componentWillReceiveProps(nextProps) { ... }
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: componentWillReceiveProps
+# --
+
+componentWillReceiveProps(nextProps: Props) {
+  $0
+}
