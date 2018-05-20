@@ -31,9 +31,7 @@
      magit
      neotree
      projectile
-     python-mode
      ranger
-     ruby-mode
      semantic
      spacemacs-theme
      ;; tabbar
@@ -198,18 +196,8 @@
     (mapc 'projectile-add-known-project
       (mapcar 'file-name-as-directory (magit-list-repos)))))
 
-(defun custom/pre-init-python-mode ()
-  (add-hook 'python-mode-hook #'spacemacs//python-set-evil-shift-width))
-
 (defun custom/pre-init-ranger ()
   (setq ranger-key nil))
-
-(defun custom/pre-init-ruby-mode ()
-  (add-hook 'ruby-mode-hook #'spacemacs//ruby-set-evil-shift-width))
-
-(defun custom/pre-init-rust-mode ()
-  (push 'rust-cargo flycheck-disabled-checkers)
-  (add-hook 'rust-mode-hook #'spacemacs//rust-set-evil-shift-width))
 
 (defun custom/post-init-semantic ()
   (require 'mode-local)
