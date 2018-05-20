@@ -16,6 +16,7 @@ markdownlint-cli
 prettier
 prettier-eslint-cli
 sfdx-cli
+solc-js
 stylelint-cli
 typescript
 typescript-language-server
