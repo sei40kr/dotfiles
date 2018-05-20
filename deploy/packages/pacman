@@ -23,7 +23,6 @@ ntp
 openssh
 rustup
 stack
-stack
 terminus-font
 texlive-core
 xclip
