@@ -35,7 +35,6 @@
      ranger
      ruby-mode
      semantic
-     solidity-mode
      spacemacs-theme
      ;; tabbar
      yatemplate))
@@ -216,9 +215,6 @@
   (require 'mode-local)
   (setq-mode-local emacs-lisp-mode
     semanticdb-find-default-throttle '(file local project unloaded system)))
-
-(defun custom/init-solidity-mode ()
-  (use-package solidity-mode))
 
 (defun custom/post-init-spacemacs-theme ()
   (setq spacemacs-theme-comment-italic t))
