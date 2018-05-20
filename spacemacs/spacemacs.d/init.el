@@ -484,17 +484,16 @@ before packages are loaded. If you are unsure, you should try in setting them in
     auto-insert-query nil
     auto-save-default nil
     backup-inhibited t
-    create-lockfiles nil
-    select-enable-clipboard nil
-    tooltip-delay 0.3
-    tooltip-hide-delay 999
-    tooltip-short-delay 0.1)
-  (setq
     browse-url-browser-function #'browse-url-generic
     browse-url-generic-program
       (or
         (executable-find "chromium")
-        (executable-find "google-chrome"))))
+        (executable-find "google-chrome"))
+    create-lockfiles nil
+    select-enable-clipboard nil
+    tooltip-delay 0.3
+    tooltip-hide-delay 999
+    tooltip-short-delay 0.1))
 
 (defun dotspacemacs/user-config ()
   ;; cf https://medium.com/@bobbypriambodo/blazingly-fast-spacemacs-with-persistent-server-92260f2118b7
