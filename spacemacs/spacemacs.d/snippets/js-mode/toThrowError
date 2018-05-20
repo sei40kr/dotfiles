@@ -1,0 +1,6 @@
+# name : expect(...).toThrowError(...)
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: toThrowError
+# --
+
+expect($1).toThrowError($2);$0

@@ -1,0 +1,6 @@
+# name : expect(...).toEqual(...)
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: toEqual
+# --
+
+expect($1).toEqual($2);$0
