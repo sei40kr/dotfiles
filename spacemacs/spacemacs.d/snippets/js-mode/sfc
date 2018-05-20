@@ -1,0 +1,10 @@
+# name : React SFC template
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: sfc
+# --
+
+type ${1:...}Props = {};
+
+const $1 = (props: $1Props) => (
+  ${0:<div />}
+);

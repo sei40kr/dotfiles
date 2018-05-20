@@ -1,0 +1,18 @@
+# name : React component template
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: component
+# --
+
+import { Component } from 'react';
+
+import './${1:`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`}.scss';
+
+const COMPONENT_ROOT = '${2:...}';
+
+export type Props = {};
+
+export default class $1 extends Component<Props> {
+  render() {
+    return ${0:<div className={COMPONENT_ROOT} />};
+  }
+}
