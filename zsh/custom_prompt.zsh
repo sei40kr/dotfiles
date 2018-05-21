@@ -8,11 +8,11 @@ print_toggl_duration() {
     awk -F',' '$1 == "Duration" { split($2, t, ":"); print (t[1] + 0) "h " (t[2] + 0) "m " (t[3] + 0) "s" }'
 }
 
-RPROMPT='%F{yellow}$(print_toggl_duration)%f'
+# RPROMPT='%F{yellow}$(print_toggl_duration)%f'
 
-TMOUT=1
-TRAPALRM() {
-  [[ "$WIDGET" = 'expand-or-complete-with-indicator' ]] && \
-    [[ "$_lastcomp[insert]" =~ "^automenu$|^menu:" ]] || \
-    zle reset-prompt
-}
+# TMOUT=1
+# TRAPALRM() {
+#   [[ "$WIDGET" = 'expand-or-complete-with-indicator' ]] && \
+#     [[ "$_lastcomp[insert]" =~ "^automenu$|^menu:" ]] || \
+#     zle reset-prompt
+# }
