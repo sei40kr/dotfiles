@@ -46,7 +46,6 @@ ln -sF "${DOTFILES_PATH}/matplotlib/matplotlibrc" "${HOME}/.config/matplotlib"
 # nvm
 NVM_DIR="${HOME}/.nvm"
 ln -sF "${DOTFILES_PATH}/nvm/nvm" "${NVM_DIR}"
-ln -sF "${DOTFILES_PATH}/nvm/default-packages" "${NVM_DIR}/default-packages"
 # shellcheck disable=SC1090
 . "${NVM_DIR}/nvm.sh"
 nvm install stable
@@ -62,7 +61,6 @@ ln -sF "${DOTFILES_PATH}/pyenv/pyenv" "${PYENV_ROOT}"
 mkdir -p "${PYENV_ROOT}/plugins"
 ln -sF "${DOTFILES_PATH}/pyenv/pyenv-ccache" "${PYENV_ROOT}/plugins/pyenv-ccache"
 ln -sF "${DOTFILES_PATH}/pyenv/pyenv-default-packages" "${PYENV_ROOT}/plugins/pyenv-default-packages"
-ln -sF "${DOTFILES_PATH}/pyenv/default-packages" "${PYENV_ROOT}/default-packages"
 ln -sF "${DOTFILES_PATH}/pyenv/pyenv-virtualenv" "${PYENV_ROOT}/plugins/pyenv-virtualenv"
 eval "$("${PYENV_ROOT}/bin/pyenv" init - --no-rehash bash)" && pyenv install -s 3.6.5 && pyenv global 3.6.5
 
@@ -78,7 +76,6 @@ mkdir -p "${RBENV_ROOT}/plugins"
 ln -sF "${DOTFILES_PATH}/rbenv/rbenv-build" "${RBENV_ROOT}/plugins/rbenv-build"
 ln -sF "${DOTFILES_PATH}/rbenv/rbenv-bundler" "${RBENV_ROOT}/plugins/rbenv-bundler"
 ln -sF "${DOTFILES_PATH}/rbenv/rbenv-default-gems" "${RBENV_ROOT}/plugins/rbenv-default-gems"
-ln -sF "${DOTFILES_PATH}/rbenv/default-gems" "${RBENV_ROOT}/default-gems"
 eval "$("${RBENV_ROOT}/bin/rbenv" init - --no-rehash bash)" && rbenv install -s 2.5.1 && rbenv global 2.5.1
 
 # ripgrep
