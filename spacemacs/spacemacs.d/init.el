@@ -68,6 +68,8 @@ values."
          c-c++-enable-clang-format-on-save t
          c-c++-enable-c++11 t
          c-c++-default-mode-for-headers 'c++-mode)
+       (crystal :variables
+         crystal-enable-auto-format t)
        csv
        emacs-lisp
        (go :variables
