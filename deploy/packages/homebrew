@@ -16,7 +16,7 @@ brew "cppcheck"
 brew "diffutils"
 brew "diff-so-fancy"
 brew "docker-compose", args: ['without-docker', 'without-docker-machine']
-brew "emacs-plus", args: ['with-natural-title-bar']
+brew "emacs-plus", args: ['with-natural-title-bar', 'HEAD']
 brew "fd"
 brew "findutils"
 brew "flawfinder"
