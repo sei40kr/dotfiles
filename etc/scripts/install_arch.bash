@@ -11,6 +11,12 @@ DOTFILES_PATH="$(realpath "$(dirname "$0")/../..")"
 # chromium
 ln -sF "${DOTFILES_PATH}/chromium/chromium-flags.conf" "${HOME}/.config/chromium-flags.conf"
 
+# cmus
+mkdir -p "${HOME}/.config/cmus"
+ln -sF "${DOTFILES_PATH}/cmus/rc" "${HOME}/.config/cmus/rc"
+mkdir -p "${HOME}/.local/bin"
+ln -sF "${DOTFILES_PATH}/bin/cplay" "${HOME}/.local/bin/cplay"
+
 # compton
 ln -sF "${DOTFILES_PATH}/compton/compton.conf" "${HOME}/.config/compton.conf"
 

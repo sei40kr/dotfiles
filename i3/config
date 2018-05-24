@@ -156,6 +156,11 @@ bindsym --release Shift+Print exec --no-startup-id scrot -s '%Y-%m-%d-%T-screens
 # Jump to urgent window
 bindsym $mod+x [urgent=latest] focus
 
+# Remote Control
+bindsym XF86AudioPlay exec --no-startup-id cplay
+bindsym XF86AudioNext exec --no-startup-id cmus-remote -n
+bindsym XF86AudioPrev exec --no-startup-id cmus-remote -r
+
 for_window [class="Thunar"] floating enable
 for_window [class="Zeal"] floating enable
 for_window [title="LINE"] floating enable

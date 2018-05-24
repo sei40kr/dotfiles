@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# cplay
+
+if ! pgrep -x cmus; then
+  uxterm -e cmus
+else
+  cmus-remote -u
+fi
