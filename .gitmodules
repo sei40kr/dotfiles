@@ -6,14 +6,6 @@
   branch = master
 	path = spacemacs/spacemacs.d/layers/+lang/better-javascript
 	url = https://github.com/sei40kr/better-javascript.git
-[submodule "better-lsp"]
-  branch = master
-	path = spacemacs/spacemacs.d/layers/+tools/better-lsp
-	url = https://github.com/sei40kr/better-lsp.git
-[submodule "spacemacs-kotlin"]
-  branch = master
-	path = spacemacs/spacemacs.d/layers/+lang/spacemacs-kotlin
-	url = https://github.com/sei40kr/spacemacs-kotlin.git
 [submodule "spacemacs"]
 	path = spacemacs/emacs.d
 	url = https://github.com/syl20bnr/spacemacs.git
@@ -22,10 +14,6 @@
   branch = master
 	path = spacemacs/spacemacs.d/layers/+tools/spacemacs-quickrun
 	url = https://github.com/sei40kr/spacemacs-quickrun.git
-[submodule "spacemacs-salesforce"]
-  branch = master
-	path = spacemacs/spacemacs.d/layers/+lang/spacemacs-salesforce
-	url = https://github.com/sei40kr/spacemacs-salesforce.git
 [submodule "tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
