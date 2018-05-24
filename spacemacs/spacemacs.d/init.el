@@ -138,7 +138,8 @@ values."
          deft-directory "~/Dropbox/notes")
        docker
        imenu-list
-       lsp
+       (lsp :variables
+         lsp-ui-sideline-enable nil)
        nginx
        (node :variables
          node-add-modules-path t)
