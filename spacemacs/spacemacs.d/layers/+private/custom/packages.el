@@ -31,7 +31,6 @@
      magit
      neotree
      projectile
-     ranger
      semantic
      spacemacs-theme
      ;; tabbar
@@ -195,9 +194,6 @@
     (require 'magit)
     (mapc 'projectile-add-known-project
       (mapcar 'file-name-as-directory (magit-list-repos)))))
-
-(defun custom/pre-init-ranger ()
-  (setq ranger-key nil))
 
 (defun custom/post-init-semantic ()
   (require 'mode-local)
