@@ -1,0 +1,8 @@
+# name : @staticmethod def ...():
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: staticmethod
+# --
+
+@staticmethod
+def ${1:func}(${2:args}):
+    $0
