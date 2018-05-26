@@ -24,6 +24,7 @@
      expand-region
      flycheck
      flycheck-popup-tip
+     flycheck-rust
      helm
      helm-ls-git
      linum
@@ -128,6 +129,10 @@
     (add-hook 'flycheck-mode-hook #'flycheck-popup-tip-mode)
     :custom
     (flycheck-popup-tip-error-prefix "* ")))
+
+(defun custom/pre-init-flycheck-rust ()
+  (eval-after-load 'flycheck-rust
+    '(flycheck-disable-checker 'rust-cargo)))
 
 (defun custom/post-init-helm ()
   (custom-set-variables
