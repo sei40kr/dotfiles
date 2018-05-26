@@ -132,7 +132,7 @@
 
 (defun custom/pre-init-flycheck-rust ()
   (eval-after-load 'flycheck-rust
-    '(flycheck-disable-checker 'rust-cargo)))
+    '(push 'rust-cargo flycheck-disabled-checkers)))
 
 (defun custom/post-init-helm ()
   (custom-set-variables
