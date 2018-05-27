@@ -97,18 +97,3 @@
 (defun spacemacs//rust-set-evil-shift-width ()
   "Set `evil-shift-width' according to `rust-indent-offset'."
   (setq evil-shift-width rust-indent-offset))
-
-
-;; tabbar
-
-;; (defun spacemacs//tabbar-buffer-groups-by-projectile-project ()
-;;   "Groups tabs in tabbar-mode by the projectile project they are in."
-;;   (list (projectile-project-name)))
-
-;; (defun spacemacs//tabbar-buffer-list ()
-;;   (remove-if
-;;     (lambda (buffer)
-;;       (and
-;;         (not (eq buffer (current-buffer)))
-;;         (string-prefix-p "*" (string-trim (buffer-name buffer)))))
-;;       (buffer-list)))
