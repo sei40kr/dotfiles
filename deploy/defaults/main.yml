@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Include Python tasks
+      include: ../tasks/python.yml
+    - name: Include Ruby tasks
+      include: ../tasks/ruby.yml

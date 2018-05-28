@@ -1,0 +1,51 @@
+# python.yml --- Python 2 & Python 3
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+pyenv_repo: 'https://github.com/pyenv/pyenv.git'
+pyenv_root: '~/.pyenv'
+pyenv-ccache_repo: 'https://github.com/pyenv/pyenv-ccache.git'
+pyenv-ccache_path: '~/.pyenv/plugins/pyenv-ccache'
+pyenv-virtualenv_repo: 'https://github.com/pyenv/pyenv-virtualenv.git'
+pyenv-virtualenv_path: '~/.pyenv/plugins/pyenv-virtualenv'
+
+# Python 2
+python2_versions:
+  - 2.7.15
+python2_default_version: 2.7.15
+
+pip2_packages:
+  - ansible-lint
+
+# Python 3
+python3_versions:
+  - 3.6.5
+python3_default_version: 3.6.5
+
+pip3_packages:
+  - ansible   # should have already been installed
+  - asciinema
+  - autopep8
+  - aws-shell
+  - cmakelint
+  - cpplint
+  - epc
+  - flake8
+  - i3ipc
+  - importmagic
+  - ipython
+  - jedi
+  - jupyter
+  - mycli
+  - pgcli
+  - proselint
+  - psutil
+  - ptpython
+  - pygments
+  - pylint
+  - pyls-isort
+  - pyls-mypy
+  - python-language-server
+  - ranger-fm
+  - vim-vint
+  - yamllint
+  - yapf

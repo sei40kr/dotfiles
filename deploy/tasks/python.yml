@@ -1,0 +1,42 @@
+# python.yml --- Python 2 & Python 3
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: ../vars/python.yml
+    name: python
+- name: Install pyenv
+  git:
+    dest: '{{ python.pyenv_root }}'
+    force: yes
+    repo: '{{ python.pyenv_repo }}'
+- name: Install pyenv-ccache 
+  git:
+    dest: '{{ python.pyenv-ccache_path }}'
+    force: yes
+    repo: '{{ python.pyenv-ccache_repo }}'
+- name: Install pyenv-virtualenv 
+  git:
+    dest: '{{ python.pyenv-virtualenv_path }}'
+    force: yes
+    repo: '{{ python.pyenv-virtualenv_repo }}'
+- name: Install Python 2
+  shell: '{{ python.pyenv_root }}/bin/pyenv install -s {{ item }}'
+  with_items: '{{ python.python2_versions }}'
+- name: Install Python 2 packages
+  pip:
+    executable: '{{ python.pyenv_root }}/versions/{{ item }}/bin/pip2'
+    name: '{{ python.pip2_packages }}'
+  with_items:
+    - '{{ python.python2_versions }}'
+- name: Install Python 3
+  shell: '{{ python.pyenv_root }}/bin/pyenv install -s {{ item }}'
+  with_items: '{{ python.python3_versions }}'
+- name: Install Python 3 packages
+  pip:
+    executable: '{{ python.pyenv_root }}/versions/{{ item }}/bin/pip3'
+    name: '{{ python.pip3_packages }}'
+  with_items:
+    - '{{ python.python3_versions }}'
+# - name: Set the installed versions of Python as default
+  # shell: '{{ rbenv_root }}/bin/rbenv global {{ ruby_default_version }} && {{ rbenv_root }}/bin/rbenv rehash'
