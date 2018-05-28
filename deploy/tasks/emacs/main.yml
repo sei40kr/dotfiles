@@ -1,6 +1,9 @@
 # main.yml --- Emacs
 # author: Seong Yong-ju <sei40kr@gmail.com>
 ---
+- name: Include variables
+  include_vars:
+    file: ../../vars/main.yml
 - include_tasks: arch.yml
   when: ansible_os_family == 'Archlinux'
 - name: Create a symlink for e executable
@@ -8,5 +11,5 @@
     follow: no
     force: yes
     path: ~/.local/bin/e
-    src: ../../../bin/e
+    src: '{{ dotfiles_path }}/bin/e'
     state: link
