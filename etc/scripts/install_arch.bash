@@ -28,7 +28,8 @@ mkdir -p "${HOME}/Dropbox/notes"
 systemctl --user enable dropbox
 
 # dunst
-ln -sF "${DOTFILES_PATH}/dunst/dunstrc" "${HOME}/.dmenurc"
+mkdir -p "${HOME}/.config/dunst"
+ln -sF "${DOTFILES_PATH}/dunst/dunstrc" "${HOME}/.config/dunst/dunstrc"
 
 # fcitx
 mkdir -p "${HOME}/.config/fcitx"
