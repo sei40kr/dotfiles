@@ -24,7 +24,7 @@
     repo: '{{ ruby.rbenv_build_repo }}'
   when: not rbenv_build_check.stat.exists
 - name: Install Ruby
-  shell: '{{ ruby.rbenv_root }}/bin/rbenv install -s {{ item }}'
+  command: '{{ ruby.rbenv_root }}/bin/rbenv install -s {{ item }}'
   with_items: '{{ ruby.ruby_versions }}'
 - name: Install Rubygems
   gem:
