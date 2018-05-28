@@ -4,5 +4,7 @@
   tasks:
     - name: Include Python tasks
       include: ../tasks/python.yml
+      tags: [python]
     - name: Include Ruby tasks
       include: ../tasks/ruby.yml
+      tags: [ruby]
