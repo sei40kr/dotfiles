@@ -2,6 +2,9 @@
 - hosts: localhost
   connection: local
   tasks:
+    - name: Include Node tasks
+      include: ../tasks/node.yml
+      tags: [node]
     - name: Include Python tasks
       include: ../tasks/python.yml
       tags: [python]

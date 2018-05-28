@@ -1,0 +1,34 @@
+# node.yml --- Node
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: ../vars/node.yml
+    name: node
+- name: Check if nvm exists
+  stat:
+    path: '{{ node.nvm_dir }}'
+  register: nvm_check
+- name: Install nvm
+  git:
+    dest: '{{ node.nvm_dir }}'
+    repo: '{{ node.nvm_repo }}'
+  when: not nvm_check.stat.exists
+- name: Install Node
+  # this won't work if the Node have already been installed
+  # and there set the NPM config "prefix"
+  shell: '. {{ node.nvm_dir }}/nvm.sh && nvm install --no-progress {{ item }}'
+  with_items: '{{ node.node_versions }}'
+- name: Install NPM packages
+  npm:
+    executable: '{{ node.nvm_dir }}/versions/node/{{ item }}/bin/npm'
+    global: yes
+    name: '{{ node.npm_packages }}'
+  with_items:
+    - '{{ node.node_versions }}'
+- name: Delete the NPM config \"prefix\" option
+  command: '{{ node.nvm_dir }}/versions/node/{{ item }}/bin/npm config delete prefix'
+  with_items:
+    - '{{ node.node_versions }}'
+- name: Set the installed version of Node as default
+  shell: '. {{ node.nvm_dir }}/nvm.sh && nvm alias default {{ node.node_default_version }}'
