@@ -9,4 +9,4 @@ IFS=$'\n\t'
 basepath="$(dirname "$(realpath "$0")")"
 
 echo 'Setting up the local environment ...'
-ANSIBLE_NOCOWS=1 ansible-playbook -i "${basepath}/inventory" "${basepath}/defaults/main.yml"
+ANSIBLE_NOCOWS=1 ansible-playbook -i "${basepath}/inventory" "${basepath}/defaults/main.yml" "$@"
