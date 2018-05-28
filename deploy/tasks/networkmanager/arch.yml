@@ -1,0 +1,11 @@
+# arch.yml --- NetworkManager for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Install networkmanager using pacman
+  pacman:
+    name: networkmanager
+- name: Enable NetworkManager service
+  systemd:
+    enabled: yes
+    name: NetworkManager.service
+    state: started
