@@ -1,0 +1,6 @@
+# arch.yml --- Emacs for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Install emacs using pacman
+  pacman:
+    name: emacs
