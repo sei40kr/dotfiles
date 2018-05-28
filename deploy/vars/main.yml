@@ -1,0 +1,4 @@
+# main.yml
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+dotfiles_path: ~/.dotfiles

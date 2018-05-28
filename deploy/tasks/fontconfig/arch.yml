@@ -1,0 +1,26 @@
+# arch.yml --- Fontconfig for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: ../vars/main.yml
+- name: Create symlinks for Fontconfig config
+  file:
+    follow: no
+    force: yes
+    path: '{{ item.dest }}'
+    src: '{{ item.src }}'
+    state: link
+  with_items:
+    - src: '{{ dotfiles_path }}/fontconfig/fonts.conf'
+      dest: ~/.config/fontconfig/fonts.conf
+    - src: '{{ dotfiles_path }}/fontconfig/conf.d/10-hinting-none.conf'
+      dest: ~/.config/fontconfig/conf.d/10-hinting-none.conf
+    - src: '{{ dotfiles_path }}/fontconfig/conf.d/10-sub-pixel-rgb.conf'
+      dest: ~/.config/fontconfig/conf.d/10-sub-pixel-rgb.conf
+    - src: '{{ dotfiles_path }}/fontconfig/conf.d/11-lcdfilter-default.conf'
+      dest: ~/.config/fontconfig/conf.d/11-lcdfilter-default.conf
+    - src: '{{ dotfiles_path }}/fontconfig/conf.d/66-courier-bitmap-ja.conf'
+      dest: ~/.config/fontconfig/conf.d/66-courier-bitmap-ja.conf
+    - src: '{{ dotfiles_path }}/fontconfig/conf.d/66-terminus-ja.conf'
+      dest: ~/.config/fontconfig/conf.d/66-terminus-ja.conf
