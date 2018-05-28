@@ -1,0 +1,25 @@
+# spacemacs.yml --- Spacemacs
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: ../vars/spacemacs.yml
+    name: spacemacs
+- name: Check if Spacemacs exists
+  # TODO improve checking
+  stat:
+    path: ~/.emacs.d
+  register: spacemacs_check
+- name: Install Spacemacs
+  git:
+    dest: ~/.emacs.d
+    repo: '{{ spacemacs.spacemacs_repo }}'
+    version: '{{ spacemacs.spacemacs_branch }}'
+  when: not spacemacs_check.stat.exists
+- name: Create a symlink for Spacemacs config
+  file:
+    follow: no
+    force: yes
+    path: ~/.spacemacs.d
+    src: ../../spacemacs/spacemacs.d
+    state: link
