@@ -11,6 +11,7 @@
 
 (setq custom-packages
   '(
+     ansible
      avy
      company
      (competitive-programming-snippets :location local)
@@ -37,6 +38,11 @@
      yatemplate))
 
 (setq custom-excluded-packages '())
+
+(defun custom/post-init-ansible ()
+  (if (configuration-layer/layer-used-p 'ansible)
+      (setq spacemacs--ansible-filename-re
+            ".*\\(main\.yml\\|site\.yml\\|encrypted\.yml\\|roles/.+\.yml\\|tasks/.+\.yml\\|(group_|host_)?vars/.+\\)")))
 
 (defun custom/post-init-avy ()
   (setq avy-timeout-seconds 0.0))
