@@ -1,3 +1,4 @@
+ansible
 ansible-lint; python_version < '3'
 asciinema
 autopep8
