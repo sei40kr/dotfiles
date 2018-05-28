@@ -3,8 +3,13 @@
 ---
 - name: Include variables
   include_vars:
-    file: ../vars/spacemacs.yml
-    name: spacemacs
+    file: '{{ item.file }}'
+    name: '{{ item.name }}'
+  with_items:
+    - file: ../vars/main.yml
+      name: null
+    - file: ../vars/spacemacs.yml
+      name: spacemacs
 - name: Check if Spacemacs exists
   # TODO improve checking
   stat:
@@ -21,5 +26,5 @@
     follow: no
     force: yes
     path: ~/.spacemacs.d
-    src: ../../spacemacs/spacemacs.d
+    src: '{{ dotfiles_path }}/spacemacs/spacemacs.d'
     state: link
