@@ -4,8 +4,10 @@ autopep8
 aws-shell
 cmakelint
 cpplint
+epc
 flake8
 i3ipc
+importmagic
 ipython
 jedi
 jupyter
