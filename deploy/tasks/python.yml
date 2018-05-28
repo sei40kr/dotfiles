@@ -5,21 +5,33 @@
   include_vars:
     file: ../vars/python.yml
     name: python
+- name: Check if pyenv exists
+  stat:
+    path: '{{ python.pyenv_root }}'
+  register: pyenv_check
 - name: Install pyenv
   git:
     dest: '{{ python.pyenv_root }}'
-    force: yes
     repo: '{{ python.pyenv_repo }}'
+  when: not pyenv_check.stat.exists
+- name: Check if pyenv-ccache exists
+  stat:
+    path: '{{ python.pyenv_ccache_path }}'
+  register: pyenv_ccache_check
 - name: Install pyenv-ccache 
   git:
-    dest: '{{ python.pyenv-ccache_path }}'
-    force: yes
-    repo: '{{ python.pyenv-ccache_repo }}'
+    dest: '{{ python.pyenv_ccache_path }}'
+    repo: '{{ python.pyenv_ccache_repo }}'
+  when: not pyenv_ccache_check.stat.exists
+- name: Check if pyenv-virtualenv exists
+  stat:
+    path: '{{ python.pyenv_virtualenv_path }}'
+  register: pyenv_virtualenv_check
 - name: Install pyenv-virtualenv 
   git:
-    dest: '{{ python.pyenv-virtualenv_path }}'
-    force: yes
-    repo: '{{ python.pyenv-virtualenv_repo }}'
+    dest: '{{ python.pyenv_virtualenv_path }}'
+    repo: '{{ python.pyenv_virtualenv_repo }}'
+  when: not pyenv_virtualenv_check.stat.exists
 - name: Install Python 2
   shell: '{{ python.pyenv_root }}/bin/pyenv install -s {{ item }}'
   with_items: '{{ python.python2_versions }}'
