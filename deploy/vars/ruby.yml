@@ -3,8 +3,8 @@
 ---
 rbenv_repo: 'https://github.com/rbenv/rbenv.git'
 rbenv_root: '~/.rbenv'
-rbenv-build_repo: 'https://github.com/rbenv/ruby-build.git'
-rbenv-build_path: '~/.rbenv/plugins/ruby-build'
+rbenv_build_repo: 'https://github.com/rbenv/ruby-build.git'
+rbenv_build_path: '~/.rbenv/plugins/ruby-build'
 
 ruby_versions:
   - 2.5.0

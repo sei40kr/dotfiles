@@ -5,16 +5,24 @@
   include_vars:
     file: ../vars/ruby.yml
     name: ruby
+- name: Check if rbenv exists
+  stat:
+    path: '{{ ruby.rbenv_root }}'
+  register: rbenv_check
 - name: Install rbenv
   git:
     dest: '{{ ruby.rbenv_root }}'
-    force: yes
     repo: '{{ ruby.rbenv_repo }}'
+  when: not rbenv_check.stat.exists
+- name: Check if rbenv-build exists
+  stat:
+    path: '{{ ruby.rbenv_build_path }}'
+  register: rbenv_build_check
 - name: Install ruby-build
   git:
-    dest: '{{ ruby.ruby-build_path }}'
-    force: yes
-    repo: '{{ ruby.ruby-build_repo }}'
+    dest: '{{ ruby.rbenv_build_path }}'
+    repo: '{{ ruby.rbenv_build_repo }}'
+  when: not rbenv_build_check.stat.exists
 - name: Install Ruby
   shell: '{{ ruby.rbenv_root }}/bin/rbenv install -s {{ item }}'
   with_items: '{{ ruby.ruby_versions }}'
