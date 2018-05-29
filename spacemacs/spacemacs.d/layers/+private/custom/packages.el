@@ -34,8 +34,7 @@
      neotree
      projectile
      semantic
-     spacemacs-theme
-     yatemplate))
+     spacemacs-theme))
 
 (setq custom-excluded-packages '())
 
@@ -208,13 +207,3 @@
 
 (defun custom/post-init-spacemacs-theme ()
   (setq spacemacs-theme-comment-italic t))
-
-(defun custom/init-yatemplate ()
-  (use-package yatemplate
-    :config
-    (progn
-      (auto-insert-mode t)
-      (yatemplate-fill-alist))
-    :custom
-    (yatemplate-dir (expand-file-name "templates" dotspacemacs-directory))
-    (yatemplate-separator "_")))
