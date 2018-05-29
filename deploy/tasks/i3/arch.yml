@@ -6,6 +6,7 @@
     name:
       - i3-gaps
       - i3blocks
+  become: yes
 - name: Create a symlink for i3 config
   file:
     follow: no
