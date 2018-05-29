@@ -1,0 +1,16 @@
+# arch.yml --- Chromium for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: ../vars/main.yml
+- name: Install chromium using pacman
+  pacman:
+    name: chromium
+- name: Create a symlink for Chromium config
+  file:
+    follow: no
+    force: yes
+    path: ~/.config/chromium-flags.conf
+    src: '{{ dotfiles_path }}/chromium/chromium-flags.conf'
+    state: link
