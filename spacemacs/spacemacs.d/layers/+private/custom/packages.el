@@ -199,11 +199,7 @@
     projectile-git-submodule-command nil
     projectile-sort-order 'default
     projectile-switch-project-action #'spacemacs//projectile-switch-project-action
-    projectile-use-git-grep t)
-  (with-eval-after-load 'projectile
-    (require 'magit)
-    (mapc 'projectile-add-known-project
-      (mapcar 'file-name-as-directory (magit-list-repos)))))
+    projectile-use-git-grep t))
 
 (defun custom/post-init-semantic ()
   (require 'mode-local)
