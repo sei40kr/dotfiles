@@ -1,0 +1,19 @@
+# arch.yml --- compton for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Install compton using pacman
+  pacman:
+    name: compton
+  become: yes
+- name: Create a symlink for compton config
+  file:
+    force: yes
+    path: ~/.config/compton.conf
+    src: '{{ dotfiles_path }}/compton/compton.conf'
+    state: link
+- name: Create a symlink for comp executable
+  file:
+    force: yes
+    path: ~/.local/bin/comp
+    src: '{{ dotfiles_path }}/bin/comp'
+    state: link
