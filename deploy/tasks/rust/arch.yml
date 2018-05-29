@@ -1,0 +1,6 @@
+# arch.yml --- Rust for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Install rustup using pacman
+  pacman:
+    name: rustup
