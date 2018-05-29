@@ -521,11 +521,4 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 (defun dotspacemacs/user-config ()
   ;; cf https://medium.com/@bobbypriambodo/blazingly-fast-spacemacs-with-persistent-server-92260f2118b7
-  (evil-leader/set-key "q q" 'spacemacs/frame-killer)
-
-  (spacemacs|do-after-display-system-init
-    (progn
-      (setq frame-title-format
-        '((:eval (spacemacs/title-prepare dotspacemacs-frame-title-format))))
-      (spacemacs/enable-transparency)
-      (spacemacs-modeline/init-spaceline))))
+  (evil-leader/set-key "q q" 'spacemacs/frame-killer))
