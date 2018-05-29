@@ -169,10 +169,6 @@
 (defun custom/post-init-magit ()
   (setq
     magit-refresh-status-buffer nil
-    magit-repository-directories
-    (if (spacemacs/system-is-mac)
-      '(("~/dotfiles" . 5) ("~/Develop" . 3))
-      '(("~/dotfiles" . 5) ("~/dev/ws" . 3)))
     magit-repolist-columns
     '(
        ("Name" 25 magit-repolist-column-ident nil)
