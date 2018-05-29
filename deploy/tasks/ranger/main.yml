@@ -1,0 +1,20 @@
+# main.yml --- ranger
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: ../../vars/main.yml
+- include_tasks: arch.yml
+  when: ansible_os_family == 'Archlinux'
+- name: Create symlinks for ranger config
+  file:
+    follow: no
+    force: yes
+    path: '{{ item.dest }}'
+    src: '{{ item.src }}'
+    state: link
+  with_items:
+    - src: '{{ dotfiles_path }}/ranger/commands.py'
+      dest: ~/.config/ranger/commands.py
+    - src: '{{ dotfiles_path }}/ranger/rifle.conf'
+      dest: ~/.config/ranger/rifle.conf
