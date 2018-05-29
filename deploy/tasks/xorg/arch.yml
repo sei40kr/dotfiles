@@ -1,0 +1,7 @@
+# arch.yml --- Xorg for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Install xorg using pacman
+  pacman:
+    name: xorg
+  become: yes
