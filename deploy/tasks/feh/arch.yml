@@ -1,0 +1,7 @@
+# arch.yml --- feh for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Install feh using pacman
+  pacman:
+    name: feh
+  become: yes
