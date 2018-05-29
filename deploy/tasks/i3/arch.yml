@@ -1,0 +1,23 @@
+# arch.yml --- i3 for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: ../vars/main.yml
+- name: Install i3-gaps, i3blocks using pacman
+  pacman:
+    name:
+      - i3-gaps
+      - i3blocks
+- name: Create a symlink for i3 config
+  file:
+    force: yes
+    path: ~/.config/i3/config
+    src: '{{ dotfiles_path }}/i3/config'
+    state: link
+- name: Create a symlink for i3blocks config
+  file:
+    force: yes
+    path: ~/.i3blocks.conf
+    src: '{{ dotfiles_path }}/i3blocks/i3blocks.conf'
+    state: link
