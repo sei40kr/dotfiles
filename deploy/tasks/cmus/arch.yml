@@ -1,0 +1,20 @@
+# arch.yml --- cmus for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Install cmus using pacman
+  pacman:
+    name: cmus
+- name: Create a symlink for cmus config
+  file:
+    follow: no
+    force: yes
+    path: ~/.config/cmus/rc
+    src: '{{ dotfiles_path }}/cmus/rc'
+    state: link
+- name: Create a symlink for cplay executable
+  file:
+    follow: no
+    force: yes
+    path: ~/.local/bin/cplay
+    src: '{{ dotfiles_path }}/bin/cplay'
+    state: link
