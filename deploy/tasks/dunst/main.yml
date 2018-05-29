@@ -1,0 +1,14 @@
+# main.yml --- dunst
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: ../vars/main.yml
+- include_tasks: arch.yml
+  when: ansible_os_family == 'Archlinux'
+- name: Create a symlink for dunst config
+  file:
+    force: yes
+    path: ~/.config/dunst/dunstrc
+    src: '{{ dotfiles_path }}/dunst/dunstrc'
+    state: link
