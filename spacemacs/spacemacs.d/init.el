@@ -47,6 +47,7 @@ values."
          auto-completion-return-key-behavior 'complete
          auto-completion-tab-key-behavior 'complete)
        helm
+       templates
        ;; Emacs
        (ibuffer :variables
          ibuffer-group-buffers-by 'projects)
