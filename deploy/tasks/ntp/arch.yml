@@ -4,8 +4,10 @@
 - name: Install ntp using pacman
   pacman:
     name: ntp
+  become: yes
 - name: Enable ntpd service
   systemd:
     enabled: yes
     name: ntpd.service
     state: started
+  become: yes
