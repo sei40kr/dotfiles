@@ -1,0 +1,11 @@
+# arch.yml --- Network Time Protocol daemon for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Install ntp using pacman
+  pacman:
+    name: ntp
+- name: Enable ntpd service
+  systemd:
+    enabled: yes
+    name: ntpd.service
+    state: started
