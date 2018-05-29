@@ -1,0 +1,14 @@
+# main.yml --- dmenu
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: ../vars/main.yml
+- include_tasks: arch.yml
+  when: ansible_os_family == 'Archlinux'
+- name: Create a symlink for .dmenurc executable
+  file:
+    force: yes
+    path: ~/.dmenurc
+    src: '{{ dotfiles_path }}/dmenu/dmenurc'
+    state: link
