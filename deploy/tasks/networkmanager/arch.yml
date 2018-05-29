@@ -4,8 +4,10 @@
 - name: Install networkmanager using pacman
   pacman:
     name: networkmanager
+  become: yes
 - name: Enable NetworkManager service
   systemd:
     enabled: yes
     name: NetworkManager.service
     state: started
+  become: yes
