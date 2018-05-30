@@ -1,4 +1,4 @@
-# linux.yml --- xrasengan
+# linux.yml --- xrasengan for Linux
 # author: Seong Yong-ju <sei40kr@gmail.com>
 ---
 - name: Include variables
