@@ -1,0 +1,8 @@
+# main.yml --- GTK
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: ../vars/main.yml
+- include_tasks: linux.yml
+  when: ansible_system == 'Linux'
