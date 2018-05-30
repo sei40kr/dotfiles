@@ -6,6 +6,11 @@
     file: ../../vars/main.yml
 - include_tasks: arch.yml
   when: ansible_os_family == 'Archlinux'
+- name: Create a directory for ranger config
+  file:
+    path: ~/.config/ranger
+    recurse: yes
+    state: directory
 - name: Create symlinks for ranger config
   file:
     follow: no
