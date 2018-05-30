@@ -4,3 +4,4 @@
 - name: Install rustup using pacman
   pacman:
     name: rustup
+  become: yes
