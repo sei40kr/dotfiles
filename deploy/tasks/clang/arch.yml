@@ -5,9 +5,3 @@
   pacman:
     name: clang
   become: yes
-- name: Create a symlink for Clang Format config
-  file:
-    force: yes
-    path: ~/.clang-format
-    src: '{{ dotfiles_path }}/clang/clang-format'
-    state: link
