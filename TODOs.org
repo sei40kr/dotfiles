@@ -11,6 +11,7 @@
 ** TODO Fix edit-server
 ** TODO Fix evil-mc
 ** TODO Fix generic-browser
+** TODO Fix templates layer
 
 * i3
 ** TODO Customize i3blocks
