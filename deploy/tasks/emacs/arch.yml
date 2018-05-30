@@ -4,3 +4,4 @@
 - name: Install emacs using pacman
   pacman:
     name: emacs
+  become: yes
