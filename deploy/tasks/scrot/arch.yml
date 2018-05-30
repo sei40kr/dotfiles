@@ -1,0 +1,7 @@
+# arch.yml --- scrot for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Install scrot using pacman
+  pacman:
+    name: scrot
+  become: yes
