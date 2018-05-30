@@ -4,6 +4,11 @@
 - name: Include variables
   include_vars:
     file: ../vars/main.yml
+- name: Create a directory for Fontconfig config
+  file:
+    path: ~/.config/fontconfig/conf.d
+    recurse: yes
+    state: directory
 - name: Create symlinks for Fontconfig config
   file:
     follow: no
