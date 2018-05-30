@@ -1,0 +1,7 @@
+# arch.yml --- Git for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Install git using pacman
+  pacman:
+    name: git
+  become: yes
