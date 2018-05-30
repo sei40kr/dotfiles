@@ -5,15 +5,3 @@
   pacman:
     name: compton
   become: yes
-- name: Create a symlink for compton config
-  file:
-    force: yes
-    path: ~/.config/compton.conf
-    src: '{{ dotfiles_path }}/compton/compton.conf'
-    state: link
-- name: Create a symlink for comp executable
-  file:
-    force: yes
-    path: ~/.local/bin/comp
-    src: '{{ dotfiles_path }}/bin/comp'
-    state: link
