@@ -1,0 +1,18 @@
+# linux.yml --- xrasengan
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: ../vars/main.yml
+- name: Create a directory for executables
+  file:
+    path: ~/.local/bin
+    recurse: yes
+    state: directory
+- name: Create a symlink for xrasengan executable
+  file:
+    follow: no
+    force: yes
+    path: ~/.local/bin/xrasengan
+    src: '{{ dotfiles_path }}/bin/xrasengan'
+    state: link
