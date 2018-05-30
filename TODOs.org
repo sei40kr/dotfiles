@@ -7,6 +7,9 @@
 
 * Spacemacs
 ** TODO Add elfeed layer
+** TODO Create travis-ci layer
+*** TODO Implement flycheck-travis
+*** TODO Implement in-editor encryption/decryption
 ** TODO Fix C-h behavior in helm in neotree
 ** TODO Fix edit-server
 ** TODO Fix evil-mc
