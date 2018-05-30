@@ -1,0 +1,35 @@
+# main.yml --- TMUX
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: '{{ item.file }}'
+    name: '{{ item.name }}'
+  with_items:
+    - file: ../vars/main.yml
+      name:
+    - file: ../vars/tmux.yml
+      name: tmux
+- include_tasks: arch.yml
+  when: ansible_os_family == 'Archlinux'
+- name: Create a symlink for TMUX config
+  file:
+    follow: no
+    force: yes
+    path: ~/.tmux.conf
+    src: '{{ dotfiles_path }}/tmux/tmux.conf'
+    state: link
+- name: Create a directory for TPM plugins
+  file:
+    path: '{{ tmux.tpm_plugin_dir }}'
+    recurse: yes
+    state: directory
+- name: Check if TPM exists
+  stat:
+    path: '{{ zsh.tpm_path }}'
+  register: tpm_check
+- name: Install TPM
+  git:
+    dest: '{{ tmux.tpm_path }}'
+    repo: '{{ tmux.tpm_repo }}'
+  when: not tpm_check.stat.exists
