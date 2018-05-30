@@ -1,4 +1,4 @@
-# arch.yml --- Fontconfig for Arch Linux
+# linux.yml --- Fontconfig for Linux
 # author: Seong Yong-ju <sei40kr@gmail.com>
 ---
 - name: Include variables
