@@ -4,3 +4,8 @@
 rust_versions:
   - nightly
 rust_default_version: nightly
+cargo_rust_binaries:
+  - clippy
+  - racer
+  - rls
+  - rustfmt-nightly

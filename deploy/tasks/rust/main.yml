@@ -15,3 +15,9 @@
   with_items: '{{ rust.rust_versions }}'
 - name: Set the installed version of Rust as default
   command: 'rustup default {{ rust.rust_default_version }}'
+- name: Install the Rust binaries using cargo
+  shell: 'cargo install -q {{ item }}'
+  changed_when: "result.rc == 0"
+  failed_when: "( result.rc != 0 ) and ( 'already exists in destination' in result.stderr )"
+  register: result
+  with_items: '{{ rust.cargo_rust_binaries }}'
