@@ -13,5 +13,5 @@
 - name: Add a component rust-src for the installed versions of Rust
   command: 'rustup component add --toolchain={{ item }} rust-src'
   with_items: '{{ rust.rust_versions }}'
-- name: Install the nightly version of Rust
+- name: Set the installed version of Rust as default
   command: 'rustup default {{ rust.rust_default_version }}'
