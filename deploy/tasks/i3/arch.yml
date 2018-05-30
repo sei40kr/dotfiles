@@ -7,17 +7,3 @@
       - i3-gaps
       - i3blocks
   become: yes
-- name: Create a symlink for i3 config
-  file:
-    follow: no
-    force: yes
-    path: ~/.config/i3/config
-    src: '{{ dotfiles_path }}/i3/config'
-    state: link
-- name: Create a symlink for i3blocks config
-  file:
-    follow: no
-    force: yes
-    path: ~/.i3blocks.conf
-    src: '{{ dotfiles_path }}/i3blocks/i3blocks.conf'
-    state: link
