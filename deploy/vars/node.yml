@@ -13,7 +13,6 @@ node_npm_packages:
   - eslint-cli
   - eslint_d
   - flow-bin
-  - flow-language-server
   - gatsby-cli
   - generate
   - generate-gitignore
@@ -21,11 +20,9 @@ node_npm_packages:
   - generate-project
   - gulp
   - import-js
-  - jsforce
   - markdownlint-cli
   - prettier
   - prettier-eslint-cli
-  - sfdx-cli
   - solc-js
   - stylelint-cli
   - typescript
