@@ -6,6 +6,11 @@
     file: ../../vars/main.yml
 - include_tasks: arch.yml
   when: ansible_os_family == 'Archlinux'
+- name: Create a directory for executables
+  file:
+    path: ~/.local/bin
+    recurse: yes
+    state: directory
 - name: Create a symlink for e executable
   file:
     follow: no
