@@ -14,6 +14,10 @@
     dest: '{{ ruby.rbenv_root }}'
     repo: '{{ ruby.rbenv_repo }}'
   when: not rbenv_check.stat.exists
+- name: Create a directory for rbenv plugins
+  file:
+    path: '{{ ruby.rbenv_root }}/plugins'
+    state: directory
 - name: Check if rbenv-build exists
   stat:
     path: '{{ ruby.rbenv_build_path }}'
