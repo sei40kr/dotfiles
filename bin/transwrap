@@ -2,6 +2,9 @@
 
 # transwrap
 
+set -euo pipefail
+IFS=$'\n\t'
+
 killall transmission-daemon 2> /dev/null
 
 transmission-daemon --foreground --log-info 2>&1 | while read -r line; do
