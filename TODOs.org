@@ -1,0 +1,38 @@
+#+TITLE: dotfiles
+
+* ZSH
+** TODO Customize the prompt
+** TODO Disable unicode chars in system terminal
+** TODO Re-implement Todoist+Toggl frontend tools
+
+* Spacemacs
+** TODO Add elfeed layer
+** TODO Fix C-h behavior in helm in neotree
+** TODO Fix edit-server
+** TODO Fix evil-mc
+** TODO Fix generic-browser
+
+* i3
+** TODO Customize i3blocks
+*** TODO The notification count
+*** TODO The count of calendar events
+*** TODO fcitx status
+
+* fcitx
+** TODO Disable full-sized whitespace
+
+* Ansible tasks
+** TODO Ansible
+** TODO Dropbox
+** TODO Go
+** TODO Java
+*** TODO SDKMAN!
+*** TODO Gradle
+*** TODO Kotlin
+*** TODO Maven
+** TODO matplotlib
+** TODO Profile-sync-daemon
+** TODO Transmission
+  
+* Tools
+** TODO Notifier for unpulled commits
