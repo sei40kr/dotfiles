@@ -7,3 +7,4 @@
       - adobe-source-code-pro-fonts
       - noto-fonts
       - noto-fonts-cjk
+  become: yes
