@@ -1,0 +1,29 @@
+# main.yml --- ZSH
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: '{{ item.file }}'
+    name: '{{ item.name }}'
+  with_items:
+    - file: ../vars/main.yml
+    - file: ../vars/zsh.yml
+      name: zsh
+- include_tasks: arch.yml
+  when: ansible_os_family == 'Archlinux'
+- name: Create a symlink for ZSH config
+  file:
+    follow: no
+    force: yes
+    path: ~/.zsh
+    src: '{{ dotfiles_path }}/zsh'
+    state: link
+- name: Check if zplugin exists
+  stat:
+    path: '{{ zsh.zplugin_path }}'
+  register: zplugin_check
+- name: Install zplugin
+  git:
+    dest: '{{ zsh.zplugin_path }}'
+    repo: '{{ zsh.zplugin_repo }}'
+  when: not zplugin_check.stat.exists

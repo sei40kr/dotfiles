@@ -1,0 +1,7 @@
+# arch.yml --- ZSH for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Install zsh using pacman
+  pacman:
+    name: zsh
+  become: yes
