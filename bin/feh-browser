@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# -*- mode: shell-script -*-
+
+# feh-browser
+
+shopt -s nullglob
+set -euo pipefail
+IFS=$'\n\t'
+
+if [[ ! -f "$1" ]]; then
+	echo "$0: first argument is not a file" >&2
+	exit 1
+fi
+
+file="$(basename -- "$1")"
+dir="$(dirname -- "$1")"
+arr=()
+shift
+
+cd -- "$dir"
+
+for i in *; do
+	[[ -f "$i" ]] || continue
+	arr+=("$i")
+  # shellcheck disable=SC2034
+	[[ "$i" == "$file" ]] && c="$((${#arr[@]} - 1))"
+done
+
+exec feh "$@" -- "${arr[@]:c}" "${arr[@]:0:c}"
