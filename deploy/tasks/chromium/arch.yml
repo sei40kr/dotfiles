@@ -4,6 +4,10 @@
 - name: Install chromium using pacman
   pacman:
     name: chromium
+- name: Create a directory for Chromium config
+  file:
+    path: ~/.config
+    state: directory
 - name: Create a symlink for Chromium config
   file:
     follow: no
