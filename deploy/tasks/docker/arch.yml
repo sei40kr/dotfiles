@@ -1,0 +1,7 @@
+# arch.yml --- Docker for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Install docker using pacman
+  pacman:
+    name: docker
+  become: yes
