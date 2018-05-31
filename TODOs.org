@@ -14,13 +14,12 @@
 ** TODO Fix edit-server
 ** TODO Fix evil-mc
 ** TODO Fix generic-browser
-** TODO Fix templates layer
+** TODO [#A] Fix templates layer
 
 ** TODO [#A] Fix projectile project switch
 ** TODO [#B] Fix magit repository listing
-
 * i3
-** TODO Customize i3blocks
+** TODO [#C] Customize i3blocks
 *** TODO The notification count
 *** TODO The count of calendar events
 *** TODO fcitx status
@@ -40,6 +39,5 @@
 ** TODO matplotlib
 ** TODO Profile-sync-daemon
 ** TODO Transmission
-  
 * Tools
 ** TODO Notifier for unpulled commits
