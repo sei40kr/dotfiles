@@ -16,6 +16,9 @@
 ** TODO Fix generic-browser
 ** TODO Fix templates layer
 
+** TODO [#A] Fix projectile project switch
+** TODO [#B] Fix magit repository listing
+
 * i3
 ** TODO Customize i3blocks
 *** TODO The notification count
