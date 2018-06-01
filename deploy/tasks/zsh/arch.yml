@@ -3,5 +3,8 @@
 ---
 - name: Install zsh using pacman
   pacman:
-    name: zsh
+    name: '{{ item }}'
   become: yes
+  with_items:
+    - zsh
+    - subversion
