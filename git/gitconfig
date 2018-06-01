@@ -92,8 +92,8 @@
 [stash]
   showPatch = true
 
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
+[url "ssh://git@github.com/sei40kr"]
+	insteadOf = https://github.com/sei40kr
 
 [url "ssh://git@bitbucket.org/"]
 	insteadOf = https://bitbucket.org/
