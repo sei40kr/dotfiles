@@ -3,5 +3,8 @@
 ---
 - name: Install git using pacman
   pacman:
-    name: git
+    name: '{{ item }}'
   become: yes
+  with_items:
+    - git
+    - openssh
