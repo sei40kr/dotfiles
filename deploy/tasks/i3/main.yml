@@ -6,6 +6,11 @@
     file: ../vars/main.yml
 - include_tasks: arch.yml
   when: ansible_os_family == 'Archlinux'
+- name: Create a directory for i3 config
+  file:
+    path: ~/.config/i3
+    recurse: yes
+    state: directory
 - name: Create a symlink for i3 config
   file:
     follow: no
