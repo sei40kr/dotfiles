@@ -7,4 +7,5 @@
       - adobe-source-code-pro-fonts
       - noto-fonts
       - noto-fonts-cjk
+      - terminus-font
   become: yes
