@@ -29,7 +29,6 @@ pip3_packages:
   - cpplint
   - epc
   - flake8
-  - i3ipc
   - importmagic
   - ipython
   - jedi
@@ -37,7 +36,6 @@ pip3_packages:
   - mycli
   - pgcli
   - proselint
-  - psutil
   - ptpython
   - pygments
   - pylint
