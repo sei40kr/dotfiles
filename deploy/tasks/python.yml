@@ -14,15 +14,6 @@
     dest: '{{ python.pyenv_root }}'
     repo: '{{ python.pyenv_repo }}'
   when: not pyenv_check.stat.exists
-- name: Check if pyenv-ccache exists
-  stat:
-    path: '{{ python.pyenv_ccache_path }}'
-  register: pyenv_ccache_check
-- name: Install pyenv-ccache 
-  git:
-    dest: '{{ python.pyenv_ccache_path }}'
-    repo: '{{ python.pyenv_ccache_repo }}'
-  when: not pyenv_ccache_check.stat.exists
 - name: Check if pyenv-virtualenv exists
   stat:
     path: '{{ python.pyenv_virtualenv_path }}'
