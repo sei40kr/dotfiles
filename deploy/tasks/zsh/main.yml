@@ -7,6 +7,7 @@
     name: '{{ item.name }}'
   with_items:
     - file: ../vars/main.yml
+      name:
     - file: ../vars/zsh.yml
       name: zsh
 - include_tasks: arch.yml
@@ -20,10 +21,15 @@
     state: link
 - name: Check if zplugin exists
   stat:
-    path: '{{ zsh.zplugin_path }}'
+    path: '{{ zsh.zplugin_path }}/bin'
   register: zplugin_check
+- name: Create a directory for zplugin
+  file:
+    path: ~/.zsh/.zplugin
+    recurse: yes
+    state: directory
 - name: Install zplugin
   git:
-    dest: '{{ zsh.zplugin_path }}'
+    dest: '{{ zsh.zplugin_path }}/bin'
     repo: '{{ zsh.zplugin_repo }}'
   when: not zplugin_check.stat.exists
