@@ -4,3 +4,4 @@
 - name: Install cmus using pacman
   pacman:
     name: cmus
+  become: yes
