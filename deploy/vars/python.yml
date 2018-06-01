@@ -22,7 +22,6 @@ python3_versions:
 python3_default_version: 3.6.5
 
 pip3_packages:
-  - ansible   # should have already been installed
   - asciinema
   - autopep8
   - aws-shell
