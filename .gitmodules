@@ -14,10 +14,6 @@
   branch = master
 	path = spacemacs/spacemacs.d/layers/+tools/spacemacs-quickrun
 	url = https://github.com/sei40kr/spacemacs-quickrun.git
-[submodule "tpm"]
-	path = tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm.git
-	branch = master
 [submodule "zplugin"]
 	path = zsh/.zplugin/bin
 	url = https://github.com/zdharma/zplugin.git
