@@ -34,18 +34,6 @@
 	path = spacemacs/spacemacs.d/layers/+tools/spacemacs-ghq
 	url = https://github.com/sei40kr/spacemacs-ghq.git
 	branch = master
-[submodule "pyenv"]
-	path = pyenv/pyenv
-	url = https://github.com/pyenv/pyenv.git
-[submodule "pyenv-default-packages"]
-	path = pyenv/pyenv-default-packages
-	url = https://github.com/jawshooah/pyenv-default-packages.git
-[submodule "pyenv-ccache"]
-	path = pyenv/pyenv-ccache
-	url = https://github.com/yyuu/pyenv-ccache.git
-[submodule "pyenv-virtualenv"]
-	path = pyenv/pyenv-virtualenv
-	url = https://github.com/pyenv/pyenv-virtualenv.git
 [submodule "goenv"]
 	path = goenv/goenv
 	url = https://github.com/syndbg/goenv.git
