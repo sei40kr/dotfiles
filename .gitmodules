@@ -40,18 +40,6 @@
 [submodule "nvm"]
 	path = nvm/nvm
 	url = https://github.com/creationix/nvm.git
-[submodule "rbenv"]
-	path = rbenv/rbenv
-	url = https://github.com/rbenv/rbenv.git
-[submodule "rbenv-build"]
-	path = rbenv/rbenv-build
-	url = https://github.com/rbenv/ruby-build.git
-[submodule "rbenv-bundler"]
-	path = rbenv/rbenv-bundler
-	url = https://github.com/carsomyr/rbenv-bundler.git
-[submodule "rbenv-default-gems"]
-	path = rbenv/rbenv-default-gems
-	url = https://github.com/rbenv/rbenv-default-gems.git
 [submodule "lsp-intellij-spacemacs"]
 	path = spacemacs/spacemacs.d/layers/+tools/lsp-intellij
 	url = https://github.com/Ruin0x11/lsp-intellij-spacemacs.git
