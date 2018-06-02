@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# fcitx-status
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+set -euo pipefail
+IFS=$'\n\t'
+
+case "$(fcitx-remote 2>/dev/null)" in
+    1)
+        echo 'Aa'
+        ;;
+    2)
+        echo 'あ'
+        ;;
+esac
