@@ -1,0 +1,11 @@
+# linux.yml --- ghq for Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: ../../vars/linuxbrew.yml
+    name: linuxbrew
+- name: Install ghq using Linuxbrew
+  homebrew:
+    name: ghq
+    path: '{{ linuxbrew.linuxbrew_prefix }}/bin'
