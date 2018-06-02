@@ -21,12 +21,13 @@
   with_items: '{{ node.node_versions }}'
 - name: Install NPM packages
   npm:
-    executable: '{{ node.nvm_dir }}/versions/node/{{ item }}/bin/npm'
+    executable: '{{ node.nvm_dir }}/versions/node/{{ item[0] }}/bin/npm'
     global: yes
-    name: '{{ node.npm_packages }}'
-  with_items:
+    name: '{{ item[1] }}'
+  with_nested:
     - '{{ node.node_versions }}'
-- name: Delete the NPM config \"prefix\" option
+    - '{{ node.npm_packages }}'
+- name: 'Delete the NPM config "prefix" option'
   command: '{{ node.nvm_dir }}/versions/node/{{ item }}/bin/npm config delete prefix'
   with_items:
     - '{{ node.node_versions }}'
