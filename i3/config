@@ -168,6 +168,7 @@ for_window [title="uxterm-float"] floating enable
 
 assign [class="^Chromium$"] $ws2
 assign [class="^Emacs$"] $ws1
+assign [class="^Google-chrome$"] $ws2
 assign [class="^UXTerm$"] $ws1
 
 # class                 border  backgr. text    indicator child_border
