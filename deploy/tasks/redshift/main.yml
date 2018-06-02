@@ -6,20 +6,3 @@
     file: ../vars/main.yml
 - include_tasks: arch.yml
   when: ansible_os_family == 'Archlinux'
-- name: Create a directory for Redshift config
-  file:
-    path: ~/.config/redshift/hooks
-    recurse: yes
-    state: directory
-- name: Create symlinks for Redshift config
-  file:
-    follow: no
-    force: yes
-    path: '{{ item.dest }}'
-    src: '{{ item.src }}'
-    state: link
-  with_items:
-    - src: '{{ dotfiles_path }}/redshift/redshift.conf'
-      dest: ~/.config/redshift/redshift.conf
-    - src: '{{ dotfiles_path }}/redshift/hooks/brightness.sh'
-      dest: ~/.config/redshift/hooks/brightness.sh
