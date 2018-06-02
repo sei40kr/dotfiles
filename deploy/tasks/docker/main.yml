@@ -6,3 +6,9 @@
     file: ../vars/main.yml
 - include_tasks: arch.yml
   when: ansible_os_family == 'Archlinux'
+- name: Enable docker service
+  systemd:
+    enabled: yes
+    name: docker.service
+    state: started
+  become: yes
