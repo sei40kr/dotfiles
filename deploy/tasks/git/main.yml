@@ -13,3 +13,9 @@
     path: ~/.gitconfig
     src: '{{ dotfiles_path }}/git/gitconfig'
     state: link
+- name: Generate a SSH key for current user
+  user:
+    generate_ssh_key: yes
+    name: '{{ ansible_ssh_user }}'
+    ssh_key_bits: 256
+    ssh_key_type: ecdsa
