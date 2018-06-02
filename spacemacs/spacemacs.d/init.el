@@ -48,7 +48,7 @@ values."
                       auto-completion-tab-key-behavior 'complete)
      helm
      (templates :variables
-                templates-private-directory (concat dotspacemacs-directory "templates/"))
+                templates-private-directory (concat dotspacemacs-directory "templates"))
      ;; Emacs
      (ibuffer :variables
               ibuffer-group-buffers-by 'projects)
