@@ -1,9 +1,13 @@
-# linux.yml --- xrasengan for Linux
+# arch.yml --- xrasengan for Arch Linux
 # author: Seong Yong-ju <sei40kr@gmail.com>
 ---
 - name: Include variables
   include_vars:
     file: ../vars/main.yml
+- name: Install arandr using pacman
+  pacman:
+    name: arandr
+  become: yes
 - name: Create a directory for executables
   file:
     path: ~/.local/bin
