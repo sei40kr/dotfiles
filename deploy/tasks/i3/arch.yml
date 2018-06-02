@@ -7,3 +7,22 @@
       - i3-gaps
       - i3blocks
   become: yes
+- name: Create a directory for i3blocks-contrib scripts
+  file:
+    path: ~/.config/i3blocks/scripts
+    recurse: yes
+    state: directory
+- name: Create symlinks for i3blocks-contrib scripts
+  file:
+    follow: no
+    force: yes
+    path: '{{ item.dest }}'
+    src: '{{ item.src }}'
+    state: link
+  with_items:
+    - src: '{{ dotfiles_path }}/i3blocks/scripts/fcitx'
+      dest: ~/.config/i3blocks/scripts/fcitx
+    - src: '{{ dotfiles_path }}/i3blocks/scripts/mediaplayer'
+      dest: ~/.config/i3blocks/scripts/mediaplayer
+    - src: '{{ dotfiles_path }}/i3blocks/scripts/volume'
+      dest: ~/.config/i3blocks/scripts/volume
