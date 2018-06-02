@@ -19,6 +19,11 @@
     path: ~/.zsh
     src: '{{ dotfiles_path }}/zsh'
     state: link
+- name: Create a directory for ZSH cache
+  file:
+    path: ~/.cache/zsh
+    recurse: yes
+    state: directory
 - name: Check if zplugin exists
   stat:
     path: '{{ zsh.zplugin_path }}/bin'
