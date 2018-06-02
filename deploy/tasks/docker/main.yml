@@ -6,6 +6,12 @@
     file: ../vars/main.yml
 - include_tasks: arch.yml
   when: ansible_os_family == 'Archlinux'
+- name: Add current user into docker group
+  user:
+    append: yes
+    groups: [docker]
+    name: '{{ ansible_ssh_user }}'
+  become: yes
 - name: Enable docker service
   systemd:
     enabled: yes
