@@ -44,7 +44,6 @@ zplugin light "${HOME}/.zsh/plugins/zsh-better-run-help"
 if [[ -n "$NVM_DIR" ]]; then
   export NVM_SYMLINK_CURRENT=true
   export NVM_NO_USE=true
-  zplugin ice atload'nvm use --silent --delete-prefix v8.10.0'
   zplugin light lukechilds/zsh-nvm
 fi
 
