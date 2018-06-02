@@ -15,9 +15,9 @@
 ** TODO Fix evil-mc
 ** TODO Fix generic-browser
 ** TODO [#A] Fix templates layer
-
 ** TODO [#A] Fix projectile project switch
 ** TODO [#B] Fix magit repository listing
+** TODO Add fcitx integration
 * i3
 ** TODO [#C] Customize i3blocks
 *** TODO The notification count
