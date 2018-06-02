@@ -1,0 +1,20 @@
+# arch.yml --- Linuxbrew for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: ../../vars/linuxbrew.yml
+    name: linuxbrew
+- name: Install base-devel using pacman
+  pacman:
+    name: base-devel
+  become: yes
+- name: Check if linuxbrew exists
+  stat:
+    path: '{{ linuxbrew.linuxbrew_prefix }}'
+  register: linuxbrew_check
+- name: Install linuxbrew
+  git:
+    dest: '{{ linuxbrew.linuxbrew_prefix }}'
+    repo: '{{ linuxbrew.linuxbrew_repo }}'
+  when: not linuxbrew_check.stat.exists
