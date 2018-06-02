@@ -1,0 +1,7 @@
+# arch.yml --- Thunar for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Install thunar using pacman
+  pacman:
+    name: thunar
+  become: yes
