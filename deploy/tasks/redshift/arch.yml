@@ -1,0 +1,7 @@
+# arch.yml --- Redshift for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Install redshift using pacman
+  pacman:
+    name: redshift
+  become: yes
