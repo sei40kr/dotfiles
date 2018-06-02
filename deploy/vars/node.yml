@@ -7,7 +7,7 @@ nvm_dir: '~/.nvm'
 node_versions:
   - v8.11.2
 node_default_version: v8.11.2
-node_npm_packages:
+npm_packages:
   - create-react-app
   - create-react-native-app
   - eslint-cli
