@@ -3,8 +3,7 @@
 ---
 - name: Install docker, docker-compose using pacman
   pacman:
-    name: '{{ item }}'
+    name:
+      - docker
+      - docker-compose
   become: yes
-  with_items:
-    - docker
-    - docker-compose
