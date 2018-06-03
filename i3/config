@@ -145,6 +145,11 @@ bindsym XF86AudioPlay exec --no-startup-id cplay
 bindsym XF86AudioNext exec --no-startup-id cmus-remote -n
 bindsym XF86AudioPrev exec --no-startup-id cmus-remote -r
 
+# change volume or toggle mute
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks 
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
