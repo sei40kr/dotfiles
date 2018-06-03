@@ -1,4 +1,4 @@
-# spacemacs.yml --- Spacemacs
+# main.yml --- Spacemacs
 # author: Seong Yong-ju <sei40kr@gmail.com>
 ---
 - name: Include variables
@@ -10,6 +10,8 @@
       name: null
     - file: ../vars/spacemacs.yml
       name: spacemacs
+- include_tasks: arch.yml
+  when: ansible_os_family == 'Archlinux'
 - name: Check if Spacemacs exists
   # TODO improve checking
   stat:

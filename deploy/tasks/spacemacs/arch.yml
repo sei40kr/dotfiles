@@ -1,0 +1,9 @@
+# arch.yml --- Spacemacs for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Install external tools using pacman
+  pacman:
+    name:
+      - curl
+      - mu
+  become: yes
