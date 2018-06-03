@@ -8,4 +8,5 @@
       - noto-fonts
       - noto-fonts-cjk
       - terminus-font
+      - ttf-liberation
   become: yes
