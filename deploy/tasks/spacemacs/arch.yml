@@ -3,7 +3,5 @@
 ---
 - name: Install external tools using pacman
   pacman:
-    name:
-      - curl
-      - mu
+    name: curl
   become: yes
