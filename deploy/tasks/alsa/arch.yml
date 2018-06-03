@@ -1,0 +1,14 @@
+# arch.yml --- ALSA for Arch Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Install alsa-utils using pacman
+  pacman:
+    name: alsa-utils
+  become: yes
+- name: Create a symlink for ALSA config
+  file:
+    follow: no
+    force: yes
+    path: ~/.asoundrc
+    src: '{{ dotfiles_path }}/alsa/asoundrc'
+    state: link

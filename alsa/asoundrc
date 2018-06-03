@@ -1,0 +1,7 @@
+# -*- mode: conf -*-
+
+pcm.!default {
+	type hw
+	card NVidia
+  device 3
+}
