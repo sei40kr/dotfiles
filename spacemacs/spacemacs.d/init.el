@@ -165,6 +165,8 @@ values."
                  evil-snipe-enable-alternate-f-and-t-behaviors t
                  evil-snipe-repeat-scope t)
      ;; WebServices
+     (elfeed :variables
+             rmh-elfeed-org-files (list (concat dotspacemacs-directory "private/elfeed.org")))
      search-engine
      ;; Custom
      better-c-cpp
