@@ -29,6 +29,16 @@ font pango:Terminus-ja 12
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Hide bordeers adjacent to the screen edges
+hide_edge_borders smart
+
+# gaps
+gaps outer 4
+gaps inner 16
+
+# Smart Gaps
+smart_gaps on
+
 # start a terminal
 bindsym $mod+Return exec uxterm
 bindsym $mod+Shift+Return exec uxterm -title uxterm-float -geometry 90x25
@@ -118,6 +128,23 @@ bindsym $mod+q restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -f 'Terminus-ja' -b 'Yes, exit i3' 'i3-msg exit'"
 
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+# Show the first scratchpad window
+bindsym $mod+Control+minus scratchpad show
+
+# Jump to urgent window
+bindsym $mod+x [urgent=latest] focus
+
+# Screen capturing
+bindsym --release Print exec --no-startup-id scrot '%Y-%m-%d-%T-screenshot.png'
+bindsym --release Shift+Print exec --no-startup-id scrot -s '%Y-%m-%d-%T-screenshot.png'
+
+# Remote Control
+bindsym XF86AudioPlay exec --no-startup-id cplay
+bindsym XF86AudioNext exec --no-startup-id cmus-remote -n
+bindsym XF86AudioPrev exec --no-startup-id cmus-remote -r
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -143,23 +170,6 @@ mode "resize" {
 }
 
 # bindsym $mod+r mode "resize"
-
-# Make the currently focused window a scratchpad
-bindsym $mod+Shift+minus move scratchpad
-# Show the first scratchpad window
-bindsym $mod+Control+minus scratchpad show
-
-# Screen capture
-bindsym --release Print exec --no-startup-id scrot '%Y-%m-%d-%T-screenshot.png'
-bindsym --release Shift+Print exec --no-startup-id scrot -s '%Y-%m-%d-%T-screenshot.png'
-
-# Jump to urgent window
-bindsym $mod+x [urgent=latest] focus
-
-# Remote Control
-bindsym XF86AudioPlay exec --no-startup-id cplay
-bindsym XF86AudioNext exec --no-startup-id cmus-remote -n
-bindsym XF86AudioPrev exec --no-startup-id cmus-remote -r
 
 for_window [class="Thunar"] floating enable
 for_window [class="Zeal"] floating enable
@@ -218,16 +228,6 @@ mode "$mode_system" {
 }
 
 bindsym $mod+Pause mode "$mode_system"
-
-# Hide bordeers adjacent to the screen edges
-hide_edge_borders smart
-
-# gaps
-gaps outer 4
-gaps inner 16
-
-# Smart Gaps
-smart_gaps on
 
 exec_always --no-startup-id ~/.local/bin/comp
 exec_always --no-startup-id ~/.fehbg
