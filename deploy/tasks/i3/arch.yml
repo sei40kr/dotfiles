@@ -6,6 +6,7 @@
     name:
       - i3-gaps
       - i3blocks
+      - xautolock
   become: yes
 - name: Create a directory for i3blocks-contrib scripts
   file:
