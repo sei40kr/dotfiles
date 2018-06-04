@@ -28,9 +28,10 @@
   stat:
     path: '{{ zsh.zplugin_path }}/bin'
   register: zplugin_check
+# TODO Fix errors
 - name: Create a directory for zplugin
   file:
-    path: ~/.zsh/.zplugin
+    path: '{{ zsh.zplugin_path }}'
     recurse: yes
     state: directory
 - name: Install zplugin
