@@ -1,5 +1,5 @@
 # zsh.yml --- ZSH
 # author: Seong Yong-ju <sei40kr@gmail.com>
 ---
-zplugin_path: ~/.zsh/.zplugin
+zplugin_path: ~/.zplugin
 zplugin_repo: 'https://github.com/zdharma/zplugin.git'
