@@ -72,3 +72,9 @@
   (projectile-dired)
   (require 'neotree)
   (neotree-hide))
+
+
+;; rust-mode
+
+(defun spacemacs//rust-setup-checkers ()
+  (push 'rust-cargo flycheck-disabled-checkers))

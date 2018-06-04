@@ -24,7 +24,6 @@
      expand-region
      flycheck
      flycheck-popup-tip
-     flycheck-rust
      helm
      helm-ls-git
      linum
@@ -32,6 +31,7 @@
      magit
      neotree
      projectile
+     rust-mode
      semantic
      spacemacs-theme))
 
@@ -128,10 +128,6 @@
     :custom
     (flycheck-popup-tip-error-prefix "* ")))
 
-(defun custom/pre-init-flycheck-rust ()
-  (eval-after-load 'flycheck-rust
-    '(push 'rust-cargo flycheck-disabled-checkers)))
-
 (defun custom/post-init-helm ()
   (custom-set-variables
     '(helm-mini-default-sources '(helm-source-buffers-list)))
@@ -189,6 +185,10 @@
     projectile-sort-order 'default
     projectile-switch-project-action #'spacemacs//projectile-switch-project-action
     projectile-use-git-grep t))
+
+(defun custom/post-init-rust-mode ()
+  (if (configuration-layer/package-used-p 'flycheck-rust)
+      (add-hook 'rust-mode-hook #'spacemacs//rust-setup-checkers)))
 
 (defun custom/post-init-semantic ()
   (require 'mode-local)
