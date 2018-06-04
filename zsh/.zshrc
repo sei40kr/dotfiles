@@ -1,7 +1,7 @@
 # .zshrc
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-. "${ZDOTDIR}/.zplugin/bin/zplugin.zsh"
+. "${HOME}/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 
 if [[ "${+_comps}" == 1 ]]; then
