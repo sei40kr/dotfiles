@@ -511,10 +511,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
    auto-save-default nil
    backup-inhibited t
    browse-url-browser-function #'browse-url-generic
-   browse-url-generic-program
-   (or
-    (executable-find "chromium")
-    (executable-find "google-chrome"))
+   browse-url-generic-program (or
+                               (executable-find "google-chrome")
+                               (executable-find "chromium"))
    create-lockfiles nil
    select-enable-clipboard nil
    tooltip-delay 0.3
