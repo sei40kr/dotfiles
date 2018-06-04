@@ -16,7 +16,8 @@
 ** TODO Fix evil-mc
 ** TODO Fix generic-browser
 ** TODO [#A] Fix templates layer
-** TODO [#A] Fix projectile project switch
+** DONE [#A] Fix projectile project switch
+   CLOSED: [2018-06-05 Tue 02:21]
 ** DONE [#B] Fix magit repository listing
    CLOSED: [2018-06-05 Tue 02:16]
 ** TODO Add fcitx integration
