@@ -68,10 +68,10 @@
 
 (defun spacemacs//projectile-switch-project-action ()
   (interactive)
-  (require 'projectile)
-  (projectile-dired)
   (require 'neotree)
-  (neotree-hide))
+  (neotree-hide)
+  (require 'magit-status)
+  (magit-status))
 
 
 ;; rust-mode
