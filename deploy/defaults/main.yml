@@ -2,12 +2,15 @@
 - hosts: localhost
   connection: local
   tasks:
+    - name: Include Clang tasks
+      include_tasks: ../tasks/clang/main.yml
+      tags: [clang]
     - name: Include Node tasks
-      include: ../tasks/node.yml
+      include_tasks: ../tasks/node.yml
       tags: [node]
     - name: Include Python tasks
-      include: ../tasks/python.yml
+      include_tasks: ../tasks/python.yml
       tags: [python]
     - name: Include Ruby tasks
-      include: ../tasks/ruby.yml
+      include_tasks: ../tasks/ruby.yml
       tags: [ruby]
