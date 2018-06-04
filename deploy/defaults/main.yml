@@ -5,6 +5,9 @@
     - name: Include Clang tasks
       include_tasks: ../tasks/clang/main.yml
       tags: [clang]
+    - name: Include Emacs tasks
+      include_tasks: ../tasks/emacs/main.yml
+      tags: [emacs,spacemacs]
     - name: Include Node tasks
       include_tasks: ../tasks/node.yml
       tags: [node]
@@ -14,3 +17,12 @@
     - name: Include Ruby tasks
       include_tasks: ../tasks/ruby.yml
       tags: [ruby]
+    - name: Include Spacemacs tasks
+      include_tasks: ../tasks/spacemacs/main.yml
+      tags: [spacemacs]
+    - name: Include TMUX tasks
+      include_tasks: ../tasks/tmux/main.yml
+      tags: [tmux]
+    - name: Include Z-Shell tasks
+      include_tasks: ../tasks/zsh/main.yml
+      tags: [zsh]
