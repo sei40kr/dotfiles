@@ -37,7 +37,7 @@
 
   if [[ "${+commands[aptitude]}" == 1 ]] || [[ "${+commands[apt-get]}" == 1 ]]; then
     plugins=( debian $plugins )
-  elif [[ "${+commands[pacaur]}" == 1 ]] || [[ "${+commands[pacman]}" == 1 ]] || [[ "${+commands[yaourt]}" == 1 ]]; then
+  elif [[ "${+commands[pacman]}" == 1 ]]; then
     plugins=( archlinux $plugins )
   fi
 
