@@ -16,9 +16,14 @@
   file:
     follow: no
     force: yes
-    path: ~/.zsh
-    src: '{{ dotfiles_path }}/zsh'
+    path: '{{ item.dest }}'
+    src: '{{ item.src }}'
     state: link
+  with_items:
+    - src: '{{ dotfiles_path }}/zsh'
+      dest: '~/.zsh'
+    - src: '{{ dotfiles_path }}/zshenv'
+      dest: '~/.zshenv'
 - name: Create a directory for ZSH cache
   file:
     path: ~/.cache/zsh
@@ -28,7 +33,6 @@
   stat:
     path: '{{ zsh.zplugin_path }}/bin'
   register: zplugin_check
-# TODO Fix errors
 - name: Create a directory for zplugin
   file:
     path: '{{ zsh.zplugin_path }}'
