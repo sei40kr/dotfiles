@@ -82,7 +82,7 @@ values."
      html
      java
      (javascript :variables
-                 javascript-backend 'lsp)
+                 javascript-backend 'tern)
      json
      ipython-notebook
      kotlin
