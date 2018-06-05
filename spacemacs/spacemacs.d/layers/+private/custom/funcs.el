@@ -74,7 +74,6 @@
 ;; projectile
 
 (defun spacemacs//projectile-switch-project-action ()
-  (interactive)
   (require 'neotree)
   (neotree-hide)
   (require 'magit-status)
