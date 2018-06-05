@@ -25,6 +25,7 @@ npm_packages:
   - prettier-eslint-cli
   - solc-js
   - stylelint-cli
+  - tern
   - typescript
   - typescript-language-server
   - vmd
