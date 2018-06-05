@@ -84,4 +84,4 @@
 ;; rust-mode
 
 (defun spacemacs//rust-setup-checkers ()
-  (push 'rust-cargo flycheck-disabled-checkers))
+  (add-to-list 'flycheck-disabled-checkers 'rust-cargo))
