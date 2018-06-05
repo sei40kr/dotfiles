@@ -74,6 +74,7 @@ values."
               crystal-enable-auto-format t)
      csv
      emacs-lisp
+     flow-type
      (go :variables
          go-use-gometalinter t)
      gpu
@@ -170,7 +171,7 @@ values."
      search-engine
      ;; Custom
      better-c-cpp
-     better-javascript
+     ;; better-javascript
      lsp-intellij
      spacemacs-ghq
      spacemacs-quickrun
