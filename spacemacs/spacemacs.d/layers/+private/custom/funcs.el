@@ -64,6 +64,13 @@
       (ghq--get-repository repository))))
 
 
+;; js2-mode
+
+(defun spacemacs//javascript-setup-checkers ()
+  (add-to-list 'flycheck-disabled-checkers 'javascript-jshint)
+  (add-to-list 'flycheck-disabled-checkers 'javascript-standard))
+
+
 ;; projectile
 
 (defun spacemacs//projectile-switch-project-action ()

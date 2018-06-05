@@ -26,6 +26,7 @@
      flycheck-popup-tip
      helm
      helm-ls-git
+     js2-mode
      linum
      linum-relative
      magit
@@ -149,6 +150,10 @@
     (helm-ls-git-fuzzy-match t)
     (helm-ls-git-default-sources '(helm-source-ls-git))
     (helm-ls-git-ls-switches '("ls-files" "-co" "--exclude-standard" "--"))))
+
+(defun custom/post-init-js2-mode ()
+  (if (configuration-layer/package-used-p 'flycheck)
+      (add-hook 'js2-mode-hook #'spacemacs//javascript-setup-checkers)))
 
 (defun custom/post-init-linum ()
   (setq linum-delay t))
