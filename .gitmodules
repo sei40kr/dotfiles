@@ -2,10 +2,6 @@
   branch = master
 	path = spacemacs/spacemacs.d/layers/+lang/better-c-cpp
 	url = https://github.com/sei40kr/better-c-cpp.git
-[submodule "better-javascript"]
-  branch = master
-	path = spacemacs/spacemacs.d/layers/+lang/better-javascript
-	url = https://github.com/sei40kr/better-javascript.git
 [submodule "spacemacs-quickrun"]
   branch = master
 	path = spacemacs/spacemacs.d/layers/+tools/spacemacs-quickrun
