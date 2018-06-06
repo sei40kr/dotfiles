@@ -67,6 +67,10 @@
 ;; js2-mode
 
 (defun spacemacs//javascript-setup-checkers ()
+  ;; Disable built-in checking
+  (set (make-local-variable 'js2-mode-show-parse-errors) nil)
+  (set (make-local-variable 'js2-mode-show-strict-warnings) nil)
+  ;; Disable flycheck checkers
   (add-to-list 'flycheck-disabled-checkers 'javascript-jshint)
   (add-to-list 'flycheck-disabled-checkers 'javascript-standard))
 

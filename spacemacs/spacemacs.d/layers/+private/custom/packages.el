@@ -30,6 +30,7 @@
      magit
      neotree
      projectile
+     rjsx-mode
      rust-mode
      semantic
      spacemacs-theme))
@@ -182,6 +183,10 @@
     projectile-sort-order 'default
     projectile-switch-project-action #'spacemacs//projectile-switch-project-action
     projectile-use-git-grep t))
+
+(defun custom/post-init-rjsx-mode ()
+  (if (configuration-layer/layer-used-p 'react)
+      (add-hook 'rjsx-mode-hook #'spacemacs//javascript-setup-checkers)))
 
 (defun custom/post-init-rust-mode ()
   (if (configuration-layer/package-used-p 'flycheck-rust)
