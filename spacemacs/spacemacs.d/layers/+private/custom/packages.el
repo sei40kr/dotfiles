@@ -27,8 +27,6 @@
      helm
      helm-ls-git
      js2-mode
-     linum
-     linum-relative
      magit
      neotree
      projectile
@@ -155,12 +153,6 @@
 (defun custom/post-init-js2-mode ()
   (if (configuration-layer/package-used-p 'flycheck)
       (add-hook 'js2-mode-hook #'spacemacs//javascript-setup-checkers)))
-
-(defun custom/post-init-linum ()
-  (setq linum-delay t))
-
-(defun custom/post-init-linum-relative ()
-  (setq linum-relative-format " %3s "))
 
 (defun custom/post-init-magit ()
   (setq

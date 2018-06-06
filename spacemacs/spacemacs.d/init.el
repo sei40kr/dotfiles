@@ -170,9 +170,6 @@ values."
              rmh-elfeed-org-files (list (concat dotspacemacs-directory "private/elfeed.org")))
      search-engine
      ;; Custom
-     better-c-cpp
-     ;; better-javascript
-     lsp-intellij
      spacemacs-ghq
      spacemacs-quickrun
      (spacemacs-solidity :variables
@@ -506,7 +503,6 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (load custom-file)
   (setq
    auto-insert-query nil
    auto-save-default nil

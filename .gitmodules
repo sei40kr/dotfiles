@@ -1,11 +1,3 @@
-[submodule "better-c-cpp"]
-  branch = master
-	path = spacemacs/spacemacs.d/layers/+lang/better-c-cpp
-	url = https://github.com/sei40kr/better-c-cpp.git
-[submodule "better-javascript"]
-  branch = master
-	path = spacemacs/spacemacs.d/layers/+lang/better-javascript
-	url = https://github.com/sei40kr/better-javascript.git
 [submodule "spacemacs-quickrun"]
   branch = master
 	path = spacemacs/spacemacs.d/layers/+tools/spacemacs-quickrun
@@ -22,12 +14,6 @@
 	path = spacemacs/spacemacs.d/layers/+tools/spacemacs-ghq
 	url = https://github.com/sei40kr/spacemacs-ghq.git
 	branch = master
-[submodule "goenv"]
-	path = goenv/goenv
-	url = https://github.com/syndbg/goenv.git
-[submodule "lsp-intellij-spacemacs"]
-	path = spacemacs/spacemacs.d/layers/+tools/lsp-intellij
-	url = https://github.com/Ruin0x11/lsp-intellij-spacemacs.git
 [submodule "spacemacs-solidity"]
 	path = spacemacs/spacemacs.d/layers/+lang/spacemacs-solidity
 	url = https://github.com/sei40kr/spacemacs-solidity.git
