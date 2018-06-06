@@ -170,9 +170,6 @@ values."
              rmh-elfeed-org-files (list (concat dotspacemacs-directory "private/elfeed.org")))
      search-engine
      ;; Custom
-     better-c-cpp
-     ;; better-javascript
-     lsp-intellij
      spacemacs-ghq
      spacemacs-quickrun
      (spacemacs-solidity :variables
