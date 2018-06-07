@@ -164,7 +164,7 @@ values."
      evil-commentary
      (evil-snipe :variables
                  evil-snipe-enable-alternate-f-and-t-behaviors t
-                 evil-snipe-repeat-scope t)
+                 evil-snipe-repeat-scope 'line)
      ;; WebServices
      (elfeed :variables
              rmh-elfeed-org-files (list (concat dotspacemacs-directory "private/elfeed.org")))
