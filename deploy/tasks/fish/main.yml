@@ -12,6 +12,14 @@
       name: fish
 - include_tasks: arch.yml
   when: ansible_os_family == 'Archlinux'
+- name: Create directories for fish shell config
+  file:
+    path: '{{ item }}'
+    recurse: yes
+    state: directory
+  with_items:
+    - ~/.config/fish/conf.d
+    - ~/.config/fish/functions
 - name: Check if fisherman exists
   stat:
     path: ~/.config/fish/functions/fisher.fish
