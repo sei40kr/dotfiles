@@ -1,3 +1,6 @@
+# __fzf_ghq.fish
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
 function __fzf_ghq
     if not type -q ghq
         echo 'ERROR: ghq is not installed.' >&2
