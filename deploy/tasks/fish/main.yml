@@ -43,3 +43,9 @@
       dest: ~/.config/fish/functions/__fzf_ghq.fish
     - src: '{{ dotfiles_path }}/fish/functions/fish_user_key_bindings.fish'
       dest: ~/.config/fish/functions/fish_user_key_bindings.fish
+    - src: '{{ dotfiles_path }}/fish/functions/py.fish'
+      dest: ~/.config/fish/functions/py.fish
+    - src: '{{ dotfiles_path }}/fish/functions/py2.fish'
+      dest: ~/.config/fish/functions/py2.fish
+    - src: '{{ dotfiles_path }}/fish/functions/py3.fish'
+      dest: ~/.config/fish/functions/py3.fish
