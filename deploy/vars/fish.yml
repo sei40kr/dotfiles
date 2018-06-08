@@ -1,0 +1,4 @@
+# fish.yml --- fish shell
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+fisherman_download_url: 'https://git.io/fisherman'
