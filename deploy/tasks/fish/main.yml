@@ -3,6 +3,28 @@
 ---
 - name: Include variables
   include_vars:
-    file: ../vars/main.yml
+    file: '{{ item.file }}'
+    name: '{{ item.name }}'
+  with_items:
+    - file: ../vars/main.yml
+      name:
+    - file: ../vars/fish.yml
+      name: fish
 - include_tasks: arch.yml
   when: ansible_os_family == 'Archlinux'
+- name: Check if fisherman exists
+  stat:
+    path: ~/.config/fish/functions/fisher.fish
+  register: fisher_check
+- name: Install fisherman
+  get_url:
+    url: '{{ fish.fisherman_download_url }}'
+    dest: ~/.config/fish/functions/fisher.fish
+  when: not fisher_check.stat.exists
+- name: Create a symlink for fisherman config
+  file:
+    follow: no
+    force: yes
+    path: ~/.config/fish/fishfile
+    src: '{{ dotfiles_path }}/fish/fishfile'
+    state: link
