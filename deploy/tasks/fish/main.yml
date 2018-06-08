@@ -20,6 +20,15 @@
   with_items:
     - ~/.config/fish/conf.d
     - ~/.config/fish/functions
+- name: Create symlinks for fish shell functions
+  file:
+    follow: no
+    force: yes
+    path: '~/.config/fish/functions/{{ item }}.fish'
+    src: '{{ dotfiles_path }}/fish/functions/{{ item }}.fish'
+    state: link
+  with_items:
+    - '{{ fish.fish_functions }}'
 - name: Check if fisherman exists
   stat:
     path: ~/.config/fish/functions/fisher.fish
@@ -33,19 +42,6 @@
   file:
     follow: no
     force: yes
-    path: '{{ item.dest }}'
-    src: '{{ item.src }}'
+    path: ~/.config/fish/fishfile
+    src: '{{ dotfiles_path }}/fish/fishfile'
     state: link
-  with_items:
-    - src: '{{ dotfiles_path }}/fish/fishfile'
-      dest: ~/.config/fish/fishfile
-    - src: '{{ dotfiles_path }}/fish/functions/__fzf_ghq.fish'
-      dest: ~/.config/fish/functions/__fzf_ghq.fish
-    - src: '{{ dotfiles_path }}/fish/functions/fish_user_key_bindings.fish'
-      dest: ~/.config/fish/functions/fish_user_key_bindings.fish
-    - src: '{{ dotfiles_path }}/fish/functions/py.fish'
-      dest: ~/.config/fish/functions/py.fish
-    - src: '{{ dotfiles_path }}/fish/functions/py2.fish'
-      dest: ~/.config/fish/functions/py2.fish
-    - src: '{{ dotfiles_path }}/fish/functions/py3.fish'
-      dest: ~/.config/fish/functions/py3.fish

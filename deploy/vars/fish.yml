@@ -1,4 +1,10 @@
 # fish.yml --- fish shell
 # author: Seong Yong-ju <sei40kr@gmail.com>
 ---
+fish_functions:
+  - __fzf_ghq
+  - fish_user_key_bindings
+  - py
+  - py2
+  - py3
 fisherman_download_url: 'https://git.io/fisherman'
