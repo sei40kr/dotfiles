@@ -12,6 +12,24 @@
       name: fish
 - include_tasks: arch.yml
   when: ansible_os_family == 'Archlinux'
+- name: Create directories for fish shell config
+  file:
+    path: '{{ item }}'
+    recurse: yes
+    state: directory
+  with_items:
+    - ~/.config/fish/conf.d
+    - ~/.config/fish/functions
+- name: Create symlinks for fish shell config
+  file:
+    follow: no
+    force: yes
+    path: '{{ item.dest }}'
+    src: '{{ item.src }}'
+    state: link
+  with_items:
+    - src: '{{ dotfiles_path }}/fish/functions/fish_user_key_bindings.fish'
+      dest: ~/.config/fish/functions/fish_user_key_bindings.fish
 - name: Check if fisherman exists
   stat:
     path: ~/.config/fish/functions/fisher.fish
