@@ -8,6 +8,9 @@
     - name: Import Emacs tasks
       import_tasks: ../tasks/emacs/main.yml
       tags: [emacs,spacemacs]
+    - name: Import fish shell tasks
+      import_tasks: ../tasks/fish/main.yml
+      tags: [fish]
     - name: Import Node tasks
       import_tasks: ../tasks/node.yml
       tags: [node]
