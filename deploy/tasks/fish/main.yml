@@ -29,10 +29,17 @@
     url: '{{ fish.fisherman_download_url }}'
     dest: ~/.config/fish/functions/fisher.fish
   when: not fisher_check.stat.exists
-- name: Create a symlink for fisherman config
+- name: Create symlinks for fisherman config
   file:
     follow: no
     force: yes
-    path: ~/.config/fish/fishfile
-    src: '{{ dotfiles_path }}/fish/fishfile'
+    path: '{{ item.dest }}'
+    src: '{{ item.src }}'
     state: link
+  with_items:
+    - src: '{{ dotfiles_path }}/fish/fishfile'
+      dest: ~/.config/fish/fishfile
+    - src: '{{ dotfiles_path }}/fish/functions/__fzf_ghq.fish'
+      dest: ~/.config/fish/functions/__fzf_ghq.fish
+    - src: '{{ dotfiles_path }}/fish/functions/fish_user_key_bindings.fish'
+      dest: ~/.config/fish/functions/fish_user_key_bindings.fish
