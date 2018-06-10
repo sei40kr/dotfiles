@@ -108,8 +108,7 @@
 (defun custom/pre-init-exec-path-from-shell ()
   (setq
     exec-path-from-shell-arguments '("-l")
-    exec-path-from-shell-check-startup-files nil
-    exec-path-from-shell-variables '("PATH" "MANPATH" "RUST_SRC_PATH")))
+    exec-path-from-shell-check-startup-files nil))
 
 (defun custom/post-init-expand-region ()
   (evil-global-set-key 'visual (kbd "v") #'er/expand-region)
