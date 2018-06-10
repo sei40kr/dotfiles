@@ -20,6 +20,13 @@
   with_items:
     - ~/.config/fish/conf.d
     - ~/.config/fish/functions
+- name: Create a symlink for fish shell config
+  file:
+    follow: no
+    force: yes
+    path: ~/.config/fish/config.fish
+    src: '{{ dotfiles_path }}/fish/config.fish'
+    state: link
 - name: Create symlinks for fish shell functions
   file:
     follow: no
