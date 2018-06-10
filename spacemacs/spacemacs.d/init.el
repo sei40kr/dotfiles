@@ -170,10 +170,10 @@ values."
              rmh-elfeed-org-files (list (concat dotspacemacs-directory "private/elfeed.org")))
      search-engine
      ;; Custom
-     spacemacs-ghq
-     spacemacs-quickrun
-     (spacemacs-solidity :variables
-                         solidity-flycheck-solc-checker-active t)
+     ghq
+     quickrun
+     (solidity :variables
+               solidity-flycheck-solc-checker-active t)
      custom
      ;; wsp
      )
