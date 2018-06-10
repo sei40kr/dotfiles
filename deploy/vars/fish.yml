@@ -4,6 +4,7 @@
 fish_functions:
   - __fzf_ghq
   - fish_user_key_bindings
+  - fish_right_prompt
   - py
   - py2
   - py3
