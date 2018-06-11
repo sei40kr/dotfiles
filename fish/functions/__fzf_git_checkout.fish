@@ -20,7 +20,7 @@ function __fzf_git_checkout
     git branch \
     | grep -Pve '^\*' \
     | sed 's/^ *//' \
-    | fzf $FZF_DEFAULT_OPTS \
+    | eval (__fzfcmd) $FZF_DEFAULT_OPTS \
     | read git_branch
     and commandline -- "git checkout $git_branch"
     and commandline -f execute

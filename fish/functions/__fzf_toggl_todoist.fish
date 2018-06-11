@@ -20,7 +20,7 @@ function __fzf_toggl_todoist
     set -l todo_item
     todoist --csv list \
     | awk -F, '{ print $6 " " $4 }' \
-    | fzf $FZF_DEFAULT_OPTS \
+    | eval (__fzfcmd) $FZF_DEFAULT_OPTS \
     | read todo_item
     and set todo_item (string replace -r '\s+#.+$' '' $todo_item)
     and commandline -- "toggl start '$todo_item'"
