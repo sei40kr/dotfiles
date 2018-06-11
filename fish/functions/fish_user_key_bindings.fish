@@ -7,4 +7,5 @@ function fish_user_key_bindings
     bind \ec '__fzf_cd --hidden'
     bind \t __fzf_complete
     bind \cx\cg __fzf_ghq
+    bind \cx\ct __fzf_toggl_todoist
 end
