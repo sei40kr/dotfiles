@@ -19,6 +19,9 @@ function fish_right_prompt
             set -l kv (string split , $line)
 
             switch $kv[1]
+                case 'No time entry'
+                    set toggl_desc $kv[1]
+                    set toggl_duration ''
                 case Description
                     set toggl_desc $kv[2]
                 case Duration
@@ -26,7 +29,7 @@ function fish_right_prompt
             end
         end
 
-        echo $toggl_desc $toggl_duration
+        string trim $toggl_desc $toggl_duration
     end
 
     set_color normal
