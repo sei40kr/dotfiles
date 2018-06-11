@@ -5,3 +5,8 @@
   pacman:
     name: fish
   become: yes
+- name: Install command line tools using pacman
+  pacman:
+    name:
+      - fzf
+  become: yes

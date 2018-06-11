@@ -1,0 +1,8 @@
+# name : fn name() { ... }
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: fn
+# --
+
+fn ${1:name}($2) $3 {
+    $0
+}

@@ -1,10 +1,5 @@
 #+TITLE: dotfiles
 
-* ZSH
-** TODO Customize the prompt
-** TODO Disable unicode chars in system terminal
-** TODO Re-implement Todoist+Toggl frontend tools
-
 * Spacemacs
 ** DONE Add elfeed layer
    CLOSED: [2018-06-03 Sun 17:33]
@@ -14,7 +9,8 @@
 ** TODO Fix C-h behavior in helm in neotree
 ** TODO Fix edit-server
 ** TODO Fix evil-mc
-** TODO Fix generic-browser
+** DONE Fix generic-browser
+   CLOSED: [2018-06-06 Wed 01:21]
 ** TODO [#A] Fix templates layer
 ** DONE [#A] Fix projectile project switch
    CLOSED: [2018-06-05 Tue 02:21]

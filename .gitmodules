@@ -1,19 +1,15 @@
 [submodule "spacemacs-quickrun"]
   branch = master
-	path = spacemacs/spacemacs.d/layers/+tools/spacemacs-quickrun
+	path = spacemacs/spacemacs.d/layers/+tools/quickrun
 	url = https://github.com/sei40kr/spacemacs-quickrun.git
-[submodule "zsh-better-run-help"]
-  branch = master
-	path = zsh/plugins/zsh-better-run-help
-	url = https://github.com/sei40kr/zsh-better-run-help.git
 [submodule "competitive-programming-snippets"]
 	path = spacemacs/spacemacs.d/layers/+private/custom/local/competitive-programming-snippets
 	url = https://github.com/sei40kr/competitive-programming-snippets.git
 	branch = master
 [submodule "spacemacs-ghq"]
-	path = spacemacs/spacemacs.d/layers/+tools/spacemacs-ghq
+	path = spacemacs/spacemacs.d/layers/+tools/ghq
 	url = https://github.com/sei40kr/spacemacs-ghq.git
 	branch = master
 [submodule "spacemacs-solidity"]
-	path = spacemacs/spacemacs.d/layers/+lang/spacemacs-solidity
+	path = spacemacs/spacemacs.d/layers/+lang/solidity
 	url = https://github.com/sei40kr/spacemacs-solidity.git

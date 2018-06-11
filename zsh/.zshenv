@@ -91,12 +91,9 @@ if [[ -d "${HOME}/.cargo/bin" ]]; then
   export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
 
-# goenv
-if [[ -x "${HOME}/.goenv/bin/goenv" ]]; then
-  export GOENV_ROOT="${HOME}/.goenv"
-  export GOPATH="${HOME}/.go"
-  path=( "${GOENV_ROOT}/bin" "${GOENV_ROOT}/shims" "${GOPATH}/bin" $path )
-fi
+# go
+export GOPATH="${HOME}/go/bin"
+path=( "$GOPATH" $path )
 
 # Haskell Tool Stack
 path=( "${HOME}/bin" "${HOME}/.local/bin" $path )
