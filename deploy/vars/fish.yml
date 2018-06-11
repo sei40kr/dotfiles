@@ -12,8 +12,4 @@ fish_functions:
   - __fzfcmd
   - fish_user_key_bindings
   - fish_right_prompt
-  - py
-  - py2
-  - py3
-  - u
 fisherman_download_url: 'https://git.io/fisherman'
