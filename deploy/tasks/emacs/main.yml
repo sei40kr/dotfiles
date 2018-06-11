@@ -11,10 +11,3 @@
     path: ~/.local/bin
     recurse: yes
     state: directory
-- name: Create a symlink for e executable
-  file:
-    follow: no
-    force: yes
-    path: ~/.local/bin/e
-    src: '{{ dotfiles_path }}/bin/e'
-    state: link
