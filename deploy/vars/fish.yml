@@ -3,6 +3,7 @@
 ---
 fish_functions:
   - __fzf_ghq
+  - __fzf_reverse_isearch
   - fish_user_key_bindings
   - fish_right_prompt
   - py
