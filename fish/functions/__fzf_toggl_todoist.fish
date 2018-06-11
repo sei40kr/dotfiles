@@ -19,9 +19,8 @@ function __fzf_toggl_todoist
 
     set -l todo_item
     todoist --csv list | awk -F, '{ print $6 " " $4 }' | fzf | read todo_item
-    set todo_item (string replace -r '\s+#.+$' '' $todo_item)
-
-    commandline -- "toggl start '$todo_item'"
+    and set todo_item (string replace -r '\s+#.+$' '' $todo_item)
+    and commandline -- "toggl start '$todo_item'"
     and commandline -f execute
     commandline -f repaint
 end
