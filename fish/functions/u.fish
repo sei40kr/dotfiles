@@ -1,6 +1,6 @@
-# te.fish
+# u.fish
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-function te -w et
-    et $argv
+function u
+    cd ..
 end

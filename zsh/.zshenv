@@ -92,8 +92,8 @@ if [[ -d "${HOME}/.cargo/bin" ]]; then
 fi
 
 # go
-export GOPATH="${HOME}/go/bin"
-path=( "$GOPATH" $path )
+export GOPATH="${HOME}/go"
+path=( "$GOPATH/bin" $path )
 
 # Haskell Tool Stack
 path=( "${HOME}/bin" "${HOME}/.local/bin" $path )

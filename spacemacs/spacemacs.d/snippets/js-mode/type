@@ -1,0 +1,6 @@
+# name : type declaration
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: type
+# --
+
+type ${1:name} = $2;$0

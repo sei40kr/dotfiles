@@ -9,4 +9,5 @@ fish_functions:
   - py
   - py2
   - py3
+  - u
 fisherman_download_url: 'https://git.io/fisherman'
