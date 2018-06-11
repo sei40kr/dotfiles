@@ -7,6 +7,7 @@ fish_functions:
   - __fzf_find_file
   - __fzf_get_dir
   - __fzf_ghq
+  - __fzf_git_checkout
   - __fzf_parse_commandline
   - __fzf_reverse_isearch
   - __fzf_toggl_todoist
