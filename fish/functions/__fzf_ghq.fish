@@ -14,5 +14,5 @@ function __fzf_ghq
 
     ghq list | fzf | read ghq_repo
     and cd (ghq root)/{$ghq_repo}
-    and commandline -f repaint
+    commandline -f repaint
 end
