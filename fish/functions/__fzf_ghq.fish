@@ -13,6 +13,7 @@ function __fzf_ghq
     end
 
     ghq list | fzf | read ghq_repo
-    and commandline cd\ (ghq root)/{$ghq_repo}
+    and commandline -- cd\ (ghq root)/{$ghq_repo}
     and commandline -f execute
+    commandline -f repaint
 end

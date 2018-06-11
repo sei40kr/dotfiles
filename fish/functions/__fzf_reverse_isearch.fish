@@ -9,5 +9,6 @@ function __fzf_reverse_isearch
 
     history | fzf -q (commandline) --toggle-sort=ctrl-r | read result
     and commandline -- $result
+    and commandline -f execute
     commandline -f repaint
 end
