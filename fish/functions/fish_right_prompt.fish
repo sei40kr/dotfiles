@@ -29,7 +29,7 @@ function fish_right_prompt
             end
         end
 
-        string trim $toggl_desc $toggl_duration
+        string trim "$toggl_desc $toggl_duration"
     end
 
     set_color normal
