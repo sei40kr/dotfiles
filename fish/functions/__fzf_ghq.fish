@@ -12,7 +12,7 @@ function __fzf_ghq
         return 1
     end
 
-    ghq list | fzf | read ghq_repo
+    ghq list | fzf $FZF_DEFAULT_OPTS | read ghq_repo
     and commandline -- cd\ (ghq root)/{$ghq_repo}
     and commandline -f execute
     commandline -f repaint

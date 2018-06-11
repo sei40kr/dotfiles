@@ -17,7 +17,11 @@ function __fzf_git_checkout
         return 1
     end
 
-    git branch | grep -Pve '^\*' | sed 's/^ *//' | fzf | read git_branch
+    git branch \
+    | grep -Pve '^\*' \
+    | sed 's/^ *//' \
+    | fzf $FZF_DEFAULT_OPTS \
+    | read git_branch
     and commandline -- "git checkout $git_branch"
     and commandline -f execute
     commandline -f repaint
