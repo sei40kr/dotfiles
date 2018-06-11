@@ -1,14 +1,5 @@
-# __fzf_reverse_isearch.fish
-# author: Seong Yong-ju <sei40kr@gmail.com>
-
 function __fzf_reverse_isearch
-    if not type -q fzf
-        echo 'ERROR: fzf is not installed.' >&2
-        return 1
-    end
-
-    history | fzf -q (commandline) --toggle-sort=ctrl-r | read result
+    history -z | eval (__fzfcmd) --read0 --tiebreak=index --toggle-sort=ctrl-r $FZF_DEFAULT_OPTS $FZF_REVERSE_ISEARCH_OPTS -q '(commandline)' | perl -pe 'chomp if eof' | read -lz result
     and commandline -- $result
-    and commandline -f execute
     commandline -f repaint
 end

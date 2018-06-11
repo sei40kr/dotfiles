@@ -2,8 +2,14 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 ---
 fish_functions:
+  - __fzf_cd
+  - __fzf_complete
+  - __fzf_find_file
+  - __fzf_get_dir
   - __fzf_ghq
+  - __fzf_parse_commandline
   - __fzf_reverse_isearch
+  - __fzfcmd
   - fish_user_key_bindings
   - fish_right_prompt
   - py

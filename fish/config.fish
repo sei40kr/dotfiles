@@ -18,3 +18,8 @@ set -g theme_display_git_master_branch no
 ## toggl
 
 abbr -a tgs toggl stop
+
+
+## fzf
+
+set -U FZF_COMPLETE 1
