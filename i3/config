@@ -216,7 +216,7 @@ bar {
 }
 
 # Shutdown, reboot, lock screen
-set $Locker xautolock -locknow
+set $Locker dm-tool lock
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
