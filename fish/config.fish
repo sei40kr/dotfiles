@@ -24,7 +24,16 @@ function __tmux_rename -v PWD
 
     set -lx tmux_window_id (tmux display-message -p '#{window_id}')
     set -lx cwd $PWD
+
+    # Don't load config.fish
+    set -lx HOME (mktemp -d)
+    set -lx XDG_CONFIG_HOME $HOME
+
     fish -c 'tmux rename-window -t $tmux_window_id (basename (git -C $cwd rev-parse --show-toplevel ^/dev/null; or echo $cwd)) &'
+end
+
+if [ -n "$TMUX" ]
+    __tmux_rename
 end
 
 
