@@ -18,6 +18,10 @@ set -g theme_display_git_master_branch no
 ## tmux
 
 function __tmux_rename -v PWD
+    if [ -z "$TMUX" ]
+        return
+    end
+
     set -lx tmux_window_id (tmux display-message -p '#{window_id}')
     set -lx cwd $PWD
     fish -c 'tmux rename-window -t $tmux_window_id (basename (git -C $cwd rev-parse --show-toplevel ^/dev/null; or echo $cwd)) &'
