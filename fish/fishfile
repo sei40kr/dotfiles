@@ -17,3 +17,4 @@ oh-my-fish/plugin-rails
 fisherman/rbenv
 oh-my-fish/plugin-rustup
 oh-my-fish/plugin-ssh
+oh-my-fish/plugin-sudope
