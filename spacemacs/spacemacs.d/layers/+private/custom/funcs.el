@@ -75,15 +75,6 @@
   (add-to-list 'flycheck-disabled-checkers 'javascript-standard))
 
 
-;; projectile
-
-(defun spacemacs//projectile-switch-project-action ()
-  (require 'neotree)
-  (neotree-hide)
-  (require 'magit-status)
-  (magit-status))
-
-
 ;; rust-mode
 
 (defun spacemacs//rust-setup-checkers ()
