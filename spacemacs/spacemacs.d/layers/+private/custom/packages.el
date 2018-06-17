@@ -22,6 +22,7 @@
      evil-surround
      exec-path-from-shell
      expand-region
+     fish-mode
      flycheck
      flycheck-popup-tip
      helm
@@ -113,6 +114,9 @@
 (defun custom/post-init-expand-region ()
   (evil-global-set-key 'visual (kbd "v") #'er/expand-region)
   (evil-global-set-key 'visual (kbd "V") #'er/contract-region))
+
+(defun custom/post-init-fish-mode ()
+  (add-hook 'fish-mode-hook #'custom//fish-indent-on-save-enable))
 
 (defun custom/post-init-flycheck ()
   (setq

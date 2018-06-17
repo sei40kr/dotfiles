@@ -51,6 +51,13 @@
   (evil-mc-undo-all-cursors)
   (turn-off-evil-mc-mode))
 
+
+;; fish-mode
+
+(defun custom//fish-indent-on-save-enable ()
+  (add-hook 'before-save-hook #'fish_indent-before-save))
+
+
 ;; ghq
 
 (defun spacemacs/ghq ()
