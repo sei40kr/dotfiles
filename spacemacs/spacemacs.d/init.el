@@ -47,9 +47,10 @@ values."
      syntax-checking
      ;; Completion
      (auto-completion :variables
-                      auto-completion-enable-snippets-in-popup t
+                      spacemacs-default-company-backends '(company-files company-capf)
                       auto-completion-return-key-behavior 'complete
-                      auto-completion-tab-key-behavior 'complete)
+                      auto-completion-tab-key-behavior 'complete
+                      auto-completion-enable-snippets-in-popup t)
      helm
      (templates :variables
                 templates-private-directory (concat dotspacemacs-directory "templates"))
