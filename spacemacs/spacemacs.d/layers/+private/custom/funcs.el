@@ -82,6 +82,14 @@
   (add-to-list 'flycheck-disabled-checkers 'javascript-standard))
 
 
+;; projectile
+
+(defun custom//projectile-switch-project-action ()
+  (if (buffer-file-name)
+      (projectile-dired-other-frame)
+    (projectile-dired)))
+
+
 ;; rust-mode
 
 (defun spacemacs//rust-setup-checkers ()

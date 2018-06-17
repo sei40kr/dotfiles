@@ -192,7 +192,7 @@
     projectile-find-dir-includes-top-level t
     projectile-git-submodule-command nil
     projectile-sort-order 'default
-    projectile-switch-project-action #'projectile-dired-other-frame
+    projectile-switch-project-action #'custom//projectile-switch-project-action
     projectile-use-git-grep t))
 
 (defun custom/post-init-rjsx-mode ()
