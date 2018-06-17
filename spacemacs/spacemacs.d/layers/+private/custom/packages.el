@@ -106,10 +106,18 @@
       (kbd "s") 'evil-substitute
       (kbd "S") 'evil-surround-region)))
 
-(defun custom/pre-init-exec-path-from-shell ()
-  (setq
-    exec-path-from-shell-arguments '("-l")
-    exec-path-from-shell-check-startup-files nil))
+(defun custom/init-exec-path-from-shell ()
+  (use-package exec-path-from-shell
+    :init
+    (let* ((shell-vars '("PATH" "MANPATH")))
+           (if (configuration-layer/layer-used-p 'go)
+               (push "GOPATH" shell-vars))
+           (if (configuration-layer/layer-used-p 'rust)
+               (push "RUST_SRC_PATH" shell-vars))
+           (setq
+            exec-path-from-shell-variables shell-vars
+            exec-path-from-shell-arguments '("-l")
+            exec-path-from-shell-check-startup-files nil))))
 
 (defun custom/post-init-expand-region ()
   (evil-global-set-key 'visual (kbd "v") #'er/expand-region)
