@@ -615,4 +615,5 @@ before packages are loaded. If you are unsure, you should try in setting them in
    tooltip-short-delay 0.1))
 
 (defun dotspacemacs/user-config ()
-  (golden-ratio-mode 1))
+  (golden-ratio-mode 1)
+  (spacemacs/enable-transparency))
