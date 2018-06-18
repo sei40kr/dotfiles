@@ -616,4 +616,5 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 (defun dotspacemacs/user-config ()
   (golden-ratio-mode 1)
-  (spacemacs/enable-transparency))
+  (spacemacs|do-after-display-system-init
+   (spacemacs/enable-transparency)))
