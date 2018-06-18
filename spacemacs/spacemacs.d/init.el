@@ -614,4 +614,5 @@ before packages are loaded. If you are unsure, you should try in setting them in
    tooltip-hide-delay 999
    tooltip-short-delay 0.1))
 
-(defun dotspacemacs/user-config ())
+(defun dotspacemacs/user-config ()
+  (golden-ratio-mode 1))
