@@ -85,11 +85,14 @@ values."
      gpu
      (haskell :variables
               haskell-enable-hindent t)
-     html
+     (html :variables
+           web-fmt-tool 'prettier)
      java
      (javascript :variables
-                 javascript-backend 'tern)
-     json
+                 javascript-backend 'tern
+                 javascript-fmt-tool 'prettier)
+     (json :variables
+           json-fmt-tool 'prettier)
      ipython-notebook
      kotlin
      latex
