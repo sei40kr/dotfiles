@@ -9,57 +9,6 @@
 #define color_magenta #a31db1
 #define color_yellow #b1951d
 
-!! UXTerm
-
-! TERM Environmental Variable
-UXTerm.termName: xterm-256color-italic
-! Remove black borders
-UXTerm*borderWidth: 0
-! Make 'Alt' key behave as on other terminal emulators
-UXTerm.vt100.metaSendsEscape: true
-! Fix the backspace key
-UXTerm.vt100.backarrowKey: false
-UXTerm.ttyModes: erase ^?
-! Default fonts
-UXTerm.vt100.faceName: xos4 Terminus:pixelsize=16:antialias=false
-UXTerm.vt100.faceNameDoublesize: Terminus\\-ja:pixelsize=16:antialias=false
-! Adjust line spacing
-UXTerm.scaleHeight: 1.01
-! Key binding
-UXTerm.vt100.translations: #override \n\
-    Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
-    Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
-! Scrollbar
-UXTerm.vt100.scrollBar: false
-! Colors
-UXTerm.vt100.background: color_bg1
-UXTerm.vt100.foreground: color_base
-UXTerm.vt100.cursorColor: color_base
-! black
-UXTerm.vt100.color0: color_bg4
-UXTerm.vt100.color8: color_bg4
-! red
-UXTerm.vt100.color1: color_red
-UXTerm.vt100.color9: color_red
-! green
-UXTerm.vt100.color2: color_green
-UXTerm.vt100.color10: color_green
-! yellow
-UXTerm.vt100.color3: color_yellow
-UXTerm.vt100.color11: color_yellow
-! blue
-UXTerm.vt100.color4: color_keyword
-UXTerm.vt100.color12: color_keyword
-! magenta
-UXTerm.vt100.color5: color_magenta
-UXTerm.vt100.color13: color_magenta
-! cyan
-UXTerm.vt100.color6: color_cyan
-UXTerm.vt100.color14: color_cyan
-! white
-UXTerm.vt100.color7: color_base
-UXTerm.vt100.color15: color_base
-
 
 !! Xft
 
