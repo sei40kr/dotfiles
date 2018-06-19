@@ -616,6 +616,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
    tooltip-short-delay 0.1))
 
 (defun dotspacemacs/user-config ()
+  (defun user-custom/enable-frame-transparency (frame)
+    (spacemacs/enable-transparency frame
+                                   (cons dotspacemacs-active-transparency
+                                         dotspacemacs-inactive-transparency)))
   (golden-ratio-mode 1)
-  (spacemacs|do-after-display-system-init
-   (spacemacs/enable-transparency)))
+  (user-custom/enable-frame-transparency nil)
+  (add-hook 'after-make-frame-functions
+            #'user-custom/enable-frame-transparency))
