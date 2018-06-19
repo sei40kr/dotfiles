@@ -2,6 +2,9 @@
 - hosts: localhost
   connection: local
   tasks:
+    - name: Import Alacritty tasks
+      import_tasks: ../tasks/alacritty/main.yml
+      tags: [alacritty]
     - name: Import Clang tasks
       import_tasks: ../tasks/clang/main.yml
       tags: [clang]

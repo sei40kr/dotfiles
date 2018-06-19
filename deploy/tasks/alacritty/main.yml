@@ -1,0 +1,17 @@
+# main.yml --- Alacritty
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: ../vars/main.yml
+- name: Create a directory for Alacritty config
+  file:
+    path: ~/.config/alacritty
+    recurse: yes
+    state: directory
+- name: Create a symlink for Alacritty config
+  file:
+    force: yes
+    path: ~/.config/alacritty/alacritty.yml
+    src: '{{ dotfiles_path }}/alacritty/alacritty.yml'
+    state: link
