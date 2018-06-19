@@ -26,7 +26,6 @@
      flycheck
      flycheck-popup-tip
      helm
-     helm-ls-git
      js2-mode
      magit
      neotree
@@ -150,17 +149,6 @@
     (define-key helm-find-files-map (kbd "C-h") #'delete-backward-char)
     (define-key helm-find-files-map (kbd "C-w") #'backward-kill-word)))
 
-(defun custom/init-helm-ls-git ()
-  (use-package helm-ls-git
-    :defer t
-    :init
-    (eval-after-load 'evil
-      '(evil-global-set-key 'normal (kbd "C-p") 'helm-ls-git-ls))
-    :custom
-    (helm-ls-git-fuzzy-match t)
-    (helm-ls-git-default-sources '(helm-source-ls-git))
-    (helm-ls-git-ls-switches '("ls-files" "-co" "--exclude-standard" "--"))))
-
 (defun custom/post-init-js2-mode ()
   (if (configuration-layer/package-used-p 'flycheck)
       (add-hook 'js2-mode-hook #'spacemacs//javascript-setup-checkers)))
@@ -192,8 +180,9 @@
     projectile-find-dir-includes-top-level t
     projectile-git-submodule-command nil
     projectile-sort-order 'default
-    projectile-switch-project-action #'custom//projectile-switch-project-action
-    projectile-use-git-grep t))
+    projectile-switch-project-action #'projectile-dired-other-frame)
+  (eval-after-load 'evil
+    '(evil-global-set-key 'normal (kbd "C-p") 'helm-projectile-find-file)))
 
 (defun custom/post-init-rjsx-mode ()
   (if (configuration-layer/layer-used-p 'react)
