@@ -40,7 +40,7 @@ gaps inner 16
 smart_gaps on
 
 # start a terminal
-bindsym $mod+Return exec uxterm
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+c kill
