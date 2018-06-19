@@ -41,7 +41,6 @@ smart_gaps on
 
 # start a terminal
 bindsym $mod+Return exec uxterm
-bindsym $mod+Shift+Return exec uxterm -title uxterm-float -geometry 90x25
 
 # kill focused window
 bindsym $mod+Shift+c kill
