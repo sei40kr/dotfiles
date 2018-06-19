@@ -294,9 +294,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil then Spacemacs will import your PATH and environment variables
    ;; from your default shell on startup. This is enabled by default for macOS
    ;; users and X11 users.
-   dotspacemacs-import-env-vars-from-shell (and (display-graphic-p)
-                                                (or (eq system-type 'darwin)
-                                                    (eq window-system 'x)))
+   dotspacemacs-import-env-vars-from-shell (display-graphic-p)
 
    ;; If nil then use the default shell is used to fetch the environment
    ;; variables. Set this variable to a different shell executable path to
