@@ -3,7 +3,7 @@
 # cplay
 
 if ! pgrep -x cmus; then
-  uxterm -e cmus
+  alacritty -e cmus
 else
   cmus-remote -u
 fi
