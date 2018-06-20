@@ -1,0 +1,9 @@
+# linux.yml --- Alacritty for Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Create a symlink for Alacritty config
+  file:
+    force: yes
+    path: ~/.config/alacritty/alacritty.yml
+    src: '{{ dotfiles_path }}/alacritty/alacritty.yml'
+    state: link

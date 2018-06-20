@@ -9,9 +9,7 @@
     path: ~/.config/alacritty
     recurse: yes
     state: directory
-- name: Create a symlink for Alacritty config
-  file:
-    force: yes
-    path: ~/.config/alacritty/alacritty.yml
-    src: '{{ dotfiles_path }}/alacritty/alacritty.yml'
-    state: link
+- include_tasks: macos.yml
+  when: ansible_system == 'Darwin'
+- include_tasks: linux.yml
+  when: ansible_system == 'Linux'
