@@ -3,5 +3,5 @@ module.exports = {
   environments: ['browser', 'jest'],
   groupImports: false,
   sortImports: false,
-  stripFileExtensions: ['.js']
+  stripFileExtensions: ['.js'],
 };
