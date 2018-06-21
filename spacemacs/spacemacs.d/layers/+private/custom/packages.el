@@ -166,7 +166,7 @@
     projectile-find-dir-includes-top-level t
     projectile-git-submodule-command nil
     projectile-sort-order 'default
-    projectile-switch-project-action #'projectile-dired-other-frame)
+    projectile-switch-project-action #'custom//projectile-switch-project-action)
   (eval-after-load 'evil
     '(evil-global-set-key 'normal (kbd "C-p") 'helm-projectile-find-file)))
 

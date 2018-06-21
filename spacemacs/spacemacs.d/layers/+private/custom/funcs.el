@@ -82,6 +82,14 @@
   (add-to-list 'flycheck-disabled-checkers 'javascript-standard))
 
 
+;; projectile
+
+(defun custom//projectile-switch-project-action ()
+  (projectile-dired)
+  (require 'neotree)
+  (if (neo-global--window-exists-p)
+      (neotree-projectile-action)))
+
 ;; rust-mode
 
 (defun spacemacs//rust-setup-checkers ()
