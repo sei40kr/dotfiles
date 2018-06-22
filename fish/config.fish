@@ -42,5 +42,5 @@ abbr -a tgs toggl stop
 
 ## fzf
 
-set -U FZF_TMUX 1
+set -U FZF_TMUX 0
 set -U FZF_COMPLETE 0
