@@ -566,6 +566,14 @@ if [ -z "$_fish_abbreviations_initialized" ]
     abbr -a http-serve python3 -m http.server
 
 
+    # tmuxinator
+
+    abbr -a txs tmuxinator start
+    abbr -a txo tmuxinator open
+    abbr -a txn tmuxinator new
+    abbr -a txl tmuxinator list
+
+
     # toggl
 
     abbr -a tgs toggl stop
