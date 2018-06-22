@@ -3,6 +3,11 @@ if [ -z "$_fish_abbreviations_initialized" ]
 
     set -Ue fish_user_abbreviations
 
+    # built-in
+
+    abbr -a u cd ..
+
+
     # directory
     abbr -a d dirs
 
