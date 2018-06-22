@@ -10,6 +10,7 @@ if [[ -z "$TMUX" ]] && \
 
     tmux start-server
 
+    # TODO allow to create multiple sessions when using a tiling window manager
     if ! tmux has-session 2>/dev/null; then
         tmux new-session -d -s "$tmux_session"
         tmux set-option -t "$tmux_session" destory-unattached off &>/dev/null
