@@ -310,10 +310,10 @@ if [ -z "$_fish_abbreviations_initialized" ]
     abbr -a gpf git push --force-with-lease
     abbr -a gpF git push --force
     abbr -a gpa git push --all
-    abbr -a gpA git push --all and git push --tags
+    abbr -a gpA git push --all\; and git push --tags
     abbr -a gpt git push --tags
     abbr -a gpc git push --set-upstream origin \(git-branch-current \^/dev/null\)
-    abbr -a gpp git pull origin \(git-branch-current \^/dev/null\) and git push origin \(git-branch-current \^/dev/null\)
+    abbr -a gpp git pull origin \(git-branch-current \^/dev/null\)\; and git push origin \(git-branch-current \^/dev/null\)
 
     abbr -a gr git rebase
     abbr -a gra git rebase --abort
