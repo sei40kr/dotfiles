@@ -1,10 +1,4 @@
 typeset -gU fpath infopath manpath path
-export ZSH_CACHE_DIR="${HOME}/.cache/zsh"
-
-if [[ -z "$TERM" ]]; then
-  TERM='xterm-256color-italic'
-fi
-export TERM
 
 ## Browser
 
