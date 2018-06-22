@@ -15,7 +15,7 @@ if [[ -z "$TMUX" ]] && \
         tmux set-option -t "$tmux_session" destory-unattached off &>/dev/null
     fi
 
-    exec tmux attach-session -d
+    exec tmux -2 attach-session -d
 elif command -v fish >/dev/null; then
     exec fish
 fi
