@@ -558,8 +558,8 @@ if [ -z "$_fish_abbreviations_initialized" ]
     abbr -a lu lt -u
     abbr -a sl ls
 
-    abbr -a df=df -kh
-    abbr -a du=du -kh
+    abbr -a df df -kh
+    abbr -a du du -kh
 
     abbr -a http-serve python3 -m http.server
 
