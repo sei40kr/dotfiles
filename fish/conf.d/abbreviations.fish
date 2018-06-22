@@ -1,6 +1,8 @@
 if [ -z "$_fish_abbreviations_initialized" ]
     set -U _fish_abbreviations_initialized 1
 
+    set -Ue fish_user_abbreviations
+
     # directory
     abbr -a d dirs
 
