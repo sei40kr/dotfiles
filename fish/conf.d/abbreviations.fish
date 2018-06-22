@@ -310,10 +310,10 @@ if [ -z "$_fish_abbreviations_initialized" ]
     abbr -a gpf git push --force-with-lease
     abbr -a gpF git push --force
     abbr -a gpa git push --all
-    abbr -a gpA git push --all 'and' git push --tags
+    abbr -a gpA git push --all and git push --tags
     abbr -a gpt git push --tags
     abbr -a gpc git push --set-upstream origin \(git-branch-current \^/dev/null\)
-    abbr -a gpp git pull origin \(git-branch-current \^/dev/null\) 'and' git push origin \(git-branch-current \^/dev/null\)
+    abbr -a gpp git pull origin \(git-branch-current \^/dev/null\) and git push origin \(git-branch-current \^/dev/null\)
 
     abbr -a gr git rebase
     abbr -a gra git rebase --abort
@@ -392,7 +392,7 @@ if [ -z "$_fish_abbreviations_initialized" ]
     abbr -a brewl brew list
     abbr -a brewo brew outdated
     abbr -a brews brew search
-    abbr -a brewu brew update 'and' brew upgrade
+    abbr -a brewu brew update and brew upgrade
     abbr -a brewx brew remove
 
     abbr -a cask brew cask
@@ -567,6 +567,25 @@ if [ -z "$_fish_abbreviations_initialized" ]
     # toggl
 
     abbr -a tgs toggl stop
+
+
+    # trizen
+
+    abbr trconf trizen -C
+    abbr trupg trizen -Syua
+    abbr trsu trizen -Syua --noconfirm
+    abbr trin trizen -S
+    abbr trins trizen -U
+    abbr trre trizen -R
+    abbr trrem trizen -Rns
+    abbr trrep trizen -Si
+    abbr trreps trizen -Ss
+    abbr trloc trizen -Qi
+    abbr trlocs trizen -Qs
+    abbr trlst trizen -Qe
+    abbr trorph trizen -Qtd
+    abbr trinsd trizen -S --asdeps
+    abbr trmir trizen -Syy
 
 
     # yarn
