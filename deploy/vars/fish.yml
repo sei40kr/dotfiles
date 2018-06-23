@@ -13,6 +13,7 @@ fish_functions:
   - __fzf_toggl_todoist
   - __fzfcmd
   - __tmux_rename
+  - capit
   - fish_user_key_bindings
   - fish_right_prompt
   - reload
