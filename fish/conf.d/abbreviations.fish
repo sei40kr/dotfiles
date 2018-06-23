@@ -1,4 +1,7 @@
 if [ -z "$_fish_abbreviations_initialized" ]
+    echo 'INFO: Initializing universal variables...'
+    echo 'INFO: This may take several minutes. Please wait.'
+
     set -U _fish_abbreviations_initialized 1
 
     set -Ue fish_user_abbreviations
