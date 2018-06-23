@@ -58,19 +58,6 @@
   (add-hook 'before-save-hook #'fish_indent-before-save))
 
 
-;; ghq
-
-(defun spacemacs/ghq ()
-  (interactive)
-  (let ((repository (read-string "Enter the repository: ")))
-    (require 'ghq)
-    (if (or
-          (string-prefix-p "sei40kr/" repository t)
-          (string-prefix-p "github.com/sei40kr/" repository t))
-      (ghq--get-repository-ssh repository)
-      (ghq--get-repository repository))))
-
-
 ;; js2-mode
 
 (defun spacemacs//javascript-setup-checkers ()
@@ -89,6 +76,7 @@
   (require 'neotree)
   (if (neo-global--window-exists-p)
       (neotree-projectile-action)))
+
 
 ;; rust-mode
 
