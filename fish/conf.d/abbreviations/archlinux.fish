@@ -2,6 +2,7 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 # pacman
+
 abbr -a pacupg sudo pacman -Syu
 abbr -a pacin sudo pacman -S
 abbr -a pacins sudo pacman -U
@@ -22,6 +23,7 @@ abbr -a pacown pacman -Qo
 abbr -a pacupd pacman -Sy
 
 # trizen
+
 abbr trconf trizen -C
 abbr trupg trizen -Syua
 abbr trsu trizen -Syua --noconfirm
