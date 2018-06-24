@@ -17,4 +17,5 @@ fish_functions:
   - fish_user_key_bindings
   - fish_right_prompt
   - reload
+  - upgrade
 fisherman_download_url: 'https://git.io/fisherman'
