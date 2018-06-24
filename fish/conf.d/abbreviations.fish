@@ -9,10 +9,15 @@ if [ -z "$_fish_abbreviations_initialized" ]
 
     set -Ue fish_user_abbreviations
 
-    # built-in
+    set -l basepath (dirname (status --current-filename))/abbreviations
 
+    # built-in
     abbr -a u cd ..
 
+    abbr -a abbrupd fish_update_abbreviations
+
+    # archlinux
+    source $basepath/archlinux.fish
 
     # directory
     abbr -a d dirs
@@ -588,25 +593,6 @@ if [ -z "$_fish_abbreviations_initialized" ]
     # toggl
 
     abbr -a tgs toggl stop
-
-
-    # trizen
-
-    abbr trconf trizen -C
-    abbr trupg trizen -Syua
-    abbr trsu trizen -Syua --noconfirm
-    abbr trin trizen -S
-    abbr trins trizen -U
-    abbr trre trizen -R
-    abbr trrem trizen -Rns
-    abbr trrep trizen -Si
-    abbr trreps trizen -Ss
-    abbr trloc trizen -Qi
-    abbr trlocs trizen -Qs
-    abbr trlst trizen -Qe
-    abbr trorph trizen -Qtd
-    abbr trinsd trizen -S --asdeps
-    abbr trmir trizen -Syy
 
 
     # yarn
