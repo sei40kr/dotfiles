@@ -24,5 +24,6 @@ fish_abbreviations:
   - docker
   - git
   - homebrew
+  - node
   - ruby
 fisherman_download_url: 'https://git.io/fisherman'

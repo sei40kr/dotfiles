@@ -20,6 +20,7 @@ if [ -z "$_fish_abbreviations_initialized" ]
     source $basepath/docker.fish
     source $basepath/git.fish
     source $basepath/homebrew.fish
+    source $basepath/node.fish
     source $basepath/ruby.fish
 
     # directory
@@ -94,22 +95,6 @@ if [ -z "$_fish_abbreviations_initialized" ]
     abbr -a nmap_web_safe_osscan sudo nmap -p 80,443 -O -v --osscan-guess --fuzzy
 
 
-    # npm
-
-    abbr -a npmg npm i -g
-    abbr -a npmS npm i -S
-    abbr -a npmD npm i -D
-    abbr -a npmO npm outdated
-    abbr -a npmV npm -v
-    abbr -a npmL npm list
-    abbr -a npmL0 npm ls --depth=0
-    abbr -a npmst npm start
-    abbr -a npmt npm test
-    abbr -a npmR npm run
-    abbr -a npmP npm publish
-    abbr -a npmI npm init
-
-
     # python
 
     abbr -a py python
@@ -178,14 +163,4 @@ if [ -z "$_fish_abbreviations_initialized" ]
     # toggl
 
     abbr -a tgs toggl stop
-
-
-    # yarn
-
-    abbr -a y yarn
-    abbr -a ya yarn add
-    abbr -a ycc yarn cache clean
-    abbr -a yh yarn help
-    abbr -a yo yarn outdated
-    abbr -a yui yarn upgrade-interactive
 end
