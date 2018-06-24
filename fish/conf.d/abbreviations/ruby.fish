@@ -20,6 +20,12 @@ abbr -a rbbp bundle package
 abbr -a rbbu bundle update
 
 
+# gem
+
+abbr -a gemb gem build \*.buildspec
+abbr -a gemp gem build \*.gem
+
+
 # rake
 
 abbr -a brake bundle exec rake

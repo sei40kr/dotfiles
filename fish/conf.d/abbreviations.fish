@@ -36,12 +36,6 @@ if [ -z "$_fish_abbreviations_initialized" ]
     abbr -a x extract
 
 
-    # gem
-
-    abbr -a gemb gem build \*.buildspec
-    abbr -a gemp gem build \*.gem
-
-
     # golang
 
     abbr -a gob go build
