@@ -3,6 +3,13 @@
 
 set -U fish_term24bit 1
 
+## dotfiles
+
+if [ -z "$DOTFILES_PATH" ]
+    set -U DOTFILES_PATH (realpath (dirname (realpath (status --current-filename))/..))
+end
+
+
 ## bobthefish
 
 # Font options
