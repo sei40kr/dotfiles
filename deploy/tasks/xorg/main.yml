@@ -10,6 +10,6 @@
   file:
     follow: no
     force: yes
-    path: ~/.xprofile
-    src: '{{ dotfiles_path }}/xorg/xprofile'
+    path: ~/.xinitrc
+    src: '{{ dotfiles_path }}/xorg/xinitrc'
     state: link
