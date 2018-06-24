@@ -26,6 +26,7 @@ fish_abbreviations:
   - archlinux
   - docker
   - git
+  - golang
   - homebrew
   - java
   - node
