@@ -6,15 +6,27 @@ if [ -z "$_fish_abbreviations_initialized" ]
     echo 'INFO: This may take several minutes. Please wait.'
 
     set -U _fish_abbreviations_initialized 1
-
+    # clear all abbreviations
     set -Ue fish_user_abbreviations
 
     set -l basepath (dirname (status --current-filename))/abbreviations
 
     # built-in
+
+    abbr -a d dirs
+    abbr -a po popd
+    abbr -a pu pushd
     abbr -a u cd ..
 
+    abbr -a sa abbr -s \| fzf >/dev/null
+
+    abbr -a _ sudo
+    abbr -a mkdir mkdir -p
+    abbr -a df df -kh
+    abbr -a du du -kh
+
     abbr -a abbrupd fish_update_abbreviations
+
 
     source $basepath/archlinux.fish
     source $basepath/docker.fish
@@ -24,9 +36,6 @@ if [ -z "$_fish_abbreviations_initialized" ]
     source $basepath/node.fish
     source $basepath/ruby.fish
     source $basepath/scala.fish
-
-    # directory
-    abbr -a d dirs
 
 
     # emacs
@@ -90,42 +99,6 @@ if [ -z "$_fish_abbreviations_initialized" ]
     # pylint
 
     abbr -a pylint-quick pylint --reports=n
-
-
-    # utility
-
-    abbr -a _ sudo
-    abbr -a b eval \$BROWSER
-
-    abbr -a diffu diff --unified
-    abbr -a mkdir mkdir -p
-    abbr -a p eval \$PAGER
-    abbr -a po popd
-    abbr -a pu pushd
-    abbr -a sa abbr -l \| grep -i
-    abbr -a type type -a
-
-    abbr -a rmi rm -i
-    abbr -a mvi mv -i
-    abbr -a cpi cp -i
-    abbr -a lni ln -i
-
-    abbr -a l ls -1A
-    abbr -a ll ls -lh
-    abbr -a lr ll -R
-    abbr -a la ll -A
-    abbr -a lm la \| eval \$PAGER
-    abbr -a lx ll -XB
-    abbr -a lk ll -Sr
-    abbr -a lt ll -tr
-    abbr -a lc lt -c
-    abbr -a lu lt -u
-    abbr -a sl ls
-
-    abbr -a df df -kh
-    abbr -a du du -kh
-
-    abbr -a http-serve python3 -m http.server
 
 
     # tmuxinator
