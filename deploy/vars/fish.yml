@@ -4,7 +4,6 @@
 fish_functions:
   - __fancy_ctrl_k
   - __fzf_cd
-  - __fzf_complete
   - __fzf_edit_dotfile
   - __fzf_find_file
   - __fzf_get_dir
