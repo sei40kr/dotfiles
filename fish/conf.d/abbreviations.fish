@@ -18,7 +18,7 @@ if [ -z "$_fish_abbreviations_initialized" ]
     abbr -a pu pushd
     abbr -a u cd ..
 
-    abbr -a sa abbr -s \| fzf >/dev/null
+    abbr -a fa fish_find_abbreviation
 
     abbr -a _ sudo
     abbr -a mkdir mkdir -p
