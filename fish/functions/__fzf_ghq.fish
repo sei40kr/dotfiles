@@ -12,8 +12,12 @@ function __fzf_ghq
         return 1
     end
 
-    ghq list | eval (__fzfcmd) $FZF_DEFAULT_OPTS | read ghq_repo
-    and commandline -- cd\ (ghq root)/{$ghq_repo}
+    begin
+        echo $HOME/.dotfiles
+        echo $HOME/.emacs.d
+        ghq list --full-path
+    end | eval (__fzfcmd) $FZF_DEFAULT_OPTS | read repo_dir
+    and commandline -- cd\ {$repo_dir}
     and commandline -f execute
     commandline -f repaint
 end
