@@ -68,21 +68,6 @@ if [ -z "$__fish_user_abbreviations_added" ]
     abbr -a nmap_web_safe_osscan sudo nmap -p 80,443 -O -v --osscan-guess --fuzzy
 
 
-    # perl
-
-    abbr -a pl perl
-    abbr -a pld perldoc
-    abbr -a ple perl -wlne
-
-
-    # tmuxinator
-
-    abbr -a txs tmuxinator start
-    abbr -a txo tmuxinator open
-    abbr -a txn tmuxinator new
-    abbr -a txl tmuxinator list
-
-
     # toggl
 
     abbr -a tgs toggl stop
