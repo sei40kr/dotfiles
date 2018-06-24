@@ -1,3 +1,6 @@
+# abbreviations.fish
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
 if [ -z "$_fish_abbreviations_initialized" ]
     echo 'INFO: Initializing universal variables...'
     echo 'INFO: This may take several minutes. Please wait.'
