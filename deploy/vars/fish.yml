@@ -2,6 +2,7 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 ---
 fish_functions:
+  - __fancy_ctrl_k
   - __fzf_cd
   - __fzf_complete
   - __fzf_find_file
