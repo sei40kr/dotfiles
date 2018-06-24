@@ -1,5 +1,3 @@
-#!/usr/bin/env fish
-
 # archlinux.fish
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
