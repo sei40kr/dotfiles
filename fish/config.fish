@@ -22,9 +22,3 @@ set -g theme_color_scheme base16-dark
 # VCS options
 set -g theme_display_git_dirty_verbose no
 set -g theme_display_git_master_branch no
-
-
-## fzf
-
-set -U FZF_TMUX 0
-set -U FZF_COMPLETE 0
