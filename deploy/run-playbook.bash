@@ -9,17 +9,17 @@ IFS=$'\n\t'
 : ${PYENV_ROOT:=${HOME}/.pyenv}
 
 if [[ ! -d "${PYENV_ROOT}" ]]; then
-    echo "ERROR: pyenv is not found in PYENV_ROOT: PYENV_ROOT=${PYENV_ROOT}"
+    echo "ERROR: pyenv is not found in PYENV_ROOT: PYENV_ROOT=${PYENV_ROOT}" >&2
     exit 1
 fi
 
 if [[ ! -x "${PYENV_ROOT}/shims/python3" ]]; then
-    echo "ERROR: python3 is not installed via pyenv."
+    echo "ERROR: python3 is not installed via pyenv." >&2
     exit 1
 fi
 
 if [[ ! -x "${PYENV_ROOT}/shims/ansible-playbook" ]]; then
-    echo "ERROR: ansible-playbook is not installed via pyenv."
+    echo "ERROR: ansible-playbook is not installed via pyenv." >&2
     exit 1
 fi
 
