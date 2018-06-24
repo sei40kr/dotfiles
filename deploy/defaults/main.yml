@@ -29,6 +29,9 @@
     - name: Import TMUX tasks
       import_tasks: ../tasks/tmux/main.yml
       tags: [tmux]
+    - name: Import Xorg tasks
+      import_tasks: ../tasks/xorg/main.yml
+      tags: [xorg]
     - name: Import Z-Shell tasks
       import_tasks: ../tasks/zsh/main.yml
       tags: [zsh]
