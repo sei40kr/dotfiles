@@ -1,11 +1,11 @@
 # abbreviations.fish
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-if [ -z "$_fish_abbreviations_initialized" ]
+if [ -z "$__fish_user_abbreviations_added" ]
     echo 'INFO: Initializing universal variables...'
     echo 'INFO: This may take several minutes. Please wait.'
 
-    set -U _fish_abbreviations_initialized 1
+    set -U __fish_user_abbreviations_added 1
     # clear all abbreviations
     set -Ue fish_user_abbreviations
 
