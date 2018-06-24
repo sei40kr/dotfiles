@@ -16,8 +16,8 @@ if [ -z "$_fish_abbreviations_initialized" ]
 
     abbr -a abbrupd fish_update_abbreviations
 
-    # archlinux
     source $basepath/archlinux.fish
+    source $basepath/homebrew.fish
 
     # directory
     abbr -a d dirs
@@ -400,27 +400,6 @@ if [ -z "$_fish_abbreviations_initialized" ]
     abbr -a gor go run
     abbr -a got go test
     abbr -a gov go vet
-
-
-    # homebrew
-
-    abbr -a brewc brew cleanup
-    abbr -a brewC brew cleanup --force
-    abbr -a brewi brew install
-    abbr -a brewl brew list
-    abbr -a brewo brew outdated
-    abbr -a brews brew search
-    abbr -a brewu brew update and brew upgrade
-    abbr -a brewx brew remove
-
-    abbr -a cask brew cask
-    abbr -a caskc brew cask cleanup --outdated
-    abbr -a caskC brew cask cleanup
-    abbr -a caski brew cask install
-    abbr -a caskl brew cask list
-    abbr -a casko brew cask outdated
-    abbr -a casks brew cask search
-    abbr -a caskx brew cask uninstall
 
 
     # mvn
