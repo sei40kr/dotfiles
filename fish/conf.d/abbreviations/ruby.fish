@@ -26,6 +26,18 @@ abbr -a gemb gem build \*.buildspec
 abbr -a gemp gem build \*.gem
 
 
+# bundler
+
+abbr -a be bundle exec
+abbr -a bl bundle list
+abbr -a bp bundle package
+abbr -a bo bundle open
+abbr -a bout bundle outdated
+abbr -a bu bundle update
+abbr -a bi bundle_install
+abbr -a bcn bundle clean
+
+
 # rake
 
 abbr -a brake bundle exec rake
