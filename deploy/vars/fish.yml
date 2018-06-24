@@ -22,5 +22,6 @@ fish_functions:
 fish_abbreviations:
   - archlinux
   - docker
+  - git
   - homebrew
 fisherman_download_url: 'https://git.io/fisherman'
