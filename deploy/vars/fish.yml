@@ -27,4 +27,5 @@ fish_abbreviations:
   - java
   - node
   - ruby
+  - scala
 fisherman_download_url: 'https://git.io/fisherman'

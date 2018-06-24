@@ -23,6 +23,7 @@ if [ -z "$_fish_abbreviations_initialized" ]
     source $basepath/java.fish
     source $basepath/node.fish
     source $basepath/ruby.fish
+    source $basepath/scala.fish
 
     # directory
     abbr -a d dirs
