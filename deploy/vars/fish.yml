@@ -14,7 +14,6 @@ fish_functions:
   - __fzf_reverse_isearch
   - __fzf_toggl_todoist
   - __fzfcmd
-  - __tmux_rename
   - capit
   - fish_find_abbreviation
   - fish_update_abbreviations
