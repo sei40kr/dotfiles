@@ -64,7 +64,7 @@
     evil-want-C-i-jump t
     evil-want-C-u-scroll t)
   (with-eval-after-load 'evil
-    (evil-global-set-key 'normal (kbd "C-s") #'spacemacs/save-some-buffers)
+    (evil-global-set-key 'normal (kbd "C-s") #'custom/save-some-buffers)
     (evil-global-set-key 'insert (kbd "C-h") #'backward-delete-char-untabify)
     (define-key minibuffer-local-map (kbd "C-h") #'evil-ex-delete-backward-char)
     (define-key minibuffer-local-map (kbd "C-w") #'backward-kill-word)))
@@ -75,24 +75,24 @@
 (defun custom/post-init-evil-mc ()
   (setq evil-mc-one-cursor-show-mode-line-text nil)
   (evil-global-set-key 'normal
-    (kbd "C-n") #'spacemacs/evil-mc-make-and-goto-next-match)
+    (kbd "C-n") #'custom/evil-mc-make-and-goto-next-match)
   (evil-global-set-key 'visual
     (kbd "C-n")
     #'(lambda (beginning end)
         (interactive (list (region-beginning) (region-end)))
         (if (= (line-number-at-pos beginning) (line-number-at-pos end))
-          (spacemacs/evil-mc-make-and-goto-next-match)
-          (spacemacs/evil-mc-make-vertical-cursors))))
+          (custom/evil-mc-make-and-goto-next-match)
+          (custom/evil-mc-make-vertical-cursors))))
   (with-eval-after-load 'evil-mc
     (advice-add 'evil-mc-define-vars
-      :after #'spacemacs//evil-mc-define-vars-after)
+      :after #'custom//evil-mc-define-vars-after)
     (evil-define-key 'normal evil-mc-key-map
       (kbd "C-n") #'evil-mc-make-and-goto-next-match
       (kbd "C-m") #'evil-mc-make-and-goto-prev-match
       (kbd "C-x") #'evil-mc-skip-and-goto-next-match
       (kbd "C-p") nil
       (kbd "C-t") nil
-      (kbd "<escape>") #'spacemacs/evil-mc-undo-all-cursors)
+      (kbd "<escape>") #'custom/evil-mc-undo-all-cursors)
     (evil-define-key 'visual evil-mc-key-map
       (kbd "C-n") nil
       (kbd "C-p") nil
@@ -137,7 +137,7 @@
 
 (defun custom/post-init-js2-mode ()
   (if (configuration-layer/package-used-p 'flycheck)
-      (add-hook 'js2-mode-hook #'spacemacs//javascript-setup-checkers)))
+      (add-hook 'js2-mode-hook #'custom//javascript-setup-checkers)))
 
 (defun custom/post-init-magit ()
   (setq
@@ -172,11 +172,11 @@
 
 (defun custom/post-init-rjsx-mode ()
   (if (configuration-layer/layer-used-p 'react)
-      (add-hook 'rjsx-mode-hook #'spacemacs//javascript-setup-checkers)))
+      (add-hook 'rjsx-mode-hook #'custom//javascript-setup-checkers)))
 
 (defun custom/post-init-rust-mode ()
   (if (configuration-layer/package-used-p 'flycheck-rust)
-      (add-hook 'rust-mode-hook #'spacemacs//rust-setup-checkers)))
+      (add-hook 'rust-mode-hook #'custom//rust-setup-checkers)))
 
 (defun custom/post-init-semantic ()
   (require 'mode-local)
