@@ -613,7 +613,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
    select-enable-clipboard nil
    tooltip-delay 0.3
    tooltip-hide-delay 999
-   tooltip-short-delay 0.1))
+   tooltip-short-delay 0.1)
+
+  (defun user-custom//indent-buffer-on-save-enable ()
+    (add-hook 'write-contents-functions #'spacemacs/indent-region-or-buffer))
+  (add-hook 'emacs-lisp-mode-hook #'user-custom//indent-buffer-on-save-enable)
+  (add-hook 'sh-mode-hook #'user-custom//indent-buffer-on-save-enable))
 
 (defun dotspacemacs/user-config ()
   (defun user-custom/enable-frame-transparency (frame)
