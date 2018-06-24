@@ -34,6 +34,7 @@ if [ -z "$_fish_abbreviations_initialized" ]
     source $basepath/homebrew.fish
     source $basepath/java.fish
     source $basepath/node.fish
+    source $basepath/python.fish
     source $basepath/ruby.fish
     source $basepath/scala.fish
 
@@ -80,25 +81,11 @@ if [ -z "$_fish_abbreviations_initialized" ]
     abbr -a nmap_web_safe_osscan sudo nmap -p 80,443 -O -v --osscan-guess --fuzzy
 
 
-    # python
-
-    abbr -a py python
-    abbr -a py2 python2
-    abbr -a py3 python3
-    abbr -a pyfind "find . -name '*.py'"
-    abbr -a pygrep "grep --include='*.py'"
-
-
     # perl
 
     abbr -a pl perl
     abbr -a pld perldoc
     abbr -a ple perl -wlne
-
-
-    # pylint
-
-    abbr -a pylint-quick pylint --reports=n
 
 
     # tmuxinator
