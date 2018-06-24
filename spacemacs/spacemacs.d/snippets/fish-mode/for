@@ -1,0 +1,8 @@
+# name : for loop
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: for
+# --
+
+for ${1:varname} in ${2:values}
+    $0
+end

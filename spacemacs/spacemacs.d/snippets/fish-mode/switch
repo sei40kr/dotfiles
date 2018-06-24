@@ -1,0 +1,9 @@
+# name : switch-case
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: switch
+# --
+
+switch ${1:value}
+    case ${2:*}
+         $0
+end
