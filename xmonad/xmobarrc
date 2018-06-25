@@ -1,0 +1,37 @@
+-- -*- mode: haskell -*-
+
+-- xmobarrc
+-- author: Seong Yonng-ju <sei40kr@gmail.com>
+
+Config
+  { font =
+      "xft:NotoSans Nerd Font:pixelsize=16,xft:Noto Sans CJK JP:pixelsize=16"
+  , additionalFonts =
+      [ "xft:NotoSans Nerd Font:pixelsize=16:style=bold,xft:Noto Sans CJK JP:pixelsize=16:bold=style"
+      ]
+  , bgColor = "#222222"
+  , fgColor = "#ffffff"
+  , alpha = 255
+  , position = Top
+  , textOffset = -1
+  , iconOffset = -1
+  , lowerOnStart = True
+  , hideOnStart = False
+  , allDesktops = True
+  , overrideRedirect = True
+  , pickBroadest = False
+  , persistent = True
+  , border = NoBorder
+  , borderColor = "#000000"
+  , iconRoot = "."
+  , commands =
+      [ Run UnsafeStdinReader
+      , Run Date "%m/%d %a %H:%M" "datetime" 10
+      , Run Com "whoami" [] "user" 10
+    -- , Run Com "xmobar-fcitx-mode" [] "fcitx" 10
+      ]
+  , sepChar = "%"
+  , alignSep = "}{"
+  , template =
+      "<fc=#ffffff,#0088cc>  </fc>   %UnsafeStdinReader%   }   <fn=1>%datetime%</fn>   {"
+  }

@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# build
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+set -euo pipefail
+IFS=$'\n\t'
+
+stack build :my-xmonad --verbosity error
+stack install :my-xmonad --local-bin-path bin/ --verbosity error
+mv bin/my-xmonad "$1"
