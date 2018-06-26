@@ -616,6 +616,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
    tooltip-short-delay 0.1))
 
 (defun dotspacemacs/user-config ()
+  (golden-ratio-mode 1)
+
   ;; Bash-like Ctrl-h, Ctrl-w behaviors
   (require 'bind-key)
   (bind-key* "C-h" #'delete-backward-char)
@@ -624,12 +626,12 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (require 'bind-key)
     (bind-key "C-h" nil company-active-map)
     (bind-key "C-w" nil company-active-map))
+
   ;; Fix frame transparency
   (defun user-custom/enable-frame-transparency (frame)
     (spacemacs/enable-transparency frame
                                    (cons dotspacemacs-active-transparency
                                          dotspacemacs-inactive-transparency)))
-  (golden-ratio-mode 1)
   (user-custom/enable-frame-transparency nil)
   (add-hook 'after-make-frame-functions
             #'user-custom/enable-frame-transparency))
