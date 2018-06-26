@@ -17,7 +17,6 @@
      edit-server
      evil
      evil-mc
-     evil-surround
      expand-region
      fish-mode
      flycheck
@@ -82,12 +81,6 @@
       (kbd "C-n") nil
       (kbd "C-p") nil
       (kbd "C-t") nil)))
-
-(defun custom/post-init-evil-surround ()
-  (eval-after-load 'evil-surround
-    '(evil-define-key 'visual evil-surround-mode-map
-      (kbd "s") 'evil-substitute
-      (kbd "S") 'evil-surround-region)))
 
 (defun custom/post-init-expand-region ()
   (evil-global-set-key 'visual (kbd "v") #'er/expand-region)
