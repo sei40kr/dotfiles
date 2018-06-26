@@ -1,8 +1,0 @@
-* Blogs                                                              :elfeed:
-** News                                                                :news:
-*** [[http://blog.esuteru.com/index.rdf][はちま起稿]]
-*** [[http://jin115.com/index.rdf][オレ的ゲーム速報＠刃]]
-** Software Development                                                 :dev:
-*** [[https://postd.cc/feed/][POSTD]]
-*** [[https://www.publickey1.jp/atom.xml][Publickey]]
-*** [[https://yakst.com/ja/posts/feed][Yakst]]

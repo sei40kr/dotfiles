@@ -2,14 +2,7 @@
   branch = master
 	path = spacemacs/spacemacs.d/layers/+tools/quickrun
 	url = https://github.com/sei40kr/spacemacs-quickrun.git
-[submodule "competitive-programming-snippets"]
-	path = spacemacs/spacemacs.d/layers/+private/custom/local/competitive-programming-snippets
-	url = https://github.com/sei40kr/competitive-programming-snippets.git
-	branch = master
 [submodule "spacemacs-ghq"]
 	path = spacemacs/spacemacs.d/layers/+tools/ghq
 	url = https://github.com/sei40kr/spacemacs-ghq.git
 	branch = master
-[submodule "spacemacs-solidity"]
-	path = spacemacs/spacemacs.d/layers/+lang/solidity
-	url = https://github.com/sei40kr/spacemacs-solidity.git
