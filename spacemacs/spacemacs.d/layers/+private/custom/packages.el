@@ -16,7 +16,6 @@
      (competitive-programming-snippets :location local)
      edit-server
      evil
-     evil-escape
      evil-mc
      evil-surround
      expand-region
@@ -57,9 +56,6 @@
     evil-want-C-u-scroll t)
   (eval-after-load 'evil
     '(evil-global-set-key 'normal (kbd "C-s") #'custom/save-some-buffers)))
-
-(defun custom/post-init-evil-escape ()
-  (setq evil-escape-key-sequence "jk"))
 
 (defun custom/post-init-evil-mc ()
   (setq evil-mc-one-cursor-show-mode-line-text nil)

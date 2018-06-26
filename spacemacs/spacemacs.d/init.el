@@ -610,6 +610,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
                                (executable-find "google-chrome")
                                (executable-find "chromium"))
    create-lockfiles nil
+   evil-escape-key-sequence "jk"
    select-enable-clipboard nil
    tooltip-delay 0.3
    tooltip-hide-delay 999
