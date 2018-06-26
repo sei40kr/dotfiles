@@ -613,17 +613,17 @@ before packages are loaded. If you are unsure, you should try in setting them in
    select-enable-clipboard nil
    tooltip-delay 0.3
    tooltip-hide-delay 999
-   tooltip-short-delay 0.1)
-  ;; Bash-like Ctrl-h, Ctrl-w behaviors
-  (with-eval-after-load 'company
-    (bind-key "C-h" nil company-active-map)
-    (bind-key "C-w" nil company-active-map)))
+   tooltip-short-delay 0.1))
 
 (defun dotspacemacs/user-config ()
   ;; Bash-like Ctrl-h, Ctrl-w behaviors
   (require 'bind-key)
   (bind-key* "C-h" #'delete-backward-char)
   (bind-key* "C-w" #'backward-kill-word)
+  (with-eval-after-load 'company
+    (require 'bind-key)
+    (bind-key "C-h" nil company-active-map)
+    (bind-key "C-w" nil company-active-map))
   ;; Fix frame transparency
   (defun user-custom/enable-frame-transparency (frame)
     (spacemacs/enable-transparency frame
