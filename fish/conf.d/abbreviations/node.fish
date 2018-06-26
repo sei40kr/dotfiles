@@ -21,6 +21,7 @@ abbr -a npmI npm init
 
 abbr -a y yarn
 abbr -a ya yarn add
+abbr -a yad yarn add --dev
 abbr -a ycc yarn cache clean
 abbr -a yh yarn help
 abbr -a yo yarn outdated
