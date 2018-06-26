@@ -3,15 +3,14 @@
 ---
 - name: Include variables
   include_vars:
-    file: '{{ item.file }}'
-    name: '{{ item.name }}'
-  with_items:
-    - file: ../vars/main.yml
-      name:
-    - file: ../vars/zsh.yml
-      name: zsh
+    file: ../vars/main.yml
 - include_tasks: arch.yml
   when: ansible_os_family == 'Archlinux'
+- name: Create a directory for ZSH config
+  file:
+    path: ~/.zsh
+    recurse: yes
+    state: directory
 - name: Create a symlink for ZSH config
   file:
     follow: no
@@ -20,29 +19,12 @@
     src: '{{ item.src }}'
     state: link
   with_items:
-    - src: '{{ dotfiles_path }}/zsh'
-      dest: '~/.zsh'
     - src: '{{ dotfiles_path }}/zshenv'
       dest: '~/.zshenv'
-- name: Create a directory for ZSH cache
-  file:
-    path: ~/.cache/zsh
-    recurse: yes
-    state: directory
-- name: Check if zplugin exists
-  stat:
-    path: '{{ zsh.zplugin_path }}/bin'
-  register: zplugin_check
-- name: Create a directory for zplugin
-  file:
-    path: '{{ zsh.zplugin_path }}'
-    recurse: yes
-    state: directory
-- name: Install zplugin
-  git:
-    dest: '{{ zsh.zplugin_path }}/bin'
-    repo: '{{ zsh.zplugin_repo }}'
-  when: not zplugin_check.stat.exists
+    - src: '{{ dotfiles_path }}/zsh/zshenv'
+      dest: '~/.zsh/.zshenv'
+    - src: '{{ dotfiles_path }}/zsh/zshrc'
+      dest: '~/.zsh/.zshrc'
 - name: Locate the installed executable of zsh
   shell: 'which zsh'
   changed_when: False
