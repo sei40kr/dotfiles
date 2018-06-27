@@ -18,7 +18,6 @@ fish_functions:
   - fish_update_abbreviations
   - fish_user_key_bindings
   - fish_right_prompt
-  - npmE
   - reload
   - sdk
   - upgrade
