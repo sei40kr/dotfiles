@@ -21,6 +21,7 @@ npm_packages:
   - gulp
   - import-js
   - markdownlint-cli
+  - npx
   - prettier
   - prettier-eslint-cli
   - solc-js
