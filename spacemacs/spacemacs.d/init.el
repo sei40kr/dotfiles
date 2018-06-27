@@ -185,8 +185,12 @@ values."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(
-                                      flycheck-popup-tip)
+   dotspacemacs-additional-packages
+   (list
+    (list 'competitive-programming-snippets
+          :location (concat dotspacemacs-directory
+                            "/private/local/competitive-programming-snippets"))
+    'flycheck-popup-tip)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -223,7 +227,7 @@ It should only modify the values of Spacemacs settings."
    ;; to compile Emacs 27 from source following the instructions in file
    ;; EXPERIMENTAL.org at to root of the git repository.
    ;; (default nil)
-   dotspacemacs-enable-emacs-pdumper nil
+   dotspacemacs-enable-emacs-pdumper t
 
    ;; File path pointing to emacs 27.1 executable compiled with support
    ;; for the portable dumper (this is currently the branch pdumper).
@@ -580,10 +584,6 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  ;; local
-  ;; (load-file (concat dotspacemacs-directory
-  ;;                    "/private/local/competitive-programming-snippets"))
-
   (setq
    ;; built-ins
    auto-insert-query nil
@@ -636,12 +636,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
    ;; projectile
    projectile-git-submodule-command nil
-   projectile-switch-project-action
-   #'(lambda ()
-       (projectile-dired)
-       (require 'neotree)
-       (if (neo-global--window-exists-p)
-           (neotree-projectile-action)))
 
    ;; spacemacs-common
    spacemacs-theme-comment-italic t)
@@ -660,11 +654,21 @@ before packages are loaded. If you are unsure, you should try in setting them in
                 (setq evil-mc-one-cursor-show-mode-line-text nil)))
 
   ;; fish-mode
-  (eval-after-load 'fish-mode
-    '(add-hook 'before-save-hook #'fish_indent-before-save))
+  (add-hook 'fish-mode-hook
+            #'(lambda ()
+                (add-hook 'before-save-hook #'fish_indent-before-save)))
 
   ;; flycheck-popup-tip
   (add-hook 'flycheck-mode-hook #'flycheck-popup-tip-mode)
+
+  ;; helm-projectile
+  (eval-after-load 'helm-projectile
+    '(setq projectile-switch-project-action
+          #'(lambda ()
+              (projectile-dired)
+              (require 'neotree)
+              (if (neo-global--window-exists-p)
+                  (neotree-projectile-action)))))
 
   ;; js2-mode & rjsx-mode
   (defun user-custom//javascript-setup-checkers ()
@@ -692,9 +696,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
                    '(file local project unloaded system)))
 
 (defun dotspacemacs/user-config ()
-  ;; Also see the beginning of dotspacemacs/user-init
-  ;; (require 'competitive-programming-snippets)
-
   (golden-ratio-mode 1)
 
   ;; Vim-like Ctrl-h, Ctrl-w behaviors
