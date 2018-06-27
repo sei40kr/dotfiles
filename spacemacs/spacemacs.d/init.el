@@ -581,8 +581,8 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   ;; local
-  (load-file (concat dotspacemacs-directory
-                     "/private/local/competitive-programming-snippets"))
+  ;; (load-file (concat dotspacemacs-directory
+  ;;                    "/private/local/competitive-programming-snippets"))
 
   (setq
    ;; built-ins
@@ -693,7 +693,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 (defun dotspacemacs/user-config ()
   ;; Also see the beginning of dotspacemacs/user-init
-  (require 'competitive-programming-snippets)
+  ;; (require 'competitive-programming-snippets)
 
   (golden-ratio-mode 1)
 
