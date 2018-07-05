@@ -1,5 +1,0 @@
-# linuxbrew.yml --- Linuxbrew
-# author: Seong Yong-ju <sei40kr@gmail.com>
----
-linuxbrew_repo: 'https://github.com/Linuxbrew/brew.git'
-linuxbrew_prefix: '~/.linuxbrew'
