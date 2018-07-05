@@ -1,9 +1,11 @@
 # arch.yml --- Advanced Linux Sound Architecture for Arch Linux
 # author: Seong Yong-ju <sei40kr@gmail.com>
 ---
-- name: Install alsa-utils using pacman
+- name: Install alsa-firmw, arealsa-utils using pacman
   pacman:
-    name: alsa-utils
+    name:
+      - alsa-firmware
+      - alsa-utils
   become: yes
 - name: Create a symlink for ALSA config
   file:
