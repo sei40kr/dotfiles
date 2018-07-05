@@ -1,4 +1,4 @@
-# main.yml --- ALSA
+# main.yml --- Advanced Linux Sound Architecture
 # author: Seong Yong-ju <sei40kr@gmail.com>
 ---
 - name: Include variables

@@ -1,4 +1,4 @@
-# arch.yml --- ALSA for Arch Linux
+# arch.yml --- Advanced Linux Sound Architecture for Arch Linux
 # author: Seong Yong-ju <sei40kr@gmail.com>
 ---
 - name: Install alsa-utils using pacman
