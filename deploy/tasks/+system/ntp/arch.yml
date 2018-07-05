@@ -5,9 +5,9 @@
   pacman:
     name: ntp
   become: yes
-- name: Enable ntpd service
-  systemd:
-    enabled: yes
-    name: ntpd.service
-    state: started
-  become: yes
+- name: Set timezone to Asia/Tokyo
+  file:
+    force: yes
+    path: /etc/localtime
+    src: /usr/share/zoneinfo/Asia/Tokyo
+    state: link
