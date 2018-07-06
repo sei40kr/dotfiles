@@ -72,3 +72,15 @@
     path: ~/.config/fish/fishfile
     src: '{{ dotfiles_path }}/fish/fishfile'
     state: link
+- name: Create symlinks for Bash config
+  file:
+    follow: no
+    force: yes
+    path: '{{ item.dest }}'
+    src: '{{ item.src }}'
+    state: link
+  with_items:
+    - src: '{{ dotfiles_path }}/fish/bash_profile'
+      dest: ~/.bash_profile
+    - src: '{{ dotfiles_path }}/fish/bashrc'
+      dest: ~/.bashrc
