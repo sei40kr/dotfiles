@@ -1,0 +1,10 @@
+# -*- mode: sh -*-
+
+# bashrc
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+if ! hash fish 2>/dev/null; then
+    echo 'WARN: fish is not installed.'
+else
+    exec fish
+fi
