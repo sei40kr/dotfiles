@@ -1,0 +1,112 @@
+# -*- mode: sh -*-
+
+# bash_profile
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+### Language
+
+export LANG='en_US.UTF-8'
+export LC_ALL="$LANG"
+
+
+### Pager
+
+export PAGER=less
+
+
+### Editor
+
+export EDITOR=vim
+export GIT_EDITOR=vim
+
+
+### Paths
+
+if [[ ! -d "${HOME}/.local/bin" ]]; then
+    mkdir -p "${HOME}/.local/bin"
+fi
+PATH="${HOME}/.local/bin:${PATH}"
+
+
+## Rust
+
+if ! hash rustc 2>/dev/null; then
+    echo 'WARN: rustc is not installed. Install it via rustup and re-source ~/.bash_profile'
+else
+    export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+fi
+
+# Cargo
+if ! hash cargo 2>/dev/null; then
+    echo 'WARN: cargo is not installed.'
+fi
+PATH="${HOME}/.cargo/bin:${PATH}"
+
+
+## Go
+
+if ! hash go 2>/dev/null; then
+    echo 'WARN: go is not installed.'
+fi
+export GOPATH="${HOME}/go"
+PATH="${GOPATH}/bin:${PATH}"
+
+
+## Haskell Tool Stack
+
+if ! hash stack 2>/dev/null; then
+    echo 'WARN: stack is not installed.'
+fi
+
+
+## Java (SDKMAN!)
+
+if [[ ! -d "${HOME}/.sdkman" ]]; then
+    echo 'WARN: SDKMAN! is not installed.'
+fi
+export SDKMAN_DIR="${HOME}/.sdkman"
+find "${SDKMAN_DIR}/candidates" \
+     -mindepth 1 \
+     -maxdepth 1 \
+     -type d \
+     -exec [ -d {}/current/bin ] |
+    while read -r candidate_path; do
+        PATH="${candidate_path}/current/bin:${PATH}"
+    done
+
+
+## Python (via pyenv)
+
+if [[ ! -d "${HOME}/.pyenv" ]]; then
+    echo 'WARN: pyenv is not installed.'
+fi
+export PYENV_ROOT="${HOME}/.pyenv"
+PATH="${PYENV_ROOT}/shims:${PATH}"
+
+
+## Ruby (via rbenv)
+
+if [[ ! -d "${HOME}/.rbenv" ]]; then
+    echo 'WARN: rbenv is not installed.'
+fi
+export RBENV_ROOT="${HOME}/.rbenv"
+PATH="${RBENV_ROOT}/shims:${PATH}"
+
+
+## JavaScript/Node.js (via nvm)
+
+if [[ ! -d "${HOME}/.nvm/nvm.sh" ]]; then
+    echo 'WARN: nvm is not installed.'
+fi
+export NVM_DIR="${HOME}/.nvm"
+PATH="${NVM_DIR}/current/bin:${PATH}"
+
+
+## ghq
+
+if ! hash ghq 2>/dev/null; then
+    echo 'WARN: ghq is not installed.'
+fi
+
+
+export PATH
