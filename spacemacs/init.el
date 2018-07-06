@@ -189,7 +189,7 @@ values."
    (list
     (list 'competitive-programming-snippets
           :location (concat dotspacemacs-directory
-                            "/private/local/competitive-programming-snippets"))
+                            "private/local/competitive-programming-snippets"))
     'flycheck-popup-tip)
 
    ;; A list of packages that cannot be updated.

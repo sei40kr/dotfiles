@@ -28,5 +28,5 @@
     follow: no
     force: yes
     path: ~/.spacemacs.d
-    src: '{{ dotfiles_path }}/spacemacs/spacemacs.d'
+    src: '{{ dotfiles_path }}/spacemacs'
     state: link
