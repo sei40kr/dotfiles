@@ -5,26 +5,3 @@
   pacman:
     name: redshift
   become: yes
-- name: Create a directory for Redshift config
-  file:
-    path: ~/.config/redshift/hooks
-    recurse: yes
-    state: directory
-- name: Create symlinks for Redshift config
-  file:
-    follow: no
-    force: yes
-    path: '{{ item.dest }}'
-    src: '{{ item.src }}'
-    state: link
-  with_items:
-    - src: '{{ dotfiles_path }}/redshift/redshift.conf'
-      dest: ~/.config/redshift/redshift.conf
-    - src: '{{ dotfiles_path }}/redshift/hooks/brightness.sh'
-      dest: ~/.config/redshift/hooks/brightness.sh
-- name: Enable redshift service
-  systemd:
-    enabled: yes
-    name: redshift.service
-    state: started
-    user: yes

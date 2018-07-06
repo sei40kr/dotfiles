@@ -6,3 +6,5 @@
     file: ../vars/main.yml
 - include_tasks: arch.yml
   when: ansible_os_family == 'Archlinux'
+- include_tasks: linux.yml
+  when: ansible_system == 'Linux'
