@@ -1,7 +1,0 @@
-# arch.yml --- LightDM for Arch Linux
-# author: Seong Yong-ju <sei40kr@gmail.com>
----
-- name: Install lightdm using pacman
-  pacman:
-    name: lightdm
-  become: yes
