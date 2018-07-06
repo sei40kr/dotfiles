@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# comp -- Start a composition manager
+
+comphelp() {
+    cat <<EOM
+Composition Manager:
+   (re)start: COMP
+   stop:      COMP -s
+   query:     COMP -q
+              returns 0 if composition manager is running, else 1
+EOM
+}
+
+checkcomp() {
+    pgrep compton >/dev/null
+}
+
+stopcomp() {
+    checkcomp && killall compton
+}
+
+startcomp() {
+    stopcomp
+    compton -b --xrender-sync --xrender-sync-fence
+    exit
+}
+
+case "$1" in
+    '')
+        startcomp
+        ;;
+    '-q')
+        checkcomp
+        ;;
+    '-s')
+        stopcomp
+        ;;
+    *)
+        comphelp
+        ;;
+esac

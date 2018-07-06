@@ -18,5 +18,5 @@
     follow: no
     force: yes
     path: ~/.local/bin/comp
-    src: '{{ dotfiles_path }}/bin/comp'
+    src: '{{ dotfiles_path }}/compton/comp'
     state: link
