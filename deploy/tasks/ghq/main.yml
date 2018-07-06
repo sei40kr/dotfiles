@@ -1,5 +1,3 @@
 # main.yml --- ghq
 # author: Seong Yong-ju <sei40kr@gmail.com>
 ---
-- include_tasks: linux.yml
-  when: ansible_system == 'Linux'
