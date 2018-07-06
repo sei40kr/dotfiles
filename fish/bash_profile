@@ -65,14 +65,14 @@ if [[ ! -d "${HOME}/.sdkman" ]]; then
     echo 'WARN: SDKMAN! is not installed.'
 fi
 export SDKMAN_DIR="${HOME}/.sdkman"
-find "${SDKMAN_DIR}/candidates" \
-     -mindepth 1 \
-     -maxdepth 1 \
-     -type d \
-     -exec [ -d {}/current/bin ] |
-    while read -r candidate_path; do
-        PATH="${candidate_path}/current/bin:${PATH}"
-    done
+# find "${SDKMAN_DIR}/candidates" \
+#      -mindepth 1 \
+#      -maxdepth 1 \
+#      -type d \
+#      -exec [ -d {}/current/bin ] |
+#     while read -r candidate_path; do
+#         PATH="${candidate_path}/current/bin:${PATH}"
+#     done
 
 
 ## Python (via pyenv)
