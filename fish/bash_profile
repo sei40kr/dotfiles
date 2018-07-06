@@ -81,7 +81,7 @@ if [[ ! -d "${HOME}/.pyenv" ]]; then
     echo 'WARN: pyenv is not installed.'
 fi
 export PYENV_ROOT="${HOME}/.pyenv"
-PATH="${PYENV_ROOT}/shims:${PATH}"
+PATH="${PYENV_ROOT}/bin:${PYENV_ROOT}/shims:${PATH}"
 
 
 ## Ruby (via rbenv)
@@ -90,7 +90,7 @@ if [[ ! -d "${HOME}/.rbenv" ]]; then
     echo 'WARN: rbenv is not installed.'
 fi
 export RBENV_ROOT="${HOME}/.rbenv"
-PATH="${RBENV_ROOT}/shims:${PATH}"
+PATH="${RBENV_ROOT}/bin:${RBENV_ROOT}/shims:${PATH}"
 
 
 ## JavaScript/Node.js (via nvm)
