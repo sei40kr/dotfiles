@@ -11,3 +11,4 @@
     path: /etc/localtime
     src: /usr/share/zoneinfo/Asia/Tokyo
     state: link
+  become: yes
