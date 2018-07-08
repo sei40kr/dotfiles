@@ -1,10 +1,11 @@
 # arch.yml --- NetworkManager for Arch Linux
 # author: Seong Yong-ju <sei40kr@gmail.com>
 ---
-- name: Install networkmanager, dialog using pacman
+- name: Install networkmanager, network-manager-applet, dialog using pacman
   pacman:
     name:
       - networkmanager
+      - network-manager-applet
       # necessary to run wifi-menu
       - dialog
   become: yes
