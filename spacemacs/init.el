@@ -765,6 +765,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (evil-global-set-key 'normal (kbd "C-p")
                        #'helm-projectile-find-file)
 
+  ;; Custom key bindings
+  (evil-global-set-key 'normal (kbd "C-e")
+                       #'evil-avy-goto-char)
+
   ;; Fix frame transparency
   (defun user-custom//enable-frame-transparency (frame)
     (spacemacs/enable-transparency frame
