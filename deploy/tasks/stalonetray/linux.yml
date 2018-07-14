@@ -1,0 +1,13 @@
+# linux.yml --- stalonetray for Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Include variables
+  include_vars:
+    file: ../vars/main.yml
+- name: Create a symlink for stalonetray config
+  file:
+    follow: no
+    force: yes
+    path: ~/.stalonetrayrc
+    src: '{{ dotfiles_path }}/stalonetray/stalonetrayrc'
+    state: link
