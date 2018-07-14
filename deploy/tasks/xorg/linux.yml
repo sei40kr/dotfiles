@@ -1,0 +1,17 @@
+# linux.yml --- Xorg for Linux
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+- name: Create a symlink for Xorg config
+  file:
+    follow: no
+    force: yes
+    path: ~/.xinitrc
+    src: '{{ dotfiles_path }}/xorg/xinitrc'
+    state: link
+- name: Create a symlink for xbindkeys config
+  file:
+    follow: no
+    force: yes
+    path: ~/.xbindkeysrc
+    src: '{{ dotfiles_path }}/xorg/xbindkeysrc'
+    state: link

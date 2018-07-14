@@ -6,10 +6,5 @@
     file: ../../vars/main.yml
 - include_tasks: arch.yml
   when: ansible_os_family == 'Archlinux'
-- name: Create a symlink for Xorg config
-  file:
-    follow: no
-    force: yes
-    path: ~/.xinitrc
-    src: '{{ dotfiles_path }}/xorg/xinitrc'
-    state: link
+- include_tasks: linux.yml
+  when: ansible_system == 'Linux'

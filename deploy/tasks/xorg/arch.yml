@@ -4,6 +4,8 @@
 - name: Install xorg, xorg-xinit, xterm using pacman
   pacman:
     name:
+      - dbus
+      - xbindkeys
       - xorg
       - xorg-xinit
       - xterm
