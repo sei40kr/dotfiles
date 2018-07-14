@@ -4,15 +4,19 @@
 -- author: Seong Yonng-ju <sei40kr@gmail.com>
 
 Config
-  { font =
-      "xft:NotoSans Nerd Font:pixelsize=16,xft:Noto Sans CJK JP:pixelsize=16"
+  { font = "xft:Noto Sans CJK JP:style=bold:pixelsize=16"
   , additionalFonts =
-      [ "xft:NotoSans Nerd Font:pixelsize=16:style=bold,xft:Noto Sans CJK JP:pixelsize=16:bold=style"
+      [ "xft:FuraCode Nerd Font:pixelsize=22" -- 1. workspace icons
+      , "xft:FuraCode Nerd Font:pixelsize=24" -- 2. layout icon
+      , "xft:Noto Sans CJK JP:style=bold:pixelsize=16" -- 3. window title
+      , "xft:Noto Sans CJK JP:style=bold:pixelsize=18" -- 4. system clock
       ]
-  , bgColor = "#222222"
+  , bgColor = "#000000"
   , fgColor = "#ffffff"
-  , alpha = 255
-  , position = Top
+  , alpha = 127
+  -- width is (slot size) * (number of slots) + (scrollbar size) * 2
+  -- see ~/.stalonetrayrc for details
+  , position = Static {xpos = 0, ypos = 0, width = 1742, height = 42}
   , textOffset = -1
   , iconOffset = -1
   , lowerOnStart = True
@@ -24,14 +28,8 @@ Config
   , border = NoBorder
   , borderColor = "#000000"
   , iconRoot = "."
-  , commands =
-      [ Run UnsafeStdinReader
-      , Run Date "%m/%d %a %H:%M" "datetime" 10
-      , Run Com "whoami" [] "user" 10
-    -- , Run Com "xmobar-fcitx-mode" [] "fcitx" 10
-      ]
+  , commands = [Run UnsafeStdinReader, Run Date "%I:%M %p" "datetime" 10]
   , sepChar = "%"
   , alignSep = "}{"
-  , template =
-      "<fc=#ffffff,#0088cc>  </fc>   %UnsafeStdinReader%   }   <fn=1>%datetime%</fn>   {"
+  , template = "    %UnsafeStdinReader%}{<fn=4>%datetime%</fn>    "
   }
