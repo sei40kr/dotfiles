@@ -6,6 +6,8 @@
     name:
       - alsa-firmware
       - alsa-utils
+      - pulseaudio-alsa
+      - pulseaudio-bluetooth
       - volumeicon
   become: yes
 - name: Create a symlink for ALSA config
