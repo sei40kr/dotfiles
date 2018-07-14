@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+
+# xsession
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+## xorg tools
+
+if ! hash xbindkeys 2>/dev/null; then
+    echo 'WARN: xbindkeys is not installed.' >&2
+else
+    xbindkeys
+fi
+
+if ! hash xset 2>/dev/null; then
+    echo 'WARN: xset is not installed.' >&2
+else
+    xset r rate 150 30
+fi
+
+
+## compton
+
+if ! hash compton 2>/dev/null; then
+    echo 'WARN: compton is not installed.' >&2
+elif ! hash comp 2>/dev/null; then
+    echo 'WARN: comp was not found or is not executable.' >&2
+else
+    comp -q || comp
+fi
+
+
+## redshift
+
+if ! hash redshift 2>/dev/null; then
+    echo 'WARN: redshift is not installed.' >&2
+else
+    pgrep redshift >/dev/null || redshift >/dev/null &
+fi
+
+
+## stalonetray
+
+if ! hash stalonetray 2>/dev/null; then
+    echo 'WARN: stalonetray is not installed.' >&2
+else
+        pgrep stalonetray >/dev/null || stalonetray &
+
+        # volumeicon
+        if ! hash volumeicon 2>/dev/null; then
+            echo 'WARN: volumeicon is not installed.' >&2
+        else
+            pgrep volumeicon >/dev/null || volumeicon &
+        fi
+
+        # nm-applet
+        if ! hash nm-applet 2>/dev/null; then
+            echo 'WARN: nm-applet is not installed.' >&2
+        else
+            pgrep nm-applet >/dev/null || nm-applet &
+        fi
+
+        # blueman
+        if ! hash blueman-applet 2>/dev/null; then
+            echo 'WARN: blueman (and blueman-applet) is not installed.' >&2
+        else
+            pgrep blueman-applet >/dev/null || blueman-applet &
+        fi
+fi
+
+
+## fcitx
+
+if ! hash fcitx-autostart 2>/dev/null; then
+    echo 'WARN: fcitx (and fcitx-autostart) is not installed.' >&2
+else
+    fcitx-autostart
+fi
+
+
+## feh
+
+if ! hash feh 2>/dev/null; then
+    echo 'WARN: feh is not installed.' >&2
+elif [ ! -x "${HOME}/.fehbg" ]; then
+    echo 'WARN: ~/.fehbg was not found or is not executable.' >&2
+else
+    eval "${HOME}/.fehbg"
+fi
+
+
+eval "${HOME}/.local/bin/my-xmonad"
