@@ -584,8 +584,6 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (setq-default
-   spacemacs-custom-file (concat spacemacs-cache-directory ".custom-settings"))
   (setq
    ;; built-ins
    auto-insert-query nil
@@ -596,6 +594,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
                                (executable-find "google-chrome")
                                (executable-find "chromium"))
    create-lockfiles nil
+   custom-file nil
    select-enable-clipboard nil
    tooltip-delay 0.3
    tooltip-hide-delay 999
