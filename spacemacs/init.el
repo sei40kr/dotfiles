@@ -666,11 +666,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; helm-projectile
   (eval-after-load 'helm-projectile
     '(setq projectile-switch-project-action
-          #'(lambda ()
-              (projectile-dired)
-              (require 'neotree)
-              (if (neo-global--window-exists-p)
-                  (neotree-projectile-action)))))
+           #'(lambda ()
+               (projectile-dired)
+               (require 'neotree)
+               (if (neo-global--window-exists-p)
+                   (neotree-projectile-action)))))
 
   ;; js2-mode & rjsx-mode
   (defun user-custom//javascript-setup-checkers ()
