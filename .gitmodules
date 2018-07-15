@@ -1,7 +1,7 @@
 [submodule "spacemacs-quickrun"]
 	path = spacemacs/layers/+tools/quickrun
 	url = https://github.com/sei40kr/spacemacs-quickrun.git
-  branch = master
+	branch = master
 [submodule "spacemacs-ghq"]
 	path = spacemacs/layers/+tools/ghq
 	url = https://github.com/sei40kr/spacemacs-ghq.git
