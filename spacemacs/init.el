@@ -31,7 +31,7 @@ values."
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path
-   (list (concat dotspacemacs-directory "/layers"))
+   (list (concat dotspacemacs-directory "layers"))
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
@@ -585,7 +585,7 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (setq-default
-   spacemacs-custom-file (concat spacemacs-cache-directory "/.custom-settings"))
+   spacemacs-custom-file (concat spacemacs-cache-directory ".custom-settings"))
   (setq
    ;; built-ins
    auto-insert-query nil
