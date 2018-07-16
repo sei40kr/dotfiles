@@ -186,11 +186,12 @@ values."
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
-   (list
-    (list 'competitive-programming-snippets
-          :location (concat dotspacemacs-directory
-                            "private/local/competitive-programming-snippets"))
-    'flycheck-popup-tip)
+   '(
+     (competitive-programming-snippets
+      :location (recipe
+                 :fetcher github
+                 :repo "sei40kr/competitive-programming-snippets"))
+     flycheck-popup-tip)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
