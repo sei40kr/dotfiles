@@ -6,7 +6,3 @@
 	path = spacemacs/layers/+tools/ghq
 	url = https://github.com/sei40kr/spacemacs-ghq.git
 	branch = master
-[submodule "competitive-programming-snippets"]
-	path = spacemacs/private/local/competitive-programming-snippets
-	url = https://github.com/sei40kr/competitive-programming-snippets.git
-	branch = master
