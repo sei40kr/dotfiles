@@ -1,9 +1,0 @@
-# name : Redux state normalizer
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: normalize
-# --
-
-const normalize${1:...} = (${2:...}: ${3:...}[]) => ({
-  allIds: $2.map(($4: $3) => $4.${5:id}),
-  byId: Object.assign({}, ...$2.map(($4: $3) => ({ [$4.$5]: $4 }))),
-});$0
