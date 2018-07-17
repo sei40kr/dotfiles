@@ -191,7 +191,13 @@ values."
       :location (recipe
                  :fetcher github
                  :repo "sei40kr/competitive-programming-snippets"))
-     flycheck-popup-tip)
+     flycheck-popup-tip
+     (jest-snippets :location (recipe :fetcher github
+                                      :repo "sei40kr/jest-snippets"))
+     (react-snippets :location (recipe :fetcher github
+                                       :repo "sei40kr/react-snippets"))
+     (redux-snippets :location (recipe :fetcher github
+                                       :repo "sei40kr/redux-snippets")))
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
