@@ -1,8 +1,0 @@
-# name : shouldComponentUpdate(nextProps, nextState) { ... }
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: shouldComponentUpdate
-# --
-
-shouldComponentUpdate(nextProps: Props, nextState: State) {
-  $0
-}
