@@ -1,8 +1,0 @@
-# name : it('...', () => { ... })
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: it
-# --
-
-it('${1:...}', () => {
-  $0
-});

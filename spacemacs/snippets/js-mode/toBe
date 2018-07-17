@@ -1,6 +1,0 @@
-# name : expect(...).toBe(...)
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: toBe
-# --
-
-expect($1).toBe($2);$0

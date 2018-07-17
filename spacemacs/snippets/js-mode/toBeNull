@@ -1,6 +1,0 @@
-# name : expect(...).toBeNull()
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: toBeNull
-# --
-
-expect($1).toBeNull();$0

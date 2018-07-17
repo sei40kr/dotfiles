@@ -1,6 +1,0 @@
-# name : expect(...).toBeTruthy()
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: toBeTruthy
-# --
-
-expect($1).toBeTruthy();$0
