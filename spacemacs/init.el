@@ -120,7 +120,7 @@ values."
      shell-scripts
      sql
      (typescript :variables
-                 typescript-fmt-tool 'typescript-formatter
+                 typescript-fmt-tool 'prettier
                  typescript-backend 'lsp)
      yaml
      ;; Operating systems
