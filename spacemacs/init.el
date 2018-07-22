@@ -81,7 +81,6 @@ values."
               crystal-enable-auto-format t)
      csv
      emacs-lisp
-     flow-type
      (go :variables
          go-use-gometalinter t)
      gpu
