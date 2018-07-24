@@ -6,3 +6,7 @@
 	path = spacemacs/layers/+tools/ghq
 	url = https://github.com/sei40kr/spacemacs-ghq.git
 	branch = master
+[submodule "spacemacs-solidity"]
+	path = spacemacs/layers/+lang/solidity
+	url = https://github.com/sei40kr/spacemacs-solidity.git
+	branch = master
