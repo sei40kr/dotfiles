@@ -1,6 +1,12 @@
 # ruby.fish
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
+# rbenv
+
+abbr -a rubies rbenv versions
+abbr -a gemsets rbenv gemset list
+
+
 # ruby
 
 abbr -a rb ruby
