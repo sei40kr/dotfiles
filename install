@@ -11,6 +11,7 @@ modules=(
 
 facades=(
     pacman
+    trizen
     symlink
     systemctl
 )
