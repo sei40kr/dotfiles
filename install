@@ -5,7 +5,9 @@
 
 BASEDIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
-modules=()
+modules=(
+    redshift
+)
 
 facades=(
     pacman
