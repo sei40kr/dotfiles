@@ -19,6 +19,8 @@ facades=(
 
 ## Initialization
 
+. "${BASEDIR}/install-scripts/utility.bash"
+
 # Parse the arguments
 for arg in "$@"; do
     case "$arg" in
