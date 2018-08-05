@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+# install --- Installer for dotfiles
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+BASEDIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+
+modules=()
+
+facades=(
+    pacman
+    symlink
+    systemctl
+)
+
+
+## Initialization
+
+# Parse the arguments
+for arg in "$@"; do
+    case "$arg" in
+        -u|--upgrade )
+            upgrade=1
+            ;;
+        -v|--verbose )
+            verbose=1
+            ;;
+    esac
+done
+
+facade_reducers=()
+
+add_facade_reducer() {
+    facade_reducers=( "${facade_reducers[@]}" "$1" )
+}
+
+# Load facades
+for facade in "${facades[@]}"; do
+    . "${BASEDIR}/install-scripts/facades/${facade}.bash"
+done
+
+
+## Modules
+
+# Load modules
+for module in "${modules[@]}"; do
+    ctxpath="${BASEDIR}/install-scripts/modules/${module}"
+    srcpaths=()
+
+    if [[ -f "/etc/arch-release" ]]; then
+        srcpaths=( "${srcpaths[@]}" "${ctxpath}/arch.bash" )
+    fi
+
+    case "$OSTYPE" in
+        darwin* )
+            srcpaths=( "${srcpaths[@]}" "${ctxpath}/macos.bash" )
+            ;;
+        linux* )
+            srcpaths=( "${srcpaths[@]}" "${ctxpath}/linux.bash" )
+            ;;
+    esac
+
+    srcpaths=( "${srcpaths[@]}" "${ctxpath}/default.bash" )
+
+    for srcpath in "${srcpaths[@]}"; do
+        if [[ -s "$srcpath" ]]; then
+            . "$srcpath"
+        fi
+    done
+done
+
+
+## Execution
+
+# Run the reducers in a facade to process the installation
+for reducer in "${facade_reducers[@]}"; do
+    eval "$reducer"
+done
