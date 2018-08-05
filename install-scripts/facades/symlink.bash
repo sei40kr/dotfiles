@@ -25,7 +25,7 @@ symlink_reduce_symlinks() {
         local src="${symlink_srcs[$i]}"
         local dest="${symlink_dests[$i]}"
 
-        local basedir="$(basename "$dest")"
+        local basedir="$(dirname "$dest")"
         mkdir -p "$basedir"
 
         ln "${SYMLINK_LN_OPTS[@]}" "$src" "$dest"
