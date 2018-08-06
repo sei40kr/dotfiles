@@ -9,6 +9,7 @@ modules=(
     compton
     fcitx
     fontconfig
+    ghq
     psd
     redshift
     ripgrep
