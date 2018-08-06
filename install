@@ -11,6 +11,7 @@ modules=(
     fontconfig
     psd
     redshift
+    stalonetray
 )
 
 facades=(
