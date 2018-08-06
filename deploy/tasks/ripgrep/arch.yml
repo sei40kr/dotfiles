@@ -1,7 +1,0 @@
-# arch.yml --- ripgrep for Arch Linux
-# author: Seong Yong-ju <sei40kr@gmail.com>
----
-- name: Install ripgrep using pacman
-  pacman:
-    name: ripgrep
-  become: yes
