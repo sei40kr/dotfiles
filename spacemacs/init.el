@@ -94,7 +94,6 @@ values."
                  javascript-fmt-tool 'prettier)
      (json :variables
            json-fmt-tool 'prettier)
-     ipython-notebook
      kotlin
      latex
      lua
