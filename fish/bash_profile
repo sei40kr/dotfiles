@@ -95,11 +95,18 @@ PATH="${RBENV_ROOT}/bin:${RBENV_ROOT}/shims:${PATH}"
 
 ## JavaScript/Node.js (via nvm)
 
+# nvm
 if [[ ! -d "${HOME}/.nvm" ]]; then
     echo 'WARN: nvm is not installed.'
 fi
 export NVM_DIR="${HOME}/.nvm"
 PATH="${NVM_DIR}/current/bin:${PATH}"
+
+# yarn
+if [[ ! -d "${HOME}/.yarn" ]]; then
+    echo 'WARN: yarn is not installed'
+fi
+PATH="${HOME}/.yarn/bin:${PATH}"
 
 
 ## ghq
