@@ -95,7 +95,7 @@ PATH="${RBENV_ROOT}/bin:${RBENV_ROOT}/shims:${PATH}"
 
 ## JavaScript/Node.js (via nvm)
 
-if [[ ! -d "${HOME}/.nvm/nvm.sh" ]]; then
+if [[ ! -d "${HOME}/.nvm" ]]; then
     echo 'WARN: nvm is not installed.'
 fi
 export NVM_DIR="${HOME}/.nvm"
