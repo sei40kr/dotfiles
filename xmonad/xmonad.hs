@@ -90,7 +90,7 @@ inactiveColor = "#aaaaaa"
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor = inactiveColor
+myNormalBorderColor = "#bbbbbb"
 myFocusedBorderColor = "#ffffff"
 
 ------------------------------------------------------------------------
