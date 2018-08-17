@@ -76,14 +76,22 @@ myModMask       = mod4Mask
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
 myWorkspaces    :: [String]
-myWorkspaces    = map show [1..9]
+myWorkspaces    = ["I", " II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
+
+------------------------------------------------------------------------
+-- Colors:
+--
+
+
+textColor = "#557777"
+separatorColor = "#bbcccc"
+activeColor = "#447788"
+inactiveColor = "#aaaaaa"
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor :: String
-myNormalBorderColor = "#ffffff"
-myFocusedBorderColor :: String
-myFocusedBorderColor = "#0088cc"
+myNormalBorderColor = inactiveColor
+myFocusedBorderColor = "#ffffff"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -247,6 +255,7 @@ myManageHook =
     , className =? "Gimp" --> doFloat
     , resource =? "desktop_window" --> doIgnore
     , resource =? "kdesktop" --> doIgnore
+    , className =? "stalonetray" --> doIgnore
     ]
 ------------------------------------------------------------------------
 -- Event handling
@@ -262,6 +271,9 @@ myManageHook =
 --
 -- myEventHook :: Event -> X Data.Monoid.All
 myEventHook = mempty
+
+xmobarFont :: Int -> String -> String
+xmobarFont n = wrap ("<fn="  ++ (show n) ++ ">") "</fn>"
 
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -279,21 +291,17 @@ myLogHook :: [Handle] -> X ()
 myLogHook hs =
   dynamicLogWithPP
     xmobarPP
-      { ppCurrent = xmobarColor heartColor "" . const heart
-      , ppVisible = xmobarColor emptyHeartColor "" . const heart
-      , ppHidden = xmobarColor emptyHeartColor "" . const heart
-      , ppHiddenNoWindows = xmobarColor emptyHeartColor "" . const heart
-      , ppUrgent = xmobarColor emptyHeartColor "" . const heart
-      , ppWsSep = " "
-      , ppSep = "    "
-      , ppTitle = xmobarColor "#ffffff" ""
+      { ppCurrent = xmobarColor activeColor "" . xmobarFont 2
+      , ppVisible = xmobarColor inactiveColor "" . xmobarFont 3
+      , ppHidden = xmobarColor inactiveColor "" . xmobarFont 3
+      , ppHiddenNoWindows = xmobarColor inactiveColor "" . xmobarFont 3
+      , ppUrgent = xmobarColor inactiveColor "" . xmobarFont 3
+      , ppWsSep = "  "
+      , ppSep = (xmobarColor separatorColor "" . xmobarFont 1) "  |  "
+      , ppTitle = xmobarColor textColor ""
       , ppOrder = \(ws:_:t:_) -> [ws, t]
       , ppOutput = forM_ hs . flip hPutStrLn
       }
-  where
-    heart = "<fn=1>\xF7D0</fn>"
-    heartColor = "#fd353f"
-    emptyHeartColor = "#393c33"
 
 
 ------------------------------------------------------------------------
@@ -337,8 +345,6 @@ defaults hs =
     , focusFollowsMouse = myFocusFollowsMouse
     , borderWidth = myBorderWidth
     , modMask = myModMask
-        -- numlockMask deprecated in 0.9.1
-        -- numlockMask        = myNumlockMask,
     , workspaces = myWorkspaces
     , normalBorderColor = myNormalBorderColor
     , focusedBorderColor = myFocusedBorderColor
