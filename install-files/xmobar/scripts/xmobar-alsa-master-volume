@@ -8,12 +8,12 @@ if ! hash amixer 2>/dev/null; then
     exit 1
 fi
 
-volume="$(amixer get Master | grep -Poe '\[\d{1,3}%\]' | grep -Poe '\d+')"
-
-if (( volume == 0 )); then
-    printf '<fn=6>\ufa7e</fn>\n'
-elif (( volume <= 50 )); then
-    printf '<fn=6>\ufa7f</fn>\n'
-else
-    printf '<fn=6>\ufa7d</fn>\n'
-fi
+amixer get Master | awk -F'[][]' '
+    BEGIN { printf "<fn=6>" }
+    /dB/ {
+        if ($6 == "off")   printf "ﱝ"
+        else if ($2 == 0)  printf "奄"
+        else if ($2 <= 50) printf "奔"
+        else               printf "墳"
+    }
+    END { print "</fn>" }'
