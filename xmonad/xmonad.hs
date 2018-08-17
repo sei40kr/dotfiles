@@ -327,7 +327,7 @@ myStartupHook = return ()
 --
 main = do
   screens <- countScreens :: IO Integer
-  hs <- mapM (spawnPipe . ("xmobar -x" ++) . show . (1 -)) [1 .. screens]
+  hs <- mapM (spawnPipe . ("xmobar -x" ++) . show) [1 .. screens]
   xmonad $ defaults hs
 
 -- A structure containing your configuration settings, overriding
