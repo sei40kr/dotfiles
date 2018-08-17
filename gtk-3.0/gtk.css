@@ -1,0 +1,9 @@
+.window-frame {
+    box-shadow: none;
+    margin: 0;
+    border-style: none;
+    border-radius: 0;
+}
+.titlebar {
+    border-radius: 0;
+}
