@@ -6,11 +6,12 @@
 Config
   { font = "xft:Noto Serif CJK JP:style=Medium:pixelsize=16"
   , additionalFonts =
-      ["xft:FuraCode Nerd Font:pixelsize=13" -- 1. separators
-      , "xft:Noto Serif CJK JP:style=Bold:pixelsize=14" -- 2. the active workspace indicator
+      [ "xft:FuraCode Nerd Font:pixelsize=13" -- 1. separators
+      , "xft:Noto Serif CJK JP:style=bold:pixelsize=14" -- 2. the active workspace indicator
       , "xft:Noto Serif CJK JP:style=Medium:pixelsize=14" -- 3. inactive workspace indicators
       , "xft:Noto Serif CJK JP:style=bold:pixelsize=16" -- 4. the title of current window
       , "xft:Noto Serif CJK JP:style=bold:pixelsize=16" -- 5. the clock
+      , "xft:Noto Serif CJK JP:style=bold:pixelsize=16" -- 6. the fcitx status
       ]
   , bgColor = "#ffffff"
   , fgColor = "#557777"
@@ -27,8 +28,13 @@ Config
   , border = NoBorder
   , borderColor = "#000000"
   , iconRoot = "."
-  , commands = [Run UnsafeStdinReader, Run Date "%m/%d %H:%M" "datetime" 10]
+  , commands =
+      [ Run UnsafeStdinReader
+      , Run Com "xmobar-fcitx-status" [] "fcitx" 10
+      , Run Date "%m/%d %H:%M" "datetime" 10
+      ]
   , sepChar = "%"
   , alignSep = "}{"
-  , template = "     %UnsafeStdinReader% }{ <fn=5>%datetime%</fn>    "
+  , template =
+      "     %UnsafeStdinReader% }{ <fn=6>%fcitx%</fn>  <fc=#bbcccc><fn=1>|</fn></fc>  <fn=5>%datetime%</fn>    "
   }

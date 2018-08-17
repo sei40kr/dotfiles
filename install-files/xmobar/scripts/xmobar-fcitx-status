@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# xmobar-fcitx-status
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+if ! hash fcitx-remote 2>/dev/null; then
+    echo "ERROR: fcitx-remote was not found or is not executable." >&2
+    exit 1
+fi
+
+if [[ "$(fcitx-remote)" == 2 ]]; then
+    echo 'あ'
+else
+    echo 'Aa'
+fi
