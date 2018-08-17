@@ -771,6 +771,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (evil-global-set-key 'normal (kbd "C-p")
                        #'helm-projectile-find-file)
 
+  ;; S-c/S-v to copy to/paste from X-clipboard
+  (evil-global-set-key 'visual (kbd "s-c") #'spacemacs/xclipboard-copy)
+  (evil-global-set-key 'insert (kbd "s-v") #'spacemacs/xclipboard-paste)
+
   ;; Fix frame transparency
   (defun user-custom//enable-frame-transparency (frame)
     (spacemacs/enable-transparency frame
