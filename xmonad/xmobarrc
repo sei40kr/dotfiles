@@ -6,16 +6,17 @@
 Config
   { font = "xft:Noto Serif CJK JP:style=Medium:pixelsize=16"
   , additionalFonts =
-      [ "xft:FuraCode Nerd Font:pixelsize=13" -- 1. separators
+      [ "xft:FuraCode Nerd Font:pixelsize=12" -- 1. separators
       , "xft:Noto Serif CJK JP:style=bold:pixelsize=14" -- 2. the active workspace indicator
       , "xft:Noto Serif CJK JP:style=Medium:pixelsize=14" -- 3. inactive workspace indicators
       , "xft:Noto Serif CJK JP:style=bold:pixelsize=16" -- 4. the title of current window
       , "xft:Noto Serif CJK JP:style=bold:pixelsize=16" -- 5. the clock
-      , "xft:Noto Serif CJK JP:style=bold:pixelsize=16" -- 6. the fcitx status
+      , "xft:FuraCode Nerd Font:pixelsize=20" -- 6. volume/battery/network icons
+      , "xft:Noto Serif CJK JP:style=bold:pixelsize=15" -- 7. the fcitx status
       ]
   , bgColor = "#ffffff"
   , fgColor = "#557777"
-  , alpha = 127
+  , alpha = 128
   , position = TopSize C 100 32
   , textOffset = -1
   , iconOffset = -1
@@ -31,10 +32,11 @@ Config
   , commands =
       [ Run UnsafeStdinReader
       , Run Com "xmobar-fcitx-status" [] "fcitx" 10
+      , Run Com "xmobar-alsa-master-volume" [] "alsavol" 10
       , Run Date "%m/%d %H:%M" "datetime" 10
       ]
   , sepChar = "%"
   , alignSep = "}{"
   , template =
-      "     %UnsafeStdinReader% }{ <fn=6>%fcitx%</fn>  <fc=#bbcccc><fn=1>|</fn></fc>  <fn=5>%datetime%</fn>    "
+      "     %UnsafeStdinReader% }{ <fn=7>%fcitx%</fn>  <fc=#bbcccc><fn=1>|</fn></fc>  %alsavol%  <fc=#bbcccc><fn=1>|</fn></fc>  <fn=5>%datetime%</fn>    "
   }
