@@ -1,3 +1,3 @@
 #!/bin/sh
 
-feh --bg-fill "${HOME}/.local/share/backgrounds/Wall_2.png" --no-fehbg
+feh --bg-fill "${HOME}/.local/share/backgrounds/ff7ac-1920x1080.jpg" --no-fehbg
