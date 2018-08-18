@@ -33,10 +33,10 @@ Config
       [ Run UnsafeStdinReader
       , Run Com "xmobar-fcitx-status" [] "fcitx" 10
       , Run Com "xmobar-alsa-master-volume" [] "alsavol" 10
-      , Run Date "%m/%d %H:%M" "datetime" 10
+      , Run Date "<fn=5>%m/%d %H:%M</fn>" "datetime" 10
       ]
   , sepChar = "%"
   , alignSep = "}{"
   , template =
-      "     %UnsafeStdinReader% }{ <fn=7>%fcitx%</fn>  <fc=#bbcccc><fn=1>|</fn></fc>  %alsavol%  <fc=#bbcccc><fn=1>|</fn></fc>  <fn=5>%datetime%</fn>    "
+      "     %UnsafeStdinReader% }{ %fcitx%  <fc=#bbcccc><fn=1>|</fn></fc>  %alsavol%  <fc=#bbcccc><fn=1>|</fn></fc>  %datetime%    "
   }
