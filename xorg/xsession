@@ -38,36 +38,6 @@ else
 fi
 
 
-## stalonetray
-
-if ! hash stalonetray 2>/dev/null; then
-    echo 'WARN: stalonetray is not installed.' >&2
-else
-        pgrep stalonetray >/dev/null || stalonetray &
-
-        # volumeicon
-        if ! hash volumeicon 2>/dev/null; then
-            echo 'WARN: volumeicon is not installed.' >&2
-        else
-            pgrep volumeicon >/dev/null || volumeicon &
-        fi
-
-        # nm-applet
-        if ! hash nm-applet 2>/dev/null; then
-            echo 'WARN: nm-applet is not installed.' >&2
-        else
-            pgrep nm-applet >/dev/null || nm-applet &
-        fi
-
-        # blueman
-        if ! hash blueman-applet 2>/dev/null; then
-            echo 'WARN: blueman (and blueman-applet) is not installed.' >&2
-        else
-            pgrep blueman-applet >/dev/null || blueman-applet &
-        fi
-fi
-
-
 ## fcitx
 
 if ! hash fcitx-autostart 2>/dev/null; then
