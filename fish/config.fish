@@ -18,7 +18,7 @@ set -g theme_nerd_fonts yes
 # Prompt options
 set -g theme_newline_cursor yes
 # Color scheme options
-set -g theme_color_scheme base16-dark
+set -g theme_color_scheme base16-light
 # VCS options
 set -g theme_display_git_dirty_verbose no
 set -g theme_display_git_master_branch no

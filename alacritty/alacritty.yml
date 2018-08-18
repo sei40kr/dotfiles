@@ -61,24 +61,24 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: FuraCode Nerd Font Mono # should be "Menlo" or something on macOS.
+    family: Terminus-ja # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
-    # style: Regular
+    style: Regular
 
   # The bold font face
   bold:
-    family: FuraCode Nerd Font Mono # should be "Menlo" or something on macOS.
+    family: Terminus-ja # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
     # style: Bold
 
   # The italic font face
   italic:
-    family: FuraCode Nerd Font Mono # should be "Menlo" or something on macOS.
+    family: Terminus-ja # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
     # style: Italic
 
   # Point size of the font
-  size: 13.5
+  size: 12
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -115,35 +115,35 @@ custom_cursor_colors: false
 colors:
   # Default colors
   primary:
-    background: '0x282a36'
-    foreground: '0xeff0eb'
+    background: '0xffffff'
+    foreground: '0x4d4d4c'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x97979b'
-    cursor: '0x97979b'
+    text: '0x4c4c4c'
+    cursor: '0x4c4c4c'
 
   # Normal colors
   normal:
-    black: '0x282a36'
-    red: '0xff5c57'
-    green: '0x5af78e'
-    yellow: '0xf3f99d'
-    blue: '0x57c7ff'
-    magenta: '0xff6ac1'
-    cyan: '0xff6ac1'
-    white: '0xf1f1f0'
+    black: '0x000000'
+    red: '0xc82828'
+    green: '0x718c00'
+    yellow: '0xeab700'
+    blue: '0x4171ae'
+    magenta: '0x8959a8'
+    cyan: '0x3e999f'
+    white: '0xfffefe'
 
   # Bright colors
   bright:
-    black: '0x686868'
-    red: '0xff5c57'
-    green: '0x5af78e'
-    yellow: '0xf3f99d'
-    blue: '0x57c7ff'
-    magenta: '0xff6ac1'
-    cyan: '0xff6ac1'
-    white: '0xeff0eb'
+    black: '0x000000'
+    red: '0xc82828'
+    green: '0x708b00'
+    yellow: '0xe9b600'
+    blue: '0x4170ae'
+    magenta: '0x8958a7'
+    cyan: '0x3d999f'
+    white: '0xfffefe'
 
 # Visual Bell
 #
