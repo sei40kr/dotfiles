@@ -90,8 +90,8 @@ inactiveColor = "#aaaaaa"
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor = "#bbbbbb"
-myFocusedBorderColor = "#ffffff"
+myNormalBorderColor = "#ffffff"
+myFocusedBorderColor = "#71868d"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
