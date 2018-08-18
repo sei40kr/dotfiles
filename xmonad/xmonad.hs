@@ -299,6 +299,12 @@ myLogHook hs =
       , ppWsSep = "  "
       , ppSep = (xmobarColor separatorColor "" . xmobarFont 1) "  |  "
       , ppTitle = xmobarColor textColor ""
+      , ppTitleSanitize =
+          (\s ->
+             if 96 < length s
+               then take 92 s ++ " ..."
+               else s) .
+          xmobarStrip
       , ppOrder = \(ws:_:t:_) -> [ws, t]
       , ppOutput = forM_ hs . flip hPutStrLn
       }
