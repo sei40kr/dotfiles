@@ -9,7 +9,7 @@ if ! hash fcitx-remote 2>/dev/null; then
 fi
 
 if [[ "$(fcitx-remote)" == 2 ]]; then
-    echo '<fn=7>あ</fn>'
+    echo '<fn=6>あ</fn>'
 else
-    echo '<fn=7>Aa</fn>'
+    echo '<fn=6>Aa</fn>'
 fi

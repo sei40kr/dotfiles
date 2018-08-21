@@ -1,3 +1,2 @@
 #!/bin/sh
-
-feh --bg-fill "${HOME}/.local/share/backgrounds/ff7ac-1920x1080.jpg" --no-fehbg
+feh --bg-fill '/home/sei40kr/.dotfiles/install-files/feh/ac-01-3840x2160.jpg' 

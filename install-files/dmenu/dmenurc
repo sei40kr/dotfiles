@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# dmenurc
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+set -euo pipefail
+IFS=$'\n\t'
+
+dmenu_run -i -p '>' -fn 'Terminus\-ja-12' -nb '#000000' -nf '#ffffff' -sb '#eedd88' -sf '#000000'

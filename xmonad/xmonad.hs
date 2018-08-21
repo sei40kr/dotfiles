@@ -2,6 +2,7 @@ module Main (main) where
 
 import           Control.Monad
 import qualified Data.Map                         as M
+import           Data.Monoid
 import           System.Exit
 import           System.IO
 import           XMonad
@@ -12,6 +13,7 @@ import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
 import           XMonad.Layout.Gaps
 import           XMonad.Layout.IndependentScreens
+import           XMonad.Layout.LayoutModifier
 import           XMonad.Layout.Spacing
 import           XMonad.Layout.ThreeColumns
 import           XMonad.Layout.WindowNavigation
@@ -33,7 +35,7 @@ myFocusFollowsMouse = True
 -- Width of the window border in pixels.
 --
 myBorderWidth   :: Dimension
-myBorderWidth   = 3
+myBorderWidth   = 0
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -75,23 +77,29 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    :: [String]
-myWorkspaces    = ["I", " II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
+myWorkspaces :: [String]
+myWorkspaces = map show [1 .. 5 :: Int]
+
 
 ------------------------------------------------------------------------
 -- Colors:
 --
 
-
-textColor = "#557777"
-separatorColor = "#bbcccc"
-activeColor = "#447788"
-inactiveColor = "#aaaaaa"
+textColor :: String
+textColor = "#ffffff"
+separatorColor :: String
+separatorColor = "#888877"
+activeColor :: String
+activeColor = "#eedd88"
+inactiveColor :: String
+inactiveColor = "#999999"
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor = "#ffffff"
-myFocusedBorderColor = "#71868d"
+myNormalBorderColor :: String
+myNormalBorderColor = "#000000"
+myFocusedBorderColor :: String
+myFocusedBorderColor = "#000000"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -102,7 +110,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     -- launch a terminal
   [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
     -- launch dmenu
-  , ((modm, xK_p), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
+  , ((modm, xK_p), spawn "~/.dmenurc")
     -- launch gmrun
   , ((modm .|. shiftMask, xK_p), spawn "gmrun")
     -- close focused window
@@ -214,22 +222,21 @@ myMouseBindings XConfig {XMonad.modMask = modm} = M.fromList
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
+myLayout ::
+     ModifiedLayout AvoidStruts (ModifiedLayout SmartSpacing (Choose (ModifiedLayout Gaps (ModifiedLayout WindowNavigation ThreeCol)) Full)) Window
 myLayout = avoidStruts $
   smartSpacing 8 $
   gaps
-    [(U, 8), (D, 8), (R, 12), (L, 12)]
+    [(U, 24), (D, 24), (R, 24), (L, 24)]
     (windowNavigation tiled) |||
   Full
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = ThreeColMid nmaster delta ratio
-
     -- The default number of windows in the master pane
     nmaster = 1
-
     -- Default proportion of screen occupied by master pane
     ratio   = 1/2
-
     -- Percent of screen to increment by when resizing panes
     delta   = 3/100
 
@@ -252,10 +259,8 @@ myManageHook :: ManageHook
 myManageHook =
   composeAll
     [ className =? "feh" --> doCenterFloat
-    , className =? "Gimp" --> doFloat
     , resource =? "desktop_window" --> doIgnore
     , resource =? "kdesktop" --> doIgnore
-    , className =? "stalonetray" --> doIgnore
     ]
 ------------------------------------------------------------------------
 -- Event handling
@@ -269,14 +274,14 @@ myManageHook =
 -- It will add EWMH event handling to your custom event hooks by
 -- combining them with ewmhDesktopsEventHook.
 --
--- myEventHook :: Event -> X Data.Monoid.All
+myEventHook :: Event -> X Data.Monoid.All
 myEventHook = mempty
-
-xmobarFont :: Int -> String -> String
-xmobarFont n = wrap ("<fn="  ++ (show n) ++ ">") "</fn>"
 
 ------------------------------------------------------------------------
 -- Status bars and logging
+
+xmobarFont :: Int -> String -> String
+xmobarFont n = wrap ("<fn="  ++ show n ++ ">") "</fn>"
 
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
@@ -291,13 +296,13 @@ myLogHook :: [Handle] -> X ()
 myLogHook hs =
   dynamicLogWithPP
     xmobarPP
-      { ppCurrent = xmobarColor activeColor "" . xmobarFont 2
-      , ppVisible = xmobarColor inactiveColor "" . xmobarFont 3
-      , ppHidden = xmobarColor inactiveColor "" . xmobarFont 3
-      , ppHiddenNoWindows = xmobarColor inactiveColor "" . xmobarFont 3
-      , ppUrgent = xmobarColor inactiveColor "" . xmobarFont 3
-      , ppWsSep = "  "
-      , ppSep = (xmobarColor separatorColor "" . xmobarFont 1) "  |  "
+      { ppCurrent = xmobarColor activeColor "" . xmobarFont 2 . const "◆"
+      , ppVisible = xmobarColor inactiveColor "" . xmobarFont 2 . const "◇"
+      , ppHidden = xmobarColor inactiveColor "" . xmobarFont 2 . const "◇"
+      , ppHiddenNoWindows = xmobarColor inactiveColor "" . xmobarFont 2 . const "◇"
+      , ppUrgent = xmobarColor inactiveColor "" . xmobarFont 2 . const "◇"
+      , ppWsSep = " "
+      , ppSep = xmobarColor separatorColor "" "   <fn=1>|</fn>   "
       , ppTitle = xmobarColor textColor ""
       , ppTitleSanitize =
           (\s ->
@@ -324,6 +329,7 @@ myLogHook hs =
 -- add initialization of EWMH support to your custom startup hook by combining
 -- it with ewmhDesktopsStartup.
 --
+myStartupHook :: X ()
 myStartupHook = return ()
 
 ------------------------------------------------------------------------
@@ -331,9 +337,10 @@ myStartupHook = return ()
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
+main :: IO ()
 main = do
   screens <- countScreens :: IO Integer
-  hs <- mapM (spawnPipe . ("xmobar -x" ++) . show) [1 .. screens]
+  hs <- mapM (spawnPipe . ("xmobar -x" ++) . show . (-1 +)) [1 .. screens]
   xmonad $ defaults hs
 
 -- A structure containing your configuration settings, overriding

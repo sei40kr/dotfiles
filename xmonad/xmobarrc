@@ -4,19 +4,18 @@
 -- author: Seong Yonng-ju <sei40kr@gmail.com>
 
 Config
-  { font = "xft:Noto Serif CJK JP:style=Medium:pixelsize=16"
+  { font = "xft:Noto Sans CJK JP:pixelsize=16"
   , additionalFonts =
-      [ "xft:FuraCode Nerd Font:pixelsize=12" -- 1. separators
-      , "xft:Noto Serif CJK JP:style=bold:pixelsize=14" -- 2. the active workspace indicator
-      , "xft:Noto Serif CJK JP:style=Medium:pixelsize=14" -- 3. inactive workspace indicators
-      , "xft:Noto Serif CJK JP:style=bold:pixelsize=16" -- 4. the title of current window
-      , "xft:Noto Serif CJK JP:style=bold:pixelsize=16" -- 5. the clock
-      , "xft:FuraCode Nerd Font:pixelsize=20" -- 6. volume/battery/network icons
-      , "xft:Noto Serif CJK JP:style=bold:pixelsize=15" -- 7. the fcitx status
+      [ "xft:FuraCode Nerd Font:pixelsize=14" -- 1. separator
+      , "xft:Noto Sans CJK JP:pixelsize=16" -- 2. workspace icon
+      , "xft:Noto Sans CJK JP:pixelsize=16" -- 3. window title
+      , "xft:Noto Sans CJK JP:pixelsize=16" -- 4. clock
+      , "xft:FuraCode Nerd Font:pixelsize=20" -- 5. tray icon
+      , "xft:Noto Serif CJK JP:style=bold:pixelsize=15" -- 6. tray icon (fcitx)
       ]
-  , bgColor = "#ffffff"
-  , fgColor = "#557777"
-  , alpha = 64
+  , bgColor = "#000000"
+  , fgColor = "#ffffff"
+  , alpha = 204
   , position = TopSize C 100 32
   , textOffset = -1
   , iconOffset = -1
@@ -27,16 +26,15 @@ Config
   , pickBroadest = False
   , persistent = True
   , border = NoBorder
-  , borderColor = "#000000"
   , iconRoot = "."
   , commands =
       [ Run UnsafeStdinReader
       , Run Com "xmobar-fcitx-status" [] "fcitx" 10
       , Run Com "xmobar-alsa-master-volume" [] "alsavol" 10
-      , Run Date "<fn=5>%m/%d %H:%M</fn>" "datetime" 10
+      , Run Date "<fn=4>%m/%d %H:%M</fn>" "datetime" 10
       ]
   , sepChar = "%"
   , alignSep = "}{"
   , template =
-      "     %UnsafeStdinReader% }{ %fcitx%  <fc=#bbcccc><fn=1>|</fn></fc>  %alsavol%  <fc=#bbcccc><fn=1>|</fn></fc>  %datetime%    "
+      "   %UnsafeStdinReader% }{ %fcitx%   <fc=#888877><fn=1>|</fn></fc>   %alsavol%   <fc=#888877><fn=1>|</fn></fc>   %datetime%    "
   }
