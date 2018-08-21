@@ -259,6 +259,7 @@ myManageHook :: ManageHook
 myManageHook =
   composeAll
     [ className =? "feh" --> doCenterFloat
+    , className =? "Fcitx-config-gtk3" --> doCenterFloat
     , resource =? "desktop_window" --> doIgnore
     , resource =? "kdesktop" --> doIgnore
     ]

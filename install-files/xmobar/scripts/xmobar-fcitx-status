@@ -4,12 +4,16 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 if ! hash fcitx-remote 2>/dev/null; then
-    echo "ERROR: fcitx-remote was not found or is not executable." >&2
+    echo "ERROR: fcitx-remote was not found." >&2
     exit 1
 fi
 
+printf '<action=`fcitx-configtool`><fn=6>'
+
 if [[ "$(fcitx-remote)" == 2 ]]; then
-    echo '<fn=6>あ</fn>'
+    printf 'あ'
 else
-    echo '<fn=6>Aa</fn>'
+    printf 'Aa'
 fi
+
+echo '</fn></action>'
