@@ -159,6 +159,7 @@ values."
             shell-default-shell 'multi-term
             shell-default-height 30
             shell-default-position 'bottom)
+     systemd
      tmux
      (transmission :variables
                    transmission-auto-refresh-all t)
