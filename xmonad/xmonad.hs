@@ -35,7 +35,7 @@ myFocusFollowsMouse = True
 -- Width of the window border in pixels.
 --
 myBorderWidth   :: Dimension
-myBorderWidth   = 0
+myBorderWidth   = 2
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -99,7 +99,7 @@ inactiveColor = "#999999"
 myNormalBorderColor :: String
 myNormalBorderColor = "#000000"
 myFocusedBorderColor :: String
-myFocusedBorderColor = "#000000"
+myFocusedBorderColor = "#eedd88"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -224,21 +224,19 @@ myMouseBindings XConfig {XMonad.modMask = modm} = M.fromList
 --
 myLayout ::
      ModifiedLayout AvoidStruts (ModifiedLayout SmartSpacing (Choose (ModifiedLayout Gaps (ModifiedLayout WindowNavigation ThreeCol)) Full)) Window
-myLayout = avoidStruts $
-  smartSpacing 8 $
-  gaps
-    [(U, 24), (D, 24), (R, 24), (L, 24)]
-    (windowNavigation tiled) |||
-  Full
-  where
+myLayout =
+  avoidStruts $
+  smartSpacing 16 $
+  gaps [(U, 16), (D, 16), (R, 16), (L, 16)] (windowNavigation tiled) ||| Full
     -- default tiling algorithm partitions the screen into two panes
-    tiled   = ThreeColMid nmaster delta ratio
+  where
+    tiled = ThreeColMid nmaster delta ratio
     -- The default number of windows in the master pane
     nmaster = 1
     -- Default proportion of screen occupied by master pane
-    ratio   = 1/2
+    ratio = 1 / 2
     -- Percent of screen to increment by when resizing panes
-    delta   = 3/100
+    delta = 3 / 100
 
 ------------------------------------------------------------------------
 -- Window rules:
