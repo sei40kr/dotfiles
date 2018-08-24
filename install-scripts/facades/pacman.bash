@@ -4,7 +4,6 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 PACMAN_SYNC_OPTS=( -S --needed --noconfirm --noprogressbar )
-[[ "$verbose" == 1 ]] && PACMAN_SYNC_OPTS=( "${PACMAN_SYNC_OPTS[@]}" -v ) || :
 
 pacman_pkgs=()
 
@@ -26,7 +25,7 @@ pacman_reduce_pkgs() {
         return
     fi
 
-    sudo pacman "${PACMAN_SYNC_OPTS[@]}" "${pacman_pkgs[@]}"
+    facade_exec_cmd sudo pacman "${PACMAN_SYNC_OPTS[@]}" "${pacman_pkgs[@]}"
 }
 
-add_facade_reducer pacman_reduce_pkgs
+facade_add_reducer pacman_reduce_pkgs

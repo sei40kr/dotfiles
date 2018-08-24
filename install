@@ -24,11 +24,8 @@ facades=(
 )
 
 
-## Initialization
-
 . "${BASEDIR}/install-scripts/utility.bash"
 
-# Parse the arguments
 for arg in "$@"; do
     case "$arg" in
         -u|--upgrade )
@@ -37,41 +34,48 @@ for arg in "$@"; do
         -v|--verbose )
             verbose=1
             ;;
+        --dry-run )
+            dry_run=1
+            ;;
     esac
 done
 
+do_upgrade() {
+    [[ "$upgrade" == 1 ]]
+}
+
+is_verbose() {
+    [[ "$verbose" == 1 ]]
+}
+
+do_dry_run() {
+    [[ "$dry_run" == 1 ]]
+}
+
 facade_reducers=()
 
-add_facade_reducer() {
+facade_add_reducer() {
     facade_reducers=( "${facade_reducers[@]}" "$1" )
 }
 
-# Load facades
+. "${BASEDIR}/install-scripts/facade-utility.bash"
+
 for facade in "${facades[@]}"; do
     . "${BASEDIR}/install-scripts/facades/${facade}.bash"
 done
 
+. "${BASEDIR}/install-scripts/utility.bash"
 
-## Modules
+is_arch=0
+is_arch && is_arch=1
 
-# Load modules
 for module in "${modules[@]}"; do
     ctxpath="${BASEDIR}/install-scripts/modules/${module}"
     srcpaths=()
 
-    if [[ -f "/etc/arch-release" ]]; then
-        srcpaths=( "${srcpaths[@]}" "${ctxpath}/arch.bash" )
-    fi
-
-    case "$OSTYPE" in
-        darwin* )
-            srcpaths=( "${srcpaths[@]}" "${ctxpath}/macos.bash" )
-            ;;
-        linux* )
-            srcpaths=( "${srcpaths[@]}" "${ctxpath}/linux.bash" )
-            ;;
-    esac
-
+    [[ "$is_arch" == 1 ]] && srcpaths=( "${srcpaths[@]}" "${ctxpath}/arch.bash" )
+    is_macos && srcpaths=( "${srcpaths[@]}" "${ctxpath}/macos.bash" )
+    is_linux && srcpaths=( "${srcpaths[@]}" "${ctxpath}/linux.bash" )
     srcpaths=( "${srcpaths[@]}" "${ctxpath}/default.bash" )
 
     for srcpath in "${srcpaths[@]}"; do
@@ -82,9 +86,6 @@ for module in "${modules[@]}"; do
 done
 
 
-## Execution
-
-# Run the reducers in a facade to process the installation
 for reducer in "${facade_reducers[@]}"; do
     eval "$reducer"
 done

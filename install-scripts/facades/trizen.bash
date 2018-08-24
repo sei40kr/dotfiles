@@ -2,7 +2,7 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 TRIZEN_SYNC_OPTS=( -S --noedit --needed --noconfirm )
-[[ "$upgrade" != 1 ]] && TRIZEN_SYNC_OPTS=( "${TRIZEN_SYNC_OPTS[@]}" --nopull ) || :
+do_upgrade && TRIZEN_SYNC_OPTS=( "${TRIZEN_SYNC_OPTS[@]}" --nopull )
 
 trizen_pkgs=()
 
@@ -24,7 +24,7 @@ trizen_reduce_pkgs() {
         return
     fi
 
-    trizen "${TRIZEN_SYNC_OPTS[@]}" "${trizen_pkgs[@]}"
+    facade_exec_cmd trizen "${TRIZEN_SYNC_OPTS[@]}" "${trizen_pkgs[@]}"
 }
 
-add_facade_reducer trizen_reduce_pkgs
+facade_add_reducer trizen_reduce_pkgs

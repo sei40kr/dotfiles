@@ -1,6 +1,14 @@
-# utility.bash --- Utility functions for a facade/module
+# utility.bash --- Utility functions for the install script
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-clear_last_line() {
-    tput cuu 1 && tput el
+is_arch() {
+    [[ -f '/etc/arch-release' ]]
+}
+
+is_macos() {
+    [[ "$OSTYPE" == darwin* ]]
+}
+
+is_linux() {
+    [[ "$OSTYPE" == linux* ]]
 }
