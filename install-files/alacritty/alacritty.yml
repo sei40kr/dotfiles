@@ -69,13 +69,13 @@ font:
   bold:
     family: Terminus-ja # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
-    # style: Bold
+    style: Bold
 
   # The italic font face
   italic:
     family: Terminus-ja # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
-    # style: Italic
+    style: Italic
 
   # Point size of the font
   size: 12
@@ -115,35 +115,35 @@ custom_cursor_colors: false
 colors:
   # Default colors
   primary:
-    background: '0xffffff'
-    foreground: '0x4d4d4c'
+    background: '0x141414'
+    foreground: '0x94a3a5'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x4c4c4c'
-    cursor: '0x4c4c4c'
+    text: '0x94a3a5'
+    cursor: '0x94a3a5'
 
   # Normal colors
   normal:
-    black: '0x000000'
-    red: '0xc82828'
-    green: '0x718c00'
-    yellow: '0xeab700'
-    blue: '0x4171ae'
-    magenta: '0x8959a8'
-    cyan: '0x3e999f'
-    white: '0xfffefe'
+    black: '0x282a2e'
+    red: '0xa54242'
+    green: '0x8c9440'
+    yellow: '0xde935f'
+    blue: '0x5f819d'
+    magenta: '0x85678f'
+    cyan: '0x5e8d87'
+    white: '0x969896'
 
   # Bright colors
   bright:
-    black: '0x000000'
-    red: '0xc82828'
-    green: '0x708b00'
-    yellow: '0xe9b600'
-    blue: '0x4170ae'
-    magenta: '0x8958a7'
-    cyan: '0x3d999f'
-    white: '0xfffefe'
+    black: '0x373b41'
+    red: '0xcc6666'
+    green: '0xb5bd68'
+    yellow: '0xf0c674'
+    blue: '0x81a2be'
+    magenta: '0xb294bb'
+    cyan: '0x8abeb7'
+    white: '0xc5c8c6'
 
 # Visual Bell
 #
@@ -172,7 +172,7 @@ visual_bell:
   duration: 0
 
 # Background opacity
-background_opacity: 0.90
+background_opacity: 0.80
 
 # Mouse bindings
 #
