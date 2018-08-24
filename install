@@ -7,6 +7,7 @@ BASEDIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
 modules=(
     compton
+    docker
     fcitx
     fontconfig
     ghq
