@@ -1,7 +1,0 @@
-# arch.yml --- Fontconfig for Arch Linux
-# author: Seong Yong-ju <sei40kr@gmail.com>
----
-- name: Install fontconfig using pacman
-  pacman:
-    name: fontconfig
-  become: yes
