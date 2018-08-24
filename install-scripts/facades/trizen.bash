@@ -2,7 +2,7 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 TRIZEN_SYNC_OPTS=( -S --noedit --needed --noconfirm )
-do_upgrade && TRIZEN_SYNC_OPTS=( "${TRIZEN_SYNC_OPTS[@]}" --nopull )
+do_upgrade || TRIZEN_SYNC_OPTS=( "${TRIZEN_SYNC_OPTS[@]}" --nopull )
 
 trizen_pkgs=()
 
@@ -11,16 +11,14 @@ trizen_sync_pkg() {
 }
 
 
-## Reducer
-
 trizen_reduce_pkgs() {
-    if ! hash trizen 2>/dev/null; then
-        echo 'ERROR: trizen was not found or is not executable.' >&2
-        exit 1
-    fi
+    hash trizen 2>/dev/null || die 'trizen is not found.'
+
+    progress 'Installing trizen packages ...'
 
     # If there're no packages to install, do nothing
     if [[ "${#trizen_pkgs}" == 0 ]]; then
+        warn "There're no trizen packages to install."
         return
     fi
 

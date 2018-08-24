@@ -17,60 +17,29 @@ modules=(
     stalonetray
 )
 
-facades=(
-    pacman
-    trizen
-    symlink
-    systemctl
-)
-
 
 . "${BASEDIR}/install-scripts/utility.bash"
 
-for arg in "$@"; do
-    case "$arg" in
-        -u|--upgrade )
-            upgrade=1
-            ;;
-        -v|--verbose )
-            verbose=1
-            ;;
-        --dry-run )
-            dry_run=1
-            ;;
-    esac
-done
-
-do_upgrade() {
-    [[ "$upgrade" == 1 ]]
-}
-
-is_verbose() {
-    [[ "$verbose" == 1 ]]
-}
-
-do_dry_run() {
-    [[ "$dry_run" == 1 ]]
-}
-
-facade_reducers=()
+__facade_reducers=()
 
 facade_add_reducer() {
-    facade_reducers=( "${facade_reducers[@]}" "$1" )
+    __facade_reducers=( "${__facade_reducers[@]}" "$1" )
 }
 
-. "${BASEDIR}/install-scripts/facade-utility.bash"
+. "${BASEDIR}/install-scripts/arg-parser.bash"
 
-for facade in "${facades[@]}"; do
-    . "${BASEDIR}/install-scripts/facades/${facade}.bash"
-done
+parse_args "$@"
 
-. "${BASEDIR}/install-scripts/utility.bash"
+progress 'Collecting information ...'
 
+# is_arch shouldn't be called repeatedly
+# because it invokes a file access
 is_arch=0
 is_arch && is_arch=1
 
-for module in "${modules[@]}"; do
+. "${BASEDIR}/install-scripts/module-utility.bash"
+
+for module in "${modules_to_install[@]}"; do
     ctxpath="${BASEDIR}/install-scripts/modules/${module}"
     srcpaths=()
 
@@ -80,13 +49,11 @@ for module in "${modules[@]}"; do
     srcpaths=( "${srcpaths[@]}" "${ctxpath}/default.bash" )
 
     for srcpath in "${srcpaths[@]}"; do
-        if [[ -s "$srcpath" ]]; then
-            . "$srcpath"
-        fi
+        [[ -s "$srcpath" ]] && . "$srcpath"
     done
 done
 
 
-for reducer in "${facade_reducers[@]}"; do
+for reducer in "${__facade_reducers[@]}"; do
     eval "$reducer"
 done

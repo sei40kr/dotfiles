@@ -1,10 +1,11 @@
-# symlink.bash --- A facade for a symbolic link
+# symlink.bash --- Facade for a symbolic link
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 SYMLINK_SRC_BASEDIR="${BASEDIR}/install-files"
 SYMLINK_DEST_BASEDIR="${HOME}"
 
-SYMLINK_LN_OPTS=( -fLsTv )
+SYMLINK_LN_OPTS=( -fLsT )
+is_verbose && SYMLINK_LN_OPTS=( "${SYMLINK_LN_OPTS[@]}" -v )
 
 symlink_srcs=()
 symlink_dests=()
@@ -17,9 +18,9 @@ symlink_make() {
 }
 
 
-## Reducer
-
 symlink_reduce_symlinks() {
+    [[ "${#symlink_srcs[@]}" != 0 ]] && progress 'Creating symlinks ...'
+
     for i in "${!symlink_srcs[@]}"; do
         local src="${symlink_srcs[$i]}"
         local dest="${symlink_dests[$i]}"

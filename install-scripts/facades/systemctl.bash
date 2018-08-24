@@ -16,13 +16,13 @@ systemctl_enable_usrsvc() {
 }
 
 
-## Reducers
-
 systemctl_reduce_svcs() {
     # If there're no services to enable, do nothing
     if [[ "${#systemctl_svcs}" == 0 ]]; then
         return
     fi
+
+    progress 'Enabling systemctl services ...'
 
     facade_exec_cmd sudo systemctl enable "${SYSTEMCTL_ENABLE_OPTS[@]}" "${systemctl_svcs[@]}"
 }
@@ -34,6 +34,8 @@ systemctl_reduce_usrsvcs() {
     if [[ "${#systemctl_usrsvcs}" == 0 ]]; then
         return
     fi
+
+    progress 'Enabling systemctl user services ...'
 
     facade_exec_cmd systemctl enable "${SYSTEMCTL_ENABLE_USER_OPTS[@]}" "${systemctl_usrsvcs[@]}"
 }

@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # pacman.bash --- pacman facade
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
@@ -12,16 +10,14 @@ pacman_sync_pkg() {
 }
 
 
-## Reducer
-
 pacman_reduce_pkgs() {
-    if ! hash pacman 2>/dev/null; then
-        echo 'ERROR: pacman was not found or is not executable.' >&2
-        exit 1
-    fi
+    hash pacman 2>/dev/null || die 'pacman is not found.'
+
+    progress 'Installing pacman packages ...'
 
     # If there're no packages to install, do nothing
     if [[ "${#pacman_pkgs}" == 0 ]]; then
+        warn "There're no pacman packages to install."
         return
     fi
 
