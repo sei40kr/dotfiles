@@ -4,6 +4,13 @@
 stack_pkgs=()
 stack_install_flags=()
 
+# USAGE
+#    stack_install_pkg TARGET [FLAG...]
+#
+# EXAMPLES
+#    stack_install_pkg xmonad
+#    stack_install_pkg xmobar with_dbus with_alsa
+#
 stack_install_pkg() {
     local pkg="$1"
     shift
