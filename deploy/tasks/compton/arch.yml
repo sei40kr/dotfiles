@@ -1,7 +1,0 @@
-# arch.yml --- compton for Arch Linux
-# author: Seong Yong-ju <sei40kr@gmail.com>
----
-- name: Install compton using pacman
-  pacman:
-    name: compton
-  become: yes
