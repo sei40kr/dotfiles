@@ -6,7 +6,9 @@ PACMAN_SYNC_OPTS=( -S --needed --noconfirm --noprogressbar )
 pacman_pkgs=()
 
 pacman_sync_pkg() {
-    pacman_pkgs=( "${pacman_pkgs[@]}" "$1" )
+    local pkg="$1"
+
+    pacman_pkgs+=( "$pkg" )
 }
 
 

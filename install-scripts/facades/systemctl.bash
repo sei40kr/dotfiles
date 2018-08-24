@@ -8,11 +8,15 @@ systemctl_svcs=()
 systemctl_usrsvcs=()
 
 systemctl_enable_svc() {
-    systemctl_svcs=( "${systemctl_svcs[@]}" "$1" )
+    local svc="$1"
+
+    systemctl_svcs+=( "$svc" )
 }
 
 systemctl_enable_usrsvc() {
-    systemctl_usrsvcs=( "${systemctl_usrsvcs[@]}" "$1" )
+    local usrsvc="$1"
+
+    systemctl_usrsvcs+=( "$usrsvc" )
 }
 
 

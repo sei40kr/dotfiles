@@ -16,9 +16,9 @@ stack_install_pkg() {
     shift
     local flags=( "$@" )
 
-    stack_pkgs=( "${stack_pkgs[@]}" "$pkg" )
+    stack_pkgs+=( "$pkg" )
     for flag in "${flags[@]}"; do
-        stack_install_flags=( "${stack_install_flags[@]}" "${pkg}:${flag}" )
+        stack_install_flags+=( "${pkg}:${flag}" )
     done
 }
 
@@ -34,7 +34,7 @@ stack_reduce_pkgs() {
 
     local install_opts=()
     for flag in "${stack_install_flags[@]}"; do
-        install_opts=( "${install_opts[@]}" --flag "$flag" )
+        install_opts+=( --flag "$flag" )
     done
 
     facade_exec_cmd stack install "${stack_pkgs[@]}" "${install_opts[@]}"

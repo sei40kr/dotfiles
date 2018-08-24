@@ -7,7 +7,9 @@ do_upgrade || TRIZEN_SYNC_OPTS=( "${TRIZEN_SYNC_OPTS[@]}" --nopull )
 trizen_pkgs=()
 
 trizen_sync_pkg() {
-    trizen_pkgs=( "${trizen_pkgs[@]}" "$1" )
+    local pkg="$1"
+
+    trizen_pkgs+=( "$pkg" )
 }
 
 
