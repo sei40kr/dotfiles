@@ -5,7 +5,6 @@ SYMLINK_SRC_BASEDIR="${BASEDIR}/install-files"
 SYMLINK_DEST_BASEDIR="${HOME}"
 
 SYMLINK_LN_OPTS=( -fLsT )
-is_verbose && SYMLINK_LN_OPTS=( "${SYMLINK_LN_OPTS[@]}" -v )
 
 symlink_srcs=()
 symlink_dests=()
