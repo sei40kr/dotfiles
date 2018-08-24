@@ -35,7 +35,7 @@ parse_args() {
                 [[ "${__module_map[$arg]}" != 1 ]] &&
                     die "Module ${arg} is not found"
 
-                modules_to_install=( "${modules_to_install[@]}" "$arg" )
+                modules_to_install+=( "$arg" )
                 ;;
         esac
     done

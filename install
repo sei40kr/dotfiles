@@ -23,7 +23,9 @@ modules=(
 __facade_reducers=()
 
 facade_add_reducer() {
-    __facade_reducers=( "${__facade_reducers[@]}" "$1" )
+    local reducer="$1"
+
+    __facade_reducers+=( "$reducer" )
 }
 
 . "${BASEDIR}/install-scripts/arg-parser.bash"
@@ -43,10 +45,10 @@ for module in "${modules_to_install[@]}"; do
     ctxpath="${BASEDIR}/install-scripts/modules/${module}"
     srcpaths=()
 
-    [[ "$is_arch" == 1 ]] && srcpaths=( "${srcpaths[@]}" "${ctxpath}/arch.bash" )
-    is_macos && srcpaths=( "${srcpaths[@]}" "${ctxpath}/macos.bash" )
-    is_linux && srcpaths=( "${srcpaths[@]}" "${ctxpath}/linux.bash" )
-    srcpaths=( "${srcpaths[@]}" "${ctxpath}/default.bash" )
+    [[ "$is_arch" == 1 ]] && srcpaths+=( "${ctxpath}/arch.bash" )
+    is_macos && srcpaths+=( "${ctxpath}/macos.bash" )
+    is_linux && srcpaths+=( "${ctxpath}/linux.bash" )
+    srcpaths+=( "${ctxpath}/default.bash" )
 
     for srcpath in "${srcpaths[@]}"; do
         [[ -s "$srcpath" ]] && . "$srcpath"
