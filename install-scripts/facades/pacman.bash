@@ -23,6 +23,8 @@ pacman_reduce_pkgs() {
         return
     fi
 
+    printf -- "- %s\n" "${pacman_pkgs[@]}"
+
     facade_exec_cmd sudo pacman "${PACMAN_SYNC_OPTS[@]}" "${pacman_pkgs[@]}"
 }
 

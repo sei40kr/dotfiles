@@ -32,6 +32,8 @@ stack_reduce_pkgs() {
         return
     fi
 
+    printf -- '- %s\n' "${stack_pkgs[@]}"
+
     local install_opts=()
     for flag in "${stack_install_flags[@]}"; do
         install_opts+=( --flag "$flag" )

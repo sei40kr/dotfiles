@@ -28,6 +28,8 @@ systemctl_reduce_svcs() {
 
     progress 'Enabling systemctl services ...'
 
+    printf -- '- %s\n' "${systemctl_svcs[@]}"
+
     facade_exec_cmd sudo systemctl enable "${SYSTEMCTL_ENABLE_OPTS[@]}" "${systemctl_svcs[@]}"
 }
 
@@ -40,6 +42,8 @@ systemctl_reduce_usrsvcs() {
     fi
 
     progress 'Enabling systemctl user services ...'
+
+    printf -- '- %s\n' "${systemctl_usrsvcs[@]}"
 
     facade_exec_cmd systemctl enable "${SYSTEMCTL_ENABLE_USER_OPTS[@]}" "${systemctl_usrsvcs[@]}"
 }

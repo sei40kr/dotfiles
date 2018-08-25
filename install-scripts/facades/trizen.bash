@@ -24,6 +24,8 @@ trizen_reduce_pkgs() {
         return
     fi
 
+    printf -- '- %s\n' "${trizen_pkgs[@]}"
+
     facade_exec_cmd trizen "${TRIZEN_SYNC_OPTS[@]}" "${trizen_pkgs[@]}"
 }
 

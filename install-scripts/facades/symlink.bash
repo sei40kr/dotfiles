@@ -10,8 +10,9 @@ symlink_srcs=()
 symlink_dests=()
 
 symlink_make() {
-    [[ "${1:0:1}" != '/' ]] && local src="${SYMLINK_SRC_BASEDIR}/${1}" || local src="$1"
-    [[ "${2:0:1}" != '/' ]] && local dest="${SYMLINK_DEST_BASEDIR}/${2}" || local dest="$2"
+    local src="$1"
+    local dest="$2"
+
     symlink_srcs+=( "$src" )
     symlink_dests+=( "$dest" )
 }
@@ -24,6 +25,10 @@ symlink_reduce_symlinks() {
         local src="${symlink_srcs[$i]}"
         local dest="${symlink_dests[$i]}"
 
+        echo "- ${src} -> ${dest}"
+
+        [[ "${src:0:1}" != '/' ]] && local src="${SYMLINK_SRC_BASEDIR}/${src}"
+        [[ "${dest:0:1}" != '/' ]] && local dest="${SYMLINK_DEST_BASEDIR}/${dest}"
         local basedir="$(dirname "$dest")"
         mkdir -p "$basedir"
 
