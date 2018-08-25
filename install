@@ -10,6 +10,7 @@ modules=(
     compton
     docker
     fcitx
+    feh
     fontconfig
     ghq
     psd
