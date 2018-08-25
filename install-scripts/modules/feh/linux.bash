@@ -3,4 +3,5 @@
 
 require_facades symlink
 
-symlink_make feh/ac-01-3840x2160.jpg .local/share/backgrounds/ac-01-3840x2160.jpg
+symlink_make feh/fehbg .fehbg
+symlink_make feh/arch-01-1920x1080.png .local/share/backgrounds/arch-01-1920x1080.png
