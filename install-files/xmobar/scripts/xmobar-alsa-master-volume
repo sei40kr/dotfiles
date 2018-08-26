@@ -10,7 +10,7 @@ fi
 
 amixer get Master | awk -F'[][]' '
     /dB/ {
-        printf "<fn=5>"
+        printf "<fn=6>"
         vol = substr($2, 0, length($2) - 1) + 0
         if ($6 == "off")    printf "ﱝ"
         else if (vol == 0)  printf "婢"

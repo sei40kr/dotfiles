@@ -8,12 +8,12 @@ if ! hash fcitx-remote 2>/dev/null; then
     exit 1
 fi
 
-printf '<action=`fcitx-configtool`><fn=6>'
+echo -n '<action=`fcitx-configtool`><fn=7>'
 
 if [[ "$(fcitx-remote)" == 2 ]]; then
-    printf 'あ'
+    echo -n 'あ'
 else
-    printf 'Aa'
+    echo -n 'Aa'
 fi
 
 echo '</fn></action>'

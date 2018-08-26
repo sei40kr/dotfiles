@@ -6,14 +6,15 @@
 Config
   { font = "xft:Noto Sans CJK JP:pixelsize=16"
   , additionalFonts =
-      [ "xft:FuraCode Nerd Font:pixelsize=14" -- 1. separator
-      , "xft:Noto Sans CJK JP:pixelsize=16" -- 2. workspace icon
-      , "xft:Noto Sans CJK JP:pixelsize=16" -- 3. window title
-      , "xft:Noto Sans CJK JP:pixelsize=16" -- 4. clock
-      , "xft:FuraCode Nerd Font:pixelsize=20" -- 5. tray icon
-      , "xft:Noto Serif CJK JP:style=bold:pixelsize=15" -- 6. tray icon (fcitx)
+      [ "xft:FuraCode Nerd Font:pixelsize=20" -- 1. symbol icon
+      , "xft:FuraCode Nerd Font:pixelsize=14" -- 2. separator
+      , "xft:FuraCode Nerd Font:pixelsize=18" -- 3. workspace icon
+      , "xft:Noto Sans CJK JP:pixelsize=16" -- 4. window title
+      , "xft:Noto Sans CJK JP:pixelsize=16" -- 5. clock
+      , "xft:FuraCode Nerd Font:pixelsize=20" -- 6. tray icon
+      , "xft:Noto Serif CJK JP:style=bold:pixelsize=15" -- 7. tray icon (fcitx)
       ]
-  , bgColor = "#000000"
+  , bgColor = "#111111"
   , fgColor = "#ffffff"
   , alpha = 204
   , position = TopSize C 100 32
@@ -31,10 +32,19 @@ Config
       [ Run UnsafeStdinReader
       , Run Com "xmobar-fcitx-status" [] "fcitx" 10
       , Run Com "xmobar-alsa-master-volume" [] "alsavol" 10
-      , Run Date "<fn=4>%m/%d %H:%M</fn>" "datetime" 10
+      , Run Date "%m/%d %H:%M" "datetime" 10
       ]
   , sepChar = "%"
   , alignSep = "}{"
   , template =
-      "   %UnsafeStdinReader% }{ %fcitx%   <fc=#888877><fn=1>|</fn></fc>   %alsavol%   <fc=#888877><fn=1>|</fn></fc>   %datetime%    "
+      "    \
+      \<fc=#0088cc><fn=1></fn></fc>\
+      \<fc=#999999>   <fn=2>|</fn>   </fc>\
+      \%UnsafeStdinReader%\
+      \ }{ \
+      \%fcitx%\
+      \<fc=#999999>   <fn=2>|</fn>   </fc>\
+      \%alsavol%\
+      \<fc=#999999>   <fn=2>|</fn>   </fc>\
+      \<fn=4>%datetime%</fn>    "
   }

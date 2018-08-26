@@ -284,7 +284,7 @@ xmobarWs ws = case ws of
   "4" -> "\62517"
   _ -> ws
 xmobarWsFont :: Int
-xmobarWsFont = 2
+xmobarWsFont = 3
 xmobarActiveWsColor :: String
 xmobarActiveWsColor = "#ffffff"
 xmobarInactiveWsColor :: String
@@ -297,7 +297,7 @@ xmobarSep = "  |  "
 xmobarSepColor :: String
 xmobarSepColor = "#999999"
 xmobarSepFont :: Int
-xmobarSepFont = 1
+xmobarSepFont = 2
 
 xmobarTitleLength :: Int
 xmobarTitleLength = 96
