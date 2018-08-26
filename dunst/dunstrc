@@ -30,7 +30,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "420x5-8+40"
+    geometry = "420x5-16+48"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -42,7 +42,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 20
+    transparency = 30
 
     # The height of the entire notification.  If the height is smaller
     # than the font height and padding combined, it will be raised
@@ -86,11 +86,11 @@
 
     ### Text ###
 
-    font = Noto-Sans-CJK-JP 10
+    font = Noto-Sans-CJK-JP 12
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
-    line_height = 4
+    line_height = 0
 
     # Possible values are:
     # full: Allow a small subset of html markup in notifications:
@@ -260,9 +260,9 @@
     #icon = /path/to/icon
 
 [urgency_normal]
-    background = "#000000"
+    background = "#111111"
     foreground = "#ffffff"
-    timeout = 10
+    timeout = 0
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon
 
