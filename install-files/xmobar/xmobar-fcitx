@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# xmobar-fcitx-status
+# xmobar-fcitx
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 if ! hash fcitx-remote 2>/dev/null; then

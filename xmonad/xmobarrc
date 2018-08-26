@@ -30,12 +30,15 @@ Config
   , iconRoot = "."
   , commands =
       [ Run UnsafeStdinReader
-      , Run Com "xmobar-fcitx-status" [] "fcitx" 10
-      , Run Com "xmobar-alsa-master-volume" [] "alsavol" 10
+      , Run Com "xmobar-alsavol" [] "alsavol" 10
+      , Run Com "xmobar-todoist" [] "todoist" 3000
+      , Run Com "xmobar-toggl" [] "toggl" 10
+      , Run Com "xmobar-fcitx" [] "fcitx" 10
       , Run Date "%m/%d %H:%M" "datetime" 10
       ]
   , sepChar = "%"
   , alignSep = "}{"
+  -- TODO Add system menu open action
   , template =
       "    \
       \<fc=#0088cc><fn=1></fn></fc>\
@@ -44,7 +47,12 @@ Config
       \ }{ \
       \%fcitx%\
       \<fc=#999999>   <fn=2>|</fn>   </fc>\
+      \%toggl%    \
+      \%todoist%\
+      \<fc=#999999>   <fn=2>|</fn>   </fc>\
       \%alsavol%\
       \<fc=#999999>   <fn=2>|</fn>   </fc>\
-      \<fn=4>%datetime%</fn>    "
+      \<fn=4>%datetime%</fn>\
+      \<fc=#999999>   <fn=2>|</fn>   </fc>\
+      \<fc=#cc0088><fn=6>襤</fn></fc>    "
   }

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# xmobar-todoist
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+if ! hash todoist 2>/dev/null; then
+    echo "ERROR: todoist was not found." >&2
+    exit 1
+fi
+
+todoist list -f '(overdue | today)' | wc -l | gawk '
+    {
+        if ($1 == 0) print "<fc=#999999><fn=6>\xef\x91\x9e</fn></fc>"
+        else print "<fn=6>\xef\x91\x9e</fn>  " $1
+    }'

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# xmobar-toggl
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+if ! hash toggl 2>/dev/null; then
+    echo "ERROR: toggl was not found." >&2
+    exit 1
+fi
+
+toggl --cache --csv current | awk -F, '
+    {
+        if ($1 == "No time entry") print "<fc=#999999><fn=6>\xef\xa8\x9d</fn></fc>"
+        else if ($1 == "Duration") print "<fn=6>\xef\xa8\x9a</fn>  " $2
+    }'
