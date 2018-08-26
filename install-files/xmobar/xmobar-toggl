@@ -8,8 +8,10 @@ if ! hash toggl 2>/dev/null; then
     exit 1
 fi
 
-toggl --cache --csv current | awk -F, '
+toggl --cache --csv current | gawk -F, '
+    BEGIN { printf "<action=`google-chrome-stable --app=\\'https://toggl.com\\'`>" }
     {
-        if ($1 == "No time entry") print "<fc=#999999><fn=6>\xef\xa8\x9d</fn></fc>"
-        else if ($1 == "Duration") print "<fn=6>\xef\xa8\x9a</fn>  " $2
-    }'
+        if ($1 == "No time entry") printf "<fc=#999999><fn=6>\xef\xa8\x9d</fn></fc>"
+        else if ($1 == "Duration") printf "<fn=6>\xef\xa8\x9a</fn>  " $2
+    }
+    END { print "</action>" }'
