@@ -35,7 +35,7 @@ myFocusFollowsMouse = True
 -- Width of the window border in pixels.
 --
 myBorderWidth   :: Dimension
-myBorderWidth   = 2
+myBorderWidth   = 3
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -85,21 +85,12 @@ myWorkspaces = map show [1 .. 5 :: Int]
 -- Colors:
 --
 
-textColor :: String
-textColor = "#ffffff"
-separatorColor :: String
-separatorColor = "#888877"
-activeColor :: String
-activeColor = "#eedd88"
-inactiveColor :: String
-inactiveColor = "#999999"
-
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor :: String
 myNormalBorderColor = "#000000"
 myFocusedBorderColor :: String
-myFocusedBorderColor = "#eedd88"
+myFocusedBorderColor = "#0088cc"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -256,12 +247,15 @@ myLayout =
 myManageHook :: ManageHook
 myManageHook =
   composeAll
-    [ className =? "feh" --> doCenterFloat
+    [ className =? "Google-chrome" --> doShift "2"
+    , className =? "Emacs" --> doShift "1"
+    , className =? "feh" --> doCenterFloat
     , className =? "Fcitx-config-gtk3" --> doCenterFloat
     , resource =? "desktop_window" --> doIgnore
     , resource =? "kdesktop" --> doIgnore
+    , className =? "Thunar" --> doShift "3"
     ]
-------------------------------------------------------------------------
+-----------------------------------------------------------------------
 -- Event handling
 
 -- Defines a custom handler function for X Events. The function should
@@ -282,6 +276,34 @@ myEventHook = mempty
 xmobarFont :: Int -> String -> String
 xmobarFont n = wrap ("<fn="  ++ show n ++ ">") "</fn>"
 
+xmobarWs :: String -> String
+xmobarWs ws = case ws of
+  "1" -> "\62601"
+  "2" -> "\62596"
+  "3" -> "\62483"
+  "4" -> "\62517"
+  _ -> ws
+xmobarWsFont :: Int
+xmobarWsFont = 2
+xmobarActiveWsColor :: String
+xmobarActiveWsColor = "#ffffff"
+xmobarInactiveWsColor :: String
+xmobarInactiveWsColor = "#999999"
+xmobarWsSep :: String
+xmobarWsSep = "    "
+
+xmobarSep :: String
+xmobarSep = "  |  "
+xmobarSepColor :: String
+xmobarSepColor = "#999999"
+xmobarSepFont :: Int
+xmobarSepFont = 1
+
+xmobarTitleLength :: Int
+xmobarTitleLength = 96
+xmobarTitleColor :: String
+xmobarTitleColor = "#ffffff"
+
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
@@ -295,20 +317,26 @@ myLogHook :: [Handle] -> X ()
 myLogHook hs =
   dynamicLogWithPP
     xmobarPP
-      { ppCurrent = xmobarColor activeColor "" . xmobarFont 2 . const "◆"
-      , ppVisible = xmobarColor inactiveColor "" . xmobarFont 2 . const "◇"
-      , ppHidden = xmobarColor inactiveColor "" . xmobarFont 2 . const "◇"
-      , ppHiddenNoWindows = xmobarColor inactiveColor "" . xmobarFont 2 . const "◇"
-      , ppUrgent = xmobarColor inactiveColor "" . xmobarFont 2 . const "◇"
-      , ppWsSep = " "
-      , ppSep = xmobarColor separatorColor "" "   <fn=1>|</fn>   "
-      , ppTitle = xmobarColor textColor ""
-      , ppTitleSanitize =
-          (\s ->
-             if 96 < length s
-               then take 92 s ++ " ..."
-               else s) .
-          xmobarStrip
+      { ppCurrent =
+          xmobarColor xmobarActiveWsColor "" .
+          xmobarFont xmobarWsFont . xmobarWs
+      , ppVisible =
+          xmobarColor xmobarInactiveWsColor "" .
+          xmobarFont xmobarWsFont . xmobarWs
+      , ppHidden =
+          xmobarColor xmobarInactiveWsColor "" .
+          xmobarFont xmobarWsFont . xmobarWs
+      , ppHiddenNoWindows =
+          xmobarColor xmobarInactiveWsColor "" .
+          xmobarFont xmobarWsFont . xmobarWs
+      , ppUrgent =
+          xmobarColor xmobarInactiveWsColor "" .
+          xmobarFont xmobarWsFont . xmobarWs
+      , ppWsSep = xmobarWsSep
+      , ppSep =
+          xmobarColor xmobarSepColor "" $ xmobarFont xmobarSepFont xmobarSep
+      , ppTitle = xmobarColor xmobarTitleColor "" . shorten xmobarTitleLength
+      , ppTitleSanitize = xmobarStrip
       , ppOrder = \(ws:_:t:_) -> [ws, t]
       , ppOutput = forM_ hs . flip hPutStrLn
       }
