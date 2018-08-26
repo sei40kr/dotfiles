@@ -9,7 +9,7 @@ if ! hash toggl 2>/dev/null; then
 fi
 
 toggl --cache --csv current | gawk -F, '
-    BEGIN { printf "<action=`google-chrome-stable --app=\\'https://toggl.com\\'`>" }
+    BEGIN { printf "<action=`google-chrome-stable --app=\\'https://www.toggl.com/app\\'`>" }
     {
         if ($1 == "No time entry") printf "<fc=#999999><fn=6>\xef\xa8\x9d</fn></fc>"
         else if ($1 == "Duration") printf "<fn=6>\xef\xa8\x9a</fn>  " $2
