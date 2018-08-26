@@ -6,4 +6,4 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-dmenu_run -i -p '>' -fn 'Terminus\-ja-12' -nb '#000000' -nf '#ffffff' -sb '#eedd88' -sf '#000000'
+dmenu_run -i -p '>' -fn 'Terminus\-ja-12' -nb '#333333' -nf '#999999' -sb '#0088cc' -sf '#ffffff'
