@@ -10,6 +10,8 @@ fi
 
 todoist list -f '(overdue | today)' | wc -l | gawk '
     {
-        if ($1 == 0) print "<fc=#999999><fn=6>\xef\x91\x9e</fn></fc>"
-        else print "<fn=6>\xef\x91\x9e</fn>  " $1
+        printf "<action=`google-chrome-stable --app=\\'https://todoist.com/app\\'`>"
+        if ($1 == 0) printf "<fc=#999999><fn=6>\xef\x91\x9e</fn></fc>"
+        else printf "<fn=6>\xef\x91\x9e</fn>  " $1
+        print "</action>"
     }'
