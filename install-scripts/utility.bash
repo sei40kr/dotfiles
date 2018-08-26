@@ -9,20 +9,20 @@ BLUE="\033[0;34m"
 progress() {
     local message="$1"
 
-    echo -e "${BLUE}===>${NC} ${message}"
+    echo -e "${BLUE}==>${NC} ${message}"
 }
 
 warn() {
     local message="$1"
 
-    echo -e "${YELLOW}Warning${NC}: ${message}" >&2
+    echo -e "${YELLOW}WARNING:${NC} ${message}" >&2
 }
 
 die() {
     local message="$1"
     local err_code="${2:-1}"
 
-    echo -e "${RED}Error${NC}: ${message}" >&2
+    echo -e "${RED}ERROR:${NC} ${message}" >&2
     exit "$err_code"
 }
 
