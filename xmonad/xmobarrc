@@ -16,7 +16,7 @@ Config
       ]
   , bgColor = "#111111"
   , fgColor = "#ffffff"
-  , alpha = 179
+  , alpha = 217
   , position = TopSize C 100 32
   , textOffset = -1
   , iconOffset = -1
