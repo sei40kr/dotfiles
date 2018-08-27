@@ -9,6 +9,7 @@ modules=(
     alacritty
     compton
     docker
+    dunst
     fcitx
     feh
     fontconfig
