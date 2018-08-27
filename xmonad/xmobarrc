@@ -47,7 +47,7 @@ Config
       \ }{ \
       \%fcitx%\
       \<fc=#999999>   <fn=2>|</fn>   </fc>\
-      \%toggl%    \
+      \%toggl%   \
       \%todoist%\
       \<fc=#999999>   <fn=2>|</fn>   </fc>\
       \%alsavol%\
