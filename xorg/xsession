@@ -17,6 +17,12 @@ else
     xset r rate 150 30
 fi
 
+if ! hash xsetroot 2>/dev/null; then
+    echo 'WARN: xsetroot is not installed.' >&2
+else
+    xsetroot -cursor_name left_ptr
+fi
+
 
 ## compton
 
