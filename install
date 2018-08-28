@@ -61,3 +61,6 @@ done
 for reducer in "${__facade_reducers[@]}"; do
     eval "$reducer"
 done
+
+
+echo ''

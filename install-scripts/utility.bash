@@ -23,6 +23,7 @@ die() {
     local err_code="${2:-1}"
 
     echo -e "${RED}ERROR:${NC} ${message}" >&2
+    echo ''
     exit "$err_code"
 }
 
