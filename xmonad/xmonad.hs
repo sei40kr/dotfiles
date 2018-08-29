@@ -77,8 +77,17 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
+devWs :: String
+devWs = "dev"
+webWs :: String
+webWs = "web"
+fileWs :: String
+fileWs = "file"
+imWs :: String
+imWs = "im"
+
 myWorkspaces :: [String]
-myWorkspaces = map show [1 .. 5 :: Int]
+myWorkspaces = [devWs, webWs, fileWs, imWs]
 
 
 ------------------------------------------------------------------------
@@ -101,9 +110,9 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     -- launch a terminal
   [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
     -- launch dmenu
-  , ((modm, xK_p), spawn "~/.dmenurc")
+  , ((modm, xK_p), spawn "rofi -show drun")
     -- launch gmrun
-  , ((modm .|. shiftMask, xK_p), spawn "gmrun")
+  , ((modm .|. shiftMask, xK_p), spawn "rofi -show run")
     -- close focused window
   , ((modm .|. shiftMask, xK_c), kill)
      -- Rotate through the available layout algorithms
@@ -113,7 +122,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     -- Resize viewed windows to the correct size
   , ((modm, xK_n), refresh)
     -- Move focus to the next window
-  , ((modm, xK_Tab), windows W.focusDown)
+  , ((modm, xK_Tab), spawn "rofi -show window")
     -- Move focus to the window on the left
   , ((modm, xK_h), sendMessage $ Go L)
     -- Move focus to the window below
@@ -172,7 +181,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     --
   [ ((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
   | (key, sc) <- zip [xK_w, xK_e, xK_r] [0 ..]
-  , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]
+  , (f, m) <- [(W.view, 0), (liftM2 (.) W.view W.shift, shiftMask)]
   ]
 
 
@@ -225,7 +234,7 @@ myLayout =
     -- The default number of windows in the master pane
     nmaster = 1
     -- Default proportion of screen occupied by master pane
-    ratio = 1 / 2
+    ratio = toRational (2 / (1 + sqrt 5 :: Double))
     -- Percent of screen to increment by when resizing panes
     delta = 3 / 100
 
@@ -247,14 +256,24 @@ myLayout =
 myManageHook :: ManageHook
 myManageHook =
   composeAll
-    [ className =? "Google-chrome" --> doShift "2"
-    , className =? "Emacs" --> doShift "1"
-    , className =? "feh" --> doCenterFloat
+    [ resource =? "desktop_window" --> doIgnore
+    , className =? "Discord" --> doShiftAndView imWs
+    , className =? "Emacs" --> doShiftAndView devWs
     , className =? "Fcitx-config-gtk3" --> doCenterFloat
-    , resource =? "desktop_window" --> doIgnore
-    , resource =? "kdesktop" --> doIgnore
-    , className =? "Thunar" --> doShift "3"
+    , className =? "feh" --> doCenterFloat
+    , className =? "Gitter" --> doShiftAndView imWs
+    , className =? "Google-chrome" --> doShiftAndView webWs
+    , className =? "Rofi" --> doCenterFloat
+    , className =? "Skype" --> doShiftAndView imWs
+    , className =? "Slack" --> doShiftAndView imWs
+    , className =? "Thunar" --> doShiftAndView fileWs
+    , className =? "Transmission-gtk" --> doShiftAndView fileWs
+    , className =? "vlc" --> doShiftAndView fileWs
+    , className =? "Zeal" --> doShiftAndView devWs <+> doCenterFloat
     ]
+  where
+    doShiftAndView = doF . liftM2 (.) W.view W.shift
+
 -----------------------------------------------------------------------
 -- Event handling
 
@@ -277,12 +296,12 @@ xmobarFont :: Int -> String -> String
 xmobarFont n = wrap ("<fn="  ++ show n ++ ">") "</fn>"
 
 xmobarWs :: String -> String
-xmobarWs ws = case ws of
-  "1" -> "\62601"
-  "2" -> "\62596"
-  "3" -> "\62483"
-  "4" -> "\62517"
-  _ -> ws
+xmobarWs ws | ws == devWs = "\62601"
+xmobarWs ws | ws == webWs = "\62596"
+xmobarWs ws | ws == fileWs = "\62483"
+xmobarWs ws | ws == imWs = "\63593"
+xmobarWs ws = ws
+
 xmobarWsFont :: Int
 xmobarWsFont = 3
 xmobarActiveWsColor :: String
@@ -295,7 +314,7 @@ xmobarWsSep = "    "
 xmobarSep :: String
 xmobarSep = "  |  "
 xmobarSepColor :: String
-xmobarSepColor = "#999999"
+xmobarSepColor = "#555555"
 xmobarSepFont :: Int
 xmobarSepFont = 2
 
@@ -324,9 +343,6 @@ myLogHook hs =
           xmobarColor xmobarInactiveWsColor "" .
           xmobarFont xmobarWsFont . xmobarWs
       , ppHidden =
-          xmobarColor xmobarInactiveWsColor "" .
-          xmobarFont xmobarWsFont . xmobarWs
-      , ppHiddenNoWindows =
           xmobarColor xmobarInactiveWsColor "" .
           xmobarFont xmobarWsFont . xmobarWs
       , ppUrgent =
