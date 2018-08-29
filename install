@@ -17,6 +17,7 @@ modules=(
     psd
     redshift
     ripgrep
+    rofi
 )
 
 
