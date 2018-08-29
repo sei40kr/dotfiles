@@ -7,7 +7,7 @@ Config
   { font = "xft:Noto Sans CJK JP:pixelsize=16"
   , additionalFonts =
       [ "xft:FuraCode Nerd Font:pixelsize=20" -- 1. symbol icon
-      , "xft:FuraCode Nerd Font:pixelsize=14" -- 2. separator
+      , "xft:FuraCode Nerd Font:pixelsize=12:antialias=0" -- 2. separator
       , "xft:FuraCode Nerd Font:pixelsize=18" -- 3. workspace icon
       , "xft:Noto Sans CJK JP:pixelsize=16" -- 4. window title
       , "xft:Noto Sans CJK JP:pixelsize=16" -- 5. clock
@@ -42,17 +42,17 @@ Config
   , template =
       "    \
       \<fc=#0088cc><fn=1></fn></fc>\
-      \<fc=#999999>   <fn=2>|</fn>   </fc>\
+      \<fc=#555555><fn=2>  |  </fn></fc>\
       \%UnsafeStdinReader%\
       \ }{ \
       \%fcitx%\
-      \<fc=#999999>   <fn=2>|</fn>   </fc>\
-      \%toggl%  \
+      \<fc=#555555><fn=2>  |  </fn></fc>\
+      \%toggl%   \
       \%todoist%\
-      \<fc=#999999>   <fn=2>|</fn>   </fc>\
+      \<fc=#555555><fn=2>  |  </fn></fc>\
       \%alsavol%\
-      \<fc=#999999>   <fn=2>|</fn>   </fc>\
+      \<fc=#555555><fn=2>  |  </fn></fc>\
       \<fn=4>%datetime%</fn>\
-      \<fc=#999999>   <fn=2>|</fn>   </fc>\
+      \<fc=#555555><fn=2>  |  </fn></fc>\
       \<fc=#cc0088><fn=6>襤</fn></fc>    "
   }
