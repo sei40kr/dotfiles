@@ -54,5 +54,5 @@ Config
       \<fc=#555555><fn=2>  |  </fn></fc>\
       \<fn=4>%datetime%</fn>\
       \<fc=#555555><fn=2>  |  </fn></fc>\
-      \<fc=#cc0088><fn=6>襤</fn></fc>    "
+      \<action=`rofi-system-menu`><fc=#cc0088><fn=6>襤</fn></fc></action>    "
   }
