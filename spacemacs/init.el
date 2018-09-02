@@ -703,8 +703,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
                    '(file local project unloaded system)))
 
 (defun dotspacemacs/user-config ()
-  (golden-ratio-mode 1)
-
   ;; Vim-like Ctrl-h, Ctrl-w behaviors
   (bind-key* "C-h" #'delete-backward-char)
   (bind-key* "C-w" #'backward-kill-word)
