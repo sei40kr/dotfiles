@@ -18,6 +18,7 @@ modules=(
     redshift
     ripgrep
     rofi
+    thunar
 )
 
 
