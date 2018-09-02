@@ -35,15 +35,6 @@ else
 fi
 
 
-## redshift
-
-if ! hash redshift 2>/dev/null; then
-    echo 'WARN: redshift is not installed.' >&2
-else
-    pgrep redshift >/dev/null || redshift >/dev/null &
-fi
-
-
 ## fcitx
 
 if ! hash fcitx-autostart 2>/dev/null; then
