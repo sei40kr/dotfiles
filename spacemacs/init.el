@@ -75,8 +75,7 @@ values."
             c-c++-enable-google-style t
             c-c++-enable-google-newline t
             c-c++-enable-clang-format-on-save t
-            c-c++-enable-c++11 t
-            c-c++-default-mode-for-headers 'c++-mode)
+            c-c++-enable-c++11 t)
      (crystal :variables
               crystal-enable-auto-format t)
      csv
