@@ -81,7 +81,9 @@ values."
               crystal-enable-auto-format t)
      csv
      emacs-lisp
-     go
+     (go :variables
+         go-format-before-save t
+         go-tab-width 4)
      gpu
      (haskell :variables
               haskell-enable-hindent t)
@@ -621,6 +623,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
    ;; flycheck-popup-tip
    flycheck-popup-tip-error-prefix "* "
+
+   ;; go-mode
+   gofmt-command "goimports"
 
    ;; helm
    helm-mini-default-sources '(helm-source-buffers-list)
