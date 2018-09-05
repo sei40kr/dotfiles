@@ -659,15 +659,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
     '(evil-global-set-key 'normal
                           (kbd "C-s") #'user-custom/save-some-buffers))
 
-  ;; evil-mc
-  (add-hook 'evil-mc-mode-hook
-            #'(lambda ()
-                (setq evil-mc-one-cursor-show-mode-line-text nil)))
-
   ;; fish-mode
-  (add-hook 'fish-mode-hook
-            #'(lambda ()
-                (add-hook 'before-save-hook #'fish_indent-before-save)))
+  (defun user-custom//fish-setup-format-on-save ()
+    (add-hook 'before-save-hook #'fish_indent-before-save))
+  (add-hook 'fish-mode-hook #'user-custom//fish-setup-format-on-save)
 
   ;; flycheck-popup-tip
   (add-hook 'flycheck-mode-hook #'flycheck-popup-tip-mode)
@@ -683,6 +678,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
   ;; go-mode
   (defun user-custom//go-setup-checkers ()
+    (require 'flycheck)
     (add-to-list 'flycheck-disabled-checkers 'gometalinter)
     (add-to-list 'flycheck-disabled-checkers 'go-gofmt)
     (add-to-list 'flycheck-disabled-checkers 'go-build)
@@ -698,18 +694,17 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (set (make-local-variable 'js2-mode-show-parse-errors) nil)
     (set (make-local-variable 'js2-mode-show-strict-warnings) nil)
     ;; Disable non-modern checkers
+    (require 'flycheck)
     (add-to-list 'flycheck-disabled-checkers 'javascript-jshint)
     (add-to-list 'flycheck-disabled-checkers 'javascript-standard))
   (add-hook 'js2-mode-hook #'user-custom//javascript-setup-checkers)
   (add-hook 'rjsx-mode-hook #'user-custom//javascript-setup-checkers)
 
   ;; rust-mode
-  (if (configuration-layer/package-used-p 'flycheck)
-      (add-hook 'rust-mode-hook
-                #'(lambda ()
-                    (require 'flycheck)
-                    (add-to-list 'flycheck-disabled-checkers 'rust-cargo))
-                t))
+  (defun user-custom//rust-setup-checkers ()
+    (require 'flycheck)
+    (add-to-list 'flycheck-disabled-checkers 'rust-cargo))
+  (add-hook 'rust-mode-hook #'user-custom//rust-setup-checkers)
 
   ;; semantic
   (require 'mode-local)
