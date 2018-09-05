@@ -48,9 +48,11 @@ values."
      syntax-checking
      ;; Completion
      (auto-completion :variables
-                      spacemacs-default-company-backends '(company-files company-capf)
+                      spacemacs-default-company-backends
+                      '((company-dabbrev-code company-keywords)
+                        company-files company-dabbrev)
                       auto-completion-return-key-behavior 'complete
-                      auto-completion-tab-key-behavior nil
+                      auto-completion-tab-key-behavior 'complete
                       auto-completion-enable-snippets-in-popup t)
      helm
      (templates :variables
