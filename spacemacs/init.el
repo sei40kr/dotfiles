@@ -81,8 +81,7 @@ values."
               crystal-enable-auto-format t)
      csv
      emacs-lisp
-     (go :variables
-         go-use-gometalinter t)
+     go
      gpu
      (haskell :variables
               haskell-enable-hindent t)
@@ -676,6 +675,17 @@ before packages are loaded. If you are unsure, you should try in setting them in
                (require 'neotree)
                (if (neo-global--window-exists-p)
                    (neotree-projectile-action)))))
+
+  ;; go-mode
+  (defun user-custom//go-setup-checkers ()
+    (add-to-list 'flycheck-disabled-checkers 'gometalinter)
+    (add-to-list 'flycheck-disabled-checkers 'go-gofmt)
+    (add-to-list 'flycheck-disabled-checkers 'go-build)
+    (add-to-list 'flycheck-disabled-checkers 'go-test)
+    (add-to-list 'flycheck-disabled-checkers 'go-errcheck)
+    (add-to-list 'flycheck-disabled-checkers 'go-unconvert)
+    (add-to-list 'flycheck-disabled-checkers 'go-megacheck))
+  (add-hook 'go-mode-hook #'user-custom//go-setup-checkers)
 
   ;; js2-mode & rjsx-mode
   (defun user-custom//javascript-setup-checkers ()
