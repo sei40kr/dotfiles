@@ -791,4 +791,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
                                          dotspacemacs-inactive-transparency)))
   (user-custom//enable-frame-transparency nil)
   (add-hook 'after-make-frame-functions
-            #'user-custom//enable-frame-transparency))
+            #'user-custom//enable-frame-transparency)
+
+  ;; Load emacs-custom-settings
+  (load custom-file))
