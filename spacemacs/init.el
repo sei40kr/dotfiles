@@ -85,6 +85,7 @@ values."
          go-tab-width 4)
      gpu
      (haskell :variables
+              haskell-completion-backend 'intero
               haskell-enable-hindent t)
      (html :variables
            web-fmt-tool 'prettier)
