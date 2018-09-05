@@ -596,10 +596,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
    auto-insert-query nil
    auto-save-default nil
    backup-inhibited t
-   browse-url-browser-function #'browse-url-generic
-   browse-url-generic-program (or
-                               (executable-find "google-chrome")
-                               (executable-find "chromium"))
    create-lockfiles nil
    custom-file nil
    select-enable-clipboard nil
