@@ -27,7 +27,7 @@ import           XMonad.Util.Run
 -- certain contrib modules.
 --
 myTerminal :: String
-myTerminal = "alacritty"
+myTerminal = "termite"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
