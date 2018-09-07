@@ -193,6 +193,7 @@ values."
       :location (recipe
                  :fetcher github
                  :repo "sei40kr/competitive-programming-snippets"))
+     evil-terminal-cursor-changer
      flycheck-popup-tip
      (jest-snippets :location (recipe :fetcher github
                                       :repo "sei40kr/jest-snippets"))
@@ -790,6 +791,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (user-custom//enable-frame-transparency nil)
   (add-hook 'after-make-frame-functions
             #'user-custom//enable-frame-transparency)
+
+  ;; Load evil-terminal-cursor-changer
+  (unless (display-graphic-p)
+    (require 'evil-terminal-cursor-changer)
+    (evil-terminal-cursor-changer-activate))
 
   ;; Load emacs-custom-settings
   (load custom-file))
