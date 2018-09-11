@@ -3,66 +3,67 @@
 # install --- Installer for dotfiles
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-BASEDIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+DOTFILES_PATH="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
-modules=(
-    alacritty
-    compton
-    docker
-    dunst
-    fcitx
-    feh
-    fontconfig
-    ghq
-    psd
-    redshift
-    ripgrep
-    rofi
-    thunar
-)
+: ${XDG_CONFIG_HOME:=${HOME}/.config}
+: ${XDG_DATA_HOME:=${HOME}/.local/share}
 
 
-. "${BASEDIR}/install-scripts/utility.bash"
+. "${DOTFILES_PATH}/install-scripts/utility.bash"
 
-__facade_reducers=()
+## Parse arguments
 
-facade_add_reducer() {
-    local reducer="$1"
+is_dry_run=0
+do_update=0
+is_verbose=0
 
-    __facade_reducers+=( "$reducer" )
-}
+declare -a modules_to_install
+modules_to_install=()
 
-. "${BASEDIR}/install-scripts/arg-parser.bash"
+for arg in "$@"; do
+    case "$arg" in
+        --dry-run )
+            is_dry_run=1
+            ;;
+        --update|-u )
+            do_update=1
+            ;;
+        --verbose|-v )
+            is_verbose=1
+            ;;
+        * )
+            modules_to_install+=( "$arg" )
+    esac
+done
 
-parse_args "$@"
+if [[ "${#modules_to_install[@]}" == 0 ]]; then
+    for module in "${DOTFILES_PATH}/install-scripts/modules"/*.bash; do
+        modules_to_install+=( "$(basename -s .bash "${module}")" )
+    done
+fi
 
-progress 'Collecting information ...'
 
-# is_arch shouldn't be called repeatedly
-# because it invokes a file access
-is_arch=0
-is_arch && is_arch=1
+## Load facades
 
-. "${BASEDIR}/install-scripts/module-utility.bash"
+for facade_path in "${DOTFILES_PATH}/install-scripts/facades"/*.bash; do
+    . "${facade_path}"
+done
+
+
+## Load modules
 
 for module in "${modules_to_install[@]}"; do
-    ctxpath="${BASEDIR}/install-scripts/modules/${module}"
-    srcpaths=()
+    module_path="${DOTFILES_PATH}/install-scripts/modules/${module}.bash"
 
-    [[ "$is_arch" == 1 ]] && srcpaths+=( "${ctxpath}/arch.bash" )
-    is_macos && srcpaths+=( "${ctxpath}/macos.bash" )
-    is_linux && srcpaths+=( "${ctxpath}/linux.bash" )
-    srcpaths+=( "${ctxpath}/default.bash" )
+    if [[ ! -s "$module_path" ]]; then
+        die "${module} module is not found." >&2
+        exit 1
+    fi
 
-    for srcpath in "${srcpaths[@]}"; do
-        [[ -s "$srcpath" ]] && . "$srcpath"
-    done
+    . "$module_path"
 done
 
 
-for reducer in "${__facade_reducers[@]}"; do
-    eval "$reducer"
-done
+## Run reducers
 
-
-echo ''
+run_all_facade_reducers
