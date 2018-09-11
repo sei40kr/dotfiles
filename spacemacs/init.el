@@ -680,7 +680,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (require 'flycheck)
     (add-to-list 'flycheck-disabled-checkers 'gometalinter)
     (add-to-list 'flycheck-disabled-checkers 'go-gofmt)
-    (add-to-list 'flycheck-disabled-checkers 'go-build)
     (add-to-list 'flycheck-disabled-checkers 'go-test)
     (add-to-list 'flycheck-disabled-checkers 'go-errcheck)
     (add-to-list 'flycheck-disabled-checkers 'go-unconvert)
