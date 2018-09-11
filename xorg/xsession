@@ -5,12 +5,6 @@
 
 ## xorg tools
 
-if ! hash xbindkeys 2>/dev/null; then
-    echo 'WARN: xbindkeys is not installed.' >&2
-else
-    xbindkeys
-fi
-
 if ! hash xset 2>/dev/null; then
     echo 'WARN: xset is not installed.' >&2
 else
