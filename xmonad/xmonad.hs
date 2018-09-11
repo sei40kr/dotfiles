@@ -43,7 +43,7 @@ myBorderWidth   = 3
 -- "windows key" is usually mod4Mask.
 --
 myModMask       :: KeyMask
-myModMask       = mod4Mask
+myModMask       = mod1Mask
 
 -- NOTE: from 0.9.1 on numlock mask is set automatically. The numlockMask
 -- setting should be removed from configs.
@@ -107,81 +107,63 @@ myFocusedBorderColor = "#0088cc"
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@XConfig {XMonad.modMask = modm} =
   M.fromList $
-    -- launch a terminal
-  [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-    -- launch dmenu
-  , ((modm, xK_p), spawn "rofi -show drun")
-    -- launch gmrun
-  , ((modm .|. shiftMask, xK_p), spawn "rofi -show run")
+    -- launch rofi
+  [ ((mod4Mask, xK_space), spawn "rofi -show drun")
     -- close focused window
-  , ((modm .|. shiftMask, xK_c), kill)
+  , ((mod4Mask, xK_q), kill)
      -- Rotate through the available layout algorithms
-  , ((modm, xK_space), sendMessage NextLayout)
+  , ((modm .|. shiftMask, xK_space), sendMessage NextLayout)
     --  Reset the layouts on the current workspace to default
-  , ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
-    -- Resize viewed windows to the correct size
-  , ((modm, xK_n), refresh)
+  , ( (modm .|. controlMask .|. shiftMask, xK_space)
+    , setLayout $ XMonad.layoutHook conf)
     -- Move focus to the next window
-  , ((modm, xK_Tab), spawn "rofi -show window")
-    -- Move focus to the window on the left
-  , ((modm, xK_h), sendMessage $ Go L)
-    -- Move focus to the window below
-  , ((modm, xK_j), windows W.focusDown)
-    -- Move focus to the window above
-  , ((modm, xK_k), windows W.focusUp)
-    -- Move focus to the window on the right
-  , ((modm, xK_l), sendMessage $ Go R)
+  , ((mod4Mask .|. shiftMask, xK_Tab), windows W.focusDown)
+    -- Move focus to the next window
+  , ((modm .|. shiftMask, xK_j), windows W.focusDown)
+    -- Move focus to the previous window
+  , ((modm .|. shiftMask, xK_k), windows W.focusUp)
     -- Move focus to the master window
-  , ((modm, xK_m), windows W.focusMaster)
+  , ((modm .|. shiftMask, xK_m), windows W.focusMaster)
     -- Swap the focused window and the master window
-  , ((modm, xK_Return), spawn $ XMonad.terminal conf)
-    -- Swap the focused window with the window on the left
-  , ((modm .|. shiftMask, xK_h), sendMessage $ Swap L)
-    -- Swap the focused window with the window below
-  , ((modm .|. shiftMask, xK_j), windows W.swapDown)
-    -- Swap the focused window with the window above
-  , ((modm .|. shiftMask, xK_k), windows W.swapUp)
-    -- Swap the focused window with the window on the right
-  , ((modm .|. shiftMask, xK_l), sendMessage $ Swap R)
+  , ((modm .|. shiftMask, xK_Return), windows W.swapMaster)
+    -- Swap the focused window with the next window
+  , ((modm .|. controlMask .|. shiftMask, xK_j), windows W.swapDown)
+    -- Swap the focused window with the previous window
+  , ((modm .|. controlMask .|. shiftMask, xK_k), windows W.swapUp)
     -- Shrink the master area
-    -- , ((modm,               xK_h     ), sendMessage Shrink)
+  , ((modm .|. shiftMask, xK_h), sendMessage Shrink)
     -- Expand the master area
-    -- , ((modm,               xK_l     ), sendMessage Expand)
+  , ((modm .|. shiftMask, xK_l), sendMessage Expand)
+    -- TODO Bind mod+shift+t to toggle whether or not the focused window is floating
     -- Push window back into tiling
-  , ((modm, xK_t), withFocused $ windows . W.sink)
+    -- , ((modm, xK_t), withFocused $ windows . W.sink)
     -- Increment the number of windows in the master area
-  , ((modm, xK_comma), sendMessage (IncMasterN 1))
+  , ((modm .|. shiftMask, xK_comma), sendMessage (IncMasterN 1))
     -- Deincrement the number of windows in the master area
-  , ((modm, xK_period), sendMessage (IncMasterN (-1)))
-    -- Toggle the status bar gap
-    -- Use this binding with avoidStruts from Hooks.ManageDocks.
-    -- See also the statusBar function from Hooks.DynamicLog.
-    --
-    -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
-    -- Quit xmonad
-  , ((modm .|. shiftMask, xK_q), io exitSuccess)
+  , ((modm .|. shiftMask, xK_period), sendMessage (IncMasterN (-1)))
     -- Restart xmonad
-  , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
-    -- print, Capture a screenshot
-  , ((0, xK_Print), spawn "scrot '%Y-%m-%d-%T-screenshot.png'")
-    -- shift-print, Capture a screenshot selecting a window or rectangle with the mouse
-  , ((shiftMask, xK_Print), spawn "scrot -s '%Y-%m-%d-%T-screenshot.png'")
+  , ((modm .|. shiftMask, xK_q), spawn "xmonad --recompile; xmonad --restart")
+    -- Capture a screenshot
+  , ((mod4Mask .|. shiftMask, xK_3), spawn "scrot '%Y-%m-%d-%T-screenshot.png'")
+    -- Capture a screenshot selecting a window or rectangle with the mouse
+  , ( (mod4Mask .|. shiftMask, xK_4)
+    , spawn "scrot -s '%Y-%m-%d-%T-screenshot.png'")
   ] ++
     --
     -- mod-[1..9], Switch to workspace N
     -- mod-shift-[1..9], Move client to workspace N
     --
-  [ ((m .|. modm, k), windows $ f i)
+  [ ((modm .|. shiftMask .|. m, k), windows $ f i)
   | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-  , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]
+  , (f, m) <- [(W.greedyView, 0), (W.shift, controlMask)]
   ] ++
     --
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     --
-  [ ((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
+  [ ((modm .|. shiftMask .|. m, key), screenWorkspace sc >>= flip whenJust (windows . f))
   | (key, sc) <- zip [xK_w, xK_e, xK_r] [0 ..]
-  , (f, m) <- [(W.view, 0), (liftM2 (.) W.view W.shift, shiftMask)]
+  , (f, m) <- [(W.view, 0), (liftM2 (.) W.view W.shift, controlMask)]
   ]
 
 
