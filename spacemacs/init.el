@@ -195,7 +195,7 @@ values."
                  :fetcher github
                  :repo "sei40kr/competitive-programming-snippets"))
      evil-terminal-cursor-changer
-     flycheck-popup-tip
+     (flycheck-popup-tip :toggle (not (display-graphic-p)))
      (jest-snippets :location (recipe :fetcher github
                                       :repo "sei40kr/jest-snippets"))
      (react-snippets :location (recipe :fetcher github
@@ -211,7 +211,6 @@ values."
                                     avy-migemo
                                     counsel-gtags
                                     ddskk
-                                    flycheck-pos-tip
                                     ggtags
                                     helm-gtags
                                     migemo
@@ -624,6 +623,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
    ;; flycheck-popup-tip
    flycheck-popup-tip-error-prefix "* "
 
+   ;; flycheck-pos-tip
+   flycheck-pos-tip-timeout 999
+   flycheck-pos-tip-display-errors-tty-function #'flycheck-popup-tip-show-popup
+
    ;; go-mode
    gofmt-command "goimports"
 
@@ -663,9 +666,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (defun user-custom//fish-setup-format-on-save ()
     (add-hook 'before-save-hook #'fish_indent-before-save))
   (add-hook 'fish-mode-hook #'user-custom//fish-setup-format-on-save)
-
-  ;; flycheck-popup-tip
-  (add-hook 'flycheck-mode-hook #'flycheck-popup-tip-mode)
 
   ;; helm-projectile
   (eval-after-load 'helm-projectile
