@@ -195,7 +195,7 @@ values."
                  :fetcher github
                  :repo "sei40kr/competitive-programming-snippets"))
      evil-terminal-cursor-changer
-     (flycheck-popup-tip :toggle (not (display-graphic-p)))
+     flycheck-popup-tip
      (jest-snippets :location (recipe :fetcher github
                                       :repo "sei40kr/jest-snippets"))
      (react-snippets :location (recipe :fetcher github
