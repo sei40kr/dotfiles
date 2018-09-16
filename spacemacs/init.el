@@ -149,7 +149,8 @@ values."
             cmake-enable-cmake-ide-support t)
      (dash :variables
            helm-dash-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
-     docker
+     (docker :variables
+             dockerfile-mode-enable-lsp t)
      imenu-list
      (lsp :variables
           lsp-ui-sideline-enable nil)
