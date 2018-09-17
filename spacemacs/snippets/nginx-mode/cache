@@ -1,0 +1,7 @@
+# name: Contents caching
+# key: cache
+# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# --
+
+expires max;
+$0

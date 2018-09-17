@@ -1,0 +1,17 @@
+# name: Force HTTPS
+# key: force-https
+# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# --
+
+server {
+  listen 80;
+  return 301 https://$host$request_uri;
+}
+
+server {
+  listen 443 ssl;
+
+  # let the browsers know that we only accept HTTPS
+  add_header Strict-Transport-Security max-age=2592000;
+}
+$0

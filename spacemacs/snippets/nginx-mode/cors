@@ -1,0 +1,7 @@
+# name: Enable CORS
+# key: cors
+# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# --
+
+add_header Access-Control-Allow-Origin ${1:*};
+$0

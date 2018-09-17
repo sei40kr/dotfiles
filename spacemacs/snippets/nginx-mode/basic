@@ -1,0 +1,8 @@
+# name: Basic authentication
+# key: basic
+# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# --
+
+auth_basic "${1:message}";
+auth_basic_user_file ${2:/path/to/user-file};
+$0

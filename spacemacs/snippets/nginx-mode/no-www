@@ -1,0 +1,16 @@
+# name: Force no-www
+# key: no-www
+# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# --
+
+server {
+  listen 80;
+  server_name ${1:example.org};
+}
+
+server {
+  listen 80;
+  server_name www.$1;
+  return 301 $scheme://$1$request_uri;
+}
+$0
