@@ -1,0 +1,26 @@
+# -*- mode: snippet -*-
+# name: For C/C++
+# key: c-c++
+# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# --
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{c,cpp,h,hpp}]
+indent_size = 2
+max_line_length = 80
+
+# Makefiles always use tabs for indentation
+[Makefile]
+indent_style = tab
+
+# Batch files use tabs for indentation
+[*.bat]
+indent_style = tab
+$0
