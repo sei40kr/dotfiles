@@ -653,7 +653,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
    projectile-git-submodule-command nil
 
    ;; spacemacs-common
-   spacemacs-theme-comment-italic t)
+   spacemacs-theme-comment-italic t
+
+   ;; yasnippet
+   yas-indent-line 'fixed)
 
   ;; evil
   (defun user-custom/save-some-buffers ()
