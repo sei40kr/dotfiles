@@ -17,6 +17,22 @@ pip2_install_facade() {
 }
 
 
+pip3_reduce_pkgs() {
+    [[ "${#__pip3_pkgs[@]}" == 0 ]] && return
+
+    ! hash pip3 2>/dev/null && die 'pip3 is not found.'
+
+    log_wait 'Enabling pip3 packages ...'
+
+    if do_update; then
+        wrap_facade_cmd pip3 install -U "${__pip3_pkgs[@]}"
+    else
+        wrap_facade_cmd pip3 install "${__pip3_pkgs[@]}"
+    fi
+}
+
+register_facade_reducer pip3_reduce_pkgs
+
 pip2_reduce_pkgs() {
     [[ "${#__pip2_pkgs[@]}" == 0 ]] && return
 
@@ -33,19 +49,3 @@ pip2_reduce_pkgs() {
 }
 
 register_facade_reducer pip2_reduce_pkgs
-
-pip3_reduce_pkgs() {
-    [[ "${#__pip3_pkgs[@]}" == 0 ]] && return
-
-    ! hash pip3 2>/dev/null && die 'pip3 is not found.'
-
-    log_wait 'Enabling pip3 packages ...'
-
-    if do_update; then
-        wrap_facade_cmd pip3 install -U "${__pip3_pkgs[@]}"
-    else
-        wrap_facade_cmd pip3 install "${__pip3_pkgs[@]}"
-    fi
-}
-
-register_facade_reducer pip3_reduce_pkgs
