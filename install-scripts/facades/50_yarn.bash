@@ -1,4 +1,4 @@
-# 20_yarn.bash --- yarn facade
+# 50_yarn.bash --- yarn facade
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 __yarn_pkgs=()
@@ -38,13 +38,13 @@ yarn_global_add_facade_reducer() {
                         -s \
                         --noprogress \
                         --non-interactive \
+                        --latest \
                         "${__yarn_pkgs[@]}"
     else
         wrap_facade_cmd yarn global add \
                         -s \
                         --noprogress \
                         --non-interactive \
-                        --latest \
                         "${__yarn_pkgs[@]}"
     fi
 }
