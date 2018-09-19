@@ -61,6 +61,9 @@ pip3_install_facade yapf
 yarn_global_add_facade markdownlint-cli
 yarn_global_add_facade vmd
 
+# SQL
+go_get_facade github.com/jackc/sqlfmt
+
 # TypeScript
 yarn_global_add_facade typescript-language-server
 
