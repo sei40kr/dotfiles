@@ -17,6 +17,21 @@ pip3_install_facade cpplint
 # Docker
 yarn_global_add_facade dockerfile-language-server-nodejs
 
+# Go
+go_get_facade github.com/cweill/gotests/...
+go_get_facade github.com/davidrjenni/reftools/cmd/fillstruct
+go_get_facade github.com/fatih/gomodifytags
+go_get_facade github.com/godoctor/godoctor
+go_get_facade github.com/haya14busa/gopkgs/cmd/gopkgs
+go_get_facade github.com/josharian/impl
+go_get_facade github.com/nsf/gocode
+go_get_facade github.com/rogpeppe/godef
+go_get_facade github.com/zmb3/gogetdoc
+go_get_facade golang.org/x/tools/cmd/godoc
+go_get_facade golang.org/x/tools/cmd/goimports
+go_get_facade golang.org/x/tools/cmd/gorename
+go_get_facade golang.org/x/tools/cmd/guru
+
 # HTML
 yarn_global_add_facade stylelint-cli
 
