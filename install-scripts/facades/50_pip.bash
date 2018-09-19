@@ -22,7 +22,7 @@ pip3_reduce_pkgs() {
 
     ! hash pip3 2>/dev/null && die 'pip3 is not found.'
 
-    log_wait 'Enabling pip3 packages ...'
+    log_wait 'Installing pip3 packages ...'
 
     if do_update; then
         wrap_facade_cmd pip3 install -U "${__pip3_pkgs[@]}"
@@ -38,7 +38,7 @@ pip2_reduce_pkgs() {
 
     ! hash pip2 2>/dev/null && die 'pip2 is not found.'
 
-    log_wait 'Enabling pip2 packages ...'
+    log_wait 'Installing pip2 packages ...'
 
 
     if do_update; then
