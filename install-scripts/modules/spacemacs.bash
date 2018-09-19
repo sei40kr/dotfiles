@@ -1,7 +1,9 @@
 # spacemacs.bash --- Spacemacs installer
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-pacman_sync_facade emacs
+if is_arch; then
+    pacman_sync_facade emacs
+fi
 
 # TODO Clone the repo to ~/.emacs.d
 
