@@ -1,9 +1,0 @@
-# arch.yml --- Transmission for Arch Linux
-# author: Seong Yong-ju <sei40kr@gmail.com>
----
-- name: Install transmission-cli, transmission-gtk using pacman
-  pacman:
-    name:
-      - transmission-cli
-      - transmission-gtk
-  become: yes
