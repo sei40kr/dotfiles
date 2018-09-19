@@ -1,8 +1,0 @@
-# main.yml --- Zeal
-# author: Seong Yong-ju <sei40kr@gmail.com>
----
-- name: Include variables
-  include_vars:
-    file: ../vars/main.yml
-- include_tasks: arch.yml
-  when: ansible_os_family == 'Archlinux'
