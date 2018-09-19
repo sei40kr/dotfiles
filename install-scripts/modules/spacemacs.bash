@@ -67,5 +67,10 @@ go_get_facade github.com/jackc/sqlfmt
 # TypeScript
 yarn_global_add_facade typescript-language-server
 
+# Xclipboard
+if is_arch; then
+    pacman_sync_facade xsel
+fi
+
 # YAML
 pip3_install_facade yamllint
