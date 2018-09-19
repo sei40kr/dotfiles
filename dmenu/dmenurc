@@ -1,17 +1,9 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # dmenurc
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-BASE='#b2b2b2'
-BG1='#292b2e'
-HIGHLIGHT='#444155'
+set -euo pipefail
+IFS=$'\n\t'
 
-dmenu -b \
-    -i \
-    -l 15 \
-    -fn 'Terminus\-ja-12' \
-    -nb "$BG1" \
-    -nf "$BASE" \
-    -sb "$HIGHLIGHT" \
-    -sf "$BASE"
+dmenu_run -i -p '>' -fn 'Terminus\-ja-12' -nb '#333333' -nf '#999999' -sb '#0088cc' -sf '#ffffff'

@@ -1,7 +1,0 @@
-# arch.yml --- dmenu for Arch Linux
-# author: Seong Yong-ju <sei40kr@gmail.com>
----
-- name: Install dmenu using pacman
-  pacman:
-    name: dmenu
-  become: yes
