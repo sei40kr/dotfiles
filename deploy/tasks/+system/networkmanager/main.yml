@@ -1,5 +1,0 @@
-# main.yml --- NetworkManager
-# author: Seong Yong-ju <sei40kr@gmail.com>
----
-- include_tasks: arch.yml
-  when: ansible_os_family == 'Archlinux'
