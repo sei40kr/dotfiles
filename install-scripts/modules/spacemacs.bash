@@ -1,7 +1,10 @@
 # spacemacs.bash --- Spacemacs installer
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-if is_arch; then
+if is_macos; then
+    brew_tap_facade d12frosted/emacs-plus
+    brew_install_facade emacs-plus
+elif is_arch; then
     pacman_sync_facade emacs
 fi
 
