@@ -335,11 +335,13 @@ myLogHook hs =
     spacerL = xmobarFont 1 "   "
     transformWs ws =
       let withIcon icon ws = (xmobarFont 3 icon) ++ spacerM ++ ws
-       in if | ws == termWorkspace -> withIcon "\62601" "1"
-             | ws == codeWorkspace -> withIcon "\62543" "2"
-             | ws == webWorkspace -> withIcon "\62596" "3"
-             | ws == fileWorkspace -> withIcon "\62483" "4"
-             | ws == imWorkspace -> withIcon "\62495" "5"
+          withAction i =
+            wrap ("<action=xdotool key alt+shift+" ++ show i ++ ">") "</action>"
+       in if | ws == termWorkspace -> withAction 1 $ withIcon "\62601" "1"
+             | ws == codeWorkspace -> withAction 2 $ withIcon "\62543" "2"
+             | ws == webWorkspace -> withAction 3 $ withIcon "\62596" "3"
+             | ws == fileWorkspace -> withAction 4 $ withIcon "\62483" "4"
+             | ws == imWorkspace -> withAction 5 $ withIcon "\62495" "5"
              | otherwise -> ws
 
 ------------------------------------------------------------------------
