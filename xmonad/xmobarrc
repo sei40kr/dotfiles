@@ -4,19 +4,16 @@
 -- author: Seong Yonng-ju <sei40kr@gmail.com>
 
 Config
-  { font = "xft:Noto Sans CJK JP:pixelsize=16"
+  { font = "xft:Liberation Mono:pixelsize=14"
   , additionalFonts =
-      [ "xft:FuraCode Nerd Font:pixelsize=20" -- 1. symbol icon
-      , "xft:FuraCode Nerd Font:pixelsize=12:antialias=0" -- 2. separator
-      , "xft:FuraCode Nerd Font:pixelsize=18" -- 3. workspace icon
-      , "xft:Noto Sans CJK JP:pixelsize=16" -- 4. window title
-      , "xft:Noto Sans CJK JP:pixelsize=16" -- 5. clock
-      , "xft:FuraCode Nerd Font:pixelsize=20" -- 6. tray icon
-      , "xft:Noto Serif CJK JP:style=bold:pixelsize=15" -- 7. tray icon (fcitx)
+      [ "xft:Liberation Mono:pixelsize=10" -- 1. spacer
+      , "xft:Terminus:pixelsize=12:antialias=0" -- 2. separator
+      , "xft:FuraCode Nerd Font:pixelsize=16:rgba=none" -- 3. icon
+      , "xft:Terminus\-ja:style=bold:pixelsize=16" -- 7. tray icon (fcitx)
       ]
   , bgColor = "#111111"
   , fgColor = "#ffffff"
-  , alpha = 217
+  , alpha = 230
   , position = TopSize C 100 32
   , textOffset = -1
   , iconOffset = -1
@@ -30,29 +27,23 @@ Config
   , iconRoot = "."
   , commands =
       [ Run UnsafeStdinReader
-      , Run Com "xmobar-alsavol" [] "alsavol" 10
-      , Run Com "xmobar-todoist" [] "todoist" 3000
-      , Run Com "xmobar-toggl" [] "toggl" 10
-      , Run Com "xmobar-fcitx" [] "fcitx" 10
       , Run Date "%m/%d %H:%M" "datetime" 10
+      , Run Cpu ["-t", "<total>%"] 10
+      , Run Memory ["-t", "<used>M"] 10
+      , Run Volume "default" "Master" ["-t", "<fn=3><status></fn><fn=1>  </fn><volume>%", "--", "--on", "墳", "-o", "ﱝ", "-C", "#ffffff", "-c", "#999999"] 10
       ]
   , sepChar = "%"
   , alignSep = "}{"
-  -- TODO Add system menu open action
   , template =
-      "    \
-      \<fc=#0088cc><fn=1></fn></fc>\
-      \<fc=#555555><fn=2>  |  </fn></fc>\
+      "<fn=1>   </fn>\
       \%UnsafeStdinReader%\
-      \ }{ \
-      \%fcitx%\
-      \<fc=#555555><fn=2>  |  </fn></fc>\
-      \%toggl%   \
-      \%todoist%\
-      \<fc=#555555><fn=2>  |  </fn></fc>\
-      \%alsavol%\
-      \<fc=#555555><fn=2>  |  </fn></fc>\
-      \<fn=4>%datetime%</fn>\
-      \<fc=#555555><fn=2>  |  </fn></fc>\
-      \<action=`rofi-system-menu`><fc=#cc0088><fn=6>襤</fn></fc></action>    "
+      \}\
+      \%datetime%\
+      \{\
+      \<fn=3>﬙</fn><fn=1>  </fn>%cpu%\
+      \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
+      \<fn=3></fn><fn=1>  </fn>%memory%\
+      \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
+      \%default:Master%\
+      \<fn=1>   </fn>"
   }

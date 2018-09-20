@@ -1,8 +1,11 @@
+{-# LANGUAGE MultiWayIf #-}
+
 module Main (main) where
 
 import           Control.Monad
 import qualified Data.Map                         as M
 import           Data.Monoid
+import           Data.Ratio                       ((%))
 import           System.Exit
 import           System.IO
 import           XMonad
@@ -12,9 +15,13 @@ import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
 import           XMonad.Layout.Gaps
+import           XMonad.Layout.IM
 import           XMonad.Layout.IndependentScreens
 import           XMonad.Layout.LayoutModifier
+import           XMonad.Layout.PerWorkspace
+import           XMonad.Layout.SimpleDecoration
 import           XMonad.Layout.Spacing
+import           XMonad.Layout.Tabbed
 import           XMonad.Layout.ThreeColumns
 import           XMonad.Layout.WindowNavigation
 import qualified XMonad.StackSet                  as W
@@ -77,18 +84,19 @@ myModMask       = mod1Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-devWs :: String
-devWs = "dev"
-webWs :: String
-webWs = "web"
-fileWs :: String
-fileWs = "file"
-imWs :: String
-imWs = "im"
+termWorkspace :: String
+termWorkspace = "term"
+codeWorkspace :: String
+codeWorkspace = "code"
+webWorkspace :: String
+webWorkspace = "web"
+fileWorkspace :: String
+fileWorkspace = "file"
+imWorkspace :: String
+imWorkspace = "im"
 
 myWorkspaces :: [String]
-myWorkspaces = [devWs, webWs, fileWs, imWs]
-
+myWorkspaces = [termWorkspace, codeWorkspace, webWorkspace, fileWorkspace, imWorkspace]
 
 ------------------------------------------------------------------------
 -- Colors:
@@ -97,9 +105,9 @@ myWorkspaces = [devWs, webWs, fileWs, imWs]
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor :: String
-myNormalBorderColor = "#000000"
+myNormalBorderColor = "#999999"
 myFocusedBorderColor :: String
-myFocusedBorderColor = "#0088cc"
+myFocusedBorderColor = "#ffffff"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -134,7 +142,6 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
   , ((modm .|. shiftMask, xK_h), sendMessage Shrink)
     -- Expand the master area
   , ((modm .|. shiftMask, xK_l), sendMessage Expand)
-    -- TODO Bind mod+shift+t to toggle whether or not the focused window is floating
     -- Push window back into tiling
     -- , ((modm, xK_t), withFocused $ windows . W.sink)
     -- Increment the number of windows in the master area
@@ -161,7 +168,8 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     --
-  [ ((modm .|. shiftMask .|. m, key), screenWorkspace sc >>= flip whenJust (windows . f))
+  [ ( (modm .|. shiftMask .|. m, key)
+    , screenWorkspace sc >>= flip whenJust (windows . f))
   | (key, sc) <- zip [xK_w, xK_e, xK_r] [0 ..]
   , (f, m) <- [(W.view, 0), (liftM2 (.) W.view W.shift, controlMask)]
   ]
@@ -204,19 +212,36 @@ myMouseBindings XConfig {XMonad.modMask = modm} = M.fromList
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout ::
-     ModifiedLayout AvoidStruts (ModifiedLayout SmartSpacing (Choose (ModifiedLayout Gaps (ModifiedLayout WindowNavigation ThreeCol)) Full)) Window
 myLayout =
   avoidStruts $
-  smartSpacing 16 $
-  gaps [(U, 16), (D, 16), (R, 16), (L, 16)] (windowNavigation tiled) ||| Full
+  onWorkspace termWorkspace (myTabbed ||| myTall) $
+  onWorkspace codeWorkspace (myTall ||| Full) $
+  onWorkspace fileWorkspace (myTall ||| myTabbed ||| Full) $
+  onWorkspace webWorkspace (myTabbed ||| Full) $
+  onWorkspace imWorkspace myTabbed
+  Full
     -- default tiling algorithm partitions the screen into two panes
   where
-    tiled = ThreeColMid nmaster delta ratio
+    myTheme =
+      def
+        { activeColor = "#111"
+        , activeBorderColor = "#111"
+        , activeTextColor = "#fff"
+        , inactiveColor = "#111"
+        , inactiveBorderColor = "#111"
+        , inactiveTextColor = "#999"
+        , urgentColor = "#111"
+        , urgentBorderColor = "#111"
+        , urgentTextColor = "#999"
+        , fontName = "xft:Liberation Mono:pixelsize=14"
+        , decoHeight = 32
+        }
+    myTabbed = tabbedAlways shrinkText myTheme
+    myTall = Tall nmaster delta ratio
     -- The default number of windows in the master pane
     nmaster = 1
     -- Default proportion of screen occupied by master pane
-    ratio = toRational (2 / (1 + sqrt 5 :: Double))
+    ratio = toRational $ 2 / (1 + sqrt 5 :: Double)
     -- Percent of screen to increment by when resizing panes
     delta = 3 / 100
 
@@ -239,19 +264,20 @@ myManageHook :: ManageHook
 myManageHook =
   composeAll
     [ resource =? "desktop_window" --> doIgnore
-    , className =? "Discord" --> doShiftAndView imWs
-    , className =? "Emacs" --> doShiftAndView devWs
     , className =? "Fcitx-config-gtk3" --> doCenterFloat
     , className =? "feh" --> doCenterFloat
-    , className =? "Gitter" --> doShiftAndView imWs
-    , className =? "Google-chrome" --> doShiftAndView webWs
     , className =? "Rofi" --> doCenterFloat
-    , className =? "Skype" --> doShiftAndView imWs
-    , className =? "Slack" --> doShiftAndView imWs
-    , className =? "Thunar" --> doShiftAndView fileWs
-    , className =? "Transmission-gtk" --> doShiftAndView fileWs
-    , className =? "vlc" --> doShiftAndView fileWs
-    , className =? "Zeal" --> doShiftAndView devWs <+> doCenterFloat
+    , className =? "Termite" --> doShiftAndView termWorkspace
+    , className =? "Emacs" --> doShiftAndView codeWorkspace
+    , className =? "Zeal" --> doShiftAndView codeWorkspace <+> doCenterFloat
+    , className =? "Google-chrome" --> doShiftAndView webWorkspace
+    , className =? "Thunar" --> doShiftAndView fileWorkspace
+    , className =? "Transmission-gtk" --> doShiftAndView fileWorkspace
+    , className =? "vlc" --> doShiftAndView fileWorkspace
+    , className =? "Skype" --> doShiftAndView imWorkspace
+    , className =? "Slack" --> doShiftAndView imWorkspace
+    , className =? "Gitter" --> doShiftAndView imWorkspace
+    , className =? "Discord" --> doShiftAndView imWorkspace
     ]
   where
     doShiftAndView = doF . liftM2 (.) W.view W.shift
@@ -277,34 +303,6 @@ myEventHook = mempty
 xmobarFont :: Int -> String -> String
 xmobarFont n = wrap ("<fn="  ++ show n ++ ">") "</fn>"
 
-xmobarWs :: String -> String
-xmobarWs ws | ws == devWs = "\62601"
-xmobarWs ws | ws == webWs = "\62596"
-xmobarWs ws | ws == fileWs = "\62483"
-xmobarWs ws | ws == imWs = "\63593"
-xmobarWs ws = ws
-
-xmobarWsFont :: Int
-xmobarWsFont = 3
-xmobarActiveWsColor :: String
-xmobarActiveWsColor = "#ffffff"
-xmobarInactiveWsColor :: String
-xmobarInactiveWsColor = "#999999"
-xmobarWsSep :: String
-xmobarWsSep = "    "
-
-xmobarSep :: String
-xmobarSep = "  |  "
-xmobarSepColor :: String
-xmobarSepColor = "#555555"
-xmobarSepFont :: Int
-xmobarSepFont = 2
-
-xmobarTitleLength :: Int
-xmobarTitleLength = 96
-xmobarTitleColor :: String
-xmobarTitleColor = "#ffffff"
-
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
@@ -318,27 +316,31 @@ myLogHook :: [Handle] -> X ()
 myLogHook hs =
   dynamicLogWithPP
     xmobarPP
-      { ppCurrent =
-          xmobarColor xmobarActiveWsColor "" .
-          xmobarFont xmobarWsFont . xmobarWs
-      , ppVisible =
-          xmobarColor xmobarInactiveWsColor "" .
-          xmobarFont xmobarWsFont . xmobarWs
-      , ppHidden =
-          xmobarColor xmobarInactiveWsColor "" .
-          xmobarFont xmobarWsFont . xmobarWs
-      , ppUrgent =
-          xmobarColor xmobarInactiveWsColor "" .
-          xmobarFont xmobarWsFont . xmobarWs
-      , ppWsSep = xmobarWsSep
+      { ppCurrent = xmobarColor activeWsColor "" . transformWs
+      , ppVisible = xmobarColor activeWsColor "" . transformWs
+      , ppHidden = xmobarColor inactiveWsColor "" . transformWs
+      , ppHiddenNoWindows = xmobarColor inactiveWsColor "" . transformWs
+      , ppUrgent = xmobarColor inactiveWsColor "" . transformWs
+      , ppWsSep = spacerL
       , ppSep =
-          xmobarColor xmobarSepColor "" $ xmobarFont xmobarSepFont xmobarSep
-      , ppTitle = xmobarColor xmobarTitleColor "" . shorten xmobarTitleLength
-      , ppTitleSanitize = xmobarStrip
-      , ppOrder = \(ws:_:t:_) -> [ws, t]
+          wrap spacerM spacerM $ xmobarFont 2 $ xmobarColor "#555555" "" "|"
+      , ppOrder = \(ws:_:_:_) -> [ws]
       , ppOutput = forM_ hs . flip hPutStrLn
       }
-
+  where
+    activeWsColor = "#ffffff"
+    inactiveWsColor = "#999999"
+    spacerS = xmobarFont 1 " "
+    spacerM = xmobarFont 1 "  "
+    spacerL = xmobarFont 1 "   "
+    transformWs ws =
+      let withIcon icon ws = (xmobarFont 3 icon) ++ spacerM ++ ws
+       in if | ws == termWorkspace -> withIcon "\62601" "1"
+             | ws == codeWorkspace -> withIcon "\62543" "2"
+             | ws == webWorkspace -> withIcon "\62596" "3"
+             | ws == fileWorkspace -> withIcon "\62483" "4"
+             | ws == imWorkspace -> withIcon "\62495" "5"
+             | otherwise -> ws
 
 ------------------------------------------------------------------------
 -- Startup hook
