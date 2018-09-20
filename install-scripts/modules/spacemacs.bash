@@ -63,6 +63,11 @@ pip3_install_facade yapf
 yarn_global_add_facade markdownlint-cli
 yarn_global_add_facade vmd
 
+# Shell-script
+if is_arch; then
+    trizen_sync_facade shfmt-bin
+fi
+
 # SQL
 go_get_facade github.com/jackc/sqlfmt
 
