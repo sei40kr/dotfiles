@@ -50,8 +50,6 @@ __dump_brewfile() {
 }
 
 
-__BREW_BUNDLE_CMD=( brew bundle --file=- )
-
 brew_facade_reducer() {
     [[ "${#__brew_repos}" == 0 ]] &&
         [[ "${#__brew_formulas}" == 0 ]] &&
@@ -63,14 +61,20 @@ brew_facade_reducer() {
 
     log_wait 'Installing Homebrew formulas, casks ...'
 
+    brew_cmd=( brew bundle --file=- )
+
+    if ! do_update; then
+       brew_cmd+=( --no-upgrade )
+    fi
+
     if is_dry_run; then
         cat <<CMD
-> ${__BREW_BUNDLE_CMD[@]} <<BREWFILE
+> ${brew_cmd[@]} <<BREWFILE
 $(__dump_brewfile | awk '{ print "> " $0 }')
 > BREWFILE
 CMD
     else
-        __dump_brewfile | wrap_facade_cmd "${__BREW_BUNDLE_CMD[@]}"
+        __dump_brewfile | wrap_facade_cmd "${brew_cmd[@]}"
     fi
 }
 
