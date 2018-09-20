@@ -78,7 +78,13 @@ run_all_facade_reducers() {
 wrap_facade_cmd() {
     local cmd="$@"
 
+    # If --dry-run or --verbose is specified, show the command
     if is_dry_run || is_verbose; then
-        echo ">" "${cmd[@]}"
+        echo '>' "${cmd[@]}"
+    fi
+
+    # Run the command unless --dry-run is specified
+    if ! is_dry_run; then
+        eval  "${cmd[@]}"
     fi
 }
