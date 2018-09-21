@@ -31,6 +31,7 @@ Config
       , Run Cpu ["-t", "<total>%"] 10
       , Run Memory ["-t", "<used>M"] 10
       , Run Volume "default" "Master" ["-t", "<fn=3><status></fn><fn=1>  </fn><volume>%", "--", "--on", "墳", "-o", "ﱝ", "-C", "#ffffff", "-c", "#999999"] 10
+      , Run Com "xmobar-arch-update" [] "archupd" 600
       ]
   , sepChar = "%"
   , alignSep = "}{"
@@ -40,6 +41,8 @@ Config
       \}\
       \%datetime%\
       \{\
+      \%archupd%\
+      \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
       \<fn=3>﬙</fn><fn=1>  </fn>%cpu%\
       \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
       \<fn=3></fn><fn=1>  </fn>%memory%\
