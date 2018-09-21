@@ -42,7 +42,7 @@ myFocusFollowsMouse = True
 -- Width of the window border in pixels.
 --
 myBorderWidth   :: Dimension
-myBorderWidth   = 3
+myBorderWidth = 2
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -161,7 +161,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     -- mod-shift-[1..9], Move client to workspace N
     --
   [ ((modm .|. shiftMask .|. m, k), windows $ f i)
-  | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+  | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_5]
   , (f, m) <- [(W.greedyView, 0), (W.shift, controlMask)]
   ] ++
     --
@@ -238,7 +238,7 @@ myLayout =
         }
     myTabbed = tabbedAlways shrinkText myTheme
     myTall = Tall nmaster delta ratio
-    -- The default number of windows in the master pane
+   -- The default number of windows in the master pane
     nmaster = 1
     -- Default proportion of screen occupied by master pane
     ratio = toRational $ 2 / (1 + sqrt 5 :: Double)
