@@ -4,7 +4,7 @@
 -- author: Seong Yong-ju <sei40kr@gmail.com>
 
 Config
-  { font = "xft:Liberation Mono:pixelsize=14"
+  { font = "xft:Liberation Mono:pixelsize=14,xft:Noto Sans Mono CJK JP:pixelsize=14"
   , additionalFonts =
       [ "xft:Liberation Mono:pixelsize=10" -- 1. spacer
       , "xft:Terminus:pixelsize=12:antialias=0" -- 2. separator

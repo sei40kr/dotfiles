@@ -233,7 +233,7 @@ myLayout =
         , urgentColor = "#111"
         , urgentBorderColor = "#111"
         , urgentTextColor = "#999"
-        , fontName = "xft:Liberation Mono:pixelsize=14"
+        , fontName = "xft:Noto Sans Mono CJK JP:pixelsize=14"
         , decoHeight = 32
         }
     myTabbed = tabbedAlways shrinkText myTheme
