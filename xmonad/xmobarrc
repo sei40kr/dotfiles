@@ -39,9 +39,7 @@ Config
   , template =
       "<fn=1>   </fn>\
       \%UnsafeStdinReader%\
-      \}\
-      \%datetime%\
-      \{\
+      \}{\
       \%archupd%\
       \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
       \<fn=3>﬙</fn><fn=1>  </fn>%cpu%\
@@ -51,5 +49,7 @@ Config
       \%dynnetwork%\
       \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
       \%default:Master%\
+      \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
+      \%datetime%\
       \<fn=1>   </fn>"
   }
