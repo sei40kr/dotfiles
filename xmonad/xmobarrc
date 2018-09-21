@@ -1,7 +1,7 @@
 -- -*- mode: haskell -*-
 
 -- xmobarrc
--- author: Seong Yonng-ju <sei40kr@gmail.com>
+-- author: Seong Yong-ju <sei40kr@gmail.com>
 
 Config
   { font = "xft:Liberation Mono:pixelsize=14"
@@ -26,12 +26,12 @@ Config
   , iconRoot = "."
   , commands =
       [ Run UnsafeStdinReader
-      , Run Date "%m/%d %H:%M" "datetime" 10
       , Run Com "xmobar-arch-update" [] "archupd" 600
       , Run Cpu ["-t", "<total>%"] 10
       , Run Memory ["-t", "<used>M"] 10
       , Run DynNetwork ["-t", "<fc=#00cc80><fn=3>ﰬ</fn></fc><fn=1>  </fn><rx>kB/s<fn=1>  </fn><fc=#cc0080><fn=3>ﰵ</fn></fc><fn=1>  </fn><tx>kB/s"] 10
       , Run Volume "default" "Master" ["-t", "<fn=3><status></fn><fn=1>  </fn><volume>%", "--", "--on", "墳", "-o", "ﱝ", "-C", "#ffffff", "-c", "#cc0080"] 10
+      , Run Date "%m/%d %H:%M" "datetime" 10
       ]
   , sepChar = "%"
   , alignSep = "}{"
