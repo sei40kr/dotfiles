@@ -28,10 +28,11 @@ Config
   , commands =
       [ Run UnsafeStdinReader
       , Run Date "%m/%d %H:%M" "datetime" 10
+      , Run Com "xmobar-arch-update" [] "archupd" 600
       , Run Cpu ["-t", "<total>%"] 10
       , Run Memory ["-t", "<used>M"] 10
       , Run Volume "default" "Master" ["-t", "<fn=3><status></fn><fn=1>  </fn><volume>%", "--", "--on", "墳", "-o", "ﱝ", "-C", "#ffffff", "-c", "#999999"] 10
-      , Run Com "xmobar-arch-update" [] "archupd" 600
+      , Run DynNetwork ["-t", "<fc=#00cc80><fn=3>ﰬ</fn></fc><fn=1>  </fn><rx>kB/s<fn=1>  </fn><fc=#cc0080><fn=3>ﰵ</fn></fc><fn=1>  </fn><tx>kB/s"] 10
       ]
   , sepChar = "%"
   , alignSep = "}{"
@@ -46,6 +47,8 @@ Config
       \<fn=3>﬙</fn><fn=1>  </fn>%cpu%\
       \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
       \<fn=3></fn><fn=1>  </fn>%memory%\
+      \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
+      \%dynnetwork%\
       \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
       \%default:Master%\
       \<fn=1>   </fn>"
