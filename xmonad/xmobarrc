@@ -9,7 +9,6 @@ Config
       [ "xft:Liberation Mono:pixelsize=10" -- 1. spacer
       , "xft:Terminus:pixelsize=12:antialias=0" -- 2. separator
       , "xft:FuraCode Nerd Font:pixelsize=16:rgba=none" -- 3. icon
-      , "xft:Terminus\-ja:style=bold:pixelsize=16" -- 7. tray icon (fcitx)
       ]
   , bgColor = "#111111"
   , fgColor = "#ffffff"
@@ -38,6 +37,8 @@ Config
   , alignSep = "}{"
   , template =
       "<fn=1>   </fn>\
+      \<fc=#0080cc><fn=3></fn></fc>\
+      \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
       \%UnsafeStdinReader%\
       \}{\
       \%archupd%\
