@@ -342,7 +342,7 @@ myLogHook hs =
              | ws == webWorkspace -> withAction 3 $ withIcon "\62596" "3"
              | ws == fileWorkspace -> withAction 4 $ withIcon "\62483" "4"
              | ws == imWorkspace -> withAction 5 $ withIcon "\62495" "5"
-             | otherwise -> ws
+             | otherwise -> ""
 
 ------------------------------------------------------------------------
 -- Startup hook
