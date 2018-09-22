@@ -272,8 +272,8 @@ myManageHook =
     , className =? "Zeal" --> doShiftAndView codeWorkspace <+> doCenterFloat
     , stringProperty "WM_WINDOW_ROLE" =? "browser" -->
       doShiftAndView webWorkspace
+    , className =? "Transmission-gtk" --> doShiftAndView webWorkspace
     , className =? "Thunar" --> doShiftAndView fileWorkspace
-    , className =? "Transmission-gtk" --> doShiftAndView fileWorkspace
     , className =? "vlc" --> doShiftAndView fileWorkspace
     , className =? "Skype" --> doShiftAndView imWorkspace
     , className =? "Slack" --> doShiftAndView imWorkspace
