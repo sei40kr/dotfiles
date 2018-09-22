@@ -270,7 +270,8 @@ myManageHook =
     , className =? "Termite" --> doShiftAndView termWorkspace
     , className =? "Emacs" --> doShiftAndView codeWorkspace
     , className =? "Zeal" --> doShiftAndView codeWorkspace <+> doCenterFloat
-    , className =? "Google-chrome" --> doShiftAndView webWorkspace
+    , stringProperty "WM_WINDOW_ROLE" =? "browser" -->
+      doShiftAndView webWorkspace
     , className =? "Thunar" --> doShiftAndView fileWorkspace
     , className =? "Transmission-gtk" --> doShiftAndView fileWorkspace
     , className =? "vlc" --> doShiftAndView fileWorkspace
@@ -288,6 +289,7 @@ myManageHook =
 -- Defines a custom handler function for X Events. The function should
 -- return (All True) if the default handler is to be run afterwards. To
 -- combine event hooks use mappend or mconcat from Data.Monoid.
+
 --
 -- * NOTE: EwmhDesktops users should use the 'ewmh' function from
 -- XMonad.Hooks.EwmhDesktops to modify their defaultConfig as a whole.
