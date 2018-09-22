@@ -351,7 +351,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Liberation Mono"
+   dotspacemacs-default-font '("Source Han Code JP"
                                :size 16
                                :weight normal
                                :width normal
@@ -786,7 +786,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (evil-global-set-key 'insert (kbd "s-v") #'spacemacs/xclipboard-paste)
 
   ;; Fix frame font
-  (add-to-list 'default-frame-alist '(font . "Liberation Mono-12"))
+  (add-to-list 'default-frame-alist '(font . "Source Han Code JP-12"))
 
   ;; Fix frame transparency
   (defun user-custom//enable-frame-transparency (frame)
