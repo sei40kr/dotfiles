@@ -22,6 +22,10 @@ trizen_reduce_pkgs() {
         git clone --depth 1 https://aur.archlinux.org/trizen.git /tmp/trizen 1>/dev/null &&
             ( cd /tmp/trizen; makepkg -mis --noconfirm --needed ) &&
             rm -rf /tmp/trizen
+
+        # Create a symlink for the Trizen config
+        mkdir -p "${XDG_CONFIG_HOME}/trizen"
+        ln -fsT "${DOTFILES_PATH}/trizen/trizen.conf" "${XDG_CONFIG_HOME}/trizen/trizen.conf"
     fi
 
     log_wait 'Installing trizen packages ...'
