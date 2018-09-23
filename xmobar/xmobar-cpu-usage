@@ -3,19 +3,19 @@
 # xmobar-cpu-usage
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-usage="$(iostat -c -o JSON |
-    jq '.sysstat.hosts[0].statistics[0]["avg-cpu"].idle | 100 - . | floor')"
+mpstat -P ALL 1 | awk '
+$3 == "all" {
+  usage = int(100 - $13)
 
-s="<fn=3>﬙</fn><fn=1>  </fn>${usage}%"
+  s = "<fn=3>﬙</fn><fn=1>  </fn>" usage "%"
 
-if [ 30 -le "$usage"  ]; then
-    if [ "$usage" -le 80 ]; then
-        color="#cc8000"
-    else
-        color="#cc0080"
-    fi
+  if (30 <= usage) {
+    if (usage <= 80) color = "#cc8000"
+    else             color = "#cc0080"
 
-    s="<fc=${color}>${s}</fc>"
-fi
+    s = "<fc=" color ">" s "</fc>"
+  }
 
-echo "$s"
+  print s
+  fflush()
+}'
