@@ -105,7 +105,7 @@ myWorkspaces = [termWorkspace, codeWorkspace, webWorkspace, fileWorkspace, imWor
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor :: String
-myNormalBorderColor = "#999999"
+myNormalBorderColor = "#555555"
 myFocusedBorderColor :: String
 myFocusedBorderColor = "#ffffff"
 
