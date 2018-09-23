@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# xmobar-cpu-usage
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+usage="$(iostat -c -o JSON | jq '.sysstat.hosts[0].statistics[0]["avg-cpu"].idle | 100 - . | floor')"
+
+s="<fn=3>﬙</fn><fn=1>  </fn>${usage}%"
+
+if [ 30 -le "$usage"  ]; then
+    if [ "$usage" -le 80 ]; then
+        color="#cc8000"
+    else
+        color="#cc0080"
+    fi
+
+    s="<fc=${color}>${s}</fc>"
+fi
+
+echo "$s"
