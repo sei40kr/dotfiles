@@ -30,7 +30,7 @@ Config
       , Run Cpu ["-t", "<total>%"] 10
       , Run Memory ["-t", "<used>M"] 10
       , Run DynNetwork ["-t", "<fc=#00cc80><fn=3>ﰬ</fn></fc><fn=1>  </fn><rx>kB/s<fn=1>  </fn><fc=#cc0080><fn=3>ﰵ</fn></fc><fn=1>  </fn><tx>kB/s"] 10
-      , Run Volume "default" "Master" ["-t", "<fn=3><status></fn><fn=1>  </fn><volume>%", "--", "--on", "墳", "-o", "ﱝ", "-C", "#ffffff", "-c", "#cc0080"] 10
+      , Run Com "xmobar-alsa-vol" [] "alsavol" 10
       , Run Date "%m/%d %H:%M" "datetime" 10
       ]
   , sepChar = "%"
@@ -49,7 +49,7 @@ Config
       \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
       \%dynnetwork%\
       \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
-      \%default:Master%\
+      \%alsavol%\
       \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
       \%datetime%\
       \<fn=1>   </fn>"
