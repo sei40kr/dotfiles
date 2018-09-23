@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# xmobar-fcitx-state
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+if [ "$(fcitx-remote)" -eq 2 ]; then
+    icon='あ'
+else
+    icon='Aa'
+fi
+
+echo "<fn=4>${icon}</fn>"

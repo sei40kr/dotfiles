@@ -9,6 +9,7 @@ Config
       [ "xft:Source Han Code JP:pixelsize=8" -- 1. spacer
       , "xft:Terminus:pixelsize=12:antialias=0" -- 2. separator
       , "xft:FuraCode Nerd Font:pixelsize=16:rgba=none" -- 3. icon
+      , "xft:Noto Serif CJK JP:style=bold:pixelsize=15:rgba=none" -- 4. fcitx icon
       ]
   , bgColor = "#111111"
   , fgColor = "#ffffff"
@@ -30,6 +31,7 @@ Config
       , Run Com "xmobar-cpu-usage" [] "cpuusage" 10
       , Run Com "xmobar-mem-usage" [] "memusage" 10
       , Run DynNetwork ["-t", "<fc=#00cc80><fn=3>ﰬ</fn></fc><fn=1>  </fn><rx>kB/s<fn=1>  </fn><fc=#cc0080><fn=3>ﰵ</fn></fc><fn=1>  </fn><tx>kB/s"] 10
+      , Run Com "xmobar-fcitx-state" [] "fcitx" 10
       , Run Com "xmobar-alsa-vol" [] "alsavol" 10
       , Run Date "%m/%d %H:%M" "datetime" 10
       ]
@@ -48,6 +50,8 @@ Config
       \%memusage%\
       \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
       \%dynnetwork%\
+      \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
+      \%fcitx%\
       \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
       \%alsavol%\
       \<fc=#555555><fn=1>  </fn><fn=2>|</fn><fn=1>  </fn></fc>\
