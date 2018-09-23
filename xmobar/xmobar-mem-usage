@@ -13,12 +13,14 @@ awk '
 END {
   usage = 1 - avail / total
 
+  s = sprintf("<fn=3></fn><fn=1>  </fn>%dM", (total - avail) / 1024)
+
   if (0.30 <= usage) {
     if (usage <= 0.80) color = "#cc8000"
     else               color = "#cc0080"
+
+    s = sprintf("<fc=%s>%s</fc>", color, s)
   }
 
-  s = sprintf("<fn=3></fn><fn=1>  </fn>%dM", (total - avail) / 1024)
-  if (color) s = sprintf("<fc=%s>%s</fc>", color, s)
   print s
 }' </proc/meminfo

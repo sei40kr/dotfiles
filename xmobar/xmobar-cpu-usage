@@ -3,7 +3,8 @@
 # xmobar-cpu-usage
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-usage="$(iostat -c -o JSON | jq '.sysstat.hosts[0].statistics[0]["avg-cpu"].idle | 100 - . | floor')"
+usage="$(iostat -c -o JSON |
+    jq '.sysstat.hosts[0].statistics[0]["avg-cpu"].idle | 100 - . | floor')"
 
 s="<fn=3>﬙</fn><fn=1>  </fn>${usage}%"
 
