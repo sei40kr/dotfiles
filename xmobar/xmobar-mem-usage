@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# xmobar-mem-usage
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+awk '
+/^MemTotal:\s/ {
+  total = $2 + 0
+}
+/^MemAvailable:\s/ {
+  avail = $2 + 0
+}
+END {
+  usage = 1 - avail / total
+
+  if (0.30 <= usage) {
+    if (usage <= 0.80) color = "#cc8000"
+    else               color = "#cc0080"
+  }
+
+  s = sprintf("<fn=3></fn><fn=1>  </fn>%dM", (total - avail) / 1024)
+  if (color) s = sprintf("<fc=%s>%s</fc>", color, s)
+  print s
+}' </proc/meminfo
