@@ -30,8 +30,7 @@ values."
    ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path
-   (list (concat dotspacemacs-directory "layers"))
+   dotspacemacs-configuration-layer-path '("~/.spacemacs.d/layers")
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
@@ -152,6 +151,7 @@ values."
      (docker :variables
              dockerfile-mode-enable-lsp t)
      imenu-list
+     ipython-notebook
      (lsp :variables
           lsp-ui-sideline-enable nil)
      nginx
@@ -784,6 +784,11 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; S-c/S-v to copy to/paste from X-clipboard
   (evil-global-set-key 'visual (kbd "s-c") #'spacemacs/xclipboard-copy)
   (evil-global-set-key 'insert (kbd "s-v") #'spacemacs/xclipboard-paste)
+
+  ;; Display inline images in org file
+  (defun user-custom//org-display-inline-images ()
+    (org-display-inline-images t))
+  (add-hook 'org-mode-hook #'user-custom//org-display-inline-images)
 
   ;; Fix frame font
   (add-to-list 'default-frame-alist '(font . "Source Han Code JP-12"))

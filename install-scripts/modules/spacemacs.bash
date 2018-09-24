@@ -50,6 +50,13 @@ yarn_global_add_facade tern
 
 # Jupyter Notebook
 pip3_install_facade jupyter
+if is_linux; then
+    ln_facade "${DOTFILES_PATH}/matplotlib/matplotlibrc" \
+              "${XDG_CONFIG_HOME}/matplotlib/matplotlibrc"
+else
+    ln_facade "${DOTFILES_PATH}/matplotlib/matplotlibrc" \
+              "${HOME}/.matplotlib/matplotlibrc"
+fi
 
 # Python
 pip3_install_facade autopep8
