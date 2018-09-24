@@ -114,7 +114,7 @@ rofi.color-urgent:                   #00000000, #999999, #00000000, #00000000, #
 ! "Color scheme for active row" Set from: File
 rofi.color-active:                   #00000000, #999999, #00000000, #00000000, #ffffff
 ! "Color scheme window" Set from: File
-rofi.color-window:                   #cc111111, #ffffff, #555555
+rofi.color-window:                   #e6111111, #ffffff, #555555
 ! "Max history size (WARNING: can cause slowdowns when set to high)." Set from: Default
 ! rofi.max-history-size:               25
 ! "Hide the prefix mode prefix on the combi view." Set from: Default
