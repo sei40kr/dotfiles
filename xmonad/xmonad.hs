@@ -261,6 +261,7 @@ myManageHook =
     [ resource =? "desktop_window" --> doIgnore
     , className =? "Fcitx-config-gtk3" --> doCenterFloat
     , className =? "feh" --> doCenterFloat
+    , isDialog --> doCenterFloat
     , className =? "Rofi" --> doCenterFloat
     , className =? "Termite" --> doShiftAndView termWorkspace
     , className =? "Emacs" --> doShiftAndView codeWorkspace
