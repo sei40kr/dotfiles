@@ -18,7 +18,7 @@ rofi.bw:                             2
 ! "Location on screen" Set from: Default
 ! rofi.location:                       0
 ! "Padding" Set from: File
-rofi.padding:                        24
+rofi.padding:                        20
 ! "Y-offset relative to location" Set from: Default
 ! rofi.yoffset:                        0
 ! "X-offset relative to location" Set from: Default
