@@ -601,7 +601,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
    auto-save-default nil
    backup-inhibited t
    create-lockfiles nil
-   custom-file nil
    select-enable-clipboard nil
    tooltip-delay 0.3
    tooltip-hide-delay 999
@@ -800,7 +799,4 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; Load evil-terminal-cursor-changer
   (unless (display-graphic-p)
     (require 'evil-terminal-cursor-changer)
-    (evil-terminal-cursor-changer-activate))
-
-  ;; Load emacs-custom-settings
-  (load custom-file))
+    (evil-terminal-cursor-changer-activate)))
