@@ -82,6 +82,8 @@ values."
               crystal-enable-auto-format t)
      csv
      emacs-lisp
+     (ess :variables
+          ess-disable-underscore-assign t)
      (go :variables
          go-format-before-save t
          go-tab-width 4)
