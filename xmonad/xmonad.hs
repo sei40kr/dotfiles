@@ -9,6 +9,7 @@ import           Data.Ratio                       ((%))
 import           System.Exit
 import           System.IO
 import           XMonad
+import           XMonad.Actions.OnScreen
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageDocks
@@ -156,7 +157,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
   [ ((modm .|. m, k), windows $ f i)
   | (i, k) <-
       zip (XMonad.workspaces conf) $ take (length myWorkspaces) [xK_1 .. xK_9]
-  , (f, m) <- [(W.greedyView, 0), (W.shift, controlMask)]
+  , (f, m) <- [(greedyViewOnSpecifiedScreen, 0)]
   ] ++
     --
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
@@ -164,8 +165,22 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     --
   [ ((modm .|. m, key), screenWorkspace sc >>= flip whenJust (windows . f))
   | (key, sc) <- zip [xK_w, xK_e, xK_r] [0 ..]
-  , (f, m) <- [(W.view, 0), (liftM2 (.) W.view W.shift, controlMask)]
+  , (f, m) <- [(W.view, 0)]
   ]
+  where
+    greedyViewOnSpecifiedScreen workspaceId =
+      let screen = specifiedScreen workspaceId
+       in (case screen of
+             Just screenId -> greedyViewOnScreen screenId
+             Nothing       -> W.greedyView)
+            workspaceId
+    specifiedScreen workspaceId =
+      (if | workspaceId == termWorkspace -> Just 0
+          | workspaceId == codeWorkspace -> Just 0
+          | workspaceId == webWorkspace -> Just 1
+          | workspaceId == fileWorkspace -> Just 0
+          | workspaceId == imWorkspace -> Just 1
+          | otherwise -> Nothing)
 
 
 ------------------------------------------------------------------------
