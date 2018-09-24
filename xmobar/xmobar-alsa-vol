@@ -3,7 +3,7 @@
 # xmobar-alsa-vol
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-amixer get Master | gawk '
+amixer sget Master | gawk '
 /\[off\]/ {
   muted = 1
   print "<fc=#cc0080><fn=3>\xef\xb1\x9d</fn></fc>"
