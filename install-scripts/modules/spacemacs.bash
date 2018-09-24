@@ -58,6 +58,11 @@ else
               "${HOME}/.matplotlib/matplotlibrc"
 fi
 
+# Markdown
+gem_install_facade mdl
+yarn_global_add_facade markdownlint-cli
+yarn_global_add_facade vmd
+
 # Python
 pip3_install_facade autopep8
 pip3_install_facade flake8
@@ -69,9 +74,14 @@ pip3_install_facade pyls-mypy
 pip3_install_facade python-language-server
 pip3_install_facade yapf
 
-# Markdown
-yarn_global_add_facade markdownlint-cli
-yarn_global_add_facade vmd
+# Ruby
+gem_install_facade fastri
+gem_install_facade pry
+gem_install_facade pry-coolline
+gem_install_facade pry-doc
+gem_install_facade rake
+gem_install_facade rcodetools
+gem_install_facade rubocop
 
 # Shell-script
 if is_arch; then
