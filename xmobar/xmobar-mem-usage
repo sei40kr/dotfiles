@@ -9,7 +9,7 @@ $1 == "Mem:" {
   used = $3 + 0
   usage = used / total
 
-  s = "<fn=3></fn><fn=1>  </fn>" used "M"
+  s = "<fn=3>\xef\xa1\x9a</fn><fn=1>  </fn>" used "M"
 
   if (0.30 <= usage) {
     if (usage <= 0.80) color = "#cc8000"
