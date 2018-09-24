@@ -8,7 +8,7 @@ $2 == "all" {
   idle = $12 + 0
   usage = int(100 - idle)
 
-  s = "<fn=3>﬙</fn><fn=1>  </fn>" usage "%"
+  s = "<fn=3>\xef\xac\x99</fn><fn=1>  </fn>" usage "%"
 
   if (30 <= usage) {
     if (usage <= 80) color = "#cc8000"
