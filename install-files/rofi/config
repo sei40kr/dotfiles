@@ -108,7 +108,7 @@ rofi.hide-scrollbar:                 true
 ! "New style theme file" Set from: Default
 ! rofi.theme:                          
 ! "Color scheme for normal row" Set from: File
-rofi.color-normal:                   #00000000, #999999, #00000000, #0080cc, #ffffff
+rofi.color-normal:                   #00000000, #999999, #00000000, #00000000, #ffffff
 ! "Color scheme for urgent row" Set from: File
 rofi.color-urgent:                   #00000000, #999999, #00000000, #00000000, #ffffff
 ! "Color scheme for active row" Set from: File
