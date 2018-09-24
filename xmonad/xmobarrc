@@ -29,7 +29,7 @@ Config
       [ Run UnsafeStdinReader
       , Run Com "xmobar-arch-update" [] "archupd" 600
       , Run CommandReader "xmobar-cpu-usage" "cpuusage"
-      , Run Com "xmobar-mem-usage" [] "memusage" 10
+      , Run CommandReader "xmobar-mem-usage" "memusage"
       , Run DynNetwork ["-t", "<fc=#00cc80><fn=3>ﰬ</fn></fc><fn=1>  </fn><rx>kB/s<fn=1>  </fn><fc=#cc0080><fn=3>ﰵ</fn></fc><fn=1>  </fn><tx>kB/s"] 10
       , Run Com "xmobar-fcitx-state" [] "fcitx" 10
       , Run Com "xmobar-alsa-vol" [] "alsavol" 10

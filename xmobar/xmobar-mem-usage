@@ -3,24 +3,21 @@
 # xmobar-mem-usage
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-awk '
-/^MemTotal:\s/ {
+free -ms 1 | awk '
+$1 == "Mem:" {
   total = $2 + 0
-}
-/^MemAvailable:\s/ {
-  avail = $2 + 0
-}
-END {
-  usage = 1 - avail / total
+  used = $3 + 0
+  usage = used / total
 
-  s = sprintf("<fn=3></fn><fn=1>  </fn>%dM", (total - avail) / 1024)
+  s = "<fn=3></fn><fn=1>  </fn>" used "M"
 
   if (0.30 <= usage) {
     if (usage <= 0.80) color = "#cc8000"
     else               color = "#cc0080"
 
-    s = sprintf("<fc=%s>%s</fc>", color, s)
+    s = "<fc=" color ">" s "</fc>"
   }
 
   print s
-}' </proc/meminfo
+  fflush()
+}'
