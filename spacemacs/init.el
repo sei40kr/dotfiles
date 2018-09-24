@@ -785,11 +785,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (evil-global-set-key 'visual (kbd "s-c") #'spacemacs/xclipboard-copy)
   (evil-global-set-key 'insert (kbd "s-v") #'spacemacs/xclipboard-paste)
 
-  ;; Display inline images in org file
-  (defun user-custom//org-display-inline-images ()
-    (org-display-inline-images t))
-  (add-hook 'org-mode-hook #'user-custom//org-display-inline-images)
-
   ;; Fix frame font
   (add-to-list 'default-frame-alist '(font . "Source Han Code JP-12"))
 
