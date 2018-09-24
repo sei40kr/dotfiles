@@ -6,19 +6,19 @@
 ! "Enabled modi" Set from: Default
 ! rofi.modi:                           window,run,ssh
 ! "Window width" Set from: Default
-! rofi.width:                          50
+rofi.width:                          720
 ! "Number of lines" Set from: Default
-! rofi.lines:                          15
+rofi.lines:                          10
 ! "Number of columns" Set from: Default
 ! rofi.columns:                        1
 ! "Font to use" Set from: File
-rofi.font:                           Terminus-ja 12
+rofi.font:                           Source Han Code JP 10
 ! "Border width" Set from: File
-rofi.bw:                             0
+rofi.bw:                             2
 ! "Location on screen" Set from: Default
 ! rofi.location:                       0
 ! "Padding" Set from: File
-rofi.padding:                        16
+rofi.padding:                        24
 ! "Y-offset relative to location" Set from: Default
 ! rofi.yoffset:                        0
 ! "X-offset relative to location" Set from: Default
@@ -70,7 +70,7 @@ rofi.padding:                        16
 ! "Set the modi to combine in combi mode" Set from: Default
 ! rofi.combi-modi:                     window,run
 ! "Set the matching algorithm. (normal, regex, glob, fuzzy)" Set from: Default
-! rofi.matching:                       normal
+rofi.matching:                       fuzzy
 ! "Tokenize input string" Set from: Default
 ! rofi.tokenize:                       true
 ! "Monitor id to show on" Set from: Default
@@ -78,11 +78,11 @@ rofi.padding:                        16
 ! "Margin between rows *DEPRECATED*" Set from: Default
 ! rofi.line-margin:                    2
 ! "Padding within rows *DEPRECATED*" Set from: Default
-! rofi.line-padding:                   1
+rofi.line-padding:                   4
 ! "Pre-set filter" Set from: Default
 ! rofi.filter:                         
 ! "Separator style (none, dash, solid) *DEPRECATED*" Set from: File
-rofi.separator-style:                none
+rofi.separator-style:                solid
 ! "Hide scroll-bar *DEPRECATED*" Set from: File
 rofi.hide-scrollbar:                 true
 ! "Fullscreen" Set from: Default
@@ -108,13 +108,13 @@ rofi.hide-scrollbar:                 true
 ! "New style theme file" Set from: Default
 ! rofi.theme:                          
 ! "Color scheme for normal row" Set from: File
-rofi.color-normal:                   #00000000, #999999, #00000000, #0088cc, #ffffff
+rofi.color-normal:                   #00000000, #999999, #00000000, #0080cc, #ffffff
 ! "Color scheme for urgent row" Set from: File
-rofi.color-urgent:                   #00000000, #999999, #00000000, #0088cc, #ffffff
+rofi.color-urgent:                   #00000000, #999999, #00000000, #00000000, #ffffff
 ! "Color scheme for active row" Set from: File
-rofi.color-active:                   #00000000, #ffffff, #00000000, #0088cc, #ffffff
+rofi.color-active:                   #00000000, #999999, #00000000, #00000000, #ffffff
 ! "Color scheme window" Set from: File
-rofi.color-window:                   #cc111111
+rofi.color-window:                   #cc111111, #ffffff, #555555
 ! "Max history size (WARNING: can cause slowdowns when set to high)." Set from: Default
 ! rofi.max-history-size:               25
 ! "Hide the prefix mode prefix on the combi view." Set from: Default
@@ -130,7 +130,7 @@ rofi.color-window:                   #cc111111
 ! "The display name of this browser" Set from: Default
 ! rofi.display-ssh:                    
 ! "The display name of this browser" Set from: Default
-! rofi.display-drun:                   
+rofi.display-drun:                   Run
 ! "The display name of this browser" Set from: Default
 ! rofi.display-combi:                  
 ! "The display name of this browser" Set from: Default
@@ -162,11 +162,11 @@ rofi.color-window:                   #cc111111
 ! "Delete previous char" Set from: Default
 ! rofi.kb-remove-char-back:            BackSpace,Control+h
 ! "Delete till the end of line" Set from: Default
-! rofi.kb-remove-to-eol:               Control+k
+rofi.kb-remove-to-eol:
 ! "Delete till the start of line" Set from: Default
 ! rofi.kb-remove-to-sol:               Control+u
 ! "Accept entry" Set from: Default
-! rofi.kb-accept-entry:                Control+j,Control+m,Return,KP_Enter
+rofi.kb-accept-entry:                Control+m,Return,KP_Enter
 ! "Use entered text as command (in ssh/run modi)" Set from: Default
 ! rofi.kb-accept-custom:               Control+Return
 ! "Use alternate accept command." Set from: Default
@@ -182,9 +182,9 @@ rofi.color-window:                   #cc111111
 ! "Go to the next column" Set from: Default
 ! rofi.kb-row-right:                   Control+Page_Down
 ! "Select previous entry" Set from: Default
-! rofi.kb-row-up:                      Up,Control+p,ISO_Left_Tab
+rofi.kb-row-up:                      Up,Control+p,Control+k,ISO_Left_Tab
 ! "Select next entry" Set from: Default
-! rofi.kb-row-down:                    Down,Control+n
+rofi.kb-row-down:                    Down,Control+n,Control+j
 ! "Go to next row, if one left, accept it, if no left next mode." Set from: Default
 ! rofi.kb-row-tab:                     Tab
 ! "Go to the previous page" Set from: Default
