@@ -9,24 +9,18 @@ import           Data.Ratio                       ((%))
 import           System.Exit
 import           System.IO
 import           XMonad
-import           XMonad.Actions.WindowNavigation
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
-import           XMonad.Layout.Gaps
-import           XMonad.Layout.IM
 import           XMonad.Layout.IndependentScreens
 import           XMonad.Layout.LayoutModifier
 import           XMonad.Layout.PerWorkspace
-import           XMonad.Layout.SimpleDecoration
-import           XMonad.Layout.Spacing
 import           XMonad.Layout.Tabbed
-import           XMonad.Layout.ThreeColumns
-import           XMonad.Layout.WindowNavigation
+import           XMonad.Layout.ZoomRow
 import qualified XMonad.StackSet                  as W
-import           XMonad.Util.Run
 
+import           XMonad.Util.Run
 -- xmonad.hs
 -- author: Seong Yong-ju <sei40kr@gmail.com>
 
@@ -215,9 +209,9 @@ myMouseBindings XConfig {XMonad.modMask = modm} = M.fromList
 myLayout =
   avoidStruts $
   onWorkspace termWorkspace (myTabbed ||| myTall) $
-  onWorkspace codeWorkspace (myTall ||| Full) $
-  onWorkspace fileWorkspace (myTall ||| myTabbed ||| Full) $
-  onWorkspace webWorkspace (myTabbed ||| Full) $
+  onWorkspace codeWorkspace (myTabbed ||| myTall) $
+  onWorkspace fileWorkspace (myRow ||| myTabbed) $
+  onWorkspace webWorkspace myTabbed $
   onWorkspace imWorkspace myTabbed
   Full
     -- default tiling algorithm partitions the screen into two panes
@@ -236,8 +230,9 @@ myLayout =
         , fontName = "xft:Source Han Code JP:pixelsize=14"
         , decoHeight = 32
         }
-    myTabbed = tabbedAlways shrinkText myTheme
+    myTabbed = tabbed shrinkText myTheme
     myTall = Tall nmaster delta ratio
+    myRow = zoomRow
    -- The default number of windows in the master pane
     nmaster = 1
     -- Default proportion of screen occupied by master pane
