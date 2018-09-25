@@ -4,6 +4,7 @@
 if is_macos; then
     # TODO Install with --with-utf8proc option
     brew_install_facade tmux
+    brew_install_facade reattach-to-user-namespace
 elif is_arch; then
     pacman_sync_facade tmux
 fi
