@@ -1,12 +1,12 @@
 # 50_yarn.bash --- yarn facade
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-__yarn_pkgs=()
+__yarn_global_add_pkgs=()
 
 yarn_global_add_facade() {
     local pkg="$1"
 
-    __yarn_pkgs+=( "$pkg" )
+    __yarn_global_add_pkgs+=( "$pkg" )
 }
 
 
@@ -27,7 +27,7 @@ install_yarn_or_err() {
 }
 
 yarn_global_add_facade_reducer() {
-    [[ "${#__yarn_pkgs[@]}" == 0 ]] && return
+    [[ "${#__yarn_global_add_pkgs[@]}" == 0 ]] && return
 
     ! hash yarn 2>/dev/null && install_yarn_or_err
 
@@ -39,13 +39,13 @@ yarn_global_add_facade_reducer() {
                         --noprogress \
                         --non-interactive \
                         --latest \
-                        "${__yarn_pkgs[@]}"
+                        "${__yarn_global_add_pkgs[@]}"
     else
         wrap_facade_cmd yarn global add \
                         -s \
                         --noprogress \
                         --non-interactive \
-                        "${__yarn_pkgs[@]}"
+                        "${__yarn_global_add_pkgs[@]}"
     fi
 }
 

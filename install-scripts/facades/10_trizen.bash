@@ -1,17 +1,17 @@
 # trizen.bash --- trizen facade
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-__trizen_pkgs=()
+__trizen_sync_pkgs=()
 
 trizen_sync_facade() {
     local pkg="$1"
 
-    __trizen_pkgs+=( "$pkg" )
+    __trizen_sync_pkgs+=( "$pkg" )
 }
 
 
-trizen_reduce_pkgs() {
-    [[ "${#__trizen_pkgs[@]}" == 0 ]] && return
+trizen_sync_facade_reducer() {
+    [[ "${#__trizen_sync_pkgs[@]}" == 0 ]] && return
 
     if ! hash trizen 2>/dev/null; then
         ! is_arch && die "trizen can be used only on Arch Linux."
@@ -31,10 +31,10 @@ trizen_reduce_pkgs() {
     log_wait 'Installing trizen packages ...'
 
     if do_update; then
-        wrap_facade_cmd trizen -S --noedit --needed --noconfirm "${__trizen_pkgs[@]}"
+        wrap_facade_cmd trizen -S --noedit --needed --noconfirm "${__trizen_sync_pkgs[@]}"
     else
-        wrap_facade_cmd trizen -S --nopull --noedit --needed --noconfirm "${__trizen_pkgs[@]}"
+        wrap_facade_cmd trizen -S --nopull --noedit --needed --noconfirm "${__trizen_sync_pkgs[@]}"
     fi
 }
 
-register_facade_reducer trizen_reduce_pkgs
+register_facade_reducer trizen_sync_facade_reducer

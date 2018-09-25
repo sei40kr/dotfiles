@@ -10,7 +10,7 @@ pacman_sync_facade() {
 }
 
 
-pacman_reduce_pkgs() {
+pacman_sync_facade_reducer() {
     [[ "${#__pacman_pkgs[@]}" == 0 ]] && return
 
     ! is_arch && die 'pacman can be used only on Arch Linux.'
@@ -21,4 +21,4 @@ pacman_reduce_pkgs() {
     wrap_facade_cmd sudo pacman -S --needed --noconfirm --noprogressbar "${__pacman_pkgs[@]}"
 }
 
-register_facade_reducer pacman_reduce_pkgs
+register_facade_reducer pacman_sync_facade_reducer
