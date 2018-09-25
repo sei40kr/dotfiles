@@ -3,4 +3,6 @@
 
 if is_macos; then
     brew_cask_install_facade jetbrains-toolbox
+elif is_arch; then
+    trizen_sync_facade jetbrains-toolbox
 fi
