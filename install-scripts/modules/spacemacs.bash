@@ -53,7 +53,7 @@ pip3_install_facade jupyter
 if is_linux; then
     ln_facade "${DOTFILES_PATH}/matplotlib/matplotlibrc" \
               "${XDG_CONFIG_HOME}/matplotlib/matplotlibrc"
-else
+elif is_macos; then
     ln_facade "${DOTFILES_PATH}/matplotlib/matplotlibrc" \
               "${HOME}/.matplotlib/matplotlibrc"
 fi
@@ -84,7 +84,9 @@ gem_install_facade rcodetools
 gem_install_facade rubocop
 
 # Shell-script
-if is_arch; then
+if is_macos; then
+    brew_install_facade shfmt
+elif is_arch; then
     trizen_sync_facade shfmt-bin
 fi
 
