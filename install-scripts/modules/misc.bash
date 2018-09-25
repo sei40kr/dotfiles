@@ -1,9 +1,16 @@
 # misc.bash
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-pacman_sync_facade fd
+if is_macos; then
+    brew_install_facade fd
 
-trizen_sync_facade bfs
+    brew_tap_facade tavianator/tap
+    brew_install_facade bfs
+elif is_arch; then
+    pacman_sync_facade fd
+
+    trizen_sync_facade bfs
+fi
 
 pip3_install_facade asciinema
 pip3_install_facade aws-shell
