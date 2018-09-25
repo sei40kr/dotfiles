@@ -3,11 +3,13 @@
 
 if is_macos; then
     brew_install_facade fd
+    brew_install_facade jq
 
     brew_tap_facade tavianator/tap
     brew_install_facade bfs
 elif is_arch; then
     pacman_sync_facade fd
+    pacman_sync_facade jq
 
     trizen_sync_facade bfs
 fi
