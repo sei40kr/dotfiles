@@ -16,6 +16,11 @@ ln_facade "${DOTFILES_PATH}/spacemacs" "${HOME}/.spacemacs.d"
 pip2_install_facade ansible-lint
 
 # C/C++
+if is_macos; then
+    brew_install_facade cpplint
+elif is_arch; then
+    trizen_sync_facade cpplint
+fi
 pip3_install_facade cmakelint
 pip3_install_facade cpplint
 
