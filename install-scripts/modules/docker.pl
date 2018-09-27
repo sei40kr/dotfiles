@@ -7,7 +7,6 @@ use warnings;
 
 if (&is_macos) {
     brew_cask_install('docker');
-    brew_install( 'docker-compose', 'without-docker' );
 }
 elsif (&is_arch) {
     pacman_sync('docker');
