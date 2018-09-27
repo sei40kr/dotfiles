@@ -5,7 +5,7 @@ use utf8;
 use strict;
 use warnings;
 
-if (&macos) {
+if (&is_macos) {
     brew_cask_install('hyperswitch');
 }
 
