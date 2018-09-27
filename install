@@ -1,69 +1,44 @@
-#!/usr/bin/env bash
+#!/usr/bin/env perl
+# -*- mode: cperl -*-
 
-# install --- Installer for dotfiles
+# install.pl --- dotfiles installer
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-DOTFILES_PATH="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+use utf8;
+use strict;
+use warnings;
+use File::Basename 'basename', 'dirname';
+use Getopt::Long;
+use Pod::Usage;
 
-: ${XDG_CONFIG_HOME:=${HOME}/.config}
-: ${XDG_DATA_HOME:=${HOME}/.local/share}
+binmode STDOUT, ':encoding(UTF-8)';
+binmode STDERR, ':encoding(UTF-8)';
 
+$ENV{XDG_CONFIG_HOME} = "${ENV{HOME}}/.config"
+  unless ( defined( $ENV{XDG_CONFIG_HOME} ) );
+$ENV{XDG_DATA_HOME} = "${ENV{HOME}}/.local/share"
+  unless ( defined( $ENV{XDG_DATA_HOME} ) );
 
-. "${DOTFILES_PATH}/install-scripts/utility.bash"
+my $basepath = dirname(__FILE__);
 
-## Parse arguments
+require $basepath . "/install-scripts/utility.pl";
 
-is_dry_run=0
-do_update=0
-is_verbose=0
+GetOptions(
+    'dry-run' => sub { set_dry_run(1); },
+    update    => sub { set_update(1); },
+    verbose   => sub { set_verbose(1); }
+) or die 'Error in command-line arguments.';
 
-declare -a modules_to_install
-modules_to_install=()
+my @modules;
+if ( $#ARGV ne -1 ) { @modules = @ARGV; }
+else {
+    @modules =
+      map { basename( $_, ".pl" ) }
+      glob "${basepath}/install-scripts/modules/*.pl";
+}
 
-for arg in "$@"; do
-    case "$arg" in
-        --dry-run )
-            is_dry_run=1
-            ;;
-        --update|-u )
-            do_update=1
-            ;;
-        --verbose|-v )
-            is_verbose=1
-            ;;
-        * )
-            modules_to_install+=( "$arg" )
-    esac
-done
+require $_ foreach glob "'${basepath}/install-scripts/facades/*.pl'";
 
-if [[ "${#modules_to_install[@]}" == 0 ]]; then
-    for module in "${DOTFILES_PATH}/install-scripts/modules"/*.bash; do
-        modules_to_install+=( "$(basename -s .bash "${module}")" )
-    done
-fi
+require $basepath . "/install-scripts/modules/$_.pl" foreach @modules;
 
-
-## Load facades
-
-for facade_path in "${DOTFILES_PATH}/install-scripts/facades"/*.bash; do
-    . "${facade_path}"
-done
-
-
-## Load modules
-
-for module in "${modules_to_install[@]}"; do
-    module_path="${DOTFILES_PATH}/install-scripts/modules/${module}.bash"
-
-    if [[ ! -s "$module_path" ]]; then
-        die "${module} module is not found." >&2
-        exit 1
-    fi
-
-    . "$module_path"
-done
-
-
-## Run reducers
-
-run_all_facade_reducers
+&run_reducers;
