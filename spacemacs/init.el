@@ -124,7 +124,7 @@ values."
      sql
      (typescript :variables
                  typescript-fmt-tool 'prettier
-                 typescript-backend 'lsp)
+                 typescript-backend 'tide)
      yaml
      ;; Operating systems
      ;; Pair programming
