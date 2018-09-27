@@ -5,7 +5,11 @@ use utf8;
 use strict;
 use warnings;
 
-if (&is_arch) {
+if (&is_macos) {
+    brew_tap('homebrew/cask-fonts');
+    brew_cask_install('font-source-han-code-jp');
+    brew_cask_install('font-terminus');
+} elsif (&is_arch) {
     pacman_sync('noto-fonts');
     pacman_sync('noto-fonts-cjk');
     pacman_sync('noto-fonts-emoji');
