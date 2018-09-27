@@ -8,3 +8,5 @@ use warnings;
 if (&is_macos) {
     brew_cask_install('amethyst');
 }
+
+1;
