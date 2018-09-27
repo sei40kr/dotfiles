@@ -21,7 +21,7 @@ my sub trizen_sync_reducer {
     log_wait('Installing Trizen packages ...');
 
     my @cmd = qw(trizen -S --noedit --needed --noconfirm);
-    push( @cmd, '--nopull' ) if (&do_update);
+    push( @cmd, '--nopull' ) unless (&do_update);
     run_cmd(@cmd, @trizen_sync_intermediate);
 }
 
