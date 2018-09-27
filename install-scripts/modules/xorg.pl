@@ -8,7 +8,7 @@ use warnings;
 if (&is_arch) {
     pacman_sync('dbus');
     pacman_sync('xorg');
-    pacman_sync('xorg-init');
+    pacman_sync('xorg-xinit');
 
     ln('xorg/xinitrc', "${ENV{HOME}}/.xinitrc");
     ln('xorg/xsession', "${ENV{HOME}}/.xsession");
