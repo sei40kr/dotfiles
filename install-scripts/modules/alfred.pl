@@ -5,7 +5,7 @@ use utf8;
 use strict;
 use warnings;
 
-if (&is_arch) {
+if (&is_macos) {
     brew_cask_install('alfred');
 }
 
