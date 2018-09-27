@@ -1,93 +1,102 @@
 # 10_brew.pl --- brew facade
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-my %brew_intermediate = {
-    repos              => (),
-    formulas_with_opts => (),
-    casks              => (),
-};
+use utf8;
+use strict;
+use warnings;
 
-sub brew_tap() {
-    my ( $repo, $url ) = @_;
+my @brew_tap_intermediate          = ();
+my @brew_install_intermediate      = ();
+my @brew_cask_install_intermediate = ();
+
+sub brew_tap {
+    my ( $user_and_repo, $url ) = @_;
 
     push(
-        @{ $brew_intermediate{repos} },
+        @brew_tap_intermediate,
         {
-            repo => $repo,
-            url  => $url
+            user_and_repo => $user_and_repo,
+            url           => $url
         }
     );
 }
 
-sub brew_install() {
-    my ( $formula, @opts ) = @_;
+sub brew_install {
+    my ( $formula, @install_opts ) = @_;
 
     push(
-        @{ $brew_intermediate{formulas_with_opts} },
+        @brew_install_intermediate,
         {
-            formula => $formula,
-            opts    => \@opts
+            formula      => $formula,
+            install_opts => \@install_opts
         }
     );
 }
 
-sub brew_cask_install() {
+sub brew_cask_install {
     my $cask = $_[0];
 
-    push( @{ $brew_intermediate{casks} }, $cask );
+    push( @brew_cask_install_intermediate, $cask );
 }
 
-my sub dump_brewfile {
+my sub generate_brewfile {
     my $s = '';
 
-    foreach my $repo ( @{ $brew_intermediate{repos} } ) {
-        if ( defined( $repo->{url} ) ) {
-            $s .=
-              sprintf( "tap \"%s\", \"%s\"\n", $repo->{repo}, $repo->{url} );
-        }
-        else {
-            $s .= sprintf( "tap \"%s\"\n", $repo->{repo} );
-        }
-
+    foreach my $item (@brew_tap_intermediate) {
+        $s .= sprintf( "tap \"%s\"", $item->{user_and_repo} );
+        $s .= sprintf( ", \"%s\"",   $item->{url} )
+          if ( defined( $item->{url} ) );
+        $s .= "\n";
     }
 
-    foreach
-      my $formula_with_opts ( @{ $brew_intermediate{formulas_with_opts} } )
-    {
-        $s .= sprintf(
-            "brew \"%s\", args: [%s]\n",
-            $formula_with_opts->{formula},
-            join( ', ', map { "'$_'" } @{ $formula_with_opts->{opts} } )
-        );
+    foreach my $item (@brew_install_intermediate) {
+        $s .= sprintf( "brew \"%s\", args: [%s]\n",
+            $item->{formula},
+            join( ', ', map { "'$_'" } @{ $item->{install_opts} } ) );
     }
 
-    if ( $brew_intermediate{casks} ne 0 ) {
-        $s .= "cask_args appdir: \"~/Applications\"\n";
-    }
-    foreach my $cask ( @{ $brew_intermediate{casks} } ) {
-        $s .= "cask \"${cask}\"\n";
-    }
+    $s .= "cask_args appdir: \"~/Applications\"\n"
+      if ( scalar(@brew_cask_install_intermediate) ne 0 );
+    $s .= "cask \"${_}\"\n" foreach @brew_cask_install_intermediate;
 
     return $s;
 }
 
-sub brew_reducer() {
-    if (    $brew_intermediate{repos} eq 0
-        and $brew_intermediate{formulas} eq 0
-        and $brew_intermediate{casks} eq 0 )
-    {
-        return;
-    }
+my sub install_homebrew {
+    log_wait('Installing Homebrew ...');
+
+    # TODO
+}
+
+sub brew_reducer {
+    return
+      if (  scalar(@brew_tap_intermediate) eq 0
+        and scalar(@brew_install_intermediate) eq 0
+        and scalar(@brew_cask_install_intermediate) eq 0 );
 
     my @cmd = qw( brew bundle --file=- );
-    # TODO Check updates if --update option specified
-    push( @cmd, "--no-upgrade" );
+    unless (&do_update) {
+        push( @cmd, "--no-upgrade" );
+    }
 
-    open( BREW, '|-', @cmd );
+    &install_homebrew unless (is_exec('brew'));
 
-    print BREW dump_brewfile();
+    log_wait('Installing Homebrew repos, formulas, casks ...');
 
-    while (<BREW>) { print; }
-
-    close BREW;
+    my $brewfile = &generate_brewfile;
+    if ( &is_dry_run or &is_verbose ) {
+        print '> ' . join( ' ', @cmd ) . " <<BREWFILE\n";
+        print "> ${_}\n" foreach split( "\n", $brewfile );
+        print "> BREWFILE\n";
+    }
+    unless (&is_dry_run) {
+        my $brew_proc;
+        open( $brew_proc, '-|', @cmd );
+        print $brew_proc $brewfile;
+        close $brew_proc;
+    }
 }
+
+register_reducer( \&brew_reducer );
+
+1;
