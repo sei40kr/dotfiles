@@ -46,13 +46,13 @@ rofi.padding:                        20
 ! "Theme to use to look for icons" Set from: Default
 ! rofi.drun-icon-theme:                
 ! "Desktop entry fields to match in drun" Set from: Default
-! rofi.drun-match-fields:              name,generic,exec,categories
+rofi.drun-match-fields:              name,exec,categories
 ! "Disable history in run/ssh" Set from: Default
 ! rofi.disable-history:                false
 ! "Use sorting" Set from: Default
-! rofi.sort:                           false
+rofi.sort:                           true
 ! "Use levenshtein sorting also for fuzzy matching" Set from: Default
-! rofi.levenshtein-sort:               false
+rofi.levenshtein-sort:               true
 ! "Set case-sensitivity" Set from: Default
 ! rofi.case-sensitive:                 false
 ! "Cycle through the results list" Set from: Default
