@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 # -*- mode: cperl -*-
 
-# install.pl --- dotfiles installer
+# install --- dotfiles installer
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 use utf8;
