@@ -651,7 +651,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
    neo-theme 'arrow
 
    ;; projectile
-   projectile-git-submodule-command nil
+   projectile-git-submodule-command "git submodule --quiet foreach 'echo $path' | tr '\\n' '\\0'"
 
    ;; spacemacs-common
    spacemacs-theme-comment-italic t
