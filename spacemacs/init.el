@@ -611,6 +611,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
    ;; avy
    avy-timeout-seconds 0.0
 
+   ;; cperl-mode
+   cperl-mode-abbrev-table '()
+
    ;; evil
    evil-want-C-i-jump t
    evil-want-C-u-scroll t
