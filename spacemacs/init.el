@@ -217,6 +217,7 @@ values."
                                     ggtags
                                     helm-gtags
                                     migemo
+                                    org-bullets
                                     persp-mode)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
