@@ -91,7 +91,7 @@ sub exec_path {
 sub is_exec {
     my $cmd = $_[0];
 
-    return exec_path($cmd);
+    return (-x exec_path($cmd));
 }
 
 sub run_cmd {
