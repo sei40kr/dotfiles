@@ -13,7 +13,7 @@ elsif (&is_arch) {
     pacman_sync('emacs');
 }
 
-# TODO Clone the repo to ~/.emacs.d
+git_clone('ssh://git@github.com/sei40kr/spacemacs.git', "${ENV{HOME}}/.emacs.d", 'develop');
 
 ln( 'spacemacs', "${ENV{HOME}}/.spacemacs.d" );
 
