@@ -91,7 +91,7 @@ sub exec_path {
 sub is_exec {
     my $cmd = $_[0];
 
-    return (-x exec_path($cmd));
+    return substr( $cmd, 0, 1 ) eq '/' ? ( -x $cmd ) : ( -x exec_path($cmd) );
 }
 
 sub run_cmd {
@@ -133,11 +133,11 @@ my sub git_current_branch {
 
     open PROC, '-|', qw(git -C), $path, qw(branch);
     while ( my $line = <PROC> ) {
-          if ( substr( $line, 0, 2 ) eq '* ' ) {
-              $branch = substr $line, 2;
-              chomp $branch;
-              last;
-          }
+        if ( substr( $line, 0, 2 ) eq '* ' ) {
+            $branch = substr $line, 2;
+            chomp $branch;
+            last;
+        }
     }
     close PROC;
 
@@ -145,30 +145,30 @@ my sub git_current_branch {
 }
 
 sub git_clone_internal {
-      my ( $repo, $branch, $dest ) = @_;
+    my ( $repo, $branch, $dest ) = @_;
 
-      my $remote_url = git_get_url( $dest, 'origin' );
-      unless ( defined($remote_url) and $remote_url eq $repo ) {
-          printf "> rmtree('%s');\n", $dest if ( &is_dry_run or &is_verbose );
-          rmtree($dest) unless (&is_dry_run);
+    my $remote_url = git_get_url( $dest, 'origin' );
+    unless ( defined($remote_url) and $remote_url eq $repo ) {
+        printf "> rmtree('%s');\n", $dest if ( &is_dry_run or &is_verbose );
+        rmtree($dest) unless (&is_dry_run);
 
-          my $parent_dir = dirname($dest);
-          printf "> mkpath('%s');\n", $parent_dir
-            if ( &is_dry_run or &is_verbose );
-          mkpath($parent_dir) unless (&is_dry_run);
+        my $parent_dir = dirname($dest);
+        printf "> mkpath('%s');\n", $parent_dir
+          if ( &is_dry_run or &is_verbose );
+        mkpath($parent_dir) unless (&is_dry_run);
 
-          run_cmd( qw(git clone -q --recurse-submodules -b),
-              $branch, $repo, $dest );
-      }
-      elsif ( &do_update and git_current_branch($dest) eq $branch ) {
-          run_cmd(qw(git pull -q --recurse-submodules=yes --ff-only -r true));
-      }
+        run_cmd( qw(git clone -q --recurse-submodules -b),
+            $branch, $repo, $dest );
+    }
+    elsif ( &do_update and git_current_branch($dest) eq $branch ) {
+        run_cmd(qw(git pull -q --recurse-submodules=yes --ff-only -r true));
+    }
 }
 
 sub register_reducer {
-      my $reducer = $_[0];
+    my $reducer = $_[0];
 
-      push( @reducers, $reducer );
+    push( @reducers, $reducer );
 }
 
 1;
