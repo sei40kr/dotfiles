@@ -4,7 +4,6 @@
 use utf8;
 use strict;
 use warnings;
-use File::Path qw(rmtree);
 
 my @git_clone_intermediate = ();
 
