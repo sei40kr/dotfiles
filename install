@@ -19,6 +19,9 @@ $ENV{XDG_CONFIG_HOME} = "${ENV{HOME}}/.config"
 $ENV{XDG_DATA_HOME} = "${ENV{HOME}}/.local/share"
   unless ( defined( $ENV{XDG_DATA_HOME} ) );
 
+$ENV{RBENV_ROOT} = "${ENV{HOME}}/.rbenv"
+    unless ( defined( $ENV{RBENV_ROOT} ) );
+
 my $basepath = dirname(__FILE__);
 
 require $basepath . "/install-scripts/utility.pl";
