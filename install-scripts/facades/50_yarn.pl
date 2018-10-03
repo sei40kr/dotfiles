@@ -23,7 +23,9 @@ my sub install_yarn_or_err {
         );
     }
     else {
-        error('yarn not found.');
+        error(
+"Unable to install Yarn on your OS automatically. Please install Yarn manually."
+        );
     }
 }
 
