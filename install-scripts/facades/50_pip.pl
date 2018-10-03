@@ -20,29 +20,84 @@ sub pip3_install {
     push( @pip3_install_intermediate, $pkg );
 }
 
+sub install_pyenv {
+    log_wait('Installing pyenv ...');
+
+    # TODO Update pyenv itself when option --update given
+    git_clone_internal( 'https://github.com/pyenv/pyenv.git',
+        'master', "${ENV{PYENV_ROOT}}" );
+}
+
+my sub python_stable_versions {
+    my $pyenv_proc;
+    my $py2_stable_ver;
+    my $py3_stable_ver;
+
+    # TODO Think about a case when --dry-run and --update options given
+    open $pyenv_proc, '-|', "${ENV{PYENV_ROOT}}/bin/pyenv", qw(install -l);
+    while (<$pyenv_proc>) {
+        if ( $_ =~ /^\s*(2(?:\.\d+){2})$/ ) {
+            $py2_stable_ver = $1;
+        }
+        elsif ( $_ =~ /^\s*(3(?:\.\d+){2})$/ ) {
+            $py3_stable_ver = $1;
+        }
+    }
+    close $pyenv_proc;
+
+    return ( $py2_stable_ver, $py3_stable_ver );
+}
+
+my sub install_py2_and_py3 {
+    my $pyenv = "${ENV{PYENV_ROOT}}/bin/pyenv";
+    my ( $py2_stable_ver, $py3_stable_ver ) = &python_stable_versions;
+
+    log_wait("Installing Python ${py2_stable_ver} ...");
+    run_cmd( $pyenv, qw(install -s), $py2_stable_ver );
+
+    log_wait("Installing Python ${py3_stable_ver} ...");
+    run_cmd( $pyenv, qw(install -s), $py3_stable_ver );
+
+    run_cmd( $pyenv, 'global', $py2_stable_ver, $py3_stable_ver );
+}
+
+# A dummy reducer to install pyenv, Python 2/3
+my sub dummy_reducer {
+    return
+      if (  scalar(@pip2_install_intermediate) eq 0
+        and scalar(@pip3_install_intermediate) eq 0 );
+
+    &install_pyenv
+      unless ( -x "${ENV{PYENV_ROOT}}/bin/pyenv" );
+    my $shims = "${ENV{PYENV_ROOT}}/shims";
+    &install_py2_and_py3
+      if ( !-x "${shims}/pip2" or !-x "${shims}/pip3" or &do_update );
+}
+
 my sub pip2_install_reducer {
     return if ( scalar(@pip2_install_intermediate) eq 0 );
 
-    is_exec('pip2') or error('pip2 not found.');
+    error('pip2 not found.') unless ( is_exec('pip2') );
 
     log_wait('Installing Python2 packages ...');
 
     my @cmd = qw(pip2 install);
     push( @cmd, '-U' ) if (&do_update);
-    run_cmd(@cmd, @pip2_install_intermediate);
+    run_cmd( @cmd, @pip2_install_intermediate );
 }
 
 my sub pip3_install_reducer {
     return if ( scalar(@pip3_install_intermediate) eq 0 );
 
-    is_exec('pip3') or error('pip3 not found.');
+    error('pip3 not found.') unless ( is_exec('pip3') );
 
     log_wait('Installing Python3 packages ...');
 
     my @cmd = qw(pip3 install);
     push( @cmd, '-U' ) if (&do_update);
-    run_cmd(@cmd, @pip3_install_intermediate);
+    run_cmd( @cmd, @pip3_install_intermediate );
 }
 
+register_reducer( \&dummy_reducer );
 register_reducer( \&pip2_install_reducer );
 register_reducer( \&pip3_install_reducer );
