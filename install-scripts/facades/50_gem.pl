@@ -55,7 +55,7 @@ my sub gem_install_reducer {
 
     log_wait('Installing Rubygems ...');
 
-    error('gem not found.') unless ( -x $gem );
+    error('gem not found.') unless ( -x $gem or &is_dry_run );
 
     my @gem_args = qw(install -q --silent);
     push( @gem_args, qw(--conservative --minimal-deps) ) unless (&do_update);
