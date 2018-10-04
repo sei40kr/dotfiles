@@ -43,23 +43,23 @@ my sub install_ruby {
     log_wait("Installing Ruby ${stable_version} ...");
 
     run_cmd( "${ENV{RBENV_ROOT}}/bin/rbenv", qw(install -s), $stable_version );
-    run_cmd( "${ENV{RBENV_ROOT}}/bin/rbenv", qw(global),     $stable_version );
+    run_cmd( "${ENV{RBENV_ROOT}}/bin/rbenv", 'global',       $stable_version );
 }
 
 my sub gem_install_reducer {
     return if ( scalar(@gem_install_intermediate) eq 0 );
 
     &install_rbenv unless ( -x "${ENV{RBENV_ROOT}}/bin/rbenv" );
-    &install_ruby if ( !-x "${ENV{RBENV_ROOT}}/shims/gem" or &do_update );
-
-    is_exec("${ENV{RBENV_ROOT}}/shims/gem") or error('gem not found.');
+    my $gem = "${ENV{RBENV_ROOT}}/shims/gem";
+    &install_ruby if ( !-x $gem or &do_update );
 
     log_wait('Installing Rubygems ...');
 
+    error('gem not found.') unless ( -x $gem );
+
     my @gem_args = qw(install -q --silent);
     push( @gem_args, qw(--conservative --minimal-deps) ) unless (&do_update);
-    run_cmd( "${ENV{RBENV_ROOT}}/shims/gem",
-        @gem_args, @gem_install_intermediate );
+    run_cmd( $gem, @gem_args, @gem_install_intermediate );
 }
 
 register_reducer( \&gem_install_reducer );
