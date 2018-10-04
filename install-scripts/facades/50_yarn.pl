@@ -29,7 +29,7 @@ my sub install_node {
         ". ${ENV{NVM_DIR}}/nvm.sh && nvm alias default stable" );
     run_cmd(
         qw(sh -c),
-"export NVM_SYMLINK_CURRENT=1 && . ${ENV{NVM_DIR}}/nvm.sh && nvm use --delete-prefix default"
+"export NVM_SYMLINK_CURRENT=true && . ${ENV{NVM_DIR}}/nvm.sh && nvm use --delete-prefix default"
     );
 }
 
