@@ -77,6 +77,7 @@ my sub dummy_reducer {
 }
 
 my sub pip2_install_reducer {
+    push( @pip2_install_intermediate, 'pip' ) if (&do_update);
     return if ( scalar(@pip2_install_intermediate) eq 0 );
 
     log_wait('Installing Python2 packages ...');
@@ -90,6 +91,7 @@ my sub pip2_install_reducer {
 }
 
 my sub pip3_install_reducer {
+    push( @pip3_install_intermediate, 'pip' ) if (&do_update);
     return if ( scalar(@pip3_install_intermediate) eq 0 );
 
     log_wait('Installing Python3 packages ...');
