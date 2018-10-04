@@ -82,7 +82,7 @@ my sub pip2_install_reducer {
     log_wait('Installing Python2 packages ...');
 
     my $pip2 = "${ENV{PYENV_ROOT}}/shims/pip2";
-    error('pip2 not found.') unless ( -x $pip2 );
+    error('pip2 not found.') unless ( -x $pip2 or &is_dry_run );
 
     my @pip2_args = ('install');
     push( @pip2_args, '-U' ) if (&do_update);
@@ -95,7 +95,7 @@ my sub pip3_install_reducer {
     log_wait('Installing Python3 packages ...');
 
     my $pip3 = "${ENV{PYENV_ROOT}}/shims/pip3";
-    error('pip3 not found.') unless ( -x $pip3 );
+    error('pip3 not found.') unless ( -x $pip3 or &is_dry_run );
 
     my @pip3_args = ('install');
     push( @pip3_args, '-U' ) if (&do_update);
