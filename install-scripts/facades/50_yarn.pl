@@ -54,7 +54,7 @@ my sub install_yarn_or_err {
 my sub yarn_global_add_reducer {
     return if ( scalar(@yarn_global_add_intermediate) eq 0 );
 
-    &install_nvm unless ( -x "${ENV{NVM_DIR}}/nvm.sh" );
+    &install_nvm unless ( -s "${ENV{NVM_DIR}}/nvm.sh" );
     my $current_node = "${ENV{NVM_DIR}}/current/bin/node";
     &install_node unless ( -x $current_node );
     &install_yarn_or_err unless ( is_exec('yarn') );
