@@ -20,7 +20,7 @@ sub pip3_install {
     push( @pip3_install_intermediate, $pkg );
 }
 
-sub install_pyenv {
+my sub install_pyenv {
     log_wait('Installing pyenv ...');
 
     # TODO Update pyenv itself when option --update given
