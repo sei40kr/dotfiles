@@ -79,25 +79,27 @@ my sub dummy_reducer {
 my sub pip2_install_reducer {
     return if ( scalar(@pip2_install_intermediate) eq 0 );
 
-    error('pip2 not found.') unless ( is_exec('pip2') );
-
     log_wait('Installing Python2 packages ...');
 
-    my @cmd = qw(pip2 install);
-    push( @cmd, '-U' ) if (&do_update);
-    run_cmd( @cmd, @pip2_install_intermediate );
+    my $pip2 = "${ENV{PYENV_ROOT}}/shims/pip2";
+    error('pip2 not found.') unless ( -x $pip2 );
+
+    my @pip2_args = ('install');
+    push( @pip2_args, '-U' ) if (&do_update);
+    run_cmd( $pip2, @pip2_args, @pip2_install_intermediate );
 }
 
 my sub pip3_install_reducer {
     return if ( scalar(@pip3_install_intermediate) eq 0 );
 
-    error('pip3 not found.') unless ( is_exec('pip3') );
-
     log_wait('Installing Python3 packages ...');
 
-    my @cmd = qw(pip3 install);
-    push( @cmd, '-U' ) if (&do_update);
-    run_cmd( @cmd, @pip3_install_intermediate );
+    my $pip3 = "${ENV{PYENV_ROOT}}/shims/pip3";
+    error('pip3 not found.') unless ( -x $pip3 );
+
+    my @pip3_args = ('install');
+    push( @pip3_args, '-U' ) if (&do_update);
+    run_cmd( $pip3, @pip3_args, @pip3_install_intermediate );
 }
 
 register_reducer( \&dummy_reducer );
