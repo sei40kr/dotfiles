@@ -31,6 +31,7 @@ elsif (&is_arch) {
     yarn_global_add('generate-license');
     yarn_global_add('generate-project');
     yarn_global_add('gulp');
+    yarn_global_add('ngrok');
     yarn_global_add('typescript');
     yarn_global_add('webpack');
     yarn_global_add('yo');
