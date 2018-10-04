@@ -26,6 +26,8 @@ sub install_pyenv {
     # TODO Update pyenv itself when option --update given
     git_clone_internal( 'https://github.com/pyenv/pyenv.git',
         'master', "${ENV{PYENV_ROOT}}" );
+    git_clone_internal( 'https://github.com/pyenv/pyenv-virtualenv.git',
+        'master', "${ENV{PYENV_ROOT}}/plugins/pyenv-virtualenv" );
 }
 
 my sub python_stable_versions {
