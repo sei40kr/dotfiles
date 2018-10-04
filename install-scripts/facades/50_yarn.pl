@@ -61,7 +61,7 @@ my sub yarn_global_add_reducer {
 
     log_wait('Installing Yarn packages ...');
 
-    error('node not found.') if ( !-x $current_node or &is_dry_run );
+    error('node not found.') unless ( -x $current_node or &is_dry_run );
 
     # TODO Use the Node.js installed via nvm
     my @cmd = qw(yarn global add -s --noprogress --non-interactive);
