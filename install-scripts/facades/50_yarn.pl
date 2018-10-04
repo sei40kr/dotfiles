@@ -24,12 +24,12 @@ my sub install_node {
     log_wait('Installing Node ...');
 
     run_cmd( qw(sh -c),
-        "'. ${ENV{NVM_DIR}}/nvm.sh && nvm install --no-progress stable'" );
+        ". ${ENV{NVM_DIR}}/nvm.sh && nvm install --no-progress stable" );
     run_cmd( qw(sh -c),
-        "'. ${ENV{NVM_DIR}}/nvm.sh && nvm alias default stable'" );
+        ". ${ENV{NVM_DIR}}/nvm.sh && nvm alias default stable" );
     run_cmd(
         qw(sh -c),
-"'export NVM_SYMLINK_CURRENT=1 && . ${ENV{NVM_DIR}}/nvm.sh && nvm use --delete-prefix default'"
+"export NVM_SYMLINK_CURRENT=1 && . ${ENV{NVM_DIR}}/nvm.sh && nvm use --delete-prefix default"
     );
 }
 
