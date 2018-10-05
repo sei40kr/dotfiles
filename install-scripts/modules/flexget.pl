@@ -4,4 +4,6 @@
 pip3_install('FlexGet');
 pip3_install('transmissionrpc');
 
+ln('flexget/config.yml', "${ENV{XDG_CONFIG_HOME}}/flexget/config.yml");
+
 1;

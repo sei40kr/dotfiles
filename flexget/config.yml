@@ -1,0 +1,24 @@
+# config.yml
+# author: Seong Yong-ju <sei40kr@gmail.com>
+---
+templates:
+  transmission:
+    transmission:
+      host: localhost
+      port: 9001
+  transmission_movies:
+    transmission:
+      path: /Users/sei40kr/Movies
+tasks:
+  'Darling in the FranXX':
+    rss: 'https://nyaa.si/?page=rss&q=ohys-raws+darling+in+the+franxx&c=1_4&f=0'
+    accept_all: yes
+    template:
+      - transmission
+      - transmission_movies
+  'JoJo no Kimyou na Bouken - Ougon no Kaze':
+    rss: 'https://nyaa.si/?page=rss&q=ohys-raws+jojo+no+kimyou+na+bouken+ougon+no+kaze&c=1_4&f=0'
+    accept_all: yes
+    template:
+      - transmission
+      - transmission_movies
