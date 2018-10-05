@@ -19,24 +19,24 @@ elsif (&is_arch) {
     pacman_sync('jq');
 
     trizen_sync('bfs');
-
-    pip3_install('asciinema');
-    pip3_install('aws-shell');
-
-    yarn_global_add('create-react-app');
-    yarn_global_add('create-react-native-app');
-    yarn_global_add('flow-bin');
-    yarn_global_add('gatsby-cli');
-    yarn_global_add('generate');
-    yarn_global_add('generate-editorconfig');
-    yarn_global_add('generate-gitignore');
-    yarn_global_add('generate-license');
-    yarn_global_add('generate-project');
-    yarn_global_add('gulp');
-    yarn_global_add('ngrok');
-    yarn_global_add('typescript');
-    yarn_global_add('webpack');
-    yarn_global_add('yo');
 }
+
+pip3_install('asciinema');
+pip3_install('aws-shell');
+
+yarn_global_add('create-react-app');
+yarn_global_add('create-react-native-app');
+yarn_global_add('flow-bin');
+yarn_global_add('gatsby-cli');
+yarn_global_add('generate');
+yarn_global_add('generate-editorconfig');
+yarn_global_add('generate-gitignore');
+yarn_global_add('generate-license');
+yarn_global_add('generate-project');
+yarn_global_add('gulp');
+yarn_global_add('ngrok');
+yarn_global_add('typescript');
+yarn_global_add('webpack');
+yarn_global_add('yo');
 
 1;
