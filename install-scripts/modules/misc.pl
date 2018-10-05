@@ -11,6 +11,8 @@ if (&is_macos) {
 
     brew_tap('tavianator/tap');
     brew_install('bfs');
+
+    brew_cask_install('plex-media-server');
 }
 elsif (&is_arch) {
     pacman_sync('fd');
