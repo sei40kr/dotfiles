@@ -19,6 +19,8 @@ $ENV{XDG_CONFIG_HOME} = "${ENV{HOME}}/.config"
 $ENV{XDG_DATA_HOME} = "${ENV{HOME}}/.local/share"
   unless ( defined( $ENV{XDG_DATA_HOME} ) );
 
+$ENV{NVM_DIR} = "${ENV{HOME}}/.nvm"
+  unless ( defined( $ENV{NVM_DIR} ) );
 $ENV{PYENV_ROOT} = "${ENV{HOME}}/.pyenv"
   unless ( defined( $ENV{PYENV_ROOT} ) );
 $ENV{RBENV_ROOT} = "${ENV{HOME}}/.rbenv"
