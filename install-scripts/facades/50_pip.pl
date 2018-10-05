@@ -85,7 +85,7 @@ my sub pip2_install_reducer {
     my $pip2 = "${ENV{PYENV_ROOT}}/shims/pip2";
     error('pip2 not found.') unless ( -x $pip2 or &is_dry_run );
 
-    my @pip2_args = ('install');
+    my @pip2_args = qw(install --exists-action i);
     push( @pip2_args, '-U' ) if (&do_update);
     run_cmd( $pip2, @pip2_args, @pip2_install_intermediate );
 }
@@ -99,7 +99,7 @@ my sub pip3_install_reducer {
     my $pip3 = "${ENV{PYENV_ROOT}}/shims/pip3";
     error('pip3 not found.') unless ( -x $pip3 or &is_dry_run );
 
-    my @pip3_args = ('install');
+    my @pip3_args = qw(install --exists-action i);
     push( @pip3_args, '-U' ) if (&do_update);
     run_cmd( $pip3, @pip3_args, @pip3_install_intermediate );
 }
