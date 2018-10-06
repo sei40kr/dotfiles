@@ -4,14 +4,20 @@
 templates:
   transmission:
     transmission:
-      host: localhost
-      port: 9001
+      host: 127.0.0.1
+      port: 9091
   transmission_movies:
     transmission:
       path: /Users/sei40kr/Movies
 tasks:
   'Darling in the FranXX':
     rss: 'https://nyaa.si/?page=rss&q=ohys-raws+darling+in+the+franxx&c=1_4&f=0'
+    accept_all: yes
+    template:
+      - transmission
+      - transmission_movies
+  'JoJo no Kimyou na Bouken - Diamond wa Kudakenai':
+    rss: 'https://nyaa.si/?page=rss&q=ohys-raws+jojo+no+kimyou+na+bouken+diamond+wa+kudakenai&c=1_4&f=0'
     accept_all: yes
     template:
       - transmission
