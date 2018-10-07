@@ -12,8 +12,11 @@ if (&is_macos) {
     brew_tap('tavianator/tap');
     brew_install('bfs');
 
+    brew_cask_install('amethyst');
+    brew_cask_install('appcleaner');
     brew_cask_install('discord');
     brew_cask_install('gitter');
+    brew_cask_install('kindle');
     brew_cask_install('plex-media-server');
     brew_cask_install('slack');
 }
