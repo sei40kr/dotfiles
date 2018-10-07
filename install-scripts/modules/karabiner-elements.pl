@@ -8,7 +8,7 @@ use warnings;
 if (&is_macos) {
     brew_cask_install('karabiner-elements');
 
-    ln('karabiner-elements/karabiner.json', '${ENV{XDG_CONFIG_HOME}}/karabiner/karabiner.json')
+    ln('karabiner-elements/karabiner.json', "${ENV{XDG_CONFIG_HOME}}/karabiner/karabiner.json")
 }
 
 1;
