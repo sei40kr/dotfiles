@@ -123,7 +123,3 @@ fi
 
 
 export PATH
-
-if [[ -z "$DISPLAY" && "$XDG_VTNR" -eq 1 ]] && hash startx 2>/dev/null; then
-    exec startx
-fi
