@@ -123,3 +123,6 @@ fi
 
 
 export PATH
+
+
+. "${HOME}/.bashrc"
