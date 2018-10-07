@@ -1,4 +1,4 @@
-# macos-mas.pl --- Mac App Store tweaker
+# macos-tweak-mas.pl --- Mac App Store tweaker
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 use utf8;

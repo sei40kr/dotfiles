@@ -1,4 +1,4 @@
-# macos-mail.pl --- Mail tweaker
+# macos-tweak-mail.pl --- Mail tweaker
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 use utf8;

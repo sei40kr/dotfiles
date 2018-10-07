@@ -1,4 +1,4 @@
-# macos-photos.pl --- Mac App Store tweaker
+# macos-tweak-photos.pl --- Mac App Store tweaker
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 use utf8;

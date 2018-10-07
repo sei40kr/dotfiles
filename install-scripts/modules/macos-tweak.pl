@@ -1,4 +1,4 @@
-# macos.pl --- macOS tweaker
+# macos-tweak.pl --- macOS tweaker
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 use utf8;

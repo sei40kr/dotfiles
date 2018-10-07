@@ -1,4 +1,4 @@
-# macos-finder.pl --- Finder tweaker
+# macos-tweak-finder.pl --- Finder tweaker
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 use utf8;

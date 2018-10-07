@@ -1,4 +1,4 @@
-# macos-dock.pl --- Dock tweaker
+# macos-tweak-dock.pl --- Dock tweaker
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 use utf8;

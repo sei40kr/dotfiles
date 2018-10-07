@@ -1,4 +1,4 @@
-# macos-textedit.pl --- Text Edit tweaker
+# macos-tweak-textedit.pl --- Text Edit tweaker
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 use utf8;
