@@ -5,7 +5,6 @@ balias d dirs
 balias po popd
 balias pu pushd
 balias u 'cd ..'
-balias _ sudo
 
 # coreutils
 balias md 'mkdir -p'
