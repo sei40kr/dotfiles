@@ -1,6 +1,5 @@
 oh-my-fish/plugin-argu
 fisherman/autoenvstack
-oh-my-fish/plugin-direnv
 fisherman/done
 oh-my-fish/plugin-emacs
 oh-my-fish/plugin-extract
@@ -8,9 +7,7 @@ fisherman/nvm
 oh-my-fish/plugin-osx
 fisherman/pyenv
 fisherman/rbenv
-oh-my-fish/plugin-rustup
 oh-my-fish/plugin-ssh
 oh-my-fish/plugin-sudope
 oh-my-fish/foreign-env
-oh-my-fish/plugin-foreign-env
 oh-my-fish/theme-clearance
