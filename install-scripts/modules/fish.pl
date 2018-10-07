@@ -18,7 +18,7 @@ if ( &is_macos or &is_arch ) {
     ln( 'fish/bash_profile', "${ENV{HOME}}/.bash_profile" );
     ln( 'fish/bashrc',       "${ENV{HOME}}/.bashrc" );
 
-    ln( 'fish/config.fish', "${ENV{XDG_CONFIG_HOME}}/config.fish" );
+    ln( 'fish/config.fish', "${ENV{XDG_CONFIG_HOME}}/fish/config.fish" );
 }
 
 1;
