@@ -23,7 +23,7 @@ my sub curl_reducer {
     my @curl_args = ();
     foreach my $item (@curl_intermediate) {
         push( @curl_args, '-o', $item->{dest}, '--create-dirs', $item->{url} )
-            if ( &do_update or !-e $item->{dest} );
+          if ( &do_update or !-e $item->{dest} );
     }
 
     return if ( scalar(@curl_args) eq 0 );
