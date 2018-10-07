@@ -18,9 +18,23 @@ if ( &is_macos or &is_arch ) {
     ln( 'fish/bash_profile', "${ENV{HOME}}/.bash_profile" );
     ln( 'fish/bashrc',       "${ENV{HOME}}/.bashrc" );
 
-    curl('https://git.io/fisher', "${ENV{XDG_CONFIG_HOME}}/fish/functions/fisher.fish");
+    my @fish_funcs = ('balias');
+    ln( "fish/functions/${_}.fish",
+        "${ENV{XDG_CONFIG_HOME}}/fish/functions/${_}.fish" )
+      foreach @fish_funcs;
+
+    ln( 'fish/conf.d/balias_def.fish',
+        "${ENV{XDG_CONFIG_HOME}}/fish/conf.d/balias_def.fish" );
+    my @balias_defs =
+      qw( arch docker_compose go homebrew java nmap node perl python rsync ruby );
+    ln( "fish/conf.d/balias_def_${_}.fish",
+        "${ENV{XDG_CONFIG_HOME}}/fish/conf.d/balias_def_${_}.fish" )
+      foreach @balias_defs;
 
     ln( 'fish/config.fish', "${ENV{XDG_CONFIG_HOME}}/fish/config.fish" );
+
+    curl( 'https://git.io/fisher',
+        "${ENV{XDG_CONFIG_HOME}}/fish/functions/fisher.fish" );
 }
 
 1;

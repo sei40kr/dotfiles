@@ -91,8 +91,12 @@ sub brew_reducer {
     }
     unless (&is_dry_run) {
         my $brew_proc;
-        open( $brew_proc, '-|', @cmd );
+        my $verbose = &is_verbose;
+        open $brew_proc, '|-', @cmd ;
         print $brew_proc $brewfile;
+        while (<$brew_proc>) {
+            print if ($verbose eq 1);
+        }
         close $brew_proc;
     }
 }
