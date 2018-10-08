@@ -20,9 +20,11 @@ my sub go_get_reducer {
 
     log_wait('Installing Go packages ...');
 
-    my @cmd = qw(go get);
-    push( @cmd, '-u' ) if (&do_update);
-    run_cmd(@cmd);
+    my @go_args = ('get');
+    push( @go_args, '-u' ) if (&do_update);
+    run_cmd( 'go', @go_args, @go_get_intermediate );
 }
+
+register_reducer( \&go_get_reducer );
 
 1;
