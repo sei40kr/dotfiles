@@ -367,7 +367,7 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>942 390 445 263 0 0 1920 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>495 557 796 486 0 0 1920 1057 </string>
+	<string>482 553 796 486 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 83 1920 974 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
@@ -948,7 +948,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>FiraCode-Light 16</string>
+			<string>Input-Regular 16</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Place Prompt at First Column</key>
