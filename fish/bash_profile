@@ -3,123 +3,84 @@
 # bash_profile
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-### Language
-
-export LANG='en_US.UTF-8'
-export LC_ALL="$LANG"
-
-
-### Pager
+## Environment Variables
 
 export PAGER=less
-
-
-### Editor
-
 export EDITOR=vim
 export GIT_EDITOR=vim
 
 
-### Paths
+## Homebrew/Linuxbrew
 
-if [[ ! -d "${HOME}/.local/bin" ]]; then
-    mkdir -p "${HOME}/.local/bin"
+if hash brew 2>/dev/null; then
+    export BREW_PREFIX="$(brew --prefix)"
 fi
-PATH="${HOME}/.local/bin:${PATH}"
 
 
 ## Rust
 
-if ! hash rustc 2>/dev/null; then
-    echo 'WARN: rustc is not installed. Install it via rustup and re-source ~/.bash_profile'
-else
+# cargo
+PATH="${HOME}/.cargo/bin:${PATH}"
+# rust-src
+if hash rustc 2>/dev/null; then
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
-
-# Cargo
-if ! hash cargo 2>/dev/null; then
-    echo 'WARN: cargo is not installed.'
-fi
-PATH="${HOME}/.cargo/bin:${PATH}"
 
 
 ## Go
 
-if ! hash go 2>/dev/null; then
-    echo 'WARN: go is not installed.'
-fi
+# goenv
+export GOENV_ROOT="${HOME}/.goenv"
+PATH="${GOENV_ROOT}/bin:${GOENV_ROOT}/shims:${PATH}"
 export GOPATH="${HOME}/go"
 PATH="${GOPATH}/bin:${PATH}"
 
 
-## Haskell Tool Stack
+## Java
 
-if ! hash stack 2>/dev/null; then
-    echo 'WARN: stack is not installed.'
-fi
-
-
-## Java (SDKMAN!)
-
-if [[ ! -d "${HOME}/.sdkman" ]]; then
-    echo 'WARN: SDKMAN! is not installed.'
-fi
+# sdkman
 export SDKMAN_DIR="${HOME}/.sdkman"
-# find "${SDKMAN_DIR}/candidates" \
-#      -mindepth 1 \
-#      -maxdepth 1 \
-#      -type d \
-#      -exec [ -d {}/current/bin ] |
-#     while read -r candidate_path; do
-#         PATH="${candidate_path}/current/bin:${PATH}"
-#     done
 
-# Perl
+
+## Perl
+
+# perlbrew
+export PERLBREW_ROOT="${HOME}/perl5/perlbrew"
+
 export PATH="${HOME}/perl5/bin:${PATH}"
 export PERL5LIB="${HOME}/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
 export PERL_LOCAL_LIB_ROOT="${HOME}/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
 export PERL_MB_OPT="--install_base \"${HOME}/perl5\""
 export PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"
 
-## Python (via pyenv)
 
-if [[ ! -d "${HOME}/.pyenv" ]]; then
-    echo 'WARN: pyenv is not installed.'
-fi
+## Python
+
+# pyenv
 export PYENV_ROOT="${HOME}/.pyenv"
 PATH="${PYENV_ROOT}/bin:${PYENV_ROOT}/shims:${PATH}"
 
 
-## Ruby (via rbenv)
+## Ruby
 
-if [[ ! -d "${HOME}/.rbenv" ]]; then
-    echo 'WARN: rbenv is not installed.'
-fi
+# rbenv
 export RBENV_ROOT="${HOME}/.rbenv"
 PATH="${RBENV_ROOT}/bin:${RBENV_ROOT}/shims:${PATH}"
 
 
-## JavaScript/Node.js (via nvm)
+## Node.js
 
 # nvm
-if [[ ! -d "${HOME}/.nvm" ]]; then
-    echo 'WARN: nvm is not installed.'
-fi
 export NVM_DIR="${HOME}/.nvm"
+export NVM_SYMLINK_CURRENT=true
 PATH="${NVM_DIR}/current/bin:${PATH}"
-
 # yarn
-if [[ ! -d "${HOME}/.yarn" ]]; then
-    echo 'WARN: yarn is not installed'
-fi
 PATH="${HOME}/.yarn/bin:${PATH}"
 
 
-## ghq
+## Misc
 
-if ! hash ghq 2>/dev/null; then
-    echo 'WARN: ghq is not installed.'
-fi
+PATH="${HOME}/.local/bin:${PATH}"
 
 
 export PATH

@@ -16,3 +16,8 @@ set -g FZF_FIND_FILE_OPTS '--reverse --inline-info'
 set -g FZF_TMUX 0
 set -g FZF_COMPLETE 0
 set -g FZF_ENABLE_OPEN_PREVIEW 0
+
+# perlbrew
+if [ -d "$PERLBREW_ROOT" ]
+    . $PERLBREW_ROOT/etc/perlbrew.fish
+end
