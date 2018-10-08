@@ -14,7 +14,13 @@ elsif (&is_arch) {
 }
 
 if ( &is_macos or &is_arch ) {
+    git_clone(
+        'https://github.com/tmux-plugins/tpm.git',
+        "${ENV{HOME}}/.tmux/plugins/tpm"
+    );
+
     ln( 'tmux/tmux.conf',      "${ENV{HOME}}/.tmux.conf" );
+
     ln( 'tmux/tmux-cpu-usage', "${ENV{HOME}}/.local/bin/tmux-cpu-usage" );
     ln( 'tmux/tmux-mem-usage', "${ENV{HOME}}/.local/bin/tmux-mem-usage" );
 }
