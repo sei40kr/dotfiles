@@ -1,9 +1,0 @@
-# macos.yml --- Alacritty for macOS
-# author: Seong Yong-ju <sei40kr@gmail.com>
----
-- name: Create a symlink for Alacritty config
-  file:
-    force: yes
-    path: ~/.config/alacritty/alacritty.yml
-    src: '{{ dotfiles_path }}/alacritty/alacritty_macos.yml'
-    state: link
