@@ -8,6 +8,7 @@ use warnings;
 if (&is_macos) {
     brew_install('fish');
     brew_install('fzf');
+    brew_install('terminal-notifier');
 
     brew_install('bat');
     brew_install('diff-so-fancy');
