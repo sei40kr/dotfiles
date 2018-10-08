@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AboutToPasteTabsWithCancel</key>
+	<true/>
 	<key>AdjustWindowForFontSizeChange</key>
 	<false/>
 	<key>AppleAntiAliasingThreshold</key>
@@ -13,6 +15,8 @@
 	<key>AppleWindowTabbingMode</key>
 	<string>manual</string>
 	<key>AutoHideTmuxClientSession</key>
+	<true/>
+	<key>ClosingTmuxTabKillsTmuxWindows</key>
 	<true/>
 	<key>ClosingTmuxWindowKillsTmuxWindows</key>
 	<true/>
@@ -319,7 +323,7 @@
 	<key>MinRunningTime</key>
 	<real>0.0</real>
 	<key>NSFontPanelAttributes</key>
-	<string>1, 0</string>
+	<string>1, 9</string>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/iterm2_profile</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
@@ -361,9 +365,9 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>1061 411 445 202 0 0 1920 1057 </string>
+	<string>942 390 445 263 0 0 1920 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>495 548 796 486 0 0 1920 1057 </string>
+	<string>495 557 796 486 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 83 1920 974 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
@@ -944,7 +948,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>SourceHanCodeJP-Regular 14</string>
+			<string>FiraCode-Light 16</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Place Prompt at First Column</key>
@@ -1099,6 +1103,8 @@
 	<real>0.0</real>
 	<key>TabStyleWithAutomaticOption</key>
 	<integer>1</integer>
+	<key>TabsWrapAround</key>
+	<false/>
 	<key>TerminalMargin</key>
 	<integer>16</integer>
 	<key>TerminalVMargin</key>
