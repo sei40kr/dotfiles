@@ -2,8 +2,8 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 function __fzf_git_checkout
-    if not type -q git
-        echo 'ERROR: git is not installed.' >&2
+    if not command -qs git
+        echo 'ERROR: git not found.' >&2
         return 1
     end
 
@@ -12,16 +12,12 @@ function __fzf_git_checkout
         return 1
     end
 
-    if not type -q fzf
-        echo 'ERROR: fzf is not installed.' >&2
+    if not command -qs fzf
+        echo 'ERROR: fzf not found.' >&2
         return 1
     end
 
-    git branch \
-    | grep -Pve '^\*' \
-    | sed 's/^ *//' \
-    | eval (__fzfcmd) $FZF_DEFAULT_OPTS \
-    | read git_branch
+    git branch | awk '$1 != "*" { print $1 }' | eval (__fzfcmd) $FZF_DEFAULT_OPTS | read git_branch
     and commandline -- "git checkout $git_branch"
     and commandline -f execute
     commandline -f repaint

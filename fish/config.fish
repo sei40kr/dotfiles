@@ -3,22 +3,16 @@
 
 set -U fish_term24bit 1
 
-## dotfiles
+# dotfiles
+set -g EDITOR emacs
+set -g DOTFILES_PATH (dirname (dirname (realpath (status --current-filename))))
 
-if [ -z "$DOTFILES_PATH" ]
-    set -U DOTFILES_PATH (realpath (dirname (realpath (status --current-filename))/..))
-end
+# fish-ghq
+set -g GHQ_SELECTOR fzf
 
-
-## bobthefish
-
-# Font options
-set -g theme_powerline_fonts no
-set -g theme_nerd_fonts yes
-# Prompt options
-set -g theme_newline_cursor yes
-# Color scheme options
-set -g theme_color_scheme base16-dark
-# VCS options
-set -g theme_display_git_dirty_verbose no
-set -g theme_display_git_master_branch no
+# fzf
+set -g FZF_DEFAULT_OPTS '--height 40'
+set -g FZF_FIND_FILE_OPTS '--reverse --inline-info'
+set -g FZF_TMUX 0
+set -g FZF_COMPLETE 0
+set -g FZF_ENABLE_OPEN_PREVIEW 0

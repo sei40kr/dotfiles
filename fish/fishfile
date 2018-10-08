@@ -9,5 +9,8 @@ fisherman/pyenv
 fisherman/rbenv
 oh-my-fish/plugin-ssh
 oh-my-fish/plugin-sudope
-oh-my-fish/foreign-env
 oh-my-fish/theme-clearance
+jhillyerd/plugin-git
+decors/fish-colored-man
+decors/fish-ghq
+jethrokuan/fzf

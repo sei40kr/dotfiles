@@ -28,7 +28,7 @@ if ( &is_macos or &is_arch ) {
     ln( 'fish/bashrc',       "${ENV{HOME}}/.bashrc" );
 
     my @fish_funcs =
-      qw(balias capit cat diff du fish_greeting ping preview ssh top);
+      qw(__fzf_edit_dotfile __fzf_git_checkout balias capit cat diff du fish_greeting fish_user_key_bindings ping preview ssh top);
     ln( "fish/functions/${_}.fish",
         "${ENV{XDG_CONFIG_HOME}}/fish/functions/${_}.fish" )
       foreach @fish_funcs;
