@@ -55,6 +55,7 @@ yarn_global_add('tern');
 
 # Jupyter Notebook
 pip3_install('jupyter');
+pip3_install('matplotlib');
 if (&is_linux) {
     ln( 'matplotlib/matplotlibrc',
         "${ENV{XDG_CONFIG_HOME}}/matplotlib/matplotlibrc" );
@@ -73,10 +74,13 @@ pip3_install('autopep8');
 pip3_install('flake8');
 pip3_install('importmagic');
 pip3_install('jedi');
+pip3_install('pydoc_utils');
+pip3_install('pyflakes');
 pip3_install('pylint');
 pip3_install('pyls-isort');
 pip3_install('pyls-mypy');
 pip3_install('python-language-server');
+pip3_install('rope');
 pip3_install('yapf');
 
 # Ruby
