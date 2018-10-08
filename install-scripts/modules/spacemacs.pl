@@ -7,7 +7,7 @@ use warnings;
 
 if (&is_macos) {
     brew_tap('d12frosted/emacs-plus');
-    brew_install('emacs-plus');
+    brew_install('emacs-plus', 'with-pdumper', 'HEAD');
 }
 elsif (&is_arch) {
     pacman_sync('emacs');
