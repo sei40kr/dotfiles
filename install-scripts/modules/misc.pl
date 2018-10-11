@@ -7,11 +7,15 @@ use warnings;
 
 if (&is_macos) {
     brew_install('curl');
+    brew_install('ed');
     brew_install('fd');
     brew_install('gawk');
+    brew_install('gnu-sed');
+    brew_install('gnu-tar');
     brew_install('grep');
     brew_install('gzip');
     brew_install('jq');
+    brew_install('nano');
     brew_install('parallel');
     brew_install('unzip');
     brew_install('wget');
