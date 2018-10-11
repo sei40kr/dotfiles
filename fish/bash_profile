@@ -14,6 +14,12 @@ export GIT_EDITOR=vim
 
 if hash brew 2>/dev/null; then
     export BREW_PREFIX="$(brew --prefix)"
+    # coreutils
+    PATH="${BREW_PREFIX}/opt/coreutils/libexec/gnubin:${PATH}"
+    MANPATH="${BREW_PREFIX}/opt/coreutils/libexec/gnuman:${MANPATH}"
+    # findutils
+    PATH="${BREW_PREFIX}/opt/findutils/libexec/gnubin:${PATH}"
+    MANPATH="${BREW_PREFIX}/opt/findutils/libexec/gnuman:${MANPATH}"
 fi
 
 
@@ -84,6 +90,7 @@ PATH="${HOME}/.local/bin:${PATH}"
 
 
 export PATH
+export MANPATH
 
 
 . "${HOME}/.bashrc"
