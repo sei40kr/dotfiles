@@ -19,6 +19,7 @@ $ENV{XDG_CONFIG_HOME} = "${ENV{HOME}}/.config"
 $ENV{XDG_DATA_HOME} = "${ENV{HOME}}/.local/share"
   unless ( defined( $ENV{XDG_DATA_HOME} ) );
 
+$ENV{BREW_PREFIX} = '/usr/local' unless ( defined( $ENV{BREW_PREFIX} ) );
 $ENV{GOENV_ROOT} = "${ENV{HOME}}/.goenv" unless ( defined( $ENV{GOENV_ROOT} ) );
 $ENV{NVM_DIR}    = "${ENV{HOME}}/.nvm"   unless ( defined( $ENV{NVM_DIR} ) );
 $ENV{PYENV_ROOT} = "${ENV{HOME}}/.pyenv" unless ( defined( $ENV{PYENV_ROOT} ) );
