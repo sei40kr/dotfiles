@@ -14,7 +14,7 @@ my @ln_intermediate = ();
 sub ln {
     my ( $src, $dest ) = @_;
 
-    $src = "${ln_basepath}/${src}" if ( substr $src, 0, 1 ne '/' );
+    $src = "${ln_basepath}/${src}" if ( ( substr $src, 0, 1 ) ne '/' );
 
     push(
         @ln_intermediate,
@@ -26,11 +26,12 @@ sub ln {
 }
 
 my sub ln_reducer {
-    return if (scalar(@ln_intermediate) eq 0);
+    return if ( scalar(@ln_intermediate) eq 0 );
 
     log_wait('Creating symlinks ...');
 
     foreach my $item (@ln_intermediate) {
+
         # Call symlink instead of running `ln` for better performance
         if ( &is_dry_run || &is_verbose ) {
             printf "> mkpath('%s');\n", dirname( $item->{dest} );
