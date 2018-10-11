@@ -7,7 +7,7 @@ use warnings;
 
 if (&is_macos) {
     brew_install('curl');
-    brew_install('ed');
+    brew_install('ed', 'with-default-names');
     brew_install('fd');
     brew_install('gawk');
     brew_install('gnu-sed');
