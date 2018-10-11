@@ -6,8 +6,17 @@ use strict;
 use warnings;
 
 if (&is_macos) {
+    brew_install('curl');
     brew_install('fd');
+    brew_install('gawk');
+    brew_install('grep');
+    brew_install('gzip');
     brew_install('jq');
+    brew_install('parallel');
+    brew_install('unzip');
+    brew_install('wget');
+    brew_install('vim');
+    brew_install('xmlstarlet');
 
     brew_tap('tavianator/tap');
     brew_install('bfs');

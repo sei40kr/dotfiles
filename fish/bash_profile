@@ -14,12 +14,17 @@ export GIT_EDITOR=vim
 
 if hash brew 2>/dev/null; then
     export BREW_PREFIX="$(brew --prefix)"
-    # coreutils
-    PATH="${BREW_PREFIX}/opt/coreutils/libexec/gnubin:${PATH}"
-    MANPATH="${BREW_PREFIX}/opt/coreutils/libexec/gnuman:${MANPATH}"
-    # findutils
-    PATH="${BREW_PREFIX}/opt/findutils/libexec/gnubin:${PATH}"
-    MANPATH="${BREW_PREFIX}/opt/findutils/libexec/gnuman:${MANPATH}"
+    if [[ "$OSTYPE" == darwin* ]]; then
+        # coreutils
+        PATH="${BREW_PREFIX}/opt/coreutils/libexec/gnubin:${PATH}"
+        MANPATH="${BREW_PREFIX}/opt/coreutils/libexec/gnuman:${MANPATH}"
+        # findutils
+        PATH="${BREW_PREFIX}/opt/findutils/libexec/gnubin:${PATH}"
+        MANPATH="${BREW_PREFIX}/opt/findutils/libexec/gnuman:${MANPATH}"
+        # grep
+        PATH="${BREW_PREFIX}/opt/grep/libexec/gnubin:${PATH}"
+        MANPATH="${BREW_PREFIX}/opt/grep/libexec/gnuman:${MANPATH}"
+    fi
 fi
 
 
