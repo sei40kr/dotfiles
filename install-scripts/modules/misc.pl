@@ -6,9 +6,11 @@ use strict;
 use warnings;
 
 if (&is_macos) {
+    brew_install('coreutils');
     brew_install('curl');
     brew_install('ed', 'with-default-names');
     brew_install('fd');
+    brew_install('findutils');
     brew_install('gawk');
     brew_install('gnu-sed');
     brew_install('gnu-tar');
