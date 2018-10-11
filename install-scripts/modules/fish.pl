@@ -27,12 +27,20 @@ if ( &is_macos or &is_arch ) {
     ln( 'fish/bash_profile', "${ENV{HOME}}/.bash_profile" );
     ln( 'fish/bashrc',       "${ENV{HOME}}/.bashrc" );
 
+    # Install fish functions
     my @fish_funcs =
       qw(__fzf_edit_dotfile __fzf_git_checkout balias capit cat diff du fish_greeting fish_user_key_bindings ping preview ssh top);
     ln( "fish/functions/${_}.fish",
         "${ENV{XDG_CONFIG_HOME}}/fish/functions/${_}.fish" )
       foreach @fish_funcs;
 
+    # Install fish completions
+    my @fish_completions = qw(rustup);
+    ln( "fish/completions/${_}.fish",
+        "${ENV{XDG_CONFIG_HOME}}/fish/completions/${_}.fish" )
+      foreach @fish_completions;
+
+    # Install balias definitions
     ln( 'fish/conf.d/balias_def.fish',
         "${ENV{XDG_CONFIG_HOME}}/fish/conf.d/balias_def.fish" );
     my @balias_defs =
