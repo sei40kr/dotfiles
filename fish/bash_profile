@@ -21,9 +21,21 @@ if hash brew 2>/dev/null; then
         # findutils
         PATH="${BREW_PREFIX}/opt/findutils/libexec/gnubin:${PATH}"
         MANPATH="${BREW_PREFIX}/opt/findutils/libexec/gnuman:${MANPATH}"
+        # ed
+        PATH="${BREW_PREFIX}/opt/ed/bin:${PATH}"
+        MANPATH="${BREW_PREFIX}/opt/ed/share/man:${MANPATH}"
+        # gnu-sed
+        PATH="${BREW_PREFIX}/opt/gnu-sed/libexec/gnubin:${PATH}"
+        MANPATH="${BREW_PREFIX}/opt/gnu-sed/libexec/gnuman:${MANPATH}"
+        # gnu-tar
+        PATH="${BREW_PREFIX}/opt/gnu-tar/libexec/gnubin:${PATH}"
+        MANPATH="${BREW_PREFIX}/opt/gnu-tar/libexec/gnuman:${MANPATH}"
         # grep
         PATH="${BREW_PREFIX}/opt/grep/libexec/gnubin:${PATH}"
         MANPATH="${BREW_PREFIX}/opt/grep/libexec/gnuman:${MANPATH}"
+        # nano
+        PATH="${BREW_PREFIX}/opt/nano/bin:${PATH}"
+        MANPATH="${BREW_PREFIX}/opt/nano/share/man:${MANPATH}"
     fi
 fi
 
