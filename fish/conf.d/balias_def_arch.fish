@@ -20,7 +20,7 @@ if [ -f '/etc/arch-release' ]
     balias pacfiles 'pacman -Fs'
     balias pacls 'pacman -Ql'
     balias pacown 'pacman -Qo'
-    balias pacupd 'pacman -Sy'
+    balias pacupd 'sudo pacman -Sy'
 
     # trizen
     balias trconf 'trizen -C'
