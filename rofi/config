@@ -12,7 +12,7 @@ rofi.lines:                          10
 ! "Number of columns" Set from: Default
 ! rofi.columns:                        1
 ! "Font to use" Set from: File
-rofi.font:                           Source Han Code JP 10
+rofi.font:                           Input Mono 12
 ! "Border width" Set from: File
 rofi.bw:                             2
 ! "Location on screen" Set from: Default
