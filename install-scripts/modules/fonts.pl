@@ -27,9 +27,17 @@ elsif (&is_arch) {
     pacman_sync('noto-fonts');
     pacman_sync('noto-fonts-cjk');
     pacman_sync('noto-fonts-emoji');
+    pacman_sync('ttf-anonymous-pro');
+    pacman_sync('ttf-fira-code');
+    pacman_sync('ttf-hack');
+    pacman_sync('ttf-inconsolata');
     pacman_sync('ttf-liberation');
+    pacman_sync('ttf-roboto');
 
-    # TODO Add fonts
+    trizen_sync('ttf-fantasque-sans-mono');
+    trizen_sync('ttf-inconsolata-g');
+    trizen_sync('ttf-input');
+    trizen_sync('ttf-migmix');
 
     trizen_sync('nerd-fonts-fira-code');
 }
