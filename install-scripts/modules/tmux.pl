@@ -20,9 +20,6 @@ if ( &is_macos or &is_arch ) {
     );
 
     ln( 'tmux/tmux.conf',      "${ENV{HOME}}/.tmux.conf" );
-
-    ln( 'tmux/tmux-cpu-usage', "${ENV{HOME}}/.local/bin/tmux-cpu-usage" );
-    ln( 'tmux/tmux-mem-usage', "${ENV{HOME}}/.local/bin/tmux-mem-usage" );
 }
 
 1;
