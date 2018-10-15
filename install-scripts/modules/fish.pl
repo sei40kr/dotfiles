@@ -19,8 +19,6 @@ if (&is_macos) {
 elsif (&is_arch) {
     pacman_sync('fish');
     pacman_sync('fzf');
-
-    # TODO Install bat, diff-so-fancy, htop, prettyping
 }
 
 if ( &is_macos or &is_arch ) {
