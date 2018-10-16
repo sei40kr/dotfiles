@@ -45,6 +45,8 @@ go_get('golang.org/x/tools/cmd/guru');
 
 # Haskell
 stack_install('apply-refact');
+
+# stack_install('ghc-mod');
 stack_install('hasktags');
 stack_install('hlint');
 stack_install('hoogle');
@@ -80,6 +82,7 @@ yarn_global_add('vmd');
 # Perl5
 cpanm('Perl::Critic');
 cpanm('Perl::Tidy');
+
 # TOOD Install plsense
 # ln( 'plsense/plsense', "${ENV{HOME}}/.plsense" );
 
