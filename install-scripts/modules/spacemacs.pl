@@ -86,6 +86,9 @@ cpanm('Perl::Tidy');
 # TOOD Install plsense
 # ln( 'plsense/plsense', "${ENV{HOME}}/.plsense" );
 
+# Org
+# TODO Install reveal-js
+
 # Python
 pip3_install('autopep8');
 pip3_install('flake8');
