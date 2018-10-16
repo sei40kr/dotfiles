@@ -6,6 +6,7 @@ my @cargo_install_intermediate = ();
 sub cargo_install {
     my $pkg = $_[0];
 
+    # TODO Enable to specify nightly Rust toolchain
     push( @cargo_install_intermediate, $pkg );
 }
 
@@ -15,8 +16,12 @@ my sub cargo_install_reducer {
     log_wait('Installing Rust binaries ...');
 
     my $cargo = "${ENV{CARGO_HOME}}/bin/cargo";
+
+    # TODO Install rustup
+    # TODO Install Rust toolchains: stable, nightly
     error('cargo not found.') unless ( is_exec($cargo) );
 
+    # TODO Skip update checking unless --update given
     @cargo_args = qw(install -fq);
     push( @cargo_args, @cargo_install_intermediate );
 
