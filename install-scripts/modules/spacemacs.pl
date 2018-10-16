@@ -109,6 +109,9 @@ gem_install('rake');
 gem_install('rcodetools');
 gem_install('rubocop');
 
+# Rust
+cargo_install('rustfmt');
+
 # Shell-script
 if (&is_macos) {
     brew_install('shfmt');
