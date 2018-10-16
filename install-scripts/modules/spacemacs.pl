@@ -110,6 +110,7 @@ gem_install('rcodetools');
 gem_install('rubocop');
 
 # Rust
+# TODO Install racer
 rustup_component_add('rust-src');
 cargo_install('rustfmt');
 
