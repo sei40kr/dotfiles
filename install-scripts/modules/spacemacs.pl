@@ -7,13 +7,14 @@ use warnings;
 
 if (&is_macos) {
     brew_tap('d12frosted/emacs-plus');
-    brew_install('emacs-plus', 'with-pdumper', 'HEAD');
+    brew_install( 'emacs-plus', 'with-pdumper', 'HEAD' );
 }
 elsif (&is_arch) {
     pacman_sync('emacs');
 }
 
-git_clone('ssh://git@github.com/sei40kr/spacemacs.git', "${ENV{HOME}}/.emacs.d", 'develop');
+git_clone( 'ssh://git@github.com/sei40kr/spacemacs.git',
+    "${ENV{HOME}}/.emacs.d", 'develop' );
 
 ln( 'spacemacs', "${ENV{HOME}}/.spacemacs.d" );
 
@@ -75,6 +76,12 @@ elsif (&is_macos) {
 gem_install('mdl');
 yarn_global_add('markdownlint-cli');
 yarn_global_add('vmd');
+
+# Perl5
+cpanm('Perl::Critic');
+cpanm('Perl::Tidy');
+# TOOD Install plsense
+# ln( 'plsense/plsense', "${ENV{HOME}}/.plsense" );
 
 # Python
 pip3_install('autopep8');
