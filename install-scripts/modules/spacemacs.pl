@@ -74,6 +74,13 @@ elsif (&is_macos) {
     ln( 'matplotlib/matplotlibrc', "${ENV{HOME}}/.matplotlib/matplotlibrc" );
 }
 
+# LaTeX
+if (&is_macos) {
+    brew_cask_install('mactex');
+} else {
+    # TODO Install LaTeX compiler on other environments
+}
+
 # Markdown
 gem_install('mdl');
 yarn_global_add('markdownlint-cli');
