@@ -17,7 +17,7 @@ my sub cargo_install_reducer {
     my $cargo = "${ENV{CARGO_HOME}}/bin/cargo";
     error('cargo not found.') unless ( is_exec($cargo) );
 
-    @cargo_args = qw(install -q);
+    @cargo_args = qw(install -fq);
     push( @cargo_args, @cargo_install_intermediate );
 
     run_cmd( $cargo, @cargo_args );
