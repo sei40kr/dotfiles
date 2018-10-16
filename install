@@ -23,6 +23,8 @@ $ENV{BREW_PREFIX} = '/usr/local' unless ( defined( $ENV{BREW_PREFIX} ) );
 $ENV{CARGO_HOME} = "${ENV{HOME}}/.cargo" unless ( defined( $ENV{CARGO_HOME} ) );
 $ENV{GOENV_ROOT} = "${ENV{HOME}}/.goenv" unless ( defined( $ENV{GOENV_ROOT} ) );
 $ENV{NVM_DIR}    = "${ENV{HOME}}/.nvm"   unless ( defined( $ENV{NVM_DIR} ) );
+$ENV{PERLBREW_ROOT} = "${ENV{HOME}}/perl5/perlbrew"
+  unless ( defined( $ENV{PERLBREW_ROOT} ) );
 $ENV{PYENV_ROOT} = "${ENV{HOME}}/.pyenv" unless ( defined( $ENV{PYENV_ROOT} ) );
 $ENV{RBENV_ROOT} = "${ENV{HOME}}/.rbenv" unless ( defined( $ENV{RBENV_ROOT} ) );
 
