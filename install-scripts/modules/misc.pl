@@ -45,6 +45,8 @@ elsif (&is_arch) {
     trizen_sync('bfs');
 }
 
+gem_install('reveal-ck');
+
 pip3_install('asciinema');
 pip3_install('aws-shell');
 pip3_install('pgcli');
