@@ -77,7 +77,8 @@ elsif (&is_macos) {
 # LaTeX
 if (&is_macos) {
     brew_cask_install('mactex');
-} else {
+}
+else {
     # TODO Install LaTeX compiler on other environments
 }
 
@@ -86,6 +87,9 @@ gem_install('mdl');
 yarn_global_add('markdownlint-cli');
 yarn_global_add('vmd');
 
+# Org
+# TODO Install reveal-js
+
 # Perl5
 cpanm('Perl::Critic');
 cpanm('Perl::Tidy');
@@ -93,8 +97,13 @@ cpanm('Perl::Tidy');
 # TOOD Install plsense
 # ln( 'plsense/plsense', "${ENV{HOME}}/.plsense" );
 
-# Org
-# TODO Install reveal-js
+# PlantUML
+if (&is_macos) {
+    brew_install('plantuml');
+}
+else {
+    # TODO Install PlantUML on other environments
+}
 
 # Python
 pip3_install('autopep8');
