@@ -28,6 +28,14 @@ pip3_install('cpplint');
 # Docker
 yarn_global_add('dockerfile-language-server-nodejs');
 
+# ESS
+if (&is_macos) {
+    brew_install( 'r', 'with-openblas' );
+}
+else {
+    # TODO Install R on other environments
+}
+
 # Go
 go_get('github.com/cweill/gotests/...');
 go_get('github.com/davidrjenni/reftools/cmd/fillstruct');
