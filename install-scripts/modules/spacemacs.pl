@@ -42,6 +42,13 @@ go_get('golang.org/x/tools/cmd/goimports');
 go_get('golang.org/x/tools/cmd/gorename');
 go_get('golang.org/x/tools/cmd/guru');
 
+# Haskell
+stack_install('apply-refact');
+stack_install('hasktags');
+stack_install('hlint');
+stack_install('hoogle');
+stack_install('stylish-haskell');
+
 # HTML
 yarn_global_add('stylelint-cli');
 
