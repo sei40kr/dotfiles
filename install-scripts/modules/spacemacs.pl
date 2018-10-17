@@ -142,12 +142,7 @@ rustup_component_add('rust-src');
 cargo_install('rustfmt');
 
 # Shell-script
-if (&is_macos) {
-    brew_install('shfmt');
-}
-elsif (&is_arch) {
-    trizen_sync('shfmt-bin');
-}
+go_get('mvdan.cc/sh/cmd/shfmt');
 
 # SQL
 go_get('github.com/jackc/sqlfmt');
