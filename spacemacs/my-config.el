@@ -5,6 +5,7 @@
                 "evil-mc"
                 "fish-mode"
                 "flycheck"
+                "format-all"
                 "go-mode"
                 "javascript"
                 "neotree"
@@ -27,6 +28,7 @@
 (defun my/user-config ()
   (my/config-evil)
   (my/config-evil-mc)
+  (my/config-format-all)
   (my/config-workarounds)
 
   (setq
