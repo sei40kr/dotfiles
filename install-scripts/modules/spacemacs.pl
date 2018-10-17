@@ -145,7 +145,7 @@ cargo_install('rustfmt');
 go_get('mvdan.cc/sh/cmd/shfmt');
 
 # SQL
-go_get('github.com/jackc/sqlfmt');
+pip3_install('sqlparse');
 
 # TypeScript
 yarn_global_add('typescript-language-server');
