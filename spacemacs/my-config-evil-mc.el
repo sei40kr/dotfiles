@@ -31,7 +31,7 @@
 (defun my/evil-mc-visual-C-n-behavior (beginning end)
   (interactive (list (region-beginning) (region-end)))
   (if (eq (evil-visual-type) 'inclusive)
-      (my/evil-mc-make-and-goto-next-match)
+      (my/evil-mc-normal-C-n-behavior)
     (my//evil-mc-make-vertical-cursors beginning end)))
 
 (defun my/init-evil-mc ()
