@@ -199,6 +199,7 @@ values."
                  :repo "sei40kr/competitive-programming-snippets"))
      evil-terminal-cursor-changer
      flycheck-popup-tip
+     format-all
      (jest-snippets :location (recipe :fetcher github
                                       :repo "sei40kr/jest-snippets"))
      (react-snippets :location (recipe :fetcher github
@@ -590,6 +591,7 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-pretty-docs nil))
 
+(load (concat dotspacemacs-directory "my-config.el"))
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
@@ -598,211 +600,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (setq
-   ;; built-ins
-   auto-insert-query nil
-   auto-save-default nil
-   backup-inhibited t
-   create-lockfiles nil
-   select-enable-clipboard nil
-   tooltip-delay 0.3
-   tooltip-hide-delay 999
-   tooltip-short-delay 0.1
-
-   ;; avy
-   avy-timeout-seconds 0.0
-
-   ;; cperl-mode
-   cperl-mode-abbrev-table '()
-
-   ;; evil
-   evil-want-C-i-jump t
-   evil-want-C-u-scroll t
-
-   ;; evil-escape
-   evil-escape-key-sequence "jk"
-
-   ;; flycheck
-   flycheck-check-syntax-automatically '(save mode-enabled)
-   flycheck-display-errors-delay 0.3
-
-   ;; flycheck-popup-tip
-   flycheck-popup-tip-error-prefix "* "
-
-   ;; flycheck-pos-tip
-   flycheck-pos-tip-timeout 999
-   flycheck-pos-tip-display-errors-tty-function #'flycheck-popup-tip-show-popup
-
-   ;; go-mode
-   gofmt-command "goimports"
-
-   ;; helm
-   helm-mini-default-sources '(helm-source-buffers-list)
-
-   ;; magit
-   magit-repolist-columns '(("Name" 25 magit-repolist-column-ident nil)
-                            ("Version" 25 magit-repolist-column-version nil)
-                            ("Path" 99 magit-repolist-column-path nil))
-
-   ;; neotree
-   neo-confirm-create-directory 'off-p
-   neo-confirm-create-file 'off-p
-   neo-confirm-delete-directory-recursively 'off-p
-   neo-confirm-delete-file 'y-or-n-p
-   neo-confirm-kill-buffers-for-files-in-directory 'off-p
-   neo-force-change-root t
-   neo-smart-open t
-   neo-theme 'arrow
-
-   ;; projectile
-   projectile-git-submodule-command "git submodule --quiet foreach 'echo $path' | tr '\\n' '\\0'"
-
-   ;; spacemacs-common
-   spacemacs-theme-comment-italic t
-
-   ;; yasnippet
-   yas-indent-line 'fixed)
-
-  ;; evil
-  (defun user-custom/save-some-buffers ()
-    (interactive)
-    (save-some-buffers t))
-  (eval-after-load 'evil
-    '(evil-global-set-key 'normal
-                          (kbd "C-s") #'user-custom/save-some-buffers))
-
-  ;; fish-mode
-  (defun user-custom//fish-setup-format-on-save ()
-    (add-hook 'before-save-hook #'fish_indent-before-save))
-  (add-hook 'fish-mode-hook #'user-custom//fish-setup-format-on-save)
-
-  ;; helm-projectile
-  (eval-after-load 'helm-projectile
-    '(setq projectile-switch-project-action
-           #'(lambda ()
-               (projectile-dired)
-               (require 'neotree)
-               (if (neo-global--window-exists-p)
-                   (neotree-projectile-action)))))
-
-  ;; go-mode
-  (defun user-custom//go-setup-checkers ()
-    (require 'flycheck)
-    (add-to-list 'flycheck-disabled-checkers 'gometalinter)
-    (add-to-list 'flycheck-disabled-checkers 'go-gofmt)
-    (add-to-list 'flycheck-disabled-checkers 'go-test)
-    (add-to-list 'flycheck-disabled-checkers 'go-megacheck))
-  (add-hook 'go-mode-hook #'user-custom//go-setup-checkers)
-
-  ;; js2-mode & rjsx-mode
-  (defun user-custom//javascript-setup-checkers ()
-    ;; Disable built-in checking
-    (set (make-local-variable 'js2-mode-show-parse-errors) nil)
-    (set (make-local-variable 'js2-mode-show-strict-warnings) nil)
-    ;; Disable non-modern checkers
-    (require 'flycheck)
-    (add-to-list 'flycheck-disabled-checkers 'javascript-jshint)
-    (add-to-list 'flycheck-disabled-checkers 'javascript-standard))
-  (add-hook 'js2-mode-hook #'user-custom//javascript-setup-checkers)
-  (add-hook 'rjsx-mode-hook #'user-custom//javascript-setup-checkers)
-
-  ;; rust-mode
-  (defun user-custom//rust-setup-checkers ()
-    (require 'flycheck)
-    (add-to-list 'flycheck-disabled-checkers 'rust-cargo))
-  (add-hook 'rust-mode-hook #'user-custom//rust-setup-checkers)
-
-  ;; semantic
-  (require 'mode-local)
-  (setq-mode-local emacs-lisp-mode
-                   semanticdb-find-default-throttle
-                   '(file local project unloaded system)))
+  (my/user-init))
 
 (defun dotspacemacs/user-config ()
-  ;; Vim-like Ctrl-h, Ctrl-w behaviors
-  (bind-key* "C-h" #'delete-backward-char)
-  (bind-key* "C-w" #'backward-kill-word)
-  (with-eval-after-load 'company
-    (bind-key "C-h" nil company-active-map)
-    (bind-key "C-w" nil company-active-map))
-
-  ;; Vim-like multiple-cursors behaviors (vim-multiple-cursors)
-  (defun user-custom/evil-mc-make-and-goto-next-match ()
-    (interactive)
-    (turn-on-evil-mc-mode)
-    (evil-mc-make-and-goto-next-match))
-  (defun user-custom//evil-mc-make-vertical-cursors (beginning end)
-    (turn-on-evil-mc-mode)
-    (evil-mc-pause-cursors)
-    (evil-apply-on-rectangle
-     #'(lambda (startcol endcol real-line-number)
-         (move-to-column startcol)
-         (unless (= (line-number-at-pos) real-line-number)
-           (evil-mc-make-cursor-here)))
-     beginning
-     end
-     (line-number-at-pos))
-    (evil-mc-resume-cursors)
-    (evil-normal-state)
-    (move-to-column (min (evil-mc-column-number beginning)
-                         (evil-mc-column-number end))))
-  (require 'evil-core)
-  (evil-global-set-key 'normal
-                       (kbd "C-n")
-                       #'user-custom/evil-mc-make-and-goto-next-match)
-  (evil-global-set-key 'visual
-                       (kbd "C-n")
-                       #'(lambda (beginning end)
-                           (interactive (list (region-beginning) (region-end)))
-                           (if (eq (evil-visual-type) 'inclusive)
-                               (user-custom/evil-mc-make-and-goto-next-match)
-                             (user-custom//evil-mc-make-vertical-cursors beginning end))))
-  (with-eval-after-load 'evil-mc
-    (evil-define-key 'normal evil-mc-key-map
-      (kbd "C-n") #'evil-mc-make-and-goto-next-match
-      (kbd "C-m") #'evil-mc-make-and-goto-prev-match
-      (kbd "C-x") #'evil-mc-skip-and-goto-next-match
-      (kbd "C-p") nil
-      (kbd "C-t") nil
-      (kbd "<escape>") #'(lambda ()
-                           (interactive)
-                           (evil-mc-undo-all-cursors)
-                           (turn-off-evil-mc-mode)))
-    (evil-define-key 'visual evil-mc-key-map
-      (kbd "C-n") nil
-      (kbd "C-p") nil
-      (kbd "C-t") nil)
-    ;; evil-escape don't work in evil-mc-mode
-    (add-hook 'evil-mc-mode-hook
-              #'(lambda ()
-                  (add-to-list 'evil-mc-incompatible-minor-modes
-                               'evil-escape-mode))))
-
-  ;; SpaceVim-like key bindings
-  (evil-global-set-key 'visual (kbd "v")
-                       #'er/expand-region)
-  (evil-global-set-key 'visual (kbd "V")
-                       #'er/contract-region)
-  (evil-global-set-key 'normal (kbd "C-p")
-                       #'helm-projectile-find-file)
-
-  ;; S-c/S-v to copy to/paste from X-clipboard
-  (evil-global-set-key 'visual (kbd "s-c") #'spacemacs/xclipboard-copy)
-  (evil-global-set-key 'insert (kbd "s-v") #'spacemacs/xclipboard-paste)
-
-  ;; Fix frame font
-  (add-to-list 'default-frame-alist '(font . "Input-16"))
-
-  ;; Fix frame transparency
-  (defun user-custom//enable-frame-transparency (frame)
-    (spacemacs/enable-transparency frame
-                                   (cons dotspacemacs-active-transparency
-                                         dotspacemacs-inactive-transparency)))
-  (user-custom//enable-frame-transparency nil)
-  (add-hook 'after-make-frame-functions
-            #'user-custom//enable-frame-transparency)
-
-  ;; Load evil-terminal-cursor-changer
-  (unless (display-graphic-p)
-    (require 'evil-terminal-cursor-changer)
-    (evil-terminal-cursor-changer-activate)))
+  (my/user-config))
