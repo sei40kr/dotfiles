@@ -59,8 +59,6 @@ values."
                 templates-private-directory
                 (concat dotspacemacs-directory "templates"))
      ;; Emacs
-     (ibuffer :variables
-              ibuffer-group-buffers-by 'projects)
      (org :variables
           org-want-todo-bindings t
           org-enable-github-support t)
@@ -99,7 +97,6 @@ values."
                  javascript-fmt-tool 'prettier)
      (json :variables
            json-fmt-tool 'prettier)
-     kotlin
      latex
      lua
      major-modes
@@ -108,7 +105,6 @@ values."
      perl6
      php
      plantuml
-     purescript
      (python :variables
              python-backend 'lsp)
      (ruby :variables
@@ -116,10 +112,6 @@ values."
            ruby-version-manager 'rbenv)
      (rust :variables
            rust-format-on-save t)
-     (scala :variables
-            scala-enable-eldoc t
-            scala-auto-insert-asterisk-in-comments t
-            scala-auto-start-ensime t)
      shell-scripts
      sql
      (typescript :variables
@@ -176,13 +168,7 @@ values."
      evil-commentary
      (evil-snipe :variables
                  evil-snipe-enable-alternate-f-and-t-behaviors t
-                 evil-snipe-repeat-scope 'line)
-     ;; WebServices
-     search-engine
-     ;; Custom
-     ghq
-     quickrun
-     )
+                 evil-snipe-repeat-scope 'line))
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
