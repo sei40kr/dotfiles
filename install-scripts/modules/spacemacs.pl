@@ -124,6 +124,7 @@ cpanm('Perl::Tidy');
 
 # PlantUML
 if (&is_macos) {
+    brew_cask_install('java');
     brew_install('plantuml');
 }
 else {
