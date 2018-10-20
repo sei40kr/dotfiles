@@ -56,6 +56,7 @@
                             ("Path" 99 magit-repolist-column-path nil))
    magit-repository-directories (list (cons "~/.dotfiles" 0)
                                       (cons "~/.emacs.d" 0)
+                                      (cons "~/.emacs.d/private/local" 1)
                                       (cons (or (getenv "GHQ_ROOT") "~/.ghq") 3))
 
    ;; semantic
@@ -70,6 +71,12 @@
    ;; yatemplate
    auto-insert-query nil
    auto-save-default nil)
+
+  ;; Load my snippets
+  (require 'competitive-programming-snippets)
+  (require 'jest-snippets)
+  (require 'react-snippets)
+  (require 'redux-snippets)
 
   ;; Activate evil-terminal-cursor-changer
   (unless (display-graphic-p)

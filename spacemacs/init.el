@@ -179,19 +179,13 @@ values."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '(
-     (competitive-programming-snippets
-      :location (recipe
-                 :fetcher github
-                 :repo "sei40kr/competitive-programming-snippets"))
+     (competitive-programming-snippets :location local)
      evil-terminal-cursor-changer
      flycheck-popup-tip
      format-all
-     (jest-snippets :location (recipe :fetcher github
-                                      :repo "sei40kr/jest-snippets"))
-     (react-snippets :location (recipe :fetcher github
-                                       :repo "sei40kr/react-snippets"))
-     (redux-snippets :location (recipe :fetcher github
-                                       :repo "sei40kr/redux-snippets")))
+     (jest-snippets :location local)
+     (react-snippets :location local)
+     (redux-snippets :location local))
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
