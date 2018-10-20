@@ -119,7 +119,7 @@ yarn_global_add('vmd');
 cpanm('Perl::Critic');
 cpanm('Perl::Tidy');
 
-# TOOD Install plsense
+# TODO Install plsense
 # ln( 'plsense/plsense', "${ENV{HOME}}/.plsense" );
 
 # PlantUML
