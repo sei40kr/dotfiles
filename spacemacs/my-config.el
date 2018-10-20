@@ -10,9 +10,13 @@
                 "javascript"
                 "neotree"
                 "projectile"
-                "rust-mode"
-                "workarounds"))
+                "rust-mode"))
   (load (format "%smy-config-%s.el" dotspacemacs-directory item)))
+
+(defun my//enable-frame-transparency (frame)
+  (spacemacs/enable-transparency frame
+                                 (cons dotspacemacs-active-transparency
+                                       dotspacemacs-inactive-transparency)))
 
 (defun my/user-init ()
   (my/init-evil)
@@ -77,4 +81,8 @@
   (require 'evil-core)
   (evil-global-set-key 'visual (kbd "v") #'er/expand-region)
   (evil-global-set-key 'visual (kbd "V") #'er/contract-region)
-  (evil-global-set-key 'normal (kbd "C-p") #'helm-projectile-find-file))
+  (evil-global-set-key 'normal (kbd "C-p") #'helm-projectile-find-file)
+
+  ;; Fix frame transparency
+  (my//enable-frame-transparency nil)
+  (add-hook 'after-make-frame-functions #'my//enable-frame-transparency))
