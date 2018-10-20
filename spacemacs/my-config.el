@@ -33,7 +33,6 @@
   (my/config-evil)
   (my/config-evil-mc)
   (my/config-format-all)
-  (my/config-workarounds)
 
   (setq
    ;; Emacs built-ins
