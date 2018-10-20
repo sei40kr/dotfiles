@@ -12,9 +12,9 @@ function fish_user_key_bindings
     bind \ct __fzf_find_file
     bind \cr __fzf_reverse_isearch
     bind \ec __fzf_cd
-    bind \eC __fzf_cd --hidden
+    bind \eC '__fzf_cd --hidden'
     bind \cg __fzf_open
-    bind \co __fzf_open --editor
+    bind \co '__fzf_open --editor'
 
     # sudope
     bind \cs sudope
