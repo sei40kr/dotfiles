@@ -154,7 +154,7 @@ gem_install('rcodetools');
 gem_install('rubocop');
 
 # Rust
-# TODO Install racer
+cargo_nightly_install('racer');
 rustup_component_add('rust-src');
 cargo_install('rustfmt');
 
