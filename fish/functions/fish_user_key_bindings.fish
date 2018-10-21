@@ -6,7 +6,7 @@ function fish_user_key_bindings
     bind \cx\cb __fzf_git_checkout
 
     # fish-ghq
-    bind \cx\cg __ghq_crtl_g
+    bind \cx\cg __fzf_ghq
 
     # fzf
     bind \ct __fzf_find_file
