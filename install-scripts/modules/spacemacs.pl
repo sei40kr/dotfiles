@@ -18,7 +18,7 @@ git_clone( 'ssh://git@github.com/sei40kr/spacemacs.git',
 
 git_clone(
     'ssh://git@github.com/sei40kr/spacemacs-quickrun.git',
-    "${ENV{HOME}}/.emacs.d/private/layers/spacemacs-quickrun"
+    "${ENV{HOME}}/.emacs.d/private/layers/quickrun"
 );
 
 git_clone(
