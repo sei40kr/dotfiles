@@ -5,6 +5,7 @@ balias d dirs
 balias po popd
 balias pu pushd
 balias u 'cd ..'
+balias ll 'ls -al'
 
 # coreutils
 balias md 'mkdir -p'

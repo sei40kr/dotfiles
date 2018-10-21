@@ -12,11 +12,14 @@ if (&is_macos) {
 
     brew_install('bat');
     brew_install('diff-so-fancy');
+    brew_install('exa');
     brew_install('htop');
     brew_install('ncdu');
     brew_install('prettyping');
+    brew_install('tree');
 }
 elsif (&is_arch) {
+    # TODO Install tree
     pacman_sync('fish');
     pacman_sync('fzf');
 }
@@ -27,7 +30,7 @@ if ( &is_macos or &is_arch ) {
 
     # Install fish functions
     my @fish_funcs =
-      qw(__fzf_edit_dotfile __fzf_git_checkout balias capit cat diff du fish_greeting fish_user_key_bindings ping preview ssh top);
+      qw(__fzf_edit_dotfile __fzf_git_checkout balias capit cat diff du fish_greeting fish_user_key_bindings ls ping preview ssh top tree);
     ln( "fish/functions/${_}.fish",
         "${ENV{XDG_CONFIG_HOME}}/fish/functions/${_}.fish" )
       foreach @fish_funcs;
