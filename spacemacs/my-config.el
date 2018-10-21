@@ -57,6 +57,7 @@
                             ("Path" 99 magit-repolist-column-path nil))
    magit-repository-directories (list (cons "~/.dotfiles" 0)
                                       (cons "~/.emacs.d" 0)
+                                      (cons "~/.emacs.d/private/layers" 1)
                                       (cons "~/.emacs.d/private/local" 1)
                                       (cons (or (getenv "GHQ_ROOT") "~/.ghq") 3))
 
