@@ -17,6 +17,11 @@ git_clone( 'ssh://git@github.com/sei40kr/spacemacs.git',
     "${ENV{HOME}}/.emacs.d", 'develop' );
 
 git_clone(
+    'ssh://git@github.com/sei40kr/spacemacs-quickrun.git',
+    "${ENV{HOME}}/.emacs.d/private/layers/spacemacs-quickrun"
+);
+
+git_clone(
     'ssh://git@github.com/sei40kr/competitive-programming-snippets.git',
     "${ENV{HOME}}/.emacs.d/private/local/competitive-programming-snippets"
 );
