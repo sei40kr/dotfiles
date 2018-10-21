@@ -1,10 +1,10 @@
 # ping.fish
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-function -w 'ping'
+function -w 'prettyping'
     if command -qs prettyping
         prettyping --nolegend $argv
     else
-        ping $argv
+        command ping $argv
     end
 end
