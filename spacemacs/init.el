@@ -117,6 +117,7 @@ values."
      (typescript :variables
                  typescript-fmt-tool 'prettier
                  typescript-backend 'tide)
+     vimscript
      yaml
      ;; Operating systems
      ;; Pair programming
