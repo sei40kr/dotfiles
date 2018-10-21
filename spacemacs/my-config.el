@@ -39,6 +39,7 @@
    backup-inhibited t
    create-lockfiles nil
    dired-use-ls-dired nil
+   fci-rule-color "#444444"
    select-enable-clipboard nil
 
    ;; avy
