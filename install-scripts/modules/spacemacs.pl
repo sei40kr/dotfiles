@@ -95,6 +95,8 @@ yarn_global_add('tern');
 
 # Jupyter Notebook
 pip3_install('jupyter');
+pip3_install('numpy');
+pip3_install('pandas');
 pip3_install('matplotlib');
 if (&is_linux) {
     ln( 'matplotlib/matplotlibrc',
