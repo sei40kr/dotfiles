@@ -1,0 +1,59 @@
+" vimrc
+" author: Seong Yong-ju <sei40kr@gmail.com>
+
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
+
+inoremap jk <Esc>
+
+" Move line up
+nnoremap <silent> [e :move -2<CR>
+" Move line down
+nnoremap <silent> ]e :move +<CR>
+
+" Insert space above
+nnoremap <silent> [<Space> O<Esc>
+" Insert space below
+nnoremap <silent> ]<Space> o<Esc>
+
+" Paste above current line
+nnoremap <silent> [p P
+" Paste below current line
+nnoremap <silent> ]p p
+
+" Smart up and down
+nnoremap <Up> gk
+nnoremap <Down> gj
+
+" After paragraph motion go to first non-blank char (}^)
+nnoremap } }^
+
+" Indent to left and re-select
+nnoremap < <<_
+xnoremap < <gv
+xnoremap <S-Tab> <gv
+" Indent to right and re-select
+nnoremap > >>_
+xnoremap > >gv|
+xnoremap <Tab> >gv|
+
+" Navigation in command line
+cnoremap <C-a> <Home>
+" Move cursor backward in command line
+cnoremap <C-b> <Left>
+" Move cursor forward in command line
+cnoremap <C-f> <Right>
+
+" Move to split below (j)
+nnoremap <silent> <C-j> <C-w>j
+nnoremap <silent> <C-Down> <C-w>j
+" Move to upper split (k)
+nnoremap <silent> <C-k> <C-w>k
+nnoremap <silent> <C-Up> <C-w>k
+" Move to left split (h)
+nnoremap <silent> <C-h> <C-w>h
+nnoremap <silent> <C-Left> <C-w>h
+" Move to right split (l)
+nnoremap <silent> <C-l> <C-w>l
+nnoremap <silent> <C-Right> <C-w>l
