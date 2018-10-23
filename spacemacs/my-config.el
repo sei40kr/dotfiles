@@ -9,6 +9,7 @@
                 "go-mode"
                 "javascript"
                 "neotree"
+                "org-mode"
                 "projectile"
                 "rust-mode"))
   (load (format "%smy-config-%s.el" dotspacemacs-directory item)))
@@ -26,6 +27,7 @@
   (my/init-go-mode)
   (my/init-javascript)
   (my/init-neotree)
+  (my/init-org-mode)
   (my/init-projectile)
   (my/init-rust-mode))
 
