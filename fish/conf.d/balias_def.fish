@@ -15,6 +15,7 @@ balias sortnr 'sort -nr'
 
 # emacs
 balias te et
+balias edebug 'command emacs --debug-init'
 
 # extract
 balias x extract
