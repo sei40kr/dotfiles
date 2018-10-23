@@ -45,7 +45,7 @@ if ( &is_macos or &is_arch ) {
     ln( 'fish/conf.d/balias_def.fish',
         "${ENV{XDG_CONFIG_HOME}}/fish/conf.d/balias_def.fish" );
     my @balias_defs =
-      qw( arch docker_compose go homebrew java nmap node perl python rsync ruby );
+      qw( arch docker docker_compose go homebrew java nmap node perl python rsync ruby );
     ln( "fish/conf.d/balias_def_${_}.fish",
         "${ENV{XDG_CONFIG_HOME}}/fish/conf.d/balias_def_${_}.fish" )
       foreach @balias_defs;
