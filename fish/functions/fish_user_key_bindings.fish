@@ -18,4 +18,10 @@ function fish_user_key_bindings
 
     # sudope
     bind \cs sudope
+
+    # tmux
+    bind \ch __backward_delete_char_or_select_left_pane
+    bind \cj __execute_or_select_below_pane
+    bind \ck __kill_line_or_select_above_pane
+    bind \cl __clear_or_select_right_pane
 end

@@ -19,6 +19,7 @@ if (&is_macos) {
     brew_install('tree');
 }
 elsif (&is_arch) {
+
     # TODO Install tree
     pacman_sync('fish');
     pacman_sync('fzf');
@@ -40,6 +41,12 @@ if ( &is_macos or &is_arch ) {
     ln( "fish/completions/${_}.fish",
         "${ENV{XDG_CONFIG_HOME}}/fish/completions/${_}.fish" )
       foreach @fish_completions;
+
+    # Install fish config
+    my @fish_conf_d = qw(fzf tmux);
+    ln( "fish/conf.d/${_}.fish",
+        "${ENV{XDG_CONFIG_HOME}}/fish/conf.d/${_}.fish" )
+      foreach @fish_conf_d;
 
     # Install balias definitions
     ln( 'fish/conf.d/balias_def.fish',
