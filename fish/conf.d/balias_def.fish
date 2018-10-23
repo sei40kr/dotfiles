@@ -6,6 +6,7 @@ balias po popd
 balias pu pushd
 balias u 'cd ..'
 balias ll 'ls -al'
+balias cx 'chmod +x'
 
 # coreutils
 balias md 'mkdir -p'
