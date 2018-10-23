@@ -1,6 +1,7 @@
 # balias_def.fish
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
+balias c clear
 balias d dirs
 balias po popd
 balias pu pushd
