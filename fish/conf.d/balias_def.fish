@@ -17,3 +17,6 @@ balias te et
 
 # extract
 balias x extract
+
+# rg
+balias notes "rg 'TODO|FIXME|HACK|OPTIMIZE|REVIEW'"
