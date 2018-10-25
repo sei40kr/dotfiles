@@ -21,7 +21,7 @@
   "filterLinkHints": false,
   "waitForEnterForFilteredHints": true,
   "hideHud": false,
-  "keyMappings": "# Insert your preferred key mappings here.\nunmap <c-y>\nunmap <c-e>\nunmap f\nunmap F\nunmap r\nmap R reload\nunmap o\nunmap O\nunmap b\nunmap B\nunmap T\nunmap <a-p>\nunmap <a-m>",
+  "keyMappings": "# Insert your preferred key mappings here.\nunmap r\nmap R reload\nunmap b\nunmap B\nunmap T\nunmap <a-p>\nunmap <a-m>",
   "linkHintCharacters": "sadfjklewcmpgh",
   "linkHintNumbers": "0123456789",
   "newTabUrl": "about:newtab",
@@ -29,10 +29,10 @@
   "previousPatterns": "prev,previous,back,older,<,‹,←,«,≪,<<",
   "regexFindMode": false,
   "ignoreKeyboardLayout": false,
-  "scrollStepSize": 60,
+  "scrollStepSize": 256,
   "smoothScroll": false,
   "grabBackFocus": false,
-  "searchEngines": "# More examples.\n#\n# (Vimium supports search completion Wikipedia, as\n# above, and for these.)\n#",
+  "searchEngines": "# More examples.\n#\n# (Vimium supports search completion Wikipedia, as\n# above, and for these.)\n#\n\ng: https://www.google.co.jp/search?q=%s Google\ngm: https://www.google.co.jp/maps/search/%s Google Maps\nyt: https://www.youtube.com/results?search_query=%s YouTube\nn: https://nyaa.si/?f=0&c=0_0&q=%s Nyaa\nna: https://nyaa.si/?f=0&c=1_4&q=%s Nyaa Anime\naz: https://www.amazon.co.jp/s/?field-keywords=%s Amazon\npc: https://community.pega.com/search?q=%s Pega Community",
   "searchUrl": "https://www.google.com/search?q=",
-  "userDefinedLinkHintCss": "div > .vimiumHintMarker {\n/* linkhint boxes */\nbackground: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFF785),\n  color-stop(100%,#FFC542));\nborder: 1px solid #E3BE23;\n}\n\ndiv > .vimiumHintMarker span {\n/* linkhint text */\ncolor: black;\nfont-weight: bold;\nfont-size: 12px;\n}\n\ndiv > .vimiumHintMarker > .matchingCharacter {\n}"
+  "userDefinedLinkHintCss": ".vimiumReset,\ndiv.vimiumReset,\nspan.vimiumReset,\ntable.vimiumReset,\na.vimiumReset,\na:visited.vimiumReset,\na:link.vimiumReset,\na:hover.vimiumReset,\ntd.vimiumReset,\ntr.vimiumReset {\n    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', HelveticaNeue, sans-serif;\n}\n\n\ndiv > .vimiumHintMarker {\n    /* linkhint boxes */\n    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFF785),\n                                 color-stop(100%,#FFC542));\n    border: 1px solid #E3BE23;\n}\n\ndiv > .vimiumHintMarker span {\n    /* linkhint text */\n    color: black;\n    font-weight: bold;\n    font-size: 12px;\n}\n\ndiv > .vimiumHintMarker > .matchingCharacter {\n}\n\n\n#vomnibar {\n    border-radius: 0;\n    border: 0;\n    box-shadow: 0 2px 16px rgba(0,0,0,0.3);\n    color: #2d2d2d;\n    left: 50%;\n    margin-left: -320px;\n    max-width: 640px;\n    top: 18px;\n}\n\n#vomnibar .vomnibarSearchArea {\n    background: #F9FAF9;\n    border: 0;\n    border-radius: 0;\n    padding: 0;\n}\n\n#vomnibar input {\n    border-radius: 0;\n    border: 0;\n    box-shadow: none;\n    font-size: 24px;\n    height: initial;\n    padding: 16px 24px;\n}\n\n#vomnibar ul {\n    background: #F4F3F4;\n    border-radius: 0;\n    padding: 0;\n}\n\n#vomnibar li {\n    border: 0;\n    color: #2d2d2d;\n    display: flex;\n    line-height: 1;\n    padding: 4px 16px 4px 24px;\n}\n\n#vomnibar li:first-of-type {\n    border-top: 1px solid #3175ce;\n}\n\n#vomnibar li .vomnibarTopHalf,\n#vomnibar li .vomnibarBottomHalf {\n    flex: 1 0 0;\n    font-size: 13px;\n    margin: 0;\n    overflow: hidden;\n    padding: 0;\n    text-overflow: ellipsis;\n}\n\n#vomnibar li .vomnibarNoInsertText {\n    display: none;\n}\n\n#vomnibar li .vomnibarSource {\n    display: none;\n}\n\n#vomnibar li .vomnibarTitle,\n#vomnibar li .vomnibarUrl {\n    line-height: 1.6;\n}\n\n#vomnibar li .vomnibarTitle {\n    color: #2d2d2d;\n    margin: 0;\n    white-space: nowrap;\n}\n\n#vomnibar li .vomnibarUrl {\n    color: #979797;\n}\n\n#vomnibar li .vomnibarMatch {\n    color: inherit;\n}\n\n#vomnibar li.vomnibarSelected {\n    background: #0b56cd;\n}\n\n#vomnibar li.vomnibarSelected .vomnibarTitle {\n    color: #f4f3f4;\n}\n\n#vomnibar li.vomnibarSelected .vomnibarUrl {\n    color: #689cde;\n}\n\n#vomnibar li.vomnibarSelected .vomnibarMatch {\n    color: inherit;\n}"
 }
