@@ -5,80 +5,86 @@ use utf8;
 use strict;
 use warnings;
 
-my @defaults_write_intermediate = ();
+my %defaults_write_intermediate = ();
+
+my sub defaults_write($$$$) {
+    my ( $domain, $key, $type, $value ) = @_;
+
+    unless ( defined( $defaults_write_intermediate{$domain} ) ) {
+        $defaults_write_intermediate{$domain} = [];
+    }
+
+    push(
+        @{ $defaults_write_intermediate{$domain} },
+        {
+            key   => $key,
+            type  => $type,
+            value => $value
+        }
+    );
+}
 
 sub defaults_write_bool {
     my ( $domain, $key, $value ) = @_;
 
-    push(
-        @defaults_write_intermediate,
-        {
-            type   => 'bool',
-            domain => $domain,
-            key    => $key,
-            value  => $value
-        }
-    );
+    defaults_write( $domain, $key, 'bool', $value );
 }
 
 sub defaults_write_int {
     my ( $domain, $key, $value ) = @_;
 
-    push(
-        @defaults_write_intermediate,
-        {
-            type   => 'int',
-            domain => $domain,
-            key    => $key,
-            value  => $value
-        }
-    );
+    defaults_write( $domain, $key, 'int', $value );
 }
 
 sub defaults_write_float {
     my ( $domain, $key, $value ) = @_;
 
-    push(
-        @defaults_write_intermediate,
-        {
-            type   => 'float',
-            domain => $domain,
-            key    => $key,
-            value  => $value
-        }
-    );
+    defaults_write( $domain, $key, 'real', $value );
 }
 
 sub defaults_write_string {
     my ( $domain, $key, $value ) = @_;
 
-    push(
-        @defaults_write_intermediate,
-        {
-            type   => 'string',
-            domain => $domain,
-            key    => $key,
-            value  => $value
-        }
-    );
+    defaults_write( $domain, $key, 'string', $value );
 }
 
-sub defaults_write_array {
-    my ( $domain, $key, @values ) = @_;
+my sub generate_plist($) {
+    my $domain = $_[0];
+    my $s      = <<EOM;
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+EOM
 
-    push(
-        @defaults_write_intermediate,
-        {
-            type   => 'array',
-            domain => $domain,
-            key    => $key,
-            values => \@values
+    foreach my $item ( @{ $defaults_write_intermediate{$domain} } ) {
+        $s .= '<key>' . $item->{key} . "</key>\n";
+
+        if ( $item->{type} eq 'bool' ) {
+            $s .= $item->{value} ? "<true/>\n" : "<false/>\n";
         }
-    );
+        elsif ( $item->{type} eq 'float' ) {
+            $s .= '<float>' . $item->{value} . "</float>\n";
+        }
+        elsif ( $item->{type} eq 'int' ) {
+            $s .= '<integer>' . $item->{value} . "</integer>\n";
+        }
+        elsif ( $item->{type} eq 'string' ) {
+            $s .= '<string>' . $item->{value} . "</string>\n";
+        }
+    }
+
+    $s .= <<EOM;
+</dict>
+</plist>
+EOM
+
+    return $s;
 }
 
-my sub defaults_write_reducer {
-    return if ( scalar(@defaults_write_intermediate) eq 0 );
+my sub defaults_write_reducer() {
+    return if ( scalar( keys %defaults_write_intermediate ) eq 0 );
 
     log_wait('Writing the macOS user defaults ...');
 
@@ -88,23 +94,30 @@ my sub defaults_write_reducer {
 
     # Close any open System Preferences panes, to prevent them from overriding
     # settings we’re about to change
-    run_cmd( qw(osascript -e),
-        'tell application "System Preferences" to quit' );
+    # run_cmd( qw(osascript -e),
+    #     'tell application "System Preferences" to quit' );
 
-    foreach my $item (@defaults_write_intermediate) {
-        my @defaults_args =
-          ( 'write', $item->{domain}, $item->{key}, '-' . $item->{type} );
-        if ( $item->{type} eq 'array' ) {
-            push( @defaults_args, @{ $item->{values} } );
-        }
-        elsif ( $item->{type} eq 'bool' ) {
-            push( @defaults_args, $item->{value} ? "true" : "false" );
-        }
-        else {
-            push( @defaults_args, $item->{value} );
+    my $verbose = &is_verbose;
+
+    foreach my $domain ( keys %defaults_write_intermediate ) {
+        my @cmd = ( 'defaults', 'import', $domain, '-' );
+        my $plist = &generate_plist($domain);
+
+        if ( &is_dry_run or $verbose ) {
+            print '> ' . join( ' ', @cmd ) . " <<PLIST\n";
+            print "> ${_}\n" foreach split( "\n", $plist );
+            print "> PLIST\n";
         }
 
-        run_cmd( 'defaults', @defaults_args );
+        unless (&is_dry_run) {
+            my $defaults_proc;
+            open $defaults_proc, '|-', @cmd;
+            print $defaults_proc $plist;
+            while (<$defaults_proc>) {
+                print if ($verbose);
+            }
+            close $defaults_proc;
+        }
     }
 }
 
