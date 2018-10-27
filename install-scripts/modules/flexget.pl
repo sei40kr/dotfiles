@@ -8,6 +8,11 @@ use warnings;
 pip3_install('FlexGet');
 pip3_install('transmissionrpc');
 
-ln('flexget/config.yml', "${ENV{XDG_CONFIG_HOME}}/flexget/config.yml");
+ln( 'flexget/config.yml', "${ENV{XDG_CONFIG_HOME}}/flexget/config.yml" );
+
+if (&is_macos) {
+    ln( 'flexget/com.flexget.plist',
+        "${ENV{HOME}}/Library/LaunchAgents/com.flexget.plist" );
+}
 
 1;
