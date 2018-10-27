@@ -86,7 +86,13 @@ my sub pip2_install_reducer {
     error('pip2 not found.') unless ( -x $pip2 or &is_dry_run );
 
     my @pip2_args = qw(install --exists-action i);
-    push( @pip2_args, '-U' ) if (&do_update);
+    if (&do_update) {
+        push( @pip2_args, '-U' );
+    }
+    else {
+        push( @pip2_args, '--disable-pip-version-check' );
+    }
+
     run_cmd( $pip2, @pip2_args, @pip2_install_intermediate );
 }
 
@@ -100,7 +106,13 @@ my sub pip3_install_reducer {
     error('pip3 not found.') unless ( -x $pip3 or &is_dry_run );
 
     my @pip3_args = qw(install --exists-action i);
-    push( @pip3_args, '-U' ) if (&do_update);
+    if (&do_update) {
+        push( @pip3_args, '-U' );
+    }
+    else {
+        push( @pip3_args, '--disable-pip-version-check' );
+    }
+
     run_cmd( $pip3, @pip3_args, @pip3_install_intermediate );
 }
 
