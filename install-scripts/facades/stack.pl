@@ -35,6 +35,6 @@ my sub stack_install_reducer {
     run_cmd( qw(stack install), @stack_pkgs, @stack_install_opts );
 }
 
-register_reducer( \&stack_install_reducer );
+register_reducer( 20, \&stack_install_reducer );
 
 1;

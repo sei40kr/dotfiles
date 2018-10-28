@@ -61,7 +61,13 @@ sub error {
 }
 
 sub run_reducers {
-    foreach my $reducer (@reducers) {
+    my @ordered_reducers = map {
+        $_ ->{reducer}
+    } sort {
+        $a->{defer} <=> $b->{defer}
+    } @reducers;
+
+    foreach my $reducer (@ordered_reducers) {
         &{$reducer};
     }
 }
@@ -183,9 +189,15 @@ sub git_clone_internal {
 }
 
 sub register_reducer {
-    my $reducer = $_[0];
+    my ( $defer, $reducer ) = @_;
 
-    push( @reducers, $reducer );
+    push(
+        @reducers,
+        {
+            defer   => $defer,
+            reducer => $reducer
+        }
+    );
 }
 
 1;

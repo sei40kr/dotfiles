@@ -28,6 +28,6 @@ my sub rustup_component_add_reducer {
     run_cmd( qw(rustup component add), @rustup_component_add_intermediate );
 }
 
-register_reducer( \&rustup_component_add_reducer );
+register_reducer( 20, \&rustup_component_add_reducer );
 
 1;

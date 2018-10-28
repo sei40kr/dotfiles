@@ -26,6 +26,6 @@ my sub cpanm_reducer {
     run_cmd( $cpanm, '-q', @cpanm_intermediate );
 }
 
-register_reducer( \&cpanm_reducer );
+register_reducer( 20, \&cpanm_reducer );
 
 1;

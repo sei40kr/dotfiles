@@ -69,6 +69,6 @@ my sub yarn_global_add_reducer {
     run_cmd( @cmd, @yarn_global_add_intermediate );
 }
 
-register_reducer( \&yarn_global_add_reducer );
+register_reducer( 20, \&yarn_global_add_reducer );
 
 1;

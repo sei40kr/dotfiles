@@ -1,7 +1,7 @@
 # 50_cargo.pl --- cargo facade
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-my @cargo_install_intermediate = ();
+my @cargo_install_intermediate         = ();
 my @cargo_nightly_install_intermediate = ();
 
 sub cargo_install {
@@ -15,7 +15,6 @@ sub cargo_nightly_install {
 
     push( @cargo_nightly_install_intermediate, $pkg );
 }
-
 
 my sub cargo_install_reducer {
     return if ( scalar(@cargo_install_intermediate) eq 0 );
@@ -50,7 +49,7 @@ my sub cargo_nightly_install_reducer {
     run_cmd( $cargo, @cargo_args );
 }
 
-register_reducer( \&cargo_install_reducer );
-register_reducer( \&cargo_nightly_install_reducer );
+register_reducer( 20, \&cargo_install_reducer );
+register_reducer( 20, \&cargo_nightly_install_reducer );
 
 1;

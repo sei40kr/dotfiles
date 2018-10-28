@@ -17,6 +17,7 @@ my sub pacman_sync_reducer {
     return if ( scalar(@pacman_sync_intermediate) eq 0 );
 
     unless (&is_arch) {
+
         # TODO
     }
     unless ( is_exec('pacman') ) {
@@ -29,6 +30,6 @@ my sub pacman_sync_reducer {
         @pacman_sync_intermediate );
 }
 
-register_reducer( \&pacman_sync_reducer );
+register_reducer( 0, \&pacman_sync_reducer );
 
 1;

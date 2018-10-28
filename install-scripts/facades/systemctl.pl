@@ -43,7 +43,7 @@ my sub systemctl_enable_user_reducer {
     );
 }
 
-register_reducer(\&systemctl_enable_reducer);
-register_reducer(\&systemctl_enable_user_reducer);
+register_reducer( 40, \&systemctl_enable_reducer );
+register_reducer( 40, \&systemctl_enable_user_reducer );
 
 1;

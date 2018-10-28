@@ -14,6 +14,7 @@ sub gem_install {
 }
 
 my sub install_rbenv {
+
     # TODO Update rbenv itself when option --update given
     log_wait('Installing rbenv ...');
 
@@ -62,6 +63,6 @@ my sub gem_install_reducer {
     run_cmd( $gem, @gem_args, @gem_install_intermediate );
 }
 
-register_reducer( \&gem_install_reducer );
+register_reducer( 20, \&gem_install_reducer );
 
 1;

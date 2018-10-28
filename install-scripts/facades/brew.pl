@@ -79,7 +79,7 @@ sub brew_reducer {
         push( @cmd, "--no-upgrade" );
     }
 
-    &install_homebrew unless (is_exec('brew'));
+    &install_homebrew unless ( is_exec('brew') );
 
     log_wait('Installing Homebrew repos, formulas, casks ...');
 
@@ -92,15 +92,15 @@ sub brew_reducer {
     unless (&is_dry_run) {
         my $brew_proc;
         my $verbose = &is_verbose;
-        open $brew_proc, '|-', @cmd ;
+        open $brew_proc, '|-', @cmd;
         print $brew_proc $brewfile;
         while (<$brew_proc>) {
-            print if ($verbose eq 1);
+            print if ( $verbose eq 1 );
         }
         close $brew_proc;
     }
 }
 
-register_reducer( \&brew_reducer );
+register_reducer( 10, \&brew_reducer );
 
 1;

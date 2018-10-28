@@ -35,6 +35,7 @@ my sub trizen_sync_reducer {
     return if ( scalar(@trizen_sync_intermediate) eq 0 );
 
     error('trizen is available only on Arch Linux.') unless (&is_arch);
+
     # TODO Update Trizen itself when option --update given
     &install_trizen unless ( is_exec('trizen') );
 
@@ -45,6 +46,6 @@ my sub trizen_sync_reducer {
     run_cmd( @cmd, @trizen_sync_intermediate );
 }
 
-register_reducer( \&trizen_sync_reducer );
+register_reducer( 10, \&trizen_sync_reducer );
 
 1;
