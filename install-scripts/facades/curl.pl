@@ -32,7 +32,7 @@ my sub curl_reducer {
 
     error('curl not found') unless ( is_exec('curl') );
 
-    run_cmd( 'curl', qw(-SsLK /dev/null), @curl_args );
+    Command::run( 'curl', qw(-SsLK /dev/null), @curl_args );
 }
 
 register_reducer( 30, \&curl_reducer );

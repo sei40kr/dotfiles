@@ -55,12 +55,12 @@ my sub install_py2_and_py3 {
     my ( $py2_stable_ver, $py3_stable_ver ) = &python_stable_versions;
 
     log_wait("Installing Python ${py2_stable_ver} ...");
-    run_cmd( $pyenv, qw(install -s), $py2_stable_ver );
+    Command::run( $pyenv, qw(install -s), $py2_stable_ver );
 
     log_wait("Installing Python ${py3_stable_ver} ...");
-    run_cmd( $pyenv, qw(install -s), $py3_stable_ver );
+    Command::run( $pyenv, qw(install -s), $py3_stable_ver );
 
-    run_cmd( $pyenv, 'global', $py2_stable_ver, $py3_stable_ver );
+    Command::run( $pyenv, 'global', $py2_stable_ver, $py3_stable_ver );
 }
 
 # A dummy reducer to install pyenv, Python 2/3
@@ -93,7 +93,7 @@ my sub pip2_install_reducer {
         push( @pip2_args, '--disable-pip-version-check' );
     }
 
-    run_cmd( $pip2, @pip2_args, @pip2_install_intermediate );
+    Command::run( $pip2, @pip2_args, @pip2_install_intermediate );
 }
 
 my sub pip3_install_reducer {
@@ -113,7 +113,7 @@ my sub pip3_install_reducer {
         push( @pip3_args, '--disable-pip-version-check' );
     }
 
-    run_cmd( $pip3, @pip3_args, @pip3_install_intermediate );
+    Command::run( $pip3, @pip3_args, @pip3_install_intermediate );
 }
 
 register_reducer( 20, \&dummy_reducer );

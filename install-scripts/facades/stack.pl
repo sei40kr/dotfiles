@@ -32,7 +32,7 @@ my sub stack_install_reducer {
     }
     push( @stack_args, $_->{pkg} ) foreach @stack_install_intermediate;
 
-    run_cmd( qw(stack install), @stack_pkgs, @stack_install_opts );
+    Command::run( qw(stack install), @stack_pkgs, @stack_install_opts );
 }
 
 register_reducer( 20, \&stack_install_reducer );

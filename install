@@ -30,6 +30,7 @@ $ENV{RBENV_ROOT} = "${ENV{HOME}}/.rbenv" unless ( defined( $ENV{RBENV_ROOT} ) );
 
 my $basepath = dirname(__FILE__);
 
+require $basepath . "/install-scripts/lib/command.pl";
 require $basepath . "/install-scripts/utility.pl";
 
 GetOptions(

@@ -43,8 +43,8 @@ my sub install_ruby {
 
     log_wait("Installing Ruby ${stable_version} ...");
 
-    run_cmd( "${ENV{RBENV_ROOT}}/bin/rbenv", qw(install -s), $stable_version );
-    run_cmd( "${ENV{RBENV_ROOT}}/bin/rbenv", 'global',       $stable_version );
+    Command::run( "${ENV{RBENV_ROOT}}/bin/rbenv", qw(install -s), $stable_version );
+    Command::run( "${ENV{RBENV_ROOT}}/bin/rbenv", 'global',       $stable_version );
 }
 
 my sub gem_install_reducer {
@@ -60,7 +60,7 @@ my sub gem_install_reducer {
 
     my @gem_args = qw(install -q --silent);
     push( @gem_args, qw(--conservative --minimal-deps) ) unless (&do_update);
-    run_cmd( $gem, @gem_args, @gem_install_intermediate );
+    Command::run( $gem, @gem_args, @gem_install_intermediate );
 }
 
 register_reducer( 20, \&gem_install_reducer );

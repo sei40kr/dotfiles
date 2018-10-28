@@ -40,8 +40,8 @@ my sub install_go {
 
     log_wait("Installing Go ${stable_version} ...");
 
-    run_cmd( "${ENV{GOENV_ROOT}}/bin/goenv", qw(install -s), $stable_version );
-    run_cmd( "${ENV{GOENV_ROOT}}/bin/goenv", 'global',       $stable_version );
+    Command::run( "${ENV{GOENV_ROOT}}/bin/goenv", qw(install -s), $stable_version );
+    Command::run( "${ENV{GOENV_ROOT}}/bin/goenv", 'global',       $stable_version );
 }
 
 my sub go_get_reducer {
@@ -57,7 +57,7 @@ my sub go_get_reducer {
 
     my @go_args = ('get');
     push( @go_args, '-u' ) if (&do_update);
-    run_cmd( 'go', @go_args, @go_get_intermediate );
+    Command::run( 'go', @go_args, @go_get_intermediate );
 }
 
 register_reducer( 20, \&go_get_reducer );

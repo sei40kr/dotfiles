@@ -25,7 +25,7 @@ my sub rustup_component_add_reducer {
     error('rustup not found.') unless ( is_exec('rustup') );
 
     # TODO Skip update checking unless --update given
-    run_cmd( qw(rustup component add), @rustup_component_add_intermediate );
+    Command::run( qw(rustup component add), @rustup_component_add_intermediate );
 }
 
 register_reducer( 20, \&rustup_component_add_reducer );

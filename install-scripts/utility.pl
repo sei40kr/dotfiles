@@ -100,26 +100,6 @@ sub is_exec {
     return substr( $cmd, 0, 1 ) eq '/' ? ( -x $cmd ) : ( -x exec_path($cmd) );
 }
 
-sub run_cmd {
-    my @cmd = @_;
-
-    if ( &is_dry_run or &is_verbose ) {
-        print( '> ', join( ' ', @cmd ), "\n" );
-    }
-
-    unless (&is_dry_run) {
-        my $proc;
-        my $verbose = &is_verbose;
-        open $proc, '-|', @cmd;
-        while (<$proc>) {
-            print if ( $verbose eq 1 );
-        }
-        close $proc or return 0;
-    }
-
-    return 1;
-}
-
 sub curl_sh {
     my $url = $_[0];
 
@@ -180,11 +160,11 @@ sub git_clone_internal {
           if ( &is_dry_run or &is_verbose );
         mkpath($parent_dir) unless (&is_dry_run);
 
-        run_cmd( qw(git clone -q --recurse-submodules -b),
+        Command::run( qw(git clone -q --recurse-submodules -b),
             $branch, $repo, $dest );
     }
     elsif ( &do_update and git_current_branch($dest) eq $branch ) {
-        run_cmd(qw(git pull -q --recurse-submodules=yes --ff-only -r true));
+        Command::run(qw(git pull -q --recurse-submodules=yes --ff-only -r true));
     }
 }
 

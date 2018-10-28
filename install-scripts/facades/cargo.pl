@@ -31,7 +31,7 @@ my sub cargo_install_reducer {
     @cargo_args = qw(install -fq);
     push( @cargo_args, @cargo_install_intermediate );
 
-    run_cmd( $cargo, @cargo_args );
+    Command::run( $cargo, @cargo_args );
 }
 
 my sub cargo_nightly_install_reducer {
@@ -46,7 +46,7 @@ my sub cargo_nightly_install_reducer {
     @cargo_args = qw(+nightly install -fq);
     push( @cargo_args, @cargo_nightly_install_intermediate );
 
-    run_cmd( $cargo, @cargo_args );
+    Command::run( $cargo, @cargo_args );
 }
 
 register_reducer( 20, \&cargo_install_reducer );

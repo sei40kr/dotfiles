@@ -23,11 +23,11 @@ my sub install_nvm {
 my sub install_node {
     log_wait('Installing Node ...');
 
-    run_cmd( qw(sh -c),
+    Command::run( qw(sh -c),
         ". ${ENV{NVM_DIR}}/nvm.sh && nvm install --no-progress stable" );
-    run_cmd( qw(sh -c),
+    Command::run( qw(sh -c),
         ". ${ENV{NVM_DIR}}/nvm.sh && nvm alias default stable" );
-    run_cmd(
+    Command::run(
         qw(sh -c),
 "export NVM_SYMLINK_CURRENT=true && . ${ENV{NVM_DIR}}/nvm.sh && nvm use --delete-prefix default"
     );
@@ -37,10 +37,10 @@ my sub install_yarn_or_err {
     log_wait('Installing Yarn ...');
 
     if (&is_macos) {
-        run_cmd(qw(brew install yarn --without-node));
+        Command::run(qw(brew install yarn --without-node));
     }
     elsif (&is_arch) {
-        run_cmd(
+        Command::run(
             qw(sudo pacman -S --needed --noconfirm --noprogressbar --assume-installed nodejs yarn)
         );
     }
@@ -66,7 +66,7 @@ my sub yarn_global_add_reducer {
     # TODO Use the Node.js installed via nvm
     my @cmd = qw(yarn global add -s --noprogress --non-interactive);
     push( @cmd, '--latest' ) if (&do_update);
-    run_cmd( @cmd, @yarn_global_add_intermediate );
+    Command::run( @cmd, @yarn_global_add_intermediate );
 }
 
 register_reducer( 20, \&yarn_global_add_reducer );

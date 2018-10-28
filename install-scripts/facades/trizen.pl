@@ -43,7 +43,7 @@ my sub trizen_sync_reducer {
 
     my @cmd = qw(trizen -S --noedit --needed --noconfirm);
     push( @cmd, '--nopull' ) unless (&do_update);
-    run_cmd( @cmd, @trizen_sync_intermediate );
+    Command::run( @cmd, @trizen_sync_intermediate );
 }
 
 register_reducer( 10, \&trizen_sync_reducer );

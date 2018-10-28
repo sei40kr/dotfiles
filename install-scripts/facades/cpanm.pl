@@ -23,7 +23,7 @@ my sub cpanm_reducer {
 
     log_wait('Installing CPAN modules ...');
 
-    run_cmd( $cpanm, '-q', @cpanm_intermediate );
+    Command::run( $cpanm, '-q', @cpanm_intermediate );
 }
 
 register_reducer( 20, \&cpanm_reducer );

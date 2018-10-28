@@ -26,7 +26,7 @@ my sub pacman_sync_reducer {
 
     log_wait('Installing Pacman packages ...');
 
-    run_cmd( qw(sudo pacman -S --needed --noconfirm --noprogressbar),
+    Command::run( qw(sudo pacman -S --needed --noconfirm --noprogressbar),
         @pacman_sync_intermediate );
 }
 

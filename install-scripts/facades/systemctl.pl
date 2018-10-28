@@ -27,7 +27,7 @@ my sub systemctl_enable_reducer {
 
     log_wait('Enabling systemctl services ...');
 
-    run_cmd( qw(sudo systemctl enable --now), @systemctl_enable_intermediate );
+    Command::run( qw(sudo systemctl enable --now), @systemctl_enable_intermediate );
 }
 
 my sub systemctl_enable_user_reducer {
@@ -37,7 +37,7 @@ my sub systemctl_enable_user_reducer {
 
     log_wait('Enabling systemctl user services ...');
 
-    run_cmd(
+    Command::run(
         qw(systemctl enable --user --now),
         @systemctl_enable_user_intermediate
     );

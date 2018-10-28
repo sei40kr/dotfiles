@@ -94,7 +94,7 @@ my sub defaults_write_reducer() {
 
     # Close any open System Preferences panes, to prevent them from overriding
     # settings we’re about to change
-    # run_cmd( qw(osascript -e),
+    # Command::run( qw(osascript -e),
     #     'tell application "System Preferences" to quit' );
 
     my $verbose = &is_verbose;
