@@ -576,6 +576,19 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-pretty-docs nil))
 
 (load (concat dotspacemacs-directory "my-config.el"))
+(dolist (item '(
+                "evil"
+                "evil-mc"
+                "fish-mode"
+                "flycheck"
+                "format-all"
+                "go-mode"
+                "javascript"
+                "neotree"
+                "org-mode"
+                "projectile"
+                "rust-mode"))
+  (load (format "%smy-config-%s.el" dotspacemacs-directory item)))
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
@@ -584,7 +597,20 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (my/user-init))
+  (my/init)
+  (my/init-evil)
+  (my/init-evil-mc)
+  (my/init-fish-mode)
+  (my/init-flycheck)
+  (my/init-go-mode)
+  (my/init-javascript)
+  (my/init-neotree)
+  (my/init-org-mode)
+  (my/init-projectile)
+  (my/init-rust-mode))
 
 (defun dotspacemacs/user-config ()
-  (my/user-config))
+  (my/config)
+  (my/config-evil)
+  (my/config-evil-mc)
+  (my/config-format-all))

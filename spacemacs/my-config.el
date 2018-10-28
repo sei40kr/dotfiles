@@ -1,41 +1,11 @@
 ;; -*- lexical-binding: t -*-
 
-(dolist (item '(
-                "evil"
-                "evil-mc"
-                "fish-mode"
-                "flycheck"
-                "format-all"
-                "go-mode"
-                "javascript"
-                "neotree"
-                "org-mode"
-                "projectile"
-                "rust-mode"))
-  (load (format "%smy-config-%s.el" dotspacemacs-directory item)))
-
 (defun my//enable-frame-transparency (frame)
   (spacemacs/enable-transparency frame
                                  (cons dotspacemacs-active-transparency
                                        dotspacemacs-inactive-transparency)))
 
-(defun my/user-init ()
-  (my/init-evil)
-  (my/init-evil-mc)
-  (my/init-fish-mode)
-  (my/init-flycheck)
-  (my/init-go-mode)
-  (my/init-javascript)
-  (my/init-neotree)
-  (my/init-org-mode)
-  (my/init-projectile)
-  (my/init-rust-mode))
-
-(defun my/user-config ()
-  (my/config-evil)
-  (my/config-evil-mc)
-  (my/config-format-all)
-
+(defun my/init ()
   (setq
    ;; Emacs built-ins
    backup-inhibited t
@@ -74,8 +44,9 @@
 
    ;; yatemplate
    auto-insert-query nil
-   auto-save-default nil)
+   auto-save-default nil))
 
+(defun my/config ()
   ;; Load my snippets
   (require 'competitive-programming-snippets)
   (require 'jest-snippets)
