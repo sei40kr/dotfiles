@@ -185,6 +185,7 @@ values."
    '(
      (competitive-programming-snippets :location local)
      evil-terminal-cursor-changer
+     exec-path-from-shell
      flycheck-popup-tip
      format-all
      (jest-snippets :location local)
@@ -579,6 +580,7 @@ It should only modify the values of Spacemacs settings."
 (dolist (item '(
                 "evil"
                 "evil-mc"
+                "exec-path-from-shell"
                 "fish-mode"
                 "flycheck"
                 "format-all"
@@ -611,6 +613,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 (defun dotspacemacs/user-config ()
   (my/config)
+  (my/config-exec-path-from-shell)
   (my/config-evil)
   (my/config-evil-mc)
   (my/config-format-all))
