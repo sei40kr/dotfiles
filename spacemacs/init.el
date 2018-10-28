@@ -587,17 +587,17 @@ It should only modify the values of Spacemacs settings."
                 "javascript"
                 "neotree"
                 "org-mode"
+                "plantuml"
                 "projectile"
                 "rust-mode"))
   (load (format "%smy-config-%s.el" dotspacemacs-directory item)))
 
 (defun dotspacemacs/user-init ()
-  "Initialization function for user code.
-It is called immediately after `dotspacemacs/init', before layer configuration
-executes.
- This function is mostly useful for variables that need to be set
-before packages are loaded. If you are unsure, you should try in setting them in
-`dotspacemacs/user-config' first."
+  "Initialization for user code:
+This function is called immediately after `dotspacemacs/init', before layer
+configuration.
+It is mostly for variables that should be set before packages are loaded.
+If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init)
   (my/init-evil)
   (my/init-evil-mc)
@@ -607,6 +607,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (my/init-javascript)
   (my/init-neotree)
   (my/init-org-mode)
+  (my/init-plantuml)
   (my/init-projectile)
   (my/init-rust-mode))
 
