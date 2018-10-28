@@ -74,9 +74,9 @@ sub brew_reducer {
         and scalar(@brew_install_intermediate) eq 0
         and scalar(@brew_cask_install_intermediate) eq 0 );
 
-    my @cmd = qw( brew bundle --file=- );
+    my @command = qw( brew bundle --file=- );
     unless (&do_update) {
-        push( @cmd, "--no-upgrade" );
+        push( @command, "--no-upgrade" );
     }
 
     &install_homebrew unless ( is_exec('brew') );
@@ -84,21 +84,7 @@ sub brew_reducer {
     log_wait('Installing Homebrew repos, formulas, casks ...');
 
     my $brewfile = &generate_brewfile;
-    if ( &is_dry_run or &is_verbose ) {
-        print '> ' . join( ' ', @cmd ) . " <<BREWFILE\n";
-        print "> ${_}\n" foreach split( "\n", $brewfile );
-        print "> BREWFILE\n";
-    }
-    unless (&is_dry_run) {
-        my $brew_proc;
-        my $verbose = &is_verbose;
-        open $brew_proc, '|-', @cmd;
-        print $brew_proc $brewfile;
-        while (<$brew_proc>) {
-            print if ( $verbose eq 1 );
-        }
-        close $brew_proc;
-    }
+    Command::run_with_stdin($brewfile, @command)
 }
 
 register_reducer( 10, \&brew_reducer );

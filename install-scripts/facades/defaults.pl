@@ -97,27 +97,10 @@ my sub defaults_write_reducer() {
     # Command::run( qw(osascript -e),
     #     'tell application "System Preferences" to quit' );
 
-    my $verbose = &is_verbose;
-
     foreach my $domain ( keys %defaults_write_intermediate ) {
-        my @cmd = ( 'defaults', 'import', $domain, '-' );
         my $plist = &generate_plist($domain);
-
-        if ( &is_dry_run or $verbose ) {
-            print '> ' . join( ' ', @cmd ) . " <<PLIST\n";
-            print "> ${_}\n" foreach split( "\n", $plist );
-            print "> PLIST\n";
-        }
-
-        unless (&is_dry_run) {
-            my $defaults_proc;
-            open $defaults_proc, '|-', @cmd;
-            print $defaults_proc $plist;
-            while (<$defaults_proc>) {
-                print if ($verbose);
-            }
-            close $defaults_proc;
-        }
+        my @command = ( 'defaults', 'import', $domain, '-' );
+        Command::run_with_stdin($plist, @command);
     }
 }
 
