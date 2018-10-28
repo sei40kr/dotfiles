@@ -577,8 +577,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-pretty-docs nil))
 
 (load (concat dotspacemacs-directory "my-config.el"))
-(dolist (item '(
-                "evil"
+(dolist (item '("evil"
                 "evil-mc"
                 "exec-path-from-shell"
                 "fish-mode"
