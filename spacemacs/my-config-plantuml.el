@@ -4,4 +4,5 @@
   (if (eq system-type 'darwin)
       (setq
        plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar"
-       org-plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar")))
+       org-plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar"))
+  (add-to-list 'auto-mode-alist '("\\.pu\\'" . plantuml-mode)))
