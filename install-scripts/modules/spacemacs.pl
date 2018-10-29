@@ -120,7 +120,8 @@ yarn_global_add('markdownlint-cli');
 yarn_global_add('vmd');
 
 # Org
-# TODO Install reveal-js
+git_clone( 'https://github.com/hakimel/reveal.js.git',
+    "${ENV{HOME}}/org/reveal-js" );
 
 # Perl5
 cpanm('Perl::Critic');

@@ -61,7 +61,8 @@ values."
      ;; Emacs
      (org :variables
           org-want-todo-bindings t
-          org-enable-github-support t)
+          org-enable-github-support t
+          org-enable-reveal-js-support t)
      ;; E-mail
      ;; Framework
      react
