@@ -108,7 +108,7 @@ elsif (&is_macos) {
 
 # LaTeX
 if (&is_macos) {
-    brew_cask_install('mactex');
+    brew_cask_install('basictex');
 }
 else {
     # TODO Install LaTeX compiler on other environments
