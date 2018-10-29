@@ -170,6 +170,9 @@ values."
      (evil-snipe :variables
                  evil-snipe-enable-alternate-f-and-t-behaviors t
                  evil-snipe-repeat-scope 'line)
+     ;; Misc
+     (multiple-cursors :variables
+                       multiple-cursors-backend 'evil-mc)
      ;; Custom
      quickrun
      )
