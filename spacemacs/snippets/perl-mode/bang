@@ -1,0 +1,7 @@
+# name : bang
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: !
+# --
+
+#!/usr/bin/env perl
+$0
