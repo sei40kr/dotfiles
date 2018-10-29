@@ -134,8 +134,8 @@ if (&is_macos) {
     brew_cask_install('java');
     brew_install('plantuml');
 }
-else {
-    # TODO Install PlantUML on other environments
+elsif (&is_arch) {
+    trizen_sync('plantuml');
 }
 
 # Python
