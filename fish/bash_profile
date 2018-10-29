@@ -43,7 +43,8 @@ fi
 ## Rust
 
 # cargo
-PATH="${HOME}/.cargo/bin:${PATH}"
+export CARGO_HOME="${HOME}/.cargo"
+PATH="${CARGO_HOME}/bin:${PATH}"
 # rust-src
 if hash rustc 2>/dev/null; then
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
