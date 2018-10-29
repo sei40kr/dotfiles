@@ -1,0 +1,8 @@
+# name : encoding
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: enc
+# --
+
+binmode STDOUT, ':encoding(UTF-8)';
+binmode STDERR, ':encoding(UTF-8)';
+$0

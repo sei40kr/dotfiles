@@ -1,0 +1,8 @@
+# name : strict
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: strict
+# --
+
+use strict;
+use warnings;
+$0
