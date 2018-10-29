@@ -7,6 +7,3 @@ balias pbl 'perlbrew list'
 balias pbo 'perlbrew off'
 balias pbs 'perlbrew switch'
 balias pbu 'perlbrew use'
-
-# perldoc
-balias pd perldoc
