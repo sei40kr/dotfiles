@@ -9,4 +9,4 @@
    neo-confirm-kill-buffers-for-files-in-directory 'off-p
    neo-force-change-root t
    neo-smart-open t
-   neo-theme 'arrow))
+   neo-theme (if (display-graphic-p) 'arrow 'ascii)))
