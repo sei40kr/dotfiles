@@ -3,6 +3,7 @@
 # key: if
 # --
 
-if ${1:condition}
-    $0
+if ${1:[ -f file ]}
+    ${2:do}
 end
+$0

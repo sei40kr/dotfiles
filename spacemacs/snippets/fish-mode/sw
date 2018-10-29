@@ -1,9 +1,9 @@
-# name : switch-case
+# name : switch
 # contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: switch
+# key: sw
 # --
 
-switch ${1:value}
+switch ${1:condition}
     case ${2:*}
-         $0
+         expression
 end

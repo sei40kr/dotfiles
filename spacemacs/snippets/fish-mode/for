@@ -3,6 +3,6 @@
 # key: for
 # --
 
-for ${1:varname} in ${2:values}
+for ${1:var} in ${2:stuff}
     $0
 end

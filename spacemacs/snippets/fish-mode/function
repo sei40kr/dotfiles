@@ -3,6 +3,6 @@
 # key: function
 # --
 
-function ${1:name} ${2:options}
+function ${1:name}
     $0
 end
