@@ -59,8 +59,12 @@ if ( &is_macos or &is_arch ) {
 
     ln( 'fish/config.fish', "${ENV{XDG_CONFIG_HOME}}/fish/config.fish" );
 
+    # Install Fisherman
     curl( 'https://git.io/fisher',
         "${ENV{XDG_CONFIG_HOME}}/fish/functions/fisher.fish" );
+
+    # Install Fisherman config
+    ln( 'fish/fishfile', "${ENV{XDG_CONFIG_HOME}}/fish/fishfile" );
 }
 
 1;
