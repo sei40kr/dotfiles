@@ -20,6 +20,10 @@
    ;; cperl-mode
    cperl-mode-abbrev-table '()
 
+   ;; evil-terminal-cursor-changer
+   etcc-use-color dotspacemacs-colorize-cursor-according-to-state
+   etcc-use-blink nil
+
    ;; helm
    helm-mini-default-sources '(helm-source-buffers-list)
 
