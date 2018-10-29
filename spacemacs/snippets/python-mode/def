@@ -1,7 +1,0 @@
-# name : def
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: def
-# --
-
-def ${1:func}(${2:args}):
-    $0
