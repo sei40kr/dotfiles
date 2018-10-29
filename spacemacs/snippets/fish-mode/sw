@@ -5,5 +5,5 @@
 
 switch ${1:condition}
     case ${2:*}
-         expression
+         ${0}
 end
