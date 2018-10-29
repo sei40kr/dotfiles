@@ -36,6 +36,8 @@ if hash brew 2>/dev/null; then
         # nano
         PATH="${BREW_PREFIX}/opt/nano/bin:${PATH}"
         MANPATH="${BREW_PREFIX}/opt/nano/share/man:${MANPATH}"
+        # texlive
+        PATH="${BREW_PREFIX}/texlive/2018basic/bin/x86_64-darwin:${PATH}"
     fi
 fi
 
