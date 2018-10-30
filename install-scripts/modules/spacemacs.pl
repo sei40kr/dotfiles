@@ -75,9 +75,9 @@ go_get('golang.org/x/tools/cmd/guru');
 
 # Haskell
 stack_install('apply-refact');
-
 # stack_install('ghc-mod');
 stack_install('hasktags');
+stack_install('hindent');
 stack_install('hlint');
 stack_install('hoogle');
 stack_install('stylish-haskell');
