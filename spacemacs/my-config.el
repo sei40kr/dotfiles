@@ -51,8 +51,8 @@
    auto-save-default nil))
 
 (defun my/config ()
-  ;; Load my snippets
   (require 'competitive-programming-snippets)
+  (require 'flycheck-popup-tip)
   (require 'jest-snippets)
   (require 'react-snippets)
   (require 'redux-snippets)
