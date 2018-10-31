@@ -1,10 +1,6 @@
-function balias --argument alias command
-    eval 'alias $alias $command'
-    if expr $command : '^sudo ' >/dev/null
-        set command (echo "$command" | cut -c6-)
+function balias --argument-names name def
+    if not functions -q $name
+        alias $name $def
+        funcsave $name
     end
-    complete -c $alias -xa "(
-    set -l cmd (commandline -pc | sed -e 's/^ *\S\+ *//' );
-    complete -C\"$command \$cmd\";
-    )"
 end
