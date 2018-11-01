@@ -62,12 +62,6 @@
     (require 'evil-terminal-cursor-changer)
     (evil-terminal-cursor-changer-activate))
 
-  ;; Set v, V, C-p key bindings like SpaceVim
-  (require 'evil-core)
-  (evil-global-set-key 'visual (kbd "v") #'er/expand-region)
-  (evil-global-set-key 'visual (kbd "V") #'er/contract-region)
-  (evil-global-set-key 'normal (kbd "C-p") #'helm-projectile-find-file)
-
   ;; Fix frame transparency
   (my//enable-frame-transparency nil)
   (add-hook 'after-make-frame-functions #'my//enable-frame-transparency))
