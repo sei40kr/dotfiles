@@ -1,9 +1,5 @@
 ;; -*- lexical-binding: t -*-
 
-(defun my/save-some-buffers ()
-  (interactive)
-  (save-some-buffers t))
-
 (defun my/init-evil ()
   (setq
    evil-want-C-i-jump t
@@ -18,7 +14,4 @@
   (bind-key* "C-w" #'backward-kill-word)
   (with-eval-after-load 'company
     (bind-key "C-h" nil company-active-map)
-    (bind-key "C-w" nil company-active-map))
-  ;; Set C-s key binding like SpaceVim
-  (require 'evil-core)
-  (evil-global-set-key 'normal (kbd "C-s") #'my/save-some-buffers))
+    (bind-key "C-w" nil company-active-map)))
