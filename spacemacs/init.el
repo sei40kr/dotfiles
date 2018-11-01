@@ -612,6 +612,7 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init)
+  (my/init-completion)
   (my/init-evil)
   (my/init-evil-mc)
   (my/init-fish-mode)
