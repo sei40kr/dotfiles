@@ -40,6 +40,11 @@ git_clone(
 
 ln( 'spacemacs', "${ENV{HOME}}/.spacemacs.d" );
 
+if (&is_macos) {
+    # Use thin strokes for antialiased text
+    defaults_write_int('org.gnu.Emacs', 'AppleFontSmoothing', 1);
+}
+
 # Ansible
 pip2_install('ansible-lint');
 
