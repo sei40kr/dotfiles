@@ -7,7 +7,7 @@
   (add-to-list 'flycheck-disabled-checkers 'go-test)
   (add-to-list 'flycheck-disabled-checkers 'go-megacheck))
 
-(defun my/init-go-mode ()
+(defun my/init-go ()
   (setq gofmt-command "goimports")
 
   (add-hook 'go-mode-hook #'my//go-disable-unnecessary-checkers))

@@ -1,6 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
-(defun my/init-org-mode ()
+(defun my/init-org ()
   (setq
    ;; Don't prompt me to confirm everytime I want to evaluate a block
    org-confirm-babel-evaluate nil

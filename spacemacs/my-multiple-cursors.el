@@ -34,7 +34,7 @@
       (my/evil-mc-normal-C-n-behavior)
     (my//evil-mc-make-vertical-cursors beginning end)))
 
-(defun my/init-evil-mc ()
+(defun my/init-multiple-cursors ()
   ;; Set evil-mc key bindings like vim-multiple-cursors
   (with-eval-after-load 'evil-mc
     (add-hook 'evil-mc-mode-hook #'my//evil-mc-disable-evil-escape-mode)
@@ -51,7 +51,7 @@
       (kbd "C-p") nil
       (kbd "C-t") nil)))
 
-(defun my/config-evil-mc ()
+(defun my/config-multiple-cursors ()
   (require 'evil-core)
   (evil-global-set-key 'normal (kbd "C-n") #'my/evil-mc-normal-C-n-behavior)
   (evil-global-set-key 'visual (kbd "C-n") #'my/evil-mc-visual-C-n-behavior))

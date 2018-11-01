@@ -581,22 +581,22 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-pretty-docs nil))
 
-(load (concat dotspacemacs-directory "my-config.el"))
+(load (concat dotspacemacs-directory "my-init.el"))
 (dolist (item '("completion"
-                "evil"
-                "evil-mc"
                 "exec-path-from-shell"
-                "fish-mode"
-                "flycheck"
                 "format-all"
-                "go-mode"
+                "go"
                 "javascript"
+                "multiple-cursors"
                 "neotree"
-                "org-mode"
+                "org"
                 "plantuml"
-                "projectile"
-                "rust-mode"))
-  (load (format "%smy-config-%s.el" dotspacemacs-directory item)))
+                "rust"
+                "shell-scripts"
+                "spacemacs-evil"
+                "spacemacs-project"
+                "syntax-checking"))
+  (load (format "%smy-%s.el" dotspacemacs-directory item)))
 
 (defun dotspacemacs/user-env ()
   "Environment variables setup.
@@ -614,17 +614,17 @@ It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init)
   (my/init-completion)
-  (my/init-evil)
-  (my/init-evil-mc)
-  (my/init-fish-mode)
-  (my/init-flycheck)
-  (my/init-go-mode)
+  (my/init-go)
   (my/init-javascript)
+  (my/init-multiple-cursors)
   (my/init-neotree)
-  (my/init-org-mode)
+  (my/init-org)
   (my/init-plantuml)
-  (my/init-projectile)
-  (my/init-rust-mode))
+  (my/init-rust)
+  (my/init-shell-scripts)
+  (my/init-spacemacs-evil)
+  (my/init-spacemacs-project)
+  (my/init-syntax-checking))
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
@@ -642,9 +642,9 @@ before packages are loaded."
   (my/config)
   (my/config-completion)
   (my/config-exec-path-from-shell)
-  (my/config-evil)
-  (my/config-evil-mc)
-  (my/config-format-all))
+  (my/config-format-all)
+  (my/config-multiple-cursors)
+  (my/config-spacemacs-evil))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

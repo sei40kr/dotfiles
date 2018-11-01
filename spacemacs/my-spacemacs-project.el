@@ -6,7 +6,7 @@
   (if (neo-global--window-exists-p)
       (neotree-hide)))
 
-(defun my/init-projectile ()
+(defun my/init-spacemacs-project ()
   (setq projectile-git-submodule-command nil)
 
   (eval-after-load 'helm-projectile

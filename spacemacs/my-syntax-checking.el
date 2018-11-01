@@ -1,6 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
-(defun my/init-flycheck ()
+(defun my/init-syntax-checking ()
   (setq
    flycheck-check-syntax-automatically '(save mode-enabled)
    flycheck-display-errors-delay 0.3
