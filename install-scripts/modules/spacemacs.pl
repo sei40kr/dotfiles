@@ -41,8 +41,9 @@ git_clone(
 ln( 'spacemacs', "${ENV{HOME}}/.spacemacs.d" );
 
 if (&is_macos) {
+
     # Use thin strokes for antialiased text
-    defaults_write_int('org.gnu.Emacs', 'AppleFontSmoothing', 1);
+    defaults_write_int( 'org.gnu.Emacs', 'AppleFontSmoothing', 1 );
 }
 
 # Ansible
@@ -80,6 +81,7 @@ go_get('golang.org/x/tools/cmd/guru');
 
 # Haskell
 stack_install('apply-refact');
+
 # stack_install('ghc-mod');
 stack_install('hasktags');
 stack_install('hindent');
