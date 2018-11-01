@@ -51,7 +51,7 @@ values."
                       '((company-dabbrev-code company-keywords)
                         company-files company-dabbrev)
                       auto-completion-return-key-behavior 'complete
-                      auto-completion-tab-key-behavior 'complete
+                      auto-completion-tab-key-behavior nil
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t)
      helm
@@ -581,7 +581,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-pretty-docs nil))
 
 (load (concat dotspacemacs-directory "my-config.el"))
-(dolist (item '("evil"
+(dolist (item '("completion"
+                "evil"
                 "evil-mc"
                 "exec-path-from-shell"
                 "fish-mode"
@@ -637,6 +638,7 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (my/config)
+  (my/config-completion)
   (my/config-exec-path-from-shell)
   (my/config-evil)
   (my/config-evil-mc)
