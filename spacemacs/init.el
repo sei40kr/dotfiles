@@ -200,15 +200,16 @@ values."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(
-                                    avy-migemo
-                                    counsel-gtags
-                                    ddskk
-                                    ggtags
-                                    helm-gtags
-                                    migemo
-                                    org-bullets
-                                    persp-mode)
+   dotspacemacs-excluded-packages (append
+                                   (if (display-graphic-p) '(tmux) '())
+                                   (list 'avy-migemo
+                                         'counsel-gtags
+                                         'ddskk
+                                         'ggtags
+                                         'helm-gtags
+                                         'migemo
+                                         'org-bullets
+                                         'persp-mode))
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
