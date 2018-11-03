@@ -8,6 +8,7 @@ use warnings;
 if (&is_macos) {
     brew_tap('d12frosted/emacs-plus');
     brew_install( 'emacs-plus', 'with-pdumper', 'HEAD' );
+    launchctl_load('emacs/org.gnu.emacs.daemon.plist');
 }
 elsif (&is_arch) {
     pacman_sync('emacs');
