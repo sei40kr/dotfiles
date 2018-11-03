@@ -4,13 +4,18 @@
 use utf8;
 use strict;
 use warnings;
+use File::Basename qw(dirname);
+use Cwd qw(realpath);
 
+my $basepath                    = realpath( dirname(__FILE__) . "/../../" );
 my @launchctl_load_intermediate = ();
 
 sub launchctl_load {
-    my $service = $_[0];
+    my $src = $_[0];
 
-    push( @launchctl_load_intermediate, $service );
+    $src = "${basepath}/${src}" if ( ( substr $src, 0, 1 ) ne '/' );
+
+    push( @launchctl_load_intermediate, $src );
 }
 
 my sub launchctl_load_reducer {
@@ -20,7 +25,7 @@ my sub launchctl_load_reducer {
 
     log_wait('Enabling launchctl services ...');
 
-    Command::run( qw(launchctl -w load), @launchctl_load_intermediate );
+    Command::run( qw(launchctl load -w), @launchctl_load_intermediate );
 }
 
 register_reducer( 40, \&launchctl_load_reducer );
