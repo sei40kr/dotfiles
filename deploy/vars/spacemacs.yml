@@ -1,5 +1,0 @@
-# spacemacs.yml --- Spacemacs
-# author: Seong Yong-ju <sei40kr@gmail.com>
----
-spacemacs_repo: 'https://github.com/syl20bnr/spacemacs.git'
-spacemacs_branch: develop

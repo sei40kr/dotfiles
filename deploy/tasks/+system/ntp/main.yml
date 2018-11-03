@@ -1,7 +1,0 @@
-# main.yml --- Network Time Protocol daemon
-# author: Seong Yong-ju <sei40kr@gmail.com>
----
-- include_tasks: arch.yml
-  when: ansible_os_family == 'Archlinux'
-- include_tasks: linux.yml
-  when: ansible_system == 'Linux'

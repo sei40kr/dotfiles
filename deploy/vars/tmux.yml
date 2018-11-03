@@ -1,6 +1,0 @@
-# tmux.yml --- TMUX
-# author: Seong Yong-ju <sei40kr@gmail.com>
----
-tpm_plugin_dir: ~/.tmux/plugins
-tpm_path: ~/.tmux/plugins/tpm
-tpm_repo: 'https://github.com/tmux-plugins/tpm.git'
