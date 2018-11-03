@@ -8,5 +8,7 @@
                                            try-complete-lisp-symbol)))
 
 (defun my/config-completion ()
-  (global-set-key (kbd "TAB") #'hippie-expand)
-  (global-set-key (kbd "<tab>") #'hippie-expand))
+  (evil-global-set-key 'insert (kbd "TAB") #'hippie-expand)
+  (evil-global-set-key 'insert (kbd "<tab>") #'hippie-expand)
+  (evil-global-set-key 'hybrid (kbd "TAB") #'hippie-expand)
+  (evil-global-set-key 'hybrid (kbd "<tab>") #'hippie-expand))
