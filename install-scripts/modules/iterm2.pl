@@ -12,7 +12,7 @@ if (&is_macos) {
 
     # Download imgcat
     curl(
-        'https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/imgcat',
+        'https://www.iterm2.com/utilities/imgcat',
         "${ENV{HOME}}/.local/bin/imgcat"
     );
     # TODO Give executable permission to imgcat
