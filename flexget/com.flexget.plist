@@ -12,6 +12,8 @@
 		<string>start</string>
 		<string>--autoreload-config</string>
 	</array>
+  <key>RunAtLoad</key>
+  <true/>
 	<key>StandardOutPath</key>
   <string>/var/log/flexget.log</string>
 	<key>StandardErrorPath</key>
