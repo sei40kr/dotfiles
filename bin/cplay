@@ -1,9 +1,0 @@
-#!/bin/sh
-
-# cplay
-
-if ! pgrep -x cmus; then
-  alacritty -e cmus
-else
-  cmus-remote -u
-fi
