@@ -31,7 +31,7 @@ if ( &is_macos or &is_arch ) {
 
     # Install fish functions
     my @fish_funcs =
-      qw(__fzf_edit_dotfile __fzf_ghq __fzf_git_checkout balias capit cat diff du fish_greeting fish_title fish_user_key_bindings ls ping preview ssh top tree);
+      qw(__fzf_edit_dotfile __fzf_ghq __fzf_git_checkout balias capit cat diff du fish_greeting fish_title fish_user_key_bindings ls ping preview ranger-cd ssh top tree);
     ln( "fish/functions/${_}.fish",
         "${ENV{XDG_CONFIG_HOME}}/fish/functions/${_}.fish" )
       foreach @fish_funcs;
