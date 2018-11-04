@@ -5,7 +5,6 @@ use utf8;
 use strict;
 use warnings;
 use File::Basename qw(dirname);
-use Cwd qw(realpath);
 
 my @sudo_launchctl_load_intermediate = ();
 my @launchctl_load_intermediate      = ();
