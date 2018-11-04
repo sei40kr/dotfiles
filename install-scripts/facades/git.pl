@@ -30,6 +30,6 @@ my sub git_clone_reducer() {
       foreach @git_clone_intermediate;
 }
 
-register_reducer( 30, \&git_clone_reducer );
+register_reducer( 20, \&git_clone_reducer );
 
 1;

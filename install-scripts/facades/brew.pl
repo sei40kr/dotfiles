@@ -87,6 +87,6 @@ sub brew_reducer {
     Command::run_with_stdin($brewfile, @command)
 }
 
-register_reducer( 10, \&brew_reducer );
+register_reducer( 40, \&brew_reducer );
 
 1;

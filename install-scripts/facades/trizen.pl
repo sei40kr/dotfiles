@@ -46,6 +46,6 @@ my sub trizen_sync_reducer {
     Command::run( @cmd, @trizen_sync_intermediate );
 }
 
-register_reducer( 10, \&trizen_sync_reducer );
+register_reducer( 40, \&trizen_sync_reducer );
 
 1;

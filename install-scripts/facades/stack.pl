@@ -34,6 +34,6 @@ my sub stack_install_reducer {
     Command::run( qw(stack install), @stack_pkgs, @stack_install_opts );
 }
 
-register_reducer( 20, \&stack_install_reducer );
+register_reducer( 60, \&stack_install_reducer );
 
 1;

@@ -35,6 +35,6 @@ my sub chmod_reducer {
     }
 }
 
-register_reducer( 30, \&chmod_reducer );
+register_reducer( 70, \&chmod_reducer );
 
 1;

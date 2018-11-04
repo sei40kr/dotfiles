@@ -60,6 +60,6 @@ my sub go_get_reducer {
     Command::run( 'go', @go_args, @go_get_intermediate );
 }
 
-register_reducer( 20, \&go_get_reducer );
+register_reducer( 61, \&go_get_reducer );
 
 1;

@@ -35,6 +35,6 @@ my sub curl_reducer {
     Command::run( 'curl', qw(-SsLK /dev/null), @curl_args );
 }
 
-register_reducer( 30, \&curl_reducer );
+register_reducer( 20, \&curl_reducer );
 
 1;

@@ -40,6 +40,6 @@ my sub ln_reducer {
     }
 }
 
-register_reducer( 30, \&ln_reducer );
+register_reducer( 70, \&ln_reducer );
 
 1;

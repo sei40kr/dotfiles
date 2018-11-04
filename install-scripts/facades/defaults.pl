@@ -104,6 +104,6 @@ my sub defaults_write_reducer() {
     }
 }
 
-register_reducer( 30, \&defaults_write_reducer );
+register_reducer( 80, \&defaults_write_reducer );
 
 1;

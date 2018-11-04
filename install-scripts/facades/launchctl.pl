@@ -41,7 +41,7 @@ my sub launchctl_load_reducer {
     Command::run( qw(launchctl load -w), @launchctl_load_intermediate );
 }
 
-register_reducer( 40, \&sudo_launchctl_load_reducer );
-register_reducer( 41, \&launchctl_load_reducer );
+register_reducer( 90, \&sudo_launchctl_load_reducer );
+register_reducer( 90, \&launchctl_load_reducer );
 
 1;

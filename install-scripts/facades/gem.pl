@@ -63,6 +63,6 @@ my sub gem_install_reducer {
     Command::run( $gem, @gem_args, @gem_install_intermediate );
 }
 
-register_reducer( 20, \&gem_install_reducer );
+register_reducer( 61, \&gem_install_reducer );
 
 1;

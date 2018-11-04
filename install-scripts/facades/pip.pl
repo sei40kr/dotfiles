@@ -116,6 +116,6 @@ my sub pip3_install_reducer {
     Command::run( $pip3, @pip3_args, @pip3_install_intermediate );
 }
 
-register_reducer( 20, \&dummy_reducer );
-register_reducer( 20, \&pip2_install_reducer );
-register_reducer( 20, \&pip3_install_reducer );
+register_reducer( 61, \&dummy_reducer );
+register_reducer( 61, \&pip2_install_reducer );
+register_reducer( 61, \&pip3_install_reducer );

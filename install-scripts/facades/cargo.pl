@@ -49,7 +49,7 @@ my sub cargo_nightly_install_reducer {
     Command::run( $cargo, @cargo_args );
 }
 
-register_reducer( 20, \&cargo_install_reducer );
-register_reducer( 20, \&cargo_nightly_install_reducer );
+register_reducer( 61, \&cargo_install_reducer );
+register_reducer( 61, \&cargo_nightly_install_reducer );
 
 1;

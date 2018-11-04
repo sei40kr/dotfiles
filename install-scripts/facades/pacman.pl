@@ -30,6 +30,6 @@ my sub pacman_sync_reducer {
         @pacman_sync_intermediate );
 }
 
-register_reducer( 0, \&pacman_sync_reducer );
+register_reducer( 10, \&pacman_sync_reducer );
 
 1;
