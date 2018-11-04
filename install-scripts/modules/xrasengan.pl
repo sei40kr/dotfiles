@@ -14,7 +14,7 @@ if (&is_arch) {
         'https://raw.githubusercontent.com/geyslan/xrasengan/master/xrasengan',
         "${ENV{HOME}}/.local/bin/xrasengan"
     );
-    # TODO Give an executable permission to xrasengan
+    chmod_facade( 755, "${ENV{HOME}}/.local/bin/xrasengan" );
 }
 
 1;
