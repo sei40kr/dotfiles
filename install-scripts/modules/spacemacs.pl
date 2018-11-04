@@ -11,7 +11,8 @@ use InstallHelper::Path;
 if (&is_macos) {
     brew_tap('d12frosted/emacs-plus');
     brew_install( 'emacs-plus', 'with-pdumper', 'HEAD' );
-    launchctl_load('emacs/org.gnu.emacs.daemon.plist');
+
+    launchctl_load( dotfile('emacs/org.gnu.emacs.daemon.plist') );
 }
 elsif (&is_arch) {
     pacman_sync('emacs');
@@ -114,7 +115,10 @@ if (&is_linux) {
         "${ENV{XDG_CONFIG_HOME}}/matplotlib/matplotlibrc" );
 }
 elsif (&is_macos) {
-    ln( dotfile('matplotlib/matplotlibrc'), "${ENV{HOME}}/.matplotlib/matplotlibrc" );
+    ln(
+        dotfile('matplotlib/matplotlibrc'),
+        "${ENV{HOME}}/.matplotlib/matplotlibrc"
+    );
 }
 
 # LaTeX

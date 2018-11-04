@@ -7,13 +7,10 @@ use warnings;
 use File::Basename qw(dirname);
 use Cwd qw(realpath);
 
-my $basepath                    = realpath( dirname(__FILE__) . "/../../" );
 my @launchctl_load_intermediate = ();
 
 sub launchctl_load {
     my $src = $_[0];
-
-    $src = "${basepath}/${src}" if ( ( substr $src, 0, 1 ) ne '/' );
 
     push( @launchctl_load_intermediate, $src );
 }
@@ -21,7 +18,7 @@ sub launchctl_load {
 my sub launchctl_load_reducer {
     return if ( scalar(@launchctl_load_intermediate) eq 0 );
 
-    error('launchctl not found.') unless &is_macos;
+    error('launchctl not found.') unless (&is_macos);
 
     log_wait('Enabling launchctl services ...');
 
