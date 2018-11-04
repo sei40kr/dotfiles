@@ -30,19 +30,3 @@ function __clear_or_select_right_pane
         tmux select-pane -R
     end
 end
-
-
-function __tmux_rename -v PWD
-    if [ -z "$TMUX" ]
-        return
-    end
-
-    set -lx tmux_window_id (tmux display-message -p '#{window_id}')
-    set -lx cwd $PWD
-
-    sh -c 'tmux rename-window -t "$tmux_window_id" "$(basename "$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null || echo "$cwd")")" &'
-end
-
-if [ -n "$TMUX" ]
-    __tmux_rename
-end
