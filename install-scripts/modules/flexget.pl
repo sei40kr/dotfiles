@@ -15,8 +15,7 @@ ln( dotfile('flexget/config.yml'),
     "${ENV{XDG_CONFIG_HOME}}/flexget/config.yml" );
 
 if (&is_macos) {
-    ln( dotfile('flexget/com.flexget.plist'),
-        "${ENV{HOME}}/Library/LaunchAgents/com.flexget.plist" );
+    launchctl_load( dotfile('flexget/com.flexget.plist') );
 }
 
 1;
