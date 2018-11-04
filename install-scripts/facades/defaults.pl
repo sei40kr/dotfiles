@@ -39,7 +39,7 @@ sub defaults_write_int {
 sub defaults_write_float {
     my ( $domain, $key, $value ) = @_;
 
-    defaults_write( $domain, $key, 'real', $value );
+    defaults_write( $domain, $key, 'float', $value );
 }
 
 sub defaults_write_string {
@@ -65,7 +65,7 @@ EOM
             $s .= $item->{value} ? "<true/>\n" : "<false/>\n";
         }
         elsif ( $item->{type} eq 'float' ) {
-            $s .= '<float>' . $item->{value} . "</float>\n";
+            $s .= '<real>' . $item->{value} . "</real>\n";
         }
         elsif ( $item->{type} eq 'int' ) {
             $s .= '<integer>' . $item->{value} . "</integer>\n";
@@ -100,7 +100,7 @@ my sub defaults_write_reducer() {
     foreach my $domain ( keys %defaults_write_intermediate ) {
         my $plist = &generate_plist($domain);
         my @command = ( 'defaults', 'import', $domain, '-' );
-        Command::run_with_stdin($plist, @command);
+        Command::run_with_stdin( $plist, @command );
     }
 }
 
