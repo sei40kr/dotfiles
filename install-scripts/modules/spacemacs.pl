@@ -123,6 +123,7 @@ elsif (&is_macos) {
 
 # LaTeX
 if (&is_macos) {
+    brew_install('ghostscript');
     brew_cask_install('basictex');
 }
 else {
