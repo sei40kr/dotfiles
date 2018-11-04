@@ -20,20 +20,25 @@ sub systemctl_enable_user {
     push( @systemctl_enable_user_intermediate, $service );
 }
 
+my sub systemctl_check_existence {
+    error('systemctl not found.') unless is_exec('systemctl');
+}
+
 my sub systemctl_enable_reducer {
     return if ( scalar(@systemctl_enable_intermediate) eq 0 );
 
-    is_exec('systemctl') or die('systemctl not found.');
+    &systemctl_check_existence;
 
     log_wait('Enabling systemctl services ...');
 
-    Command::run( qw(sudo systemctl enable --now), @systemctl_enable_intermediate );
+    Command::run( qw(sudo systemctl enable --now),
+        @systemctl_enable_intermediate );
 }
 
 my sub systemctl_enable_user_reducer {
     return if ( scalar(@systemctl_enable_user_intermediate) eq 0 );
 
-    is_exec('systemctl') or die('systemctl not found.');
+    &systemctl_check_existence;
 
     log_wait('Enabling systemctl user services ...');
 
