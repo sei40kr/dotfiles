@@ -587,7 +587,6 @@ It should only modify the values of Spacemacs settings."
                 "format-all"
                 "go"
                 "javascript"
-                "multiple-cursors"
                 "neotree"
                 "org"
                 "plantuml"
@@ -616,7 +615,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-completion)
   (my/init-go)
   (my/init-javascript)
-  (my/init-multiple-cursors)
   (my/init-neotree)
   (my/init-org)
   (my/init-plantuml)
@@ -643,7 +641,6 @@ before packages are loaded."
   (my/config-completion)
   (my/config-exec-path-from-shell)
   (my/config-format-all)
-  (my/config-multiple-cursors)
   (my/config-spacemacs-evil))
 
 ;; Do not write anything past this comment. This is where Emacs will
