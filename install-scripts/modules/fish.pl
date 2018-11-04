@@ -69,6 +69,12 @@ if ( &is_macos or &is_arch ) {
 
     # Install Fisherman config
     ln( dotfile('fish/fishfile'), "${ENV{XDG_CONFIG_HOME}}/fish/fishfile" );
+
+    # Install fish plugins
+    git_clone(
+        'git@github.com:sei40kr/fish-ranger-cd.git',
+        "${ENV{XDG_CONFIG_HOME}}/fish/plugins/fish-ranger-cd"
+    );
 }
 
 1;
