@@ -5,8 +5,6 @@ use utf8;
 use strict;
 use warnings;
 use File::Basename qw(dirname);
-use File::Path qw(mkpath);
-use Cwd qw(realpath);
 
 my @ln_intermediate = ();
 
