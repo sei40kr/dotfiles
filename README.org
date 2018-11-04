@@ -1,0 +1,24 @@
+#+TITLE: dotfiles
+
+* Install
+  Clone this repository and just run the installer.
+
+  #+BEGIN_SRC sh
+    git clone git@github.com:sei40kr/dotfiles.git ~/.dotfiles
+    ./install
+  #+END_SRC
+
+* Pushing dotfiles
+  Create a pair of ECDSA keys and copy the public one.
+
+  #+BEGIN_SRC sh
+    ssh-keygen -t ecdsa -b 256
+    pbcopy <~/.ssh/id_ecdsa.pub    # macOS
+    xclip -sel clip ~/.ssh/id_ecdsa.pub    # Linux
+  #+END_SRC
+
+  Add the public key to my GitHub account.
+
+* License
+  - =feh/arch-01-1920x1080.jpg= (licensed under CC0)
+  - =xrasengan/xrasengan= (licensed under Apache-2.0)
