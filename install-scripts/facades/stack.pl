@@ -30,7 +30,6 @@ my sub stack_install_reducer {
         push( @stack_install_opts, ( '--flag', "${pkg}:${_}" ) )
           foreach @{ $item->{flags} };
     }
-    push( @stack_args, $_->{pkg} ) foreach @stack_install_intermediate;
 
     Command::run( qw(stack install), @stack_pkgs, @stack_install_opts );
 }
