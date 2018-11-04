@@ -21,7 +21,7 @@ balias ya 'yarn add'
 balias yad 'yarn add --dev'
 balias ycc 'yarn cache clean'
 balias yh 'yarn help'
-balias yo 'yarn outdated'
+# balias yo 'yarn outdated'
 balias yui 'yarn upgrade-interactive'
 
 # react-native
