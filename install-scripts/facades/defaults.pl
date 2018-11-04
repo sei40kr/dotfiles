@@ -86,7 +86,7 @@ EOM
 my sub defaults_write_reducer() {
     return if ( scalar( keys %defaults_write_intermediate ) eq 0 );
 
-    log_wait('Writing the macOS user defaults ...');
+    log_wait('Writing default information ...');
 
     unless (&is_macos) {
         error('Accessing the macOS user defaults is available only on macOS.');
