@@ -5,7 +5,7 @@ use utf8;
 use strict;
 use warnings;
 use File::Basename qw(dirname);
-use File::Path qw(rmtree);
+use File::Path qw(mkpath rmtree);
 use Term::ANSIColor;
 
 my %options = (
