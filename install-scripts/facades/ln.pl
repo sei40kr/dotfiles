@@ -8,13 +8,10 @@ use File::Basename qw(dirname);
 use File::Path qw(mkpath);
 use Cwd qw(realpath);
 
-my $ln_basepath     = realpath( dirname(__FILE__) . "/../../" );
 my @ln_intermediate = ();
 
 sub ln {
     my ( $src, $dest ) = @_;
-
-    $src = "${ln_basepath}/${src}" if ( ( substr $src, 0, 1 ) ne '/' );
 
     push(
         @ln_intermediate,

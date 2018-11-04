@@ -4,11 +4,14 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/install-scripts/lib";
+use InstallHelper::Path;
 
 if (&is_arch) {
     pacman_sync('rofi');
 
-    ln( 'rofi/config', "${ENV{XDG_CONFIG_HOME}}/rofi/config" );
+    ln( dotfile('rofi/config'), "${ENV{XDG_CONFIG_HOME}}/rofi/config" );
 }
 
 1;

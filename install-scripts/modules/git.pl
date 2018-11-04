@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/install-scripts/lib";
+use InstallHelper::Path;
 
 if (&is_macos) {
     brew_install('git');
@@ -13,7 +16,7 @@ elsif (&is_arch) {
 }
 
 if ( &is_macos or &is_arch ) {
-    ln( 'git/gitconfig', "${ENV{HOME}}/.gitconfig" );
+    ln( dotfile('git/gitconfig'), "${ENV{HOME}}/.gitconfig" );
 }
 
 1;

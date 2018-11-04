@@ -4,13 +4,16 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/install-scripts/lib";
+use InstallHelper::Path;
 
 if (&is_arch) {
     pacman_sync('redshift');
 
-    ln( 'redshift/redshift.conf',
+    ln( dotfile('redshift/redshift.conf'),
         "${ENV{XDG_CONFIG_HOME}}/redshift/redshift.conf" );
-    ln( 'redshift/hooks/brightness.sh',
+    ln( dotfile('redshift/hooks/brightness.sh'),
         "${ENV{XDG_CONFIG_HOME}}/redshift/hooks/brightness.sh" );
 
     systemctl_enable_user('redshift.service');

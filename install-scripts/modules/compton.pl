@@ -4,12 +4,15 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/install-scripts/lib";
+use InstallHelper::Path;
 
 if (&is_arch) {
     trizen_sync('compton-no-blur-limit-git');
 
-    ln( 'compton/compton.conf', "${ENV{XDG_CONFIG_HOME}}/compton.conf" );
-    ln( 'compton/comp',         "${ENV{HOME}}/.local/bin/comp" );
+    ln( dotfile('compton/compton.conf'), "${ENV{XDG_CONFIG_HOME}}/compton.conf" );
+    ln( dotfile('compton/comp'),         "${ENV{HOME}}/.local/bin/comp" );
 }
 
 1;

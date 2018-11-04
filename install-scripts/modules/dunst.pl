@@ -4,11 +4,14 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/install-scripts/lib";
+use InstallHelper::Path;
 
 if (&is_arch) {
     pacman_sync('dunst');
 
-    ln('dunst/dunstrc', "${ENV{XDG_CONFIG_HOME}}/dunst/dunstrc");
+    ln( dotfile('dunst/dunstrc'), "${ENV{XDG_CONFIG_HOME}}/dunst/dunstrc" );
 }
 
 1;

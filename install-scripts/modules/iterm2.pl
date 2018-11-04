@@ -4,11 +4,14 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/install-scripts/lib";
+use InstallHelper::Path;
 
 if (&is_macos) {
     brew_cask_install('iterm2');
 
-    ln( 'iterm2', "${ENV{HOME}}/iterm2_profile" );
+    ln( dotfile('iterm2'), "${ENV{HOME}}/iterm2_profile" );
 
     # Download imgcat
     curl(

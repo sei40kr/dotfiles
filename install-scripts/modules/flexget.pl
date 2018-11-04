@@ -4,14 +4,18 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/install-scripts/lib";
+use InstallHelper::Path;
 
 pip3_install('FlexGet');
 pip3_install('transmissionrpc');
 
-ln( 'flexget/config.yml', "${ENV{XDG_CONFIG_HOME}}/flexget/config.yml" );
+ln( dotfile('flexget/config.yml'),
+    "${ENV{XDG_CONFIG_HOME}}/flexget/config.yml" );
 
 if (&is_macos) {
-    ln( 'flexget/com.flexget.plist',
+    ln( dotfile('flexget/com.flexget.plist'),
         "${ENV{HOME}}/Library/LaunchAgents/com.flexget.plist" );
 }
 

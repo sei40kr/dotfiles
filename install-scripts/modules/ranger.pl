@@ -4,10 +4,13 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/install-scripts/lib";
+use InstallHelper::Path;
 
 pip3_install('ranger-fm');
 
-ln( 'ranger/rc.conf',     "${ENV{XDG_CONFIG_HOME}}/ranger/rc.conf" );
-ln( 'ranger/commands.py', "${ENV{XDG_CONFIG_HOME}}/ranger/commands.py" );
+ln( dotfile('ranger/rc.conf'),     "${ENV{XDG_CONFIG_HOME}}/ranger/rc.conf" );
+ln( dotfile('ranger/commands.py'), "${ENV{XDG_CONFIG_HOME}}/ranger/commands.py" );
 
 1;

@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/install-scripts/lib";
+use InstallHelper::Path;
 
 if (&is_macos) {
     brew_tap('d12frosted/emacs-plus');
@@ -39,7 +42,7 @@ git_clone(
     "${ENV{HOME}}/.emacs.d/private/local/redux-snippets"
 );
 
-ln( 'spacemacs', "${ENV{HOME}}/.spacemacs.d" );
+ln( dotfile('spacemacs'), "${ENV{HOME}}/.spacemacs.d" );
 
 if (&is_macos) {
 
@@ -107,11 +110,11 @@ pip3_install('numpy');
 pip3_install('pandas');
 pip3_install('matplotlib');
 if (&is_linux) {
-    ln( 'matplotlib/matplotlibrc',
+    ln( dotfile('matplotlib/matplotlibrc'),
         "${ENV{XDG_CONFIG_HOME}}/matplotlib/matplotlibrc" );
 }
 elsif (&is_macos) {
-    ln( 'matplotlib/matplotlibrc', "${ENV{HOME}}/.matplotlib/matplotlibrc" );
+    ln( dotfile('matplotlib/matplotlibrc'), "${ENV{HOME}}/.matplotlib/matplotlibrc" );
 }
 
 # LaTeX
@@ -136,7 +139,7 @@ cpanm('Perl::Critic');
 cpanm('Perl::Tidy');
 
 # TODO Install plsense
-# ln( 'plsense/plsense', "${ENV{HOME}}/.plsense" );
+# ln( dotfile('plsense/plsense'), "${ENV{HOME}}/.plsense" );
 
 # PlantUML
 if (&is_macos) {

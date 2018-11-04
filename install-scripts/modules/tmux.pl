@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/install-scripts/lib";
+use InstallHelper::Path;
 
 if (&is_macos) {
     brew_install( 'tmux', 'with-utf8proc' );
@@ -19,7 +22,7 @@ if ( &is_macos or &is_arch ) {
         "${ENV{HOME}}/.tmux/plugins/tpm"
     );
 
-    ln( 'tmux/tmux.conf',      "${ENV{HOME}}/.tmux.conf" );
+    ln( dotfile('tmux/tmux.conf'), "${ENV{HOME}}/.tmux.conf" );
 }
 
 1;
