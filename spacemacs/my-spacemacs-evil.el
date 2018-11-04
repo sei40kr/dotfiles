@@ -10,6 +10,7 @@
 (defun my/config-spacemacs-evil ()
   ;; Set C-h, C-w key bindings like Vim
   (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
+  (bind-key (kbd "C-s") nil)
   (with-eval-after-load 'company
     (bind-key (kbd "C-w") nil company-active-map))
   (with-eval-after-load 'helm
