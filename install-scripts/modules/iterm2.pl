@@ -18,7 +18,7 @@ if (&is_macos) {
         'https://www.iterm2.com/utilities/imgcat',
         "${ENV{HOME}}/.local/bin/imgcat"
     );
-    # TODO Give executable permission to imgcat
+    chmod_facade( 755, "${ENV{HOME}}/.local/bin/imgcat" );
 
     # Specify the preferences directory
     defaults_write_string( 'com.googlecode.iterm2.plist', 'PrefsCustomFolder',
