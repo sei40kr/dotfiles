@@ -34,6 +34,7 @@ function __fzf_ghq
 
     if [ -z $TMUX ]
         __fzf_ghq_cd $repo_path
+        return
     end
 
     set -l repo_path (string replace '~' $HOME $repo_path)
