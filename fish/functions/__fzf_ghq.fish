@@ -39,17 +39,19 @@ function __fzf_ghq
     set -l repo_path (string replace '~' $HOME $repo_path)
     set -l repo_name (string replace -a '.' '-' \
         (string replace -r '^\.' '' (basename $repo_path)))
+    set -l current_session (tmux display-message -p '#S')
+
+    if [ $repo_name = $current_session ]
+        commandline -f repaint
+        return
+    end
 
     tmux switch-client -t $repo_name ^/dev/null
-    or begin
-        set -l current_session (tmux display-message -p '#S')
-
-        if not string match -qr '^\d+$' $current_session
-            tmux new-session -dc $repo_path -s $repo_name
-            tmux switch-client -t $repo_name
-        else
-            __fzf_ghq_cd $repo_path
-            tmux rename-session -t $current_session -- $repo_name
-        end
+    or if not string match -qr '^\d+$' $current_session
+        tmux new-session -dc $repo_path -s $repo_name
+        tmux switch-client -t $repo_name
+    else
+        __fzf_ghq_cd $repo_path
+        tmux rename-session -t $current_session -- $repo_name
     end
 end
