@@ -189,7 +189,6 @@ values."
    '(
      (competitive-programming-snippets :location local)
      evil-terminal-cursor-changer
-     exec-path-from-shell
      flycheck-popup-tip
      format-all
      (jest-snippets :location local)
@@ -583,7 +582,6 @@ It should only modify the values of Spacemacs settings."
 
 (load (concat dotspacemacs-directory "my-init.el"))
 (dolist (item '("completion"
-                "exec-path-from-shell"
                 "format-all"
                 "go"
                 "javascript"
@@ -639,7 +637,6 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (my/config)
   (my/config-completion)
-  (my/config-exec-path-from-shell)
   (my/config-format-all)
   (my/config-spacemacs-evil))
 
