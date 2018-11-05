@@ -16,6 +16,7 @@ function __fzf_ghq
     end | eval (__fzfcmd) $FZF_DEFAULT_OPTS | read repo_path
 
     if [ -z $repo_path ]
+        commandline -f repaint
         return
     end
 
