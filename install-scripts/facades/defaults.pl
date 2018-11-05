@@ -7,13 +7,11 @@ use warnings;
 
 my %defaults_write_intermediate = ();
 
-my sub defaults_write($$$$) {
+my sub defaults_write {
     my ( $domain, $key, $type, $value ) = @_;
 
-    unless ( defined( $defaults_write_intermediate{$domain} ) ) {
-        $defaults_write_intermediate{$domain} = [];
-    }
-
+    $defaults_write_intermediate{$domain} = []
+      unless ( defined( $defaults_write_intermediate{$domain} ) );
     push(
         @{ $defaults_write_intermediate{$domain} },
         {
@@ -48,7 +46,7 @@ sub defaults_write_string {
     defaults_write( $domain, $key, 'string', $value );
 }
 
-my sub generate_plist($) {
+my sub generate_plist {
     my $domain = $_[0];
     my $s      = <<EOM;
 <?xml version="1.0" encoding="UTF-8"?>
@@ -83,7 +81,7 @@ EOM
     return $s;
 }
 
-my sub defaults_write_reducer() {
+my sub defaults_write_reducer {
     return if ( scalar( keys %defaults_write_intermediate ) eq 0 );
 
     log_wait('Writing default information ...');
