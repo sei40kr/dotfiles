@@ -25,7 +25,8 @@ function __fzf_ghq
     end
 
     set -l repo_path (string replace '~' $HOME $repo_path)
-    set -l repo_name (basename $repo_path)
+    set -l repo_name (string replace -a '.' '-' \
+        (string replace -r '^\.' '' (basename $repo_path)))
 
     tmux switch-client -t $repo_name ^/dev/null
     or begin
@@ -36,7 +37,7 @@ function __fzf_ghq
             tmux switch-client -t $repo_name
         else
             __fzf_ghq_cd $repo_path
-            tmux rename-session -t $current_session $repo_name
+            tmux rename-session -t $current_session -- $repo_name
         end
     end
 end
