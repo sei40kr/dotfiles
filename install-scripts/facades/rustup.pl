@@ -5,27 +5,30 @@ use utf8;
 use strict;
 use warnings;
 
-my @rustup_component_add_intermediate = ();
+my %rustup_component_add_intermediate = ();
 
 sub rustup_component_add {
+    my ( $component, $toolchain ) = @_;
+    $toolchain = 'stable' unless ( defined($toolchain) );
 
-    # TODO Enable to specify a Rust toolchain
-    my $component = $_[0];
-
-    push( @rustup_component_add_intermediate, $component );
+    $rustup_component_add_intermediate{$toolchain} = []
+      unless ( defined( $rustup_component_add_intermediate{$toolchain} ) );
+    push( @{ $rustup_component_add_intermediate{$toolchain} }, $component );
 }
 
 my sub rustup_component_add_reducer {
-    return if ( scalar(@rustup_component_add_intermediate) eq 0 );
+    return if ( scalar( ( keys %rustup_component_add_intermediate ) ) eq 0 );
 
     log_wait('Adding Rust toolchain components ...');
 
-    # TODO Install rustup
-    # TODO Install Rust toolchains: stable, nightly
     error('rustup not found.') unless ( is_exec('rustup') );
 
-    # TODO Skip update checking unless --update given
-    Command::run( qw(rustup component add), @rustup_component_add_intermediate );
+    foreach my $toolchain ( keys %rustup_component_add_intermediate ) {
+
+        # TODO Skip update checking unless --update given
+        Command::run( qw(rustup component add --toolchain),
+                      $toolchain, @{ $rustup_component_add_intermediate{$toolchain} } );
+    }
 }
 
 register_reducer( 61, \&rustup_component_add_reducer );
