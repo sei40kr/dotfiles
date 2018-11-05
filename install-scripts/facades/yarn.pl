@@ -64,7 +64,8 @@ my sub yarn_global_add_reducer {
     error('node not found.') unless ( -x $current_node or &is_dry_run );
 
     # TODO Use the Node.js installed via nvm
-    my @cmd = qw(yarn global add -s --noprogress --non-interactive);
+    my @cmd =
+      qw(yarn global add --no-default-rc --noprogress --non-interactive);
     push( @cmd, '--latest' ) if (&do_update);
     Command::run( @cmd, @yarn_global_add_intermediate );
 }
