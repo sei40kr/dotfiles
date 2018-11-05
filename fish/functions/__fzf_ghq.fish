@@ -22,8 +22,12 @@ function __fzf_ghq
     begin
         echo '~/.dotfiles'
         echo '~/.spacemacs.d'
+
+        set -l home_len (string length $HOME)
         ghq list --full-path | while read path
-            string replace $HOME '~' $path
+            if [ (string sub -s 1 -l $home_len $path) = $HOME ]
+                echo '~'(string sub -s (math $home_len +1) $path)
+            end
         end
     end | __fzf_ghq_fzf | read repo_path
 
@@ -32,12 +36,13 @@ function __fzf_ghq
         return
     end
 
+    set -l repo_path (string replace -r '^~' $HOME $repo_path)
+
     if [ -z $TMUX ]
         __fzf_ghq_cd $repo_path
         return
     end
 
-    set -l repo_path (string replace '~' $HOME $repo_path)
     set -l repo_name (string replace -a '.' '-' \
         (string replace -r '^\.' '' (basename $repo_path)))
     set -l current_session (tmux display-message -p '#S')
