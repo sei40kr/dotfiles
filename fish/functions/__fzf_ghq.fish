@@ -1,6 +1,18 @@
 # __fzf_ghq.fish
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
+function __fzf_ghq_fzf
+    if [ -z $TMUX ]
+        fzf
+    else
+        if not set -q FZF_TMUX_HEIGHT
+            set FZF_TMUX_HEIGHT 40%
+        end
+
+        fzf-tmux -d$FZF_TMUX_HEIGHT
+    end
+end
+
 function __fzf_ghq_cd --argument-names path
     commandline -- cd\ (string escape $path)
     commandline -f execute
@@ -13,7 +25,7 @@ function __fzf_ghq
         ghq list --full-path | while read path
             string replace $HOME '~' $path
         end
-    end | eval (__fzfcmd) $FZF_DEFAULT_OPTS | read repo_path
+    end | __fzf_ghq_fzf | read repo_path
 
     if [ -z $repo_path ]
         commandline -f repaint
