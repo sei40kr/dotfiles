@@ -181,7 +181,7 @@ gem_install('rubocop');
 # Rust
 cargo_nightly_install('racer');
 rustup_component_add('rust-src');
-cargo_install('rustfmt');
+rustup_component_add('rustfmt-preview');
 
 # Shell-script
 go_get('mvdan.cc/sh/cmd/shfmt');
