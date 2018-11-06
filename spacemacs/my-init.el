@@ -43,6 +43,7 @@
 
    ;; spacemacs-common
    spacemacs-theme-comment-italic t
+   spacemacs-theme-underline-parens nil
 
    ;; yasnippet
    yas-indent-line 'fixed
