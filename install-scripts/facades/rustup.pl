@@ -31,6 +31,6 @@ my sub rustup_component_add_reducer {
     }
 }
 
-register_reducer( 61, \&rustup_component_add_reducer );
+register_reducer( 60, \&rustup_component_add_reducer );
 
 1;
