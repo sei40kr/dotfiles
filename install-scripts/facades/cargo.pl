@@ -31,7 +31,7 @@ my sub cargo_install_reducer {
     error('cargo not found.') unless ( is_exec($cargo) );
 
     # TODO Skip update checking unless --update given
-    @cargo_args = qw(install -fq);
+    my @cargo_args = qw(install -fq);
     push( @cargo_args, @cargo_install_intermediate );
 
     Command::run( $cargo, @cargo_args );
@@ -46,7 +46,7 @@ my sub cargo_nightly_install_reducer {
 
     error('cargo not found.') unless ( is_exec($cargo) );
 
-    @cargo_args = qw(+nightly install -fq);
+    my @cargo_args = qw(+nightly install -fq);
     push( @cargo_args, @cargo_nightly_install_intermediate );
 
     Command::run( $cargo, @cargo_args );
