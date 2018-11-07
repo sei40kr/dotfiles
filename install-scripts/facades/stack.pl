@@ -26,8 +26,8 @@ my sub stack_install_reducer {
 
     error('stack not found.') unless ( is_exec('stack') );
 
-    @stack_pkgs         = ();
-    @stack_install_opts = ();
+    my @stack_pkgs         = ();
+    my @stack_install_opts = ();
     foreach my $item (@stack_install_intermediate) {
         my $pkg = $item->{pkg};
         push( @stack_pkgs, $pkg );
