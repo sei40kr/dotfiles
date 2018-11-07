@@ -135,10 +135,12 @@ sub git_clone_internal {
 
     my $remote_url = git_get_url( $dest, 'origin' );
     unless ( defined($remote_url) and $remote_url eq $repo ) {
+        # TODO Use log_trace
         printf "> rmtree('%s');\n", $dest if ( &is_dry_run or &is_verbose );
         rmtree($dest) unless (&is_dry_run);
 
         my $parent_dir = dirname($dest);
+        # TODO Use log_trace
         printf "> mkpath('%s');\n", $parent_dir
           if ( &is_dry_run or &is_verbose );
         mkpath($parent_dir) unless (&is_dry_run);

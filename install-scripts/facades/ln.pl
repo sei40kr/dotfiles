@@ -30,6 +30,7 @@ my sub ln_reducer {
 
         # Call symlink instead of running `ln` for better performance
         if ( &is_dry_run || &is_verbose ) {
+            # TODO Use log_trace
             printf "> mkpath('%s');\n", dirname( $item->{dest} );
             printf "> symlink '%s', '%s';\n", $item->{src}, $item->{dest};
         }

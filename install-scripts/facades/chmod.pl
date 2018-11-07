@@ -27,6 +27,7 @@ my sub chmod_reducer {
     foreach my $item (@chmod_intermediate) {
 
         if ( &is_dry_run || &is_verbose ) {
+            # TODO Use log_trace
             printf "> chmod %04d, '%s';\n", $item->{mode}, $item->{file};
         }
         unless (&is_dry_run) {

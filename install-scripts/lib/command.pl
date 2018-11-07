@@ -51,6 +51,7 @@ sub run_with_stdin {
     my ( $stdin, @command ) = @_;
 
     if ( &main::is_dry_run or &main::is_verbose ) {
+        # TODO Use log_trace
         my @lines = split( /\n/, $stdin );
         pop @lines if ( $lines[-1] eq '' );
 
