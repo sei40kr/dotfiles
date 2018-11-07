@@ -23,11 +23,12 @@ my sub rustup_component_add_reducer {
 
     error('rustup not found.') unless ( is_exec('rustup') );
 
-    foreach my $toolchain ( keys %rustup_component_add_intermediate ) {
+    log_warn("rustup can't skip checking component updates.")
+      unless (&do_update);
 
-        # TODO Skip update checking unless --update given
+    foreach my $toolchain ( keys %rustup_component_add_intermediate ) {
         Command::run( qw(rustup component add --toolchain),
-                      $toolchain, @{ $rustup_component_add_intermediate{$toolchain} } );
+            $toolchain, @{ $rustup_component_add_intermediate{$toolchain} } );
     }
 }
 
