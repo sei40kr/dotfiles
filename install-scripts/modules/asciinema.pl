@@ -5,8 +5,13 @@ use utf8;
 use strict;
 use warnings;
 
-brew_install('imagemagick');
-brew_install('giflossy');
+if (&is_macos) {
+    brew_install('imagemagick');
+    brew_install('giflossy');
+}
+elsif (&is_arch) {
+    # TODO Install dependencies on Arch Linux
+}
 
 pip3_install('asciinema');
 
