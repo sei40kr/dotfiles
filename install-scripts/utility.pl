@@ -100,23 +100,6 @@ sub is_exec {
     return substr( $cmd, 0, 1 ) eq '/' ? ( -x $cmd ) : ( -x exec_path($cmd) );
 }
 
-sub curl_sh {
-    my $url = $_[0];
-
-    printf( "> curl -SsLK /dev/null '%s' | sh\n", $url )
-      if ( &is_dry_run or &is_verbose );
-
-    unless (&is_dry_run) {
-        my $curl_proc;
-        my $sh_proc;
-        open $curl_proc, '-|', qw(curl -SsLK /dev/null), $url;
-        open $sh_proc, '|sh';
-        print $sh_proc $_ while (<$curl_proc>);
-        close $sh_proc;
-        close $curl_proc;
-    }
-}
-
 my sub git_get_url {
     my ( $path, $remote ) = @_;
 
