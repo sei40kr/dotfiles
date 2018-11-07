@@ -1,6 +1,10 @@
 # 50_stack.pl --- Stack facade
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
+use utf8;
+use strict;
+use warnings;
+
 my @stack_install_intermediate = ();
 
 sub stack_install {
