@@ -8,6 +8,7 @@ use FindBin;
 use lib "${FindBin::Bin}/install-scripts/lib";
 use InstallHelper::Logger;
 
+# TODO Move to main package
 package Command;
 
 sub run {
