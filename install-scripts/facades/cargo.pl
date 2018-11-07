@@ -24,7 +24,6 @@ my sub cargo_install_reducer {
     my $cargo = "${ENV{CARGO_HOME}}/bin/cargo";
 
     # TODO Install rustup
-    # TODO Install Rust toolchains: stable, nightly
     error('cargo not found.') unless ( is_exec($cargo) );
 
     # TODO Skip update checking unless --update given
