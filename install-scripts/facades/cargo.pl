@@ -1,6 +1,10 @@
 # 50_cargo.pl --- cargo facade
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
+use utf8;
+use strict;
+use warnings;
+
 my @cargo_install_intermediate         = ();
 my @cargo_nightly_install_intermediate = ();
 
