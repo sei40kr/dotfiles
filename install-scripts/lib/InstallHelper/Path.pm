@@ -1,4 +1,4 @@
-# path.pl
+# Path.pm
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 use utf8;
