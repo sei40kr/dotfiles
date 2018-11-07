@@ -4,13 +4,16 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/install-scripts/lib";
+use InstallHelper::Logger;
 
 package Command;
 
 sub run {
     my @command = @_;
 
-    print '> ' . join( ' ', @command ) . "\n"
+    &main::log_trace( join( ' ', @command ) )
       if ( &main::is_dry_run or &main::is_verbose );
 
     unless (&main::is_dry_run) {
@@ -26,9 +29,8 @@ sub run {
 sub run_pipe {
     my ( $left_command, $right_command ) = @_;
 
-    print '> '
-      . join( ' ', @{$left_command} ) . ' | '
-      . join( '',  @{$right_command} ) . "\n"
+    &main::log_trace(
+        join( ' ', @{$left_command} ) . ' | ' . join( '', @{$right_command} ) )
       if ( &main::is_dry_run or &main::is_verbose );
 
     unless (&main::is_dry_run) {
@@ -49,12 +51,12 @@ sub run_with_stdin {
     my ( $stdin, @command ) = @_;
 
     if ( &main::is_dry_run or &main::is_verbose ) {
-        my @lines = split(/\n/, $stdin);
-        pop @lines if ($lines[-1] eq '');
+        my @lines = split( /\n/, $stdin );
+        pop @lines if ( $lines[-1] eq '' );
 
         print '> ' . join( ' ', @command ) . " <<EOM\n";
         print "> ${_}\n" foreach @lines;
-        print "> EOM\n"
+        print "> EOM\n";
     }
 
     unless (&main::is_dry_run) {
