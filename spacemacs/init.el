@@ -188,7 +188,9 @@ values."
    dotspacemacs-additional-packages
    '(
      (competitive-programming-snippets :location local)
-     evil-terminal-cursor-changer
+     (evil-terminal-cursor-changer
+      :location (recipe :fetcher github
+                        :repo "amosbird/evil-terminal-cursor-changer"))
      flycheck-popup-tip
      format-all
      (jest-snippets :location local)
