@@ -140,6 +140,7 @@ git_clone( 'https://github.com/hakimel/reveal.js.git',
     "${ENV{HOME}}/org/reveal-js" );
 
 # Perl5
+cpanm('App::PRT');
 cpanm('Perl::Critic');
 cpanm('Perl::Tidy');
 
