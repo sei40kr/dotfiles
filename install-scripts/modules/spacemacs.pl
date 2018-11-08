@@ -141,6 +141,7 @@ git_clone( 'https://github.com/hakimel/reveal.js.git',
 
 # Perl5
 cpanm('App::PRT');
+cpanm('File::Zglob');
 cpanm('Perl::Critic');
 cpanm('Perl::Tidy');
 
