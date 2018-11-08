@@ -188,6 +188,9 @@ values."
    dotspacemacs-additional-packages
    '(
      (competitive-programming-snippets :location local)
+     (perl-refactoring
+      :location (recipe :fetcher github
+                        :repo "syohex/emacs-perl-refactoring"))
      (evil-terminal-cursor-changer
       :location (recipe :fetcher github
                         :repo "amosbird/evil-terminal-cursor-changer"))
@@ -589,6 +592,7 @@ It should only modify the values of Spacemacs settings."
                 "javascript"
                 "neotree"
                 "org"
+                "perl5"
                 "plantuml"
                 "rust"
                 "shell-scripts"
@@ -640,6 +644,7 @@ before packages are loaded."
   (my/config)
   (my/config-completion)
   (my/config-format-all)
+  (my/config-perl5)
   (my/config-spacemacs-evil))
 
 ;; Do not write anything past this comment. This is where Emacs will
