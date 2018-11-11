@@ -188,6 +188,9 @@ values."
    dotspacemacs-additional-packages
    '(
      (competitive-programming-snippets :location local)
+     (cpp-auto-include
+      :location (recipe :fetcher github
+                        :repo "syohex/emacs-cpp-auto-include"))
      (perl-refactoring
       :location (recipe :fetcher github
                         :repo "syohex/emacs-perl-refactoring"))
@@ -586,7 +589,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-pretty-docs nil))
 
 (load (concat dotspacemacs-directory "my-init.el"))
-(dolist (item '("completion"
+(dolist (item '("c-c++"
+                "completion"
                 "format-all"
                 "go"
                 "javascript"
@@ -616,6 +620,7 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init)
+  (my/init-c-c++)
   (my/init-completion)
   (my/init-go)
   (my/init-javascript)
