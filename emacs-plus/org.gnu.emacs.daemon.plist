@@ -7,14 +7,15 @@
   <string>org.gnu.emacs.daemon</string>
   <key>ProgramArguments</key>
   <array>
-    <string>/usr/local/bin/emacs</string>
-    <string>--daemon</string>
+    <string>/bin/bash</string>
+    <string>-lc</string>
+    <string>/usr/local/bin/emacs --daemon</string>
   </array>
   <key>RunAtLoad</key>
   <true/>
   <key>StandardOutPath</key>
-  <string>/var/log/emacs-daemon.log</string>
-  <key>StandardOutPath</key>
-  <string>/var/log/emacs-daemon.log</string>
+  <string>/tmp/org.gnu.emacs.daemon.stdout.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/org.gnu.emacs.daemon.stderr.log</string>
 </dict>
 </plist>

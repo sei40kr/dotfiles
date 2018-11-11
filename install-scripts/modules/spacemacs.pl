@@ -12,7 +12,7 @@ if (&is_macos) {
     brew_tap('d12frosted/emacs-plus');
     brew_install( 'emacs-plus', 'with-pdumper', 'HEAD' );
 
-    launchctl_load( dotfile('emacs/org.gnu.emacs.daemon.plist') );
+    launchctl_load( dotfile('emacs-plus/org.gnu.emacs.daemon.plist') );
 }
 elsif (&is_arch) {
     pacman_sync('emacs');
