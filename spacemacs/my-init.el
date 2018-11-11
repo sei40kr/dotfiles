@@ -12,6 +12,7 @@
    create-lockfiles nil
    dired-use-ls-dired nil
    fci-rule-color "#444444"
+   require-final-newline t
    select-enable-clipboard nil
 
    ;; avy
