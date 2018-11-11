@@ -112,8 +112,7 @@ values."
      (ruby :variables
            ruby-enable-enh-ruby-mode t
            ruby-version-manager 'rbenv)
-     (rust :variables
-           rust-format-on-save t)
+     rust
      shell-scripts
      sql
      (typescript :variables
