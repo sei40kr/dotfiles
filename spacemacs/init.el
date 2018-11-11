@@ -142,8 +142,7 @@ values."
      ansible
      (cmake :variables
             cmake-enable-cmake-ide-support t)
-     (dash :variables
-           helm-dash-docset-newpath "~/.local/share/Zeal/Zeal/docsets")
+     dash
      (docker :variables
              dockerfile-mode-enable-lsp t)
      imenu-list
@@ -591,6 +590,7 @@ It should only modify the values of Spacemacs settings."
 (load (concat dotspacemacs-directory "my-init.el"))
 (dolist (item '("c-c++"
                 "completion"
+                "dash"
                 "format-all"
                 "go"
                 "javascript"
@@ -622,6 +622,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init)
   (my/init-c-c++)
   (my/init-completion)
+  (my/init-dash)
   (my/init-go)
   (my/init-javascript)
   (my/init-neotree)
