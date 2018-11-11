@@ -15,8 +15,8 @@
   <key>RunAtLoad</key>
   <true/>
 	<key>StandardOutPath</key>
-  <string>/var/log/flexget.log</string>
+  <string>/tmp/com.flexget.stdout.log</string>
 	<key>StandardErrorPath</key>
-  <string>/var/log/flexget.log</string>
+  <string>/tmp/com.flexget.stderr.log</string>
 </dict>
 </plist>
