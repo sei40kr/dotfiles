@@ -72,11 +72,12 @@ values."
      japanese
      ;; Programming and markup languages
      (c-c++ :variables
-            c-c++-enable-clang-support t
+            c-c++-backend 'lsp-cquery
             c-c++-enable-google-style t
             c-c++-enable-google-newline t
+            c-c++-enable-rtags-completion nil
             c-c++-enable-clang-format-on-save t
-            c-c++-enable-c++11 t)
+            c-c++-adopt-subprojects t)
      (crystal :variables
               crystal-enable-auto-format t)
      csv

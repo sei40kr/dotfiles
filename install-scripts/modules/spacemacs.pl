@@ -55,6 +55,12 @@ if (&is_macos) {
 pip2_install('ansible-lint');
 
 # C/C++
+if (&is_macos) {
+    brew_install('cquery');
+}
+else {
+    # TODO Install cquery on other environments
+}
 pip3_install('cmakelint');
 pip3_install('cpplint');
 
