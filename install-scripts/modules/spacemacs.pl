@@ -75,8 +75,9 @@ yarn_global_add('dockerfile-language-server-nodejs');
 if (&is_macos) {
     brew_install( 'r', 'with-openblas' );
 }
-else {
-    # TODO Install R on other environments
+elsif (&is_arch) {
+    pacman_sync('openblas');
+    pacman_sync('r');
 }
 
 # Go
