@@ -6,11 +6,12 @@ use strict;
 use warnings;
 
 if (&is_macos) {
-    brew_install('imagemagick');
     brew_install('giflossy');
+    brew_install('imagemagick');
 }
 elsif (&is_arch) {
-    # TODO Install dependencies on Arch Linux
+    pacman_sync('gifsicle');
+    pacman_sync('imagemagick');
 }
 
 pip3_install('asciinema');
