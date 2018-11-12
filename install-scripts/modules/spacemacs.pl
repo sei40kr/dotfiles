@@ -59,7 +59,7 @@ if (&is_macos) {
     brew_install('cquery');
     brew_install('clang-format');
 }
-else {
+elsif (&is_arch) {
     pacman_sync('llvm');
     pacman_sync('llvm-libs');
     pacman_sync('clang');
