@@ -57,10 +57,12 @@ pip2_install('ansible-lint');
 # C/C++
 if (&is_macos) {
     brew_install('cquery');
+    brew_install('clang-format');
 }
 else {
     pacman_sync('llvm');
     pacman_sync('llvm-libs');
+    pacman_sync('clang');
     trizen_sync('cquery');
 }
 pip3_install('cmakelint');
