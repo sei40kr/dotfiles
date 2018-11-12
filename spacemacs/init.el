@@ -589,7 +589,7 @@ It should only modify the values of Spacemacs settings."
 
 (load (concat dotspacemacs-directory "my-init.el"))
 (dolist (item '("c-c++"
-                "completion"
+                "auto-completion"
                 "dash"
                 "format-all"
                 "go"
@@ -621,7 +621,7 @@ It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init)
   (my/init-c-c++)
-  (my/init-completion)
+  (my/init-auto-completion)
   (my/init-dash)
   (my/init-go)
   (my/init-javascript)
@@ -648,7 +648,7 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (my/config)
-  (my/config-completion)
+  (my/config-auto-completion)
   (my/config-format-all)
   (my/config-perl5)
   (my/config-spacemacs-evil))
