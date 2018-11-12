@@ -59,7 +59,9 @@ if (&is_macos) {
     brew_install('cquery');
 }
 else {
-    # TODO Install cquery on other environments
+    pacman_sync('llvm');
+    pacman_sync('llvm-libs');
+    trizen_sync('cquery');
 }
 pip3_install('cmakelint');
 pip3_install('cpplint');
