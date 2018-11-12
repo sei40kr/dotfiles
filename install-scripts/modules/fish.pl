@@ -22,10 +22,9 @@ if (&is_macos) {
     brew_install('tree');
 }
 elsif (&is_arch) {
-
-    # TODO Install tree
     pacman_sync('fish');
     pacman_sync('fzf');
+    pacman_sync('tree');
 }
 
 if ( &is_macos or &is_arch ) {
