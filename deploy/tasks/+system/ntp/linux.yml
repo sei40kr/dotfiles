@@ -1,9 +1,0 @@
-# linux.yml --- Network Time Protocol daemon for Linux
-# author: Seong Yong-ju <sei40kr@gmail.com>
----
-- name: Enable ntpd service
-  systemd:
-    enabled: yes
-    name: ntpd.service
-    state: started
-  become: yes
