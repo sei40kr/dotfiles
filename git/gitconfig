@@ -6,54 +6,44 @@
 [user]
   email = "sei40kr@gmail.com"
   name = "Seong Yong-ju"
-
 [branch]
   autosetuprebase = always
-
 [branch "master"]
   merge = refs/heads/master
   remote = origin
-
 [commit]
   verbose = true
-
 [core]
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	excludesfile = ~/.gitignore_global
-
 [diff]
   compactionHeuristic = true
   indentHeuristic = on
-
 [difftool]
   prompt = false
-
 [fetch]
   prune = true
-
 [github]
   user = "sei40kr"
-
 [interactive]
   diffFilter = diff-so-fancy
-
 [merge]
   conflictstyle = diff3
-
 [rebase]
   autostash = true
-
 [rerere]
   enabled = true
-
 [push]
   default = current
-
 [stash]
   showPatch = true
-
 [url "ssh://git@github.com/sei40kr"]
 	insteadOf = https://github.com/sei40kr
-
 [url "ssh://git@bitbucket.org/"]
 	insteadOf = https://bitbucket.org/
+[magithub]
+	online = false
+[magithub "status"]
+	includeStatusHeader = false
+	includePullRequestsSection = false
+	includeIssuesSection = false
