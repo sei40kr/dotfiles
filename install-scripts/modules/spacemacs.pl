@@ -12,6 +12,8 @@ if (&is_macos) {
     brew_tap('d12frosted/emacs-plus');
     brew_install( 'emacs-plus', 'with-pdumper', 'HEAD' );
 
+    cp( dotfile('emacs-plus/Emacs.app'), "${ENV{HOME}}/Applications" );
+
     launchctl_load( dotfile('emacs-plus/org.gnu.emacs.daemon.plist') );
 }
 elsif (&is_arch) {
