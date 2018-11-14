@@ -45,7 +45,7 @@ if ( &is_macos or &is_arch ) {
       foreach @fish_completions;
 
     # Install fish config
-    my @fish_conf_d = qw(fzf tmux);
+    my @fish_conf_d = ('fzf');
     ln( dotfile("fish/conf.d/${_}.fish"),
         "${ENV{XDG_CONFIG_HOME}}/fish/conf.d/${_}.fish" )
       foreach @fish_conf_d;
@@ -73,6 +73,10 @@ if ( &is_macos or &is_arch ) {
     git_clone(
         'git@github.com:sei40kr/fish-ranger-cd.git',
         "${ENV{XDG_CONFIG_HOME}}/fish/plugins/fish-ranger-cd"
+    );
+    git_clone(
+        'git@github.com:sei40kr/fish-tmux-navigator.git',
+        "${ENV{XDG_CONFIG_HOME}}/fish/plugins/fish-tmux-navigator"
     );
 }
 
