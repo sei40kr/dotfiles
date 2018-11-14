@@ -130,6 +130,7 @@ my sub git_current_branch {
     return $branch;
 }
 
+# TODO: Move this to Git facade
 sub git_clone_internal {
     my ( $repo, $branch, $dest ) = @_;
 
