@@ -174,6 +174,7 @@ values."
      (multiple-cursors :variables
                        multiple-cursors-backend 'evil-mc)
      ;; Custom
+     ghq
      quickrun
      )
 

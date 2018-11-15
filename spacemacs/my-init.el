@@ -36,8 +36,7 @@
                                       (cons "~/.emacs.d" 0)
                                       (cons "~/.emacs.d/private/layers" 1)
                                       (cons "~/.emacs.d/private/local" 1)
-                                      (cons "~/.config/fish/plugins" 1)
-                                      (cons (or (getenv "GHQ_ROOT") "~/.ghq") 3))
+                                      (cons "~/.config/fish/plugins" 1))
 
    ;; semantic
    semanticdb-find-default-throttle '(file local project unloaded system)
