@@ -28,3 +28,9 @@ set pure_color_yellow (set_color 'de935f')
 set pure_color_blue (set_color '5f819d')
 set pure_color_cyan (set_color '5e8d87')
 set pure_color_gray (set_color '555555')
+
+# tmux
+# Handle TMUX focus events
+# cf https://github.com/fish-shell/fish-shell/issues/1917
+bind \e\[I 'begin; end'
+bind \e\[O 'begin; end'
