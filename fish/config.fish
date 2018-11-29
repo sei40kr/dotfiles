@@ -1,8 +1,6 @@
 # config.fish
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-set -U fish_term24bit 1
-
 set -g EDITOR emacs
 
 # fzf
