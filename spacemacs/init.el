@@ -142,6 +142,7 @@ values."
      ansible
      (cmake :variables
             cmake-enable-cmake-ide-support t)
+     dap
      dash
      (docker :variables
              dockerfile-mode-enable-lsp t)
