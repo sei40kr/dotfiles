@@ -1,5 +1,16 @@
 ;; -*- lexical-binding: t -*-
 
+(defun my//exec-path-from-shell-initialize ()
+  (setq
+   exec-path-from-shell-variables '("PATH"
+                                    "MANPATH"
+                                    "CARGO_HOME"
+                                    "PYENV_ROOT"
+                                    "RBENV_ROOT"
+                                    "RUST_SRC_PATH")
+   exec-path-from-shell-arguments '("-l"))
+  (exec-path-from-shell-initialize))
+
 (defun my//enable-frame-transparency (frame)
   (spacemacs/enable-transparency frame
                                  (cons dotspacemacs-active-transparency
@@ -53,6 +64,10 @@
    auto-save-default nil))
 
 (defun my/config ()
+  ;; Copy environment variables from shell
+  (if (eq window-system 'ns)
+      (my//exec-path-from-shell-initialize))
+
   (require 'competitive-programming-snippets)
   (require 'flycheck-popup-tip)
   (require 'jest-snippets)
