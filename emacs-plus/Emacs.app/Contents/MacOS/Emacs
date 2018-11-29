@@ -1,6 +1,0 @@
-#!/bin/bash -l
-
-# Emacs
-# author: Seong Yong-ju <sei40kr@gmail.com>
-
-exec /usr/local/opt/emacs-plus/Emacs.app/Contents/MacOS/Emacs "$@"
