@@ -200,8 +200,8 @@ gem_install('rubocop');
 
 # Rust
 cargo_nightly_install('racer');
+cargo_nightly_install('rustfmt-nightly');
 rustup_component_add('rust-src');
-rustup_component_add('rustfmt-preview');
 
 # Shell-script
 go_get('mvdan.cc/sh/cmd/shfmt');
