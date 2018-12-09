@@ -624,7 +624,6 @@ It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init)
   (my/init-c-c++)
-  (my/init-auto-completion)
   (my/init-dash)
   (my/init-go)
   (my/init-javascript)
