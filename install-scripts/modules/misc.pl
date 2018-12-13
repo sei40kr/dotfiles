@@ -51,6 +51,7 @@ gem_install('reveal-ck');
 pip3_install('aws-shell');
 pip3_install('pgcli');
 
+yarn_global_add('@storybook/cli');
 yarn_global_add('create-react-app');
 yarn_global_add('create-react-native-app');
 yarn_global_add('flow-bin');
