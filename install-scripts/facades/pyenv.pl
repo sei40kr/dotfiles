@@ -5,8 +5,6 @@ use utf8;
 use strict;
 use warnings;
 
-my $pyenv_executable_path = "${ENV{PYENV_ROOT}}/bin/pyenv";
-
 my @pyenv_install_intermediate = ();
 my @pyenv_global_intermediate  = ();
 
@@ -17,40 +15,40 @@ sub pyenv_install {
 }
 
 sub pyenv_global {
-    my ( $version3, $version2 ) = @_;
-
-    @pyenv_global_intermediate = ( $version3, $version2 );
+    @pyenv_global_intermediate = @_;
 }
 
-my sub pyenv_check_existence {
-    error('pyenv not found.')
-      unless ( -x $pyenv_executable_path || &is_dry_run );
+my sub find_pyenv_exec {
+    foreach
+      my $dirpath ( "${ENV{HOME}}/.pyenv/bin", "/usr/local/bin", "/usr/bin" )
+    {
+        return "${dirpath}/pyenv" if ( -x "${dirpath}/pyenv" );
+    }
+
+    return undef;
 }
 
 my sub pyenv_install_reducer {
     return if ( scalar(@pyenv_install_intermediate) eq 0 );
 
-    &pyenv_check_existence;
+    my $pyenv_exec = &find_pyenv_exec;
+    error('pyenv is not installed.') unless ( defined($pyenv_exec) );
 
     log_wait('Installing Python ...');
 
-    my @args = ('install');
-    push( @args, &do_update ? '-f' : '-s' );
-    Command::run( $pyenv_executable_path, @args, $_ )
+    Command::run( $pyenv_exec, 'install', '-s', $_ )
       foreach @pyenv_install_intermediate;
 }
 
 my sub pyenv_global_reducer() {
-    my ( $version3, $version2 ) = @pyenv_global_intermediate;
-    return if ( !defined($version3) && !defined($version2) );
+    return if ( scalar(@pyenv_global_intermediate) eq 0 );
 
-    &pyenv_check_existence;
+    my $pyenv_exec = &find_pyenv_exec;
+    error('pyenv is not installed.') unless ( defined($pyenv_exec) );
 
     log_wait('Setting the global Python versions ...');
 
-    my @args = ( 'global', $version3 );
-    push( @args, $version2 ) if ( defined($version2) );
-    Command::run( $pyenv_executable_path, @args );
+    Command::run( $pyenv_exec, 'global', @pyenv_global_intermediate );
 }
 
 register_reducer( 50, \&pyenv_install_reducer );
