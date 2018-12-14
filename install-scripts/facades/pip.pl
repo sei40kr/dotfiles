@@ -26,8 +26,6 @@ my sub find_pip2_exec {
     {
         return "${dirpath}/pip2" if ( -x "${dirpath}/pip2" );
     }
-
-    return undef;
 }
 
 my sub find_pip3_exec {
@@ -36,8 +34,6 @@ my sub find_pip3_exec {
     {
         return "${dirpath}/pip3" if ( -x "${dirpath}/pip3" );
     }
-
-    return undef;
 }
 
 my sub pip2_install_reducer {
