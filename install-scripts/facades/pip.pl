@@ -20,60 +20,24 @@ sub pip3_install {
     push( @pip3_install_intermediate, $pkg );
 }
 
-my sub install_pyenv {
-    log_wait('Installing pyenv ...');
-
-    # TODO Update pyenv itself when option --update given
-    git_clone_internal( 'https://github.com/pyenv/pyenv.git',
-        'master', "${ENV{PYENV_ROOT}}" );
-    git_clone_internal( 'https://github.com/pyenv/pyenv-virtualenv.git',
-        'master', "${ENV{PYENV_ROOT}}/plugins/pyenv-virtualenv" );
-}
-
-my sub python_stable_versions {
-    my $pyenv_proc;
-    my $py2_stable_ver;
-    my $py3_stable_ver;
-
-    # TODO Think about a case when --dry-run and --update options given
-    open $pyenv_proc, '-|', "${ENV{PYENV_ROOT}}/bin/pyenv", qw(install -l);
-    while (<$pyenv_proc>) {
-        if ( $_ =~ /^\s*(2(?:\.\d+){2})$/ ) {
-            $py2_stable_ver = $1;
-        }
-        elsif ( $_ =~ /^\s*(3(?:\.\d+){2})$/ ) {
-            $py3_stable_ver = $1;
-        }
+my sub find_pip2_exec {
+    foreach
+      my $dirpath ( "${ENV{HOME}}/.pyenv/shims", "/usr/local/bin", "/usr/bin" )
+    {
+        return "${dirpath}/pip2" if ( -x "${dirpath}/pip2" );
     }
-    close $pyenv_proc;
 
-    return ( $py2_stable_ver, $py3_stable_ver );
+    return undef;
 }
 
-my sub install_py2_and_py3 {
-    my $pyenv = "${ENV{PYENV_ROOT}}/bin/pyenv";
-    my ( $py2_stable_ver, $py3_stable_ver ) = &python_stable_versions;
+my sub find_pip3_exec {
+    foreach
+      my $dirpath ( "${ENV{HOME}}/.pyenv/shims", "/usr/local/bin", "/usr/bin" )
+    {
+        return "${dirpath}/pip3" if ( -x "${dirpath}/pip3" );
+    }
 
-    log_wait("Installing Python ${py2_stable_ver} ...");
-    Command::run( $pyenv, qw(install -s), $py2_stable_ver );
-
-    log_wait("Installing Python ${py3_stable_ver} ...");
-    Command::run( $pyenv, qw(install -s), $py3_stable_ver );
-
-    Command::run( $pyenv, 'global', $py2_stable_ver, $py3_stable_ver );
-}
-
-# A dummy reducer to install pyenv, Python 2/3
-my sub dummy_reducer {
-    return
-      if (  scalar(@pip2_install_intermediate) eq 0
-        and scalar(@pip3_install_intermediate) eq 0 );
-
-    &install_pyenv
-      unless ( -x "${ENV{PYENV_ROOT}}/bin/pyenv" );
-    my $shims = "${ENV{PYENV_ROOT}}/shims";
-    &install_py2_and_py3
-      if ( !-x "${shims}/pip2" or !-x "${shims}/pip3" or &do_update );
+    return undef;
 }
 
 my sub pip2_install_reducer {
@@ -82,18 +46,12 @@ my sub pip2_install_reducer {
 
     log_wait('Installing Python2 packages ...');
 
-    my $pip2 = "${ENV{PYENV_ROOT}}/shims/pip2";
-    error('pip2 not found.') unless ( -x $pip2 or &is_dry_run );
+    my $pip2_exec = &find_pip2_exec;
+    error('pip2 is not found.') unless ( defined($pip2_exec) );
 
-    my @pip2_args = qw(install --exists-action i);
-    if (&do_update) {
-        push( @pip2_args, '-U' );
-    }
-    else {
-        push( @pip2_args, '--disable-pip-version-check' );
-    }
-
-    Command::run( $pip2, @pip2_args, @pip2_install_intermediate );
+    my @args = qw(install --exists-action i);
+    push( @args, ( &do_update ? '-U' : '--disable-pip-version-check' ) );
+    Command::run( $pip2_exec, @args, @pip2_install_intermediate );
 }
 
 my sub pip3_install_reducer {
@@ -102,20 +60,13 @@ my sub pip3_install_reducer {
 
     log_wait('Installing Python3 packages ...');
 
-    my $pip3 = "${ENV{PYENV_ROOT}}/shims/pip3";
-    error('pip3 not found.') unless ( -x $pip3 or &is_dry_run );
+    my $pip3_exec = &find_pip3_exec;
+    error('pip3 is not found.') unless ( defined($pip3_exec) );
 
-    my @pip3_args = qw(install --exists-action i);
-    if (&do_update) {
-        push( @pip3_args, '-U' );
-    }
-    else {
-        push( @pip3_args, '--disable-pip-version-check' );
-    }
-
-    Command::run( $pip3, @pip3_args, @pip3_install_intermediate );
+    my @args = qw(install --exists-action i);
+    push( @args, ( &do_update ? '-U' : '--disable-pip-version-check' ) );
+    Command::run( $pip3_exec, @args, @pip3_install_intermediate );
 }
 
-register_reducer( 61, \&dummy_reducer );
 register_reducer( 61, \&pip2_install_reducer );
 register_reducer( 61, \&pip3_install_reducer );
