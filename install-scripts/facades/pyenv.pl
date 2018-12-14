@@ -24,29 +24,27 @@ my sub find_pyenv_exec {
     {
         return "${dirpath}/pyenv" if ( -x "${dirpath}/pyenv" );
     }
-
-    return undef;
 }
 
 my sub pyenv_install_reducer {
     return if ( scalar(@pyenv_install_intermediate) eq 0 );
 
+    log_wait('Installing Python ...');
+
     my $pyenv_exec = &find_pyenv_exec;
     error('pyenv is not installed.') unless ( defined($pyenv_exec) );
-
-    log_wait('Installing Python ...');
 
     Command::run( $pyenv_exec, 'install', '-s', $_ )
       foreach @pyenv_install_intermediate;
 }
 
-my sub pyenv_global_reducer() {
+my sub pyenv_global_reducer {
     return if ( scalar(@pyenv_global_intermediate) eq 0 );
+
+    log_wait('Setting the global Python versions ...');
 
     my $pyenv_exec = &find_pyenv_exec;
     error('pyenv is not installed.') unless ( defined($pyenv_exec) );
-
-    log_wait('Setting the global Python versions ...');
 
     Command::run( $pyenv_exec, 'global', @pyenv_global_intermediate );
 }
