@@ -1,4 +1,4 @@
-# 50_cargo.pl --- cargo facade
+# cargo.pl --- Cargo facade
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 use utf8;
@@ -23,37 +23,39 @@ sub cargo_nightly_install {
     push( @cargo_nightly_install_intermediate, $pkg );
 }
 
+my sub find_cargo_exec {
+    foreach
+      my $dirpath ( "${ENV{HOME}}/.cargo/bin", "/usr/local/bin", "/usr/bin" )
+    {
+        return "${dirpath}/cargo" if ( -x "${dirpath}/cargo" );
+    }
+}
+
 my sub cargo_install_reducer {
     return if ( scalar(@cargo_install_intermediate) eq 0 );
 
     log_wait('Installing Rust binaries ...');
 
-    my $cargo = "${ENV{CARGO_HOME}}/bin/cargo";
+    my $cargo_exec = &find_cargo_exec;
+    error('Cargo is not installed.') unless ( defined($cargo_exec) );
 
-    # TODO Install rustup
-    error('cargo not found.') unless ( is_exec($cargo) );
+    log_warn("Cargo can't skip checking package updates.") unless (&do_update);
 
-    log_warn("cargo can't skip checking package updates.") unless (&do_update);
-
-    Command::run( $cargo, qw(install -fq), @cargo_install_intermediate );
+    Command::run( $cargo_exec, 'install', '-fq', @cargo_install_intermediate );
 }
 
 my sub cargo_nightly_install_reducer {
     return if ( scalar(@cargo_nightly_install_intermediate) eq 0 );
 
-    log_wait('Installing Rust binaries ...');
+    log_wait('Installing nightly Rust binaries ...');
 
-    my $cargo = "${ENV{CARGO_HOME}}/bin/cargo";
+    my $cargo_exec = &find_cargo_exec;
+    error('Cargo is not installed.') unless ( defined($cargo_exec) );
 
-    error('cargo not found.') unless ( is_exec($cargo) );
+    log_warn("Cargo can't skip checking package updates.") unless (&do_update);
 
-    log_warn("cargo can't skip checking package updates.") unless (&do_update);
-
-    Command::run(
-        $cargo,
-        qw(+nightly install -fq),
-        @cargo_nightly_install_intermediate
-    );
+    Command::run( $cargo_exec, '+nightly', 'install', '-fq',
+        @cargo_nightly_install_intermediate );
 }
 
 register_reducer( 61, \&cargo_install_reducer );
