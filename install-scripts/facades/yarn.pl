@@ -13,55 +13,12 @@ sub yarn_global_add {
     push( @yarn_global_add_intermediate, $pkg );
 }
 
-my sub install_nvm {
-    log_wait('Installing nvm ...');
-
-    git_clone_internal( 'https://github.com/creationix/nvm.git',
-        'master', "${ENV{NVM_DIR}}" );
-}
-
-my sub install_node {
-    log_wait('Installing Node ...');
-
-    Command::run( qw(sh -c),
-        ". ${ENV{NVM_DIR}}/nvm.sh && nvm install --no-progress stable" );
-    Command::run( qw(sh -c),
-        ". ${ENV{NVM_DIR}}/nvm.sh && nvm alias default stable" );
-    Command::run(
-        qw(sh -c),
-"export NVM_SYMLINK_CURRENT=true && . ${ENV{NVM_DIR}}/nvm.sh && nvm use --delete-prefix default"
-    );
-}
-
-my sub install_yarn_or_err {
-    log_wait('Installing Yarn ...');
-
-    if (&is_macos) {
-        Command::run(qw(brew install yarn --without-node));
-    }
-    elsif (&is_arch) {
-        Command::run(
-            qw(sudo pacman -S --needed --noconfirm --noprogressbar --assume-installed nodejs yarn)
-        );
-    }
-    else {
-        error(
-"Unable to install Yarn on your OS automatically. Please install Yarn manually."
-        );
-    }
-}
-
 my sub yarn_global_add_reducer {
     return if ( scalar(@yarn_global_add_intermediate) eq 0 );
 
-    &install_nvm unless ( -s "${ENV{NVM_DIR}}/nvm.sh" );
-    my $current_node = "${ENV{NVM_DIR}}/current/bin/node";
-    &install_node unless ( -x $current_node );
-    &install_yarn_or_err unless ( is_exec('yarn') );
-
     log_wait('Installing Yarn packages ...');
 
-    error('node not found.') unless ( -x $current_node or &is_dry_run );
+    error('yarn is not installed.') unless is_exec('yarn');
 
     # TODO Use the Node.js installed via nvm
     my @cmd =
