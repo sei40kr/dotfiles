@@ -194,9 +194,6 @@ values."
      (perl-refactoring
       :location (recipe :fetcher github
                         :repo "syohex/emacs-perl-refactoring"))
-     (evil-terminal-cursor-changer
-      :location (recipe :fetcher github
-                        :repo "amosbird/evil-terminal-cursor-changer"))
      exec-path-from-shell
      flycheck-popup-tip
      format-all
