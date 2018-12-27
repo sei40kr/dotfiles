@@ -210,6 +210,9 @@ go_get('mvdan.cc/sh/cmd/shfmt');
 pip3_install('sqlparse');
 
 # TypeScript
+yarn_global_add('tslint');
+yarn_global_add('typescript');
+yarn_global_add('typescript-formatter');
 yarn_global_add('typescript-language-server');
 
 # Xclipboard
