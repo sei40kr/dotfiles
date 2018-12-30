@@ -196,7 +196,6 @@ values."
                         :repo "syohex/emacs-perl-refactoring"))
      exec-path-from-shell
      flycheck-popup-tip
-     format-all
      (jest-snippets :location local)
      (react-snippets :location local)
      (redux-snippets :location local))
