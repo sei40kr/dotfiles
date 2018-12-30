@@ -588,6 +588,7 @@ It should only modify the values of Spacemacs settings."
                 "auto-completion"
                 "dash"
                 "go"
+                "java"
                 "javascript"
                 "neotree"
                 "org"
@@ -618,6 +619,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-c-c++)
   (my/init-dash)
   (my/init-go)
+  (my/init-java)
   (my/init-javascript)
   (my/init-neotree)
   (my/init-org)
@@ -643,6 +645,7 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (my/config)
   (my/config-auto-completion)
+  (my/config-java)
   (my/config-perl5)
   (my/config-spacemacs-evil))
 
