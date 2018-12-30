@@ -93,7 +93,7 @@ values."
      (html :variables
            web-fmt-tool 'prettier)
      (java :variables
-           java-backend 'lsp-java)
+           java-backend 'lsp)
      (javascript :variables
                  javascript-backend 'tern
                  javascript-fmt-tool 'prettier)
