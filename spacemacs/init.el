@@ -92,7 +92,8 @@ values."
               haskell-enable-hindent t)
      (html :variables
            web-fmt-tool 'prettier)
-     java
+     (java :variables
+           java-backend 'lsp-java)
      (javascript :variables
                  javascript-backend 'tern
                  javascript-fmt-tool 'prettier)
