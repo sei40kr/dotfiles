@@ -8,8 +8,11 @@ use FindBin;
 use lib "${FindBin::Bin}/install-scripts/lib";
 use InstallHelper::Path;
 
+# TODO Install direnv on non-macOS envs
 if (&is_macos) {
     brew_install('fish');
+
+    brew_install('direnv');
     brew_install('fzf');
     brew_install('terminal-notifier');
 
@@ -23,6 +26,7 @@ if (&is_macos) {
 }
 elsif (&is_arch) {
     pacman_sync('fish');
+
     pacman_sync('fzf');
     pacman_sync('tree');
 }
