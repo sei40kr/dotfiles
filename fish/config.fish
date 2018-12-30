@@ -3,6 +3,9 @@
 
 set -g EDITOR emacs
 
+# direnv
+eval (direnv hook fish)
+
 # fzf
 set -g FZF_FIND_FILE_OPTS '--reverse --inline-info'
 set -g FZF_TMUX 0
