@@ -132,8 +132,7 @@ values."
                       version-control-diff-tool 'diff-hl
                       version-control-diff-side 'left)
      ;; Tags
-     (gtags :variables
-            gtags-enable-by-default nil)
+     gtags
      ;; Themes
      colors
      themes-megapack
@@ -207,10 +206,7 @@ values."
 
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(avy-migemo
-                                    counsel-gtags
                                     ddskk
-                                    ggtags
-                                    helm-gtags
                                     migemo
                                     org-bullets
                                     persp-mode)
