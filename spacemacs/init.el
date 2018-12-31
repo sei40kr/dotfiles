@@ -645,6 +645,7 @@ before packages are loaded."
   (my/config)
   (my/config-auto-completion)
   (my/config-java)
+  (my/config-javascript)
   (my/config-perl5)
   (my/config-spacemacs-evil))
 
