@@ -1,4 +1,4 @@
-(load "~/.spacemacs.d/google-java-format")
+(load (concat dotspacemacs-directory "google-java-format"))
 
 (defun my/init-java ()
   (when (eq system-type 'darwin)

@@ -1,6 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
-(load "~/.spacemacs.d/npm-and-yarn")
+(load (concat dotspacemacs-directory "npm-and-yarn"))
 
 (defun my//javascript-disable-builtin-check ()
   (set (make-local-variable 'js2-mode-show-parse-errors) nil)
