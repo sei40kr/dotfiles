@@ -20,23 +20,20 @@ end
 
 function __fzf_ghq
     begin
-        echo '~/.dotfiles'
-        echo '~/.spacemacs.d'
+        [ -d "$HOME/.dotfiles" ]
+        and echo "$HOME/.dotfiles"
+        [ -d "$HOME/.emacs.d" ]
+        and echo "$HOME/.emacs.d"
 
-        set -l home_len (string length $HOME)
-        ghq list --full-path | while read path
-            if [ (string sub -s 1 -l $home_len $path) = $HOME ]
-                echo '~'(string sub -s (math $home_len +1) $path)
-            end
-        end
+        set -q GHQ_ROOT
+        or set -l GHQ_ROOT "$HOME/.ghq"
+        find $GHQ_ROOT -mindepth 3 -maxdepth 3 -type d
     end | __fzf_ghq_fzf | read repo_path
 
     if [ -z $repo_path ]
         commandline -f repaint
         return
     end
-
-    set -l repo_path (string replace -r '^~' $HOME $repo_path)
 
     if [ -z $TMUX ]
         __fzf_ghq_cd $repo_path
