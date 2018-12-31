@@ -1,0 +1,8 @@
+# name : if (&is_linux) { ... }
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: iflinux
+# --
+
+if (&is_linux) {
+    $0
+}

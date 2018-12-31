@@ -1,0 +1,8 @@
+# name : if (&is_macos) { ... }
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: ifmac
+# --
+
+if (&is_macos) {
+    $0
+}
