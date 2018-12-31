@@ -9,4 +9,6 @@ pyenv_install('3.6.6');
 pyenv_install('2.7.15');
 pyenv_global( '3.6.6', '2.7.15' );
 
+pip3_install('poetry');
+
 1;
