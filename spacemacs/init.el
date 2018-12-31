@@ -582,7 +582,6 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-pretty-docs nil))
 
-(load (concat dotspacemacs-directory "my-init.el"))
 (dolist (item '("c-c++"
                 "auto-completion"
                 "dash"
@@ -598,7 +597,8 @@ It should only modify the values of Spacemacs settings."
                 "spacemacs-evil"
                 "spacemacs-project"
                 "syntax-checking"))
-  (load (format "%smy-%s.el" dotspacemacs-directory item)))
+  (load (format "%smy-%s" dotspacemacs-directory item)))
+(load (concat dotspacemacs-directory "my-init"))
 
 (defun dotspacemacs/user-env ()
   "Environment variables setup.
@@ -634,7 +634,25 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
-  )
+  (load (concat dotspacemacs-directory "google-java-format"))
+  (load (concat dotspacemacs-directory "npm-and-yarn"))
+  (dolist (item '("c-c++"
+                  "auto-completion"
+                  "dash"
+                  "go"
+                  "java"
+                  "javascript"
+                  "neotree"
+                  "org"
+                  "perl5"
+                  "plantuml"
+                  "rust"
+                  "shell-scripts"
+                  "spacemacs-evil"
+                  "spacemacs-project"
+                  "syntax-checking"))
+    (load (format "%smy-%s" dotspacemacs-directory item)))
+  (load (concat dotspacemacs-directory "my-init")))
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
