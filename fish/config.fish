@@ -22,13 +22,14 @@ set pure_symbol_git_down_arrow "v"
 set pure_symbol_git_up_arrow "^"
 set pure_symbol_git_dirty !
 set pure_symbol_horizontal_bar "_"
-set pure_color_normal (set_color 'c5c8c6')
-set pure_color_red (set_color 'a54242')
-set pure_color_green (set_color '8c9440')
-set pure_color_yellow (set_color 'de935f')
-set pure_color_blue (set_color '5f819d')
-set pure_color_cyan (set_color '5e8d87')
-set pure_color_gray (set_color '555555')
+set pure_color_normal (set_color normal)
+set pure_color_red (set_color red)
+set pure_color_yellow (set_color yellow)
+set pure_color_blue (set_color blue)
+set pure_color_magenta (set_color magenta)
+set pure_color_cyan (set_color cyan)
+set pure_color_gray (set_color 5c6370)
+set pure_color_white (set_color white)
 
 # tmux
 # Handle TMUX focus events
