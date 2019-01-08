@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/install-scripts/lib";
+use InstallHelper::Path;
 
 if (&is_macos) {
     brew_install('global');
@@ -12,5 +15,7 @@ if (&is_macos) {
 else {
     # TODO Install global on other envs
 }
+
+ln( dotfile('global/globalrc'), "${ENV{HOME}}/.globalrc" );
 
 1;
