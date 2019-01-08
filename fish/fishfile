@@ -1,5 +1,4 @@
 oh-my-fish/plugin-argu
-fisherman/autoenvstack
 fisherman/done
 oh-my-fish/plugin-emacs
 oh-my-fish/plugin-extract
@@ -15,4 +14,3 @@ decors/fish-ghq
 jethrokuan/fzf
 rafaelrinaldi/pure
 ~/.config/fish/plugins/fish-ranger-cd
-~/.config/fish/plugins/fish-tmux-navigator
