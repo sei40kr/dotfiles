@@ -1,6 +1,14 @@
 # __fzf_ghq.fish
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
+function __fzf_ghq_home_to_tilde
+    # FIXME fish shell can't read the standard input from function
+    # cf https://github.com/fish-shell/fish-shell/issues/206
+    while read -l a_path
+        string replace -r '^'(string escape -n --style=regex $HOME) '~' $a_path
+    end
+end
+
 function __fzf_ghq_fzf
     if [ -z $TMUX ]
         fzf
@@ -13,7 +21,7 @@ function __fzf_ghq_fzf
     end
 end
 
-function __fzf_ghq_cd --argument-names path
+function __fzf_ghq_cd -a path
     commandline -- cd\ (string escape $path)
     commandline -f execute
 end
@@ -28,7 +36,7 @@ function __fzf_ghq
         set -q GHQ_ROOT
         or set -l GHQ_ROOT "$HOME/.ghq"
         find $GHQ_ROOT -mindepth 3 -maxdepth 3 -type d
-    end | __fzf_ghq_fzf | read repo_path
+    end | __fzf_ghq_home_to_tilde | __fzf_ghq_fzf
 
     if [ -z $repo_path ]
         commandline -f repaint
