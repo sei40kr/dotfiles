@@ -18,8 +18,8 @@ end
 
 # pure
 set pure_symbol_prompt "~>"
-set pure_symbol_git_down_arrow "v"
-set pure_symbol_git_up_arrow "^"
+set pure_symbol_git_arrow_down "v"
+set pure_symbol_git_arrow_up "^"
 set pure_symbol_git_dirty !
 set pure_symbol_horizontal_bar "_"
 set pure_color_normal (set_color normal)
