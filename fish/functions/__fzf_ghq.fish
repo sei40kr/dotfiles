@@ -28,10 +28,10 @@ end
 
 function __fzf_ghq
     begin
-        [ -d "$HOME/.dotfiles" ]
-        and echo "$HOME/.dotfiles"
-        [ -d "$HOME/.emacs.d" ]
-        and echo "$HOME/.emacs.d"
+        [ -d '~/.dotfiles' ]
+        and echo '~/.dotfiles'
+        [ -d '~/.emacs.d' ]
+        and echo '~/.emacs.d'
 
         set -q GHQ_ROOT
         or set -l GHQ_ROOT "$HOME/.ghq"
