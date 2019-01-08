@@ -36,7 +36,7 @@ function __fzf_ghq
         set -q GHQ_ROOT
         or set -l GHQ_ROOT "$HOME/.ghq"
         find $GHQ_ROOT -mindepth 3 -maxdepth 3 -type d
-    end | __fzf_ghq_home_to_tilde | __fzf_ghq_fzf
+    end | __fzf_ghq_home_to_tilde | __fzf_ghq_fzf | read -l repo_path
 
     if [ -z $repo_path ]
         commandline -f repaint
