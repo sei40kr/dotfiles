@@ -7,8 +7,7 @@
   (set (make-local-variable 'js2-mode-show-strict-warnings) nil))
 
 (defun my//javascript-disable-unnecessary-checkers ()
-  (add-to-list 'flycheck-disabled-checkers 'javascript-jshint)
-  (add-to-list 'flycheck-disabled-checkers 'javascript-standard))
+  (append '(javascript-jshint javascript-standard) 'flycheck-disabled-checkers))
 
 (defun my/init-javascript ()
   (add-hook 'js2-mode-hook #'my//javascript-disable-builtin-check)
