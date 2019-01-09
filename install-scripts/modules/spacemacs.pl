@@ -207,6 +207,7 @@ rustup_component_add('rust-src');
 go_get('mvdan.cc/sh/cmd/shfmt');
 
 # SQL
+pip3_install('sqlint');
 pip3_install('sqlparse');
 
 # TypeScript
