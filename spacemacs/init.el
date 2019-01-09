@@ -43,7 +43,7 @@ values."
      ;; Chat
      ;; Checkers
      (spell-checking :variables
-                     spell-checking-enable-by-default nil)
+                     enable-flyspell-auto-completion t)
      syntax-checking
      ;; Completion
      (auto-completion :variables
@@ -100,7 +100,6 @@ values."
      (json :variables
            json-fmt-tool 'prettier)
      latex
-     lua
      major-modes
      markdown
      perl5
@@ -136,33 +135,33 @@ values."
      ;; Themes
      colors
      themes-megapack
-     theming
      ;; Tools
      ansible
      (cmake :variables
             cmake-enable-cmake-ide-support t)
      dap
      dash
+     debug
      (docker :variables
              dockerfile-mode-enable-lsp t)
      imenu-list
      ipython-notebook
      (lsp :variables
+          lsp-navigation 'simple
+          lsp-ui-remap-xref-keybindings t
           lsp-ui-sideline-enable nil)
      nginx
      (node :variables
            node-add-modules-path t)
      ;; (ranger :variables
      ;;   ranger-show-hidden t)
-     restclient
+     (restclient :variables
+                 restclient-use-org t)
      (shell :variables
-            shell-default-shell 'multi-term
+            shell-default-shell 'ansi-term
             shell-default-height 30
             shell-default-position 'bottom)
      systemd
-     tmux
-     (transmission :variables
-                   transmission-auto-refresh-all t)
      vagrant
      xclipboard
      ;; Vim
@@ -171,6 +170,7 @@ values."
                  evil-snipe-enable-alternate-f-and-t-behaviors t
                  evil-snipe-repeat-scope 'line)
      ;; Misc
+     copy-as-format
      (multiple-cursors :variables
                        multiple-cursors-backend 'evil-mc)
      ;; Custom
@@ -218,8 +218,6 @@ values."
    ;; installs *all* packages supported by Spacemacs and never uninstalls them.
    ;; (default is `used-only')
    dotspacemacs-install-packages 'used-only))
-(when (display-graphic-p)
-  (add-to-list 'dotspacemacs-excluded-packages 'tmux))
 
 (defun dotspacemacs/init ()
   "Initialization:
