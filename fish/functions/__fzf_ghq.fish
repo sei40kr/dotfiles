@@ -21,6 +21,12 @@ function __fzf_ghq_fzf
     end
 end
 
+function __fzf_ghq_tilde_to_home
+    while read -l a_path
+        string replace -r '^~' $HOME $a_path
+    end
+end
+
 function __fzf_ghq_cd -a path
     commandline -- cd\ (string escape $path)
     commandline -f execute
@@ -36,7 +42,7 @@ function __fzf_ghq
         set -q GHQ_ROOT
         or set -l GHQ_ROOT "$HOME/.ghq"
         find $GHQ_ROOT -mindepth 3 -maxdepth 3 -type d
-    end | __fzf_ghq_home_to_tilde | __fzf_ghq_fzf | read -l repo_path
+    end | __fzf_ghq_home_to_tilde | __fzf_ghq_fzf | __fzf_ghq_tilde_to_home | read -l repo_path
 
     if [ -z $repo_path ]
         commandline -f repaint
