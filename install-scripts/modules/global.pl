@@ -9,6 +9,7 @@ use lib "${FindBin::Bin}/install-scripts/lib";
 use InstallHelper::Path;
 
 if (&is_macos) {
+    brew_install('ctags');
     brew_install('global');
     pip3_install('pygments');
 }
