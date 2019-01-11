@@ -153,6 +153,7 @@ values."
      nginx
      (node :variables
            node-add-modules-path t)
+     pandoc
      ;; (ranger :variables
      ;;   ranger-show-hidden t)
      (restclient :variables
