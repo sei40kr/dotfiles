@@ -157,6 +157,12 @@ yarn_global_add('vmd');
 git_clone( 'https://github.com/hakimel/reveal.js.git',
     "${ENV{HOME}}/org/reveal-js" );
 
+# Pandoc
+if (&is_macos) {
+    brew_install('pandoc');
+    brew_cask_install('wkhtmltopdf');
+}
+
 # Perl5
 cpanm('App::PRT');
 cpanm('File::Zglob');
