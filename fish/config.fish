@@ -3,6 +3,15 @@
 
 set -g EDITOR emacs
 
+# bobthefish
+set theme_display_date no
+set theme_display_cmd_duration yes
+set theme_title_use_abbreviated_path yes
+set theme_powerline_fonts no
+set theme_nerd_fonts no
+set theme_show_exit_status yes
+set theme_color_scheme base16-dark
+
 # direnv
 eval (direnv hook fish)
 
@@ -15,21 +24,6 @@ set -g FZF_ENABLE_OPEN_PREVIEW 0
 if [ -d "$PERLBREW_ROOT" ]
     . $PERLBREW_ROOT/etc/perlbrew.fish
 end
-
-# pure
-set pure_symbol_prompt "~>"
-set pure_symbol_git_arrow_down "v"
-set pure_symbol_git_arrow_up "^"
-set pure_symbol_git_dirty !
-set pure_symbol_horizontal_bar "_"
-set pure_color_normal (set_color normal)
-set pure_color_red (set_color red)
-set pure_color_yellow (set_color yellow)
-set pure_color_blue (set_color blue)
-set pure_color_magenta (set_color magenta)
-set pure_color_cyan (set_color cyan)
-set pure_color_gray (set_color 5c6370)
-set pure_color_white (set_color white)
 
 # tmux
 # Handle TMUX focus events
