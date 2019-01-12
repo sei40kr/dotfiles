@@ -1,7 +1,6 @@
 # alias_def.fish
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-alias -s c clear
 alias -s d dirs
 alias -s po popd
 alias -s pu pushd
