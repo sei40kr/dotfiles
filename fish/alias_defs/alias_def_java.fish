@@ -1,0 +1,26 @@
+# alias_def_java.fish
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+# mvn
+alias -s mvncie 'mvn clean install eclipse:eclipse'
+alias -s mvnci 'mvn clean install'
+alias -s mvncist 'mvn clean install -DskipTests'
+alias -s mvncisto 'mvn clean install -DskipTests --offline'
+alias -s mvne 'mvn eclipse:eclipse'
+alias -s mvnce 'mvn clean eclipse:clean eclipse:eclipse'
+alias -s mvncv 'mvn clean verify'
+alias -s mvnd 'mvn deploy'
+alias -s mvnp 'mvn package'
+alias -s mvnc 'mvn clean'
+alias -s mvncom 'mvn compile'
+alias -s mvnct 'mvn clean test'
+alias -s mvnt 'mvn test'
+alias -s mvnag 'mvn archetype:generate'
+alias -s mvn-updates 'mvn versions:display-dependency-updates'
+alias -s mvntc7 'mvn tomcat7:run'
+alias -s mvntc 'mvn tomcat:run'
+alias -s mvnjetty 'mvn jetty:run'
+alias -s mvndt 'mvn dependency:tree'
+alias -s mvns 'mvn site'
+alias -s mvnsrc 'mvn dependency:sources'
+alias -s mvndocs 'mvn dependency:resolve -Dclassifier=javadoc'

@@ -49,18 +49,18 @@ if ( &is_macos or &is_arch ) {
       foreach @fish_completions;
 
     # Install fish config
-    my @fish_conf_d = ('fzf');
+    my @fish_conf_d = ( 'alias', 'fzf' );
     ln( dotfile("fish/conf.d/${_}.fish"),
         "${ENV{XDG_CONFIG_HOME}}/fish/conf.d/${_}.fish" )
       foreach @fish_conf_d;
 
     # Install alias definitions
-    ln( dotfile('fish/conf.d/alias_def.fish'),
-        "${ENV{XDG_CONFIG_HOME}}/fish/conf.d/alias_def.fish" );
+    ln( dotfile('fish/alias_defs/alias_def.fish'),
+        "${ENV{XDG_CONFIG_HOME}}/fish/alias_defs/alias_def.fish" );
     my @alias_defs =
       qw( arch docker docker_compose go homebrew java nmap node perl python rsync ruby );
-    ln( dotfile("fish/conf.d/alias_def_${_}.fish"),
-        "${ENV{XDG_CONFIG_HOME}}/fish/conf.d/alias_def_${_}.fish" )
+    ln( dotfile("fish/alias_defs/alias_def_${_}.fish"),
+        "${ENV{XDG_CONFIG_HOME}}/fish/alias_defs/alias_def_${_}.fish" )
       foreach @alias_defs;
 
     ln( dotfile('fish/config.fish'),
