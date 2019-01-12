@@ -1,4 +1,15 @@
-tmux-256color|tmux with 256 colors,
+#	Reconstructed via infocmp from ncurses v6.1
+xterm+256setaf|xterm 256-color (set-only),
+	colors#0x100, pairs#0x10000,
+	initc@, op=\E[39;49m,
+	setab=\E[%?%p1%{8}%<%t4%p1%d%e%p1%{16}%<%t10%p1%{8}%-%d%e48;5;%p1%d%;m,
+	setaf=\E[%?%p1%{8}%<%t3%p1%d%e%p1%{16}%<%t9%p1%{8}%-%d%e38;5;%p1%d%;m,
+	setb@, setf@,
+xterm+tmux|advanced xterm features used in tmux,
+
+tmux|tmux terminal multiplexer,
   ritm=\E[23m, rmso=\E[27m, sitm=\E[3m, smso=\E[7m, Ms@,
-  khome=\E[1~, kend=\E[4~,
-  use=xterm-256color, use=screen-256color,
+  use=xterm+tmux, use=screen,
+
+tmux-256color|tmux with 256 colors,
+  use=xterm+256setaf, use=tmux,
