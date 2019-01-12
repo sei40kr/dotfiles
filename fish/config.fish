@@ -7,10 +7,7 @@ set -g EDITOR emacs
 eval (direnv hook fish)
 
 # fzf
-set -gx FZF_DEFAULT_OPTS $FZF_DEFAULT_OPTS'
---color=dark
---color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
---color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
+set -gx FZF_DEFAULT_OPTS $FZF_DEFAULT_OPTS' --color=dark --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
 set -g FZF_FIND_FILE_OPTS '--reverse --inline-info'
 set -g FZF_TMUX 0
 set -g FZF_ENABLE_OPEN_PREVIEW 0
