@@ -49,7 +49,7 @@ if ( &is_macos or &is_arch ) {
       foreach @fish_completions;
 
     # Install fish config
-    my @fish_conf_d = ( 'alias', 'fzf' );
+    my @fish_conf_d = ('alias');
     ln( dotfile("fish/conf.d/${_}.fish"),
         "${ENV{XDG_CONFIG_HOME}}/fish/conf.d/${_}.fish" )
       foreach @fish_conf_d;
