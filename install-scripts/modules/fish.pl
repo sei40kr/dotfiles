@@ -37,7 +37,7 @@ if ( &is_macos or &is_arch ) {
 
     # Install fish functions
     my @fish_funcs =
-      qw(__fzf_edit_dotfile __fzf_ghq __fzf_git_checkout balias capit cat cd-gitroot diff du fish_greeting fish_title fish_user_key_bindings ls magit ping preview ranger-cd ssh top tree);
+      qw(__fzf_edit_dotfile __fzf_ghq __fzf_git_checkout capit cat cd-gitroot diff du fish_greeting fish_title fish_user_key_bindings ls magit ping preview ranger-cd ssh top tree);
     ln( dotfile("fish/functions/${_}.fish"),
         "${ENV{XDG_CONFIG_HOME}}/fish/functions/${_}.fish" )
       foreach @fish_funcs;
@@ -54,14 +54,14 @@ if ( &is_macos or &is_arch ) {
         "${ENV{XDG_CONFIG_HOME}}/fish/conf.d/${_}.fish" )
       foreach @fish_conf_d;
 
-    # Install balias definitions
-    ln( dotfile('fish/conf.d/balias_def.fish'),
-        "${ENV{XDG_CONFIG_HOME}}/fish/conf.d/balias_def.fish" );
-    my @balias_defs =
+    # Install alias definitions
+    ln( dotfile('fish/conf.d/alias_def.fish'),
+        "${ENV{XDG_CONFIG_HOME}}/fish/conf.d/alias_def.fish" );
+    my @alias_defs =
       qw( arch docker docker_compose go homebrew java nmap node perl python rsync ruby );
-    ln( dotfile("fish/conf.d/balias_def_${_}.fish"),
-        "${ENV{XDG_CONFIG_HOME}}/fish/conf.d/balias_def_${_}.fish" )
-      foreach @balias_defs;
+    ln( dotfile("fish/conf.d/alias_def_${_}.fish"),
+        "${ENV{XDG_CONFIG_HOME}}/fish/conf.d/alias_def_${_}.fish" )
+      foreach @alias_defs;
 
     ln( dotfile('fish/config.fish'),
         "${ENV{XDG_CONFIG_HOME}}/fish/config.fish" );
