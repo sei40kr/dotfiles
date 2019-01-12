@@ -9,6 +9,9 @@ balias u 'cd ..'
 balias ll 'ls -al'
 balias cx 'chmod +x'
 
+# cd-gitroot
+balias U 'cd-gitroot'
+
 # coreutils
 balias md 'mkdir -p'
 balias rd rmdir
