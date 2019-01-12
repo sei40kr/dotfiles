@@ -24,9 +24,3 @@ set -g FZF_ENABLE_OPEN_PREVIEW 0
 if [ -d "$PERLBREW_ROOT" ]
     . $PERLBREW_ROOT/etc/perlbrew.fish
 end
-
-# tmux
-# Handle TMUX focus events
-# cf https://github.com/fish-shell/fish-shell/issues/1917
-bind \e\[I 'begin; end'
-bind \e\[O 'begin; end'
