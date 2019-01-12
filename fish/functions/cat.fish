@@ -3,7 +3,7 @@
 
 function cat -w 'cat'
     if command -qs bat
-        bat $argv
+        bat --theme TwoDark $argv
     else
         command cat $argv
     end
