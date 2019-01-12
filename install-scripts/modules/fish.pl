@@ -71,7 +71,7 @@ if ( &is_macos or &is_arch ) {
         "${ENV{XDG_CONFIG_HOME}}/fish/functions/fisher.fish" );
 
     # Install Fisherman config
-    ln( dotfile('fish/fishfile'), "${ENV{XDG_CONFIG_HOME}}/fish/fishfile" );
+    cp( dotfile('fish/fishfile'), "${ENV{XDG_CONFIG_HOME}}/fish/fishfile" );
 
     # Install fish plugins
     git_clone(
