@@ -120,7 +120,7 @@ yarn_global_add('eslint-cli');
 yarn_global_add('import-js');
 yarn_global_add('prettier');
 yarn_global_add('prettier-eslint-cli');
-yarn_global_add('tern');
+yarn_global_add('javascript-typescript-langserver');
 
 # Jupyter Notebook
 pip3_install('jupyter');

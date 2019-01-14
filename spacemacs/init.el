@@ -93,7 +93,7 @@ values."
      (java :variables
            java-backend 'lsp)
      (javascript :variables
-                 javascript-backend 'tern
+                 javascript-backend 'lsp
                  javascript-fmt-tool 'prettier)
      (json :variables
            json-fmt-tool 'prettier)
