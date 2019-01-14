@@ -42,8 +42,6 @@ values."
      ;; ----------------------------------------------------------------
      ;; Chat
      ;; Checkers
-     (spell-checking :variables
-                     enable-flyspell-auto-completion t)
      syntax-checking
      ;; Completion
      (auto-completion :variables
