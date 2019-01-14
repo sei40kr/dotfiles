@@ -146,8 +146,7 @@ values."
      ipython-notebook
      (lsp :variables
           lsp-navigation 'simple
-          lsp-ui-remap-xref-keybindings t
-          lsp-ui-sideline-enable nil)
+          lsp-ui-remap-xref-keybindings t)
      nginx
      (node :variables
            node-add-modules-path t)
