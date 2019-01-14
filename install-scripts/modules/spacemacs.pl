@@ -117,7 +117,6 @@ yarn_global_add('stylelint-cli');
 
 # JavaScript
 yarn_global_add('eslint-cli');
-yarn_global_add('eslint_d');
 yarn_global_add('import-js');
 yarn_global_add('prettier');
 yarn_global_add('prettier-eslint-cli');
