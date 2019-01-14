@@ -8,9 +8,6 @@ alias -s u 'cd ..'
 alias -s ll 'ls -al'
 alias -s cx 'chmod +x'
 
-# cd-gitroot
-alias -s U 'cd-gitroot'
-
 # coreutils
 alias -s md 'mkdir -p'
 alias -s rd rmdir
