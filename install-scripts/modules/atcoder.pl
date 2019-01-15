@@ -21,6 +21,8 @@ rbenv_install('2.3.3');
 
 # Rust
 rustup_toolchain_install('1.15.1');
+rustup_component_add('rls-preview', '1.15.1');
+rustup_component_add('rust-analysis', '1.15.1');
 rustup_component_add('rust-src', '1.15.1');
 
 1;

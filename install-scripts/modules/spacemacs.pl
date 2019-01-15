@@ -206,6 +206,8 @@ gem_install('rubocop');
 # Rust
 cargo_nightly_install('racer');
 cargo_nightly_install('rustfmt-nightly');
+rustup_component_add('rls-preview');
+rustup_component_add('rust-analysis');
 rustup_component_add('rust-src');
 
 # Shell-script
