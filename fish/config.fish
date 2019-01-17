@@ -3,15 +3,6 @@
 
 set -g EDITOR emacs
 
-# bobthefish
-set theme_display_date no
-set theme_display_cmd_duration yes
-set theme_title_use_abbreviated_path yes
-set theme_powerline_fonts no
-set theme_nerd_fonts no
-set theme_show_exit_status yes
-set theme_color_scheme base16-dark
-
 # direnv
 eval (direnv hook fish)
 
@@ -24,3 +15,10 @@ set -g FZF_ENABLE_OPEN_PREVIEW 0
 if [ -d "$PERLBREW_ROOT" ]
     . $PERLBREW_ROOT/etc/perlbrew.fish
 end
+
+# pure
+set pure_symbol_prompt '~>'
+set pure_symbol_git_arrow_down 'v'
+set pure_symbol_git_arrow_up '^'
+set pure_symbol_git_dirty !
+set pure_symbol_horizontal_bar '*'
