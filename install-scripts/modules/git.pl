@@ -8,8 +8,10 @@ use FindBin;
 use lib "${FindBin::Bin}/install-scripts/lib";
 use InstallHelper::Path;
 
+# TODO Install git-flow on non-macOS envs
 if (&is_macos) {
     brew_install('git');
+    brew_install('git-flow');
 }
 elsif (&is_arch) {
     pacman_sync('git');
