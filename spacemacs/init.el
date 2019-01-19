@@ -593,6 +593,7 @@ It should only modify the values of Spacemacs settings."
                 "java"
                 "javascript"
                 "neotree"
+                "node"
                 "org"
                 "perl5"
                 "plantuml"
@@ -647,6 +648,7 @@ dump."
                   "java"
                   "javascript"
                   "neotree"
+                  "node"
                   "org"
                   "perl5"
                   "plantuml"
@@ -667,7 +669,7 @@ before packages are loaded."
   (my/config)
   (my/config-auto-completion)
   (my/config-java)
-  (my/config-javascript)
+  (my/config-node)
   (my/config-perl5)
   (my/config-spacemacs-evil))
 
