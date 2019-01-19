@@ -46,8 +46,7 @@ values."
      ;; Completion
      (auto-completion :variables
                       spacemacs-default-company-backends
-                      '((company-dabbrev-code company-keywords)
-                        company-files company-dabbrev)
+                      '(company-tabnine company-files)
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior nil
                       auto-completion-enable-help-tooltip t)
@@ -186,6 +185,7 @@ values."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '(
+     company-tabnine
      (competitive-programming-snippets :location local)
      (cpp-auto-include
       :location (recipe :fetcher github
