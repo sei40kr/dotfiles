@@ -631,9 +631,9 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 518 620 392 0 0 1920 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>469 427 796 486 0 0 1920 1057 </string>
+	<string>469 243 796 486 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 74 1920 983 0 0 1920 1057 </string>
+	<string>0 76 1920 981 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>5 84 1915 951 0 0 1920 1057 </string>
 	<key>NeverWarnAboutShortLivedSessions_8433E5AC-2BED-4542-86CA-98F89E1C0519</key>
@@ -1278,7 +1278,7 @@
 			<key>Session Close Undo Timeout</key>
 			<integer>0</integer>
 			<key>Set Local Environment Vars</key>
-			<true/>
+			<false/>
 			<key>Shortcut</key>
 			<string></string>
 			<key>Show Mark Indicators</key>
@@ -1292,7 +1292,7 @@
 			<key>Tags</key>
 			<array/>
 			<key>Terminal Type</key>
-			<string>xterm-256color</string>
+			<string>xterm-256color-italic</string>
 			<key>Thin Strokes</key>
 			<integer>2</integer>
 			<key>Transparency</key>
