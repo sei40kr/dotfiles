@@ -23,6 +23,9 @@ if ( &is_macos or &is_arch ) {
     );
 
     ln( dotfile('tmux/tmux.conf'), "${ENV{HOME}}/.tmux.conf" );
+
+    # Install terminfo files
+    tic( dotfile('terminfo/tmux-256color.terminfo') );
 }
 
 1;
