@@ -138,7 +138,12 @@ values."
      (cmake :variables
             cmake-enable-cmake-ide-support t)
      dap
-     dash
+     (dash :variables
+           helm-dash-docset-newpath
+           (case system-type
+             ('darwin "~/Library/Application Support/Dash/DocSets")
+             ('gnu/linux "~/.local/share/Zeal/Zeal/docsets")
+             (t nil)))
      debug
      (docker :variables
              dockerfile-mode-enable-lsp t)
