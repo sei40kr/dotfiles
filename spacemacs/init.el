@@ -117,6 +117,8 @@ values."
                  typescript-backend 'tide)
      vimscript
      yaml
+     ;; Music
+     spotify
      ;; Operating systems
      ;; Pair programming
      floobits
