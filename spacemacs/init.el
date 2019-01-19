@@ -91,7 +91,8 @@ values."
      (html :variables
            web-fmt-tool 'prettier)
      (java :variables
-           java-backend 'lsp)
+           java-backend 'lsp
+           java--ensime-modes '())
      (javascript :variables
                  javascript-backend 'lsp
                  javascript-fmt-tool 'prettier)
