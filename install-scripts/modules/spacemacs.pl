@@ -13,6 +13,8 @@ if (&is_macos) {
     brew_install( 'emacs-plus', 'with-pdumper', 'HEAD' );
 
     # TODO Invoke `brew services start` here
+
+    tic( dotfile('terminfo/eterm-color.ti') );
 }
 elsif (&is_arch) {
     pacman_sync('emacs');
