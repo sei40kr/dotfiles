@@ -1,10 +1,10 @@
-# ls.fish
+# la.fish
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-function ls -w 'exa'
+function la
     if command -qs exa
-        exa -F $argv
+        exa -laFh $argv
     else
-        command ls -F $argv
+        command ls -lAFh $argv
     end
 end
