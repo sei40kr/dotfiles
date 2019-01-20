@@ -27,6 +27,9 @@ if (&is_macos) {
     # Tell iTerm2 to use the custom preferences in the directory
     defaults_write_bool( 'com.googlecode.iterm2.plist',
         'LoadPrefsFromCustomFolder', 1 );
+
+    # Install terminfo files
+    tic( dotfile('terminfo/xterm-256color-italic.ti') );
 }
 
 1;

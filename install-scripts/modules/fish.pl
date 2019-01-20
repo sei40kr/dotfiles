@@ -82,9 +82,6 @@ if ( &is_macos or &is_arch ) {
         'git@github.com:sei40kr/fish-tmux-navigator.git',
         "${ENV{XDG_CONFIG_HOME}}/fish/plugins/fish-tmux-navigator"
     );
-
-    # Install terminfo files
-    tic( dotfile('terminfo/xterm-256color-italic.terminfo') );
 }
 
 1;

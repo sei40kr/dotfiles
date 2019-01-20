@@ -13,6 +13,9 @@ if (&is_arch) {
     pacman_sync('termite-terminfo');
 
     ln( dotfile('termite/config'), "${ENV{XDG_CONFIG_HOME}}/termite/config" );
+
+    # Install terminfo files
+    tic( dotfile('terminfo/xterm-256color-italic.ti') );
 }
 
 1;
