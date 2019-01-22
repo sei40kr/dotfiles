@@ -40,7 +40,7 @@
   (setq-local helm-dash-docsets '("Scala" "Akka" "Play_Scala")))
 
 (defun my//sql-set-helm-dash-docsets ()
-  (setq-local helm-dash-docsets '("MyS/QL" "PostgreSQL" "SQLite")))
+  (setq-local helm-dash-docsets '("MySQL" "PostgreSQL" "SQLite")))
 
 (let* ((html-additional-docsets '("Bootstrap_4" "Semantic_UI" "Foundation"))
        (javascript-additional-docsets '("React"
