@@ -593,7 +593,6 @@ It should only modify the values of Spacemacs settings."
                 "go"
                 "java"
                 "javascript"
-                "neotree"
                 "node"
                 "org"
                 "perl5"
@@ -602,7 +601,8 @@ It should only modify the values of Spacemacs settings."
                 "shell-scripts"
                 "spacemacs-evil"
                 "spacemacs-project"
-                "syntax-checking"))
+                "syntax-checking"
+                "treemacs"))
   (load (format "%smy-%s" dotspacemacs-directory item)))
 (load (concat dotspacemacs-directory "my-init"))
 
@@ -626,14 +626,14 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-go)
   (my/init-java)
   (my/init-javascript)
-  (my/init-neotree)
   (my/init-org)
   (my/init-plantuml)
   (my/init-rust)
   (my/init-shell-scripts)
   (my/init-spacemacs-evil)
   (my/init-spacemacs-project)
-  (my/init-syntax-checking))
+  (my/init-syntax-checking)
+  (my/init-treemacs))
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
@@ -648,7 +648,6 @@ dump."
                   "go"
                   "java"
                   "javascript"
-                  "neotree"
                   "node"
                   "org"
                   "perl5"
@@ -657,7 +656,8 @@ dump."
                   "shell-scripts"
                   "spacemacs-evil"
                   "spacemacs-project"
-                  "syntax-checking"))
+                  "syntax-checking"
+                  "treemacs"))
     (load (format "%smy-%s" dotspacemacs-directory item)))
   (load (concat dotspacemacs-directory "my-init")))
 
