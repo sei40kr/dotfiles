@@ -64,6 +64,8 @@ values."
      ;; Framework
      react
      ruby-on-rails
+     ;; Filetree
+     neotree
      ;; Fun
      ;; International support
      japanese
