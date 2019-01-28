@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @pip2_install_intermediate = ();
 my @pip3_install_intermediate = ();
@@ -47,7 +50,7 @@ my sub pip2_install_reducer {
 
     my @args = qw(install --exists-action i);
     push( @args, ( &do_update ? '-U' : '--disable-pip-version-check' ) );
-    Command::run( $pip2_exec, @args, @pip2_install_intermediate );
+    run( $pip2_exec, @args, @pip2_install_intermediate );
 }
 
 my sub pip3_install_reducer {
@@ -61,7 +64,7 @@ my sub pip3_install_reducer {
 
     my @args = qw(install --exists-action i);
     push( @args, ( &do_update ? '-U' : '--disable-pip-version-check' ) );
-    Command::run( $pip3_exec, @args, @pip3_install_intermediate );
+    run( $pip3_exec, @args, @pip3_install_intermediate );
 }
 
 register_reducer( 61, \&pip2_install_reducer );

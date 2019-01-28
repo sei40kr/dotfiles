@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @curl_intermediate    = ();
 my @curl_sh_intermediate = ();
@@ -43,7 +46,7 @@ my sub curl_reducer {
 
     &curl_existence_check;
 
-    Command::run( 'curl', qw(-SsLK /dev/null), @curl_args );
+    run( 'curl', qw(-SsLK /dev/null), @curl_args );
 }
 
 my sub curl_sh_reducer {
@@ -53,7 +56,7 @@ my sub curl_sh_reducer {
 
     &curl_existence_check;
 
-    Command::run_pipe( [ qw(curl -SsLK /dev/null), $_->{url} ], ['sh'] )
+    run_pipe( [ qw(curl -SsLK /dev/null), $_->{url} ], ['sh'] )
       foreach @curl_sh_intermediate;
 }
 

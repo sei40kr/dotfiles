@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @rustup_toolchain_install_intermediate = ();
 my %rustup_component_add_intermediate     = ();
@@ -43,7 +46,7 @@ my sub rustup_toolchain_install_reducer {
       if ( !&do_update
         && grep( /^stable|beta|nightly$/,
             @rustup_toolchain_install_intermediate ) );
-    Command::run( $rustup_exec, 'toolchain', 'install', $_ )
+    run( $rustup_exec, 'toolchain', 'install', $_ )
       foreach @rustup_toolchain_install_intermediate;
 }
 
@@ -59,7 +62,7 @@ my sub rustup_component_add_reducer {
       unless (&do_update);
 
     foreach my $toolchain ( keys %rustup_component_add_intermediate ) {
-        Command::run( $rustup_exec, 'component', 'add', '--toolchain',
+        run( $rustup_exec, 'component', 'add', '--toolchain',
             $toolchain, @{ $rustup_component_add_intermediate{$toolchain} } );
     }
 }

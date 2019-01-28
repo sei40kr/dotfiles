@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @goenv_install_intermediate = ();
 my $goenv_global_intermediate;
@@ -34,8 +37,7 @@ my sub goenv_install_reducer {
     my $goenv_exec = &find_goenv_exec;
     error('goenv is not installed.') unless ( defined($goenv_exec) );
 
-    Command::run( $goenv_exec, 'install', '-s', $_ )
-      foreach @goenv_install_intermediate;
+    run( $goenv_exec, 'install', '-s', $_ ) foreach @goenv_install_intermediate;
 }
 
 my sub goenv_global_reducer {
@@ -46,7 +48,7 @@ my sub goenv_global_reducer {
     my $goenv_exec = &find_goenv_exec;
     error('goenv is not installed.') unless ( defined($goenv_exec) );
 
-    Command::run( $goenv_exec, 'global', $goenv_global_intermediate );
+    run( $goenv_exec, 'global', $goenv_global_intermediate );
 }
 
 register_reducer( 50, \&goenv_install_reducer );

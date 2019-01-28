@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @yarn_global_add_intermediate = ();
 
@@ -24,7 +27,7 @@ my sub yarn_global_add_reducer {
     my @cmd =
       qw(yarn global add --no-default-rc --noprogress --non-interactive);
     push( @cmd, '--latest' ) if (&do_update);
-    Command::run( @cmd, @yarn_global_add_intermediate );
+    run( @cmd, @yarn_global_add_intermediate );
 }
 
 register_reducer( 61, \&yarn_global_add_reducer );

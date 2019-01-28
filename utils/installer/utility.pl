@@ -6,7 +6,10 @@ use strict;
 use warnings;
 use File::Basename qw(dirname);
 use File::Path qw(mkpath rmtree);
+use FindBin;
 use Term::ANSIColor;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my %options = (
     dry_run => 0,
@@ -146,11 +149,11 @@ sub git_clone_internal {
           if ( &is_dry_run or &is_verbose );
         mkpath($parent_dir) unless (&is_dry_run);
 
-        Command::run( qw(git clone -q --recurse-submodules -b),
+        run( qw(git clone -q --recurse-submodules -b),
             $branch, $repo, $dest );
     }
     elsif ( &do_update and git_current_branch($dest) eq $branch ) {
-        Command::run(qw(git pull -q --recurse-submodules=yes --ff-only -r true));
+        run(qw(git pull -q --recurse-submodules=yes --ff-only -r true));
     }
 }
 

@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @pyenv_install_intermediate = ();
 my @pyenv_global_intermediate  = ();
@@ -34,7 +37,7 @@ my sub pyenv_install_reducer {
     my $pyenv_exec = &find_pyenv_exec;
     error('pyenv is not installed.') unless ( defined($pyenv_exec) );
 
-    Command::run( $pyenv_exec, 'install', '-s', $_ )
+    run( $pyenv_exec, 'install', '-s', $_ )
       foreach @pyenv_install_intermediate;
 }
 
@@ -46,7 +49,7 @@ my sub pyenv_global_reducer {
     my $pyenv_exec = &find_pyenv_exec;
     error('pyenv is not installed.') unless ( defined($pyenv_exec) );
 
-    Command::run( $pyenv_exec, 'global', @pyenv_global_intermediate );
+    run( $pyenv_exec, 'global', @pyenv_global_intermediate );
 }
 
 register_reducer( 50, \&pyenv_install_reducer );

@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my %defaults_write_intermediate = ();
 
@@ -98,7 +101,7 @@ my sub defaults_write_reducer {
     foreach my $domain ( keys %defaults_write_intermediate ) {
         my $plist = &generate_plist($domain);
         my @command = ( 'defaults', 'import', $domain, '-' );
-        Command::run_with_stdin( $plist, @command );
+        run_with_stdin( $plist, @command );
     }
 }
 

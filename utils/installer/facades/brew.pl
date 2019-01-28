@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @brew_tap_intermediate          = ();
 my @brew_install_intermediate      = ();
@@ -84,7 +87,7 @@ sub brew_reducer {
     log_wait('Installing Homebrew repos, formulas, casks ...');
 
     my $brewfile = &generate_brewfile;
-    Command::run_with_stdin($brewfile, @command)
+    run_with_stdin($brewfile, @command)
 }
 
 register_reducer( 40, \&brew_reducer );

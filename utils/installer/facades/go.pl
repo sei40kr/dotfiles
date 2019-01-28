@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @go_get_intermediate = ();
 
@@ -29,7 +32,7 @@ my sub go_get_reducer {
 
     my @go_args = ('get');
     push( @go_args, '-u' ) if (&do_update);
-    Command::run( $go_exec, @go_args, @go_get_intermediate );
+    run( $go_exec, @go_args, @go_get_intermediate );
 }
 
 register_reducer( 61, \&go_get_reducer );

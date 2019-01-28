@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @tic_intermediate = ();
 
@@ -20,7 +23,7 @@ my sub tic_reducer {
 
     log_wait('Installing terminfo files ...');
 
-    Command::run( qw(tic -x), $_ ) foreach @tic_intermediate;
+    run( qw(tic -x), $_ ) foreach @tic_intermediate;
 }
 
 register_reducer( 70, \&tic_reducer );

@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @stack_install_intermediate = ();
 
@@ -35,7 +38,7 @@ my sub stack_install_reducer {
           foreach @{ $item->{flags} };
     }
 
-    Command::run( qw(stack install), @stack_pkgs, @stack_install_opts );
+    run( qw(stack install), @stack_pkgs, @stack_install_opts );
 }
 
 register_reducer( 60, \&stack_install_reducer );

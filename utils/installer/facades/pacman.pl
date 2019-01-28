@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @pacman_sync_intermediate = ();
 
@@ -26,7 +29,7 @@ my sub pacman_sync_reducer {
 
     log_wait('Installing Pacman packages ...');
 
-    Command::run( qw(sudo pacman -S --needed --noconfirm --noprogressbar),
+    run( qw(sudo pacman -S --needed --noconfirm --noprogressbar),
         @pacman_sync_intermediate );
 }
 

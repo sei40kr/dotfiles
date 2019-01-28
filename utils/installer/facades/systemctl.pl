@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @systemctl_enable_intermediate      = ();
 my @systemctl_enable_user_intermediate = ();
@@ -31,8 +34,7 @@ my sub systemctl_enable_reducer {
 
     log_wait('Enabling systemctl services ...');
 
-    Command::run( qw(sudo systemctl enable --now),
-        @systemctl_enable_intermediate );
+    run( qw(sudo systemctl enable --now), @systemctl_enable_intermediate );
 }
 
 my sub systemctl_enable_user_reducer {
@@ -42,7 +44,7 @@ my sub systemctl_enable_user_reducer {
 
     log_wait('Enabling systemctl user services ...');
 
-    Command::run(
+    run(
         qw(systemctl enable --user --now),
         @systemctl_enable_user_intermediate
     );

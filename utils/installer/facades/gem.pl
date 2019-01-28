@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @gem_install_intermediate = ();
 
@@ -26,7 +29,7 @@ my sub gem_install_reducer {
 
     my @gem_args = qw(install -q --silent --norc);
     push( @gem_args, qw(--conservative --minimal-deps) ) unless (&do_update);
-    Command::run( $gem, @gem_args, @gem_install_intermediate );
+    run( $gem, @gem_args, @gem_install_intermediate );
 }
 
 register_reducer( 61, \&gem_install_reducer );

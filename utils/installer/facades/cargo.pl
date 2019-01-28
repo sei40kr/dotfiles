@@ -6,6 +6,7 @@ use strict;
 use warnings;
 use FindBin;
 use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 use InstallHelper::Logger;
 
 my @cargo_install_intermediate         = ();
@@ -41,7 +42,7 @@ my sub cargo_install_reducer {
 
     log_warn("Cargo can't skip checking package updates.") unless (&do_update);
 
-    Command::run( $cargo_exec, 'install', '-fq', @cargo_install_intermediate );
+    run( $cargo_exec, 'install', '-fq', @cargo_install_intermediate );
 }
 
 my sub cargo_nightly_install_reducer {
@@ -54,7 +55,7 @@ my sub cargo_nightly_install_reducer {
 
     log_warn("Cargo can't skip checking package updates.") unless (&do_update);
 
-    Command::run( $cargo_exec, '+nightly', 'install', '-fq',
+    run( $cargo_exec, '+nightly', 'install', '-fq',
         @cargo_nightly_install_intermediate );
 }
 

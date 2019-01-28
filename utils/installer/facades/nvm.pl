@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @nvm_install_intermediate = ();
 my %nvm_alias_intermediate   = ();
@@ -38,7 +41,7 @@ my sub nvm_install_reducer {
 "nvm can't skip checking updates for these Node versions: stable, unstable."
     ) if ( grep( /^stable|unstable$/, @nvm_install_intermediate ) );
 
-    Command::run( $nvm_exec, 'install', '--no-progress', $_ )
+    run( $nvm_exec, 'install', '--no-progress', $_ )
       foreach @nvm_install_intermediate;
 }
 
@@ -51,7 +54,7 @@ my sub nvm_alias_reducer {
     log_wait('Set aliases pointing to Node versions ...');
 
     foreach my $name ( keys %nvm_alias_intermediate ) {
-        Command::run( $nvm_exec, 'alias', $name,
+        run( $nvm_exec, 'alias', $name,
             $nvm_alias_intermediate{$name} );
     }
 }

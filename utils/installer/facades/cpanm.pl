@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @cpanm_intermediate = ();
 
@@ -31,7 +34,7 @@ my sub cpanm_reducer {
 
     log_warn("cpanm can't skip checking updates.") unless (&do_update);
 
-    Command::run( $cpanm_exec, '-q', @cpanm_intermediate );
+    run( $cpanm_exec, '-q', @cpanm_intermediate );
 }
 
 register_reducer( 61, \&cpanm_reducer );

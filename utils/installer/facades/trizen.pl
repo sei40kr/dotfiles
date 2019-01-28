@@ -5,6 +5,9 @@ use utf8;
 use strict;
 use warnings;
 use File::Path qw(rmtree);
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @trizen_sync_intermediate = ();
 
@@ -43,7 +46,7 @@ my sub trizen_sync_reducer {
 
     my @cmd = qw(trizen -S --noedit --needed --noconfirm);
     push( @cmd, '--nopull' ) unless (&do_update);
-    Command::run( @cmd, @trizen_sync_intermediate );
+    run( @cmd, @trizen_sync_intermediate );
 }
 
 register_reducer( 40, \&trizen_sync_reducer );

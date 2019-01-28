@@ -4,6 +4,9 @@
 use utf8;
 use strict;
 use warnings;
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @rbenv_install_intermediate = ();
 my $rbenv_global_intermediate;
@@ -34,7 +37,7 @@ my sub rbenv_install_reducer {
     my $rbenv_exec = &find_rbenv_exec;
     error('rbenv is not installed.') unless ( defined($rbenv_exec) );
 
-    Command::run( $rbenv_exec, 'install', '-s', $_ )
+    run( $rbenv_exec, 'install', '-s', $_ )
       foreach @rbenv_install_intermediate;
 }
 
@@ -46,7 +49,7 @@ my sub rbenv_global_reducer {
     my $rbenv_exec = &find_rbenv_exec;
     error('rbenv is not installed.') unless ( defined($rbenv_exec) );
 
-    Command::run( $rbenv_exec, 'global', $rbenv_global_intermediate );
+    run( $rbenv_exec, 'global', $rbenv_global_intermediate );
 }
 
 register_reducer( 50, \&rbenv_install_reducer );

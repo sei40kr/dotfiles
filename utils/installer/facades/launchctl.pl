@@ -5,6 +5,9 @@ use utf8;
 use strict;
 use warnings;
 use File::Basename qw(dirname);
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
 
 my @sudo_launchctl_load_intermediate = ();
 my @launchctl_load_intermediate      = ();
@@ -28,7 +31,7 @@ my sub sudo_launchctl_load_reducer {
 
     log_wait('Enabling launchctl system-wide services ...');
 
-    Command::run( qw(sudo launchctl load -w), @sudo_launchctl_load_intermediate );
+    run( qw(sudo launchctl load -w), @sudo_launchctl_load_intermediate );
 }
 
 my sub launchctl_load_reducer {
@@ -38,7 +41,7 @@ my sub launchctl_load_reducer {
 
     log_wait('Enabling launchctl services ...');
 
-    Command::run( qw(launchctl load -w), @launchctl_load_intermediate );
+    run( qw(launchctl load -w), @launchctl_load_intermediate );
 }
 
 register_reducer( 90, \&sudo_launchctl_load_reducer );
