@@ -5,7 +5,7 @@ use utf8;
 use strict;
 use warnings;
 use FindBin;
-use lib "${FindBin::Bin}/install-scripts/lib";
+use lib "${FindBin::Bin}/utils/installer/lib";
 
 if (&is_arch) {
     pacman_sync('arandr');

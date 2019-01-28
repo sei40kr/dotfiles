@@ -4,4 +4,4 @@
 ((cperl-mode
   (eval . (setq flycheck-perl-include-path (list
                                             (concat (projectile-project-root)
-                                                    "/install-scripts/lib"))))))
+                                                    "/utils/installer/lib"))))))

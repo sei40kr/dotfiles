@@ -30,8 +30,8 @@ $ENV{RBENV_ROOT} = "${ENV{HOME}}/.rbenv" unless ( defined( $ENV{RBENV_ROOT} ) );
 
 my $basepath = dirname(__FILE__);
 
-require $basepath . "/install-scripts/lib/command.pl";
-require $basepath . "/install-scripts/utility.pl";
+require $basepath . "/utils/installer/lib/command.pl";
+require $basepath . "/utils/installer/utility.pl";
 
 GetOptions(
     'dry-run' => sub { set_dry_run(1); },
@@ -44,11 +44,11 @@ if ( $#ARGV ne -1 ) { @modules = @ARGV; }
 else {
     @modules =
       map { basename( $_, ".pl" ) }
-      glob "${basepath}/install-scripts/modules/*.pl";
+      glob "${basepath}/utils/installer/modules/*.pl";
 }
 
-require $_ foreach glob "'${basepath}/install-scripts/facades/*.pl'";
+require $_ foreach glob "'${basepath}/utils/installer/facades/*.pl'";
 
-require $basepath . "/install-scripts/modules/$_.pl" foreach @modules;
+require $basepath . "/utils/installer/modules/$_.pl" foreach @modules;
 
 &run_reducers;
