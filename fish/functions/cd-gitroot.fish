@@ -2,7 +2,7 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 function cd-gitroot
-    git rev-parse --show-toplevel | read -l a_path
+    git rev-parse --show-toplevel ^/dev/null | read -l a_path
     or begin
         echo "Not in a git repository" >&2
     end
