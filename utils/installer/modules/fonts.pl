@@ -21,6 +21,9 @@ if (&is_macos) {
     brew_cask_install('font-roboto-mono');            # Roboto Mono
     brew_cask_install('font-source-han-code-jp');     # Source Han Code JP
 
+    # Powerline fonts
+    brew_cask_install('font-menlo-for-powerline');
+
     # brew_cask_install('font-inconsolata-g');          # Inconsolata-g
 }
 elsif (&is_arch) {
@@ -40,6 +43,8 @@ elsif (&is_arch) {
     trizen_sync('ttf-migmix');
 
     trizen_sync('nerd-fonts-fira-code');
+
+    # TODO Install Meslo for Powerline
 }
 
 1;
