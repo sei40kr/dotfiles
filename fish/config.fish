@@ -15,10 +15,3 @@ set -g FZF_ENABLE_OPEN_PREVIEW 0
 if [ -d "$PERLBREW_ROOT" ]
     . $PERLBREW_ROOT/etc/perlbrew.fish
 end
-
-# pure
-set pure_symbol_prompt '~>'
-set pure_symbol_git_arrow_down 'v'
-set pure_symbol_git_arrow_up '^'
-set pure_symbol_git_dirty !
-set pure_symbol_horizontal_bar '*'
