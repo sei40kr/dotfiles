@@ -24,6 +24,9 @@ alias md='mkdir -p'
 alias rd=rmdir
 alias sortnr='sort -nr'
 
+# cd-gitroot
+alias U=cd-gitroot
+
 # diff
 alias diff='diff-so-fancy'
 
