@@ -151,7 +151,7 @@ zplugin snippet 'OMZ::plugins/bgnotify/bgnotify.plugin.zsh'
 zplugin snippet 'OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh'
 zplugin snippet 'OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
 
-export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '
 zplugin light djui/alias-tips
 zplugin ice wait'1' lucid
 zplugin light zdharma/fast-syntax-highlighting
