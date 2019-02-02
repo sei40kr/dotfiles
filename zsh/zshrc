@@ -11,6 +11,8 @@ eval "$(direnv hook zsh)"
 
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 
+bindkey -e
+
 # Commands
 zplugin snippet 'OMZ::lib/clipboard.zsh'
 zplugin ice svn
@@ -157,6 +159,5 @@ zplugin ice wait'1' lucid
 zplugin light zsh-users/zsh-autosuggestions
 
 # Prompt
-SPACESHIP_VI_MODE_SHOW=false
 zplugin ice pick'spaceship.zsh' wait'!0'
 zplugin light denysdovhan/spaceship-zsh-theme
