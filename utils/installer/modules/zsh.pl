@@ -27,6 +27,15 @@ ln( dotfile('zsh/zshrc'),          "${ENV{HOME}}/.zsh/.zshrc" );
 ln( dotfile('zsh/alias_defs.zsh'), "${ENV{HOME}}/.zsh/alias_defs.zsh" );
 
 # Install completions
-ln( dotfile('zsh/completions/_rustup'), "${ENV{HOME}}/.zsh/completions/_rustup" );
+ln(
+    dotfile('zsh/completions/_rustup'),
+    "${ENV{HOME}}/.zsh/completions/_rustup"
+);
+
+# Install functions
+ln(
+    dotfile('zsh/functions/fzf-ghq-widget'),
+    "${ENV{HOME}}/.zsh/functions/fzf-ghq-widget"
+);
 
 1;

@@ -1,3 +1,5 @@
+autoload -Uz fzf-ghq-widget
+
 . "${ZDOTDIR}/alias_defs.zsh"
 
 setopt APPEND_HISTORY
@@ -23,6 +25,12 @@ setopt PUSHD_IGNORE_DUPS
 setopt SHARE_HISTORY
 unsetopt LIST_BEEP
 
+zle -N fzf-ghq-widget
+
+bindkey -e
+bindkey '^xg' fzf-ghq-widget
+bindkey '^x^g' fzf-ghq-widget
+
 autoload -Uz bashcompinit && bashcompinit
 
 eval "$(goenv init - --no-rehash zsh)"
@@ -32,8 +40,6 @@ eval "$(rbenv init - --no-rehash zsh)"
 eval "$(direnv hook zsh)"
 
 . "${HOME}/.zplugin/bin/zplugin.zsh"
-
-bindkey -e
 
 # Commands
 zplugin snippet 'OMZ::lib/clipboard.zsh'
