@@ -12,7 +12,10 @@ export GIT_EDITOR=vim
 # Homebrew
 if hash brew 2>/dev/null; then
     export BREW_PREFIX="$(brew --prefix)"
+
     if [[ "$OSTYPE" == darwin* ]]; then
+        fpath=( "${BREW_PREFIX}/share/zsh/site-functions" $fpath )
+
         path=( "${BREW_PREFIX}/opt/coreutils/libexec/gnubin" $path )
         manpath=( "${BREW_PREFIX}/opt/coreutils/libexec/gnuman" $manpath )
         path=( "${BREW_PREFIX}/opt/findutils/libexec/gnubin" $path )
