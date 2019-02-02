@@ -9,6 +9,7 @@ use lib "${FindBin::Bin}/utils/installer/lib";
 use InstallHelper::Path;
 
 if (&is_macos) {
+    brew_install('direnv');
     brew_install('fzf');
     brew_install('terminal-notifier');
     brew_install('zsh');
