@@ -63,6 +63,8 @@ zplugin ice svn
 zplugin snippet 'OMZ::plugins/golang'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/gradle'
+# zplugin ice svn
+# zplugin snippet 'OMZ::plugins/kubectl'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/laravel'
 zplugin ice svn
@@ -71,8 +73,7 @@ zplugin snippet 'OMZ::plugins/laravel5'
 # zplugin snippet 'OMZ::plugins/minikube'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/mvn'
-# zplugin ice svn
-# zplugin snippet 'OMZ::plugins/kubectl'
+zplugin snippet 'OMZ::plugins/nmap/nmap.plugin.zsh'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/pip'
 zplugin snippet 'OMZ::plugins/postgres/postgres.plugin.zsh'
