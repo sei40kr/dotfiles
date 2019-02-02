@@ -6,7 +6,7 @@ function fzf-ghq-widget {
         [[ -d $HOME'/.dotfiles' ]] && echo "${HOME}/.dotfiles"
         [[ -d $HOME'/.emacs.d' ]] && echo "${HOME}/.emacs.d"
         find "${GHQ_ROOT:-${HOME}/.ghq}" -mindepth 3 -maxdepth 3 -type d
-    } | fzf | read -r a_path
+    } | eval "fzf ${FZF_DEFAULT_OPTS}" | read -r a_path
 
     if [[ "$a_path" == '' ]]; then
         zle reset-prompt
