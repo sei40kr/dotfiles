@@ -9,6 +9,8 @@ export PAGER=less
 export EDITOR=vim
 export GIT_EDITOR=vim
 
+fpath=( "${ZDOTDIR}/completions" $fpath )
+
 # Homebrew
 if hash brew 2>/dev/null; then
     export BREW_PREFIX="$(brew --prefix)"
