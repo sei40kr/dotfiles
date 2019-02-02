@@ -20,8 +20,9 @@ else {
 git_clone( 'https://github.com/zdharma/zplugin.git',
     "${ENV{HOME}}/.zplugin/bin" );
 
-ln( dotfile('zsh/zshenv'), "${ENV{HOME}}/.zshenv" );
-ln( dotfile('zsh/zshenv'), "${ENV{HOME}}/.zsh/.zshenv" );
-ln( dotfile('zsh/zshrc'),  "${ENV{HOME}}/.zsh/.zshrc" );
+ln( dotfile('zsh/zshenv'),         "${ENV{HOME}}/.zshenv" );
+ln( dotfile('zsh/zshenv'),         "${ENV{HOME}}/.zsh/.zshenv" );
+ln( dotfile('zsh/zshrc'),          "${ENV{HOME}}/.zsh/.zshrc" );
+ln( dotfile('zsh/alias_defs.zsh'), "${ENV{HOME}}/.zsh/alias_defs.zsh" );
 
 1;
