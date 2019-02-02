@@ -61,7 +61,7 @@ export GIT_EDITOR=emacsclient
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/gem'
 zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
-zplugin ice svn pick''
+zplugin ice svn pick'git-completion.bash' silent
 zplugin snippet 'OMZ::plugins/gitfast'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/git-flow'
