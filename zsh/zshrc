@@ -12,6 +12,7 @@ eval "$(direnv hook zsh)"
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 
 # Commands
+zplugin snippet 'OMZ::lib/clipboard.zsh'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/capistrano'
 zplugin ice svn
