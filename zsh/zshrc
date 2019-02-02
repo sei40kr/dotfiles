@@ -1,0 +1,155 @@
+autoload -Uz compinit && compinit
+autoload -Uz bashcompinit && bashcompinit
+
+eval "$(goenv init - --no-rehash zsh)"
+eval "$(pyenv init - --no-rehash zsh)"
+eval "$(rbenv init - --no-rehash zsh)"
+
+. "${HOME}/.zplugin/bin/zplugin.zsh"
+
+# Commands
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/capistrano'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/extract'
+zplugin snippet 'OMZ::plugins/iwhois/iwhois.plugin.zsh'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/jira'
+zplugin snippet 'OMZ::plugins/node/node.plugin.zsh'
+zplugin snippet 'OMZ::plugins/perl/perl.plugin.zsh'
+zplugin snippet 'OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh'
+
+FZF_DEFAULT_OPTS='--reverse --inline-info --color=dark --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
+zplugin ice multisrc'shell/{completion,key-bindings}.zsh'
+zplugin light junegunn/fzf
+
+zplugin ice as'program' pick'cd-gitroot'
+zplugin light mollifier/cd-gitroot
+
+# Command Aliases & Completions
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/ansible'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/archlinux'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/bundler'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/cabal'
+zplugin ice svn pick''
+zplugin snippet 'OMZ::plugins/cargo'
+zplugin ice svn pick''
+zplugin snippet 'OMZ::plugins/codeclimate'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/composer'
+zplugin ice svn pick''
+zplugin snippet 'OMZ::plugins/cpanm'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/dash'
+zplugin ice svn pick'docker-compose.plugin.zsh'
+zplugin snippet 'OMZ::plugins/docker-compose' nocompletions
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/emacs'
+export EDITOR=emacsclient
+export GIT_EDITOR=emacsclient
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/gem'
+zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
+zplugin ice svn pick''
+zplugin snippet 'OMZ::plugins/gitfast'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/git-flow'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/golang'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/gradle'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/laravel'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/laravel5'
+# zplugin ice svn
+# zplugin snippet 'OMZ::plugins/minikube'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/mvn'
+# zplugin ice svn
+# zplugin snippet 'OMZ::plugins/kubectl'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/pip'
+zplugin snippet 'OMZ::plugins/postgres/postgres.plugin.zsh'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/pylint'
+zplugin snippet 'OMZ::plugins/python/python.plugin.zsh'
+alias pygrep="rg --iglob '**/*.py'"
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/rails'
+unalias rg
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/rake-fast'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/react-native'
+zplugin ice svn pick''
+zplugin snippet 'OMZ::plugins/redis-cli'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/rsync'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/ruby'
+alias rfind="rg --iglob '**/*.rb'"
+zplugin ice svn pick''
+zplugin snippet 'OMZ::plugins/rust'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/sbt'
+zplugin ice svn pick''
+zplugin snippet 'OMZ::plugins/scala'
+zplugin ice svn pick''
+zplugin snippet 'OMZ::plugins/spring'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/stack'
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOCONNECT=true
+ZSH_TMUX_FIXTERM=false
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/tmux'
+zplugin ice svn pick''
+zplugin snippet 'OMZ::plugins/vagrant'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/yarn'
+
+zplugin light lukechilds/zsh-better-npm-completion
+zplugin ice pick''
+zplugin light zsh-users/zsh-completions
+
+zplugin snippet "${PERLBREW_ROOT}/etc/perlbrew-completion.bash"
+
+if [[ "$OSTYPE" == darwin* ]]; then
+    __docker_etc='/Applications/Docker.app/Contents/Resources/etc'
+    zplugin snippet "${__docker_etc}/docker.zsh-completion"
+    zplugin snippet "${__docker_etc}/docker-compose.zsh-completion"
+else
+    zplugin ice svn pick''
+    zplugin snippet 'OMZ::plugins/docker'
+    zplugin ice svn pick''
+    zplugin snippet 'OMZ::plugins/docker-compose'
+fi
+
+# Version Managers
+export NVM_SYMLINK_CURRENT=true
+export NVM_LAZY_LOAD=true
+export NVM_AUTO_USE=true
+zplugin light lukechilds/zsh-nvm
+
+# Tools & Settings
+zplugin snippet 'OMZ::lib/completion.zsh'
+zplugin snippet 'OMZ::lib/compfix.zsh'
+zplugin snippet 'OMZ::plugins/bgnotify/bgnotify.plugin.zsh'
+zplugin snippet 'OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh'
+zplugin snippet 'OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
+
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
+zplugin light djui/alias-tips
+zplugin ice wait'1' lucid
+zplugin light zdharma/fast-syntax-highlighting
+zplugin ice wait'1' lucid
+zplugin light zsh-users/zsh-autosuggestions
+
+# Prompt
+zplugin ice pick'spaceship.zsh' wait'!0'
+zplugin light denysdovhan/spaceship-zsh-theme
