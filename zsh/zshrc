@@ -4,6 +4,7 @@ autoload -Uz bashcompinit && bashcompinit
 eval "$(goenv init - --no-rehash zsh)"
 eval "$(pyenv init - --no-rehash zsh)"
 eval "$(rbenv init - --no-rehash zsh)"
+. "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 

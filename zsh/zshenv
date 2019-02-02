@@ -48,6 +48,7 @@ PATH="${GOPATH}/bin:${PATH}"
 # Java
 # export JENV_ROOT="${HOME}/.jenv"
 # PATH="${JENV_ROOT}/bin:${JENV_ROOT}/shims:${PATH}"
+export SDKMAN_DIR="${HOME}/.sdkman"
 
 # Perl
 PATH="${HOME}/perl5/bin:${PATH}"
