@@ -11,6 +11,9 @@ set -gx FZF_DEFAULT_OPTS '--reverse --inline-info --color=dark --color=fg:-1,bg:
 set -g FZF_TMUX 1
 set -g FZF_ENABLE_OPEN_PREVIEW 0
 
+# nvm
+set -gx NVM_SYMLINK_CURRENT true
+
 # perlbrew
 if [ -d "$PERLBREW_ROOT" ]
     . $PERLBREW_ROOT/etc/perlbrew.fish
