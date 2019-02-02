@@ -13,45 +13,45 @@ export GIT_EDITOR=vim
 if hash brew 2>/dev/null; then
     export BREW_PREFIX="$(brew --prefix)"
     if [[ "$OSTYPE" == darwin* ]]; then
-        PATH="${BREW_PREFIX}/opt/coreutils/libexec/gnubin:${PATH}"
-        MANPATH="${BREW_PREFIX}/opt/coreutils/libexec/gnuman:${MANPATH}"
-        PATH="${BREW_PREFIX}/opt/findutils/libexec/gnubin:${PATH}"
-        MANPATH="${BREW_PREFIX}/opt/findutils/libexec/gnuman:${MANPATH}"
-        PATH="${BREW_PREFIX}/opt/ed/bin:${PATH}"
-        MANPATH="${BREW_PREFIX}/opt/ed/share/man:${MANPATH}"
-        PATH="${BREW_PREFIX}/opt/gnu-sed/libexec/gnubin:${PATH}"
-        MANPATH="${BREW_PREFIX}/opt/gnu-sed/libexec/gnuman:${MANPATH}"
-        PATH="${BREW_PREFIX}/opt/gnu-tar/libexec/gnubin:${PATH}"
-        MANPATH="${BREW_PREFIX}/opt/gnu-tar/libexec/gnuman:${MANPATH}"
-        PATH="${BREW_PREFIX}/opt/grep/libexec/gnubin:${PATH}"
-        MANPATH="${BREW_PREFIX}/opt/grep/libexec/gnuman:${MANPATH}"
-        PATH="${BREW_PREFIX}/opt/nano/bin:${PATH}"
-        MANPATH="${BREW_PREFIX}/opt/nano/share/man:${MANPATH}"
-        PATH="${BREW_PREFIX}/texlive/2018basic/bin/x86_64-darwin:${PATH}"
+        path=( "${BREW_PREFIX}/opt/coreutils/libexec/gnubin" $path )
+        manpath=( "${BREW_PREFIX}/opt/coreutils/libexec/gnuman" $manpath )
+        path=( "${BREW_PREFIX}/opt/findutils/libexec/gnubin" $path )
+        manpath=( "${BREW_PREFIX}/opt/findutils/libexec/gnuman" $manpath )
+        path=( "${BREW_PREFIX}/opt/ed/bin" $path )
+        manpath=( "${BREW_PREFIX}/opt/ed/share/man" $manpath )
+        path=( "${BREW_PREFIX}/opt/gnu-sed/libexec/gnubin" $path )
+        manpath=( "${BREW_PREFIX}/opt/gnu-sed/libexec/gnuman" $manpath )
+        path=( "${BREW_PREFIX}/opt/gnu-tar/libexec/gnubin" $path )
+        manpath=( "${BREW_PREFIX}/opt/gnu-tar/libexec/gnuman" $manpath )
+        path=( "${BREW_PREFIX}/opt/grep/libexec/gnubin" $path )
+        manpath=( "${BREW_PREFIX}/opt/grep/libexec/gnuman" $manpath )
+        path=( "${BREW_PREFIX}/opt/nano/bin" $path )
+        manpath=( "${BREW_PREFIX}/opt/nano/share/man" $manpath )
+        path=( "${BREW_PREFIX}/texlive/2018basic/bin/x86_64-darwin" $path )
     fi
 fi
 
 
 # Rust
 export CARGO_HOME="${HOME}/.cargo"
-PATH="${CARGO_HOME}/bin:${PATH}"
+path=( "${CARGO_HOME}/bin" $path )
 if hash rustc 2>/dev/null; then
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
 
 # Go
 export GOENV_ROOT="${HOME}/.goenv"
-PATH="${GOENV_ROOT}/bin:${GOENV_ROOT}/shims:${PATH}"
+path=( "${GOENV_ROOT}/bin:${GOENV_ROOT}/shims" $path )
 export GOPATH="${HOME}/go"
-PATH="${GOPATH}/bin:${PATH}"
+path=( "${GOPATH}/bin" $path )
 
 # Java
 # export JENV_ROOT="${HOME}/.jenv"
-# PATH="${JENV_ROOT}/bin:${JENV_ROOT}/shims:${PATH}"
+# path=( "${JENV_ROOT}/bin:${JENV_ROOT}/shims" $path )
 export SDKMAN_DIR="${HOME}/.sdkman"
 
 # Perl
-PATH="${HOME}/perl5/bin:${PATH}"
+path=( "${HOME}/perl5/bin" $path )
 export PERL5LIB="${HOME}/perl5/lib/perl5:${PERL5LIB}"
 export PERL_LOCAL_LIB_ROOT="${HOME}/perl5:${PERL_LOCAL_LIB_ROOT}"
 export PERL_MB_OPT="--install_base '${HOME}/perl5'"
@@ -60,16 +60,16 @@ export PERLBREW_ROOT="${HOME}/perl5/perlbrew"
 
 # Python
 export PYENV_ROOT="${HOME}/.pyenv"
-PATH="${PYENV_ROOT}/bin:${PYENV_ROOT}/shims:${PATH}"
+path=( "${PYENV_ROOT}/bin:${PYENV_ROOT}/shims" $path )
 
 # Ruby
 export RBENV_ROOT="${HOME}/.rbenv"
-PATH="${RBENV_ROOT}/bin:${RBENV_ROOT}/shims:${PATH}"
+path=( "${RBENV_ROOT}/bin:${RBENV_ROOT}/shims" $path )
 
 # Node.js
 export NVM_DIR="${HOME}/.nvm"
-PATH="${HOME}/.yarn/bin:${NVM_DIR}/current/bin:${PATH}"
+path=( "${HOME}/.yarn/bin:${NVM_DIR}/current/bin" $path )
 
-PATH="${HOME}/.local/bin:${PATH}"
-export PATH
-export MANPATH
+path=( "${HOME}/.local/bin" $path )
+export path
+export manpath
