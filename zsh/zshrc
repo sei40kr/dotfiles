@@ -1,6 +1,5 @@
 . "${ZDOTDIR}/alias_defs.zsh"
 
-autoload -Uz compinit && compinit
 autoload -Uz bashcompinit && bashcompinit
 
 eval "$(goenv init - --no-rehash zsh)"
@@ -42,13 +41,13 @@ zplugin ice svn
 zplugin snippet 'OMZ::plugins/bundler'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/cabal'
-zplugin ice svn pick''
+zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/cargo'
-zplugin ice svn pick''
+zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/codeclimate'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/composer'
-zplugin ice svn pick''
+zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/cpanm'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/dash'
@@ -94,20 +93,20 @@ zplugin ice svn
 zplugin snippet 'OMZ::plugins/rake-fast'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/react-native'
-zplugin ice svn pick''
+zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/redis-cli'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/rsync'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/ruby'
 alias rfind="rg --iglob '**/*.rb'"
-zplugin ice svn pick''
+zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/rust'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/sbt'
-zplugin ice svn pick''
+zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/scala'
-zplugin ice svn pick''
+zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/spring'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/stack'
@@ -116,15 +115,17 @@ ZSH_TMUX_AUTOCONNECT=true
 ZSH_TMUX_FIXTERM=false
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/tmux'
-zplugin ice svn pick''
+zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/vagrant'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/yarn'
 
+zplugin ice wait''
 zplugin light lukechilds/zsh-better-npm-completion
-zplugin ice pick''
+zplugin ice pick'' blockf wait''
 zplugin light zsh-users/zsh-completions
 
+zplugin ice wait''
 zplugin snippet "${PERLBREW_ROOT}/etc/perlbrew-completion.bash"
 
 if [[ "$OSTYPE" == darwin* ]]; then
@@ -132,9 +133,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
     zplugin snippet "${__docker_etc}/docker.zsh-completion"
     zplugin snippet "${__docker_etc}/docker-compose.zsh-completion"
 else
-    zplugin ice svn pick''
+    zplugin ice svn pick'' wait''
     zplugin snippet 'OMZ::plugins/docker'
-    zplugin ice svn pick''
+    zplugin ice svn pick'' wait''
     zplugin snippet 'OMZ::plugins/docker-compose'
 fi
 
@@ -153,7 +154,7 @@ zplugin snippet 'OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
 
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '
 zplugin light djui/alias-tips
-zplugin ice wait'1' lucid
+zplugin ice wait'1' lucid atload'zpcompinit'
 zplugin light zdharma/fast-syntax-highlighting
 zplugin ice wait'1' lucid
 zplugin light zsh-users/zsh-autosuggestions
