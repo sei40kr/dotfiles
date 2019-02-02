@@ -583,7 +583,7 @@
 	<key>MinRunningTime</key>
 	<real>0.0</real>
 	<key>NSFontPanelAttributes</key>
-	<string>1, 1</string>
+	<string>1, 9</string>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/iterm2_profile</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
@@ -625,15 +625,15 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>374 330 1076 391 0 0 1920 1057 </string>
+	<string>374 330 1076 257 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUAutomaticUpdateAlert</key>
 	<string>960 883 616 174 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 518 620 392 0 0 1920 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>469 243 796 486 0 0 1920 1057 </string>
+	<string>248 456 796 486 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 76 1920 981 0 0 1920 1057 </string>
+	<string>0 74 1920 983 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>5 84 1915 951 0 0 1920 1057 </string>
 	<key>NeverWarnAboutShortLivedSessions_8433E5AC-2BED-4542-86CA-98F89E1C0519</key>
@@ -648,7 +648,7 @@
 			<key>Allow Title Reporting</key>
 			<true/>
 			<key>Ambiguous Double Width</key>
-			<true/>
+			<false/>
 			<key>Ansi 0 Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -1230,7 +1230,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>InputMono-Regular 18</string>
+			<string>MenloForPowerline-Regular 18</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Place Prompt at First Column</key>
@@ -1278,7 +1278,7 @@
 			<key>Session Close Undo Timeout</key>
 			<integer>0</integer>
 			<key>Set Local Environment Vars</key>
-			<false/>
+			<true/>
 			<key>Shortcut</key>
 			<string></string>
 			<key>Show Mark Indicators</key>
@@ -1292,7 +1292,7 @@
 			<key>Tags</key>
 			<array/>
 			<key>Terminal Type</key>
-			<string>xterm-256color-italic</string>
+			<string>screen-256color-italic</string>
 			<key>Thin Strokes</key>
 			<integer>2</integer>
 			<key>Transparency</key>
@@ -1308,7 +1308,7 @@
 			<key>Use Italic Font</key>
 			<true/>
 			<key>Use Non-ASCII Font</key>
-			<true/>
+			<false/>
 			<key>Vertical Spacing</key>
 			<real>1</real>
 			<key>Visual Bell</key>
@@ -1374,7 +1374,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-01-18T17:52:25Z</date>
+	<date>2019-02-02T01:46:34Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1415,6 +1415,8 @@
 	<false/>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>iTerm Version</key>
 	<string>3.2.6</string>
 </dict>
