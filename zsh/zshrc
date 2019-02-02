@@ -113,6 +113,7 @@ zplugin ice svn pick''
 zplugin snippet 'OMZ::plugins/vagrant'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/yarn'
+unalias yo
 
 zplugin light lukechilds/zsh-better-npm-completion
 zplugin ice pick''
