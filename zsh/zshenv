@@ -3,6 +3,8 @@
 # zsh_profile
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
+export ZDOTDIR="${HOME}/.zsh"
+
 export PAGER=less
 export EDITOR=vim
 export GIT_EDITOR=vim
