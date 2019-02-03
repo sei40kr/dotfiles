@@ -6,6 +6,10 @@ use strict;
 use warnings;
 use File::Basename qw(dirname);
 use File::Path qw(mkpath);
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
+use Install::Logger;
 
 my @ln_intermediate = ();
 

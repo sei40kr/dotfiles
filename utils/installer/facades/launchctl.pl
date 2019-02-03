@@ -8,6 +8,7 @@ use File::Basename qw(dirname);
 use FindBin;
 use lib "${FindBin::Bin}/utils/installer/lib";
 use Install::CommandRunner;
+use Install::Logger;
 
 my @sudo_launchctl_load_intermediate = ();
 my @launchctl_load_intermediate      = ();

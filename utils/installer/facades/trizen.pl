@@ -8,6 +8,7 @@ use File::Path qw(rmtree);
 use FindBin;
 use lib "${FindBin::Bin}/utils/installer/lib";
 use Install::CommandRunner;
+use Install::Logger;
 
 my @trizen_sync_intermediate = ();
 

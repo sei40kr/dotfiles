@@ -7,6 +7,10 @@ use warnings;
 use File::Basename qw(dirname);
 use File::Copy qw(copy);
 use File::Path qw(mkpath);
+use FindBin;
+use lib "${FindBin::Bin}/utils/installer/lib";
+use Install::CommandRunner;
+use Install::Logger;
 
 my @cp_intermediate = ();
 

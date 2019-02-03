@@ -7,6 +7,7 @@ use warnings;
 use FindBin;
 use lib "${FindBin::Bin}/utils/installer/lib";
 use Install::CommandRunner;
+use Install::Logger;
 
 my %defaults_write_intermediate = ();
 

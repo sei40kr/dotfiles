@@ -7,7 +7,7 @@ use warnings;
 use FindBin;
 use lib "${FindBin::Bin}/utils/installer/lib";
 use Install::CommandRunner;
-use InstallHelper::Logger;
+use Install::Logger;
 
 my @cargo_install_intermediate         = ();
 my @cargo_nightly_install_intermediate = ();
