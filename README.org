@@ -26,7 +26,3 @@
   #+END_SRC
 
   Add the public key to my GitHub account.
-
-* License
-  - =feh/arch-01-1920x1080.jpg= (licensed under CC0)
-  - =xrasengan/xrasengan= (licensed under Apache-2.0)
