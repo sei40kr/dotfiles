@@ -113,6 +113,9 @@ values."
            ruby-enable-enh-ruby-mode t
            ruby-version-manager 'rbenv)
      rust
+     (scala :variables
+            scala-auto-insert-asterisk-in-comments t
+            scala-auto-start-ensime t)
      shell-scripts
      sql
      (typescript :variables

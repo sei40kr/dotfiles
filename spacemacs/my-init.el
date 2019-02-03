@@ -61,7 +61,10 @@
 
    ;; yatemplate
    auto-insert-query nil
-   auto-save-default nil))
+   auto-save-default nil)
+  (add-to-list 'configuration-layer-elpa-archives
+               '("melpa-stable" . "stable.melpa.org/packages/"))
+  (add-to-list 'package-pinned-packages '(ensime . "melpa-stable")))
 
 (defun my/config ()
   ;; Copy environment variables from shell
