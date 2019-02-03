@@ -13,7 +13,7 @@
   Some files are encrypted with git-crypt. Download the key from my Dropbox and run:
 
   #+BEGIN_SRC
-    git-crypt unlock /path/to/secret_key
+    git crypt unlock /path/to/secret_key
   #+END_SRC
 
 * Pushing dotfiles
