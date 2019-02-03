@@ -9,7 +9,7 @@
     ./install
   #+END_SRC
 
-* Unlock dotfiles
+* Unlocking dotfiles
   Some files are encrypted with git-crypt. Download the key from my Dropbox and run:
 
   #+BEGIN_SRC
