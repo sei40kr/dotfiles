@@ -6,7 +6,7 @@ use strict;
 use warnings;
 use FindBin;
 use lib "${FindBin::Bin}/utils/installer/lib";
-use InstallHelper::Path;
+use Install::PathResolver;
 
 if (&is_macos) {
     brew_install( 'tmux', 'with-utf8proc' );

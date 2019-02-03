@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use FindBin;
 use lib "${FindBin::Bin}/utils/installer/lib";
-use InstallHelper::Path;
+use Install::PathResolver;
 
 # ripgrep.pl --- ripgrep installer
 # author: Seong Yong-ju <sei40kr@gmail.com>

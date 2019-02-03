@@ -6,7 +6,7 @@ use strict;
 use warnings;
 use FindBin;
 use lib "${FindBin::Bin}/utils/installer/lib";
-use InstallHelper::Path;
+use Install::PathResolver;
 
 pip3_install('FlexGet');
 pip3_install('transmissionrpc');

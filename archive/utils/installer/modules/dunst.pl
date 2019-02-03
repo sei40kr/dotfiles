@@ -6,7 +6,7 @@ use strict;
 use warnings;
 use FindBin;
 use lib "${FindBin::Bin}/utils/installer/lib";
-use InstallHelper::Path;
+use Install::PathResolver;
 
 if (&is_arch) {
     pacman_sync('dunst');
