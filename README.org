@@ -1,7 +1,7 @@
 #+TITLE: dotfiles
 
 * Install
-  Clone this repository and just run the installer.
+  Clone this repo and just run the installer.
 
   #+BEGIN_SRC sh
     git clone git@github.com:sei40kr/dotfiles.git ~/.dotfiles
@@ -17,7 +17,7 @@
   #+END_SRC
 
 * Pushing dotfiles
-  Create a pair of ECDSA keys and copy the public one.
+  Create a pair of ECDSA keys and copy the public key.
 
   #+BEGIN_SRC sh
     ssh-keygen -t ecdsa -b 256
