@@ -9,6 +9,8 @@ export PAGER=less
 export EDITOR=vim
 export GIT_EDITOR=vim
 
+typeset -U path manpath fpath
+
 fpath=( "${ZDOTDIR}/functions" "${ZDOTDIR}/completions" $fpath )
 
 # Homebrew
@@ -54,6 +56,7 @@ path=( "${GOPATH}/bin" $path )
 # export JENV_ROOT="${HOME}/.jenv"
 # path=( "${JENV_ROOT}/bin:${JENV_ROOT}/shims" $path )
 export SDKMAN_DIR="${HOME}/.sdkman"
+path=( "${SDKMAN_DIR}/candidates"/*'/current/bin' $path )
 
 # Perl
 path=( "${HOME}/perl5/bin" $path )
