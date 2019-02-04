@@ -1,0 +1,36 @@
+# -*- mode: sh -*-
+
+# fzf-repo-widget.zsh
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+function fzf-repo-widget {
+    {
+        [[ -d $HOME'/.dotfiles' ]] && echo "${HOME}/.dotfiles"
+        [[ -d $HOME'/.emacs.d' ]] && echo "${HOME}/.emacs.d"
+        find "${HOME}/develop/workspace" -mindepth 1 -maxdepth 1 -type d
+    } | eval "fzf ${FZF_DEFAULT_OPTS}" | read -r a_path
+
+    if [[ "$a_path" == '' ]]; then
+        zle reset-prompt
+        return
+    fi
+
+    if [[ "$TMUX" == '' ]]; then
+        cd "$a_path"
+        zle redisplay
+        return
+    fi
+
+    local session_name="$(tr -d '.' <<<"$(basename "$a_path")")"
+    tmux switch-client -t "$session_name" 2>/dev/null && return
+
+    local current_session="$(tmux display-message -p '#S')"
+    if [[ "$current_session" = <-> ]]; then
+        tmux rename-session -t "$current_session" -- "$session_name"
+        cd "$a_path"
+        zle redisplay
+    else
+        tmux new-session -dc "$a_path" -s "$session_name"
+        tmux switch-client -t "$session_name"
+    fi
+}
