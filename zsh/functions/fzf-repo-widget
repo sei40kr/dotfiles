@@ -3,12 +3,32 @@
 # fzf-repo-widget.zsh
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
+function __home_to_tilde {
+    while read -r a_path; do
+        if [[ "$a_path" == "${HOME}"* ]]; then
+            echo "~${a_path:${#HOME}}"
+        else
+            echo "$a_path"
+        fi
+    done
+}
+
+function __tilde_to_home {
+    read -r a_path
+
+    if [[ "$a_path" == '~'* ]]; then
+        echo "${HOME}${a_path:1}"
+    else
+        echo "$a_path"
+    fi
+}
+
 function fzf-repo-widget {
     {
         [[ -d $HOME'/.dotfiles' ]] && echo "${HOME}/.dotfiles"
         [[ -d $HOME'/.emacs.d' ]] && echo "${HOME}/.emacs.d"
         find "${HOME}/develop/workspace" -mindepth 1 -maxdepth 1 -type d
-    } | eval "fzf ${FZF_DEFAULT_OPTS}" | read -r a_path
+    } | __home_to_tilde | eval "fzf ${FZF_DEFAULT_OPTS}" | __tilde_to_home | read -r a_path
 
     if [[ "$a_path" == '' ]]; then
         zle reset-prompt
