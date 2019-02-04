@@ -36,6 +36,8 @@ autoload -Uz bashcompinit && bashcompinit
 eval "$(goenv init - --no-rehash zsh)"
 eval "$(pyenv init - --no-rehash zsh)"
 eval "$(rbenv init - --no-rehash zsh)"
+export PHPBREW_RC_ENABLE=1
+. "${HOME}/.phpbrew/bashrc"
 . "${SDKMAN_DIR}/bin/sdkman-init.sh"
 eval "$(direnv hook zsh)"
 
