@@ -35,7 +35,7 @@ my sub chmod_reducer {
             printf "> chmod %04d, '%s';\n", $item->{mode}, $item->{file};
         }
         unless (&is_dry_run) {
-            chmod $item->{mode}, $item->{file};
+            chmod oct( sprintf "%04d", $item->{mode} ), $item->{file};
         }
     }
 }
