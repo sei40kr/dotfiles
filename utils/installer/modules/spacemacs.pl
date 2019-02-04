@@ -27,10 +27,6 @@ git_clone(
     'ssh://git@github.com/sei40kr/spacemacs-quickrun.git',
     "${ENV{HOME}}/.emacs.d/private/layers/quickrun"
 );
-git_clone(
-    'ssh://git@github.com/sei40kr/spacemacs-ghq.git',
-    "${ENV{HOME}}/.emacs.d/private/layers/ghq"
-);
 
 git_clone(
     'ssh://git@github.com/sei40kr/competitive-programming-snippets.git',

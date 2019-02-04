@@ -130,8 +130,20 @@ values."
      floobits
      ;; Source control
      (git :variables
-          git-magit-status-fullscreen t)
-     github
+          git-magit-status-fullscreen t
+          magit-clone-default-directory "~/develop/workspace"
+          magit-repolist-columns '(("Name" 25 magit-repolist-column-ident nil)
+                                   ("Version" 25 magit-repolist-column-version nil)
+                                   ("Path" 99 magit-repolist-column-path nil))
+          magit-repository-directories '(("~/.dotfiles" . 0)
+                                         ("~/.zsh/plugins" . 1)
+                                         ("~/.config/fish/plugins" . 1)
+                                         ("~/.emacs.d" . 0)
+                                         ("~/.emacs.d/private/layers" . 1)
+                                         ("~/develop/workspace" . 1))
+          )
+     (github :variables
+             magithub-clone-default-directory "~/develop/workspace")
      (version-control :variables
                       version-control-global-margin t
                       version-control-diff-tool 'diff-hl
@@ -186,7 +198,6 @@ values."
      (multiple-cursors :variables
                        multiple-cursors-backend 'evil-mc)
      ;; Custom
-     ghq
      quickrun
      )
 

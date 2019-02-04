@@ -39,16 +39,6 @@
    ;; helm
    helm-mini-default-sources '(helm-source-buffers-list)
 
-   ;; magit
-   magit-repolist-columns '(("Name" 25 magit-repolist-column-ident nil)
-                            ("Version" 25 magit-repolist-column-version nil)
-                            ("Path" 99 magit-repolist-column-path nil))
-   magit-repository-directories (list (cons "~/.dotfiles" 0)
-                                      (cons "~/.emacs.d" 0)
-                                      (cons "~/.emacs.d/private/layers" 1)
-                                      (cons "~/.emacs.d/private/local" 1)
-                                      (cons "~/.config/fish/plugins" 1))
-
    ;; semantic
    semanticdb-find-default-throttle '(file local project unloaded system)
 

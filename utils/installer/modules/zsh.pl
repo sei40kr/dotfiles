@@ -34,8 +34,8 @@ ln(
 
 # Install functions
 ln(
-    dotfile('zsh/functions/fzf-ghq-widget'),
-    "${ENV{HOME}}/.zsh/functions/fzf-ghq-widget"
+    dotfile('zsh/functions/fzf-repo-widget'),
+    "${ENV{HOME}}/.zsh/functions/fzf-repo-widget"
 );
 
 1;
