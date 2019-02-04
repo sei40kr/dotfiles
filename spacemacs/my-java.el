@@ -6,5 +6,5 @@
 
 (defun my/config-java ()
   (spacemacs/declare-prefix-for-mode 'java-mode "m=" "format")
-  (spacemacs/set-leader-keys-for-minor-mode 'java-mode
+  (spacemacs/set-leader-keys-for-major-mode 'java-mode
     "=g" #'google-java-format))
