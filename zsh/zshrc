@@ -33,11 +33,11 @@ bindkey '^x^g' fzf-repo-widget
 
 autoload -Uz bashcompinit && bashcompinit
 
-eval "$(goenv init - --no-rehash zsh)"
-eval "$(pyenv init - --no-rehash zsh)"
-eval "$(rbenv init - --no-rehash zsh)"
-. "${SDKMAN_DIR}/bin/sdkman-init.sh"
-eval "$(direnv hook zsh)"
+[[ -d "${GOENV_ROOT:-${HOME}/.goenv}" ]] && eval "$(goenv init - --no-rehash zsh)"
+[[ -d "${PYENV_ROOT:-${HOME}/.pyenv}" ]] && eval "$(pyenv init - --no-rehash zsh)"
+[[ -d "${RBENV_ROOT:-${HOME}/.rbenv}" ]] && eval "$(rbenv init - --no-rehash zsh)"
+[[ -d "${SDKMAN_DIR:-${HOME}/.sdkman}" ]] && . "${SDKMAN_DIR}/bin/sdkman-init.sh"
+hash direnv 2>/dev/null && eval "$(direnv hook zsh)"
 
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 
@@ -171,8 +171,10 @@ zplugin light lukechilds/zsh-better-npm-completion
 zplugin ice pick'' blockf wait''
 zplugin light zsh-users/zsh-completions
 
-zplugin ice wait''
-zplugin snippet "${PERLBREW_ROOT}/etc/perlbrew-completion.bash"
+if [[ -d "${PERLBREW_ROOT:-${HOME}/perl5/perlbrew}" ]]; then
+    zplugin ice wait''
+    zplugin snippet "${PERLBREW_ROOT}/etc/perlbrew-completion.bash"
+fi
 
 if [[ "$OSTYPE" == darwin* ]]; then
     __docker_etc='/Applications/Docker.app/Contents/Resources/etc'
