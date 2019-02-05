@@ -194,6 +194,7 @@ pip3_install('rope');
 pip3_install('yapf');
 
 # Ruby
+gem_install('clippy');
 gem_install('fastri');
 gem_install('pry');
 gem_install('pry-coolline');
