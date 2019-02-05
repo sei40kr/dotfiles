@@ -199,6 +199,7 @@ gem_install('fastri');
 gem_install('pry');
 gem_install('pry-coolline');
 gem_install('pry-doc');
+ln( dotfile('pry/pryrc'), "${ENV{HOME}}/.pryrc" );
 gem_install('rake');
 gem_install('rcodetools');
 gem_install('rubocop');

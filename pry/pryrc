@@ -1,0 +1,6 @@
+# -*- mode: enh-ruby -*-
+
+if ENV['INSIDE_EMACS']
+  Pry.config.pager = false
+  Pry.config.correct_indent = false
+end
