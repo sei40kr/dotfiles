@@ -111,7 +111,8 @@ values."
              python-backend 'lsp)
      (ruby :variables
            ruby-enable-enh-ruby-mode t
-           ruby-version-manager 'rbenv)
+           ruby-version-manager 'rbenv
+           inf-ruby-default-implementation "pry")
      rust
      (scala :variables
             scala-auto-insert-asterisk-in-comments t
