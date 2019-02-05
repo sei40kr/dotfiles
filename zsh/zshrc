@@ -65,8 +65,24 @@ zplugin light mollifier/cd-gitroot
 # Command Aliases & Completions
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/ansible'
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/archlinux'
+if [[ "$OSTYPE" == linux* && -f /etc/arch-release || "$OSTYPE" == msys* ]]; then
+    zplugin ice svn
+    zplugin snippet 'OMZ::plugins/archlinux'
+fi
+if [[ "$OSTYPE" == msys* ]]; then
+    # Pacman in MSYS2 does not require root permission
+    alias pacupg='pacman -Syu'
+    alias pacin='pacman -S'
+    alias pacins='pacman -U'
+    alias pacre='pacman -R'
+    alias pacrem='pacman -Rns'
+    alias pacinsd='pacman -S --asdeps'
+    alias pacmir='pacman -Syy'
+    alias paclsorphans='pacman -Qdt'
+    alias pacrmorphans='pacman -Rs $(pacman -Qtdq)'
+    alias pacfileupg='pacman -Fy'
+    alias pacupd='pacman -Sy'
+fi
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/bundler'
 zplugin ice svn
