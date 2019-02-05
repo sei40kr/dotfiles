@@ -54,3 +54,5 @@ function fzf-repo-widget {
         tmux switch-client -t "$session_name"
     fi
 }
+
+fzf-repo-widget "$@"
