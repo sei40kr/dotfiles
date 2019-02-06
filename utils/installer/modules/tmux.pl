@@ -9,7 +9,7 @@ use lib "${FindBin::Bin}/utils/installer/lib";
 use Install::PathResolver;
 
 if (&is_macos) {
-    brew_install( 'tmux', 'with-utf8proc' );
+    brew_install('tmux');
     brew_install('reattach-to-user-namespace');
 }
 elsif (&is_arch) {
