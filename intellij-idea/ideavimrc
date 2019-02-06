@@ -3,30 +3,29 @@
 " vimrc
 " author: Seong Yong-ju <sei40kr@gmail.com>
 
+set history
+set hlsearch
+set ignorecase
+set incsearch
+set matchpairs
+set number
+set relativenumber
+set showmode
+set smartcase
+set wrapscan
+
+set surround
+set multiple-cursors
+
+nnoremap <Space><Space> :action GotoAction<CR>
+
 inoremap jk <Esc>
-
-" Move line up
-nnoremap <silent> [e :move -2<CR>
-" Move line down
-nnoremap <silent> ]e :move +<CR>
-
-" Insert space above
-nnoremap <silent> [<Space> O<Esc>
-" Insert space below
-nnoremap <silent> ]<Space> o<Esc>
-
-" Paste above current line
-nnoremap <silent> [p P
-" Paste below current line
-nnoremap <silent> ]p p
 
 " Smart up and down
 nnoremap <Up> gk
 nnoremap <Down> gj
-
 " After paragraph motion go to first non-blank char (}^)
 nnoremap } }^
-
 " Indent to left and re-select
 nnoremap < <<_
 xnoremap < <gv
@@ -35,7 +34,6 @@ xnoremap <S-Tab> <gv
 nnoremap > >>_
 xnoremap > >gv|
 xnoremap <Tab> >gv|
-
 " Navigation in command line
 cnoremap <C-a> <Home>
 " Move cursor backward in command line
@@ -43,15 +41,79 @@ cnoremap <C-b> <Left>
 " Move cursor forward in command line
 cnoremap <C-f> <Right>
 
-" Move to split below (j)
-nnoremap <silent> <C-j> <C-w>j
-nnoremap <silent> <C-Down> <C-w>j
-" Move to upper split (k)
-nnoremap <silent> <C-k> <C-w>k
-nnoremap <silent> <C-Up> <C-w>k
-" Move to left split (h)
-nnoremap <silent> <C-h> <C-w>h
-nnoremap <silent> <C-Left> <C-w>h
-" Move to right split (l)
-nnoremap <silent> <C-l> <C-w>l
-nnoremap <silent> <C-Right> <C-w>l
+"" Persistent Highlighting
+" Clear the highlighting
+noremap <Space>sc :<C-u>nohl<CR>
+
+"" Unimpaired bindings
+" Insert space above
+nnoremap <silent> [<Space> O<Esc>j
+" Insert space below
+nnoremap <silent> ]<Space> o<Esc>k
+" Move line up
+nnoremap <silent> [e :move -2<CR>
+" Move line down
+nnoremap <silent> ]e :move +<CR>
+" Go to the previous vcs hunk
+nnoremap [h :action VcsShowPrevChangeMarker<CR>
+" Go to the next vcs hunk
+nnoremap ]h :action VcsShowNextChangeMarker<CR>
+" Go to the previous error
+nnoremap [l :action GotoPreviousError<CR>
+nnoremap [q :action GotoPreviousError<CR>
+" Go to the next error
+nnoremap ]l :action GotoNextError<CR>
+nnoremap ]q :action GotoNextError<CR>
+" Paste above current line
+nnoremap <silent> [p P
+" Paste below current line
+nnoremap <silent> ]p p
+
+"" Jumping
+nnoremap <silent> <Space>jj :action AceAction<CR>
+nnoremap <silent> <Space>jl :action AceLineAction<CR>
+
+"" Files Manipulations
+" Open a file
+nnoremap <silent> <Space>ff :action GotoFile<CR>
+" Try to open the file under point
+nnoremap <silent> <Space>fF gd
+" Rename the current file
+nnoremap <silent> <Space>fR :action RenameFile<CR>
+" Save a file
+noremap <silent> <Space>fs :<C-u>w<CR>
+" Save all files
+noremap <silent> <Space>fS :<C-u>action SaveAll<CR>
+" Open a recent file
+nnoremap <silent> <Space>fr :action OpenRecentFile<CR>
+" Show file tree side bar
+nnoremap <silent> <Space>fT :action ActivateProjectToolWindow<CR>
+
+"" Searching in a Project
+nmap <silent> <Space>/ <Space>sp
+nnoremap <silent> <Space>sp :action FindInPath<CR>
+
+"" Increase/Decrease Numbers
+" Decrease the number under point by one and initiate transient state
+nnoremap <silent> <Space>n- <C-x>
+" Increase the number under point by one and initiate transient state
+nnoremap <silent> <Space>n+ <C-a>
+
+"" Error Handling
+" Go to the previous error
+nnoremap <silent> <Space>ep :action GotoPreviousError<CR>
+" Go to the next error
+nnoremap <silent> <Space>en :action GotoNextError<CR>
+
+"" Managing Projects
+nnoremap <silent> <Space>p\' :action ActivateTerminalToolWindow<CR>
+
+"" Searching Files in a Project
+nmap <silent> <Space>pf <Space>ff
+nmap <silent> <Space>p/ <Space>sp
+nnoremap <silent> <Space>pp :action ManageRecentProjects<CR>
+
+"" Refactoring
+nmap , <Space>m
+nnoremap <silent> <Space>m= :action ReformatCode<CR>
+nnoremap <silent> <Space>mrr :action RenameElement<CR>
