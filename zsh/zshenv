@@ -52,6 +52,7 @@ export GOPATH="${HOME}/go"
 path=( "${GOPATH}/bin" $path )
 
 # Java
+export SDKMAN_DIR="${HOME}/.sdkman"
 path=( "${SDKMAN_DIR}/candidates"/*'/current/bin' $path )
 
 # Perl
