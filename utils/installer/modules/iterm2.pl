@@ -29,7 +29,7 @@ if (&is_macos) {
         'LoadPrefsFromCustomFolder', 1 );
 
     # Install terminfo files
-    tic( dotfile('terminfo/xterm-256color-italic.ti') );
+    tic( dotfile('terminfo/all-in-one.ti') );
 }
 
 1;
