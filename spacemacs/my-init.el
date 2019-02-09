@@ -5,6 +5,7 @@
    exec-path-from-shell-variables '("PATH"
                                     "MANPATH"
                                     "CARGO_HOME"
+                                    "GOPATH"
                                     "PERL5LIB"
                                     "PERL_LOCAL_LIB_ROOT"
                                     "PERL_MB_OPT"
