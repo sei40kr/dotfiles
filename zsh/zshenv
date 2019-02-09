@@ -38,7 +38,6 @@ if hash brew 2>/dev/null; then
     fi
 fi
 
-
 # Rust
 export CARGO_HOME="${HOME}/.cargo"
 path=( "${CARGO_HOME}/bin" $path )
@@ -53,9 +52,6 @@ export GOPATH="${HOME}/go"
 path=( "${GOPATH}/bin" $path )
 
 # Java
-# export JENV_ROOT="${HOME}/.jenv"
-# path=( "${JENV_ROOT}/bin:${JENV_ROOT}/shims" $path )
-export SDKMAN_DIR="${HOME}/.sdkman"
 path=( "${SDKMAN_DIR}/candidates"/*'/current/bin' $path )
 
 # Perl
