@@ -69,6 +69,11 @@ nnoremap <silent> [p P
 " Paste below current line
 nnoremap <silent> ]p p
 
+"" Buffer and Files
+" Copy clipboard and replace buffer
+nnoremap <silent> <Space>bP ggVG\"+y
+nnoremap <silent> <Space>bY ggdG\"+P
+
 "" Jumping
 nnoremap <silent> <Space>jj :action AceAction<CR>
 nnoremap <silent> <Space>jl :action AceLineAction<CR>
