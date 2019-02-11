@@ -9,10 +9,19 @@ use lib "${FindBin::Bin}/utils/installer/lib";
 use Install::PathResolver;
 
 if (&is_macos) {
+    brew_install('zsh');
+
     brew_install('direnv');
     brew_install('fzf');
     brew_install('terminal-notifier');
-    brew_install('zsh');
+
+    brew_install('bat');
+    brew_install('diff-so-fancy');
+    brew_install('exa');
+    brew_install('htop');
+    brew_install('ncdu');
+    brew_install('prettyping');
+    brew_install('tree');
 }
 else {
     # TODO Install zsh on other envs
