@@ -11,6 +11,7 @@ use Install::PathResolver;
 # TODO Install direnv on non-macOS envs
 if (&is_macos) {
     brew_install('fish');
+    brew_install('zsh');
 
     brew_install('direnv');
     brew_install('fzf');
@@ -32,8 +33,8 @@ elsif (&is_arch) {
 }
 
 if ( &is_macos or &is_arch ) {
-    ln( dotfile('fish/bash_profile'), "${ENV{HOME}}/.bash_profile" );
-    ln( dotfile('fish/bashrc'),       "${ENV{HOME}}/.bashrc" );
+    ln( dotfile('zsh/zshenv'),         "${ENV{HOME}}/.zshenv" );
+    ln( dotfile('zsh/zshenv'),         "${ENV{HOME}}/.zsh/.zshenv" );
 
     # Install fish functions
     my @fish_funcs =
