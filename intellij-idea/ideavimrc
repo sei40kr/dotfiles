@@ -72,6 +72,7 @@ nnoremap <silent> ]p p
 "" Buffer and Files
 " Copy clipboard and replace buffer
 nnoremap <silent> <Space>bP ggVG\"+y
+" Copy whole buffer to clipboard
 nnoremap <silent> <Space>bY ggdG\"+P
 
 "" Jumping
