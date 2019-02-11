@@ -22,6 +22,7 @@ if (&is_macos) {
     brew_cask_install('font-source-han-code-jp');     # Source Han Code JP
 
     # Powerline fonts
+    brew_cask_install('font-fira-mono-for-powerline');
     brew_cask_install('font-menlo-for-powerline');
 
     # brew_cask_install('font-inconsolata-g');          # Inconsolata-g
