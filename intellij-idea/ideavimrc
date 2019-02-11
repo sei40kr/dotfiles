@@ -70,6 +70,8 @@ nnoremap <silent> [p P
 nnoremap <silent> ]p p
 
 "" Buffer and Files
+" Kill other buffers
+nnoremap <silent> <Space>b<C-d> :action CloseAllEditorsButActive<CR>
 " Copy clipboard and replace buffer
 nnoremap <silent> <Space>bP ggVG\"+y
 " Copy whole buffer to clipboard
