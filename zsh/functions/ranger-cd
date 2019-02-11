@@ -1,0 +1,17 @@
+# -*- mode: sh -*-
+
+# ranger-cd
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+function ranger-cd {
+    local tmpfile="$(mktemp -t tmp.XXXXXX)"
+
+    ranger --choosedir="$tmpfile" "$@"
+
+    if [[ -f "$tmpfile" ]]; then
+        cd "$(cat "$tmpfile")"
+    fi
+    rm -f "$tmpfile"
+}
+
+ranger-cd "$@"
