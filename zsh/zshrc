@@ -2,6 +2,7 @@ autoload -Uz fzf-repo-widget
 autoload -Uz ranger-cd
 
 . "${ZDOTDIR}/alias_defs.zsh"
+. "${ZDOTDIR}/func_defs.zsh"
 
 setopt APPEND_HISTORY
 setopt AUTO_CD

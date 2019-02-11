@@ -25,6 +25,7 @@ ln( dotfile('zsh/zshenv'),         "${ENV{HOME}}/.zshenv" );
 ln( dotfile('zsh/zshenv'),         "${ENV{HOME}}/.zsh/.zshenv" );
 ln( dotfile('zsh/zshrc'),          "${ENV{HOME}}/.zsh/.zshrc" );
 ln( dotfile('zsh/alias_defs.zsh'), "${ENV{HOME}}/.zsh/alias_defs.zsh" );
+ln( dotfile('zsh/func_defs.zsh'),  "${ENV{HOME}}/.zsh/func_defs.zsh" );
 
 # Install completions
 ln(

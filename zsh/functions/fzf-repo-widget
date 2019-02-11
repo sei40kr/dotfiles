@@ -36,8 +36,8 @@ function fzf-repo-widget {
     fi
 
     if [[ "$TMUX" == '' ]]; then
-        cd "$a_path"
-        zle redisplay
+        BUFFER="cd $(shescape "$a_path")"
+        zle accept-line
         return
     fi
 
@@ -47,8 +47,8 @@ function fzf-repo-widget {
     local current_session="$(tmux display-message -p '#S')"
     if [[ "$current_session" = <-> ]]; then
         tmux rename-session -t "$current_session" -- "$session_name"
-        cd "$a_path"
-        zle redisplay
+        BUFFER="cd $(shescape "$a_path")"
+        zle accept-line
     else
         tmux new-session -dc "$a_path" -s "$session_name"
         tmux switch-client -t "$session_name"
