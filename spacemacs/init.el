@@ -125,7 +125,6 @@ values."
      vimscript
      yaml
      ;; Music
-     spotify
      ;; Operating systems
      ;; Pair programming
      floobits
