@@ -131,19 +131,7 @@ values."
      floobits
      ;; Source control
      (git :variables
-          git-magit-status-fullscreen t
-          magit-clone-default-directory "~/develop/workspace"
-          magit-repolist-columns '(("Name" 25 magit-repolist-column-ident nil)
-                                   ("Version" 25 magit-repolist-column-version nil)
-                                   ("Path" 99 magit-repolist-column-path nil))
-          magit-repository-directories '(("~/.dotfiles" . 0)
-                                         ("~/.zsh/plugins" . 1)
-                                         ("~/.zplugin/plugins" . 1)
-                                         ("~/.config/fish/plugins" . 1)
-                                         ("~/.emacs.d" . 0)
-                                         ("~/.emacs.d/private/layers" . 1)
-                                         ("~/develop/workspace" . 1))
-          )
+          git-magit-status-fullscreen t)
      (github :variables
              magithub-clone-default-directory "~/develop/workspace")
      (version-control :variables
@@ -608,6 +596,7 @@ It should only modify the values of Spacemacs settings."
 (dolist (item '("c-c++"
                 "auto-completion"
                 "dash"
+                "git"
                 "go"
                 "java"
                 "javascript"
@@ -641,6 +630,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init)
   (my/init-c-c++)
   (my/init-dash)
+  (my/init-git)
   (my/init-go)
   (my/init-java)
   (my/init-javascript)
@@ -663,6 +653,7 @@ dump."
   (dolist (item '("c-c++"
                   "auto-completion"
                   "dash"
+                  "git"
                   "go"
                   "java"
                   "javascript"
@@ -687,6 +678,7 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (my/config)
   (my/config-auto-completion)
+  (my/config-git)
   (my/config-java)
   (my/config-node)
   (my/config-perl5)
