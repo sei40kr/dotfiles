@@ -24,6 +24,7 @@ if (&is_macos) {
 }
 elsif (&is_arch) {
     pacman_sync('zsh');
+    pacman_sync('subversion');    # required by zplugin
 
     pacman_sync('fzf');
 
