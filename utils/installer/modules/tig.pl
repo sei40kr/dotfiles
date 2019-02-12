@@ -10,10 +10,13 @@ use Install::PathResolver;
 
 if (&is_macos) {
     brew_install('tig');
-} else {
-    # TODO Install tig on other envs
+}
+elsif (&is_arch) {
+    pacman_sync('tig');
 }
 
-ln( dotfile('tig/tigrc'), "${ENV{HOME}}/.tigrc" );
+if ( &is_macos || &is_arch ) {
+    ln( dotfile('tig/tigrc'), "${ENV{HOME}}/.tigrc" );
+}
 
 1;
