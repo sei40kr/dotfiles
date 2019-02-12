@@ -89,8 +89,10 @@ zplugin ice svn pick'docker-compose.plugin.zsh'
 zplugin snippet 'OMZ::plugins/docker-compose' nocompletions
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/emacs'
-export EDITOR=emacsclient
-export GIT_EDITOR=emacsclient
+if hash emacs 2>/dev/null && hash emacsclient 2>/dev/null; then
+    export EDITOR=emacsclient
+    export GIT_EDITOR=emacsclient
+fi
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/gem'
 zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
