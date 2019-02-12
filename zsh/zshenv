@@ -12,6 +12,9 @@ export GIT_EDITOR=vim
 typeset -U path manpath fpath
 
 fpath=( "${ZDOTDIR}/functions" "${ZDOTDIR}/completions" $fpath )
+if [[ "$OSTYPE" == linux* && -f /etc/arch-release ]]; then
+    fpath=( /usr/share/zsh/site-functions $fpath )
+fi
 
 # Homebrew
 if hash brew 2>/dev/null; then
