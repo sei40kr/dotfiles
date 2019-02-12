@@ -10,6 +10,7 @@ use Install::PathResolver;
 
 if (&is_macos) {
     brew_cask_install('intellij-idea');
+
     ln( dotfile('intellij-idea/ideavimrc'), "${ENV{HOME}}/.ideavimrc" );
 }
 

@@ -16,7 +16,7 @@ elsif (&is_arch) {
     pacman_sync('tmux');
 }
 
-if ( &is_macos or &is_arch ) {
+if ( &is_macos || &is_arch ) {
     git_clone(
         'https://github.com/tmux-plugins/tpm.git',
         "${ENV{HOME}}/.tmux/plugins/tpm"

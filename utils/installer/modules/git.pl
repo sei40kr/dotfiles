@@ -17,7 +17,7 @@ elsif (&is_arch) {
     pacman_sync('git');
 }
 
-if ( &is_macos or &is_arch ) {
+if ( &is_macos || &is_arch ) {
     ln( dotfile('git/gitconfig'), "${ENV{HOME}}/.gitconfig" );
     ln( dotfile('git/gitignore'), "${ENV{HOME}}/.gitignore_global" );
 }

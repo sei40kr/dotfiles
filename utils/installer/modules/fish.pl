@@ -31,7 +31,7 @@ elsif (&is_arch) {
     pacman_sync('tree');
 }
 
-if ( &is_macos or &is_arch ) {
+if ( &is_macos || &is_arch ) {
     ln( dotfile('zsh/zshenv'),         "${ENV{HOME}}/.zshenv" );
     ln( dotfile('zsh/zshenv'),         "${ENV{HOME}}/.zsh/.zshenv" );
 

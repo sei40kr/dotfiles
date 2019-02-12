@@ -22,7 +22,7 @@ elsif (&is_arch) {
     pacman_sync('ripgrep');
 }
 
-if ( &is_macos or &is_arch ) {
+if ( &is_macos || &is_arch ) {
     ln( dotfile('ripgrep/ripgreprc'), "${ENV{HOME}}/.ripgreprc" );
 }
 
