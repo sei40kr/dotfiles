@@ -13,7 +13,6 @@ if (&is_macos) {
     brew_install('fish');
     brew_install('zsh');
 
-    brew_install('direnv');
     brew_install('fzf');
     brew_install('terminal-notifier');
 
