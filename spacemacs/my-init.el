@@ -68,11 +68,6 @@
   (require 'react-snippets)
   (require 'redux-snippets)
 
-  ;; Activate evil-terminal-cursor-changer
-  (unless (display-graphic-p)
-    (require 'evil-terminal-cursor-changer)
-    (evil-terminal-cursor-changer-activate))
-
   ;; Fix frame transparency
   (my//enable-frame-transparency nil)
   (add-hook 'after-make-frame-functions #'my//enable-frame-transparency))
