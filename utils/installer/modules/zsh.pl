@@ -22,9 +22,20 @@ if (&is_macos) {
     brew_install('ncdu');
     brew_install('prettyping');
     brew_install('tree');
-}
-else {
-    # TODO Install zsh on other envs
+} elsif (&is_arch) {
+    pacman_sync('zsh');
+
+    pacman_sync('fzf');
+
+    pacman_sync('bat');
+    pacman_sync('diff-so-fancy');
+    pacman_sync('htop');
+    pacman_sync('ncdu');
+    pacman_sync('prettyping');
+    pacman_sync('tree');
+
+    trizen_sync('direnv');
+    trizen_sync('exa');
 }
 
 git_clone( 'https://github.com/zdharma/zplugin.git',
