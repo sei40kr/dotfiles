@@ -8,7 +8,6 @@ use FindBin;
 use lib "${FindBin::Bin}/utils/installer/lib";
 use Install::PathResolver;
 
-# TODO Install direnv on non-macOS envs
 if (&is_macos) {
     brew_install('fish');
     brew_install('zsh');
@@ -28,7 +27,15 @@ elsif (&is_arch) {
     pacman_sync('fish');
 
     pacman_sync('fzf');
+
+    pacman_sync('bat');
+    pacman_sync('diff-so-fancy');
+    pacman_sync('htop');
+    pacman_sync('ncdu');
+    pacman_sync('prettyping');
     pacman_sync('tree');
+
+    trizen_sync('exa');
 }
 
 if ( &is_macos || &is_arch ) {
