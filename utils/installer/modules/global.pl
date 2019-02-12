@@ -11,12 +11,13 @@ use Install::PathResolver;
 if (&is_macos) {
     brew_install('ctags');
     brew_install('global');
+
     pip3_install('pygments');
+
+    ln( dotfile('global/globalrc'), "${ENV{HOME}}/.globalrc" );
 }
 else {
     # TODO Install global on other envs
 }
-
-ln( dotfile('global/globalrc'), "${ENV{HOME}}/.globalrc" );
 
 1;

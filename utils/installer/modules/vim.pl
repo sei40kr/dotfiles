@@ -15,6 +15,8 @@ elsif (&is_arch) {
     pacman_sync('vim');
 }
 
-ln( dotfile('vim/vimrc'), "${ENV{HOME}}/.vimrc" );
+if ( &is_macos || &is_arch ) {
+    ln( dotfile('vim/vimrc'), "${ENV{HOME}}/.vimrc" );
+}
 
 1;
