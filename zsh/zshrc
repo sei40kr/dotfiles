@@ -125,6 +125,7 @@ alias pygrep="rg --iglob '**/*.py'"
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/rails'
 compdef _rails _rails_command
+compdef _rake _rake_command
 unalias rg
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/rake-fast'
