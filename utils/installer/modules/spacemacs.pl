@@ -203,6 +203,7 @@ ln( dotfile('pry/pryrc'), "${ENV{HOME}}/.pryrc" );
 gem_install('rake');
 gem_install('rcodetools');
 gem_install('rubocop');
+gem_install('seeing_is_believing');
 
 # Rust
 cargo_nightly_install('racer');
