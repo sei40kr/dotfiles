@@ -111,7 +111,7 @@ values."
              python-backend 'lsp)
      (ruby :variables
            ruby-enable-enh-ruby-mode t
-           ruby-version-manager 'rbenv
+           ruby-version-manager nil
            inf-ruby-default-implementation "pry")
      rust
      (scala :variables
