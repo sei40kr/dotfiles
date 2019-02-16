@@ -46,8 +46,10 @@ values."
      ;; Completion
      (auto-completion :variables
                       spacemacs-default-company-backends
-                      '((company-tabnine company-gtags company-etags company-keywords)
-                        company-files company-dabbrev)
+                      '((company-tabnine company-gtags company-etags company-files)
+                        (company-tabnine company-dabbrev-code company-files)
+                        (company-tabnine company-keywords company-files))
+                      auto-completion-enable-tabnine t
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior nil
                       auto-completion-enable-help-tooltip t)
