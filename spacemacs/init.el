@@ -212,6 +212,7 @@ values."
      exec-path-from-shell
      flycheck-popup-tip
      (jest-snippets :location local)
+     (rails-snippets :location local)
      (react-snippets :location local)
      (redux-snippets :location local))
 

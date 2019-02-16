@@ -62,9 +62,12 @@
   (if (eq window-system 'ns)
       (my//exec-path-from-shell-initialize))
 
-  (require 'competitive-programming-snippets)
   (require 'flycheck-popup-tip)
+
+  ;; Activate snippets
+  (require 'competitive-programming-snippets)
   (require 'jest-snippets)
+  (require 'rails-snippets)
   (require 'react-snippets)
   (require 'redux-snippets)
 

@@ -37,6 +37,10 @@ git_clone(
     "${ENV{HOME}}/.emacs.d/private/local/jest-snippets"
 );
 git_clone(
+    'ssh://git@github.com/sei40kr/rails-snippets.git',
+    "${ENV{HOME}}/.emacs.d/private/local/rails-snippets"
+);
+git_clone(
     'ssh://git@github.com/sei40kr/react-snippets.git',
     "${ENV{HOME}}/.emacs.d/private/local/react-snippets"
 );
