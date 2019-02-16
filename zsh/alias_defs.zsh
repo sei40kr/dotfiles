@@ -44,6 +44,21 @@ alias preview="fzf --preview 'bat --color always {}'"
 # ncdu
 alias du='ncdu --color dark -rr -x --exclude .git --exclude node_modules'
 
+# npm
+alias npmg="npm i -g "
+alias npmS="npm i -S "
+alias npmD="npm i -D "
+alias npmE='PATH="$(npm bin)":"$PATH"'
+alias npmO="npm outdated"
+alias npmV="npm -v"
+alias npmL="npm list"
+alias npmL0="npm ls --depth=0"
+alias npmst="npm start"
+alias npmt="npm test"
+alias npmR="npm run"# Run npm scripts
+alias npmP="npm publish"# Run npm publish
+alias npmI="npm init"# Run npm init
+
 # prettyping
 alias ping='prettyping --nolegend'
 

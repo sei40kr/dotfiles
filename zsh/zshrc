@@ -115,7 +115,7 @@ zplugin snippet 'OMZ::plugins/laravel5'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/mvn'
 zplugin snippet 'OMZ::plugins/nmap/nmap.plugin.zsh'
-zplugin snippet 'OMZ::plugins/npm/npm.plugin.zsh'
+# zplugin snippet 'OMZ::plugins/npm/npm.plugin.zsh'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/pip'
 zplugin snippet 'OMZ::plugins/postgres/postgres.plugin.zsh'
