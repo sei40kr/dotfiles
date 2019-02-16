@@ -1,6 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
-(defun my/go-disable-unnecessary-checkers ()
+(defun my//go-disable-unnecessary-checkers ()
   (require 'flycheck)
   (append '(gometalinter go-gofmt go-test go-megacheck)
           'flycheck-disabled-checkers))
