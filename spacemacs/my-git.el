@@ -10,6 +10,7 @@
                                        ("~/.config/fish/plugins" . 1)
                                        ("~/.emacs.d" . 0)
                                        ("~/.emacs.d/private/layers" . 1)
+                                       ("~/.emacs.d/private/local" . 1)
                                        ("~/develop/workspace" . 1))
         magit-revision-insert-related-refs nil))
 
