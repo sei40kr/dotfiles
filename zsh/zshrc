@@ -34,6 +34,7 @@ bindkey '^xg' fzf-repo-widget
 bindkey '^x^g' fzf-repo-widget
 
 autoload -Uz bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
 
 [[ -d "${GOENV_ROOT:-${HOME}/.goenv}" ]] && eval "$(goenv init - --no-rehash zsh)"
 [[ -d "${PYENV_ROOT:-${HOME}/.pyenv}" ]] && eval "$(pyenv init - --no-rehash zsh)"
