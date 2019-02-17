@@ -83,7 +83,7 @@ user-custom|User custom plugin parser:\
 #
 exuberant-ctags|plugin-example|setting to use Exuberant Ctags plug-in parser:\
 	:tc=common:\
-	:ctagscom=/usr/bin/ctags:\
+	:ctagscom=/usr/local/bin/ctags:\
 	:ctagslib=$libdir/gtags/exuberant-ctags.la:\
 	:tc=common-ctags-maps:
 #
@@ -246,7 +246,7 @@ universal-ctags|setting to use Universal Ctags plug-in parser:\
 # Plug-in parser to use Pygments.
 #
 pygments-parser|Pygments plug-in parser:\
-	:ctagscom=/usr/bin/ctags:\
+	:ctagscom=/usr/local/bin/ctags:\
 	:pygmentslib=$libdir/gtags/pygments-parser.la:\
 	:tc=common:\
 	:langmap=ABAP\:.abap:\
