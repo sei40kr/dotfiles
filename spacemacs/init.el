@@ -52,6 +52,7 @@ values."
                       auto-completion-enable-tabnine t
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior nil
+                      auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t)
      helm
      (templates :variables
