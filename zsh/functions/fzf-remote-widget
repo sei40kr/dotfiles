@@ -1,0 +1,39 @@
+# -*- mode: sh -*-
+
+# fzf-remote-widget.zsh
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+function fzf-remote-widget {
+    # add remote uris below, for example:
+    # - ssh://[user@]localhost[:port]
+    # - mysql://my_user@my_host.com:3306/my_database
+    cat <<EOM | eval "fzf ${FZF_DEFAULT_OPTS}" | read -r a_uri
+EOM
+
+    if [[ "$a_uri" == '' ]]; then
+        zle reset-prompt
+        return
+    fi
+
+    local protocol="${a_uri%%://*}"
+
+    case "$protocol" in
+        mysql)
+            BUFFER="mycli $(shescape "$a_uri")"
+            zle accept-line
+            ;;
+        postgresql|postgres)
+            BUFFER="pgcli $(shescape "$a_uri")"
+            zle accept-line
+            ;;
+        ssh)
+            BUFFER="ssh $(shescape "$a_uri")"
+            zle accept-line
+            ;;
+        *)
+            echo "Error: Unknown protocol: protocol=${protocol}"
+            ;;
+    esac
+}
+
+fzf-remote-widget "$@"

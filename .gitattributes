@@ -1,1 +1,2 @@
 /flexget/config.yml filter=git-crypt diff=git-crypt
+/zsh/functions/fzf-remote-widget filter=git-crypt diff=git-crypt

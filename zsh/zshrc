@@ -1,3 +1,4 @@
+autoload -Uz fzf-remote-widget
 autoload -Uz fzf-repo-widget
 autoload -Uz ranger-cd
 
@@ -27,9 +28,12 @@ setopt PUSHD_IGNORE_DUPS
 setopt SHARE_HISTORY
 unsetopt LIST_BEEP
 
+zle -N fzf-remote-widget
 zle -N fzf-repo-widget
 
 bindkey -e
+bindkey '^xr' fzf-remote-widget
+bindkey '^x^r' fzf-remote-widget
 bindkey '^xg' fzf-repo-widget
 bindkey '^x^g' fzf-repo-widget
 
