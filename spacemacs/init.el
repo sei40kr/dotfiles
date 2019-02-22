@@ -688,6 +688,6 @@ before packages are loaded."
   (my/config-perl5)
   (my/config-spacemacs-evil))
 
-(setq custom-file spacemacs--custom-file)
+(setq custom-file (concat spacemacs-cache-directory ".my-custom-settings"))
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
