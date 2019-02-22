@@ -184,6 +184,8 @@ values."
      (evil-snipe :variables
                  evil-snipe-enable-alternate-f-and-t-behaviors t
                  evil-snipe-repeat-scope 'line)
+     ;; Web services
+     evernote
      ;; Misc
      copy-as-format
      (multiple-cursors :variables
