@@ -89,6 +89,9 @@ elsif (&is_arch) {
     pacman_sync('r');
 }
 
+# Evernote
+pip2_install('git+https://github.com/VitaliyRodnenko/geeknote.git');
+
 # Go
 go_get('github.com/cweill/gotests/...');
 go_get('github.com/davidrjenni/reftools/cmd/fillstruct');
