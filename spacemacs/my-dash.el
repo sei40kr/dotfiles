@@ -76,12 +76,12 @@
   (defun my//sass-set-helm-dash-docsets ()
     (setq-local helm-dash-docsets '("Sass" "CSS")))
 
-  (defun my//typscript-set-helm-dash-docsets ()
+  (defun my//typescript-set-helm-dash-docsets ()
     (setq-local helm-dash-docsets (append "TypeScript"
                                           javascript-additional-docsets
                                           '())))
 
-  (defun my//typscript-tsx-set-helm-dash-docsets ()
+  (defun my//typescript-tsx-set-helm-dash-docsets ()
     (setq-local helm-dash-docsets (append "TypeScript"
                                           javascript-additional-docsets
                                           "HTML"
