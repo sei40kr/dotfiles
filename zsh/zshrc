@@ -2,8 +2,9 @@ autoload -Uz fzf-remote-widget
 autoload -Uz fzf-repo-widget
 autoload -Uz ranger-cd
 
-. "${ZDOTDIR}/alias_defs.zsh"
 . "${ZDOTDIR}/func_defs.zsh"
+. "${ZDOTDIR}/func_defs_emacs.zsh"
+. "${ZDOTDIR}/alias_defs.zsh"
 
 setopt APPEND_HISTORY
 setopt AUTO_CD
@@ -93,7 +94,10 @@ zplugin snippet 'OMZ::plugins/dash'
 zplugin ice svn pick'docker-compose.plugin.zsh'
 zplugin snippet 'OMZ::plugins/docker-compose' nocompletions
 zplugin ice svn
-zplugin snippet 'OMZ::plugins/emacs'
+if [[ "$ITERM_PROFILE" != '' ]]; then
+    # Enable 24-bit colors in Emacs
+    export ITERM_24BIT=1
+fi
 if hash emacs 2>/dev/null && hash emacsclient 2>/dev/null; then
     export EDITOR=emacsclient
     export GIT_EDITOR=emacsclient

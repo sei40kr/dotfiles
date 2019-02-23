@@ -31,7 +31,15 @@ alias U=cd-gitroot
 alias diff='diff-so-fancy'
 
 # emacs
-alias edebug='command emacs --debug-init'
+alias emacs='_emacsfun'
+alias e='_emacsfun'
+alias te='_emacsfun -t'
+alias eeval='_emacsfun -e'
+if displays_graphic; then
+    alias edebug='command emacs --debug-init'
+else
+    alias edebug='command emacs --debug-init -nw'
+fi
 
 # exa
 alias ls='exa -F'

@@ -4,3 +4,7 @@
 shescape() {
     printf '%q' "$@"
 }
+
+displays_graphic() {
+    [[ "$SSH_CLIENT" == '' && "$SSH_TTY" == '' ]]
+}
