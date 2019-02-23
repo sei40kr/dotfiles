@@ -137,7 +137,9 @@ values."
              magithub-clone-default-directory "~/develop/workspace")
      (version-control :variables
                       version-control-global-margin t
-                      version-control-diff-tool 'diff-hl
+                      version-control-diff-tool (if (display-graphic-p)
+                                                    'diff-hl
+                                                  'git-gutter+)
                       version-control-diff-side 'left)
      ;; Tags
      gtags
