@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: reveal_list_fragments
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: <rlf
+# --
+
+#+ATTR_REVEAL: :frag (${1:appear})
+ - ${0}
