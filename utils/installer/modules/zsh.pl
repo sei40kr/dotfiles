@@ -53,10 +53,9 @@ if ( &is_macos || &is_arch ) {
     ln( dotfile('zsh/alias_defs.zsh'), "${ENV{HOME}}/.zsh/alias_defs.zsh" );
 
     # Install completions
-    ln(
-        dotfile('zsh/completions/_rustup'),
-        "${ENV{HOME}}/.zsh/completions/_rustup"
-    );
+    my @zsh_completions = qw(_atcoder-tools _rustup);
+    ln( dotfile("zsh/completions/${_}"), "${ENV{HOME}}/.zsh/completions/${_}" )
+      foreach @zsh_completions;
 
     # Install functions
     my @zsh_funcs = qw(fzf-remote-widget fzf-repo-widget ranger-cd);
