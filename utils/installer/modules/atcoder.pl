@@ -34,5 +34,10 @@ ln(
     dotfile('atcoder-tools/atcodertools.toml'),
     "${ENV{HOME}}/.atcodertools.toml"
 );
+ln( dotfile('atcoder-tools/my_template.rs'), "${ENV{HOME}}/my_template.rs" );
+ln(
+    dotfile('atcoder-tools/custom_code_generator.py'),
+    "${ENV{HOME}}/custom_code_generator.py"
+);
 
 1;

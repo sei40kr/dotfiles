@@ -1,16 +1,16 @@
 [codestyle]
 indent_type='space'
 indent_width=4
-# template_file='~/my_template.cpp'
-workspace_dir='~/develop/workspace/hello-atcoder'
+template_file='~/my_template.rs'
+workspace_dir='~/develop/workspace/hello-atcoder/'
 lang='rust'
-# code_generator_file="~/custom_code_generator.py"
+code_generator_file="~/custom_code_generator.py"
 
 [postprocess]
-exec_on_each_problem_dir='clang-format -i ./*.cpp'
-exec_on_contest_dir='touch CMakeLists.txt'
+exec_on_each_problem_dir='rustfmt -q main.rs'
+# exec_on_contest_dir='touch CMakeLists.txt'
 
 [etc]
 download_without_login=false
-parallel_download=true
-save_no_session_cache=true
+parallel_download=false
+save_no_session_cache=false
