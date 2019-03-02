@@ -11,7 +11,7 @@ use Install::PathResolver;
 # cf https://language-test-201603.contest.atcoder.jp
 
 # Go
-goenv_install('1.6');
+goenv_install('1.6.0');
 
 # Node
 nvm_install('v5.12.0');
