@@ -171,9 +171,6 @@ cpanm('File::Zglob');
 cpanm('Perl::Critic');
 cpanm('Perl::Tidy');
 
-# TODO Install plsense
-# ln( dotfile('plsense/plsense'), "${ENV{HOME}}/.plsense" );
-
 # PlantUML
 if (&is_macos) {
     brew_cask_install('java');
