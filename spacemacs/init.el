@@ -189,6 +189,8 @@ values."
      (cpp-auto-include
       :location (recipe :fetcher github
                         :repo "syohex/emacs-cpp-auto-include"))
+     (google-java-format :location (recipe :fetcher url
+                                           :url "https://raw.githubusercontent.com/google/google-java-format/master/core/src/main/scripts/google-java-format.el"))
      (perl-refactoring
       :location (recipe :fetcher github
                         :repo "syohex/emacs-perl-refactoring"))
@@ -637,7 +639,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
-  (load (concat dotspacemacs-directory "google-java-format"))
   (load (concat dotspacemacs-directory "npm-and-yarn"))
   (dolist (item '("c-c++"
                   "auto-completion"
