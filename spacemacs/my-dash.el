@@ -91,9 +91,8 @@
 ;; Prevent dash layer from activating all docsets
 (advice-add #'dash//activate-package-docsets
             :override (lambda (path &rest _)
-                        "Add dash docsets from specified PATH."
-                        (if (not (string-blank-p path))
-                            (setq helm-dash-docsets-path path))))
+                        (unless (string-blank-p path)
+                          (setq helm-dash-docsets-path path))))
 
 (defun my/init-dash ()
   ;; helm-dash

@@ -45,10 +45,6 @@ values."
      syntax-checking
      ;; Completion
      (auto-completion :variables
-                      spacemacs-default-company-backends
-                      '((company-gtags company-etags company-files)
-                        (company-dabbrev-code company-files)
-                        (company-keywords company-files))
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior nil
                       auto-completion-enable-help-tooltip t)
@@ -87,7 +83,6 @@ values."
      (go :variables
          go-format-before-save t
          go-tab-width 4)
-     gpu
      (haskell :variables
               haskell-completion-backend 'intero
               haskell-enable-hindent t)
@@ -130,15 +125,11 @@ values."
      ;; Pair programming
      floobits
      ;; Source control
-     (git :variables
-          git-magit-status-fullscreen t)
-     (github :variables
-             magithub-clone-default-directory "~/develop/workspace")
+     (git :variables git-magit-status-fullscreen t)
+     github
      (version-control :variables
                       version-control-global-margin t
-                      version-control-diff-tool (if (display-graphic-p)
-                                                    'diff-hl
-                                                  'git-gutter+)
+                      version-control-diff-tool (if (display-graphic-p) 'diff-hl 'git-gutter+)
                       version-control-diff-side 'left)
      ;; Tags
      gtags
@@ -147,18 +138,15 @@ values."
      themes-megapack
      ;; Tools
      ansible
-     (cmake :variables
-            cmake-enable-cmake-ide-support t)
+     (cmake :variables cmake-enable-cmake-ide-support t)
      dap
      (dash :variables
-           helm-dash-docset-newpath
-           (case system-type
-             ('darwin "~/Library/Application Support/Dash/DocSets")
-             ('gnu/linux "~/.local/share/Zeal/Zeal/docsets")
-             (t nil)))
+           helm-dash-docset-newpath (case system-type
+                                      ('darwin "~/Library/Application Support/Dash/DocSets")
+                                      ('gnu/linux "~/.local/share/Zeal/Zeal/docsets")
+                                      (otherwise nil)))
      debug
-     (docker :variables
-             dockerfile-mode-enable-lsp t)
+     docker
      imenu-list
      ipython-notebook
      (lsp :variables
@@ -166,13 +154,11 @@ values."
           lsp-ui-remap-xref-keybindings t
           lsp-ui-sideline-enable nil)
      nginx
-     (node :variables
-           node-add-modules-path t)
+     (node :variables node-add-modules-path t)
      pandoc
      ;; (ranger :variables
      ;;   ranger-show-hidden t)
-     (restclient :variables
-                 restclient-use-org t)
+     (restclient :variables restclient-use-org t)
      (shell :variables
             shell-default-shell 'ansi-term
             shell-default-height 30
@@ -186,12 +172,9 @@ values."
                  evil-snipe-enable-alternate-f-and-t-behaviors t
                  evil-snipe-repeat-scope 'line)
      ;; Misc
-     copy-as-format
-     (multiple-cursors :variables
-                       multiple-cursors-backend 'evil-mc)
+     (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
      ;; Custom
-     quickrun
-     )
+     quickrun)
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -600,6 +583,7 @@ It should only modify the values of Spacemacs settings."
                 "auto-completion"
                 "dash"
                 "git"
+                "github"
                 "go"
                 "java"
                 "javascript"
@@ -635,6 +619,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-c-c++)
   (my/init-dash)
   (my/init-git)
+  (my/init-github)
   (my/init-go)
   (my/init-java)
   (my/init-javascript)
@@ -658,6 +643,7 @@ dump."
                   "auto-completion"
                   "dash"
                   "git"
+                  "github"
                   "go"
                   "java"
                   "javascript"

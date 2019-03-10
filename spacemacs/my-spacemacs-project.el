@@ -4,7 +4,7 @@
   (interactive)
   (projectile-dired)
   (if (neo-global--window-exists-p)
-      (neotree-hide)))
+      (neotree-projectile-action)))
 
 (defun my/init-spacemacs-project ()
   (setq projectile-git-submodule-command nil)
