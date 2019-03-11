@@ -120,6 +120,8 @@ values."
                  typescript-backend 'tide)
      vimscript
      yaml
+     ;; Readers
+     deft
      ;; Music
      ;; Operating systems
      ;; Pair programming
@@ -584,6 +586,7 @@ It should only modify the values of Spacemacs settings."
 (dolist (item '("c-c++"
                 "auto-completion"
                 "dash"
+                "deft"
                 "git"
                 "github"
                 "go"
@@ -620,6 +623,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-auto-completion)
   (my/init-c-c++)
   (my/init-dash)
+  (my/init-deft)
   (my/init-git)
   (my/init-github)
   (my/init-go)
@@ -643,6 +647,7 @@ dump."
   (dolist (item '("c-c++"
                   "auto-completion"
                   "dash"
+                  "deft"
                   "git"
                   "github"
                   "go"
