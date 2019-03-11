@@ -79,24 +79,21 @@ values."
               crystal-enable-auto-format t)
      csv
      emacs-lisp
-     (ess :variables
-          ess-disable-underscore-assign t)
+     (ess :variables ess-disable-underscore-assign t)
      (go :variables
          go-format-before-save t
          go-tab-width 4)
      (haskell :variables
               haskell-completion-backend 'intero
               haskell-enable-hindent t)
-     (html :variables
-           web-fmt-tool 'prettier)
+     (html :variables web-fmt-tool 'prettier)
      (java :variables
            java-backend 'lsp
            java--ensime-modes '())
      (javascript :variables
                  javascript-backend 'lsp
                  javascript-fmt-tool 'prettier)
-     (json :variables
-           json-fmt-tool 'prettier)
+     (json :variables json-fmt-tool 'prettier)
      latex
      major-modes
      markdown
@@ -104,8 +101,7 @@ values."
      perl6
      php
      plantuml
-     (python :variables
-             python-backend 'lsp)
+     (python :variables python-backend 'lsp)
      (ruby :variables
            ruby-enable-enh-ruby-mode t
            ruby-version-manager nil
