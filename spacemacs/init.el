@@ -73,7 +73,8 @@ values."
             c-c++-enable-google-newline t
             c-c++-enable-rtags-completion nil
             c-c++-enable-clang-format-on-save t
-            c-c++-adopt-subprojects t)
+            c-c++-adopt-subprojects t
+            c-c++-lsp-cache-dir "~/.emacs.d/.cache/lsp-cquery")
      (crystal :variables
               crystal-enable-auto-format t)
      csv
