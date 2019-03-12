@@ -1,6 +1,4 @@
-autoload -Uz fzf-remote-widget
-autoload -Uz fzf-repo-widget
-autoload -Uz ranger-cd
+autoload -Uz fzf-remote-widget fzf-repo-widget magit ranger-cd
 
 . "${ZDOTDIR}/func_defs.zsh"
 . "${ZDOTDIR}/func_defs_emacs.zsh"

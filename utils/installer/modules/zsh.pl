@@ -58,7 +58,7 @@ if ( &is_macos || &is_arch ) {
       foreach @zsh_completions;
 
     # Install functions
-    my @zsh_funcs = qw(fzf-remote-widget fzf-repo-widget ranger-cd);
+    my @zsh_funcs = qw(fzf-remote-widget fzf-repo-widget magit ranger-cd);
     ln( dotfile("zsh/functions/${_}"), "${ENV{HOME}}/.zsh/functions/${_}" )
       foreach @zsh_funcs;
 }

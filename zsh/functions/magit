@@ -1,0 +1,12 @@
+# -*- mode: sh -*-
+
+# magit.zsh
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+function magit {
+    emacsclient -a '' -e "(progn
+             (magit-status-internal \"$(realpath .)\")
+             (x-focus-frame nil))" >/dev/null
+}
+
+magit "$@"
