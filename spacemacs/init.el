@@ -106,7 +106,8 @@ values."
            ruby-enable-enh-ruby-mode t
            ruby-version-manager nil
            inf-ruby-default-implementation "pry")
-     rust
+     (rust :variables
+           rust-backend 'lsp)
      (scala :variables
             scala-auto-insert-asterisk-in-comments t
             scala-auto-start-ensime t)
