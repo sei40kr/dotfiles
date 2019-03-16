@@ -590,6 +590,7 @@ It should only modify the values of Spacemacs settings."
                 "go"
                 "java"
                 "javascript"
+                "lsp"
                 "neotree"
                 "node"
                 "org"
@@ -651,6 +652,7 @@ dump."
                   "go"
                   "java"
                   "javascript"
+                  "lsp"
                   "neotree"
                   "node"
                   "org"
@@ -674,6 +676,7 @@ before packages are loaded."
   (my/config-auto-completion)
   (my/config-git)
   (my/config-java)
+  (my/config-lsp)
   (my/config-node)
   (my/config-perl5)
   (my/config-spacemacs-evil))
