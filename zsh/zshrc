@@ -176,6 +176,11 @@ if [[ -d "${PERLBREW_ROOT:-${HOME}/perl5/perlbrew}" ]]; then
     zplugin snippet "${PERLBREW_ROOT}/etc/perlbrew-completion.bash"
 fi
 
+if [[ -f "${HOME}/.travis/travis.sh" ]]; then
+    zplugin ice wait''
+    zplugin snippet "${HOME}/.travis/travis.sh"
+fi
+
 if [[ "$OSTYPE" == darwin* ]]; then
     __docker_etc='/Applications/Docker.app/Contents/Resources/etc'
     zplugin snippet "${__docker_etc}/docker.zsh-completion"
