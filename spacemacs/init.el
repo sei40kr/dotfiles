@@ -209,7 +209,6 @@ values."
    dotspacemacs-excluded-packages '(avy-migemo
                                     ddskk
                                     migemo
-                                    org-bullets
                                     pangu-spacing)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
@@ -346,11 +345,11 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Fira Mono for Powerline"
+   dotspacemacs-default-font '("FuraCode Nerd Font Mono"
                                :size 20
                                :weight normal
                                :width normal
-                               :powerline-scale 1.0)
+                               :powerline-scale 1.1)
 
    ;; The leader key
    dotspacemacs-leader-key "SPC"

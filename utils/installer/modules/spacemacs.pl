@@ -12,6 +12,9 @@ if (&is_macos) {
     brew_tap('d12frosted/emacs-plus');
     brew_install( 'emacs-plus', 'with-pdumper', 'HEAD' );
 
+    # Install the font
+    brew_cask_install('font-firacode-nerd-font-mono');
+
     # TODO Invoke `brew services start` here
 
     tic( dotfile('terminfo/eterm-color.ti') );
