@@ -37,7 +37,6 @@ bindkey '^xg' fzf-repo-widget
 bindkey '^x^g' fzf-repo-widget
 
 autoload -Uz bashcompinit && bashcompinit
-autoload -Uz compinit && compinit
 
 [[ -d "${GOENV_ROOT:-${HOME}/.goenv}" ]] && eval "$(goenv init - --no-rehash zsh)"
 [[ -d "${PYENV_ROOT:-${HOME}/.pyenv}" ]] && eval "$(pyenv init - --no-rehash zsh)"
@@ -132,8 +131,6 @@ zplugin snippet 'OMZ::plugins/python/python.plugin.zsh'
 alias pygrep="rg --iglob '**/*.py'"
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/rails'
-compdef _rails _rails_command
-compdef _rake _rake_command
 unalias rg
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/rake-fast'
@@ -214,7 +211,7 @@ zplugin snippet 'OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
 
 zplugin ice make
 zplugin light sei40kr/zsh-fast-alias-tips
-zplugin ice wait'1' lucid atload'zpcompinit'
+zplugin ice wait'1' lucid atload'zpcompinit && __cdreplay'
 zplugin light zdharma/fast-syntax-highlighting
 zplugin ice wait'1' lucid
 zplugin light zdharma/history-search-multi-word
@@ -224,3 +221,9 @@ zplugin light zsh-users/zsh-autosuggestions
 # Prompt
 zplugin ice pick'spaceship.zsh' wait'!0'
 zplugin light denysdovhan/spaceship-zsh-theme
+
+__cdreplay() {
+    zpcdreplay &&
+        compdef _rails _rails_command &&
+        compdef _rake _rake_command
+}
