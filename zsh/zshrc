@@ -183,16 +183,20 @@ fi
 
 if [[ "$OSTYPE" == darwin* ]]; then
     __docker_etc='/Applications/Docker.app/Contents/Resources/etc'
+    zplugin ice wait''
     zplugin snippet "${__docker_etc}/docker.zsh-completion"
+    zplugin ice wait''
     zplugin snippet "${__docker_etc}/docker-compose.zsh-completion"
-    __gcloud_sdk='/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk'
-    . "${__gcloud_sdk}/path.zsh.inc"
-    zplugin snippet "${__gcloud_sdk}/completion.zsh.inc"
 else
     zplugin ice svn pick'' wait''
     zplugin snippet 'OMZ::plugins/docker'
     zplugin ice svn pick'' wait''
     zplugin snippet 'OMZ::plugins/docker-compose'
+fi
+
+if [[ -n "$__gcloud_sdk" ]]; then
+    zplugin ice wait''
+    zplugin snippet "${__gcloud_sdk}/completion.zsh.inc"
 fi
 
 # Version Managers
