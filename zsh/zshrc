@@ -169,16 +169,7 @@ zplugin light lukechilds/zsh-better-npm-completion
 zplugin ice pick'' blockf wait''
 zplugin light zsh-users/zsh-completions
 
-if [[ -d "${PERLBREW_ROOT:-${HOME}/perl5/perlbrew}" ]]; then
-    zplugin ice wait''
-    zplugin snippet "${PERLBREW_ROOT}/etc/perlbrew-completion.bash"
-fi
-
-if [[ -f "${HOME}/.travis/travis.sh" ]]; then
-    zplugin ice wait''
-    zplugin snippet "${HOME}/.travis/travis.sh"
-fi
-
+# docker
 if [[ "$OSTYPE" == darwin* ]]; then
     __docker_etc='/Applications/Docker.app/Contents/Resources/etc'
     zplugin ice wait''
@@ -192,9 +183,28 @@ else
     zplugin snippet 'OMZ::plugins/docker-compose'
 fi
 
+# gcloud
 if [[ -n "$__gcloud_sdk" ]]; then
     zplugin ice wait''
     zplugin snippet "${__gcloud_sdk}/completion.zsh.inc"
+fi
+
+# perlbrew
+if [[ -d "${PERLBREW_ROOT:-${HOME}/perl5/perlbrew}" ]]; then
+    zplugin ice wait''
+    zplugin snippet "${PERLBREW_ROOT}/etc/perlbrew-completion.bash"
+fi
+
+# travis
+if [[ -f "${HOME}/.travis/travis.sh" ]]; then
+    zplugin ice wait''
+    zplugin snippet "${HOME}/.travis/travis.sh"
+fi
+
+# wp-cli
+if [[ -f '/usr/local/opt/wp-cli-completion/etc/bash_completion.d/wp' ]]; then
+    zplugin ice wait''
+    zplugin snippet '/usr/local/opt/wp-cli-completion/etc/bash_completion.d/wp'
 fi
 
 # Version Managers
