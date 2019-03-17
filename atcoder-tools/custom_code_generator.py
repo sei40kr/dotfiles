@@ -41,7 +41,7 @@ class RustCodeGenerator:
             else:
                 raise NotImplementedError
 
-        lines.append('');
+        lines.append('')
 
         lines.append('input! {')
 
@@ -64,17 +64,17 @@ class RustCodeGenerator:
     def _generate_value_type_annotation(self, var: Variable):
         return 'let {name}: {type};'.format(
             type=self._to_rust_type(var.type),
-            name=var.name)
+            name=self._var_name(var.name))
 
     def _generate_array_type_annotation(self, var: Variable):
         return 'let {name}: Vec<{type}>;'.format(
-            name=var.name,
+            name=self._var_name(var.name),
             type=self._to_rust_type(var.type),
             num_rows=var.first_index.get_length())
 
     def _generate_2darray_type_annotation(self, var: Variable):
         return 'let {name}: Vec<Vec<{type}>>;'.format(
-            name=var.name,
+            name=self._var_name(var.name),
             type=self._to_rust_type(var.type),
             num_cols=var.second_index.get_length(),
             num_rows=var.first_index.get_length())
@@ -91,18 +91,18 @@ class RustCodeGenerator:
 
     def _generate_value_input(self, var: Variable):
         return '{name}: {type},'.format(
-            name=var.name,
+            name=self._var_name(var.name),
             type=self._to_input_type(var.type))
 
     def _generate_array_input(self, var: Variable):
         return '{name}: [{type}; {num_rows} as usize],'.format(
-            name=var.name,
+            name=self._var_name(var.name),
             type=self._to_input_type(var.type),
             num_rows=var.first_index.get_length())
 
     def _generate_2darray_input(self, var: Variable):
         return '{name}: [[{type}; {num_cols} as usize]; {num_rows} as usize],'.format(
-            name=var.name,
+            name=self._var_name(var.name),
             type=self._to_input_type(var.type),
             num_cols=var.second_index.get_length(),
             num_rows=var.first_index.get_length())
@@ -116,6 +116,16 @@ class RustCodeGenerator:
             return 'chars'
         else:
             raise NotImplementedError
+
+    def _var_name(self, name: str) -> str:
+        if name.islower():
+            return name
+
+        # `as` is a reserved word
+        if name == 'A':
+            return 'As'
+
+        return name.lower() + 's'
 
     def _actual_arguments(self) -> str:
         """
