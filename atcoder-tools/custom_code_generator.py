@@ -65,20 +65,17 @@ class RustCodeGenerator:
     def _generate_value_type_annotation(self, var: Variable):
         return 'let {name}: {type};'.format(
             type=self._to_rust_type(var.type),
-            name=self._var_name(var.name))
+            name=self._var_name(var.name, True))
 
     def _generate_array_type_annotation(self, var: Variable):
         return 'let {name}: Vec<{type}>;'.format(
-            name=self._var_name(var.name),
-            type=self._to_rust_type(var.type),
-            num_rows=var.first_index.get_length())
+            name=self._var_name(var.name, False),
+            type=self._to_rust_type(var.type))
 
     def _generate_2darray_type_annotation(self, var: Variable):
         return 'let {name}: Vec<Vec<{type}>>;'.format(
-            name=self._var_name(var.name),
-            type=self._to_rust_type(var.type),
-            num_cols=var.second_index.get_length(),
-            num_rows=var.first_index.get_length())
+            name=self._var_name(var.name, False),
+            type=self._to_rust_type(var.type))
 
     def _to_rust_type(self, type_: Type):
         if type_ == Type.int:
@@ -92,21 +89,26 @@ class RustCodeGenerator:
 
     def _generate_value_input(self, var: Variable):
         return '{name}: {type},'.format(
-            name=self._var_name(var.name),
+            name=self._var_name(var.name, True),
             type=self._to_input_type(var.type))
 
     def _generate_array_input(self, var: Variable):
+        length = var.first_index.get_length()
+
         return '{name}: [{type}; {num_rows} as usize],'.format(
-            name=self._var_name(var.name),
+            name=self._var_name(var.name, False),
             type=self._to_input_type(var.type),
-            num_rows=var.first_index.get_length())
+            num_rows=self._var_name(str(length), True) if length.is_variable_node() else length)
 
     def _generate_2darray_input(self, var: Variable):
+        second_length = var.second_index.get_length()
+        first_length = var.first_index.get_length()
+
         return '{name}: [[{type}; {num_cols} as usize]; {num_rows} as usize],'.format(
-            name=self._var_name(var.name),
+            name=self._var_name(var.name, False),
             type=self._to_input_type(var.type),
-            num_cols=var.second_index.get_length(),
-            num_rows=var.first_index.get_length())
+            num_cols=self._var_name(str(second_length), True) if second_length.is_variable_node() else second_length,
+            num_rows=self._var_name(str(first_length), True) if first_length.is_variable_node() else first_length)
 
     def _to_input_type(self, type_: Type):
         if type_ == Type.int:
@@ -118,9 +120,9 @@ class RustCodeGenerator:
         else:
             raise NotImplementedError
 
-    def _var_name(self, name: str) -> str:
-        if name.islower():
-            return name
+    def _var_name(self, name: str, singular: bool) -> str:
+        if singular:
+            return name.lower()
 
         # `as` is a reserved word
         if name == 'A':
