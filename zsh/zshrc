@@ -161,6 +161,8 @@ zplugin ice svn
 zplugin snippet 'OMZ::plugins/tmux'
 zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/vagrant'
+zplugin ice svn nocompletions
+zplugin snippet 'OMZ::plugins/wp-cli'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/yarn'
 
