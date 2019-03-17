@@ -1,0 +1,10 @@
+# -*- mode: sh -*-
+
+# kca
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+kca() {
+    kubectl "$@" --all-namespaces
+}
+
+kca "$@"

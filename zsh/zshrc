@@ -1,4 +1,4 @@
-autoload -Uz fzf-remote-widget fzf-repo-widget magit ranger-cd
+autoload -Uz fzf-remote-widget fzf-repo-widget kca kres magit ranger-cd
 
 . "${ZDOTDIR}/func_defs.zsh"
 . "${ZDOTDIR}/func_defs_emacs.zsh"
@@ -110,8 +110,8 @@ zplugin ice svn
 zplugin snippet 'OMZ::plugins/golang'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/gradle'
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/kubectl'
+# zplugin ice svn
+# zplugin snippet 'OMZ::plugins/kubectl'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/laravel'
 zplugin ice svn
