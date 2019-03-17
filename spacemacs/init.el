@@ -202,7 +202,10 @@ values."
      org2blog
      (rails-snippets :location local)
      (react-snippets :location local)
-     (redux-snippets :location local))
+     (redux-snippets :location local)
+     ;; org2blog deps
+     metaweblog
+     xml-rpc)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
