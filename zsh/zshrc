@@ -110,8 +110,8 @@ zplugin ice svn
 zplugin snippet 'OMZ::plugins/golang'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/gradle'
-# zplugin ice svn
-# zplugin snippet 'OMZ::plugins/kubectl'
+zplugin ice svn
+zplugin snippet 'OMZ::plugins/kubectl'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/laravel'
 zplugin ice svn
