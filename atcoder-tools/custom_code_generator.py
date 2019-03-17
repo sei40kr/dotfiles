@@ -48,12 +48,13 @@ class RustCodeGenerator:
         for pattern in self._format.sequence:
             var = pattern.all_vars()[0]
 
+            input_indent = '    '
             if isinstance(pattern, SingularPattern):
-                lines.append(self._generate_value_input(var))
+                lines.append(input_indent + self._generate_value_input(var))
             elif isinstance(pattern, ParallelPattern):
-                lines.append(self._generate_array_input(var))
+                lines.append(input_indent + self._generate_array_input(var))
             elif isinstance(pattern, TwoDimensionalPattern):
-                lines.append(self._generate_2darray_input(var))
+                lines.append(input_indent + self._generate_2darray_input(var))
             else:
                 raise NotImplementedError
 
