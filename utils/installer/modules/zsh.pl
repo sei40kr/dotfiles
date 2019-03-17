@@ -53,7 +53,7 @@ if ( &is_macos || &is_arch ) {
     ln( dotfile('zsh/alias_defs.zsh'), "${ENV{HOME}}/.zsh/alias_defs.zsh" );
 
     # Install completions
-    my @zsh_completions = qw(_atcoder-tools _rustup);
+    my @zsh_completions = qw(_atcoder-tools _kubectl _rustup);
     ln( dotfile("zsh/completions/${_}"), "${ENV{HOME}}/.zsh/completions/${_}" )
       foreach @zsh_completions;
 
