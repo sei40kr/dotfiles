@@ -89,8 +89,8 @@ zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/cpanm'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/dash'
-zplugin ice svn pick'docker-compose.plugin.zsh'
-zplugin snippet 'OMZ::plugins/docker-compose' nocompletions
+zplugin ice svn pick'docker-compose.plugin.zsh' nocompletions
+zplugin snippet 'OMZ::plugins/docker-compose'
 zplugin ice svn
 if [[ "$ITERM_PROFILE" != '' ]]; then
     # Enable 24-bit colors in Emacs
