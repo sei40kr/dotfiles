@@ -3,6 +3,7 @@
 (defun my/init-org ()
   (setq org-confirm-babel-evaluate nil
         org-export-with-section-numbers nil
+        org-export-with-title t
         org-export-with-toc nil
         org-export-preserve-breaks t
         ;; org-bullets
