@@ -28,6 +28,21 @@ class RustCodeGenerator:
 
     def _input_part(self):
         lines = []
+
+        for pattern in self._format.sequence:
+            var = pattern.all_vars()[0]
+
+            if isinstance(pattern, SingularPattern):
+                lines.append(self._generate_value_type_annotation(var))
+            elif isinstance(pattern, ParallelPattern):
+                lines.append(self._generate_array_type_annotation(var))
+            elif isinstance(pattern, TwoDimensionalPattern):
+                lines.append(self._generate_2darray_type_annotation(var))
+            else:
+                raise NotImplementedError
+
+        lines.append('');
+
         lines.append('input! {')
 
         for pattern in self._format.sequence:
@@ -45,6 +60,34 @@ class RustCodeGenerator:
         lines.append('};')
 
         return "\n".join(lines)
+
+    def _generate_value_type_annotation(self, var: Variable):
+        return 'let {name}: {type};'.format(
+            type=self._to_rust_type(var.type),
+            name=var.name)
+
+    def _generate_array_type_annotation(self, var: Variable):
+        return 'let {name}: Vec<{type}>;'.format(
+            name=var.name,
+            type=self._to_rust_type(var.type),
+            num_rows=var.first_index.get_length())
+
+    def _generate_2darray_type_annotation(self, var: Variable):
+        return 'let {name}: Vec<Vec<{type}>>;'.format(
+            name=var.name,
+            type=self._to_rust_type(var.type),
+            num_cols=var.second_index.get_length(),
+            num_rows=var.first_index.get_length())
+
+    def _to_rust_type(self, type_: Type):
+        if type_ == Type.int:
+            return 'i64'
+        if type_ == Type.float:
+            return 'f64'
+        if type_ == Type.str:
+            return 'Vec<char>'
+        else:
+            raise NotImplementedError
 
     def _generate_value_input(self, var: Variable):
         return '{name}: {type},'.format(
