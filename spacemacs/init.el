@@ -201,6 +201,7 @@ values."
      exec-path-from-shell
      flycheck-popup-tip
      (jest-snippets :location local)
+     org-re-reveal
      org2blog
      (rails-snippets :location local)
      (react-snippets :location local)
@@ -216,6 +217,7 @@ values."
    dotspacemacs-excluded-packages '(avy-migemo
                                     ddskk
                                     migemo
+                                    ox-reveal
                                     pangu-spacing)
 
    ;; Defines the behaviour of Spacemacs when installing packages.

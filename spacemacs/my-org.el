@@ -8,8 +8,12 @@
         org-export-preserve-breaks t
         ;; org-bullets
         org-bullets-bullet-list '("" "" "" "" "" "" "" "" "" "")
-        ;; ox-reveal
-        org-reveal-root (concat (getenv "HOME") "/org/reveal-js"))
+        ;; org-re-reveal
+        org-re-reveal-root (concat (getenv "HOME") "/org/reveal-js"))
+
+  ;; org-re-reveal
+  (spacemacs|use-package-add-hook org
+    :post-config (require 'org-re-reveal))
 
   ;; org2blog
   (require 'auth-source)
