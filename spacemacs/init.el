@@ -62,7 +62,9 @@ values."
      react
      ruby-on-rails
      ;; Filetree
-     neotree
+     (treemacs :variables
+               treemacs-use-collapsed-directories 3
+               treemacs-use-git-mode 'deferred)
      ;; Fun
      ;; International support
      japanese
@@ -596,7 +598,6 @@ It should only modify the values of Spacemacs settings."
                 "java"
                 "javascript"
                 "lsp"
-                "neotree"
                 "node"
                 "org"
                 "perl5"
@@ -633,7 +634,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-go)
   (my/init-java)
   (my/init-javascript)
-  (my/init-neotree)
   (my/init-org)
   (my/init-plantuml)
   (my/init-rust)
@@ -658,7 +658,6 @@ dump."
                   "java"
                   "javascript"
                   "lsp"
-                  "neotree"
                   "node"
                   "org"
                   "perl5"
