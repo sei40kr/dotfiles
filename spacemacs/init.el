@@ -174,9 +174,7 @@ values."
                  evil-snipe-enable-alternate-f-and-t-behaviors t
                  evil-snipe-repeat-scope 'line)
      ;; Misc
-     (multiple-cursors :variables multiple-cursors-backend 'evil-mc)
-     ;; Custom
-     quickrun)
+     (multiple-cursors :variables multiple-cursors-backend 'evil-mc))
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -186,8 +184,7 @@ values."
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
-   '(
-     (competitive-programming-snippets :location local)
+   '((competitive-programming-snippets :location local)
      (cpp-auto-include
       :location (recipe :fetcher github
                         :repo "syohex/emacs-cpp-auto-include"))
@@ -203,6 +200,7 @@ values."
      (jest-snippets :location local)
      org-re-reveal
      org2blog
+     quickrun
      (rails-snippets :location local)
      (react-snippets :location local)
      (redux-snippets :location local)
