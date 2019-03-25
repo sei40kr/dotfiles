@@ -52,13 +52,20 @@ if ( &is_macos || &is_arch ) {
     );
     ln( dotfile('zsh/alias_defs.zsh'), "${ENV{HOME}}/.zsh/alias_defs.zsh" );
 
+    # Install my plugins
+    git_clone(
+        'https://github.com/sei40kr/zsh-better-run-help.git',
+        "${ENV{HOME}}/.zsh/plugins/zsh-better-run-help"
+    );
+
     # Install completions
     my @zsh_completions = qw(_atcoder-tools _kubectl _rustup);
     ln( dotfile("zsh/completions/${_}"), "${ENV{HOME}}/.zsh/completions/${_}" )
       foreach @zsh_completions;
 
     # Install functions
-    my @zsh_funcs = qw(fzf-remote-widget fzf-repo-widget kca kres magit ranger-cd);
+    my @zsh_funcs =
+      qw(fzf-remote-widget fzf-repo-widget kca kres magit ranger-cd);
     ln( dotfile("zsh/functions/${_}"), "${ENV{HOME}}/.zsh/functions/${_}" )
       foreach @zsh_funcs;
 }
