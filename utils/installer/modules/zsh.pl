@@ -55,11 +55,11 @@ if ( &is_macos || &is_arch ) {
     # Install my plugins
     git_clone(
         'https://github.com/sei40kr/zsh-better-run-help.git',
-        "${ENV{HOME}}/.zsh/plugins/zsh-better-run-help"
+        "${ENV{HOME}}/.zplugin/plugins/_local---zsh-better-run-help"
     );
     git_clone(
         'https://github.com/sei40kr/zsh-fast-alias-tips.git',
-        "${ENV{HOME}}/.zsh/plugins/zsh-fast-alias-tips"
+        "${ENV{HOME}}/.zplugin/plugins/_local---zsh-fast-alias-tips"
     );
 
     # Install completions

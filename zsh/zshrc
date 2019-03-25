@@ -222,8 +222,9 @@ zplugin snippet 'OMZ::plugins/bgnotify/bgnotify.plugin.zsh'
 zplugin snippet 'OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh'
 zplugin snippet 'OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
 
+zplugin light _local/zsh-better-run-help
 zplugin ice make
-zplugin light sei40kr/zsh-fast-alias-tips
+zplugin light _local/zsh-fast-alias-tips
 zplugin ice wait'1' lucid atload'zpcompinit && __cdreplay'
 zplugin light zdharma/fast-syntax-highlighting
 zplugin ice wait'1' lucid
