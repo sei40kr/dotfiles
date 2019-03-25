@@ -602,6 +602,7 @@ It should only modify the values of Spacemacs settings."
                 "org"
                 "perl5"
                 "plantuml"
+                "quickrun"
                 "rust"
                 "shell-scripts"
                 "spacemacs-evil"
@@ -637,6 +638,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-javascript)
   (my/init-org)
   (my/init-plantuml)
+  (my/init-quickrun)
   (my/init-rust)
   (my/init-shell-scripts)
   (my/init-spacemacs-evil)
@@ -664,6 +666,7 @@ dump."
                   "org"
                   "perl5"
                   "plantuml"
+                  "quickrun"
                   "rust"
                   "shell-scripts"
                   "spacemacs-evil"
@@ -686,6 +689,7 @@ before packages are loaded."
   (my/config-lsp)
   (my/config-node)
   (my/config-perl5)
+  (my/config-quickrun)
   (my/config-spacemacs-evil))
 
 (setq custom-file (concat spacemacs-cache-directory ".my-custom-settings"))
