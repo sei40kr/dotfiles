@@ -57,6 +57,10 @@ if ( &is_macos || &is_arch ) {
         'https://github.com/sei40kr/zsh-better-run-help.git',
         "${ENV{HOME}}/.zsh/plugins/zsh-better-run-help"
     );
+    git_clone(
+        'https://github.com/sei40kr/zsh-fast-alias-tips.git',
+        "${ENV{HOME}}/.zsh/plugins/zsh-fast-alias-tips"
+    );
 
     # Install completions
     my @zsh_completions = qw(_atcoder-tools _kubectl _rustup);
