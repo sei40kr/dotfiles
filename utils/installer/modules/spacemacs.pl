@@ -212,6 +212,7 @@ rustup_component_add('rust-analysis');
 rustup_component_add('rust-src');
 
 # Shell-script
+brew_install('shellcheck');
 go_get('mvdan.cc/sh/cmd/shfmt');
 
 # SQL
