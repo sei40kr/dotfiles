@@ -188,10 +188,6 @@ values."
      (cpp-auto-include
       :location (recipe :fetcher github
                         :repo "syohex/emacs-cpp-auto-include"))
-     (google-java-format
-      :location (recipe :fetcher github
-                        :repo "google/google-java-format"
-                        :files ("core/src/main/scripts/google-java-format.el")))
      (perl-refactoring
       :location (recipe :fetcher github
                         :repo "syohex/emacs-perl-refactoring"))
@@ -685,7 +681,6 @@ before packages are loaded."
   (my/config)
   (my/config-auto-completion)
   (my/config-git)
-  (my/config-java)
   (my/config-lsp)
   (my/config-node)
   (my/config-perl5)

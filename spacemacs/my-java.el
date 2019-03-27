@@ -1,8 +1,8 @@
 (defun my/init-java ()
-  (when (eq system-type 'darwin)
-    (setq google-java-format-executable "/usr/local/bin/google-java-format")))
-
-(defun my/config-java ()
-  (spacemacs/declare-prefix-for-mode 'java-mode "m=" "format")
-  (spacemacs/set-leader-keys-for-major-mode 'java-mode
-    "=g" #'google-java-format))
+  (setq lsp-java-save-action-organize-imports t
+        lsp-java-auto-build nil
+        lsp-java-format-enabled t
+        lsp-java-format-settings-url "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
+        lsp-java-import-maven-enabled t
+        lsp-java-progress-report nil
+        lsp-java-completion-guess-arguments t))
