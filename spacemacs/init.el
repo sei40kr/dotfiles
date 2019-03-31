@@ -84,7 +84,8 @@ values."
      (ess :variables ess-disable-underscore-assign t)
      (go :variables
          go-format-before-save t
-         go-tab-width 4)
+         go-tab-width 4
+         go-use-test-args "-race -timeout 10s")
      (haskell :variables
               haskell-completion-backend 'intero
               haskell-enable-hindent t)

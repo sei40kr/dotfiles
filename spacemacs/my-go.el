@@ -6,6 +6,8 @@
           'flycheck-disabled-checkers))
 
 (defun my/init-go ()
-  (setq gofmt-command "goimports")
+  (setq gofmt-command "goimports"
+        ;; gogetdoc
+        godoc-at-point-function 'godoc-gogetdoc)
 
   (add-hook 'go-mode-hook #'my//go-disable-unnecessary-checkers))
