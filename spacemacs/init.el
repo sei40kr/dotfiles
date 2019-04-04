@@ -606,7 +606,8 @@ It should only modify the values of Spacemacs settings."
                 "spacemacs-evil"
                 "spacemacs-project"
                 "syntax-checking"
-                "treemacs"))
+                "treemacs"
+                "typescript"))
   (load (format "%smy-%s" dotspacemacs-directory item)))
 (load (concat dotspacemacs-directory "my-init"))
 
@@ -644,7 +645,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-spacemacs-evil)
   (my/init-spacemacs-project)
   (my/init-syntax-checking)
-  (my/init-treemacs))
+  (my/init-treemacs)
+  (my/init-typescript))
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
@@ -674,7 +676,8 @@ dump."
                   "spacemacs-evil"
                   "spacemacs-project"
                   "syntax-checking"
-                  "treemacs"))
+                  "treemacs"
+                  "typescript"))
     (load (format "%smy-%s" dotspacemacs-directory item)))
   (load (concat dotspacemacs-directory "my-init")))
 
