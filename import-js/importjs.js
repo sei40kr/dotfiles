@@ -1,7 +1,14 @@
 module.exports = {
   excludes: ['**/build/**'],
-  environments: ['browser', 'jest'],
+  environments: ['node', 'browser', 'jest'],
   groupImports: false,
   sortImports: false,
-  stripFileExtensions: ['.js'],
+  emptyLineBetweenGroups: true,
+  importDevDependencies: false,
+  danglingCommas: false,
+  stripFileExtensions: ['.js', '.jsx', '.ts', '.tsx'],
+  useRelativePaths: true,
+  maxLineLength: 80,
+  tab: '  ',
+  logLevel: 'info',
 };
