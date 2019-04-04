@@ -186,17 +186,16 @@ values."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '((competitive-programming-snippets :location local)
-     (cpp-auto-include
-      :location (recipe :fetcher github
-                        :repo "syohex/emacs-cpp-auto-include"))
-     (perl-refactoring
-      :location (recipe :fetcher github
-                        :repo "syohex/emacs-perl-refactoring"))
+     (cpp-auto-include :location (recipe :fetcher github
+                                         :repo "syohex/emacs-cpp-auto-include"))
      exec-path-from-shell
      flycheck-popup-tip
+     import-js
      (jest-snippets :location local)
      org-re-reveal
      org2blog
+     (perl-refactoring :location (recipe :fetcher github
+                                         :repo "syohex/emacs-perl-refactoring"))
      quickrun
      (rails-snippets :location local)
      (react-snippets :location local)
@@ -593,6 +592,7 @@ It should only modify the values of Spacemacs settings."
                 "github"
                 "go"
                 "html"
+                "import-js"
                 "java"
                 "javascript"
                 "lsp"
@@ -633,6 +633,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-github)
   (my/init-go)
   (my/init-html)
+  (my/init-import-js)
   (my/init-java)
   (my/init-javascript)
   (my/init-org)
@@ -659,6 +660,7 @@ dump."
                   "github"
                   "go"
                   "html"
+                  "import-js"
                   "java"
                   "javascript"
                   "lsp"
