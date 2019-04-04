@@ -15,7 +15,7 @@
       (flycheck-buffer)))
 
 (defun my//import-js-set-key-bindings (mode)
-  (spacemacs/declare-prefix-for-mode mode)
+  (spacemacs/declare-prefix-for-mode mode "mi" "import")
   (spacemacs/set-leader-keys-for-major-mode mode
     "if" #'my/import-js-fix
     "ii" #'my/import-js-import))
