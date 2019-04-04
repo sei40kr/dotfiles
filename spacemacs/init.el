@@ -210,6 +210,7 @@ values."
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(avy-migemo
                                     ddskk
+                                    impatient-mode
                                     migemo
                                     ox-reveal
                                     pangu-spacing)
@@ -690,6 +691,7 @@ before packages are loaded."
   (my/config)
   (my/config-auto-completion)
   (my/config-git)
+  (my/config-import-js)
   (my/config-lsp)
   (my/config-node)
   (my/config-perl5)
