@@ -200,6 +200,7 @@ values."
      (rails-snippets :location local)
      (react-snippets :location local)
      (redux-snippets :location local)
+     rubocopfmt
      ;; org2blog deps
      metaweblog
      xml-rpc)
@@ -602,6 +603,7 @@ It should only modify the values of Spacemacs settings."
                 "perl5"
                 "plantuml"
                 "quickrun"
+                "ruby"
                 "rust"
                 "shell-scripts"
                 "spacemacs-evil"
@@ -641,6 +643,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-org)
   (my/init-plantuml)
   (my/init-quickrun)
+  (my/init-ruby)
   (my/init-rust)
   (my/init-shell-scripts)
   (my/init-spacemacs-evil)
@@ -672,6 +675,7 @@ dump."
                   "perl5"
                   "plantuml"
                   "quickrun"
+                  "ruby"
                   "rust"
                   "shell-scripts"
                   "spacemacs-evil"
@@ -696,6 +700,7 @@ before packages are loaded."
   (my/config-node)
   (my/config-perl5)
   (my/config-quickrun)
+  (my/config-ruby)
   (my/config-spacemacs-evil))
 
 (setq custom-file (concat spacemacs-cache-directory ".my-custom-settings"))
