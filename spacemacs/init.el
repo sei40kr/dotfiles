@@ -602,6 +602,7 @@ It should only modify the values of Spacemacs settings."
                 "org"
                 "perl5"
                 "plantuml"
+                "prettier"
                 "quickrun"
                 "ruby"
                 "rust"
@@ -642,6 +643,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-javascript)
   (my/init-org)
   (my/init-plantuml)
+  (my/init-prettier)
   (my/init-quickrun)
   (my/init-ruby)
   (my/init-rust)
@@ -674,6 +676,7 @@ dump."
                   "org"
                   "perl5"
                   "plantuml"
+                  "prettier"
                   "quickrun"
                   "ruby"
                   "rust"

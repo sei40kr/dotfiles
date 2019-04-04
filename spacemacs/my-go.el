@@ -7,6 +7,7 @@
 
 (defun my/init-go ()
   (setq gofmt-command "goimports"
+        gofmt-show-errors 'echo
         ;; gogetdoc
         godoc-at-point-function 'godoc-gogetdoc)
 
