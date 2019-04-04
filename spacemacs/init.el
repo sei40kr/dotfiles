@@ -192,7 +192,6 @@ values."
      flycheck-popup-tip
      import-js
      (jest-snippets :location local)
-     org-re-reveal
      org2blog
      (perl-refactoring :location (recipe :fetcher github
                                          :repo "syohex/emacs-perl-refactoring"))
@@ -213,7 +212,6 @@ values."
                                     ddskk
                                     impatient-mode
                                     migemo
-                                    ox-reveal
                                     pangu-spacing)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
