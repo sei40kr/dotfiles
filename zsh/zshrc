@@ -233,8 +233,12 @@ zplugin ice wait'1' lucid
 zplugin light zsh-users/zsh-autosuggestions
 
 # Prompt
-zplugin ice pick'spaceship.zsh' wait'!0'
-zplugin light denysdovhan/spaceship-zsh-theme
+PURE_PROMPT_SYMBOL='»'
+PURE_GIT_DOWN_ARROW='↓'
+PURE_GIT_UP_ARROW='↑'
+zplugin ice pick'async.zsh' src'pure.zsh' wait'!0' \
+        atload"PROMPT='%(1j.[%j] .)%(?.%F{magenta}.%F{red})\${PURE_PROMPT_SYMBOL}%f '"
+zplugin light sindresorhus/pure
 
 __cdreplay() {
     zpcdreplay &&
