@@ -592,6 +592,7 @@ It should only modify the values of Spacemacs settings."
                 "git"
                 "github"
                 "go"
+                "html"
                 "java"
                 "javascript"
                 "lsp"
@@ -631,6 +632,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-git)
   (my/init-github)
   (my/init-go)
+  (my/init-html)
   (my/init-java)
   (my/init-javascript)
   (my/init-org)
@@ -656,6 +658,7 @@ dump."
                   "git"
                   "github"
                   "go"
+                  "html"
                   "java"
                   "javascript"
                   "lsp"
