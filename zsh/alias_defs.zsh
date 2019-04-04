@@ -141,5 +141,8 @@ alias notes="rg 'TODO|FIXME|HACK|OPTIMIZE|REVIEW'"
 # ssh
 alias ssh='env TERM=xterm-256color ssh'
 
+# tig
+alias tig='env TERM=screen-256color tig'
+
 # top
 alias top='htop'
