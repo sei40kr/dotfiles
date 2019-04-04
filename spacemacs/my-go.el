@@ -10,4 +10,7 @@
         ;; gogetdoc
         godoc-at-point-function 'godoc-gogetdoc)
 
+  ;; enable camel-case-motion
+  (add-hook 'go-mode-hook #'spacemacs/toggle-camel-case-motion-on)
+
   (add-hook 'go-mode-hook #'my//go-disable-unnecessary-checkers))

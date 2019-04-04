@@ -16,4 +16,7 @@
         lsp-java-progress-report nil
         lsp-java-completion-guess-arguments t)
 
+  ;; enable camel-case-motion
+  (add-hook 'java-mode-hook #'spacemacs/toggle-camel-case-motion-on)
+
   (add-hook 'java-mode-hook #'my//java-setup-company))
