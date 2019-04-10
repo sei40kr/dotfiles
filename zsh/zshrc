@@ -1,3 +1,8 @@
+# -*- mode: sh -*-
+
+# zshrc
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
 autoload -Uz fzf-remote-widget fzf-repo-widget kca kres magit ranger-cd
 
 . "${ZDOTDIR}/func_defs.zsh"
@@ -47,7 +52,8 @@ hash direnv 2>/dev/null && eval "$(direnv hook zsh)"
 
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 
-# Commands
+# commands
+#
 zplugin snippet 'OMZ::lib/clipboard.zsh'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/capistrano'
@@ -68,7 +74,8 @@ bindkey -r '^R'
 zplugin ice as'program' pick'cd-gitroot'
 zplugin light mollifier/cd-gitroot
 
-# Command Aliases & Completions
+# command aliases and completions
+#
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/ansible'
 if [[ "$OSTYPE" == linux* && -f /etc/arch-release ]]; then
@@ -232,7 +239,8 @@ zplugin light zdharma/history-search-multi-word
 zplugin ice wait'1' lucid
 zplugin light zsh-users/zsh-autosuggestions
 
-# Prompt
+# prompt
+#
 PURE_PROMPT_SYMBOL='»'
 PURE_GIT_DOWN_ARROW='↓'
 PURE_GIT_UP_ARROW='↑'
