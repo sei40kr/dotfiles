@@ -3,7 +3,7 @@
 # fzf-repo-widget.zsh
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-function __home_to_tilde {
+__home_to_tilde() {
     while read -r a_path; do
         if [[ "$a_path" == "${HOME}"* ]]; then
             echo "~${a_path:${#HOME}}"
@@ -13,7 +13,7 @@ function __home_to_tilde {
     done
 }
 
-function __tilde_to_home {
+__tilde_to_home() {
     read -r a_path
 
     if [[ "$a_path" == '~'* ]]; then
@@ -23,7 +23,7 @@ function __tilde_to_home {
     fi
 }
 
-function fzf-repo-widget {
+fzf-repo-widget() {
     {
         [[ -d $HOME'/.dotfiles' ]] && echo "${HOME}/.dotfiles"
         [[ -d $HOME'/.emacs.d' ]] && echo "${HOME}/.emacs.d"
@@ -41,7 +41,7 @@ function fzf-repo-widget {
         return
     fi
 
-    local session_name="$(tr -d '.' <<<"$(basename "$a_path")")"
+    local session_name="$(basename "$a_path" | tr -d '.')"
     tmux switch-client -t "$session_name" 2>/dev/null && return
 
     local current_session="$(tmux display-message -p '#S')"
