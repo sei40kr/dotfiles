@@ -211,7 +211,6 @@ values."
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(avy-migemo
                                     ddskk
-                                    impatient-mode
                                     migemo
                                     pangu-spacing)
 
