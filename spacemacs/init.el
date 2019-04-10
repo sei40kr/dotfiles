@@ -190,7 +190,6 @@ values."
                                          :repo "syohex/emacs-cpp-auto-include"))
      exec-path-from-shell
      flycheck-popup-tip
-     import-js
      (jest-snippets :location local)
      (maven-search :location (recipe :fetcher github
                                      :repo "syohex/emacs-maven-search"))
@@ -594,7 +593,6 @@ It should only modify the values of Spacemacs settings."
                 "github"
                 "go"
                 "html"
-                "import-js"
                 "java"
                 "javascript"
                 "lsp"
@@ -638,7 +636,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-github)
   (my/init-go)
   (my/init-html)
-  (my/init-import-js)
   (my/init-java)
   (my/init-javascript)
   (my/init-org)
@@ -668,7 +665,6 @@ dump."
                   "github"
                   "go"
                   "html"
-                  "import-js"
                   "java"
                   "javascript"
                   "lsp"
@@ -698,7 +694,6 @@ before packages are loaded."
   (my/config)
   (my/config-auto-completion)
   (my/config-git)
-  (my/config-import-js)
   (my/config-lsp)
   (my/config-node)
   (my/config-perl5)
