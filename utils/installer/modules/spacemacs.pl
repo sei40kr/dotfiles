@@ -9,8 +9,7 @@ use lib "${FindBin::Bin}/utils/installer/lib";
 use Install::PathResolver;
 
 if (&is_macos) {
-    brew_tap('d12frosted/emacs-plus');
-    brew_install( 'emacs-plus', 'with-pdumper', 'HEAD' );
+    brew_install('emacs');
 
     # Install the font
     brew_cask_install('font-firacode-nerd-font-mono');
@@ -65,6 +64,7 @@ if (&is_macos) {
     brew_install('gdb');
 }
 elsif (&is_arch) {
+
     # TODO install gdb
     pacman_sync('llvm');
     pacman_sync('llvm-libs');
