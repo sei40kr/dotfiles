@@ -14,9 +14,9 @@ alias cat='bat --theme TwoDark'
 alias brewp='brew pin'
 alias brews='brew list -1'
 alias brewsp='brew list --pinned'
-alias bubo='brew update; and brew outdated'
-alias bubc='brew upgrade; and brew cleanup'
-alias bubu='bubo; and bubc'
+alias bubo='brew update && brew outdated'
+alias bubc='brew upgrade && brew cleanup'
+alias bubu='bubo && bubc'
 alias brewc='brew cleanup'
 
 # coreutils
