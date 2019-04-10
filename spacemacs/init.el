@@ -192,6 +192,8 @@ values."
      flycheck-popup-tip
      import-js
      (jest-snippets :location local)
+     (maven-search :location (recipe :fetcher github
+                                     :repo "syohex/emacs-maven-search"))
      org2blog
      (perl-refactoring :location (recipe :fetcher github
                                          :repo "syohex/emacs-perl-refactoring"))
