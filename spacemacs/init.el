@@ -701,7 +701,14 @@ before packages are loaded."
   (my/config-perl5)
   (my/config-quickrun)
   (my/config-ruby)
-  (my/config-spacemacs-evil))
+  (my/config-spacemacs-evil)
+
+  (when (memq window-system '(mac ns))
+    (setq initial-frame-alist '((internal-border-width . 0)
+                                (ns-appearance . 'dark)
+                                (ns-transparent-titlebar . t)
+                                (vertical-scroll-bars . nil)))
+    (setq default-frame-alist initial-frame-alist)))
 
 (setq custom-file (concat spacemacs-cache-directory ".my-custom-settings"))
 ;; Do not write anything past this comment. This is where Emacs will
