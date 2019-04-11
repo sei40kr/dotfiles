@@ -22,6 +22,8 @@ fi
 if hash brew 2>/dev/null; then
     export BREW_PREFIX="$(brew --prefix)"
 
+    path=( "${BREW_PREFIX}/bin" "${BREW_PREFIX}/sbin" $path )
+
     if [[ "$OSTYPE" == darwin* ]]; then
         fpath=( "${BREW_PREFIX}/share/zsh/site-functions" $fpath )
 
