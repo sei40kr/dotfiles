@@ -25,34 +25,55 @@ __tilde_to_home() {
 
 fzf-repo-widget() {
     {
-        [[ -d $HOME'/.dotfiles' ]] && echo "${HOME}/.dotfiles"
-        [[ -d $HOME'/.emacs.d' ]] && echo "${HOME}/.emacs.d"
+        [[ -d "${HOME}/.dotfiles" ]] && echo "${HOME}/.dotfiles"
+        [[ -d "${HOME}/.emacs.d" ]] && echo "${HOME}/.emacs.d"
         find "${HOME}/develop/workspace" -mindepth 1 -maxdepth 1 -type d
-    } | __home_to_tilde | eval "fzf ${FZF_DEFAULT_OPTS}" | __tilde_to_home | read -r a_path
+    } | __home_to_tilde | eval "fzf ${FZF_DEFAULT_OPTS}" | __tilde_to_home | read -r project_root
 
-    if [[ "$a_path" == '' ]]; then
+    if [[ -z "$project_root" ]]; then
         zle reset-prompt
         return
     fi
 
-    if [[ "$TMUX" == '' ]]; then
-        BUFFER="cd $(shescape "$a_path")"
+    # if tmux is not running
+    if [[ -z "$TMUX" ]]; then
+        BUFFER="cd $(shescape "$project_root")"
         zle accept-line
         return
     fi
 
-    local session_name="$(basename "$a_path" | tr -d '.')"
-    tmux switch-client -t "$session_name" 2>/dev/null && return
+    local project_id="$(basename "$project_root" | tr -d '.')"
+    local current_session_id="$(tmux display-message -p '#S')"
 
-    local current_session="$(tmux display-message -p '#S')"
-    if [[ "$current_session" = <-> ]]; then
-        tmux rename-session -t "$current_session" -- "$session_name"
-        BUFFER="cd $(shescape "$a_path")"
-        zle accept-line
-    else
-        tmux new-session -dc "$a_path" -s "$session_name"
-        tmux switch-client -t "$session_name"
+    # if current project is selected
+    if [[ "$current_session_id" == "$project_id" ]]; then
+        # if working directory is under the project root
+        if [[ "$PWD" != "$project_root" && "$PWD" != "$project_root"/* ]]; then
+            BUFFER="cd $(shescape "$project_root")"
+            zle accept-line
+        fi
+
+        return
     fi
+
+    # switch to the session if exists
+    tmux switch-client -t "$project_id" 2>/dev/null
+    # if the session has already existed
+    if [[ "$?" == 0 ]]; then
+        return
+    fi
+
+    # if current session has no name
+    if [[ "$current_session_id" == <-> ]]; then
+        tmux rename-session -t "$current_session_id" -- "$project_id"
+        BUFFER="cd $(shescape "$project_root")"
+        zle accept-line
+
+        return
+    fi
+
+    tmux new-session -dc "$project_root" -s "$project_id"
+    tmux switch-client -t "$project_id"
 }
 
 fzf-repo-widget "$@"
