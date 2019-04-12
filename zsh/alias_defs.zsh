@@ -18,6 +18,10 @@ alias bubo='brew update && brew outdated'
 alias bubc='brew upgrade && brew cleanup'
 alias bubu='bubo && bubc'
 alias brewc='brew cleanup'
+alias bsl='brew services list'
+alias bsr='brew services run'
+alias bson='brew services start'
+alias bsoff='brew services stop'
 
 # cordova
 alias co='cordova'
