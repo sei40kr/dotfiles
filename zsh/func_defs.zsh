@@ -6,5 +6,5 @@ shescape() {
 }
 
 displays_graphic() {
-    [[ "$SSH_CLIENT" == '' && "$SSH_TTY" == '' ]]
+    [[ -z "$SSH_CLIENT" && -z "$SSH_TTY" ]]
 }
