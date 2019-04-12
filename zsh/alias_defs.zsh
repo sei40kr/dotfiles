@@ -150,3 +150,6 @@ alias tig='env TERM=screen-256color tig'
 
 # top
 alias top='htop'
+
+# yarn
+alias ytc='yarn test --coverage'
