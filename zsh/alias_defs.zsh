@@ -19,6 +19,18 @@ alias bubc='brew upgrade && brew cleanup'
 alias bubu='bubo && bubc'
 alias brewc='brew cleanup'
 
+# cordova
+alias co='cordova'
+alias cob='cordova build'
+alias cor='cordova run'
+alias coc='cordova clean'
+alias cop='cordova platform list'
+alias copa='cordova platform add'
+alias copr='cordova platform remove'
+alias copl='cordova plugin list'
+alias copla='cordova plugin add'
+alias coplr='cordova plugin remove'
+
 # coreutils
 alias md='mkdir -p'
 alias rd=rmdir
