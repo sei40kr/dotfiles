@@ -3,7 +3,7 @@
 # zshrc
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-autoload -Uz fzf-remote-widget fzf-repo-widget kca kres magit ranger-cd
+autoload -Uz fzf-remote-widget fzf-project-widget kca kres magit ranger-cd
 
 . "${ZDOTDIR}/func_defs.zsh"
 . "${ZDOTDIR}/func_defs_emacs.zsh"
@@ -34,13 +34,13 @@ setopt SHARE_HISTORY
 unsetopt LIST_BEEP
 
 zle -N fzf-remote-widget
-zle -N fzf-repo-widget
+zle -N fzf-project-widget
 
 bindkey -e
 bindkey '^xr' fzf-remote-widget
 bindkey '^x^r' fzf-remote-widget
-bindkey '^xg' fzf-repo-widget
-bindkey '^x^g' fzf-repo-widget
+bindkey '^xg' fzf-project-widget
+bindkey '^x^g' fzf-project-widget
 
 autoload -Uz bashcompinit && bashcompinit
 

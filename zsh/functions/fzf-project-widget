@@ -1,6 +1,6 @@
 # -*- mode: sh -*-
 
-# fzf-repo-widget.zsh
+# fzf-project-widget.zsh
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 __home_to_tilde() {
@@ -23,7 +23,7 @@ __tilde_to_home() {
     fi
 }
 
-fzf-repo-widget() {
+fzf-project-widget() {
     {
         [[ -d "${HOME}/.dotfiles" ]] && echo "${HOME}/.dotfiles"
         [[ -d "${HOME}/.emacs.d" ]] && echo "${HOME}/.emacs.d"
@@ -76,4 +76,4 @@ fzf-repo-widget() {
     tmux switch-client -t "$project_id"
 }
 
-fzf-repo-widget "$@"
+fzf-project-widget "$@"
