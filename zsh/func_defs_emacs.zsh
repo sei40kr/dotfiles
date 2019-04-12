@@ -8,7 +8,7 @@ _emacsfun() {
                     "$@"
     else
         env TERM=xterm-256color emacsclient \
-            -tca '' \
+            -tca 'emacs -nw' \
             -s ~/.emacs.d/server-tui/server \
             "$@"
     fi
