@@ -3,7 +3,14 @@
 # zshrc
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-autoload -Uz fzf-remote-widget fzf-project-widget kca kres magit ranger-cd
+autoload -Uz \
+         fzf-remote-widget \
+         fzf-project-widget \
+         kca \
+         kres \
+         magit \
+         pyclean \
+         ranger-cd
 
 . "${ZDOTDIR}/func_defs.zsh"
 . "${ZDOTDIR}/func_defs_emacs.zsh"

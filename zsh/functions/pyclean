@@ -1,0 +1,12 @@
+# -*- mode: sh -*-
+
+# pyclean
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+pyclean() {
+    local target_dirs="${@:-.}"
+    find "${target_dirs}" ( -type f -name "*.py" ) -o \
+         ( -type d -name "__pycache__" ) -o \
+         ( -type d -name ".mypy_cache" ) -o \
+         ( -type d -name ".pytest_cache" )
+}
