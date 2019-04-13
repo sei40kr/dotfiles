@@ -2,17 +2,16 @@
 
 (load (concat dotspacemacs-directory "npm-and-yarn"))
 
-(defun my/node-bind-keys (mode)
+(defun my//setup-npm-and-yarn (mode)
   (spacemacs/declare-prefix-for-mode mode "mn" "npm")
   (spacemacs/declare-prefix-for-mode mode "my" "yarn")
+
   (spacemacs/set-leader-keys-for-major-mode mode
-    "ni" #'npm-install
-    "nI" #'npm-install-dev
-    "ya" #'yarn-add
-    "yA" #'yarn-add-dev))
+    "ni" #'npm-and-yarn/npm-install
+    "nI" #'npm-and-yarn/npm-install-dev
+    "ya" #'npm-and-yarn/yarn-add
+    "yA" #'npm-and-yarn/yarn-add-dev))
 
 (defun my/config-node ()
-  (my/node-bind-keys 'rjsx-mode)
-  (my/node-bind-keys 'js2-mode)
-  (my/node-bind-keys 'typescript-mode)
-  (my/node-bind-keys 'typescript-tsx-mode))
+  (dolist (mode '(rjsx-mode js2-mode typescript-mode typescript-tsx-mode))
+    (my//setup-npm-and-yarn mode)))
