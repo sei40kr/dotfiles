@@ -14,5 +14,5 @@
 (defun my/config-quickrun ()
   (spacemacs/declare-prefix "cq" "quickrun")
   (spacemacs/set-leader-keys
-    "cqq" #'spacemacs/quickrun
-    "cqa" #'spacemacs/quickrun-with-arg))
+    "cqq" #'quickrun
+    "cqa" #'quickrun-with-arg))
