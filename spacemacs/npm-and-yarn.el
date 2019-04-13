@@ -1,5 +1,5 @@
 (defun npm--exec (cmd)
-  (shell-command (concat "npm " cmd) nil "*npm-error*"))
+  (async-shell-command (concat "npm " cmd) nil "*npm-error*"))
 
 (defun npm-install ()
   (interactive)
@@ -12,7 +12,7 @@
       (npm--exec (concat "install --save-dev " (shell-quote-argument dep)))))
 
 (defun yarn--exec (cmd)
-  (shell-command (concat "yarn " cmd) nil "*yarn-error*"))
+  (async-shell-command (concat "yarn " cmd) nil "*yarn-error*"))
 
 (defun yarn-add ()
   (interactive)
