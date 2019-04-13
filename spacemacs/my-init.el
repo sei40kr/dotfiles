@@ -1,5 +1,12 @@
 ;; -*- lexical-binding: t -*-
 
+;; yasnippet
+
+(defun my//file-class-name ()
+  (file-name-nondirectory (file-name-sans-extension (buffer-file-name))))
+
+;; others
+
 (defun my//exec-path-from-shell-initialize ()
   (setq
    exec-path-from-shell-variables '("PATH"
