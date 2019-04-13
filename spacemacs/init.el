@@ -63,8 +63,11 @@ values."
      ruby-on-rails
      ;; Filetree
      (treemacs :variables
+               treemacs-use-follow-mode nil
+               treemacs-use-filewatch-mode nil
                treemacs-use-collapsed-directories 3
-               treemacs-use-git-mode 'deferred)
+               treemacs-use-git-mode 'deferred
+               treemacs-lock-width t)
      ;; Fun
      ;; International support
      japanese

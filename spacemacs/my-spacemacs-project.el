@@ -3,7 +3,10 @@
 (defun my/projectile-switch-project-action ()
   (interactive)
   (projectile-dired)
-  (treemacs-add-and-display-current-project))
+
+  (if (eq (treemacs-current-visibility) 'visible)
+      (treemacs-add-and-display-current-project)
+    (treemacs-projectile)))
 
 (defun my/init-spacemacs-project ()
   (setq projectile-git-submodule-command nil)
