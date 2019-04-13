@@ -27,22 +27,46 @@ git_clone( 'ssh://git@github.com/sei40kr/spacemacs.git',
 
 git_clone(
     'ssh://git@github.com/sei40kr/competitive-programming-snippets.git',
+    "${ENV{HOME}}/develop/workspace/competitive-programming-snippets"
+);
+ln(
+    "${ENV{HOME}}/develop/workspace/competitive-programming-snippets",
     "${ENV{HOME}}/.emacs.d/private/local/competitive-programming-snippets"
 );
+
 git_clone(
     'ssh://git@github.com/sei40kr/jest-snippets.git',
+    "${ENV{HOME}}/develop/workspace/jest-snippets"
+);
+ln(
+    "${ENV{HOME}}/develop/workspace/jest-snippets",
     "${ENV{HOME}}/.emacs.d/private/local/jest-snippets"
 );
+
 git_clone(
     'ssh://git@github.com/sei40kr/rails-snippets.git',
+    "${ENV{HOME}}/develop/workspace/rails-snippets"
+);
+ln(
+    "${ENV{HOME}}/develop/workspace/rails-snippets",
     "${ENV{HOME}}/.emacs.d/private/local/rails-snippets"
 );
+
 git_clone(
     'ssh://git@github.com/sei40kr/react-snippets.git',
+    "${ENV{HOME}}/develop/workspace/react-snippets"
+);
+ln(
+    "${ENV{HOME}}/develop/workspace/react-snippets",
     "${ENV{HOME}}/.emacs.d/private/local/react-snippets"
 );
+
 git_clone(
     'ssh://git@github.com/sei40kr/redux-snippets.git',
+    "${ENV{HOME}}/develop/workspace/redux-snippets"
+);
+ln(
+    "${ENV{HOME}}/develop/workspace/redux-snippets",
     "${ENV{HOME}}/.emacs.d/private/local/redux-snippets"
 );
 
