@@ -23,6 +23,9 @@ alias bsr='brew services run'
 alias bson='brew services start'
 alias bsoff='brew services stop'
 
+# cd-gitroot
+alias U=cd-gitroot
+
 # cordova
 alias co='cordova'
 alias cob='cordova build'
@@ -39,9 +42,6 @@ alias coplr='cordova plugin remove'
 alias md='mkdir -p'
 alias rd=rmdir
 alias sortnr='sort -nr'
-
-# cd-gitroot
-alias U=cd-gitroot
 
 # diff
 alias diff='diff-so-fancy'
