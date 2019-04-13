@@ -700,6 +700,7 @@ before packages are loaded."
   (my/config-perl5)
   (my/config-quickrun)
   (my/config-ruby)
+  (my/config-rust)
   (my/config-spacemacs-evil)
 
   (when (memq window-system '(mac ns))
