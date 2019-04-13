@@ -25,7 +25,8 @@ if (&is_macos) {
     brew_cask_install('font-fira-mono-for-powerline');
     brew_cask_install('font-menlo-for-powerline');
 
-    # brew_cask_install('font-inconsolata-g');          # Inconsolata-g
+    # Nerd fonts
+    brew_cask_install('font-fantasquesansmono-nerd-font-mono');
 }
 elsif (&is_arch) {
     pacman_sync('noto-fonts');
