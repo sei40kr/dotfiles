@@ -1,0 +1,24 @@
+# -*- mode: sh -*-
+
+# clone_gh
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+clone_gh() {
+    local repo="$1"
+
+    if [[ "$repo" == *'/'* ]]; then
+        local repo_url="https://github.com/${repo}.git"
+    else
+        local default_user="$(git config --get github.user)"
+
+        if [[ -z "$default_user" ]]; then
+            echo 'Error: Please set github.user in .gitconfig to your GitHub username.' >&2
+            return 1
+        fi
+
+        local repo_url="https://github.com/${default_user}/${repo}.git"
+    fi
+
+
+    git -C ~/develop/workspace clone "$repo_url"
+}

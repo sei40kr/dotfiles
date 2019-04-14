@@ -4,6 +4,7 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 autoload -Uz \
+         clone_gh \
          fzf-remote-widget \
          fzf-project-widget \
          kca \
