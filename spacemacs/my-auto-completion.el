@@ -7,7 +7,8 @@
 # contributor : Seong Yong-ju <sei40kr@gmail.com>
 # key: ${2:${1:$(yas--key-from-desc yas-text)}}
 # --
-$0`(yas-escape-text yas-selected-text)`"))
+
+$0"))
 
 (defun my/config-auto-completion ()
   (evil-global-set-key 'insert (kbd "TAB") #'hippie-expand)
