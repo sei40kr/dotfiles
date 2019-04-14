@@ -5,6 +5,7 @@
 
 autoload -Uz \
          clone_gh \
+         create_gh \
          fzf-remote-widget \
          fzf-project-widget \
          kca \

@@ -1,0 +1,12 @@
+# -*- mode: sh -*-
+
+# create_gh
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+create_gh() {
+    local name="$1"
+
+    mkdir -p "${HOME}/develop/workspace/${name}"
+
+    hub -C "${HOME}/develop/workspace/${name}" create "$name"
+}
