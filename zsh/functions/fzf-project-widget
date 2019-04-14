@@ -1,6 +1,6 @@
 # -*- mode: sh -*-
 
-# fzf-project-widget.zsh
+# fzf-project-widget
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 __home_to_tilde() {

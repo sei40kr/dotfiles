@@ -1,6 +1,6 @@
 # -*- mode: sh -*-
 
-# magit.zsh
+# magit
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 function magit {
