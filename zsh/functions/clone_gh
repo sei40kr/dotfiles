@@ -19,6 +19,5 @@ clone_gh() {
         local repo_url="https://github.com/${default_user}/${repo}.git"
     fi
 
-
-    git -C ~/develop/workspace clone "$repo_url"
+    git -C "${HOME}/develop/workspace" clone "$repo_url"
 }
