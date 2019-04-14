@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Error class template
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: error
+# --
+
+export default class `(my//file-class-name)` extends Error {
+  constructor(message?: string) {
+    super(message);
+  }
+}
