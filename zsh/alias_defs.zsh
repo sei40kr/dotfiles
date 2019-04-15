@@ -158,7 +158,7 @@ alias krsd='kubectl rollout status deployment'
 alias kgrs='kubectl get rs'
 alias krh='kubectl rollout history'
 alias kru='kubectl rollout undo'
-alias kpf="kubectl port-forward"
+alias kpf='kubectl port-forward'
 alias kga='kubectl get all'
 alias kgaa='kubectl get all --all-namespaces'
 alias kl='kubectl logs'
@@ -173,19 +173,19 @@ alias kdelno='kubectl delete node'
 alias du='ncdu --color dark -rr -x --exclude .git --exclude node_modules'
 
 # npm
-alias npmg="npm i -g "
-alias npmS="npm i -S "
-alias npmD="npm i -D "
-alias npmE='PATH="$(npm bin)":"$PATH"'
-alias npmO="npm outdated"
-alias npmV="npm -v"
-alias npmL="npm list"
-alias npmL0="npm ls --depth=0"
-alias npmst="npm start"
-alias npmt="npm test"
-alias npmR="npm run"# Run npm scripts
-alias npmP="npm publish"# Run npm publish
-alias npmI="npm init"# Run npm init
+alias npmg='npm i -g '
+alias npmS='npm i -S '
+alias npmD='npm i -D '
+alias npmE='PATH='$(npm bin)':'$PATH''
+alias npmO='npm outdated'
+alias npmV='npm -v'
+alias npmL='npm list'
+alias npmL0='npm ls --depth=0'
+alias npmst='npm start'
+alias npmt='npm test'
+alias npmR='npm run'
+alias npmP='npm publish'
+alias npmI='npm init'
 
 # prettyping
 alias ping='prettyping --nolegend'
