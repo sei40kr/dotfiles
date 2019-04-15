@@ -1,0 +1,13 @@
+# -*- mode: sh -*-
+
+# dii
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+dii() {
+    docker image ls |
+        eval "fzf ${FZF_DEFAULT_OPTS} --header-lines=1" |
+        awk '{ print $1 }' |
+        xargs docker image inspect
+}
+
+dii "$@"

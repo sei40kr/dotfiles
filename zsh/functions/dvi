@@ -1,0 +1,13 @@
+# -*- mode: sh -*-
+
+# dvi
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+dvi() {
+    docker volume ls |
+        eval "fzf ${FZF_DEFAULT_OPTS} --header-lines=1" |
+        awk '{ print $1 }' |
+        xargs docker volume inspect
+}
+
+dvi "$@"

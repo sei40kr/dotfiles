@@ -1,0 +1,13 @@
+# -*- mode: sh -*-
+
+# dstp
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+dstp() {
+    docker container ls |
+        eval "fzf ${FZF_DEFAULT_OPTS} -m --header-lines=1" |
+        awk '{ print $1 }' |
+        xargs docker container stop
+}
+
+dstp "$@"

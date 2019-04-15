@@ -6,6 +6,16 @@
 autoload -Uz \
          clone_gh \
          create_gh \
+         dcin \
+         dii \
+         dirm \
+         dni \
+         drm \
+         drmf \
+         dst \
+         dstp \
+         dvi \
+         dxb \
          fzf-remote-widget \
          fzf-project-widget \
          kca \

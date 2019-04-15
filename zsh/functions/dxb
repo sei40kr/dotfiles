@@ -1,0 +1,13 @@
+# -*- mode: sh -*-
+
+# dxb
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+dxb() {
+    docker container ls |
+        eval "fzf ${FZF_DEFAULT_OPTS} --header-lines=1" |
+        awk '{ print $1 }' |
+        xargs -I _ docker exec -it _ /bin/bash
+}
+
+dxb "$@"

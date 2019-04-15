@@ -1,0 +1,13 @@
+# -*- mode: sh -*-
+
+# drm
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+drm() {
+    docker container ls -f status=created -f status=exited |
+        eval "fzf ${FZF_DEFAULT_OPTS} -m --header-lines=1" |
+        awk '{ print $1 }' |
+        xargs docker container rm
+}
+
+drm "$@"

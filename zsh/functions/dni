@@ -1,0 +1,13 @@
+# -*- mode: sh -*-
+
+# dni
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+dni() {
+    docker network ls |
+        eval "fzf ${FZF_DEFAULT_OPTS} --header-lines=1" |
+        awk '{ print $1 }' |
+        xargs docker network inspect
+}
+
+dni "$@"
