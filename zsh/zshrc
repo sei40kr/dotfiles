@@ -3,6 +3,13 @@
 # zshrc
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
+if [[ -z "$TMUX" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" ]]; then
+    __socket_name="${SSH_CLIENT:+$(awk '{ gsub(/\./, "_", $1); print $1 }' <<<"$SSH_CLIENT")}"
+    tmux -L "${__socket_name:-default}" attach-session ||
+        tmux -L "${__socket_name:-default}" new-session
+    exit
+fi
+
 autoload -Uz \
          clone_gh \
          create_gh \
@@ -182,11 +189,6 @@ zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/spring'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/stack'
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOCONNECT=true
-ZSH_TMUX_FIXTERM=false
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/tmux'
 zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/vagrant'
 zplugin ice svn nocompletions
