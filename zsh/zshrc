@@ -71,6 +71,7 @@ hash direnv 2>/dev/null && eval "$(direnv hook zsh)"
 
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 
+
 # commands
 #
 zplugin snippet 'OMZ::lib/clipboard.zsh'
@@ -92,6 +93,7 @@ bindkey -r '^R'
 
 zplugin ice as'program' pick'cd-gitroot'
 zplugin light mollifier/cd-gitroot
+
 
 # command aliases and completions
 #
@@ -235,13 +237,17 @@ if [[ -f '/usr/local/opt/wp-cli-completion/etc/bash_completion.d/wp' ]]; then
     zplugin snippet '/usr/local/opt/wp-cli-completion/etc/bash_completion.d/wp'
 fi
 
-# Version Managers
+
+# version managers
+#
 export NVM_SYMLINK_CURRENT=true
 export NVM_LAZY_LOAD=true
 export NVM_AUTO_USE=true
 zplugin light lukechilds/zsh-nvm
 
-# Tools & Settings
+
+# tools and configurations
+#
 zplugin snippet 'OMZ::lib/completion.zsh'
 zplugin snippet 'OMZ::lib/compfix.zsh'
 zplugin snippet 'OMZ::plugins/bgnotify/bgnotify.plugin.zsh'
@@ -257,6 +263,7 @@ zplugin ice wait'1' lucid
 zplugin light zdharma/history-search-multi-word
 zplugin ice wait'1' lucid
 zplugin light zsh-users/zsh-autosuggestions
+
 
 # prompt
 #
