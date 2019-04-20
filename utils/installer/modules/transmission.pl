@@ -8,6 +8,8 @@ use warnings;
 if (&is_macos) {
     brew_cask_install('transmission');
 
+    brew_cask_install('nordvpn');
+
     # Use `~/Documents/Torrents` to store incomplete downloads
     defaults_write_bool( 'org.m0k.transmission', 'UseIncompleteDownloadFolder',
         1 );
