@@ -11,6 +11,7 @@ use Install::PathResolver;
 if (&is_macos) {
     brew_install('zsh');
 
+    brew_install('direnv');
     brew_install('fzf');
     brew_install('terminal-notifier');
 
@@ -36,6 +37,10 @@ elsif (&is_arch) {
     pacman_sync('tree');
 
     trizen_sync('exa');
+
+    # install direnv
+    pacman_sync('make');
+    trizen_sync('direnv');
 }
 
 if ( &is_macos || &is_arch ) {

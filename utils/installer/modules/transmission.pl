@@ -7,8 +7,7 @@ use warnings;
 
 if (&is_macos) {
     brew_cask_install('transmission');
-
-    brew_cask_install('nordvpn');
+    pip3_install('transmissionrpc');
 
     # Use `~/Documents/Torrents` to store incomplete downloads
     defaults_write_bool( 'org.m0k.transmission', 'UseIncompleteDownloadFolder',
@@ -38,10 +37,16 @@ if (&is_macos) {
 
     # Randomize port on launch
     defaults_write_bool( 'org.m0k.transmission', 'RandomPort', 1 );
+
+    # install nordvpn
+    brew_cask_install('nordvpn');
 }
 elsif (&is_arch) {
     pacman_sync('transmission-cli');
     pacman_sync('transmission-gtk');
+
+    # TODO install transmissionrpc
+    # TODO install nordvpn
 }
 
 1;
