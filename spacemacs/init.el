@@ -217,7 +217,8 @@ values."
    dotspacemacs-excluded-packages '(avy-migemo
                                     ddskk
                                     migemo
-                                    pangu-spacing)
+                                    pangu-spacing
+                                    plsense)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
