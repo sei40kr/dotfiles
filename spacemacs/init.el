@@ -98,7 +98,8 @@ values."
            java--ensime-modes '())
      (javascript :variables
                  javascript-backend 'lsp
-                 javascript-fmt-tool 'prettier)
+                 javascript-fmt-tool 'prettier
+                 javascript-import-tool 'import-js)
      (json :variables json-fmt-tool 'prettier)
      latex
      major-modes
@@ -154,6 +155,7 @@ values."
      debug
      docker
      imenu-list
+     import-js
      ipython-notebook
      (lsp :variables
           lsp-navigation 'simple
