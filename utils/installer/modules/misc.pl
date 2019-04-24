@@ -32,12 +32,9 @@ if (&is_macos) {
     brew_cask_install('discord');
     brew_cask_install('dropbox');
     brew_cask_install('gitter');
-    brew_cask_install('gyazo');
     brew_cask_install('kindle');
-    brew_cask_install('near-lock');
     brew_cask_install('plex-media-server');
     brew_cask_install('slack');
-    brew_cask_install('spark');
 }
 elsif (&is_arch) {
     pacman_sync('fd');
