@@ -9,12 +9,6 @@ use lib "${FindBin::Bin}/utils/installer/lib";
 
 if (&is_arch) {
     pacman_sync('arandr');
-
-    curl(
-        'https://raw.githubusercontent.com/geyslan/xrasengan/master/xrasengan',
-        "${ENV{HOME}}/.local/bin/xrasengan"
-    );
-    chmod_facade( 755, "${ENV{HOME}}/.local/bin/xrasengan" );
 }
 
 1;

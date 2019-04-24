@@ -13,13 +13,6 @@ if (&is_macos) {
 
     ln( dotfile('iterm2'), "${ENV{HOME}}/iterm2_profile" );
 
-    # Download imgcat
-    curl(
-        'https://www.iterm2.com/utilities/imgcat',
-        "${ENV{HOME}}/.local/bin/imgcat"
-    );
-    chmod_facade( 755, "${ENV{HOME}}/.local/bin/imgcat" );
-
     # Specify the preferences directory
     defaults_write_string( 'com.googlecode.iterm2.plist', 'PrefsCustomFolder',
         "${ENV{HOME}}/iterm2_profile" );
