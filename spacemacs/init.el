@@ -62,12 +62,7 @@ values."
      react
      ruby-on-rails
      ;; Filetree
-     (treemacs :variables
-               treemacs-use-follow-mode nil
-               treemacs-use-filewatch-mode nil
-               treemacs-use-collapsed-directories 3
-               treemacs-use-git-mode 'deferred
-               treemacs-lock-width t)
+     neotree
      ;; Fun
      ;; International support
      japanese
@@ -603,6 +598,7 @@ It should only modify the values of Spacemacs settings."
                 "java"
                 "javascript"
                 "lsp"
+                "neotree"
                 "node"
                 "org"
                 "perl5"
@@ -615,7 +611,6 @@ It should only modify the values of Spacemacs settings."
                 "spacemacs-evil"
                 "spacemacs-project"
                 "syntax-checking"
-                "treemacs"
                 "typescript"))
   (load (format "%smy-%s" dotspacemacs-directory item)))
 (load (concat dotspacemacs-directory "my-init"))
@@ -645,6 +640,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-html)
   (my/init-java)
   (my/init-javascript)
+  (my/init-neotree)
   (my/init-org)
   (my/init-plantuml)
   (my/init-prettier)
@@ -655,7 +651,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-spacemacs-evil)
   (my/init-spacemacs-project)
   (my/init-syntax-checking)
-  (my/init-treemacs)
   (my/init-typescript))
 
 (defun dotspacemacs/user-load ()
@@ -675,6 +670,7 @@ dump."
                   "java"
                   "javascript"
                   "lsp"
+                  "neotree"
                   "node"
                   "org"
                   "perl5"
@@ -687,7 +683,6 @@ dump."
                   "spacemacs-evil"
                   "spacemacs-project"
                   "syntax-checking"
-                  "treemacs"
                   "typescript"))
     (load (format "%smy-%s" dotspacemacs-directory item)))
   (load (concat dotspacemacs-directory "my-init")))

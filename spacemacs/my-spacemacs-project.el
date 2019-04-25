@@ -4,9 +4,8 @@
   (interactive)
   (projectile-dired)
 
-  (if (eq (treemacs-current-visibility) 'visible)
-      (treemacs-add-and-display-current-project)
-    (treemacs-projectile)))
+  (when (neo-global--window-exists-p)
+      (neotree-show)))
 
 (defun my/init-spacemacs-project ()
   (setq projectile-git-submodule-command nil)
