@@ -47,7 +47,7 @@ fzf-project-widget() {
 
     # if current project is selected
     if [[ "$current_session_id" == "$project_id" ]]; then
-        # if working directory is under the project root
+        # if working directory is not under the project root
         if [[ "$PWD" != "$project_root" && "$PWD" != "$project_root"/* ]]; then
             BUFFER="cd $(shescape "$project_root")"
             zle accept-line
