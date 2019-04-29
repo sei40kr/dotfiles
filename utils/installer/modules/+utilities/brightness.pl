@@ -6,7 +6,7 @@ use strict;
 use warnings;
 
 if (&is_macos) {
-    brew_cask_install('brightness');
+    mas_install('456624497');
 }
 
 1;
