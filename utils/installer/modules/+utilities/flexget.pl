@@ -9,6 +9,7 @@ use lib "${FindBin::Bin}/utils/installer/lib";
 use Install::PathResolver;
 
 pip3_install('FlexGet');
+pip3_install('requests[socks]');
 
 ln( dotfile('flexget/config.yml'),
     "${ENV{XDG_CONFIG_HOME}}/flexget/config.yml" );
