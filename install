@@ -38,16 +38,25 @@ GetOptions(
     verbose   => sub { set_verbose(1); }
 ) or die 'Error in command-line arguments.';
 
-my @modules;
-if ( $#ARGV ne -1 ) { @modules = @ARGV; }
-else {
-    @modules =
-      map { basename( $_, ".pl" ) }
-      glob "${basepath}/utils/installer/modules/*.pl";
-}
+my %all_modules_by_name =
+  map { ( basename( $_, ".pl" ), $_ ) }
+  glob
+"'${basepath}/utils/installer/modules/+*/*.pl' '${basepath}/utils/installer/modules/*.pl'";
+
+my @modules_to_install = @ARGV;
+@modules_to_install = keys %all_modules_by_name
+  if ( scalar(@modules_to_install) eq 0 );
 
 require $_ foreach glob "'${basepath}/utils/installer/facades/*.pl'";
 
-require $basepath . "/utils/installer/modules/$_.pl" foreach @modules;
+foreach my $module (@modules_to_install) {
+    my $module_path = $all_modules_by_name{$module};
+
+    unless ($module_path) {
+        print STDERR "Error: A module ${module} does not exist.\n";
+    }
+
+    require $module_path;
+}
 
 &run_reducers;
