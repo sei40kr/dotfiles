@@ -1,10 +1,9 @@
 ;; -*- lexical-binding: t -*-
 
 (defun my/init-spacemacs-evil ()
-  (setq
-   evil-want-C-i-jump t
-   evil-want-C-u-scroll t
-   evil-escape-key-sequence "jk"))
+  (setq evil-want-C-i-jump t
+        evil-want-C-u-scroll t
+        evil-escape-key-sequence "jk"))
 
 (defun my/config-spacemacs-evil ()
   (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))

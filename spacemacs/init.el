@@ -62,7 +62,16 @@ values."
      react
      ruby-on-rails
      ;; Filetree
-     neotree
+     (neotree :variables
+              neo-confirm-create-directory 'off-p
+              neo-confirm-create-file 'off-p
+              neo-confirm-delete-directory-recursively 'off-p
+              neo-confirm-delete-file 'y-or-n-p
+              neo-confirm-kill-buffers-for-files-in-directory 'off-p
+              neo-force-change-root t
+              neo-smart-open t
+              neo-theme (if (display-graphic-p) 'arrow 'ascii)
+              neo-vc-integration '(face))
      ;; Fun
      ;; International support
      japanese
@@ -121,7 +130,8 @@ values."
      vimscript
      yaml
      ;; Readers
-     deft
+     (deft :variables
+           deft-directory "~/Google ドライブ/notes")
      ;; Music
      ;; Operating systems
      ;; Pair programming
@@ -155,10 +165,13 @@ values."
      (lsp :variables
           lsp-navigation 'simple
           lsp-ui-remap-xref-keybindings t
-          lsp-ui-sideline-enable nil)
+          lsp-ui-sideline-enable nil
+          lsp-prefer-flymake :none)
      nginx
      (node :variables node-add-modules-path t)
      pandoc
+     (prettier :variables
+               prettier-js-show-errors 'echoprettier-js-show-errors 'echo)
      ;; (ranger :variables
      ;;   ranger-show-hidden t)
      (restclient :variables restclient-use-org t)
@@ -590,24 +603,18 @@ It should only modify the values of Spacemacs settings."
 (dolist (item '("c-c++"
                 "auto-completion"
                 "dash"
-                "deft"
                 "git"
-                "github"
                 "go"
                 "html"
                 "java"
                 "javascript"
-                "lsp"
-                "neotree"
                 "node"
                 "org"
                 "perl5"
                 "plantuml"
-                "prettier"
                 "quickrun"
                 "ruby"
                 "rust"
-                "shell-scripts"
                 "spacemacs-evil"
                 "spacemacs-project"
                 "syntax-checking"
@@ -633,21 +640,16 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-auto-completion)
   (my/init-c-c++)
   (my/init-dash)
-  (my/init-deft)
   (my/init-git)
-  (my/init-github)
   (my/init-go)
   (my/init-html)
   (my/init-java)
   (my/init-javascript)
-  (my/init-neotree)
   (my/init-org)
   (my/init-plantuml)
-  (my/init-prettier)
   (my/init-quickrun)
   (my/init-ruby)
   (my/init-rust)
-  (my/init-shell-scripts)
   (my/init-spacemacs-evil)
   (my/init-spacemacs-project)
   (my/init-syntax-checking)
@@ -662,24 +664,18 @@ dump."
   (dolist (item '("c-c++"
                   "auto-completion"
                   "dash"
-                  "deft"
                   "git"
-                  "github"
                   "go"
                   "html"
                   "java"
                   "javascript"
-                  "lsp"
-                  "neotree"
                   "node"
                   "org"
                   "perl5"
                   "plantuml"
-                  "prettier"
                   "quickrun"
                   "ruby"
                   "rust"
-                  "shell-scripts"
                   "spacemacs-evil"
                   "spacemacs-project"
                   "syntax-checking"
@@ -696,7 +692,6 @@ before packages are loaded."
   (my/config)
   (my/config-auto-completion)
   (my/config-git)
-  (my/config-lsp)
   (my/config-node)
   (my/config-perl5)
   (my/config-quickrun)
