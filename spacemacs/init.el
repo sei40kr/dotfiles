@@ -171,7 +171,7 @@ values."
      (node :variables node-add-modules-path t)
      pandoc
      (prettier :variables
-               prettier-js-show-errors 'echoprettier-js-show-errors 'echo)
+               prettier-js-show-errors 'echo)
      ;; (ranger :variables
      ;;   ranger-show-hidden t)
      (restclient :variables restclient-use-org t)
