@@ -47,6 +47,9 @@
    ;; helm
    helm-mini-default-sources '(helm-source-buffers-list)
 
+   ;; lsp
+   lsp-prefer-flymake :none
+
    ;; semantic
    semanticdb-find-default-throttle '(file local project unloaded system)
 

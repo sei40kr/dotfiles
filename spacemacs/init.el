@@ -165,8 +165,7 @@ values."
      (lsp :variables
           lsp-navigation 'simple
           lsp-ui-remap-xref-keybindings t
-          lsp-ui-sideline-enable nil
-          lsp-prefer-flymake :none)
+          lsp-ui-sideline-enable nil)
      nginx
      (node :variables node-add-modules-path t)
      pandoc
