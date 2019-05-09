@@ -6,7 +6,9 @@
 clone_gh() {
     local repo="$1"
 
-    if [[ "$repo" == *'/'* ]]; then
+    if [[ "$repo" == 'fastretailing/'* ]]; then
+        local repo_url="git@github-work:${repo}.git"
+    elif [[ "$repo" == *'/'* ]]; then
         local repo_url="https://github.com/${repo}.git"
     else
         local default_user="$(git config --get github.user)"
