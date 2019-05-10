@@ -49,6 +49,7 @@ if ( &is_macos || &is_arch ) {
 
     ln( dotfile('zsh/zshenv'),        "${ENV{HOME}}/.zshenv" );
     ln( dotfile('zsh/zshenv'),        "${ENV{HOME}}/.zsh/.zshenv" );
+    ln( dotfile('zsh/zprofile'),      "${ENV{HOME}}/.zsh/.zprofile" );
     ln( dotfile('zsh/zshrc'),         "${ENV{HOME}}/.zsh/.zshrc" );
     ln( dotfile('zsh/func_defs.zsh'), "${ENV{HOME}}/.zsh/func_defs.zsh" );
     ln(
