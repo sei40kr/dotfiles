@@ -1,0 +1,9 @@
+# name: if
+# key: if
+# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# --
+
+{% if ${1:cond} %}
+  ${2:do}
+{% endif %}
+$0

@@ -1,0 +1,6 @@
+# name: extends
+# key: extends
+# contributor: Seong Yong-ju <sei40kr@gmail.com>
+# --
+
+{% extends '`(f-relative (read-file-name "Filename: "))`' %}
