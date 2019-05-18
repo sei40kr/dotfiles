@@ -8,10 +8,6 @@
   (append '(javascript-jshint javascript-standard) 'flycheck-disabled-checkers))
 
 (defun my/init-javascript ()
-  ;; enable camel-case-motion
-  (add-hook 'js2-mode-hook #'spacemacs/toggle-camel-case-motion-on)
-  (add-hook 'rjsx-mode-hook #'spacemacs/toggle-camel-case-motion-on)
-
   ;; disable non-modern checkers
   (add-hook 'js2-mode-hook #'my//javascript-disable-builtin-check)
   (add-hook 'rjsx-mode-hook #'my//javascript-disable-builtin-check)

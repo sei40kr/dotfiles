@@ -4,10 +4,6 @@
   (setq-local emmet-expand-jsx-className? t))
 
 (defun my/init-typescript ()
-  ;; enable camel-case-motion
-  (add-hook 'typescript-mode-hook #'spacemacs/toggle-camel-case-motion-on)
-  (add-hook 'typescript-tsx-mode-hook #'spacemacs/toggle-camel-case-motion-on)
-
   ;; enable javascript-eslint checker
   (with-eval-after-load 'flycheck
     (flycheck-add-mode 'javascript-eslint 'typescript-mode)

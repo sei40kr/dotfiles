@@ -694,6 +694,8 @@ before packages are loaded."
   (my/config-rust)
   (my/config-spacemacs-evil)
 
+  (spacemacs/toggle-camel-case-motion-globally-on)
+
   (when (memq window-system '(mac ns))
     (setq initial-frame-alist '((internal-border-width . 0)
                                 (ns-appearance . 'dark)
