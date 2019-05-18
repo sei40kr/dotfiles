@@ -74,7 +74,7 @@ autoload -Uz bashcompinit && bashcompinit
 [[ -d "${PYENV_ROOT:-${HOME}/.pyenv}" ]] && eval "$(pyenv init - --no-rehash zsh)"
 [[ -d "${RBENV_ROOT:-${HOME}/.rbenv}" ]] && eval "$(rbenv init - --no-rehash zsh)"
 [[ -d "${SDKMAN_DIR:-${HOME}/.sdkman}" ]] && . "${SDKMAN_DIR}/bin/sdkman-init.sh"
-hash direnv 2>/dev/null && eval "$(direnv hook zsh)"
+[[ "${+commands[direnv]}" == 1 ]] && eval "$(direnv hook zsh)"
 
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 
@@ -131,7 +131,7 @@ if [[ "$ITERM_PROFILE" != '' ]]; then
     # Enable 24-bit colors in Emacs
     export ITERM_24BIT=1
 fi
-if hash emacs 2>/dev/null && hash emacsclient 2>/dev/null; then
+if [[ "${+commands[emacs]}" == 1 ]] && [[ "${+commands[emacsclient]}" == 1 ]]; then
     export EDITOR=emacsclient
     export GIT_EDITOR=emacsclient
 fi
