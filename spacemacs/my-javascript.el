@@ -1,15 +1,13 @@
 ;; -*- lexical-binding: t -*-
 
-(defun my//javascript-disable-builtin-check ()
-  (set (make-local-variable 'js2-mode-show-parse-errors) nil)
-  (set (make-local-variable 'js2-mode-show-strict-warnings) nil))
-
-(defun my//javascript-disable-unnecessary-checkers ()
-  (append '(javascript-jshint javascript-standard) 'flycheck-disabled-checkers))
+(defun my//javascript-disable-non-modern-checkers ()
+  (require 'flycheck)
+  (add-to-list 'flycheck-disabled-checkers 'javascript-jshint)
+  (add-to-list 'flycheck-disabled-checkers 'javascript-standard))
 
 (defun my/init-javascript ()
   ;; disable non-modern checkers
-  (add-hook 'js2-mode-hook #'my//javascript-disable-builtin-check)
-  (add-hook 'rjsx-mode-hook #'my//javascript-disable-builtin-check)
-  (add-hook 'js2-mode-hook #'my//javascript-disable-unnecessary-checkers)
-  (add-hook 'rjsx-mode-hook #'my//javascript-disable-unnecessary-checkers))
+  (setq js2-mode-show-parse-errors nil
+        js2-mode-show-strict-warnings nil)
+  (spacemacs/add-to-hooks #'my//javascript-disable-non-modern-checkers
+                          '(js2-mode-hook rjsx-mode-hook)))
