@@ -13,7 +13,7 @@ if [[ "$OSTYPE" == linux* && -f /etc/arch-release ]]; then
 fi
 
 # Homebrew
-if hash brew 2>/dev/null; then
+if [[ "${+commands[brew]}" == 1 ]]; then
     export BREW_PREFIX="$(brew --prefix)"
 
     path=( "${BREW_PREFIX}/bin" "${BREW_PREFIX}/sbin" $path )
@@ -42,7 +42,7 @@ fi
 # Rust
 export CARGO_HOME="${HOME}/.cargo"
 path=( "${CARGO_HOME}/bin" $path )
-if hash rustc 2>/dev/null; then
+if [[ "${+commands[rustc]}" == 1 ]]; then
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
 
