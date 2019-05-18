@@ -685,7 +685,6 @@ before packages are loaded."
   (my/config)
   (my/config-auto-completion)
   (my/config-git)
-  (my/config-node)
   (my/config-perl5)
   (my/config-quickrun)
   (my/config-ruby)
