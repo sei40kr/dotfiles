@@ -2,8 +2,10 @@
 
 (defun my//go-disable-unnecessary-checkers ()
   (require 'flycheck)
-  (append '(gometalinter go-gofmt go-test go-megacheck)
-          'flycheck-disabled-checkers))
+  (add-to-list 'flycheck-disabled-checkers 'gometalinter)
+  (add-to-list 'flycheck-disabled-checkers 'go-gofmt)
+  (add-to-list 'flycheck-disabled-checkers 'go-test)
+  (add-to-list 'flycheck-disabled-checkers 'go-megacheck))
 
 (defun my/init-go ()
   (setq gofmt-command "goimports"
