@@ -685,9 +685,7 @@ before packages are loaded."
   (my/config)
   (my/config-auto-completion)
   (my/config-git)
-  (my/config-perl5)
   (my/config-quickrun)
-  (my/config-ruby)
   (my/config-spacemacs-evil)
 
   (spacemacs/toggle-camel-case-motion-globally-on)
