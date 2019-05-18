@@ -122,7 +122,8 @@ values."
            ruby-version-manager nil
            inf-ruby-default-implementation "pry")
      (rust :variables
-           rust-backend 'lsp)
+           rust-backend 'lsp
+           rust-format-on-save t)
      (scala :variables
             scala-auto-insert-asterisk-in-comments t
             scala-auto-start-ensime t)
@@ -688,7 +689,6 @@ before packages are loaded."
   (my/config-perl5)
   (my/config-quickrun)
   (my/config-ruby)
-  (my/config-rust)
   (my/config-spacemacs-evil)
 
   (spacemacs/toggle-camel-case-motion-globally-on)
