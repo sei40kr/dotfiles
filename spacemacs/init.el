@@ -78,6 +78,7 @@ values."
      ;; Programming and markup languages
      (c-c++ :variables
             c-c++-backend 'lsp-cquery
+            c++-enable-organize-includes-on-save t
             c-c++-enable-google-style t
             c-c++-enable-google-newline t
             c-c++-enable-rtags-completion nil
@@ -96,7 +97,10 @@ values."
      (haskell :variables
               haskell-completion-backend 'intero
               haskell-enable-hindent t)
-     (html :variables web-fmt-tool 'prettier)
+     (html :variables
+           less-enable-lsp t
+           scss-enable-lsp t
+           web-fmt-tool 'prettier)
      (java :variables
            java-backend 'lsp
            java--ensime-modes '())
@@ -599,17 +603,14 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-pretty-docs nil))
 
-(dolist (item '("c-c++"
-                "auto-completion"
+(dolist (item '("auto-completion"
                 "dash"
                 "git"
                 "go"
                 "html"
                 "java"
                 "javascript"
-                "node"
                 "org"
-                "perl5"
                 "plantuml"
                 "quickrun"
                 "ruby"
@@ -637,7 +638,6 @@ It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init)
   (my/init-auto-completion)
-  (my/init-c-c++)
   (my/init-dash)
   (my/init-git)
   (my/init-go)
@@ -659,18 +659,14 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
-  (load (concat dotspacemacs-directory "npm-and-yarn"))
-  (dolist (item '("c-c++"
-                  "auto-completion"
+  (dolist (item '("auto-completion"
                   "dash"
                   "git"
                   "go"
                   "html"
                   "java"
                   "javascript"
-                  "node"
                   "org"
-                  "perl5"
                   "plantuml"
                   "quickrun"
                   "ruby"
