@@ -202,8 +202,6 @@ values."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '((competitive-programming-snippets :location local)
-     (cpp-auto-include :location (recipe :fetcher github
-                                         :repo "syohex/emacs-cpp-auto-include"))
      exec-path-from-shell
      flycheck-popup-tip
      (jest-snippets :location local)
@@ -216,7 +214,6 @@ values."
      (rails-snippets :location local)
      (react-snippets :location local)
      (redux-snippets :location local)
-     rubocopfmt
      ;; org2blog deps
      metaweblog
      xml-rpc)
