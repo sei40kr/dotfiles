@@ -51,7 +51,8 @@ values."
      helm
      (templates :variables
                 templates-private-directory
-                (concat dotspacemacs-directory "templates"))
+                (concat dotspacemacs-directory "templates")
+                templates-use-default-templates nil)
      ;; Emacs
      (org :variables
           org-want-todo-bindings t
