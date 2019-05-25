@@ -14,14 +14,12 @@ if (&is_macos) {
     # install chunkwm
     brew_install('chunkwm');
     ln( dotfile('chunkwm/chunkwmrc'), "${ENV{HOME}}/.chunkwmrc" );
-
-    # TODO enable chunkwm service
+    brew_services_start('chunkwm');
 
     # install skhd
     brew_install('skhd');
     ln( dotfile('chunkwm/skhdrc'), "${ENV{HOME}}/.skhdrc" );
-
-    # TODO enable skhd service
+    brew_services_start('skhd');
 }
 
 1;
