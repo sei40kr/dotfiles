@@ -3,8 +3,6 @@
 # zprofile
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-export GIT_EDITOR=vim
-
 typeset -U path manpath fpath
 
 fpath=( "${ZDOTDIR}/functions" "${ZDOTDIR}/completions" $fpath )
