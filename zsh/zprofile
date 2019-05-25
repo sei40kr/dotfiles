@@ -14,28 +14,30 @@ fi
 
 # Homebrew
 if [[ "${+commands[brew]}" == 1 ]]; then
-    export BREW_PREFIX="$(brew --prefix)"
+    __homebrew_prefix="$(brew --prefix)"
 
-    path=( "${BREW_PREFIX}/bin" "${BREW_PREFIX}/sbin" $path )
+    path=( "${__homebrew_prefix}/bin" "${__homebrew_prefix}/sbin" $path )
+    fpath=( "${__homebrew_prefix}/share/zsh/site-functions" $fpath )
+    manpath=( "${__homebrew_prefix}/share/man" $manpath )
 
     if [[ "$OSTYPE" == darwin* ]]; then
-        fpath=( "${BREW_PREFIX}/share/zsh/site-functions" $fpath )
-
-        path=( "${BREW_PREFIX}/opt/coreutils/libexec/gnubin" $path )
-        manpath=( "${BREW_PREFIX}/opt/coreutils/libexec/gnuman" $manpath )
-        path=( "${BREW_PREFIX}/opt/findutils/libexec/gnubin" $path )
-        manpath=( "${BREW_PREFIX}/opt/findutils/libexec/gnuman" $manpath )
-        path=( "${BREW_PREFIX}/opt/ed/bin" $path )
-        manpath=( "${BREW_PREFIX}/opt/ed/share/man" $manpath )
-        path=( "${BREW_PREFIX}/opt/gnu-sed/libexec/gnubin" $path )
-        manpath=( "${BREW_PREFIX}/opt/gnu-sed/libexec/gnuman" $manpath )
-        path=( "${BREW_PREFIX}/opt/gnu-tar/libexec/gnubin" $path )
-        manpath=( "${BREW_PREFIX}/opt/gnu-tar/libexec/gnuman" $manpath )
-        path=( "${BREW_PREFIX}/opt/grep/libexec/gnubin" $path )
-        manpath=( "${BREW_PREFIX}/opt/grep/libexec/gnuman" $manpath )
-        path=( "${BREW_PREFIX}/opt/nano/bin" $path )
-        manpath=( "${BREW_PREFIX}/opt/nano/share/man" $manpath )
-        path=( "${BREW_PREFIX}/texlive/2018basic/bin/x86_64-darwin" $path )
+        path=( "${__homebrew_prefix}/opt/coreutils/libexec/gnubin"
+               "${__homebrew_prefix}/opt/findutils/libexec/gnubin"
+               "${__homebrew_prefix}/opt/ed/bin"
+               "${__homebrew_prefix}/opt/gnu-sed/libexec/gnubin"
+               "${__homebrew_prefix}/opt/gnu-tar/libexec/gnubin"
+               "${__homebrew_prefix}/opt/grep/libexec/gnubin"
+               "${__homebrew_prefix}/opt/nano/bin"
+               "${__homebrew_prefix}/texlive/2018basic/bin/x86_64-darwin"
+               $path )
+        manpath=( "${__homebrew_prefix}/opt/coreutils/libexec/gnuman"
+                  "${__homebrew_prefix}/opt/findutils/libexec/gnuman"
+                  "${__homebrew_prefix}/opt/ed/share/man"
+                  "${__homebrew_prefix}/opt/gnu-sed/libexec/gnuman"
+                  "${__homebrew_prefix}/opt/gnu-tar/libexec/gnuman"
+                  "${__homebrew_prefix}/opt/grep/libexec/gnuman"
+                  "${__homebrew_prefix}/opt/nano/share/man"
+                  $manpath )
     fi
 fi
 
@@ -54,7 +56,7 @@ path=( "${GOPATH}/bin" $path )
 
 # Java
 export SDKMAN_DIR="${HOME}/.sdkman"
-path=( "${SDKMAN_DIR}/candidates"/*/current/bin(N-/) $path )
+path=( "${SDKMAN_DIR}/candidates"/*/current/bin(-/) $path )
 
 # Perl
 path=( "${HOME}/perl5/bin" $path )
@@ -77,6 +79,7 @@ export NVM_DIR="${HOME}/.nvm"
 path=( "${HOME}/.yarn/bin:${NVM_DIR}/current/bin" $path )
 
 path=( "${HOME}/.local/bin" $path )
+
 export path
 export manpath
 
