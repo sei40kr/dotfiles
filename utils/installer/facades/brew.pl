@@ -8,9 +8,10 @@ use FindBin;
 use lib "${FindBin::Bin}/utils/installer/lib";
 use Install::CommandRunner;
 
-my @brew_tap_intermediate          = ();
-my @brew_install_intermediate      = ();
-my @brew_cask_install_intermediate = ();
+my @brew_tap_intermediate            = ();
+my @brew_install_intermediate        = ();
+my @brew_cask_install_intermediate   = ();
+my @brew_services_start_intermediate = ();
 
 sub brew_tap {
     my ( $user_and_repo, $url ) = @_;
@@ -40,6 +41,12 @@ sub brew_cask_install {
     my $cask = $_[0];
 
     push( @brew_cask_install_intermediate, $cask );
+}
+
+sub brew_services_start {
+    my $formula = $_[0];
+
+    push( @brew_services_start_intermediate, $formula );
 }
 
 my sub generate_brewfile {
@@ -90,6 +97,18 @@ sub brew_reducer {
     run_with_stdin($brewfile, @command)
 }
 
+sub brew_services_start_reducer {
+    return if ( scalar(@brew_services_start_intermediate) eq 0 );
+
+    &install_homebrew unless ( is_exec('brew') );
+
+    log_wait('Starting Homebrew service formulas ...');
+
+    run( qw(brew services start), $_ )
+      foreach @brew_services_start_intermediate;
+}
+
 register_reducer( 40, \&brew_reducer );
+register_reducer( 90, \&brew_services_start_reducer );
 
 1;
