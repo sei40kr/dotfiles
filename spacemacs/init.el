@@ -689,14 +689,7 @@ before packages are loaded."
   (my/config-quickrun)
   (my/config-spacemacs-evil)
 
-  (spacemacs/toggle-camel-case-motion-globally-on)
-
-  (when (memq window-system '(mac ns))
-    (setq initial-frame-alist '((internal-border-width . 0)
-                                (ns-appearance . 'dark)
-                                (ns-transparent-titlebar . t)
-                                (vertical-scroll-bars . nil)))
-    (setq default-frame-alist initial-frame-alist)))
+  (spacemacs/toggle-camel-case-motion-globally-on))
 
 (setq custom-file (concat spacemacs-cache-directory ".my-custom-settings"))
 ;; Do not write anything past this comment. This is where Emacs will
