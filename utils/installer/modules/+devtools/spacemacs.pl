@@ -9,12 +9,11 @@ use lib "${FindBin::Bin}/utils/installer/lib";
 use Install::PathResolver;
 
 if (&is_macos) {
-    brew_install('emacs');
+    brew_tap('railwaycat/emacsmacport');
+    brew_cask_install('emacs-mac-spacemacs-icon');
 
     # Install the font
     brew_cask_install('font-firacode-nerd-font-mono');
-
-    # TODO Invoke `brew services start` here
 
     tic( dotfile('terminfo/eterm-color.ti') );
 }
