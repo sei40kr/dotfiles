@@ -138,6 +138,37 @@ chunkc core::load tiling.so
 
 chunkwm --load-sa
 
-chunkc tiling::rule --owner Bitwarden --state float &
-chunkc tiling::rule --owner Dash --state float &
-chunkc tiling::rule --owner Finder --name Copy --state float &
+grid_layout_center='26:26:5:5:16:16'
+
+# floating or sticky apps
+chunkc tiling::rule -o 'Activity Monitor' -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o Bitwarden -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o Calculator -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o Calendar -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o Contacts -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o Dictionary -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o Mail -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o Notes -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o Slack -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o 'System Preferences' -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o Todoist -s sticky -g "${grid_layout_center}" &
+
+# web apps
+chunkc tiling::rule -o Chrome -d 1 -D &
+chunkc tiling::rule -o Safari -d 1 -D &
+
+# file apps
+chunkc tiling::rule -o Finder -d 2 -D &
+chunkc tiling::rule -o Preview -s float -d 2 -g "${grid_layout_center}" -D &
+
+# dev apps
+chunkc tiling::rule -o Alacritty -d 3 -D &
+chunkc tiling::rule -o Dash -s float -d 3 -g "${grid_layout_center}" -D &
+chunkc tiling::rule -o Emacs -e '^$' -s tile -d 3 -D &
+chunkc tiling::rule -o Simulator -s float -d 3 -D &
+
+# im apps
+chunkc tiling::rule -o Discord -d 5 &
+chunkc tiling::rule -o Gitter -d 5 &
+chunkc tiling::rule -o LINE -d 5 &
+chunkc tiling::rule -o Skype -d 5 &
