@@ -69,7 +69,8 @@ ln(
     "${ENV{HOME}}/.emacs.d/private/local/redux-snippets"
 );
 
-ln( dotfile('spacemacs'), "${ENV{HOME}}/.spacemacs.d" );
+git_clone( 'ssh://git@github.com/sei40kr/spacemacs.d.git',
+           "${ENV{HOME}}/.spacemacs.d" );
 
 if (&is_macos) {
 
