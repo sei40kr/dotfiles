@@ -1,8 +1,0 @@
-# name : function
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: function
-# --
-
-function ${1:name}
-    $0
-end

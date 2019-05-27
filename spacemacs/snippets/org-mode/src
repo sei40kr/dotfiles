@@ -1,8 +1,0 @@
-# name : src
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: <src
-# --
-
-#+BEGIN_SRC $1
-  $0
-#+END_SRC

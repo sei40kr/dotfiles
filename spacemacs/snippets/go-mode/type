@@ -1,6 +1,0 @@
-# name: type
-# key: type
-# contributor: Seong Yong-ju <sei40kr@gmail.com>
-# --
-
-type $1 $2

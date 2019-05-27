@@ -1,8 +1,0 @@
-# name: SSL Cache
-# key: ssl-cache
-# contributor: Seong Yong-ju <sei40kr@gmail.com>
-# --
-
-ssl_session_cache shared:SSL:${1:10m};
-ssl_session_timeout ${1:10m};
-$0

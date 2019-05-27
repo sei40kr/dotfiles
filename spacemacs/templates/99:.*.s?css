@@ -1,3 +1,0 @@
-.`(s-replace "_" "-" (s-snake-case (my//file-class-name)))` {
-  $0
-}

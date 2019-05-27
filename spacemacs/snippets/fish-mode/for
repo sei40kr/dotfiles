@@ -1,8 +1,0 @@
-# name : for loop
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: for
-# --
-
-for ${1:var} in ${2:stuff}
-    $0
-end

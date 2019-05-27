@@ -1,8 +1,0 @@
-# name: struct
-# key: struct
-# contributor: Seong Yong-ju <sei40kr@gmail.com>
-# --
-
-struct {
-  $0
-}

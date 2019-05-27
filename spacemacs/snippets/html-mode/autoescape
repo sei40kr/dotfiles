@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: autoescape
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: autoescape
-# --
-
-{% autoescape false %}
-  $0
-{% endautoescape %}

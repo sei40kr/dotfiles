@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: assertion
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: assert
-# --
-
-if ${1:actual} != ${2:expected} {
-    t.Fatalf("${0}\n");
-}

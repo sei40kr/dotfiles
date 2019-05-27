@@ -1,8 +1,0 @@
-# name: block
-# key: block
-# contributor: Seong Yong-ju <sei40kr@gmail.com>
-# --
-
-{% block $1 %}
-  $0
-{% endblock %}

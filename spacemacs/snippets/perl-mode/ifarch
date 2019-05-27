@@ -1,8 +1,0 @@
-# name : if (&is_arch) { ... }
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: ifarch
-# --
-
-if (&is_arch) {
-    $0
-}

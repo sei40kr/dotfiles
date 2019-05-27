@@ -1,7 +1,0 @@
-# name: Never cache
-# key: never-cache
-# contributor: Seong Yong-ju <sei40kr@gmail.com>
-# --
-
-expires -1;
-$0

@@ -1,9 +1,0 @@
-# name : switch
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: sw
-# --
-
-switch ${1:condition}
-    case ${2:*}
-         ${0}
-end

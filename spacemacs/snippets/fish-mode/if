@@ -1,9 +1,0 @@
-# name : if
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: if
-# --
-
-if ${1:[ -f file ]}
-    ${2:do}
-end
-$0

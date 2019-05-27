@@ -1,8 +1,0 @@
-# name: macro
-# key: macro
-# contributor: Seong Yong-ju <sei40kr@gmail.com>
-# --
-
-{% macro $1(${2:args}) %}
-  $0
-{% endmacro %}

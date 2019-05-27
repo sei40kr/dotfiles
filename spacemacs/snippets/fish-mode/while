@@ -1,8 +1,0 @@
-# name : while loop
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: while
-# --
-
-while ${1:cond}
-    $0
-end

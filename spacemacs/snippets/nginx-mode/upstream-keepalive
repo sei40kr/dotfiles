@@ -1,7 +1,0 @@
-# name: Enable the upstream connection cache
-# key: upstream-keepalive
-# contributor: Seong Yong-ju <sei40kr@gmail.com>
-# --
-
-proxy_set_header Connection "";
-$0
