@@ -58,6 +58,7 @@ chunkc set global_desktop_offset_gap     15
 ws_web='1'
 ws_file='2'
 ws_dev='3'
+ws_design='4'
 ws_im='5'
 
 #
@@ -152,6 +153,7 @@ chunkc tiling::rule -o Calculator -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Calendar -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Contacts -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Dictionary -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o 'Digital Color Meter' -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Mail -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Notes -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Slack -s sticky -g "${grid_layout_center}" &
@@ -171,6 +173,13 @@ chunkc tiling::rule -o Alacritty -d "${ws_dev}" -D &
 chunkc tiling::rule -o Dash -s float -d "${ws_dev}" -g "${grid_layout_center}" -D &
 chunkc tiling::rule -o Emacs -e '^$' -s tile -d "${ws_dev}" -D &
 chunkc tiling::rule -o Simulator -s float -d "${ws_dev}" -D &
+
+# design apps
+chunkc tiling::rule -o 'Photoshop CC' -d "${ws_design}" -D &
+chunkc tiling::rule -o Pinterest -s float -d "${ws_design}" -g "${grid_layout_center}" -D &
+chunkc tiling::rule -o 'Pixelmator Pro' -d "${ws_design}" -D &
+chunkc tiling::rule -o Sketch -d "${ws_design}" -D &
+chunkc tiling::rule -o Unsplash -s float -d "${ws_design}" -g "${grid_layout_center}" -D &
 
 # im apps
 chunkc tiling::rule -o Discord -d "${ws_im}" -D &
