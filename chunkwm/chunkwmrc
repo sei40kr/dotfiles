@@ -55,6 +55,11 @@ chunkc set global_desktop_offset_left    20
 chunkc set global_desktop_offset_right   20
 chunkc set global_desktop_offset_gap     15
 
+ws_web='1'
+ws_file='2'
+ws_dev='3'
+ws_im='5'
+
 #
 # NOTE: syntax for desktop-specific settings
 #
@@ -154,21 +159,21 @@ chunkc tiling::rule -o 'System Preferences' -s sticky -g "${grid_layout_center}"
 chunkc tiling::rule -o Todoist -s sticky -g "${grid_layout_center}" &
 
 # web apps
-chunkc tiling::rule -o Chrome -d 1 -D &
-chunkc tiling::rule -o Safari -d 1 -D &
+chunkc tiling::rule -o Chrome -d "${ws_web}" -D &
+chunkc tiling::rule -o Safari -d "${ws_web}" -D &
 
 # file apps
-chunkc tiling::rule -o Finder -d 2 -D &
-chunkc tiling::rule -o Preview -s float -d 2 -g "${grid_layout_center}" -D &
+chunkc tiling::rule -o Finder -d "${ws_file}" -D &
+chunkc tiling::rule -o Preview -s float -d "${ws_file}" -g "${grid_layout_center}" -D &
 
 # dev apps
-chunkc tiling::rule -o Alacritty -d 3 -D &
-chunkc tiling::rule -o Dash -s float -d 3 -g "${grid_layout_center}" -D &
-chunkc tiling::rule -o Emacs -e '^$' -s tile -d 3 -D &
-chunkc tiling::rule -o Simulator -s float -d 3 -D &
+chunkc tiling::rule -o Alacritty -d "${ws_dev}" -D &
+chunkc tiling::rule -o Dash -s float -d "${ws_dev}" -g "${grid_layout_center}" -D &
+chunkc tiling::rule -o Emacs -e '^$' -s tile -d "${ws_dev}" -D &
+chunkc tiling::rule -o Simulator -s float -d "${ws_dev}" -D &
 
 # im apps
-chunkc tiling::rule -o Discord -d 5 &
-chunkc tiling::rule -o Gitter -d 5 &
-chunkc tiling::rule -o LINE -d 5 &
-chunkc tiling::rule -o Skype -d 5 &
+chunkc tiling::rule -o Discord -d "${ws_im}" -D &
+chunkc tiling::rule -o Gitter -d "${ws_im}" -D &
+chunkc tiling::rule -o LINE -d "${ws_im}" -D &
+chunkc tiling::rule -o Skype -d "${ws_im}" -D &
