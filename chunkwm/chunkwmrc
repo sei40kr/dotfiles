@@ -160,6 +160,7 @@ chunkc tiling::rule -o Notes -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Slack -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o 'System Preferences' -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Todoist -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o zoom.us -s sticky -g "${grid_layout_center}" &
 
 # web apps
 chunkc tiling::rule -o Chrome -d "${ws_web}" -D &
