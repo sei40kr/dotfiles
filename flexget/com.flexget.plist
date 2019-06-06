@@ -7,10 +7,9 @@
   <string>com.flexget</string>
   <key>ProgramArguments</key>
   <array>
-    <string>~/.pyenv/shims/flexget</string>
-    <string>daemon</string>
-    <string>start</string>
-    <string>--autoreload-config</string>
+    <string>/bin/sh</string>
+    <string>-c</string>
+    <string>~/.pyenv/shims/flexget daemon start --autoreload-config</string>
   </array>
   <key>RunAtLoad</key>
   <true/>
