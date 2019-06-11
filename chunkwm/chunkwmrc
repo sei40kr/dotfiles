@@ -60,6 +60,7 @@ ws_file='2'
 ws_dev='3'
 ws_design='4'
 ws_im='5'
+ws_misc='6'
 
 #
 # NOTE: syntax for desktop-specific settings
@@ -152,13 +153,14 @@ chunkc tiling::rule -o 'Activity Monitor' -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Bitwarden -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Calculator -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Calendar -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o ConfigDialog -n '^Google Japanese Input Preferences$' -s sticky &
 chunkc tiling::rule -o Contacts -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Dictionary -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o 'Digital Color Meter' -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Mail -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Notes -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Slack -s sticky -g "${grid_layout_center}" &
-chunkc tiling::rule -o 'System Preferences' -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o 'System Preferences' -s sticky &
 chunkc tiling::rule -o Todoist -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o zoom.us -s sticky -g "${grid_layout_center}" &
 
@@ -169,6 +171,7 @@ chunkc tiling::rule -o Safari -d "${ws_web}" -D &
 # file apps
 chunkc tiling::rule -o Finder -d "${ws_file}" -D &
 chunkc tiling::rule -o Preview -s float -d "${ws_file}" -g "${grid_layout_center}" -D &
+chunkc tiling::rule -o 'QuickTime Player' -s float -d "${ws_file}" -g "${grid_layout_center}" -D &
 
 # dev apps
 chunkc tiling::rule -o Alacritty -d "${ws_dev}" -D &
@@ -188,3 +191,6 @@ chunkc tiling::rule -o Discord -d "${ws_im}" -D &
 chunkc tiling::rule -o Gitter -d "${ws_im}" -D &
 chunkc tiling::rule -o LINE -d "${ws_im}" -D &
 chunkc tiling::rule -o Skype -d "${ws_im}" -D &
+
+# misc apps
+chunkc tiling::rule -o Deluge -d "${ws_misc}" -D &
