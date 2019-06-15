@@ -23,20 +23,20 @@ export const render = ({ output }) => {
 
   return (
     <div className="bar-on-bottom">
-      <Stat label="CPU">
+      <Stat key="cpu" label="CPU">
         <div className="usage">
           <span className="value">{cpuUsagePercent}</span>
           <span className="unit">%</span>
         </div>
       </Stat>
-      <Stat label="RAM">
+      <Stat key="ram" label="RAM">
         <div className="usage">
           <span className="numerator">{ramUsage}</span>
           <span className="denominator">{ramTotal}</span>
           <span className="unit">MB</span>
         </div>
       </Stat>
-      <Stat label="Disk">
+      <Stat key="disk" label="Disk">
         <div className="usage">
           <span className="value">{diskUsage}</span>
           <span className="unit">MB/s</span>
