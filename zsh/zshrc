@@ -86,7 +86,6 @@ zplugin ice svn
 zplugin snippet 'OMZ::plugins/capistrano'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/extract'
-zplugin snippet 'OMZ::plugins/iwhois/iwhois.plugin.zsh'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/jira'
 zplugin snippet 'OMZ::plugins/node/node.plugin.zsh'
@@ -163,7 +162,6 @@ zplugin snippet 'OMZ::plugins/python/python.plugin.zsh'
 alias pygrep="rg --iglob '**/*.py'"
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/rails'
-unalias rg
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/rake-fast'
 zplugin ice svn
