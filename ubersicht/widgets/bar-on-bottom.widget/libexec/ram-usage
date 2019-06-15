@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+vm_stat | awk '
+/^Pages (free|speculative):/ { free += $NF }
+/^Pages ((in)?active|wired down):/ { used += $NF }
+END { printf "%.1f %.0f\n", used*4096/1024/1024, (free+used)*4096/1024/1024 }
+'
