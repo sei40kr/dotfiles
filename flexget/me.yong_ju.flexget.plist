@@ -4,7 +4,7 @@
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>com.flexget</string>
+  <string>me.yong_ju.flexget</string>
   <key>ProgramArguments</key>
   <array>
     <string>/bin/sh</string>
@@ -14,8 +14,8 @@
   <key>RunAtLoad</key>
   <true/>
   <key>StandardOutPath</key>
-  <string>/tmp/com.flexget.stdout.log</string>
+  <string>/tmp/me.yong_ju.flexget.stdout.log</string>
   <key>StandardErrorPath</key>
-  <string>/tmp/com.flexget.stderr.log</string>
+  <string>/tmp/me.yong_ju.flexget.stderr.log</string>
 </dict>
 </plist>
