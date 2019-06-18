@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>me.yong_ju.caffeinate</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/caffeinate</string>
+    <string>-st</string>
+    <string>32400</string>
+  </array>
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict>
+      <key>Minute</key>
+      <integer>0</integer>
+      <key>Hour</key>
+      <integer>9</integer>
+      <key>Weekday</key>
+      <integer>1</integer>
+    </dict>
+    <dict>
+      <key>Minute</key>
+      <integer>0</integer>
+      <key>Hour</key>
+      <integer>9</integer>
+      <key>Weekday</key>
+      <integer>2</integer>
+    </dict>
+    <dict>
+      <key>Minute</key>
+      <integer>0</integer>
+      <key>Hour</key>
+      <integer>9</integer>
+      <key>Weekday</key>
+      <integer>4</integer>
+    </dict>
+    <dict>
+      <key>Minute</key>
+      <integer>0</integer>
+      <key>Hour</key>
+      <integer>9</integer>
+      <key>Weekday</key>
+      <integer>5</integer>
+    </dict>
+  </array>
+  <key>StandardOutPath</key>
+  <string>/tmp/me.yong_ju.caffeinate.stdout.log</string>
+  <key>StandardErrorPath</key>
+  <string>/tmp/me.yong_ju.caffeinate.stderr.log</string>
+</dict>
+</plist>
