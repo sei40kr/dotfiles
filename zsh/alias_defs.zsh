@@ -95,6 +95,9 @@ alias tree='exa -T'
 # fzf
 alias preview="fzf --preview 'bat --color always {}'"
 
+# gdb
+alias gdb='gdb -ex start'
+
 # kubectl
 alias k=kubectl
 alias kaf='kubectl apply -f'
