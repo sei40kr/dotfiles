@@ -13,7 +13,7 @@ const renderDesktop = ({ desktopId, isActive }) => {
       desktopName = 'File';
       break;
     case '3':
-      desktopName = 'Development';
+      desktopName = 'Coding';
       break;
     case '4':
       desktopName = 'Design';

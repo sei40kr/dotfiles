@@ -57,7 +57,7 @@ chunkc set global_desktop_offset_gap     16
 
 ws_web='1'
 ws_file='2'
-ws_dev='3'
+ws_code='3'
 ws_design='4'
 ws_im='5'
 ws_misc='6'
@@ -175,10 +175,10 @@ chunkc tiling::rule -o Preview -s float -d "${ws_file}" -g "${grid_layout_center
 chunkc tiling::rule -o 'QuickTime Player' -s float -d "${ws_file}" -g "${grid_layout_center}" -D &
 
 # dev apps
-chunkc tiling::rule -o Alacritty -d "${ws_dev}" -D &
-chunkc tiling::rule -o Dash -s float -d "${ws_dev}" -g "${grid_layout_center}" -D &
-chunkc tiling::rule -o Emacs -e '^$' -s tile -d "${ws_dev}" -D &
-chunkc tiling::rule -o Simulator -s float -d "${ws_dev}" -D &
+chunkc tiling::rule -o Alacritty -d "${ws_code}" -D &
+chunkc tiling::rule -o Dash -s float -d "${ws_code}" -g "${grid_layout_center}" -D &
+chunkc tiling::rule -o Emacs -e '^$' -s tile -d "${ws_code}" -D &
+chunkc tiling::rule -o Simulator -s float -d "${ws_code}" -D &
 
 # design apps
 chunkc tiling::rule -o 'Photoshop CC' -d "${ws_design}" -D &
