@@ -54,6 +54,7 @@ export const render = ({ output }) => {
 export const className = `
 align-items: center;
 backdrop-filter: blur(20px);
+background: rgba(0, 0, 0, .1);
 bottom: 0;
 box-sizing: border-box;
 color: #fff;
