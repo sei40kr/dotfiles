@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+chunkc='/usr/local/bin/chunkc'
+
+"$chunkc" tiling::query -D "$("$chunkc" tiling::query -m id)" && echo
+"$chunkc" tiling::query -d id && echo

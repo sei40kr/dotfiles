@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-set -euo pipefail
-IFS=$'\n\t'
-
-iostat -c 2 disk0 | awk 'NR == 4 { printf "%d %.1f\n", 100-$6, $3 }'

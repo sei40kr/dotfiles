@@ -1,14 +1,40 @@
-export const command = `
-./bar-on-bottom.widget/libexec/cpu-and-disk-usage
-./bar-on-bottom.widget/libexec/ram-usage
-`;
+export const command = './bar-on-bottom.widget/libexec/chunkwm-status';
 
-export const refreshFrequency = 1500; // ms
+export const refreshFrequency = 500; // ms
 
-const Stat = ({ label, children }) => (
-  <div className="stat">
-    <div className="stat-label">{label}</div>
-    <div className="stat-content">{children}</div>
+const renderDesktop = ({ desktopId, isActive }) => {
+  let desktopName;
+
+  switch (desktopId) {
+    case '1':
+      desktopName = 'Web';
+      break;
+    case '2':
+      desktopName = 'File';
+      break;
+    case '3':
+      desktopName = 'Development';
+      break;
+    case '4':
+      desktopName = 'Design';
+      break;
+
+    default:
+      desktopName = `Desktop ${desktopId}`;
+  }
+
+  return (
+    <span className={`desktop ${isActive ? 'desktop--active' : ''}`}>
+      {desktopName}
+    </span>
+  );
+};
+
+const renderDesktops = (activeDesktopId, desktopIds) => (
+  <div className="desktops">
+    {desktopIds.map((desktopId) =>
+      renderDesktop({ desktopId, isActive: desktopId === activeDesktopId })
+    )}
   </div>
 );
 
@@ -18,84 +44,49 @@ export const render = ({ output }) => {
   }
 
   const lines = output.split(/\r\n|\r|\n/);
-  const [cpuUsagePercent, diskUsage] = lines[0].split(/\s+/);
-  const [ramUsage, ramTotal] = lines[1].split(/\s+/);
 
-  return (
-    <div className="bar-on-bottom">
-      <Stat key="cpu" label="CPU">
-        <div className="usage">
-          <span className="value">{cpuUsagePercent}</span>
-          <span className="unit">%</span>
-        </div>
-      </Stat>
-      <Stat key="ram" label="RAM">
-        <div className="usage">
-          <span className="numerator">{ramUsage}</span>
-          <span className="denominator">{ramTotal}</span>
-          <span className="unit">MB</span>
-        </div>
-      </Stat>
-      <Stat key="disk" label="Disk">
-        <div className="usage">
-          <span className="value">{diskUsage}</span>
-          <span className="unit">MB/s</span>
-        </div>
-      </Stat>
-    </div>
-  );
+  const desktopIds = lines[0].split(/\s+/);
+  const activeDesktopId = lines[1];
+
+  return renderDesktops(activeDesktopId, desktopIds);
 };
 
 export const className = `
-bottom: 64px;
+align-items: center;
+backdrop-filter: blur(20px);
+bottom: 0;
+box-sizing: border-box;
+color: #fff;
+display: flex;
+font-family: 'SF Display', sans-serif;
+font-size: 15px;
+-webkit-font-smoothing: antialiased;
+height: calc(64px + 48px);
+justify-content: center;
 left: 0;
+padding: 0 0 64px;
 position: absolute;
 right: 0;
 width: 100%;
 
-.bar-on-bottom {
-  align-items: center;
-  color: #fff;
+.desktops {
   display: flex;
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 15px;
-  height: 48px;
-  justify-content: flex-end;
-  padding: 0 42px;
+  margin: 2px 0 0;
 }
 
-.stat {
-  align-items: center;
-  display: flex;
+.desktop {
+  border-radius: 4px;
+  display: block;
+  height: 1.5em;
+  line-height: 1.5em;
+  padding: 0 .8em;
 
   &:not(:last-child) {
-    margin-right: 2em;
+    margin-right: .8em;
   }
 
-  > .stat-label {
-    margin-right: 2em;
-    opacity: 0.4;
-    text-align: center;
-    text-transform: uppercase;
-  }
-}
-
-.usage {
-  .value {
-    font-size: 1.75em;
-  }
-  .numerator {
-    font-size: 1.75em;
-  }
-  .denominator {
-    &::before {
-      content: '/';
-      margin-left: 0.5em;
-      margin-right: 0.5em;
-    }
-  }
-  .unit {
-    margin-left: 0.25em;
+  &--active {
+    background: rgba(255, 255, 255, .1);
   }
 }
 `;
