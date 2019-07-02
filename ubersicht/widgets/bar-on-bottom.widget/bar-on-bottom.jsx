@@ -18,6 +18,9 @@ const renderDesktop = ({ desktopId, isActive }) => {
     case '4':
       desktopName = 'Design';
       break;
+    case '5':
+      desktopName = 'Messenger';
+      break;
 
     default:
       desktopName = `Desktop ${desktopId}`;
