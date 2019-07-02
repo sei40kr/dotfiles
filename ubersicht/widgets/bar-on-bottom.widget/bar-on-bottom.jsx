@@ -24,7 +24,10 @@ const renderDesktop = ({ desktopId, isActive }) => {
   }
 
   return (
-    <span className={`desktop ${isActive ? 'desktop--active' : ''}`}>
+    <span
+      key={desktopId}
+      className={`desktop ${isActive ? 'desktop--active' : ''}`}
+    >
       {desktopName}
     </span>
   );
