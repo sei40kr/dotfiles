@@ -62,17 +62,17 @@ display: flex;
 font-family: 'SF Display', sans-serif;
 font-size: 15px;
 -webkit-font-smoothing: antialiased;
-height: calc(64px + 48px);
+height: calc(56px + 60px);
 justify-content: center;
 left: 0;
-padding: 0 0 64px;
+padding: 0 0 56px;
 position: absolute;
 right: 0;
 width: 100%;
 
 .desktops {
   display: flex;
-  margin: 2px 0 0;
+  margin: 3px 0 0;
 }
 
 .desktop {
