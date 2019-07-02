@@ -3,7 +3,8 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-chunkc='/usr/local/bin/chunkc'
-
-"$chunkc" tiling::query -D "$("$chunkc" tiling::query -m id)" && echo
-"$chunkc" tiling::query -d id && echo
+# NOTE ensure every line ends with a line feed
+# shellcheck disable=SC2005
+echo "$(/usr/local/bin/chunkc tiling::query -D "$(/usr/local/bin/chunkc tiling::query -m id)")"
+# shellcheck disable=SC2005
+echo "$(/usr/local/bin/chunkc tiling::query -d id)"
