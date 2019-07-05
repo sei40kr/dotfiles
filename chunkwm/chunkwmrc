@@ -104,7 +104,7 @@ chunkc set preselect_border_outline      0
 #       (https://github.com/koekeishiya/chwm-sa)
 #
 
-chunkc set window_float_topmost          1
+chunkc set window_float_topmost          0
 chunkc set window_fade_inactive          0
 chunkc set window_fade_alpha             0.85
 chunkc set window_fade_duration          0.25
