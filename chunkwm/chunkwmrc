@@ -150,6 +150,7 @@ grid_layout_center='26:26:5:5:16:16'
 
 # floating or sticky apps
 chunkc tiling::rule -o 'Activity Monitor' -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o 'Alfred Preferences' -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Bitwarden -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Calculator -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Calendar -s sticky -g "${grid_layout_center}" &
