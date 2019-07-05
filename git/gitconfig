@@ -33,6 +33,9 @@
   autostash = true
 [rerere]
   enabled = true
+[pager]
+	diff = diff-so-fancy | less --tabs=4 -RFX
+	show = diff-so-fancy | less --tabs=4 -RFX
 [push]
   default = current
 [stash]
