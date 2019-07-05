@@ -43,9 +43,6 @@ alias md='mkdir -p'
 alias rd=rmdir
 alias sortnr='sort -nr'
 
-# diff
-alias diff='diff-so-fancy'
-
 # docker
 alias di='docker info'
 alias dlg='docker container logs'
