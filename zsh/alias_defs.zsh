@@ -23,8 +23,15 @@ alias bsr='brew services run'
 alias bson='brew services start'
 alias bsoff='brew services stop'
 
-# cd-gitroot
-alias U=cd-gitroot
+# bundle
+alias be="bundle exec"
+alias bl="bundle list"
+alias bp="bundle package"
+alias bo="bundle open"
+alias bout="bundle outdated"
+alias bu="bundle update"
+alias bi="bundle_install"
+alias bcn="bundle clean"
 
 # cordova
 alias co='cordova'
@@ -94,6 +101,11 @@ alias preview="fzf --preview 'bat --color always {}'"
 
 # gdb
 alias gdb='gdb -ex start'
+
+# gem
+alias gin="gem install"
+alias gun="gem uninstall"
+alias gli="gem list"
 
 # kubectl
 alias k=kubectl
@@ -187,6 +199,10 @@ alias gemsets='rbenv gemset list'
 
 # rg
 alias notes="rg 'TODO|FIXME|HACK|OPTIMIZE|REVIEW'"
+alias pygrep="rg --iglob '**/*.py'"
+
+# ruby
+alias rb='ruby'
 
 # ssh
 alias ssh='env TERM=xterm-256color ssh'

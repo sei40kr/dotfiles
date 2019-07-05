@@ -83,12 +83,7 @@ autoload -Uz bashcompinit && bashcompinit
 #
 zplugin snippet 'OMZ::lib/clipboard.zsh'
 zplugin ice svn
-zplugin snippet 'OMZ::plugins/capistrano'
-zplugin ice svn
 zplugin snippet 'OMZ::plugins/extract'
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/jira'
-zplugin snippet 'OMZ::plugins/node/node.plugin.zsh'
 zplugin snippet 'OMZ::plugins/perl/perl.plugin.zsh'
 zplugin snippet 'OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh'
 
@@ -97,20 +92,11 @@ zplugin ice multisrc'shell/{completion,key-bindings}.zsh'
 zplugin light junegunn/fzf
 bindkey -r '^R'
 
-zplugin ice as'program' pick'cd-gitroot'
-zplugin light mollifier/cd-gitroot
-
 
 # command aliases and completions
 #
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/ansible'
-if [[ "$OSTYPE" == linux* && -f /etc/arch-release ]]; then
-    zplugin ice svn
-    zplugin snippet 'OMZ::plugins/archlinux'
-fi
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/bundler'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/cabal'
 zplugin ice svn pick'' wait''
@@ -121,15 +107,8 @@ zplugin ice svn
 zplugin snippet 'OMZ::plugins/composer'
 zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/cpanm'
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/dash'
 zplugin ice svn pick'docker-compose.plugin.zsh' nocompletions
 zplugin snippet 'OMZ::plugins/docker-compose'
-zplugin ice svn
-if [[ "$ITERM_PROFILE" != '' ]]; then
-    # Enable 24-bit colors in Emacs
-    export ITERM_24BIT=1
-fi
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/gem'
 zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
@@ -155,11 +134,6 @@ zplugin snippet 'OMZ::plugins/nmap/nmap.plugin.zsh'
 # zplugin snippet 'OMZ::plugins/npm/npm.plugin.zsh'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/pip'
-zplugin snippet 'OMZ::plugins/postgres/postgres.plugin.zsh'
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/pylint'
-zplugin snippet 'OMZ::plugins/python/python.plugin.zsh'
-alias pygrep="rg --iglob '**/*.py'"
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/rails'
 zplugin ice svn
@@ -170,23 +144,16 @@ zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/redis-cli'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/rsync'
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/ruby'
-alias rfind="rg --iglob '**/*.rb'"
 zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/rust'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/sbt'
 zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/scala'
-zplugin ice svn pick'' wait''
-zplugin snippet 'OMZ::plugins/spring'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/stack'
 zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/vagrant'
-zplugin ice svn nocompletions
-zplugin snippet 'OMZ::plugins/wp-cli'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/yarn'
 
@@ -227,12 +194,6 @@ if [[ -f "${HOME}/.travis/travis.sh" ]]; then
     zplugin snippet "${HOME}/.travis/travis.sh"
 fi
 
-# wp-cli
-if [[ -f '/usr/local/opt/wp-cli-completion/etc/bash_completion.d/wp' ]]; then
-    zplugin ice wait''
-    zplugin snippet '/usr/local/opt/wp-cli-completion/etc/bash_completion.d/wp'
-fi
-
 
 # version managers
 #
@@ -250,7 +211,6 @@ zplugin snippet 'OMZ::plugins/bgnotify/bgnotify.plugin.zsh'
 zplugin snippet 'OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh'
 zplugin snippet 'OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
 
-zplugin light _local/zsh-better-run-help
 zplugin ice make
 zplugin light _local/zsh-fast-alias-tips
 zplugin ice wait'1' lucid atload'zpcompinit && __cdreplay'
