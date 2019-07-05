@@ -78,7 +78,6 @@ width: 100%;
 
 .desktops {
   display: flex;
-  margin: 3px 0 0;
 }
 
 .desktop {
