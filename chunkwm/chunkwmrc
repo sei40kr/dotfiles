@@ -50,9 +50,9 @@ chunkc set custom_bar_offset_right       0
 
 chunkc set global_desktop_mode           bsp
 chunkc set global_desktop_offset_top     16
-chunkc set global_desktop_offset_bottom  16
-chunkc set global_desktop_offset_left    16
-chunkc set global_desktop_offset_right   16
+chunkc set global_desktop_offset_bottom  76
+chunkc set global_desktop_offset_left    42
+chunkc set global_desktop_offset_right   42
 chunkc set global_desktop_offset_gap     16
 
 ws_web='1'
