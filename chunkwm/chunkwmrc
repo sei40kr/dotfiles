@@ -180,6 +180,7 @@ chunkc tiling::rule -o 'QuickTime Player' -s float -d "${ws_file}" -g "${grid_la
 chunkc tiling::rule -o Alacritty -d "${ws_code}" -D &
 chunkc tiling::rule -o Dash -s float -d "${ws_code}" -g "${grid_layout_center}" -D &
 chunkc tiling::rule -o Emacs -e '^$' -s tile -d "${ws_code}" -D &
+chunkc tiling::rule -o 'IntelliJ IDEA' -e '^$' -s tile -d "${ws_code}" -D &
 chunkc tiling::rule -o Simulator -s float -d "${ws_code}" -D &
 
 # design apps
