@@ -108,7 +108,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    family: 'Ricty Diminished Discord'
+    family: 'Menlo For Powerline'
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -136,12 +136,12 @@ font:
     #style: Italic
 
   # Point size
-  size: 23.0
+  size: 20.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
-    x: 1
+    x: 0
     y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
