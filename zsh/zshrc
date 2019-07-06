@@ -223,6 +223,9 @@ zplugin light zsh-users/zsh-autosuggestions
 
 # prompt
 #
+SPACESHIP_HOST_SHOW=false
+SPACESHIP_KUBECONTEXT_SYMBOL='☸️ '
+SPACESHIP_BATTERY_SHOW=false
 zplugin ice wait'!0'
 zplugin light denysdovhan/spaceship-prompt
 
