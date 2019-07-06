@@ -158,6 +158,7 @@ chunkc tiling::rule -o ConfigDialog -n '^Google Japanese Input Preferences$' -s 
 chunkc tiling::rule -o Contacts -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Dictionary -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o 'Digital Color Meter' -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o 'Font Book' -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Mail -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Maps -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Notes -s sticky -g "${grid_layout_center}" &
