@@ -213,6 +213,8 @@ zplugin snippet 'OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
 
 zplugin ice make
 zplugin light _local/zsh-fast-alias-tips
+FAST_ALIAS_TIPS_PREFIX='💡 \e[1mTip:\e[0m '
+FAST_ALIAS_TIPS_SUFFIX=''
 zplugin ice wait'1' lucid atload'zpcompinit && __cdreplay'
 zplugin light zdharma/fast-syntax-highlighting
 zplugin ice wait'1' lucid
