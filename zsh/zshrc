@@ -68,168 +68,154 @@ bindkey '^x^r' fzf-remote-widget
 bindkey '^xg' fzf-project-widget
 bindkey '^x^g' fzf-project-widget
 
-autoload -Uz bashcompinit && bashcompinit
-
-[[ -d "${GOENV_ROOT:-${HOME}/.goenv}" ]] && eval "$(goenv init - --no-rehash zsh)"
-[[ -d "${PYENV_ROOT:-${HOME}/.pyenv}" ]] && eval "$(pyenv init - --no-rehash zsh)"
-[[ -d "${RBENV_ROOT:-${HOME}/.rbenv}" ]] && eval "$(rbenv init - --no-rehash zsh)"
-[[ -d "${SDKMAN_DIR:-${HOME}/.sdkman}" ]] && . "${SDKMAN_DIR}/bin/sdkman-init.sh"
-[[ "${+commands[direnv]}" == 1 ]] && eval "$(direnv hook zsh)"
-
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 
-
-# commands
-#
+# Plugins that provides commands
 zplugin snippet 'OMZ::lib/clipboard.zsh'
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/extract'
-zplugin snippet 'OMZ::plugins/perl/perl.plugin.zsh'
+zplugin snippet 'OMZ::plugins/extract/extract.plugin.zsh'
 zplugin snippet 'OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh'
 
-FZF_DEFAULT_OPTS='--height=15 --reverse --inline-info --color=dark --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
-zplugin ice bindmap'^R ->' multisrc'shell/{completion,key-bindings}.zsh'
-zplugin light -b junegunn/fzf
+# Plugins that loads version managers
+# Load nvm
+export NVM_SYMLINK_CURRENT=true
+export NVM_LAZY_LOAD=true
+export NVM_AUTO_USE=true
+zplugin light lukechilds/zsh-nvm
+# Load pyenv
+if [[ -n "$GOENV_ROOT" && -d "$GOENV_ROOT" ]]; then
+    [[ -f "${GOENV_ROOT}/zgoenv.zsh" ]] ||
+        goenv init - --no-rehash zsh >"${GOENV_ROOT}/zgoenv.zsh"
+    zplugin snippet "${GOENV_ROOT}/zgoenv.zsh"
+fi
+# Load pyenv
+if [[ -n "$PYENV_ROOT" && -d "$PYENV_ROOT" ]]; then
+    [[ -f "${PYENV_ROOT}/zpyenv.zsh" ]] ||
+        pyenv init - --no-rehash zsh >"${PYENV_ROOT}/zpyenv.zsh"
+    zplugin snippet "${PYENV_ROOT}/zpyenv.zsh"
+fi
+# Load rbenv
+if [[ -n "$RBENV_ROOT" && -d "$RBENV_ROOT" ]]; then
+    [[ -f "${RBENV_ROOT}/zrbenv.zsh" ]] ||
+        rbenv init - --no-rehash zsh >"${RBENV_ROOT}/zrbenv.zsh"
+    zplugin snippet "${RBENV_ROOT}/zrbenv.zsh"
+fi
+if [[ -n "$SDKMAN_DIR" && -d "$SDKMAN_DIR" ]]; then
+    zplugin snippet "${SDKMAN_DIR}/bin/sdkman-init.sh"
+fi
 
-
-# command aliases and completions
-#
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/ansible'
-zplugin ice svn wait''
-zplugin snippet 'OMZ::plugins/cabal'
-zplugin ice svn pick'' wait''
-zplugin snippet 'OMZ::plugins/cargo'
-zplugin ice svn pick'' wait''
-zplugin snippet 'OMZ::plugins/codeclimate'
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/composer'
-zplugin ice svn pick'' wait''
-zplugin snippet 'OMZ::plugins/cpanm'
-zplugin ice svn pick'docker-compose.plugin.zsh' nocompletions
-zplugin snippet 'OMZ::plugins/docker-compose'
+# Plugins that contains both aliases and completions
+zplugin snippet 'OMZ::plugins/composer/composer.plugin.zsh'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/gem'
-zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/git-flow'
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/golang'
-zplugin ice svn wait''
-zplugin snippet 'OMZ::plugins/gradle'
-# zplugin ice svn
-# zplugin snippet 'OMZ::plugins/kubectl'
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/laravel'
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/laravel5'
-# zplugin ice svn wait''
-# zplugin snippet 'OMZ::plugins/minikube'
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/mvn'
-zplugin snippet 'OMZ::plugins/nmap/nmap.plugin.zsh'
+zplugin snippet 'OMZ::plugins/golang/golang.plugin.zsh'
+zplugin snippet 'OMZ::plugins/gradle/gradle.plugin.zsh'
+# zplugin snippet 'OMZ::plugins/kubectl/kubectl.plugin.zsh'
+zplugin snippet 'OMZ::plugins/laravel/laravel.plugin.zsh'
+zplugin snippet 'OMZ::plugins/laravel5/laravel5.plugin.zsh'
+zplugin snippet 'OMZ::plugins/mvn/mvn.plugin.zsh'
 # zplugin snippet 'OMZ::plugins/npm/npm.plugin.zsh'
-zplugin ice svn wait''
-zplugin snippet 'OMZ::plugins/pip'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/rails'
-zplugin ice svn wait''
-zplugin snippet 'OMZ::plugins/rake-fast'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/react-native'
-zplugin ice svn pick'' wait''
-zplugin snippet 'OMZ::plugins/redis-cli'
-zplugin ice svn
-zplugin snippet 'OMZ::plugins/rsync'
-zplugin ice svn pick'' wait''
-zplugin snippet 'OMZ::plugins/rust'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/sbt'
-zplugin ice svn pick'' wait''
-zplugin snippet 'OMZ::plugins/scala'
-zplugin ice svn wait''
-zplugin snippet 'OMZ::plugins/stack'
-zplugin ice svn pick'' wait''
-zplugin snippet 'OMZ::plugins/vagrant'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/yarn'
 
+# Plugins that contains aliases only
+zplugin snippet 'OMZ::plugins/ansible/ansible.plugin.zsh'
+zplugin snippet 'OMZ::plugins/docker-compose/docker-compose.plugin.zsh'
+zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
+zplugin snippet 'OMZ::plugins/git-flow/git-flow.plugin.zsh'
+zplugin snippet 'OMZ::plugins/nmap/nmap.plugin.zsh'
+zplugin snippet 'OMZ::plugins/perl/perl.plugin.zsh'
+zplugin snippet 'OMZ::plugins/rsync/rsync.plugin.zsh'
+
+# Plugins that contains completions only
 zplugin ice wait''
 zplugin light lukechilds/zsh-better-npm-completion
 zplugin ice pick'' blockf wait''
 zplugin light zsh-users/zsh-completions
-
-# docker
-if [[ "$OSTYPE" == darwin* ]]; then
-    __docker_etc='/Applications/Docker.app/Contents/Resources/etc'
-    zplugin ice wait''
-    zplugin snippet "${__docker_etc}/docker.zsh-completion"
-    zplugin ice wait''
-    zplugin snippet "${__docker_etc}/docker-compose.zsh-completion"
+zplugin ice wait''
+zplugin snippet 'OMZ::plugins/cabal/cabal.plugin.zsh'
+zplugin ice as'completion' wait''
+zplugin snippet 'OMZ::plugins/cargo/_cargo'
+zplugin ice as'completion' wait''
+zplugin snippet 'OMZ::plugins/codeclimate/_codeclimate'
+zplugin ice as'completion' wait''
+zplugin snippet 'OMZ::plugins/cpanm/_cpanm'
+# zplugin snippet 'OMZ::plugins/minikube/minikube.plugin.zsh'
+zplugin ice as'completion' wait''
+zplugin snippet 'OMZ::plugins/pip/_pip'
+zplugin ice wait''
+zplugin snippet 'OMZ::plugins/rake-fast/rake-fast.plugin.zsh'
+zplugin ice as'completion' wait''
+zplugin snippet 'OMZ::plugins/redis-cli/_redis-cli'
+zplugin ice as'completion' wait''
+zplugin snippet 'OMZ::plugins/rust/_rust'
+zplugin ice as'completion' wait''
+zplugin snippet 'OMZ::plugins/scala/_scala'
+zplugin ice wait''
+zplugin snippet 'OMZ::plugins/stack/stack.plugin.zsh'
+zplugin ice as'completion' wait''
+zplugin snippet 'OMZ::plugins/vagrant/_vagrant'
+# Load docker, docker-compose completions
+if [[ "$OSTYPE" == darwin* && -d '/Applications/Docker.app' ]]; then
+    zplugin ice as'completion' wait'' multisrc'{docker,docker-compose}.zsh-completion'
+    zplugin light '/Applications/Docker.app/Contents/Resources/etc'
 else
-    zplugin ice svn pick'' wait''
-    zplugin snippet 'OMZ::plugins/docker'
-    zplugin ice svn pick'' wait''
-    zplugin snippet 'OMZ::plugins/docker-compose'
+    zplugin ice as'completion' wait''
+    zplugin snippet 'OMZ::plugins/docker/_docker'
+    zplugin ice as'completion' wait''
+    zplugin snippet 'OMZ::plugins/docker-compose/_docker-compose'
 fi
-
-# gcloud
+# Load gcloud completion
 if [[ -n "$__gcloud_sdk" ]]; then
     zplugin ice wait''
     zplugin snippet "${__gcloud_sdk}/completion.zsh.inc"
 fi
-
-# perlbrew
-if [[ -d "${PERLBREW_ROOT:-${HOME}/perl5/perlbrew}" ]]; then
+# Load perlbrew completion
+if [[ -n "$PERLBREW_ROOT" && -d "$PERLBREW_ROOT" ]]; then
     zplugin ice wait''
     zplugin snippet "${PERLBREW_ROOT}/etc/perlbrew-completion.bash"
 fi
-
-# travis
+# Load travis completion
 if [[ -f "${HOME}/.travis/travis.sh" ]]; then
     zplugin ice wait''
     zplugin snippet "${HOME}/.travis/travis.sh"
 fi
 
-
-# version managers
-#
-export NVM_SYMLINK_CURRENT=true
-export NVM_LAZY_LOAD=true
-export NVM_AUTO_USE=true
-zplugin light lukechilds/zsh-nvm
-
-
-# tools and configurations
-#
+# Utility Plugins
+zplugin ice from'gh-r' as'program' mv'direnv* -> direnv' atinit'[[ -f zhook.zsh ]] || ./direnv hook zsh >zhook.zsh' src'zhook.zsh'
+zplugin light direnv/direnv
+zplugin light zdharma/fast-syntax-highlighting
+zplugin ice wait'0c' lucid
+zplugin light -b zdharma/history-search-multi-word
+zplugin ice from'gh-r' as'program'
+zplugin light julienXX/terminal-notifier
+zplugin ice wait'0b' lucid
+zplugin light -b zsh-users/zsh-autosuggestions
 zplugin snippet 'OMZ::lib/completion.zsh'
 zplugin snippet 'OMZ::lib/compfix.zsh'
 zplugin snippet 'OMZ::plugins/bgnotify/bgnotify.plugin.zsh'
 zplugin snippet 'OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh'
 zplugin snippet 'OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
-
+# Load fzf
+FZF_DEFAULT_OPTS='--height=15 --reverse --inline-info --color=dark --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
+zplugin ice from'gh-r' as'program'
+zplugin light junegunn/fzf-bin
+zplugin ice bindmap'^R ->' multisrc'shell/{completion,key-bindings}.zsh'
+zplugin light -b junegunn/fzf
+# Load zsh-fast-alias-tips
 zplugin ice make
 zplugin light _local/zsh-fast-alias-tips
 FAST_ALIAS_TIPS_PREFIX='💡 \e[1mTip:\e[0m '
 FAST_ALIAS_TIPS_SUFFIX=''
-zplugin ice wait'1' lucid atload'zpcompinit && __cdreplay'
-zplugin light zdharma/fast-syntax-highlighting
-zplugin ice wait'1' lucid
-zplugin light -b zdharma/history-search-multi-word
-zplugin ice wait'1' lucid
-zplugin light -b zsh-users/zsh-autosuggestions
 
-
-# prompt
-#
+# Prompt Theme
 SPACESHIP_HOST_SHOW=false
 SPACESHIP_KUBECONTEXT_SYMBOL='☸️ '
 SPACESHIP_BATTERY_SHOW=false
-zplugin ice wait'!0'
+zplugin ice wait'!0a' lucid
 zplugin light denysdovhan/spaceship-prompt
-
-__cdreplay() {
-    zpcdreplay &&
-        compdef _rails _rails_command &&
-        compdef _rake _rake_command
-}
