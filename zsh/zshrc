@@ -3,10 +3,9 @@
 # zshrc
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
+# If not running in tmux or in-editor terminals, attach a tmux session
 if [[ -z "$TMUX" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" ]]; then
-    __socket_name="${SSH_CLIENT:+$(awk '{ gsub(/\./, "_", $1); print $1 }' <<<"$SSH_CLIENT")}"
-    tmux -L "${__socket_name:-default}" attach-session ||
-        tmux -L "${__socket_name:-default}" new-session
+    tmux attach-session || tmux new-session
     exit
 fi
 
