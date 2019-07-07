@@ -172,6 +172,9 @@ alias keno='kubectl edit node'
 alias kdno='kubectl describe node'
 alias kdelno='kubectl delete node'
 
+# lazydocker
+alias lzd=lazydocker
+
 # ncdu
 alias du='ncdu --color dark -rr -x --exclude .git --exclude node_modules'
 
