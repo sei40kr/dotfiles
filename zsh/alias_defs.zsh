@@ -190,6 +190,9 @@ alias npmR='npm run'
 alias npmP='npm publish'
 alias npmI='npm init'
 
+# pip
+alias pip='noglob pip'
+
 # prettyping
 alias ping='prettyping --nolegend'
 

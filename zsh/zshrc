@@ -97,7 +97,7 @@ bindkey -r '^R'
 #
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/ansible'
-zplugin ice svn
+zplugin ice svn wait''
 zplugin snippet 'OMZ::plugins/cabal'
 zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/cargo'
@@ -112,13 +112,11 @@ zplugin snippet 'OMZ::plugins/docker-compose'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/gem'
 zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
-zplugin ice svn pick'git-completion.bash' silent
-zplugin snippet 'OMZ::plugins/gitfast'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/git-flow'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/golang'
-zplugin ice svn
+zplugin ice svn wait''
 zplugin snippet 'OMZ::plugins/gradle'
 # zplugin ice svn
 # zplugin snippet 'OMZ::plugins/kubectl'
@@ -126,17 +124,17 @@ zplugin ice svn
 zplugin snippet 'OMZ::plugins/laravel'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/laravel5'
-# zplugin ice svn
+# zplugin ice svn wait''
 # zplugin snippet 'OMZ::plugins/minikube'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/mvn'
 zplugin snippet 'OMZ::plugins/nmap/nmap.plugin.zsh'
 # zplugin snippet 'OMZ::plugins/npm/npm.plugin.zsh'
-zplugin ice svn
+zplugin ice svn wait''
 zplugin snippet 'OMZ::plugins/pip'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/rails'
-zplugin ice svn
+zplugin ice svn wait''
 zplugin snippet 'OMZ::plugins/rake-fast'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/react-native'
@@ -150,7 +148,7 @@ zplugin ice svn
 zplugin snippet 'OMZ::plugins/sbt'
 zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/scala'
-zplugin ice svn
+zplugin ice svn wait''
 zplugin snippet 'OMZ::plugins/stack'
 zplugin ice svn pick'' wait''
 zplugin snippet 'OMZ::plugins/vagrant'
