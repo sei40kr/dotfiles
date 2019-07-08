@@ -12,16 +12,6 @@ fi
 autoload -Uz \
          clone_gh \
          create_gh \
-         dcin \
-         dii \
-         dirm \
-         dni \
-         drm \
-         drmf \
-         dst \
-         dstp \
-         dvi \
-         dxb \
          fzf-remote-widget \
          fzf-project-widget \
          kca \
@@ -70,6 +60,7 @@ bindkey '^x^g' fzf-project-widget
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 
 # Plugins that provides commands
+zplugin light _local/zsh-fzf-docker
 zplugin snippet 'OMZ::lib/clipboard.zsh'
 zplugin snippet 'OMZ::plugins/extract/extract.plugin.zsh'
 zplugin snippet 'OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh'
