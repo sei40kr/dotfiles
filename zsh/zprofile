@@ -3,61 +3,59 @@
 # zprofile
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-typeset -U path manpath fpath
-
-fpath=( "${ZDOTDIR}/functions" "${ZDOTDIR}/completions" $fpath )
-if [[ "$OSTYPE" == linux* && -f /etc/arch-release ]]; then
-    fpath=( /usr/share/zsh/site-functions $fpath )
+if [ -x /usr/libexec/path_helper ]; then
+    eval "$(/usr/libexec/path_helper -s)"
 fi
+
+fpath+='/usr/share/zsh/site-functions'
+manpath+='/usr/share/man'
 
 # Homebrew
 if [[ "${+commands[brew]}" == 1 ]]; then
     __homebrew_prefix="$(brew --prefix)"
 
-    path=( "${__homebrew_prefix}/bin" "${__homebrew_prefix}/sbin" $path )
-    fpath=( "${__homebrew_prefix}/share/zsh/site-functions" $fpath )
-    manpath=( "${__homebrew_prefix}/share/man" $manpath )
+    path+=( "${__homebrew_prefix}/bin" "${__homebrew_prefix}/sbin" )
+    fpath+="${__homebrew_prefix}/share/zsh/site-functions"
+    manpath+="${__homebrew_prefix}/share/man"
 
     if [[ "$OSTYPE" == darwin* ]]; then
-        path=( "${__homebrew_prefix}/opt/coreutils/libexec/gnubin"
-               "${__homebrew_prefix}/opt/findutils/libexec/gnubin"
-               "${__homebrew_prefix}/opt/ed/bin"
-               "${__homebrew_prefix}/opt/gnu-sed/libexec/gnubin"
-               "${__homebrew_prefix}/opt/gnu-tar/libexec/gnubin"
-               "${__homebrew_prefix}/opt/grep/libexec/gnubin"
-               "${__homebrew_prefix}/opt/nano/bin"
-               "${__homebrew_prefix}/texlive/2018basic/bin/x86_64-darwin"
-               $path )
-        manpath=( "${__homebrew_prefix}/opt/coreutils/libexec/gnuman"
-                  "${__homebrew_prefix}/opt/findutils/libexec/gnuman"
-                  "${__homebrew_prefix}/opt/ed/share/man"
-                  "${__homebrew_prefix}/opt/gnu-sed/libexec/gnuman"
-                  "${__homebrew_prefix}/opt/gnu-tar/libexec/gnuman"
-                  "${__homebrew_prefix}/opt/grep/libexec/gnuman"
-                  "${__homebrew_prefix}/opt/nano/share/man"
-                  $manpath )
+        path+=( "${__homebrew_prefix}/opt/coreutils/libexec/gnubin"
+                "${__homebrew_prefix}/opt/findutils/libexec/gnubin"
+                "${__homebrew_prefix}/opt/ed/bin"
+                "${__homebrew_prefix}/opt/gnu-sed/libexec/gnubin"
+                "${__homebrew_prefix}/opt/gnu-tar/libexec/gnubin"
+                "${__homebrew_prefix}/opt/grep/libexec/gnubin"
+                "${__homebrew_prefix}/opt/nano/bin"
+                "${__homebrew_prefix}/texlive/2018basic/bin/x86_64-darwin" )
+        manpath+=( "${__homebrew_prefix}/opt/coreutils/libexec/gnuman"
+                   "${__homebrew_prefix}/opt/findutils/libexec/gnuman"
+                   "${__homebrew_prefix}/opt/ed/share/man"
+                   "${__homebrew_prefix}/opt/gnu-sed/libexec/gnuman"
+                   "${__homebrew_prefix}/opt/gnu-tar/libexec/gnuman"
+                   "${__homebrew_prefix}/opt/grep/libexec/gnuman"
+                   "${__homebrew_prefix}/opt/nano/share/man" )
     fi
 fi
 
 # Rust
 export CARGO_HOME="${HOME}/.cargo"
-path=( "${CARGO_HOME}/bin" $path )
+path+="${CARGO_HOME}/bin"
 if [[ "${+commands[rustc]}" == 1 ]]; then
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
 
 # Go
 export GOENV_ROOT="${HOME}/.goenv"
-path=( "${GOENV_ROOT}/bin:${GOENV_ROOT}/shims" $path )
+path+=( "${GOENV_ROOT}/bin" "${GOENV_ROOT}/shims" )
 export GOPATH="${HOME}/go"
-path=( "${GOPATH}/bin" $path )
+path+="${GOPATH}/bin"
 
 # Java
 export SDKMAN_DIR="${HOME}/.sdkman"
-path=( "${SDKMAN_DIR}/candidates"/*/current/bin(-/) $path )
+path+=( "${SDKMAN_DIR}/candidates"/*/current/bin(-/) )
 
 # Perl
-path=( "${HOME}/perl5/bin" $path )
+path+="${HOME}/perl5/bin"
 export PERL5LIB="${HOME}/perl5/lib/perl5:${PERL5LIB}"
 export PERL_LOCAL_LIB_ROOT="${HOME}/perl5:${PERL_LOCAL_LIB_ROOT}"
 export PERL_MB_OPT="--install_base '${HOME}/perl5'"
@@ -66,17 +64,18 @@ export PERLBREW_ROOT="${HOME}/perl5/perlbrew"
 
 # Python
 export PYENV_ROOT="${HOME}/.pyenv"
-path=( "${PYENV_ROOT}/bin:${PYENV_ROOT}/shims" $path )
+path+=( "${PYENV_ROOT}/bin" "${PYENV_ROOT}/shims" )
 
 # Ruby
 export RBENV_ROOT="${HOME}/.rbenv"
-path=( "${RBENV_ROOT}/bin:${RBENV_ROOT}/shims" $path )
+path+=( "${RBENV_ROOT}/bin" "${RBENV_ROOT}/shims" )
 
 # Node.js
 export NVM_DIR="${HOME}/.nvm"
-path=( "${HOME}/.yarn/bin:${NVM_DIR}/current/bin" $path )
+path+=( "${HOME}/.yarn/bin" "${NVM_DIR}/current/bin" )
 
-path=( "${HOME}/.local/bin" $path )
+path+="${HOME}/.local/bin"
+fpath+=( "${ZDOTDIR}/functions" "${ZDOTDIR}/completions" )
 
 export path
 export manpath
