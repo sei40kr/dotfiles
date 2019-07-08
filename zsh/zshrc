@@ -179,6 +179,7 @@ fi
 # Utility Plugins
 zplugin ice from'gh-r' as'program' mv'direnv* -> direnv' atinit'[[ -f zhook.zsh ]] || ./direnv hook zsh >zhook.zsh' src'zhook.zsh'
 zplugin light direnv/direnv
+zplugin ice atinit'zpcompinit; zpcdreplay'
 zplugin light zdharma/fast-syntax-highlighting
 zplugin ice wait'0c' lucid
 zplugin light -b zdharma/history-search-multi-word
@@ -186,8 +187,6 @@ zplugin ice from'gh-r' as'program'
 zplugin light julienXX/terminal-notifier
 zplugin ice wait'0b' lucid
 zplugin light -b zsh-users/zsh-autosuggestions
-zplugin snippet 'OMZ::lib/completion.zsh'
-zplugin snippet 'OMZ::lib/compfix.zsh'
 zplugin snippet 'OMZ::plugins/bgnotify/bgnotify.plugin.zsh'
 zplugin snippet 'OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh'
 zplugin snippet 'OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
@@ -202,6 +201,10 @@ zplugin ice make
 zplugin light _local/zsh-fast-alias-tips
 FAST_ALIAS_TIPS_PREFIX='💡 \e[1mTip:\e[0m '
 FAST_ALIAS_TIPS_SUFFIX=''
+# Load completion
+HYPHEN_INSENSITIVE=true
+COMPLETION_WAITING_DOTS=true
+zplugin snippet 'OMZ::lib/completion.zsh'
 
 # Prompt Theme
 SPACESHIP_HOST_SHOW=false
