@@ -74,14 +74,13 @@ path+=( "${RBENV_ROOT}/bin" "${RBENV_ROOT}/shims" )
 export NVM_DIR="${HOME}/.nvm"
 path+=( "${HOME}/.yarn/bin" "${NVM_DIR}/current/bin" )
 
+# Google Cloud SDK
+if [[ -d '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk' ]]; then
+    . '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+fi
+
 path+="${HOME}/.local/bin"
 fpath+=( "${ZDOTDIR}/functions" "${ZDOTDIR}/completions" )
 
 export path
 export manpath
-
-# Google Cloud SDK
-if [[ -d '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk' ]]; then
-    __gcloud_sdk='/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk'
-    . "${__gcloud_sdk}/path.zsh.inc"
-fi
