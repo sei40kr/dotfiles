@@ -24,6 +24,10 @@ autoload -Uz \
 . "${ZDOTDIR}/func_defs_emacs.zsh"
 . "${ZDOTDIR}/alias_defs.zsh"
 
+HISTFILE="${ZDOTDIR}/.zsh_history"
+HISTSIZE=10000
+SAVEHIST=10000
+
 setopt APPEND_HISTORY
 setopt AUTO_CD
 setopt AUTO_LIST
