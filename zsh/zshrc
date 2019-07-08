@@ -179,9 +179,9 @@ fi
 # Utility Plugins
 zplugin ice from'gh-r' as'program' mv'direnv* -> direnv' atinit'[[ -f zhook.zsh ]] || ./direnv hook zsh >zhook.zsh' src'zhook.zsh'
 zplugin light direnv/direnv
-zplugin ice atinit'zpcompinit; zpcdreplay'
+zplugin ice wait'0c' atinit'zpcompinit; zpcdreplay' lucid
 zplugin light zdharma/fast-syntax-highlighting
-zplugin ice wait'0c' lucid
+zplugin ice wait'0b' lucid
 zplugin light -b zdharma/history-search-multi-word
 zplugin ice from'gh-r' as'program'
 zplugin light julienXX/terminal-notifier
