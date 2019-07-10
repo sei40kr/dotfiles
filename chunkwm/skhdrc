@@ -152,5 +152,4 @@ shift + alt - t : chunkc tiling::window --toggle float;\
                   chunkc tiling::window --grid-layout 4:4:1:1:2:2
 
 # change layout of desktop
-shift + alt - b : chunkc tiling::desktop --layout bsp
-shift + alt - d : chunkc tiling::desktop --layout monocle
+shift + alt - space : ~/.local/bin/toggle-chunkwm-layout
