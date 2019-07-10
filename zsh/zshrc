@@ -65,6 +65,7 @@ bindkey '^x^g' fzf-project-widget
 
 # Plugins that provides commands
 zplugin light _local/zsh-fzf-docker
+zplugin light _local/zsh-fzf-gcloud
 zplugin light _local/zsh-fzf-kubernetes
 zplugin snippet 'OMZ::lib/clipboard.zsh'
 zplugin snippet 'OMZ::plugins/extract/extract.plugin.zsh'
