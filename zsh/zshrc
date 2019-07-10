@@ -99,6 +99,17 @@ if [[ -n "$SDKMAN_DIR" && -d "$SDKMAN_DIR" ]]; then
     zplugin snippet "${SDKMAN_DIR}/bin/sdkman-init.sh"
 fi
 
+# Plugins that contains aliases only
+zplugin snippet 'OMZ::plugins/ansible/ansible.plugin.zsh'
+zplugin snippet 'OMZ::plugins/docker-compose/docker-compose.plugin.zsh'
+zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
+# Forget completions provided by Git plugin
+zplugin cdclear -q
+zplugin snippet 'OMZ::plugins/git-flow/git-flow.plugin.zsh'
+zplugin snippet 'OMZ::plugins/nmap/nmap.plugin.zsh'
+zplugin snippet 'OMZ::plugins/perl/perl.plugin.zsh'
+zplugin snippet 'OMZ::plugins/rsync/rsync.plugin.zsh'
+
 # Plugins that contains both aliases and completions
 zplugin snippet 'OMZ::plugins/composer/composer.plugin.zsh'
 zplugin ice svn
@@ -118,15 +129,6 @@ zplugin ice svn
 zplugin snippet 'OMZ::plugins/sbt'
 zplugin ice svn
 zplugin snippet 'OMZ::plugins/yarn'
-
-# Plugins that contains aliases only
-zplugin snippet 'OMZ::plugins/ansible/ansible.plugin.zsh'
-zplugin snippet 'OMZ::plugins/docker-compose/docker-compose.plugin.zsh'
-zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
-zplugin snippet 'OMZ::plugins/git-flow/git-flow.plugin.zsh'
-zplugin snippet 'OMZ::plugins/nmap/nmap.plugin.zsh'
-zplugin snippet 'OMZ::plugins/perl/perl.plugin.zsh'
-zplugin snippet 'OMZ::plugins/rsync/rsync.plugin.zsh'
 
 # Plugins that contains completions only
 zplugin ice wait''
