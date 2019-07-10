@@ -165,7 +165,7 @@ else
     zplugin snippet 'OMZ::plugins/docker-compose/_docker-compose'
 fi
 # Load gcloud completion
-if [[ -n "$__gcloud_sdk" ]]; then
+if [[ -d '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk' ]]; then
     zplugin ice wait''
     zplugin snippet '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 fi
