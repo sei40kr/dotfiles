@@ -158,11 +158,15 @@ chunkc tiling::rule -o ConfigDialog -n '^Google Japanese Input Preferences$' -s 
 chunkc tiling::rule -o Contacts -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Dictionary -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o 'Digital Color Meter' -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o Discord -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o 'Font Book' -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o Gitter -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o LINE -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Mail -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Maps -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Notes -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Reminders -s sticky -g "${grid_layout_center}" &
+chunkc tiling::rule -o Skype -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o Slack -s sticky -g "${grid_layout_center}" &
 chunkc tiling::rule -o 'System Preferences' -s sticky &
 chunkc tiling::rule -o Todoist -s sticky -g "${grid_layout_center}" &
@@ -180,7 +184,7 @@ chunkc tiling::rule -o 'QuickTime Player' -s float -d "${ws_file}" -g "${grid_la
 # dev apps
 chunkc tiling::rule -o Alacritty -d "${ws_code}" -D &
 chunkc tiling::rule -o Dash -s float -d "${ws_code}" -g "${grid_layout_center}" -D &
-chunkc tiling::rule -o Emacs -e '^$' -s tile -d "${ws_code}" -D &
+chunkc tiling::rule -o Emacs -s tile -d "${ws_code}" -D &
 chunkc tiling::rule -o 'IntelliJ IDEA' -e '^$' -s tile -d "${ws_code}" -D &
 chunkc tiling::rule -o Simulator -s float -d "${ws_code}" -D &
 
@@ -190,12 +194,6 @@ chunkc tiling::rule -o 'Photoshop CC' -d "${ws_design}" -D &
 chunkc tiling::rule -o 'Pixelmator Pro' -d "${ws_design}" -D &
 chunkc tiling::rule -o Sketch -d "${ws_design}" -D &
 # chunkc tiling::rule -o Unsplash -s float -d "${ws_design}" -g "${grid_layout_center}" -D &
-
-# im apps
-# chunkc tiling::rule -o Discord -d "${ws_im}" -D &
-# chunkc tiling::rule -o Gitter -d "${ws_im}" -D &
-# chunkc tiling::rule -o LINE -d "${ws_im}" -D &
-# chunkc tiling::rule -o Skype -d "${ws_im}" -D &
 
 # misc apps
 # chunkc tiling::rule -o Deluge -d "${ws_misc}" -D &
