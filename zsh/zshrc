@@ -9,6 +9,11 @@ if [[ -z "$TMUX" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" ]]; then
     exit
 fi
 
+if [[ "${+commands[emacs]}" == 1 && "${+commands[emacsclient]}" == 1 ]]; then
+    export EDITOR='emacs-wrapper'
+    export GIT_EDITOR="$EDITOR"
+fi
+
 autoload -Uz \
          clone_gh \
          create_gh \
