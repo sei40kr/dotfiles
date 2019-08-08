@@ -52,6 +52,7 @@ export const render = ({ output }) => {
 };
 
 export const className = `
+-webkit-font-smoothing: antialiased;
 color: #bfbfbf;
 font-size: 16px;
 left: 1vw;
