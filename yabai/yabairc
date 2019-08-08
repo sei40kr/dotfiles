@@ -38,4 +38,11 @@ yabai -m config left_padding                 24
 yabai -m config right_padding                24
 yabai -m config window_gap                   12
 
+ubersicht_app="/Applications/Übersicht.app"
+refresh_spaces="osascript -e 'tell application \"${ubersicht_app}\" to refresh widget id \"yabai-spaces-widget-yabai-spaces-jsx\"'"
+refresh_active_window="osascript -e 'tell application \"${ubersicht_app}\" to refresh widget id \"yabai-active-window-widget-yabai-active-window-jsx\"'"
+yabai -m signal --add event=space_changed        action="$refresh_spaces"
+yabai -m signal --add event=window_focused       action="$refresh_active_window"
+yabai -m signal --add event=window_title_changed action="$refresh_active_window"
+
 echo 'yabai configuration loaded..'
