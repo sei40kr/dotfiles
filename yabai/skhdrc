@@ -49,5 +49,4 @@ shift + alt - t : yabai -m window --toggle float;\
                   yabai -m window --grid 4:4:1:1:2:2
 
 # change layout of desktop
-shift + alt - b : yabai -m space --layout bsp
-# shift + alt - d : yabai -m space --layout monocle
+shift + alt - space : yabai -m window --toggle zoom-fullscreen
