@@ -1,7 +1,3 @@
-export const command = './bar-on-top.widget/libexec/yabai-status';
-
-export const refreshFrequency = false;
-
 export const render = () => {
   return null;
 };
