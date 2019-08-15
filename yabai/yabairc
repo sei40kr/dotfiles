@@ -39,10 +39,10 @@ yabai -m config right_padding                24
 yabai -m config window_gap                   12
 
 # app space settings
-web_ws=1
-file_ws=2
-code_ws=3
-design_ws=4
+web_space=1
+file_space=2
+code_space=3
+design_space=4
 center_grid='26:26:5:5:16:16'
 yabai -m rule --add app='Activity Monitor'      manage=off sticky=on grid="$center_grid"
 yabai -m rule --add app='Alfred Preferences'    manage=off sticky=on grid="$center_grid"
@@ -69,22 +69,22 @@ yabai -m rule --add app='^Slack$'               manage=off sticky=on grid="$cent
 yabai -m rule --add app='^System Preferences$'  manage=off sticky=on
 yabai -m rule --add app='^Todoist$'             manage=off sticky=on grid="$center_grid"
 yabai -m rule --add app='^zoom\.us$'            manage=off sticky=on grid="$center_grid"
-yabai -m rule --add app='^Google Chrome$'    space="^${web_ws}"
-yabai -m rule --add app='^Safari$'           space="^${web_ws}"
-yabai -m rule --add app='^Finder$'           space="^${file_ws}"
-yabai -m rule --add app='^Preview$'          space="^${file_ws}"  manage=off grid="$center_grid"
-yabai -m rule --add app='^QuickTime Player$' space="^${file_ws}"  manage=off grid="$center_grid"
-yabai -m rule --add app='^Alacritty$'        space="^${code_ws}"
-yabai -m rule --add app='^Dash$'             space="^${code_ws}"  manage=off grid="$center_grid"
-yabai -m rule --add app='^Emacs$'            space="^${code_ws}"
-yabai -m rule --add app='^IntelliJ IDEA$'    space="^${code_ws}"
+yabai -m rule --add app='^Google Chrome$'    space="^${web_space}"
+yabai -m rule --add app='^Safari$'           space="^${web_space}"
+yabai -m rule --add app='^Finder$'           space="^${file_space}"
+yabai -m rule --add app='^Preview$'          space="^${file_space}"  manage=off grid="$center_grid"
+yabai -m rule --add app='^QuickTime Player$' space="^${file_space}"  manage=off grid="$center_grid"
+yabai -m rule --add app='^Alacritty$'        space="^${code_space}"
+yabai -m rule --add app='^Dash$'             space="^${code_space}"  manage=off grid="$center_grid"
+yabai -m rule --add app='^Emacs$'            space="^${code_space}"
+yabai -m rule --add app='^IntelliJ IDEA$'    space="^${code_space}"
 yabai -m rule --add app='^IntelliJ IDEA$' \
                     title='^Welcome to IntelliJ IDEA$' \
                     manage=off
-yabai -m rule --add app='^Simulator$'        space="^${code_ws}"  manage=off
-yabai -m rule --add app='^Photoshop CC$'     space="${design_ws}"
-yabai -m rule --add app='^Pixelmator Pro$'   space="${design_ws}"
-yabai -m rule --add app='^Sketch$'           space="${design_ws}"
+yabai -m rule --add app='^Simulator$'        space="^${code_space}"  manage=off
+yabai -m rule --add app='^Photoshop CC$'     space="${design_space}"
+yabai -m rule --add app='^Pixelmator Pro$'   space="${design_space}"
+yabai -m rule --add app='^Sketch$'           space="${design_space}"
 
 # ubersicht integration settings
 ubersicht_app="/Applications/Übersicht.app"
