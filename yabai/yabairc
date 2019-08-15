@@ -82,9 +82,9 @@ yabai -m rule --add app='^IntelliJ IDEA$' \
                     title='^Welcome to IntelliJ IDEA$' \
                     manage=off
 yabai -m rule --add app='^Simulator$'        space="^${code_space}"  manage=off
-yabai -m rule --add app='^Photoshop CC$'     space="${design_space}"
-yabai -m rule --add app='^Pixelmator Pro$'   space="${design_space}"
-yabai -m rule --add app='^Sketch$'           space="${design_space}"
+yabai -m rule --add app='^Photoshop CC$'     space="^${design_space}"
+yabai -m rule --add app='^Pixelmator Pro$'   space="^${design_space}"
+yabai -m rule --add app='^Sketch$'           space="^${design_space}"
 
 # ubersicht integration settings
 ubersicht_app="/Applications/Übersicht.app"
