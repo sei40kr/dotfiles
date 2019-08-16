@@ -63,6 +63,7 @@ yabai -m rule --add app='^LINE$'                manage=off sticky=on grid="$cent
 yabai -m rule --add app='^Mail$'                manage=off sticky=on grid="$center_grid"
 yabai -m rule --add app='^Maps$'                manage=off sticky=on grid="$center_grid"
 yabai -m rule --add app='^Notes$'               manage=off sticky=on grid="$center_grid"
+yabai -m rule --add app='^Photo Booth$'         manage=off sticky=on grid="$center_grid"
 yabai -m rule --add app='^Reminders$'           manage=off sticky=on grid="$center_grid"
 yabai -m rule --add app='^Skype$'               manage=off sticky=on grid="$center_grid"
 yabai -m rule --add app='^Slack$'               manage=off sticky=on grid="$center_grid"
