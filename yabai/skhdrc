@@ -20,15 +20,15 @@ shift + alt - 6 : skhd -k 'ctrl - 6'
 shift + alt - 7 : skhd -k 'ctrl - 7'
 
 # send window to desktop and follow focus
-shift + ctrl + alt - 1 : yabai -m window --space 1; skhd -k 'ctrl + 1'
-shift + ctrl + alt - 2 : yabai -m window --space 2; skhd -k 'ctrl + 2'
-shift + ctrl + alt - 3 : yabai -m window --space 3; skhd -k 'ctrl + 3'
-shift + ctrl + alt - 4 : yabai -m window --space 4; skhd -k 'ctrl + 4'
-shift + ctrl + alt - 5 : yabai -m window --space 5; skhd -k 'ctrl + 5'
-shift + ctrl + alt - 6 : yabai -m window --space 6; skhd -k 'ctrl + 6'
-shift + ctrl + alt - 7 : yabai -m window --space 7; skhd -k 'ctrl + 7'
-shift + ctrl + alt - left : yabai -m window --space prev; skhd -k 'ctrl - left'
-shift + ctrl + alt - right : yabai -m window --space next; skhd -k 'ctrl - right'
+shift + ctrl + alt - 1 : yabai -m window --space 1; yabai -m space --focus 1
+shift + ctrl + alt - 2 : yabai -m window --space 2; yabai -m space --focus 2
+shift + ctrl + alt - 3 : yabai -m window --space 3; yabai -m space --focus 3
+shift + ctrl + alt - 4 : yabai -m window --space 4; yabai -m space --focus 4
+shift + ctrl + alt - 5 : yabai -m window --space 5; yabai -m space --focus 5
+shift + ctrl + alt - 6 : yabai -m window --space 6; yabai -m space --focus 6
+shift + ctrl + alt - 7 : yabai -m window --space 7; yabai -m space --focus 7
+shift + ctrl + alt - left : yabai -m window --space prev; yabai -m space --focus prev
+shift + ctrl + alt - right : yabai -m window --space next; yabai -m space --focus next
 
 # focus monitor
 shift + alt - w  : yabai -m display --focus 1
