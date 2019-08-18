@@ -3,18 +3,20 @@
 # emacs-wrapper
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-if [ -z "$SSH_CLIENT" ] && [ -z "$SSH_TTY" ]; then
-    socket_name="${HOME}/.emacs.d/server-tui/server"
-    tty=1
-else
-    socket_name="${HOME}/.emacs.d/server/server"
-    tty=0
+if [ -z "$EMACS_IN_TERMINAL" ]; then
+    if [ -z "$SSH_CLIENT" ] && [ -z "$SSH_TTY" ]; then
+        socket_name="${HOME}/.emacs.d/server-tui/server"
+        EMACS_IN_TERMINAL=1
+    else
+        socket_name="${HOME}/.emacs.d/server/server"
+        EMACS_IN_TERMINAL=0
+    fi
 fi
 
 # Prevent creating another frame if there's at least one present
 frame_count="$(emacsclient -e "(length (frame-list))" -s "$socket_name")"
 if [ -z "$frame_count" ] || [ "$frame_count" -le 0 ]; then
-    if [ "$tty" = 1 ]; then
+    if [ "$EMACS_IN_TERMINAL" = 1 ]; then
         emacsclient -cta 'emacs -nw' -s "$socket_name" "$@"
     else
         emacsclient -ca '' -s "$socket_name" "$@"
