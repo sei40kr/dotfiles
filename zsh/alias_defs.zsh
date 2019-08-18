@@ -81,15 +81,10 @@ alias drmi='docker rmi -f $(docker images -aq --filter dangling=true) 2>/dev/nul
 alias dwipe='docker kill $(docker ps -q) 2>/dev/null;docker rm $(docker ps -aq) 2>/dev/null;docker rmi -f $(docker images -aq) 2>/dev/null'
 
 # emacs
-alias emacs='_emacsfun'
-alias e='_emacsfun'
-alias te='_emacsfun -t'
-alias eeval='_emacsfun -e'
-if displays_graphic; then
-    alias edebug='command emacs --debug-init'
-else
-    alias edebug='command emacs --debug-init -nw'
-fi
+alias emacs='emacs-wrapper'
+alias e='emacs'
+alias te='EMACS_IN_TERMINAL=1 emacs-wrapper'
+alias eeval='emacs-wrapper -e'
 
 # exa
 alias ls='exa -F'
