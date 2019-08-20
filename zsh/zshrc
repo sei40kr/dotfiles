@@ -78,7 +78,6 @@ zplugin snippet 'OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh'
 # Plugins that loads version managers
 # Load nvm
 export NVM_SYMLINK_CURRENT=true
-export NVM_LAZY_LOAD=true
 export NVM_AUTO_USE=true
 zplugin light lukechilds/zsh-nvm
 # Load pyenv
