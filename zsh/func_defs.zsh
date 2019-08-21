@@ -4,7 +4,3 @@
 shescape() {
     printf '%q' "$@"
 }
-
-displays_graphic() {
-    [[ -z "$SSH_CLIENT" && -z "$SSH_TTY" ]]
-}
