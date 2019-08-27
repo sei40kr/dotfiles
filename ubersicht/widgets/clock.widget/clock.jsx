@@ -16,6 +16,7 @@ export const render = ({ output }) => {
 };
 
 export const className = `
+-webkit-font-smoothing: subpixel-antialiased;
 color: #bfbfbf;
 font-family: 'Input Mono', monospace;
 font-size: 16px;
