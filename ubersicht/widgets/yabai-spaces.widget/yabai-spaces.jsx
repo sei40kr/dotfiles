@@ -23,9 +23,6 @@ const renderSpace = (space) => {
     case 4:
       icon = '';
       break;
-    case 5:
-      icon = '';
-      break;
     default:
       icon = '';
   }
