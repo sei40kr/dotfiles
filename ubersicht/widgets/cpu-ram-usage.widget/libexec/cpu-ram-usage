@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# cpu-ram-usage
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+ncpus=$(sysctl hw.ncpu | awk '{print $2}')
+ps -Ao %cpu,%mem | awk -v ncpus=$ncpus 'function min(a,b){return a<b?a:b}{cpu+=$1;mem+=$2}END{print min(cpu/ncpus,100),min(mem,100)}'
