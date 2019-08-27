@@ -52,40 +52,37 @@ export const render = ({ output }) => {
 };
 
 export const className = `
--webkit-font-smoothing: antialiased;
 color: #bfbfbf;
 font-size: 16px;
 left: 1vw;
-line-height: 30px;
 position: absolute;
-text-align: left;
 top: 0;
-width: 31vw;
 z-index: 100;
 
 .spaces {
   display: flex;
-  align-items: flex-start;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .space {
-  display: block;
-  height: 30px;
-  padding: 0 8px;
+  border-bottom: 3px solid transparent;
+  height: 29px;
+  line-height: 29px;
+  padding: 0 0.5em;
 
-  &:not(:first-child) {
-    margin-left: 8px;
+  &:not(:last-child) {
+    margin-right: 0.5em;
   }
 
   &--focused {
-    border-bottom: 2px solid #dfdfdf;
-    color: #dfdfdf;
+    border-color: #51afef;
+    color: #51afef;
   }
 
   &__icon {
+    -webkit-font-smoothing: antialiased;
     font-size: 1.1em;
     font-family: 'Font Awesome 5 Free Solid';
   }
