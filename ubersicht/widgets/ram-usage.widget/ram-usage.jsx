@@ -1,33 +1,36 @@
-export const command = `./cpu-ram-usage.widget/libexec/cpu-ram-usage`;
+export const command = `./ram-usage.widget/libexec/ram-usage`;
 
 export const refreshFrequency = 1000;
 
 const valueFormatter = new Intl.NumberFormat('en-US', {
+  useGrouping: false,
   minimumFractionDigits: 1,
   maximumFractionDigits: 1,
 });
 
-const renderCpuUsage = (cpuUsage) => {
-  const level = cpuUsage < 30 ? 'low' : cpuUsage < 80 ? 'medium' : 'high';
+const humanize = (sizeInBytes) => {
+  let value = sizeInBytes / 1024 / 1024 / 1024;
+  let unit = 'GB';
 
-  return (
-    <div key="cpu" className={`indicator indicator--${level}`}>
-      <span className="indicator__icon"></span>
-      <span className="indicator__value">
-        {valueFormatter.format(cpuUsage)}%
-      </span>
-    </div>
-  );
+  if (1024 <= value) {
+    value /= 1024;
+    unit = 'TB';
+  }
+
+  return valueFormatter.format(value) + unit;
 };
 
-const renderRamUsage = (ramUsage) => {
-  const level = ramUsage < 75 ? 'low' : ramUsage < 90 ? 'medium' : 'high';
+const renderRamUsage = (usedRam, freeRam) => {
+  const ramUsage = usedRam / (usedRam + freeRam);
+  const level = ramUsage < 0.3 ? 'low' : ramUsage < 0.8 ? 'medium' : 'high';
 
   return (
-    <div key="ram" className={`indicator indicator--${level}`}>
+    <div className={`indicator indicator--${level}`}>
       <span className="indicator__icon"></span>
       <span className="indicator__value">
-        {valueFormatter.format(ramUsage)}%
+        {humanize(usedRam)}
+        <span className="indicator__divider">/</span>
+        {humanize(usedRam + freeRam)}
       </span>
     </div>
   );
@@ -38,11 +41,11 @@ export const render = ({ output }) => {
     return null;
   }
 
-  const [rawCpuUsage, rawRamUsage] = output.split(/\s+/);
-  const cpuUsage = Number(rawCpuUsage);
-  const ramUsage = Number(rawRamUsage);
+  const [rawUsedRam, rawFreeRam] = output.split(/\s+/);
+  const usedRam = Number(rawUsedRam);
+  const freeRam = Number(rawFreeRam);
 
-  return [renderCpuUsage(cpuUsage), renderRamUsage(ramUsage)];
+  return renderRamUsage(usedRam, freeRam);
 };
 
 export const className = `
@@ -57,14 +60,10 @@ top: 0;
 z-index: 100;
 
 .indicator {
-  border-bottom: 3px solid #fff;
+  border-bottom: 3px solid transparent;
   height: 29px;
   line-height: 29px;
   padding: 0 0.5em;
-
-  &:not(:last-child) {
-    margin-right: 0.5em;
-  }
 
   &--low {
     border-color: #98be65;
@@ -89,6 +88,11 @@ z-index: 100;
 
   &__value {
     margin-left: 0.5em;
+  }
+
+  &__divider {
+    color: #9ca0a4;
+    margin: 0 0.25em;
   }
 }
 `;
