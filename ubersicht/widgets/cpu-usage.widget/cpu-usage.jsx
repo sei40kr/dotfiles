@@ -1,4 +1,4 @@
-export const command = `iostat -dCn 0 | awk '2<NR{print 100-$3}'`;
+export const command = `iostat -Cc 2 -dn 0 | awk 'NR==4{print 100-$3}'`;
 
 export const refreshFrequency = 1000;
 
