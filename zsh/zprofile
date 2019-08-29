@@ -64,7 +64,7 @@ export PERLBREW_ROOT="${HOME}/perl5/perlbrew"
 
 # Python
 export PYENV_ROOT="${HOME}/.pyenv"
-path+=( "${PYENV_ROOT}/bin" "${PYENV_ROOT}/shims" )
+path+=( "${PYENV_ROOT}/bin" "${PYENV_ROOT}/shims" "${HOME}/.poetry/bin" )
 
 # Ruby
 export RBENV_ROOT="${HOME}/.rbenv"
