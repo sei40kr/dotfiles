@@ -78,6 +78,9 @@ yabai -m rule --add app='^QuickTime Player$' space="^${file_space}"  manage=off 
 yabai -m rule --add app='^Alacritty$'        space="^${code_space}"
 yabai -m rule --add app='^Dash$'             space="^${code_space}"  manage=off grid="$center_grid"
 yabai -m rule --add app='^Emacs$'            space="^${code_space}"
+yabai -m rule --add app='^Electron$' \
+                    title=' - vmd$' \
+                    space="^${code_space}"
 yabai -m rule --add app='^IntelliJ IDEA$'    space="^${code_space}"
 yabai -m rule --add app='^IntelliJ IDEA$' \
                     title='^Welcome to IntelliJ IDEA$' \
