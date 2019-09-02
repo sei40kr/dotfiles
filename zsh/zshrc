@@ -218,9 +218,5 @@ COMPLETION_WAITING_DOTS=true
 zplugin snippet 'OMZ::lib/completion.zsh'
 
 # Prompt Theme
-SPACESHIP_HOST_SHOW=false
-SPACESHIP_RUBY_SYMBOL='💎 '
-SPACESHIP_KUBECONTEXT_SYMBOL='☸️ '
-SPACESHIP_BATTERY_SHOW=false
-zplugin ice wait'!0a' lucid
-zplugin light denysdovhan/spaceship-prompt
+zplugin ice from'gh-r' src'zstarship.zsh' wait'0' lucid mv'x86_64-apple-darwin/starship -> starship' atclone'./starship init zsh --print-full-init >zstarship.zsh' atpull'%atclone' as'program' nocompile'!' reset-prompt
+zplugin light starship/starship
