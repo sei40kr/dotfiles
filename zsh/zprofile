@@ -55,12 +55,13 @@ export SDKMAN_DIR="${HOME}/.sdkman"
 path+=( "${SDKMAN_DIR}/candidates"/*/current/bin(-/) )
 
 # Perl
-path+="${HOME}/perl5/bin"
+export PERLBREW_ROOT="${HOME}/perl5/perlbrew"
+path+=( "${HOME}/perl5/bin" "${PERLBREW_ROOT}/bin" )
+manpath+="${HOME}/perl5/man"
 export PERL5LIB="${HOME}/perl5/lib/perl5:${PERL5LIB}"
 export PERL_LOCAL_LIB_ROOT="${HOME}/perl5:${PERL_LOCAL_LIB_ROOT}"
 export PERL_MB_OPT="--install_base '${HOME}/perl5'"
 export PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"
-export PERLBREW_ROOT="${HOME}/perl5/perlbrew"
 
 # Python
 export PYENV_ROOT="${HOME}/.pyenv"
