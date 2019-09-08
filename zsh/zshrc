@@ -17,7 +17,6 @@ fi
 autoload -Uz \
          clone_gh \
          create_gh \
-         fzf-project-widget \
          kca \
          kres \
          magit \
@@ -55,11 +54,11 @@ setopt PUSHD_IGNORE_DUPS
 setopt SHARE_HISTORY
 unsetopt LIST_BEEP
 
-zle -N fzf-project-widget
+zle -N fzf-projects
 
 bindkey -e
-bindkey '^xg' fzf-project-widget
-bindkey '^x^g' fzf-project-widget
+bindkey '^xg' fzf-projects
+bindkey '^x^g' fzf-projects
 
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 
@@ -67,6 +66,7 @@ bindkey '^x^g' fzf-project-widget
 zplugin light _local/zsh-fzf-docker
 zplugin light _local/zsh-fzf-gcloud
 zplugin light _local/zsh-fzf-kubernetes
+zplugin light _local/zsh-fzf-projects
 zplugin snippet 'OMZ::lib/clipboard.zsh'
 zplugin snippet 'OMZ::plugins/extract/extract.plugin.zsh'
 zplugin snippet 'OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh'
