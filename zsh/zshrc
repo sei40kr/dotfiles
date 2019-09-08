@@ -19,7 +19,6 @@ autoload -Uz \
          create_gh \
          kca \
          kres \
-         magit \
          pyclean \
          ranger-cd
 
