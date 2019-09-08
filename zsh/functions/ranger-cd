@@ -3,7 +3,7 @@
 # ranger-cd
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-function ranger-cd {
+ranger-cd() {
     local tmpfile="$(mktemp -t tmp.XXXXXX)"
 
     ranger --choosedir="$tmpfile" "$@"
