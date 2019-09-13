@@ -67,11 +67,13 @@ yabai -m rule --add app='^Photo Booth$'         manage=off           grid="$cent
 yabai -m rule --add app='^Reminders$'           manage=off           grid="$center_grid"
 yabai -m rule --add app='^Skype$'               manage=off           grid="$center_grid"
 yabai -m rule --add app='^Slack$'               manage=off           grid="$center_grid"
+yabai -m rule --add app='^Stocks$'              manage=off           grid="$center_grid"
 yabai -m rule --add app='^System Preferences$'  manage=off sticky=on
 yabai -m rule --add app='^Todoist$'             manage=off           grid="$center_grid"
 yabai -m rule --add app='^zoom\.us$'            manage=off           grid="$center_grid"
 yabai -m rule --add app='^Google Chrome$'    space="^${web_space}"
 yabai -m rule --add app='^Safari$'           space="^${web_space}"
+yabai -m rule --add app='^balenaEtcher$'     space="^${file_space}"  manage=off grid="$center_grid"
 yabai -m rule --add app='^Finder$'           space="^${file_space}"
 yabai -m rule --add app='^Preview$'          space="^${file_space}"  manage=off grid="$center_grid"
 yabai -m rule --add app='^QuickTime Player$' space="^${file_space}"  manage=off grid="$center_grid"
