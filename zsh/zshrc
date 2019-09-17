@@ -209,7 +209,6 @@ FAST_ALIAS_TIPS_PREFIX='💡 \e[1mTip:\e[0m '
 FAST_ALIAS_TIPS_SUFFIX=''
 # Load completion
 HYPHEN_INSENSITIVE=true
-COMPLETION_WAITING_DOTS=true
 zplugin snippet 'OMZ::lib/completion.zsh'
 
 # Prompt Theme
