@@ -1,2 +1,20 @@
 [character]
 symbol = '➜'
+
+[cmd_duration]
+style = ''
+
+[directory]
+style = 'bold blue'
+
+[git_branch]
+style = 'bold green'
+
+[git_state]
+disabled = true
+
+[git_status]
+disabled = true
+
+[package]
+style = 'bold'
