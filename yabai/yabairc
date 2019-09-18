@@ -53,6 +53,9 @@ yabai -m rule --add app='ConfigDialog' \
                     title='^Google Japanese Input Preferences$' \
                     manage=off sticky=on
 yabai -m rule --add app='^Contacts$'            manage=off           grid="$center_grid"
+yabai -m rule --add app='^Deluge$' \
+                    title='^Preferences$' \
+                    manage=off grid="$center_grid"
 yabai -m rule --add app='^Dictionary$'          manage=off           grid="$center_grid"
 yabai -m rule --add app='^Digital Color Meter$' manage=off sticky=on grid="$center_grid"
 yabai -m rule --add app='^Discord$'             manage=off           grid="$center_grid"
