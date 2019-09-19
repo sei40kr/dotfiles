@@ -212,5 +212,5 @@ HYPHEN_INSENSITIVE=true
 zplugin snippet 'OMZ::lib/completion.zsh'
 
 # Prompt Theme
-zplugin ice from'gh-r' src'zstarship.zsh' wait'0' lucid mv'x86_64-apple-darwin/starship -> starship' atclone'./starship init zsh --print-full-init >zstarship.zsh' atpull'%atclone' atload'starship_precmd' as'program' nocompile'!' reset-prompt
+zplugin ice from'gh-r' src'zstarship.zsh' mv'x86_64-apple-darwin/starship -> starship' atclone'./starship init zsh --print-full-init >zstarship.zsh' atpull'%atclone' atload'starship_precmd' as'program' nocompile'!'
 zplugin light starship/starship
