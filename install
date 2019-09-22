@@ -9,6 +9,11 @@ IFS=$'\n\t'
 
 : ${ZDOTDIR:=${HOME}/.zsh}
 
+declare -A ZPLGM
+ZPLGM[HOME_DIR]="${HOME}/.zplugin"
+ZPLGM[BIN_DIR]="${ZPLGM[HOME_DIR]}/bin"
+ZPLGM[PLUGINS_DIR]="${ZPLGM[HOME_DIR]}/plugins"
+
 basepath="$(dirname "$(realpath "$0")")"
 # shellcheck source=install_helpers.bash
 . "${basepath}/install_helpers.bash"
@@ -121,15 +126,60 @@ install_zsh() {
     ln -fs "${HOME}/.dotfiles/zsh/zprofile" "${ZDOTDIR}/.zprofile"
     ln -fs "${HOME}/.dotfiles/zsh/zshrc" "${ZDOTDIR}/.zshrc"
 
-    sudo chsh -s "$(command -v zsh)" "$USER"
+    ln -fs "${HOME}/.dotfiles/zsh/func_defs.zsh" "${ZDOTDIR}/func_defs.zsh"
+    ln -fs "${HOME}/.dotfiles/zsh/alias_defs.zsh" "${ZDOTDIR}/alias_defs.zsh"
 
-    if [[ ! -d "${HOME}/.zplugin/bin" ]]; then
-        mkdir -p "${HOME}/.zplugin"
-        git clone https://github.com/zdharma/zplugin.git "${HOME}/.zplugin/bin"
+    mkdir -p "${ZDOTDIR}/functions"
+    ln -fs "${HOME}/.dotfiles/zsh/functions/clone_gh" \
+       "${ZDOTDIR}/functions/clone_gh"
+    ln -fs "${HOME}/.dotfiles/zsh/functions/create_gh" \
+       "${ZDOTDIR}/functions/create_gh"
+    ln -fs "${HOME}/.dotfiles/zsh/functions/kca" "${ZDOTDIR}/functions/kca"
+    ln -fs "${HOME}/.dotfiles/zsh/functions/kres" "${ZDOTDIR}/functions/kres"
+    ln -fs "${HOME}/.dotfiles/zsh/functions/pyclean" \
+       "${ZDOTDIR}/functions/pyclean"
+    ln -fs "${HOME}/.dotfiles/zsh/functions/ranger-cd" \
+       "${ZDOTDIR}/functions/ranger-cd"
+
+    mkdir -p "${ZDOTDIR}/completions"
+    ln -fs "${HOME}/.dotfiles/zsh/completions/_atcoder-tools" \
+       "${ZDOTDIR}/completions/_atcoder-tools"
+    ln -fs "${HOME}/.dotfiles/zsh/completions/_kubectl" \
+       "${ZDOTDIR}/completions/_kubectl"
+    ln -fs "${HOME}/.dotfiles/zsh/completions/_rustup" \
+       "${ZDOTDIR}/completions/_rustup"
+
+    if [[ ! -d "${ZPLGM[BIN_DIR]}" ]]; then
+        mkdir -p "${ZPLGM[HOME_DIR]}"
+        git clone https://github.com/zdharma/zplugin.git "${ZPLGM[BIN_DIR]}"
+    fi
+
+    mkdir -p "${ZPLGM[PLUGINS_DIR]}"
+    if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fzf-docker" ]]; then
+        git clone https://github.com/sei40kr/zsh-fzf-docker.git \
+            "${HOME}/.zplugin/plugins/_local---zsh-fzf-docker"
+    fi
+    if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fzf-gcloud" ]]; then
+        git clone https://github.com/sei40kr/zsh-fzf-gcloud.git \
+            "${HOME}/.zplugin/plugins/_local---zsh-fzf-gcloud"
+    fi
+    if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fzf-kubernetes" ]]; then
+        git clone https://github.com/sei40kr/zsh-fzf-kubernetes.git \
+            "${HOME}/.zplugin/plugins/_local---zsh-fzf-kubernetes"
+    fi
+    if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fzf-projects" ]]; then
+        git clone https://github.com/sei40kr/zsh-fzf-projects.git \
+            "${HOME}/.zplugin/plugins/_local---zsh-fzf-projects"
+    fi
+    if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fast-alias-tips" ]]; then
+        git clone https://github.com/sei40kr/zsh-fast-alias-tips.git \
+            "${HOME}/.zplugin/plugins/_local---zsh-fast-alias-tips"
     fi
 
     ln -fs "${HOME}/.dotfiles/zsh/starship.toml" \
        "${XDG_CONFIG_HOME}/starship.toml"
+
+    sudo chsh -s "$(command -v zsh)" "$USER"
 
     pause
 }
