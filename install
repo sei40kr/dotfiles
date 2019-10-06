@@ -268,6 +268,7 @@ install_xorg() {
     pacman_sync dbus xorg xorg-xinit
 
     ln -fs "${HOME}/.dotfiles/xorg/xinitrc" "${HOME}/.xinitrc"
+    ln -fs "${HOME}/.dotfiles/xorg/Xresources" "${HOME}/.Xresources"
     ln -fs "${HOME}/.dotfiles/xorg/xsession" "${HOME}/.xsession"
 
     pause
