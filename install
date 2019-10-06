@@ -203,7 +203,25 @@ install_xorg() {
     pause
 }
 
+install_compton() {
+    print_title 'Compton - https://wiki.archlinux.org/index.php/Compton'
+    print_desc \
+        'Compton is a standalone compositor for Xorg, suitable for use with window managers that do not provide compositing.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync compton
+
+    ln -fs "${HOME}/.dotfiles/compton/compton.conf" \
+       "${XDG_CONFIG_HOME}/compton/compton.conf"
+
+    pause
+}
+
 install_trizen
 install_openssh
 
 install_xorg
+install_compton
