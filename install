@@ -186,5 +186,24 @@ install_openssh() {
     pause
 }
 
+install_xorg() {
+    print_title 'Xorg - https://wiki.archlinux.org/index.php/Xorg'
+    print_desc \
+        'The X.Org project provides an open source implementation of the X Window System.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync dbus xorg xorg-xinit
+
+    ln -fs "${HOME}/.dotfiles/xorg/xinitrc" "${HOME}/.xinitrc"
+    ln -fs "${HOME}/.dotfiles/xorg/xsession" "${HOME}/.xsession"
+
+    pause
+}
+
 install_trizen
 install_openssh
+
+install_xorg
