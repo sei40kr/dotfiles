@@ -6,6 +6,10 @@
 xset r rate 150 30
 xsetroot -cursor_name left_ptr
 
+if hash compton 2>/dev/null; then
+    compton -b
+fi
+
 # Start the window manager
 if hash xmonad 2>/dev/null; then
     exec xmonad
