@@ -356,6 +356,23 @@ install_fontconfig() {
     pause
 }
 
+install_alacritty() {
+    print_title 'Alacritty'
+    print_desc 'A cross-platform, GPU-accelerated terminal emulator.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync alacritty
+
+    mkdir -p "${XDG_CONFIG_HOME}/alacritty"
+    ln -fs "${HOME}/.dotfiles/alacritty/alacritty.yml" \
+       "${XDG_CONFIG_HOME}/alacritty/alacritty.yml"
+
+    pause
+}
+
 install_fcitx() {
     print_title 'Fcitx - https://wiki.archlinux.org/index.php/Fcitx'
     print_desc \
@@ -386,4 +403,5 @@ install_compton
 install_redshift
 install_xmonad
 install_fontconfig
+install_alacritty
 install_fcitx
