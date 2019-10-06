@@ -411,6 +411,20 @@ install_fcitx() {
     pause
 }
 
+install_bitwarden() {
+    print_title 'Bitwarden'
+    print_desc \
+        'Open source password manager with desktop, mobile, browser, and CLI versions. Cloud or self-hosted.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    trizen_sync bitwarden
+
+    pause
+}
+
 install_trizen
 install_zsh
 install_tmux
@@ -424,3 +438,4 @@ install_fontconfig
 install_dunst
 install_alacritty
 install_fcitx
+install_bitwarden
