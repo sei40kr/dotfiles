@@ -325,6 +325,37 @@ install_xmonad() {
     pause
 }
 
+install_fontconfig() {
+    print_title \
+        'Font configuration - https://wiki.archlinux.org/index.php/Font_configuration'
+    print_desc \
+        'Fontconfig is a library designed to provide a list of available fonts to applications, and also for configuration for how fonts get rendered.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync fontconfig noto-fonts noto-fonts-cjk noto-fonts-emoji
+
+    mkdir -p "${XDG_CONFIG_HOME}/fontconfig/conf.d"
+    cp -f /etc/fonts/conf.avail/10-hinting-none.conf \
+       "${XDG_CONFIG_HOME}/fontconfig/conf.d/10-hinting-none.conf"
+    cp -f /etc/fonts/conf.avail/10-sub-pixel-rgb.conf \
+       "${XDG_CONFIG_HOME}/fontconfig/conf.d/10-sub-pixel-rgb.conf"
+    cp -f /etc/fonts/conf.avail/11-lcdfilter-default.conf \
+       "${XDG_CONFIG_HOME}/fontconfig/conf.d/11-lcdfilter-default.conf"
+    cp -f /etc/fonts/conf.avail/66-noto-sans.conf \
+       "${XDG_CONFIG_HOME}/fontconfig/conf.d/66-noto-sans.conf"
+    cp -f /etc/fonts/conf.avail/66-noto-serif.conf \
+       "${XDG_CONFIG_HOME}/fontconfig/conf.d/66-noto-serif.conf"
+    cp -f /etc/fonts/conf.avail/66-noto-mono.conf \
+       "${XDG_CONFIG_HOME}/fontconfig/conf.d/66-noto-mono.conf"
+    cp -f /etc/fonts/conf.avail/70-noto-cjk.conf \
+       "${XDG_CONFIG_HOME}/fontconfig/conf.d/70-noto-cjk.conf"
+
+    pause
+}
+
 install_trizen
 install_zsh
 install_tmux
@@ -334,3 +365,4 @@ install_xorg
 install_compton
 install_redshift
 install_xmonad
+install_fontconfig
