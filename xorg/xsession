@@ -20,5 +20,5 @@ fi
 
 # Start the window manager
 if hash xmonad 2>/dev/null; then
-    exec xmonad
+    xmonad
 fi
