@@ -135,6 +135,20 @@ trizen_sync() {
     trizen -Sy --needed --noconfirm --noprogressbar --nopull "${pkgs[@]}"
 }
 
+stack_install() {
+    local -a pkgs
+    pkgs=( "$@")
+
+    if ! pacman_query stack; then
+        error 'stack is not installed. Aborting.'
+    fi
+
+    echo 'Installing'
+    printf "%s\n" "${pkgs[@]}"
+
+    stack install "${pkgs[@]}"
+}
+
 systemctl_enable() {
     local service
     service="$1"
@@ -220,8 +234,26 @@ install_compton() {
     pause
 }
 
+install_xmonad() {
+    print_title 'xmonad - https://wiki.archlinux.org/index.php/Xmonad'
+    print_desc 'xmonad is a tiling window manager for X.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    stack_install xmonad
+    pacman_sync xorg-xmessage
+
+    ln -fs "${HOME}/.dotfiles/xmonad" "${HOME}/.xmonad"
+    : >"${HOME}/.xmonad/xmonad.errors"
+
+    pause
+}
+
 install_trizen
 install_openssh
 
 install_xorg
 install_compton
+install_xmonad
