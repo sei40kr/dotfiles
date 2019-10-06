@@ -10,6 +10,10 @@ if hash compton 2>/dev/null; then
     compton -b
 fi
 
+if hash redshift 2>/dev/null; then
+    redshift &
+fi
+
 # Start the window manager
 if hash xmonad 2>/dev/null; then
     exec xmonad
