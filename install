@@ -357,6 +357,23 @@ install_fontconfig() {
     pause
 }
 
+install_dunst() {
+    print_title 'Dunst - https://wiki.archlinux.org/index.php/Dunst'
+    print_desc \
+        'Dunst is a lightweight replacement for the notification-daemons provided by most desktop environments.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync dunst
+
+    mkdir -p "${XDG_CONFIG_HOME}/dunst"
+    ln -fs "${HOME}/.dotfiles/dunst/dunstrc" "${XDG_CONFIG_HOME}/dunst/dunstrc"
+
+    pause
+}
+
 install_alacritty() {
     print_title 'Alacritty'
     print_desc 'A cross-platform, GPU-accelerated terminal emulator.'
@@ -404,5 +421,6 @@ install_compton
 install_redshift
 install_xmonad
 install_fontconfig
+install_dunst
 install_alacritty
 install_fcitx
