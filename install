@@ -234,6 +234,24 @@ install_compton() {
     pause
 }
 
+install_redshift() {
+    print_title 'Redshift - https://wiki.archlinux.org/index.php/Redshift'
+    print_desc \
+        'Redshift adjusts the color temperature of your screen according to your surroundings.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync redshift
+
+    mkdir -p "${XDG_CONFIG_HOME}/redshift/hooks"
+    ln -fs "${HOME}/.dotfiles/redshift/hooks/brightness.sh" \
+       "${XDG_CONFIG_HOME}/redshift/hooks/brightness.sh"
+
+    pause
+}
+
 install_xmonad() {
     print_title 'xmonad - https://wiki.archlinux.org/index.php/Xmonad'
     print_desc 'xmonad is a tiling window manager for X.'
@@ -256,4 +274,5 @@ install_openssh
 
 install_xorg
 install_compton
+install_redshift
 install_xmonad
