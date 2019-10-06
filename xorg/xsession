@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# xsession
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+xset r rate 150 30
+xsetroot -cursor_name left_ptr
+
+# Start the window manager
+if hash xmonad 2>/dev/null; then
+    exec xmonad
+fi

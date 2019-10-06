@@ -1,0 +1,32 @@
+# -*- mode: sh -*-
+
+# xinitrc --- Shared environment setup for graphical sessions
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+# Load X defaults. This should probably be safe on wayland too.
+if [[ -e "${HOME}/.Xresources" ]]; then
+    xrdb -merge "${HOME}/.Xresources"
+elif [[ -e "${HOME}/.Xdefaults" ]]; then
+    xrdb -merge "${HOME}/.Xdefaults"
+fi
+
+if [[ -d /etc/X11/xinit/xinitrc.d ]]; then
+    for file in /etc/X11/xinit/xinitrc.d/?*; do
+        . "$file"
+    done
+fi
+
+# Allow the user to execute commands at the beginning of the X session
+if [[ -f "${HOME}/.xprofile" ]]; then
+    . "${HOME}/.xprofile"
+fi
+
+# Allow the user to setup a custom session type
+if [[ -x "${HOME}/.xsession" ]]; then
+    if hash dbus-launch 2>/dev/null && [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
+        exec dbus-launch --exit-with-session "${HOME}/.xsession" \
+             2>"${HOME}/.xsession-errors"
+    else
+        exec "${HOME}/.xsession" 2>"${HOME}/.xsession-errors"
+    fi
+fi
