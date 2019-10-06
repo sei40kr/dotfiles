@@ -356,6 +356,26 @@ install_fontconfig() {
     pause
 }
 
+install_fcitx() {
+    print_title 'Fcitx - https://wiki.archlinux.org/index.php/Fcitx'
+    print_desc \
+        'Fcitx is a lightweight input method framework aimed at providing environment independent language support for Linux.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt5 \
+                fcitx-configtool fcitx-mozc
+
+    mkdir -p "${XDG_CONFIG_HOME}/fcitx/conf"
+    ln -fs "${HOME}/.dotfiles/fcitx/config" "${XDG_CONFIG_HOME}/fcitx/config"
+    ln -fs "${HOME}/.dotfiles/fcitx/conf/fcitx-classic-ui.conf" \
+       "${XDG_CONFIG_HOME}/fcitx/conf/fcitx-classic-ui.conf"
+
+    pause
+}
+
 install_trizen
 install_zsh
 install_tmux
@@ -366,3 +386,4 @@ install_compton
 install_redshift
 install_xmonad
 install_fontconfig
+install_fcitx
