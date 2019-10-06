@@ -357,6 +357,23 @@ install_fontconfig() {
     pause
 }
 
+install_rofi() {
+    print_title 'Rofi - https://wiki.archlinux.org/index.php/Rofi'
+    print_desc \
+        'Rofi is a window switcher, run dialog, ssh-launcher and dmenu replacement that started as a clone of simpleswitcher, written by Sean Pringle and later expanded by Dave Davenport.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync rofi
+
+    mkdir -p "${XDG_CONFIG_HOME}/rofi"
+    ln -fs "${HOME}/.dotfiles/rofi/config" "${XDG_CONFIG_HOME}/rofi/config"
+
+    pause
+}
+
 install_dunst() {
     print_title 'Dunst - https://wiki.archlinux.org/index.php/Dunst'
     print_desc \
@@ -435,6 +452,7 @@ install_compton
 install_redshift
 install_xmonad
 install_fontconfig
+install_rofi
 install_dunst
 install_alacritty
 install_fcitx
