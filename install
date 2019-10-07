@@ -165,6 +165,23 @@ systemctl_user_enable() {
     systemctl --user enable --now "$service"
 }
 
+install_git() {
+    print_title 'Git - https://wiki.archlinux.org/index.php/Git'
+    print_desc \
+        'Git is the version control system (VCS) designed and developed by Linus Torvalds, the creator of the Linux kernel.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync git
+
+    ln -fs "${HOME}/.dotfiles/git/gitconfig" "${XDG_CONFIG_HOME}/git/config"
+    ln -fs "${HOME}/.dotfiles/git/gitignore" "${XDG_CONFIG_HOME}/git/ignore"
+
+    pause
+}
+
 install_trizen() {
     print_title 'Trizen'
     print_desc 'trizen is a lightweight wrapper for AUR, written in Perl.'
@@ -549,6 +566,7 @@ install_zeal() {
     pause
 }
 
+install_git
 install_trizen
 install_zsh
 install_tmux
