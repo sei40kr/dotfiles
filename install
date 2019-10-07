@@ -265,7 +265,7 @@ install_xorg() {
         return
     fi
 
-    pacman_sync dbus xorg xorg-xinit
+    pacman_sync dbus xorg xorg-xinit xautolock xsecurelock
 
     ln -fs "${HOME}/.dotfiles/xorg/xinitrc" "${HOME}/.xinitrc"
     ln -fs "${HOME}/.dotfiles/xorg/Xresources" "${HOME}/.Xresources"

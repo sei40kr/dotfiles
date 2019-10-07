@@ -6,6 +6,10 @@
 xset r rate 150 30
 xsetroot -cursor_name left_ptr
 
+if hash xautolock 2>/dev/null && hash xsecurelock 2>/dev/null; then
+    xautolock -locker xsecurelock -resetsaver -detectsleep &
+fi
+
 if hash compton 2>/dev/null; then
     compton -b
 fi
