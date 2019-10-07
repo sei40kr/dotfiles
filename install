@@ -326,6 +326,29 @@ install_xmonad() {
     pause
 }
 
+install_gtk() {
+    print_title 'GTK - https://wiki.archlinux.org/index.php/GTK'
+    print_desc \
+        'GTK, or the GIMP Toolkit, is a multi-platform toolkit for creating graphical user interfaces.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync gtk2 gtk3
+
+    mkdir -p "${XDG_CONFIG_HOME}/gtk-3.0"
+    ln -fs "${HOME}/.dotfiles/gtk/gtk-3.0/settings.ini" \
+       "${XDG_CONFIG_HOME}/gtk-3.0/settings.ini"
+    mkdir -p "${XDG_CONFIG_HOME}/gtk-2.0"
+    ln -fs "${HOME}/.dotfiles/gtk/gtk-2.0/gtkrc" \
+       "${XDG_CONFIG_HOME}/gtk-2.0/gtkrc"
+    ln -fs "${HOME}/.dotfiles/gtk/gtk-2.0/gtkfilechooser.ini" \
+       "${XDG_CONFIG_HOME}/gtk-2.0/gtkrc/gtkfilechooser.ini"
+
+    pause
+}
+
 install_fontconfig() {
     print_title \
         'Font configuration - https://wiki.archlinux.org/index.php/Font_configuration'
@@ -452,6 +475,7 @@ install_compton
 install_redshift
 install_xmonad
 install_fontconfig
+install_gtk
 install_rofi
 install_dunst
 install_alacritty
