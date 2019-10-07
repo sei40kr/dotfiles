@@ -297,7 +297,7 @@ install_tmux() {
         return
     fi
 
-    pacman_sync tmux
+    pacman_sync tmux xsel
 
     ln -fs "${HOME}/tmux/tmux.conf" "${HOME}/.tmux.conf"
 
