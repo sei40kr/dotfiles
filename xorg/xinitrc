@@ -1,4 +1,4 @@
-#!/bin/sh
+#-*- mode: sh -*-
 
 # xinitrc --- Shared environment setup for graphical sessions
 # author: Seong Yong-ju <sei40kr@gmail.com>
