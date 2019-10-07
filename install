@@ -496,6 +496,25 @@ install_bitwarden() {
     pause
 }
 
+install_spacemacs() {
+    print_title 'Spacemacs - https://wiki.archlinux.org/index.php/Spacemacs'
+    print_desc \
+        'Spacemacs is an extensible and customizable text editor, built on top of Emacs and using Vim keybindings.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync emacs
+
+    if [[ ! -d "${HOME}/.emacs.d" ]]; then
+        git clone -b develop git@github.com:sei40kr/spacemacs.git \
+            "${HOME}/.emacs.d"
+    fi
+
+    pause
+}
+
 install_intellij_idea() {
     print_title 'IntelliJ IDEA'
     print_desc \
@@ -549,5 +568,6 @@ install_google_chrome
 install_profile_sync_daemon
 install_bitwarden
 
+install_spacemacs
 install_intellij_idea
 install_zeal
