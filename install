@@ -220,6 +220,22 @@ install_ntp() {
     pause
 }
 
+install_bluetooth() {
+    print_title 'Bluetooth - https://wiki.archlinux.org/index.php/Bluetooth'
+    print_desc \
+        'Bluetooth is a standard for the short-range wireless interconnection of cellular phones, computers, and other electronic devices.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync bluez bluez-utils
+
+    systemctl_enable bluetooth.service
+
+    pause
+}
+
 install_zsh() {
     print_title 'Zsh - https://wiki.archlinux.org/index.php/Zsh'
     print_desc \
@@ -588,6 +604,7 @@ install_zeal() {
 install_git
 install_trizen
 install_ntp
+install_bluetooth
 install_zsh
 install_tmux
 install_openssh
