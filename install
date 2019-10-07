@@ -465,6 +465,23 @@ install_google_chrome() {
     pause
 }
 
+install_profile_sync_daemon() {
+    print_title \
+        'Profile-sync-daemon - https://wiki.archlinux.org/index.php/Profile-sync-daemon'
+    print_desc \
+        'Profile-sync-daemon (psd) is a tiny pseudo-daemon designed to manage browser profile(s) in tmpfs and to periodically sync back to the physical disc (HDD/SSD).'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    trizen_sync profile-sync-daemon
+
+    systemctl_user_enable psd.service
+
+    pause
+}
+
 install_bitwarden() {
     print_title 'Bitwarden'
     print_desc \
@@ -495,4 +512,5 @@ install_dunst
 install_alacritty
 install_fcitx
 install_google_chrome
+install_profile_sync_daemon
 install_bitwarden
