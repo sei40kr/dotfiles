@@ -201,21 +201,24 @@ install_trizen() {
     pause
 }
 
-install_ntp() {
+install_networkmanager() {
     print_title \
-        'Network Time Protocol daemon - https://wiki.archlinux.org/index.php/Network_Time_Protocol_daemon'
+        'Network Manager - https://wiki.archlinux.org/index.php/NetworkManager'
     print_desc \
-        'Network Time Protocol is the most common method to synchronize the software clock of a GNU/Linux system with internet time servers.'
+        'NetworkManager is a program for providing detection and configuration for systems to automatically connect to networks.'
 
     if ! ask_yn 'Would you like to install?'; then
         return
     fi
 
-    pacman_sync ntp
+    pacman_sync networkmanager dnsmasq dialog
 
-    sudo timedatectl set-timezone Asia/Tokyo
+    cat <<EOM | sudo tee /etc/NetworkManager/conf.d/dns.conf 2>/dev/null
+[main]
+dns=dnsmasq
+EOM
 
-    systemctl_enable ntp.service
+    systemctl_enable NetworkManager.service
 
     pause
 }
@@ -232,6 +235,25 @@ install_bluetooth() {
     pacman_sync bluez bluez-utils
 
     systemctl_enable bluetooth.service
+
+    pause
+}
+
+install_ntp() {
+    print_title \
+        'Network Time Protocol daemon - https://wiki.archlinux.org/index.php/Network_Time_Protocol_daemon'
+    print_desc \
+        'Network Time Protocol is the most common method to synchronize the software clock of a GNU/Linux system with internet time servers.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync ntp
+
+    sudo timedatectl set-timezone Asia/Tokyo
+
+    systemctl_enable ntp.service
 
     pause
 }
@@ -603,8 +625,9 @@ install_zeal() {
 
 install_git
 install_trizen
-install_ntp
+install_networkmanager
 install_bluetooth
+install_ntp
 install_zsh
 install_tmux
 install_openssh
