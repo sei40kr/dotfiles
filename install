@@ -496,6 +496,27 @@ install_bitwarden() {
     pause
 }
 
+install_intellij_idea() {
+    print_title 'IntelliJ IDEA'
+    print_desc \
+        'An intelligent IDE for Java, Groovy and other programming languages with advanced refactoring features intensely focused on developer productivity.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    trizen_sync intellij-idea-ultimate-edition
+
+    if [[ ! -d "${HOME}/intelli-space" ]]; then
+        git clone https://github.com/MarcoIeni/intelli-space.git \
+            "${HOME}/intelli-space"
+    fi
+
+    ln -fs "${HOME}/.dotfiles/intellij-idea/ideavimrc" "${HOME}/.ideavimrc"
+
+    pause
+}
+
 install_trizen
 install_zsh
 install_tmux
@@ -514,3 +535,5 @@ install_fcitx
 install_google_chrome
 install_profile_sync_daemon
 install_bitwarden
+
+install_intellij_idea
