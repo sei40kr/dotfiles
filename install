@@ -451,6 +451,20 @@ install_fcitx() {
     pause
 }
 
+install_google_chrome() {
+    print_title \
+        'Google Chrome - https://aur.archlinux.org/packages/google-chrome'
+    print_desc 'The popular and trusted web browser by Google'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    trizen_sync google-chrome
+
+    pause
+}
+
 install_bitwarden() {
     print_title 'Bitwarden'
     print_desc \
@@ -480,4 +494,5 @@ install_rofi
 install_dunst
 install_alacritty
 install_fcitx
+install_google_chrome
 install_bitwarden
