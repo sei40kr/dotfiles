@@ -19,6 +19,11 @@ if hash redshift 2>/dev/null; then
 fi
 
 if hash fcitx-autostart 2>/dev/null; then
+    export XMODIFIERS='@im=fcitx'
+    export GTK_IM_MODULE=fcitx
+    export QT_IM_MODULE=fcitx
+    export DefaultIMModule=fcitx
+
     fcitx-autostart &
 fi
 
