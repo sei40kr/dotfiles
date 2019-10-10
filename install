@@ -101,7 +101,7 @@ install_ntp() {
 
     sudo timedatectl set-timezone Asia/Tokyo
 
-    systemctl_enable ntp.service
+    systemctl_enable ntpd.service
 
     pause
 }
