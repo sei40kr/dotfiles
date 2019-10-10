@@ -266,7 +266,7 @@ install_gtk() {
     ln -fs "${HOME}/.dotfiles/gtk/gtk-2.0/gtkrc" \
        "${XDG_CONFIG_HOME}/gtk-2.0/gtkrc"
     ln -fs "${HOME}/.dotfiles/gtk/gtk-2.0/gtkfilechooser.ini" \
-       "${XDG_CONFIG_HOME}/gtk-2.0/gtkrc/gtkfilechooser.ini"
+       "${XDG_CONFIG_HOME}/gtk-2.0/gtkfilechooser.ini"
 
     pause
 }
