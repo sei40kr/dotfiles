@@ -97,11 +97,9 @@ install_ntp() {
         return
     fi
 
-    pacman_sync ntp
+    pacman_sync ntp networkmanager-dispatcher-ntpd
 
     sudo timedatectl set-timezone Asia/Tokyo
-
-    systemctl_enable ntpd.service
 
     pause
 }
