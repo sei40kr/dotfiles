@@ -12,6 +12,7 @@
 --
 
 import XMonad
+import XMonad.Hooks.ManageDocks
 import Data.Monoid
 import System.Exit
 
@@ -66,11 +67,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
-    -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run")
+    -- launch rofi
+    , ((modm,               xK_p     ), spawn "rofi -show run")
 
-    -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    -- launch rofi
+    , ((modm .|. shiftMask, xK_p     ), spawn "rofi -show drun")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
