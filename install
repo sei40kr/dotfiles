@@ -288,10 +288,15 @@ install_xmonad() {
     fi
 
     stack_install xmonad
-    pacman_sync xorg-xmessage
+    pacman_sync xorg-xmessage xmobar alsa-mixer awk
 
     ln -fs "${HOME}/.dotfiles/xmonad" "${HOME}/.xmonad"
     : >"${HOME}/.xmonad/xmonad.errors"
+
+    ln -fs "${HOME}/.dotfiles/xmobar/xmobarrc" "${HOME}/.xmobarrc"
+    mkdir -p "${HOME}/.local/bin"
+    ln -fs "${HOME}/.dotfiles/xmobar/bin/xmobar-alsa-volume" "${HOME}/.local/bin/xmobar-alsa-volume"
+    ln -fs "${HOME}/.dotfiles/xmobar/bin/xmobar-fcitx-state" "${HOME}/.local/bin/xmobar-fcitx-state"
 
     pause
 }
