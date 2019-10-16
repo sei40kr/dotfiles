@@ -1,0 +1,17 @@
+# -*- mode: sh -*-
+
+amixer sget Master | awk '
+/\[off\]/ {
+  muted = 1
+  print "<fc=#ff6c6b><fn=1>\xef\xb1\x9d</fn></fc>"
+}
+!muted {
+  if (match($0, /\[([[:digit:]]{1,3})%\]/, matches)) {
+    vol = matches[1] + 0
+    if (vol == 0)       icon = "\xef\xa9\xbe"
+    else if (vol <= 50) icon = "\xef\xa9\xbf"
+    else                icon = "\xef\xa9\xbd"
+
+    printf "<fn=1>%s</fn> %d%\n", icon, vol
+  }
+}'

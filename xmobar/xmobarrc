@@ -1,0 +1,39 @@
+-- -*- mode: haskell -*-
+
+-- xmobarrc
+-- author: Seong Yong-ju <sei40kr@gmail.com>
+
+Config
+  { font =
+      "xft:Fira Code:size=11,Noto Sans Mono CJK JP:size=11,monospace:size=11"
+  , additionalFonts =
+      [ "xft:FuraCode Nerd Font:size=15"
+      , "xft:FuraCode Nerd Font:size=15"
+      , "xft:Fira Code:size=11:bold,Noto Sans Mono CJK JP:size=11:bold"
+      ]
+  , border = NoBorder
+  , bgColor = "#1b2229"
+  , fgColor = "#bbc2cf"
+  , alpha = 255
+  , position = BottomSize C 100 64
+  , textOffset = -1
+  , textOffsets = [47, 50, -1]
+  , iconOffset = -1
+  , lowerOnStart = True
+  , pickBroadest = True
+  , persistent = True
+  , hideOnStart = False
+  , iconRoot = "."
+  , allDesktops = True
+  , overrideRedirect = False
+  , commands =
+      [ Run UnsafeStdinReader
+      , Run Com "xmobar-fcitx-state" [] "fcitxstate" 10
+      , Run Com "xmobar-alsa-volume" [] "alsavol" 10
+      , Run Date "%b %_d %a %H:%M" "date" 10
+      ]
+  , sepChar = "%"
+  , alignSep = "}{"
+  , template =
+      " %UnsafeStdinReader% }{ %fcitxstate% <fc=#3f444a>|</fc> %alsavol% <fc=#3f444a>|</fc> %date% "
+  }
