@@ -295,8 +295,10 @@ install_xmonad() {
 
     ln -fs "${HOME}/.dotfiles/xmobar/xmobarrc" "${HOME}/.xmobarrc"
     mkdir -p "${HOME}/.local/bin"
-    ln -fs "${HOME}/.dotfiles/xmobar/bin/xmobar-alsa-volume" "${HOME}/.local/bin/xmobar-alsa-volume"
-    ln -fs "${HOME}/.dotfiles/xmobar/bin/xmobar-fcitx-state" "${HOME}/.local/bin/xmobar-fcitx-state"
+    ln -fs "${HOME}/.dotfiles/xmobar/bin/xmobar-alsa-volume" \
+       "${HOME}/.local/bin/xmobar-alsa-volume"
+    ln -fs "${HOME}/.dotfiles/xmobar/bin/xmobar-fcitx-state" \
+       "${HOME}/.local/bin/xmobar-fcitx-state"
 
     pause
 }
