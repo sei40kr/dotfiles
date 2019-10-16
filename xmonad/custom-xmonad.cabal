@@ -18,6 +18,6 @@ executable custom-xmonad
   build-depends:
       base >=4.7 && <5
     , containers
-    , xmonad >=0.13 && <0.14
-    , xmonad-contrib >=0.13 && <0.14
+    , xmonad >=0.15 && <0.16
+    , xmonad-contrib >=0.15 && <0.16
   default-language: Haskell2010
