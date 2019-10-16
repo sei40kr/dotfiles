@@ -1,3 +1,22 @@
+{-# LANGUAGE MultiWayIf #-}
+
+module Main (main) where
+
+import           Control.Monad
+import qualified Data.Map                         as M
+import           System.Exit
+import           System.IO
+import           XMonad
+import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.ManageHelpers
+import           XMonad.Layout.PerWorkspace
+import           XMonad.Layout.Tabbed
+import           XMonad.Layout.Spacing
+import qualified XMonad.StackSet                  as W
+
+import           XMonad.Util.Run
+
 -- xmonad.hs ---
 
 -- author: Seong Yong-ju <sei40kr@gmail.com>
@@ -11,36 +30,31 @@
 -- Normally, you'd only override those defaults you care about.
 --
 
-import XMonad
-import XMonad.Hooks.ManageDocks
-import Data.Monoid
-import System.Exit
-
-import qualified XMonad.StackSet as W
-import qualified Data.Map        as M
-
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "alacritty"
+myTerminal :: String
+myTerminal = "alacritty"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
-myFocusFollowsMouse = True
+myFocusFollowsMouse = False
 
 -- Whether clicking on a window to focus also passes the click to the window
 myClickJustFocuses :: Bool
-myClickJustFocuses = False
+myClickJustFocuses = True
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 1
+myBorderWidth :: Dimension
+myBorderWidth   = 4
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
+myModMask :: KeyMask
 myModMask       = mod4Mask
 
 -- The default number of workspaces (virtual screens) and their names.
@@ -52,126 +66,103 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
+myWorkspaces :: [String]
+myWorkspaces = map show [1 .. 5 :: Integer]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#ff0000"
+myNormalBorderColor :: String
+myNormalBorderColor  = "#dfdfdf"
+myFocusedBorderColor :: String
+myFocusedBorderColor = "#51afef"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
-myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
-
+myKeys conf@XConfig {XMonad.modMask = modm} =
+  M.fromList $
     -- launch a terminal
-    [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-
+  [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
     -- launch rofi
-    , ((modm,               xK_p     ), spawn "rofi -show run")
-
+  , ((modm, xK_p), spawn "rofi -show run")
     -- launch rofi
-    , ((modm .|. shiftMask, xK_p     ), spawn "rofi -show drun")
-
+  , ((modm .|. shiftMask, xK_p), spawn "rofi -show drun")
     -- close focused window
-    , ((modm .|. shiftMask, xK_c     ), kill)
-
+  , ((modm .|. shiftMask, xK_c), kill)
      -- Rotate through the available layout algorithms
-    , ((modm,               xK_space ), sendMessage NextLayout)
-
+  , ((modm, xK_space), sendMessage NextLayout)
     --  Reset the layouts on the current workspace to default
-    , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
-
+  , ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
     -- Resize viewed windows to the correct size
-    , ((modm,               xK_n     ), refresh)
-
+  , ((modm, xK_n), refresh)
     -- Move focus to the next window
-    , ((modm,               xK_Tab   ), windows W.focusDown)
-
+  , ((modm, xK_Tab), windows W.focusDown)
     -- Move focus to the next window
-    , ((modm,               xK_j     ), windows W.focusDown)
-
+  , ((modm, xK_j), windows W.focusDown)
     -- Move focus to the previous window
-    , ((modm,               xK_k     ), windows W.focusUp  )
-
+  , ((modm, xK_k), windows W.focusUp)
     -- Move focus to the master window
-    , ((modm,               xK_m     ), windows W.focusMaster  )
-
+  , ((modm, xK_m), windows W.focusMaster)
     -- Swap the focused window and the master window
-    , ((modm,               xK_Return), windows W.swapMaster)
-
+  , ((modm, xK_Return), windows W.swapMaster)
     -- Swap the focused window with the next window
-    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
-
+  , ((modm .|. shiftMask, xK_j), windows W.swapDown)
     -- Swap the focused window with the previous window
-    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
-
+  , ((modm .|. shiftMask, xK_k), windows W.swapUp)
     -- Shrink the master area
-    , ((modm,               xK_h     ), sendMessage Shrink)
-
+  , ((modm, xK_h), sendMessage Shrink)
     -- Expand the master area
-    , ((modm,               xK_l     ), sendMessage Expand)
-
+  , ((modm, xK_l), sendMessage Expand)
     -- Push window back into tiling
-    , ((modm,               xK_t     ), withFocused $ windows . W.sink)
-
+  , ((modm, xK_t), withFocused $ windows . W.sink)
     -- Increment the number of windows in the master area
-    , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
-
+  , ((modm, xK_comma), sendMessage (IncMasterN 1))
     -- Deincrement the number of windows in the master area
-    , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
-
+  , ((modm, xK_period), sendMessage (IncMasterN (-1)))
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
     -- See also the statusBar function from Hooks.DynamicLog.
     --
     -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
-
     -- Quit xmonad
-    , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
-
+  , ((modm .|. shiftMask, xK_q), io exitSuccess)
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
-
+  , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
-    , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
-    ]
-    ++
-
+  , ( (modm .|. shiftMask, xK_slash)
+    , spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
+  ] ++
     --
     -- mod-[1..9], Switch to workspace N
     -- mod-shift-[1..9], Move client to workspace N
     --
-    [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
-    ++
-
+  [ ((m .|. modm, k), windows $ f i)
+  | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+  , (f, m) <- [(W.greedyView, 0), (liftM2 (.) W.view W.shift, shiftMask)]
+  ] ++
     --
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     --
-    [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+  [ ((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
+  | (key, sc) <- zip [xK_w, xK_e, xK_r] [0 ..]
+  , (f, m) <- [(W.view, 0), (liftM2 (.) W.shift W.view, shiftMask)]
+  ]
 
 
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
 --
-myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
-
+myMouseBindings XConfig {XMonad.modMask = modm} =
+  M.fromList
     -- mod-button1, Set the window to floating mode and move by dragging
-    [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
-                                       >> windows W.shiftMaster))
-
+    [ ( (modm, button1)
+      , \w -> focus w >> mouseMoveWindow w >> windows W.shiftMaster)
     -- mod-button2, Raise the window to the top of the stack
-    , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
-
+    , ((modm, button2), \w -> focus w >> windows W.shiftMaster)
     -- mod-button3, Set the window to floating mode and resize by dragging
-    , ((modm, button3), (\w -> focus w >> mouseResizeWindow w
-                                       >> windows W.shiftMaster))
-
+    , ( (modm, button3)
+      , \w -> focus w >> mouseResizeWindow w >> windows W.shiftMaster)
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
     ]
 
@@ -186,19 +177,40 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout =
+  avoidStruts $
+  onWorkspace "1" myTabbed $
+  onWorkspace "2" (myTabbed ||| Mirror tiled) $
+  onWorkspace "3" myTabbed $
+  onWorkspace "4" (myTabbed ||| tiled) $ tiled ||| Full
   where
-     -- default tiling algorithm partitions the screen into two panes
-     tiled   = Tall nmaster delta ratio
-
-     -- The default number of windows in the master pane
-     nmaster = 1
-
-     -- Default proportion of screen occupied by master pane
-     ratio   = 1/2
-
-     -- Percent of screen to increment by when resizing panes
-     delta   = 3/100
+    -- default tiling algorithm partitions the screen into two panes
+    tiled = tiledSpacing $ Tall nmaster delta ratio
+    tiledSpacing =
+      spacingRaw False (Border 33 33 57 57) True (Border 11 11 19 19) True
+    -- The default number of windows in the master pane
+    nmaster = 1
+    -- Default proportion of screen occupied by master pane
+    ratio = toRational $ 2 / (1 + sqrt 5 :: Double)
+    -- Percent of screen to increment by when resizing panes
+    delta = 3 / 100
+    myTabbed = tabSpacing $ tabbed shrinkText tabTheme
+    tabSpacing =
+      spacingRaw False (Border 44 44 76 76) True (Border 0 0 0 0) False
+    tabTheme =
+      def
+        { activeColor = "#282c34"
+        , activeBorderColor = "#282c34"
+        , activeTextColor = "#dfdfdf"
+        , inactiveColor = "#21242b"
+        , inactiveBorderColor = "#21242b"
+        , inactiveTextColor = "#bbc2cf"
+        , urgentColor = "#282c34"
+        , urgentBorderColor = "#21242b"
+        , urgentTextColor = "#bbc2cf"
+        , fontName = "xft:Fira Code:size=9"
+        , decoHeight = 64
+        }
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -215,11 +227,27 @@ myLayout = tiled ||| Mirror tiled ||| Full
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
-myManageHook = composeAll
-    [ className =? "MPlayer"        --> doFloat
-    , className =? "Gimp"           --> doFloat
-    , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore ]
+myManageHook =
+  composeAll
+    [ resource =? "desktop_window" --> doIgnore
+    , className =? "Bitwarden" --> doIgnore
+    , className =? "Fcitx-config-gtk3" --> doCenterFloat
+    , stringProperty "WM_WINDOW_ROLE" =? "pop-up" --> doCenterFloat
+    , className =? "Rofi" --> doCenterFloat
+    , stringProperty "WM_WINDOW_ROLE" =? "browser" --> doShiftAndView "1"
+    , className =? "Alacritty" --> doShiftAndView "2"
+    , className =? "Emacs" --> doShiftAndView "3"
+    , className =? "jetbrains-idea" --> doShiftAndView "3"
+    , className =? "jetbrains-idea" <&&> title =? "Welcome to IntelliJ IDEA" -->
+      doCenterFloat
+    , className =? "Zeal" --> doShiftAndView "3" <+> doCenterFloat
+    , className =? "Thunar" --> doShiftAndView "4"
+    , className =? "Skype" --> doShiftAndView "5"
+    , className =? "Slack" --> doShiftAndView "5"
+    , className =? "zoom" --> doShiftAndView "5"
+    ]
+  where
+    doShiftAndView = doF . liftM2 (.) W.view W.shift
 
 ------------------------------------------------------------------------
 -- Event handling
@@ -238,7 +266,33 @@ myEventHook = mempty
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
-myLogHook = return ()
+
+xmobarFont :: Integer -> String -> String
+xmobarFont fontIndex = wrap ("<fn=" ++ show fontIndex ++ ">") "</fn>"
+
+myLogHook :: Handle -> X ()
+myLogHook xmobarProc =
+  dynamicLogWithPP
+    xmobarPP
+      { ppOrder = \(ws:_:t:_) -> [ws, t]
+      , ppCurrent = xmobarColor "#51afef" "" . withWsName
+      , ppUrgent = withWsName
+      , ppVisible = withWsName
+      , ppHidden = withWsName
+      , ppHiddenNoWindows = withWsName
+      , ppTitle = xmobarColor "#dfdfdf" "" . xmobarFont 3
+      , ppWsSep = "  "
+      , ppSep = xmobarColor "#3f444a" "" " | "
+      , ppOutput = hPutStrLn xmobarProc
+      }
+  where
+    withWsName ws =
+      if | ws == "1" -> xmobarFont 1 "\64459"
+         | ws == "2" -> xmobarFont 1 "\63116"
+         | ws == "3" -> xmobarFont 1 "\63079"
+         | ws == "4" -> xmobarFont 1 "\63306"
+         | ws == "5" -> xmobarFont 2 "\63371"
+         | otherwise -> ws
 
 ------------------------------------------------------------------------
 -- Startup hook
@@ -255,15 +309,20 @@ myStartupHook = return ()
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad defaults
+main :: IO ()
+main = do
+  _ <- spawnPipe "dzconky"
+  xmobarProc <- spawnPipe "xmobar"
+  xmonad $ defaults xmobarProc
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
 -- use the defaults defined in xmonad/XMonad/Config.hs
 --
+
 -- No need to modify this.
 --
-defaults = def {
+defaults xmobarProc = docks def {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
@@ -282,7 +341,7 @@ defaults = def {
         layoutHook         = myLayout,
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
-        logHook            = myLogHook,
+        logHook            = myLogHook xmobarProc,
         startupHook        = myStartupHook
     }
 
@@ -291,9 +350,9 @@ help :: String
 help = unlines ["The default modifier key is 'alt'. Default keybindings:",
     "",
     "-- launching and killing programs",
-    "mod-Shift-Enter  Launch xterminal",
-    "mod-p            Launch dmenu",
-    "mod-Shift-p      Launch gmrun",
+    "mod-Shift-Enter  Launch alacritty",
+    "mod-p            Launch rofi",
+    "mod-Shift-p      Launch rofi",
     "mod-Shift-c      Close/kill the focused window",
     "mod-Space        Rotate through the available layout algorithms",
     "mod-Shift-Space  Reset the layouts on the current workSpace to default",
@@ -322,7 +381,7 @@ help = unlines ["The default modifier key is 'alt'. Default keybindings:",
     "mod-comma  (mod-,)   Increment the number of windows in the master area",
     "mod-period (mod-.)   Deincrement the number of windows in the master area",
     "",
-    "-- quit, or restart",
+
     "mod-Shift-q  Quit xmonad",
     "mod-q        Restart xmonad",
     "mod-[1..9]   Switch to workSpace N",
