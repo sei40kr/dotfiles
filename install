@@ -288,7 +288,7 @@ install_xmonad() {
     fi
 
     stack_install xmonad
-    pacman_sync xorg-xmessage xmobar alsa-mixer awk
+    pacman_sync xorg-xmessage xmobar alsa-mixer awk conky dzen2
 
     ln -fs "${HOME}/.dotfiles/xmonad" "${HOME}/.xmonad"
     : >"${HOME}/.xmonad/xmonad.errors"
@@ -299,6 +299,14 @@ install_xmonad() {
        "${HOME}/.local/bin/xmobar-alsa-volume"
     ln -fs "${HOME}/.dotfiles/xmobar/bin/xmobar-fcitx-state" \
        "${HOME}/.local/bin/xmobar-fcitx-state"
+
+    mkdir -p "${XDG_CONFIG_HOME}/conky"
+    ln -fs "${HOME}/.dotfiles/conky/conky.conf" \
+       "${XDG_CONFIG_HOME}/conky/conky.conf"
+    ln -fs "${HOME}/.dotfiles/conky/conky_helpers.lua" \
+       "${XDG_CONFIG_HOME}/conky/conky_helpers.lua"
+
+    ln -fs "${HOME}/.dotfiles/dzen2/dzconky" "${HOME}/.local/bin/dzconky"
 
     pause
 }
