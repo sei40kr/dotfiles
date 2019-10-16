@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# dzconky
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+FONT='Fira Code:size=11'
+FG='#bbc2cf'
+BG='#1b2229'
+conky | dzen2 -ta r -h 64 -fn "$FONT" -fg "$FG" -bg "$BG" -dock
