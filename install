@@ -7,6 +7,8 @@ IFS=$'\n\t'
 
 : ${XDG_CONFIG_HOME:=${HOME}/.config}
 
+: ${XDG_PICTURES_DIR:=${HOME}/Pictures}
+
 : ${ZDOTDIR:=${HOME}/.zsh}
 
 declare -A ZPLGM
@@ -289,10 +291,12 @@ install_xmonad() {
     fi
 
     stack_install xmonad
-    pacman_sync xorg-xmessage xmobar alsa-mixer awk conky dzen2
+    pacman_sync xorg-xmessage scrot xmobar alsa-mixer awk conky dzen2
 
     ln -fs "${HOME}/.dotfiles/xmonad" "${HOME}/.xmonad"
     : >"${HOME}/.xmonad/xmonad.errors"
+
+    mkdir -p "$XDG_PICTURES_DIR"
 
     ln -fs "${HOME}/.dotfiles/xmobar/xmobarrc" "${HOME}/.xmobarrc"
     mkdir -p "${HOME}/.local/bin"
