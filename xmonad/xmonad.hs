@@ -231,7 +231,7 @@ myLayout =
 myManageHook =
   composeAll
     [ resource =? "desktop_window" --> doIgnore
-    , className =? "Bitwarden" --> doIgnore
+    , className =? "Bitwarden" --> doCenterFloat <+> doF copyToAll
     , className =? "Fcitx-config-gtk3" --> doCenterFloat
     , stringProperty "WM_WINDOW_ROLE" =? "pop-up" --> doCenterFloat
     , className =? "Rofi" --> doCenterFloat
