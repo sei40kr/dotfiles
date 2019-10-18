@@ -12,6 +12,7 @@ import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageHelpers
+import           XMonad.Hooks.SetWMName
 import           XMonad.Layout.PerWorkspace
 import           XMonad.Layout.Tabbed
 import           XMonad.Layout.Spacing
@@ -310,7 +311,7 @@ myLogHook xmobarProc =
 --
 -- By default, do nothing.
 myStartupHook :: X ()
-myStartupHook = ewmhDesktopsStartup <+> spawnOnce "dzconky"
+myStartupHook = ewmhDesktopsStartup <+> spawnOnce "dzconky" <+> setWMName "LG3D"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
