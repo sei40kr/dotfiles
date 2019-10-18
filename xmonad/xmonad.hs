@@ -135,6 +135,8 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
   , ( (modm .|. shiftMask, xK_slash)
     , spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
+  , ((0, xK_Print), spawn "scrot -e 'mv $f ~/Pictures'")
+  , ((shiftMask, xK_Print), spawn "scrot -se 'mv $f ~/Pictures'")
   ] ++
     --
     -- mod-[1..9], Switch to workspace N
