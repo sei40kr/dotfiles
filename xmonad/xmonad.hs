@@ -200,16 +200,16 @@ myLayout =
       spacingRaw False (Border 44 44 76 76) True (Border 0 0 0 0) False
     tabTheme =
       def
-        { activeColor = "#282c34"
-        , activeBorderColor = "#282c34"
+        { activeColor = "#21242b"
+        , activeBorderColor = "#21242b"
         , activeTextColor = "#dfdfdf"
-        , inactiveColor = "#21242b"
-        , inactiveBorderColor = "#21242b"
+        , inactiveColor = "#282c34"
+        , inactiveBorderColor = "#282c34"
         , inactiveTextColor = "#bbc2cf"
         , urgentColor = "#282c34"
         , urgentBorderColor = "#21242b"
         , urgentTextColor = "#bbc2cf"
-        , fontName = "xft:Fira Code:size=9"
+        , fontName = "xft:Fira Code:size=11"
         , decoHeight = 64
         }
 
