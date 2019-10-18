@@ -16,6 +16,7 @@ import           XMonad.Layout.Spacing
 import qualified XMonad.StackSet                  as W
 
 import           XMonad.Util.Run
+import           XMonad.Util.SpawnOnce
 
 -- xmonad.hs ---
 
@@ -302,7 +303,8 @@ myLogHook xmobarProc =
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook = return ()
+myStartupHook :: X ()
+myStartupHook = spawnOnce "dzconky"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -311,7 +313,6 @@ myStartupHook = return ()
 --
 main :: IO ()
 main = do
-  _ <- spawnPipe "dzconky"
   xmobarProc <- spawnPipe "xmobar"
   xmonad $ defaults xmobarProc
 
