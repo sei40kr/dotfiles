@@ -265,7 +265,7 @@ myManageHook =
 -- combine event hooks use mappend or mconcat from Data.Monoid.
 --
 myEventHook :: Event -> X All
-myEventHook = ewmhDesktopsEventHook <+> fullscreenEventHook
+myEventHook = ewmhDesktopsEventHook <+> docksEventHook <+> fullscreenEventHook
 
 ------------------------------------------------------------------------
 -- Status bars and logging
