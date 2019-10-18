@@ -239,6 +239,7 @@ install_xorg() {
 
     ln -fs "${HOME}/.dotfiles/xorg/xinitrc" "${HOME}/.xinitrc"
     ln -fs "${HOME}/.dotfiles/xorg/Xresources" "${HOME}/.Xresources"
+    ln -fs "${HOME}/.dotfiles/xorg/Xmodmap" "${HOME}/.Xmodmap"
     ln -fs "${HOME}/.dotfiles/xorg/xsession" "${HOME}/.xsession"
 
     pause
