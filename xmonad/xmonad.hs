@@ -231,6 +231,8 @@ myLayout =
 myManageHook =
   composeAll
     [ resource =? "desktop_window" --> doIgnore
+    , isDialog --> doCenterFloat
+    , isFullscreen --> doFullFloat
     , className =? "Bitwarden" --> doCenterFloat <+> doF copyToAll
     , className =? "Fcitx-config-gtk3" --> doCenterFloat
     , stringProperty "WM_WINDOW_ROLE" =? "pop-up" --> doCenterFloat
