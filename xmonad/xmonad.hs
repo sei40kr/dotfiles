@@ -4,11 +4,13 @@ module Main (main) where
 
 import           Control.Monad
 import qualified Data.Map                         as M
+import Data.Monoid
 import           System.Exit
 import           System.IO
 import           XMonad
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageHelpers
 import           XMonad.Layout.PerWorkspace
 import           XMonad.Layout.Tabbed
@@ -261,7 +263,8 @@ myManageHook =
 -- return (All True) if the default handler is to be run afterwards. To
 -- combine event hooks use mappend or mconcat from Data.Monoid.
 --
-myEventHook = mempty
+myEventHook :: Event -> X All
+myEventHook = ewmhDesktopsEventHook <+> fullscreenEventHook
 
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -275,6 +278,7 @@ xmobarFont fontIndex = wrap ("<fn=" ++ show fontIndex ++ ">") "</fn>"
 
 myLogHook :: Handle -> X ()
 myLogHook xmobarProc =
+  ewmhDesktopsLogHook <+>
   dynamicLogWithPP
     xmobarPP
       { ppOrder = \(ws:_:t:_) -> [ws, t]
@@ -306,7 +310,7 @@ myLogHook xmobarProc =
 --
 -- By default, do nothing.
 myStartupHook :: X ()
-myStartupHook = spawnOnce "dzconky"
+myStartupHook = ewmhDesktopsStartup <+> spawnOnce "dzconky"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
