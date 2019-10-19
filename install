@@ -384,6 +384,10 @@ install_rofi() {
     mkdir -p "${XDG_CONFIG_HOME}/rofi"
     ln -fs "${HOME}/.dotfiles/rofi/config" "${XDG_CONFIG_HOME}/rofi/config"
 
+    mkdir -p "${HOME}/.local/bin"
+    ln -fs "${XDG_CONFIG_HOME}/rofi/bin/rofi-extra-menu" \
+       "${HOME}/.local/bin/rofi-extra-menu"
+
     pause
 }
 
