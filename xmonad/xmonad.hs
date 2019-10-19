@@ -4,6 +4,7 @@ module Main (main) where
 
 import           Control.Monad
 import qualified Data.Map                         as M
+import Data.List
 import Data.Monoid
 import           System.Exit
 import           System.IO
@@ -233,6 +234,10 @@ myLayout =
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
+
+isChromeExtension :: Query Bool
+isChromeExtension = isPrefixOf "crx_" <$> appName
+
 myManageHook =
   composeAll
     [ resource =? "desktop_window" --> doIgnore
@@ -240,7 +245,8 @@ myManageHook =
     , isFullscreen --> doFullFloat
     , className =? "Bitwarden" --> doCenterFloat <+> doF copyToAll
     , className =? "Fcitx-config-gtk3" --> doCenterFloat
-    , stringProperty "WM_WINDOW_ROLE" =? "pop-up" --> doCenterFloat
+    , stringProperty "WM_WINDOW_ROLE" =? "pop-up" <&&> not <$>
+      isChromeExtension --> doCenterFloat
     , className =? "Rofi" --> doCenterFloat
     , stringProperty "WM_WINDOW_ROLE" =? "browser" --> doShiftAndView "1"
     , className =? "Alacritty" --> doShiftAndView "2"
