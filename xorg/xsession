@@ -7,7 +7,11 @@ xset r rate 150 30
 xsetroot -cursor_name left_ptr
 
 if hash xautolock 2>/dev/null && hash xsecurelock 2>/dev/null; then
-    xautolock -locker xsecurelock -resetsaver -detectsleep &
+    XSECURELOCK_AUTH_BACKGROUND_COLOR='#282c34' \
+                                     XSECURELOCK_AUTH_FOREGROUND_COLOR='#bbc2cf' \
+                                     XSECURELOCK_FONT='Fira Code-11' \
+                                     XSECURELOCK_PASSWORD_PROMPT=asterisks \
+                                     xautolock -locker xsecurelock -resetsaver -detectsleep &
 fi
 
 if hash compton 2>/dev/null; then
