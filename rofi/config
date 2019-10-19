@@ -1,20 +1,21 @@
+! -*- mode: conf-xdefaults -*-
 
 ! "Enabled modi" Set from: Default
-! rofi.modi:                           drun
+rofi.modi:                           combi,drun
 ! "Window width" Set from: Default
 ! rofi.width:                          50
 ! "Number of lines" Set from: Default
-! rofi.lines:                          15
+rofi.lines:                          10
 ! "Number of columns" Set from: Default
 ! rofi.columns:                        1
 ! "Font to use" Set from: Default
-! rofi.font:                           mono 12
+rofi.font:                           Fira Code 11
 ! "Border width" Set from: Default
-! rofi.bw:                             1
+rofi.bw:                             0
 ! "Location on screen" Set from: Default
 ! rofi.location:                       0
 ! "Padding" Set from: Default
-! rofi.padding:                        5
+rofi.padding:                        22
 ! "Y-offset relative to location" Set from: Default
 ! rofi.yoffset:                        0
 ! "X-offset relative to location" Set from: Default
@@ -46,7 +47,7 @@
 ! "Desktop entry show actions." Set from: Default
 ! rofi.drun-show-actions:              false
 ! "DRUN format string. (Supports: generic,name,comment,exec,categories)" Set from: Default
-! rofi.drun-display-format:            {name} [<span weight='light' size='small'><i>({generic})</i></span>]
+rofi.drun-display-format:            {name}
 ! "Disable history in run/ssh" Set from: Default
 ! rofi.disable-history:                false
 ! "Programs ignored for history" Set from: Default
@@ -70,7 +71,7 @@
 ! "Parse known_hosts file for ssh mode" Set from: Default
 ! rofi.parse-known-hosts:              true
 ! "Set the modi to combine in combi mode" Set from: Default
-! rofi.combi-modi:                     window,run
+rofi.combi-modi:                     drun,menu
 ! "Set the matching algorithm. (normal, regex, glob, fuzzy)" Set from: Default
 ! rofi.matching:                       normal
 ! "Tokenize input string" Set from: Default
@@ -78,13 +79,13 @@
 ! "Monitor id to show on" Set from: Default
 ! rofi.m:                              -5
 ! "Margin between rows *DEPRECATED*" Set from: Default
-! rofi.line-margin:                    2
+rofi.line-margin:                    0
 ! "Padding within rows *DEPRECATED*" Set from: Default
-! rofi.line-padding:                   1
+rofi.line-padding:                   8
 ! "Pre-set filter" Set from: Default
 ! rofi.filter:                         
 ! "Separator style (none, dash, solid) *DEPRECATED*" Set from: Default
-! rofi.separator-style:                dash
+rofi.separator-style:                solid
 ! "Hide scroll-bar *DEPRECATED*" Set from: Default
 ! rofi.hide-scrollbar:                 false
 ! "Fullscreen" Set from: Default
@@ -92,7 +93,7 @@
 ! "Fake transparency *DEPRECATED*" Set from: Default
 ! rofi.fake-transparency:              false
 ! "DPI" Set from: Default
-! rofi.dpi:                            -1
+rofi.dpi:                            192
 ! "Threads to use for string matching" Set from: Default
 ! rofi.threads:                        0
 ! "Scrollbar width *DEPRECATED*" Set from: Default
@@ -109,14 +110,14 @@
 ! rofi.show-match:                     true
 ! "New style theme file" Set from: Default
 ! rofi.theme:                          
-! "Color scheme for normal row" Set from: Default
-! rofi.color-normal:                   
-! "Color scheme for urgent row" Set from: Default
-! rofi.color-urgent:                   
-! "Color scheme for active row" Set from: Default
-! rofi.color-active:                   
-! "Color scheme window" Set from: Default
-! rofi.color-window:                   
+! "Color scheme for normal row" Set from: File
+rofi.color-normal:                   #00000000, #999999, #00000000, #00000000, #ffffff
+! "Color scheme for urgent row" Set from: File
+rofi.color-urgent:                   #00000000, #999999, #00000000, #00000000, #ffffff
+! "Color scheme for active row" Set from: File
+rofi.color-active:                   #ff282c34, #dfdfdf, #00000000, #00000000, #ffffff
+! "Color scheme window" Set from: File
+rofi.color-window:                   #ff21242b, #bbc2cf, #bbc2cf
 ! "Max history size (WARNING: can cause slowdowns when set to high)." Set from: Default
 ! rofi.max-history-size:               25
 ! "Hide the prefix mode prefix on the combi view." Set from: Default
@@ -136,9 +137,9 @@
 ! "The display name of this browser" Set from: Default
 ! rofi.display-ssh:                    
 ! "The display name of this browser" Set from: Default
-! rofi.display-drun:                   
+rofi.display-drun: run
 ! "The display name of this browser" Set from: Default
-! rofi.display-combi:                  
+rofi.display-combi:
 ! "The display name of this browser" Set from: Default
 ! rofi.display-keys:                   
 ! "Paste primary selection" Set from: Default
