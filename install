@@ -128,7 +128,6 @@ install_zsh() {
     ln -fs "${HOME}/.dotfiles/zsh/zprofile" "${ZDOTDIR}/.zprofile"
     ln -fs "${HOME}/.dotfiles/zsh/zshrc" "${ZDOTDIR}/.zshrc"
 
-    ln -fs "${HOME}/.dotfiles/zsh/func_defs.zsh" "${ZDOTDIR}/func_defs.zsh"
     ln -fs "${HOME}/.dotfiles/zsh/alias_defs.zsh" "${ZDOTDIR}/alias_defs.zsh"
 
     mkdir -p "${ZDOTDIR}/functions"
