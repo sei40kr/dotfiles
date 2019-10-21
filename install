@@ -120,7 +120,7 @@ install_zsh() {
         return
     fi
 
-    pacman_sync zsh
+    pacman_sync zsh subversion
 
     ln -fs "${HOME}/.dotfiles/zsh/zshenv" "${HOME}/.zshenv"
     mkdir -p "${ZDOTDIR}"
