@@ -52,7 +52,7 @@ myClickJustFocuses = True
 -- Width of the window border in pixels.
 --
 myBorderWidth :: Dimension
-myBorderWidth   = 4
+myBorderWidth   = 2
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -216,7 +216,7 @@ myLayout =
         , urgentBorderColor = "#21242b"
         , urgentTextColor = "#bbc2cf"
         , fontName = "xft:Fira Code:size=11"
-        , decoHeight = 64
+        , decoHeight = 32
         }
 
 ------------------------------------------------------------------------
