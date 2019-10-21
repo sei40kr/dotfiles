@@ -15,9 +15,9 @@ Config
   , bgColor = "#1b2229"
   , fgColor = "#bbc2cf"
   , alpha = 255
-  , position = BottomSize C 100 64
+  , position = BottomSize C 100 32
   , textOffset = -1
-  , textOffsets = [47, 50, -1]
+  , textOffsets = [23, 25, -1]
   , iconOffset = -1
   , lowerOnStart = True
   , pickBroadest = True
