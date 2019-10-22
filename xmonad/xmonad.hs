@@ -255,27 +255,33 @@ myLayout =
 isChromeExtension :: Query Bool
 isChromeExtension = isPrefixOf "crx_" <$> appName
 
+myManageHook :: ManageHook
 myManageHook =
   composeAll
     [ resource =? "desktop_window" --> doIgnore
     , isDialog --> doCenterFloat
     , isFullscreen --> doFullFloat
-    , className =? "Bitwarden" --> doCenterFloat <+> doF copyToAll
-    , className =? "Fcitx-config-gtk3" --> doCenterFloat
     , stringProperty "WM_WINDOW_ROLE" =? "pop-up" <&&> not <$>
       isChromeExtension --> doCenterFloat
-    , className =? "Rofi" --> doCenterFloat
+    , className =? "Rofi" <||>
+      className =? "Fcitx-config-gtk3" --> doCenterFloat
+    , className =? "Bitwarden" --> doCenterFloat <+> doF copyToAll
     , stringProperty "WM_WINDOW_ROLE" =? "browser" --> doShiftAndView "1"
     , className =? "Alacritty" --> doShiftAndView "2"
-    , className =? "Emacs" --> doShiftAndView "3"
-    , className =? "jetbrains-idea" --> doShiftAndView "3"
+    , className =? "Emacs" <||>
+      className =? "Code" <||>
+      className =? "jetbrains-idea" --> doShiftAndView "3"
     , className =? "jetbrains-idea" <&&> title =? "Welcome to IntelliJ IDEA" -->
       doCenterFloat
     , className =? "Zeal" --> doShiftAndView "3" <+> doCenterFloat
-    , className =? "Thunar" --> doShiftAndView "4"
-    , className =? "Skype" --> doShiftAndView "5"
-    , className =? "Slack" --> doShiftAndView "5"
-    , className =? "zoom" --> doShiftAndView "5"
+    , className =? "Thunar" <||>
+      className =? "Ristretto" <||>
+      className =? "Parole" --> doShiftAndView "4"
+    , className =? "Ristretto" <||>
+      className =? "Parole" --> doCenterFloat
+    , className =? "Skype" <||>
+      className =? "Slack" <||>
+      className =? "zoom" --> doShiftAndView "5"
     ]
   where
     doShiftAndView = doF . liftM2 (.) W.view W.shift
