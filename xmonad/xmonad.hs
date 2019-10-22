@@ -10,6 +10,8 @@ import           System.Exit
 import           System.IO
 import           XMonad
 import           XMonad.Actions.CopyWindow
+import           XMonad.Actions.Minimize
+import           XMonad.Actions.WindowGo
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.Minimize
@@ -88,6 +90,10 @@ myFocusedBorderColor = "#51afef"
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
+isPersistent :: Query Bool
+isPersistent = className =? "Bitwarden" <||>
+               className =? "Zeal"
+
 myKeys conf@XConfig {XMonad.modMask = modm} =
   M.fromList $
     -- launch a terminal
@@ -97,8 +103,14 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     -- launch rofi
   , ((modm .|. shiftMask, xK_p), spawn "rofi -show drun")
     -- close focused window
-  , ((modm .|. shiftMask, xK_c), kill)
-     -- Rotate through the available layout algorithms
+  , ( (modm .|. shiftMask, xK_c)
+    , withFocused
+        (\win -> do
+           b <- runQuery isPersistent win
+           if b
+             then minimizeWindow win
+             else killWindow win))
+    -- Rotate through the available layout algorithms
   , ((modm, xK_space), sendMessage NextLayout)
     --  Reset the layouts on the current workspace to default
   , ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
