@@ -9,6 +9,7 @@ import Data.Monoid
 import           System.Exit
 import           System.IO
 import           XMonad
+import           XMonad.Actions.CopyWindow
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.EwmhDesktops
