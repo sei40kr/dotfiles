@@ -6,6 +6,7 @@
 IFS=$'\n\t'
 
 : ${XDG_CONFIG_HOME:=${HOME}/.config}
+: ${XDG_DATA_HOME:=${HOME}/.local/share}
 
 : ${XDG_PICTURES_DIR:=${HOME}/Pictures}
 
@@ -315,6 +316,23 @@ install_xmonad() {
     pause
 }
 
+install_feh() {
+    print_title 'Feh - https://wiki.archlinux.org/index.php/Feh'
+    print_desc \
+        'feh is a lightweight and powerful image viewer that can also be used to manage the desktop wallpaper for standalone window managers lacking such features.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync feh
+
+    mkdir -p "${XDG_DATA_HOME}/backgrounds"
+    ln -fs "${HOME}/.dotfiles/feh/fehbg" "${HOME}/.fehbg"
+
+    pause
+}
+
 install_gtk() {
     print_title 'GTK - https://wiki.archlinux.org/index.php/GTK'
     print_desc \
@@ -580,6 +598,7 @@ install_xorg
 install_compton
 install_redshift
 install_xmonad
+install_feh
 install_fontconfig
 install_gtk
 install_rofi
