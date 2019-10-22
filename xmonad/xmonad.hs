@@ -3,28 +3,26 @@
 module Main (main) where
 
 import           Control.Monad
-import qualified Data.Map                         as M
-import Data.List
-import Data.Monoid
+import           Data.List
+import qualified Data.Map                    as M
+import           Data.Monoid
 import           System.Exit
 import           System.IO
 import           XMonad
 import           XMonad.Actions.CopyWindow
 import           XMonad.Actions.Minimize
-import           XMonad.Actions.WindowGo
 import           XMonad.Hooks.DynamicLog
-import           XMonad.Hooks.ManageDocks
-import           XMonad.Hooks.Minimize
 import           XMonad.Hooks.EwmhDesktops
+import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
+import           XMonad.Hooks.Minimize
 import           XMonad.Hooks.SetWMName
-import           XMonad.Layout.Minimize
 import           XMonad.Layout.BoringWindows
+import           XMonad.Layout.Minimize
 import           XMonad.Layout.PerWorkspace
-import           XMonad.Layout.Tabbed
 import           XMonad.Layout.Spacing
-import qualified XMonad.StackSet                  as W
-
+import           XMonad.Layout.Tabbed
+import qualified XMonad.StackSet             as W
 import           XMonad.Util.Run
 import           XMonad.Util.SpawnOnce
 
@@ -58,7 +56,7 @@ myClickJustFocuses = True
 -- Width of the window border in pixels.
 --
 myBorderWidth :: Dimension
-myBorderWidth   = 2
+myBorderWidth = 2
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -66,7 +64,7 @@ myBorderWidth   = 2
 -- "windows key" is usually mod4Mask.
 --
 myModMask :: KeyMask
-myModMask       = mod4Mask
+myModMask = mod4Mask
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
@@ -83,7 +81,7 @@ myWorkspaces = map show [1 .. 5 :: Integer]
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor :: String
-myNormalBorderColor  = "#dfdfdf"
+myNormalBorderColor = "#dfdfdf"
 myFocusedBorderColor :: String
 myFocusedBorderColor = "#51afef"
 
@@ -112,7 +110,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
              else killWindow win))
     -- Rotate through the available layout algorithms
   , ((modm, xK_space), sendMessage NextLayout)
-    --  Reset the layouts on the current workspace to default
+    -- Reset the layouts on the current workspace to default
   , ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
     -- Resize viewed windows to the correct size
   , ((modm, xK_n), refresh)
@@ -172,7 +170,6 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
   , (f, m) <- [(W.view, 0), (liftM2 (.) W.shift W.view, shiftMask)]
   ]
 
-
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
 --
@@ -200,6 +197,7 @@ myMouseBindings XConfig {XMonad.modMask = modm} =
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
+
 myLayout =
   avoidStruts $
   minimize . boringWindows $
@@ -295,6 +293,7 @@ myManageHook =
 -- return (All True) if the default handler is to be run afterwards. To
 -- combine event hooks use mappend or mconcat from Data.Monoid.
 --
+
 myEventHook :: Event -> X All
 myEventHook =
   ewmhDesktopsEventHook <+>
@@ -365,28 +364,28 @@ main = do
 
 -- No need to modify this.
 --
-defaults xmobarProc = docks def {
+defaults xmobarProc =
+  docks
+    def
       -- simple stuff
-        terminal           = myTerminal,
-        focusFollowsMouse  = myFocusFollowsMouse,
-        clickJustFocuses   = myClickJustFocuses,
-        borderWidth        = myBorderWidth,
-        modMask            = myModMask,
-        workspaces         = myWorkspaces,
-        normalBorderColor  = myNormalBorderColor,
-        focusedBorderColor = myFocusedBorderColor,
-
+      { terminal = myTerminal
+      , focusFollowsMouse = myFocusFollowsMouse
+      , clickJustFocuses = myClickJustFocuses
+      , borderWidth = myBorderWidth
+      , modMask = myModMask
+      , workspaces = myWorkspaces
+      , normalBorderColor = myNormalBorderColor
+      , focusedBorderColor = myFocusedBorderColor
       -- key bindings
-        keys               = myKeys,
-        mouseBindings      = myMouseBindings,
-
+      , keys = myKeys
+      , mouseBindings = myMouseBindings
       -- hooks, layouts
-        layoutHook         = myLayout,
-        manageHook         = myManageHook,
-        handleEventHook    = myEventHook,
-        logHook            = myLogHook xmobarProc,
-        startupHook        = myStartupHook
-    }
+      , layoutHook = myLayout
+      , manageHook = myManageHook
+      , handleEventHook = myEventHook
+      , logHook = myLogHook xmobarProc
+      , startupHook = myStartupHook
+      }
 
 -- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String
