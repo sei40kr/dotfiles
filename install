@@ -493,6 +493,20 @@ install_profile_sync_daemon() {
     pause
 }
 
+install_thunar() {
+    print_title 'Thunar - https://wiki.archlinux.org/index.php/Thunar'
+    print_desc \
+        'Thunar is a modern file manager for the Xfce Desktop Environment.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync thunar gvfs tumbler ffmpegthumbnailer
+
+    pause
+}
+
 install_bitwarden() {
     print_title 'Bitwarden'
     print_desc \
@@ -607,6 +621,7 @@ install_alacritty
 install_fcitx
 install_google_chrome
 install_profile_sync_daemon
+install_thunar
 install_bitwarden
 
 install_spacemacs
