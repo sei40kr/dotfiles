@@ -22,6 +22,10 @@ if hash redshift 2>/dev/null; then
     redshift &
 fi
 
+if hash feh 2>/dev/null && [[ -x "${HOME}/.fehbg" ]]; then
+    "${HOME}/.fehbg" &
+fi
+
 if hash fcitx-autostart 2>/dev/null; then
     export XMODIFIERS='@im=fcitx'
     export GTK_IM_MODULE=fcitx
