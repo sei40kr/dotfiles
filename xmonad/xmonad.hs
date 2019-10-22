@@ -12,9 +12,12 @@ import           XMonad
 import           XMonad.Actions.CopyWindow
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.Minimize
 import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageHelpers
 import           XMonad.Hooks.SetWMName
+import           XMonad.Layout.Minimize
+import           XMonad.Layout.BoringWindows
 import           XMonad.Layout.PerWorkspace
 import           XMonad.Layout.Tabbed
 import           XMonad.Layout.Spacing
@@ -187,6 +190,7 @@ myMouseBindings XConfig {XMonad.modMask = modm} =
 --
 myLayout =
   avoidStruts $
+  minimize . boringWindows $
   onWorkspace "1" myTabbed $
   onWorkspace "2" (myTabbed ||| Mirror tiled) $
   onWorkspace "3" myTabbed $
@@ -274,7 +278,11 @@ myManageHook =
 -- combine event hooks use mappend or mconcat from Data.Monoid.
 --
 myEventHook :: Event -> X All
-myEventHook = ewmhDesktopsEventHook <+> docksEventHook <+> fullscreenEventHook
+myEventHook =
+  ewmhDesktopsEventHook <+>
+  docksEventHook <+>
+  fullscreenEventHook <+>
+  minimizeEventHook
 
 ------------------------------------------------------------------------
 -- Status bars and logging
