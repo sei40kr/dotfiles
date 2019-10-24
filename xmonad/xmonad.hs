@@ -278,6 +278,9 @@ isGoogleNews = resource =? "crx_kfgapjallbhpciobgmlhlhokknljkgho"
 isGoogleMaps :: Query Bool
 isGoogleMaps = resource =? "crx_ggfaonjpnckaehkfmhlbamfemgigikbd"
 
+isKindleCloudReader :: Query Bool
+isKindleCloudReader = resource =? "crx_cemlonfcgoakflacgajmjhfacialphik"
+
 isTwitter :: Query Bool
 isTwitter = resource =? "crx_jgeocpdicgmkeemopbanhokmhcgcflmi"
 
@@ -296,6 +299,7 @@ myManageHook =
     , className =? "Bitwarden" <||>
       isGmail <||>
       isGoogleCalendar <||>
+      isKindleCloudReader <||>
       isTodoist <||>
       isTwitter <||>
       isLINE --> doRectFloat centerRect <+> doF copyToAll
