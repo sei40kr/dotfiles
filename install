@@ -21,6 +21,18 @@ basepath="$(dirname "$(realpath "$0")")"
 # shellcheck source=install_helpers.bash
 . "${basepath}/install_helpers.bash"
 
+install_fstrim() {
+    print_title 'TRIM'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    sudo_systemctl_enable fstrim.timer
+
+    pause
+}
+
 install_git() {
     print_title 'Git - https://wiki.archlinux.org/index.php/Git'
     print_desc \
@@ -637,6 +649,7 @@ install_zeal() {
     pause
 }
 
+install_fstrim
 install_git
 install_trizen
 install_networkmanager
