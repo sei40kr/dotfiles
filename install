@@ -425,6 +425,44 @@ install_dunst() {
     pause
 }
 
+install_clipmenu() {
+    print_title 'Clipmenu'
+    print_desc \
+        'clipmenu is a simple clipboard manager using dmenu (or rofi) and xsel.'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync clipmenu clipnotify
+
+    mkdir -p "${XDG_CONFIG_HOME}/systemd/user"
+    cat <<EOM >"${XDG_CONFIG_HOME}/systemd/user/clipmenud.service"
+[Unit]
+Description=Clipmenu daemon
+
+[Service]
+ExecStart=/usr/bin/clipmenud
+Restart=always
+RestartSec=0
+Environment=DISPLAY=:0
+
+MemoryDenyWriteExecute=yes
+NoNewPrivileges=yes
+ProtectControlGroups=yes
+ProtectKernelTunables=yes
+RestrictAddressFamilies=
+RestrictRealtime=yes
+
+[Install]
+WantedBy=default.target
+EOM
+
+    systemctl_user_enable clipmenud.service
+
+    pause
+}
+
 install_alacritty() {
     print_title 'Alacritty'
     print_desc 'A cross-platform, GPU-accelerated terminal emulator.'
@@ -617,6 +655,7 @@ install_fontconfig
 install_gtk
 install_rofi
 install_dunst
+install_clipmenu
 install_alacritty
 install_fcitx
 install_google_chrome
