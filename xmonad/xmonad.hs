@@ -310,14 +310,11 @@ myManageHook =
       className =? "jetbrains-idea" --> doShiftAndView "3"
     , className =? "jetbrains-idea" <&&> title =? "Welcome to IntelliJ IDEA" -->
       doCenterFloat
-    , className =? "Zeal" --> doShiftAndView "3" <+> doCenterFloat
-    , className =? "Thunar" <||>
-      className =? "Ristretto" <||>
-      className =? "Parole" --> doShiftAndView "4"
+    , className =? "Zeal" --> doShiftAndView "3" <+> doRectFloat centerRect
+    , className =? "Thunar" --> doShiftAndView "4"
     , className =? "Ristretto" <||>
-      className =? "Parole" --> doCenterFloat
+      className =? "Parole" --> doShiftAndView "4" <+> doRectFloat centerRect
     , className =? "Skype" <||>
-      className =? "Slack" <||>
       className =? "zoom" --> doShiftAndView "5"
     ]
   where
