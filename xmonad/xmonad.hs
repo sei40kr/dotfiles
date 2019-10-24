@@ -88,8 +88,21 @@ myFocusedBorderColor = "#51afef"
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
+
+isLINE :: Query Bool
+isLINE = resource =? "crx_ophjlpahpchlmihnnnihgmmeilfjmjjc"
+
+isTodoist :: Query Bool
+isTodoist = resource =? "crx_bgjohebimpjdhhocbknplfelpmdhifhd"
+
+isPocket :: Query Bool
+isPocket = resource =? "crx_mjcnijlhddpbdemagnpefmlkjdagkogk"
+
 isPersistent :: Query Bool
 isPersistent = className =? "Bitwarden" <||>
+               isTodoist <||>
+               isPocket <||>
+               isLINE <||>
                className =? "Zeal"
 
 myKeys conf@XConfig {XMonad.modMask = modm} =
@@ -251,7 +264,25 @@ myLayout =
 --
 
 isChromeExtension :: Query Bool
-isChromeExtension = isPrefixOf "crx_" <$> appName
+isChromeExtension = fmap (isPrefixOf "crx_") resource
+
+isGmail :: Query Bool
+isGmail = resource =? "crx_kmhopmchchfpfdcdjodmpfaaphdclmlj"
+
+isGoogleCalendar :: Query Bool
+isGoogleCalendar = resource =? "crx_kjbdgfilnfhdoflbpgamdcdgpehopbep"
+
+isGoogleNews :: Query Bool
+isGoogleNews = resource =? "crx_kfgapjallbhpciobgmlhlhokknljkgho"
+
+isGoogleMaps :: Query Bool
+isGoogleMaps = resource =? "crx_ggfaonjpnckaehkfmhlbamfemgigikbd"
+
+isTwitter :: Query Bool
+isTwitter = resource =? "crx_jgeocpdicgmkeemopbanhokmhcgcflmi"
+
+centerRect :: W.RationalRect
+centerRect = W.RationalRect 0.23 0.14 0.54 0.72
 
 myManageHook :: ManageHook
 myManageHook =
@@ -259,12 +290,20 @@ myManageHook =
     [ resource =? "desktop_window" --> doIgnore
     , isDialog --> doCenterFloat
     , isFullscreen --> doFullFloat
-    , stringProperty "WM_WINDOW_ROLE" =? "pop-up" <&&> not <$>
-      isChromeExtension --> doCenterFloat
-    , className =? "Rofi" <||>
-      className =? "Fcitx-config-gtk3" --> doCenterFloat
-    , className =? "Bitwarden" --> doCenterFloat <+> doF copyToAll
+    , stringProperty "WM_WINDOW_ROLE" =? "pop-up" <&&> fmap not isChromeExtension
+      --> doCenterFloat
+    , className =? "Rofi" --> doIgnore
+    , className =? "Bitwarden" <||>
+      isGmail <||>
+      isGoogleCalendar <||>
+      isTodoist <||>
+      isTwitter <||>
+      isLINE --> doRectFloat centerRect <+> doF copyToAll
+    , className =? "Fcitx-config-gtk3" --> doCenterFloat
     , stringProperty "WM_WINDOW_ROLE" =? "browser" --> doShiftAndView "1"
+    , isGoogleNews <||>
+      isGoogleMaps <||>
+      isPocket --> doShiftAndView "1" <+> doRectFloat centerRect
     , className =? "Alacritty" --> doShiftAndView "2"
     , className =? "Emacs" <||>
       className =? "Code" <||>
