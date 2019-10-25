@@ -86,6 +86,11 @@ install_networkmanager() {
 dns=dnsmasq
 EOM
 
+    sudo mkdir -p /etc/NetworkManager/dnsmasq.d
+    cat <<EOM | sudo tee /etc/NetworkManager/dnsmasq.d/cache.conf 2>/dev/null
+cache-size=1024
+EOM
+
     systemctl_enable NetworkManager.service
 
     pause
