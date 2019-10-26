@@ -310,7 +310,7 @@ install_xmonad() {
     stack_install xmonad
     pacman_sync xorg-xmessage scrot xmobar alsa-mixer awk conky dzen2
 
-    ln -fs "${HOME}/.dotfiles/xmonad" "${HOME}/.xmonad"
+    ln -fsT "${HOME}/.dotfiles/xmonad" "${HOME}/.xmonad"
     : >"${HOME}/.xmonad/xmonad.errors"
 
     mkdir -p "$XDG_PICTURES_DIR"
