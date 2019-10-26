@@ -211,12 +211,7 @@ zplugin snippet OMZ::plugins/ansible/ansible.plugin.zsh
 zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 
 # gcloud completion
-if [[ "$OSTYPE" == darwin* ]]; then
-    CLOUDSDK_HOME='/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk'
-elif [[ -f /etc/arch-release ]]; then
-    CLOUDSDK_HOME='/opt/google-cloud-sdk'
-fi
-if [[ -n "$CLOUDSDK_HOME" && -d "$CLOUDSDK_HOME" ]]; then
+if [[ -n "$CLOUDSDK_HOME" ]]; then
     zplugin ice wait''
     zplugin snippet "${CLOUDSDK_HOME}/completion.zsh.inc"
 fi

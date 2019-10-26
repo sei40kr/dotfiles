@@ -3,7 +3,7 @@
 # zprofile
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-if [ -x /usr/libexec/path_helper ]; then
+if [[ "$OSTYPE" == darwin* && -x /usr/libexec/path_helper ]]; then
     eval "$(/usr/libexec/path_helper -s)"
 fi
 
@@ -11,86 +11,101 @@ typeset -U path
 typeset -U fpath
 typeset -U manpath
 
-fpath=( '/usr/share/zsh/site-functions' $fpath )
-manpath=( '/usr/share/man' $manpath )
-
 # Homebrew
-if [[ "${+commands[brew]}" == 1 ]]; then
-    __homebrew_prefix="$(brew --prefix)"
+if [[ "$OSTYPE" == darwin* && "${+commands[brew]}" == 1 ]]; then
+    BREW_PREFIX="$(brew --prefix)"
 
-    path=( "${__homebrew_prefix}/bin" "${__homebrew_prefix}/sbin" $path )
-    fpath=( "${__homebrew_prefix}/share/zsh/site-functions" $fpath )
-    manpath=( "${__homebrew_prefix}/share/man" $manpath )
+    path=( "${BREW_PREFIX}/bin"
+           "${BREW_PREFIX}/sbin"
+           "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
+           "${BREW_PREFIX}/opt/findutils/libexec/gnubin"
+           "${BREW_PREFIX}/opt/ed/bin"
+           "${BREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
+           "${BREW_PREFIX}/opt/gnu-tar/libexec/gnubin"
+           "${BREW_PREFIX}/opt/grep/libexec/gnubin"
+           "${BREW_PREFIX}/opt/nano/bin"
+           "${BREW_PREFIX}/texlive/2018basic/bin/x86_64-darwin"
+           "${path[@]}" )
 
-    if [[ "$OSTYPE" == darwin* ]]; then
-        path=( "${__homebrew_prefix}/opt/coreutils/libexec/gnubin"
-               "${__homebrew_prefix}/opt/findutils/libexec/gnubin"
-               "${__homebrew_prefix}/opt/ed/bin"
-               "${__homebrew_prefix}/opt/gnu-sed/libexec/gnubin"
-               "${__homebrew_prefix}/opt/gnu-tar/libexec/gnubin"
-               "${__homebrew_prefix}/opt/grep/libexec/gnubin"
-               "${__homebrew_prefix}/opt/nano/bin"
-               "${__homebrew_prefix}/texlive/2018basic/bin/x86_64-darwin"
-               $path )
-        manpath=( "${__homebrew_prefix}/opt/coreutils/libexec/gnuman"
-                  "${__homebrew_prefix}/opt/findutils/libexec/gnuman"
-                  "${__homebrew_prefix}/opt/ed/share/man"
-                  "${__homebrew_prefix}/opt/gnu-sed/libexec/gnuman"
-                  "${__homebrew_prefix}/opt/gnu-tar/libexec/gnuman"
-                  "${__homebrew_prefix}/opt/grep/libexec/gnuman"
-                  "${__homebrew_prefix}/opt/nano/share/man"
-                  $manpath )
-    fi
+    fpath=( "${BREW_PREFIX}/share/zsh/site-functions"
+            "${fpath[@]}" )
+
+    manpath=( "${BREW_PREFIX}/share/man"
+              "${BREW_PREFIX}/opt/coreutils/libexec/gnuman"
+              "${BREW_PREFIX}/opt/findutils/libexec/gnuman"
+              "${BREW_PREFIX}/opt/ed/share/man"
+              "${BREW_PREFIX}/opt/gnu-sed/libexec/gnuman"
+              "${BREW_PREFIX}/opt/gnu-tar/libexec/gnuman"
+              "${BREW_PREFIX}/opt/grep/libexec/gnuman"
+              "${BREW_PREFIX}/opt/nano/share/man"
+              "${manpath[@]}" )
 fi
 
 # Rust
 export CARGO_HOME="${HOME}/.cargo"
-path=( "${CARGO_HOME}/bin" $path )
+path=( "${CARGO_HOME}/bin" "${path[@]}" )
 if [[ "${+commands[rustc]}" == 1 ]]; then
     export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 fi
 
 # Go
 export GOENV_ROOT="${HOME}/.goenv"
-path=( "${GOENV_ROOT}/bin" "${GOENV_ROOT}/shims" $path )
 export GOPATH="${HOME}/go"
-path=( "${GOPATH}/bin" $path )
-
-# Java
-export SDKMAN_DIR="${HOME}/.sdkman"
-path=( "${SDKMAN_DIR}/candidates"/*/current/bin(-/) $path )
+path=( "${GOENV_ROOT}/bin"
+       "${GOENV_ROOT}/shims"
+       "${GOPATH}/bin"
+       "${path[@]}" )
 
 # Perl
 export PERLBREW_ROOT="${HOME}/perl5/perlbrew"
-path=( "${HOME}/perl5/bin" "${PERLBREW_ROOT}/bin" $path )
-manpath=( "${HOME}/perl5/man" $manpath )
-export PERL5LIB="${HOME}/perl5/lib/perl5:${PERL5LIB}"
-export PERL_LOCAL_LIB_ROOT="${HOME}/perl5:${PERL_LOCAL_LIB_ROOT}"
+export PERL5LIB="${HOME}/perl5/lib/perl5:${PERL5LIB:+:${PERL5LIB}}"
+export PERL_LOCAL_LIB_ROOT="${HOME}/perl5:${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"
 export PERL_MB_OPT="--install_base '${HOME}/perl5'"
 export PERL_MM_OPT="INSTALL_BASE=${HOME}/perl5"
+path=( "${HOME}/perl5/bin"
+       "${PERLBREW_ROOT}/bin"
+       "${path[@]}" )
+manpath=( "${HOME}/perl5/man" "${manpath[@]}" )
 
 # Python
 export PYENV_ROOT="${HOME}/.pyenv"
-path=( "${PYENV_ROOT}/bin" "${PYENV_ROOT}/shims" "${HOME}/.poetry/bin" $path )
+path=( "${PYENV_ROOT}/bin"
+       "${PYENV_ROOT}/shims"
+       "${HOME}/.poetry/bin"
+       "${path[@]}" )
 
 # Ruby
 export RBENV_ROOT="${HOME}/.rbenv"
-path=( "${RBENV_ROOT}/bin" "${RBENV_ROOT}/shims" $path )
+path=( "${RBENV_ROOT}/bin"
+       "${RBENV_ROOT}/shims"
+       "${path[@]}" )
 
 # Node.js
 export NVM_DIR="${HOME}/.nvm"
-path=( "${HOME}/.yarn/bin" "${NVM_DIR}/current/bin" $path )
+path=( "${NVM_DIR}/current/bin"
+       "${HOME}/.yarn/bin"
+       "${path[@]}" )
 
 # Google Cloud SDK
-if [[ -d '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk' ]]; then
-    . '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+if [[ -n "$BREW_PREFIX" ]]; then
+    CLOUDSDK_HOME="${BREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+else
+    CLOUDSDK_HOME='/opt/google-cloud-sdk'
+fi
+if [[ -d "$CLOUDSDK_HOME" ]]; then
+    . "${CLOUDSDK_HOME}/path.zsh.inc"
+else
+    unset CLOUDSDK_HOME
 fi
 
-path=( "${HOME}/.local/bin" $path )
-fpath=( "${ZDOTDIR}/functions" "${ZDOTDIR}/completions" $fpath )
+path=( "${HOME}/.local/bin" "${path[@]}" )
+fpath=( "${ZDOTDIR}/functions"
+        "${ZDOTDIR}/completions"
+        "${fpath[@]}" )
 
-export path
-export manpath
+export PATH
+export FPATH
+export MANPATH
 
 if [[ -z "$DISPLAY" && "$XDG_VTNR" -eq 1 ]]; then
     exec startx
