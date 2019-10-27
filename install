@@ -13,6 +13,7 @@ IFS=$'\n\t'
 : ${ZDOTDIR:=${HOME}/.zsh}
 
 : ${NVM_DIR:=${HOME}/.nvm}
+: ${GOENV_ROOT:=${HOME}/.goenv}
 : ${PYENV_ROOT:=${HOME}/.pyenv}
 : ${RBENV_ROOT:=${HOME}/.rbenv}
 
@@ -702,6 +703,50 @@ install_rust_devtools() {
     rustup_component_add stable rls rust-analysis rust-src
 }
 
+install_go_devtools() {
+    if [[ ! -d "${GOENV_ROOT}" ]]; then
+        git clone -q https://github.com/syndbg/goenv.git "$GOENV_ROOT"
+    fi
+
+    # TODO Always install the latest stable version
+    local go_version=1.13.3
+    "${GOENV_ROOT}/bin/goenv" install -s "$go_version"
+    "${GOENV_ROOT}/bin/goenv" global "$go_version"
+
+    local GOPATH
+    GOPATH="${HOME}/go/${go_version}"
+
+    if [[ ! -x "${GOPATH}/${go_version}/bin/dep" ]]; then
+        mkdir -p "${GOPATH}/${go_version}/bin"
+
+        GOPATH="$GOPATH" \
+              curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+    fi
+
+    go_pkgs=(
+        # editor tools
+        # cf https://github.com/syl20bnr/spacemacs/blob/develop/layers/+lang/go/README.org#pre-requisites
+        golang.org/x/tools/cmd/godoc
+        golang.org/x/tools/cmd/goimports
+        golang.org/x/tools/cmd/gorename
+        golang.org/x/tools/cmd/guru
+        github.com/cweill/gotests/...
+        github.com/davidrjenni/reftools/cmd/fillstruct
+        github.com/fatih/gomodifytags
+        github.com/godoctor/godoctor
+        github.com/haya14busa/gopkgs/cmd/gopkgs
+        github.com/josharian/impl
+        github.com/mdempsky/gocode
+        github.com/rogpeppe/godef
+        github.com/zmb3/gogetdoc
+        # linters
+        golang.org/x/lint/golint
+        github.com/kisielk/errcheck
+        github.com/mdempsky/unconvert
+    )
+    go_get "${go_pkgs[@]}"
+}
+
 install_haskell_devtools() {
     stack_install hlint \
                   hindent \
@@ -803,10 +848,11 @@ install_devtools() {
     cat <<EOM
  1) C
  2) Rust
- 3) Haskell
- 4) Python
- 5) Ruby
- 6) Web Frontend
+ 3) Go
+ 4) Haskell
+ 5) Python
+ 6) Ruby
+ 7) Web Frontend
 
  q) Quit
 
@@ -823,15 +869,18 @@ EOM
                 install_rust_devtools
                 ;;
             3)
-                install_haskell_devtools
+                install_go_devtools
                 ;;
             4)
-                install_python_devtools
+                install_haskell_devtools
                 ;;
             5)
-                install_ruby_devtools
+                install_python_devtools
                 ;;
             6)
+                install_ruby_devtools
+                ;;
+            7)
                 install_web_frontend_devtools
                 ;;
 

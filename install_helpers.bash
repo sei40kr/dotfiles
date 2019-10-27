@@ -184,6 +184,13 @@ rustup_component_add() {
     rustup component add --toolchain "$toolchain" "${components[@]}"
 }
 
+go_get() {
+    local -a pkgs
+    pkgs=( "$@" )
+
+    "${GOENV_ROOT}/shims/go" get -u "${pkgs[@]}"
+}
+
 pip3_install() {
     local -a pkgs
     pkgs=( "$@" )
