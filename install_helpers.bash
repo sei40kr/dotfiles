@@ -1,6 +1,8 @@
 # install_helpers.bash
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
+SPINNER='/-\|'
+
 COLUMNS="$(tput cols)"
 
 BOLD="$(tput bold)"
@@ -77,6 +79,29 @@ print_danger() {
     echo -e "${RED}${message}${RESET}"
 }
 
+with_spinner() {
+    local pid
+    local i
+
+    "$@" >/dev/null >/dev/null &
+    pid="$!"
+
+    echo '  '
+
+    i=0
+    while kill -0 "$pid" 2>/dev/null; do
+        echo -ne "\b${SPINNER:i++%${#SPINNER}:1}"
+        sleep 0.25
+    done
+
+    echo -ne '\b\b'
+
+    wait "$pid"
+    if [[ "$?" != 0 && "$?" != 255 ]]; then
+        return $?
+    fi
+}
+
 error() {
     local message
     local status_code
@@ -110,7 +135,7 @@ pacman_sync() {
         echo "- ${pkg}"
     done
 
-    sudo pacman -Sy --needed --noconfirm --noprogressbar "${pkgs[@]}"
+    with_spinner sudo pacman -Sy --needed --noconfirm --noprogressbar "${pkgs[@]}"
 }
 
 trizen_sync() {
@@ -127,7 +152,7 @@ trizen_sync() {
         echo "- ${pkg}"
     done
 
-    trizen -Sy --needed --noconfirm --noprogressbar --nopull "${pkgs[@]}"
+    with_spinner trizen -Sy --needed --noconfirm --noprogressbar --nopull "${pkgs[@]}"
 }
 
 stack_install() {
@@ -141,7 +166,7 @@ stack_install() {
     echo 'Installing'
     printf "%s\n" "${pkgs[@]}"
 
-    stack install "${pkgs[@]}"
+    with_spinner stack install "${pkgs[@]}"
 }
 
 systemctl_enable() {
@@ -167,7 +192,7 @@ rustup_toolchain_install() {
         error 'rustup is not installed. Aborting.'
     fi
 
-    rustup toolchain install "$toolchain"
+    with_spinner rustup toolchain install "$toolchain"
 }
 
 rustup_component_add() {
@@ -181,33 +206,33 @@ rustup_component_add() {
         error 'rustup is not installed. Aborting.'
     fi
 
-    rustup component add --toolchain "$toolchain" "${components[@]}"
+    with_spinner rustup component add --toolchain "$toolchain" "${components[@]}"
 }
 
 go_get() {
     local -a pkgs
     pkgs=( "$@" )
 
-    "${GOENV_ROOT}/shims/go" get -u "${pkgs[@]}"
+    with_spinner "${GOENV_ROOT}/shims/go" get -u "${pkgs[@]}"
 }
 
 pip3_install() {
     local -a pkgs
     pkgs=( "$@" )
 
-    "${PYENV_ROOT}/shims/pip3" install -qU --exists-action s "${pkgs[@]}"
+    with_spinner "${PYENV_ROOT}/shims/pip3" install -qU --exists-action s "${pkgs[@]}"
 }
 
 gem_install() {
     local -a gems
     gems=( "$@" )
 
-    "${RBENV_ROOT}/shims/gem" install -q --silent --norc "${gems[@]}"
+    with_spinner "${RBENV_ROOT}/shims/gem" install -q --silent --norc "${gems[@]}"
 }
 
 yarn_global_add() {
     local -a pkgs
     pkgs=( "$@" )
 
-    PATH="${NVM_DIR}/current/bin:${PATH}" yarn global add --no-default-rc --noprogress --non-interactive "${pkgs[@]}"
+    PATH="${NVM_DIR}/current/bin:${PATH}" with_spinner yarn global add --no-default-rc --noprogress --non-interactive "${pkgs[@]}"
 }
