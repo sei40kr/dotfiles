@@ -183,3 +183,10 @@ rustup_component_add() {
 
     rustup component add --toolchain "$toolchain" "${components[@]}"
 }
+
+yarn_global_add() {
+    local -a pkgs
+    pkgs=( "$@" )
+
+    PATH="${NVM_DIR}/current/bin:${PATH}" yarn global add --no-default-rc --noprogress --non-interactive "${pkgs[@]}"
+}
