@@ -14,6 +14,7 @@ IFS=$'\n\t'
 
 : ${NVM_DIR:=${HOME}/.nvm}
 : ${PYENV_ROOT:=${HOME}/.pyenv}
+: ${RBENV_ROOT:=${HOME}/.rbenv}
 
 declare -A ZPLGM
 ZPLGM[HOME_DIR]="${HOME}/.zplugin"
@@ -736,6 +737,39 @@ install_python_devtools() {
                  ptvsd
 }
 
+install_ruby_devtools() {
+    if [[ ! -d "$RBENV_ROOT" ]]; then
+        git clone -q https://github.com/rbenv/rbenv.git "$RBENV_ROOT"
+    fi
+    if [[ ! -d "${RBENV_ROOT}/plugins/ruby-build" ]]; then
+        mkdir -p "${RBENV_ROOT}/plugins"
+        git clone -q https://github.com/rbenv/ruby-build.git "${RBENV_ROOT}/plugins/ruby-build"
+    fi
+
+    # TODO Always install the latest stable version
+    "${RBENV_ROOT}/bin/rbenv" install -s 2.6.5
+    "${RBENV_ROOT}/bin/rbenv" global 2.6.5
+
+    local -a gems
+    gems=(
+        rake
+        pry
+        pry-coolline
+        pry-doc
+        # linters
+        rubocop
+        # refactoring tools
+        rcodetools
+        fastri
+        # debuggers
+        seeing_is_believing
+        # lsp
+        solargraph
+    )
+    gem_install "${gems[@]}"
+    ln -fs "${HOME}/.dotfiles/pry/pryrc" "${HOME}/.pryrc"
+}
+
 install_web_frontend_devtools() {
     if [[ ! -f "${NVM_DIR}/nvm.sh" ]]; then
         git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
@@ -771,7 +805,8 @@ install_devtools() {
  2) Rust
  3) Haskell
  4) Python
- 5) Web Frontend
+ 5) Ruby
+ 6) Web Frontend
 
  q) Quit
 
@@ -794,6 +829,9 @@ EOM
                 install_python_devtools
                 ;;
             5)
+                install_ruby_devtools
+                ;;
+            6)
                 install_web_frontend_devtools
                 ;;
 

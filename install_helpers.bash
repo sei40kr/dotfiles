@@ -191,6 +191,13 @@ pip3_install() {
     "${PYENV_ROOT}/shims/pip3" install -qU --exists-action s "${pkgs[@]}"
 }
 
+gem_install() {
+    local -a gems
+    gems=( "$@" )
+
+    "${RBENV_ROOT}/shims/gem" install -q --silent --norc "${gems[@]}"
+}
+
 yarn_global_add() {
     local -a pkgs
     pkgs=( "$@" )
