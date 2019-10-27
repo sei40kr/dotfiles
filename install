@@ -610,6 +610,18 @@ EOM
     pause
 }
 
+install_misc_cliapps() {
+    print_title 'Misc CLI Applications'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    pacman_sync pandoc wkhtmltopdf
+
+    pause
+}
+
 install_spacemacs() {
     print_title 'Spacemacs - https://wiki.archlinux.org/index.php/Spacemacs'
     print_desc \
@@ -921,6 +933,7 @@ install_google_chrome
 install_profile_sync_daemon
 install_thunar
 install_misc_apps
+install_misc_cliapps
 
 install_spacemacs
 install_intellij_idea
