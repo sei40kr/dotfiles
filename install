@@ -567,8 +567,8 @@ install_thunar() {
     pause
 }
 
-install_misc_apps() {
-    print_title 'Essential Apps'
+install_misc_guiapps() {
+    print_title 'Misc GUI Apps'
 
     if ! ask_yn 'Would you like to install?'; then
         return
@@ -932,7 +932,7 @@ install_fcitx
 install_google_chrome
 install_profile_sync_daemon
 install_thunar
-install_misc_apps
+install_misc_guiapps
 install_misc_cliapps
 
 install_spacemacs
