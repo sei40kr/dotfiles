@@ -12,6 +12,8 @@ IFS=$'\n\t'
 
 : ${ZDOTDIR:=${HOME}/.zsh}
 
+: ${NVM_DIR:=${HOME}/.nvm}
+
 declare -A ZPLGM
 ZPLGM[HOME_DIR]="${HOME}/.zplugin"
 ZPLGM[BIN_DIR]="${ZPLGM[HOME_DIR]}/bin"
@@ -683,6 +685,60 @@ install_zeal() {
     pause
 }
 
+install_web_frontend_devtools() {
+    if [[ ! -f "${NVM_DIR}/nvm.sh" ]]; then
+        git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+    fi
+
+    NVM_DIR="$NVM_DIR" \
+           NVM_SYMLINK_CURRENT=true \
+           bash -c '. "${NVM_DIR}/nvm.sh"; export NVM_SYMLINK_CURRENT; nvm install --latest-npm --no-progress stable'
+
+    # TODO Install yarn
+
+    yarn_global_add stylelint-cli \
+                    eslint-cli \
+                    import-js \
+                    prettier \
+                    prettier-eslint-cli \
+                    javascript-typescript-langserver \
+                    tslint \
+                    typescript \
+                    typescript-formatter \
+                    typescript-language-server
+}
+
+install_devtools() {
+    print_title 'Development Tools'
+
+    if ! ask_yn 'Would you like to install?'; then
+        return
+    fi
+
+    cat <<EOM
+ 1) Web Frontend
+
+ q) Quit
+
+EOM
+
+    while true; do
+        read -rp 'Enter your option: ' opt
+
+        case "$opt" in
+            1)
+                install_web_frontend_devtools
+                ;;
+
+            q)
+                break
+                ;;
+        esac
+    done
+
+    pause
+}
+
 install_fstrim
 install_git
 install_trizen
@@ -713,3 +769,5 @@ install_misc_apps
 install_spacemacs
 install_intellij_idea
 install_zeal
+
+install_devtools
