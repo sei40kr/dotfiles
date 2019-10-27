@@ -836,6 +836,8 @@ install_web_frontend_devtools() {
                     typescript \
                     typescript-formatter \
                     typescript-language-server
+
+    ln -fs "${HOME}/.dotfiles/import-js/.importjs.js"
 }
 
 install_devtools() {
