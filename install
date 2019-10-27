@@ -614,7 +614,7 @@ install_spacemacs() {
         return
     fi
 
-    pacman_sync emacs cmake libvterm
+    pacman_sync emacs cmake libvterm fbida
 
     if [[ ! -d "${HOME}/.emacs.d" ]]; then
         git clone -b develop git@github.com:sei40kr/spacemacs.git \
