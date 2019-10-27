@@ -784,6 +784,11 @@ install_python_devtools() {
     local -a pkgs
     pkgs=(
         pip
+        # Jupyter Notebook
+        jupyter
+        numpy
+        pandas
+        matplotlib
         # linters
         pylint
         # formatters
@@ -801,6 +806,10 @@ install_python_devtools() {
         pydoc_utils
     )
     pip3_install "${pkgs[@]}"
+
+    mkdir -p "${XDG_CONFIG_HOME}/matplotlib"
+    ln -fs "${HOME}/.dotfiles/matplotlib/matplotlibrc" \
+       "${XDG_CONFIG_HOME}/matplotlib/matplotlibrc"
 }
 
 install_ruby_devtools() {
