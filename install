@@ -716,8 +716,8 @@ install_go_devtools() {
     local GOPATH
     GOPATH="${HOME}/go/${go_version}"
 
-    if [[ ! -x "${GOPATH}/${go_version}/bin/dep" ]]; then
-        mkdir -p "${GOPATH}/${go_version}/bin"
+    if [[ ! -x "${GOPATH}/bin/dep" ]]; then
+        mkdir -p "${GOPATH}/bin"
 
         GOPATH="$GOPATH" \
               curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
