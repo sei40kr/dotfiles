@@ -685,6 +685,15 @@ install_zeal() {
     pause
 }
 
+install_c_devtools() {
+    pacman_sync llvm clang
+
+    # TODO Install cpplint
+    # TODO Install cmakelint
+
+    trizen_sync cquery
+}
+
 install_web_frontend_devtools() {
     if [[ ! -f "${NVM_DIR}/nvm.sh" ]]; then
         git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
@@ -716,7 +725,8 @@ install_devtools() {
     fi
 
     cat <<EOM
- 1) Web Frontend
+ 1) C
+ 2) Web Frontend
 
  q) Quit
 
@@ -727,6 +737,9 @@ EOM
 
         case "$opt" in
             1)
+                install_c_devtools
+                ;;
+            2)
                 install_web_frontend_devtools
                 ;;
 
