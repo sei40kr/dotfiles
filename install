@@ -781,17 +781,26 @@ install_python_devtools() {
 
     # TODO Install poetry
 
-    pip3_install pip \
-                 pylint \
-                 importmagic \
-                 epc \
-                 flake8 \
-                 python-language-server[all] \
-                 jedi \
-                 pydoc_utils \
-                 pyls-mypy \
-                 pyls-isort \
-                 ptvsd
+    local -a pkgs
+    pkgs=(
+        pip
+        # linters
+        pylint
+        # formatters
+        flake8
+        # lsp
+        python-language-server[all]
+        jedi
+        pyls-mypy
+        pyls-isort
+        # debugger
+        ptvsd
+        # editor tools
+        importmagic
+        epc
+        pydoc_utils
+    )
+    pip3_install "${pkgs[@]}"
 }
 
 install_ruby_devtools() {
