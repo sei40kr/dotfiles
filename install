@@ -623,14 +623,6 @@ install_misc_cliapps() {
 }
 
 install_spacemacs() {
-    print_title 'Spacemacs - https://wiki.archlinux.org/index.php/Spacemacs'
-    print_desc \
-        'Spacemacs is an extensible and customizable text editor, built on top of Emacs and using Vim keybindings.'
-
-    if ! ask_yn 'Would you like to install?'; then
-        return
-    fi
-
     pacman_sync emacs cmake libvterm fbida
 
     if [[ ! -d "${HOME}/.emacs.d" ]]; then
@@ -662,19 +654,9 @@ install_spacemacs() {
         git clone ssh://git@github.com/sei40kr/redux-snippets.git \
             "${HOME}/.emacs.d/private/local/redux-snippets"
     fi
-
-    pause
 }
 
-install_intellij_idea() {
-    print_title 'IntelliJ IDEA'
-    print_desc \
-        'An intelligent IDE for Java, Groovy and other programming languages with advanced refactoring features intensely focused on developer productivity.'
-
-    if ! ask_yn 'Would you like to install?'; then
-        return
-    fi
-
+install_intellij_idea_ue() {
     trizen_sync intellij-idea-ultimate-edition
 
     if [[ ! -d "${HOME}/intelli-space" ]]; then
@@ -683,19 +665,39 @@ install_intellij_idea() {
     fi
 
     ln -fs "${HOME}/.dotfiles/intellij-idea/ideavimrc" "${HOME}/.ideavimrc"
-
-    pause
 }
 
-install_zeal() {
-    print_title 'Zeal - https://www.archlinux.org/packages/community/x86_64/zeal'
-    print_desc 'An offline API documentation browser'
+install_devapps() {
+    print_title 'Development Apps'
 
-    if ! ask_yn 'Would you like to install?'; then
-        return
-    fi
+    cat <<EOM
+ 1) Spacemacs
+ 2) IntelliJ IDEA Ultimate Edition
+ 3) Zeal
 
-    pacman_sync zeal
+ q) Quit
+
+EOM
+
+    while true; do
+        read -rp 'Enter your option: ' opt
+
+        case "$opt" in
+            1)
+                install_spacemacs
+                ;;
+            2)
+                install_intellij_idea_ue
+                ;;
+            3)
+                pacman_sync zeal
+                ;;
+
+            q)
+                break
+                ;;
+        esac
+    done
 
     pause
 }
@@ -961,8 +963,5 @@ install_thunar
 install_misc_guiapps
 install_misc_cliapps
 
-install_spacemacs
-install_intellij_idea
-install_zeal
-
+install_devapps
 install_devtools
