@@ -861,6 +861,10 @@ install_web_frontend_devtools() {
     ln -fs "${HOME}/.dotfiles/import-js/.importjs.js"
 }
 
+install_r_devtools() {
+    pacman_sync r openblas
+}
+
 install_devtools() {
     print_title 'Development Tools'
 
@@ -876,6 +880,7 @@ install_devtools() {
  5) Python
  6) Ruby
  7) Web Frontend
+ 8) R
 
  q) Quit
 
@@ -905,6 +910,9 @@ EOM
                 ;;
             7)
                 install_web_frontend_devtools
+                ;;
+            8)
+                install_r_devtools
                 ;;
 
             q)
