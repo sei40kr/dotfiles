@@ -157,3 +157,29 @@ systemctl_user_enable() {
 
     systemctl --user enable --now "$service"
 }
+
+rustup_toolchain_install() {
+    local toolchain
+    toolchain="$1"
+
+    if ! pacman_query rustup; then
+        # TODO Install rustup
+        error 'rustup is not installed. Aborting.'
+    fi
+
+    rustup toolchain install "$toolchain"
+}
+
+rustup_component_add() {
+    local toolchain
+    local components
+    toolchain="$1"
+    shift
+    components=( "$@" )
+
+    if ! pacman_query rustup; then
+        error 'rustup is not installed. Aborting.'
+    fi
+
+    rustup component add --toolchain "$toolchain" "${components[@]}"
+}

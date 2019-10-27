@@ -694,6 +694,12 @@ install_c_devtools() {
     trizen_sync cquery
 }
 
+install_rust_devtools() {
+    rustup_toolchain_install stable
+
+    rustup_component_add stable rls rust-analysis rust-src
+}
+
 install_haskell_devtools() {
     stack_install hlint \
                   hindent \
@@ -735,8 +741,9 @@ install_devtools() {
 
     cat <<EOM
  1) C
- 2) Haskell
- 3) Web Frontend
+ 2) Rust
+ 3) Haskell
+ 4) Web Frontend
 
  q) Quit
 
@@ -750,9 +757,12 @@ EOM
                 install_c_devtools
                 ;;
             2)
-                install_haskell_devtools
+                install_rust_devtools
                 ;;
             3)
+                install_haskell_devtools
+                ;;
+            4)
                 install_web_frontend_devtools
                 ;;
 
