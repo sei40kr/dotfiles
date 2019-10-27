@@ -184,6 +184,13 @@ rustup_component_add() {
     rustup component add --toolchain "$toolchain" "${components[@]}"
 }
 
+pip3_install() {
+    local -a pkgs
+    pkgs=( "$@" )
+
+    "${PYENV_ROOT}/shims/pip3" install -qU --exists-action s "${pkgs[@]}"
+}
+
 yarn_global_add() {
     local -a pkgs
     pkgs=( "$@" )
