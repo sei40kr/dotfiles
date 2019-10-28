@@ -523,35 +523,40 @@ install_fcitx() {
     pause
 }
 
-install_google_chrome() {
-    print_title \
-        'Google Chrome - https://aur.archlinux.org/packages/google-chrome'
-    print_desc 'The popular and trusted web browser by Google'
+install_internet_apps() {
+    install_profile_sync_daemon() {
+        print_title \
+            'Profile-sync-daemon - https://wiki.archlinux.org/index.php/Profile-sync-daemon'
+        print_desc \
+            'Profile-sync-daemon (psd) is a tiny pseudo-daemon designed to manage browser profile(s) in tmpfs and to periodically sync back to the physical disc (HDD/SSD).'
 
-    if ! read_yn 'Would you like to install?'; then
-        return
-    fi
+        if ! read_yn 'Would you like to install?'; then
+            return
+        fi
 
-    trizen_sync google-chrome
+        trizen_sync profile-sync-daemon
 
-    pause
-}
+        systemctl_user_enable psd.service
 
-install_profile_sync_daemon() {
-    print_title \
-        'Profile-sync-daemon - https://wiki.archlinux.org/index.php/Profile-sync-daemon'
-    print_desc \
-        'Profile-sync-daemon (psd) is a tiny pseudo-daemon designed to manage browser profile(s) in tmpfs and to periodically sync back to the physical disc (HDD/SSD).'
+        pause
+    }
 
-    if ! read_yn 'Would you like to install?'; then
-        return
-    fi
+    install_google_chrome() {
+        print_title \
+            'Google Chrome - https://aur.archlinux.org/packages/google-chrome'
+        print_desc 'The popular and trusted web browser by Google'
 
-    trizen_sync profile-sync-daemon
+        if ! read_yn 'Would you like to install?'; then
+            return
+        fi
 
-    systemctl_user_enable psd.service
+        trizen_sync google-chrome
 
-    pause
+        pause
+    }
+
+    install_profile_sync_daemon
+    install_google_chrome
 }
 
 install_misc_guiapps() {
@@ -973,8 +978,7 @@ install_dunst
 install_clipmenu
 install_alacritty
 install_fcitx
-install_google_chrome
-install_profile_sync_daemon
+install_internet_apps
 install_misc_guiapps
 install_misc_cliapps
 
