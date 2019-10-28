@@ -503,26 +503,6 @@ install_alacritty() {
     pause
 }
 
-install_fcitx() {
-    print_title 'Fcitx - https://wiki.archlinux.org/index.php/Fcitx'
-    print_desc \
-        'Fcitx is a lightweight input method framework aimed at providing environment independent language support for Linux.'
-
-    if ! read_yn 'Would you like to install?'; then
-        return
-    fi
-
-    pacman_sync fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt5 \
-                fcitx-configtool fcitx-mozc
-
-    mkdir -p "${XDG_CONFIG_HOME}/fcitx/conf"
-    ln -fs "${HOME}/.dotfiles/fcitx/config" "${XDG_CONFIG_HOME}/fcitx/config"
-    ln -fs "${HOME}/.dotfiles/fcitx/conf/fcitx-classic-ui.conf" \
-       "${XDG_CONFIG_HOME}/fcitx/conf/fcitx-classic-ui.conf"
-
-    pause
-}
-
 install_internet_apps() {
     install_profile_sync_daemon() {
         print_title \
@@ -557,6 +537,30 @@ install_internet_apps() {
 
     install_profile_sync_daemon
     install_google_chrome
+}
+
+install_i18n_apps() {
+    install_fcitx() {
+        print_title 'Fcitx - https://wiki.archlinux.org/index.php/Fcitx'
+        print_desc \
+            'Fcitx is a lightweight input method framework aimed at providing environment independent language support for Linux.'
+
+        if ! read_yn 'Would you like to install?'; then
+            return
+        fi
+
+        pacman_sync fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt5 \
+                    fcitx-configtool fcitx-mozc
+
+        mkdir -p "${XDG_CONFIG_HOME}/fcitx/conf"
+        ln -fs "${HOME}/.dotfiles/fcitx/config" "${XDG_CONFIG_HOME}/fcitx/config"
+        ln -fs "${HOME}/.dotfiles/fcitx/conf/fcitx-classic-ui.conf" \
+           "${XDG_CONFIG_HOME}/fcitx/conf/fcitx-classic-ui.conf"
+
+        pause
+    }
+
+    install_fcitx
 }
 
 install_misc_guiapps() {
@@ -977,8 +981,8 @@ install_rofi
 install_dunst
 install_clipmenu
 install_alacritty
-install_fcitx
 install_internet_apps
+install_i18n_apps
 install_misc_guiapps
 install_misc_cliapps
 
