@@ -598,52 +598,53 @@ install_misc_cliapps() {
     pause
 }
 
-install_spacemacs() {
-    pacman_sync emacs cmake libvterm fbida
-
-    if [[ ! -d "${HOME}/.emacs.d" ]]; then
-        git clone -b develop git@github.com:sei40kr/spacemacs.git \
-            "${HOME}/.emacs.d"
-
-        mkdir -p "${HOME}/.emacs.d/private/layers"
-    fi
-
-    mkdir -p "${HOME}/.emacs.d/private/local"
-    if [[ ! -d "${HOME}/.emacs.d/private/local/competitive-programming-snippets" ]]
-    then
-        git clone ssh://git@github.com/sei40kr/competitive-programming-snippets.git \
-            "${HOME}/.emacs.d/private/local/competitive-programming-snippets"
-    fi
-    if [[ ! -d "${HOME}/.emacs.d/private/local/jest-snippets" ]]; then
-        git clone ssh://git@github.com/sei40kr/jest-snippets.git \
-            "${HOME}/.emacs.d/private/local/jest-snippets"
-    fi
-    if [[ ! -d "${HOME}/.emacs.d/private/local/rails-snippets" ]]; then
-        git clone ssh://git@github.com/sei40kr/rails-snippets.git \
-            "${HOME}/.emacs.d/private/local/rails-snippets"
-    fi
-    if [[ ! -d "${HOME}/.emacs.d/private/local/react-snippets" ]]; then
-        git clone ssh://git@github.com/sei40kr/react-snippets.git \
-            "${HOME}/.emacs.d/private/local/react-snippets"
-    fi
-    if [[ ! -d "${HOME}/.emacs.d/private/local/redux-snippets" ]]; then
-        git clone ssh://git@github.com/sei40kr/redux-snippets.git \
-            "${HOME}/.emacs.d/private/local/redux-snippets"
-    fi
-}
-
-install_intellij_idea_ue() {
-    trizen_sync intellij-idea-ultimate-edition
-
-    if [[ ! -d "${HOME}/intelli-space" ]]; then
-        git clone https://github.com/MarcoIeni/intelli-space.git \
-            "${HOME}/intelli-space"
-    fi
-
-    ln -fs "${HOME}/.dotfiles/intellij-idea/ideavimrc" "${HOME}/.ideavimrc"
-}
-
 install_devapps() {
+    install_spacemacs() {
+        pacman_sync emacs cmake libvterm fbida
+
+        if [[ ! -d "${HOME}/.emacs.d" ]]; then
+            git clone -b develop git@github.com:sei40kr/spacemacs.git \
+                "${HOME}/.emacs.d"
+
+            mkdir -p "${HOME}/.emacs.d/private/layers"
+        fi
+
+        mkdir -p "${HOME}/.emacs.d/private/local"
+        if [[ ! -d "${HOME}/.emacs.d/private/local/competitive-programming-snippets" ]]
+        then
+            git clone \
+                ssh://git@github.com/sei40kr/competitive-programming-snippets.git \
+                "${HOME}/.emacs.d/private/local/competitive-programming-snippets"
+        fi
+        if [[ ! -d "${HOME}/.emacs.d/private/local/jest-snippets" ]]; then
+            git clone ssh://git@github.com/sei40kr/jest-snippets.git \
+                "${HOME}/.emacs.d/private/local/jest-snippets"
+        fi
+        if [[ ! -d "${HOME}/.emacs.d/private/local/rails-snippets" ]]; then
+            git clone ssh://git@github.com/sei40kr/rails-snippets.git \
+                "${HOME}/.emacs.d/private/local/rails-snippets"
+        fi
+        if [[ ! -d "${HOME}/.emacs.d/private/local/react-snippets" ]]; then
+            git clone ssh://git@github.com/sei40kr/react-snippets.git \
+                "${HOME}/.emacs.d/private/local/react-snippets"
+        fi
+        if [[ ! -d "${HOME}/.emacs.d/private/local/redux-snippets" ]]; then
+            git clone ssh://git@github.com/sei40kr/redux-snippets.git \
+                "${HOME}/.emacs.d/private/local/redux-snippets"
+        fi
+    }
+
+    install_intellij_idea_ue() {
+        trizen_sync intellij-idea-ultimate-edition
+
+        if [[ ! -d "${HOME}/intelli-space" ]]; then
+            git clone https://github.com/MarcoIeni/intelli-space.git \
+                "${HOME}/intelli-space"
+        fi
+
+        ln -fs "${HOME}/.dotfiles/intellij-idea/ideavimrc" "${HOME}/.ideavimrc"
+    }
+
     print_title 'Development Apps'
 
     cat <<EOM
