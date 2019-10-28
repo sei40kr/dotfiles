@@ -775,15 +775,23 @@ install_haskell_devtools() {
 }
 
 install_python_devtools() {
+    local python3_stable_version
+    local python2_stable_version
+
     if [[ ! -d "${PYENV_ROOT}" ]]; then
         git clone -q https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
     fi
 
-    # TODO Always install the latest stable version
-    "${PYENV_ROOT}/bin/pyenv" install -s 2.7.17
-    "${PYENV_ROOT}/bin/pyenv" install -s 3.8.0
-
-    "${PYENV_ROOT}/bin/pyenv" global 3.8.0 2.7.17
+    python3_stable_version="$("${PYENV_ROOT}/bin/pyenv" install -l |
+                              grep -Poe '(?<=\s)3(?:\.\d+){2}$' |
+                              tail -n1)"
+    python2_stable_version="$("${PYENV_ROOT}/bin/pyenv" install -l |
+                              grep -Poe '(?<=\s)2(?:\.\d+){2}$' |
+                              tail -n1)"
+    "${PYENV_ROOT}/bin/pyenv" install -s "$python3_stable_version"
+    "${PYENV_ROOT}/bin/pyenv" install -s "$python2_stable_version"
+    "${PYENV_ROOT}/bin/pyenv" global "$python3_stable_version" \
+                              "$python2_stable_version"
 
     # TODO Install poetry
 
