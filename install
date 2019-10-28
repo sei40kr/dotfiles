@@ -57,30 +57,6 @@ install_trizen() {
     pause
 }
 
-install_tmux() {
-    print_title 'tmux - https://wiki.archlinux.org/index.php/Tmux'
-    print_desc \
-        'tmux is a "terminal multiplexer: it enables a number of terminals (or windows), each running a separate program, to be created, accessed, and controlled from a single screen. tmux may be detached from a screen and continue running in the background, then later reattached."'
-
-    if ! read_yn 'Would you like to install?'; then
-        return
-    fi
-
-    pacman_sync tmux xsel
-
-    ln -fs "${HOME}/tmux/tmux.conf" "${HOME}/.tmux.conf"
-
-    if [[ ! -d "${HOME}/.tmux/plugins/tpm" ]]; then
-        mkdir -p "${HOME}/.tmux/plugins"
-        git clone https://github.com/tmux-plugins/tpm.git \
-            "${HOME}/.tmux/plugins/tpm"
-
-        "${HOME}/.tmux/plugins/tpm/bin/install_plugins"
-    fi
-
-    pause
-}
-
 install_compton() {
     print_title 'Compton - https://wiki.archlinux.org/index.php/Compton'
     print_desc \
@@ -301,6 +277,30 @@ setup_basic() {
         pause
     }
 
+    install_tmux() {
+        print_title 'tmux - https://wiki.archlinux.org/index.php/Tmux'
+        print_desc \
+            'tmux is a "terminal multiplexer: it enables a number of terminals (or windows), each running a separate program, to be created, accessed, and controlled from a single screen. tmux may be detached from a screen and continue running in the background, then later reattached."'
+
+        if ! read_yn 'Would you like to install?'; then
+            return
+        fi
+
+        pacman_sync tmux xsel
+
+        ln -fs "${HOME}/tmux/tmux.conf" "${HOME}/.tmux.conf"
+
+        if [[ ! -d "${HOME}/.tmux/plugins/tpm" ]]; then
+            mkdir -p "${HOME}/.tmux/plugins"
+            git clone https://github.com/tmux-plugins/tpm.git \
+                "${HOME}/.tmux/plugins/tpm"
+
+            "${HOME}/.tmux/plugins/tpm/bin/install_plugins"
+        fi
+
+        pause
+    }
+
     install_openssh() {
         print_title 'OpenSSH - https://wiki.archlinux.org/index.php/OpenSSH'
         print_desc \
@@ -417,6 +417,7 @@ EOM
     install_networkmanager
 
     install_zsh
+    install_tmux
     install_openssh
 
     install_xorg
@@ -961,7 +962,6 @@ EOM
 
 install_fstrim
 install_trizen
-install_tmux
 
 setup_basic
 install_desktop_environment
