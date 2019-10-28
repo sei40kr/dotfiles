@@ -642,10 +642,11 @@ install_devapps() {
     print_title 'Development Apps'
 
     cat <<EOM
- 1) Git
- 2) Spacemacs
- 3) IntelliJ IDEA Ultimate Edition
- 4) Zeal
+ 1) Vim
+ 2) Git
+ 3) Spacemacs
+ 4) IntelliJ IDEA Ultimate Edition
+ 5) Zeal
 
  q) Quit
 
@@ -656,6 +657,11 @@ EOM
 
         case "$opt" in
             1)
+                pacman_sync vim
+
+                ln -fs "${HOME}/.dotfiles/vim/vimrc" "${HOME}/.vimrc"
+                ;;
+            2)
                 pacman_sync git
 
                 ln -fs "${HOME}/.dotfiles/git/gitconfig" \
@@ -663,13 +669,13 @@ EOM
                 ln -fs "${HOME}/.dotfiles/git/gitignore" \
                    "${XDG_CONFIG_HOME}/git/ignore"
                 ;;
-            2)
+            3)
                 install_spacemacs
                 ;;
-            3)
+            4)
                 install_intellij_idea_ue
                 ;;
-            4)
+            5)
                 pacman_sync zeal
                 ;;
 
