@@ -117,80 +117,6 @@ install_ntp() {
     pause
 }
 
-install_zsh() {
-    print_title 'Zsh - https://wiki.archlinux.org/index.php/Zsh'
-    print_desc \
-        'Zsh is a powerful shell that operates as both an interactive shell and as a scripting language interpreter.'
-
-    if ! ask_yn 'Would you like to install?'; then
-        return
-    fi
-
-    pacman_sync zsh subversion
-
-    ln -fs "${HOME}/.dotfiles/zsh/zshenv" "${HOME}/.zshenv"
-    mkdir -p "${ZDOTDIR}"
-    ln -fs "${HOME}/.dotfiles/zsh/zshenv" "${ZDOTDIR}/.zshenv"
-    ln -fs "${HOME}/.dotfiles/zsh/zprofile" "${ZDOTDIR}/.zprofile"
-    ln -fs "${HOME}/.dotfiles/zsh/zshrc" "${ZDOTDIR}/.zshrc"
-
-    ln -fs "${HOME}/.dotfiles/zsh/alias_defs.zsh" "${ZDOTDIR}/alias_defs.zsh"
-
-    mkdir -p "${ZDOTDIR}/functions"
-    ln -fs "${HOME}/.dotfiles/zsh/functions/clone_gh" \
-       "${ZDOTDIR}/functions/clone_gh"
-    ln -fs "${HOME}/.dotfiles/zsh/functions/create_gh" \
-       "${ZDOTDIR}/functions/create_gh"
-    ln -fs "${HOME}/.dotfiles/zsh/functions/kca" "${ZDOTDIR}/functions/kca"
-    ln -fs "${HOME}/.dotfiles/zsh/functions/kres" "${ZDOTDIR}/functions/kres"
-    ln -fs "${HOME}/.dotfiles/zsh/functions/pyclean" \
-       "${ZDOTDIR}/functions/pyclean"
-    ln -fs "${HOME}/.dotfiles/zsh/functions/ranger-cd" \
-       "${ZDOTDIR}/functions/ranger-cd"
-
-    mkdir -p "${ZDOTDIR}/completions"
-    ln -fs "${HOME}/.dotfiles/zsh/completions/_atcoder-tools" \
-       "${ZDOTDIR}/completions/_atcoder-tools"
-    ln -fs "${HOME}/.dotfiles/zsh/completions/_kubectl" \
-       "${ZDOTDIR}/completions/_kubectl"
-    ln -fs "${HOME}/.dotfiles/zsh/completions/_rustup" \
-       "${ZDOTDIR}/completions/_rustup"
-
-    if [[ ! -d "${ZPLGM[BIN_DIR]}" ]]; then
-        mkdir -p "${ZPLGM[HOME_DIR]}"
-        git clone https://github.com/zdharma/zplugin.git "${ZPLGM[BIN_DIR]}"
-    fi
-
-    mkdir -p "${ZPLGM[PLUGINS_DIR]}"
-    if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fzf-docker" ]]; then
-        git clone https://github.com/sei40kr/zsh-fzf-docker.git \
-            "${HOME}/.zplugin/plugins/_local---zsh-fzf-docker"
-    fi
-    if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fzf-gcloud" ]]; then
-        git clone https://github.com/sei40kr/zsh-fzf-gcloud.git \
-            "${HOME}/.zplugin/plugins/_local---zsh-fzf-gcloud"
-    fi
-    if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fzf-kubernetes" ]]; then
-        git clone https://github.com/sei40kr/zsh-fzf-kubernetes.git \
-            "${HOME}/.zplugin/plugins/_local---zsh-fzf-kubernetes"
-    fi
-    if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fzf-projects" ]]; then
-        git clone https://github.com/sei40kr/zsh-fzf-projects.git \
-            "${HOME}/.zplugin/plugins/_local---zsh-fzf-projects"
-    fi
-    if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fast-alias-tips" ]]; then
-        git clone https://github.com/sei40kr/zsh-fast-alias-tips.git \
-            "${HOME}/.zplugin/plugins/_local---zsh-fast-alias-tips"
-    fi
-
-    ln -fs "${HOME}/.dotfiles/zsh/starship.toml" \
-       "${XDG_CONFIG_HOME}/starship.toml"
-
-    sudo chsh -s "$(command -v zsh)" "$USER"
-
-    pause
-}
-
 install_tmux() {
     print_title 'tmux - https://wiki.archlinux.org/index.php/Tmux'
     print_desc \
@@ -211,43 +137,6 @@ install_tmux() {
 
         "${HOME}/.tmux/plugins/tpm/bin/install_plugins"
     fi
-
-    pause
-}
-
-install_openssh() {
-    print_title 'OpenSSH - https://wiki.archlinux.org/index.php/OpenSSH'
-    print_desc \
-        'OpenSSH (OpenBSD Secure Shell) is a set of computer programs providing encrypted communication sessions over a computer network using the Secure Shell (SSH) protocol.'
-
-    if ! ask_yn 'Would you like to install?'; then
-        return
-    fi
-
-    pacman_sync openssh
-
-    # TODO Prohibit password authentication
-
-    systemctl_enable sshd.service
-
-    pause
-}
-
-install_xorg() {
-    print_title 'Xorg - https://wiki.archlinux.org/index.php/Xorg'
-    print_desc \
-        'The X.Org project provides an open source implementation of the X Window System.'
-
-    if ! ask_yn 'Would you like to install?'; then
-        return
-    fi
-
-    pacman_sync dbus xorg xorg-xinit xautolock xsecurelock
-
-    ln -fs "${HOME}/.dotfiles/xorg/xinitrc" "${HOME}/.xinitrc"
-    ln -fs "${HOME}/.dotfiles/xorg/Xresources" "${HOME}/.Xresources"
-    ln -fs "${HOME}/.dotfiles/xorg/Xmodmap" "${HOME}/.Xmodmap"
-    ln -fs "${HOME}/.dotfiles/xorg/xsession" "${HOME}/.xsession"
 
     pause
 }
@@ -300,37 +189,6 @@ install_feh() {
 
     mkdir -p "${XDG_DATA_HOME}/backgrounds"
     ln -fs "${HOME}/.dotfiles/feh/fehbg" "${HOME}/.fehbg"
-
-    pause
-}
-
-install_fontconfig() {
-    print_title \
-        'Font configuration - https://wiki.archlinux.org/index.php/Font_configuration'
-    print_desc \
-        'Fontconfig is a library designed to provide a list of available fonts to applications, and also for configuration for how fonts get rendered.'
-
-    if ! ask_yn 'Would you like to install?'; then
-        return
-    fi
-
-    pacman_sync fontconfig freetype2 noto-fonts noto-fonts-cjk noto-fonts-emoji
-
-    mkdir -p "${XDG_CONFIG_HOME}/fontconfig/conf.d"
-    cp -f /etc/fonts/conf.avail/10-hinting-none.conf \
-       "${XDG_CONFIG_HOME}/fontconfig/conf.d/10-hinting-none.conf"
-    cp -f /etc/fonts/conf.avail/10-sub-pixel-rgb.conf \
-       "${XDG_CONFIG_HOME}/fontconfig/conf.d/10-sub-pixel-rgb.conf"
-    cp -f /etc/fonts/conf.avail/11-lcdfilter-default.conf \
-       "${XDG_CONFIG_HOME}/fontconfig/conf.d/11-lcdfilter-default.conf"
-    cp -f /etc/fonts/conf.avail/66-noto-sans.conf \
-       "${XDG_CONFIG_HOME}/fontconfig/conf.d/66-noto-sans.conf"
-    cp -f /etc/fonts/conf.avail/66-noto-serif.conf \
-       "${XDG_CONFIG_HOME}/fontconfig/conf.d/66-noto-serif.conf"
-    cp -f /etc/fonts/conf.avail/66-noto-mono.conf \
-       "${XDG_CONFIG_HOME}/fontconfig/conf.d/66-noto-mono.conf"
-    cp -f /etc/fonts/conf.avail/70-noto-cjk.conf \
-       "${XDG_CONFIG_HOME}/fontconfig/conf.d/70-noto-cjk.conf"
 
     pause
 }
@@ -409,6 +267,155 @@ EOM
     systemctl_user_enable clipmenud.service
 
     pause
+}
+
+setup_basic() {
+    install_zsh() {
+        print_title 'Zsh - https://wiki.archlinux.org/index.php/Zsh'
+        print_desc \
+            'Zsh is a powerful shell that operates as both an interactive shell and as a scripting language interpreter.'
+
+        if ! ask_yn 'Would you like to install?'; then
+            return
+        fi
+
+        pacman_sync zsh subversion
+
+        ln -fs "${HOME}/.dotfiles/zsh/zshenv" "${HOME}/.zshenv"
+        mkdir -p "${ZDOTDIR}"
+        ln -fs "${HOME}/.dotfiles/zsh/zshenv" "${ZDOTDIR}/.zshenv"
+        ln -fs "${HOME}/.dotfiles/zsh/zprofile" "${ZDOTDIR}/.zprofile"
+        ln -fs "${HOME}/.dotfiles/zsh/zshrc" "${ZDOTDIR}/.zshrc"
+
+        ln -fs "${HOME}/.dotfiles/zsh/alias_defs.zsh" "${ZDOTDIR}/alias_defs.zsh"
+
+        mkdir -p "${ZDOTDIR}/functions"
+        ln -fs "${HOME}/.dotfiles/zsh/functions/clone_gh" \
+        "${ZDOTDIR}/functions/clone_gh"
+        ln -fs "${HOME}/.dotfiles/zsh/functions/create_gh" \
+        "${ZDOTDIR}/functions/create_gh"
+        ln -fs "${HOME}/.dotfiles/zsh/functions/kca" "${ZDOTDIR}/functions/kca"
+        ln -fs "${HOME}/.dotfiles/zsh/functions/kres" "${ZDOTDIR}/functions/kres"
+        ln -fs "${HOME}/.dotfiles/zsh/functions/pyclean" \
+        "${ZDOTDIR}/functions/pyclean"
+        ln -fs "${HOME}/.dotfiles/zsh/functions/ranger-cd" \
+        "${ZDOTDIR}/functions/ranger-cd"
+
+        mkdir -p "${ZDOTDIR}/completions"
+        ln -fs "${HOME}/.dotfiles/zsh/completions/_atcoder-tools" \
+        "${ZDOTDIR}/completions/_atcoder-tools"
+        ln -fs "${HOME}/.dotfiles/zsh/completions/_kubectl" \
+        "${ZDOTDIR}/completions/_kubectl"
+        ln -fs "${HOME}/.dotfiles/zsh/completions/_rustup" \
+        "${ZDOTDIR}/completions/_rustup"
+
+        if [[ ! -d "${ZPLGM[BIN_DIR]}" ]]; then
+            mkdir -p "${ZPLGM[HOME_DIR]}"
+            git clone https://github.com/zdharma/zplugin.git "${ZPLGM[BIN_DIR]}"
+        fi
+
+        mkdir -p "${ZPLGM[PLUGINS_DIR]}"
+        if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fzf-docker" ]]; then
+            git clone https://github.com/sei40kr/zsh-fzf-docker.git \
+                "${HOME}/.zplugin/plugins/_local---zsh-fzf-docker"
+        fi
+        if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fzf-gcloud" ]]; then
+            git clone https://github.com/sei40kr/zsh-fzf-gcloud.git \
+                "${HOME}/.zplugin/plugins/_local---zsh-fzf-gcloud"
+        fi
+        if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fzf-kubernetes" ]]; then
+            git clone https://github.com/sei40kr/zsh-fzf-kubernetes.git \
+                "${HOME}/.zplugin/plugins/_local---zsh-fzf-kubernetes"
+        fi
+        if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fzf-projects" ]]; then
+            git clone https://github.com/sei40kr/zsh-fzf-projects.git \
+                "${HOME}/.zplugin/plugins/_local---zsh-fzf-projects"
+        fi
+        if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fast-alias-tips" ]]; then
+            git clone https://github.com/sei40kr/zsh-fast-alias-tips.git \
+                "${HOME}/.zplugin/plugins/_local---zsh-fast-alias-tips"
+        fi
+
+        ln -fs "${HOME}/.dotfiles/zsh/starship.toml" \
+        "${XDG_CONFIG_HOME}/starship.toml"
+
+        sudo chsh -s "$(command -v zsh)" "$USER"
+
+        pause
+    }
+
+    install_openssh() {
+        print_title 'OpenSSH - https://wiki.archlinux.org/index.php/OpenSSH'
+        print_desc \
+            'OpenSSH (OpenBSD Secure Shell) is a set of computer programs providing encrypted communication sessions over a computer network using the Secure Shell (SSH) protocol.'
+
+        if ! ask_yn 'Would you like to install?'; then
+            return
+        fi
+
+        pacman_sync openssh
+
+        # TODO Prohibit password authentication
+
+        systemctl_enable sshd.service
+
+        pause
+    }
+
+    install_xorg() {
+        print_title 'Xorg - https://wiki.archlinux.org/index.php/Xorg'
+        print_desc \
+            'The X.Org project provides an open source implementation of the X Window System.'
+
+        if ! ask_yn 'Would you like to install?'; then
+            return
+        fi
+
+        pacman_sync dbus xorg xorg-xinit xautolock xsecurelock
+
+        ln -fs "${HOME}/.dotfiles/xorg/xinitrc" "${HOME}/.xinitrc"
+        ln -fs "${HOME}/.dotfiles/xorg/Xresources" "${HOME}/.Xresources"
+        ln -fs "${HOME}/.dotfiles/xorg/Xmodmap" "${HOME}/.Xmodmap"
+        ln -fs "${HOME}/.dotfiles/xorg/xsession" "${HOME}/.xsession"
+
+        pause
+    }
+
+    install_fontconfig() {
+        print_title \
+            'Font configuration - https://wiki.archlinux.org/index.php/Font_configuration'
+        print_desc \
+            'Fontconfig is a library designed to provide a list of available fonts to applications, and also for configuration for how fonts get rendered.'
+
+        if ! ask_yn 'Would you like to install?'; then
+            return
+        fi
+
+        pacman_sync fontconfig freetype2 noto-fonts noto-fonts-cjk noto-fonts-emoji
+
+        mkdir -p "${XDG_CONFIG_HOME}/fontconfig/conf.d"
+        cp -f /etc/fonts/conf.avail/10-hinting-none.conf \
+        "${XDG_CONFIG_HOME}/fontconfig/conf.d/10-hinting-none.conf"
+        cp -f /etc/fonts/conf.avail/10-sub-pixel-rgb.conf \
+        "${XDG_CONFIG_HOME}/fontconfig/conf.d/10-sub-pixel-rgb.conf"
+        cp -f /etc/fonts/conf.avail/11-lcdfilter-default.conf \
+        "${XDG_CONFIG_HOME}/fontconfig/conf.d/11-lcdfilter-default.conf"
+        cp -f /etc/fonts/conf.avail/66-noto-sans.conf \
+        "${XDG_CONFIG_HOME}/fontconfig/conf.d/66-noto-sans.conf"
+        cp -f /etc/fonts/conf.avail/66-noto-serif.conf \
+        "${XDG_CONFIG_HOME}/fontconfig/conf.d/66-noto-serif.conf"
+        cp -f /etc/fonts/conf.avail/66-noto-mono.conf \
+        "${XDG_CONFIG_HOME}/fontconfig/conf.d/66-noto-mono.conf"
+        cp -f /etc/fonts/conf.avail/70-noto-cjk.conf \
+        "${XDG_CONFIG_HOME}/fontconfig/conf.d/70-noto-cjk.conf"
+
+        pause
+    }
+
+    install_zsh
+    install_openssh
+    install_xorg
+    install_fontconfig
 }
 
 install_desktop_environment() {
@@ -952,16 +959,13 @@ install_trizen
 install_networkmanager
 install_bluetooth
 install_ntp
-install_zsh
 install_tmux
-install_openssh
 
-install_xorg
+setup_basic
 install_desktop_environment
 install_compton
 install_redshift
 install_feh
-install_fontconfig
 install_rofi
 install_dunst
 install_clipmenu
