@@ -718,12 +718,16 @@ install_rust_devtools() {
 }
 
 install_go_devtools() {
+    local go_version
+
     if [[ ! -d "${GOENV_ROOT}" ]]; then
         git clone -q https://github.com/syndbg/goenv.git "$GOENV_ROOT"
     fi
 
-    # TODO Always install the latest stable version
-    local go_version=1.13.3
+    go_version="$("${GOENV_ROOT}/bin/goenv" install -l |
+                  grep -ve 'beta' -ve 'rc' |
+                  tail -n1)"
+    go_version="${go_version// /}"
     "${GOENV_ROOT}/bin/goenv" install -s "$go_version"
     "${GOENV_ROOT}/bin/goenv" global "$go_version"
 
