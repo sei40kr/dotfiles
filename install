@@ -38,23 +38,6 @@ install_fstrim() {
     pause
 }
 
-install_git() {
-    print_title 'Git - https://wiki.archlinux.org/index.php/Git'
-    print_desc \
-        'Git is the version control system (VCS) designed and developed by Linus Torvalds, the creator of the Linux kernel.'
-
-    if ! ask_yn 'Would you like to install?'; then
-        return
-    fi
-
-    pacman_sync git
-
-    ln -fs "${HOME}/.dotfiles/git/gitconfig" "${XDG_CONFIG_HOME}/git/config"
-    ln -fs "${HOME}/.dotfiles/git/gitignore" "${XDG_CONFIG_HOME}/git/ignore"
-
-    pause
-}
-
 install_trizen() {
     print_title 'Trizen'
     print_desc 'trizen is a lightweight wrapper for AUR, written in Perl.'
@@ -617,7 +600,9 @@ install_misc_cliapps() {
         return
     fi
 
-    pacman_sync pandoc wkhtmltopdf
+    pacman_sync ripgrep pandoc wkhtmltopdf
+
+    ln -fs "${HOME}/.dotfiles/ripgrep/ripgreprc" "${HOME}/.ripgreprc"
 
     pause
 }
@@ -671,9 +656,10 @@ install_devapps() {
     print_title 'Development Apps'
 
     cat <<EOM
- 1) Spacemacs
- 2) IntelliJ IDEA Ultimate Edition
- 3) Zeal
+ 1) Git
+ 2) Spacemacs
+ 3) IntelliJ IDEA Ultimate Edition
+ 4) Zeal
 
  q) Quit
 
@@ -684,12 +670,20 @@ EOM
 
         case "$opt" in
             1)
-                install_spacemacs
+                pacman_sync git
+
+                ln -fs "${HOME}/.dotfiles/git/gitconfig" \
+                   "${XDG_CONFIG_HOME}/git/config"
+                ln -fs "${HOME}/.dotfiles/git/gitignore" \
+                   "${XDG_CONFIG_HOME}/git/ignore"
                 ;;
             2)
-                install_intellij_idea_ue
+                install_spacemacs
                 ;;
             3)
+                install_intellij_idea_ue
+                ;;
+            4)
                 pacman_sync zeal
                 ;;
 
@@ -952,7 +946,6 @@ EOM
 }
 
 install_fstrim
-install_git
 install_trizen
 install_networkmanager
 install_bluetooth
