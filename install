@@ -827,6 +827,8 @@ install_python_devtools() {
 }
 
 install_ruby_devtools() {
+    local ruby_stable_version
+
     if [[ ! -d "$RBENV_ROOT" ]]; then
         git clone -q https://github.com/rbenv/rbenv.git "$RBENV_ROOT"
     fi
@@ -835,9 +837,11 @@ install_ruby_devtools() {
         git clone -q https://github.com/rbenv/ruby-build.git "${RBENV_ROOT}/plugins/ruby-build"
     fi
 
-    # TODO Always install the latest stable version
-    "${RBENV_ROOT}/bin/rbenv" install -s 2.6.5
-    "${RBENV_ROOT}/bin/rbenv" global 2.6.5
+    ruby_stable_version="$("${RBENV_ROOT}/bin/rbenv" install -l |
+                           grep -Poe '(?<=\s)\d+(?:\.\d+){2}$' |
+                           tail -n1)"
+    "${RBENV_ROOT}/bin/rbenv" install -s "$ruby_stable_version"
+    "${RBENV_ROOT}/bin/rbenv" global "$ruby_stable_version"
 
     local -a gems
     gems=(
