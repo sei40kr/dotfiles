@@ -29,7 +29,7 @@ basepath="$(dirname "$(realpath "$0")")"
 install_fstrim() {
     print_title 'TRIM'
 
-    if ! ask_yn 'Would you like to install?'; then
+    if ! read_yn 'Would you like to install?'; then
         return
     fi
 
@@ -42,7 +42,7 @@ install_trizen() {
     print_title 'Trizen'
     print_desc 'trizen is a lightweight wrapper for AUR, written in Perl.'
 
-    if ! ask_yn 'Would you like to install?'; then
+    if ! read_yn 'Would you like to install?'; then
         return
     fi
 
@@ -62,7 +62,7 @@ install_tmux() {
     print_desc \
         'tmux is a "terminal multiplexer: it enables a number of terminals (or windows), each running a separate program, to be created, accessed, and controlled from a single screen. tmux may be detached from a screen and continue running in the background, then later reattached."'
 
-    if ! ask_yn 'Would you like to install?'; then
+    if ! read_yn 'Would you like to install?'; then
         return
     fi
 
@@ -86,7 +86,7 @@ install_compton() {
     print_desc \
         'Compton is a standalone compositor for Xorg, suitable for use with window managers that do not provide compositing.'
 
-    if ! ask_yn 'Would you like to install?'; then
+    if ! read_yn 'Would you like to install?'; then
         return
     fi
 
@@ -103,7 +103,7 @@ install_redshift() {
     print_desc \
         'Redshift adjusts the color temperature of your screen according to your surroundings.'
 
-    if ! ask_yn 'Would you like to install?'; then
+    if ! read_yn 'Would you like to install?'; then
         return
     fi
 
@@ -121,7 +121,7 @@ install_feh() {
     print_desc \
         'feh is a lightweight and powerful image viewer that can also be used to manage the desktop wallpaper for standalone window managers lacking such features.'
 
-    if ! ask_yn 'Would you like to install?'; then
+    if ! read_yn 'Would you like to install?'; then
         return
     fi
 
@@ -138,7 +138,7 @@ install_rofi() {
     print_desc \
         'Rofi is a window switcher, run dialog, ssh-launcher and dmenu replacement that started as a clone of simpleswitcher, written by Sean Pringle and later expanded by Dave Davenport.'
 
-    if ! ask_yn 'Would you like to install?'; then
+    if ! read_yn 'Would you like to install?'; then
         return
     fi
 
@@ -159,7 +159,7 @@ install_dunst() {
     print_desc \
         'Dunst is a lightweight replacement for the notification-daemons provided by most desktop environments.'
 
-    if ! ask_yn 'Would you like to install?'; then
+    if ! read_yn 'Would you like to install?'; then
         return
     fi
 
@@ -176,7 +176,7 @@ install_clipmenu() {
     print_desc \
         'clipmenu is a simple clipboard manager using dmenu (or rofi) and xsel.'
 
-    if ! ask_yn 'Would you like to install?'; then
+    if ! read_yn 'Would you like to install?'; then
         return
     fi
 
@@ -216,7 +216,7 @@ setup_basic() {
         print_desc \
             'Network Time Protocol is the most common method to synchronize the software clock of a GNU/Linux system with internet time servers.'
 
-        if ! ask_yn 'Would you like to install?'; then
+        if ! read_yn 'Would you like to install?'; then
             return
         fi
 
@@ -232,7 +232,7 @@ setup_basic() {
         print_desc \
             'Zsh is a powerful shell that operates as both an interactive shell and as a scripting language interpreter.'
 
-        if ! ask_yn 'Would you like to install?'; then
+        if ! read_yn 'Would you like to install?'; then
             return
         fi
 
@@ -306,7 +306,7 @@ setup_basic() {
         print_desc \
             'OpenSSH (OpenBSD Secure Shell) is a set of computer programs providing encrypted communication sessions over a computer network using the Secure Shell (SSH) protocol.'
 
-        if ! ask_yn 'Would you like to install?'; then
+        if ! read_yn 'Would you like to install?'; then
             return
         fi
 
@@ -324,7 +324,7 @@ setup_basic() {
         print_desc \
             'Bluetooth is a standard for the short-range wireless interconnection of cellular phones, computers, and other electronic devices.'
 
-        if ! ask_yn 'Would you like to install?'; then
+        if ! read_yn 'Would you like to install?'; then
             return
         fi
 
@@ -341,7 +341,7 @@ setup_basic() {
         print_desc \
             'NetworkManager is a program for providing detection and configuration for systems to automatically connect to networks.'
 
-        if ! ask_yn 'Would you like to install?'; then
+        if ! read_yn 'Would you like to install?'; then
             return
         fi
 
@@ -367,7 +367,7 @@ EOM
         print_desc \
             'The X.Org project provides an open source implementation of the X Window System.'
 
-        if ! ask_yn 'Would you like to install?'; then
+        if ! read_yn 'Would you like to install?'; then
             return
         fi
 
@@ -387,7 +387,7 @@ EOM
         print_desc \
             'Fontconfig is a library designed to provide a list of available fonts to applications, and also for configuration for how fonts get rendered.'
 
-        if ! ask_yn 'Would you like to install?'; then
+        if ! read_yn 'Would you like to install?'; then
             return
         fi
 
@@ -428,7 +428,7 @@ install_desktop_environment() {
         print_title 'XMonad - https://wiki.archlinux.org/index.php/Xmonad'
         print_desc 'XMonad is a tiling window manager for X.'
 
-        if ! ask_yn 'Would you like to install?'; then
+        if ! read_yn 'Would you like to install?'; then
             return
         fi
 
@@ -463,7 +463,7 @@ install_desktop_environment() {
         print_desc \
             'GTK, or the GIMP Toolkit, is a multi-platform toolkit for creating graphical user interfaces.'
 
-        if ! ask_yn 'Would you like to install?'; then
+        if ! read_yn 'Would you like to install?'; then
             return
         fi
 
@@ -489,7 +489,7 @@ install_alacritty() {
     print_title 'Alacritty'
     print_desc 'A cross-platform, GPU-accelerated terminal emulator.'
 
-    if ! ask_yn 'Would you like to install?'; then
+    if ! read_yn 'Would you like to install?'; then
         return
     fi
 
@@ -507,7 +507,7 @@ install_fcitx() {
     print_desc \
         'Fcitx is a lightweight input method framework aimed at providing environment independent language support for Linux.'
 
-    if ! ask_yn 'Would you like to install?'; then
+    if ! read_yn 'Would you like to install?'; then
         return
     fi
 
@@ -527,7 +527,7 @@ install_google_chrome() {
         'Google Chrome - https://aur.archlinux.org/packages/google-chrome'
     print_desc 'The popular and trusted web browser by Google'
 
-    if ! ask_yn 'Would you like to install?'; then
+    if ! read_yn 'Would you like to install?'; then
         return
     fi
 
@@ -542,7 +542,7 @@ install_profile_sync_daemon() {
     print_desc \
         'Profile-sync-daemon (psd) is a tiny pseudo-daemon designed to manage browser profile(s) in tmpfs and to periodically sync back to the physical disc (HDD/SSD).'
 
-    if ! ask_yn 'Would you like to install?'; then
+    if ! read_yn 'Would you like to install?'; then
         return
     fi
 
@@ -556,7 +556,7 @@ install_profile_sync_daemon() {
 install_misc_guiapps() {
     print_title 'Misc GUI Apps'
 
-    if ! ask_yn 'Would you like to install?'; then
+    if ! read_yn 'Would you like to install?'; then
         return
     fi
 
@@ -599,7 +599,7 @@ EOM
 install_misc_cliapps() {
     print_title 'Misc CLI Applications'
 
-    if ! ask_yn 'Would you like to install?'; then
+    if ! read_yn 'Would you like to install?'; then
         return
     fi
 
@@ -903,7 +903,7 @@ install_r_devtools() {
 install_devtools() {
     print_title 'Development Tools'
 
-    if ! ask_yn 'Would you like to install?'; then
+    if ! read_yn 'Would you like to install?'; then
         return
     fi
 

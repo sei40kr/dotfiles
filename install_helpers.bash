@@ -42,7 +42,7 @@ print_desc() {
     echo ''
 }
 
-ask_yn() {
+read_yn() {
     local prompt
     local answer
     prompt="$1"
