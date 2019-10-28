@@ -57,66 +57,6 @@ install_trizen() {
     pause
 }
 
-install_networkmanager() {
-    print_title \
-        'Network Manager - https://wiki.archlinux.org/index.php/NetworkManager'
-    print_desc \
-        'NetworkManager is a program for providing detection and configuration for systems to automatically connect to networks.'
-
-    if ! ask_yn 'Would you like to install?'; then
-        return
-    fi
-
-    pacman_sync networkmanager dnsmasq dialog
-
-    cat <<EOM | sudo tee /etc/NetworkManager/conf.d/dns.conf 2>/dev/null
-[main]
-dns=dnsmasq
-EOM
-
-    sudo mkdir -p /etc/NetworkManager/dnsmasq.d
-    cat <<EOM | sudo tee /etc/NetworkManager/dnsmasq.d/cache.conf 2>/dev/null
-cache-size=1024
-EOM
-
-    systemctl_enable NetworkManager.service
-
-    pause
-}
-
-install_bluetooth() {
-    print_title 'Bluetooth - https://wiki.archlinux.org/index.php/Bluetooth'
-    print_desc \
-        'Bluetooth is a standard for the short-range wireless interconnection of cellular phones, computers, and other electronic devices.'
-
-    if ! ask_yn 'Would you like to install?'; then
-        return
-    fi
-
-    pacman_sync bluez bluez-utils
-
-    systemctl_enable bluetooth.service
-
-    pause
-}
-
-install_ntp() {
-    print_title \
-        'Network Time Protocol daemon - https://wiki.archlinux.org/index.php/Network_Time_Protocol_daemon'
-    print_desc \
-        'Network Time Protocol is the most common method to synchronize the software clock of a GNU/Linux system with internet time servers.'
-
-    if ! ask_yn 'Would you like to install?'; then
-        return
-    fi
-
-    pacman_sync ntp networkmanager-dispatcher-ntpd
-
-    sudo timedatectl set-timezone Asia/Tokyo
-
-    pause
-}
-
 install_tmux() {
     print_title 'tmux - https://wiki.archlinux.org/index.php/Tmux'
     print_desc \
@@ -270,6 +210,23 @@ EOM
 }
 
 setup_basic() {
+    install_ntp() {
+        print_title \
+            'Network Time Protocol daemon - https://wiki.archlinux.org/index.php/Network_Time_Protocol_daemon'
+        print_desc \
+            'Network Time Protocol is the most common method to synchronize the software clock of a GNU/Linux system with internet time servers.'
+
+        if ! ask_yn 'Would you like to install?'; then
+            return
+        fi
+
+        pacman_sync ntp networkmanager-dispatcher-ntpd
+
+        sudo timedatectl set-timezone Asia/Tokyo
+
+        pause
+    }
+
     install_zsh() {
         print_title 'Zsh - https://wiki.archlinux.org/index.php/Zsh'
         print_desc \
@@ -362,6 +319,49 @@ setup_basic() {
         pause
     }
 
+    install_bluetooth() {
+        print_title 'Bluetooth - https://wiki.archlinux.org/index.php/Bluetooth'
+        print_desc \
+            'Bluetooth is a standard for the short-range wireless interconnection of cellular phones, computers, and other electronic devices.'
+
+        if ! ask_yn 'Would you like to install?'; then
+            return
+        fi
+
+        pacman_sync bluez bluez-utils
+
+        systemctl_enable bluetooth.service
+
+        pause
+    }
+
+    install_networkmanager() {
+        print_title \
+            'Network Manager - https://wiki.archlinux.org/index.php/NetworkManager'
+        print_desc \
+            'NetworkManager is a program for providing detection and configuration for systems to automatically connect to networks.'
+
+        if ! ask_yn 'Would you like to install?'; then
+            return
+        fi
+
+        pacman_sync networkmanager dnsmasq dialog
+
+        cat <<EOM | sudo tee /etc/NetworkManager/conf.d/dns.conf 2>/dev/null
+[main]
+dns=dnsmasq
+EOM
+
+        sudo mkdir -p /etc/NetworkManager/dnsmasq.d
+        cat <<EOM | sudo tee /etc/NetworkManager/dnsmasq.d/cache.conf 2>/dev/null
+cache-size=1024
+EOM
+
+        systemctl_enable NetworkManager.service
+
+        pause
+    }
+
     install_xorg() {
         print_title 'Xorg - https://wiki.archlinux.org/index.php/Xorg'
         print_desc \
@@ -412,8 +412,13 @@ setup_basic() {
         pause
     }
 
+    install_ntp
+    install_bluetooth
+    install_networkmanager
+
     install_zsh
     install_openssh
+
     install_xorg
     install_fontconfig
 }
@@ -956,9 +961,6 @@ EOM
 
 install_fstrim
 install_trizen
-install_networkmanager
-install_bluetooth
-install_ntp
 install_tmux
 
 setup_basic
