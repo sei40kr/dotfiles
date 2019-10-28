@@ -287,40 +287,6 @@ install_redshift() {
     pause
 }
 
-install_xmonad() {
-    print_title 'xmonad - https://wiki.archlinux.org/index.php/Xmonad'
-    print_desc 'xmonad is a tiling window manager for X.'
-
-    if ! ask_yn 'Would you like to install?'; then
-        return
-    fi
-
-    stack_install xmonad
-    pacman_sync xorg-xmessage scrot xmobar alsa-mixer awk conky dzen2
-
-    ln -fsT "${HOME}/.dotfiles/xmonad" "${HOME}/.xmonad"
-    : >"${HOME}/.xmonad/xmonad.errors"
-
-    mkdir -p "$XDG_PICTURES_DIR"
-
-    ln -fs "${HOME}/.dotfiles/xmobar/xmobarrc" "${HOME}/.xmobarrc"
-    mkdir -p "${HOME}/.local/bin"
-    ln -fs "${HOME}/.dotfiles/xmobar/bin/xmobar-alsa-volume" \
-       "${HOME}/.local/bin/xmobar-alsa-volume"
-    ln -fs "${HOME}/.dotfiles/xmobar/bin/xmobar-fcitx-state" \
-       "${HOME}/.local/bin/xmobar-fcitx-state"
-
-    mkdir -p "${XDG_CONFIG_HOME}/conky"
-    ln -fs "${HOME}/.dotfiles/conky/conky.conf" \
-       "${XDG_CONFIG_HOME}/conky/conky.conf"
-    ln -fs "${HOME}/.dotfiles/conky/conky_helpers.lua" \
-       "${XDG_CONFIG_HOME}/conky/conky_helpers.lua"
-
-    ln -fs "${HOME}/.dotfiles/dzen2/dzconky" "${HOME}/.local/bin/dzconky"
-
-    pause
-}
-
 install_feh() {
     print_title 'Feh - https://wiki.archlinux.org/index.php/Feh'
     print_desc \
@@ -334,29 +300,6 @@ install_feh() {
 
     mkdir -p "${XDG_DATA_HOME}/backgrounds"
     ln -fs "${HOME}/.dotfiles/feh/fehbg" "${HOME}/.fehbg"
-
-    pause
-}
-
-install_gtk() {
-    print_title 'GTK - https://wiki.archlinux.org/index.php/GTK'
-    print_desc \
-        'GTK, or the GIMP Toolkit, is a multi-platform toolkit for creating graphical user interfaces.'
-
-    if ! ask_yn 'Would you like to install?'; then
-        return
-    fi
-
-    pacman_sync gtk2 gtk3
-
-    mkdir -p "${XDG_CONFIG_HOME}/gtk-3.0"
-    ln -fs "${HOME}/.dotfiles/gtk/gtk-3.0/settings.ini" \
-       "${XDG_CONFIG_HOME}/gtk-3.0/settings.ini"
-    mkdir -p "${XDG_CONFIG_HOME}/gtk-2.0"
-    ln -fs "${HOME}/.dotfiles/gtk/gtk-2.0/gtkrc" \
-       "${XDG_CONFIG_HOME}/gtk-2.0/gtkrc"
-    ln -fs "${HOME}/.dotfiles/gtk/gtk-2.0/gtkfilechooser.ini" \
-       "${XDG_CONFIG_HOME}/gtk-2.0/gtkfilechooser.ini"
 
     pause
 }
@@ -466,6 +409,68 @@ EOM
     systemctl_user_enable clipmenud.service
 
     pause
+}
+
+install_desktop_environment() {
+    install_xmonad() {
+        print_title 'XMonad - https://wiki.archlinux.org/index.php/Xmonad'
+        print_desc 'XMonad is a tiling window manager for X.'
+
+        if ! ask_yn 'Would you like to install?'; then
+            return
+        fi
+
+        stack_install xmonad
+        pacman_sync xorg-xmessage scrot xmobar alsa-mixer awk conky dzen2
+
+        ln -fsT "${HOME}/.dotfiles/xmonad" "${HOME}/.xmonad"
+        : >"${HOME}/.xmonad/xmonad.errors"
+
+        mkdir -p "$XDG_PICTURES_DIR"
+
+        ln -fs "${HOME}/.dotfiles/xmobar/xmobarrc" "${HOME}/.xmobarrc"
+        mkdir -p "${HOME}/.local/bin"
+        ln -fs "${HOME}/.dotfiles/xmobar/bin/xmobar-alsa-volume" \
+           "${HOME}/.local/bin/xmobar-alsa-volume"
+        ln -fs "${HOME}/.dotfiles/xmobar/bin/xmobar-fcitx-state" \
+           "${HOME}/.local/bin/xmobar-fcitx-state"
+
+        mkdir -p "${XDG_CONFIG_HOME}/conky"
+        ln -fs "${HOME}/.dotfiles/conky/conky.conf" \
+           "${XDG_CONFIG_HOME}/conky/conky.conf"
+        ln -fs "${HOME}/.dotfiles/conky/conky_helpers.lua" \
+           "${XDG_CONFIG_HOME}/conky/conky_helpers.lua"
+
+        ln -fs "${HOME}/.dotfiles/dzen2/dzconky" "${HOME}/.local/bin/dzconky"
+
+        pause
+    }
+
+    install_gtk() {
+        print_title 'GTK - https://wiki.archlinux.org/index.php/GTK'
+        print_desc \
+            'GTK, or the GIMP Toolkit, is a multi-platform toolkit for creating graphical user interfaces.'
+
+        if ! ask_yn 'Would you like to install?'; then
+            return
+        fi
+
+        pacman_sync gtk2 gtk3
+
+        mkdir -p "${XDG_CONFIG_HOME}/gtk-3.0"
+        ln -fs "${HOME}/.dotfiles/gtk/gtk-3.0/settings.ini" \
+           "${XDG_CONFIG_HOME}/gtk-3.0/settings.ini"
+        mkdir -p "${XDG_CONFIG_HOME}/gtk-2.0"
+        ln -fs "${HOME}/.dotfiles/gtk/gtk-2.0/gtkrc" \
+           "${XDG_CONFIG_HOME}/gtk-2.0/gtkrc"
+        ln -fs "${HOME}/.dotfiles/gtk/gtk-2.0/gtkfilechooser.ini" \
+           "${XDG_CONFIG_HOME}/gtk-2.0/gtkfilechooser.ini"
+
+        pause
+    }
+
+    install_xmonad
+    install_gtk
 }
 
 install_alacritty() {
@@ -951,12 +956,11 @@ install_tmux
 install_openssh
 
 install_xorg
+install_desktop_environment
 install_compton
 install_redshift
-install_xmonad
 install_feh
 install_fontconfig
-install_gtk
 install_rofi
 install_dunst
 install_clipmenu
