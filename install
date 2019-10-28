@@ -645,8 +645,9 @@ install_devapps() {
  1) Vim
  2) Git
  3) Spacemacs
- 4) IntelliJ IDEA Ultimate Edition
- 5) Zeal
+ 4) Visual Studio Code
+ 5) IntelliJ IDEA Ultimate Edition
+ 6) Zeal
 
  q) Quit
 
@@ -673,9 +674,12 @@ EOM
                 install_spacemacs
                 ;;
             4)
-                install_intellij_idea_ue
+                pacman_sync code
                 ;;
             5)
+                install_intellij_idea_ue
+                ;;
+            6)
                 pacman_sync zeal
                 ;;
 
