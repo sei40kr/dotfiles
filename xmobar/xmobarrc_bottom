@@ -1,20 +1,17 @@
 -- -*- mode: haskell -*-
 
--- xmobarrc
+-- xmobarrc_bottom
 -- author: Seong Yong-ju <sei40kr@gmail.com>
 
 Config
   { font =
       "xft:Fira Code:size=11,Noto Sans Mono CJK JP:size=11,monospace:size=11"
   , additionalFonts =
-      [ "xft:FuraCode Nerd Font:size=15"
-      , "xft:FuraCode Nerd Font:size=15"
-      , "xft:Fira Code:size=11:bold,Noto Sans Mono CJK JP:size=11:bold"
-      ]
+      [ "xft:FuraCode Nerd Font:size=15" ]
   , border = NoBorder
   , bgColor = "#1b2229"
   , fgColor = "#bbc2cf"
-  , alpha = 255
+  , alpha = 245
   , position = BottomSize C 100 32
   , textOffset = -1
   , textOffsets = [23, 25, -1]
@@ -27,13 +24,12 @@ Config
   , allDesktops = True
   , overrideRedirect = False
   , commands =
-      [ Run UnsafeStdinReader
-      , Run Com "xmobar-fcitx-state" [] "fcitxstate" 10
-      , Run Com "xmobar-alsa-volume" [] "alsavol" 10
-      , Run Date "%b %_d %a %H:%M" "date" 10
+      [ Run Cpu ["-t", "<fn=1>﬙</fn> <total>%"] 10
+      , Run Memory ["-t", "<fn=1></fn> <used>MB <fc=#3f444a>/</fc> <total>MB"] 10
+      , Run DynNetwork ["-t", "<fn=1><fc=#98be65>ﰬ</fc></fn> <rx>kB/s <fn=1><fc=#ff6c6b>ﰵ</fc></fn> <tx>kB/s"] 10
       ]
   , sepChar = "%"
   , alignSep = "}{"
   , template =
-      " %UnsafeStdinReader% }{ %fcitxstate% <fc=#3f444a>|</fc> %alsavol% <fc=#3f444a>|</fc> %date% "
+      "}{ %cpu% <fc=#3f444a>|</fc> %memory% <fc=#3f444a>|</fc> %dynnetwork% "
   }

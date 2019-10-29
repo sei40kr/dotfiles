@@ -351,7 +351,10 @@ install_desktop_environment() {
 
         mkdir -p "$XDG_PICTURES_DIR"
 
-        ln -fs "${HOME}/.dotfiles/xmobar/xmobarrc" "${HOME}/.xmobarrc"
+        ln -fs "${HOME}/.dotfiles/xmobar/xmobarrc_top" \
+           "${XDG_CONFIG_HOME}/xmobar/xmobarrc_top"
+        ln -fs "${HOME}/.dotfiles/xmobar/xmobarrc_bottom" \
+           "${XDG_CONFIG_HOME}/xmobar/xmobarrc_bottom"
         mkdir -p "${HOME}/.local/bin"
         ln -fs "${HOME}/.dotfiles/xmobar/bin/xmobar-alsa-volume" \
            "${HOME}/.local/bin/xmobar-alsa-volume"

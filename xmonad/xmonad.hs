@@ -356,15 +356,13 @@ myLogHook xmobarProc =
   ewmhDesktopsLogHook <+>
   dynamicLogWithPP
     xmobarPP
-      { ppOrder = \(ws:_:t:_) -> [ws, t]
+      { ppOrder = \(ws:_:_:_) -> [ws]
       , ppCurrent = xmobarColor "#51afef" "" . withWsName
       , ppUrgent = withWsName
       , ppVisible = withWsName
       , ppHidden = withWsName
       , ppHiddenNoWindows = withWsName
-      , ppTitle = xmobarColor "#dfdfdf" "" . xmobarFont 3
       , ppWsSep = "  "
-      , ppSep = xmobarColor "#3f444a" "" " | "
       , ppOutput = hPutStrLn xmobarProc
       }
   where
@@ -385,7 +383,9 @@ myLogHook xmobarProc =
 --
 -- By default, do nothing.
 myStartupHook :: X ()
-myStartupHook = ewmhDesktopsStartup <+> spawnOnce "dzconky" <+> setWMName "LG3D"
+myStartupHook = ewmhDesktopsStartup <+>
+                setWMName "LG3D" <+>
+                spawnOnce "xmobar ~/.config/xmobar/xmobarrc_bottom"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -394,7 +394,7 @@ myStartupHook = ewmhDesktopsStartup <+> spawnOnce "dzconky" <+> setWMName "LG3D"
 --
 main :: IO ()
 main = do
-  xmobarProc <- spawnPipe "xmobar"
+  xmobarProc <- spawnPipe "xmobar ~/.config/xmobar/xmobarrc_top"
   xmonad $ defaults xmobarProc
 
 -- A structure containing your configuration settings, overriding
