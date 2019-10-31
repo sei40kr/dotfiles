@@ -14,8 +14,8 @@ if hash xautolock 2>/dev/null && hash xsecurelock 2>/dev/null; then
                                      xautolock -locker xsecurelock -resetsaver -detectsleep &
 fi
 
-if hash compton 2>/dev/null; then
-    compton -b
+if [[ -x /usr/bin/compton ]]; then
+    /usr/bin/compton &
 fi
 
 if hash redshift 2>/dev/null; then
