@@ -27,6 +27,10 @@ if [[ -x /usr/bin/xwinwrap && -x /usr/lib/xscreensaver/glslideshow ]]; then
              /usr/lib/xscreensaver/glslideshow -root -duration 180 -zoom 100 -clip -window-id WID &
 fi
 
+if [[ -x /usr/bin/dunst ]]; then
+    /usr/bin/dunst &
+fi
+
 if hash fcitx-autostart 2>/dev/null; then
     export XMODIFIERS='@im=fcitx'
     export GTK_IM_MODULE=fcitx
