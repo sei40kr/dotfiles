@@ -452,19 +452,21 @@ install_accessory_apps() {
         pause
     }
 
-    install_feh() {
-        print_title 'Feh - https://wiki.archlinux.org/index.php/Feh'
+    install_xscreensaver() {
+        print_title 'XScreenSaver - https://wiki.archlinux.org/index.php/XScreenSaver'
         print_desc \
-            'feh is a lightweight and powerful image viewer that can also be used to manage the desktop wallpaper for standalone window managers lacking such features.'
+            'XScreenSaver is a screen saver and locker for the X Window System.'
 
         if ! read_yn 'Would you like to install?'; then
             return
         fi
 
-        pacman_sync feh
+        pacman_sync xscreensaver
+        trizen_sync xwinwrap-git
 
         mkdir -p "${XDG_DATA_HOME}/backgrounds"
-        ln -fs "${HOME}/.dotfiles/feh/fehbg" "${HOME}/.fehbg"
+        ln -fs "${HOME}/.dotfiles/xscreensaver/xscreensaver" \
+           "${HOME}/.xscreensaver"
 
         pause
     }
@@ -511,7 +513,7 @@ install_accessory_apps() {
     install_compton
     install_redshift
 
-    install_feh
+    install_xscreensaver
     install_rofi
     install_dunst
 }

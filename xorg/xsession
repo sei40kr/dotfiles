@@ -22,8 +22,9 @@ if hash redshift 2>/dev/null; then
     redshift &
 fi
 
-if hash feh 2>/dev/null && [[ -x "${HOME}/.fehbg" ]]; then
-    "${HOME}/.fehbg" &
+if [[ -x /usr/bin/xwinwrap && -x /usr/lib/xscreensaver/glslideshow ]]; then
+    /usr/bin/xwinwrap -fs -b -nf -ov -- \
+             /usr/lib/xscreensaver/glslideshow -root -duration 180 -zoom 100 -window-id WID &
 fi
 
 if hash fcitx-autostart 2>/dev/null; then

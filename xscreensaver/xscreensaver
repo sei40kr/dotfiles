@@ -1,0 +1,4 @@
+! -*- mode: conf-xdefaults -*-
+
+chooseRandomImages: true
+imageDirectory: /home/sei40kr/.local/share/backgrounds
