@@ -446,8 +446,10 @@ install_accessory_apps() {
         pacman_sync redshift
 
         mkdir -p "${XDG_CONFIG_HOME}/redshift/hooks"
+        ln -fs "${HOME}/.dotfiles/redshift/redshift.conf" \
+           "${XDG_CONFIG_HOME}/redshift/redshift.conf"
         ln -fs "${HOME}/.dotfiles/redshift/hooks/brightness.sh" \
-        "${XDG_CONFIG_HOME}/redshift/hooks/brightness.sh"
+           "${XDG_CONFIG_HOME}/redshift/hooks/brightness.sh"
 
         pause
     }
