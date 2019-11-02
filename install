@@ -344,30 +344,12 @@ install_desktop_environment() {
         fi
 
         stack_install xmonad
-        pacman_sync xorg-xmessage scrot xmobar alsa-mixer awk conky dzen2
+        pacman_sync xorg-xmessage scrot
 
         ln -fsT "${HOME}/.dotfiles/xmonad" "${HOME}/.xmonad"
         : >"${HOME}/.xmonad/xmonad.errors"
 
         mkdir -p "$XDG_PICTURES_DIR"
-
-        ln -fs "${HOME}/.dotfiles/xmobar/xmobarrc_top" \
-           "${XDG_CONFIG_HOME}/xmobar/xmobarrc_top"
-        ln -fs "${HOME}/.dotfiles/xmobar/xmobarrc_bottom" \
-           "${XDG_CONFIG_HOME}/xmobar/xmobarrc_bottom"
-        mkdir -p "${HOME}/.local/bin"
-        ln -fs "${HOME}/.dotfiles/xmobar/bin/xmobar-alsa-volume" \
-           "${HOME}/.local/bin/xmobar-alsa-volume"
-        ln -fs "${HOME}/.dotfiles/xmobar/bin/xmobar-fcitx-state" \
-           "${HOME}/.local/bin/xmobar-fcitx-state"
-
-        mkdir -p "${XDG_CONFIG_HOME}/conky"
-        ln -fs "${HOME}/.dotfiles/conky/conky.conf" \
-           "${XDG_CONFIG_HOME}/conky/conky.conf"
-        ln -fs "${HOME}/.dotfiles/conky/conky_helpers.lua" \
-           "${XDG_CONFIG_HOME}/conky/conky_helpers.lua"
-
-        ln -fs "${HOME}/.dotfiles/dzen2/dzconky" "${HOME}/.local/bin/dzconky"
 
         pause
     }
@@ -473,6 +455,24 @@ install_accessory_apps() {
         pause
     }
 
+    install_polybar() {
+        print_title 'Polybar - https://wiki.archlinux.org/index.php/Polybar'
+        print_desc \
+            'polybar is a fast and easy-to-use tool for creating status bars.'
+
+        if ! read_yn 'Would you like to install?'; then
+            return
+        fi
+
+        trizen_sync polybar ttf-material-design-icons-webfont
+
+        mkdir -p "${XDG_CONFIG_HOME}/polybar"
+        ln -fs "${HOME}/.dotfiles/polybar/config" \
+           "${XDG_CONFIG_HOME}/polybar/config"
+
+        pause
+    }
+
     install_rofi() {
         print_title 'Rofi - https://wiki.archlinux.org/index.php/Rofi'
         print_desc \
@@ -516,6 +516,7 @@ install_accessory_apps() {
     install_redshift
 
     install_xscreensaver
+    install_polybar
     install_rofi
     install_dunst
 }

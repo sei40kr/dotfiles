@@ -348,31 +348,29 @@ myEventHook =
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
 
-xmobarFont :: Integer -> String -> String
-xmobarFont fontIndex = wrap ("<fn=" ++ show fontIndex ++ ">") "</fn>"
+genericJoin :: String -> [String] -> String
+genericJoin delim l = concat $ intersperse delim l
 
-myLogHook :: Handle -> X ()
-myLogHook xmobarProc =
-  ewmhDesktopsLogHook <+>
-  dynamicLogWithPP
-    xmobarPP
-      { ppOrder = \(ws:_:_:_) -> [ws]
-      , ppCurrent = xmobarColor "#51afef" "" . withWsName
-      , ppUrgent = withWsName
-      , ppVisible = withWsName
-      , ppHidden = withWsName
-      , ppHiddenNoWindows = withWsName
-      , ppWsSep = "  "
-      , ppOutput = hPutStrLn xmobarProc
-      }
+myLogHook :: X ()
+myLogHook = do
+  wset <- gets windowset
+  let workspaces = map W.tag $ W.workspaces wset
+  let currentWs = W.currentTag wset
+  io $ appendFile "/tmp/.xmonad-workspace-log" $ format currentWs workspaces
   where
-    withWsName ws =
-      if | ws == "1" -> xmobarFont 1 "\64459"
-         | ws == "2" -> xmobarFont 1 "\63116"
-         | ws == "3" -> xmobarFont 1 "\63079"
-         | ws == "4" -> xmobarFont 1 "\63306"
-         | ws == "5" -> xmobarFont 2 "\63371"
-         | otherwise -> ws
+    format currentWs =
+      (++ "\n") . genericJoin "%{O12}" . map (label currentWs) . sort
+    label currentWs ws =
+      (if ws == currentWs
+         then wrap "%{u#51afef}" "%{-u}"
+         else id) $
+      wrap "%{T4}" "%{T-}" $ icon ws
+    icon ws =
+      if | ws == "1" -> "\61927"
+         | ws == "2" -> "\61837"
+         | ws == "3" -> "\61801"
+         | ws == "4" -> "蝹"
+         | otherwise -> "\63330"
 
 ------------------------------------------------------------------------
 -- Startup hook
@@ -382,10 +380,13 @@ myLogHook xmobarProc =
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
+
 myStartupHook :: X ()
 myStartupHook = ewmhDesktopsStartup <+>
                 setWMName "LG3D" <+>
-                spawnOnce "xmobar ~/.config/xmobar/xmobarrc_bottom"
+                spawnOnce "mkfifo /tmp/.xmonad-workspace-log" <+>
+                spawnOnce "polybar -r top" <+>
+                spawnOnce "polybar -r bottom"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -393,9 +394,7 @@ myStartupHook = ewmhDesktopsStartup <+>
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main :: IO ()
-main = do
-  xmobarProc <- spawnPipe "xmobar ~/.config/xmobar/xmobarrc_top"
-  xmonad $ defaults xmobarProc
+main = xmonad $ defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
@@ -404,7 +403,7 @@ main = do
 
 -- No need to modify this.
 --
-defaults xmobarProc =
+defaults =
   docks
     def
       -- simple stuff
@@ -423,7 +422,7 @@ defaults xmobarProc =
       , layoutHook = myLayout
       , manageHook = myManageHook
       , handleEventHook = myEventHook
-      , logHook = myLogHook xmobarProc
+      , logHook = myLogHook
       , startupHook = myStartupHook
       }
 
