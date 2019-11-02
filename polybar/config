@@ -19,10 +19,10 @@
 ;==========================================================
 
 [colors]
-background     = #f5000000
+background     = #e6000000
 foreground     = #dfdfdf
 
-gray   = #3f444a
+gray   = #5b6268
 red    = #ff6c6b
 orange = #da8548
 green  = #98be65
@@ -59,7 +59,7 @@ modules-right  = alsa wlan battery
 module-margin-left  = 3
 module-margin-right = 3
 
-separator = %{T2}%{F#3f444a}|%{F-}%{T-}
+separator = %{T2}%{F#5b6268}|%{F-}%{T-}
 
 [bar/bottom]
 bottom = true
@@ -94,7 +94,7 @@ modules-right  = cpu memory network
 module-margin-left  = 3
 module-margin-right = 3
 
-separator = %{T2}%{F#3f444a}|%{F-}%{T-}
+separator = %{T2}%{F#5b6268}|%{F-}%{T-}
 
 [module/workspaces-xmonad]
 type = custom/script
