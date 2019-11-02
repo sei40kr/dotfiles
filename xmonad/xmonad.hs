@@ -382,11 +382,12 @@ myLogHook = do
 -- By default, do nothing.
 
 myStartupHook :: X ()
-myStartupHook = ewmhDesktopsStartup <+>
-                setWMName "LG3D" <+>
-                spawnOnce "mkfifo /tmp/.xmonad-workspace-log" <+>
-                spawnOnce "polybar -r top" <+>
-                spawnOnce "polybar -r bottom"
+myStartupHook =
+  ewmhDesktopsStartup <+>
+  setWMName "LG3D" <+>
+  spawnOnce
+    "rm -f /tmp/.xmonad-workspace-log; mkfifo /tmp/.xmonad-workspace-log" <+>
+  spawnOnce "polybar -r top" <+> spawnOnce "polybar -r bottom"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
