@@ -446,9 +446,8 @@ install_accessory_apps() {
         fi
 
         pacman_sync xscreensaver
-        trizen_sync xwinwrap-git
+        trizen_sync xwinwrap-git chromecast-wallpapers
 
-        mkdir -p "${XDG_DATA_HOME}/backgrounds"
         ln -fs "${HOME}/.dotfiles/xscreensaver/xscreensaver" \
            "${HOME}/.xscreensaver"
 
