@@ -484,11 +484,12 @@ install_accessory_apps() {
         pacman_sync rofi
 
         mkdir -p "${XDG_CONFIG_HOME}/rofi"
-        ln -fs "${HOME}/.dotfiles/rofi/config" "${XDG_CONFIG_HOME}/rofi/config"
+        ln -fs "${HOME}/.dotfiles/rofi/config.rasi" \
+           "${XDG_CONFIG_HOME}/rofi/config.rasi"
+        ln -fs "${HOME}/.dotfiles/rofi/onedark.rasi" \
+           "${XDG_CONFIG_HOME}/rofi/onedark.rasi"
 
-        mkdir -p "${HOME}/.local/bin"
-        ln -fs "${XDG_CONFIG_HOME}/rofi/bin/rofi-extra-menu" \
-        "${HOME}/.local/bin/rofi-extra-menu"
+        ln -fsT "${XDG_CONFIG_HOME}/rofi/scripts" "${HOME}/rofi-scripts"
 
         pause
     }
