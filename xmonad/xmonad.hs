@@ -100,9 +100,13 @@ isPocket = resource =? "crx_mjcnijlhddpbdemagnpefmlkjdagkogk"
 
 isPersistent :: Query Bool
 isPersistent = className =? "Bitwarden" <||>
+               className =? "GoldenDict" <||>
+               className =? "Geary" <||>
+               className =? "Gnome-calendar" <||>
+               className =? "Gnome-break-timer" <||>
                isTodoist <||>
                isPocket <||>
-               isLINE <||>
+               className =? "Cawbird" <||>
                className =? "Zeal"
 
 myKeys conf@XConfig {XMonad.modMask = modm} =
@@ -261,23 +265,8 @@ myLayout =
 isChromeExtension :: Query Bool
 isChromeExtension = fmap (isPrefixOf "crx_") resource
 
-isGmail :: Query Bool
-isGmail = resource =? "crx_kmhopmchchfpfdcdjodmpfaaphdclmlj"
-
-isGoogleCalendar :: Query Bool
-isGoogleCalendar = resource =? "crx_kjbdgfilnfhdoflbpgamdcdgpehopbep"
-
-isGoogleNews :: Query Bool
-isGoogleNews = resource =? "crx_kfgapjallbhpciobgmlhlhokknljkgho"
-
-isGoogleMaps :: Query Bool
-isGoogleMaps = resource =? "crx_ggfaonjpnckaehkfmhlbamfemgigikbd"
-
 isKindleCloudReader :: Query Bool
 isKindleCloudReader = resource =? "crx_cemlonfcgoakflacgajmjhfacialphik"
-
-isTwitter :: Query Bool
-isTwitter = resource =? "crx_jgeocpdicgmkeemopbanhokmhcgcflmi"
 
 centerRect :: W.RationalRect
 centerRect = W.RationalRect 0.23 0.14 0.54 0.72
@@ -291,30 +280,35 @@ myManageHook =
     , stringProperty "WM_WINDOW_ROLE" =? "pop-up" <&&> fmap not isChromeExtension
       --> doCenterFloat
     , className =? "Rofi" --> doIgnore
+    , className =? "Gcr-prompter" <||>
+      className =? "Fcitx-config-gtk3" --> doCenterFloat
     , className =? "Bitwarden" <||>
-      isGmail <||>
-      isGoogleCalendar <||>
+      className =? "GoldenDict" --> doRectFloat centerRect <+> doF copyToAll
+    -- Internet Apps
+    , stringProperty "WM_WINDOW_ROLE" =? "browser" --> doShiftAndView "1"
+    , className =? "Geary" <||>
+      className =? "Gnome-calendar" <||>
+      className =? "Gnome-break-timer" <||>
       isKindleCloudReader <||>
       isTodoist <||>
-      isTwitter <||>
-      isLINE --> doRectFloat centerRect <+> doF copyToAll
-    , className =? "Fcitx-config-gtk3" --> doCenterFloat
-    , stringProperty "WM_WINDOW_ROLE" =? "browser" --> doShiftAndView "1"
-    , isGoogleNews <||>
-      isGoogleMaps <||>
-      isPocket --> doShiftAndView "1" <+> doRectFloat centerRect
+      isPocket <||>
+      className =? "Cawbird" --> doShiftAndView "1" <+> doRectFloat centerRect
     , className =? "Alacritty" --> doShiftAndView "2"
+    -- Development Apps
     , className =? "Emacs" <||>
       className =? "Code" <||>
       className =? "jetbrains-idea" --> doShiftAndView "3"
     , className =? "jetbrains-idea" <&&> title =? "Welcome to IntelliJ IDEA" -->
       doCenterFloat
     , className =? "Zeal" --> doShiftAndView "3" <+> doRectFloat centerRect
+    -- File Apps
     , className =? "Thunar" --> doShiftAndView "4"
-    , className =? "Ristretto" <||>
-      className =? "Parole" --> doShiftAndView "4" <+> doRectFloat centerRect
+    -- Communication Apps
     , className =? "Skype" <||>
-      className =? "zoom" --> doShiftAndView "5"
+      className =? "Slack" <||>
+      className =? "zoom" <||>
+      className =? "discord" <||>
+      isLINE --> doShiftAndView "5"
     ]
   where
     doShiftAndView = doF . liftM2 (.) W.view W.shift
