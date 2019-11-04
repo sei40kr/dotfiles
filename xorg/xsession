@@ -9,7 +9,7 @@ xsetroot -cursor_name left_ptr
 if hash xautolock 2>/dev/null && hash xsecurelock 2>/dev/null; then
     XSECURELOCK_AUTH_BACKGROUND_COLOR='#282c34' \
                                      XSECURELOCK_AUTH_FOREGROUND_COLOR='#bbc2cf' \
-                                     XSECURELOCK_FONT='Fira Code-11' \
+                                     XSECURELOCK_FONT='sans\-serif-13' \
                                      XSECURELOCK_PASSWORD_PROMPT=asterisks \
                                      xautolock -locker xsecurelock -resetsaver -detectsleep &
 fi
