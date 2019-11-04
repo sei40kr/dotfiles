@@ -8,8 +8,6 @@
 ;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
 ;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
 ;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
-
-
 ;
 ;   To learn more about how to configure Polybar
 ;   go to https://github.com/polybar/polybar
@@ -44,10 +42,9 @@ padding-right = 12
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-font-0 = sans-serif:size=11;0
-font-1 = sans-serif:size=11:antialias=false;0
-font-2 = sans-serif:weight=bold:size=11;0
-font-3 = Material Design Icons:size=15;1
+font-0 = sans-serif:size=11;2
+font-1 = sans-serif:weight=bold:size=11;2
+font-2 = Material Design Icons:size=15;3
 
 line-size  = 2
 line-color = #f00
@@ -56,10 +53,10 @@ modules-left   = workspaces-xmonad
 modules-center = date
 modules-right  = alsa wlan battery
 
-module-margin-left  = 3
-module-margin-right = 3
+module-margin-left  = 0
+module-margin-right = 0
 
-separator = %{T2}%{F#5b6268}|%{F-}%{T-}
+separator = %{O16}
 
 [bar/bottom]
 bottom = true
@@ -80,9 +77,8 @@ padding-right = 12
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-font-0 = sans-serif:size=11;0
-font-1 = sans-serif:size=11:antialias=false;0
-font-2 = Material Design Icons:size=15;1
+font-0 = sans-serif:size=11;2
+font-1 = Material Design Icons:size=15;3
 
 line-size  = 0
 line-color = #f00
@@ -91,10 +87,10 @@ modules-left   =
 modules-center =
 modules-right  = cpu memory network
 
-module-margin-left  = 3
-module-margin-right = 3
+module-margin-left  = 0
+module-margin-right = 0
 
-separator = %{T2}%{F#5b6268}|%{F-}%{T-}
+separator = %{O16}
 
 [module/workspaces-xmonad]
 type = custom/script
@@ -112,7 +108,7 @@ date = %b %d %a
 time = %H:%M
 
 format           = <label>
-format-font      = 3
+format-font      = 2
 format-underline =
 label = %date% %time%
 
@@ -125,12 +121,12 @@ label-volume = %percentage%%
 format-muted            = <label-muted>
 format-muted-foreground = ${colors.red}
 label-muted      = 
-label-muted-font = 4
+label-muted-font = 3
 
 ramp-volume-0    = 
 ramp-volume-1    = 
 ramp-volume-2    = 
-ramp-volume-font = 4
+ramp-volume-font = 3
 
 ramp-headphones-0 = 
 
@@ -145,14 +141,14 @@ ramp-signal-0    = 爛
 ramp-signal-1    = 嵐
 ramp-signal-2    = 襤
 ramp-signal-3    = 蠟
-ramp-signal-font = 4
+ramp-signal-font = 3
 label-connected = %essid%
 
 format-disconnected           = <label-disconnected>
 format-disconnected-foreground = ${colors.gray}
 format-disconnected-underline =
 label-disconnected      = 來
-label-disconnected-font = 4
+label-disconnected-font = 3
 
 [module/battery]
 type = internal/battery
@@ -178,8 +174,8 @@ animation-charging-7         = 
 animation-charging-8         = 
 animation-charging-9         = 
 animation-charging-10        = 
-animation-charging-framerate = 750
-animation-charging-font      = 4
+animation-charging-framerate = 150
+animation-charging-font      = 3
 
 format-discharging            = <ramp-capacity>%{O8}<label-discharging>
 format-discharging-foreground = ${colors.orange}
@@ -195,24 +191,24 @@ ramp-capacity-7    = 
 ramp-capacity-8    = 
 ramp-capacity-9    = 
 ramp-capacity-10   = 
-ramp-capacity-font = 4
+ramp-capacity-font = 3
 
 format-full            = 
 format-full-foreground = ${colors.green}
-format-full-font       = 4
+format-full-font       = 3
 format-full-underline  =
 
 [module/cpu]
 type = internal/cpu
 
 format = <label>
-label = %{T3}%{T-}%{O8}%percentage%%
+label = %{T2}%{T-}%{O8}%percentage%%
 
 [module/memory]
 type = internal/memory
 
 format = <label>
-label = %{T3}%{T-}%{O8}%mb_used%%{O4}/%{O4}%mb_total%
+label = %{T2}%{T-}%{O8}%mb_used%%{O4}/%{O4}%mb_total%
 
 [module/network]
 type = internal/network
@@ -223,7 +219,7 @@ accumulate-stats = true
 unknown-as-up = true
 
 format-connected = <label-connected>
-label-connected = %{T3}%{F#98be65}%{F-}%{T-}%{O8}%downspeed%%{O12}%{T3}%{F#ff6c6b}%{F-}%{T-}%{O8}%upspeed%
+label-connected = %{T2}%{F#98be65}%{F-}%{T-}%{O8}%downspeed%%{O8}%{T2}%{F#ff6c6b}%{F-}%{T-}%{O8}%upspeed%
 
 format-disconnected =
 

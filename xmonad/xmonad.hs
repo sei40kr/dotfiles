@@ -353,7 +353,7 @@ myLogHook = do
       (if ws == currentWs
          then wrap "%{u#51afef}" "%{-u}"
          else id) $
-      wrap "%{T4}" "%{T-}" $ icon ws
+      wrap "%{T3}" "%{T-}" $ icon ws
     icon ws =
       if | ws == "1" -> "\61927"
          | ws == "2" -> "\61837"
