@@ -567,9 +567,24 @@ install_internet_apps() {
         pause
     }
 
+    install_cawbird() {
+        print_title 'Cawbird - https://ibboard.co.uk/cawbird'
+        print_desc \
+            'Cawbird is modern, easy and fun Twitter client for the desktop.'
+
+        if ! read_yn 'Would you like to install?'; then
+            return
+        fi
+
+        trizen_sync cawbird
+
+        pause
+    }
+
     install_profile_sync_daemon
     install_google_chrome
     install_geary
+    install_cawbird
 }
 
 install_i18n_apps() {
