@@ -553,8 +553,23 @@ install_internet_apps() {
         pause
     }
 
+    install_geary() {
+        print_title 'Geary - https://wiki.gnome.org/Apps/Geary'
+        print_desc \
+            'Geary is an email application built around conversations, for the GNOME 3 desktop.'
+
+        if ! read_yn 'Would you like to install?'; then
+            return
+        fi
+
+        pacman_sync geary
+
+        pause
+    }
+
     install_profile_sync_daemon
     install_google_chrome
+    install_geary
 }
 
 install_i18n_apps() {
