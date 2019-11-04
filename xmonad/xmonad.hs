@@ -220,18 +220,13 @@ myLayout =
   onWorkspace "4" (myTabbed ||| tiled) $ tiled ||| Full
   where
     -- default tiling algorithm partitions the screen into two panes
-    tiled = tiledSpacing $ Tall nmaster delta ratio
+    tiled =
+      tiledSpacing $ Tall 1 (toRational $ 2 / (1 + sqrt 5 :: Double)) (3 / 100)
     tiledSpacing =
-      spacingRaw False (Border 33 33 57 57) True (Border 11 11 19 19) True
-    -- The default number of windows in the master pane
-    nmaster = 1
-    -- Default proportion of screen occupied by master pane
-    ratio = toRational $ 2 / (1 + sqrt 5 :: Double)
-    -- Percent of screen to increment by when resizing panes
-    delta = 3 / 100
+      spacingRaw False (Border 24 24 24 24) True (Border 8 8 8 8) True
     myTabbed = tabSpacing $ tabbed shrinkText tabTheme
     tabSpacing =
-      spacingRaw False (Border 44 44 76 76) True (Border 0 0 0 0) False
+      spacingRaw False (Border 32 32 32 32) True (Border 0 0 0 0) False
     tabTheme =
       def
         { activeColor = "#21242b"
@@ -243,8 +238,8 @@ myLayout =
         , urgentColor = "#282c34"
         , urgentBorderColor = "#21242b"
         , urgentTextColor = "#bbc2cf"
-        , fontName = "xft:Fira Code:size=11"
-        , decoHeight = 32
+        , fontName = "xft:Noto Sans CJK JP:size=11"
+        , decoHeight = 42
         }
 
 ------------------------------------------------------------------------
