@@ -114,9 +114,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     -- launch a terminal
   [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
     -- launch rofi
-  , ((modm, xK_p), spawn "rofi -show run")
-    -- launch rofi
-  , ((modm .|. shiftMask, xK_p), spawn "rofi -show drun")
+  , ((modm, xK_p), spawn "rofi -show combi")
     -- close focused window
   , ( (modm .|. shiftMask, xK_c)
     , withFocused
@@ -423,7 +421,6 @@ help = unlines ["The default modifier key is 'alt'. Default keybindings:",
     "-- launching and killing programs",
     "mod-Shift-Enter  Launch alacritty",
     "mod-p            Launch rofi",
-    "mod-Shift-p      Launch rofi",
     "mod-Shift-c      Close/kill the focused window",
     "mod-Space        Rotate through the available layout algorithms",
     "mod-Shift-Space  Reset the layouts on the current workSpace to default",
