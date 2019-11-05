@@ -10,15 +10,15 @@ items=(
     Shutdown 'systemctl poweroff -i'
 )
 
-selected_item="$1"
+selection="$1"
 
-if [[ -z "$selected_item" ]]; then
+if [[ -z "$selection" ]]; then
     for (( i = 0; i < ${#items[@]}; i+=2 )); do
         echo "${items[$i]}"
     done
 else
     for (( i = 0; i < ${#items[@]}; i+=2 )); do
-        if [[ "${items[$i]}" == "$selected_item" ]]; then
+        if [[ "${items[$i]}" == "$selection" ]]; then
             break
         fi
     done
