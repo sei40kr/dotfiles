@@ -31,6 +31,11 @@ if [[ -x /usr/bin/dunst ]]; then
     /usr/bin/dunst &
 fi
 
+if [[ -x /usr/bin/gnome-keyring-daemon ]]; then
+    eval "$(/usr/bin/gnome-keyring-daemon --start)"
+    export SSH_AUTH_SOCK
+fi
+
 if hash fcitx-autostart 2>/dev/null; then
     export XMODIFIERS='@im=fcitx'
     export GTK_IM_MODULE=fcitx
