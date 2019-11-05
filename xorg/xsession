@@ -40,6 +40,10 @@ if [[ -x /usr/lib/goa-daemon ]]; then
     /usr/lib/goa-daemon --replace &
 fi
 
+if [[ -x /usr/bin/thunar ]]; then
+    /usr/bin/thunar --daemon &
+fi
+
 if hash fcitx-autostart 2>/dev/null; then
     export XMODIFIERS='@im=fcitx'
     export GTK_IM_MODULE=fcitx
