@@ -84,8 +84,8 @@ line-size  = 0
 line-color = #f00
 
 modules-left   =
-modules-center =
-modules-right  = cpu memory network
+modules-center = cpu memory network
+modules-right  =
 
 module-margin-left  = 0
 module-margin-right = 0
