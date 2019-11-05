@@ -40,6 +40,11 @@ if [[ -x /usr/lib/goa-daemon ]]; then
     /usr/lib/goa-daemon --replace &
 fi
 
+if [[ -x /usr/bin/geary ]]; then
+    # FIXME --hidden works but deprecated
+    /usr/bin/geary --hidden &
+fi
+
 if [[ -x /usr/bin/thunar ]]; then
     /usr/bin/thunar --daemon &
 fi
