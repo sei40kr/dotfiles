@@ -36,6 +36,10 @@ if [[ -x /usr/bin/gnome-keyring-daemon ]]; then
     export SSH_AUTH_SOCK
 fi
 
+if [[ -x /usr/lib/goa-daemon ]]; then
+    /usr/lib/goa-daemon --replace &
+fi
+
 if hash fcitx-autostart 2>/dev/null; then
     export XMODIFIERS='@im=fcitx'
     export GTK_IM_MODULE=fcitx
