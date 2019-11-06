@@ -31,6 +31,8 @@ if [[ -x /usr/bin/dunst ]]; then
     /usr/bin/dunst &
 fi
 
+export XDG_CURRENT_DESKTOP=GNOME
+
 if [[ -x /usr/bin/gnome-keyring-daemon ]]; then
     eval "$(/usr/bin/gnome-keyring-daemon --start)"
     export SSH_AUTH_SOCK
