@@ -51,6 +51,10 @@ if [[ -x /usr/bin/thunar ]]; then
     /usr/bin/thunar --daemon &
 fi
 
+if [[ -x /usr/bin/TogglDesktop ]]; then
+    /usr/bin/TogglDesktop -b &
+fi
+
 if hash fcitx-autostart 2>/dev/null; then
     export XMODIFIERS='@im=fcitx'
     export GTK_IM_MODULE=fcitx
