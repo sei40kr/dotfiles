@@ -6,6 +6,7 @@ import           Control.Monad
 import           Data.List
 import qualified Data.Map                    as M
 import           Data.Monoid
+import           Data.Ratio ((%))
 import           System.Exit
 import           System.IO
 import           XMonad
@@ -18,8 +19,10 @@ import           XMonad.Hooks.ManageHelpers
 import           XMonad.Hooks.Minimize
 import           XMonad.Hooks.SetWMName
 import           XMonad.Layout.BoringWindows
+import           XMonad.Layout.IM
 import           XMonad.Layout.Minimize
 import           XMonad.Layout.PerWorkspace
+import           XMonad.Layout.Reflect
 import           XMonad.Layout.Spacing
 import           XMonad.Layout.Tabbed
 import qualified XMonad.StackSet             as W
@@ -216,17 +219,17 @@ myMouseBindings XConfig {XMonad.modMask = modm} =
 myLayout =
   avoidStruts $
   minimize . boringWindows $
-  onWorkspace "1" myTabbed $
-  onWorkspace "2" (myTabbed ||| Mirror tiled) $
-  onWorkspace "3" myTabbed $
-  onWorkspace "4" (myTabbed ||| tiled) $ tiled ||| Full
+  onWorkspace "1" (tabSpacing myTabbed) $
+  onWorkspace "2" (tabSpacing myTabbed ||| Mirror (tiledSpacing tiled)) $
+  onWorkspace "3" (tabSpacing $ reflectHoriz $ withIM (1 % 2) vmdProps myTabbed) $
+  onWorkspace "4" (tabSpacing myTabbed ||| tiledSpacing tiled) $
+  (tiledSpacing tiled) ||| Full
   where
     -- default tiling algorithm partitions the screen into two panes
-    tiled =
-      tiledSpacing $ Tall 1 (toRational $ 2 / (1 + sqrt 5 :: Double)) (3 / 100)
+    tiled = Tall 1 (toRational $ 2 / (1 + sqrt 5 :: Double)) (3 / 100)
     tiledSpacing =
       spacingRaw False (Border 24 24 24 24) True (Border 8 8 8 8) True
-    myTabbed = tabSpacing $ tabbed shrinkText tabTheme
+    myTabbed = tabbed shrinkText tabTheme
     tabSpacing =
       spacingRaw False (Border 32 32 32 32) True (Border 0 0 0 0) False
     tabTheme =
@@ -243,6 +246,7 @@ myLayout =
         , fontName = "xft:Noto Sans CJK JP:size=11"
         , decoHeight = 42
         }
+    vmdProps = ClassName "Electron"
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -265,6 +269,9 @@ isChromeExtension = fmap (isPrefixOf "crx_") resource
 
 isKindleCloudReader :: Query Bool
 isKindleCloudReader = resource =? "crx_cemlonfcgoakflacgajmjhfacialphik"
+
+isVmd :: Query Bool;
+isVmd = className =? "Electron" <&&> fmap (isSuffixOf " - vmd") title
 
 centerRect :: W.RationalRect
 centerRect = W.RationalRect 0.23 0.14 0.54 0.72
@@ -294,6 +301,7 @@ myManageHook =
     , className =? "Alacritty" --> doShiftAndView "2"
     -- Development Apps
     , className =? "Emacs" <||>
+      isVmd <||>
       className =? "Code" <||>
       className =? "jetbrains-idea" --> doShiftAndView "3"
     , className =? "jetbrains-idea" <&&> title =? "Welcome to IntelliJ IDEA" -->
