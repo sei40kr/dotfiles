@@ -82,8 +82,7 @@ path=( "${RBENV_ROOT}/bin"
 
 # Node.js
 export NVM_DIR="${HOME}/.nvm"
-path=( "${NVM_DIR}/current/bin"
-       "${HOME}/.yarn/bin"
+path=( "${HOME}/.yarn/bin"
        "${path[@]}" )
 
 # Google Cloud SDK

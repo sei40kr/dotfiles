@@ -163,7 +163,6 @@ zplugin snippet OMZ::plugins/laravel5/laravel5.plugin.zsh
 
 ## Node.js
 
-export NVM_SYMLINK_CURRENT=true
 export NVM_AUTO_USE=true
 zplugin light lukechilds/zsh-nvm
 
