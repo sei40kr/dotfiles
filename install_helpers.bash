@@ -65,6 +65,13 @@ print_info() {
     echo "${message}"
 }
 
+print_important() {
+    local message
+    message="$1"
+
+    echo -e "${BOLD}${message}${RESET}"
+}
+
 print_warning() {
     local message
     message="$1"
@@ -79,11 +86,32 @@ print_danger() {
     echo -e "${RED}${message}${RESET}"
 }
 
+menu_item() {
+    local title
+    title="$1"
+
+    echo "${BOLD}${title}${RESET}"
+}
+
+pacman_menu_item() {
+    local title
+    local -a pkgs
+    title="$1"
+    shift
+    pkgs=( "$@" )
+
+    if pacman -Q "${pkgs[@]}" 1>/dev/null 2>/dev/null; then
+        echo "${GREEN}☑${RESET} ${BOLD}${title}${RESET}"
+    else
+        echo "☐ ${BOLD}${title}${RESET}"
+    fi
+}
+
 with_spinner() {
     local pid
     local i
 
-    "$@" >/dev/null >/dev/null &
+    "$@" 1>/dev/null 2>/dev/null &
     pid="$!"
 
     echo '  '
@@ -94,7 +122,7 @@ with_spinner() {
         sleep 0.25
     done
 
-    echo -ne '\b\b'
+    echo -e '\b\b'
 
     wait "$pid"
     if [[ "$?" != 0 && "$?" != 255 ]]; then
@@ -127,7 +155,6 @@ pacman_query() {
 pacman_sync() {
     local -a pkgs
     pkgs=( "$@" )
-    sudo pacman -Spy --print-format '%r' "${pkgs[@]}" | read -ra repos
 
     echo 'Installing'
 
@@ -176,6 +203,13 @@ systemctl_enable() {
     sudo systemctl enable --now "$service"
 }
 
+systemctl_mask() {
+    local service
+    service="$1"
+
+    sudo systemctl mask --now "$service"
+}
+
 systemctl_user_enable() {
     local service
     service="$1"
@@ -188,7 +222,6 @@ rustup_toolchain_install() {
     toolchain="$1"
 
     if ! pacman_query rustup; then
-        # TODO Install rustup
         error 'rustup is not installed. Aborting.'
     fi
 
@@ -209,30 +242,121 @@ rustup_component_add() {
     with_spinner rustup component add --toolchain "$toolchain" "${components[@]}"
 }
 
-go_get() {
-    local -a pkgs
-    pkgs=( "$@" )
+goenv_install() {
+    local go_version
+    go_version="$1"
 
-    with_spinner "${GOENV_ROOT}/shims/go" get -u "${pkgs[@]}"
+    # TODO check goenv executable exists
+
+    with_spinner "${GOENV_ROOT}/bin/goenv" install -s "$go_version"
 }
 
-pip3_install() {
+go_get() {
+    local go_version
     local -a pkgs
+    local go_exec
+    go_version="$1"
+    shift
     pkgs=( "$@" )
 
-    with_spinner "${PYENV_ROOT}/shims/pip3" install -qU --exists-action s "${pkgs[@]}"
+    if [[ "$go_version" == system ]]; then
+        go_exec=/usr/bin/go
+    else
+        go_exec="${GOENV_ROOT}/versions/${go_version}/go"
+    fi
+
+    # TODO check go executable exists
+
+    with_spinner GOPATH="${HOME}/go/${go_version}" "$go_exec" get -u "${pkgs[@]}"
+}
+
+pyenv_install() {
+    local python_version
+    python_version="$1"
+
+    # TODO check pyenv executable exists
+
+    with_spinner "${PYENV_ROOT}/bin/pyenv" install -s "$python_version"
+}
+
+pip_install() {
+    local python_version
+    local -a pkgs
+    local pip_exec
+    local -a pip_opts
+    python_version="$1"
+    shift
+    pkgs=( "$@" )
+    pip_opts=( -q -U )
+
+    if [[ "$python_version" == system ]]; then
+        pip_exec=/usr/bin/pip
+        pip_opts+=( --user )
+    else
+        pip_exec="${PYENV_ROOT}/versions/${python_version}/bin/pip"
+    fi
+
+    # TODO check pip executable exists
+
+    with_spinner "$pip_exec" --disable-pip-version-check install "${pip_opts[@]}" "${pkgs[@]}"
+}
+
+rbenv_install() {
+    local ruby_version
+    ruby_version="$1"
+
+    # TODO check rbenv executable exists
+
+    with_spinner "${RBENV_ROOT}/bin/rbenv" install -s "$ruby_version"
 }
 
 gem_install() {
+    local ruby_version
     local -a gems
+    local gem_exec
+    local -a gem_opts
+    ruby_version="$1"
+    shift
     gems=( "$@" )
+    gem_opts=( -q --silent --norc )
 
-    with_spinner "${RBENV_ROOT}/shims/gem" install -q --silent --norc "${gems[@]}"
+    if [[ "$ruby_version" == system ]]; then
+        gem_exec=/usr/bin/gem
+        gem_opts+=( --user-install )
+    else
+        gem_exec="${RBENV_ROOT}/versions/${ruby_version}/bin/gem"
+    fi
+
+    # TODO check gem executable exists
+
+    with_spinner "$gem_exec" install "${gem_opts[@]}" "${gems[@]}"
+}
+
+nvm_install() {
+    local node_version
+    node_version="$1"
+
+    # TODO check nvm exists
+
+    ( . "${NVM_DIR}/nvm.sh"
+      with_spinner nvm install --no-progress "$node_version" )
 }
 
 yarn_global_add() {
+    local node_version
     local -a pkgs
+    local node_execdir
+    node_version="$1"
+    shift
     pkgs=( "$@" )
 
-    PATH="${NVM_DIR}/current/bin:${PATH}" with_spinner yarn global add --no-default-rc --noprogress --non-interactive "${pkgs[@]}"
+    if [[ "$node_version" == system ]]; then
+      node_execdir=/usr/bin
+    else
+      node_execdir="${NVM_DIR}/versions/${node_version}/bin"
+    fi
+
+    # TODO check node and yarn executables exist
+
+    PATH="${node_execdir}:${PATH}" with_spinner yarn global add --no-default-rc --noprogress --non-interactive "${pkgs[@]}"
 }
