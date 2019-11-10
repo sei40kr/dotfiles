@@ -13,7 +13,7 @@ clone_gh() {
     if [[ "$repo" == 'fastretailing/'* ]]; then
         local repo_url="git@github.com:${repo}.git"
     elif [[ "$repo" == 'sei40kr/'* ]]; then
-        local repo_url="git@github-personal:${repo}.git"
+        local repo_url="git@github-private:${repo}.git"
     else
         local repo_url="https://github.com/${repo}.git"
     fi
