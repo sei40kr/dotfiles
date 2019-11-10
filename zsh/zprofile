@@ -76,7 +76,8 @@ path=( "${PYENV_ROOT}/bin"
 
 # Ruby
 export RBENV_ROOT="${HOME}/.rbenv"
-path=( "${RBENV_ROOT}/bin"
+path=( "${HOME}/.gem/ruby/2.6.0/bin"
+       "${RBENV_ROOT}/bin"
        "${RBENV_ROOT}/shims"
        "${path[@]}" )
 
