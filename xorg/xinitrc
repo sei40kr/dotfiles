@@ -3,6 +3,14 @@
 # xinitrc --- Shared environment setup for graphical sessions
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
+# Make sure this is before the 'exec' command or it won't be sourced.
+if [[ -f /etc/xprofile ]]; then
+    . /etc/xprofile
+fi
+if [[ -f "${HOME}/.xprofile" ]]; then
+    . "${HOME}/.xprofile"
+fi
+
 for file in /etc/X11/xinit/xinitrc.d/*; do
     . "$file"
 done

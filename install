@@ -254,12 +254,15 @@ EOM
             return
         fi
 
-        pacman_sync dbus xorg xorg-xinit xautolock xsecurelock
+        pacman_sync dbus xorg xdg-user-dirs xorg-xinit xautolock xsecurelock
 
+        ln -fs "${HOME}/.dotfiles/xorg/xprofile" "${HOME}/.xprofile"
         ln -fs "${HOME}/.dotfiles/xorg/xinitrc" "${HOME}/.xinitrc"
         ln -fs "${HOME}/.dotfiles/xorg/Xresources" "${HOME}/.Xresources"
         ln -fs "${HOME}/.dotfiles/xorg/Xmodmap" "${HOME}/.Xmodmap"
         ln -fs "${HOME}/.dotfiles/xorg/xsession" "${HOME}/.xsession"
+
+        LC_ALL=C xdg-user-dirs-update
 
         pause
     }
