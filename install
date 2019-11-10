@@ -849,6 +849,8 @@ install_dev_tools() {
             prettier-eslint-cli
             typescript-formatter
             # lsp
+            vscode-html-languageserver-bin
+            vscode-css-languageserver-bin
             javascript-typescript-langserver
             typescript-language-server
             # editor tools
