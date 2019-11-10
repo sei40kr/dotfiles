@@ -45,6 +45,10 @@ if [[ -x /usr/bin/geary ]]; then
     /usr/bin/geary --hidden &
 fi
 
+if [[ -x "${HOME}/.dropbox-dist/dropboxd" ]]; then
+    "${HOME}/.dropbox-dist/dropboxd" &
+fi
+
 if [[ -x /usr/bin/thunar ]]; then
     /usr/bin/thunar --daemon &
 fi

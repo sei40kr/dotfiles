@@ -1125,6 +1125,32 @@ install_internet_apps() {
         done
     }
 
+    install_cloud_storage() {
+        while true; do
+            print_title 'Cloud Storage'
+
+            echo "  1) $(pacman_menu_item 'Dropbox' dropbox)"
+            echo ''
+            echo '  d) Done'
+
+            read -rp 'Enter your option: ' opt
+
+            case "$opt" in
+                1 )
+                    if ! pacman_query dropbox; then
+                        curl -qs 'https://linux.dropbox.com/fedora/rpm-public-key.asc' |
+                            gpg --import - -q
+                        trizen_sync dropbox
+                    fi
+                    ;;
+
+                d )
+                    break
+                    ;;
+            esac
+        done
+    }
+
     install_im() {
         while true; do
             print_title 'Instant Messenger Apps'
@@ -1169,9 +1195,10 @@ install_internet_apps() {
         echo "  1) $(menu_item 'Web Browser')"
         echo "  2) $(pacman_menu_item 'Geary' geary)"
         echo "  3) $(pacman_menu_item 'Fragments' fragments)"
-        echo "  4) $(pacman_menu_item 'Cawbird' cawbird)"
+        echo "  4) $(menu_item 'Cloud Storage')"
+        echo "  5) $(pacman_menu_item 'Cawbird' cawbird)"
         echo ''
-        echo "  5) $(menu_item 'Instant Messengers')"
+        echo "  6) $(menu_item 'Instant Messengers')"
         echo ''
         echo '  d) Done'
 
@@ -1188,10 +1215,13 @@ install_internet_apps() {
                 pacman_sync fragments
                 ;;
             4 )
+                install_cloud_storage
+                ;;
+            5 )
                 pacman_sync cawbird
                 ;;
 
-            5 )
+            6 )
                 install_im
                 ;;
 
