@@ -681,9 +681,6 @@ install_dev_apps() {
 install_dev_tools() {
     install_c_dev_tools() {
         pacman_sync llvm gcc gdb gdb-dashboard clang
-
-        trizen_sync cquery
-
         pip_install system cpplint cmakelint
 
         ln -fs "/usr/share/gdb-dashboard/.gdbinit" "${HOME}/.gdbinit"
