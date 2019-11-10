@@ -739,6 +739,48 @@ install_dev_tools() {
                       hoogle
     }
 
+    install_java_dev_tools() {
+        while true; do
+            print_title 'Java Development Tools'
+
+            echo "  8) $(pacman_menu_item 'OpenJDK 8' jdk8-openjdk)"
+            echo " 10) $(pacman_menu_item 'OpenJDK 10' jdk10-openjdk)"
+            echo " 11) $(pacman_menu_item 'OpenJDK 11' jdk11-openjdk)"
+
+            read -rp 'Choose which version to use: ' opt
+
+            case "$opt" in
+                8 )
+                    pacman_sync jdk8-openjdk
+                    break
+                    ;;
+                10 )
+                    pacman_sync jdk10-openjdk
+                    break
+                    ;;
+                11 )
+                    pacman_sync jdk11-openjdk
+                    break
+                    ;;
+            esac
+        done
+
+        pacman_sync maven \
+                    gradle
+        trizen_sync java-lombok \
+                    google-java-format
+    }
+
+    install_scala_dev_tools() {
+        pacman_sync scala \
+                    sbt \
+                    maven \
+                    gradle
+        trizen_sync scalafmt-native \
+                    metals \
+                    java-lombok
+    }
+
     install_python_dev_tools() {
         pacman_sync python python-pip poetry
 
@@ -944,21 +986,23 @@ install_dev_tools() {
         echo "  2) $(menu_item 'Rust')"
         echo "  3) $(menu_item 'Go')"
         echo "  4) $(menu_item 'Haskell')"
-        echo "  5) $(menu_item 'Python')"
-        echo "  6) $(menu_item 'Ruby')"
-        echo "  7) $(menu_item 'Perl')"
-        echo "  8) $(menu_item 'Web Frontend')"
-        echo "  9) $(menu_item 'SQL')"
-        echo " 10) $(menu_item 'R')"
-        echo " 11) $(menu_item 'Shell Scripts')"
-        echo " 12) $(menu_item 'Markdown')"
-        echo " 13) $(menu_item 'PlantUML')"
+        echo "  5) $(menu_item 'Java')"
+        echo "  6) $(menu_item 'Scala')"
+        echo "  7) $(menu_item 'Python')"
+        echo "  8) $(menu_item 'Ruby')"
+        echo "  9) $(menu_item 'Perl')"
+        echo " 10) $(menu_item 'Web Frontend')"
+        echo " 11) $(menu_item 'SQL')"
+        echo " 12) $(menu_item 'R')"
+        echo " 13) $(menu_item 'Shell Scripts')"
+        echo " 14) $(menu_item 'Markdown')"
+        echo " 15) $(menu_item 'PlantUML')"
         echo ''
-        echo " 14) $(menu_item 'Ansible')"
-        echo " 15) $(menu_item 'Docker')"
+        echo " 16) $(menu_item 'Ansible')"
+        echo " 17) $(menu_item 'Docker')"
         echo ''
-        echo " 16) $(menu_item 'AtCoder Environment')"
-        echo " 17) $(menu_item 'LeetCode Environment')"
+        echo " 18) $(menu_item 'AtCoder Environment')"
+        echo " 19) $(menu_item 'LeetCode Environment')"
         echo ''
         echo '  d) Done'
 
@@ -978,43 +1022,49 @@ install_dev_tools() {
                 install_haskell_dev_tools
                 ;;
             5 )
-                install_python_dev_tools
+                install_java_dev_tools
                 ;;
             6 )
-                install_ruby_dev_tools
+                install_scala_dev_tools
                 ;;
             7 )
-                install_perl_dev_tools
+                install_python_dev_tools
                 ;;
             8 )
-                install_web_frontend_dev_tools
+                install_ruby_dev_tools
                 ;;
             9 )
-                install_sql_dev_tools
+                install_perl_dev_tools
                 ;;
             10 )
-                install_r_dev_tools
+                install_web_frontend_dev_tools
                 ;;
             11 )
-                install_shell_scripts_dev_tools
+                install_sql_dev_tools
                 ;;
             12 )
-                install_markdown_dev_tools
+                install_r_dev_tools
                 ;;
             13 )
+                install_shell_scripts_dev_tools
+                ;;
+            14 )
+                install_markdown_dev_tools
+                ;;
+            15 )
                 install_plantuml_dev_tools
                 ;;
 
-            14 )
+            16 )
                 install_ansible_dev_tools
                 ;;
-            15 )
+            17 )
                 install_docker_dev_tools
                 ;;
-            16 )
+            18 )
                 install_atcoder_env
                 ;;
-            17 )
+            19 )
                 install_leetcode_env
                 ;;
 
