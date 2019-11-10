@@ -773,7 +773,8 @@ install_dev_tools() {
                     sbt \
                     maven \
                     gradle
-        trizen_sync scalafmt-native \
+        trizen_sync scalastyle \
+                    scalafmt-native \
                     metals \
                     java-lombok
     }
