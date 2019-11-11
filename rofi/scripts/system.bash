@@ -8,6 +8,8 @@ items=(
     Suspend 'systemctl suspend -i'
     Reboot 'systemctl reboot -i'
     Shutdown 'systemctl poweroff -i'
+
+    'Clear Clipboard History' "clipdel -d '.*'"
 )
 
 selection="$1"
