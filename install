@@ -604,29 +604,22 @@ install_dev_apps() {
             mkdir -p "${HOME}/.emacs.d/private/layers"
         fi
 
+        local local_pkgs=(
+            emacs-atcoder-tools
+            # snippets
+            rails-snippets
+            react-snippets
+            redux-snippets
+            jest-snippets
+            competitive-programming-snippets
+        )
         mkdir -p "${HOME}/.emacs.d/private/local"
-        if [[ ! -d "${HOME}/.emacs.d/private/local/competitive-programming-snippets" ]]
-        then
-            git clone -q \
-                ssh://git@github.com/sei40kr/competitive-programming-snippets.git \
-                "${HOME}/.emacs.d/private/local/competitive-programming-snippets"
-        fi
-        if [[ ! -d "${HOME}/.emacs.d/private/local/jest-snippets" ]]; then
-            git clone -q ssh://git@github.com/sei40kr/jest-snippets.git \
-                "${HOME}/.emacs.d/private/local/jest-snippets"
-        fi
-        if [[ ! -d "${HOME}/.emacs.d/private/local/rails-snippets" ]]; then
-            git clone -q ssh://git@github.com/sei40kr/rails-snippets.git \
-                "${HOME}/.emacs.d/private/local/rails-snippets"
-        fi
-        if [[ ! -d "${HOME}/.emacs.d/private/local/react-snippets" ]]; then
-            git clone -q ssh://git@github.com/sei40kr/react-snippets.git \
-                "${HOME}/.emacs.d/private/local/react-snippets"
-        fi
-        if [[ ! -d "${HOME}/.emacs.d/private/local/redux-snippets" ]]; then
-            git clone -q ssh://git@github.com/sei40kr/redux-snippets.git \
-                "${HOME}/.emacs.d/private/local/redux-snippets"
-        fi
+        for pkg in "${local_pkgs[@]}"; do
+            if [[ ! -d "${HOME}/.emacs.d/private/local/${pkg}" ]]; then
+                git clone -q "ssh://git@github.com/sei40kr/${pkg}.git" \
+                    "${HOME}/.emacs.d/private/local/${pkg}"
+            fi
+        done
     }
 
     install_intellij_idea_ue() {
