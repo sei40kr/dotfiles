@@ -595,7 +595,7 @@ install_dev_apps() {
         pacman_sync emacs cmake libvterm fbida
 
         if [[ ! -d "${HOME}/.emacs.d" ]]; then
-            git clone -b develop git@github.com:sei40kr/spacemacs.git \
+            git clone -qb develop git@github.com:sei40kr/spacemacs.git \
                 "${HOME}/.emacs.d"
 
             mkdir -p "${HOME}/.emacs.d/private/layers"
@@ -604,24 +604,24 @@ install_dev_apps() {
         mkdir -p "${HOME}/.emacs.d/private/local"
         if [[ ! -d "${HOME}/.emacs.d/private/local/competitive-programming-snippets" ]]
         then
-            git clone \
+            git clone -q \
                 ssh://git@github.com/sei40kr/competitive-programming-snippets.git \
                 "${HOME}/.emacs.d/private/local/competitive-programming-snippets"
         fi
         if [[ ! -d "${HOME}/.emacs.d/private/local/jest-snippets" ]]; then
-            git clone ssh://git@github.com/sei40kr/jest-snippets.git \
+            git clone -q ssh://git@github.com/sei40kr/jest-snippets.git \
                 "${HOME}/.emacs.d/private/local/jest-snippets"
         fi
         if [[ ! -d "${HOME}/.emacs.d/private/local/rails-snippets" ]]; then
-            git clone ssh://git@github.com/sei40kr/rails-snippets.git \
+            git clone -q ssh://git@github.com/sei40kr/rails-snippets.git \
                 "${HOME}/.emacs.d/private/local/rails-snippets"
         fi
         if [[ ! -d "${HOME}/.emacs.d/private/local/react-snippets" ]]; then
-            git clone ssh://git@github.com/sei40kr/react-snippets.git \
+            git clone -q ssh://git@github.com/sei40kr/react-snippets.git \
                 "${HOME}/.emacs.d/private/local/react-snippets"
         fi
         if [[ ! -d "${HOME}/.emacs.d/private/local/redux-snippets" ]]; then
-            git clone ssh://git@github.com/sei40kr/redux-snippets.git \
+            git clone -q ssh://git@github.com/sei40kr/redux-snippets.git \
                 "${HOME}/.emacs.d/private/local/redux-snippets"
         fi
     }
