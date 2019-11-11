@@ -391,6 +391,7 @@ install_desktop_environment() {
         mkdir -p "${XDG_CONFIG_HOME}/polybar"
         ln -fs "${HOME}/.dotfiles/polybar/config" \
            "${XDG_CONFIG_HOME}/polybar/config"
+        ln -fsT "${HOME}/.dotfiles/polybar/scripts" "${HOME}/polybar-scripts"
 
         pause
     }

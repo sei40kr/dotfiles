@@ -51,7 +51,7 @@ line-color = #f00
 
 modules-left   = workspaces-xmonad
 modules-center = date
-modules-right  = alsa wlan battery
+modules-right  = dropbox-status alsa wlan battery
 
 module-margin-left  = 0
 module-margin-right = 0
@@ -111,6 +111,13 @@ format           = <label>
 format-font      = 2
 format-underline =
 label = %date% %time%
+
+[module/dropbox-status]
+type = custom/script
+
+exec = ~/polybar-scripts/dropbox-status/dropbox-status.sh
+
+interval = 10
 
 [module/alsa]
 type = internal/alsa
