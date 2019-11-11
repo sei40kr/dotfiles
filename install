@@ -597,6 +597,8 @@ install_dev_apps() {
         if [[ ! -d "${HOME}/.emacs.d" ]]; then
             git clone -qb develop git@github.com:sei40kr/spacemacs.git \
                 "${HOME}/.emacs.d"
+            git -C "${HOME}/.emacs.d" -f upstream \
+                https://github.com/syl20bnr/spacemacs.git
 
             mkdir -p "${HOME}/.emacs.d/private/layers"
         fi
