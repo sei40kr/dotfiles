@@ -50,7 +50,7 @@ fi
 
 # Go
 export GOENV_ROOT="${HOME}/.goenv"
-export GOPATH="${HOME}/go"
+export GOPATH="${HOME}/go/system"
 path=( "${GOENV_ROOT}/bin"
        "${GOENV_ROOT}/shims"
        "${GOPATH}/bin"
