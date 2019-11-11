@@ -240,6 +240,13 @@ EOM
 
         # TODO Prohibit password authentication
 
+        # shellcheck disable=SC2174
+        mkdir -pm 700 "${HOME}/.ssh"
+        ln -fs "${HOME}/.dotfiles/ssh/config" "${HOME}/.ssh/config"
+
+        git -C "${HOME}/.dotfiles" remote set-url origin \
+            git@github-private:sei40kr/dotfiles.git
+
         systemctl_enable sshd.service
 
         pause
