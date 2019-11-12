@@ -954,6 +954,28 @@ install_dev_tools() {
         yarn_global_add system dockerfile-language-server-nodejs
     }
 
+    install_others() {
+        while true; do
+            print_title 'Others'
+
+            echo "  1) $(pacman_menu_item 'EditorConfig' editorconfig-core-c)"
+            echo ''
+            echo '  d) Done'
+
+            read -rp 'Enter your option: ' opt
+
+            case "$opt" in
+                1)
+                    pacman_sync editorconfig-core-c
+                    ;;
+
+                d )
+                    break
+                    ;;
+            esac
+        done
+    }
+
     install_atcoder_env() {
         local rust_version
         local go_version
@@ -1017,9 +1039,10 @@ install_dev_tools() {
         echo " 16) $(menu_item 'Ansible')"
         echo " 17) $(menu_item 'Docker')"
         echo ''
-        echo " 18) $(menu_item 'AtCoder Environment')"
-        echo " 19) $(menu_item 'LeetCode Environment')"
+        echo " 18) $(menu_item 'Others')"
         echo ''
+        echo " 19) $(menu_item 'AtCoder Environment')"
+        echo " 20) $(menu_item 'LeetCode Environment')"
         echo '  d) Done'
 
         read -rp 'Enter your option: ' opt
@@ -1077,10 +1100,15 @@ install_dev_tools() {
             17 )
                 install_docker_dev_tools
                 ;;
+
             18 )
+                install_others
+                ;;
+
+            19 )
                 install_atcoder_env
                 ;;
-            19 )
+            20 )
                 install_leetcode_env
                 ;;
 
