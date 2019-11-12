@@ -951,6 +951,7 @@ install_dev_tools() {
 
     install_docker_dev_tools() {
         pacman_sync docker docker-compose
+        yarn_global_add system dockerfile-language-server-nodejs
     }
 
     install_atcoder_env() {
