@@ -1,0 +1,8 @@
+# -*- mode: sh -*-
+R_LIBS_USER="${HOME}/R/x86_64-pc-linux-gnu-library/3.6"
+R_ENVIRON_USER="${XDG_CONFIG_HOME}/r/.Renviron"
+R_PROFILE_USER="${XDG_CONFIG_HOME}/r/.Rprofile.r"
+R_HISTFILE="${HOME}/.Rhistory"
+R_HISTSIZE=65535
+LANG=C
+LC_CTYPE=en_US.UTF-8

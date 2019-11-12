@@ -17,6 +17,8 @@ IFS=$'\n\t'
 : "${PYENV_ROOT:=${HOME}/.pyenv}"
 : "${RBENV_ROOT:=${HOME}/.rbenv}"
 : "${PERLBREW_ROOT:=${HOME}/perl5/perlbrew}"
+: "${R_ENVIRON_USER:=${XDG_CONFIG_HOME}/r/.Renviron}"
+: "${R_PROFILE_USER:=${XDG_CONFIG_HOME}/r/.Rprofile.r}"
 
 declare -A ZPLGM
 ZPLGM[HOME_DIR]="${HOME}/.zplugin"
@@ -914,7 +916,19 @@ install_dev_tools() {
     }
 
     install_r_dev_tools() {
-        pacman_sync r openblas
+        pacman_sync r tk openblas
+
+        ln -fs "${HOME}/.dotfiles/r/Renviron" "${HOME}/.Renviron"
+        ln -fs "${HOME}/.dotfiles/r/Renviron" "$R_ENVIRON_USER"
+        ln -fs "${HOME}/.dotfiles/r/Rprofile.r" "$R_PROFILE_USER"
+
+        local r_libs=(
+            # linters
+            lintr
+            # lsp
+            languageserver
+        )
+        r_install "${r_libs[@]}"
     }
 
     install_shell_scripts_dev_tools() {

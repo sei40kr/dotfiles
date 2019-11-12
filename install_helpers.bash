@@ -360,3 +360,13 @@ yarn_global_add() {
 
     PATH="${node_execdir}:${PATH}" with_spinner yarn global add --no-default-rc --noprogress --non-interactive "${pkgs[@]}"
 }
+
+r_install() {
+    local -a pkgs
+    pkgs=( "$@" )
+
+    with_spinner R --vanilla \
+      -e "args<-commandArgs(trailingOnly=T);options(repos=args[1]);install.packages(args[-1])" \
+      -q \
+      --args 'https://cran.ism.ac.jp' "${pkgs[@]}"
+}

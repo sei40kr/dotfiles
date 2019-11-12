@@ -129,6 +129,9 @@ alias pygrep="rg --iglob '**/*.py'"
 # ruby
 alias rb='ruby'
 
+# R
+alias R='R --no-save --no-restore-data -q'
+
 # ssh
 alias ssh='env TERM=xterm-256color ssh'
 
