@@ -728,6 +728,8 @@ install_dev_tools() {
             golang.org/x/lint/golint
             github.com/kisielk/errcheck
             github.com/mdempsky/unconvert
+            # lsp
+            golang.org/x/tools/gopls@latest
         )
         go_get system "${go_pkgs[@]}"
     }
