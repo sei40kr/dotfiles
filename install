@@ -888,6 +888,7 @@ install_dev_tools() {
             # linters
             stylelint-cli
             eslint-cli
+            eslint_d
             tslint
             # formatters
             prettier
