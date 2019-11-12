@@ -10,6 +10,8 @@ IFS=$'\n\t'
 
 : "${XDG_PICTURES_DIR:=${HOME}/Pictures}"
 
+: "${WORKSPACE_DIR:=${HOME}/develop/workspace}"
+
 : "${ZDOTDIR:=${HOME}/.zsh}"
 
 : "${NVM_DIR:=${HOME}/.nvm}"
@@ -166,27 +168,26 @@ EOM
             git clone -q https://github.com/zdharma/zplugin.git "${ZPLGM[BIN_DIR]}"
         fi
 
+        # Install local plugins
+        local -a plugins
+        plugins=(
+            zsh-run-help-collections
+            zsh-fzf-projects
+            zsh-fzf-docker
+            zsh-fzf-gcloud
+            zsh-fzf-kubernetes
+            zsh-fast-alias-tips
+        )
         mkdir -p "${ZPLGM[PLUGINS_DIR]}"
-        if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fzf-docker" ]]; then
-            git clone -q https://github.com/sei40kr/zsh-fzf-docker.git \
-                "${HOME}/.zplugin/plugins/_local---zsh-fzf-docker"
-        fi
-        if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fzf-gcloud" ]]; then
-            git clone -q https://github.com/sei40kr/zsh-fzf-gcloud.git \
-                "${HOME}/.zplugin/plugins/_local---zsh-fzf-gcloud"
-        fi
-        if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fzf-kubernetes" ]]; then
-            git clone -q https://github.com/sei40kr/zsh-fzf-kubernetes.git \
-                "${HOME}/.zplugin/plugins/_local---zsh-fzf-kubernetes"
-        fi
-        if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fzf-projects" ]]; then
-            git clone -q https://github.com/sei40kr/zsh-fzf-projects.git \
-                "${HOME}/.zplugin/plugins/_local---zsh-fzf-projects"
-        fi
-        if [[ ! -d "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fast-alias-tips" ]]; then
-            git clone -q https://github.com/sei40kr/zsh-fast-alias-tips.git \
-                "${HOME}/.zplugin/plugins/_local---zsh-fast-alias-tips"
-        fi
+        for plugin in "${plugins[@]}"; do
+            if [[ ! -d "${WORKSPACE_DIR}/${plugin}" ]]; then
+                git clone -q "git@github-private:sei40kr/${plugin}.git" \
+                    "${WORKSPACE_DIR}/${plugin}"
+            fi
+
+            ln -fsT "${WORKSPACE_DIR}/${plugin}" \
+               "${ZPLGM[PLUGINS_DIR]}/_local---${plugin}"
+        done
 
         ln -fs "${HOME}/.dotfiles/zsh/starship.toml" \
            "${XDG_CONFIG_HOME}/starship.toml"
@@ -597,6 +598,7 @@ install_dev_apps() {
             mkdir -p "${HOME}/.emacs.d/private/layers"
         fi
 
+        # Install private packages
         local local_pkgs=(
             emacs-atcoder-tools
             # snippets
@@ -608,10 +610,13 @@ install_dev_apps() {
         )
         mkdir -p "${HOME}/.emacs.d/private/local"
         for pkg in "${local_pkgs[@]}"; do
-            if [[ ! -d "${HOME}/.emacs.d/private/local/${pkg}" ]]; then
-                git clone -q "ssh://git@github.com/sei40kr/${pkg}.git" \
-                    "${HOME}/.emacs.d/private/local/${pkg}"
+            if [[ ! -d "${WORKSPACE_DIR}/${pkg}" ]]; then
+                git clone -q "git@github-private:sei40kr/${pkg}.git" \
+                    "${WORKSPACE_DIR}/${pkg}"
             fi
+
+            ln -fsT "${WORKSPACE_DIR}/${pkg}" \
+               "${HOME}/.emacs.d/private/local/${pkg}"
         done
     }
 
