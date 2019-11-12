@@ -158,17 +158,8 @@ EOM
 
         ln -fs "${HOME}/.dotfiles/zsh/alias_defs.zsh" "${ZDOTDIR}/alias_defs.zsh"
 
-        mkdir -p "${ZDOTDIR}/functions"
-        for zfunction in clone_gh create_gh kca kres pyclean ranger-cd; do
-            ln -fs "${HOME}/.dotfiles/zsh/functions/${zfunction}" \
-               "${ZDOTDIR}/functions/${zfunction}"
-        done
-
-        mkdir -p "${ZDOTDIR}/completions"
-        for completion in _atcoder-tools _kubectl _rustup; do
-            ln -fs "${HOME}/.dotfiles/zsh/completions/${completion}" \
-               "${ZDOTDIR}/completions/${completion}"
-        done
+        ln -fsT "${HOME}/.dotfiles/zsh/functions" "${ZDOTDIR}/functions"
+        ln -fsT "${HOME}/.dotfiles/zsh/completions" "${ZDOTDIR}/completions"
 
         if [[ ! -d "${ZPLGM[BIN_DIR]}" ]]; then
             mkdir -p "${ZPLGM[HOME_DIR]}"
