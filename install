@@ -124,8 +124,9 @@ EOM
     }
 
     install_tlp() {
-        print_title \
-            'TLP - TLP brings you the benefits of advanced power management for Linux without the need to understand every technical detail.'
+        print_title 'TLP - https://wiki.archlinux.org/index.php/TLP'
+        print_desc \
+            'TLP brings you the benefits of advanced power management for Linux without the need to understand every technical detail.'
 
         if ! read_yn 'Would you like to install?'; then
             return
