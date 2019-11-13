@@ -388,6 +388,14 @@ install_desktop_environment() {
            "${XDG_CONFIG_HOME}/polybar/config"
         ln -fsT "${HOME}/.dotfiles/polybar/scripts" "${HOME}/polybar-scripts"
 
+        # Install polybar-pomodoro-timer
+        if [[ ! -d "${WORKSPACE_DIR}/polybar-pomodoro-timer" ]]; then
+            git clone -q git@github-private:sei40kr/polybar-pomodoro-timer.git \
+                "${WORKSPACE_DIR}/polybar-pomodoro-timer"
+        fi
+        ln -fsT "${WORKSPACE_DIR}/polybar-pomodoro-timer" \
+           "${HOME}/polybar-pomodoro-timer"
+
         pause
     }
 

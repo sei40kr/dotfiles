@@ -45,12 +45,13 @@ foreground = ${colors.foreground}
 font-0 = sans-serif:size=11;2
 font-1 = sans-serif:weight=bold:size=11;2
 font-2 = Material Design Icons:size=15;3
+font-3 = sans-serif:size=11:antialias=false;2
 
 line-size  = 2
 line-color = #f00
 
 modules-left   = workspaces-xmonad
-modules-center = date
+modules-center = date pomodoro-timer
 modules-right  = dropbox-status alsa wlan battery
 
 module-margin-left  = 0
@@ -111,6 +112,15 @@ format           = <label>
 format-font      = 2
 format-underline =
 label = %date% %time%
+
+[module/pomodoro-timer]
+type = custom/script
+
+exec = ~/polybar-pomodoro-timer/pomodoro-timer.py
+tail = true
+
+click-left = ~/polybar-pomodoro-timer/pomodoro-timer.py toggle
+click-right = ~/polybar-pomodoro-timer/pomodoro-timer.py end
 
 [module/dropbox-status]
 type = custom/script
