@@ -609,6 +609,7 @@ install_dev_apps() {
 
         # Install private packages
         local local_pkgs=(
+            helm-gitignore
             emacs-atcoder-tools
             # snippets
             rails-snippets
