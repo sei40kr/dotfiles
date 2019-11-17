@@ -226,6 +226,8 @@ zplugin light -b zsh-users/zsh-autosuggestions
 zplugin ice wait'0' lucid
 zplugin light -b zdharma/history-search-multi-word
 
+zplugin light _local/zsh-run-help-collections
+
 zplugin snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
 
 zplugin ice from'gh-r' as'program' mv'direnv* -> direnv' atinit'[[ -f zhook.zsh ]] || ./direnv hook zsh >zhook.zsh' src'zhook.zsh'
