@@ -777,8 +777,6 @@ install_dev_tools() {
 
         pacman_sync maven \
                     gradle
-        trizen_sync java-lombok \
-                    google-java-format
     }
 
     install_scala_dev_tools() {
@@ -788,8 +786,7 @@ install_dev_tools() {
                     gradle
         trizen_sync scalastyle \
                     scalafmt-native \
-                    metals \
-                    java-lombok
+                    metals
     }
 
     install_python_dev_tools() {
