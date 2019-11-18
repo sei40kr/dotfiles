@@ -39,7 +39,7 @@ gh-clone() {
         read -r answer
         case "$answer" in
             [yY] )
-                go_repo_dir="${GOPATH}/src/${user_and_repo}"
+                go_repo_dir="${GOPATH}/src/github.com/${user_and_repo}"
                 go_user_dir="$(dirname "$go_repo_dir")"
                 mkdir -p "$go_user_dir"
                 mv -T "$repo_dir" "$go_repo_dir"

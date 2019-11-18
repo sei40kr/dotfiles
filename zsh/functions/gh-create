@@ -20,7 +20,7 @@ gh-create() {
         read -r answer
         case "$answer" in
             [yY] )
-                repo_dir="${GOPATH}/src/sei40kr/${repo_name}"
+                repo_dir="${GOPATH}/src/sei40kr/github.com/${repo_name}"
             ;;
         esac
     fi
