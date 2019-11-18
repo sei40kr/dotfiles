@@ -1,9 +1,9 @@
 # -*- mode: sh -*-
 
-# clone_gh
+# gh-clone
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-clone_gh() {
+gh-clone() {
     local user_and_repo="$1"
     local repo_url
     local repo_dir

@@ -4,8 +4,8 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 autoload -Uz \
-         clone_gh \
-         create_gh \
+         gh-clone \
+         gh-create \
          kca \
          kres \
          pyclean \
