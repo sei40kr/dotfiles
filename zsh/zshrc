@@ -246,6 +246,17 @@ zplugin light -b junegunn/fzf
 zplugin light _local/zsh-fzf-docker
 zplugin light _local/zsh-fzf-gcloud
 zplugin light _local/zsh-fzf-kubernetes
+
+FZF_PROJECTS_WORKSPACE_DIRS=(
+    "${HOME}/develop/workspace"
+    "${GOPATH}/src/github.com"
+)
+FZF_PROJECTS_PROJECT_DIR_MAX_DEPTH=2
+FZF_PROJECTS_KNOWN_PROJECTS=(
+    "${HOME}/.dotfiles"
+    "${HOME}/.emacs.d"
+    "${HOME}/.spacemacs.d"
+)
 zplugin light _local/zsh-fzf-projects
 
 if [[ "$OSTYPE" == darwin* ]]; then
