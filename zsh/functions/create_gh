@@ -5,9 +5,26 @@
 
 create_gh() {
     local repo_name="$1"
+    local answer
+    local repo_dir
 
-    mkdir -p "${HOME}/develop/workspace/${repo_name}" &&
-        ( cd "${HOME}/develop/workspace/${repo_name}"
-          git init
-          hub create "$repo_name" )
+    if [[ -z "$WORKSPACE_DIR" ]]; then
+        echo 'WORKSPACE_DIR is not set. Aborting.' >&2
+        exit 1
+    fi
+
+    repo_dir="${WORKSPACE_DIR}/sei40kr/${repo_name}"
+
+    if [[ -n "$GOPATH" ]]; then
+        echo -n 'Would you like to create a Go project? [yn]: '
+        read -r answer
+        case "$answer" in
+            [yY] )
+                repo_dir="${GOPATH}/src/sei40kr/${repo_name}"
+            ;;
+        esac
+    fi
+
+    mkdir -p "$repo_dir" &&
+        ( cd "$repo_dir" && git init && hub create "$repo_name" )
 }
