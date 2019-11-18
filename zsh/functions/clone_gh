@@ -4,19 +4,48 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 clone_gh() {
-    local repo="$1"
+    local user_and_repo="$1"
+    local repo_url
+    local repo_dir
+    local user_dir
+    local answer
+    local go_repo_dir
+    local go_user_dir
 
-    if [[ "$repo" != *'/'* ]]; then
-        repo="sei40kr/${repo}"
+    if [[ -z "$WORKSPACE_DIR" ]]; then
+        echo 'WORKSPACE_DIR is not set. Aborting.' >&2
+        exit 1
     fi
 
-    if [[ "$repo" == 'fastretailing/'* ]]; then
-        local repo_url="git@github.com:${repo}.git"
-    elif [[ "$repo" == 'sei40kr/'* ]]; then
-        local repo_url="git@github-private:${repo}.git"
+    if [[ "$user_and_repo" != *'/'* ]]; then
+        user_and_repo="sei40kr/${user_and_repo}"
+    fi
+
+    if [[ "$user_and_repo" == 'fastretailing/'* ]]; then
+        repo_url="git@github.com:${user_and_repo}.git"
+    elif [[ "$user_and_repo" == 'sei40kr/'* ]]; then
+        repo_url="git@github-private:${user_and_repo}.git"
     else
-        local repo_url="https://github.com/${repo}.git"
+        repo_url="https://github.com/${user_and_repo}.git"
     fi
 
-    git -C "${HOME}/develop/workspace" clone "$repo_url"
+    repo_dir="${WORKSPACE_DIR}/${user_and_repo}"
+    user_dir="$(dirname "$repo_dir")"
+    git -C "$WORKSPACE_DIR" clone "$repo_url" "$repo_dir"
+
+    # Move it under GOPATH if it's a Go project and GOPATH is not empty
+    if [[ -n "$GOPATH" ]] && ls "$repo_dir"/*.go 1>/dev/null 2>&1; then
+        echo -n 'It looks like a Go project. Would you like to move it under GOPATH/src? [yn]: '
+        read -r answer
+        case "$answer" in
+            [yY] )
+                go_repo_dir="${GOPATH}/src/${user_and_repo}"
+                go_user_dir="$(dirname "$go_repo_dir")"
+                mkdir -p "$go_user_dir"
+                mv -T "$repo_dir" "$go_repo_dir"
+
+                rm -d "$user_dir" 2>/dev/null
+                ;;
+        esac
+    fi
 }

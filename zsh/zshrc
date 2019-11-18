@@ -41,6 +41,8 @@ setopt PUSHD_IGNORE_DUPS
 setopt SHARE_HISTORY
 unsetopt LIST_BEEP
 
+WORKSPACE_DIR="${HOME}/develop/workspace"
+
 zle -N fzf-projects
 
 bindkey -e
