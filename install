@@ -177,7 +177,6 @@ EOM
             zsh-fzf-docker
             zsh-fzf-gcloud
             zsh-fzf-kubernetes
-            zsh-fast-alias-tips
         )
         mkdir -p "${ZPLGM[PLUGINS_DIR]}"
         for plugin in "${plugins[@]}"; do
@@ -190,6 +189,16 @@ EOM
                "${ZPLGM[PLUGINS_DIR]}/_local---${plugin}"
         done
 
+        # Install zsh-fast-alias-tips under GOPATH
+        if [[ ! -d "${GOPATH}/src/github.com/sei40kr/zsh-fast-alias-tips" ]]; then
+            mkdir -p "${GOPATH}/src/github.com/sei40kr"
+            git clone -q "git@github-private:sei40kr/zsh-fast-alias-tips.git" \
+                "${GOPATH}/src/github.com/sei40kr/zsh-fast-alias-tips"
+        fi
+        ln -fsT "${GOPATH}/src/github.com/sei40kr/zsh-fast-alias-tips" \
+           "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fast-alias-tips"
+
+        # Install starship config
         ln -fs "${HOME}/.dotfiles/zsh/starship.toml" \
            "${XDG_CONFIG_HOME}/starship.toml"
 
