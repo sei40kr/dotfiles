@@ -116,11 +116,11 @@ label = %date% %time%
 [module/pomodoro-timer]
 type = custom/script
 
-exec = ~/polybar-pomodoro-timer/pomodoro-timer.py
+exec = ~/polybar-pomodoro-timer/pomodoro_timer.py
 tail = true
 
-click-left = ~/polybar-pomodoro-timer/pomodoro-timer.py toggle
-click-right = ~/polybar-pomodoro-timer/pomodoro-timer.py end
+click-left = ~/polybar-pomodoro-timer/pomodoro_timer.py toggle
+click-right = ~/polybar-pomodoro-timer/pomodoro_timer.py end
 
 [module/dropbox-status]
 type = custom/script
