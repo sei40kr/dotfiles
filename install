@@ -288,7 +288,8 @@ EOM
             return
         fi
 
-        pacman_sync fontconfig freetype2 noto-fonts noto-fonts-cjk noto-fonts-emoji
+        trizen_sync freetype2-ultimate5
+        pacman_sync fontconfig noto-fonts noto-fonts-cjk noto-fonts-emoji
 
         mkdir -p "${XDG_CONFIG_HOME}/fontconfig/conf.d"
         cp -f /etc/fonts/conf.avail/10-hinting-none.conf \
