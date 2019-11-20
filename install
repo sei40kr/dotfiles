@@ -180,12 +180,12 @@ EOM
         )
         mkdir -p "${ZPLGM[PLUGINS_DIR]}"
         for plugin in "${plugins[@]}"; do
-            if [[ ! -d "${WORKSPACE_DIR}/${plugin}" ]]; then
+            if [[ ! -d "${WORKSPACE_DIR}/sei40kr/${plugin}" ]]; then
                 git clone -q "git@github-private:sei40kr/${plugin}.git" \
-                    "${WORKSPACE_DIR}/${plugin}"
+                    "${WORKSPACE_DIR}/sei40kr/${plugin}"
             fi
 
-            ln -fsT "${WORKSPACE_DIR}/${plugin}" \
+            ln -fsT "${WORKSPACE_DIR}/sei40kr/${plugin}" \
                "${ZPLGM[PLUGINS_DIR]}/_local---${plugin}"
         done
 
@@ -395,11 +395,11 @@ install_desktop_environment() {
         ln -fsT "${HOME}/.dotfiles/polybar/scripts" "${HOME}/polybar-scripts"
 
         # Install polybar-pomodoro-timer
-        if [[ ! -d "${WORKSPACE_DIR}/polybar-pomodoro-timer" ]]; then
+        if [[ ! -d "${WORKSPACE_DIR}/sei40kr/polybar-pomodoro-timer" ]]; then
             git clone -q git@github-private:sei40kr/polybar-pomodoro-timer.git \
-                "${WORKSPACE_DIR}/polybar-pomodoro-timer"
+                "${WORKSPACE_DIR}/sei40kr/polybar-pomodoro-timer"
         fi
-        ln -fsT "${WORKSPACE_DIR}/polybar-pomodoro-timer" \
+        ln -fsT "${WORKSPACE_DIR}/sei40kr/polybar-pomodoro-timer" \
            "${HOME}/polybar-pomodoro-timer"
 
         pause
@@ -626,12 +626,12 @@ install_dev_apps() {
         )
         mkdir -p "${HOME}/.emacs.d/private/local"
         for pkg in "${local_pkgs[@]}"; do
-            if [[ ! -d "${WORKSPACE_DIR}/${pkg}" ]]; then
+            if [[ ! -d "${WORKSPACE_DIR}/sei40kr/${pkg}" ]]; then
                 git clone -q "git@github-private:sei40kr/${pkg}.git" \
-                    "${WORKSPACE_DIR}/${pkg}"
+                    "${WORKSPACE_DIR}/sei40kr/${pkg}"
             fi
 
-            ln -fsT "${WORKSPACE_DIR}/${pkg}" \
+            ln -fsT "${WORKSPACE_DIR}/sei40kr/${pkg}" \
                "${HOME}/.emacs.d/private/local/${pkg}"
         done
     }
