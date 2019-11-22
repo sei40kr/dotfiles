@@ -288,10 +288,13 @@ EOM
             return
         fi
 
-        trizen_sync freetype2-ultimate5
-        pacman_sync fontconfig noto-fonts noto-fonts-cjk noto-fonts-emoji
+        pacman_sync freetype2 fontconfig noto-fonts noto-fonts-cjk noto-fonts-emoji
 
         mkdir -p "${XDG_CONFIG_HOME}/fontconfig/conf.d"
+        cp -f /etc/fonts/conf.avail/10-hinting-none.conf \
+           "${XDG_CONFIG_HOME}/fontconfig/conf.d/10-hinting-none.conf"
+        cp -f /etc/fonts/conf.avail/10-sub-pixel-rgb.conf \
+           "${XDG_CONFIG_HOME}/fontconfig/conf.d/10-sub-pixel-rgb.conf"
         cp -f /etc/fonts/conf.avail/11-lcdfilter-default.conf \
            "${XDG_CONFIG_HOME}/fontconfig/conf.d/11-lcdfilter-default.conf"
         cp -f /etc/fonts/conf.avail/66-noto-sans.conf \
