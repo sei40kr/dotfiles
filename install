@@ -292,7 +292,7 @@ EOM
 
         mkdir -p "${XDG_CONFIG_HOME}/fontconfig/conf.d"
         cp -f /etc/fonts/conf.avail/10-hinting-none.conf \
-           "${XDG_CONFIG_HOME}/fontconfig/conf.d/10-hinting-none.conf"
+           "${XDG_CONFIG_HOME}/fontconfig/conf.d/10-autohint.conf"
         cp -f /etc/fonts/conf.avail/10-sub-pixel-rgb.conf \
            "${XDG_CONFIG_HOME}/fontconfig/conf.d/10-sub-pixel-rgb.conf"
         cp -f /etc/fonts/conf.avail/11-lcdfilter-default.conf \
