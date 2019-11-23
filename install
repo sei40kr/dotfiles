@@ -974,8 +974,11 @@ install_dev_tools() {
             print_title 'Others'
 
             echo "  1) $(pacman_menu_item 'EditorConfig' editorconfig-core-c)"
-            echo "  2) $(menu_item 'circleci-cli')"
-            echo "  3) $(menu_item 'The Travis Client')"
+            echo "  2) $(menu_item 'AWS Shell')"
+            echo "  3) $(pacman_menu_item 'Google Cloud SDK' google-cloud-sdk)"
+            echo "  4) $(menu_item 'Oracle Cloud Infrastructure CLI')"
+            echo "  5) $(menu_item 'circleci-cli')"
+            echo "  6) $(menu_item 'The Travis Client')"
             echo ''
             echo '  d) Done'
 
@@ -986,11 +989,20 @@ install_dev_tools() {
                     pacman_sync editorconfig-core-c
                     ;;
                 2)
+                    pip_install system aws-shell
+                    ;;
+                3)
+                    trizen_sync google-cloud-sdk
+                    ;;
+                4)
+                    pip_install system oci-cli
+                    ;;
+                5)
                     if [[ ! -x /usr/local/bin/circleci ]]; then
                         curl -fLSs https://circle.ci/cli | sudo bash
                     fi
                     ;;
-                3)
+                6)
                     gem_install travis
                     ;;
 
