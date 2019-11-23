@@ -1003,7 +1003,7 @@ install_dev_tools() {
                     fi
                     ;;
                 6)
-                    gem_install travis
+                    gem_install system travis
                     ;;
 
                 d )
