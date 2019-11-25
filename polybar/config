@@ -119,6 +119,9 @@ type = custom/script
 exec = ~/polybar-pomodoro-timer/pomodoro_timer.py
 tail = true
 
+format = <label>
+label = %{O-8}%{F#5b6268}%{T4}|%{T-}%{F-}%{O4}%output%
+
 click-left = ~/polybar-pomodoro-timer/pomodoro_timer.py toggle
 click-right = ~/polybar-pomodoro-timer/pomodoro_timer.py end
 
