@@ -133,7 +133,9 @@ zplugin snippet OMZ::plugins/cpanm/_cpanm
 # pyenv
 if [[ -n "$PYENV_ROOT" && -d "$PYENV_ROOT" ]]; then
     if [[ ! -f "${PYENV_ROOT}/zpyenv.zsh" ]]; then
-        pyenv init - --no-rehash zsh >"${PYENV_ROOT}/zpyenv.zsh"
+        { pyenv init - --no-rehash zsh
+          pyenv virtualenv-init - zsh
+        } >"${PYENV_ROOT}/zpyenv.zsh"
     fi
 
     zplugin snippet "${PYENV_ROOT}/zpyenv.zsh"

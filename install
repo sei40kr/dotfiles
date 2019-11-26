@@ -801,8 +801,12 @@ install_dev_tools() {
     install_python_dev_tools() {
         pacman_sync python python-pip poetry
 
-        if [[ ! -d "${PYENV_ROOT}" ]]; then
+        if [[ ! -d "$PYENV_ROOT" ]]; then
             git clone -q https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
+        fi
+        if [[ ! -d "${PYENV_ROOT}/plugins/pyenv-virtualenv" ]]; then
+            git clone -q https://github.com/pyenv/pyenv-virtualenv.git \
+                "${PYENV_ROOT}/plugins/pyenv-virtualenv"
         fi
 
         "${PYENV_ROOT}/bin/pyenv" global system
