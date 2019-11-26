@@ -5,12 +5,6 @@
 
 gh-clone() {
     local user_and_repo="$1"
-    local repo_url
-    local repo_dir
-    local user_dir
-    local answer
-    local go_repo_dir
-    local go_user_dir
 
     if [[ -z "$WORKSPACE_DIR" ]]; then
         echo 'WORKSPACE_DIR is not set. Aborting.' >&2
@@ -21,6 +15,7 @@ gh-clone() {
         user_and_repo="sei40kr/${user_and_repo}"
     fi
 
+    local repo_url
     if [[ "$user_and_repo" == 'fastretailing/'* ]]; then
         repo_url="git@github.com:${user_and_repo}.git"
     elif [[ "$user_and_repo" == 'sei40kr/'* ]]; then
@@ -29,18 +24,20 @@ gh-clone() {
         repo_url="https://github.com/${user_and_repo}.git"
     fi
 
-    repo_dir="${WORKSPACE_DIR}/${user_and_repo}"
-    user_dir="$(dirname "$repo_dir")"
+    local repo_dir="${WORKSPACE_DIR}/${user_and_repo}"
+    local user_dir="$(dirname "$repo_dir")"
     git -C "$WORKSPACE_DIR" clone "$repo_url" "$repo_dir"
 
     # Move it under GOPATH if it's a Go project and GOPATH is not empty
     if [[ -n "$GOPATH" ]] && ! find "$repo_dir" -mindepth 1 -maxdepth 1 -type f -name '*.go' -exec false {} +; then
         echo -n 'It looks like a Go project. Would you like to move it under GOPATH/src? [yn]: '
+
+        local answer
         read -r answer
         case "$answer" in
             [yY] )
-                go_repo_dir="${GOPATH}/src/github.com/${user_and_repo}"
-                go_user_dir="$(dirname "$go_repo_dir")"
+                local go_repo_dir="${GOPATH}/src/github.com/${user_and_repo}"
+                local go_user_dir="$(dirname "$go_repo_dir")"
                 mkdir -p "$go_user_dir"
                 mv -T "$repo_dir" "$go_repo_dir"
 
