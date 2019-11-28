@@ -1563,7 +1563,7 @@ while true; do
         2 )
             print_important 'You must run the Basic Setup at first'
 
-            if ask_yn 'Are you sure to continue?'; then
+            if read_yn 'Are you sure to continue?'; then
                 install_desktop_environment
             fi
 
