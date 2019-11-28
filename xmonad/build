@@ -3,6 +3,6 @@
 # build
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-stack build :custom-xmonad --verbosity error &&
-    stack install :custom-xmonad --local-bin-path . --verbosity error &&
-    mv custom-xmonad xmonad-x86_64-linux
+stack build custom-xmonad:exe:xmonad &&
+    stack install custom-xmonad:exe:xmonad --local-bin-path . &&
+    mv xmonad xmonad-x86_64-linux
