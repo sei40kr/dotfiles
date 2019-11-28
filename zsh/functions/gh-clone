@@ -28,8 +28,13 @@ gh-clone() {
     local user_dir="$(dirname "$repo_dir")"
     git -C "$WORKSPACE_DIR" clone "$repo_url" "$repo_dir"
 
+    if [[ "$?" != 0 || -z "$GOPATH" ]]; then
+        return
+    fi
+
     # Move it under GOPATH if it's a Go project and GOPATH is not empty
-    if [[ -n "$GOPATH" ]] && ! find "$repo_dir" -mindepth 1 -maxdepth 1 -type f -name '*.go' -exec false {} +; then
+    if ! find "$repo_dir" -mindepth 1 -maxdepth 1 -type f -name '*.go' -exec false {} +
+    then
         echo -n 'It looks like a Go project. Would you like to move it under GOPATH/src? [yn]: '
 
         local answer
