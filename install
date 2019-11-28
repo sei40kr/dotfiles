@@ -921,6 +921,8 @@ install_dev_tools() {
             import-js
             # build tools
             typescript
+            gulp
+            webpack-cli
         )
         yarn_global_add system "${yarn_pkgs[@]}"
 
