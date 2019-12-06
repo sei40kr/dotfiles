@@ -21,5 +21,3 @@ if [[ -f "${XDG_CONFIG_HOME}/user-dirs.dirs" ]]; then
     export XDG_PICTURES_DIR
     export XDG_VIDEOS_DIR
 fi
-
-export XDG_CURRENT_DESKTOP=GNOME

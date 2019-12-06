@@ -265,7 +265,7 @@ EOM
             return
         fi
 
-        pacman_sync dbus xorg xdg-user-dirs xorg-xinit xautolock xsecurelock
+        pacman_sync dbus xorg xdg-user-dirs xorg-xinit
 
         ln -fs "${HOME}/.dotfiles/xorg/xprofile" "${HOME}/.xprofile"
         ln -fs "${HOME}/.dotfiles/xorg/xinitrc" "${HOME}/.xinitrc"
@@ -362,6 +362,31 @@ install_desktop_environment() {
         pause
     }
 
+    install_gnome() {
+        print_title 'GNOME - https://wiki.archlinux.org/index.php/GNOME'
+        print_desc \
+            'GNOME is a desktop environment that aims to be simple and easy to use.'
+
+        if ! read_yn 'Would you like to install?'; then
+            return
+        fi
+
+        pacman_sync gnome-flashback \
+                    gnome-screensaver xautolock \
+                    gnome-control-center \
+                    gnome-screenshot
+
+        # Random background image
+        trizen_sync chromecast-wallpapers
+        mkdir -p "${HOME}/.local/bin"
+        ln -fs "${HOME}/.dotfiles/gnome-desktop/wallpaper.sh" \
+           "${HOME}/.local/bin/wallpaper.sh"
+
+        # TODO remove unused panels
+
+        pause
+    }
+
     install_xmonad() {
         print_title 'XMonad - https://wiki.archlinux.org/index.php/Xmonad'
         print_desc 'XMonad is a tiling window manager for X.'
@@ -371,10 +396,31 @@ install_desktop_environment() {
         fi
 
         stack_install xmonad
-        pacman_sync xorg-xmessage scrot
+        pacman_sync xorg-xmessage
 
         ln -fsT "${HOME}/.dotfiles/xmonad" "${HOME}/.xmonad"
         : >"${HOME}/.xmonad/xmonad.errors"
+
+        # Xmonad session file for use by gnome-session
+        mkdir -p "${XDG_CONFIG_HOME}/gnome-session/sessions"
+        cat <<FILE >"${XDG_CONFIG_HOME}/gnome-session/sessions/xmonad.session"
+[GNOME Session]
+Name=GNOME Flashback (Xmonad)
+RequiredComponents=gnome-flashback;xmonad;org.gnome.SettingsDaemon.A11ySettings;org.gnome.SettingsDaemon.Color;org.gnome.SettingsDaemon.Datetime;org.gnome.SettingsDaemon.Housekeeping;org.gnome.SettingsDaemon.Keyboard;org.gnome.SettingsDaemon.MediaKeys;org.gnome.SettingsDaemon.Power;org.gnome.SettingsDaemon.PrintNotifications;org.gnome.SettingsDaemon.Rfkill;org.gnome.SettingsDaemon.ScreensaverProxy;org.gnome.SettingsDaemon.Sharing;org.gnome.SettingsDaemon.Smartcard;org.gnome.SettingsDaemon.Sound;org.gnome.SettingsDaemon.Wacom;org.gnome.SettingsDaemon.XSettings;
+FILE
+        mkdir -p "${XDG_DATA_HOME}/applications"
+        cat <<FILE >"${XDG_DATA_HOME}/applications/xmonad.desktop"
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Xmonad
+Exec=xmonad
+NoDisplay=true
+X-GNOME-WMName=Xmonad
+X-GNOME-Autostart-Phase=WindowManager
+X-GNOME-Provides=windowmanager
+X-GNOME-Autostart-Notify=false
+FILE
 
         mkdir -p "$XDG_PICTURES_DIR"
 
@@ -404,25 +450,6 @@ install_desktop_environment() {
         fi
         ln -fsT "${WORKSPACE_DIR}/sei40kr/polybar-pomodoro-timer" \
            "${HOME}/polybar-pomodoro-timer"
-
-        pause
-    }
-
-    install_xscreensaver() {
-        print_title \
-            'XScreenSaver - https://wiki.archlinux.org/index.php/XScreenSaver'
-        print_desc \
-            'XScreenSaver is a screen saver and locker for the X Window System.'
-
-        if ! read_yn 'Would you like to install?'; then
-            return
-        fi
-
-        pacman_sync xscreensaver
-        trizen_sync xwinwrap-git chromecast-wallpapers
-
-        ln -fs "${HOME}/.dotfiles/xscreensaver/xscreensaver" \
-           "${HOME}/.xscreensaver"
 
         pause
     }
@@ -485,20 +512,15 @@ EOM
         pause
     }
 
-    install_dunst() {
-        print_title 'Dunst - https://wiki.archlinux.org/index.php/Dunst'
-        print_desc \
-            'Dunst is a lightweight replacement for the notification-daemons provided by most desktop environments.'
+    install_xfce4_notifyd() {
+        print_title 'Xfce Notification Daemon'
+        print_desc 'Notification server for Xfce.'
 
         if ! read_yn 'Would you like to install?'; then
             return
         fi
 
-        pacman_sync dunst
-
-        mkdir -p "${XDG_CONFIG_HOME}/dunst"
-        ln -fs "${HOME}/.dotfiles/dunst/dunstrc" \
-           "${XDG_CONFIG_HOME}/dunst/dunstrc"
+        pacman_sync xfce4-notifyd
 
         pause
     }
@@ -568,12 +590,13 @@ EOM
     install_compton
     install_redshift
 
+    install_gnome
+
     install_xmonad
     install_polybar
-    install_xscreensaver
     install_rofi
     install_clipmenu
-    install_dunst
+    install_xfce4_notifyd
 
     install_gtk
 

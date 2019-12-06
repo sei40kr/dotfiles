@@ -12,6 +12,7 @@ import           System.IO
 import           XMonad
 import           XMonad.Actions.CopyWindow
 import           XMonad.Actions.Minimize
+import           XMonad.Config.Gnome
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageDocks
@@ -162,14 +163,14 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     --
     -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
     -- Quit xmonad
-  , ((modm .|. shiftMask, xK_q), io exitSuccess)
+  , ((modm .|. shiftMask, xK_q), spawn "gnome-session-quit --logout")
     -- Restart xmonad
   , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
   , ( (modm .|. shiftMask, xK_slash)
     , spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
-  , ((0, xK_Print), spawn "scrot -e 'mv $f ~/Pictures'")
-  , ((shiftMask, xK_Print), spawn "scrot -se 'mv $f ~/Pictures'")
+  , ((0, xK_Print), spawn "gnome-screenshot")
+  , ((shiftMask, xK_Print), spawn "gnome-screenshot -i")
   ] ++
     --
     -- mod-[1..9], Switch to workspace N
@@ -217,7 +218,7 @@ myMouseBindings XConfig {XMonad.modMask = modm} =
 --
 
 myLayout =
-  avoidStruts $
+  desktopLayoutModifiers $
   minimize . boringWindows $
   onWorkspace "1" (tabSpacing myTabbed) $
   onWorkspace "2" (tabSpacing myTabbed ||| Mirror (tiledSpacing tiled)) $
@@ -347,7 +348,7 @@ genericJoin :: String -> [String] -> String
 genericJoin delim l = concat $ intersperse delim l
 
 myLogHook :: X ()
-myLogHook = do
+myLogHook = ewmhDesktopsLogHook <+> do
   wset <- gets windowset
   let workspaces = map W.tag $ W.workspaces wset
   let currentWs = W.currentTag wset
@@ -378,6 +379,7 @@ myLogHook = do
 
 myStartupHook :: X ()
 myStartupHook =
+  gnomeRegister <+>
   ewmhDesktopsStartup <+>
   setWMName "LG3D" <+>
   spawnOnce

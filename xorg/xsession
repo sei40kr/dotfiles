@@ -6,71 +6,58 @@
 xset r rate 150 30
 xsetroot -cursor_name left_ptr
 
-if hash xautolock 2>/dev/null && hash xsecurelock 2>/dev/null; then
-    XSECURELOCK_AUTH_BACKGROUND_COLOR='#282c34' \
-                                     XSECURELOCK_AUTH_FOREGROUND_COLOR='#bbc2cf' \
-                                     XSECURELOCK_FONT='sans\-serif-13' \
-                                     XSECURELOCK_PASSWORD_PROMPT=asterisks \
-                                     xautolock -locker xsecurelock -resetsaver -detectsleep &
-fi
-
 if [[ -x /usr/bin/compton ]]; then
     /usr/bin/compton &
 fi
 
-if hash redshift 2>/dev/null; then
-    redshift &
-fi
-
-if [[ -x /usr/bin/xwinwrap && -x /usr/lib/xscreensaver/glslideshow ]]; then
-    /usr/bin/xwinwrap -fs -b -nf -ov -- \
-             /usr/lib/xscreensaver/glslideshow -root -duration 180 -zoom 100 -clip -window-id WID &
-fi
-
-if [[ -x /usr/bin/dunst ]]; then
-    /usr/bin/dunst &
+if [[ -x /usr/bin/redshift ]]; then
+    /usr/bin/redshift &
 fi
 
 if [[ -x /usr/bin/gnome-keyring-daemon ]]; then
-    eval "$(/usr/bin/gnome-keyring-daemon --start)"
+    eval "$(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
     export SSH_AUTH_SOCK
 fi
 
-if [[ -x /usr/lib/goa-daemon ]]; then
-    /usr/lib/goa-daemon --replace &
+if [[ -x "${HOME}/.local/bin/wallpaper.sh" ]]; then
+    "${HOME}/.local/bin/wallpaper.sh" &
 fi
 
-if [[ -x /usr/bin/geary ]]; then
-    # FIXME --hidden works but deprecated
-    /usr/bin/geary --hidden &
+if [[ -x /usr/bin/xautolock && -x /usr/bin/gnome-screensaver-command ]]; then
+    /usr/bin/xautolock -locker '/usr/bin/gnome-screensaver-command -l' \
+                       -resetsaver \
+                       -detectsleep &
 fi
 
-if [[ -x "${HOME}/.dropbox-dist/dropboxd" ]]; then
-    "${HOME}/.dropbox-dist/dropboxd" &
+if [[ -x /usr/lib/xfce4/notifyd/xfce4-notifyd ]]; then
+    /usr/lib/xfce4/notifyd/xfce4-notifyd &
 fi
 
-if [[ -x /usr/bin/thunar ]]; then
-    /usr/bin/thunar --daemon &
-fi
-
-if [[ -x /usr/bin/TogglDesktop ]]; then
-    /usr/bin/TogglDesktop -b &
-fi
-
-if [[ -x /usr/bin/cawbird ]]; then
-    /usr/bin/cawbird --start-service &
-fi
-
-if hash fcitx-autostart 2>/dev/null; then
+if [[ -x /usr/bin/fcitx-autostart ]]; then
     export XMODIFIERS='@im=fcitx'
     export GTK_IM_MODULE=fcitx
     export QT_IM_MODULE=fcitx
     export DefaultIMModule=fcitx
-
-    fcitx-autostart &
+    /usr/bin/fcitx-autostart &
 fi
 
-# Start the window manager
-if hash xmonad 2>/dev/null; then
-    xmonad
+if [[ -x /usr/bin/geary ]]; then
+    /usr/bin/geary --gapplication-service &
 fi
+
+if [[ -x /usr/lib/evolution-data-server/evolution-alarm-notify ]]; then
+    /usr/lib/evolution-data-server/evolution-alarm-notify &
+fi
+
+if [[ -x /usr/bin/gnome-break-timer-service ]]; then
+    /usr/bin/gnome-break-timer-service &
+fi
+
+if [[ -x /usr/bin/dropbox ]]; then
+    /usr/bin/dropbox &
+fi
+
+export XDG_SESSION_TYPE=x11
+export XDG_CURRENT_DESKTOP='GNOME-Flashback:GNOME'
+export GDK_BACKEND=x11
+gnome-session --builtin -a /dev/null --session=xmonad --disable-acceleration-check

@@ -1,4 +1,0 @@
-! -*- mode: conf-xdefaults -*-
-
-chooseRandomImages: true
-imageDirectory: /usr/share/wallpapers/chromecast1200
