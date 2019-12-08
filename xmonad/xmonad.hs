@@ -79,8 +79,14 @@ myModMask = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
+
+internetWs = "1"
+devWs = "2"
+fileWs = "3"
+imWs = "4"
+
 myWorkspaces :: [String]
-myWorkspaces = map show [1 .. 5 :: Integer]
+myWorkspaces = [internetWs, devWs, fileWs, imWs]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -93,25 +99,14 @@ myFocusedBorderColor = "#15539e"
 -- Key bindings. Add, modify or remove key bindings here.
 --
 
-isLINE :: Query Bool
-isLINE = resource =? "crx_ophjlpahpchlmihnnnihgmmeilfjmjjc"
-
 isTodoist :: Query Bool
 isTodoist = resource =? "crx_bgjohebimpjdhhocbknplfelpmdhifhd"
-
-isPocket :: Query Bool
-isPocket = resource =? "crx_mjcnijlhddpbdemagnpefmlkjdagkogk"
 
 isPersistent :: Query Bool
 isPersistent = className =? "Bitwarden" <||>
                className =? "GoldenDict" <||>
                className =? "Geary" <||>
-               className =? "Gnome-calendar" <||>
-               className =? "Gnome-break-timer" <||>
-               isTodoist <||>
-               isPocket <||>
-               className =? "Cawbird" <||>
-               className =? "Zeal"
+               isTodoist
 
 myKeys conf@XConfig {XMonad.modMask = modm} =
   M.fromList $
@@ -233,10 +228,9 @@ adwaitaTabTheme = def
 myLayout =
   desktopLayoutModifiers $
   minimize . boringWindows $
-  onWorkspace "1" (tabSpacing myTabbed) $
-  onWorkspace "2" (tabSpacing myTabbed ||| Mirror (tiledSpacing tiled)) $
-  onWorkspace "3" (tabSpacing $ reflectHoriz $ withIM (1 % 2) vmdProps myTabbed) $
-  onWorkspace "4" (tabSpacing myTabbed ||| tiledSpacing tiled) $
+  onWorkspace internetWs (tabSpacing myTabbed) $
+  onWorkspace devWs (tabSpacing $ reflectHoriz $ withIM (1 % 2) vmdProps myTabbed) $
+  onWorkspace fileWs (tabSpacing myTabbed ||| tiledSpacing tiled) $
   (tiledSpacing tiled) ||| Full
   where
     -- default tiling algorithm partitions the screen into two panes
@@ -267,6 +261,12 @@ myLayout =
 isChromeExtension :: Query Bool
 isChromeExtension = fmap (isPrefixOf "crx_") resource
 
+isPocket :: Query Bool
+isPocket = resource =? "crx_mjcnijlhddpbdemagnpefmlkjdagkogk"
+
+isLINE :: Query Bool
+isLINE = resource =? "crx_ophjlpahpchlmihnnnihgmmeilfjmjjc"
+
 isKindleCloudReader :: Query Bool
 isKindleCloudReader = resource =? "crx_cemlonfcgoakflacgajmjhfacialphik"
 
@@ -285,36 +285,40 @@ myManageHook =
     , stringProperty "WM_WINDOW_ROLE" =? "pop-up" <&&> fmap not isChromeExtension
       --> doCenterFloat
     , className =? "Rofi" --> doIgnore
-    , className =? "Gcr-prompter" <||>
-      className =? "Fcitx-config-gtk3" --> doCenterFloat
+    , className =? "Gnome-break-timer" <||>
+      className =? "Gnome-control-center" <||>
+      className =? "Xfce4-notifyd-config" <||>
+      className =? "Fcitx-config-gtk3" --> doCenterFloat <+> doF copyToAll
     , className =? "Bitwarden" <||>
-      className =? "GoldenDict" --> doRectFloat centerRect <+> doF copyToAll
-    -- Internet Apps
-    , stringProperty "WM_WINDOW_ROLE" =? "browser" --> doShiftAndView "1"
-    , className =? "Geary" <||>
-      className =? "Gnome-calendar" <||>
-      className =? "Gnome-break-timer" <||>
-      isKindleCloudReader <||>
       isTodoist <||>
-      isPocket <||>
-      className =? "Cawbird" --> doShiftAndView "1" <+> doRectFloat centerRect
-    , className =? "Alacritty" --> doShiftAndView "2"
-    -- Development Apps
-    , className =? "Emacs" <||>
+      className =? "GoldenDict" --> doRectFloat centerRect <+> doF copyToAll
+    , className =? "Gcr-prompter" <||>
+      className =? "Gnome-contacts" --> doCenterFloat
+    -- Internet Apps
+    , stringProperty "WM_WINDOW_ROLE" =? "browser" <||>
+      className =? "Google-chrome" <||>
+      className =? "Geary" <||>
+      className =? "Gnome-calendar" <||>
+      className =? "Gnome-contacts" <||>
+      isKindleCloudReader <||>
+      isPocket --> doShiftAndView internetWs
+    -- Development
+    , className =? "Alacritty" <||>
+      className =? "Emacs" <||>
+      className =? "Zeal" <||>
       isVmd <||>
       className =? "Code" <||>
-      className =? "jetbrains-idea" --> doShiftAndView "3"
+      className =? "jetbrains-idea"  --> doShiftAndView devWs
     , className =? "jetbrains-idea" <&&> title =? "Welcome to IntelliJ IDEA" -->
       doCenterFloat
-    , className =? "Zeal" --> doShiftAndView "3" <+> doRectFloat centerRect
-    -- File Apps
-    , className =? "Thunar" --> doShiftAndView "4"
-    -- Communication Apps
+    -- File Browsing
+    , className =? "Thunar" --> doShiftAndView fileWs
+    -- Instant Messengers
     , className =? "Skype" <||>
       className =? "Slack" <||>
       className =? "zoom" <||>
       className =? "discord" <||>
-      isLINE --> doShiftAndView "5"
+      isLINE --> doShiftAndView imWs
     ]
   where
     doShiftAndView = doF . liftM2 (.) W.view W.shift
@@ -371,10 +375,10 @@ myStartupHook :: X ()
 myStartupHook =
   gnomeRegister <+>
   ewmhDesktopsStartup <+>
-  setWMName "LG3D" <+>
   spawnOnce
     "rm -f /tmp/.xmonad-workspace-log; mkfifo /tmp/.xmonad-workspace-log" <+>
-  spawnOnce "polybar -r top" <+> spawnOnce "polybar -r bottom"
+  spawnOnce "polybar -r top" <+>
+  spawnOnce "polybar -r bottom"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
