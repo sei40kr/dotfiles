@@ -60,7 +60,7 @@ myClickJustFocuses = True
 -- Width of the window border in pixels.
 --
 myBorderWidth :: Dimension
-myBorderWidth = 2
+myBorderWidth = 3
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -85,9 +85,9 @@ myWorkspaces = map show [1 .. 5 :: Integer]
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor :: String
-myNormalBorderColor = "#dfdfdf"
+myNormalBorderColor = "#ffffff"
 myFocusedBorderColor :: String
-myFocusedBorderColor = "#51afef"
+myFocusedBorderColor = "#15539e"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -216,6 +216,19 @@ myMouseBindings XConfig {XMonad.modMask = modm} =
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
+adwaitaTabTheme = def
+    { activeColor = "#1e1e1e"
+    , activeBorderColor = "#1e1e1e"
+    , activeTextColor = "#cccccc"
+    , inactiveColor = "#333333"
+    , inactiveBorderColor = "#333333"
+    , inactiveTextColor = "#cccccc"
+    , urgentColor = "#333333"
+    , urgentBorderColor = "#333333"
+    , urgentTextColor = "#cccccc"
+    , fontName = "xft:Noto Sans CJK JP:size=11"
+    , decoHeight = 36
+    }
 
 myLayout =
   desktopLayoutModifiers $
@@ -230,23 +243,9 @@ myLayout =
     tiled = Tall 1 (toRational $ 2 / (1 + sqrt 5 :: Double)) (3 / 100)
     tiledSpacing =
       spacingRaw False (Border 24 24 24 24) True (Border 8 8 8 8) True
-    myTabbed = tabbed shrinkText tabTheme
+    myTabbed = tabbed shrinkText adwaitaTabTheme
     tabSpacing =
       spacingRaw False (Border 32 32 32 32) True (Border 0 0 0 0) False
-    tabTheme =
-      def
-        { activeColor = "#21242b"
-        , activeBorderColor = "#21242b"
-        , activeTextColor = "#dfdfdf"
-        , inactiveColor = "#282c34"
-        , inactiveBorderColor = "#282c34"
-        , inactiveTextColor = "#bbc2cf"
-        , urgentColor = "#282c34"
-        , urgentBorderColor = "#21242b"
-        , urgentTextColor = "#bbc2cf"
-        , fontName = "xft:Noto Sans CJK JP:size=11"
-        , decoHeight = 42
-        }
     vmdProps = ClassName "Electron"
 
 ------------------------------------------------------------------------
@@ -350,23 +349,14 @@ genericJoin delim l = concat $ intersperse delim l
 myLogHook :: X ()
 myLogHook = ewmhDesktopsLogHook <+> do
   wset <- gets windowset
-  let workspaces = map W.tag $ W.workspaces wset
-  let currentWs = W.currentTag wset
-  io $ appendFile "/tmp/.xmonad-workspace-log" $ format currentWs workspaces
+  let wss = map W.tag $ W.workspaces wset
+  let current = W.currentTag wset
+  io $ appendFile "/tmp/.xmonad-workspace-log" $ format current wss
   where
-    format currentWs =
-      (++ "\n") . genericJoin "%{O12}" . map (label currentWs) . sort
-    label currentWs ws =
-      (if ws == currentWs
-         then wrap "%{u#51afef}" "%{-u}"
-         else id) $
-      wrap "%{T3}" "%{T-}" $ icon ws
-    icon ws =
-      if | ws == "1" -> "\61927"
-         | ws == "2" -> "\61837"
-         | ws == "3" -> "\61801"
-         | ws == "4" -> "蝹"
-         | otherwise -> "\63330"
+    format current = (++ "\n") . genericJoin "%{O3}" . map (label current) . sort
+    label current ws = (if ws == current
+         then wrap "%{F#ffffff}%{u#ffffff}" "%{-u}%{F-}"
+         else id) $ "   " ++ ws ++ "   "
 
 ------------------------------------------------------------------------
 -- Startup hook

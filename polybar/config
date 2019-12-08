@@ -17,13 +17,11 @@
 ;==========================================================
 
 [colors]
-background     = #e6000000
-foreground     = #dfdfdf
+background     = #000000
+foreground     = #cccccc
 
-gray   = #5b6268
-red    = #ff6c6b
-orange = #da8548
-green  = #98be65
+gray     = #666666
+darkgray = #444444
 
 [bar/top]
 width  = 100%
@@ -36,22 +34,20 @@ border-color = #00000000
 
 radius = 0
 
-padding-left  = 12
-padding-right = 12
+padding-left  = 4
+padding-right = 4
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-font-0 = sans-serif:size=11;2
-font-1 = sans-serif:weight=bold:size=11;2
-font-2 = Material Design Icons:size=15;3
-font-3 = sans-serif:size=11:antialias=false;2
+font-0 = sans-serif:weight=bold:size=11;2
+font-1 = Material Design Icons:size=15;3
 
 line-size  = 2
 line-color = #f00
 
 modules-left   = workspaces-xmonad
-modules-center = date pomodoro-timer
+modules-center = date
 modules-right  = dropbox-status alsa wlan battery
 
 module-margin-left  = 0
@@ -91,7 +87,7 @@ modules-right  =
 module-margin-left  = 0
 module-margin-right = 0
 
-separator = %{O16}
+separator = %{O8}·%{O8}
 
 [module/workspaces-xmonad]
 type = custom/script
@@ -108,45 +104,33 @@ interval = 5
 date = %b %d %a
 time = %H:%M
 
-format           = <label>
-format-font      = 2
-format-underline =
-label = %date% %time%
-
-[module/pomodoro-timer]
-type = custom/script
-
-exec = ~/polybar-pomodoro-timer/pomodoro_timer.py
-tail = true
-
 format = <label>
-label = %{O-8}%{F#5b6268}%{T4}|%{T-}%{F-}%{O4}%output%
-
-click-left = ~/polybar-pomodoro-timer/pomodoro_timer.py toggle
-click-right = ~/polybar-pomodoro-timer/pomodoro_timer.py end
+label = %date%, %time%
 
 [module/dropbox-status]
 type = custom/script
 
 exec = ~/polybar-scripts/dropbox-status/dropbox-status.sh
-
 interval = 10
+
+format = <label>
+label      = %output%
+label-font = 2
 
 [module/alsa]
 type = internal/alsa
 
-format-volume = <ramp-volume>%{O8}<label-volume>
-label-volume = %percentage%%
+format-volume = <ramp-volume>
 
 format-muted            = <label-muted>
-format-muted-foreground = ${colors.red}
+format-muted-foreground = ${colors.gray}
 label-muted      = 
-label-muted-font = 3
+label-muted-font = 2
 
 ramp-volume-0    = 
 ramp-volume-1    = 
 ramp-volume-2    = 
-ramp-volume-font = 3
+ramp-volume-font = 2
 
 ramp-headphones-0 = 
 
@@ -161,14 +145,14 @@ ramp-signal-0    = 爛
 ramp-signal-1    = 嵐
 ramp-signal-2    = 襤
 ramp-signal-3    = 蠟
-ramp-signal-font = 3
+ramp-signal-font = 2
 label-connected = %essid%
 
-format-disconnected           = <label-disconnected>
+format-disconnected            = <label-disconnected>
 format-disconnected-foreground = ${colors.gray}
-format-disconnected-underline =
+format-disconnected-underline  =
 label-disconnected      = 來
-label-disconnected-font = 3
+label-disconnected-font = 2
 
 [module/battery]
 type = internal/battery
@@ -180,9 +164,7 @@ adapter = ADP1
 
 poll-interval = 5
 
-format-charging            = <animation-charging>%{O8}<label-charging>
-format-charging-foreground = ${colors.green}
-format-charging-underline  =
+format-charging = <animation-charging>
 animation-charging-0         = 
 animation-charging-1         = 
 animation-charging-2         = 
@@ -195,11 +177,9 @@ animation-charging-8         = 
 animation-charging-9         = 
 animation-charging-10        = 
 animation-charging-framerate = 150
-animation-charging-font      = 3
+animation-charging-font      = 2
 
-format-discharging            = <ramp-capacity>%{O8}<label-discharging>
-format-discharging-foreground = ${colors.orange}
-format-discharging-underline  =
+format-discharging = <ramp-capacity>
 ramp-capacity-0    = 
 ramp-capacity-1    = 
 ramp-capacity-2    = 
@@ -211,24 +191,22 @@ ramp-capacity-7    = 
 ramp-capacity-8    = 
 ramp-capacity-9    = 
 ramp-capacity-10   = 
-ramp-capacity-font = 3
+ramp-capacity-font = 2
 
-format-full            = 
-format-full-foreground = ${colors.green}
-format-full-font       = 3
-format-full-underline  =
+format-full      = 
+format-full-font = 2
 
 [module/cpu]
 type = internal/cpu
 
 format = <label>
-label = %{T2}%{T-}%{O8}%percentage%%
+label = %{F#ffffff}cpu%{F-}%{O6}:%{O6}%percentage%%
 
 [module/memory]
 type = internal/memory
 
 format = <label>
-label = %{T2}%{T-}%{O8}%mb_used%%{O4}/%{O4}%mb_total%
+label = %{F#ffffff}mem%{F-}%{O6}:%{O6}%mb_used%%{O4}/%{O4}%mb_total%
 
 [module/network]
 type = internal/network
@@ -239,7 +217,7 @@ accumulate-stats = true
 unknown-as-up = true
 
 format-connected = <label-connected>
-label-connected = %{T2}%{F#98be65}%{F-}%{T-}%{O8}%downspeed%%{O8}%{T2}%{F#ff6c6b}%{F-}%{T-}%{O8}%upspeed%
+label-connected = %{F#ffffff}net%{F-}%{O6}:%{O6}%downspeed%%{O4}%{T2}%{F#ffffff}%{F-}%{T-}%{O8}%upspeed%%{O4}%{T2}%{F#ffffff}%{F-}%{T-}
 
 format-disconnected =
 
