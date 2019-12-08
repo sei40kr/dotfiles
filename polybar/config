@@ -42,13 +42,14 @@ foreground = ${colors.foreground}
 
 font-0 = sans-serif:weight=bold:size=11;2
 font-1 = Material Design Icons:size=15;3
+font-2 = Noto Serif CJK JP:weight=bold:size=11;2
 
 line-size  = 2
 line-color = #f00
 
 modules-left   = workspaces-xmonad
 modules-center = date
-modules-right  = dropbox-status alsa wlan battery
+modules-right  = dropbox-status fcitx-status alsa wlan battery
 
 module-margin-left  = 0
 module-margin-right = 0
@@ -116,6 +117,17 @@ interval = 10
 format = <label>
 label      = %output%
 label-font = 2
+
+[module/fcitx-status]
+type = custom/script
+
+exec = ~/polybar-scripts/fcitx-status/fcitx-status.sh
+exec-if = [ -x /usr/bin/fcitx-remote ]
+tail = true
+
+format = <label>
+label      = %output%
+label-font = 3
 
 [module/alsa]
 type = internal/alsa
