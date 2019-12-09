@@ -16,6 +16,7 @@ IFS=$'\n\t'
 
 : "${NVM_DIR:=${HOME}/.nvm}"
 : "${GOENV_ROOT:=${HOME}/.goenv}"
+: "${GOPATH:=${HOME}/go/system}"
 : "${PYENV_ROOT:=${HOME}/.pyenv}"
 : "${RBENV_ROOT:=${HOME}/.rbenv}"
 : "${PERLBREW_ROOT:=${HOME}/perl5/perlbrew}"
