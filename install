@@ -948,6 +948,7 @@ install_dev_tools() {
             vscode-css-languageserver-bin
             javascript-typescript-langserver
             typescript-language-server
+            vue-language-server
             # editor tools
             import-js
             # build tools
