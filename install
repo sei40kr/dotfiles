@@ -860,6 +860,8 @@ install_dev_tools() {
             pyls-isort
             # debugger
             ptvsd
+            # repl
+            ipython
             # editor tools
             importmagic
             epc
