@@ -17,15 +17,13 @@ RESET="$(tput sgr0)"
 
 
 print_line() {
-    local empty_line
-    empty_line="$(printf "%${COLUMNS}s")"
+    local empty_line="$(printf "%${COLUMNS}s")"
 
     echo "${empty_line// /-}"
 }
 
 print_title() {
-    local title
-    title="$1"
+    local title="$1"
 
     clear
     print_line
@@ -35,18 +33,16 @@ print_title() {
 }
 
 print_desc() {
-    local desc
-    desc="$1"
+    local desc="$1"
 
     echo "$desc"
     echo ''
 }
 
 read_yn() {
-    local prompt
-    local answer
-    prompt="$1"
+    local prompt="$1"
 
+    local answer
     read -n1 -rp "${prompt} [yn]: " answer
     echo ''
     echo ''
@@ -59,46 +55,39 @@ read_yn() {
 }
 
 print_info() {
-    local message
-    message="$1"
+    local message="$1"
 
     echo "${message}"
 }
 
 print_important() {
-    local message
-    message="$1"
+    local message="$1"
 
     echo -e "${BOLD}${message}${RESET}"
 }
 
 print_warning() {
-    local message
-    message="$1"
+    local message="$1"
 
     echo -e "${YELLOW}${message}${RESET}"
 }
 
 print_danger() {
-    local message
-    message="$1"
+    local message="$1"
 
     echo -e "${RED}${message}${RESET}"
 }
 
 menu_item() {
-    local title
-    title="$1"
+    local title="$1"
 
     echo "${BOLD}${title}${RESET}"
 }
 
 pacman_menu_item() {
-    local title
-    local -a pkgs
-    title="$1"
+    local title="$1"
     shift
-    pkgs=( "$@" )
+    local -a pkgs=( "$@" )
 
     if pacman -Q "${pkgs[@]}" 1>/dev/null 2>/dev/null; then
         echo "${GREEN}☑${RESET} ${BOLD}${title}${RESET}"
@@ -108,15 +97,12 @@ pacman_menu_item() {
 }
 
 with_spinner() {
-    local pid
-    local i
-
     "$@" 1>/dev/null 2>/dev/null &
-    pid="$!"
+    local pid="$!"
 
     echo '  '
 
-    i=0
+    local i=0
     while kill -0 "$pid" 2>/dev/null; do
         echo -ne "\b${SPINNER:i++%${#SPINNER}:1}"
         sleep 0.25
@@ -131,10 +117,8 @@ with_spinner() {
 }
 
 error() {
-    local message
-    local status_code
-    message="$1"
-    status_code="$2"
+    local message="$1"
+    local status_code="$2"
 
     echo "$message" >&2
     exit "${status_code:-1}"
@@ -146,15 +130,13 @@ pause() {
 }
 
 pacman_query() {
-    local -a pkgs
-    pkgs=( "$@" )
+    local -a pkgs=( "$@" )
 
     pacman -Q "${pkgs[@]}" &>/dev/null
 }
 
 pacman_sync() {
-    local -a pkgs
-    pkgs=( "$@" )
+    local -a pkgs=( "$@" )
 
     echo 'Installing'
 
@@ -166,8 +148,7 @@ pacman_sync() {
 }
 
 trizen_sync() {
-    local -a pkgs
-    pkgs=( "$@" )
+    local -a pkgs=( "$@" )
 
     if ! pacman_query trizen; then
         error 'trizen is not installed. Aborting.'
@@ -183,8 +164,7 @@ trizen_sync() {
 }
 
 stack_install() {
-    local -a pkgs
-    pkgs=( "$@")
+    local -a pkgs=( "$@" )
 
     if ! pacman_query stack; then
         error 'stack is not installed. Aborting.'
@@ -197,29 +177,25 @@ stack_install() {
 }
 
 systemctl_enable() {
-    local service
-    service="$1"
+    local service="$1"
 
     sudo systemctl enable --now "$service"
 }
 
 systemctl_mask() {
-    local service
-    service="$1"
+    local service="$1"
 
     sudo systemctl mask --now "$service"
 }
 
 systemctl_user_enable() {
-    local service
-    service="$1"
+    local service="$1"
 
     systemctl --user enable --now "$service"
 }
 
 rustup_toolchain_install() {
-    local toolchain
-    toolchain="$1"
+    local toolchain="$1"
 
     if ! pacman_query rustup; then
         error 'rustup is not installed. Aborting.'
@@ -229,11 +205,9 @@ rustup_toolchain_install() {
 }
 
 rustup_component_add() {
-    local toolchain
-    local components
-    toolchain="$1"
+    local toolchain="$1"
     shift
-    components=( "$@" )
+    local components=( "$@" )
 
     if ! pacman_query rustup; then
         error 'rustup is not installed. Aborting.'
@@ -243,8 +217,7 @@ rustup_component_add() {
 }
 
 goenv_install() {
-    local go_version
-    go_version="$1"
+    local go_version="$1"
 
     # TODO check goenv executable exists
 
@@ -271,8 +244,7 @@ go_get() {
 }
 
 pyenv_install() {
-    local python_version
-    python_version="$1"
+    local python_version="$1"
 
     # TODO check pyenv executable exists
 
@@ -280,15 +252,12 @@ pyenv_install() {
 }
 
 pip_install() {
-    local python_version
-    local -a pkgs
-    local pip_exec
-    local -a pip_opts
-    python_version="$1"
+    local python_version="$1"
     shift
-    pkgs=( "$@" )
-    pip_opts=( -q -U )
+    local -a pkgs=( "$@" )
+    local -a pip_opts=( -q -U )
 
+    local pip_exec
     if [[ "$python_version" == system ]]; then
         pip_exec=/usr/bin/pip
         pip_opts+=( --user )
@@ -302,8 +271,7 @@ pip_install() {
 }
 
 rbenv_install() {
-    local ruby_version
-    ruby_version="$1"
+    local ruby_version="$1"
 
     # TODO check rbenv executable exists
 
@@ -311,15 +279,12 @@ rbenv_install() {
 }
 
 gem_install() {
-    local ruby_version
-    local -a gems
-    local gem_exec
-    local -a gem_opts
-    ruby_version="$1"
+    local ruby_version="$1"
     shift
-    gems=( "$@" )
-    gem_opts=( -q --silent --norc )
+    local -a gems=( "$@" )
+    local -a gem_opts=( -q --silent --norc )
 
+    local gem_exec
     if [[ "$ruby_version" == system ]]; then
         gem_exec=/usr/bin/gem
         gem_opts+=( --user-install )
@@ -333,8 +298,7 @@ gem_install() {
 }
 
 nvm_install() {
-    local node_version
-    node_version="$1"
+    local node_version="$1"
 
     # TODO check nvm exists
 
@@ -343,13 +307,11 @@ nvm_install() {
 }
 
 yarn_global_add() {
-    local node_version
-    local -a pkgs
-    local node_execdir
-    node_version="$1"
+    local node_version="$1"
     shift
-    pkgs=( "$@" )
+    local -a pkgs=( "$@" )
 
+    local node_execdir
     if [[ "$node_version" == system ]]; then
       node_execdir=/usr/bin
     else

@@ -171,8 +171,7 @@ EOM
         fi
 
         # Install local plugins
-        local -a plugins
-        plugins=(
+        local -a plugins=(
             zsh-run-help-collections
             zsh-fzf-projects
             zsh-fzf-docker
@@ -643,7 +642,7 @@ install_dev_apps() {
         fi
 
         # Install private packages
-        local local_pkgs=(
+        local -a local_pkgs=(
             helm-gitignore
             emacs-atcoder-tools
             # snippets
@@ -837,8 +836,7 @@ install_dev_tools() {
 
         "${PYENV_ROOT}/bin/pyenv" global system
 
-        local -a pip_pkgs
-        pip_pkgs=(
+        local -a pip_pkgs=(
             # Jupyter Notebook
             jupyter
             numpy
@@ -870,8 +868,6 @@ install_dev_tools() {
     }
 
     install_ruby_dev_tools() {
-        local -a gems
-
         pacman_sync ruby
 
         if [[ ! -d "$RBENV_ROOT" ]]; then
@@ -885,7 +881,7 @@ install_dev_tools() {
 
         "${RBENV_ROOT}/bin/rbenv" global system
 
-        gems=(
+        local -a gems=(
             rake
             pry
             pry-coolline
@@ -917,8 +913,6 @@ install_dev_tools() {
     }
 
     install_web_frontend_dev_tools() {
-        local -a yarn_pkgs
-
         pacman_sync nodejs npm yarn
 
         if [[ ! -d "$NVM_DIR" ]]; then
@@ -930,7 +924,7 @@ install_dev_tools() {
         ( . "${NVM_DIR}/nvm.sh"
           nvm alias default system )
 
-        yarn_pkgs=(
+        local -a yarn_pkgs=(
             # linters
             stylelint-cli
             eslint-cli
@@ -972,7 +966,7 @@ install_dev_tools() {
         ln -fs "${HOME}/.dotfiles/r/Renviron" "$R_ENVIRON_USER"
         ln -fs "${HOME}/.dotfiles/r/Rprofile.r" "$R_PROFILE_USER"
 
-        local r_libs=(
+        local -a r_libs=(
             # linters
             lintr
             # lsp
@@ -1049,16 +1043,11 @@ install_dev_tools() {
     }
 
     install_atcoder_env() {
-        local rust_version
-        local go_version
-        local python_version
-        local ruby_version
-        local node_version
-        rust_version=1.15.1
-        go_version=1.6.0
-        python_version=3.4.3
-        ruby_version=2.3.3
-        node_version=v5.12.0
+        local rust_version=1.15.1
+        local go_version=1.6.0
+        local python_version=3.4.3
+        local ruby_version=2.3.3
+        local node_version=v5.12.0
 
         rustup_toolchain_install "$rust_version"
         rustup_component_add "$rust_version" rust-src rls-preview rust-analysis
@@ -1082,8 +1071,7 @@ install_dev_tools() {
     }
 
     install_leetcode_env() {
-        local rust_version
-        rust_version=1.31.0
+        local rust_version=1.31.0
 
         rustup_toolchain_install "$rust_version"
         rustup_component_add "$rust_version" rust-src rls-preview rust-analysis
@@ -1541,10 +1529,8 @@ install_extra_apps() {
 declare -a visited
 
 main_menu_item() {
-    local no
-    local title
-    no="$1"
-    title="$2"
+    local no="$1"
+    local title="$2"
 
     if [[ "${visited[$no]}" == 1 ]]; then
         printf "%2d) ${GREEN}☑${RESET} ${BOLD}%s${RESET}" "$no" "$title"
