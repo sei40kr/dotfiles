@@ -10,10 +10,6 @@ if [[ -x /usr/bin/compton ]]; then
     /usr/bin/compton &
 fi
 
-if [[ -x /usr/bin/redshift ]]; then
-    /usr/bin/redshift &
-fi
-
 if [[ -x /usr/bin/gnome-keyring-daemon ]]; then
     eval "$(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
     export SSH_AUTH_SOCK

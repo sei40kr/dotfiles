@@ -343,26 +343,6 @@ install_desktop_environment() {
         pause
     }
 
-    install_redshift() {
-        print_title 'Redshift - https://wiki.archlinux.org/index.php/Redshift'
-        print_desc \
-            'Redshift adjusts the color temperature of your screen according to your surroundings.'
-
-        if ! read_yn 'Would you like to install?'; then
-            return
-        fi
-
-        pacman_sync redshift
-
-        mkdir -p "${XDG_CONFIG_HOME}/redshift/hooks"
-        ln -fs "${HOME}/.dotfiles/redshift/redshift.conf" \
-           "${XDG_CONFIG_HOME}/redshift/redshift.conf"
-        ln -fs "${HOME}/.dotfiles/redshift/hooks/brightness.sh" \
-           "${XDG_CONFIG_HOME}/redshift/hooks/brightness.sh"
-
-        pause
-    }
-
     install_gnome() {
         print_title 'GNOME - https://wiki.archlinux.org/index.php/GNOME'
         print_desc \
@@ -377,13 +357,28 @@ install_desktop_environment() {
                     gnome-control-center \
                     gnome-screenshot
 
-        # Random background image
+        # Night Light
+        dconf write \
+              /org/gnome/settings-daemon/plugins/color/night-light-enabled \
+              true
+        dconf write \
+              /org/gnome/settings-daemon/plugins/color/night-light-automatic \
+              false
+        dconf write \
+              /org/gnome/settings-daemon/plugins/color/night-light-schedule-from \
+              0
+        dconf write \
+              /org/gnome/settings-daemon/plugins/color/night-light-schedule-to \
+              23.983333333333277
+        dconf write \
+              /org/gnome/settings-daemon/plugins/color/night-light-temperature \
+              5700
+
+        # Background
         trizen_sync chromecast-wallpapers
         mkdir -p "${HOME}/.local/bin"
         ln -fs "${HOME}/.dotfiles/gnome-desktop/wallpaper.sh" \
            "${HOME}/.local/bin/wallpaper.sh"
-
-        # TODO remove unused panels
 
         pause
     }
@@ -589,7 +584,6 @@ EOM
     }
 
     install_compton
-    install_redshift
 
     install_gnome
 
