@@ -1092,29 +1092,21 @@ install_dev_tools() {
     while true; do
         print_title 'Development Tools'
 
-        echo "  1) $(menu_item 'C')"
-        echo "  2) $(menu_item 'Rust')"
-        echo "  3) $(menu_item 'Go')"
-        echo "  4) $(menu_item 'Haskell')"
-        echo "  5) $(menu_item 'Java')"
-        echo "  6) $(menu_item 'Scala')"
-        echo "  7) $(menu_item 'Python')"
-        echo "  8) $(menu_item 'Ruby')"
-        echo "  9) $(menu_item 'Perl')"
-        echo " 10) $(menu_item 'Web Frontend')"
-        echo " 11) $(menu_item 'SQL')"
-        echo " 12) $(menu_item 'R')"
-        echo " 13) $(menu_item 'Shell Scripts')"
-        echo " 14) $(menu_item 'Markdown')"
+        echo "  1) $(menu_item 'C')                 2) $(menu_item 'Rust')"
+        echo "  3) $(menu_item 'Go')                4) $(menu_item 'Haskell')"
+        echo "  5) $(menu_item 'Java')              6) $(menu_item 'Scala')"
+        echo "  7) $(menu_item 'Python')            8) $(menu_item 'Ruby')"
+        echo "  9) $(menu_item 'Perl')             10) $(menu_item 'Web Frontend')"
+        echo " 11) $(menu_item 'SQL')              12) $(menu_item 'R')"
+        echo " 13) $(menu_item 'Shell Scripts')    14) $(menu_item 'Markdown')"
         echo " 15) $(menu_item 'PlantUML')"
         echo ''
-        echo " 16) $(menu_item 'Ansible')"
-        echo " 17) $(menu_item 'Docker')"
+        echo " 16) $(menu_item 'Ansible')          17) $(menu_item 'Docker')"
         echo ''
         echo " 18) $(menu_item 'Others')"
         echo ''
-        echo " 19) $(menu_item 'AtCoder Environment')"
-        echo " 20) $(menu_item 'LeetCode Environment')"
+        echo " 19) $(menu_item 'AtCoder')          20) $(menu_item 'LeetCode')"
+        echo ''
         echo '  d) Done'
 
         read -rp 'Enter your option: ' opt
