@@ -1388,9 +1388,26 @@ install_audio_apps() {
     :
 }
 
-# TODO implement this
 install_video_apps() {
-    :
+    while true; do
+        print_title 'Video Apps'
+
+        echo "  1) $(pacman_menu_item 'Parole Media Player' parole)"
+        echo ''
+        echo '  d) Done'
+
+        read -rp 'Enter your option: ' opt
+
+        case "$opt" in
+            1 )
+                pacman_sync parole
+                ;;
+
+            d )
+                break
+                ;;
+        esac
+    done
 }
 
 install_fonts() {
