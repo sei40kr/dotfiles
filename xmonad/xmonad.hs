@@ -229,7 +229,8 @@ myLayout =
   desktopLayoutModifiers $
   minimize . boringWindows $
   onWorkspace internetWs (tabSpacing myTabbed) $
-  onWorkspace devWs (tabSpacing $ reflectHoriz $ withIM (1 % 2) vmdProps myTabbed) $
+  onWorkspace devWs (tabSpacing $ reflectHoriz $ withIM (1 % 2) vmdProps $
+                     reflectHoriz myTabbed) $
   onWorkspace fileWs (tabSpacing myTabbed ||| tiledSpacing tiled) $
   tiledSpacing tiled ||| Full
   where
