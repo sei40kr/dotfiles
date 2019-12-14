@@ -356,6 +356,12 @@ install_desktop_environment() {
                     gnome-control-center \
                     gnome-screenshot
 
+        # Background
+        trizen_sync chromecast-wallpapers
+        mkdir -p "${HOME}/.local/bin"
+        ln -fs "${HOME}/.dotfiles/gnome-desktop/wallpaper.sh" \
+           "${HOME}/.local/bin/wallpaper.sh"
+
         # Night Light
         dconf write \
               /org/gnome/settings-daemon/plugins/color/night-light-enabled \
@@ -372,12 +378,6 @@ install_desktop_environment() {
         dconf write \
               /org/gnome/settings-daemon/plugins/color/night-light-temperature \
               5700
-
-        # Background
-        trizen_sync chromecast-wallpapers
-        mkdir -p "${HOME}/.local/bin"
-        ln -fs "${HOME}/.dotfiles/gnome-desktop/wallpaper.sh" \
-           "${HOME}/.local/bin/wallpaper.sh"
 
         pause
     }
