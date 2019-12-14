@@ -379,6 +379,9 @@ install_desktop_environment() {
               /org/gnome/settings-daemon/plugins/color/night-light-temperature \
               5700
 
+        # Windows
+        dconf write /org/gnome/desktop/wm/preferences/button-layout "'appmenu:'"
+
         pause
     }
 
