@@ -105,7 +105,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux) monospace
     #   - (Windows) Consolas
-    family: 'Input Mono'
+    family: Iosevka
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -133,7 +133,7 @@ font:
     #style: Italic
 
   # Point size
-  size: 12.667
+  size: 13
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
