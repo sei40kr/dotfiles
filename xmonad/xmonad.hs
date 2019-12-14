@@ -288,12 +288,14 @@ myManageHook =
     , className =? "Gnome-break-timer" <||>
       className =? "Gnome-control-center" <||>
       className =? "Xfce4-notifyd-config" <||>
+      className =? "Gcolor3" <||>
       className =? "Fcitx-config-gtk3" --> doCenterFloat <+> doF copyToAll
     , className =? "Bitwarden" <||>
       isTodoist <||>
       className =? "GoldenDict" --> doRectFloat centerRect <+> doF copyToAll
     , className =? "Gcr-prompter" <||>
       className =? "Gnome-contacts" --> doCenterFloat
+    , className =? "Dconf-editor" --> doRectFloat centerRect
     -- Internet Apps
     , stringProperty "WM_WINDOW_ROLE" =? "browser" <||>
       className =? "Google-chrome" <||>
