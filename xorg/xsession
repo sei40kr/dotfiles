@@ -56,4 +56,15 @@ fi
 export XDG_SESSION_TYPE=x11
 export XDG_CURRENT_DESKTOP='GNOME-Flashback:GNOME'
 export GDK_BACKEND=x11
+
+rm -f /tmp/.xmonad-workspace-log
+mkfifo /tmp/.xmonad-workspace-log
+
+# Polybar
+if [[ -x /usr/bin/polybar ]]; then
+    /usr/bin/polybar -r top &
+    /usr/bin/polybar -r bottom &
+fi
+
+# GNOME Flashback with Xmonad
 gnome-session --builtin -a /dev/null --session=xmonad --disable-acceleration-check

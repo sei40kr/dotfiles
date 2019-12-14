@@ -374,11 +374,7 @@ myLogHook = ewmhDesktopsLogHook <+> do
 myStartupHook :: X ()
 myStartupHook =
   gnomeRegister <+>
-  ewmhDesktopsStartup <+>
-  spawnOnce
-    "rm -f /tmp/.xmonad-workspace-log; mkfifo /tmp/.xmonad-workspace-log" <+>
-  spawnOnce "polybar -r top &" <+>
-  spawnOnce "polybar -r bottom &"
+  ewmhDesktopsStartup
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
