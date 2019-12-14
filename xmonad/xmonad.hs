@@ -231,7 +231,7 @@ myLayout =
   onWorkspace internetWs (tabSpacing myTabbed) $
   onWorkspace devWs (tabSpacing $ reflectHoriz $ withIM (1 % 2) vmdProps myTabbed) $
   onWorkspace fileWs (tabSpacing myTabbed ||| tiledSpacing tiled) $
-  (tiledSpacing tiled) ||| Full
+  tiledSpacing tiled ||| Full
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled = Tall 1 (toRational $ 2 / (1 + sqrt 5 :: Double)) (3 / 100)
@@ -349,9 +349,6 @@ myEventHook =
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
 
-genericJoin :: String -> [String] -> String
-genericJoin delim l = concat $ intersperse delim l
-
 myLogHook :: X ()
 myLogHook = ewmhDesktopsLogHook <+> do
   wset <- gets windowset
@@ -359,7 +356,7 @@ myLogHook = ewmhDesktopsLogHook <+> do
   let current = W.currentTag wset
   io $ appendFile "/tmp/.xmonad-workspace-log" $ format current wss
   where
-    format current = (++ "\n") . genericJoin "%{O3}" . map (label current) . sort
+    format current = (++ "\n") . intercalate "%{O3}" . map (label current) . sort
     label current ws = (if ws == current
          then wrap "%{F#ffffff}%{u#ffffff}" "%{-u}%{F-}"
          else id) $ "   " ++ ws ++ "   "
@@ -388,7 +385,7 @@ myStartupHook =
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main :: IO ()
-main = xmonad $ defaults
+main = xmonad defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
