@@ -46,7 +46,8 @@ def main():
     dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
 
     gsettings = Gio.Settings.new(schema_id='org.gnome.pomodoro.state')
-    state = Gio.Settings.get_string(gsettings, 'timer-state') or None
+    raw_state = Gio.Settings.get_string(gsettings, 'timer-state')
+    state = raw_state if raw_state != 'null' else None
     state_duration = int(
         Gio.Settings.get_double(gsettings, 'timer-state-duration') or 0.0)
     elapsed = Gio.Settings.get_double(gsettings, 'timer-elapsed') or 0.0
@@ -62,7 +63,7 @@ def main():
 
         if 'State' in payload:
             timer.state = str(
-                payload['State']) if payload['State'] is not None else None
+                payload['State']) if payload['State'] != 'null' else None
             if timer.state is None:
                 timer.is_paused = False
         if 'StateDuration' in payload:
@@ -83,6 +84,12 @@ def main():
                             dbus_interface='org.freedesktop.DBus.Properties',
                             path='/org/gnome/Pomodoro',
                             member_keyword='PropertiesChanged')
+
+    # initial rendering
+    output(state=timer.state,
+           state_duration=timer.state_duration,
+           elapsed=timer.elapsed,
+           is_paused=timer.is_paused)
 
     loop = GLib.MainLoop()
     loop.run()
