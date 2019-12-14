@@ -45,8 +45,8 @@ if [[ -x /usr/lib/evolution-data-server/evolution-alarm-notify ]]; then
     /usr/lib/evolution-data-server/evolution-alarm-notify &
 fi
 
-if [[ -x /usr/bin/gnome-break-timer-service ]]; then
-    /usr/bin/gnome-break-timer-service &
+if [[ -x /usr/bin/gnome-pomodoro ]]; then
+    /usr/bin/gnome-pomodoro --no-default-window &
 fi
 
 if [[ -x /usr/bin/dropbox ]]; then

@@ -49,7 +49,7 @@ line-color = #f00
 
 modules-left   = workspaces-xmonad
 modules-center = date
-modules-right  = dropbox-status fcitx-status alsa wlan battery
+modules-right  = gnome-pomodoro-timer dropbox-status fcitx-status alsa wlan battery
 
 module-margin-left  = 0
 module-margin-right = 0
@@ -107,6 +107,17 @@ time = %H:%M
 
 format = <label>
 label = %date%, %time%
+
+[module/gnome-pomodoro-timer]
+type = custom/script
+
+exec = ~/polybar-scripts/gnome-pomodoro-timer/gnome-pomodoro-timer.py
+tail = true
+
+format = <label>
+label = %output%
+
+click-left = gnome-pomodoro
 
 [module/dropbox-status]
 type = custom/script

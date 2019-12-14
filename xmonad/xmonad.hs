@@ -286,7 +286,7 @@ myManageHook =
     , stringProperty "WM_WINDOW_ROLE" =? "pop-up" <&&> fmap not isChromeExtension
       --> doCenterFloat
     , className =? "Rofi" --> doIgnore
-    , className =? "Gnome-break-timer" <||>
+    , className =? "Gnome-pomodoro" <||>
       className =? "Gnome-control-center" <||>
       className =? "Xfce4-notifyd-config" <||>
       className =? "Gcolor3" <||>

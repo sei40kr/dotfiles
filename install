@@ -1182,7 +1182,7 @@ install_office_apps() {
     while true; do
         print_title 'Office Apps'
 
-        echo "  1) $(pacman_menu_item 'Toggl Desktop' toggldesktop-bin)"
+        echo "  1) $(pacman_menu_item 'GNOME Pomodoro' gnome-shell-pomodoro)"
         echo "  2) $(pacman_menu_item 'TeX Live' texlive-most texlive-langjapanese)"
         echo "  3) $(pacman_menu_item 'LibreOffice' libreoffice-fresh)"
         echo ''
@@ -1192,7 +1192,7 @@ install_office_apps() {
 
         case "$opt" in
             1 )
-                trizen_sync toggldesktop-bin
+                trizen_sync gnome-shell-pomodoro
                 ;;
             2 )
                 install_texlive
