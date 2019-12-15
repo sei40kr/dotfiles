@@ -6,8 +6,8 @@
 xset r rate 150 30
 xsetroot -cursor_name left_ptr
 
-if [[ -x /usr/bin/compton ]]; then
-    /usr/bin/compton &
+if [[ -x /usr/bin/picom ]]; then
+    /usr/bin/picom &
 fi
 
 if [[ -x /usr/bin/gnome-keyring-daemon ]]; then

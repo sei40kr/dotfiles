@@ -329,19 +329,20 @@ EOM
 }
 
 install_desktop_environment() {
-    install_compton() {
-        print_title 'Compton - https://wiki.archlinux.org/index.php/Compton'
+    install_picom() {
+        print_title 'Picom - https://wiki.archlinux.org/index.php/Picom'
         print_desc \
-            'Compton is a standalone compositor for Xorg, suitable for use with window managers that do not provide compositing.'
+            'Picom is a standalone compositor for Xorg, suitable for use with window managers that do not provide compositing.'
 
         if ! read_yn 'Would you like to install?'; then
             return
         fi
 
-        pacman_sync compton mesa
+        pacman_sync picom mesa
 
-        ln -fs "${HOME}/.dotfiles/compton/compton.conf" \
-           "${XDG_CONFIG_HOME}/compton/compton.conf"
+        mkdir -p "${XDG_CONFIG_HOME}/picom"
+        ln -fs "${HOME}/.dotfiles/picom/picom.conf" \
+           "${XDG_CONFIG_HOME}/picom/picom.conf"
 
         pause
     }
@@ -582,7 +583,7 @@ EOM
         pause
     }
 
-    install_compton
+    install_picom
 
     install_gnome
 
