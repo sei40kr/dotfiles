@@ -851,6 +851,7 @@ install_dev_tools() {
             ptvsd
             # repl
             ipython
+            ptpython
             # editor tools
             importmagic
             epc
@@ -861,6 +862,12 @@ install_dev_tools() {
         mkdir -p "${XDG_CONFIG_HOME}/matplotlib"
         ln -fs "${HOME}/.dotfiles/matplotlib/matplotlibrc" \
            "${XDG_CONFIG_HOME}/matplotlib/matplotlibrc"
+
+        mkdir -p "${XDG_CONFIG_HOME}/ptpython"
+        ln -fs "${HOME}/.dotfiles/ptpython/pythonstartup.py" \
+           "${XDG_CONFIG_HOME}/ptpython/pythonstartup.py"
+        ln -fs "${HOME}/.dotfiles/ptpython/config.py" \
+           "${XDG_CONFIG_HOME}/ptpython/config.py"
     }
 
     install_ruby_dev_tools() {

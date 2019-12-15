@@ -112,8 +112,13 @@ alias npmR='npm run'
 alias npmP='npm publish'
 alias npmI='npm init'
 
+## Python
+
 # pip
 alias pip='noglob pip'
+
+# ptpython
+alias ptpython='PYTHONSTARTUP="${XDG_CONFIG_HOME:-${HOME}/.config}/ptpython/pythonstartup.py" ptpython'
 
 # prettyping
 alias ping='prettyping --nolegend'
