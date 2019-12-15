@@ -435,6 +435,7 @@ FILE
         fi
 
         trizen_sync polybar ttf-material-design-icons-webfont
+        pip_install system dbus-python
 
         mkdir -p "${XDG_CONFIG_HOME}/polybar"
         ln -fs "${HOME}/.dotfiles/polybar/config" \
