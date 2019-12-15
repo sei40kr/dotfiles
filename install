@@ -839,8 +839,9 @@ install_dev_tools() {
             matplotlib
             # linters
             pylint
-            # formatters
             flake8
+            # formatters
+            black
             # lsp
             'python-language-server[all]'
             jedi
