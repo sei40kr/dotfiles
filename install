@@ -1009,8 +1009,9 @@ install_dev_tools() {
             echo "  2) $(menu_item 'AWS Shell')"
             echo "  3) $(pacman_menu_item 'Google Cloud SDK' google-cloud-sdk)"
             echo "  4) $(menu_item 'Oracle Cloud Infrastructure CLI')"
-            echo "  5) $(menu_item 'circleci-cli')"
-            echo "  6) $(menu_item 'The Travis Client')"
+            echo "  5) $(pacman_menu_item 'act' act)"
+            echo "  6) $(menu_item 'circleci-cli')"
+            echo "  7) $(menu_item 'The Travis Client')"
             echo ''
             echo '  d) Done'
 
@@ -1030,11 +1031,14 @@ install_dev_tools() {
                     pip_install system oci-cli
                     ;;
                 5)
+                    trizen_sync act
+                    ;;
+                6)
                     if [[ ! -x /usr/local/bin/circleci ]]; then
                         curl -fLSs https://circle.ci/cli | sudo bash
                     fi
                     ;;
-                6)
+                7)
                     gem_install system travis
                     ;;
 
