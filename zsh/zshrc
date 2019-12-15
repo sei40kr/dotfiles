@@ -46,6 +46,15 @@ unsetopt LIST_BEEP
 WORKSPACE_DIR="${HOME}/develop/workspace"
 
 
+is_macos() {
+    [[ "$OSTYPE" == darwin* ]]
+}
+
+is_arch() {
+    [[ -f /etc/arch-release ]]
+}
+
+
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 
 HYPHEN_INSENSITIVE=true
@@ -64,7 +73,7 @@ zplugin snippet OMZ::plugins/nmap/nmap.plugin.zsh
 
 ## OS-specific Plugins
 
-if [[ -f /etc/arch-release ]]; then
+if is_arch; then
     zplugin snippet OMZ::plugins/archlinux/archlinux.plugin.zsh
 fi
 
@@ -203,7 +212,7 @@ zplugin snippet OMZ::plugins/redis-cli/_redis-cli
 
 # Docker
 zplugin snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
-if [[ "$OSTYPE" == darwin* && -d '/Applications/Docker.app' ]]; then
+if is_macos && [[ -d '/Applications/Docker.app' ]]; then
     zplugin ice as'completion' wait'' multisrc'{docker,docker-compose}.zsh-completion'
     zplugin light '/Applications/Docker.app/Contents/Resources/etc'
 fi
@@ -275,7 +284,7 @@ FZF_PROJECTS_KNOWN_PROJECTS=(
 zplugin light _local/zsh-fzf-projects
 
 # Notification
-if [[ "$OSTYPE" == darwin* ]]; then
+if is_macos; then
     zplugin ice from'gh-r' as'program'
     zplugin light julienXX/terminal-notifier
 fi
