@@ -301,10 +301,10 @@ __main() {
     zplugin ice from'gh-r' src'zstarship.zsh' atclone'./starship init zsh --print-full-init >zstarship.zsh' atpull'%atclone' atload'starship_precmd' as'program' nocompile'!'
     zplugin light starship/starship
 
-    FAST_ALIAS_TIPS_PREFIX='💡 \e[1mTip:\e[0m '
-    FAST_ALIAS_TIPS_SUFFIX=''
-    zplugin ice make
-    zplugin light _local/zsh-fast-alias-tips
+    local fast_alias_tips_dir="${GOPATH}/src/github.com/sei40kr/zsh-fast-alias-tips"
+    path=( "$fast_alias_tips_dir" "${path[@]}" )
+    export PATH
+    . "${fast_alias_tips_dir}/fast-alias-tips.plugin.zsh"
 
 
     zle -N fzf-projects
