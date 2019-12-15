@@ -15,8 +15,6 @@ autoload -Uz \
          pyclean \
          ranger-cd
 
-. "${ZDOTDIR}/alias_defs.zsh"
-
 HISTFILE="${ZDOTDIR}/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
@@ -47,11 +45,6 @@ unsetopt LIST_BEEP
 
 WORKSPACE_DIR="${HOME}/develop/workspace"
 
-zle -N fzf-projects
-
-bindkey -e
-bindkey '^xg' fzf-projects
-bindkey '^x^g' fzf-projects
 
 . "${HOME}/.zplugin/bin/zplugin.zsh"
 
@@ -68,14 +61,19 @@ zplugin snippet OMZ::plugins/extract/extract.plugin.zsh
 zplugin snippet OMZ::plugins/rsync/rsync.plugin.zsh
 zplugin snippet OMZ::plugins/nmap/nmap.plugin.zsh
 
+
+## OS-specific Plugins
+
 if [[ -f /etc/arch-release ]]; then
     zplugin snippet OMZ::plugins/archlinux/archlinux.plugin.zsh
 fi
+
 
 ## Git
 
 zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
 zplugin snippet 'OMZ::plugins/git-flow/git-flow.plugin.zsh'
+
 
 ## Rust
 
@@ -84,9 +82,9 @@ zplugin snippet OMZ::plugins/rust/_rust
 zplugin ice as'completion' wait''
 zplugin snippet OMZ::plugins/cargo/_cargo
 
+
 ## Go
 
-# goenv
 if [[ -n "$GOENV_ROOT" && -d "$GOENV_ROOT" ]]; then
     if [[ ! -f "${GOENV_ROOT}/zgoenv.zsh" ]]; then
         goenv init - --no-rehash zsh >"${GOENV_ROOT}/zgoenv.zsh"
@@ -97,6 +95,7 @@ fi
 
 zplugin snippet OMZ::plugins/golang/golang.plugin.zsh
 
+
 ## Haskell
 
 zplugin ice wait''
@@ -104,10 +103,12 @@ zplugin snippet 'OMZ::plugins/stack/stack.plugin.zsh'
 zplugin ice wait''
 zplugin snippet 'OMZ::plugins/cabal/cabal.plugin.zsh'
 
+
 ## Java
 
 zplugin snippet OMZ::plugins/mvn/mvn.plugin.zsh
 zplugin snippet OMZ::plugins/gradle/gradle.plugin.zsh
+
 
 ## Scala
 
@@ -116,9 +117,9 @@ zplugin snippet OMZ::plugins/scala/_scala
 zplugin ice svn
 zplugin snippet OMZ::plugins/sbt/sbt.plugin.zsh
 
+
 ## Perl
 
-# perlbrew completion
 if [[ -n "$PERLBREW_ROOT" && -d "$PERLBREW_ROOT" ]]; then
     zplugin ice wait''
     zplugin snippet "${PERLBREW_ROOT}/etc/perlbrew-completion.bash"
@@ -128,9 +129,9 @@ zplugin snippet OMZ::plugins/perl/perl.plugin.zsh
 zplugin ice as'completion' wait''
 zplugin snippet OMZ::plugins/cpanm/_cpanm
 
+
 ## Python
 
-# pyenv
 if [[ -n "$PYENV_ROOT" && -d "$PYENV_ROOT" ]]; then
     if [[ ! -f "${PYENV_ROOT}/zpyenv.zsh" ]]; then
         { pyenv init - --no-rehash zsh
@@ -144,9 +145,9 @@ fi
 zplugin ice as'completion' wait''
 zplugin snippet OMZ::plugins/pip/_pip
 
+
 ## Ruby
 
-# rbenv
 if [[ -n "$RBENV_ROOT" && -d "$RBENV_ROOT" ]]; then
     if [[ ! -f "${RBENV_ROOT}/zrbenv.zsh" ]]; then
         rbenv init - --no-rehash zsh >"${RBENV_ROOT}/zrbenv.zsh"
@@ -160,8 +161,11 @@ zplugin ice svn
 zplugin snippet OMZ::plugins/gem
 zplugin ice wait''
 zplugin snippet OMZ::plugins/rake-fast/rake-fast.plugin.zsh
+
+# Rails
 zplugin ice svn
 zplugin snippet OMZ::plugins/rails/rails.plugin.zsh
+
 
 ## PHP
 
@@ -169,7 +173,8 @@ zplugin snippet OMZ::plugins/composer/composer.plugin.zsh
 zplugin snippet OMZ::plugins/laravel/laravel.plugin.zsh
 zplugin snippet OMZ::plugins/laravel5/laravel5.plugin.zsh
 
-## Node.js
+
+## Web Frontend
 
 export NVM_AUTO_USE=true
 zplugin light lukechilds/zsh-nvm
@@ -186,29 +191,33 @@ zplugin snippet OMZ::plugins/react-native
 zplugin ice svn
 zplugin snippet OMZ::plugins/flutter
 
+
 ## Database
 
+# Redis
 zplugin ice as'completion' wait''
 zplugin snippet OMZ::plugins/redis-cli/_redis-cli
 
+
 ## Continuous Integration
 
-# Docker for Mac completion
+# Docker
+zplugin snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
 if [[ "$OSTYPE" == darwin* && -d '/Applications/Docker.app' ]]; then
     zplugin ice as'completion' wait'' multisrc'{docker,docker-compose}.zsh-completion'
     zplugin light '/Applications/Docker.app/Contents/Resources/etc'
 fi
 
-zplugin snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
-
+# Code Climate
 zplugin ice as'completion' wait''
 zplugin snippet OMZ::plugins/codeclimate/_codeclimate
 
-# travis completion
+# Travis CI Client
 if [[ -f "${HOME}/.travis/travis.sh" ]]; then
     zplugin ice wait''
     zplugin snippet "${HOME}/.travis/travis.sh"
 fi
+
 
 ## Infrastructure
 
@@ -217,13 +226,14 @@ zplugin snippet OMZ::plugins/vagrant/_vagrant
 zplugin snippet OMZ::plugins/ansible/ansible.plugin.zsh
 zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 
-# gcloud completion
+# gcloud
 if [[ -n "$CLOUDSDK_HOME" ]]; then
     zplugin ice wait''
     zplugin snippet "${CLOUDSDK_HOME}/completion.zsh.inc"
 fi
 
-## Misc
+
+## Others
 
 zplugin ice wait'0' atinit'zpcompinit; zpcdreplay' lucid
 zplugin light zdharma/fast-syntax-highlighting
@@ -241,18 +251,17 @@ zplugin snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
 zplugin ice from'gh-r' as'program' mv'direnv* -> direnv' atinit'[[ -f zhook.zsh ]] || ./direnv hook zsh >zhook.zsh' src'zhook.zsh'
 zplugin light direnv/direnv
 
-# fzf
+# FZF
 zplugin ice from'gh-r' as'program'
 zplugin light junegunn/fzf-bin
 FZF_DEFAULT_OPTS='--height=15 --reverse --inline-info --color=dark --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
 zplugin ice bindmap'^R ->' multisrc'shell/{completion,key-bindings}.zsh'
 zplugin light -b junegunn/fzf
 
-# fzf sources
+# FZF additional sources
 zplugin light _local/zsh-fzf-docker
 zplugin light _local/zsh-fzf-gcloud
 zplugin light _local/zsh-fzf-kubernetes
-
 FZF_PROJECTS_WORKSPACE_DIRS=(
     "${HOME}/develop/workspace"
     "${GOPATH}/src/github.com"
@@ -265,13 +274,17 @@ FZF_PROJECTS_KNOWN_PROJECTS=(
 )
 zplugin light _local/zsh-fzf-projects
 
+# Notification
 if [[ "$OSTYPE" == darwin* ]]; then
     zplugin ice from'gh-r' as'program'
     zplugin light julienXX/terminal-notifier
 fi
 zplugin snippet OMZ::plugins/bgnotify/bgnotify.plugin.zsh
 
-## Appearance
+# Other alias definitions
+. "${ZDOTDIR}/alias_defs.zsh"
+
+## Theme & Appearance
 
 zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
@@ -284,3 +297,10 @@ if [[ "$TERM" != dumb ]]; then
     zplugin ice make
     zplugin light _local/zsh-fast-alias-tips
 fi
+
+
+zle -N fzf-projects
+
+bindkey -e
+bindkey '^xg' fzf-projects
+bindkey '^x^g' fzf-projects
