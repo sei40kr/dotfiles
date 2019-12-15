@@ -11,17 +11,19 @@ alias cx='chmod +x'
 alias cat='bat --theme TwoDark'
 
 # brew
-alias brewp='brew pin'
-alias brews='brew list -1'
-alias brewsp='brew list --pinned'
-alias bubo='brew update && brew outdated'
-alias bubc='brew upgrade && brew cleanup'
-alias bubu='bubo && bubc'
-alias brewc='brew cleanup'
-alias bsl='brew services list'
-alias bsr='brew services run'
-alias bson='brew services start'
-alias bsoff='brew services stop'
+if is_macos; then
+    alias brewp='brew pin'
+    alias brews='brew list -1'
+    alias brewsp='brew list --pinned'
+    alias bubo='brew update && brew outdated'
+    alias bubc='brew upgrade && brew cleanup'
+    alias bubu='bubo && bubc'
+    alias brewc='brew cleanup'
+    alias bsl='brew services list'
+    alias bsr='brew services run'
+    alias bson='brew services start'
+    alias bsoff='brew services stop'
+fi
 
 # bundle
 alias be="bundle exec"
