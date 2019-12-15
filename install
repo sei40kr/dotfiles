@@ -49,6 +49,10 @@ setup_basic() {
             ( cd "$tmpdir"; makepkg -mis --noconfirm --needed )
         fi
 
+        mkdir -p "${XDG_CONFIG_HOME}/trizen"
+        ln -fs "${HOME}/.dotfiles/trizen/trizen.conf" \
+           "${XDG_CONFIG_HOME}/trizen/trizen.conf"
+
         pause
     }
 
