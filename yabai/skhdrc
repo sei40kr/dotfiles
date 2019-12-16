@@ -1,0 +1,59 @@
+# open terminal
+alt + ctrl - return : open -a Alacritty
+
+# close focused window
+shift + alt - c : yabai -m window --close
+
+# focus window
+shift + alt - j : yabai -m window --focus next
+shift + alt - k : yabai -m window --focus prev
+shift + alt - m : yabai -m window --focus largest
+
+# swap window
+shift + alt - return : yabai -m window --swap largest
+alt + ctrl - j : yabai -m window --swap next
+alt + ctrl - k : yabai -m window --swap prev
+
+# fast focus desktop
+shift + alt - 1 : yabai -m space --focus 1
+shift + alt - 2 : yabai -m space --focus 2
+shift + alt - 3 : yabai -m space --focus 3
+shift + alt - 4 : yabai -m space --focus 4
+
+# send window to desktop and follow focus
+alt + ctrl - 1 : yabai -m window --space  1; yabai -m space --focus 1
+alt + ctrl - 2 : yabai -m window --space  2; yabai -m space --focus 2
+alt + ctrl - 3 : yabai -m window --space  3; yabai -m space --focus 3
+alt + ctrl - 4 : yabai -m window --space  4; yabai -m space --focus 4
+
+# focus monitor
+shift + alt - w  : yabai -m display --focus 1
+shift + alt - e  : yabai -m display --focus 2
+shift + alt - r  : yabai -m display --focus 3
+
+# send window to monitor and follow focus
+alt + ctrl - w  : yabai -m window --display 1; yabai -m display --focus 1
+alt + ctrl - e  : yabai -m window --display 2; yabai -m display --focus 2
+alt + ctrl - r  : yabai -m window --display 3; yabai -m display --focus 3
+
+# increase window size
+#mod - a : yabai -m window --resize left:-20:0
+#mod - d : yabai -m window --resize right:20:0
+
+# decrease window size
+#shift + cmd - a : yabai -m window --resize left:20:0
+#shift + cmd - d : yabai -m window --resize right:-20:0
+
+# rotate tree
+#alt - r : yabai -m space --rotate 90
+
+# toggle window fullscreen zoom
+shift + alt - space : yabai -m window --toggle zoom-fullscreen
+
+# float / unfloat window and center on screen
+shift + alt - t : yabai -m window --toggle float; \
+                  yabai -m window --grid 4:4:1:1:2:2
+
+
+# reload skhd and restart yabai
+shift + alt - q : skhd --reload; brew services restart yabai
