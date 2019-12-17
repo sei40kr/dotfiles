@@ -2,7 +2,7 @@
 indent_type='space'
 indent_width=4
 template_file='~/my_template.rs'
-workspace_dir='~/develop/workspace/hello-atcoder/'
+workspace_dir='~/develop/workspace/sei40kr/hello-atcoder/'
 lang='rust'
 code_generator_file="~/custom_code_generator.py"
 
