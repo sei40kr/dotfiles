@@ -51,16 +51,16 @@ im_ws=4
 yabai -m rule --add app='^App Store$' manage=off sticky=on
 yabai -m rule --add app='^Bitwarden$' manage=off sticky=on
 yabai -m rule --add app='^Todoist$' manage=off sticky=on
-yabai -m rule --add app='^Digital Color Meter$' manage=off sticky=on
+yabai -m rule --add label='Utilities' app='^(Dictionary|Font Book|Digital Color Meter)$' manage=off sticky=on
 yabai -m rule --add label='Preferences' app='^(System Preferences|Alfred Preferences|ConfigDialog|Logicool Options)$' manage=off sticky=on
 yabai -m rule --add label='Web Browsers' app='^(Google Chrome|Safari)$' space="^${internet_ws}"
 yabai -m rule --add label='Office Apps' app='^(Mail|Contacts|Calendar)$' space="^${internet_ws}"
 yabai -m rule --add app='^Pocket$' space="^${internet_ws}"
-yabai -m rule --add app='^Alacritty$' space="^${dev_ws}"
+yabai -m rule --add label='Terminal Apps' app='^(Alacritty|Terminal)$' space="^${dev_ws}"
 yabai -m rule --add app='^Emacs$' title='^.' space="^${dev_ws}"
 yabai -m rule --add app='^IntelliJ IDEA$' space="^${dev_ws}"
 yabai -m rule --add app='^Dash$' space="^${dev_ws}"
-yabai -m rule --add app='^Simulator$' space="^${dev_ws}"
+yabai -m rule --add app='^Simulator$' space="^${dev_ws}" manage=off
 yabai -m rule --add app='^Finder$' space="^${file_ws}"
 yabai -m rule --add app='^Preview$' space="^${file_ws}"
 yabai -m rule --add app='^(Slack|Discord|Gitter)$' space="^${im_ws}"
