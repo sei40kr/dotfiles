@@ -902,8 +902,6 @@ install_dev_tools() {
             fastri
             # debuggers
             seeing_is_believing
-            # lsp
-            solargraph
         )
         gem_install system "${gems[@]}"
 
