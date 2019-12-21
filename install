@@ -156,7 +156,7 @@ EOM
             return
         fi
 
-        pacman_sync zsh subversion
+        pacman_sync zsh subversion fzf
 
         ln -fs "${HOME}/.dotfiles/zsh/zshenv" "${HOME}/.zshenv"
         mkdir -p "${ZDOTDIR}"
@@ -220,7 +220,7 @@ EOM
             return
         fi
 
-        pacman_sync tmux xsel
+        pacman_sync tmux xsel fzf
 
         ln -fs "${HOME}/tmux/tmux.conf" "${HOME}/.tmux.conf"
 
@@ -231,6 +231,13 @@ EOM
 
             "${HOME}/.tmux/plugins/tpm/bin/install_plugins"
         fi
+
+        if [[ ! -d "${WORKSPACE_DIR}/sei40kr/tmux-per-project-session" ]]; then
+            git clone -q "git@github-private:sei40kr/tmux-per-project-session.git" \
+                "${WORKSPACE_DIR}/sei40kr/tmux-per-project-session"
+        fi
+        ln -fsT "${WORKSPACE_DIR}/sei40kr/tmux-per-project-session" \
+           "${HOME}/.tmux/plugins/tmux-per-project-session"
 
         pause
     }
