@@ -1233,6 +1233,8 @@ install_system_apps() {
         print_title 'System Apps'
 
         echo "  1) $(pacman_menu_item 'htop' htop)"
+        echo "  2) $(pacman_menu_item 'strace' strace)"
+        echo "  3) $(pacman_menu_item 'tcpdump' tcpdump)"
         echo ''
         echo '  d) Done'
 
@@ -1241,6 +1243,12 @@ install_system_apps() {
         case "$opt" in
             1 )
                 pacman_sync htop
+                ;;
+            2 )
+                pacman_sync strace
+                ;;
+            3 )
+                pacman_sync tcpdump
                 ;;
 
             d )
