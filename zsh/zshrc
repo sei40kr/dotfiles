@@ -50,8 +50,7 @@ __main() {
     setopt SHARE_HISTORY
     unsetopt LIST_BEEP
 
-    WORKSPACE_DIR="${HOME}/develop/workspace"
-
+    bindkey -e
 
     is_macos() {
         [[ "$OSTYPE" == darwin* ]]
@@ -276,17 +275,25 @@ __main() {
     zplugin light _local/zsh-fzf-docker
     zplugin light _local/zsh-fzf-gcloud
     zplugin light _local/zsh-fzf-kubernetes
-    FZF_PROJECTS_WORKSPACE_DIRS=(
-        "${HOME}/develop/workspace"
-        "${GOPATH}/src/github.com"
-    )
-    FZF_PROJECTS_PROJECT_DIR_MAX_DEPTH=2
-    FZF_PROJECTS_KNOWN_PROJECTS=(
-        "${HOME}/.dotfiles"
-        "${HOME}/.emacs.d"
-        "${HOME}/.spacemacs.d"
-    )
-    zplugin light _local/zsh-fzf-projects
+    zplugin light _local/zsh-fzf-cd-dirs
+    if [[ -z "$TMUX" ]]; then
+        FZF_PROJECTS_WORKSPACE_DIRS=(
+            "${HOME}/develop/workspace"
+            "${GOPATH}/src/github.com"
+        )
+        FZF_PROJECTS_PROJECT_DIR_MAX_DEPTH=2
+        FZF_PROJECTS_KNOWN_PROJECTS=(
+            "${HOME}/.dotfiles"
+            "${HOME}/.emacs.d"
+            "${HOME}/.spacemacs.d"
+        )
+        zplugin light _local/zsh-fzf-projects
+
+        zle -N fzf-projects
+
+        bindkey '^xg' fzf-projects
+        bindkey '^x^g' fzf-projects
+    fi
 
     # Notification
     if is_macos; then
@@ -307,13 +314,6 @@ __main() {
     path=( "$fast_alias_tips_dir" "${path[@]}" )
     export PATH
     . "${fast_alias_tips_dir}/fast-alias-tips.plugin.zsh"
-
-
-    zle -N fzf-projects
-
-    bindkey -e
-    bindkey '^xg' fzf-projects
-    bindkey '^x^g' fzf-projects
 }
 
 if [[ "$TERM" == dumb ]]; then
