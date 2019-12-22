@@ -238,9 +238,9 @@ __main() {
     zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 
     # gcloud
-    if [[ -n "$CLOUDSDK_HOME" ]]; then
+    if [[ -n "$CLOUDSDK_ROOT_DIR" && -d "$CLOUDSDK_ROOT_DIR" ]]; then
         zplugin ice wait''
-        zplugin snippet "${CLOUDSDK_HOME}/completion.zsh.inc"
+        zplugin snippet "${CLOUDSDK_ROOT_DIR}/completion.zsh.inc"
     fi
 
 

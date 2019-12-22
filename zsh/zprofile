@@ -88,14 +88,10 @@ path=( "${HOME}/.yarn/bin"
 
 # Google Cloud SDK
 if [[ -n "$BREW_PREFIX" ]]; then
-    CLOUDSDK_HOME="${BREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
-else
-    CLOUDSDK_HOME='/opt/google-cloud-sdk'
+    export CLOUDSDK_ROOT_DIR="${BREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
 fi
-if [[ -d "$CLOUDSDK_HOME" ]]; then
-    . "${CLOUDSDK_HOME}/path.zsh.inc"
-else
-    unset CLOUDSDK_HOME
+if [[ -z "$CLOUDSDK_ROOT_DIR" && -d "$CLOUDSDK_ROOT_DIR" ]]; then
+    . "${CLOUDSDK_ROOT_DIR}/path.zsh.inc"
 fi
 
 path=( "${HOME}/.local/bin" "${path[@]}" )
