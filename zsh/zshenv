@@ -5,8 +5,6 @@
 
 export ZDOTDIR="${HOME}/.zsh"
 
-export LANG=en_US.UTF-8
-
 export PAGER=less
 export EDITOR=vim
 export GIT_EDITOR="$EDITOR"
