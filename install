@@ -97,13 +97,13 @@ setup_basic() {
 
         pacman_sync networkmanager dnsmasq dialog
 
-        cat <<EOM | sudo tee /etc/NetworkManager/conf.d/dns.conf 2>/dev/null
+        sudo tee /etc/NetworkManager/conf.d/dns.conf <<EOM >/dev/null
 [main]
 dns=dnsmasq
 EOM
 
         sudo mkdir -p /etc/NetworkManager/dnsmasq.d
-        cat <<EOM | sudo tee /etc/NetworkManager/dnsmasq.d/cache.conf 2>/dev/null
+        sudo tee /etc/NetworkManager/dnsmasq.d/cache.conf <<EOM >/dev/null
 cache-size=1024
 EOM
 
@@ -301,7 +301,7 @@ EOM
 
         pacman_sync freetype2 fontconfig noto-fonts noto-fonts-cjk noto-fonts-emoji
 
-        cat <<EOM | sudo tee /etc/profile.d/freetype2.sh 2>/dev/null
+        sudo tee /etc/profile.d/freetype2.sh <<EOM >/dev/null
 # Subpixel hinting mode can be chosen by setting the right TrueType interpreter
 # version. The available settings are:
 #
