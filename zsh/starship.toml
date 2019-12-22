@@ -17,4 +17,4 @@ disabled = true
 disabled = true
 
 [package]
-style = 'bold'
+style = 'bold yellow'
