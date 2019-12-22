@@ -7,6 +7,7 @@ import           Data.List
 import qualified Data.Map                    as M
 import           Data.Monoid
 import           Data.Ratio ((%))
+import           System.Directory
 import           System.Exit
 import           System.IO
 import           XMonad
@@ -108,6 +109,9 @@ isPersistent = className =? "Bitwarden" <||>
                className =? "Geary" <||>
                isTodoist
 
+isTerminal :: Query Bool
+isTerminal = className =? "Alacritty"
+
 myKeys conf@XConfig {XMonad.modMask = modm} =
   M.fromList $
     -- launch a terminal
@@ -118,10 +122,14 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
   , ( (modm .|. shiftMask, xK_c)
     , withFocused
         (\win -> do
-           b <- runQuery isPersistent win
-           if b
+           terminal <- runQuery isTerminal win
+           persistent <- runQuery isPersistent win
+           homeDir <- io getHomeDirectory
+           if persistent
              then minimizeWindow win
-             else killWindow win))
+             else killWindow win
+           when terminal $
+             safeSpawn (homeDir ++ "/.tmux/scripts/clean-orphan-sessions.bash") []))
     -- Rotate through the available layout algorithms
   , ((modm, xK_space), sendMessage NextLayout)
     -- Reset the layouts on the current workspace to default

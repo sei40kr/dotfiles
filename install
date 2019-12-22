@@ -224,6 +224,10 @@ EOM
 
         ln -fs "${HOME}/tmux/tmux.conf" "${HOME}/.tmux.conf"
 
+        mkdir -p "${HOME}/.tmux/scripts"
+        ln -fs "${HOME}/.dotfiles/tmux/scripts/clean-orphan-sessions.bash" \
+           "${HOME}/.tmux/scripts/clean-orphan-sessions.bash"
+
         if [[ ! -d "${HOME}/.tmux/plugins/tpm" ]]; then
             mkdir -p "${HOME}/.tmux/plugins"
             git clone -q https://github.com/tmux-plugins/tpm.git \
