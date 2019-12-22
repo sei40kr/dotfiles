@@ -301,6 +301,21 @@ EOM
 
         pacman_sync freetype2 fontconfig noto-fonts noto-fonts-cjk noto-fonts-emoji
 
+        cat <<EOM | sudo tee /etc/profile.d/freetype2.sh 2>/dev/null
+# Subpixel hinting mode can be chosen by setting the right TrueType interpreter
+# version. The available settings are:
+#
+#     truetype:interpreter-version=35  # Classic mode (default in 2.6)
+#     truetype:interpreter-version=38  # Infinality mode
+#     truetype:interpreter-version=40  # Minimal mode (default in 2.7)
+#
+# There are more properties that can be set, separated by whitespace. Please
+# refer to the FreeType documentation for details.
+
+# Uncomment and configure below
+export FREETYPE_PROPERTIES='cff:hinting-engine=adobe truetype:interpreter-version=38'
+EOM
+
         mkdir -p "${XDG_CONFIG_HOME}/fontconfig/conf.d"
         cp -f /etc/fonts/conf.avail/10-hinting-none.conf \
            "${XDG_CONFIG_HOME}/fontconfig/conf.d/10-autohint.conf"
