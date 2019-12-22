@@ -25,8 +25,8 @@ if [[ -x /usr/bin/xautolock && -x /usr/bin/gnome-screensaver-command ]]; then
                        -detectsleep &
 fi
 
-if [[ -x /usr/lib/xfce4/notifyd/xfce4-notifyd ]]; then
-    /usr/lib/xfce4/notifyd/xfce4-notifyd &
+if [[ -x /usr/bin/dunst ]]; then
+    /usr/bin/dunst &
 fi
 
 if [[ -x /usr/bin/fcitx-autostart ]]; then

@@ -530,15 +530,20 @@ EOM
         pause
     }
 
-    install_xfce4_notifyd() {
-        print_title 'Xfce Notification Daemon'
-        print_desc 'Notification server for Xfce.'
+    install_dunst() {
+        print_title 'Dunst - https://wiki.archlinux.org/index.php/Dunst'
+        print_desc \
+            'Dunst is a lightweight replacement for the notification-daemons provided by most desktop environments.'
 
         if ! read_yn 'Would you like to install?'; then
             return
         fi
 
-        pacman_sync xfce4-notifyd
+        pacman_sync dunst
+
+        mkdir -p "${XDG_CONFIG_HOME}/dunst"
+        ln -fs "${HOME}/.dotfiles/dunst/dunstrc" \
+           "${XDG_CONFIG_HOME}/dunst/dunstrc"
 
         pause
     }
@@ -613,7 +618,7 @@ EOM
     install_polybar
     install_rofi
     install_clipmenu
-    install_xfce4_notifyd
+    install_dunst
 
     install_gtk
 
