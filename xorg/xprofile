@@ -3,8 +3,6 @@
 # xprofile
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-export FREETYPE_PROPERTIES='cff:hinting-engine=adobe truetype:interpreter-version=38'
-
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/.local/share"
