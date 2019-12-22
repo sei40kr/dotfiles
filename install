@@ -1080,23 +1080,18 @@ install_dev_tools() {
         done
     }
 
-    install_atcoder_env() {
-        local rust_version=1.15.1
-        local go_version=1.6.0
-        local python_version=3.4.3
-        local ruby_version=2.3.3
-        local node_version=v5.12.0
+    install_competitive_programming() {
+        # AtCoder environment
+        rustup_toolchain_install 1.15.1
+        rustup_component_add 1.15.1 rust-src rls-preview rust-analysis
+        goenv_install 1.6.0
+        pyenv_install 3.4.3
+        rbenv_install 2.3.3
+        nvm_install v5.12.0
 
-        rustup_toolchain_install "$rust_version"
-        rustup_component_add "$rust_version" rust-src rls-preview rust-analysis
-
-        goenv_install "$go_version"
-
-        pyenv_install "$python_version"
-
-        rbenv_install "$ruby_version"
-
-        nvm_install "$node_version"
+        # LeetCode environment
+        rustup_toolchain_install 1.31.0
+        rustup_component_add 1.31.0 rust-src rls-preview rust-analysis
 
         pip_install system atcoder-tools online-judge-tools
 
@@ -1106,13 +1101,6 @@ install_dev_tools() {
            "${HOME}/custom_code_generator.py"
         ln -fs "${HOME}/.dotfiles/atcoder-tools/my_template.rs" \
            "${HOME}/my_template.rs"
-    }
-
-    install_leetcode_env() {
-        local rust_version=1.31.0
-
-        rustup_toolchain_install "$rust_version"
-        rustup_component_add "$rust_version" rust-src rls-preview rust-analysis
     }
 
     while true; do
@@ -1129,9 +1117,9 @@ install_dev_tools() {
         echo ''
         echo " 16) $(menu_item 'Ansible')          17) $(menu_item 'Docker')"
         echo ''
-        echo " 18) $(menu_item 'Others')"
+        echo " 18) $(menu_item 'Competitive Programming')"
         echo ''
-        echo " 19) $(menu_item 'AtCoder')          20) $(menu_item 'LeetCode')"
+        echo " 19) $(menu_item 'Others')"
         echo ''
         echo '  d) Done'
 
@@ -1192,14 +1180,11 @@ install_dev_tools() {
                 ;;
 
             18 )
-                install_others
+                install_competitive_programming
                 ;;
 
             19 )
-                install_atcoder_env
-                ;;
-            20 )
-                install_leetcode_env
+                install_others
                 ;;
 
             d )
