@@ -33,8 +33,8 @@
 [rerere]
   enabled = true
 [pager]
-	diff = diff-so-fancy | less --tabs=4 -RFX
-	show = diff-so-fancy | less --tabs=4 -RFX
+	diff = diff-so-fancy | vimpager
+	show = diff-so-fancy | vimpager
 [push]
   default = current
 [stash]

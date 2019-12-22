@@ -17,6 +17,11 @@ __main() {
              pyclean \
              ranger-cd
 
+    if [[ "${+commands[vimpager]}" == 1 ]]; then
+        export PAGER=vimpager
+        export MANPAGER=vimpager
+    fi
+
     HISTFILE="${ZDOTDIR}/.zsh_history"
     HISTSIZE=10000
     SAVEHIST=10000
@@ -294,8 +299,6 @@ __main() {
     . "${ZDOTDIR}/alias_defs.zsh"
 
     ## Theme & Appearance
-
-    zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
     zplugin ice from'gh-r' src'zstarship.zsh' atclone'./starship init zsh --print-full-init >zstarship.zsh' atpull'%atclone' atload'starship_precmd' as'program' nocompile'!'
     zplugin light starship/starship

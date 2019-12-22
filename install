@@ -156,7 +156,7 @@ EOM
             return
         fi
 
-        pacman_sync zsh subversion fzf
+        pacman_sync zsh subversion vimpager fzf
 
         ln -fs "${HOME}/.dotfiles/zsh/zshenv" "${HOME}/.zshenv"
         mkdir -p "${ZDOTDIR}"

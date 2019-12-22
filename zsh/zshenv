@@ -6,5 +6,6 @@
 export ZDOTDIR="${HOME}/.zsh"
 
 export PAGER=less
+export MANPAGER=less
 export EDITOR=vim
 export GIT_EDITOR="$EDITOR"
