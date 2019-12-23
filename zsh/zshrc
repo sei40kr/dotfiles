@@ -76,6 +76,9 @@ __main() {
     zplugin snippet OMZ::plugins/rsync/rsync.plugin.zsh
     zplugin snippet OMZ::plugins/nmap/nmap.plugin.zsh
 
+    GH_CLONE_WORKSPACE_DIR="${HOME}/develop/workspace"
+    zplugin light _local/zsh-gh-clone
+
 
     ## OS-specific Plugins
 

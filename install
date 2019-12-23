@@ -166,10 +166,11 @@ setup_basic() {
 
         # Install local plugins
         local -a plugins=(
-            zsh-run-help-collections
+            zsh-gh-clone
             zsh-fzf-projects
             zsh-fzf-cd-dirs
             zsh-fzf-docker
+            zsh-run-help-collections
         )
         mkdir -p "${ZPLGM[PLUGINS_DIR]}"
         for plugin in "${plugins[@]}"; do
