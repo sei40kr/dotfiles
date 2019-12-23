@@ -168,9 +168,8 @@ setup_basic() {
         local -a plugins=(
             zsh-run-help-collections
             zsh-fzf-projects
+            zsh-fzf-cd-dirs
             zsh-fzf-docker
-            zsh-fzf-gcloud
-            zsh-fzf-kubernetes
         )
         mkdir -p "${ZPLGM[PLUGINS_DIR]}"
         for plugin in "${plugins[@]}"; do

@@ -273,8 +273,6 @@ __main() {
 
     # FZF additional sources
     zplugin light _local/zsh-fzf-docker
-    zplugin light _local/zsh-fzf-gcloud
-    zplugin light _local/zsh-fzf-kubernetes
     zplugin light _local/zsh-fzf-cd-dirs
     if [[ -z "$TMUX" ]]; then
         FZF_PROJECTS_WORKSPACE_DIRS=(
