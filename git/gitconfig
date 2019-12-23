@@ -39,12 +39,10 @@
   default = current
 [stash]
   showPatch = true
-[url "ssh://git@github.com/sei40kr"]
+[url "ssh://git@github-private/sei40kr"]
 	insteadOf = https://github.com/sei40kr
-[url "ssh://git@github.com/yonchell"]
-	insteadOf = https://github.com/yonchell
-[url "ssh://git@bitbucket.org/"]
-	insteadOf = https://bitbucket.org/
+[url "ssh://git@github.com/fastretailing"]
+	insteadOf = https://github.com/fastretailing
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
