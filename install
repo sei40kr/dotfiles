@@ -95,17 +95,7 @@ setup_basic() {
             return
         fi
 
-        pacman_sync networkmanager dnsmasq dialog
-
-        sudo tee /etc/NetworkManager/conf.d/dns.conf <<EOM >/dev/null
-[main]
-dns=dnsmasq
-EOM
-
-        sudo mkdir -p /etc/NetworkManager/dnsmasq.d
-        sudo tee /etc/NetworkManager/dnsmasq.d/cache.conf <<EOM >/dev/null
-cache-size=1024
-EOM
+        pacman_sync networkmanager
 
         systemctl_enable NetworkManager.service
 
