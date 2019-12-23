@@ -212,7 +212,7 @@ setup_basic() {
 
         pacman_sync tmux xsel fzf
 
-        ln -fs "${HOME}/tmux/tmux.conf" "${HOME}/.tmux.conf"
+        ln -fs "${HOME}/.dotfiles/tmux/tmux.conf" "${HOME}/.tmux.conf"
 
         mkdir -p "${HOME}/.tmux/scripts"
         ln -fs "${HOME}/.dotfiles/tmux/scripts/clean-orphan-sessions.bash" \
