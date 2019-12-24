@@ -10,7 +10,6 @@ fi
 
 __main() {
     autoload -Uz \
-             gh-clone \
              gh-create \
              kca \
              kres \
