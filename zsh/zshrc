@@ -264,6 +264,7 @@ __main() {
     zplugin light _local/zsh-run-help-collections
 
     zplugin snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
+    zplugin snippet OMZ::plugins/magic-enter/magic-enter.plugin.zsh
 
     zplugin ice from'gh-r' as'program' mv'direnv* -> direnv' atinit'[[ -f zhook.zsh ]] || ./direnv hook zsh >zhook.zsh' src'zhook.zsh'
     zplugin light direnv/direnv
