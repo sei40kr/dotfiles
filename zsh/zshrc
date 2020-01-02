@@ -133,7 +133,7 @@ __main() {
     zplugin ice as'completion' wait''
     zplugin snippet OMZ::plugins/scala/_scala
     zplugin ice svn
-    zplugin snippet OMZ::plugins/sbt/sbt.plugin.zsh
+    zplugin snippet OMZ::plugins/sbt
 
 
     ## Perl
@@ -182,7 +182,7 @@ __main() {
 
     # Rails
     zplugin ice svn
-    zplugin snippet OMZ::plugins/rails/rails.plugin.zsh
+    zplugin snippet OMZ::plugins/rails
 
 
     ## PHP
