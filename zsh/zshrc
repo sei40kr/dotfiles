@@ -201,6 +201,10 @@ __main() {
     zplugin light lukechilds/zsh-better-npm-completion
     zplugin snippet OMZ::plugins/yarn/yarn.plugin.zsh
 
+    # Gatsby
+    zplugin ice as'completion' wait''
+    zplugin snippet OMZ::plugins/gatsby/_gatsby
+
     # React Native
     zplugin ice svn
     zplugin snippet OMZ::plugins/react-native
