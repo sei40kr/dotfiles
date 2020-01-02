@@ -181,8 +181,7 @@ __main() {
     zplugin snippet OMZ::plugins/rake-fast/rake-fast.plugin.zsh
 
     # Rails
-    zplugin ice svn
-    zplugin snippet OMZ::plugins/rails
+    zplugin snippet OMZ::plugins/rails/rails.plugin.zsh
 
 
     ## PHP
