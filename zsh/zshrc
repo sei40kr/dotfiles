@@ -68,7 +68,7 @@ __main() {
     . "${HOME}/.zplugin/bin/zplugin.zsh"
 
     HYPHEN_INSENSITIVE=true
-    zplugin ice svn multisrc'{completion,termsupport,clipboard}.zsh'
+    zplugin ice svn multisrc'{completion,clipboard}.zsh'
     zplugin snippet OMZ::lib
 
     zplugin snippet OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh
