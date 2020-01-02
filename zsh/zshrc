@@ -246,6 +246,8 @@ __main() {
     zplugin ice as'completion' wait''
     zplugin snippet OMZ::plugins/vagrant/_vagrant
     zplugin snippet OMZ::plugins/ansible/ansible.plugin.zsh
+    zplugin ice as'completion' wait''
+    zplugin snippet OMZ::plugins/terraform/_terraform
     zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 
     # gcloud
