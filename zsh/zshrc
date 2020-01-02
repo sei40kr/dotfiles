@@ -197,11 +197,7 @@ __main() {
 
     ## Web Frontend
 
-    export NVM_AUTO_USE=true
-    zplugin light lukechilds/zsh-nvm
-
-    zplugin ice wait''
-    zplugin light lukechilds/zsh-better-npm-completion
+    zplugin light _local/zsh-lazy-nvm
     zplugin snippet OMZ::plugins/yarn/yarn.plugin.zsh
 
     # Gatsby

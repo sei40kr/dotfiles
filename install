@@ -169,6 +169,7 @@ setup_basic() {
         # Install local plugins
         local -a plugins=(
             zsh-gh-clone
+            zsh-lazy-nvm
             zsh-fzf-projects
             zsh-fzf-cd-dirs
             zsh-fzf-docker
