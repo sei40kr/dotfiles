@@ -155,6 +155,8 @@ setup_basic() {
         ln -fs "${HOME}/.dotfiles/zsh/zshrc" "${ZDOTDIR}/.zshrc"
 
         ln -fs "${HOME}/.dotfiles/zsh/alias_defs.zsh" "${ZDOTDIR}/alias_defs.zsh"
+        ln -fs "${HOME}/.dotfiles/zsh/custom-history.zsh" \
+           "${ZDOTDIR}/custom-history.zsh"
 
         ln -fsT "${HOME}/.dotfiles/zsh/functions" "${ZDOTDIR}/functions"
         ln -fsT "${HOME}/.dotfiles/zsh/completions" "${ZDOTDIR}/completions"

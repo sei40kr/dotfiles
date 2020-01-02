@@ -43,9 +43,6 @@ __main() {
     setopt EXTENDED_HISTORY
     setopt GLOB_DOTS
     setopt HIST_IGNORE_ALL_DUPS
-    setopt HIST_IGNORE_SPACE
-    setopt HIST_REDUCE_BLANKS
-    setopt INC_APPEND_HISTORY
     setopt INTERACTIVE_COMMENTS
     setopt NO_BEEP
     setopt NUMERIC_GLOB_SORT
@@ -64,6 +61,8 @@ __main() {
     is_arch() {
         [[ -f /etc/arch-release ]]
     }
+
+    . "${ZDOTDIR}/custom-history.zsh"
 
 
     . "${HOME}/.zplugin/bin/zplugin.zsh"
