@@ -1,9 +1,37 @@
 " vimrc
 " author: Seong Yong-ju <sei40kr@gmail.com>
 
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible
+endif
+
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
+
+  " Let dein manage dein
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+
+  call dein#load_toml('~/.vim/dein.toml')
+
+  call dein#end()
+  call dein#save_state()
+endif
+
+if dein#check_install()
+  call dein#install()
+endif
+
+filetype plugin indent on
+syntax enable
+"End dein Scripts-------------------------
+
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
+
 
 inoremap jk <Esc>
 

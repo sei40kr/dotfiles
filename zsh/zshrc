@@ -17,9 +17,8 @@ __main() {
              pyclean \
              ranger-cd
 
-    if [[ "${+commands[vimpager]}" == 1 ]]; then
-        export PAGER=vimpager
-        export MANPAGER=vimpager
+    if [[ "${+commands[vim]}" == 1 && -f "${HOME}/.vim/vimrc" ]]; then
+        export MANPAGER='vim -c MANPAGER -'
     fi
 
     # Sync the history via Dropbox

@@ -146,7 +146,7 @@ setup_basic() {
             return
         fi
 
-        pacman_sync zsh subversion vimpager fzf
+        pacman_sync zsh subversion fzf
 
         ln -fs "${HOME}/.dotfiles/zsh/zshenv" "${HOME}/.zshenv"
         mkdir -p "${ZDOTDIR}"
@@ -178,7 +178,7 @@ setup_basic() {
         mkdir -p "${ZPLGM[PLUGINS_DIR]}"
         for plugin in "${plugins[@]}"; do
             if [[ ! -d "${WORKSPACE_DIR}/sei40kr/${plugin}" ]]; then
-                git clone -q "git@github-private:sei40kr/${plugin}.git" \
+                git clone -q "https://github.com/sei40kr/${plugin}.git" \
                     "${WORKSPACE_DIR}/sei40kr/${plugin}"
             fi
 
@@ -189,7 +189,7 @@ setup_basic() {
         # Install zsh-fast-alias-tips under GOPATH
         if [[ ! -d "${GOPATH}/src/github.com/sei40kr/zsh-fast-alias-tips" ]]; then
             mkdir -p "${GOPATH}/src/github.com/sei40kr"
-            git clone -q "git@github-private:sei40kr/zsh-fast-alias-tips.git" \
+            git clone -q "https://github.com/sei40kr/zsh-fast-alias-tips.git" \
                 "${GOPATH}/src/github.com/sei40kr/zsh-fast-alias-tips"
         fi
         ln -fsT "${GOPATH}/src/github.com/sei40kr/zsh-fast-alias-tips" \
@@ -230,7 +230,7 @@ setup_basic() {
         fi
 
         if [[ ! -d "${WORKSPACE_DIR}/sei40kr/tmux-per-project-session" ]]; then
-            git clone -q "git@github-private:sei40kr/tmux-per-project-session.git" \
+            git clone -q "https://github.com/sei40kr/tmux-per-project-session.git" \
                 "${WORKSPACE_DIR}/sei40kr/tmux-per-project-session"
         fi
         ln -fsT "${WORKSPACE_DIR}/sei40kr/tmux-per-project-session" \
@@ -257,7 +257,7 @@ setup_basic() {
         ln -fs "${HOME}/.dotfiles/ssh/config" "${HOME}/.ssh/config"
 
         git -C "${HOME}/.dotfiles" remote set-url origin \
-            git@github-private:sei40kr/dotfiles.git
+            https://github.com/sei40kr/dotfiles.git
 
         systemctl_enable sshd.service
 
@@ -654,6 +654,16 @@ install_accessory_apps() {
 }
 
 install_dev_apps() {
+    install_vim() {
+        pacman_sync vim
+
+        mkdir -p "${HOME}/.vim"
+        ln -fs "${HOME}/.dotfiles/vim/vimrc" "${HOME}/.vim/vimrc"
+        ln -fs "${HOME}/.dotfiles/vim/dein.toml" "${HOME}/.vim/dein.toml"
+
+        git clone -q https://github.com/Shougo/dein.vim "${HOME}/.cache/dein"
+    }
+
     install_spacemacs() {
         pacman_sync emacs cmake libvterm fbida
 
@@ -680,7 +690,7 @@ install_dev_apps() {
         mkdir -p "${HOME}/.emacs.d/private/local"
         for pkg in "${local_pkgs[@]}"; do
             if [[ ! -d "${WORKSPACE_DIR}/sei40kr/${pkg}" ]]; then
-                git clone -q "git@github-private:sei40kr/${pkg}.git" \
+                git clone -q "https://github.com/sei40kr/${pkg}.git" \
                     "${WORKSPACE_DIR}/sei40kr/${pkg}"
             fi
 
@@ -716,9 +726,7 @@ install_dev_apps() {
 
         case "$opt" in
             1)
-                pacman_sync vim
-
-                ln -fs "${HOME}/.dotfiles/vim/vimrc" "${HOME}/.vimrc"
+                install_vim
                 ;;
             2)
                 pacman_sync git
