@@ -6,9 +6,6 @@ repo = 'joshdick/onedark.vim'
 hook_add = '''
 set background=dark
 
-autocmd VimEnter * nested colorscheme onedark
-'''
-hook_post_source = '''
 if (has('autocmd') && !has('gui_running'))
   augroup colorset
     autocmd!
@@ -16,17 +13,47 @@ if (has('autocmd') && !has('gui_running'))
     autocmd ColorScheme * call onedark#set_highlight('Normal', { 'fg': s:white })
   augroup END
 endif
+
+colorscheme onedark
 '''
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
-depends = 'joshdick/onedark.vim'
-hook_add ='''
-let g:lightline = {
-  \ 'colorscheme': 'onedark',
-  \ }
+depends = 'onedark.vim'
+hook_add = '''
+if !exists('g:lightline')
+  let g:lightline = {}
+endif
+
+let g:lightline.colorscheme = 'onedark'
 '''
 
 [[plugins]]
 repo = 'lambdalisue/vim-manpager'
+depends = 'lightline.vim'
+lazy = 1
 on_cmd = 'MANPAGER'
+hook_add = '''
+set noshowmode
+
+let g:lightline.component_function = {
+  \ 'mode': 'LightlineMode',
+  \ 'readonly': 'LightlineReadonly',
+  \ 'filename': 'LightlineFilename',
+  \ }
+
+function! LightlineMode()
+  return &filetype ==# 'man' ? 'ManPager' : lightline#mode()
+endfunction
+
+function! LightlineReadonly()
+  return &readonly && &filetype ==# 'man' ? '' : 'RO'
+endfunction
+
+function! LightlineFilename()
+  let filename = expand('%:t')
+
+  return filename !=# '' ? filename :
+    \ &filetype ==# 'man' ? '-' : '[No Name]'
+endfunction
+'''
