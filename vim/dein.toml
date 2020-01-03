@@ -19,5 +19,14 @@ endif
 '''
 
 [[plugins]]
+repo = 'itchyny/lightline.vim'
+depends = 'joshdick/onedark.vim'
+hook_add ='''
+let g:lightline = {
+  \ 'colorscheme': 'onedark',
+  \ }
+'''
+
+[[plugins]]
 repo = 'lambdalisue/vim-manpager'
 on_cmd = 'MANPAGER'
