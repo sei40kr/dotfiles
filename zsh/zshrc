@@ -309,7 +309,7 @@ __main() {
     zplugin snippet OMZ::plugins/bgnotify/bgnotify.plugin.zsh
 
     # Other alias definitions
-    . "${ZDOTDIR}/alias_defs.zsh"
+    . "${ZDOTDIR}/alias-defs.zsh"
 
     ## Theme & Appearance
 
