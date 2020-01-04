@@ -731,6 +731,7 @@ install_dev_apps() {
             2)
                 pacman_sync git
 
+                mkdir -p "${XDG_CONFIG_HOME}/git"
                 ln -fs "${HOME}/.dotfiles/git/gitconfig" \
                    "${XDG_CONFIG_HOME}/git/config"
                 ln -fs "${HOME}/.dotfiles/git/gitignore" \
