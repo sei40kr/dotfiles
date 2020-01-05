@@ -19,7 +19,8 @@ __main() {
 
     if [[ -n "$TMUX" || -n "$INSIDE_EMACS" || -n "$EMACS" || -n "$VIM" ]]; then
         export PAGER=cat
-    elif [[ "${+commands[vim]}" == 1 && -f "${HOME}/.vim/vimrc" ]]; then
+    fi
+    if [[ "${+commands[vim]}" == 1 && -f "${HOME}/.vim/vimrc" ]]; then
         export MANPAGER='vim -c MANPAGER -'
     fi
 
