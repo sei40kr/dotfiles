@@ -11,11 +11,9 @@ fi
 
 __main() {
     autoload -Uz \
-             gh-create \
              kca \
              kres \
-             pyclean \
-             ranger-cd
+             pyclean
 
     if [[ -n "$TMUX" || -n "$INSIDE_EMACS" || -n "$EMACS" || -n "$VIM" ]]; then
         export PAGER=cat
@@ -277,9 +275,12 @@ __main() {
     zplugin ice from'gh-r' as'program' mv'direnv* -> direnv' atinit'[[ -f zhook.zsh ]] || ./direnv hook zsh >zhook.zsh' src'zhook.zsh'
     zplugin light direnv/direnv
 
+    zplugin light _local/zsh-ranger-cd
+    bindkey '\ec' ranger-cd
+
     # FZF
     FZF_DEFAULT_OPTS='--height=15 --reverse --inline-info --color=dark --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
-    zplugin ice bindmap'^R ->' multisrc'shell/{completion,key-bindings}.zsh'
+    zplugin ice bindmap'^R ->;\ec ->' multisrc'shell/{completion,key-bindings}.zsh'
     zplugin light -b junegunn/fzf
 
     # FZF additional sources
