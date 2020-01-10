@@ -1,7 +1,7 @@
+Host lan.yong-ju.me
+  Port 10022
+
 Host github-private
   HostName github.com
-  IdentitiesOnly yes
-  IdentityFile ~/.ssh/id_rsa_private
-  Port 22
   User git
-  TCPKeepAlive yes
+  IdentityFile ~/.ssh/id_rsa_private
