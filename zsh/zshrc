@@ -262,6 +262,9 @@ __main() {
     zplugin light zdharma/fast-syntax-highlighting
 
     zplugin ice wait'0' lucid
+    zplugin light -b hlissner/zsh-autopair
+
+    zplugin ice wait'0' lucid
     zplugin light -b zsh-users/zsh-autosuggestions
 
     zplugin ice wait'0' lucid
