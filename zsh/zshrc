@@ -298,7 +298,7 @@ __main() {
         FZF_PROJECTS_KNOWN_PROJECTS=(
             "${HOME}/.dotfiles"
             "${HOME}/.emacs.d"
-            "${HOME}/.spacemacs.d"
+            "${HOME}/.doom.d"
         )
         zplugin light _local/zsh-fzf-projects
 
