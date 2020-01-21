@@ -14,6 +14,8 @@ IFS=$'\n\t'
 
 : "${ZDOTDIR:=${HOME}/.zsh}"
 
+: "${DOOMDIR:=${HOME}/.doom.d}"
+
 : "${NVM_DIR:=${HOME}/.nvm}"
 : "${GOENV_ROOT:=${HOME}/.goenv}"
 : "${GOPATH:=${HOME}/go/system}"
@@ -665,38 +667,44 @@ install_dev_apps() {
         git clone -q https://github.com/Shougo/dein.vim "${HOME}/.cache/dein"
     }
 
-    install_spacemacs() {
-        pacman_sync emacs cmake libvterm fbida
+    install_doom_emacs() {
+        pacman_sync emacs cmake libvterm
 
+        # .emacs.d
         if [[ ! -d "${HOME}/.emacs.d" ]]; then
-            git clone -qb develop git@github.com:sei40kr/spacemacs.git \
+            git clone \
+                -q \
+                -b develop \
+                -c remote.upstream.url=https://github.com/hlissner/doom-emacs.git \
+                -c remote.upstream.fetch='+refs/heads/*:refs/remotes/upstream/*' \
+                https://github.com/sei40kr/doom-emacs.git \
                 "${HOME}/.emacs.d"
-            git -C "${HOME}/.emacs.d" -f upstream \
-                https://github.com/syl20bnr/spacemacs.git
 
-            mkdir -p "${HOME}/.emacs.d/private/layers"
+            "${HOME}/.emacs.d/bin/doom" install
         fi
 
-        # Install private packages
-        local -a local_pkgs=(
-            helm-gitignore
-            emacs-atcoder-tools
-            # snippets
-            rails-snippets
-            react-snippets
-            redux-snippets
-            jest-snippets
+
+        # .doom.d
+        if [[ ! -d "$DOOMDIR" ]]; then
+            git clone -q https://github.com/sei40kr/doom.d.git "$DOOMDIR"
+        fi
+
+
+        # install local packages
+        local -a doom_local_packages=(
             competitive-programming-snippets
         )
-        mkdir -p "${HOME}/.emacs.d/private/local"
-        for pkg in "${local_pkgs[@]}"; do
-            if [[ ! -d "${WORKSPACE_DIR}/sei40kr/${pkg}" ]]; then
-                git clone -q "https://github.com/sei40kr/${pkg}.git" \
-                    "${WORKSPACE_DIR}/sei40kr/${pkg}"
+
+        mkdir -p "${HOME}/.doom.d/packages"
+
+        for package in "${doom_local_packages[@]}"; do
+            if [[ ! -d "${WORKSPACE_DIR}/sei40kr/${package}" ]]; then
+                git clone -q "https://github.com/sei40kr/${package}.git" \
+                    "${WORKSPACE_DIR}/sei40kr/${package}"
             fi
 
-            ln -fsT "${WORKSPACE_DIR}/sei40kr/${pkg}" \
-               "${HOME}/.emacs.d/private/local/${pkg}"
+            ln -fsT "${WORKSPACE_DIR}/sei40kr/${package}" \
+                "${HOME}/.doom.d/packages/${package}"
         done
     }
 
@@ -716,7 +724,7 @@ install_dev_apps() {
 
         echo "  1) $(pacman_menu_item 'Vim' vim)"
         echo "  2) $(pacman_menu_item 'Git' git)"
-        echo "  3) $(menu_item 'Spacemacs')"
+        echo "  3) $(menu_item 'Doom Emacs')"
         echo "  4) $(pacman_menu_item 'Visual Studio Code' visual-studio-code-bin)"
         echo "  5) $(pacman_menu_item 'IntelliJ IDEA Ultimate Edition' intellij-idea-ultimate-edition)"
         echo "  6) $(pacman_menu_item 'Zeal' zeal)"
@@ -739,7 +747,7 @@ install_dev_apps() {
                    "${XDG_CONFIG_HOME}/git/ignore"
                 ;;
             3)
-                install_spacemacs
+                install_doom_emacs
                 ;;
             4)
                 pacman_sync code
