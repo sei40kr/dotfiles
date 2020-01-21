@@ -1032,7 +1032,8 @@ install_dev_tools() {
 
     install_markdown_dev_tools() {
         gem_install system mdl
-        yarn_global_add system markdownlint-cli vmd
+        yarn_global_add system markdownlint-cli
+        pip_install system grip
     }
 
     install_plantuml_dev_tools() {
