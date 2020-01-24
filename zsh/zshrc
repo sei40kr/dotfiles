@@ -76,6 +76,7 @@ __main() {
     zinit ice pick'' blockf wait''
     zinit light zsh-users/zsh-completions
 
+    zinit ice trigger-load'!extract;ix'
     zinit snippet OMZ::plugins/extract/extract.plugin.zsh
     zinit snippet OMZ::plugins/rsync/rsync.plugin.zsh
     zinit snippet OMZ::plugins/nmap/nmap.plugin.zsh
@@ -287,7 +288,9 @@ __main() {
     zinit light -b junegunn/fzf
 
     # FZF additional sources
+    zinit ice trigger-load'!fzf_complete_docker'
     zinit light _local/zsh-fzf-docker
+    zinit ice trigger-load'!fzf_complete_cd'
     zinit light _local/zsh-fzf-cd-dirs
     if [[ -z "$TMUX" ]]; then
         FZF_PROJECTS_WORKSPACE_DIRS=(
@@ -300,6 +303,7 @@ __main() {
             "${HOME}/.emacs.d"
             "${HOME}/.doom.d"
         )
+        zinit ice trigger-load'!fzf-projects'
         zinit light _local/zsh-fzf-projects
 
         zle -N fzf-projects
