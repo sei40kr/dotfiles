@@ -65,44 +65,44 @@ __main() {
     . "${ZDOTDIR}/custom-history.zsh"
 
 
-    . "${HOME}/.zplugin/bin/zplugin.zsh"
+    . "${HOME}/.zinit/bin/zinit.zsh"
 
     HYPHEN_INSENSITIVE=true
-    zplugin ice svn multisrc'{completion,clipboard}.zsh'
-    zplugin snippet OMZ::lib
+    zinit ice svn multisrc'{completion,clipboard}.zsh'
+    zinit snippet OMZ::lib
 
-    zplugin snippet OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh
+    zinit snippet OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh
 
-    zplugin ice pick'' blockf wait''
-    zplugin light zsh-users/zsh-completions
+    zinit ice pick'' blockf wait''
+    zinit light zsh-users/zsh-completions
 
-    zplugin snippet OMZ::plugins/extract/extract.plugin.zsh
-    zplugin snippet OMZ::plugins/rsync/rsync.plugin.zsh
-    zplugin snippet OMZ::plugins/nmap/nmap.plugin.zsh
+    zinit snippet OMZ::plugins/extract/extract.plugin.zsh
+    zinit snippet OMZ::plugins/rsync/rsync.plugin.zsh
+    zinit snippet OMZ::plugins/nmap/nmap.plugin.zsh
 
     GH_CLONE_WORKSPACE_DIR="${HOME}/develop/workspace"
-    zplugin light _local/zsh-gh-clone
+    zinit light _local/zsh-gh-clone
 
 
     ## OS-specific Plugins
 
     if is_arch; then
-        zplugin snippet OMZ::plugins/archlinux/archlinux.plugin.zsh
+        zinit snippet OMZ::plugins/archlinux/archlinux.plugin.zsh
     fi
 
 
     ## Git
 
-    zplugin snippet 'OMZ::plugins/git/git.plugin.zsh'
-    zplugin snippet 'OMZ::plugins/git-flow/git-flow.plugin.zsh'
+    zinit snippet 'OMZ::plugins/git/git.plugin.zsh'
+    zinit snippet 'OMZ::plugins/git-flow/git-flow.plugin.zsh'
 
 
     ## Rust
 
-    zplugin ice as'completion' wait''
-    zplugin snippet OMZ::plugins/rust/_rust
-    zplugin ice as'completion' wait''
-    zplugin snippet OMZ::plugins/cargo/_cargo
+    zinit ice as'completion' wait''
+    zinit snippet OMZ::plugins/rust/_rust
+    zinit ice as'completion' wait''
+    zinit snippet OMZ::plugins/cargo/_cargo
 
 
     ## Go
@@ -112,44 +112,44 @@ __main() {
             goenv init - --no-rehash zsh >"${GOENV_ROOT}/zgoenv.zsh"
         fi
 
-        zplugin snippet "${GOENV_ROOT}/zgoenv.zsh"
+        zinit snippet "${GOENV_ROOT}/zgoenv.zsh"
     fi
 
-    zplugin snippet OMZ::plugins/golang/golang.plugin.zsh
+    zinit snippet OMZ::plugins/golang/golang.plugin.zsh
 
 
     ## Haskell
 
-    zplugin ice wait''
-    zplugin snippet 'OMZ::plugins/stack/stack.plugin.zsh'
-    zplugin ice wait''
-    zplugin snippet 'OMZ::plugins/cabal/cabal.plugin.zsh'
+    zinit ice wait''
+    zinit snippet 'OMZ::plugins/stack/stack.plugin.zsh'
+    zinit ice wait''
+    zinit snippet 'OMZ::plugins/cabal/cabal.plugin.zsh'
 
 
     ## Java
 
-    zplugin snippet OMZ::plugins/mvn/mvn.plugin.zsh
-    zplugin snippet OMZ::plugins/gradle/gradle.plugin.zsh
+    zinit snippet OMZ::plugins/mvn/mvn.plugin.zsh
+    zinit snippet OMZ::plugins/gradle/gradle.plugin.zsh
 
 
     ## Scala
 
-    zplugin ice as'completion' wait''
-    zplugin snippet OMZ::plugins/scala/_scala
-    zplugin ice svn
-    zplugin snippet OMZ::plugins/sbt
+    zinit ice as'completion' wait''
+    zinit snippet OMZ::plugins/scala/_scala
+    zinit ice svn
+    zinit snippet OMZ::plugins/sbt
 
 
     ## Perl
 
     if [[ -n "$PERLBREW_ROOT" && -d "$PERLBREW_ROOT" ]]; then
-        zplugin ice wait''
-        zplugin snippet "${PERLBREW_ROOT}/etc/perlbrew-completion.bash"
+        zinit ice wait''
+        zinit snippet "${PERLBREW_ROOT}/etc/perlbrew-completion.bash"
     fi
 
-    zplugin snippet OMZ::plugins/perl/perl.plugin.zsh
-    zplugin ice as'completion' wait''
-    zplugin snippet OMZ::plugins/cpanm/_cpanm
+    zinit snippet OMZ::plugins/perl/perl.plugin.zsh
+    zinit ice as'completion' wait''
+    zinit snippet OMZ::plugins/cpanm/_cpanm
 
 
     ## Python
@@ -161,11 +161,11 @@ __main() {
             } >"${PYENV_ROOT}/zpyenv.zsh"
         fi
 
-        zplugin snippet "${PYENV_ROOT}/zpyenv.zsh"
+        zinit snippet "${PYENV_ROOT}/zpyenv.zsh"
     fi
 
-    zplugin ice as'completion' wait''
-    zplugin snippet OMZ::plugins/pip/_pip
+    zinit ice as'completion' wait''
+    zinit snippet OMZ::plugins/pip/_pip
 
 
     ## Ruby
@@ -175,120 +175,120 @@ __main() {
             rbenv init - --no-rehash zsh >"${RBENV_ROOT}/zrbenv.zsh"
         fi
 
-        zplugin snippet "${RBENV_ROOT}/zrbenv.zsh"
+        zinit snippet "${RBENV_ROOT}/zrbenv.zsh"
     fi
 
-    zplugin snippet OMZ::plugins/ruby/ruby.plugin.zsh
-    zplugin ice svn
-    zplugin snippet OMZ::plugins/gem
-    zplugin ice wait''
-    zplugin snippet OMZ::plugins/rake-fast/rake-fast.plugin.zsh
+    zinit snippet OMZ::plugins/ruby/ruby.plugin.zsh
+    zinit ice svn
+    zinit snippet OMZ::plugins/gem
+    zinit ice wait''
+    zinit snippet OMZ::plugins/rake-fast/rake-fast.plugin.zsh
 
     # Rails
-    zplugin snippet OMZ::plugins/rails/rails.plugin.zsh
+    zinit snippet OMZ::plugins/rails/rails.plugin.zsh
 
 
     ## PHP
 
-    zplugin snippet OMZ::plugins/composer/composer.plugin.zsh
-    zplugin snippet OMZ::plugins/laravel/laravel.plugin.zsh
-    zplugin snippet OMZ::plugins/laravel5/laravel5.plugin.zsh
+    zinit snippet OMZ::plugins/composer/composer.plugin.zsh
+    zinit snippet OMZ::plugins/laravel/laravel.plugin.zsh
+    zinit snippet OMZ::plugins/laravel5/laravel5.plugin.zsh
 
 
     ## Web Frontend
 
-    zplugin light _local/zsh-lazy-nvm
-    zplugin snippet OMZ::plugins/yarn/yarn.plugin.zsh
+    zinit light _local/zsh-lazy-nvm
+    zinit snippet OMZ::plugins/yarn/yarn.plugin.zsh
 
     # Gatsby
-    zplugin ice as'completion' wait''
-    zplugin snippet OMZ::plugins/gatsby/_gatsby
+    zinit ice as'completion' wait''
+    zinit snippet OMZ::plugins/gatsby/_gatsby
 
     # React Native
-    zplugin ice svn
-    zplugin snippet OMZ::plugins/react-native
+    zinit ice svn
+    zinit snippet OMZ::plugins/react-native
 
     # Flutter
-    zplugin ice svn
-    zplugin snippet OMZ::plugins/flutter
+    zinit ice svn
+    zinit snippet OMZ::plugins/flutter
 
 
     ## Database
 
     # Redis
-    zplugin ice as'completion' wait''
-    zplugin snippet OMZ::plugins/redis-cli/_redis-cli
+    zinit ice as'completion' wait''
+    zinit snippet OMZ::plugins/redis-cli/_redis-cli
 
 
     ## Continuous Integration
 
     # Docker
-    zplugin snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
+    zinit snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
     if is_macos && [[ -d '/Applications/Docker.app' ]]; then
-        zplugin ice as'completion' wait'' multisrc'{docker,docker-compose}.zsh-completion'
-        zplugin light '/Applications/Docker.app/Contents/Resources/etc'
+        zinit ice as'completion' wait'' multisrc'{docker,docker-compose}.zsh-completion'
+        zinit light '/Applications/Docker.app/Contents/Resources/etc'
     fi
 
     # Code Climate
-    zplugin ice as'completion' wait''
-    zplugin snippet OMZ::plugins/codeclimate/_codeclimate
+    zinit ice as'completion' wait''
+    zinit snippet OMZ::plugins/codeclimate/_codeclimate
 
     # Travis CI Client
     if [[ -f "${HOME}/.travis/travis.sh" ]]; then
-        zplugin ice wait''
-        zplugin snippet "${HOME}/.travis/travis.sh"
+        zinit ice wait''
+        zinit snippet "${HOME}/.travis/travis.sh"
     fi
 
 
     ## Infrastructure
 
-    zplugin ice as'completion' wait''
-    zplugin snippet OMZ::plugins/vagrant/_vagrant
-    zplugin snippet OMZ::plugins/ansible/ansible.plugin.zsh
-    zplugin ice as'completion' wait''
-    zplugin snippet OMZ::plugins/terraform/_terraform
-    zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
+    zinit ice as'completion' wait''
+    zinit snippet OMZ::plugins/vagrant/_vagrant
+    zinit snippet OMZ::plugins/ansible/ansible.plugin.zsh
+    zinit ice as'completion' wait''
+    zinit snippet OMZ::plugins/terraform/_terraform
+    zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 
     # gcloud
     if [[ -n "$CLOUDSDK_ROOT_DIR" && -d "$CLOUDSDK_ROOT_DIR" ]]; then
-        zplugin ice wait''
-        zplugin snippet "${CLOUDSDK_ROOT_DIR}/completion.zsh.inc"
+        zinit ice wait''
+        zinit snippet "${CLOUDSDK_ROOT_DIR}/completion.zsh.inc"
     fi
 
 
     ## Others
 
-    zplugin ice wait'0' atinit'zpcompinit; zpcdreplay' lucid
-    zplugin light zdharma/fast-syntax-highlighting
+    zinit ice wait'0' atinit'zpcompinit; zpcdreplay' lucid
+    zinit light zdharma/fast-syntax-highlighting
 
-    zplugin ice wait'0' lucid
-    zplugin light -b hlissner/zsh-autopair
+    zinit ice wait'0' lucid
+    zinit light -b hlissner/zsh-autopair
 
-    zplugin ice wait'0' lucid
-    zplugin light -b zsh-users/zsh-autosuggestions
+    zinit ice wait'0' lucid
+    zinit light -b zsh-users/zsh-autosuggestions
 
-    zplugin ice wait'0' lucid
-    zplugin light -b zdharma/history-search-multi-word
+    zinit ice wait'0' lucid
+    zinit light -b zdharma/history-search-multi-word
 
-    zplugin light _local/zsh-run-help-collections
+    zinit light _local/zsh-run-help-collections
 
-    zplugin snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
-    zplugin snippet OMZ::plugins/magic-enter/magic-enter.plugin.zsh
+    zinit snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
+    zinit snippet OMZ::plugins/magic-enter/magic-enter.plugin.zsh
 
-    zplugin ice from'gh-r' as'program' mv'direnv* -> direnv' atinit'[[ -f zhook.zsh ]] || ./direnv hook zsh >zhook.zsh' src'zhook.zsh'
-    zplugin light direnv/direnv
+    zinit ice from'gh-r' as'program' mv'direnv* -> direnv' atinit'[[ -f zhook.zsh ]] || ./direnv hook zsh >zhook.zsh' src'zhook.zsh'
+    zinit light direnv/direnv
 
-    zplugin light _local/zsh-ranger-cd
+    zinit light _local/zsh-ranger-cd
     bindkey '\ec' ranger-cd
 
     # FZF
     FZF_DEFAULT_OPTS='--height=15 --reverse --inline-info --color=dark --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
-    zplugin ice bindmap'^R ->;\ec ->' multisrc'shell/{completion,key-bindings}.zsh'
-    zplugin light -b junegunn/fzf
+    zinit ice bindmap'^R ->;\ec ->' multisrc'shell/{completion,key-bindings}.zsh'
+    zinit light -b junegunn/fzf
 
     # FZF additional sources
-    zplugin light _local/zsh-fzf-docker
-    zplugin light _local/zsh-fzf-cd-dirs
+    zinit light _local/zsh-fzf-docker
+    zinit light _local/zsh-fzf-cd-dirs
     if [[ -z "$TMUX" ]]; then
         FZF_PROJECTS_WORKSPACE_DIRS=(
             "${HOME}/develop/workspace"
@@ -300,7 +300,7 @@ __main() {
             "${HOME}/.emacs.d"
             "${HOME}/.doom.d"
         )
-        zplugin light _local/zsh-fzf-projects
+        zinit light _local/zsh-fzf-projects
 
         zle -N fzf-projects
 
@@ -310,18 +310,18 @@ __main() {
 
     # Notification
     if is_macos; then
-        zplugin ice from'gh-r' as'program'
-        zplugin light julienXX/terminal-notifier
+        zinit ice from'gh-r' as'program'
+        zinit light julienXX/terminal-notifier
     fi
-    zplugin snippet OMZ::plugins/bgnotify/bgnotify.plugin.zsh
+    zinit snippet OMZ::plugins/bgnotify/bgnotify.plugin.zsh
 
     # Other alias definitions
     . "${ZDOTDIR}/alias-defs.zsh"
 
     ## Theme & Appearance
 
-    zplugin ice from'gh-r' src'zstarship.zsh' atclone'./starship init zsh --print-full-init >zstarship.zsh' atpull'%atclone' atload'starship_precmd' as'program' nocompile'!'
-    zplugin light starship/starship
+    zinit ice from'gh-r' src'zstarship.zsh' atclone'./starship init zsh --print-full-init >zstarship.zsh' atpull'%atclone' atload'starship_precmd' as'program' nocompile'!'
+    zinit light starship/starship
 
     local fast_alias_tips_dir="${GOPATH}/src/github.com/sei40kr/zsh-fast-alias-tips"
     path=( "$fast_alias_tips_dir" "${path[@]}" )

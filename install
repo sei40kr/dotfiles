@@ -25,10 +25,10 @@ IFS=$'\n\t'
 : "${R_ENVIRON_USER:=${XDG_CONFIG_HOME}/r/.Renviron}"
 : "${R_PROFILE_USER:=${XDG_CONFIG_HOME}/r/.Rprofile.r}"
 
-declare -A ZPLGM
-ZPLGM[HOME_DIR]="${HOME}/.zplugin"
-ZPLGM[BIN_DIR]="${ZPLGM[HOME_DIR]}/bin"
-ZPLGM[PLUGINS_DIR]="${ZPLGM[HOME_DIR]}/plugins"
+declare -A ZINIT
+ZINIT[HOME_DIR]="${HOME}/.zinit"
+ZINIT[BIN_DIR]="${ZINIT[HOME_DIR]}/bin"
+ZINIT[PLUGINS_DIR]="${ZINIT[HOME_DIR]}/plugins"
 
 basepath="$(dirname "$(realpath "$0")")"
 # shellcheck source=install_helpers.bash
@@ -163,9 +163,9 @@ setup_basic() {
         ln -fsT "${HOME}/.dotfiles/zsh/functions" "${ZDOTDIR}/functions"
         ln -fsT "${HOME}/.dotfiles/zsh/completions" "${ZDOTDIR}/completions"
 
-        if [[ ! -d "${ZPLGM[BIN_DIR]}" ]]; then
-            mkdir -p "${ZPLGM[HOME_DIR]}"
-            git clone -q https://github.com/zdharma/zplugin.git "${ZPLGM[BIN_DIR]}"
+        if [[ ! -d "${ZINIT[BIN_DIR]}" ]]; then
+            mkdir -p "${ZINIT[BIN_DIR]}"
+            git clone -q https://github.com/zdharma/zinit.git "${ZINIT[BIN_DIR]}"
         fi
 
         # Install local plugins
@@ -178,7 +178,7 @@ setup_basic() {
             zsh-fzf-docker
             zsh-run-help-collections
         )
-        mkdir -p "${ZPLGM[PLUGINS_DIR]}"
+        mkdir -p "${ZINIT[PLUGINS_DIR]}"
         for plugin in "${plugins[@]}"; do
             if [[ ! -d "${WORKSPACE_DIR}/sei40kr/${plugin}" ]]; then
                 git clone -q "https://github.com/sei40kr/${plugin}.git" \
@@ -186,7 +186,7 @@ setup_basic() {
             fi
 
             ln -fsT "${WORKSPACE_DIR}/sei40kr/${plugin}" \
-               "${ZPLGM[PLUGINS_DIR]}/_local---${plugin}"
+               "${ZINIT[PLUGINS_DIR]}/_local---${plugin}"
         done
 
         # Install zsh-fast-alias-tips under GOPATH
@@ -196,7 +196,7 @@ setup_basic() {
                 "${GOPATH}/src/github.com/sei40kr/zsh-fast-alias-tips"
         fi
         ln -fsT "${GOPATH}/src/github.com/sei40kr/zsh-fast-alias-tips" \
-           "${ZPLGM[PLUGINS_DIR]}/_local---zsh-fast-alias-tips"
+           "${ZINIT[PLUGINS_DIR]}/_local---zsh-fast-alias-tips"
 
         # Install starship config
         ln -fs "${HOME}/.dotfiles/zsh/starship.toml" \
