@@ -1,0 +1,3 @@
+[submodule "simple-tui"]
+	path = install/lib/simple-tui
+	url = https://github.com/sei40kr/simple-tui.git

@@ -31,6 +31,12 @@ ZINIT[BIN_DIR]="${ZINIT[HOME_DIR]}/bin"
 ZINIT[PLUGINS_DIR]="${ZINIT[HOME_DIR]}/plugins"
 
 basepath="$(cd "$(dirname "$0")/.." && pwd)"
+# shellcheck source=lib/simple-tui/simple-tui.bash
+. "${basepath}/install/lib/simple-tui/simple-tui.bash"
+# shellcheck source=lib/tui.bash
+. "${basepath}/install/lib/tui.bash"
+# shellcheck source=lib/facades.bash
+. "${basepath}/install/lib/facades.bash"
 # shellcheck source=lib/install_helpers.bash
 . "${basepath}/install/lib/install_helpers.bash"
 
@@ -39,7 +45,7 @@ setup_basic() {
         print_title 'Trizen'
         print_desc 'trizen is a lightweight wrapper for AUR, written in Perl.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -61,7 +67,7 @@ setup_basic() {
     install_fstrim() {
         print_title 'TRIM'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -76,7 +82,7 @@ setup_basic() {
         print_desc \
             'Network Time Protocol is the most common method to synchronize the software clock of a GNU/Linux system with internet time servers.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -93,7 +99,7 @@ setup_basic() {
         print_desc \
             'NetworkManager is a program for providing detection and configuration for systems to automatically connect to networks.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -109,7 +115,7 @@ setup_basic() {
         print_desc \
             'Bluetooth is a standard for the short-range wireless interconnection of cellular phones, computers, and other electronic devices.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -125,7 +131,7 @@ setup_basic() {
         print_desc \
             'TLP brings you the benefits of advanced power management for Linux without the need to understand every technical detail.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -144,7 +150,7 @@ setup_basic() {
         print_desc \
             'Zsh is a powerful shell that operates as both an interactive shell and as a scripting language interpreter.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -212,7 +218,7 @@ setup_basic() {
         print_desc \
             'tmux is a "terminal multiplexer: it enables a number of terminals (or windows), each running a separate program, to be created, accessed, and controlled from a single screen. tmux may be detached from a screen and continue running in the background, then later reattached."'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -247,7 +253,7 @@ setup_basic() {
         print_desc \
             'OpenSSH (OpenBSD Secure Shell) is a set of computer programs providing encrypted communication sessions over a computer network using the Secure Shell (SSH) protocol.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -272,7 +278,7 @@ setup_basic() {
         print_desc \
             'The X.Org project provides an open source implementation of the X Window System.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -295,7 +301,7 @@ setup_basic() {
         print_desc \
             'Fontconfig is a library designed to provide a list of available fonts to applications, and also for configuration for how fonts get rendered.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -356,7 +362,7 @@ install_desktop_environment() {
         print_desc \
             'Picom is a standalone compositor for Xorg, suitable for use with window managers that do not provide compositing.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -374,7 +380,7 @@ install_desktop_environment() {
         print_desc \
             'GNOME is a desktop environment that aims to be simple and easy to use.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -416,7 +422,7 @@ install_desktop_environment() {
         print_title 'XMonad - https://wiki.archlinux.org/index.php/Xmonad'
         print_desc 'XMonad is a tiling window manager for X.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -457,7 +463,7 @@ FILE
         print_desc \
             'polybar is a fast and easy-to-use tool for creating status bars.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -477,7 +483,7 @@ FILE
         print_desc \
             'Rofi is a window switcher, run dialog, ssh-launcher and dmenu replacement that started as a clone of simpleswitcher, written by Sean Pringle and later expanded by Dave Davenport.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -497,7 +503,7 @@ FILE
     install_clipmenu() {
         print_title 'clipmenu'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -535,7 +541,7 @@ EOM
         print_desc \
             'Dunst is a lightweight replacement for the notification-daemons provided by most desktop environments.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -553,7 +559,7 @@ EOM
         print_desc \
             'GTK, or the GIMP Toolkit, is a multi-platform toolkit for creating graphical user interfaces.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -583,7 +589,7 @@ EOM
         print_title 'Alacritty'
         print_desc 'A cross-platform, GPU-accelerated terminal emulator.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -601,7 +607,7 @@ EOM
         print_desc \
             'Thunar is a modern file manager for the Xfce Desktop Environment.'
 
-        if ! read_yn 'Would you like to install?'; then
+        if ! ask-yesno 'Would you like to install?'; then
             return
         fi
 
@@ -1607,9 +1613,9 @@ while true; do
             visited[1]=1
             ;;
         2 )
-            print_important 'You must run the Basic Setup at first'
+            tui-print-warning 'You must run the Basic Setup at first'
 
-            if read_yn 'Are you sure to continue?'; then
+            if ask-yesno 'Are you sure to continue?'; then
                 install_desktop_environment
             fi
 
