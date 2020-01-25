@@ -898,25 +898,12 @@ install_dev_tools() {
             pyls-isort
             # debugger
             ptvsd
-            # repl
-            ipython
-            ptpython
             # editor tools
             importmagic
             epc
             pydoc_utils
         )
         pip_install system "${pip_pkgs[@]}"
-
-        mkdir -p "${XDG_CONFIG_HOME}/matplotlib"
-        ln -fs "${HOME}/.dotfiles/matplotlib/matplotlibrc" \
-           "${XDG_CONFIG_HOME}/matplotlib/matplotlibrc"
-
-        mkdir -p "${XDG_CONFIG_HOME}/ptpython"
-        ln -fs "${HOME}/.dotfiles/ptpython/pythonstartup.py" \
-           "${XDG_CONFIG_HOME}/ptpython/pythonstartup.py"
-        ln -fs "${HOME}/.dotfiles/ptpython/config.py" \
-           "${XDG_CONFIG_HOME}/ptpython/config.py"
     }
 
     install_ruby_dev_tools() {
@@ -935,9 +922,6 @@ install_dev_tools() {
 
         local -a gems=(
             rake
-            pry
-            pry-coolline
-            pry-doc
             # linters
             rubocop
             # refactoring tools
@@ -947,8 +931,6 @@ install_dev_tools() {
             seeing_is_believing
         )
         gem_install system "${gems[@]}"
-
-        ln -fs "${HOME}/.dotfiles/pry/pryrc" "${HOME}/.pryrc"
     }
 
     install_perl_dev_tools() {
