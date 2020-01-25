@@ -30,9 +30,9 @@ ZINIT[HOME_DIR]="${HOME}/.zinit"
 ZINIT[BIN_DIR]="${ZINIT[HOME_DIR]}/bin"
 ZINIT[PLUGINS_DIR]="${ZINIT[HOME_DIR]}/plugins"
 
-basepath="$(dirname "$(realpath "$0")")"
-# shellcheck source=install_helpers.bash
-. "${basepath}/install_helpers.bash"
+basepath="$(cd "$(dirname "$0")/.." && pwd)"
+# shellcheck source=lib/install_helpers.bash
+. "${basepath}/install/lib/install_helpers.bash"
 
 setup_basic() {
     install_trizen() {
