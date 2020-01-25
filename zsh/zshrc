@@ -251,6 +251,13 @@ __main() {
     zinit snippet OMZ::plugins/terraform/_terraform
     zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 
+    # AWS
+    # TODO Add support for Linux environment
+    if [[ -f /usr/local/bin/aws_zsh_completer.sh ]]; then
+        zinit ice wait''
+        zinit snippet /usr/local/bin/aws_zsh_completer.sh
+    fi
+
     # gcloud
     if [[ -n "$CLOUDSDK_ROOT_DIR" && -d "$CLOUDSDK_ROOT_DIR" ]]; then
         zinit ice wait''
