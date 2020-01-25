@@ -384,10 +384,7 @@ __main() {
     zinit ice from'gh-r' src'zstarship.zsh' atclone'./starship init zsh --print-full-init >zstarship.zsh' atpull'%atclone' atload'starship_precmd' as'program' nocompile'!'
     zinit light starship/starship
 
-    local fast_alias_tips_dir="${GOPATH}/src/github.com/sei40kr/zsh-fast-alias-tips"
-    path=( "$fast_alias_tips_dir" "${path[@]}" )
-    export PATH
-    . "${fast_alias_tips_dir}/fast-alias-tips.plugin.zsh"
+    zinit light _local/zsh-fast-alias-tips
 }
 
 if [[ "$TERM" == dumb ]]; then
