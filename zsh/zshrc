@@ -101,10 +101,28 @@ __main() {
 
     ## Rust
 
+    # Rustup
+    if [[ "${+commands[rustup]}" == 1 ]]; then
+        if [[ ! -f "${ZDOTDIR}/rustup_completion.zsh" ]]; then
+            rustup completions zsh >"${ZDOTDIR}/rustup_completion.zsh"
+        fi
+
+        zinit ice wait''
+        zinit snippet "${ZDOTDIR}/rustup_completion.zsh"
+    fi
+
+    # Cargo
+    if [[ "${+commands[cargo]}" == 1 ]]; then
+        if [[ ! -f "${ZDOTDIR}/cargo_completion.zsh" ]]; then
+            rustup completions zsh cargo >"${ZDOTDIR}/cargo_completion.zsh"
+        fi
+
+        zinit ice wait''
+        zinit snippet "${ZDOTDIR}/cargo_completion.zsh"
+    fi
+
     zinit ice as'completion' wait''
     zinit snippet OMZ::plugins/rust/_rust
-    zinit ice as'completion' wait''
-    zinit snippet OMZ::plugins/cargo/_cargo
 
 
     ## Go
@@ -156,6 +174,7 @@ __main() {
 
     ## Python
 
+    # pyenv
     if [[ -n "$PYENV_ROOT" && -d "$PYENV_ROOT" ]]; then
         if [[ ! -f "${PYENV_ROOT}/zpyenv.zsh" ]]; then
             { pyenv init - --no-rehash zsh
@@ -164,6 +183,16 @@ __main() {
         fi
 
         zinit snippet "${PYENV_ROOT}/zpyenv.zsh"
+    fi
+
+    # Poetry
+    if [[ "${+commands[poetry]}" == 1 ]]; then
+        if [[ ! -f "${ZDOTDIR}/poetry_completion.zsh" ]]; then
+            poetry completion -- zsh >"${ZDOTDIR}/poetry_completion.zsh"
+        fi
+
+        zinit ice wait''
+        zinit snippet "${ZDOTDIR}/poetry_completion.zsh"
     fi
 
     zinit ice as'completion' wait''
@@ -201,6 +230,19 @@ __main() {
 
     zinit light _local/zsh-lazy-nvm
     zinit snippet OMZ::plugins/yarn/yarn.plugin.zsh
+
+    zinit ice wait''
+    zinit snippet OMZ::plugins/gulp/gulp.plugin.zsh
+
+    # Karma
+    if [[ "${+commands[karma]}" == 1 ]]; then
+        if [[ ! -f "${ZDOTDIR}/karma_completion.zsh" ]]; then
+            karma completion >"${ZDOTDIR}/karma_completion.zsh"
+        fi
+
+        zinit ice wait''
+        zinit snippet "${ZDOTDIR}/karma_completion.zsh"
+    fi
 
     # Gatsby
     zinit ice as'completion' wait''
@@ -250,6 +292,16 @@ __main() {
     zinit ice as'completion' wait''
     zinit snippet OMZ::plugins/terraform/_terraform
     zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
+
+    # Kubernetes
+    if [[ "${+commands[kubectl]}" == 1 ]]; then
+        if [[ ! -f "${ZDOTDIR}/kubectl_completion.zsh" ]]; then
+            kubectl completion zsh >"${ZDOTDIR}/kubectl_completion.zsh"
+        fi
+
+        zinit ice wait''
+        zinit snippet "${ZDOTDIR}/kubectl_completion.zsh"
+    fi
 
     # AWS
     # TODO Add support for Linux environment
