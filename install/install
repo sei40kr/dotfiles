@@ -1548,7 +1548,7 @@ install_extra_apps() {
 
         case "$opt" in
             1 )
-                pip_install asciinema
+                pip_install system asciinema
                 ;;
             2 )
                 pacman_sync pandoc wkhtmltopdf
@@ -1559,7 +1559,7 @@ install_extra_apps() {
                 systemctl_user_enable psd.service
                 ;;
             4 )
-                pip_install ranger-fm
+                pip_install system ranger-fm
 
                 ln -fs "${HOME}/.dotfiles/ranger/rc.conf" \
                    "${XDG_CONFIG_HOME}/ranger/rc.conf"
