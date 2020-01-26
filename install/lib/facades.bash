@@ -36,7 +36,7 @@ pacman_sync() {
     __verify_pacman
 
     for package in "${packages[@]}"; do
-        tui-print-list-item "Installing ${package}"
+        print-list-item "Installing ${package}"
     done
 
     with_spinner sudo pacman -Sy --needed --noconfirm --noprogressbar "${packages[@]}"
@@ -81,7 +81,7 @@ systemctl_enable() {
 
     __verify_systemctl
 
-    tui-print-step "Enabling system service ${service}"
+    print-step "Enabling system service ${service}"
 
     sudo systemctl enable --now "$service"
 }
@@ -91,7 +91,7 @@ systemctl_mask() {
 
     __verify_systemctl
 
-    tui-print-step "Masking system service ${service}"
+    print-step "Masking system service ${service}"
 
     sudo systemctl mask --now "$service"
 }
@@ -101,7 +101,7 @@ systemctl_user_enable() {
 
     __verify_systemctl
 
-    tui-print-step "Enabling user service ${service}"
+    print-step "Enabling user service ${service}"
 
     systemctl --user enable --now "$service"
 }
@@ -121,7 +121,7 @@ rustup_toolchain_install() {
 
     __verify_rustup
 
-    tui-print-step "Installing Rust ${toolchain} toolchain"
+    print-step "Installing Rust ${toolchain} toolchain"
 
     with_spinner rustup toolchain install "$toolchain"
 }
@@ -139,7 +139,7 @@ rustup_component_add() {
     fi
 
     for component in "${components[@]}"; do
-        tui-print-step "Installing ${component}${stable_toolchain:- to Rust ${toolchain}}"
+        print-step "Installing ${component}${stable_toolchain:- to Rust ${toolchain}}"
     done
 
     with_spinner rustup component add --toolchain "$toolchain" "${components[@]}"
@@ -165,7 +165,7 @@ goenv_install() {
 
     __verify_goenv
 
-    tui-print-step "Installing Go v${go_version}"
+    print-step "Installing Go v${go_version}"
 
     with_spinner "${GOENV_ROOT}/bin/goenv" install -s "$go_version"
 }
@@ -213,7 +213,7 @@ go_get() {
         local short_name
         short_name="${package##*/}"
         short_name="${package%%@*}"
-        tui-print-list-item "Installing ${short_name}${system_go:- to Go ${go_version}}"
+        print-list-item "Installing ${short_name}${system_go:- to Go ${go_version}}"
     done
 
     with_spinner GOPATH="${HOME}/go/${go_version}" "$go_exec" get -u "${packages[@]}"
@@ -235,7 +235,7 @@ stack_install() {
     __verify_stack
 
     for package in "${packages[@]}"; do
-        tui-print-list-item "Installing ${package}"
+        print-list-item "Installing ${package}"
     done
 
     with_spinner stack install "${packages[@]}"
@@ -261,7 +261,7 @@ pyenv_install() {
 
     __verify_pyenv
 
-    tui-print-step "Installing Python v${python_version}"
+    print-step "Installing Python v${python_version}"
 
     with_spinner "${PYENV_ROOT}/bin/pyenv" install -s "$python_version"
 }
@@ -299,7 +299,7 @@ pip_install() {
     fi
 
     for package in "${packages[@]}"; do
-        tui-print-list-item "Installing ${package}"
+        print-list-item "Installing ${package}"
     done
 
     with_spinner "$pip_exec" --disable-pip-version-check install "${pip_opts[@]}" "${packages[@]}"
@@ -325,7 +325,7 @@ rbenv_install() {
 
     __verify_rbenv
 
-    tui-print-step "Installing Ruby v${ruby_version}"
+    print-step "Installing Ruby v${ruby_version}"
 
     with_spinner "${RBENV_ROOT}/bin/rbenv" install -s "$ruby_version"
 }
@@ -366,7 +366,7 @@ gem_install() {
     fi
 
     for gem in "${gems[@]}"; do
-        tui-print-list-item "Installing ${gem}${system_ruby:- to Ruby ${ruby_version}}"
+        print-list-item "Installing ${gem}${system_ruby:- to Ruby ${ruby_version}}"
     done
 
     with_spinner "$gem_exec" install "${gem_opts[@]}" "${gems[@]}"
@@ -387,7 +387,7 @@ nvm_install() {
 
     __verify_nvm
 
-    tui-print-list-item "Installing Node.js ${node_version}"
+    print-list-item "Installing Node.js ${node_version}"
 
     ( . "${NVM_DIR}/nvm.sh"
       with_spinner nvm install --no-progress "$node_version" )
@@ -435,7 +435,7 @@ yarn_global_add() {
     __verify_yarn
 
     for package in "${packages[@]}"; do
-        tui-print-list-item "Installing ${package}${system_node:- to Node.js ${node_version}}"
+        print-list-item "Installing ${package}${system_node:- to Node.js ${node_version}}"
     done
 
     with_spinner PATH="${node_exec_dir}:${PATH}" yarn global add --no-default-rc --noprogress --non-interactive "${packages[@]}"
@@ -456,7 +456,7 @@ r_install() {
     packages=( "$@" )
 
     for package in "${packages[@]}"; do
-        tui-print-list-item "Installing ${package}"
+        print-list-item "Installing ${package}"
     done
 
     with_spinner R --vanilla \
