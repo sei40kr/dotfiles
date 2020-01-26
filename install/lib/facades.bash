@@ -90,6 +90,80 @@ trizen_sync() {
 }
 
 
+## Homebrew
+
+__verify_homebrew() {
+    if [[ "$OSTYPE" != darwin* ]]; then
+        tui-error 'Homebrew facades must be called only on macOS. Aborting.'
+        exit 1
+    fi
+
+    if ! hash brew 2>/dev/null; then
+        # shellcheck disable=SC2016
+        tui-error 'Homebrew not found. Run `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"` to install Homebrew. Aborting.'
+        exit 1
+    fi
+}
+
+declare -a __brew_tap_repos
+declare -a __brew_tap_urls
+declare -a __brew_install_formulas
+declare -a __brew_install_args
+
+brew_tap() {
+    local repo="$1"
+    local url="$2"
+
+    __brew_tap_repos+=( "$repo" )
+    __brew_tap_urls+=( "$url" )
+}
+
+brew_install() {
+    local formula="$1"
+    shift
+    local -a args=( "$@" )
+
+    local -a bundle_args
+    for arg in "${args[@]}"; do
+        bundle_args+=( "\"${arg#--}\"" )
+    done
+
+    __brew_install_formulas+=( "$formula" )
+    local IFS=','
+    __brew_install_args+=( "${bundle_args[*]}" )
+}
+
+brew_bundle() {
+    __verify_homebrew
+
+    for repo in "${__brew_tap_repos[@]}"; do
+        print-step "Tapping ${repo}"
+    done
+
+    for formula in "${__brew_install_formulas[@]}"; do
+        print-step "Installing ${formula}"
+    done
+
+    {
+        local repo
+        local url
+        for i in "${!__brew_tap_repos[@]}"; do
+            repo="${__brew_tap_repos[$i]}"
+            url="${__brew_tap_urls[$i]}"
+            echo "tap \"${repo}\"${url:+, \"${url}\"}"
+        done
+
+        local formula
+        local args
+        for i in "${!__brew_install_formulas[@]}"; do
+            formula="${__brew_install_formulas[$i]}"
+            args="${__brew_install_args[$i]}"
+            echo "brew \"${formula}\"${args:+, args: [${args}]}"
+        done
+    } | brew bundle --file=-
+}
+
+
 ## systemctl
 
 __verify_systemctl() {
