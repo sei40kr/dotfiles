@@ -16,15 +16,6 @@ WHITE="$(tput setaf 7)"
 RESET="$(tput sgr0)"
 
 
-is_arch() {
-    [[ "$OSTYPE" == linux* && -f /etc/arch-release ]]
-}
-
-is_macos() {
-    [[ "$OSTYPE" == darwin* ]]
-}
-
-
 print_line() {
     local empty_line="$(printf "%${COLUMNS}s")"
 

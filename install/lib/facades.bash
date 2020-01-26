@@ -1,12 +1,6 @@
 # facades.bash
 # author: Seong Yong-ju
 
-__command_exists() {
-    local command="$1"
-
-    hash "$command" 2>/dev/null
-}
-
 __run_command() {
     local command=( "$@" )
 
@@ -39,7 +33,7 @@ __verify_pacman() {
         exit 1
     fi
 
-    if ! __command_exists pacman; then
+    if ! command_exists pacman; then
         tui-error 'pacman not found. Aborting.'
         exit 1
     fi
@@ -71,7 +65,7 @@ __verify_trizen() {
         exit 1
     fi
 
-    if ! pacman -Q trizen &>/dev/null || ! __command_exists trizen; then
+    if ! pacman -Q trizen &>/dev/null || ! command_exists trizen; then
         tui-error 'trizen not found. Aborting.'
         exit 1
     fi
@@ -167,7 +161,7 @@ brew_bundle() {
 ## systemctl
 
 __verify_systemctl() {
-    if ! __command_exists systemctl; then
+    if ! command_exists systemctl; then
         tui-error 'systemctl not found. Aborting.'
         exit 1
     fi
@@ -207,7 +201,7 @@ systemctl_user_enable() {
 ## Rustup
 
 __verify_rustup() {
-    if ! __command_exists rustup; then
+    if ! command_exists rustup; then
         tui-error 'rustup not found. Aborting.'
         exit 1
     fi
@@ -247,7 +241,7 @@ rustup_component_add() {
 
 __verify_goenv() {
     if [[ ! -x "${GOENV_ROOT}/bin/goenv" ]]; then
-        if __command_exists goenv; then
+        if command_exists goenv; then
             tui-error 'goenv must not be installed with a system package manager. Aborting.'
         else
             tui-error 'goenv not found. Aborting.'
@@ -320,7 +314,7 @@ go_get() {
 ## Haskell Tool Stack
 
 __verify_stack() {
-    if ! __command_exists stack; then
+    if ! command_exists stack; then
         tui-error 'stack not installed. Aborting.'
         exit 1
     fi
@@ -343,7 +337,7 @@ stack_install() {
 
 __verify_pyenv() {
     if [[ ! -x "${PYENV_ROOT}/bin/pyenv" ]]; then
-        if __command_exists pyenv; then
+        if command_exists pyenv; then
             tui-error 'pyenv must not be installed with a system package manager. Aborting.'
         else
             tui-error 'pyenv not found. Aborting.'
@@ -407,7 +401,7 @@ pip_install() {
 
 __verify_rbenv() {
     if [[ ! -x "${RBENV_ROOT}/bin/rbenv" ]]; then
-        if __command_exists rbenv; then
+        if command_exists rbenv; then
             tui-error 'rbenv must not be installed with a system package manager. Aborting.'
         else
             tui-error 'rbenv not found. Aborting.'
@@ -494,7 +488,7 @@ nvm_install() {
 ## Yarn
 
 __verify_yarn() {
-    if ! __command_exists yarn; then
+    if ! command_exists yarn; then
         tui-error 'yarn not found. Aborting.'
         exit 1
     fi
@@ -542,7 +536,7 @@ yarn_global_add() {
 ## R
 
 __verify_r() {
-    if ! __command_exists R; then
+    if ! command_exists R; then
         tui-error 'R not found. Aborting.'
         exit 1
     fi
