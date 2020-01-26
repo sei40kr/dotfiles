@@ -57,26 +57,6 @@ pacman_menu_item() {
     fi
 }
 
-with_spinner() {
-    "$@" 1>/dev/null 2>/dev/null &
-    local pid="$!"
-
-    echo '  '
-
-    local i=0
-    while kill -0 "$pid" 2>/dev/null; do
-        echo -ne "\b${SPINNER:i++%${#SPINNER}:1}"
-        sleep 0.25
-    done
-
-    echo -e '\b\b'
-
-    wait "$pid"
-    if [[ "$?" != 0 && "$?" != 255 ]]; then
-        return $?
-    fi
-}
-
 error() {
     local message="$1"
     local status_code="$2"
