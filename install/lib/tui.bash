@@ -21,12 +21,12 @@ ask-yesno() {
     while true; do
         read -n1 -r answer
 
+        echo
         if [[ "$answer" == [yY]* ]]; then
             return 0
         elif [[ "$answer" == [nN]* ]]; then
             return 1
         else
-            echo
             tui-print-prompt "Invalid answer. ${prompt} [yn]"
         fi
     done
