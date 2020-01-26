@@ -1,30 +1,6 @@
 # facades.bash
 # author: Seong Yong-ju
 
-__run_command() {
-    local command=( "$@" )
-
-    local tmp_file
-    if ! tmp_file="$(mktemp)"; then
-        tui-error 'Failed to create a temporary file. Aborting.'
-    fi
-
-    "${command[@]}" &>"$tmp_file"
-
-    local exit_code="$?"
-    if [[ "$exit_code" != 0 ]]; then
-        local IFS=' '
-        tui-error "\`${command[*]//[$'\r\n']}\` exited with code ${exit_code}:\n$(cat "$tmp_file")"
-    fi
-
-    rm -f "$tmp_file"
-
-    if [[ "$exit_code" != 0 ]]; then
-        exit "$exit_code"
-    fi
-}
-
-
 ## Pacman & Trizen
 
 __verify_pacman() {
@@ -56,7 +32,7 @@ pacman_sync() {
         print-list-item "Installing ${package}"
     done
 
-    __run_command sudo pacman -Sy --needed --noconfirm --noprogressbar "${packages[@]}"
+    run_process sudo pacman -Sy --needed --noconfirm --noprogressbar "${packages[@]}"
 }
 
 __verify_trizen() {
@@ -80,7 +56,7 @@ trizen_sync() {
         print-list-item "Installing ${package}"
     done
 
-    __run_command trizen -Sy --needed --noconfirm --noprogressbar --nopull "${packages[@]}"
+    run_process trizen -Sy --needed --noconfirm --noprogressbar --nopull "${packages[@]}"
 }
 
 
@@ -214,7 +190,7 @@ rustup_toolchain_install() {
 
     print-step "Installing Rust ${toolchain} toolchain"
 
-    __run_command rustup toolchain install "$toolchain"
+    run_process rustup toolchain install "$toolchain"
 }
 
 rustup_component_add() {
@@ -233,7 +209,7 @@ rustup_component_add() {
         print-step "Installing ${component}${stable_toolchain:- to Rust ${toolchain}}"
     done
 
-    __run_command rustup component add --toolchain "$toolchain" "${components[@]}"
+    run_process rustup component add --toolchain "$toolchain" "${components[@]}"
 }
 
 
@@ -258,7 +234,7 @@ goenv_install() {
 
     print-step "Installing Go v${go_version}"
 
-    __run_command "${GOENV_ROOT}/bin/goenv" install -s "$go_version"
+    run_process "${GOENV_ROOT}/bin/goenv" install -s "$go_version"
 }
 
 
@@ -307,7 +283,7 @@ go_get() {
         print-list-item "Installing ${short_name}${system_go:- to Go ${go_version}}"
     done
 
-    __run_command GOPATH="${HOME}/go/${go_version}" "$go_exec" get -u "${packages[@]}"
+    run_process GOPATH="${HOME}/go/${go_version}" "$go_exec" get -u "${packages[@]}"
 }
 
 
@@ -329,7 +305,7 @@ stack_install() {
         print-list-item "Installing ${package}"
     done
 
-    __run_command stack install "${packages[@]}"
+    run_process stack install "${packages[@]}"
 }
 
 
@@ -354,7 +330,7 @@ pyenv_install() {
 
     print-step "Installing Python v${python_version}"
 
-    __run_command "${PYENV_ROOT}/bin/pyenv" install -s "$python_version"
+    run_process "${PYENV_ROOT}/bin/pyenv" install -s "$python_version"
 }
 
 
@@ -393,7 +369,7 @@ pip_install() {
         print-list-item "Installing ${package}"
     done
 
-    __run_command "$pip_exec" --disable-pip-version-check install "${pip_opts[@]}" "${packages[@]}"
+    run_process "$pip_exec" --disable-pip-version-check install "${pip_opts[@]}" "${packages[@]}"
 }
 
 
@@ -418,7 +394,7 @@ rbenv_install() {
 
     print-step "Installing Ruby v${ruby_version}"
 
-    __run_command "${RBENV_ROOT}/bin/rbenv" install -s "$ruby_version"
+    run_process "${RBENV_ROOT}/bin/rbenv" install -s "$ruby_version"
 }
 
 
@@ -460,7 +436,7 @@ gem_install() {
         print-list-item "Installing ${gem}${system_ruby:- to Ruby ${ruby_version}}"
     done
 
-    __run_command "$gem_exec" install "${gem_opts[@]}" "${gems[@]}"
+    run_process "$gem_exec" install "${gem_opts[@]}" "${gems[@]}"
 }
 
 
@@ -481,7 +457,7 @@ nvm_install() {
     print-list-item "Installing Node.js ${node_version}"
 
     ( . "${NVM_DIR}/nvm.sh"
-      __run_command nvm install --no-progress "$node_version" )
+      run_process nvm install --no-progress "$node_version" )
 }
 
 
@@ -529,7 +505,7 @@ yarn_global_add() {
         print-list-item "Installing ${package}${system_node:- to Node.js ${node_version}}"
     done
 
-    __run_command PATH="${node_exec_dir}:${PATH}" yarn global add --no-default-rc --noprogress --non-interactive "${packages[@]}"
+    run_process PATH="${node_exec_dir}:${PATH}" yarn global add --no-default-rc --noprogress --non-interactive "${packages[@]}"
 }
 
 
@@ -550,7 +526,7 @@ r_install() {
         print-list-item "Installing ${package}"
     done
 
-    __run_command R --vanilla \
+    run_process R --vanilla \
         -e "args<-commandArgs(trailingOnly=T);options(repos=args[1]);install.packages(args[-1])" \
         -q \
         --args 'https://cran.ism.ac.jp' "${packages[@]}"
