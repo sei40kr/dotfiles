@@ -34,7 +34,7 @@ __run_command() {
 ## Pacman & Trizen
 
 __verify_pacman() {
-    if [[ ! -f /etc/arch-release ]]; then
+    if ! is_arch; then
         tui-error 'Pacman facades must be called only on Arch Linux. Aborting.'
         exit 1
     fi
@@ -93,7 +93,7 @@ trizen_sync() {
 ## Homebrew
 
 __verify_homebrew() {
-    if [[ "$OSTYPE" != darwin* ]]; then
+    if ! is_macos; then
         tui-error 'Homebrew facades must be called only on macOS. Aborting.'
         exit 1
     fi
@@ -274,7 +274,7 @@ __go_exec() {
     local version="$1"
 
     if [[ "$version" == system ]]; then
-        if [[ "$OSTYPE" == darwin* ]]; then
+        if is_macos; then
             echo /usr/local/bin/go
         else
             echo /usr/bin/go
@@ -374,7 +374,7 @@ pip_install() {
 
     local pip_exec
     if [[ "$python_version" == system ]]; then
-        if [[ "$OSTYPE" == darwin* ]]; then
+        if is_macos; then
             pip_exec=/usr/local/bin/pip
         else
             pip_exec=/usr/bin/pip
@@ -441,7 +441,7 @@ gem_install() {
     if [[ "$ruby_version" == system ]]; then
         system_ruby=1
 
-        if [[ "$OSTYPE" == darwin* ]]; then
+        if is_macos; then
             gem_exec=/usr/local/bin/gem
         else
             gem_exec=/usr/bin/gem
@@ -510,7 +510,7 @@ yarn_global_add() {
     if [[ "$node_version" == system ]]; then
         system_node=1
 
-        if [[ "$OSTYPE" == darwin* ]]; then
+        if is_macos; then
             node_exec_dir=/usr/local/bin/node
         else
             node_exec_dir=/usr/bin/node
