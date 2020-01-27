@@ -336,7 +336,6 @@ __main() {
     zinit light _local/zsh-run-help-collections
 
     zinit snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
-    zinit snippet OMZ::plugins/magic-enter/magic-enter.plugin.zsh
 
     zinit ice from'gh-r' as'program' mv'direnv* -> direnv' atinit'[[ -f zhook.zsh ]] || ./direnv hook zsh >zhook.zsh' src'zhook.zsh'
     zinit light direnv/direnv
