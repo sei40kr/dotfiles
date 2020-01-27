@@ -76,6 +76,8 @@ __main() {
     zinit ice pick'' blockf wait''
     zinit light zsh-users/zsh-completions
 
+    zinit ice trigger-load'!cd-gitroot'
+    zinit light mollifier/cd-gitroot
     zinit ice trigger-load'!extract;!x'
     zinit snippet OMZ::plugins/extract/extract.plugin.zsh
     zinit snippet OMZ::plugins/rsync/rsync.plugin.zsh
