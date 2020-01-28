@@ -353,24 +353,22 @@ __main() {
     zinit light _local/zsh-fzf-docker
     zinit ice trigger-load'!_fzf_complete_cd'
     zinit light _local/zsh-fzf-cd-dirs
-    if [[ -z "$TMUX" ]]; then
-        FZF_PROJECTS_WORKSPACE_DIRS=(
-            "${HOME}/develop/workspace"
-            "${GOPATH}/src/github.com"
-        )
-        FZF_PROJECTS_PROJECT_DIR_MAX_DEPTH=2
-        FZF_PROJECTS_KNOWN_PROJECTS=(
-            "${HOME}/.dotfiles"
-            "${HOME}/.emacs.d"
-            "${HOME}/.doom.d"
-        )
-        zinit light _local/zsh-fzf-projects
 
-        zle -N fzf-projects
-
-        bindkey '^xg' fzf-projects
-        bindkey '^x^g' fzf-projects
-    fi
+    FZF_PROJECTS_WORKSPACE_DIRS=(
+        "${HOME}/develop/workspace"
+        "${GOPATH}/src/github.com"
+    )
+    FZF_PROJECTS_PROJECT_DIR_MAX_DEPTH=2
+    FZF_PROJECTS_KNOWN_PROJECTS=(
+        "${HOME}/.dotfiles"
+        "${HOME}/.emacs.d"
+        "${HOME}/.doom.d"
+    )
+    zinit ice trigger-load'!fzf-projects'
+    zinit light _local/zsh-fzf-projects
+    zle -N fzf-projects
+    bindkey '^xg' fzf-projects
+    bindkey '^x^g' fzf-projects
 
     # Notification
     if is_macos; then
