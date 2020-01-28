@@ -37,7 +37,7 @@ pacman_sync() {
 
 __verify_trizen() {
     if [[ ! -f /etc/arch-release ]]; then
-        tui-error 'Trizen facades must be only on Arch Linux. Aborting.'
+        tui-error 'Trizen facades must be called only on Arch Linux. Aborting.'
         exit 1
     fi
 
