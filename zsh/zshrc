@@ -63,6 +63,9 @@ __main() {
     }
 
     . "${ZDOTDIR}/custom-history.zsh"
+    if [[ "$INSIDE_EMACS" == vterm ]]; then
+        . "${ZDOTDIR}/vterm.zsh"
+    fi
 
 
     . "${HOME}/.zinit/bin/zinit.zsh"
