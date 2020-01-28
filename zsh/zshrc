@@ -97,8 +97,8 @@ __main() {
 
     ## Git
 
-    zinit snippet 'OMZ::plugins/git/git.plugin.zsh'
-    zinit snippet 'OMZ::plugins/git-flow/git-flow.plugin.zsh'
+    zinit snippet OMZ::plugins/git/git.plugin.zsh
+    zinit snippet OMZ::plugins/git-flow/git-flow.plugin.zsh
 
 
     ## Rust
@@ -140,9 +140,9 @@ __main() {
     ## Haskell
 
     zinit ice wait''
-    zinit snippet 'OMZ::plugins/stack/stack.plugin.zsh'
+    zinit snippet OMZ::plugins/stack/stack.plugin.zsh
     zinit ice wait''
-    zinit snippet 'OMZ::plugins/cabal/cabal.plugin.zsh'
+    zinit snippet OMZ::plugins/cabal/cabal.plugin.zsh
 
 
     ## Java
@@ -176,8 +176,9 @@ __main() {
     # pyenv
     if [[ -n "$PYENV_ROOT" && -d "$PYENV_ROOT" ]]; then
         if [[ ! -f "${PYENV_ROOT}/zpyenv.zsh" ]]; then
-            { pyenv init - --no-rehash zsh
-              pyenv virtualenv-init - zsh
+            {
+                pyenv init - --no-rehash zsh
+                pyenv virtualenv-init - zsh
             } >"${PYENV_ROOT}/zpyenv.zsh"
         fi
 
