@@ -108,12 +108,9 @@ __main() {
 
     # Rustup
     if [[ "${+commands[rustup]}" == 1 ]]; then
-        if [[ ! -f "${ZDOTDIR}/rustup_completion.zsh" ]]; then
-            rustup completions zsh >"${ZDOTDIR}/rustup_completion.zsh"
+        if [[ ! -f "${ZDOTDIR}/completions/_rustup" ]]; then
+            rustup completions zsh >"${ZDOTDIR}/completions/_rustup"
         fi
-
-        zinit ice wait''
-        zinit snippet "${ZDOTDIR}/rustup_completion.zsh"
     fi
 
     # Cargo
