@@ -3,30 +3,30 @@
 
 typeset -g __history_last_cmd
 
-__remember_last_cmd() {
-    __history_last_cmd="${1%%$'\n'}"
+__remember_history_line() {
+    __history_line="${1%%$'\n'}"
     return 1
 }
 
-zshaddhistory_functions+=( __remember_last_cmd )
+zshaddhistory_functions+=( __remember_history_line )
 
-__append_history() {
-    local last_exit_code="$?"
-    local last_cmd="${__history_last_cmd}"
+__save_history_line() {
+    local exit_code="$?"
+    local history_line="${__history_line}"
 
-    if [[ "$last_exit_code" != 0 ]]; then
+    if [[ "$exit_code" != 0 ]]; then
         return
     fi
 
     # HIST_IGNORE_SPACE
-    if [[ "$__history_last_cmd" = ' '* ]]; then
+    if [[ "$__history_line" = ' '* ]]; then
         return
     fi
 
     # HIST_REDUCE_BLANKS
-    last_cmd="${(z)last_cmd}"
+    history_line="${(z)history_line}"
 
-    print -sr -- "$last_cmd"
+    print -sr -- "$history_line"
 }
 
-precmd_functions+=( __append_history )
+precmd_functions+=( __save_history_line )
