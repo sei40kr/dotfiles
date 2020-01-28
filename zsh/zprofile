@@ -17,14 +17,6 @@ if [[ "$OSTYPE" == darwin* && "${+commands[brew]}" == 1 ]]; then
 
     path=( "${BREW_PREFIX}/bin"
            "${BREW_PREFIX}/sbin"
-           "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
-           "${BREW_PREFIX}/opt/findutils/libexec/gnubin"
-           "${BREW_PREFIX}/opt/ed/bin"
-           "${BREW_PREFIX}/opt/gnu-sed/libexec/gnubin"
-           "${BREW_PREFIX}/opt/gnu-tar/libexec/gnubin"
-           "${BREW_PREFIX}/opt/grep/libexec/gnubin"
-           "${BREW_PREFIX}/opt/nano/bin"
-           "${BREW_PREFIX}/texlive/2018basic/bin/x86_64-darwin"
            "${path[@]}" )
 
     fpath=( "${BREW_PREFIX}/share/zsh/site-functions"
@@ -33,11 +25,9 @@ if [[ "$OSTYPE" == darwin* && "${+commands[brew]}" == 1 ]]; then
     manpath=( "${BREW_PREFIX}/share/man"
               "${BREW_PREFIX}/opt/coreutils/libexec/gnuman"
               "${BREW_PREFIX}/opt/findutils/libexec/gnuman"
-              "${BREW_PREFIX}/opt/ed/share/man"
               "${BREW_PREFIX}/opt/gnu-sed/libexec/gnuman"
               "${BREW_PREFIX}/opt/gnu-tar/libexec/gnuman"
               "${BREW_PREFIX}/opt/grep/libexec/gnuman"
-              "${BREW_PREFIX}/opt/nano/share/man"
               "${manpath[@]}" )
 fi
 

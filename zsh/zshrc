@@ -79,6 +79,10 @@ __main() {
     zinit ice pick'' blockf wait''
     zinit light zsh-users/zsh-completions
 
+    if is_macos; then
+        zinit ice svn
+        zinit snippet PZT::modules/gnu-utility
+    fi
     zinit ice trigger-load'!cd-gitroot'
     zinit light mollifier/cd-gitroot
     zinit ice trigger-load'!extract;!x'
