@@ -207,8 +207,8 @@ __main() {
     fi
 
     zinit snippet OMZ::plugins/ruby/ruby.plugin.zsh
-    zinit ice svn
-    zinit snippet OMZ::plugins/gem
+    zinit ice as'completion' wait''
+    zinit snippet OMZ::plugins/gem/_gem
     zinit ice wait''
     zinit snippet OMZ::plugins/rake-fast/rake-fast.plugin.zsh
 
