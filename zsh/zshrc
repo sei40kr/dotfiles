@@ -328,6 +328,10 @@ __main() {
     zinit ice wait'0' lucid
     zinit light -b zdharma/history-search-multi-word
 
+    if [[ "${+aliases[run-help]}" == 1 ]]; then
+        unalias run-help
+    fi
+    zinit ice trigger-load'!run-help'
     zinit light _local/zsh-run-help-collections
 
     zinit snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
@@ -335,6 +339,7 @@ __main() {
     zinit ice from'gh-r' as'program' mv'direnv* -> direnv' atinit'[[ -f zhook.zsh ]] || ./direnv hook zsh >zhook.zsh' src'zhook.zsh'
     zinit light direnv/direnv
 
+    zinit ice trigger-load'!ranger-cd'
     zinit light _local/zsh-ranger-cd
     bindkey '\ec' ranger-cd
 
@@ -344,7 +349,9 @@ __main() {
     zinit light -b junegunn/fzf
 
     # FZF additional sources
+    zinit ice trigger-load'!_fzf_complete_docker'
     zinit light _local/zsh-fzf-docker
+    zinit ice trigger-load'!_fzf_complete_cd'
     zinit light _local/zsh-fzf-cd-dirs
     if [[ -z "$TMUX" ]]; then
         FZF_PROJECTS_WORKSPACE_DIRS=(
