@@ -111,10 +111,7 @@ __main() {
         if [[ ! -f "${ZDOTDIR}/completions/_rustup" ]]; then
             rustup completions zsh >"${ZDOTDIR}/completions/_rustup"
         fi
-    fi
 
-    # Cargo
-    if [[ "${+commands[cargo]}" == 1 ]]; then
         if [[ ! -f "${ZDOTDIR}/completions/_cargo" ]]; then
             rustup completions zsh cargo >"${ZDOTDIR}/completions/_cargo"
         fi
