@@ -115,12 +115,9 @@ __main() {
 
     # Cargo
     if [[ "${+commands[cargo]}" == 1 ]]; then
-        if [[ ! -f "${ZDOTDIR}/cargo_completion.zsh" ]]; then
-            rustup completions zsh cargo >"${ZDOTDIR}/cargo_completion.zsh"
+        if [[ ! -f "${ZDOTDIR}/completions/_cargo" ]]; then
+            rustup completions zsh cargo >"${ZDOTDIR}/completions/_cargo"
         fi
-
-        zinit ice wait''
-        zinit snippet "${ZDOTDIR}/cargo_completion.zsh"
     fi
 
     zinit ice as'completion' wait''
@@ -189,12 +186,9 @@ __main() {
 
     # Poetry
     if [[ "${+commands[poetry]}" == 1 ]]; then
-        if [[ ! -f "${ZDOTDIR}/poetry_completion.zsh" ]]; then
-            poetry completion -- zsh >"${ZDOTDIR}/poetry_completion.zsh"
+        if [[ ! -f "${ZDOTDIR}/completions/_poetry" ]]; then
+            poetry completion -- zsh >"${ZDOTDIR}/completions/_poetry"
         fi
-
-        zinit ice wait''
-        zinit snippet "${ZDOTDIR}/poetry_completion.zsh"
     fi
 
     zinit ice as'completion' wait''
