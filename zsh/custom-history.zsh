@@ -5,7 +5,7 @@ typeset -g __history_last_cmd
 
 __remember_history_line() {
     __history_line="${1%%$'\n'}"
-    return 1
+    return 2
 }
 
 zshaddhistory_functions+=( __remember_history_line )
