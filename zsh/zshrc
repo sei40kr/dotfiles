@@ -62,11 +62,11 @@ __main() {
         [[ -f /etc/arch-release ]]
     }
 
+    if [[ "$INSIDE_EMACS" == vterm ]]; then
+        alias clear='vterm_printf "51; Evterm-clear-scrollback"; tput clear'
+    fi
     . "${ZDOTDIR}/custom-history.zsh"
     . "${ZDOTDIR}/bitwarden-cli.zsh"
-    if [[ "$INSIDE_EMACS" == vterm ]]; then
-        . "${ZDOTDIR}/vterm.zsh"
-    fi
 
 
     . "${HOME}/.zinit/bin/zinit.zsh"

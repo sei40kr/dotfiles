@@ -1,7 +1,5 @@
-# vterm.zsh
+# vterm_printf
 # author: Seong Yong-ju <sei40kr@gmail.com>
-
-alias clear='vterm_printf "51;Evterm-clear-scrollback"; tput clear'
 
 vterm_printf() {
     if [[ -n "$TMUX" ]]; then

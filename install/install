@@ -171,7 +171,6 @@ setup_basic() {
            "${ZDOTDIR}/custom-history.zsh"
         ln -fs "${HOME}/.dotfiles/zsh/bitwarden-cli.zsh" \
            "${ZDOTDIR}/bitwarden-cli.zsh"
-        ln -fs "${HOME}/.dotfiles/zsh/vterm.zsh" "${ZDOTDIR}/vterm.zsh"
 
         ln -fsT "${HOME}/.dotfiles/zsh/functions" "${ZDOTDIR}/functions"
         ln -fsT "${HOME}/.dotfiles/zsh/completions" "${ZDOTDIR}/completions"
