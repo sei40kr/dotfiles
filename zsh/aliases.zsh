@@ -1,4 +1,4 @@
-# alias-defs.zsh
+# aliases.zsh
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 alias d=dirs

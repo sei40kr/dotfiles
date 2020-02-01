@@ -381,7 +381,7 @@ __main() {
     zinit snippet OMZ::plugins/bgnotify/bgnotify.plugin.zsh
 
     # Other alias definitions
-    . "${ZDOTDIR}/alias-defs.zsh"
+    . "${ZDOTDIR}/aliases.zsh"
 
     ## Theme & Appearance
 
