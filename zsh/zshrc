@@ -62,6 +62,7 @@ __main() {
         [[ -f /etc/arch-release ]]
     }
 
+    . "${ZDOTDIR}/secrets.zsh"
     if [[ "$INSIDE_EMACS" == vterm ]]; then
         alias clear='vterm_printf "51; Evterm-clear-scrollback"; tput clear'
     fi

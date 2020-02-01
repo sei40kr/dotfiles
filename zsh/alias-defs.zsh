@@ -12,6 +12,8 @@ alias cat='bat --theme TwoDark'
 
 # brew
 if is_macos; then
+    alias brew='HOMEBREW_GITHUB_API_TOKEN="$HOMEBREW_GITHUB_API_TOKEN" brew'
+
     alias brewp='brew pin'
     alias brews='brew list -1'
     alias brewsp='brew list --pinned'

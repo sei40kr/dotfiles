@@ -166,6 +166,7 @@ setup_basic() {
         ln -fs "${HOME}/.dotfiles/zsh/zprofile" "${ZDOTDIR}/.zprofile"
         ln -fs "${HOME}/.dotfiles/zsh/zshrc" "${ZDOTDIR}/.zshrc"
 
+        ln -fs "${HOME}/.dotfiles/zsh/secrets.zsh" "${ZDOTDIR}/secrets.zsh"
         ln -fs "${HOME}/.dotfiles/zsh/alias-defs.zsh" "${ZDOTDIR}/alias-defs.zsh"
         ln -fs "${HOME}/.dotfiles/zsh/custom-history.zsh" \
            "${ZDOTDIR}/custom-history.zsh"
