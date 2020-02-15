@@ -11,6 +11,7 @@ fi
 
 __main() {
     autoload -Uz \
+             run-help-git \
              kca \
              kres \
              pyclean
