@@ -15,20 +15,9 @@ typeset -U manpath
 if [[ "$OSTYPE" == darwin* && "${+commands[brew]}" == 1 ]]; then
     BREW_PREFIX="$(brew --prefix)"
 
-    path=( "${BREW_PREFIX}/bin"
-           "${BREW_PREFIX}/sbin"
-           "${path[@]}" )
-
-    fpath=( "${BREW_PREFIX}/share/zsh/site-functions"
-            "${fpath[@]}" )
-
-    manpath=( "${BREW_PREFIX}/share/man"
-              "${BREW_PREFIX}/opt/coreutils/libexec/gnuman"
-              "${BREW_PREFIX}/opt/findutils/libexec/gnuman"
-              "${BREW_PREFIX}/opt/gnu-sed/libexec/gnuman"
-              "${BREW_PREFIX}/opt/gnu-tar/libexec/gnuman"
-              "${BREW_PREFIX}/opt/grep/libexec/gnuman"
-              "${manpath[@]}" )
+    path=( "${BREW_PREFIX}/bin" "${BREW_PREFIX}/sbin" "${path[@]}" )
+    fpath=( "${BREW_PREFIX}/share/zsh/site-functions" "${fpath[@]}" )
+    manpath=( "${BREW_PREFIX}/share/man" "${manpath[@]}" )
 fi
 
 # Rust
