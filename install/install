@@ -670,16 +670,6 @@ install_accessory_apps() {
 }
 
 install_dev_apps() {
-    install_vim() {
-        pacman_sync vim
-
-        mkdir -p "${HOME}/.vim"
-        ln -fs "${HOME}/.dotfiles/vim/vimrc" "${HOME}/.vim/vimrc"
-        ln -fs "${HOME}/.dotfiles/vim/dein.toml" "${HOME}/.vim/dein.toml"
-
-        git clone -q https://github.com/Shougo/dein.vim "${HOME}/.cache/dein"
-    }
-
     install_doom_emacs() {
         pacman_sync emacs cmake libvterm
 
@@ -735,12 +725,11 @@ install_dev_apps() {
     while true; do
         print_title 'Development Apps'
 
-        echo "  1) $(pacman_menu_item 'Vim' vim)"
-        echo "  2) $(pacman_menu_item 'Git' git)"
-        echo "  3) $(menu_item 'Doom Emacs')"
-        echo "  4) $(pacman_menu_item 'Visual Studio Code' visual-studio-code-bin)"
-        echo "  5) $(pacman_menu_item 'IntelliJ IDEA Ultimate Edition' intellij-idea-ultimate-edition)"
-        echo "  6) $(pacman_menu_item 'Zeal' zeal)"
+        echo "  1) $(pacman_menu_item 'Git' git)"
+        echo "  2) $(menu_item 'Doom Emacs')"
+        echo "  3) $(pacman_menu_item 'Visual Studio Code' visual-studio-code-bin)"
+        echo "  4) $(pacman_menu_item 'IntelliJ IDEA Ultimate Edition' intellij-idea-ultimate-edition)"
+        echo "  5) $(pacman_menu_item 'Zeal' zeal)"
         echo ''
         echo '  d) Done'
 
@@ -748,9 +737,6 @@ install_dev_apps() {
 
         case "$opt" in
             1)
-                install_vim
-                ;;
-            2)
                 pacman_sync git
 
                 mkdir -p "${XDG_CONFIG_HOME}/git"
@@ -759,16 +745,16 @@ install_dev_apps() {
                 ln -fs "${HOME}/.dotfiles/git/gitignore" \
                    "${XDG_CONFIG_HOME}/git/ignore"
                 ;;
-            3)
+            2)
                 install_doom_emacs
                 ;;
-            4)
+            3)
                 pacman_sync code
                 ;;
-            5)
+            4)
                 install_intellij_idea_ue
                 ;;
-            6)
+            5)
                 pacman_sync zeal
                 ;;
 
