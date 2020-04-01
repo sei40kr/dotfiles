@@ -151,6 +151,14 @@ __main() {
 
     ## Java
 
+    if [[ -n "$JENV_ROOT" && -d "$JENV_ROOT" ]]; then
+        if [[ ! -f "${JENV_ROOT}/zjenv.zsh" ]]; then
+            jenv init - --no-rehash zsh >"${JENV_ROOT}/zjenv.zsh"
+        fi
+
+        zinit snippet "${JENV_ROOT}/zjenv.zsh"
+    fi
+
     zinit snippet OMZ::plugins/mvn/mvn.plugin.zsh
     zinit snippet OMZ::plugins/gradle/gradle.plugin.zsh
 

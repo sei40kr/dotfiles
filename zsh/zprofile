@@ -55,6 +55,13 @@ export GOPATH="${HOME}/go/system"
 path=( "${GOENV_ROOT}/bin" "${GOENV_ROOT}/shims" "${GOPATH}/bin" "${path[@]}" )
 
 
+## Java
+
+# jenv
+export JENV_ROOT="${HOME}/.jenv"
+path=( "${JENV_ROOT}/bin" "${JENV_ROOT}/shims" "${path[@]}" )
+
+
 ## Perl
 
 # Perlbrew
