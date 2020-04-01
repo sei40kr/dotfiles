@@ -46,11 +46,6 @@ fi
 export CARGO_HOME="${HOME}/.cargo"
 path=( "${CARGO_HOME}/bin" "${path[@]}" )
 
-# Racer
-if [[ "${+commands[rustc]}" == 1 ]]; then
-    export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-fi
-
 
 ## Go
 
