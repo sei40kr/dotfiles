@@ -711,9 +711,9 @@ install_dev_apps() {
     install_intellij_idea_ue() {
         trizen_sync intellij-idea-ultimate-edition
 
-        if [[ ! -d "${HOME}/intelli-space" ]]; then
-            git clone -q https://github.com/MarcoIeni/intelli-space.git \
-                "${HOME}/intelli-space"
+        if [[ ! -d "${HOME}/intellimacs" ]]; then
+            git clone -q https://github.com/MarcoIeni/intellimacs.git \
+                "${HOME}/intellimacs"
         fi
 
         ln -fs "${HOME}/.dotfiles/intellij-idea/ideavimrc" "${HOME}/.ideavimrc"

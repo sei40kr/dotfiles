@@ -1,10 +1,10 @@
 " -*- mode: vimrc -*-
 
-" Selected IntelliSpace modules
-source ~/intelli-space/spacemacs.vim
-source ~/intelli-space/extra.vim
-source ~/intelli-space/major.vim
-source ~/intelli-space/hybrid.vim
+" Selected Intellimacs modules
+source ~/.intellimacs/spacemacs.vim
+source ~/.intellimacs/extra.vim
+source ~/.intellimacs/major.vim
+source ~/.intellimacs/hybrid.vim
 
 " My own vim commands
 set history
