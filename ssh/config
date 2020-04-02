@@ -4,4 +4,4 @@ Host dmz.yong-ju.me
 Host github-private
   HostName github.com
   User git
-  IdentityFile ~/.ssh/id_rsa_private
+  IdentityFile ~/.ssh/id_rsa
