@@ -141,7 +141,7 @@ __main() {
 
     ## Haskell
 
-    zinit ice wait''
+    zinit ice wait'' if'[[ "${+commands[stack]}" == 1 ]]'
     zinit snippet OMZ::plugins/stack/stack.plugin.zsh
     zinit ice wait''
     zinit snippet OMZ::plugins/cabal/cabal.plugin.zsh
