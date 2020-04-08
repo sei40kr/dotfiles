@@ -1,14 +1,57 @@
 " -*- mode: vimrc -*-
 
+let mapleader = " "
+
 " Selected Intellimacs modules
-source ~/.intellimacs/spacemacs.vim
-source ~/.intellimacs/extra.vim
-source ~/.intellimacs/major.vim
+source ~/.intellimacs/spacemacs/buffers.vim
+source ~/.intellimacs/spacemacs/help.vim
+source ~/.intellimacs/spacemacs/misc.vim
+source ~/.intellimacs/spacemacs/search-symbol.vim
 source ~/.intellimacs/hybrid.vim
 
 " My own vim commands
+set commentary
+set easymotion
 set history
 set matchpairs
 set number
 set relativenumber
 set wrapscan
+
+" +code
+noremap <Leader>cD :<C-u>action ShowUsages<CR>
+noremap <Leader>ca :<C-u>action ShowIntentionActions<CR>
+noremap <Leader>cd gd
+noremap <Leader>cf :<C-u>action ReformatCode<CR>
+noremap <Leader>ci :<C-u>action OptimizeImports<CR>
+noremap <Leader>ck :<C-u>action QuickJavaDoc<CR>
+noremap <Leader>cr :<C-u>action RenameElement<CR>
+
+" +insert
+nnoremap <Leader>is :<C-u>action InsertLiveTemplate<CR>
+vnoremap <Leader>is <Esc>:<C-u>action InsertLiveTemplate<CR>
+
+" Previous/next method
+nnoremap [[ :<C-u>action MethodUp<CR>
+nnoremap ]] :<C-u>action MethodDown<CR>
+
+" Insert line above/below
+nnoremap [<Space> o<Esc>k
+vnoremap [<Space> <Esc>o<Esc>k
+nnoremap ]<Space> O<Esc>j
+vnoremap ]<Space> <Esc>O<Esc>j
+
+" Go to previous/next VCS change marker
+nnoremap [d :<C-u>action VcsShowPrevChangeMarker<CR>
+nnoremap ]d :<C-u>action VcsShowNextChangeMarker<CR>
+
+" Go to previous/next error
+nnoremap [e :<C-u>action GotoPreviousError<CR>
+nnoremap ]e :<C-u>action GotoNextError<CR>
+
+" Previous/next tab
+nnoremap <A-Left> :<C-u>action PreviousTab<CR>
+nnoremap <A-Right> :<C-u>action NextTab<CR>
+
+nnoremap <Esc> :<C-u>nohl<CR><Esc>
+imap jk <Esc>
