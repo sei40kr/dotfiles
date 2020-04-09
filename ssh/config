@@ -1,7 +1,2 @@
 Host dmz.yong-ju.me
   Port 10022
-
-Host github-private
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/id_rsa

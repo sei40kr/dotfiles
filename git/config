@@ -39,8 +39,6 @@
   default = current
 [stash]
   showPatch = true
-[url "ssh://git@github-private/sei40kr"]
-	insteadOf = https://github.com/sei40kr
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
