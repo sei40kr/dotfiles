@@ -18,6 +18,9 @@ set number
 set relativenumber
 set wrapscan
 
+" +buffer
+noremap <Leader>bO :<C-u>action CloseAllEditorsButActive<CR>
+
 " +code
 noremap <Leader>cD :<C-u>action ShowUsages<CR>
 noremap <Leader>ca :<C-u>action ShowIntentionActions<CR>
