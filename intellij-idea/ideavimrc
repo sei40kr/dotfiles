@@ -55,3 +55,4 @@ nnoremap <A-Right> :<C-u>action NextTab<CR>
 
 nnoremap <Esc> :<C-u>nohl<CR><Esc>
 imap jk <Esc>
+vmap jk <Esc>
