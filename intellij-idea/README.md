@@ -1,4 +1,4 @@
-# IntelliJ IDEA
+# IntelliJ IDEA Ultimate Edition
 
 ## Installation
 
@@ -7,7 +7,7 @@
     ```sh
     brew cask install intellij-idea
     ```
-1. Just create a symlink for IdeaVim's configuration.
+1. Create a symlink for IdeaVim's configuration
 
     ``` sh
     ln -fs ~/.dotfiles/intellij-idea/ideavimrc ~/.ideavimrc
