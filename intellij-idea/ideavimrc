@@ -34,6 +34,9 @@ noremap <Leader>cr :<C-u>action RenameElement<CR>
 nnoremap <Leader>is :<C-u>action InsertLiveTemplate<CR>
 vnoremap <Leader>is <Esc>:<C-u>action InsertLiveTemplate<CR>
 
+" +project
+noremap <Leader>pp :<C-u>action ManageRecentProjects<CR>
+
 " Previous/next method
 nnoremap [[ :<C-u>action MethodUp<CR>
 nnoremap ]] :<C-u>action MethodDown<CR>
