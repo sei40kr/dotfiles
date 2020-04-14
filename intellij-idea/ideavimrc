@@ -67,7 +67,7 @@ noremap <Leader>wv <C-w>v
 noremap <Leader>ww <C-w>w
 
 
-;; expand-region
+" expand-region
 noremap <C-S-=> :<C-u>action EditorSelectWord<CR>
 noremap <C-=> :<C-u>action EditorUnSelectWord<CR>
 
@@ -98,6 +98,6 @@ nnoremap <Esc> :<C-u>nohl<CR><Esc>
 imap jk <Esc>
 vmap jk <Esc>
 
-;; Retain visual-mode on selection shift
+" Retain visual-mode on selection shift
 vnoremap < <gv
 vnoremap > >gv
