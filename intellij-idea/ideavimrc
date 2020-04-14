@@ -50,6 +50,7 @@ noremap <Leader>oP :<C-u>action SelectInProjectView<CR>
 
 " +project
 noremap <Leader>pp :<C-u>action ManageRecentProjects<CR>
+noremap <Leader>pt :<C-u>action ActivateTODOToolWindow<CR>
 
 " +window
 noremap <Leader>wW <C-w>W
