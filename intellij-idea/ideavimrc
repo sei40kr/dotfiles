@@ -32,6 +32,7 @@ noremap <Leader>ck :<C-u>action QuickJavaDoc<CR>
 noremap <Leader>cr :<C-u>action RenameElement<CR>
 
 " +file
+noremap <Leader>fr :<C-u>action RecentFiles<CR>
 noremap <Leader>fs :<C-u>w<CR>
 
 " +insert
