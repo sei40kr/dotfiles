@@ -45,6 +45,18 @@ noremap <Leader>oP :<C-u>action SelectInProjectView<CR>
 " +project
 noremap <Leader>pp :<C-u>action ManageRecentProjects<CR>
 
+" +window
+noremap <Leader>wW <C-w>W
+noremap <Leader>wc <C-w>c
+noremap <Leader>wd <C-w>c
+noremap <Leader>wh <C-w>h
+noremap <Leader>wj <C-w>j
+noremap <Leader>wk <C-w>k
+noremap <Leader>wl <C-w>l
+noremap <Leader>ws <C-w>s
+noremap <Leader>wv <C-w>v
+noremap <Leader>ww <C-w>w
+
 " Previous/next method
 nnoremap [[ :<C-u>action MethodUp<CR>
 nnoremap ]] :<C-u>action MethodDown<CR>
