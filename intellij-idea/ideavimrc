@@ -14,6 +14,7 @@ set clipboard+=unnamed
 set commentary
 set easymotion
 set history
+set idearefactormode=visual
 set matchpairs
 set number
 set relativenumber
