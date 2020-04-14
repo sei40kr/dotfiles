@@ -10,6 +10,7 @@ source ~/.intellimacs/spacemacs/search-symbol.vim
 source ~/.intellimacs/hybrid.vim
 
 " My own vim commands
+set clipboard+=unnamed
 set commentary
 set easymotion
 set history
