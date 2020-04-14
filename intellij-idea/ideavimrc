@@ -17,6 +17,7 @@ set history
 set matchpairs
 set number
 set relativenumber
+set surround
 set wrapscan
 
 " +buffer
