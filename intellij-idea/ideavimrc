@@ -31,6 +31,9 @@ noremap <Leader>ci :<C-u>action OptimizeImports<CR>
 noremap <Leader>ck :<C-u>action QuickJavaDoc<CR>
 noremap <Leader>cr :<C-u>action RenameElement<CR>
 
+" +file
+noremap <Leader>fs :<C-u>w<CR>
+
 " +insert
 nnoremap <Leader>is :<C-u>action InsertLiveTemplate<CR>
 vnoremap <Leader>is <Esc>:<C-u>action InsertLiveTemplate<CR>
