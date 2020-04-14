@@ -64,8 +64,8 @@ nnoremap [e :<C-u>action GotoPreviousError<CR>
 nnoremap ]e :<C-u>action GotoNextError<CR>
 
 " Previous/next tab
-nnoremap <A-Left> :<C-u>action PreviousTab<CR>
-nnoremap <A-Right> :<C-u>action NextTab<CR>
+noremap <A-Left> :<C-u>action PreviousTab<CR>
+noremap <A-Right> :<C-u>action NextTab<CR>
 
 nnoremap <Esc> :<C-u>nohl<CR><Esc>
 imap jk <Esc>
