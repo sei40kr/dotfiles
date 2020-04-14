@@ -21,7 +21,12 @@ set surround
 set wrapscan
 
 " +buffer
+noremap <Leader>bK :<C-u>qa!<CR>
 noremap <Leader>bO :<C-u>action CloseAllEditorsButActive<CR>
+noremap <Leader>bS :<C-u>wa<CR>
+noremap <Leader>bd :<C-u>q!<CR>
+noremap <Leader>bk :<C-u>q!<CR>
+noremap <Leader>bs :<C-u>w<CR>
 
 " +code
 noremap <Leader>cD :<C-u>action ShowUsages<CR>
