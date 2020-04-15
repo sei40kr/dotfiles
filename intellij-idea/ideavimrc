@@ -43,6 +43,12 @@ noremap <Leader>cr :<C-u>action RenameElement<CR>
 noremap <Leader>fr :<C-u>action RecentFiles<CR>
 noremap <Leader>fs :<C-u>w<CR>
 
+" +git
+nnoremap <Leader>g[ :<C-u>action VcsShowPrevChangeMarker<CR>
+nnoremap <Leader>g] :<C-u>action VcsShowNextChangeMarker<CR>
+nnoremap [d :<C-u>action VcsShowPrevChangeMarker<CR>
+nnoremap ]d :<C-u>action VcsShowNextChangeMarker<CR>
+
 " +insert
 nnoremap <Leader>is :<C-u>action InsertLiveTemplate<CR>
 vnoremap <Leader>is <Esc>:<C-u>action InsertLiveTemplate<CR>
@@ -81,10 +87,6 @@ nnoremap [<Space> o<Esc>k
 vnoremap [<Space> <Esc>o<Esc>k
 nnoremap ]<Space> O<Esc>j
 vnoremap ]<Space> <Esc>O<Esc>j
-
-" Go to previous/next VCS change marker
-nnoremap [d :<C-u>action VcsShowPrevChangeMarker<CR>
-nnoremap ]d :<C-u>action VcsShowNextChangeMarker<CR>
 
 " Go to previous/next error
 nnoremap [e :<C-u>action GotoPreviousError<CR>
