@@ -17,6 +17,7 @@ set history
 set ideajoin=true
 set idearefactormode=visual
 set matchpairs
+set multiple-cursors
 set number
 set relativenumber
 set surround
