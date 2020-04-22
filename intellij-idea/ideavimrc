@@ -16,10 +16,12 @@ set easymotion
 set history
 set ideajoin=true
 set idearefactormode=visual
+set ignorecase
 set matchpairs
 set multiple-cursors
 set number
 set relativenumber
+set smartcase
 set surround
 set wrapscan
 
