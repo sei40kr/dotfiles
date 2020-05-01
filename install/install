@@ -1077,8 +1077,8 @@ install_dev_tools() {
 
     install_competitive_programming() {
         # AtCoder environment
-        rustup_toolchain_install 1.15.1
-        rustup_component_add 1.15.1 rust-src rls-preview rust-analysis
+        rustup_toolchain_install 1.42.0
+        rustup_component_add 1.42.0 rust-src rls
         goenv_install 1.6.0
         pyenv_install 3.4.3
         rbenv_install 2.3.3
