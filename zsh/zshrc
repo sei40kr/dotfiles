@@ -126,7 +126,7 @@ __main() {
 
     ## Haskell
 
-    zinit ice wait'' if'[[ "${+commands[stack]}" == 1 ]]'
+    zinit ice wait'' has'stack'
     zinit snippet OMZ::plugins/stack/stack.plugin.zsh
     zinit ice wait''
     zinit snippet OMZ::plugins/cabal/cabal.plugin.zsh
@@ -301,7 +301,7 @@ __main() {
 
     zinit snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
 
-    zinit ice from'gh-r' as'program' mv'direnv* -> direnv' atinit'[[ -f zhook.zsh ]] || ./direnv hook zsh >zhook.zsh' src'zhook.zsh'
+    zinit ice from'gh-r' as'program' mv'direnv* -> direnv' atclone'./direnv hook zsh >zhook.zsh' atpull'%atclone'
     zinit light direnv/direnv
 
     zinit ice trigger-load'!ranger-cd'
