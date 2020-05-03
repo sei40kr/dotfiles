@@ -111,17 +111,6 @@ __main() {
 
     ## Rust
 
-    # Rustup
-    if [[ "${+commands[rustup]}" == 1 ]]; then
-        if [[ ! -f "${ZDOTDIR}/completions/_rustup" ]]; then
-            rustup completions zsh >"${ZDOTDIR}/completions/_rustup"
-        fi
-
-        if [[ ! -f "${ZDOTDIR}/completions/_cargo" ]]; then
-            rustup completions zsh cargo >"${ZDOTDIR}/completions/_cargo"
-        fi
-    fi
-
     zinit ice as'completion' wait''
     zinit snippet OMZ::plugins/rust/_rust
 
@@ -195,13 +184,6 @@ __main() {
         zinit snippet "${PYENV_ROOT}/zpyenv.zsh"
     fi
 
-    # Poetry
-    if [[ "${+commands[poetry]}" == 1 ]]; then
-        if [[ ! -f "${ZDOTDIR}/completions/_poetry" ]]; then
-            poetry completion -- zsh >"${ZDOTDIR}/completions/_poetry"
-        fi
-    fi
-
     zinit ice as'completion' wait''
     zinit snippet OMZ::plugins/pip/_pip
 
@@ -240,16 +222,6 @@ __main() {
 
     zinit ice wait''
     zinit snippet OMZ::plugins/gulp/gulp.plugin.zsh
-
-    # Karma
-    if [[ "${+commands[karma]}" == 1 ]]; then
-        if [[ ! -f "${ZDOTDIR}/karma_completion.zsh" ]]; then
-            karma completion >"${ZDOTDIR}/karma_completion.zsh"
-        fi
-
-        zinit ice wait''
-        zinit snippet "${ZDOTDIR}/karma_completion.zsh"
-    fi
 
     # Gatsby
     zinit ice as'completion' wait''
@@ -300,16 +272,6 @@ __main() {
     zinit snippet OMZ::plugins/terraform/_terraform
     zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 
-    # Kubernetes
-    if [[ "${+commands[kubectl]}" == 1 ]]; then
-        if [[ ! -f "${ZDOTDIR}/kubectl_completion.zsh" ]]; then
-            kubectl completion zsh >"${ZDOTDIR}/kubectl_completion.zsh"
-        fi
-
-        zinit ice wait''
-        zinit snippet "${ZDOTDIR}/kubectl_completion.zsh"
-    fi
-
     # AWS
     # TODO Add support for Linux environment
     if [[ -f /usr/local/bin/aws_zsh_completer.sh ]]; then
@@ -322,6 +284,17 @@ __main() {
         zinit ice wait''
         zinit snippet "${CLOUDSDK_ROOT_DIR}/completion.zsh.inc"
     fi
+
+
+    #
+    # Completions
+
+    zinit wait'' lucid atpull'%atclone' as'completion' for \
+        has'karma'   atclone'karma completion >_karma'             id-as'karma_completion'   zdharma/null \
+        has'kubectl' atclone'kubectl completion zsh >_kubectl'     id-as'kubectl_completion' zdharma/null \
+        has'poetry'  atclone'poetry completions zsh >_poetry'      id-as'poetry_completion'  zdharma/null \
+        has'rustup'  atclone'rustup completions zsh >_rustup'      id-as'rustup_completion'  zdharma/null \
+        has'cargo'   atclone'rustup completions zsh cargo >_cargo' id-as'cargo_completion'   zdharma/null
 
 
     ## Others
