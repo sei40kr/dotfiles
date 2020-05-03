@@ -117,13 +117,9 @@ __main() {
 
     ## Go
 
-    if [[ -n "$GOENV_ROOT" && -d "$GOENV_ROOT" ]]; then
-        if [[ ! -f "${GOENV_ROOT}/zgoenv.zsh" ]]; then
-            goenv init - --no-rehash zsh >"${GOENV_ROOT}/zgoenv.zsh"
-        fi
-
-        zinit snippet "${GOENV_ROOT}/zgoenv.zsh"
-    fi
+    # goenv
+    zinit ice has'goenv' atclone'goenv init - --no-rehash zsh >goenv-init.zsh' atpull'%atclone' id-as'goenv-init'
+    zinit light zdharma/null
 
     zinit snippet OMZ::plugins/golang/golang.plugin.zsh
 
@@ -138,13 +134,9 @@ __main() {
 
     ## Java
 
-    if [[ -n "$JENV_ROOT" && -d "$JENV_ROOT" ]]; then
-        if [[ ! -f "${JENV_ROOT}/zjenv.zsh" ]]; then
-            jenv init - --no-rehash zsh >"${JENV_ROOT}/zjenv.zsh"
-        fi
-
-        zinit snippet "${JENV_ROOT}/zjenv.zsh"
-    fi
+    # jenv
+    zinit ice has'jenv' atclone'jenv init - --no-rehash zsh >jenv-init.zsh' atpull'%atclone' id-as'jenv-init'
+    zinit light zdharma/null
 
     zinit snippet OMZ::plugins/mvn/mvn.plugin.zsh
     zinit snippet OMZ::plugins/gradle/gradle.plugin.zsh
@@ -173,16 +165,10 @@ __main() {
     ## Python
 
     # pyenv
-    if [[ -n "$PYENV_ROOT" && -d "$PYENV_ROOT" ]]; then
-        if [[ ! -f "${PYENV_ROOT}/zpyenv.zsh" ]]; then
-            {
-                pyenv init - --no-rehash zsh
-                pyenv virtualenv-init - zsh
-            } >"${PYENV_ROOT}/zpyenv.zsh"
-        fi
-
-        zinit snippet "${PYENV_ROOT}/zpyenv.zsh"
-    fi
+    zinit ice has'pyenv' atclone'pyenv init - --no-rehash zsh >pyenv-init.zsh' atpull'%atclone' id-as'pyenv-init'
+    zinit light zdharma/null
+    zinit ice if'[[ -d "${PYENV_ROOT:-${HOME}/.pyenv}/plugins/pyenv-virtualenv" ]]' atclone'pyenv virtualenv-init - --no-rehash zsh >pyenv-virtualenv-init.zsh' atpull'%atclone' id-as'pyenv-virtualenv-init'
+    zinit light zdharma/null
 
     zinit ice as'completion' wait''
     zinit snippet OMZ::plugins/pip/_pip
@@ -190,13 +176,9 @@ __main() {
 
     ## Ruby
 
-    if [[ -n "$RBENV_ROOT" && -d "$RBENV_ROOT" ]]; then
-        if [[ ! -f "${RBENV_ROOT}/zrbenv.zsh" ]]; then
-            rbenv init - --no-rehash zsh >"${RBENV_ROOT}/zrbenv.zsh"
-        fi
-
-        zinit snippet "${RBENV_ROOT}/zrbenv.zsh"
-    fi
+    # rbenv
+    zinit ice has'rbenv' atclone'rbenv init - --no-rehash zsh >rbenv-init.zsh' atpull'%atclone' id-as'rbenv-init'
+    zinit light zdharma/null
 
     zinit snippet OMZ::plugins/ruby/ruby.plugin.zsh
     zinit ice as'completion' wait''
