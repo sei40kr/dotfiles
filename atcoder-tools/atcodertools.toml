@@ -7,7 +7,7 @@ lang='rust'
 code_generator_file="~/custom_code_generator.py"
 
 [postprocess]
-exec_on_each_problem_dir='rustfmt -q main.rs'
+exec_on_each_problem_dir='rustfmt -q main.rs; cargo init -q'
 # exec_on_contest_dir='touch CMakeLists.txt'
 
 [etc]
