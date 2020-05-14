@@ -95,6 +95,11 @@ noremap <Leader>wv <C-w>v
 noremap <Leader>ww <C-w>w
 
 
+" +evil-easymotion
+" This requires AceJump and IdeaVim-EasyMotion plugins
+map gss <Plug>(easymotion-s2)
+
+
 " expand-region
 noremap <C-S-=> :<C-u>action EditorSelectWord<CR>
 noremap <C-=> :<C-u>action EditorUnSelectWord<CR>
