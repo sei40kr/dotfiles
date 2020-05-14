@@ -33,14 +33,25 @@ noremap <Leader>bd :<C-u>q!<CR>
 noremap <Leader>bk :<C-u>q!<CR>
 noremap <Leader>bs :<C-u>w<CR>
 
+
+"
 " +code
+
+" Jump to references
 noremap <Leader>cD :<C-u>action ShowUsages<CR>
+" Execute code action
 noremap <Leader>ca :<C-u>action ShowIntentionActions<CR>
+" Jump to definition
 noremap <Leader>cd gd
+" Format buffer/region
 noremap <Leader>cf :<C-u>action ReformatCode<CR>
+" Organize imports
 noremap <Leader>ci :<C-u>action OptimizeImports<CR>
+" Jump to documentation
 noremap <Leader>ck :<C-u>action QuickJavaDoc<CR>
+" Rename
 noremap <Leader>cr :<C-u>action RenameElement<CR>
+
 
 " +file
 noremap <Leader>fr :<C-u>action RecentFiles<CR>
