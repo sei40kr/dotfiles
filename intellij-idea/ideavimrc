@@ -25,6 +25,20 @@ set smartcase
 set surround
 set wrapscan
 
+" Resume last search
+noremap <Leader>' :<C-u>action FindInPath<CR>
+" Find file
+noremap <Leader>. :<C-u>action SearchEverywhere<CR>
+" Jump to bookmark
+noremap <Leader><CR> :<C-u>action Bookmarks<CR>
+" Switch buffer
+noremap <Leader>\< :<C-u>action Switcher<CR>
+" Switch to last buffer
+noremap <Leader>` :<C-u>action GoToLastTab<CR>
+" Toggle last popup
+noremap <Leader>~ :<C-u>action JumpToLastWindow<CR>
+
+
 " +buffer
 noremap <Leader>bK :<C-u>qa!<CR>
 noremap <Leader>bO :<C-u>action CloseAllEditorsButActive<CR>
