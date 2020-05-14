@@ -53,9 +53,18 @@ noremap <Leader>ck :<C-u>action QuickJavaDoc<CR>
 noremap <Leader>cr :<C-u>action RenameElement<CR>
 
 
+"
 " +file
+
+" Open project editorconfig
+noremap <Leader>fc :<C-u>action NewEditorConfigFile<CR>
+" Find file
+noremap <Leader>ff :<C-u>action SearchEverywhere<CR>
+" Recent files
 noremap <Leader>fr :<C-u>action RecentFiles<CR>
 noremap <Leader>fs :<C-u>w<CR>
+" Rename file
+noremap <Leader>fR :<C-u>action RenameFile<CR>
 
 
 "
