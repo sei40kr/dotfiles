@@ -50,22 +50,36 @@ noremap <Leader>fs :<C-u>w<CR>
 "
 " +git
 
-nnoremap <Leader>g[ :<C-u>action VcsShowPrevChangeMarker<CR> " Jump to previous hunk
-nnoremap <Leader>g] :<C-u>action VcsShowNextChangeMarker<CR> " Jump to next hunk
-noremap <Leader>gb :<C-u>action Git.Branches<CR>             " Switch branch
+" Jump to previous hunk
+nnoremap <Leader>g[ :<C-u>action VcsShowPrevChangeMarker<CR>
+" Jump to next hunk
+nnoremap <Leader>g] :<C-u>action VcsShowNextChangeMarker<CR>
+" Switch branch
+noremap <Leader>gb :<C-u>action Git.Branches<CR>
 noremap <Leader>gg :<C-u>action Git.Menu<CR>
-noremap <Leader>gr :<C-u>action Vcs.RollbackChangedLines<CR> " Revert hunk
-noremap <Leader>gB :<C-u>action Annotate<CR>                 " Blame
-noremap <Leader>gF :<C-u>action Git.Fetch<CR>                " Fetch
-noremap <Leader>gS :<C-u>action Git.Add<CR>                  " Git stage file
+" Revert hunk
+noremap <Leader>gr :<C-u>action Vcs.RollbackChangedLines<CR>
+" Blame
+noremap <Leader>gB :<C-u>action Annotate<CR>
+" Fetch
+noremap <Leader>gF :<C-u>action Git.Fetch<CR>
+" Git stage file
+noremap <Leader>gS :<C-u>action Git.Add<CR>
+
 " +create
-noremap <Leader>gcp :<C-u>Github.Create.Pull.Reqeust<CR>     " Pull request
+" Pull request
+noremap <Leader>gcp :<C-u>Github.Create.Pull.Reqeust<CR>
+
 " +find
-noremap <Leader>gfp :<C-u>Github.View.Pull.Reqeust<CR>       " Find pull request
+" Find pull request
+noremap <Leader>gfp :<C-u>Github.View.Pull.Reqeust<CR>
+
 " +open in-browser
-noremap <Leader>goo :<C-u>action Github.Open.In.Browser<CR>  " Browse file or region
+" Browse file or region
+noremap <Leader>goo :<C-u>action Github.Open.In.Browser<CR>
+" Browse a pull request
 " This requires Find Pull Request plugin
-noremap <Leader>gop :<C-u>com.github.shiraji.findpullrequest.action.FindPullRequestAction " Browse a pull request
+noremap <Leader>gop :<C-u>com.github.shiraji.findpullrequest.action.FindPullRequestAction
 
 nnoremap [d :<C-u>action VcsShowPrevChangeMarker<CR>
 nnoremap ]d :<C-u>action VcsShowNextChangeMarker<CR>
