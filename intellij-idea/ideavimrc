@@ -41,16 +41,22 @@ noremap <Leader>bs :<C-u>w<CR>
 noremap <Leader>cD :<C-u>action ShowUsages<CR>
 " Execute code action
 noremap <Leader>ca :<C-u>action ShowIntentionActions<CR>
+" Compile
+noremap <Leader>cc :<C-u>action CompileDirty<CR>
 " Jump to definition
 noremap <Leader>cd gd
 " Format buffer/region
 noremap <Leader>cf :<C-u>action ReformatCode<CR>
 " Organize imports
 noremap <Leader>ci :<C-u>action OptimizeImports<CR>
+" Jump to symbol in current workspace
+noremap <Leader>cj :<C-u>action SearchEverywhere<CR>
 " Jump to documentation
 noremap <Leader>ck :<C-u>action QuickJavaDoc<CR>
 " Rename
 noremap <Leader>cr :<C-u>action RenameElement<CR>
+" Recompile
+noremap <Leader>cC :<C-u>action Compile<CR>
 
 
 "
