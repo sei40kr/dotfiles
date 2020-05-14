@@ -81,9 +81,9 @@ noremap <Leader>gS :<C-u>action Git.Add<CR>
 " Pull request
 noremap <Leader>gcp :<C-u>Github.Create.Pull.Reqeust<CR>
 
-" +find
-" Find pull request
-noremap <Leader>gfp :<C-u>Github.View.Pull.Reqeust<CR>
+" +list
+" List pull requests
+noremap <Leader>glp :<C-u>Github.View.Pull.Reqeust<CR>
 
 " +open in-browser
 " Browse file or region
