@@ -96,6 +96,29 @@ noremap <Leader>oP :<C-u>action SelectInProjectView<CR>
 noremap <Leader>pp :<C-u>action ManageRecentProjects<CR>
 noremap <Leader>pt :<C-u>action ActivateTODOToolWindow<CR>
 
+
+"
+" +toggle
+
+" Big mode (Presentation Mode)
+noremap <Leader>tb :<C-u>action TogglePresentationMode<CR>
+
+" Line numbers
+noremap <Leader>tl :<C-u>action EditorToggleShowLineNumbers<CR>
+
+" Read-only mode
+noremap <Leader>tr :<C-u>action ToggleReadOnlyAttribute<CR>
+
+" Soft line wrapping
+noremap <Leader>tw :<C-u>action EditorToggleUseSoftWraps<CR>
+
+" Zen mode (Distraction Free Mode)
+noremap <Leader>tz :<C-u>action ToggleDistractionFreeMode<CR>
+
+" Frame fullscreen
+noremap <Leader>tF :<C-u>action ToggleFullScreen<CR>
+
+
 " +window
 noremap <Leader>wW <C-w>W
 noremap <Leader>wc <C-w>c
