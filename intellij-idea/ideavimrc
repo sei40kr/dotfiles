@@ -68,6 +68,7 @@ noremap <Leader>fc :<C-u>action NewEditorConfigFile<CR>
 noremap <Leader>ff :<C-u>action SearchEverywhere<CR>
 " Recent files
 noremap <Leader>fr :<C-u>action RecentFiles<CR>
+" Save file
 noremap <Leader>fs :<C-u>w<CR>
 " Rename file
 noremap <Leader>fR :<C-u>action RenameFile<CR>
@@ -126,7 +127,9 @@ noremap <Leader>oP :<C-u>action SelectInProjectView<CR>
 noremap <Leader>p! :<C-u>action RunAnything<CR>
 " Invalidate project cache
 noremap <Leader>pi :<C-u>action InvalidateCaches<CR>
+" Switch projects
 noremap <Leader>pp :<C-u>action ManageRecentProjects<CR>
+" List project tasks
 noremap <Leader>pt :<C-u>action ActivateTODOToolWindow<CR>
 " Run project
 noremap <Leader>pR :<C-u>action Run<CR>
