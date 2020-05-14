@@ -39,7 +39,9 @@ noremap <Leader>` :<C-u>action GoToLastTab<CR>
 noremap <Leader>~ :<C-u>action JumpToLastWindow<CR>
 
 
+"
 " +buffer
+
 noremap <Leader>bK :<C-u>qa!<CR>
 noremap <Leader>bO :<C-u>action CloseAllEditorsButActive<CR>
 noremap <Leader>bS :<C-u>wa<CR>
@@ -126,10 +128,14 @@ nnoremap [d :<C-u>action VcsShowPrevChangeMarker<CR>
 nnoremap ]d :<C-u>action VcsShowNextChangeMarker<CR>
 
 
+"
 " +insert
+
 nnoremap <Leader>is :<C-u>action InsertLiveTemplate<CR>
 vnoremap <Leader>is <Esc>:<C-u>action InsertLiveTemplate<CR>
 
+
+"
 " +open
 noremap <Leader>oP :<C-u>action SelectInProjectView<CR>
 
@@ -154,24 +160,21 @@ noremap <Leader>pR :<C-u>action Run<CR>
 
 " Big mode (Presentation Mode)
 noremap <Leader>tb :<C-u>action TogglePresentationMode<CR>
-
 " Line numbers
 noremap <Leader>tl :<C-u>action EditorToggleShowLineNumbers<CR>
-
 " Read-only mode
 noremap <Leader>tr :<C-u>action ToggleReadOnlyAttribute<CR>
-
 " Soft line wrapping
 noremap <Leader>tw :<C-u>action EditorToggleUseSoftWraps<CR>
-
 " Zen mode (Distraction Free Mode)
 noremap <Leader>tz :<C-u>action ToggleDistractionFreeMode<CR>
-
 " Frame fullscreen
 noremap <Leader>tF :<C-u>action ToggleFullScreen<CR>
 
 
+"
 " +window
+
 noremap <Leader>wW <C-w>W
 noremap <Leader>wc <C-w>c
 noremap <Leader>wd <C-w>c
