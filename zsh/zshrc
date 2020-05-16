@@ -54,6 +54,10 @@ __main() {
     unsetopt LIST_BEEP
 
     bindkey -e
+    # Up, Down key bindings conflict with Google Japanese IME. Use C-n, C-p
+    # instead.
+    bindkey -r '^[[A'    # Up
+    bindkey -r '^[[B'    # Down
 
     is_macos() {
         [[ "$OSTYPE" == darwin* ]]
