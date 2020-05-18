@@ -23,12 +23,7 @@ __main() {
         export MANPAGER='vim -c MANPAGER -'
     fi
 
-    # Sync the history via Dropbox
-    if [[ -d "${HOME}/Dropbox" ]]; then
-        HISTFILE="${HOME}/Dropbox/zsh_history"
-    else
-        HISTFILE="${ZDOTDIR}/.zsh_history"
-    fi
+    HISTFILE="${ZDOTDIR}/.zsh_history"
     HISTSIZE=10000
     SAVEHIST=10000
 
