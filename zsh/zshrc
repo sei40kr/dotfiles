@@ -119,7 +119,10 @@ __main() {
     ## Go
 
     # goenv
-    zinit ice has'goenv' atclone'goenv init - --no-rehash zsh >goenv-init.zsh' atpull'%atclone' id-as'goenv-init'
+    zinit ice has'goenv' \
+        atclone'goenv init - --no-rehash zsh >goenv-init.zsh' \
+        atpull'%atclone' \
+        id-as'goenv-init'
     zinit light zdharma/null
 
     zinit snippet OMZ::plugins/golang/golang.plugin.zsh
@@ -136,7 +139,10 @@ __main() {
     ## Java
 
     # jenv
-    zinit ice has'jenv' atclone'jenv init - --no-rehash zsh >jenv-init.zsh' atpull'%atclone' id-as'jenv-init'
+    zinit ice has'jenv' \
+        atclone'jenv init - --no-rehash zsh >jenv-init.zsh' \
+        atpull'%atclone' \
+        id-as'jenv-init'
     zinit light zdharma/null
 
     zinit snippet OMZ::plugins/mvn/mvn.plugin.zsh
@@ -166,9 +172,15 @@ __main() {
     ## Python
 
     # pyenv
-    zinit ice has'pyenv' atclone'pyenv init - --no-rehash zsh >pyenv-init.zsh' atpull'%atclone' id-as'pyenv-init'
+    zinit ice has'pyenv' \
+        atclone'pyenv init - --no-rehash zsh >pyenv-init.zsh' \
+        atpull'%atclone' \
+        id-as'pyenv-init'
     zinit light zdharma/null
-    zinit ice if'[[ -d "${PYENV_ROOT:-${HOME}/.pyenv}/plugins/pyenv-virtualenv" ]]' atclone'pyenv virtualenv-init - --no-rehash zsh >pyenv-virtualenv-init.zsh' atpull'%atclone' id-as'pyenv-virtualenv-init'
+    zinit ice if'[[ -d "${PYENV_ROOT:-${HOME}/.pyenv}/plugins/pyenv-virtualenv" ]]' \
+        atclone'pyenv virtualenv-init - --no-rehash zsh >pyenv-virtualenv-init.zsh' \
+        atpull'%atclone' \
+        id-as'pyenv-virtualenv-init'
     zinit light zdharma/null
 
     zinit ice as'completion' wait''
@@ -178,7 +190,10 @@ __main() {
     ## Ruby
 
     # rbenv
-    zinit ice has'rbenv' atclone'rbenv init - --no-rehash zsh >rbenv-init.zsh' atpull'%atclone' id-as'rbenv-init'
+    zinit ice has'rbenv' \
+        atclone'rbenv init - --no-rehash zsh >rbenv-init.zsh' \
+        atpull'%atclone' \
+        id-as'rbenv-init'
     zinit light zdharma/null
 
     zinit snippet OMZ::plugins/ruby/ruby.plugin.zsh
@@ -231,7 +246,9 @@ __main() {
     # Docker
     zinit snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
     if is_macos && [[ -d '/Applications/Docker.app' ]]; then
-        zinit ice as'completion' wait'' multisrc'{docker,docker-compose}.zsh-completion'
+        zinit ice as'completion' \
+            wait'' \
+            multisrc'{docker,docker-compose}.zsh-completion'
         zinit light '/Applications/Docker.app/Contents/Resources/etc'
     fi
 
@@ -302,7 +319,11 @@ __main() {
 
     zinit snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
 
-    zinit ice from'gh-r' as'program' mv'direnv* -> direnv' atclone'./direnv hook zsh >zhook.zsh' atpull'%atclone'
+    zinit ice from'gh-r' \
+        as'program' \
+        mv'direnv* -> direnv' \
+        atclone'./direnv hook zsh >zhook.zsh' \
+        atpull'%atclone'
     zinit light direnv/direnv
 
     zinit ice trigger-load'!ranger-cd'
@@ -345,7 +366,13 @@ __main() {
 
     ## Theme & Appearance
 
-    zinit ice from'gh-r' src'zstarship.zsh' atclone'./starship init zsh --print-full-init >zstarship.zsh' atpull'%atclone' atload'starship_precmd' as'program' nocompile'!'
+    zinit ice from'gh-r' \
+        src'zstarship.zsh' \
+        atclone'./starship init zsh --print-full-init >zstarship.zsh' \
+        atpull'%atclone' \
+        atload'starship_precmd' \
+        as'program' \
+        nocompile'!'
     zinit light starship/starship
 
     export YSU_MESSAGE_FORMAT="💡 You should use: $(tput bold)%alias$(tput sgr0)"
