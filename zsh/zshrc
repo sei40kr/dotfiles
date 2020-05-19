@@ -90,8 +90,9 @@ __main() {
     zinit snippet OMZ::plugins/nmap/nmap.plugin.zsh
 
     GH_CLONE_WORKSPACE_DIR="$WORKSPACE_DIR"
-    zinit ice trigger-load'!gh-clone'
-    zinit light _local/zsh-gh-clone
+    zinit ice trigger-load'!gh-clone' \
+        atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "${WORKSPACE_DIR}/sei40kr/zsh-gh-clone"'
+    zinit light sei40kr/zsh-gh-clone
 
 
     ## OS-specific Plugins
@@ -212,7 +213,8 @@ __main() {
 
     ## Web Frontend
 
-    zinit light _local/zsh-lazy-nvm
+    zinit ice atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "${WORKSPACE_DIR}/sei40kr/zsh-lazy-nvm"'
+    zinit light sei40kr/zsh-lazy-nvm
     zinit snippet OMZ::plugins/yarn/yarn.plugin.zsh
 
     zinit ice wait''
@@ -311,8 +313,9 @@ __main() {
     if [[ "${+aliases[run-help]}" == 1 ]]; then
         unalias run-help
     fi
-    zinit ice trigger-load'!run-help'
-    zinit light _local/zsh-run-help-collections
+    zinit ice trigger-load'!run-help' \
+        atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "${WORKSPACE_DIR}/sei40kr/zsh-run-help-collections"'
+    zinit light sei40kr/zsh-run-help-collections
 
     zinit snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
 
@@ -323,8 +326,9 @@ __main() {
         atpull'%atclone'
     zinit light direnv/direnv
 
-    zinit ice trigger-load'!ranger-cd'
-    zinit light _local/zsh-ranger-cd
+    zinit ice trigger-load'!ranger-cd' \
+        atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "${WORKSPACE_DIR}/sei40kr/zsh-ranger-cd"'
+    zinit light sei40kr/zsh-ranger-cd
     bindkey '\ec' ranger-cd
 
     # FZF
@@ -333,10 +337,12 @@ __main() {
     zinit light -b junegunn/fzf
 
     # FZF additional sources
-    zinit ice trigger-load'!_fzf_complete_docker'
-    zinit light _local/zsh-fzf-docker
-    zinit ice trigger-load'!_fzf_complete_cd'
-    zinit light _local/zsh-fzf-cd-dirs
+    zinit ice trigger-load'!_fzf_complete_docker' \
+        atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "${WORKSPACE_DIR}/sei40kr/zsh-fzf-docker"'
+    zinit light sei40kr/zsh-fzf-docker
+    zinit ice trigger-load'!_fzf_complete_cd' \
+        atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "${WORKSPACE_DIR}/sei40kr/zsh-fzf-cd-dirs"'
+    zinit light sei40kr/zsh-fzf-cd-dirs
 
     FZF_PROJECTS_WORKSPACE_DIRS=( "$WORKSPACE_DIR" )
     FZF_PROJECTS_PROJECT_DIR_MAX_DEPTH=2
@@ -345,8 +351,9 @@ __main() {
         "${HOME}/.emacs.d"
         "${HOME}/.doom.d"
     )
-    zinit ice trigger-load'!fzf-projects'
-    zinit light _local/zsh-fzf-projects
+    zinit ice trigger-load'!fzf-projects' \
+        atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "${WORKSPACE_DIR}/sei40kr/zsh-fzf-projects"'
+    zinit light sei40kr/zsh-fzf-projects
     zle -N fzf-projects
     bindkey '^xg' fzf-projects
     bindkey '^x^g' fzf-projects

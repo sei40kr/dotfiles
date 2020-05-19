@@ -179,36 +179,6 @@ setup_basic() {
             git clone -q https://github.com/zdharma/zinit.git "${ZINIT[BIN_DIR]}"
         fi
 
-        # Install local plugins
-        local -a plugins=(
-            zsh-lazy-nvm
-            zsh-gh-clone
-            zsh-ranger-cd
-            zsh-fzf-cd-dirs
-            zsh-fzf-projects
-            zsh-fzf-docker
-            zsh-run-help-collections
-        )
-        mkdir -p "${ZINIT[PLUGINS_DIR]}"
-        for plugin in "${plugins[@]}"; do
-            if [[ ! -d "${WORKSPACE_DIR}/sei40kr/${plugin}" ]]; then
-                git clone -q "https://github.com/sei40kr/${plugin}.git" \
-                    "${WORKSPACE_DIR}/sei40kr/${plugin}"
-            fi
-
-            ln -fsT "${WORKSPACE_DIR}/sei40kr/${plugin}" \
-               "${ZINIT[PLUGINS_DIR]}/_local---${plugin}"
-        done
-
-        # Install zsh-fast-alias-tips under GOPATH
-        if [[ ! -d "${GOPATH}/src/github.com/sei40kr/zsh-fast-alias-tips" ]]; then
-            mkdir -p "${GOPATH}/src/github.com/sei40kr"
-            git clone -q "https://github.com/sei40kr/zsh-fast-alias-tips.git" \
-                "${GOPATH}/src/github.com/sei40kr/zsh-fast-alias-tips"
-        fi
-        ln -fsT "${GOPATH}/src/github.com/sei40kr/zsh-fast-alias-tips" \
-           "${ZINIT[PLUGINS_DIR]}/_local---zsh-fast-alias-tips"
-
         # Install starship config
         ln -fs "${HOME}/.dotfiles/zsh/starship.toml" \
            "${XDG_CONFIG_HOME}/starship.toml"
