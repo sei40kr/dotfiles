@@ -27,8 +27,6 @@ __main() {
     HISTSIZE=10000
     SAVEHIST=10000
 
-    WORKSPACE_DIR="${HOME}/develop/workspace"
-
     setopt APPEND_HISTORY
     setopt AUTO_CD
     setopt AUTO_LIST

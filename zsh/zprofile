@@ -107,6 +107,13 @@ fpath=( "${ZDOTDIR}/functions"
         "${ZDOTDIR}/completions"
         "${fpath[@]}" )
 
+
+#
+# Others
+
+WORKSPACE_DIR="${HOME}/develop/workspace"
+
+
 export PATH
 export FPATH
 export MANPATH
