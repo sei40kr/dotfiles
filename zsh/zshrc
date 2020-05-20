@@ -68,10 +68,10 @@ __main() {
     . "${HOME}/.zinit/bin/zinit.zsh"
 
     HYPHEN_INSENSITIVE=true
-    zinit ice svn multisrc'{completion,clipboard}.zsh'
-    zinit snippet OMZ::lib
+    zinit snippet OMZL::clipboard.zsh
+    zinit snippet OMZL::completion.zsh
 
-    zinit snippet OMZ::plugins/zsh_reload/zsh_reload.plugin.zsh
+    zinit snippet OMZP::zsh_reload/zsh_reload.plugin.zsh
 
     zinit ice pick'' blockf wait''
     zinit light zsh-users/zsh-completions
@@ -83,9 +83,9 @@ __main() {
     zinit ice trigger-load'!cd-gitroot'
     zinit light mollifier/cd-gitroot
     zinit ice trigger-load'!extract;!x'
-    zinit snippet OMZ::plugins/extract/extract.plugin.zsh
-    zinit snippet OMZ::plugins/rsync/rsync.plugin.zsh
-    zinit snippet OMZ::plugins/nmap/nmap.plugin.zsh
+    zinit snippet OMZP::extract/extract.plugin.zsh
+    zinit snippet OMZP::rsync/rsync.plugin.zsh
+    zinit snippet OMZP::nmap/nmap.plugin.zsh
 
     GH_CLONE_WORKSPACE_DIR="$WORKSPACE_DIR"
     zinit ice trigger-load'!gh-clone' \
@@ -96,20 +96,20 @@ __main() {
     ## OS-specific Plugins
 
     if is_arch; then
-        zinit snippet OMZ::plugins/archlinux/archlinux.plugin.zsh
+        zinit snippet OMZP::archlinux/archlinux.plugin.zsh
     fi
 
 
     ## Git
 
-    zinit snippet OMZ::plugins/git/git.plugin.zsh
-    zinit snippet OMZ::plugins/git-flow/git-flow.plugin.zsh
+    zinit snippet OMZP::git/git.plugin.zsh
+    zinit snippet OMZP::git-flow/git-flow.plugin.zsh
 
 
     ## Rust
 
     zinit ice as'completion' wait''
-    zinit snippet OMZ::plugins/rust/_rust
+    zinit snippet OMZP::rust/_rust
 
 
     ## Go
@@ -121,15 +121,15 @@ __main() {
         id-as'goenv-init'
     zinit light zdharma/null
 
-    zinit snippet OMZ::plugins/golang/golang.plugin.zsh
+    zinit snippet OMZP::golang/golang.plugin.zsh
 
 
     ## Haskell
 
     zinit ice wait'' has'stack'
-    zinit snippet OMZ::plugins/stack/stack.plugin.zsh
+    zinit snippet OMZP::stack/stack.plugin.zsh
     zinit ice wait''
-    zinit snippet OMZ::plugins/cabal/cabal.plugin.zsh
+    zinit snippet OMZP::cabal/cabal.plugin.zsh
 
 
     ## Java
@@ -141,16 +141,16 @@ __main() {
         id-as'jenv-init'
     zinit light zdharma/null
 
-    zinit snippet OMZ::plugins/mvn/mvn.plugin.zsh
-    zinit snippet OMZ::plugins/gradle/gradle.plugin.zsh
+    zinit snippet OMZP::mvn/mvn.plugin.zsh
+    zinit snippet OMZP::gradle/gradle.plugin.zsh
 
 
     ## Scala
 
     zinit ice as'completion' wait''
-    zinit snippet OMZ::plugins/scala/_scala
+    zinit snippet OMZP::scala/_scala
     zinit ice svn
-    zinit snippet OMZ::plugins/sbt
+    zinit snippet OMZP::sbt
 
 
     ## Perl
@@ -160,9 +160,9 @@ __main() {
         zinit snippet "${PERLBREW_ROOT}/etc/perlbrew-completion.bash"
     fi
 
-    zinit snippet OMZ::plugins/perl/perl.plugin.zsh
+    zinit snippet OMZP::perl/perl.plugin.zsh
     zinit ice as'completion' wait''
-    zinit snippet OMZ::plugins/cpanm/_cpanm
+    zinit snippet OMZP::cpanm/_cpanm
 
 
     ## Python
@@ -180,7 +180,7 @@ __main() {
     zinit light zdharma/null
 
     zinit ice as'completion' wait''
-    zinit snippet OMZ::plugins/pip/_pip
+    zinit snippet OMZP::pip/_pip
 
 
     ## Ruby
@@ -192,56 +192,56 @@ __main() {
         id-as'rbenv-init'
     zinit light zdharma/null
 
-    zinit snippet OMZ::plugins/ruby/ruby.plugin.zsh
+    zinit snippet OMZP::ruby/ruby.plugin.zsh
     zinit ice as'completion' wait''
-    zinit snippet OMZ::plugins/gem/_gem
+    zinit snippet OMZP::gem/_gem
     zinit ice wait''
-    zinit snippet OMZ::plugins/rake-fast/rake-fast.plugin.zsh
+    zinit snippet OMZP::rake-fast/rake-fast.plugin.zsh
 
     # Rails
-    zinit snippet OMZ::plugins/rails/rails.plugin.zsh
+    zinit snippet OMZP::rails/rails.plugin.zsh
 
 
     ## PHP
 
-    zinit snippet OMZ::plugins/composer/composer.plugin.zsh
-    zinit snippet OMZ::plugins/laravel/laravel.plugin.zsh
-    zinit snippet OMZ::plugins/laravel5/laravel5.plugin.zsh
+    zinit snippet OMZP::composer/composer.plugin.zsh
+    zinit snippet OMZP::laravel/laravel.plugin.zsh
+    zinit snippet OMZP::laravel5/laravel5.plugin.zsh
 
 
     ## Web Frontend
 
     zinit ice atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "${WORKSPACE_DIR}/sei40kr/zsh-lazy-nvm"'
     zinit light sei40kr/zsh-lazy-nvm
-    zinit snippet OMZ::plugins/yarn/yarn.plugin.zsh
+    zinit snippet OMZP::yarn/yarn.plugin.zsh
 
     zinit ice wait''
-    zinit snippet OMZ::plugins/gulp/gulp.plugin.zsh
+    zinit snippet OMZP::gulp/gulp.plugin.zsh
 
     # Gatsby
     zinit ice as'completion' wait''
-    zinit snippet OMZ::plugins/gatsby/_gatsby
+    zinit snippet OMZP::gatsby/_gatsby
 
     # React Native
     zinit ice svn
-    zinit snippet OMZ::plugins/react-native
+    zinit snippet OMZP::react-native
 
     # Flutter
     zinit ice svn
-    zinit snippet OMZ::plugins/flutter
+    zinit snippet OMZP::flutter
 
 
     ## Database
 
     # Redis
     zinit ice as'completion' wait''
-    zinit snippet OMZ::plugins/redis-cli/_redis-cli
+    zinit snippet OMZP::redis-cli/_redis-cli
 
 
     ## Continuous Integration
 
     # Docker
-    zinit snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
+    zinit snippet OMZP::docker-compose/docker-compose.plugin.zsh
     if is_macos && [[ -d '/Applications/Docker.app' ]]; then
         zinit ice as'completion' \
             wait'' \
@@ -251,7 +251,7 @@ __main() {
 
     # Code Climate
     zinit ice as'completion' wait''
-    zinit snippet OMZ::plugins/codeclimate/_codeclimate
+    zinit snippet OMZP::codeclimate/_codeclimate
 
     # Travis CI Client
     if [[ -f "${HOME}/.travis/travis.sh" ]]; then
@@ -263,11 +263,11 @@ __main() {
     ## Infrastructure
 
     zinit ice as'completion' wait''
-    zinit snippet OMZ::plugins/vagrant/_vagrant
-    zinit snippet OMZ::plugins/ansible/ansible.plugin.zsh
+    zinit snippet OMZP::vagrant/_vagrant
+    zinit snippet OMZP::ansible/ansible.plugin.zsh
     zinit ice as'completion' wait''
-    zinit snippet OMZ::plugins/terraform/_terraform
-    zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
+    zinit snippet OMZP::terraform/_terraform
+    zinit snippet OMZP::kubectl/kubectl.plugin.zsh
 
     # AWS
     # TODO Add support for Linux environment
@@ -315,7 +315,7 @@ __main() {
         atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "${WORKSPACE_DIR}/sei40kr/zsh-run-help-collections"'
     zinit light sei40kr/zsh-run-help-collections
 
-    zinit snippet OMZ::plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
+    zinit snippet OMZP::fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
 
     zinit ice from'gh-r' \
         as'program' \
@@ -361,7 +361,7 @@ __main() {
         zinit ice from'gh-r' as'program'
         zinit light julienXX/terminal-notifier
     fi
-    zinit snippet OMZ::plugins/bgnotify/bgnotify.plugin.zsh
+    zinit snippet OMZP::bgnotify/bgnotify.plugin.zsh
 
     # Other alias definitions
     . "${ZDOTDIR}/aliases.zsh"
