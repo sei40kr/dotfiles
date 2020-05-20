@@ -142,6 +142,7 @@ __main() {
     zinit light zdharma/null
 
     zinit snippet OMZP::mvn/mvn.plugin.zsh
+    zinit ice trigger-load'!gradle'
     zinit snippet OMZP::gradle/gradle.plugin.zsh
 
 
