@@ -229,7 +229,3 @@ noremap <C-=> :<C-u>action EditorUnSelectWord<CR>
 " easymotion
 " This requires AceJump and IdeaVim-EasyMotion plugins
 map gss <Plug>(easymotion-s2)
-
-" Previous/next tab
-noremap <A-Left> :<C-u>action PreviousTab<CR>
-noremap <A-Right> :<C-u>action NextTab<CR>
