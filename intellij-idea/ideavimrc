@@ -74,6 +74,20 @@ noremap <Leader>cr :<C-u>action RenameElement<CR>
 " Recompile
 noremap <Leader>cC :<C-u>action Compile<CR>
 
+" Show error description
+noremap <C-c>!h :<C-u>action ShowErrorDescription<CR>
+" Go to previous error
+nnoremap [e :<C-u>action GotoPreviousError<CR>
+nnoremap <C-c>!p :<C-u>action GotoPreviousError<CR>
+" Go to next error
+nnoremap ]e :<C-u>action GotoNextError<CR>
+nnoremap <C-c>!n :<C-u>action GotoNextError<CR>
+
+" Go to previous method
+nnoremap [[ :<C-u>action MethodUp<CR>
+" Go to next method
+nnoremap ]] :<C-u>action MethodDown<CR>
+
 
 "
 " +file
@@ -188,44 +202,34 @@ noremap <Leader>ww <C-w>w
 
 
 "
-" flycheck
-noremap <C-c>!h :<C-u>action ShowErrorDescription<CR>
-nnoremap <C-c>!n :<C-u>action GotoNextError<CR>
-nnoremap <C-c>!p :<C-u>action GotoPreviousError<CR>
+" Others
 
+nnoremap <Esc> :<C-u>nohl<CR><Esc>
 
-" +evil-easymotion
-" This requires AceJump and IdeaVim-EasyMotion plugins
-map gss <Plug>(easymotion-s2)
+" evil-escape
+imap jk <Esc>
+vmap jk <Esc>
 
+" Retain visual mode on selection shift
+vnoremap < <gv
+vnoremap > >gv
 
-" expand-region
-noremap <C-S-=> :<C-u>action EditorSelectWord<CR>
-noremap <C-=> :<C-u>action EditorUnSelectWord<CR>
-
-
-" Previous/next method
-nnoremap [[ :<C-u>action MethodUp<CR>
-nnoremap ]] :<C-u>action MethodDown<CR>
-
-" Insert line above/below
+" Insert newline above
 nnoremap [<Space> o<Esc>k
 vnoremap [<Space> <Esc>o<Esc>k
+" Insert newline below
 nnoremap ]<Space> O<Esc>j
 vnoremap ]<Space> <Esc>O<Esc>j
 
-" Go to previous/next error
-nnoremap [e :<C-u>action GotoPreviousError<CR>
-nnoremap ]e :<C-u>action GotoNextError<CR>
+" Expand region
+noremap <C-S-=> :<C-u>action EditorSelectWord<CR>
+" Contract region
+noremap <C-=> :<C-u>action EditorUnSelectWord<CR>
+
+" easymotion
+" This requires AceJump and IdeaVim-EasyMotion plugins
+map gss <Plug>(easymotion-s2)
 
 " Previous/next tab
 noremap <A-Left> :<C-u>action PreviousTab<CR>
 noremap <A-Right> :<C-u>action NextTab<CR>
-
-nnoremap <Esc> :<C-u>nohl<CR><Esc>
-imap jk <Esc>
-vmap jk <Esc>
-
-" Retain visual-mode on selection shift
-vnoremap < <gv
-vnoremap > >gv
