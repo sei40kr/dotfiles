@@ -187,6 +187,13 @@ noremap <Leader>wv <C-w>v
 noremap <Leader>ww <C-w>w
 
 
+"
+" flycheck
+noremap <C-c>!h :<C-u>action ShowErrorDescription<CR>
+nnoremap <C-c>!n :<C-u>action GotoNextError<CR>
+nnoremap <C-c>!p :<C-u>action GotoPreviousError<CR>
+
+
 " +evil-easymotion
 " This requires AceJump and IdeaVim-EasyMotion plugins
 map gss <Plug>(easymotion-s2)
