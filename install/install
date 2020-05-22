@@ -695,9 +695,8 @@ install_dev_apps() {
 
         echo "  1) $(menu_item 'Git')"
         echo "  2) $(menu_item 'Doom Emacs')"
-        echo "  3) $(menu_item 'Visual Studio Code')"
-        echo "  4) $(menu_item 'IntelliJ IDEA Ultimate Edition')"
-        echo "  5) $(menu_item 'Zeal')"
+        echo "  3) $(menu_item 'IntelliJ IDEA Ultimate Edition')"
+        echo "  4) $(menu_item 'Zeal')"
         echo ''
         echo '  d) Done'
 
@@ -717,12 +716,9 @@ install_dev_apps() {
                 install_doom_emacs
                 ;;
             3)
-                pacman_sync code
-                ;;
-            4)
                 install_intellij_idea_ue
                 ;;
-            5)
+            4)
                 pacman_sync zeal
                 ;;
 
@@ -1161,16 +1157,11 @@ install_dev_tools() {
 }
 
 install_office_apps() {
-    install_texlive() {
-        pacman_sync texlive-most texlive-langjapanese
-    }
-
     while true; do
         print_title 'Office Apps'
 
         echo "  1) $(menu_item 'GNOME Pomodoro')"
         echo "  2) $(menu_item 'TeX Live')"
-        echo "  3) $(menu_item 'LibreOffice')"
         echo ''
         echo '  d) Done'
 
@@ -1181,10 +1172,7 @@ install_office_apps() {
                 trizen_sync gnome-shell-pomodoro
                 ;;
             2 )
-                install_texlive
-                ;;
-            3 )
-                pacman_sync libreoffice-fresh
+                pacman_sync texlive-most texlive-langjapanese
                 ;;
 
             d )
@@ -1224,90 +1212,14 @@ install_system_apps() {
     done
 }
 
-install_graphics_apps() {
-    while true; do
-        print_title 'Graphics Apps'
-
-        echo "  1) $(menu_item 'GIMP')"
-        echo ''
-        echo '  d) Done'
-
-        read -rp 'Enter your option: ' opt
-
-        case "$opt" in
-            1 )
-                pacman_sync gimp
-                ;;
-
-            d )
-                break
-                ;;
-        esac
-    done
-}
-
 install_internet_apps() {
-    install_web_browser() {
-        while true; do
-            print_title 'Web Browser'
-
-            echo "  1) $(menu_item 'Google Chrome')"
-            echo "  2) $(menu_item 'Firefox')"
-            echo ''
-            echo '  d) Done'
-
-            read -rp 'Enter your option: ' opt
-
-            case "$opt" in
-                1 )
-                    trizen_sync google-chrome
-                    ;;
-                2 )
-                    pacman_sync firefox
-                    ;;
-
-                d )
-                    break
-                    ;;
-            esac
-        done
-    }
-
-    install_cloud_storage() {
-        while true; do
-            print_title 'Cloud Storage'
-
-            echo "  1) $(menu_item 'Dropbox')"
-            echo ''
-            echo '  d) Done'
-
-            read -rp 'Enter your option: ' opt
-
-            case "$opt" in
-                1 )
-                    if ! pacman_query dropbox; then
-                        curl -qs 'https://linux.dropbox.com/fedora/rpm-public-key.asc' |
-                            gpg --import - -q
-                        trizen_sync dropbox
-                    fi
-                    ;;
-
-                d )
-                    break
-                    ;;
-            esac
-        done
-    }
-
     install_im() {
         while true; do
             print_title 'Instant Messenger Apps'
 
             echo "  1) $(menu_item 'Skype')"
-            echo "  2) $(menu_item 'Zoom')"
-            echo "  3) $(menu_item 'Slack')"
-            echo "  4) $(menu_item 'Gitter')"
-            echo "  5) $(menu_item 'Discord')"
+            echo "  2) $(menu_item 'Slack')"
+            echo "  3) $(menu_item 'Discord')"
             echo ''
             echo '  d) Done'
 
@@ -1318,15 +1230,9 @@ install_internet_apps() {
                     trizen_sync skypeforlinux-stable-bin
                     ;;
                 2 )
-                    trizen_sync zoom
-                    ;;
-                3 )
                     trizen_sync slack-desktop
                     ;;
-                4 )
-                    trizen_sync gitter
-                    ;;
-                5 )
+                3 )
                     pacman_sync discord
                     ;;
 
@@ -1340,13 +1246,10 @@ install_internet_apps() {
     while true; do
         print_title 'Internet Apps'
 
-        echo "  1) $(menu_item 'Web Browser')"
+        echo "  1) $(menu_item 'Google Chrome')"
         echo "  2) $(menu_item 'Geary')"
-        echo "  3) $(menu_item 'Fragments')"
-        echo "  4) $(menu_item 'Cloud Storage')"
-        echo "  5) $(menu_item 'Cawbird')"
         echo ''
-        echo "  6) $(menu_item 'Instant Messengers')"
+        echo "  3) $(menu_item 'Instant Messengers')"
         echo ''
         echo '  d) Done'
 
@@ -1354,50 +1257,14 @@ install_internet_apps() {
 
         case "$opt" in
             1 )
-                install_web_browser
+                trizen_sync google-chrome
                 ;;
             2 )
                 pacman_sync geary
                 ;;
+
             3 )
-                pacman_sync fragments
-                ;;
-            4 )
-                install_cloud_storage
-                ;;
-            5 )
-                pacman_sync cawbird
-                ;;
-
-            6 )
                 install_im
-                ;;
-
-            d )
-                break
-                ;;
-        esac
-    done
-}
-
-# TODO implement this
-install_audio_apps() {
-    :
-}
-
-install_video_apps() {
-    while true; do
-        print_title 'Video Apps'
-
-        echo "  1) $(menu_item 'Parole Media Player')"
-        echo ''
-        echo '  d) Done'
-
-        read -rp 'Enter your option: ' opt
-
-        case "$opt" in
-            1 )
-                pacman_sync parole
                 ;;
 
             d )
@@ -1559,10 +1426,9 @@ while true; do
     echo " $(main_menu_item  1 'Basic Setup')                  $(main_menu_item  2 'Desktop Environment')"
     echo " $(main_menu_item  3 'Accessory Apps')               $(main_menu_item  4 'Development Apps')"
     echo " $(main_menu_item  5 'Development Tools')            $(main_menu_item  6 'Office Apps')"
-    echo " $(main_menu_item  7 'System Apps')                  $(main_menu_item  8 'Graphics Apps')"
-    echo " $(main_menu_item  9 'Internet Apps')                $(main_menu_item 10 'Audio Apps')"
-    echo " $(main_menu_item 11 'Video Apps')                   $(main_menu_item 12 'Fonts')"
-    echo " $(main_menu_item 13 'Internationalization Apps')    $(main_menu_item 14 'Extra')"
+    echo " $(main_menu_item  7 'System Apps')                  $(main_menu_item  8 'Internet Apps')"
+    echo " $(main_menu_item  9 'Fonts')                        $(main_menu_item 10 'Internationalization Apps')"
+    echo " $(main_menu_item 11 'Extra')"
     echo ''
     echo '  q) Quit'
 
@@ -1603,30 +1469,18 @@ while true; do
             visited[7]=1
             ;;
         8 )
-            install_graphics_apps
-            visited[8]=1
-            ;;
-        9 )
             install_internet_apps
             visited[9]=1
             ;;
-        10 )
-            install_audio_apps
-            visited[10]=1
-            ;;
-        11 )
-            install_video_apps
-            visited[11]=1
-            ;;
-        12 )
+        9 )
             install_fonts
             visited[12]=1
             ;;
-        13 )
+        10 )
             install_i18n_apps
             visited[13]=1
             ;;
-        14 )
+        11 )
             install_extra_apps
             visited[14]=1
             ;;
