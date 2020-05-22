@@ -75,60 +75,64 @@ __verify_homebrew() {
     fi
 }
 
-declare -a __brew_tap_repos
-declare -a __brew_tap_urls
-declare -a __brew_install_formulas
-declare -a __brew_install_args
 
-brew_tap() {
-    local repo="$1"
-    local url="$2"
-
-    __brew_tap_repos+=( "$repo" )
-    __brew_tap_urls+=( "$url" )
-}
-
+# brew_install FORMULA [OPTION ...] ...
+#
+# Install Homebrew formulas.
+#
+# Examples:
+# brew_install zsh tmux
+# brew_install \
+#     d12frosted/emacs-plus --with-emacs-27-branch --without-spacemacs-icon \
+#     libvterm cmake
+#
 brew_install() {
-    local formula="$1"
-    shift
-    local -a args=( "$@" )
+    local formula
+    # Install options with double quotes
+    local -a options
 
-    local -a bundle_args
-    for arg in "${args[@]}"; do
-        bundle_args+=( "\"${arg#--}\"" )
-    done
-
-    __brew_install_formulas+=( "$formula" )
-    local IFS=','
-    __brew_install_args+=( "${bundle_args[*]}" )
-}
-
-brew_bundle() {
     __verify_homebrew
 
-    for repo in "${__brew_tap_repos[@]}"; do
-        print-step "Tapping ${repo}"
-    done
-
-    for formula in "${__brew_install_formulas[@]}"; do
-        print-step "Installing ${formula}"
-    done
+    function print_brewfile_line() {
+        local IFS=','
+        echo "brew \"${formula}\"${options:+, [${options[*]}]}"
+    }
 
     {
-        local repo
-        local url
-        for i in "${!__brew_tap_repos[@]}"; do
-            repo="${__brew_tap_repos[$i]}"
-            url="${__brew_tap_urls[$i]}"
-            echo "tap \"${repo}\"${url:+, \"${url}\"}"
+        for arg in "$@"; do
+            if [[ "$arg" == --* ]]; then
+                options+=( "\"${arg#--}\"" )
+            else
+                if [[ -n "$formula" ]]; then
+                    print_brewfile_line
+                fi
+
+                formula="$arg"
+                options=()
+            fi
         done
 
-        local formula
-        local args
-        for i in "${!__brew_install_formulas[@]}"; do
-            formula="${__brew_install_formulas[$i]}"
-            args="${__brew_install_args[$i]}"
-            echo "brew \"${formula}\"${args:+, args: [${args}]}"
+        if [[ -n "$formula" ]]; then
+            print_brewfile_line
+        fi
+    } | brew bundle --file=-
+}
+
+# brew_cask_install CASK ...
+#
+# Install Homebrew casks.
+#
+# Example:
+# brew_cask_install google-chrome
+#
+brew_cask_install() {
+    __verify_homebrew
+
+    {
+        echo 'cask_args appdir: "/Applications"'
+
+        for cask in "$@"; do
+            echo "cask \"${cask}\""
         done
     } | brew bundle --file=-
 }
