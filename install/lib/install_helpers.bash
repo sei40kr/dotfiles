@@ -45,18 +45,6 @@ menu_item() {
     echo "${BOLD}${title}${RESET}"
 }
 
-pacman_menu_item() {
-    local title="$1"
-    shift
-    local -a pkgs=( "$@" )
-
-    if pacman -Q "${pkgs[@]}" 1>/dev/null 2>/dev/null; then
-        echo "${GREEN}☑${RESET} ${BOLD}${title}${RESET}"
-    else
-        echo "☐ ${BOLD}${title}${RESET}"
-    fi
-}
-
 error() {
     local message="$1"
     local status_code="$2"

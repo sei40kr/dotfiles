@@ -611,9 +611,9 @@ install_accessory_apps() {
     while true; do
         print_title 'Accessory Apps'
 
-        echo "  1) $(pacman_menu_item 'Bitwarden' bitwarden-bin)"
-        echo "  2) $(pacman_menu_item 'Calendar' gnome-calendar)"
-        echo "  3) $(pacman_menu_item 'GoldenDict' goldendict)"
+        echo "  1) $(menu_item 'Bitwarden')"
+        echo "  2) $(menu_item 'Calendar')"
+        echo "  3) $(menu_item 'GoldenDict')"
         echo ''
         echo '  d) Done'
 
@@ -693,11 +693,11 @@ install_dev_apps() {
     while true; do
         print_title 'Development Apps'
 
-        echo "  1) $(pacman_menu_item 'Git' git)"
+        echo "  1) $(menu_item 'Git')"
         echo "  2) $(menu_item 'Doom Emacs')"
-        echo "  3) $(pacman_menu_item 'Visual Studio Code' visual-studio-code-bin)"
-        echo "  4) $(pacman_menu_item 'IntelliJ IDEA Ultimate Edition' intellij-idea-ultimate-edition)"
-        echo "  5) $(pacman_menu_item 'Zeal' zeal)"
+        echo "  3) $(menu_item 'Visual Studio Code')"
+        echo "  4) $(menu_item 'IntelliJ IDEA Ultimate Edition')"
+        echo "  5) $(menu_item 'Zeal')"
         echo ''
         echo '  d) Done'
 
@@ -798,9 +798,9 @@ install_dev_tools() {
         while true; do
             print_title 'Java Development Tools'
 
-            echo "  8) $(pacman_menu_item 'OpenJDK 8' jdk8-openjdk)"
-            echo " 10) $(pacman_menu_item 'OpenJDK 10' jdk10-openjdk)"
-            echo " 11) $(pacman_menu_item 'OpenJDK 11' jdk11-openjdk)"
+            echo "  8) $(menu_item 'OpenJDK 8')"
+            echo " 10) $(menu_item 'OpenJDK 10')"
+            echo " 11) $(menu_item 'OpenJDK 11')"
 
             read -rp 'Choose which version to use: ' opt
 
@@ -1002,11 +1002,11 @@ install_dev_tools() {
         while true; do
             print_title 'Others'
 
-            echo "  1) $(pacman_menu_item 'EditorConfig' editorconfig-core-c)"
+            echo "  1) $(menu_item 'EditorConfig')"
             echo "  2) $(menu_item 'AWS Shell')"
-            echo "  3) $(pacman_menu_item 'Google Cloud SDK' google-cloud-sdk)"
+            echo "  3) $(menu_item 'Google Cloud SDK')"
             echo "  4) $(menu_item 'Oracle Cloud Infrastructure CLI')"
-            echo "  5) $(pacman_menu_item 'act' act)"
+            echo "  5) $(menu_item 'act')"
             echo "  6) $(menu_item 'circleci-cli')"
             echo "  7) $(menu_item 'The Travis Client')"
             echo ''
@@ -1168,9 +1168,9 @@ install_office_apps() {
     while true; do
         print_title 'Office Apps'
 
-        echo "  1) $(pacman_menu_item 'GNOME Pomodoro' gnome-shell-pomodoro)"
-        echo "  2) $(pacman_menu_item 'TeX Live' texlive-most texlive-langjapanese)"
-        echo "  3) $(pacman_menu_item 'LibreOffice' libreoffice-fresh)"
+        echo "  1) $(menu_item 'GNOME Pomodoro')"
+        echo "  2) $(menu_item 'TeX Live')"
+        echo "  3) $(menu_item 'LibreOffice')"
         echo ''
         echo '  d) Done'
 
@@ -1198,9 +1198,9 @@ install_system_apps() {
     while true; do
         print_title 'System Apps'
 
-        echo "  1) $(pacman_menu_item 'htop' htop)"
-        echo "  2) $(pacman_menu_item 'strace' strace)"
-        echo "  3) $(pacman_menu_item 'tcpdump' tcpdump)"
+        echo "  1) $(menu_item 'htop')"
+        echo "  2) $(menu_item 'strace')"
+        echo "  3) $(menu_item 'tcpdump')"
         echo ''
         echo '  d) Done'
 
@@ -1228,7 +1228,7 @@ install_graphics_apps() {
     while true; do
         print_title 'Graphics Apps'
 
-        echo "  1) $(pacman_menu_item 'GIMP' gimp)"
+        echo "  1) $(menu_item 'GIMP')"
         echo ''
         echo '  d) Done'
 
@@ -1251,8 +1251,8 @@ install_internet_apps() {
         while true; do
             print_title 'Web Browser'
 
-            echo "  1) $(pacman_menu_item 'Google Chrome' google-chrome)"
-            echo "  2) $(pacman_menu_item 'Firefox' firefox)"
+            echo "  1) $(menu_item 'Google Chrome')"
+            echo "  2) $(menu_item 'Firefox')"
             echo ''
             echo '  d) Done'
 
@@ -1277,7 +1277,7 @@ install_internet_apps() {
         while true; do
             print_title 'Cloud Storage'
 
-            echo "  1) $(pacman_menu_item 'Dropbox' dropbox)"
+            echo "  1) $(menu_item 'Dropbox')"
             echo ''
             echo '  d) Done'
 
@@ -1303,11 +1303,11 @@ install_internet_apps() {
         while true; do
             print_title 'Instant Messenger Apps'
 
-            echo "  1) $(pacman_menu_item 'Skype' skypeforlinux-stable-bin)"
-            echo "  2) $(pacman_menu_item 'Zoom' zoom)"
-            echo "  3) $(pacman_menu_item 'Slack' slack-desktop)"
-            echo "  4) $(pacman_menu_item 'Gitter' gitter)"
-            echo "  5) $(pacman_menu_item 'Discord' discord)"
+            echo "  1) $(menu_item 'Skype')"
+            echo "  2) $(menu_item 'Zoom')"
+            echo "  3) $(menu_item 'Slack')"
+            echo "  4) $(menu_item 'Gitter')"
+            echo "  5) $(menu_item 'Discord')"
             echo ''
             echo '  d) Done'
 
@@ -1341,10 +1341,10 @@ install_internet_apps() {
         print_title 'Internet Apps'
 
         echo "  1) $(menu_item 'Web Browser')"
-        echo "  2) $(pacman_menu_item 'Geary' geary)"
-        echo "  3) $(pacman_menu_item 'Fragments' fragments)"
+        echo "  2) $(menu_item 'Geary')"
+        echo "  3) $(menu_item 'Fragments')"
         echo "  4) $(menu_item 'Cloud Storage')"
-        echo "  5) $(pacman_menu_item 'Cawbird' cawbird)"
+        echo "  5) $(menu_item 'Cawbird')"
         echo ''
         echo "  6) $(menu_item 'Instant Messengers')"
         echo ''
@@ -1389,7 +1389,7 @@ install_video_apps() {
     while true; do
         print_title 'Video Apps'
 
-        echo "  1) $(pacman_menu_item 'Parole Media Player' parole)"
+        echo "  1) $(menu_item 'Parole Media Player')"
         echo ''
         echo '  d) Done'
 
@@ -1411,16 +1411,16 @@ install_fonts() {
     while true; do
         print_title 'Fonts'
 
-        echo "  1) $(pacman_menu_item 'Fira Code' otf-fira-code)"
-        echo "  2) $(pacman_menu_item 'Input' ttf-input)"
-        echo "  3) $(pacman_menu_item 'Dejavu' ttf-dejavu)"
-        echo "  4) $(pacman_menu_item 'Inconsolata-g' ttf-inconsolata-g)"
-        echo "  5) $(pacman_menu_item 'Source Code Pro' adobe-source-code-pro-fonts)"
-        echo "  6) $(pacman_menu_item 'Ubuntu Font' ttf-ubuntu-font-family)"
-        echo "  7) $(pacman_menu_item 'Anonymous Pro' ttf-anonymous-pro)"
-        echo "  8) $(pacman_menu_item 'Meslo LG' ttf-meslo)"
-        echo "  9) $(pacman_menu_item 'Hack' ttf-hack)"
-        echo " 10) $(pacman_menu_item 'Iosevka' ttf-iosevka)"
+        echo "  1) $(menu_item 'Fira Code')"
+        echo "  2) $(menu_item 'Input')"
+        echo "  3) $(menu_item 'Dejavu')"
+        echo "  4) $(menu_item 'Inconsolata-g')"
+        echo "  5) $(menu_item 'Source Code Pro')"
+        echo "  6) $(menu_item 'Ubuntu Font')"
+        echo "  7) $(menu_item 'Anonymous Pro')"
+        echo "  8) $(menu_item 'Meslo LG')"
+        echo "  9) $(menu_item 'Hack')"
+        echo " 10) $(menu_item 'Iosevka')"
         echo ''
         echo '  d) Done'
 
@@ -1469,7 +1469,7 @@ install_i18n_apps() {
     while true; do
         print_title 'Internationalization Apps'
 
-        echo "  1) $(pacman_menu_item 'Fcitx' fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt5 fcitx-configtool fcitx-mozc)"
+        echo "  1) $(menu_item 'Fcitx')"
         echo ''
         echo '  d) Done'
 
@@ -1498,10 +1498,10 @@ install_extra_apps() {
         print_title 'Extra'
 
         echo "  1) $(menu_item 'asciinema')"
-        echo "  2) $(pacman_menu_item 'Pandoc' pandoc wkhtmltopdf)"
-        echo "  3) $(pacman_menu_item 'Profile-sync-daemon' profile-sync-daemon)"
+        echo "  2) $(menu_item 'Pandoc')"
+        echo "  3) $(menu_item 'Profile-sync-daemon')"
         echo "  4) $(menu_item 'ranger')"
-        echo "  5) $(pacman_menu_item 'ripgrep' ripgrep)"
+        echo "  5) $(menu_item 'ripgrep')"
         echo ''
         echo '  d) Done'
 
