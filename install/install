@@ -35,6 +35,8 @@ basepath="$(cd "$(dirname "$0")/.." && pwd)"
 . "${basepath}/install/lib/env.bash"
 # shellcheck source=lib/simple-tui/simple-tui.bash
 . "${basepath}/install/lib/simple-tui/simple-tui.bash"
+# shellcheck source=lib/errors.bash
+. "${basepath}/install/lib/errors.bash"
 # shellcheck source=lib/tui.bash
 . "${basepath}/install/lib/tui.bash"
 # shellcheck source=lib/process.bash
@@ -158,7 +160,13 @@ setup_basic() {
             return
         fi
 
-        pacman_sync zsh subversion fzf
+        if is_macos; then
+            brew_install zsh subversion fzf
+        elif is_arch; then
+            pacman_sync zsh subversion fzf
+        else
+            unsupported_platform_error
+        fi
 
         ln -fs "${HOME}/.dotfiles/zsh/zshenv" "${HOME}/.zshenv"
         mkdir -p "${ZDOTDIR}"
@@ -197,7 +205,13 @@ setup_basic() {
             return
         fi
 
-        pacman_sync tmux xsel fzf
+        if is_macos; then
+            brew_install tmux fzf
+        elif is_arch; then
+            pacman_sync tmux xsel fzf
+        else
+            unsupported_platform_error
+        fi
 
         ln -fs "${HOME}/.dotfiles/tmux/tmux.conf" "${HOME}/.tmux.conf"
 
@@ -232,7 +246,13 @@ setup_basic() {
             return
         fi
 
-        pacman_sync openssh
+        if is_macos; then
+            brew_install openssh
+        elif is_arch; then
+            pacman_sync openssh
+        else
+            unsupported_platform_error
+        fi
 
         # TODO Prohibit password authentication
 
@@ -621,13 +641,27 @@ install_accessory_apps() {
 
         case "$opt" in
             1 )
-                trizen_sync bitwarden-bin
+                if is_macos; then
+                    brew_cask_install bitwarden
+                elif is_arch; then
+                    trizen_sync bitwarden-bin
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             2 )
-                pacman_sync gnome-calendar
+                if is_arch; then
+                    pacman_sync gnome-calendar
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             3 )
-                pacman_sync goldendict
+                if is_arch; then
+                    pacman_sync goldendict
+                else
+                    unsupported_platform_error
+                fi
                 ;;
 
             d )
@@ -639,7 +673,15 @@ install_accessory_apps() {
 
 install_dev_apps() {
     install_doom_emacs() {
-        pacman_sync emacs cmake libvterm
+        if is_macos; then
+            brew_install \
+                d12frosted/emacs-plus --with-emacs-27-branch --with-xwidgets --without-spacemacs-icon \
+                libvterm cmake
+        elif is_arch; then
+            pacman_sync emacs libvterm cmake
+        else
+            unsupported_platform_error
+        fi
 
         # .emacs.d
         if [[ ! -d "${HOME}/.emacs.d" ]]; then
@@ -680,7 +722,13 @@ install_dev_apps() {
     }
 
     install_intellij_idea_ue() {
-        trizen_sync intellij-idea-ultimate-edition
+        if is_macos; then
+            brew_cask_install intellij-idea
+        elif is_arch; then
+            trizen_sync intellij-idea-ultimate-edition
+        else
+            unsupported_platform_error
+        fi
 
         if [[ ! -d "${HOME}/.intellimacs" ]]; then
             git clone -q https://github.com/MarcoIeni/intellimacs.git \
@@ -704,7 +752,13 @@ install_dev_apps() {
 
         case "$opt" in
             1)
-                pacman_sync git
+                if is_macos; then
+                    brew_install git
+                elif is_arch; then
+                    pacman_sync git
+                else
+                    unsupported_platform_error
+                fi
 
                 mkdir -p "${XDG_CONFIG_HOME}/git"
                 ln -fs "${HOME}/.dotfiles/git/config" \
@@ -719,7 +773,11 @@ install_dev_apps() {
                 install_intellij_idea_ue
                 ;;
             4)
-                pacman_sync zeal
+                if is_arch; then
+                    pacman_sync zeal
+                else
+                    unsupported_platform_error
+                fi
                 ;;
 
             d )
@@ -731,15 +789,26 @@ install_dev_apps() {
 
 install_dev_tools() {
     install_c_dev_tools() {
-        pacman_sync llvm gcc gdb gdb-dashboard clang
-        trizen_sync ccls
+        if is_macos; then
+            pacman_sync llvm gcc gdb gdb-dashboard clang
+            trizen_sync ccls
+        elif is_arch; then
+            brew_install llvm gcc gdb clang-format ccls
+        else
+            unsupported_platform_error
+        fi
+
         pip_install system cpplint cmakelint
 
         ln -fs "/usr/share/gdb-dashboard/.gdbinit" "${HOME}/.gdbinit"
     }
 
     install_rust_dev_tools() {
-        pacman_sync rustup
+        if is_arch; then
+            pacman_sync rustup
+        else
+            unsupported_platform_error
+        fi
 
         rustup_toolchain_install stable
 
@@ -747,7 +816,13 @@ install_dev_tools() {
     }
 
     install_go_dev_tools() {
-        pacman_sync go dep
+        if is_macos; then
+            brew_install go dep
+        elif is_arch; then
+            pacman_sync go dep
+        else
+            unsupported_platform_error
+        fi
 
         if [[ ! -d "${GOENV_ROOT}" ]]; then
             git clone -q https://github.com/syndbg/goenv.git "$GOENV_ROOT"
@@ -802,36 +877,71 @@ install_dev_tools() {
 
             case "$opt" in
                 8 )
-                    pacman_sync jdk8-openjdk
+                    if is_arch; then
+                        pacman_sync jdk8-openjdk
+                    else
+                        unsupported_platform_error
+                    fi
                     break
                     ;;
                 10 )
-                    pacman_sync jdk10-openjdk
+                    if is_arch; then
+                        pacman_sync jdk10-openjdk
+                    else
+                        unsupported_platform_error
+                    fi
                     break
                     ;;
                 11 )
-                    pacman_sync jdk11-openjdk
+                    if is_macos; then
+                        brew_install 'openjdk@11'
+                    elif is_arch; then
+                        pacman_sync jdk11-openjdk
+                    else
+                        unsupported_platform_error
+                    fi
                     break
                     ;;
             esac
         done
 
-        pacman_sync maven \
-                    gradle
+        if is_macos; then
+            brew_install maven gradle
+        elif is_arch; then
+            pacman_sync maven gradle
+        else
+            unsupported_platform_error
+        fi
     }
 
     install_scala_dev_tools() {
-        pacman_sync scala \
-                    sbt \
-                    maven \
-                    gradle
-        trizen_sync scalastyle \
-                    scalafmt-native \
-                    metals
+        if is_macos; then
+            # TODO Install scalafmt
+            brew_install \
+                scala sbt \
+                scalastyle \
+                maven gradle
+        elif is_arch; then
+            pacman_sync \
+                scala sbt \
+                maven gradle
+            trizen_sync \
+                scalastyle \
+                scalafmt-native \
+                metals
+        else
+            unsupported_platform_error
+        fi
     }
 
     install_python_dev_tools() {
-        pacman_sync python python-pip poetry
+        if is_macos; then
+            brew_install python poetry
+        elif is_arch; then
+            pacman_sync python python-pip poetry
+        else
+            unsupported_platform_error
+        fi
 
         if [[ ! -d "$PYENV_ROOT" ]]; then
             git clone -q https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
@@ -870,7 +980,13 @@ install_dev_tools() {
     }
 
     install_ruby_dev_tools() {
-        pacman_sync ruby
+        if is_macos; then
+            brew_install ruby
+        elif is_arch; then
+            pacman_sync ruby
+        else
+            unsupported_platform_error
+        fi
 
         if [[ ! -d "$RBENV_ROOT" ]]; then
             git clone -q https://github.com/rbenv/rbenv.git "$RBENV_ROOT"
@@ -897,7 +1013,13 @@ install_dev_tools() {
     }
 
     install_perl_dev_tools() {
-        pacman_sync perl cpanminus
+        if is_macos; then
+            brew_install perl cpanminus
+        elif is_arch; then
+            pacman_sync perl cpanminus
+        else
+            unsupported_platform_error
+        fi
 
         if [[ ! -d "$PERLBREW_ROOT" ]]; then
             pacman_sync perlbrew
@@ -908,7 +1030,13 @@ install_dev_tools() {
     }
 
     install_web_frontend_dev_tools() {
-        pacman_sync nodejs npm yarn
+        if is_macos; then
+            brew_install node yarn
+        elif is_arch; then
+            pacman_sync nodejs npm yarn
+        else
+            unsupported_platform_error
+        fi
 
         if [[ ! -d "$NVM_DIR" ]]; then
             git clone -q https://github.com/nvm-sh/nvm.git "$NVM_DIR"
@@ -955,7 +1083,13 @@ install_dev_tools() {
     }
 
     install_r_dev_tools() {
-        pacman_sync r tk openblas
+        if is_macos; then
+            brew_install r
+        elif is_arch; then
+            pacman_sync r tk openblas
+        else
+            unsupported_platform_error
+        fi
 
         ln -fs "${HOME}/.dotfiles/r/Renviron" "${HOME}/.Renviron"
         ln -fs "${HOME}/.dotfiles/r/Renviron" "$R_ENVIRON_USER"
@@ -971,7 +1105,14 @@ install_dev_tools() {
     }
 
     install_shell_scripts_dev_tools() {
-        pacman_sync shellcheck shfmt
+        if is_macos; then
+            brew_install shellcheck shfmt
+        elif is_arch; then
+            pacman_sync shellcheck shfmt
+        else
+            unsupported_platform_error
+        fi
+
         yarn_global_add system bash-language-server
     }
 
@@ -982,7 +1123,13 @@ install_dev_tools() {
     }
 
     install_plantuml_dev_tools() {
-        trizen_sync plantuml
+        if is_macos; then
+            brew_install plantuml
+        elif is_arch; then
+            trizen_sync plantuml
+        else
+            unsupported_platform_error
+        fi
     }
 
     install_ansible_dev_tools() {
@@ -990,7 +1137,15 @@ install_dev_tools() {
     }
 
     install_docker_dev_tools() {
-        pacman_sync docker docker-compose
+        if is_macos; then
+            brew_cask_install docker
+            brew_install docker-compose
+        elif is_arch; then
+            pacman_sync docker docker-compose
+        else
+            unsupported_platform_error
+        fi
+
         yarn_global_add system dockerfile-language-server-nodejs
     }
 
@@ -1012,19 +1167,37 @@ install_dev_tools() {
 
             case "$opt" in
                 1)
-                    pacman_sync editorconfig-core-c
+                    if is_macos; then
+                        brew_install editorconfig
+                    elif is_arch; then
+                        pacman_sync editorconfig-core-c
+                    else
+                        unsupported_platform_error
+                    fi
                     ;;
                 2)
                     pip_install system aws-shell
                     ;;
                 3)
-                    trizen_sync google-cloud-sdk
+                    if is_macos; then
+                        brew_cask_install google-cloud-sdk
+                    elif is_arch; then
+                        trizen_sync google-cloud-sdk
+                    else
+                        unsupported_platform_error
+                    fi
                     ;;
                 4)
                     pip_install system oci-cli
                     ;;
                 5)
-                    trizen_sync act
+                    if is_macos; then
+                        brew_install nektos/tap/act
+                    elif is_arch; then
+                        trizen_sync act
+                    else
+                        unsupported_platform_error
+                    fi
                     ;;
                 6)
                     if [[ ! -x /usr/local/bin/circleci ]]; then
@@ -1169,10 +1342,20 @@ install_office_apps() {
 
         case "$opt" in
             1 )
-                trizen_sync gnome-shell-pomodoro
+                if is_arch; then
+                    trizen_sync gnome-shell-pomodoro
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             2 )
-                pacman_sync texlive-most texlive-langjapanese
+                if is_macos; then
+                    brew_cask_install basictex
+                elif is_arch; then
+                    pacman_sync texlive-most texlive-langjapanese
+                else
+                    unsupported_platform_error
+                fi
                 ;;
 
             d )
@@ -1196,13 +1379,29 @@ install_system_apps() {
 
         case "$opt" in
             1 )
-                pacman_sync htop
+                if is_macos; then
+                    brew_install htop
+                elif is_arch; then
+                    pacman_sync htop
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             2 )
-                pacman_sync strace
+                if is_arch; then
+                    pacman_sync strace
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             3 )
-                pacman_sync tcpdump
+                if is_macos; then
+                    brew_install tcpdump
+                elif is_arch; then
+                    pacman_sync tcpdump
+                else
+                    unsupported_platform_error
+                fi
                 ;;
 
             d )
@@ -1227,13 +1426,31 @@ install_internet_apps() {
 
             case "$opt" in
                 1 )
-                    trizen_sync skypeforlinux-stable-bin
+                    if is_macos; then
+                        brew_cask_install skype
+                    elif is_arch; then
+                        trizen_sync skypeforlinux-stable-bin
+                    else
+                        unsupported_platform_error
+                    fi
                     ;;
                 2 )
-                    trizen_sync slack-desktop
+                    if is_macos; then
+                        brew_cask_install slack
+                    elif is_arch; then
+                        trizen_sync slack-desktop
+                    else
+                        unsupported_platform_error
+                    fi
                     ;;
                 3 )
-                    pacman_sync discord
+                    if is_macos; then
+                        brew_cask_install discord
+                    elif is_arch; then
+                        pacman_sync discord
+                    else
+                        unsupported_platform_error
+                    fi
                     ;;
 
                 d )
@@ -1257,10 +1474,20 @@ install_internet_apps() {
 
         case "$opt" in
             1 )
-                trizen_sync google-chrome
+                if is_macos; then
+                    brew_cask_install google-chrome
+                elif is_arch; then
+                    trizen_sync google-chrome
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             2 )
-                pacman_sync geary
+                if is_arch; then
+                    pacman_sync geary
+                else
+                    unsupported_platform_error
+                fi
                 ;;
 
             3 )
@@ -1295,34 +1522,94 @@ install_fonts() {
 
         case "$opt" in
             1 )
-                pacman_sync otf-fira-code
+                if is_macos; then
+                    brew_cask_install font-fira-code
+                elif is_arch; then
+                    pacman_sync otf-fira-code
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             2 )
-                trizen_sync ttf-input
+                if is_macos; then
+                    brew_cask_install font-input
+                elif is_arch; then
+                    trizen_sync ttf-input
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             3 )
-                pacman_sync ttf-dejavu
+                if is_macos; then
+                    brew_cask_install font-dejavu
+                elif is_arch; then
+                    pacman_sync ttf-dejavu
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             4 )
-                trizen_sync ttf-inconsolata-g
+                if is_macos; then
+                    brew_cask_install font-inconsolata-g
+                elif is_arch; then
+                    trizen_sync ttf-inconsolata-g
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             5 )
-                pacman_sync adobe-source-code-pro-fonts
+                if is_macos; then
+                    brew_cask_install font-source-code-pro
+                elif is_arch; then
+                    pacman_sync adobe-source-code-pro-fonts
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             6 )
-                pacman_sync ttf-ubuntu-font-family
+                if is_macos; then
+                    brew_cask_install font-ubuntu
+                elif is_arch; then
+                    pacman_sync ttf-ubuntu-font-family
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             7 )
-                pacman_sync ttf-anonymous-pro
+                if is_macos; then
+                    brew_cask_install font-anonymous-pro
+                elif is_arch; then
+                    pacman_sync ttf-anonymous-pro
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             8 )
-                trizen_sync ttf-meslo
+                if is_macos; then
+                    brew_cask_install font-meslo-lg
+                elif is_arch; then
+                    trizen_sync ttf-meslo
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             9 )
-                pacman_sync ttf-hack
+                if is_macos; then
+                    brew_cask_install font-hack
+                elif is_arch; then
+                    pacman_sync ttf-hack
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             10 )
-                trizen_sync ttf-iosevka
+                if is_macos; then
+                    brew_cask_install font-iosevka
+                elif is_arch; then
+                    trizen_sync ttf-iosevka
+                else
+                    unsupported_platform_error
+                fi
                 ;;
 
             d )
@@ -1344,8 +1631,12 @@ install_i18n_apps() {
 
         case "$opt" in
             1 )
-                pacman_sync fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt5 \
-                            fcitx-configtool fcitx-mozc
+                if is_arch; then
+                    pacman_sync fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt5 \
+                        fcitx-configtool fcitx-mozc
+                else
+                    unsupported_platform_error
+                fi
 
                 mkdir -p "${XDG_CONFIG_HOME}/fcitx/conf"
                 ln -fs "${HOME}/.dotfiles/fcitx/config" "${XDG_CONFIG_HOME}/fcitx/config"
@@ -1379,12 +1670,22 @@ install_extra_apps() {
                 pip_install system asciinema
                 ;;
             2 )
-                pacman_sync pandoc wkhtmltopdf
+                if is_macos; then
+                    brew_install pandoc
+                    brew_cask_install wkhtmltopdf
+                elif is_arch; then
+                    pacman_sync pandoc wkhtmltopdf
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             3 )
-                trizen_sync profile-sync-daemon
-
-                systemctl_user_enable psd.service
+                if is_arch; then
+                    trizen_sync profile-sync-daemon
+                    systemctl_user_enable psd.service
+                else
+                    unsupported_platform_error
+                fi
                 ;;
             4 )
                 pip_install system ranger-fm
@@ -1395,7 +1696,13 @@ install_extra_apps() {
                    "${XDG_CONFIG_HOME}/ranger/commands.py"
                 ;;
             5 )
-                pacman_sync ripgrep
+                if is_macos; then
+                    brew_install ripgrep
+                elif is_arch; then
+                    pacman_sync ripgrep
+                else
+                    unsupported_platform_error
+                fi
 
                 ln -fs "${HOME}/.dotfiles/ripgrep/ripgreprc" "${HOME}/.ripgreprc"
                 ;;
