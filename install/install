@@ -45,6 +45,7 @@ basepath="$(cd "$(dirname "$0")/.." && pwd)"
 . "${basepath}/install/lib/process.bash"
 # shellcheck source=lib/facades/brew.bash
 # shellcheck source=lib/facades/gem.bash
+# shellcheck source=lib/facades/git.bash
 # shellcheck source=lib/facades/go.bash
 # shellcheck source=lib/facades/goenv.bash
 # shellcheck source=lib/facades/nvm.bash
