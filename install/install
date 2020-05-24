@@ -833,9 +833,9 @@ install_dev_tools() {
 
     install_go_dev_tools() {
         if is_macos; then
-            brew_install go dep
+            brew_install go
         elif is_arch; then
-            pacman_sync go dep
+            pacman_sync go
         else
             unsupported_platform_error
         fi
@@ -846,30 +846,10 @@ install_dev_tools() {
 
         "${GOENV_ROOT}/bin/goenv" global system
 
-        go_pkgs=(
-            # editor tools
-            # cf https://github.com/syl20bnr/spacemacs/blob/develop/layers/+lang/go/README.org#pre-requisites
-            golang.org/x/tools/cmd/godoc
-            golang.org/x/tools/cmd/goimports
-            golang.org/x/tools/cmd/gorename
-            golang.org/x/tools/cmd/guru
-            github.com/cweill/gotests/...
-            github.com/davidrjenni/reftools/cmd/fillstruct
-            github.com/fatih/gomodifytags
-            github.com/godoctor/godoctor
-            github.com/haya14busa/gopkgs/cmd/gopkgs
-            github.com/josharian/impl
-            github.com/mdempsky/gocode
-            github.com/rogpeppe/godef
-            github.com/zmb3/gogetdoc
-            # linters
-            golang.org/x/lint/golint
-            github.com/kisielk/errcheck
-            github.com/mdempsky/unconvert
-            # lsp
-            golang.org/x/tools/gopls@latest
-        )
-        go_get system "${go_pkgs[@]}"
+        go_get system \
+            golang.org/x/tools/gopls@latest \
+            golang.org/x/tools/cmd/goimports \
+            github.com/motemen/gore/cmd/gore
     }
 
     install_haskell_dev_tools() {
