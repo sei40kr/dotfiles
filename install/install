@@ -43,8 +43,24 @@ basepath="$(cd "$(dirname "$0")/.." && pwd)"
 . "${basepath}/install/lib/tui.bash"
 # shellcheck source=lib/process.bash
 . "${basepath}/install/lib/process.bash"
-# shellcheck source=lib/facades.bash
-. "${basepath}/install/lib/facades.bash"
+# shellcheck source=lib/facades/brew.bash
+# shellcheck source=lib/facades/gem.bash
+# shellcheck source=lib/facades/go.bash
+# shellcheck source=lib/facades/goenv.bash
+# shellcheck source=lib/facades/nvm.bash
+# shellcheck source=lib/facades/pacman.bash
+# shellcheck source=lib/facades/pip.bash
+# shellcheck source=lib/facades/pyenv.bash
+# shellcheck source=lib/facades/r.bash
+# shellcheck source=lib/facades/rbenv.bash
+# shellcheck source=lib/facades/rustup.bash
+# shellcheck source=lib/facades/stack.bash
+# shellcheck source=lib/facades/systemctl.bash
+# shellcheck source=lib/facades/trizen.bash
+# shellcheck source=lib/facades/yarn.bash
+for file in ${basepath}/install/lib/facades/*.bash; do
+    . "$file"
+done
 
 setup_basic() {
     install_trizen() {
