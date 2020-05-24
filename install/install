@@ -853,12 +853,7 @@ install_dev_tools() {
     }
 
     install_haskell_dev_tools() {
-        stack_install hlint \
-                      hindent \
-                      stylish-haskell \
-                      apply-refact \
-                      hasktags \
-                      hoogle
+        stack_install hlint brittany
     }
 
     install_java_dev_tools() {
