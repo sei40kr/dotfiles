@@ -14,6 +14,14 @@ command_exists() {
     hash "$command" 2>/dev/null
 }
 
+# abbreviate_filepath
+#
+# Abbreviate a file path.
+#
+# Examples:
+# abbreviate_filepath "${HOME}/.emacs.d"    # prints ~/.emacs.d
+# abbreviate_filepath /usr/bin/emacs        # prints /usr/bin/emacs
+#
 abbreviate_filepath() {
     local filepath="$1"
 
