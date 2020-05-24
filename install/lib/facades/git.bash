@@ -1,6 +1,7 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 shopt -s extglob
+shopt -s nullglob
 
 # git_clone REPOSITORY [BRANCH] DESTINATION
 #
@@ -33,19 +34,19 @@ git_clone() {
   fi
 
   if [[ -d "$destination" ]]; then
-    local files=(${destination}/* ${destination}/.*)
+    local -a files=(${destination}/*)
 
-    if [[ "${#files[@]}" == 0 ]]; then
-      local origin_url="$(git -C "$destination" remote get-url origin)"
+    if [[ "${#files[@]}" != 0 ]]; then
+      local origin_url="$(git -C "$destination" remote get-url origin 2>/dev/null)"
 
       # The origin's URL and the repository are not same -> error
       if [[ "$origin_url" != "$repository" ]]; then
         tui-error "$(abbreviate_filepath "$destination") already exists."
         exit 1
       fi
-    fi
 
-    exit
+      exit
+    fi
   fi
 
   git clone -q "$repository" "${clone_options[@]}" "$destination"
@@ -65,7 +66,7 @@ git_clone_and_build() {
   local repository="$1"
   local branch
   shift
-  if [[ "$#" -ge 3 ]]; then
+  if [[ "$#" -ge 2 ]]; then
     branch="$1"
     shift
   fi
