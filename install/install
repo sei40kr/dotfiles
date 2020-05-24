@@ -907,17 +907,10 @@ install_dev_tools() {
 
         "${RBENV_ROOT}/bin/rbenv" global system
 
-        local -a gems=(
+        gem_install system \
+            solargraph \
+            rubocop \
             rake
-            # linters
-            rubocop
-            # refactoring tools
-            rcodetools
-            fastri
-            # debuggers
-            seeing_is_believing
-        )
-        gem_install system "${gems[@]}"
     }
 
     install_perl_dev_tools() {
