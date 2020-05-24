@@ -75,9 +75,16 @@ setup_basic() {
         if ! pacman_query trizen; then
             pacman_sync base-devel git perl
 
-            tmpdir="$(mktemp -d '/tmp/trizen-XXXXXXXXXX')"
-            git clone -q https://aur.archlinux.org/trizen.git "$tmpdir"
-            ( cd "$tmpdir"; makepkg -mis --noconfirm --needed )
+            tmpdir="$(mktemp -d)"
+
+            git_clone https://aur.archlinux.org/trizen.git "$tmpdir"
+
+            (
+                cd "$tmpdir"
+                makepkg -mis --noconfirm --needed
+            )
+
+            rm -r "$tmpdir"
         fi
 
         mkdir -p "${XDG_CONFIG_HOME}/trizen"
@@ -199,10 +206,8 @@ setup_basic() {
         ln -fsT "${HOME}/.dotfiles/zsh/functions" "${ZDOTDIR}/functions"
         ln -fsT "${HOME}/.dotfiles/zsh/completions" "${ZDOTDIR}/completions"
 
-        if [[ ! -d "${ZINIT[BIN_DIR]}" ]]; then
-            mkdir -p "${ZINIT[BIN_DIR]}"
-            git clone -q https://github.com/zdharma/zinit.git "${ZINIT[BIN_DIR]}"
-        fi
+        mkdir -p "${ZINIT[HOME_DIR]}"
+        git_clone zdharma/zinit "${ZINIT[BIN_DIR]}"
 
         # Install starship config
         ln -fs "${HOME}/.dotfiles/zsh/starship.toml" \
@@ -236,18 +241,13 @@ setup_basic() {
         ln -fs "${HOME}/.dotfiles/tmux/scripts/clean-orphan-sessions.bash" \
            "${HOME}/.tmux/scripts/clean-orphan-sessions.bash"
 
-        if [[ ! -d "${HOME}/.tmux/plugins/tpm" ]]; then
-            mkdir -p "${HOME}/.tmux/plugins"
-            git clone -q https://github.com/tmux-plugins/tpm.git \
-                "${HOME}/.tmux/plugins/tpm"
+        mkdir -p "${HOME}/.tmux/plugins"
+        git_clone tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
+        "${HOME}/.tmux/plugins/tpm/bin/install_plugins"
 
-            "${HOME}/.tmux/plugins/tpm/bin/install_plugins"
-        fi
-
-        if [[ ! -d "${WORKSPACE_DIR}/sei40kr/tmux-per-project-session" ]]; then
-            git clone -q "https://github.com/sei40kr/tmux-per-project-session.git" \
-                "${WORKSPACE_DIR}/sei40kr/tmux-per-project-session"
-        fi
+        mkdir -p "${WORKSPACE_DIR}/sei40kr"
+        git_clone sei40kr/tmux-per-project-session \
+            "${WORKSPACE_DIR}/sei40kr/tmux-per-project-session"
         ln -fsT "${WORKSPACE_DIR}/sei40kr/tmux-per-project-session" \
            "${HOME}/.tmux/plugins/tmux-per-project-session"
 
@@ -701,38 +701,21 @@ install_dev_apps() {
         fi
 
         # .emacs.d
-        if [[ ! -d "${HOME}/.emacs.d" ]]; then
-            git clone \
-                -q \
-                -b develop \
-                -c remote.upstream.url=https://github.com/hlissner/doom-emacs.git \
-                -c remote.upstream.fetch='+refs/heads/*:refs/remotes/upstream/*' \
-                https://github.com/sei40kr/doom-emacs.git \
-                "${HOME}/.emacs.d"
-
-            "${HOME}/.emacs.d/bin/doom" install
-        fi
-
+        git_clone sei40kr/doom-emacs "${HOME}/.emacs.d"
+        "${HOME}/.emacs.d/bin/doom" install
 
         # .doom.d
-        if [[ ! -d "$DOOMDIR" ]]; then
-            git clone -q https://github.com/sei40kr/doom.d.git "$DOOMDIR"
-        fi
-
+        git_clone sei40kr/doom.d "$DOOMDIR"
 
         # install local packages
         local -a doom_local_packages=(
             competitive-programming-snippets
         )
 
+        mkdir -p "${WORKSPACE_DIR}/sei40kr"
         mkdir -p "${HOME}/.doom.d/packages"
-
         for package in "${doom_local_packages[@]}"; do
-            if [[ ! -d "${WORKSPACE_DIR}/sei40kr/${package}" ]]; then
-                git clone -q "https://github.com/sei40kr/${package}.git" \
-                    "${WORKSPACE_DIR}/sei40kr/${package}"
-            fi
-
+            git_clone "sei40kr/${package}" "${WORKSPACE_DIR}/sei40kr/${package}"
             ln -fsT "${WORKSPACE_DIR}/sei40kr/${package}" \
                 "${HOME}/.doom.d/packages/${package}"
         done
@@ -747,10 +730,7 @@ install_dev_apps() {
             unsupported_platform_error
         fi
 
-        if [[ ! -d "${HOME}/.intellimacs" ]]; then
-            git clone -q https://github.com/MarcoIeni/intellimacs.git \
-                "${HOME}/.intellimacs"
-        fi
+        git_clone MarcoIeni/intellimacs "${HOME}/.intellimacs"
 
         ln -fs "${HOME}/.dotfiles/intellij-idea/ideavimrc" "${HOME}/.ideavimrc"
     }
@@ -841,9 +821,7 @@ install_dev_tools() {
             unsupported_platform_error
         fi
 
-        if [[ ! -d "${GOENV_ROOT}" ]]; then
-            git clone -q https://github.com/syndbg/goenv.git "$GOENV_ROOT"
-        fi
+        git_clone syndbg/goenv "$GOENV_ROOT"
 
         "${GOENV_ROOT}/bin/goenv" global system
 
@@ -917,13 +895,9 @@ install_dev_tools() {
             unsupported_platform_error
         fi
 
-        if [[ ! -d "$PYENV_ROOT" ]]; then
-            git clone -q https://github.com/pyenv/pyenv.git "$PYENV_ROOT"
-        fi
-        if [[ ! -d "${PYENV_ROOT}/plugins/pyenv-virtualenv" ]]; then
-            git clone -q https://github.com/pyenv/pyenv-virtualenv.git \
-                "${PYENV_ROOT}/plugins/pyenv-virtualenv"
-        fi
+        git_clone pyenv/pyenv "$PYENV_ROOT"
+        mkdir -p "${PYENV_ROOT}/plugins"
+        git_clone pyenv/pyenv-virtualenv "${PYENV_ROOT}/plugins/pyenv-virtualenv"
 
         "${PYENV_ROOT}/bin/pyenv" global system
 
@@ -962,14 +936,9 @@ install_dev_tools() {
             unsupported_platform_error
         fi
 
-        if [[ ! -d "$RBENV_ROOT" ]]; then
-            git clone -q https://github.com/rbenv/rbenv.git "$RBENV_ROOT"
-        fi
-        if [[ ! -d "${RBENV_ROOT}/plugins/ruby-build" ]]; then
-            mkdir -p "${RBENV_ROOT}/plugins"
-            git clone -q https://github.com/rbenv/ruby-build.git \
-                "${RBENV_ROOT}/plugins/ruby-build"
-        fi
+        git_clone rbenv/rbenv "$RBENV_ROOT"
+        mkdir -p "${RBENV_ROOT}/plugins"
+        git_clone rbenv/ruby-build "${RBENV_ROOT}/plugins/ruby-build"
 
         "${RBENV_ROOT}/bin/rbenv" global system
 
@@ -1012,11 +981,8 @@ install_dev_tools() {
             unsupported_platform_error
         fi
 
-        if [[ ! -d "$NVM_DIR" ]]; then
-            git clone -q https://github.com/nvm-sh/nvm.git "$NVM_DIR"
-            ( cd "$NVM_DIR";
-              git checkout "$(git tag --sort=version:refname | tail -n1)" )
-        fi
+        git_clone nvm-sh/nvm "$NVM_DIR"
+        git -C "$NVM_DIR" checkout "$(git tag --sort=version:refname | tail -n1)"
 
         ( . "${NVM_DIR}/nvm.sh"
           nvm alias default system )
