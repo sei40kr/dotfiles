@@ -43,8 +43,6 @@ basepath="$(cd "$(dirname "$0")/.." && pwd)"
 . "${basepath}/install/lib/process.bash"
 # shellcheck source=lib/facades.bash
 . "${basepath}/install/lib/facades.bash"
-# shellcheck source=lib/install_helpers.bash
-. "${basepath}/install/lib/install_helpers.bash"
 
 setup_basic() {
     install_trizen() {
