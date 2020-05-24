@@ -836,31 +836,10 @@ install_dev_tools() {
     }
 
     install_java_dev_tools() {
-        while true; do
-            print_title 'Java Development Tools'
-
-            echo " 1) $(menu_item 'OpenJDK 11')"
-
-            read -rp 'Choose which version to use: ' opt
-
-            case "$opt" in
-                1 )
-                    if is_macos; then
-                        brew_install 'openjdk@11'
-                    elif is_arch; then
-                        pacman_sync jdk11-openjdk
-                    else
-                        unsupported_platform_error
-                    fi
-                    break
-                    ;;
-            esac
-        done
-
         if is_macos; then
-            brew_install maven gradle
+            brew_install 'openjdk@11' maven gradle
         elif is_arch; then
-            pacman_sync maven gradle
+            pacman_sync jdk11-openjdk maven gradle
         else
             unsupported_platform_error
         fi
