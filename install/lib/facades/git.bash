@@ -80,5 +80,5 @@ git_clone_and_build() {
     eval "$command"
   )
 
-  rm -r "$destination"
+  rm -rf "$destination"
 }
