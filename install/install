@@ -37,6 +37,8 @@ basepath="$(cd "$(dirname "$0")/.." && pwd)"
 . "${basepath}/install/lib/simple-tui/simple-tui.bash"
 # shellcheck source=lib/errors.bash
 . "${basepath}/install/lib/errors.bash"
+# shellcheck source=lib/assertions.bash
+. "${basepath}/install/lib/assertions.bash"
 # shellcheck source=lib/tui.bash
 . "${basepath}/install/lib/tui.bash"
 # shellcheck source=lib/process.bash
