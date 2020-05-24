@@ -45,14 +45,6 @@ menu_item() {
     echo "${BOLD}${title}${RESET}"
 }
 
-error() {
-    local message="$1"
-    local status_code="$2"
-
-    echo "$message" >&2
-    exit "${status_code:-1}"
-}
-
 pause() {
     print_line
     read -sn 1 -p 'Press enter to continue ...'
