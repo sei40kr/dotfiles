@@ -860,6 +860,19 @@ install_dev_tools() {
         jenv enable-plugin export
     }
 
+    install_kotlin_dev_tools() {
+        if is_macos; then
+            brew_install kotlin ktlint
+        elif is_arch; then
+            # TODO Install kotlin, ktlint
+            :
+        else
+            unsupported_platform_error
+        fi
+
+        # TODO Build and install kotlin-language-server
+    }
+
     install_scala_dev_tools() {
         if is_macos; then
             # TODO Install scalafmt
@@ -878,6 +891,19 @@ install_dev_tools() {
         else
             unsupported_platform_error
         fi
+    }
+
+    install_groovy_dev_tools() {
+        if is_macos; then
+            brew_install groovy
+        elif is_arch; then
+            # TODO Install groovy
+            :
+        else
+            unsupported_platform_error
+        fi
+
+        # TODO Build and install groovy-language-server
     }
 
     install_python_dev_tools() {
@@ -1150,18 +1176,19 @@ install_dev_tools() {
 
         echo "  1) $(menu_item 'C')                 2) $(menu_item 'Rust')"
         echo "  3) $(menu_item 'Go')                4) $(menu_item 'Haskell')"
-        echo "  5) $(menu_item 'Java')              6) $(menu_item 'Scala')"
-        echo "  7) $(menu_item 'Python')            8) $(menu_item 'Ruby')"
-        echo "  9) $(menu_item 'Perl')             10) $(menu_item 'Web Frontend')"
-        echo " 11) $(menu_item 'SQL')              12) $(menu_item 'R')"
-        echo " 13) $(menu_item 'Shell Scripts')    14) $(menu_item 'Markdown')"
-        echo " 15) $(menu_item 'PlantUML')"
+        echo "  5) $(menu_item 'Java')              6) $(menu_item 'Kotlin')"
+        echo "  7) $(menu_item 'Scala')             8) $(menu_item 'Groovy')"
+        echo "  9) $(menu_item 'Python')           10) $(menu_item 'Ruby')"
+        echo " 11) $(menu_item 'Perl')             12) $(menu_item 'Web Frontend')"
+        echo " 13) $(menu_item 'SQL')              14) $(menu_item 'R')"
+        echo " 15) $(menu_item 'Shell Scripts')    16) $(menu_item 'Markdown')"
+        echo " 17) $(menu_item 'PlantUML')"
         echo ''
-        echo " 16) $(menu_item 'Ansible')          17) $(menu_item 'Docker')"
+        echo " 18) $(menu_item 'Ansible')          19) $(menu_item 'Docker')"
         echo ''
-        echo " 18) $(menu_item 'Competitive Programming')"
+        echo " 20) $(menu_item 'Competitive Programming')"
         echo ''
-        echo " 19) $(menu_item 'Others')"
+        echo " 21) $(menu_item 'Others')"
         echo ''
         echo '  d) Done'
 
@@ -1184,48 +1211,54 @@ install_dev_tools() {
                 install_java_dev_tools
                 ;;
             6 )
-                install_scala_dev_tools
+                install_kotlin_dev_tools
                 ;;
             7 )
-                install_python_dev_tools
+                install_scala_dev_tools
                 ;;
             8 )
-                install_ruby_dev_tools
+                install_groovy_dev_tools
                 ;;
             9 )
-                install_perl_dev_tools
+                install_python_dev_tools
                 ;;
             10 )
-                install_web_frontend_dev_tools
+                install_ruby_dev_tools
                 ;;
             11 )
-                install_sql_dev_tools
+                install_perl_dev_tools
                 ;;
             12 )
-                install_r_dev_tools
+                install_web_frontend_dev_tools
                 ;;
             13 )
-                install_shell_scripts_dev_tools
+                install_sql_dev_tools
                 ;;
             14 )
-                install_markdown_dev_tools
+                install_r_dev_tools
                 ;;
             15 )
+                install_shell_scripts_dev_tools
+                ;;
+            16 )
+                install_markdown_dev_tools
+                ;;
+            17 )
                 install_plantuml_dev_tools
                 ;;
 
-            16 )
+            18 )
                 install_ansible_dev_tools
                 ;;
-            17 )
+            19 )
                 install_docker_dev_tools
                 ;;
 
-            18 )
+            20 )
                 install_competitive_programming
                 ;;
 
-            19 )
+            21 )
                 install_others
                 ;;
 
