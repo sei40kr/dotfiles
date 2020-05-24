@@ -694,12 +694,10 @@ install_dev_apps() {
             unsupported_platform_error
         fi
 
-        # .emacs.d
         git_clone sei40kr/doom-emacs "${HOME}/.emacs.d"
-        "${HOME}/.emacs.d/bin/doom" install
-
-        # .doom.d
         git_clone sei40kr/doom.d "$DOOMDIR"
+
+        "${HOME}/.emacs.d/bin/doom" -y --doomdir "$DOOMDIR" install
 
         # install local packages
         local -a doom_local_packages=(
