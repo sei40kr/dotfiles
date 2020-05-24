@@ -15,14 +15,6 @@ __verify_pacman() {
     fi
 }
 
-pacman_query() {
-    local -a packages=( "$@" )
-
-    __verify_pacman
-
-    pacman -Q "${packages[@]}" &>/dev/null
-}
-
 pacman_sync() {
     local -a packages=( "$@" )
 
@@ -41,7 +33,7 @@ __verify_trizen() {
         exit 1
     fi
 
-    if ! pacman -Q trizen &>/dev/null || ! command_exists trizen; then
+    if ! command_exists trizen; then
         tui-error 'trizen not found. Aborting.'
         exit 1
     fi
