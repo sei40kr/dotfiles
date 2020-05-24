@@ -36,3 +36,18 @@ assert_command_exists() {
         exit 127
     fi
 }
+
+# assert_command_exists FILE [ERROR]
+#
+# Assert a file exists and is executable. If not, the process exits with status
+# code 127.
+#
+assert_executable() {
+    local file="$1"
+    local error="$2"
+
+    if [[ ! -x "$file" ]]; then
+        tui-error "${error:-$(abbreviate_filepath "$file") is not found or not executable. Aborting.}"
+        exit 127
+    fi
+}

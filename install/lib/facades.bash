@@ -3,22 +3,11 @@
 
 ## Pacman & Trizen
 
-__verify_pacman() {
-    if ! is_arch; then
-        tui-error 'Pacman facades must be called only on Arch Linux. Aborting.'
-        exit 1
-    fi
-
-    if ! command_exists pacman; then
-        tui-error 'pacman not found. Aborting.'
-        exit 1
-    fi
-}
-
 pacman_sync() {
-    local -a packages=( "$@" )
+    assert_archlinux
+    assert_command_exists pacman
 
-    __verify_pacman
+    local -a packages=( "$@" )
 
     for package in "${packages[@]}"; do
         print-list-item "Installing ${package}"
@@ -27,22 +16,11 @@ pacman_sync() {
     run_process sudo pacman -Sy --needed --noconfirm --noprogressbar "${packages[@]}"
 }
 
-__verify_trizen() {
-    if [[ ! -f /etc/arch-release ]]; then
-        tui-error 'Trizen facades must be called only on Arch Linux. Aborting.'
-        exit 1
-    fi
-
-    if ! command_exists trizen; then
-        tui-error 'trizen not found. Aborting.'
-        exit 1
-    fi
-}
-
 trizen_sync() {
-    local -a packages=( "$@" )
+    assert_archlinux
+    assert_command_exists trizen
 
-    __verify_trizen
+    local -a packages=( "$@" )
 
     for package in "${packages[@]}"; do
         print-list-item "Installing ${package}"
@@ -53,20 +31,6 @@ trizen_sync() {
 
 
 ## Homebrew
-
-__verify_homebrew() {
-    if ! is_macos; then
-        tui-error 'Homebrew facades must be called only on macOS. Aborting.'
-        exit 1
-    fi
-
-    if ! hash brew 2>/dev/null; then
-        # shellcheck disable=SC2016
-        tui-error 'Homebrew not found. Run `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"` to install Homebrew. Aborting.'
-        exit 1
-    fi
-}
-
 
 # brew_install FORMULA [OPTION ...] ...
 #
@@ -79,11 +43,12 @@ __verify_homebrew() {
 #     libvterm cmake
 #
 brew_install() {
+    assert_macos
+    assert_command_exists brew
+
     local formula
     # Install options with double quotes
     local -a options
-
-    __verify_homebrew
 
     function print_brewfile_line() {
         local IFS=','
@@ -118,7 +83,8 @@ brew_install() {
 # brew_cask_install google-chrome
 #
 brew_cask_install() {
-    __verify_homebrew
+    assert_macos
+    assert_command_exists brew
 
     {
         echo 'cask_args appdir: "/Applications"'
@@ -132,17 +98,10 @@ brew_cask_install() {
 
 ## systemctl
 
-__verify_systemctl() {
-    if ! command_exists systemctl; then
-        tui-error 'systemctl not found. Aborting.'
-        exit 1
-    fi
-}
-
 systemctl_enable() {
-    local service="$1"
+    assert_command_exists systemctl
 
-    __verify_systemctl
+    local service="$1"
 
     print-step "Enabling system service ${service}"
 
@@ -150,9 +109,9 @@ systemctl_enable() {
 }
 
 systemctl_mask() {
-    local service="$1"
+    assert_command_exists systemctl
 
-    __verify_systemctl
+    local service="$1"
 
     print-step "Masking system service ${service}"
 
@@ -160,9 +119,9 @@ systemctl_mask() {
 }
 
 systemctl_user_enable() {
-    local service="$1"
+    assert_command_exists systemctl
 
-    __verify_systemctl
+    local service="$1"
 
     print-step "Enabling user service ${service}"
 
@@ -172,17 +131,10 @@ systemctl_user_enable() {
 
 ## Rustup
 
-__verify_rustup() {
-    if ! command_exists rustup; then
-        tui-error 'rustup not found. Aborting.'
-        exit 1
-    fi
-}
-
 rustup_toolchain_install() {
-    local toolchain="$1"
+    assert_command_exists rustup
 
-    __verify_rustup
+    local toolchain="$1"
 
     print-step "Installing Rust ${toolchain} toolchain"
 
@@ -190,11 +142,11 @@ rustup_toolchain_install() {
 }
 
 rustup_component_add() {
+    assert_command_exists rustup
+
     local toolchain="$1"
     shift
     local components=( "$@" )
-
-    __verify_rustup
 
     local stable_toolchain
     if [[ "$toolchain" == stable ]]; then
@@ -211,22 +163,10 @@ rustup_component_add() {
 
 ## goenv
 
-__verify_goenv() {
-    if [[ ! -x "${GOENV_ROOT}/bin/goenv" ]]; then
-        if command_exists goenv; then
-            tui-error 'goenv must not be installed with a system package manager. Aborting.'
-        else
-            tui-error 'goenv not found. Aborting.'
-        fi
-
-        exit 1
-    fi
-}
-
 goenv_install() {
-    local go_version="$1"
+    assert_executable "${GOENV_ROOT}/bin/goenv"
 
-    __verify_goenv
+    local go_version="$1"
 
     print-step "Installing Go v${go_version}"
 
@@ -285,17 +225,10 @@ go_get() {
 
 ## Haskell Tool Stack
 
-__verify_stack() {
-    if ! command_exists stack; then
-        tui-error 'stack not installed. Aborting.'
-        exit 1
-    fi
-}
-
 stack_install() {
-    local -a packages=( "$@" )
+    assert_command_exists stack
 
-    __verify_stack
+    local -a packages=( "$@" )
 
     for package in "${packages[@]}"; do
         print-list-item "Installing ${package}"
@@ -307,22 +240,10 @@ stack_install() {
 
 ## pyenv
 
-__verify_pyenv() {
-    if [[ ! -x "${PYENV_ROOT}/bin/pyenv" ]]; then
-        if command_exists pyenv; then
-            tui-error 'pyenv must not be installed with a system package manager. Aborting.'
-        else
-            tui-error 'pyenv not found. Aborting.'
-        fi
-
-        exit 1
-    fi
-}
-
 pyenv_install() {
-    local python_version="$1"
+    assert_executable "${PYENV_ROOT}/bin/pyenv"
 
-    __verify_pyenv
+    local python_version="$1"
 
     print-step "Installing Python v${python_version}"
 
@@ -346,19 +267,15 @@ pip_install() {
             pip_exec=/usr/bin/pip
         fi
 
-        if [[ ! -x "$pip_exec" ]]; then
-            tui-error 'pip executable of system-installed version not found. Aborting.'
-            exit 1
-        fi
+        assert_executable "$pip_exec" \
+            'pip executable of system-installed version not found. Aborting.'
 
         pip_opts+=( --user )
     else
         pip_exec="${PYENV_ROOT}/versions/${python_version}/bin/pip"
 
-        if [[ ! -x "$pip_exec" ]]; then
-            tui-error "pip executable of ${python_version} not found. Aborting."
-            exit 1
-        fi
+        assert_executable "$pip_exec" \
+            "pip executable of ${python_version} not found. Aborting."
     fi
 
     for package in "${packages[@]}"; do
@@ -371,22 +288,10 @@ pip_install() {
 
 ## rbenv
 
-__verify_rbenv() {
-    if [[ ! -x "${RBENV_ROOT}/bin/rbenv" ]]; then
-        if command_exists rbenv; then
-            tui-error 'rbenv must not be installed with a system package manager. Aborting.'
-        else
-            tui-error 'rbenv not found. Aborting.'
-        fi
-
-        exit 1
-    fi
-}
-
 rbenv_install() {
-    local ruby_version="$1"
+    assert_executable "${RBENV_ROOT}/bin/rbenv"
 
-    __verify_rbenv
+    local ruby_version="$1"
 
     print-step "Installing Ruby v${ruby_version}"
 
@@ -413,19 +318,15 @@ gem_install() {
             gem_exec=/usr/bin/gem
         fi
 
-        if [[ ! -x "$gem_exec" ]]; then
-            tui-error 'gem executable of system-installed version not found. Aborting.'
-            exit 1
-        fi
+        assert_executable "$gem_exec" \
+            'gem executable of system-installed version not found. Aborting.'
 
         gem_opts+=( --user-install )
     else
         gem_exec="${RBENV_ROOT}/versions/${ruby_version}/bin/gem"
 
-        if [[ ! -x "$gem_exec" ]]; then
-            tui-error "gem executable of ${ruby_version} not found. Aborting."
-            exit 1
-        fi
+        assert_executable "$gem_exec" \
+            "gem executable of ${ruby_version} not found. Aborting."
     fi
 
     for gem in "${gems[@]}"; do
@@ -459,14 +360,9 @@ nvm_install() {
 
 ## Yarn
 
-__verify_yarn() {
-    if ! command_exists yarn; then
-        tui-error 'yarn not found. Aborting.'
-        exit 1
-    fi
-}
-
 yarn_global_add() {
+    assert_command_exists yarn
+
     local node_version="$1"
     shift
     local -a packages=( "$@" )
@@ -482,20 +378,14 @@ yarn_global_add() {
             node_exec_dir=/usr/bin/node
         fi
 
-        if [[ ! -x "${node_exec_dir}/node" ]]; then
-            tui-error 'node executable of system-installed version not found. Aborting.'
-            exit 1
-        fi
+        assert_executable "${node_exec_dir}/node" \
+            'node executable of system-installed version not found. Aborting.'
     else
         node_exec_dir="${NVM_DIR}/versions/${node_version}/bin"
 
-        if [[ ! -x "${node_exec_dir}/node" ]]; then
-            tui-error "node executable of ${node_version} not found. Aborting."
-            exit 1
-        fi
+        assert_executable "$node_exec_dir" \
+            "node executable of ${node_version} not found. Aborting."
     fi
-
-    __verify_yarn
 
     for package in "${packages[@]}"; do
         print-list-item "Installing ${package}${system_node:- to Node.js ${node_version}}"
@@ -507,14 +397,9 @@ yarn_global_add() {
 
 ## R
 
-__verify_r() {
-    if ! command_exists R; then
-        tui-error 'R not found. Aborting.'
-        exit 1
-    fi
-}
-
 r_install() {
+    assert_command_exists R
+
     local -a packages
     packages=( "$@" )
 

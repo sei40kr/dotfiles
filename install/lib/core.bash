@@ -13,3 +13,14 @@ command_exists() {
 
     hash "$command" 2>/dev/null
 }
+
+abbreviate_filepath() {
+    local filepath="$1"
+
+    # Make sure $HOME is at the beginning
+    if [[ "$filepath" == "$HOME"* ]]; then
+        filepath="${filepath/${HOME}/~}"
+    fi
+
+    echo "$filepath"
+}
