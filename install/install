@@ -31,8 +31,8 @@ ZINIT[BIN_DIR]="${ZINIT[HOME_DIR]}/bin"
 ZINIT[PLUGINS_DIR]="${ZINIT[HOME_DIR]}/plugins"
 
 basepath="$(cd "$(dirname "$0")/.." && pwd)"
-# shellcheck source=lib/env.bash
-. "${basepath}/install/lib/env.bash"
+# shellcheck source=lib/core.bash
+. "${basepath}/install/lib/core.bash"
 # shellcheck source=lib/simple-tui/simple-tui.bash
 . "${basepath}/install/lib/simple-tui/simple-tui.bash"
 # shellcheck source=lib/errors.bash

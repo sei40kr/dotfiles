@@ -1,4 +1,3 @@
-# env.bash
 # author: Seong Yong-ju
 
 is_arch() {
