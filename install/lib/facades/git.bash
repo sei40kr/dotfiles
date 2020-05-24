@@ -17,7 +17,7 @@ git_clone() {
   local repository="$1"
   local branch
   shift
-  if [[ "$#" -ge 3 ]]; then
+  if [[ "$#" -ge 2 ]]; then
     branch="$1"
     shift
   fi
