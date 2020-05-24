@@ -886,30 +886,10 @@ install_dev_tools() {
 
         "${PYENV_ROOT}/bin/pyenv" global system
 
-        local -a pip_pkgs=(
-            # Jupyter Notebook
-            jupyter
-            numpy
-            pandas
-            matplotlib
-            # linters
-            pylint
-            flake8
-            # formatters
-            black
-            # lsp
-            'python-language-server[all]'
-            jedi
-            pyls-mypy
-            pyls-isort
-            # debugger
-            ptvsd
-            # editor tools
-            importmagic
-            epc
-            pydoc_utils
-        )
-        pip_install system "${pip_pkgs[@]}"
+        pip_install system \
+            'python-language-server[all]' \
+            black \
+            jupyter numpy pandas matplotlib
     }
 
     install_ruby_dev_tools() {
