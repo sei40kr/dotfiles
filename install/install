@@ -76,16 +76,9 @@ setup_basic() {
         if ! command_exists trizen; then
             pacman_sync base-devel git perl
 
-            tmpdir="$(mktemp -d)"
-
-            git_clone https://aur.archlinux.org/trizen.git "$tmpdir"
-
-            (
-                cd "$tmpdir"
-                makepkg -mis --noconfirm --needed
-            )
-
-            rm -r "$tmpdir"
+            assert_command_exists makepkg
+            git_clone_build https://aur.archlinux.org/trizen.git \
+                'makepkg -mis --noconfirm --neeeded'
         fi
 
         mkdir -p "${XDG_CONFIG_HOME}/trizen"
