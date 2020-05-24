@@ -49,7 +49,8 @@ git_clone() {
     fi
   fi
 
-  git clone -q "$repository" "${clone_options[@]}" "$destination"
+  git clone -q --recurse-submodules "$repository" "${clone_options[@]}" \
+    "$destination"
 }
 
 # git_clone_build REPOSITORY [BRANCH] COMMAND
