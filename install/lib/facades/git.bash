@@ -22,9 +22,14 @@ git_clone() {
     shift
   fi
   local destination="$1"
+  local -a clone_options=()
 
   if [[ "$repository" == +([!/])/+([!/]) ]]; then
     repository="https://github.com/${repository}.git"
+  fi
+
+  if [[ -n "$branch" ]]; then
+    clone_options+=(-b "$branch")
   fi
 
   if [[ -d "$destination" ]]; then
@@ -43,5 +48,5 @@ git_clone() {
     exit
   fi
 
-  git clone -q "$repository" "$destination"
+  git clone -q "$repository" "${clone_options[@]}" "$destination"
 }
