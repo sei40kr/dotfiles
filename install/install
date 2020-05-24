@@ -687,9 +687,14 @@ install_dev_apps() {
         if is_macos; then
             brew_install \
                 d12frosted/emacs-plus --with-emacs-27-branch --with-xwidgets --without-spacemacs-icon \
+                ripgrep \
+                fd \
                 libvterm cmake
         elif is_arch; then
-            pacman_sync emacs libvterm cmake
+            # TODO Install fd
+            pacman_sync emacs \
+                ripgrep \
+                libvterm cmake
         else
             unsupported_platform_error
         fi
