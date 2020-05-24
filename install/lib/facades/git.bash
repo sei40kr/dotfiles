@@ -50,3 +50,34 @@ git_clone() {
 
   git clone -q "$repository" "${clone_options[@]}" "$destination"
 }
+
+# git_clone_and_build REPOSITORY [BRANCH] COMMAND
+#
+# Clone a Git repository into a temporary directory and run a command there.
+#
+# Example:
+# assert_command_exists cargo
+# git_clone_and_build rust-analyzer/rust-analyzer 'cargo xtask install --server'
+#
+git_clone_and_build() {
+  assert_command_exists git
+
+  local repository="$1"
+  local branch
+  shift
+  if [[ "$#" -ge 3 ]]; then
+    branch="$1"
+    shift
+  fi
+  local command="$1"
+  local destination
+  destination="$(mktemp -d)"
+
+  git_clone "$repository" "$branch" "$destination"
+  (
+    cd "$destination"
+    eval "$command"
+  )
+
+  rm -r "$destination"
+}
