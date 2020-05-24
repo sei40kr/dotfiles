@@ -73,7 +73,7 @@ setup_basic() {
             return
         fi
 
-        if ! pacman_query trizen; then
+        if ! command_exists trizen; then
             pacman_sync base-devel git perl
 
             tmpdir="$(mktemp -d)"
