@@ -834,6 +834,12 @@ install_dev_tools() {
 
     install_haskell_dev_tools() {
         stack_install hlint brittany
+
+        # Build and install haskell-ide-engine
+        if ! command_exists hie-wrapper; then
+            assert_command_exists stack
+            git_clone_build haskell/haskell-ide-engine 'stack ./install.hs hie'
+        fi
     }
 
     install_java_dev_tools() {
