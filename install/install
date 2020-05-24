@@ -869,30 +869,12 @@ install_dev_tools() {
         while true; do
             print_title 'Java Development Tools'
 
-            echo "  8) $(menu_item 'OpenJDK 8')"
-            echo " 10) $(menu_item 'OpenJDK 10')"
-            echo " 11) $(menu_item 'OpenJDK 11')"
+            echo " 1) $(menu_item 'OpenJDK 11')"
 
             read -rp 'Choose which version to use: ' opt
 
             case "$opt" in
-                8 )
-                    if is_arch; then
-                        pacman_sync jdk8-openjdk
-                    else
-                        unsupported_platform_error
-                    fi
-                    break
-                    ;;
-                10 )
-                    if is_arch; then
-                        pacman_sync jdk10-openjdk
-                    else
-                        unsupported_platform_error
-                    fi
-                    break
-                    ;;
-                11 )
+                1 )
                     if is_macos; then
                         brew_install 'openjdk@11'
                     elif is_arch; then
