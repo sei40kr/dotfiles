@@ -836,6 +836,18 @@ install_dev_tools() {
     }
 
     install_haskell_dev_tools() {
+        if is_macos; then
+            brew_install haskell-stack
+            mkdir -p "${HOME}/.stack"
+            ln -fs "${HOME}/.dotfiles/stack/config.yaml" \
+                "${HOME}/.stack/config.yaml"
+        elif is_arch; then
+            # TODO Install stack
+            :
+        else
+            unsupported_platform_error
+        fi
+
         stack_install hlint brittany
 
         # Build and install haskell-ide-engine
