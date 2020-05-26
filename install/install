@@ -1456,15 +1456,7 @@ install_fonts() {
         print_title 'Fonts'
 
         echo "  1) $(menu_item 'Fira Code')"
-        echo "  2) $(menu_item 'Input')"
-        echo "  3) $(menu_item 'Dejavu')"
-        echo "  4) $(menu_item 'Inconsolata-g')"
-        echo "  5) $(menu_item 'Source Code Pro')"
-        echo "  6) $(menu_item 'Ubuntu Font')"
-        echo "  7) $(menu_item 'Anonymous Pro')"
-        echo "  8) $(menu_item 'Meslo LG')"
-        echo "  9) $(menu_item 'Hack')"
-        echo " 10) $(menu_item 'Iosevka')"
+        echo "  2) $(menu_item 'Source Code Pro')"
         echo ''
         echo '  d) Done'
 
@@ -1482,81 +1474,9 @@ install_fonts() {
                 ;;
             2 )
                 if is_macos; then
-                    brew_cask_install font-input
-                elif is_arch; then
-                    trizen_sync ttf-input
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            3 )
-                if is_macos; then
-                    brew_cask_install font-dejavu
-                elif is_arch; then
-                    pacman_sync ttf-dejavu
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            4 )
-                if is_macos; then
-                    brew_cask_install font-inconsolata-g
-                elif is_arch; then
-                    trizen_sync ttf-inconsolata-g
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            5 )
-                if is_macos; then
                     brew_cask_install font-source-code-pro
                 elif is_arch; then
                     pacman_sync adobe-source-code-pro-fonts
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            6 )
-                if is_macos; then
-                    brew_cask_install font-ubuntu
-                elif is_arch; then
-                    pacman_sync ttf-ubuntu-font-family
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            7 )
-                if is_macos; then
-                    brew_cask_install font-anonymous-pro
-                elif is_arch; then
-                    pacman_sync ttf-anonymous-pro
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            8 )
-                if is_macos; then
-                    brew_cask_install font-meslo-lg
-                elif is_arch; then
-                    trizen_sync ttf-meslo
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            9 )
-                if is_macos; then
-                    brew_cask_install font-hack
-                elif is_arch; then
-                    pacman_sync ttf-hack
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            10 )
-                if is_macos; then
-                    brew_cask_install font-iosevka
-                elif is_arch; then
-                    trizen_sync ttf-iosevka
                 else
                     unsupported_platform_error
                 fi
