@@ -641,50 +641,59 @@ EOM
 }
 
 install_accessory_apps() {
+    function install_bitwarden() {
+        if is_macos; then
+            brew_cask_install bitwarden
+        elif is_arch; then
+            trizen_sync bitwarden-bin
+        else
+            unsupported_platform_error
+        fi
+    }
+
+    function install_calendar() {
+        assert_archlinux
+        pacman_sync gnome-calendar
+    }
+
+    function install_goldendict() {
+        assert_archlinux
+        pacman_sync goldendict
+    }
+
     while true; do
         print_title 'Accessory Apps'
 
-        echo "  1) $(menu_item 'Bitwarden')"
-        echo "  2) $(menu_item 'Calendar')"
-        echo "  3) $(menu_item 'GoldenDict')"
-        echo ''
-        echo '  d) Done'
+        tui_init_options
+        tui_add_options 'Bitwarden' install_bitwarden
+        if is_arch; then
+            tui_add_options \
+                'Calendar' install_calendar \
+                'GoldenDict' install_goldendict
+        fi
+        tui_set_quit_option d 'Done'
 
-        read -rp 'Enter your option: ' opt
-
-        case "$opt" in
-            1 )
-                if is_macos; then
-                    brew_cask_install bitwarden
-                elif is_arch; then
-                    trizen_sync bitwarden-bin
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            2 )
-                if is_arch; then
-                    pacman_sync gnome-calendar
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            3 )
-                if is_arch; then
-                    pacman_sync goldendict
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-
-            d )
-                break
-                ;;
-        esac
+        if ! tui_select_option 'Enter your option'; then
+            break
+        fi
     done
 }
 
 install_dev_apps() {
+    install_git() {
+        if is_macos; then
+            brew_install git
+        elif is_arch; then
+            pacman_sync git
+        else
+            unsupported_platform_error
+        fi
+
+        mkdir -p "${XDG_CONFIG_HOME}/git"
+        ln -fs "${HOME}/.dotfiles/git/config" "${XDG_CONFIG_HOME}/git/config"
+        ln -fs "${HOME}/.dotfiles/git/ignore" "${XDG_CONFIG_HOME}/git/ignore"
+    }
+
     install_doom_emacs() {
         if is_macos; then
             brew_install \
@@ -734,57 +743,32 @@ install_dev_apps() {
         ln -fs "${HOME}/.dotfiles/intellij-idea/ideavimrc" "${HOME}/.ideavimrc"
     }
 
+    install_zeal() {
+        assert_archlinux
+        pacman_sync zeal
+    }
+
     while true; do
         print_title 'Development Apps'
 
-        echo "  1) $(menu_item 'Git')"
-        echo "  2) $(menu_item 'Doom Emacs')"
-        echo "  3) $(menu_item 'IntelliJ IDEA Ultimate Edition')"
-        echo "  4) $(menu_item 'Zeal')"
-        echo ''
-        echo '  d) Done'
+        tui_init_options
+        tui_add_options \
+            'Git' install_git \
+            'Doom Emacs' install_doom_emacs \
+            'IntelliJ IDEA Ultimate Edition' install_intellij_idea_ue
+        if is_arch; then
+            tui_add_options 'Zeal' install_zeal
+        fi
+        tui_set_quit_option d 'Done'
 
-        read -rp 'Enter your option: ' opt
-
-        case "$opt" in
-            1)
-                if is_macos; then
-                    brew_install git
-                elif is_arch; then
-                    pacman_sync git
-                else
-                    unsupported_platform_error
-                fi
-
-                mkdir -p "${XDG_CONFIG_HOME}/git"
-                ln -fs "${HOME}/.dotfiles/git/config" \
-                   "${XDG_CONFIG_HOME}/git/config"
-                ln -fs "${HOME}/.dotfiles/git/ignore" \
-                   "${XDG_CONFIG_HOME}/git/ignore"
-                ;;
-            2)
-                install_doom_emacs
-                ;;
-            3)
-                install_intellij_idea_ue
-                ;;
-            4)
-                if is_arch; then
-                    pacman_sync zeal
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-
-            d )
-                break
-                ;;
-        esac
+        if ! tui_select_option 'Enter your option'; then
+            break
+        fi
     done
 }
 
 install_dev_tools() {
-    install_c_dev_tools() {
+    function install_c_dev_tools() {
         if is_macos; then
             pacman_sync llvm gcc gdb gdb-dashboard clang
             trizen_sync ccls
@@ -799,7 +783,7 @@ install_dev_tools() {
         ln -fs "/usr/share/gdb-dashboard/.gdbinit" "${HOME}/.gdbinit"
     }
 
-    install_rust_dev_tools() {
+    function install_rust_dev_tools() {
         if is_arch; then
             pacman_sync rustup
         else
@@ -818,7 +802,7 @@ install_dev_tools() {
         fi
     }
 
-    install_go_dev_tools() {
+    function install_go_dev_tools() {
         if is_macos; then
             brew_install go
         elif is_arch; then
@@ -837,7 +821,7 @@ install_dev_tools() {
             github.com/motemen/gore/cmd/gore
     }
 
-    install_haskell_dev_tools() {
+    function install_haskell_dev_tools() {
         if is_macos; then
             brew_install haskell-stack
             mkdir -p "${HOME}/.stack"
@@ -859,7 +843,7 @@ install_dev_tools() {
         fi
     }
 
-    install_java_dev_tools() {
+    function install_java_dev_tools() {
         if is_macos; then
             brew_install 'openjdk@11' maven gradle
         elif is_arch; then
@@ -874,7 +858,7 @@ install_dev_tools() {
         jenv enable-plugin export
     }
 
-    install_kotlin_dev_tools() {
+    function install_kotlin_dev_tools() {
         if is_macos; then
             brew_install kotlin ktlint
         elif is_arch; then
@@ -887,7 +871,7 @@ install_dev_tools() {
         # TODO Build and install kotlin-language-server
     }
 
-    install_scala_dev_tools() {
+    function install_scala_dev_tools() {
         if is_macos; then
             # TODO Install scalafmt
             brew_install \
@@ -907,7 +891,7 @@ install_dev_tools() {
         fi
     }
 
-    install_groovy_dev_tools() {
+    function install_groovy_dev_tools() {
         if is_macos; then
             brew_install groovy
         elif is_arch; then
@@ -920,7 +904,7 @@ install_dev_tools() {
         # TODO Build and install groovy-language-server
     }
 
-    install_python_dev_tools() {
+    function install_python_dev_tools() {
         if is_macos; then
             brew_install python poetry
         elif is_arch; then
@@ -941,7 +925,7 @@ install_dev_tools() {
             jupyter numpy pandas matplotlib
     }
 
-    install_ruby_dev_tools() {
+    function install_ruby_dev_tools() {
         if is_macos; then
             brew_install ruby
         elif is_arch; then
@@ -962,7 +946,7 @@ install_dev_tools() {
             rake
     }
 
-    install_perl_dev_tools() {
+    function install_perl_dev_tools() {
         if is_macos; then
             brew_install perl cpanminus
         elif is_arch; then
@@ -979,7 +963,7 @@ install_dev_tools() {
         # TODO install some Perl modules
     }
 
-    install_web_frontend_dev_tools() {
+    function install_web_frontend_dev_tools() {
         if is_macos; then
             brew_install node yarn
         elif is_arch; then
@@ -1018,14 +1002,14 @@ install_dev_tools() {
         yarn_global_add system "${yarn_pkgs[@]}"
     }
 
-    install_sql_dev_tools() {
+    function install_sql_dev_tools() {
         pip_install system sqlint sqlparse mycli pgcli litecli
 
         ln -fs "${HOME}/.dotfiles/mycli/myclirc" "${HOME}/.myclirc"
         ln -fs "${HOME}/.dotfiles/pgcli/pgclirc" "${HOME}/.pgclirc"
     }
 
-    install_r_dev_tools() {
+    function install_r_dev_tools() {
         if is_macos; then
             brew_install r
         elif is_arch; then
@@ -1047,7 +1031,7 @@ install_dev_tools() {
         r_install "${r_libs[@]}"
     }
 
-    install_shell_scripts_dev_tools() {
+    function install_shell_scripts_dev_tools() {
         if is_macos; then
             brew_install shellcheck shfmt
         elif is_arch; then
@@ -1059,13 +1043,13 @@ install_dev_tools() {
         yarn_global_add system bash-language-server
     }
 
-    install_markdown_dev_tools() {
+    function install_markdown_dev_tools() {
         gem_install system mdl
         yarn_global_add system markdownlint-cli
         pip_install system grip
     }
 
-    install_plantuml_dev_tools() {
+    function install_plantuml_dev_tools() {
         if is_macos; then
             brew_install plantuml
         elif is_arch; then
@@ -1075,11 +1059,11 @@ install_dev_tools() {
         fi
     }
 
-    install_ansible_dev_tools() {
+    function install_ansible_dev_tools() {
         pip_install system ansible ansible-lint
     }
 
-    install_docker_dev_tools() {
+    function install_docker_dev_tools() {
         if is_macos; then
             brew_cask_install docker
             brew_install docker-compose
@@ -1092,7 +1076,7 @@ install_dev_tools() {
         yarn_global_add system dockerfile-language-server-nodejs
     }
 
-    install_others() {
+    function install_others() {
         while true; do
             print_title 'Others'
 
@@ -1158,7 +1142,7 @@ install_dev_tools() {
         done
     }
 
-    install_competitive_programming() {
+    function install_competitive_programming() {
         # AtCoder environment
         rustup_toolchain_install 1.42.0
         rustup_component_add 1.42.0 rust-src rls
@@ -1184,497 +1168,364 @@ install_dev_tools() {
     while true; do
         print_title 'Development Tools'
 
-        echo "  1) $(menu_item 'C')                 2) $(menu_item 'Rust')"
-        echo "  3) $(menu_item 'Go')                4) $(menu_item 'Haskell')"
-        echo "  5) $(menu_item 'Java')              6) $(menu_item 'Kotlin')"
-        echo "  7) $(menu_item 'Scala')             8) $(menu_item 'Groovy')"
-        echo "  9) $(menu_item 'Python')           10) $(menu_item 'Ruby')"
-        echo " 11) $(menu_item 'Perl')             12) $(menu_item 'Web Frontend')"
-        echo " 13) $(menu_item 'SQL')              14) $(menu_item 'R')"
-        echo " 15) $(menu_item 'Shell Scripts')    16) $(menu_item 'Markdown')"
-        echo " 17) $(menu_item 'PlantUML')"
-        echo ''
-        echo " 18) $(menu_item 'Ansible')          19) $(menu_item 'Docker')"
-        echo ''
-        echo " 20) $(menu_item 'Competitive Programming')"
-        echo ''
-        echo " 21) $(menu_item 'Others')"
-        echo ''
-        echo '  d) Done'
+        tui_init_options
+        tui_add_options \
+            'C' install_c_dev_tools \
+            'Rust' install_rust_dev_tools \
+            'Go' install_go_dev_tools \
+            'Haskell' install_haskell_dev_tools \
+            'Java' install_java_dev_tools \
+            'Kotlin' install_kotlin_dev_tools \
+            'Scala' install_scala_dev_tools \
+            'Groovy' install_groovy_dev_tools \
+            'Python' install_python_dev_tools \
+            'Ruby' install_ruby_dev_tools \
+            'Perl' install_perl_dev_tools \
+            'Web Frontend' install_web_frontend_dev_tools \
+            'SQL' install_sql_dev_tools \
+            'R' install_r_dev_tools \
+            'Shell Scripts' install_shell_scripts_dev_tools \
+            'Markdown' install_markdown_dev_tools \
+            'PlantUML' install_plantuml_dev_tools \
+            'Ansible' install_ansible_dev_tools \
+            'Docker' install_docker_dev_tools \
+            'Competitive Programming' install_competitive_programming \
+            'Others' install_others
+        tui_set_quit_option d 'Done'
 
-        read -rp 'Enter your option: ' opt
-
-        case "$opt" in
-            1 )
-                install_c_dev_tools
-                ;;
-            2 )
-                install_rust_dev_tools
-                ;;
-            3 )
-                install_go_dev_tools
-                ;;
-            4 )
-                install_haskell_dev_tools
-                ;;
-            5 )
-                install_java_dev_tools
-                ;;
-            6 )
-                install_kotlin_dev_tools
-                ;;
-            7 )
-                install_scala_dev_tools
-                ;;
-            8 )
-                install_groovy_dev_tools
-                ;;
-            9 )
-                install_python_dev_tools
-                ;;
-            10 )
-                install_ruby_dev_tools
-                ;;
-            11 )
-                install_perl_dev_tools
-                ;;
-            12 )
-                install_web_frontend_dev_tools
-                ;;
-            13 )
-                install_sql_dev_tools
-                ;;
-            14 )
-                install_r_dev_tools
-                ;;
-            15 )
-                install_shell_scripts_dev_tools
-                ;;
-            16 )
-                install_markdown_dev_tools
-                ;;
-            17 )
-                install_plantuml_dev_tools
-                ;;
-
-            18 )
-                install_ansible_dev_tools
-                ;;
-            19 )
-                install_docker_dev_tools
-                ;;
-
-            20 )
-                install_competitive_programming
-                ;;
-
-            21 )
-                install_others
-                ;;
-
-            d )
-                break
-                ;;
-        esac
+        if ! tui_select_option 'Enter your option'; then
+            break
+        fi
     done
 }
 
 install_office_apps() {
+    function install_gnome_pomodoro() {
+        assert_archlinux
+        trizen_sync gnome-shell-pomodoro
+    }
+
+    function install_texlive() {
+        if is_macos; then
+            brew_cask_install basictex
+        elif is_arch; then
+            pacman_sync texlive-most texlive-langjapanese
+        else
+            unsupported_platform_error
+        fi
+    }
+
     while true; do
         print_title 'Office Apps'
 
-        echo "  1) $(menu_item 'GNOME Pomodoro')"
-        echo "  2) $(menu_item 'TeX Live')"
-        echo ''
-        echo '  d) Done'
+        tui_init_options
+        if is_arch; then
+            tui_add_options 'GNOME Pomodoro' install_gnome_pomodoro
+        fi
+        tui_add_options 'TeX Live' install_texlive
+        tui_set_quit_option d 'Done'
 
-        read -rp 'Enter your option: ' opt
-
-        case "$opt" in
-            1 )
-                if is_arch; then
-                    trizen_sync gnome-shell-pomodoro
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            2 )
-                if is_macos; then
-                    brew_cask_install basictex
-                elif is_arch; then
-                    pacman_sync texlive-most texlive-langjapanese
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-
-            d )
-                break
-                ;;
-        esac
+        if ! tui_select_option 'Enter your option'; then
+            break
+        fi
     done
 }
 
 install_system_apps() {
+    function install_htop() {
+        if is_macos; then
+            brew_install htop
+        elif is_arch; then
+            pacman_sync htop
+        else
+            unsupported_platform_error
+        fi
+    }
+
+    function install_tcpdump() {
+        if is_macos; then
+            brew_install tcpdump
+        elif is_arch; then
+            pacman_sync tcpdump
+        else
+            unsupported_platform_error
+        fi
+    }
+
+    function install_strace() {
+        assert_archlinux
+        pacman_sync strace
+    }
+
     while true; do
         print_title 'System Apps'
 
-        echo "  1) $(menu_item 'htop')"
-        echo "  2) $(menu_item 'strace')"
-        echo "  3) $(menu_item 'tcpdump')"
-        echo ''
-        echo '  d) Done'
+        tui_init_options
+        tui_add_options \
+            'htop' install_htop \
+            'tcpdump' install_tcpdump
+        if is_arch; then
+            tui_add_options install_strace
+        fi
+        tui_set_quit_option d 'Done'
 
-        read -rp 'Enter your option: ' opt
-
-        case "$opt" in
-            1 )
-                if is_macos; then
-                    brew_install htop
-                elif is_arch; then
-                    pacman_sync htop
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            2 )
-                if is_arch; then
-                    pacman_sync strace
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            3 )
-                if is_macos; then
-                    brew_install tcpdump
-                elif is_arch; then
-                    pacman_sync tcpdump
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-
-            d )
-                break
-                ;;
-        esac
+        if ! tui_select_option 'Enter your option'; then
+            break
+        fi
     done
 }
 
 install_internet_apps() {
-    install_im() {
+    function install_google_chrome() {
+        if is_macos; then
+            brew_cask_install google-chrome
+        elif is_arch; then
+            trizen_sync google-chrome
+        else
+            unsupported_platform_error
+        fi
+    }
+
+    function install_geary() {
+        assert_archlinux
+        pacman_sync geary
+    }
+
+    function install_im() {
+        function install_skype() {
+            if is_macos; then
+                brew_cask_install skype
+            elif is_arch; then
+                trizen_sync skypeforlinux-stable-bin
+            else
+                unsupported_platform_error
+            fi
+        }
+
+        function install_slack() {
+            if is_macos; then
+                brew_cask_install slack
+            elif is_arch; then
+                trizen_sync slack-desktop
+            else
+                unsupported_platform_error
+            fi
+        }
+
+        function install_discord() {
+            if is_macos; then
+                brew_cask_install discord
+            elif is_arch; then
+                pacman_sync discord
+            else
+                unsupported_platform_error
+            fi
+        }
+
         while true; do
             print_title 'Instant Messenger Apps'
 
-            echo "  1) $(menu_item 'Skype')"
-            echo "  2) $(menu_item 'Slack')"
-            echo "  3) $(menu_item 'Discord')"
-            echo ''
-            echo '  d) Done'
+            tui_init_options
+            tui_add_options \
+                'Skype' install_skype \
+                'Slack' install_slack \
+                'Discord' install_discord
+            tui_set_quit_option d 'Done'
 
-            read -rp 'Enter your option: ' opt
-
-            case "$opt" in
-                1 )
-                    if is_macos; then
-                        brew_cask_install skype
-                    elif is_arch; then
-                        trizen_sync skypeforlinux-stable-bin
-                    else
-                        unsupported_platform_error
-                    fi
-                    ;;
-                2 )
-                    if is_macos; then
-                        brew_cask_install slack
-                    elif is_arch; then
-                        trizen_sync slack-desktop
-                    else
-                        unsupported_platform_error
-                    fi
-                    ;;
-                3 )
-                    if is_macos; then
-                        brew_cask_install discord
-                    elif is_arch; then
-                        pacman_sync discord
-                    else
-                        unsupported_platform_error
-                    fi
-                    ;;
-
-                d )
-                    break
-                    ;;
-            esac
+            if ! tui_select_option 'Enter your option'; then
+                break
+            fi
         done
     }
 
     while true; do
         print_title 'Internet Apps'
 
-        echo "  1) $(menu_item 'Google Chrome')"
-        echo "  2) $(menu_item 'Geary')"
-        echo ''
-        echo "  3) $(menu_item 'Instant Messengers')"
-        echo ''
-        echo '  d) Done'
+        tui_init_options
+        tui_add_options \
+            'Google Chrome' install_google_chrome \
+            'Instant Messengers' install_im
+        if is_arch; then
+            tui_add_options 'Geary' install_geary
+        fi
+        tui_set_quit_option d 'Done'
 
-        read -rp 'Enter your option: ' opt
-
-        case "$opt" in
-            1 )
-                if is_macos; then
-                    brew_cask_install google-chrome
-                elif is_arch; then
-                    trizen_sync google-chrome
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            2 )
-                if is_arch; then
-                    pacman_sync geary
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-
-            3 )
-                install_im
-                ;;
-
-            d )
-                break
-                ;;
-        esac
+        if ! tui_select_option 'Enter your option'; then
+            break
+        fi
     done
 }
 
 install_fonts() {
+    function install_fira_code() {
+        if is_macos; then
+            brew_cask_install font-fira-code
+        elif is_arch; then
+            pacman_sync otf-fira-code
+        else
+            unsupported_platform_error
+        fi
+    }
+
+    function install_source_code_pro() {
+        if is_macos; then
+            brew_cask_install font-source-code-pro
+        elif is_arch; then
+            pacman_sync adobe-source-code-pro-fonts
+        else
+            unsupported_platform_error
+        fi
+    }
+
+    function install_jetbrains_mono() {
+        if is_macos; then
+            brew_cask_install font-jetbrains-mono
+        elif is_arch; then
+            # TODO Install JetBrains Mono
+            :
+        else
+            unsupported_platform_error
+        fi
+    }
+
     while true; do
         print_title 'Fonts'
 
-        echo "  1) $(menu_item 'Fira Code')"
-        echo "  2) $(menu_item 'Source Code Pro')"
-        echo "  3) $(menu_item 'JetBrains Mono')"
-        echo ''
-        echo '  d) Done'
+        tui_init_options
+        tui_add_options \
+            'Fira Code' install_fira_code \
+            'Source Code Pro' install_source_code_pro \
+            'JetBrains Mono' install_jetbrains_mono
+        tui_set_quit_option d 'Done'
 
-        read -rp 'Enter your option: ' opt
-
-        case "$opt" in
-            1 )
-                if is_macos; then
-                    brew_cask_install font-fira-code
-                elif is_arch; then
-                    pacman_sync otf-fira-code
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            2 )
-                if is_macos; then
-                    brew_cask_install font-source-code-pro
-                elif is_arch; then
-                    pacman_sync adobe-source-code-pro-fonts
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            3 )
-                if is_macos; then
-                    brew_cask_install font-jetbrains-mono
-                elif is_arch; then
-                    # TODO Install JetBrains Mono
-                    :
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-
-            d )
-                break
-                ;;
-        esac
+        if ! tui_select_option 'Enter your option'; then
+            break
+        fi
     done
 }
 
 install_i18n_apps() {
+    function install_fcitx() {
+        if is_arch; then
+            pacman_sync fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt5 \
+                fcitx-configtool fcitx-mozc
+        else
+            unsupported_platform_error
+        fi
+
+        mkdir -p "${XDG_CONFIG_HOME}/fcitx/conf"
+        ln -fs "${HOME}/.dotfiles/fcitx/config" "${XDG_CONFIG_HOME}/fcitx/config"
+        ln -fs "${HOME}/.dotfiles/fcitx/conf/fcitx-classic-ui.conf" \
+            "${XDG_CONFIG_HOME}/fcitx/conf/fcitx-classic-ui.conf"
+    }
     while true; do
         print_title 'Internationalization Apps'
 
-        echo "  1) $(menu_item 'Fcitx')"
-        echo ''
-        echo '  d) Done'
+        tui_init_options
+        if is_arch; then
+            tui_add_options 'Fcitx' install_fcitx
+        fi
+        tui_set_quit_option d 'Done'
 
-        read -rp 'Enter your option: ' opt
-
-        case "$opt" in
-            1 )
-                if is_arch; then
-                    pacman_sync fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt5 \
-                        fcitx-configtool fcitx-mozc
-                else
-                    unsupported_platform_error
-                fi
-
-                mkdir -p "${XDG_CONFIG_HOME}/fcitx/conf"
-                ln -fs "${HOME}/.dotfiles/fcitx/config" "${XDG_CONFIG_HOME}/fcitx/config"
-                ln -fs "${HOME}/.dotfiles/fcitx/conf/fcitx-classic-ui.conf" \
-                   "${XDG_CONFIG_HOME}/fcitx/conf/fcitx-classic-ui.conf"
-                ;;
-
-            d )
-                break
-                ;;
-        esac
+        if ! tui_select_option; then
+            break
+        fi
     done
 }
 
 install_extra_apps() {
+    function install_asciinema() {
+        pip_install system asciinema
+    }
+
+    function install_pandoc() {
+        if is_macos; then
+            brew_install pandoc
+            brew_cask_install wkhtmltopdf
+        elif is_arch; then
+            pacman_sync pandoc wkhtmltopdf
+        else
+            unsupported_platform_error
+        fi
+    }
+
+    function install_psd() {
+        if is_arch; then
+            trizen_sync profile-sync-daemon
+            systemctl_user_enable psd.service
+        else
+            unsupported_platform_error
+        fi
+    }
+
+    function install_ranger() {
+        pip_install system ranger-fm
+
+        ln -fs "${HOME}/.dotfiles/ranger/rc.conf" \
+            "${XDG_CONFIG_HOME}/ranger/rc.conf"
+        ln -fs "${HOME}/.dotfiles/ranger/commands.py" \
+            "${XDG_CONFIG_HOME}/ranger/commands.py"
+    }
+
+    function install_ripgrep() {
+        if is_macos; then
+            brew_install ripgrep
+        elif is_arch; then
+            pacman_sync ripgrep
+        else
+            unsupported_platform_error
+        fi
+
+        ln -fs "${HOME}/.dotfiles/ripgrep/ripgreprc" "${HOME}/.ripgreprc"
+    }
+
     while true; do
         print_title 'Extra'
 
-        echo "  1) $(menu_item 'asciinema')"
-        echo "  2) $(menu_item 'Pandoc')"
-        echo "  3) $(menu_item 'Profile-sync-daemon')"
-        echo "  4) $(menu_item 'ranger')"
-        echo "  5) $(menu_item 'ripgrep')"
-        echo ''
-        echo '  d) Done'
+        tui_init_options
+        tui_add_options \
+            'asciinema' install_asciinema \
+            'Pandoc' install_pandoc \
+            'ranger' install_ranger \
+            'ripgrep' install_ripgrep
+        if is_arch; then
+            tui_add_options 'Profile-sync-daemon' install_psd
+        fi
+        tui_set_quit_option d 'Done'
 
-        read -rp 'Enter your option: ' opt
-
-        case "$opt" in
-            1 )
-                pip_install system asciinema
-                ;;
-            2 )
-                if is_macos; then
-                    brew_install pandoc
-                    brew_cask_install wkhtmltopdf
-                elif is_arch; then
-                    pacman_sync pandoc wkhtmltopdf
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            3 )
-                if is_arch; then
-                    trizen_sync profile-sync-daemon
-                    systemctl_user_enable psd.service
-                else
-                    unsupported_platform_error
-                fi
-                ;;
-            4 )
-                pip_install system ranger-fm
-
-                ln -fs "${HOME}/.dotfiles/ranger/rc.conf" \
-                   "${XDG_CONFIG_HOME}/ranger/rc.conf"
-                ln -fs "${HOME}/.dotfiles/ranger/commands.py" \
-                   "${XDG_CONFIG_HOME}/ranger/commands.py"
-                ;;
-            5 )
-                if is_macos; then
-                    brew_install ripgrep
-                elif is_arch; then
-                    pacman_sync ripgrep
-                else
-                    unsupported_platform_error
-                fi
-
-                ln -fs "${HOME}/.dotfiles/ripgrep/ripgreprc" "${HOME}/.ripgreprc"
-                ;;
-
-            d )
-                break
-                ;;
-        esac
+        if ! tui_select_option 'Enter your option'; then
+            break
+        fi
     done
 }
 
-declare -a visited
+continue_to_desktop_environment() {
+    tui-print-warning 'You must run the Basic Setup at first'
 
-main_menu_item() {
-    local no="$1"
-    local title="$2"
-
-    if [[ "${visited[$no]}" == 1 ]]; then
-        printf "%2d) ${GREEN}☑${RESET} ${BOLD}%s${RESET}" "$no" "$title"
-    else
-        printf "%2d) ☐ ${BOLD}%s${RESET}" "$no" "$title"
+    if ask-yesno 'Are you sure to continue?'; then
+        install_desktop_environment
     fi
 }
 
 while true; do
     print_title 'dotfiles - https://github.com/sei40kr/dotfiles'
 
-    echo " $(main_menu_item  1 'Basic Setup')                  $(main_menu_item  2 'Desktop Environment')"
-    echo " $(main_menu_item  3 'Accessory Apps')               $(main_menu_item  4 'Development Apps')"
-    echo " $(main_menu_item  5 'Development Tools')            $(main_menu_item  6 'Office Apps')"
-    echo " $(main_menu_item  7 'System Apps')                  $(main_menu_item  8 'Internet Apps')"
-    echo " $(main_menu_item  9 'Fonts')                        $(main_menu_item 10 'Internationalization Apps')"
-    echo " $(main_menu_item 11 'Extra')"
-    echo ''
-    echo '  q) Quit'
+    tui_init_options
+    tui_add_options \
+        'Basic Setup' setup_basic \
+        'Desktop Environment' continue_to_desktop_environment \
+        'Accessory Apps' install_accessory_apps \
+        'Development Apps' install_dev_apps \
+        'Development Tools' install_dev_tools \
+        'Office Apps' install_office_apps \
+        'System Apps' install_system_apps \
+        'Internet Apps' install_internet_apps \
+        'Fonts' install_fonts \
+        'Internationalization Apps' install_i18n_apps \
+        'Extra' install_extra_apps
+    tui_set_quit_option q 'Quit'
 
-    read -rp 'Enter your option: ' opt
-
-    case "$opt" in
-        1 )
-            setup_basic
-            visited[1]=1
-            ;;
-        2 )
-            tui-print-warning 'You must run the Basic Setup at first'
-
-            if ask-yesno 'Are you sure to continue?'; then
-                install_desktop_environment
-            fi
-
-            visited[2]=1
-            ;;
-        3 )
-            install_accessory_apps
-            visited[3]=1
-            ;;
-        4 )
-            install_dev_apps
-            visited[4]=1
-            ;;
-        5 )
-            install_dev_tools
-            visited[5]=1
-            ;;
-        6 )
-            install_office_apps
-            visited[6]=1
-            ;;
-        7 )
-            install_system_apps
-            visited[7]=1
-            ;;
-        8 )
-            install_internet_apps
-            visited[9]=1
-            ;;
-        9 )
-            install_fonts
-            visited[12]=1
-            ;;
-        10 )
-            install_i18n_apps
-            visited[13]=1
-            ;;
-        11 )
-            install_extra_apps
-            visited[14]=1
-            ;;
-
-        q )
-            break
-            ;;
-    esac
+    if ! tui_select_option 'Enter your option'; then
+        break
+    fi
 done
