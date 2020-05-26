@@ -50,3 +50,5 @@
 	includeStatusHeader = false
 	includePullRequestsSection = false
 	includeIssuesSection = false
+[url "ssh://git@github.com/sei40kr"]
+	insteadOf = https://github.com/sei40kr
