@@ -1457,6 +1457,7 @@ install_fonts() {
 
         echo "  1) $(menu_item 'Fira Code')"
         echo "  2) $(menu_item 'Source Code Pro')"
+        echo "  3) $(menu_item 'JetBrains Mono')"
         echo ''
         echo '  d) Done'
 
@@ -1477,6 +1478,16 @@ install_fonts() {
                     brew_cask_install font-source-code-pro
                 elif is_arch; then
                     pacman_sync adobe-source-code-pro-fonts
+                else
+                    unsupported_platform_error
+                fi
+                ;;
+            3 )
+                if is_macos; then
+                    brew_cask_install font-jetbrains-mono
+                elif is_arch; then
+                    # TODO Install JetBrains Mono
+                    :
                 else
                     unsupported_platform_error
                 fi
