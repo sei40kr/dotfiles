@@ -42,6 +42,8 @@ basepath="$(cd "$(dirname "$0")/.." && pwd)"
 . "${basepath}/install/lib/assertions.bash"
 # shellcheck source=lib/tui.bash
 . "${basepath}/install/lib/tui.bash"
+# shellcheck source=lib/tui_select.bash
+. "${basepath}/install/lib/tui_select.bash"
 # shellcheck source=lib/process.bash
 . "${basepath}/install/lib/process.bash"
 # shellcheck source=lib/facades/brew.bash
