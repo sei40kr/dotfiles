@@ -971,7 +971,11 @@ install_dev_tools() {
         fi
 
         git_clone nvm-sh/nvm "$NVM_DIR"
-        git -C "$NVM_DIR" checkout "$(git tag --sort=version:refname | tail -n1)"
+        (
+            cd "$NVM_DIR"
+            git fetch
+            git checkout "$(git tag --sort=version:refname | tail -n1)"
+        )
 
         ( . "${NVM_DIR}/nvm.sh"
           nvm alias default system )
