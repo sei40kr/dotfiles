@@ -1118,8 +1118,9 @@ install_dev_tools() {
         }
 
         function install_circleci_cli() {
-            # TODO Install circleci with Homebrew on macOS
-            if [[ ! -x /usr/local/bin/circleci ]]; then
+            if is_macos; then
+                brew_install circleci
+            elif [[ ! -x /usr/local/bin/circleci ]]; then
                 curl -fLSs https://circle.ci/cli | sudo bash
             fi
         }
