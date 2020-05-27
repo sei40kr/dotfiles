@@ -26,10 +26,8 @@ IFS=$'\n\t'
 : "${R_ENVIRON_USER:=${XDG_CONFIG_HOME}/r/.Renviron}"
 : "${R_PROFILE_USER:=${XDG_CONFIG_HOME}/r/.Rprofile.r}"
 
-declare -A ZINIT
-ZINIT[HOME_DIR]="${HOME}/.zinit"
-ZINIT[BIN_DIR]="${ZINIT[HOME_DIR]}/bin"
-ZINIT[PLUGINS_DIR]="${ZINIT[HOME_DIR]}/plugins"
+declare ZINIT_HOME_DIR="${HOME}/.zinit"
+declare ZINIT_BIN_DIR="${ZINIT_HOME_DIR}/bin"
 
 basepath="$(cd "$(dirname "$0")/.." && pwd)"
 # shellcheck source=lib/core.bash
@@ -202,8 +200,8 @@ setup_basic() {
         ln -fsT "${HOME}/.dotfiles/zsh/functions" "${ZDOTDIR}/functions"
         ln -fsT "${HOME}/.dotfiles/zsh/completions" "${ZDOTDIR}/completions"
 
-        mkdir -p "${ZINIT[HOME_DIR]}"
-        git_clone zdharma/zinit "${ZINIT[BIN_DIR]}"
+        mkdir -p "${ZINIT_HOME_DIR}"
+        git_clone zdharma/zinit "${ZINIT_BIN_DIR}"
 
         # Install starship config
         ln -fs "${HOME}/.dotfiles/zsh/starship.toml" \
