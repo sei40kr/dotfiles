@@ -891,14 +891,13 @@ install_dev_tools() {
     function install_groovy_dev_tools() {
         if is_macos; then
             brew_install groovy
+            # TODO Install groovy-language-server
         elif is_arch; then
-            # TODO Install groovy
-            :
+            pacman_sync groovy
+            trizen_sync groovy-language-server-git
         else
             unsupported_platform_error
         fi
-
-        # TODO Build and install groovy-language-server
     }
 
     function install_python_dev_tools() {
