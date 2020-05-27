@@ -180,7 +180,7 @@ setup_basic() {
 
         if is_macos; then
             brew_install zsh subversion fzf
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync zsh subversion fzf
         else
             unsupported_platform_error
@@ -223,7 +223,7 @@ setup_basic() {
 
         if is_macos; then
             brew_install tmux fzf
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync tmux xsel fzf
         else
             unsupported_platform_error
@@ -259,7 +259,7 @@ setup_basic() {
 
         if is_macos; then
             brew_install openssh
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync openssh
         else
             unsupported_platform_error
@@ -642,7 +642,7 @@ install_accessory_apps() {
     function install_bitwarden() {
         if is_macos; then
             brew_cask_install bitwarden
-        elif is_arch; then
+        elif is_archlinux; then
             trizen_sync bitwarden-bin
         else
             unsupported_platform_error
@@ -664,7 +664,7 @@ install_accessory_apps() {
 
         tui_init_options
         tui_add_options 'Bitwarden' install_bitwarden
-        if is_arch; then
+        if is_archlinux; then
             tui_add_options \
                 'Calendar' install_calendar \
                 'GoldenDict' install_goldendict
@@ -681,7 +681,7 @@ install_dev_apps() {
     install_git() {
         if is_macos; then
             brew_install git
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync git
         else
             unsupported_platform_error
@@ -699,7 +699,7 @@ install_dev_apps() {
                 ripgrep \
                 fd \
                 libvterm cmake
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync \
                 emacs \
                 ripgrep \
@@ -731,7 +731,7 @@ install_dev_apps() {
     install_intellij_idea_ue() {
         if is_macos; then
             brew_cask_install intellij-idea
-        elif is_arch; then
+        elif is_archlinux; then
             trizen_sync intellij-idea-ultimate-edition
         else
             unsupported_platform_error
@@ -755,7 +755,7 @@ install_dev_apps() {
             'Git' install_git \
             'Doom Emacs' install_doom_emacs \
             'IntelliJ IDEA Ultimate Edition' install_intellij_idea_ue
-        if is_arch; then
+        if is_archlinux; then
             tui_add_options 'Zeal' install_zeal
         fi
         tui_set_quit_option d 'Done'
@@ -771,7 +771,7 @@ install_dev_tools() {
         if is_macos; then
             pacman_sync llvm gcc gdb gdb-dashboard clang
             trizen_sync ccls
-        elif is_arch; then
+        elif is_archlinux; then
             brew_install llvm gcc gdb clang-format ccls
         else
             unsupported_platform_error
@@ -783,7 +783,7 @@ install_dev_tools() {
     }
 
     function install_rust_dev_tools() {
-        if is_arch; then
+        if is_archlinux; then
             pacman_sync rustup
         else
             unsupported_platform_error
@@ -804,7 +804,7 @@ install_dev_tools() {
     function install_go_dev_tools() {
         if is_macos; then
             brew_install go
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync go
         else
             unsupported_platform_error
@@ -823,7 +823,7 @@ install_dev_tools() {
     function install_haskell_dev_tools() {
         if is_macos; then
             brew_install haskell-stack
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync stack
         else
             unsupported_platform_error
@@ -844,7 +844,7 @@ install_dev_tools() {
     function install_java_dev_tools() {
         if is_macos; then
             brew_install 'openjdk@11' maven gradle
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync jdk11-openjdk maven gradle
         else
             unsupported_platform_error
@@ -860,7 +860,7 @@ install_dev_tools() {
         if is_macos; then
             brew_install kotlin ktlint
             # TODO Install kotlin-language-server
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync kotlin
             trizen_sync ktlint kotlin-language-server
         else
@@ -875,7 +875,7 @@ install_dev_tools() {
                 scala sbt \
                 scalastyle \
                 maven gradle
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync \
                 scala sbt \
                 maven gradle
@@ -892,7 +892,7 @@ install_dev_tools() {
         if is_macos; then
             brew_install groovy
             # TODO Install groovy-language-server
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync groovy
             trizen_sync groovy-language-server-git
         else
@@ -903,7 +903,7 @@ install_dev_tools() {
     function install_python_dev_tools() {
         if is_macos; then
             brew_install python poetry
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync python python-pip poetry
         else
             unsupported_platform_error
@@ -924,7 +924,7 @@ install_dev_tools() {
     function install_ruby_dev_tools() {
         if is_macos; then
             brew_install ruby
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync ruby
         else
             unsupported_platform_error
@@ -945,7 +945,7 @@ install_dev_tools() {
     function install_perl_dev_tools() {
         if is_macos; then
             brew_install perl cpanminus
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync perl cpanminus
         else
             unsupported_platform_error
@@ -962,7 +962,7 @@ install_dev_tools() {
     function install_web_frontend_dev_tools() {
         if is_macos; then
             brew_install node yarn
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync nodejs npm yarn
         else
             unsupported_platform_error
@@ -1012,7 +1012,7 @@ install_dev_tools() {
     function install_r_dev_tools() {
         if is_macos; then
             brew_install r
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync r tk openblas
         else
             unsupported_platform_error
@@ -1034,7 +1034,7 @@ install_dev_tools() {
     function install_shell_scripts_dev_tools() {
         if is_macos; then
             brew_install shellcheck shfmt
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync shellcheck shfmt
         else
             unsupported_platform_error
@@ -1052,7 +1052,7 @@ install_dev_tools() {
     function install_plantuml_dev_tools() {
         if is_macos; then
             brew_install plantuml
-        elif is_arch; then
+        elif is_archlinux; then
             trizen_sync plantuml
         else
             unsupported_platform_error
@@ -1067,7 +1067,7 @@ install_dev_tools() {
         if is_macos; then
             brew_cask_install docker
             brew_install docker-compose
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync docker docker-compose
         else
             unsupported_platform_error
@@ -1213,7 +1213,7 @@ install_office_apps() {
     function install_texlive() {
         if is_macos; then
             brew_cask_install basictex
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync texlive-most texlive-langjapanese
         else
             unsupported_platform_error
@@ -1224,7 +1224,7 @@ install_office_apps() {
         print_title 'Office Apps'
 
         tui_init_options
-        if is_arch; then
+        if is_archlinux; then
             tui_add_options 'GNOME Pomodoro' install_gnome_pomodoro
         fi
         tui_add_options 'TeX Live' install_texlive
@@ -1240,7 +1240,7 @@ install_system_apps() {
     function install_htop() {
         if is_macos; then
             brew_install htop
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync htop
         else
             unsupported_platform_error
@@ -1250,7 +1250,7 @@ install_system_apps() {
     function install_tcpdump() {
         if is_macos; then
             brew_install tcpdump
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync tcpdump
         else
             unsupported_platform_error
@@ -1269,7 +1269,7 @@ install_system_apps() {
         tui_add_options \
             'htop' install_htop \
             'tcpdump' install_tcpdump
-        if is_arch; then
+        if is_archlinux; then
             tui_add_options install_strace
         fi
         tui_set_quit_option d 'Done'
@@ -1284,7 +1284,7 @@ install_internet_apps() {
     function install_google_chrome() {
         if is_macos; then
             brew_cask_install google-chrome
-        elif is_arch; then
+        elif is_archlinux; then
             trizen_sync google-chrome
         else
             unsupported_platform_error
@@ -1300,7 +1300,7 @@ install_internet_apps() {
         function install_skype() {
             if is_macos; then
                 brew_cask_install skype
-            elif is_arch; then
+            elif is_archlinux; then
                 trizen_sync skypeforlinux-stable-bin
             else
                 unsupported_platform_error
@@ -1310,7 +1310,7 @@ install_internet_apps() {
         function install_slack() {
             if is_macos; then
                 brew_cask_install slack
-            elif is_arch; then
+            elif is_archlinux; then
                 trizen_sync slack-desktop
             else
                 unsupported_platform_error
@@ -1320,7 +1320,7 @@ install_internet_apps() {
         function install_discord() {
             if is_macos; then
                 brew_cask_install discord
-            elif is_arch; then
+            elif is_archlinux; then
                 pacman_sync discord
             else
                 unsupported_platform_error
@@ -1350,7 +1350,7 @@ install_internet_apps() {
         tui_add_options \
             'Google Chrome' install_google_chrome \
             'Instant Messengers' install_im
-        if is_arch; then
+        if is_archlinux; then
             tui_add_options 'Geary' install_geary
         fi
         tui_set_quit_option d 'Done'
@@ -1365,7 +1365,7 @@ install_fonts() {
     function install_fira_code() {
         if is_macos; then
             brew_cask_install font-fira-code
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync otf-fira-code
         else
             unsupported_platform_error
@@ -1375,7 +1375,7 @@ install_fonts() {
     function install_source_code_pro() {
         if is_macos; then
             brew_cask_install font-source-code-pro
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync adobe-source-code-pro-fonts
         else
             unsupported_platform_error
@@ -1385,7 +1385,7 @@ install_fonts() {
     function install_jetbrains_mono() {
         if is_macos; then
             brew_cask_install font-jetbrains-mono
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync ttf-jetbrains-mono
         else
             unsupported_platform_error
@@ -1410,7 +1410,7 @@ install_fonts() {
 
 install_i18n_apps() {
     function install_fcitx() {
-        if is_arch; then
+        if is_archlinux; then
             pacman_sync fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt5 \
                 fcitx-configtool fcitx-mozc
         else
@@ -1426,7 +1426,7 @@ install_i18n_apps() {
         print_title 'Internationalization Apps'
 
         tui_init_options
-        if is_arch; then
+        if is_archlinux; then
             tui_add_options 'Fcitx' install_fcitx
         fi
         tui_set_quit_option d 'Done'
@@ -1446,7 +1446,7 @@ install_extra_apps() {
         if is_macos; then
             brew_install pandoc
             brew_cask_install wkhtmltopdf
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync pandoc wkhtmltopdf
         else
             unsupported_platform_error
@@ -1454,7 +1454,7 @@ install_extra_apps() {
     }
 
     function install_psd() {
-        if is_arch; then
+        if is_archlinux; then
             trizen_sync profile-sync-daemon
             systemctl_user_enable psd.service
         else
@@ -1474,7 +1474,7 @@ install_extra_apps() {
     function install_ripgrep() {
         if is_macos; then
             brew_install ripgrep
-        elif is_arch; then
+        elif is_archlinux; then
             pacman_sync ripgrep
         else
             unsupported_platform_error
@@ -1492,7 +1492,7 @@ install_extra_apps() {
             'Pandoc' install_pandoc \
             'ranger' install_ranger \
             'ripgrep' install_ripgrep
-        if is_arch; then
+        if is_archlinux; then
             tui_add_options 'Profile-sync-daemon' install_psd
         fi
         tui_set_quit_option d 'Done'

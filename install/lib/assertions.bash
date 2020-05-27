@@ -35,7 +35,7 @@ assert_equal() {
 # status code 1.
 #
 assert_archlinux() {
-  if ! is_arch; then
+  if ! is_archlinux; then
     unsupported_platform_error
   fi
 }

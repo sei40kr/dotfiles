@@ -1,6 +1,6 @@
 # author: Seong Yong-ju
 
-is_arch() {
+is_archlinux() {
     [[ "$OSTYPE" == linux* && -f /etc/arch-release ]]
 }
 
