@@ -700,9 +700,10 @@ install_dev_apps() {
                 fd \
                 libvterm cmake
         elif is_arch; then
-            # TODO Install fd
-            pacman_sync emacs \
+            pacman_sync \
+                emacs \
                 ripgrep \
+                fd \
                 libvterm cmake
         else
             unsupported_platform_error
