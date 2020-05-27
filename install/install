@@ -742,6 +742,11 @@ install_dev_apps() {
         ln -fs "${HOME}/.dotfiles/intellij-idea/ideavimrc" "${HOME}/.ideavimrc"
     }
 
+    install_dash() {
+        assert_macos
+        brew_cask_install dash
+    }
+
     install_zeal() {
         assert_archlinux
         pacman_sync zeal
@@ -755,7 +760,9 @@ install_dev_apps() {
             'Git' install_git \
             'Doom Emacs' install_doom_emacs \
             'IntelliJ IDEA Ultimate Edition' install_intellij_idea_ue
-        if is_archlinux; then
+        if is_macos; then
+            tui_add_options 'Dash' install_dash
+        elif is_archlinux; then
             tui_add_options 'Zeal' install_zeal
         fi
         tui_set_quit_option d 'Done'
