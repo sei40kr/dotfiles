@@ -1075,68 +1075,72 @@ install_dev_tools() {
     }
 
     function install_others() {
+        function install_editorconfig() {
+            if is_macos; then
+                brew_install editorconfig
+            elif is_arch; then
+                pacman_sync editorconfig-core-c
+            else
+                unsupported_platform_error
+            fi
+        }
+
+        function install_aws_shell() {
+            pip_install system aws-shell
+        }
+
+        function install_google_cloud_sdk() {
+            if is_macos; then
+                brew_cask_install google-cloud-sdk
+            elif is_arch; then
+                trizen_sync google-cloud-sdk
+            else
+                unsupported_platform_error
+            fi
+        }
+
+        function install_oci_cli() {
+            pip_install system oci-cli
+        }
+
+        function install_act() {
+            if is_macos; then
+                brew_install nektos/tap/act
+            elif is_arch; then
+                trizen_sync act
+            else
+                unsupported_platform_error
+            fi
+        }
+
+        function install_circleci_cli() {
+            # TODO Install circleci with Homebrew on macOS
+            if [[ ! -x /usr/local/bin/circleci ]]; then
+                curl -fLSs https://circle.ci/cli | sudo bash
+            fi
+        }
+
+        function install_travis() {
+            gem_install system travis
+        }
+
         while true; do
             print_title 'Others'
 
-            echo "  1) $(menu_item 'EditorConfig')"
-            echo "  2) $(menu_item 'AWS Shell')"
-            echo "  3) $(menu_item 'Google Cloud SDK')"
-            echo "  4) $(menu_item 'Oracle Cloud Infrastructure CLI')"
-            echo "  5) $(menu_item 'act')"
-            echo "  6) $(menu_item 'circleci-cli')"
-            echo "  7) $(menu_item 'The Travis Client')"
-            echo ''
-            echo '  d) Done'
+            tui_init_options
+            tui_add_options \
+                'EditorConfig' install_editorconfig \
+                'AWS Shell' install_aws_shell \
+                'Google Cloud SDK' install_google_cloud_sdk \
+                'Oracle Cloud Infrastructure' install_oci_cli \
+                'act' install_act \
+                'circleci-cli' install_circleci_cli \
+                'The Travis Client' install_travis_client
+            tui_set_quit_option d 'Done'
 
-            read -rp 'Enter your option: ' opt
-
-            case "$opt" in
-                1)
-                    if is_macos; then
-                        brew_install editorconfig
-                    elif is_arch; then
-                        pacman_sync editorconfig-core-c
-                    else
-                        unsupported_platform_error
-                    fi
-                    ;;
-                2)
-                    pip_install system aws-shell
-                    ;;
-                3)
-                    if is_macos; then
-                        brew_cask_install google-cloud-sdk
-                    elif is_arch; then
-                        trizen_sync google-cloud-sdk
-                    else
-                        unsupported_platform_error
-                    fi
-                    ;;
-                4)
-                    pip_install system oci-cli
-                    ;;
-                5)
-                    if is_macos; then
-                        brew_install nektos/tap/act
-                    elif is_arch; then
-                        trizen_sync act
-                    else
-                        unsupported_platform_error
-                    fi
-                    ;;
-                6)
-                    if [[ ! -x /usr/local/bin/circleci ]]; then
-                        curl -fLSs https://circle.ci/cli | sudo bash
-                    fi
-                    ;;
-                7)
-                    gem_install system travis
-                    ;;
-
-                d )
-                    break
-                    ;;
-            esac
+            if ! tui_select_option 'Enter your option'; then
+                break
+            fi
         done
     }
 
