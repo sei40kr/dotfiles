@@ -1385,8 +1385,7 @@ install_fonts() {
         if is_macos; then
             brew_cask_install font-jetbrains-mono
         elif is_arch; then
-            # TODO Install JetBrains Mono
-            :
+            pacman_sync ttf-jetbrains-mono
         else
             unsupported_platform_error
         fi
