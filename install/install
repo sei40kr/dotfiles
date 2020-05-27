@@ -10,7 +10,7 @@ IFS=$'\n\t'
 
 : "${XDG_PICTURES_DIR:=${HOME}/Pictures}"
 
-: "${WORKSPACE_DIR:=${HOME}/develop/workspace}"
+: "${WORKSPACE_DIR:=${HOME}/projects}"
 
 : "${ZDOTDIR:=${HOME}/.zsh}"
 

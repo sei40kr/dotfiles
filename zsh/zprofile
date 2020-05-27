@@ -111,7 +111,7 @@ fpath=( "${ZDOTDIR}/functions"
 #
 # Others
 
-WORKSPACE_DIR="${HOME}/develop/workspace"
+WORKSPACE_DIR="${HOME}/projects"
 
 
 export PATH
