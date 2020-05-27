@@ -859,14 +859,13 @@ install_dev_tools() {
     function install_kotlin_dev_tools() {
         if is_macos; then
             brew_install kotlin ktlint
+            # TODO Install kotlin-language-server
         elif is_arch; then
-            # TODO Install kotlin, ktlint
-            :
+            pacman_sync kotlin
+            trizen_sync ktlint kotlin-language-server
         else
             unsupported_platform_error
         fi
-
-        # TODO Build and install kotlin-language-server
     }
 
     function install_scala_dev_tools() {
