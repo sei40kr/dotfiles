@@ -822,15 +822,14 @@ install_dev_tools() {
     function install_haskell_dev_tools() {
         if is_macos; then
             brew_install haskell-stack
-            mkdir -p "${HOME}/.stack"
-            ln -fs "${HOME}/.dotfiles/stack/config.yaml" \
-                "${HOME}/.stack/config.yaml"
         elif is_arch; then
-            # TODO Install stack
-            :
+            pacman_sync stack
         else
             unsupported_platform_error
         fi
+
+        mkdir -p "${HOME}/.stack"
+        ln -fs "${HOME}/.dotfiles/stack/config.yaml" "${HOME}/.stack/config.yaml"
 
         stack_install hlint brittany
 
