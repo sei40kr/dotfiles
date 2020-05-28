@@ -40,7 +40,7 @@ brew_install() {
     if [[ -n "$formula" ]]; then
       print_brewfile_line
     fi
-  } | brew bundle --file=-
+  } | run_process brew bundle --file=-
 }
 
 # brew_cask_install CASK ...
@@ -60,5 +60,5 @@ brew_cask_install() {
     for cask in "$@"; do
       echo "cask \"${cask}\""
     done
-  } | brew bundle --file=-
+  } | run_process brew bundle --file=-
 }
