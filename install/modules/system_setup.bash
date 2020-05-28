@@ -14,7 +14,7 @@ system_setup() {
     tui_add_options 'OpenSSH' install_openssh
     tui_set_quit_option d 'Done'
 
-    if ! tui_select_option 'Enter your option'; then
+    if ! tui_select_options 'Enter your option'; then
       break
     fi
 

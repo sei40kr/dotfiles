@@ -92,7 +92,7 @@ while true; do
     'Development Environment' install_development_environment
   tui_set_quit_option q 'Quit'
 
-  if ! tui_select_option 'Enter your option'; then
+  if ! tui_select_options 'Enter your option'; then
     break
   fi
 done
