@@ -2,6 +2,8 @@
 
 system_setup() {
   while true; do
+    print_title 'System Setup'
+
     if is_archlinux; then
       tui_add_options \
         'Trizen' install_trizen \

@@ -2,6 +2,8 @@
 
 install_shell_tools() {
   while true; do
+    print_title 'Shell Tools'
+
     tui_add_options \
       'exa' install_exa \
       'bat' install_bat \

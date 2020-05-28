@@ -1,6 +1,8 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 install_desktop_environment() {
+  print_title 'Desktop Environment'
+
   while true; do
     if is_macos; then
       tui_add_options \
