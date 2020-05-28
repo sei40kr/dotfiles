@@ -80,3 +80,12 @@ assert_executable() {
     exit 127
   fi
 }
+
+# assertion_error ERROR
+#
+assertion_error() {
+  local error="$1"
+
+  tui-error "${error:-Assertion failed. Aborting.}"
+  exit 1
+}

@@ -1,17 +1,56 @@
 # author: Seong Yong-ju
 
-is_archlinux() {
-  [[ "$OSTYPE" == linux* && -f /etc/arch-release ]]
+declare core__current_module
+declare core__module_basepath
+core__module_basepath="$(cd "$(dirname "${BASH_SOURCE[0]}")/../modules" && pwd)"
+
+# use_lazy_modules (MODULE TRIGGER-FUNCTION) ...
+#
+use_lazy_modules() {
+  local module
+  local trigger_function
+
+  while [[ "$#" -gt 0 ]]; do
+    module="$1"
+    shift
+    trigger_function="$1"
+    shift
+
+    assert_not_empty "$module"
+    assert_not_empty "$trigger_function"
+
+    core__use_lazy_module "$module" "$trigger_function"
+  done
 }
 
-is_macos() {
-  [[ "$OSTYPE" == darwin* ]]
-}
+# core__use_lazy_module MODULE TRIGGER-FUNCTION
+#
+core__use_lazy_module() {
+  local module="$1"
+  local trigger_function="$2"
 
-command_exists() {
-  local command="$1"
+  assert_not_empty "$module"
+  assert_not_empty "$trigger_function"
 
-  hash "$command" 2>/dev/null
+  local module_abstract="${core__current_module:+${core__current_module}/}${module}"
+
+  local file
+  if [[ -f "${core__module_basepath}/${module_abstract}.bash" ]]; then
+    file="${core__module_basepath}/${module_abstract}.bash"
+  elif [[ -d "${core__module_basepath}/${module_abstract}" && -f "${core__module_basepath}/${module_abstract}/index.bash" ]]; then
+    file="${core__module_basepath}/${module_abstract}/index.bash"
+  else
+    tui-error "Module \"${module_abstract}\" is not found. Aborting."
+  fi
+
+  eval "function ${trigger_function}() {
+    (
+      core__current_module=$(printf '%q' "$module_abstract")
+      . $(printf '%q' "$file")
+
+      eval ${trigger_function}
+    )
+  }"
 }
 
 # abbreviate_filepath
