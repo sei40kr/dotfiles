@@ -5,6 +5,7 @@ install_shell_tools() {
     tui_init_options
     tui_add_options \
       'exa' install_exa \
+      'bat' install_bat \
       'fd' install_fd \
       'ripgrep' install_ripgrep \
       'Ranger (requires Python)' install_ranger \
@@ -22,6 +23,16 @@ install_exa() {
     brew_install exa
   elif is_archlinux; then
     pacman_sync exa
+  else
+    unsupported_platform_error
+  fi
+}
+
+install_bat() {
+  if is_macos; then
+    brew_install bat
+  elif is_archlinux; then
+    pacman_sync bat
   else
     unsupported_platform_error
   fi
