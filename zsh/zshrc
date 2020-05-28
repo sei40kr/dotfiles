@@ -12,8 +12,6 @@ fi
 __main() {
     autoload -Uz \
              run-help-git \
-             kca \
-             kres \
              pyclean
 
     if [[ -n "$TMUX" || -n "$INSIDE_EMACS" || -n "$EMACS" || -n "$VIM" ]]; then
