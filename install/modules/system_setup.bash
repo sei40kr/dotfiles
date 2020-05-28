@@ -82,6 +82,4 @@ install_openssh() {
   # shellcheck disable=SC2174
   mkdir -pm 700 "${HOME}/.ssh"
   ln -fs "${HOME}/.dotfiles/ssh/config" "${HOME}/.ssh/config"
-
-  systemctl_enable sshd.service
 }
