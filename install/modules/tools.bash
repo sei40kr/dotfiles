@@ -6,13 +6,25 @@ install_tools() {
     if is_archlinux; then
       tui_add_options 'Profile-sync-daemon' install_psd
     fi
-    tui_add_options 'Pandoc' install_pandoc
+    tui_add_options \
+      'rclone' install_rclone \
+      'Pandoc' install_pandoc
     tui_set_quit_option d 'Done'
 
     if ! tui_select_option 'Enter your option'; then
       break
     fi
   done
+}
+
+install_rclone() {
+  if is_macos; then
+    brew_install rclone
+  elif is_archlinux; then
+    pacman_sync rclone
+  else
+    unsupported_platform_error
+  fi
 }
 
 install_psd() {
