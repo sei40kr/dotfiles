@@ -5,12 +5,12 @@ install_tools() {
     print_title 'Tools'
 
     tui_add_options \
-      'Git' install_tools__git \
-      'EditorConfig' install_tools__editorconfig
+      'Git' install_git \
+      'EditorConfig' install_editorconfig
     if is_macos; then
-      tui_add_options 'Dash' install_tools__dash
+      tui_add_options 'Dash' install_dash
     elif is_archlinux; then
-      tui_add_options 'Zeal' install_tools__zeal
+      tui_add_options 'Zeal' install_zeal
     fi
     tui_set_quit_option d 'Done'
 
@@ -20,7 +20,7 @@ install_tools() {
   done
 }
 
-install_tools__git() {
+install_git() {
   if is_macos; then
     brew_install git
   elif is_archlinux; then
@@ -34,7 +34,7 @@ install_tools__git() {
   ln -fs "${HOME}/.dotfiles/git/ignore" "${XDG_CONFIG_HOME}/git/ignore"
 }
 
-install_tools__editorconfig() {
+install_editorconfig() {
   if is_macos; then
     brew_install editorconfig
   elif is_arch; then
@@ -44,12 +44,12 @@ install_tools__editorconfig() {
   fi
 }
 
-install_tools__dash() {
+install_dash() {
   assert_macos
   brew_cask_install dash
 }
 
-install_tools__zeal() {
+install_zeal() {
   assert_archlinux
   pacman_sync zeal
 }
