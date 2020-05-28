@@ -1,6 +1,6 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-# brew_install FORMULA [OPTION ...] ...
+# brew_install (FORMULA [OPTION ...]) ...
 #
 # Install Homebrew formulas.
 #
