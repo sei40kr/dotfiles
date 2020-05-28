@@ -332,14 +332,14 @@ __main() {
 
     # FZF
     FZF_DEFAULT_OPTS='--height=15 --reverse --inline-info --color=dark --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
-    zinit ice bindmap'^R ->;\ec ->' multisrc'shell/{completion,key-bindings}.zsh'
+    zinit ice has'fzf' bindmap'^R ->;\ec ->' multisrc'shell/{completion,key-bindings}.zsh'
     zinit light -b junegunn/fzf
 
     # FZF additional sources
-    zinit ice trigger-load'!_fzf_complete_docker' \
+    zinit ice has'fzf' trigger-load'!_fzf_complete_docker' \
         atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "$PWD" "${WORKSPACE_DIR}/sei40kr/zsh-fzf-docker"'
     zinit light sei40kr/zsh-fzf-docker
-    zinit ice trigger-load'!_fzf_complete_cd' \
+    zinit ice has'fzf' trigger-load'!_fzf_complete_cd' \
         atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "$PWD" "${WORKSPACE_DIR}/sei40kr/zsh-fzf-cd-dirs"'
     zinit light sei40kr/zsh-fzf-cd-dirs
 
@@ -350,7 +350,7 @@ __main() {
         "${HOME}/.emacs.d"
         "${HOME}/.doom.d"
     )
-    zinit ice trigger-load'!fzf-projects' \
+    zinit ice has'fzf' trigger-load'!fzf-projects' \
         atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "$PWD" "${WORKSPACE_DIR}/sei40kr/zsh-fzf-projects"'
     zinit light sei40kr/zsh-fzf-projects
     zle -N fzf-projects
