@@ -13,7 +13,7 @@ system_setup() {
         'TLP' install_tlp \
         'Network Time Protocol daemon' install_ntpd
     fi
-    tui_add_options 'OpenSSH' install_openssh
+    tui_add_options 'OpenSSH (+ Google Authenticator, fail2ban)' install_openssh
     tui_set_quit_option d 'Done'
 
     if ! tui_select_options 'Enter your option'; then
@@ -72,9 +72,12 @@ install_ntpd() {
 
 install_openssh() {
   if is_macos; then
-    brew_install openssh
+    brew_install openssh google-authenticator-libpam fail2ban
   elif is_archlinux; then
-    pacman_sync openssh
+    pacman_sync \
+      openssh \
+      libpam-google-authenticator qrencode \
+      fail2ban
   else
     unsupported_platform_error
   fi
