@@ -7,9 +7,10 @@ install_apps() {
   while true; do
     print_title 'Apps'
 
-    tui_add_options \
-      'Google Chrome' install_google_chrome
-    if is_archlinux; then
+    tui_add_options 'Google Chrome' install_google_chrome
+    if is_macos; then
+      tui_add_options 'Notion' install_notion
+    elif is_archlinux; then
       tui_add_options \
         'Geary' install_geary \
         'Thunar' install_thunar \
@@ -71,6 +72,11 @@ install_gnome_pomodoro() {
 install_goldendict() {
   assert_archlinux
   pacman_sync goldendict
+}
+
+install_notion() {
+  assert_macos
+  brew_cask_install notion
 }
 
 install_bitwarden() {
