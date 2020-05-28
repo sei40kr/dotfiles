@@ -4,6 +4,7 @@ install_shell_tools() {
   while true; do
     tui_init_options
     tui_add_options \
+      'exa' install_exa \
       'fd' install_fd \
       'ripgrep' install_ripgrep \
       'Ranger (requires Python)' install_ranger \
@@ -14,6 +15,16 @@ install_shell_tools() {
       break
     fi
   done
+}
+
+install_exa() {
+  if is_macos; then
+    brew_install exa
+  elif is_archlinux; then
+    pacman_sync exa
+  else
+    unsupported_platform_error
+  fi
 }
 
 install_fd() {
