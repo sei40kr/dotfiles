@@ -20,7 +20,7 @@ brew_install() {
 
   function print_brewfile_line() {
     local IFS=','
-    echo "brew \"${formula}\"${options:+, [${options[*]}]}"
+    echo "brew \"${formula}\"${options:+, args: [${options[*]}]}"
   }
 
   {
