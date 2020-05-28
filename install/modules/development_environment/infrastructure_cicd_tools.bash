@@ -4,7 +4,6 @@ install_infrastructure_cicd_tools() {
   while true; do
     print_title 'Infrastructure & CI/CD Tools'
 
-    tui_init_options
     tui_add_options \
       'AWS Shell (requires Python)' install_aws_shell \
       'Google Cloud SDK' install_google_cloud_sdk \

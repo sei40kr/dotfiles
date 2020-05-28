@@ -4,7 +4,6 @@ install_editors() {
   while true; do
     print_title 'Editors'
 
-    tui_init_options
     tui_add_options \
       'Doom Emacs (requires fd, ripgrep)' install_doom_emacs \
       'IntelliJ IDEA Ultimate Edition' install_intellij_idea_ue

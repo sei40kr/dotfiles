@@ -2,7 +2,6 @@
 
 install_tools() {
   while true; do
-    tui_init_options
     if is_archlinux; then
       tui_add_options 'Profile-sync-daemon' install_psd
     fi

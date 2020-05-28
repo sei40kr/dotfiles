@@ -2,7 +2,6 @@
 
 install_desktop_environment() {
   while true; do
-    tui_init_options
     if is_macos; then
       tui_add_options \
         'HyperDock' install_hyperdock \

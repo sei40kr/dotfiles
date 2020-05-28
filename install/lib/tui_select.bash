@@ -7,17 +7,6 @@ declare -a __tui_select_option_callbacks
 declare __tui_select_quit_option_letter
 declare __tui_select_quit_option_label
 
-# tui_init_options
-#
-# TODO
-#
-tui_init_options() {
-  __tui_select_option_labels=()
-  __tui_select_option_callbacks=()
-  __tui_select_quit_option_letter=''
-  __tui_select_quit_option_label=''
-}
-
 # tui_add_options (LABEL CALLBACK) ...
 #
 # TODO
@@ -85,6 +74,7 @@ tui_select_option() {
     pattern="${pattern},${__tui_select_quit_option_letter}"
   fi
 
+  local callback
   while true; do
     read -r -p "${prompt} (${pattern}): " input
     input="${input##+( )}"
@@ -92,12 +82,24 @@ tui_select_option() {
 
     if [[ "$input" == +([0-9]) && "$input" -ge 1 && "$input" -le "$num_options" ]]; then
       local i="$(($input - 1))"
-      eval "${__tui_select_option_callbacks[$i]}"
+      local callback="${__tui_select_option_callbacks[$i]}"
+
+      tui_select__clear_options
+
+      eval "$callback"
       break
     elif [[ "$input" == "$__tui_select_quit_option_letter" ]]; then
+      tui_select__clear_options
       return 1
     else
       echo "\"${input}\" is invalid." >&2
     fi
   done
+}
+
+tui_select__clear_options() {
+  __tui_select_option_labels=()
+  __tui_select_option_callbacks=()
+  __tui_select_quit_option_letter=''
+  __tui_select_quit_option_label=''
 }

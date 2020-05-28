@@ -4,7 +4,6 @@ install_competitive_programming_environments() {
   while true; do
     print_title 'Competitive Programming Environments'
 
-    tui_init_options
     tui_add_options \
       'AtCoder (requires Rust, Python)' install_atcoder \
       'LeetCode (requires Rust, Python)' install_leetcode

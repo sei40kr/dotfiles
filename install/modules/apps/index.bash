@@ -7,7 +7,6 @@ install_apps() {
   while true; do
     print_title 'Apps'
 
-    tui_init_options
     tui_add_options \
       'Google Chrome' install_google_chrome
     if is_archlinux; then

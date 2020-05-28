@@ -83,7 +83,6 @@ use_lazy_modules \
 while true; do
   print_title 'dotfiles'
 
-  tui_init_options
   tui_add_options \
     'System Setup' system_setup \
     'Desktop Environment' install_desktop_environment \

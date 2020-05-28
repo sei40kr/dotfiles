@@ -4,7 +4,6 @@ install_instant_messengers() {
   while true; do
     print_title 'Instant Messengers'
 
-    tui_init_options
     tui_add_options \
       'Skype' install_skype \
       'Slack' install_slack \

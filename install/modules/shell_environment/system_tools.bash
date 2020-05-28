@@ -4,7 +4,6 @@ install_system_tools() {
   while true; do
     print_title 'System Tools'
 
-    tui_init_options
     tui_add_options \
       'htop' install_htop \
       'tcpdump' install_tcpdump

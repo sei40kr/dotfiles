@@ -4,7 +4,6 @@ install_programming_fonts() {
   while true; do
     print_title 'Programming Fonts'
 
-    tui_init_options
     tui_add_options \
       'Fira Code' install_fira_code \
       'Source Code Pro' install_source_code_pro \

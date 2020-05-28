@@ -12,7 +12,6 @@ use_lazy_modules \
 
 install_shell_environment() {
   while true; do
-    tui_init_options
     tui_add_options \
       'zsh' install_zsh \
       'tmux' install_tmux \

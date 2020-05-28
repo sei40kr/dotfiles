@@ -2,7 +2,6 @@
 
 system_setup() {
   while true; do
-    tui_init_options
     if is_archlinux; then
       tui_add_options \
         'Trizen' install_trizen \

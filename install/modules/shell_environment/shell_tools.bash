@@ -2,7 +2,6 @@
 
 install_shell_tools() {
   while true; do
-    tui_init_options
     tui_add_options \
       'exa' install_exa \
       'bat' install_bat \

@@ -4,7 +4,6 @@ install_tools() {
   while true; do
     print_title 'Tools'
 
-    tui_init_options
     tui_add_options \
       'Git' install_tools__git \
       'EditorConfig' install_tools__editorconfig

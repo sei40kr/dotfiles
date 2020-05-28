@@ -16,7 +16,6 @@ use_lazy_modules \
 
 install_development_environment() {
   while true; do
-    tui_init_options
     tui_add_options \
       'Editors' install_editors \
       'Programming Fonts' install_programming_fonts \

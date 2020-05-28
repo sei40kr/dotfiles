@@ -46,7 +46,6 @@ install_language_tools() {
   while true; do
     print_title 'Language Tools'
 
-    tui_init_options
     tui_add_options \
       'C' install_c_language_tools \
       'Rust' install_rust_dev_tools \
