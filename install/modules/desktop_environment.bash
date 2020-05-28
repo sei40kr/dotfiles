@@ -3,7 +3,11 @@
 install_desktop_environment() {
   while true; do
     tui_init_options
-    if is_archlinux; then
+    if is_macos; then
+      tui_add_options \
+        'HyperDock' install_hyperdock \
+        'HyperSwitch' install_hyperswitch
+    elif is_archlinux; then
       tui_add_options \
         'Xorg' install_xorg \
         'Picom' install_picom \
@@ -13,10 +17,6 @@ install_desktop_environment() {
         'Dunst' install_dunst \
         'Fontconfig' install_fontconfig \
         'GTK' install_gtk
-    elif is_macos; then
-      tui_add_options \
-        'HyperDock' install_hyperdock \
-        'HyperSwitch' install_hyperswitch
     fi
     tui_set_quit_option d 'Done'
 
