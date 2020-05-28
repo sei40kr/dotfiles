@@ -13,16 +13,14 @@ tui_add_options() {
   local -a args=("$@")
   assert_equal "$(($# % 2))" 0
 
-  local label
   for ((i = 0; i < $#; i += 2)); do
-    label="${args[$i]}"
+    local label="${args[$i]}"
     assert_not_empty "$label"
     tui_select__option_labels+=("$label")
   done
 
-  local callback
   for ((i = 1; i < $#; i += 2)); do
-    callback="${args[$i]}"
+    local callback="${args[$i]}"
     assert_not_empty "$callback"
     tui_select__option_callbacks+=("${args[$i]}")
   done
@@ -101,9 +99,8 @@ tui_select_options() {
 tui_select__print_options() {
   local options_count="${#tui_select__option_labels[@]}"
 
-  local label
   for ((i = 0; i < $options_count; i++)); do
-    label="${tui_select__option_labels[$i]}"
+    local label="${tui_select__option_labels[$i]}"
     printf "%${#options_count}d) %s\n" "$(($i + 1))" "$label"
   done
 

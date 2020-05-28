@@ -7,13 +7,10 @@ core__module_basepath="$(cd "$(dirname "${BASH_SOURCE[0]}")/../modules" && pwd)"
 # use_lazy_modules (MODULE TRIGGER-FUNCTION) ...
 #
 use_lazy_modules() {
-  local module
-  local trigger_function
-
   while [[ "$#" -gt 0 ]]; do
-    module="$1"
+    local module="$1"
     shift
-    trigger_function="$1"
+    local trigger_function="$1"
     shift
 
     assert_not_empty "$module"
