@@ -6,7 +6,7 @@
 # shellcheck source=language_tools/index.bash
 # shellcheck source=infrastructure_cicd_tools.bash
 # shellcheck source=competitive_programming_environments.bash
-define_lazy_modules \
+use_lazy_modules \
   editors install_editors \
   programming_fonts install_programming_fonts \
   tools install_tools \

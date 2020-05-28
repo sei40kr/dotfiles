@@ -72,7 +72,7 @@ done
 # shellcheck source=tools.bash
 # shellcheck source=shell_environment/index.bash
 # shellcheck source=development_environment/index.bash
-define_lazy_modules \
+use_lazy_modules \
   system_setup system_setup \
   desktop_environment install_desktop_environment \
   apps install_apps \

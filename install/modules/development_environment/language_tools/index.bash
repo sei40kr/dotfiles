@@ -20,7 +20,7 @@
 # shellcheck source=plantuml.bash
 # shellcheck source=ansible.bash
 # shellcheck source=docker.bash
-define_lazy_modules \
+use_lazy_modules \
   c install_c_language_tools \
   rust install_rust_dev_tools \
   go install_go_language_tools \

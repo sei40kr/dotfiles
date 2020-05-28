@@ -4,9 +4,9 @@ declare module__current
 declare module__basepath
 module__basepath="$(cd "$(dirname "${BASH_SOURCE[0]}")/../modules" && pwd)"
 
-# define_lazy_modules (MODULE TRIGGER-FUNCTION) ...
+# use_lazy_modules (MODULE TRIGGER-FUNCTION) ...
 #
-define_lazy_modules() {
+use_lazy_modules() {
   local module
   local trigger_function
 
@@ -19,13 +19,13 @@ define_lazy_modules() {
     assert_not_empty "$module"
     assert_not_empty "$trigger_function"
 
-    module__define_lazy_module "$module" "$trigger_function"
+    module__use_lazy_module "$module" "$trigger_function"
   done
 }
 
-# module__define_lazy_module MODULE TRIGGER-FUNCTION
+# module__use_lazy_module MODULE TRIGGER-FUNCTION
 #
-module__define_lazy_module() {
+module__use_lazy_module() {
   local module="$1"
   local trigger_function="$2"
 

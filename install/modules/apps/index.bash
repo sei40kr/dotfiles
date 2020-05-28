@@ -1,7 +1,7 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 # shellcheck source=instant_messengers.bash
-define_lazy_modules instant_messengers install_instant_messengers
+use_lazy_modules instant_messengers install_instant_messengers
 
 install_apps() {
   while true; do

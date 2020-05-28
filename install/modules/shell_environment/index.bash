@@ -4,7 +4,7 @@
 # shellcheck source=tmux.bash
 # shellcheck source=essential_tools.bash
 # shellcheck source=system_tools.bash
-define_lazy_modules \
+use_lazy_modules \
   zsh install_zsh \
   tmux install_tmux \
   shell_tools install_shell_tools \
