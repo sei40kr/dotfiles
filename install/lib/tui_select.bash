@@ -66,7 +66,7 @@ tui_select_option() {
     elif [[ "$input" == "$tui_select__quit_option_letter" ]]; then
       tui_select__clear_options
       return 1
-    else
+    elif [[ "$input" != '' ]]; then
       echo "\"${input}\" is invalid." >&2
     fi
   done
