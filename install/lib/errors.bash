@@ -8,6 +8,6 @@ assertion_error() {
 }
 
 unsupported_platform_error() {
-    tui-error "The platform you're running is not supported."
-    exit 1
+  tui-error "The platform you're running is not supported."
+  exit 1
 }
