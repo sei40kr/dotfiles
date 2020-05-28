@@ -19,7 +19,7 @@ install_editors() {
 install_doom_emacs() {
   if is_macos; then
     brew_install \
-      d12frosted/emacs-plus --with-emacs-27-branch --with-xwidgets --without-spacemacs-icon \
+      d12frosted/emacs-plus/emacs-plus --with-emacs-27-branch --with-xwidgets --without-spacemacs-icon \
       libvterm cmake
   elif is_archlinux; then
     pacman_sync \
