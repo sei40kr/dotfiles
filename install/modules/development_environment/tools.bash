@@ -5,7 +5,7 @@ install_tools() {
     print_title 'Tools'
 
     tui_add_options \
-      'Git' install_git \
+      'Git (+ git-crypt)' install_git \
       'EditorConfig' install_editorconfig
     if is_macos; then
       tui_add_options 'Dash' install_dash
@@ -22,9 +22,9 @@ install_tools() {
 
 install_git() {
   if is_macos; then
-    brew_install git
+    brew_install git git-crypt
   elif is_archlinux; then
-    pacman_sync git
+    pacman_sync git git-crypt
   else
     unsupported_platform_error
   fi
