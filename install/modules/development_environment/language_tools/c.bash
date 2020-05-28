@@ -2,10 +2,10 @@
 
 install_c_language_tools() {
   if is_macos; then
+    brew_install llvm gcc gdb clang-format ccls
+  elif is_archlinux; then
     pacman_sync llvm gcc gdb gdb-dashboard clang
     trizen_sync ccls
-  elif is_archlinux; then
-    brew_install llvm gcc gdb clang-format ccls
   else
     unsupported_platform_error
   fi
