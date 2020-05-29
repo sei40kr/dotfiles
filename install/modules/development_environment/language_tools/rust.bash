@@ -1,7 +1,11 @@
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 install_rust_language_tools() {
-  if is_archlinux; then
+  if is_macos; then
+    brew_install rustup-init
+
+    run_process rustup-init -y
+  elif is_archlinux; then
     pacman_sync rustup
   else
     unsupported_platform_error
