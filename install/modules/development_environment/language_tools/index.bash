@@ -22,7 +22,7 @@
 # shellcheck source=docker.bash
 use_lazy_modules \
   c install_c_language_tools \
-  rust install_rust_dev_tools \
+  rust install_rust_language_tools \
   go install_go_language_tools \
   haskell install_haskell_language_tools \
   java install_java_language_tools \
@@ -48,7 +48,7 @@ install_language_tools() {
 
     tui_add_options \
       'C' install_c_language_tools \
-      'Rust' install_rust_dev_tools \
+      'Rust' install_rust_language_tools \
       'Go' install_go_language_tools \
       'Haskell' install_haskell_language_tools \
       'Java' install_java_language_tools \
