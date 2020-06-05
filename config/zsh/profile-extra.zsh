@@ -74,16 +74,6 @@ path=( "${HOME}/perl5/bin" "${PERLBREW_ROOT}/bin" "${path[@]}" )
 manpath=( "${HOME}/perl5/man" "${manpath[@]}" )
 
 
-## Python
-
-# pyenv
-export PYENV_ROOT="${HOME}/.pyenv"
-path=( "${PYENV_ROOT}/bin" "${PYENV_ROOT}/shims" "${path[@]}" )
-
-# Poetry
-path=( "${HOME}/.poetry/bin" "${path[@]}" )
-
-
 ## Ruby
 
 path=( "${HOME}/.gem/ruby/2.6.0/bin" "${path[@]}" )

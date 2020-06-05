@@ -1,5 +1,5 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  imports = [ ./cc.nix ./git.nix ];
+  imports = [ ./cc.nix ./git.nix ./python.nix ];
 }

@@ -5,6 +5,7 @@
     dev = {
       cc.enable = true;
       git.enable = true;
+      python.enable = true;
     };
     shell = {
       tmux.enable = true;
