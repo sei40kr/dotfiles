@@ -2,6 +2,7 @@
 
 {
   modules = {
+    desktop = { xmonad.enable = true; };
     dev = {
       cc.enable = true;
       git.enable = true;

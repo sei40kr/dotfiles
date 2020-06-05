@@ -1,7 +1,7 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  imports = [ ./dev ./shell ];
+  imports = [ ./desktop ./dev ./shell ];
 
   config.home.sessionVariables.PATH = [ "\$PATH" ];
 }
