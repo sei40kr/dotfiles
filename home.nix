@@ -7,6 +7,8 @@
       term.alacritty.enable = true;
     };
     dev = {
+      editors.emacs.enable = true;
+
       cc.enable = true;
       git.enable = true;
       python.enable = true;
