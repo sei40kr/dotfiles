@@ -1,5 +1,5 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  imports = [ ./term ./xmonad.nix ];
+  imports = [ ./input ./term ./xmonad.nix ];
 }

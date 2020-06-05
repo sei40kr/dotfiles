@@ -5,6 +5,7 @@
     desktop = {
       xmonad.enable = true;
       term.alacritty.enable = true;
+      input.fcitx.enable = true;
     };
     dev = {
       editors.emacs.enable = true;
