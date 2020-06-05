@@ -1,5 +1,5 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  imports = [ ./git.nix ];
+  imports = [ ./cc.nix ./git.nix ];
 }
