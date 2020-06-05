@@ -10,5 +10,16 @@ with lib; {
     home.packages = with pkgs; [ fcitx fcitx-configtool fcitx-engines.mozc ];
 
     xdg.configFile."fcitx/config".source = <config/fcitx/config>;
+
+    xsession = {
+      profileExtra = config.xsession.profileExtra ++ ''
+        export GTK_IM_MODULE=fcitx
+        export QT_IM_MODULE=fcitx
+        export XMODIFIERS='@im=fcitx'
+      '';
+      initExtra = config.xsession.initExtra ++ ''
+        ${pkgs.fcitx}/bin/fcitx &
+      '';
+    };
   };
 }
