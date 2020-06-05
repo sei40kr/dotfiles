@@ -11,6 +11,7 @@ with lib; {
       enable = true;
       enableContribAndExtras = true;
     };
+    home.file.".xmonad/xmonad.hs".source = <config/xmonad/xmonad.hs>;
 
     # picom
     services.picom = {

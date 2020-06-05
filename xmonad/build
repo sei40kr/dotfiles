@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# build
-# author: Seong Yong-ju <sei40kr@gmail.com>
-
-stack build custom-xmonad:exe:xmonad &&
-    stack install custom-xmonad:exe:xmonad --local-bin-path . &&
-    mv xmonad xmonad-x86_64-linux
