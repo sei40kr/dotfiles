@@ -6,7 +6,10 @@
       cc.enable = true;
       git.enable = true;
     };
-    shell = { zsh.enable = true; };
+    shell = {
+      tmux.enable = true;
+      zsh.enable = true;
+    };
   };
 
   imports = [ <modules> ];

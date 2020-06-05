@@ -1,5 +1,5 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  imports = [ ./zsh.nix ];
+  imports = [ ./tmux.nix ./zsh.nix ];
 }
