@@ -22,11 +22,8 @@ __main() {
     fi
 
     HISTFILE="${ZDOTDIR}/.zsh_history"
-    HISTSIZE=10000
-    SAVEHIST=10000
 
     setopt APPEND_HISTORY
-    setopt AUTO_CD
     setopt AUTO_LIST
     setopt AUTO_MENU
     setopt AUTO_PUSHD
@@ -34,16 +31,13 @@ __main() {
     setopt AUTO_PARAM_SLASH
     setopt AUTO_RESUME
     setopt EQUALS
-    setopt EXTENDED_HISTORY
     setopt GLOB_DOTS
-    setopt HIST_IGNORE_ALL_DUPS
     setopt INTERACTIVE_COMMENTS
     setopt NO_BEEP
     setopt NUMERIC_GLOB_SORT
     setopt PRINT_EIGHT_BIT
     setopt PROMPT_SUBST
     setopt PUSHD_IGNORE_DUPS
-    setopt SHARE_HISTORY
     unsetopt LIST_BEEP
 
     bindkey -e
@@ -62,8 +56,7 @@ __main() {
     . "${ZDOTDIR}/secrets.zsh"
     . "${ZDOTDIR}/custom-history.zsh"
 
-
-    . "${HOME}/.zinit/bin/zinit.zsh"
+    . "${ZINIT[BIN_DIR]}/zinit.zsh"
 
     HYPHEN_INSENSITIVE=true
     zinit snippet OMZL::clipboard.zsh
