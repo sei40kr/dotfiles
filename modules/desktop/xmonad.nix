@@ -7,9 +7,14 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.xmonad.enable {
-    xsession.windowManager.xmonad = {
+
+    xsession = {
       enable = true;
-      enableContribAndExtras = true;
+
+      windowManager.xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+      };
     };
     home.file.".xmonad/xmonad.hs".source = <config/xmonad/xmonad.hs>;
 
