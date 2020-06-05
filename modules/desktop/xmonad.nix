@@ -16,5 +16,16 @@ with lib; {
     services.picom = {
       enable = true;
     };
+
+    # polybar
+    services.polybar = {
+      enable = true;
+      config = <config/polybar/config>;
+      script = ''
+        polybar top &
+        polybar bottom &
+      '';
+    };
+    home.file."polybar-scripts".source = <config/polybar/scripts>;
   };
 }
