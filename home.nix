@@ -2,7 +2,10 @@
 
 {
   modules = {
-    desktop = { xmonad.enable = true; };
+    desktop = {
+      xmonad.enable = true;
+      term.alacritty.enable = true;
+    };
     dev = {
       cc.enable = true;
       git.enable = true;
