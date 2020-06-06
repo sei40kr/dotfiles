@@ -11,13 +11,14 @@ with lib; {
 
     xdg.configFile."fcitx/config".source = <config/fcitx/config>;
 
+    # Initialize Fcitx in X Session
     xsession = {
-      profileExtra = config.xsession.profileExtra ++ ''
+      profileExtra = ''
         export GTK_IM_MODULE=fcitx
         export QT_IM_MODULE=fcitx
         export XMODIFIERS='@im=fcitx'
       '';
-      initExtra = config.xsession.initExtra ++ ''
+      initExtra = ''
         ${pkgs.fcitx}/bin/fcitx &
       '';
     };
