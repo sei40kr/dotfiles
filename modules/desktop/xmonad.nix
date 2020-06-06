@@ -18,6 +18,9 @@ with lib; {
     };
     home.file.".xmonad/xmonad.hs".source = <config/xmonad/xmonad.hs>;
 
+    # XDG User Directories
+    xdg.userDirs.enable = true;
+
     # picom
     services.picom = {
       enable = true;
