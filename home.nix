@@ -4,6 +4,7 @@
   modules = {
     desktop = {
       xmonad.enable = true;
+      apps.rofi.enable = true;
       term.alacritty.enable = true;
       input.fcitx.enable = true;
     };
