@@ -2,13 +2,6 @@
 
 let mapleader = " "
 
-" Selected Intellimacs modules
-source ~/.intellimacs/spacemacs/buffers.vim
-source ~/.intellimacs/spacemacs/help.vim
-source ~/.intellimacs/spacemacs/misc.vim
-source ~/.intellimacs/spacemacs/search-symbol.vim
-source ~/.intellimacs/hybrid.vim
-
 " My own vim commands
 set clipboard+=unnamed
 set commentary

@@ -1,6 +1,8 @@
 { config, lib, options, pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
+
   modules = {
     desktop = {
       xmonad.enable = true;
@@ -9,7 +11,10 @@
       input.fcitx.enable = true;
     };
     dev = {
-      editors.emacs.enable = true;
+      editors = {
+        emacs.enable = true;
+        idea.enable = true;
+      };
 
       cc.enable = true;
       git.enable = true;
