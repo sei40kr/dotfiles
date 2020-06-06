@@ -33,8 +33,11 @@
       rust.enable = true;
     };
     shell = {
-      tmux.enable = true;
       zsh.enable = true;
+      tmux.enable = true;
+
+      exa.enable = true;
+      bat.enable = true;
     };
   };
 

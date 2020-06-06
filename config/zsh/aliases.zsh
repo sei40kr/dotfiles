@@ -7,9 +7,6 @@ alias pu=pushd
 alias u='cd ..'
 alias cx='chmod +x'
 
-# bat
-alias cat='bat --theme TwoDark'
-
 # brew
 if is_macos; then
     alias brew='HOMEBREW_GITHUB_API_TOKEN="$HOMEBREW_GITHUB_API_TOKEN" brew'
@@ -83,11 +80,6 @@ alias dvclean='docker volume rm $(docker volume ls -qf dangling=true)'
 alias drmi='docker rmi -f $(docker images -aq --filter dangling=true) 2>/dev/null'
 # wipe everything, kill all running processes, remove all containers and images
 alias dwipe='docker kill $(docker ps -q) 2>/dev/null;docker rm $(docker ps -aq) 2>/dev/null;docker rmi -f $(docker images -aq) 2>/dev/null'
-
-# exa
-alias ls='exa -F'
-alias la='exa -laFh'
-alias tree='exa -T'
 
 # fzf
 alias preview="fzf --preview 'bat --color always {}'"

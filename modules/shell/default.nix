@@ -1,5 +1,5 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  imports = [ ./tmux.nix ./zsh.nix ];
+  imports = [ ./bat.nix ./exa.nix ./tmux.nix ./zsh.nix ];
 }
