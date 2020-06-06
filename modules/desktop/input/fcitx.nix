@@ -7,7 +7,7 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.input.fcitx.enable {
-    home.packages = with pkgs; [ fcitx fcitx-configtool fcitx-engines.mozc ];
+    my.packages = with pkgs; [ fcitx fcitx-configtool fcitx-engines.mozc ];
 
     xdg.configFile."fcitx/config".source = <config/fcitx/config>;
 

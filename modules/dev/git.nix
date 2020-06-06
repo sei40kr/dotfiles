@@ -7,7 +7,7 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.git.enable {
-    home.packages = [ pkgs.git ];
+    my.packages = [ pkgs.git ];
 
     xdg.configFile = {
       "git/config".source = <config/git/config>;

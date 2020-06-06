@@ -12,7 +12,7 @@ with lib; {
       package = pkgs.emacs.overrideAttrs (oldAttrs: { version = "27.0.91"; });
     };
 
-    home.packages = with pkgs; [
+    my.packages = with pkgs; [
       ripgrep
       fd
       # term/vterm

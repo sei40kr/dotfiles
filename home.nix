@@ -19,10 +19,17 @@
         idea.enable = true;
       };
 
-      cc.enable = true;
       git.enable = true;
+      cc.enable = true;
+      go.enable = true;
+      groovy.enable = true;
+      haskell.enable = true;
+      java.enable = true;
       kotlin.enable = true;
       python.enable = true;
+      r.enable = true;
+      ruby.enable = true;
+      rust.enable = true;
     };
     shell = {
       tmux.enable = true;

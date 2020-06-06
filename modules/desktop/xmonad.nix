@@ -67,7 +67,7 @@ with lib; {
     };
     home.file."polybar-scripts".source = <config/polybar/scripts>;
 
-    home.packages = with pkgs; [
+    my.packages = with pkgs; [
       # Fonts
       noto-fonts
       noto-fonts-cjk

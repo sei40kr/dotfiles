@@ -9,7 +9,7 @@ with lib; {
   config = mkIf config.modules.dev.python.enable (let
     pyenv = builtins.fetchGit { url = "https://github.com/pyenv/pyenv.git"; };
   in {
-    home = {
+    my = {
       packages = with pkgs; [
         python37
         poetry
@@ -19,7 +19,7 @@ with lib; {
         python37Packages.pandas
       ];
 
-      sessionVariables = rec {
+      env = rec {
         PYENV_ROOT = pyenv.outPath;
         PATH =
           [ "\${HOME}/.poetry/bin" "${PYENV_ROOT}/bin" "${PYENV_ROOT}/shims" ];

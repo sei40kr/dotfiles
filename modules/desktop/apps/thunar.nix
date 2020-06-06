@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.apps.thunar.enable {
-    home.packages = with pkgs; [ xfce.thunar ];
+    my.packages = with pkgs; [ xfce.thunar ];
   };
 }
