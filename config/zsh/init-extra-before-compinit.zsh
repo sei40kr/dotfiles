@@ -191,6 +191,7 @@ __main() {
     zinit snippet OMZP::rake-fast/rake-fast.plugin.zsh
 
     # Rails
+    zinit ice has'rails'
     zinit snippet OMZP::rails/rails.plugin.zsh
 
 
