@@ -7,15 +7,17 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.xmonad.enable {
-    xsession = {
+    xsession.windowManager.xmonad = {
       enable = true;
-
-      windowManager.xmonad = {
-        enable = true;
-        enableContribAndExtras = true;
-      };
+      enableContribAndExtras = true;
     };
     home.file.".xmonad/xmonad.hs".source = <config/xmonad/xmonad.hs>;
+
+    # X Session
+    xsession.enable = true;
+
+    # XDG User Directories
+    xdg.userDirs.enable = true;
 
     # Picom
     systemd.user.services.picom = {
@@ -53,9 +55,6 @@ with lib; {
       "fontconfig/conf.d/70-noto-cjk.conf".source =
         "${pkgs.fontconfig}/share/fontconfig/conf.avail/70-noto-cjk.conf";
     };
-
-    # XDG User Directories
-    xdg.userDirs.enable = true;
 
     # Polybar
     services.polybar = {
