@@ -3,7 +3,7 @@
 with lib; {
   imports = [
     ./editors
-    ./git.nix
+    ./tools
     ./cc.nix
     ./go.nix
     ./groovy.nix

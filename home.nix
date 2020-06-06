@@ -19,7 +19,8 @@
         idea.enable = true;
       };
 
-      git.enable = true;
+      tools.git.enable = true;
+
       cc.enable = true;
       go.enable = true;
       groovy.enable = true;

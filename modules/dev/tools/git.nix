@@ -1,12 +1,12 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  options.modules.dev.git.enable = mkOption {
+  options.modules.dev.tools.git.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
-  config = mkIf config.modules.dev.git.enable {
+  config = mkIf config.modules.dev.tools.git.enable {
     my.packages = [ pkgs.git ];
 
     xdg.configFile = {

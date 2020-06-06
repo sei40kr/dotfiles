@@ -5,13 +5,7 @@ with lib; {
 
   options.my = {
     env = mkOption {
-      type = with types;
-        attrsOf (either (either str path) (listOf (either str path)));
-      apply = mapAttrs (n: v:
-        if isList v then
-          concatMapStringsSep ":" (x: toString x) v
-        else
-          (toString v));
+      type = types.attrs;
     };
     packages = mkOption { type = with types; listOf package; };
   };
