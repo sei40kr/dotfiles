@@ -57,7 +57,7 @@ with lib; {
     # XDG User Directories
     xdg.userDirs.enable = true;
 
-    # polybar
+    # Polybar
     services.polybar = {
       enable = true;
       config = <config/polybar/config>;
@@ -69,11 +69,14 @@ with lib; {
     home.file."polybar-scripts".source = <config/polybar/scripts>;
 
     home.packages = with pkgs; [
+      # Fonts
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-      material-design-icons
+      # Picom
       picom
+      # Polybar
+      material-design-icons
     ];
   };
 }
