@@ -75,6 +75,7 @@ with lib; {
       noto-fonts-emoji
       # Picom
       picom
+      mesa
       # Polybar
       material-design-icons
     ];
