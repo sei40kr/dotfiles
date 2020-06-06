@@ -21,6 +21,7 @@
 
       cc.enable = true;
       git.enable = true;
+      kotlin.enable = true;
       python.enable = true;
     };
     shell = {
