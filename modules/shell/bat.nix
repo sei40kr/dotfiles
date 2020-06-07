@@ -9,7 +9,7 @@ with lib; {
   config = mkIf config.modules.shell.bat.enable {
     my = {
       packages = with pkgs; [ bat ];
-      zsh.aliases = { cat = "bat"; };
+      zsh.aliases.cat = "bat";
     };
   };
 }

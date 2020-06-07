@@ -29,7 +29,7 @@ with lib; {
         After = [ "graphical-session-pre.target" ];
         PartOf = [ "graphical-session.target" ];
       };
-      Install = { WantedBy = [ "graphical-session.target" ]; };
+      Install.WantedBy = [ "graphical-session.target" ];
       Service = {
         ExecStart = "${pkgs.picom}/bin/picom";
         Restart = "always";

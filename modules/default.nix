@@ -23,13 +23,13 @@ with lib; {
   };
 
   config = {
-    my.env = { PATH = [ "$PATH" ]; };
+    my.env.PATH = [ "$PATH" ];
 
     home = {
       packages = config.my.packages;
       sessionVariables = config.my.env;
     };
     xsession.initExtra = config.my.xsession.init;
-    programs.zsh = { shellAliases = config.my.zsh.aliases; };
+    programs.zsh.shellAliases = config.my.zsh.aliases;
   };
 }
