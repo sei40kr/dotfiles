@@ -1,4 +1,5 @@
-FLAGS := -I "modules=$$(pwd)/modules" \
+FLAGS := -I "packages=$$(pwd)/packages" \
+		 -I "modules=$$(pwd)/modules" \
 		 -I "config=$$(pwd)/config" \
 		 $(FLAGS)
 

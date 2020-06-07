@@ -1,7 +1,9 @@
 { config, lib, options, pkgs, ... }:
 
 with lib;
-(let cfg = config.modules.desktop.apps.deluge;
+(let
+  cfg = config.modules.desktop.apps.deluge;
+  package = pkgs.callPackage <packages/deluge.nix> { };
 in {
   options.modules.desktop.apps.deluge.enable = mkOption {
     type = types.bool;
@@ -14,7 +16,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.packages = with pkgs; [ deluge ];
+    my.packages = [ package ];
 
     systemd.user.services = {
       deluged = {
@@ -24,7 +26,7 @@ in {
         };
         Install.WantedBy = [ "multi-user.target" ];
         Service = {
-          ExecStart = "${pkgs.deluge}/bin/deluged --do-not-daemonize";
+          ExecStart = "${package}/bin/deluged --do-not-daemonize";
           Restart = "on-success";
           LimitNOFILE = 4096;
         };
@@ -36,8 +38,7 @@ in {
           Requires = [ "deluged.service" ];
         };
         Install.WantedBy = [ "multi-user.target" ];
-        # TODO Deluge 2 or above supports --do-not-daemonize option
-        Service.ExecStart = "${pkgs.deluge}/bin/deluge-web";
+        Service.ExecStart = "${package}/bin/deluge-web --do-not-daemonize";
       };
     };
   };
