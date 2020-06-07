@@ -35,7 +35,10 @@ with lib; {
         Environment = [ "allow_rgb10_configs=false" ];
       };
     };
-    xdg.configFile."picom/picom.conf".source = <config/picom/picom.conf>;
+    xdg.configFile."picom/picom.conf" = {
+      source = <config/picom/picom.conf>;
+      onChange = "systemctl --user restart picom.service";
+    };
 
     # Fontconfig
     fonts.fontconfig.enable = true;
