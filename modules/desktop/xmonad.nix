@@ -54,6 +54,14 @@ with lib; {
         "${pkgs.fontconfig}/share/fontconfig/conf.avail/66-noto-mono.conf";
     };
 
+    # Sesssion Lock: xss-lock + XSecureLock
+    services.screen-locker = {
+      enable = true;
+      lockCmd = with pkgs;
+        "${xsecurelock}/libexec/xsecurelock/dimmer -l -- ${xsecurelock}/bin/xsecurelock";
+      xssLockExtraOptions = [ "-n" ];
+    };
+
     # Polybar
     services.polybar = {
       enable = true;
@@ -80,6 +88,8 @@ with lib; {
         # Picom
         picom
         mesa
+        # XSecureLock
+        xsecurelock
         # Polybar
         material-design-icons
       ];
