@@ -7,6 +7,10 @@
     desktop = {
       xmonad.enable = true;
       apps = {
+        deluge = {
+          enable = true;
+          enableWebUI = true;
+        };
         rofi.enable = true;
         thunar.enable = true;
       };
