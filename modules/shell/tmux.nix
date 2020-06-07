@@ -6,22 +6,35 @@ with lib; {
     default = false;
   };
 
-  config = mkIf config.modules.shell.tmux.enable (let
-    tpm =
-      builtins.fetchGit { url = "https://github.com/tmux-plugins/tpm.git"; };
-  in {
+  config = mkIf config.modules.shell.tmux.enable {
     programs.tmux = {
       baseIndex = 1;
       enable = true;
-      extraConfig = ''
-        set-environment -g TMUX_PLUGIN_MANAGER_PATH ${
-          escapeShellArg tpm.outPath
-        }
-
-        source-file ${escapeShellArg <config/tmux/extra.conf>}
-      '';
+      extraConfig = "source-file ${escapeShellArg <config/tmux/extra.conf>}";
       sensibleOnTop = false;
       terminal = "tmux-256color";
+      plugins = with pkgs.tmuxPlugins; [
+        copycat
+        open
+        pain-control
+        {
+          plugin = sensible;
+          extraConfig = "set-option -g prefix C-t";
+        }
+        {
+          plugin = yank;
+          extraConfig = "set-option -g @yank_with_mouse off";
+        }
+      ];
     };
-  });
+
+    my.packages = with pkgs; [
+      ## Plugin Requirements
+      # tmux-yank
+      xsel
+      # tmux-per-project-session
+      fd
+      fzf
+    ];
+  };
 }
