@@ -39,20 +39,19 @@ with lib; {
 
     # Fontconfig
     fonts.fontconfig.enable = true;
-    xdg.configFile = {
-      "fontconfig/conf.d/10-hinting-none.conf".source =
-        "${pkgs.fontconfig}/share/fontconfig/conf.avail/10-hinting-none.conf";
-      "fontconfig/conf.d/10-sub-pixel-rgb.conf".source =
-        "${pkgs.fontconfig}/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf";
-      "fontconfig/conf.d/11-lcdfilter-default.conf".source =
-        "${pkgs.fontconfig}/share/fontconfig/conf.avail/11-lcdfilter-default.conf";
-      "fontconfig/conf.d/66-noto-sans.conf".source =
-        "${pkgs.fontconfig}/share/fontconfig/conf.avail/66-noto-sans.conf";
-      "fontconfig/conf.d/66-noto-serif.conf".source =
-        "${pkgs.fontconfig}/share/fontconfig/conf.avail/66-noto-serif.conf";
-      "fontconfig/conf.d/66-noto-mono.conf".source =
-        "${pkgs.fontconfig}/share/fontconfig/conf.avail/66-noto-mono.conf";
-    };
+
+    xdg.configFile."fontconfig/conf.d/10-hinting-none.conf".source =
+      "${pkgs.fontconfig}/share/fontconfig/conf.avail/10-hinting-none.conf";
+    xdg.configFile."fontconfig/conf.d/10-sub-pixel-rgb.conf".source =
+      "${pkgs.fontconfig}/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf";
+    xdg.configFile."fontconfig/conf.d/11-lcdfilter-default.conf".source =
+      "${pkgs.fontconfig}/share/fontconfig/conf.avail/11-lcdfilter-default.conf";
+    xdg.configFile."fontconfig/conf.d/66-noto-sans.conf".source =
+      "${pkgs.fontconfig}/share/fontconfig/conf.avail/66-noto-sans.conf";
+    xdg.configFile."fontconfig/conf.d/66-noto-serif.conf".source =
+      "${pkgs.fontconfig}/share/fontconfig/conf.avail/66-noto-serif.conf";
+    xdg.configFile."fontconfig/conf.d/66-noto-mono.conf".source =
+      "${pkgs.fontconfig}/share/fontconfig/conf.avail/66-noto-mono.conf";
 
     # Sesssion Lock: xss-lock + XSecureLock
     services.screen-locker = {
