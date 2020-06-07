@@ -18,9 +18,6 @@ with lib; {
 
     # XDG User Directories
     xdg.userDirs.enable = true;
-    my.xsession.init = ''
-      . "''${XDG_CONFIG_HOME:-''${HOME}/.config}/user-dirs.dirs"
-    '';
 
     # Picom
     systemd.user.services.picom = {
@@ -68,15 +65,24 @@ with lib; {
     };
     home.file."polybar-scripts".source = <config/polybar/scripts>;
 
-    my.packages = with pkgs; [
-      # Fonts
-      noto-fonts
-      noto-fonts-emoji
-      # Picom
-      picom
-      mesa
-      # Polybar
-      material-design-icons
-    ];
+    my = {
+      xsession.init = ''
+        . "''${XDG_CONFIG_HOME:-''${HOME}/.config}/user-dirs.dirs"
+
+        rm -f /tmp/.xmonad-workspace-log
+        mkfifo /tmp/.xmonad-workspace-log
+      '';
+
+      packages = with pkgs; [
+        # Fonts
+        noto-fonts
+        noto-fonts-emoji
+        # Picom
+        picom
+        mesa
+        # Polybar
+        material-design-icons
+      ];
+    };
   };
 }
