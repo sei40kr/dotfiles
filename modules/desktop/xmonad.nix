@@ -18,6 +18,9 @@ with lib; {
 
     # XDG User Directories
     xdg.userDirs.enable = true;
+    my.xsession.init = ''
+      . "''${XDG_CONFIG_HOME:-''${HOME}/.config}/user-dirs.dirs"
+    '';
 
     # Picom
     systemd.user.services.picom = {
