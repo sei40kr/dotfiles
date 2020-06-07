@@ -9,9 +9,8 @@ with lib; {
   config = mkIf config.modules.desktop.i18n.japanese.enable {
     my = {
       packages = with pkgs; [
-        fcitx
+        (fcitx.override { plugins = with pkgs.fcitx-engines; [ mozc ]; })
         fcitx-configtool
-        fcitx-engines.mozc
         # Install Japanese fonts
         noto-fonts-cjk
       ];
