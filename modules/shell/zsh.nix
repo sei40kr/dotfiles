@@ -10,20 +10,6 @@ with lib; {
     dotDir = ".zsh";
     zinit = builtins.fetchGit { url = "https://github.com/zdharma/zinit.git"; };
   in {
-    home = {
-      file = {
-        "${dotDir}/completions".source = <config/zsh/completions>;
-        "${dotDir}/functions".source = <config/zsh/functions>;
-        "${dotDir}/aliases.zsh".source = <config/zsh/aliases.zsh>;
-        "${dotDir}/custom-history.zsh".source = <config/zsh/custom-history.zsh>;
-        "${dotDir}/secrets.zsh".source = <config/zsh/secrets.zsh>;
-      };
-
-      packages = with pkgs; [ subversion ]; # required by zinit
-    };
-
-    xdg.configFile."starship.toml".source = <config/starship/starship.toml>;
-
     programs.zsh = {
       enable = true;
       autocd = true;
@@ -55,5 +41,15 @@ with lib; {
         . ${escapeShellArg <config/zsh/profile-extra.zsh>}
       '';
     };
+    my.packages = with pkgs; [ subversion ]; # required by zinit
+
+    home.file = {
+      "${dotDir}/completions".source = <config/zsh/completions>;
+      "${dotDir}/functions".source = <config/zsh/functions>;
+      "${dotDir}/aliases.zsh".source = <config/zsh/aliases.zsh>;
+      "${dotDir}/custom-history.zsh".source = <config/zsh/custom-history.zsh>;
+      "${dotDir}/secrets.zsh".source = <config/zsh/secrets.zsh>;
+    };
+    xdg.configFile."starship.toml".source = <config/starship/starship.toml>;
   });
 }

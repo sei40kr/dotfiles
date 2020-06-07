@@ -11,17 +11,16 @@ with lib; {
       url = "https://github.com/MarcoIeni/intellimacs.git";
     });
   in {
-    home = {
-      packages = with pkgs; [ jetbrains.idea-ultimate ];
-      file.".ideavimrc".text = ''
-        source ${intellimacs.outPath}/spacemacs/buffers.vim
-        source ${intellimacs.outPath}/spacemacs/help.vim
-        source ${intellimacs.outPath}/spacemacs/misc.vim
-        source ${intellimacs.outPath}/spacemacs/search-symbol.vim
-        source ${intellimacs.outPath}/hybrid.vim
+    my.packages = with pkgs; [ jetbrains.idea-ultimate ];
 
-        source ${<config/idea/extra.vimrc>}
-      '';
-    };
+    home.file.".ideavimrc".text = ''
+      source ${intellimacs.outPath}/spacemacs/buffers.vim
+      source ${intellimacs.outPath}/spacemacs/help.vim
+      source ${intellimacs.outPath}/spacemacs/misc.vim
+      source ${intellimacs.outPath}/spacemacs/search-symbol.vim
+      source ${intellimacs.outPath}/hybrid.vim
+
+      source ${<config/idea/extra.vimrc>}
+    '';
   });
 }
