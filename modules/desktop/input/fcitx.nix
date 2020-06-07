@@ -7,20 +7,19 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.input.fcitx.enable {
-    my.packages = with pkgs; [ fcitx fcitx-configtool fcitx-engines.mozc ];
+    my = {
+      packages = with pkgs; [ fcitx fcitx-configtool fcitx-engines.mozc ];
 
-    xdg.configFile."fcitx/config".source = <config/fcitx/config>;
-
-    # Initialize Fcitx in X Session
-    xsession = {
-      profileExtra = ''
-        export GTK_IM_MODULE=fcitx
-        export QT_IM_MODULE=fcitx
-        export XMODIFIERS='@im=fcitx'
-      '';
-      initExtra = ''
+      env = {
+        GTK_IM_MODULE = "fcitx";
+        QT_IM_MODULE = "fcitx";
+        XMODIFIERS = "@im=fcitx";
+      };
+      xsession.init = ''
         ${pkgs.fcitx}/bin/fcitx &
       '';
     };
+
+    xdg.configFile."fcitx/config".source = <config/fcitx/config>;
   };
 }

@@ -7,6 +7,13 @@ with lib; {
     env = mkOption { type = types.attrs; };
     packages = mkOption { type = with types; listOf package; };
 
+    xsession = {
+      init = mkOption {
+        type = types.lines;
+        default = "";
+      };
+    };
+
     zsh = {
       aliases = mkOption {
         type = with types; attrsOf str;
@@ -22,9 +29,7 @@ with lib; {
       packages = config.my.packages;
       sessionVariables = config.my.env;
     };
-
-    programs.zsh = {
-      shellAliases = config.my.zsh.aliases;
-    };
+    xsession.initExtra = config.my.xsession.init;
+    programs.zsh = { shellAliases = config.my.zsh.aliases; };
   };
 }
