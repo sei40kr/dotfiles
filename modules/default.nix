@@ -31,7 +31,7 @@ with lib; {
   };
 
   config = {
-    my.env.PATH = [ "$PATH" ];
+    my.env.PATH = [ <bin> "$PATH" ];
 
     home = {
       packages = config.my.packages;

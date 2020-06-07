@@ -1,6 +1,7 @@
-FLAGS := -I "packages=$$(pwd)/packages" \
-		 -I "modules=$$(pwd)/modules" \
+FLAGS := -I "bin=$$(pwd)/bin" \
 		 -I "config=$$(pwd)/config" \
+		 -I "modules=$$(pwd)/modules" \
+		 -I "packages=$$(pwd)/packages" \
 		 $(FLAGS)
 
 .PHONY: build
