@@ -19,7 +19,10 @@
         idea.enable = true;
       };
 
-      tools.git.enable = true;
+      tools = {
+        git.enable = true;
+        zeal.enable = true;
+      };
 
       cc.enable = true;
       go.enable = true;
