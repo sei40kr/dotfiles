@@ -25,6 +25,7 @@
       };
 
       tools = {
+        flexget.enable = true;
         git.enable = true;
         zeal.enable = true;
       };
