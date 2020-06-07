@@ -22,6 +22,9 @@ with lib; {
       };
     };
 
-    xdg.configFile."flexget/config.yml".source = <config/flexget/config.yml>;
+    xdg.configFile."flexget/config.yml" = {
+      source = <config/flexget/config.yml>;
+      onChange = "systemctl --user restart flexget.service";
+    };
   };
 }
