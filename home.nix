@@ -11,7 +11,7 @@
         thunar.enable = true;
       };
       term.alacritty.enable = true;
-      input.fcitx.enable = true;
+      i18n.japanese.enable = true;
     };
     dev = {
       editors = {

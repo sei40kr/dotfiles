@@ -55,8 +55,6 @@ with lib; {
         "${pkgs.fontconfig}/share/fontconfig/conf.avail/66-noto-serif.conf";
       "fontconfig/conf.d/66-noto-mono.conf".source =
         "${pkgs.fontconfig}/share/fontconfig/conf.avail/66-noto-mono.conf";
-      "fontconfig/conf.d/70-noto-cjk.conf".source =
-        "${pkgs.fontconfig}/share/fontconfig/conf.avail/70-noto-cjk.conf";
     };
 
     # Polybar
@@ -73,7 +71,6 @@ with lib; {
     my.packages = with pkgs; [
       # Fonts
       noto-fonts
-      noto-fonts-cjk
       noto-fonts-emoji
       # Picom
       picom
