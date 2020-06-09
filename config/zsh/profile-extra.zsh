@@ -72,7 +72,3 @@ WORKSPACE_DIR="${HOME}/projects"
 export PATH
 export FPATH
 export MANPATH
-
-if [[ -z "$DISPLAY" && "$XDG_VTNR" -eq 1 ]]; then
-    exec startx
-fi

@@ -3,12 +3,6 @@
 # zshrc
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
-if [[ -z "$TMUX" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" && "$TERM" != dumb ]]; then
-    export LC_ALL
-    tmux new-session
-    exit
-fi
-
 __main() {
     autoload -Uz \
              run-help-git \
