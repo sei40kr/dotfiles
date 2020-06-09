@@ -58,13 +58,14 @@
     };
 
     shell = {
-      tools.flexget.enable = true;
-
       zsh.enable = true;
       tmux.enable = true;
 
-      exa.enable = true;
-      bat.enable = true;
+      tools = {
+        exa.enable = true;
+        bat.enable = true;
+        flexget.enable = true;
+      };
     };
   };
 }

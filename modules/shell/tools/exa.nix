@@ -1,12 +1,12 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  options.modules.shell.exa.enable = mkOption {
+  options.modules.shell.tools.exa.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
-  config = mkIf config.modules.shell.exa.enable {
+  config = mkIf config.modules.shell.tools.exa.enable {
     my = {
       packages = with pkgs; [ exa ];
       zsh.aliases = {
