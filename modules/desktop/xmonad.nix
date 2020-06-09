@@ -7,20 +7,23 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.xmonad.enable {
-    xsession.windowManager.xmonad = {
+    # Install Xserver + Xmonad as root
+    services.xserver = {
       enable = true;
-      enableContribAndExtras = true;
+      windowManager.xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+      };
     };
-    home.file.".xmonad/xmonad.hs".source = <config/xmonad/xmonad.hs>;
 
-    # X Session
-    xsession.enable = true;
+    # Install user Xmonad configuration
+    my.home.home.file.".xmonad/xmonad.hs".source = <config/xmonad/xmonad.hs>;
 
     # XDG User Directories
-    xdg.userDirs.enable = true;
+    my.home.xdg.userDirs.enable = true;
 
     # Picom
-    systemd.user.services.picom = {
+    my.home.systemd.user.services.picom = {
       Unit = {
         Description = "Picom X11 compositor";
         After = [ "graphical-session-pre.target" ];
@@ -35,29 +38,28 @@ with lib; {
         Environment = [ "allow_rgb10_configs=false" ];
       };
     };
-    xdg.configFile."picom/picom.conf" = {
+    my.home.xdg.configFile."picom/picom.conf" = {
       source = <config/picom/picom.conf>;
       onChange = "systemctl --user restart picom.service";
     };
 
-    # Fontconfig
-    fonts.fontconfig.enable = true;
-
-    xdg.configFile."fontconfig/conf.d/10-hinting-none.conf".source =
+    # Install Fontconfig
+    my.home.fonts.fontconfig.enable = mkForce true;
+    my.home.xdg.configFile."fontconfig/conf.d/10-hinting-none.conf".source =
       "${pkgs.fontconfig}/share/fontconfig/conf.avail/10-hinting-none.conf";
-    xdg.configFile."fontconfig/conf.d/10-sub-pixel-rgb.conf".source =
+    my.home.xdg.configFile."fontconfig/conf.d/10-sub-pixel-rgb.conf".source =
       "${pkgs.fontconfig}/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf";
-    xdg.configFile."fontconfig/conf.d/11-lcdfilter-default.conf".source =
+    my.home.xdg.configFile."fontconfig/conf.d/11-lcdfilter-default.conf".source =
       "${pkgs.fontconfig}/share/fontconfig/conf.avail/11-lcdfilter-default.conf";
-    xdg.configFile."fontconfig/conf.d/66-noto-sans.conf".source =
+    my.home.xdg.configFile."fontconfig/conf.d/66-noto-sans.conf".source =
       "${pkgs.fontconfig}/share/fontconfig/conf.avail/66-noto-sans.conf";
-    xdg.configFile."fontconfig/conf.d/66-noto-serif.conf".source =
+    my.home.xdg.configFile."fontconfig/conf.d/66-noto-serif.conf".source =
       "${pkgs.fontconfig}/share/fontconfig/conf.avail/66-noto-serif.conf";
-    xdg.configFile."fontconfig/conf.d/66-noto-mono.conf".source =
+    my.home.xdg.configFile."fontconfig/conf.d/66-noto-mono.conf".source =
       "${pkgs.fontconfig}/share/fontconfig/conf.avail/66-noto-mono.conf";
 
     # Sesssion Lock: xss-lock + XSecureLock
-    services.screen-locker = {
+    my.home.services.screen-locker = {
       enable = true;
       lockCmd = with pkgs;
         "${xsecurelock}/libexec/xsecurelock/dimmer -l -- ${xsecurelock}/bin/xsecurelock";
@@ -65,7 +67,7 @@ with lib; {
     };
 
     # Polybar
-    services.polybar = {
+    my.home.services.polybar = {
       enable = true;
       config = <config/polybar/config>;
       script = ''
@@ -73,28 +75,23 @@ with lib; {
         polybar bottom &
       '';
     };
-    home.file."polybar-scripts".source = <config/polybar/scripts>;
+    my.home.home.file."polybar-scripts".source = <config/polybar/scripts>;
 
-    my = {
-      xsession.init = ''
-        . "''${XDG_CONFIG_HOME:-''${HOME}/.config}/user-dirs.dirs"
+    my.xsession.init = ''
+      . "''${XDG_CONFIG_HOME:-''${HOME}/.config}/user-dirs.dirs"
 
-        rm -f /tmp/.xmonad-workspace-log
-        mkfifo /tmp/.xmonad-workspace-log
-      '';
+      rm -f /tmp/.xmonad-workspace-log
+      mkfifo /tmp/.xmonad-workspace-log
+    '';
 
-      packages = with pkgs; [
-        # Fonts
-        noto-fonts
-        noto-fonts-emoji
-        # Picom
-        picom
-        mesa
-        # XSecureLock
-        xsecurelock
-        # Polybar
-        material-design-icons
-      ];
-    };
+    my.packages = with pkgs; [
+      # Fonts
+      noto-fonts
+      noto-fonts-emoji
+      # XSecureLock
+      xsecurelock
+      # Polybar
+      material-design-icons
+    ];
   };
 }

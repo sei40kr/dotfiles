@@ -9,7 +9,7 @@ with lib; {
   config = mkIf config.modules.dev.tools.git.enable {
     my.packages = [ pkgs.git ];
 
-    xdg.configFile = {
+    my.home.xdg.configFile = {
       "git/config".source = <config/git/config>;
       "git/ignore".source = <config/git/ignore>;
     };

@@ -13,7 +13,7 @@ with lib; {
   in {
     my.packages = with pkgs; [ jetbrains.idea-ultimate ];
 
-    home.file.".ideavimrc".text = ''
+    my.home.home.file.".ideavimrc".text = ''
       source ${intellimacs.outPath}/spacemacs/buffers.vim
       source ${intellimacs.outPath}/spacemacs/help.vim
       source ${intellimacs.outPath}/spacemacs/misc.vim

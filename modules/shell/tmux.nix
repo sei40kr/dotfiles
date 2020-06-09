@@ -7,7 +7,7 @@ with lib; {
   };
 
   config = mkIf config.modules.shell.tmux.enable {
-    programs.tmux = {
+    my.home.programs.tmux = {
       baseIndex = 1;
       enable = true;
       extraConfig = "source-file ${escapeShellArg <config/tmux/extra.conf>}";

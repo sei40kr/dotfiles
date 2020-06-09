@@ -10,7 +10,7 @@ with lib; {
     dotDir = ".zsh";
     zinit = builtins.fetchGit { url = "https://github.com/zdharma/zinit.git"; };
   in {
-    programs.zsh = {
+    my.home.programs.zsh = {
       enable = true;
       autocd = true;
       dotDir = dotDir;
@@ -43,13 +43,14 @@ with lib; {
     };
     my.packages = with pkgs; [ subversion ]; # required by zinit
 
-    home.file = {
+    my.home.home.file = {
       "${dotDir}/completions".source = <config/zsh/completions>;
       "${dotDir}/functions".source = <config/zsh/functions>;
       "${dotDir}/aliases.zsh".source = <config/zsh/aliases.zsh>;
       "${dotDir}/custom-history.zsh".source = <config/zsh/custom-history.zsh>;
       "${dotDir}/secrets.zsh".source = <config/zsh/secrets.zsh>;
     };
-    xdg.configFile."starship.toml".source = <config/starship/starship.toml>;
+    my.home.xdg.configFile."starship.toml".source =
+      <config/starship/starship.toml>;
   });
 }

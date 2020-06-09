@@ -9,7 +9,7 @@ with lib; {
   config = mkIf config.modules.desktop.term.alacritty.enable {
     my.packages = [ pkgs.alacritty ];
 
-    xdg.configFile."alacritty/alacritty.yml".source =
+    my.home.xdg.configFile."alacritty/alacritty.yml".source =
       <config/alacritty/alacritty.yml>;
   };
 }

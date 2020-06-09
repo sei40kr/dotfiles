@@ -17,7 +17,7 @@ in {
   config = mkIf cfg.enable {
     my.packages = with pkgs; [ profile-sync-daemon ];
 
-    systemd.user = {
+    my.home.systemd.user = {
       services = {
         psd = {
           Unit = {
@@ -33,7 +33,7 @@ in {
             ExecStop =
               "${pkgs.profile-sync-daemon}/bin/profile-sync-daemon unsync";
           };
-          Install = { WantedBy = [ "default.target" ]; };
+          Install.WantedBy = [ "default.target" ];
         };
         psd-resync = {
           Unit = {

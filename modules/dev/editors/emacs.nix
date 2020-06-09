@@ -7,7 +7,7 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.editors.emacs.enable {
-    programs.emacs = {
+    my.home.programs.emacs = {
       enable = true;
       package = pkgs.emacs.overrideAttrs (oldAttrs: { version = "27.0.91"; });
     };

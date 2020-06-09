@@ -1,9 +1,24 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  imports = [ ./desktop ./dev ./shell ];
+  imports = [
+    (import "${
+        builtins.fetchTarball
+        "https://github.com/rycee/home-manager/archive/master.tar.gz"
+      }/nixos")
+
+    ./desktop
+    ./dev
+    ./shell
+  ];
 
   options.my = {
+    userName = mkOption { type = types.str; };
+
+    home = mkOption { type = options.home-manager.users.type.functor.wrapped; };
+    user = mkOption { type = types.submodule; };
+    packages = mkOption { type = with types; listOf package; };
+
     env = mkOption {
       type = with types;
         attrsOf (either (either str path) (listOf (either str path)));
@@ -13,7 +28,6 @@ with lib; {
         else
           (toString v));
     };
-    packages = mkOption { type = with types; listOf package; };
 
     xsession = {
       init = mkOption {
@@ -31,13 +45,21 @@ with lib; {
   };
 
   config = {
-    my.env.PATH = [ <bin> "$PATH" ];
+    home-manager.users.${config.my.userName} =
+      mkAliasDefinitions options.my.home;
+    users.users.${config.my.userName} = mkAliasDefinitions options.my.user;
 
-    home = {
-      packages = config.my.packages;
-      sessionVariables = config.my.env;
+    my.env.PATH = [ "$PATH" ];
+
+    my.home = {
+      home = {
+        packages = config.my.packages;
+        sessionVariables = config.my.env;
+      };
+
+      xsession.initExtra = config.my.xsession.init;
+
+      programs.zsh.shellAliases = config.my.zsh.aliases;
     };
-    xsession.initExtra = config.my.xsession.init;
-    programs.zsh.shellAliases = config.my.zsh.aliases;
   };
 }

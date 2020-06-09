@@ -7,9 +7,9 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.tools.flexget.enable {
-    my.packages = [ pkgs.flexget ];
+    my.packages = with pkgs; [ flexget python37Packages.deluge-client ];
 
-    systemd.user.services.flexget = {
+    my.home.systemd.user.services.flexget = {
       Unit.Description = "FlexGet Daemon";
       Install.WantedBy = [ "multi-user.target" ];
       Service = {
@@ -18,11 +18,10 @@ with lib; {
         ExecReload = "${pkgs.flexget}/bin/flexget daemon reload";
         Restart = "on-failure";
         PrivateTmp = true;
-        WorkingDirectory = config.home.homeDirectory;
       };
     };
 
-    xdg.configFile."flexget/config.yml" = {
+    my.home.xdg.configFile."flexget/config.yml" = {
       source = <config/flexget/config.yml>;
       onChange = "systemctl --user restart flexget.service";
     };

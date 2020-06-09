@@ -1,11 +1,23 @@
+device: username:
 { config, lib, options, pkgs, ... }:
 
 {
+  imports = [ ./modules ];
+
   nixpkgs.config.allowUnfree = true;
+
+  my.userName = "sei40kr";
+  my.user = {
+    isNormalUser = true;
+    uid = 1000;
+    extraGroups = [ "wheel" "video" "networkmanager" ];
+    shell = pkgs.zsh;
+  };
 
   modules = {
     desktop = {
       xmonad.enable = true;
+
       apps = {
         deluge = {
           enable = true;
@@ -14,10 +26,12 @@
         rofi.enable = true;
         thunar.enable = true;
       };
+
       term.alacritty.enable = true;
       tools.psd.enable = true;
       i18n.japanese.enable = true;
     };
+
     dev = {
       editors = {
         emacs.enable = true;
@@ -41,6 +55,7 @@
       ruby.enable = true;
       rust.enable = true;
     };
+
     shell = {
       zsh.enable = true;
       tmux.enable = true;
@@ -49,6 +64,4 @@
       bat.enable = true;
     };
   };
-
-  imports = [ <modules> ];
 }

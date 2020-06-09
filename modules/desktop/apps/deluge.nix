@@ -18,7 +18,7 @@ in {
   config = mkIf cfg.enable {
     my.packages = [ package ];
 
-    systemd.user.services = {
+    my.home.systemd.user.services = {
       deluged = {
         Unit = {
           Description = "Deluge BitTorrent Daemon";

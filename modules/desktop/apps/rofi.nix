@@ -9,8 +9,8 @@ with lib; {
   config = mkIf config.modules.desktop.apps.rofi.enable {
     my.packages = [ pkgs.rofi ];
 
-    home.file."rofi-scripts".source = <config/rofi/scripts>;
-    xdg.configFile = {
+    my.home.home.file."rofi-scripts".source = <config/rofi/scripts>;
+    my.home.xdg.configFile = {
       "rofi/config.rasi".source = <config/rofi/config.rasi>;
       "rofi/onedark.rasi".source = <config/rofi/onedark.rasi>;
     };

@@ -25,10 +25,10 @@ with lib; {
         ${pkgs.fcitx}/bin/fcitx &
       '';
     };
-    xdg.configFile."fcitx/config".source = <config/fcitx/config>;
+    my.home.xdg.configFile."fcitx/config".source = <config/fcitx/config>;
 
     # Fontconfig configuration
-    xdg.configFile."fontconfig/conf.d/70-noto-cjk.conf".source =
+    my.home.xdg.configFile."fontconfig/conf.d/70-noto-cjk.conf".source =
       "${pkgs.fontconfig}/share/fontconfig/conf.avail/70-noto-cjk.conf";
   };
 }

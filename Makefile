@@ -1,13 +1,10 @@
-FLAGS := -I "bin=$$(pwd)/bin" \
-		 -I "config=$$(pwd)/config" \
-		 -I "modules=$$(pwd)/modules" \
-		 -I "packages=$$(pwd)/packages" \
-		 $(FLAGS)
+FLAGS := -I "config=$$(pwd)/config" \
+		 -I "packages=$$(pwd)/packages"
 
 .PHONY: build
-build:
-	@home-manager $(FLAGS) build
+switch:
+	@sudo nixos-rebuild $(FLAGS) build
 
 .PHONY: switch
 switch:
-	@home-manager $(FLAGS) switch
+	@sudo nixos-rebuild $(FLAGS) switch
