@@ -68,6 +68,7 @@
         exa.enable = true;
         flexget.enable = true;
         htop.enable = true;
+        strace.enable = true;
       };
     };
   };
