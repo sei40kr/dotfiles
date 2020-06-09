@@ -1,6 +1,10 @@
 { config, lib, options, pkgs, ... }:
 
-with lib; {
+with lib;
+(let
+  per-project-session =
+    pkgs.callPackage <packages/tmux-plugins/per-project-session.nix> { };
+in {
   options.modules.shell.tmux.enable = mkOption {
     type = types.bool;
     default = false;
@@ -25,6 +29,7 @@ with lib; {
           plugin = yank;
           extraConfig = "set-option -g @yank_with_mouse off";
         }
+        per-project-session
       ];
     };
 
