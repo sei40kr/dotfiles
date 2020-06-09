@@ -17,6 +17,7 @@ with lib; {
       fd
       # term/vterm
       libvterm
+      cmake
       # tools/ansible
       python37Packages.ansible-lint
       # tools/docker
