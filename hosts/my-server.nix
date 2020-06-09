@@ -64,9 +64,10 @@
       tools = {
         sshd.enable = true;
 
-        exa.enable = true;
         bat.enable = true;
+        exa.enable = true;
         flexget.enable = true;
+        htop.enable = true;
       };
     };
   };

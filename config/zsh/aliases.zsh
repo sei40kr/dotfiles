@@ -135,6 +135,3 @@ alias R='R --no-save --no-restore-data -q'
 
 # ssh
 alias ssh='env TERM=xterm-256color ssh'
-
-# top
-alias top='htop'
