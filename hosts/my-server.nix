@@ -62,6 +62,8 @@
       tmux.enable = true;
 
       tools = {
+        sshd.enable = true;
+
         exa.enable = true;
         bat.enable = true;
         flexget.enable = true;
