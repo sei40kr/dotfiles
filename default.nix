@@ -6,4 +6,6 @@ device: username:
 
   nix.autoOptimiseStore = true;
   nixpkgs.config.allowUnfree = true;
+
+  environment.systemPackages = with pkgs; [ coreutils diffutils findutils ];
 }
