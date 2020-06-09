@@ -1,12 +1,12 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  options.modules.dev.tools.flexget.enable = mkOption {
+  options.modules.shell.tools.flexget.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
-  config = mkIf config.modules.dev.tools.flexget.enable {
+  config = mkIf config.modules.shell.tools.flexget.enable {
     my.packages = with pkgs; [ flexget python37Packages.deluge-client ];
 
     my.home.systemd.user.services.flexget = {
