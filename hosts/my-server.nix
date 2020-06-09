@@ -36,6 +36,12 @@
 
       tools = {
         git.enable = true;
+
+        awsShell.enable = true;
+        googleCloudSdk.enable = true;
+        circleciCli.enable = true;
+        travis.enable = true;
+
         zeal.enable = true;
       };
 
