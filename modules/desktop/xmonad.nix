@@ -7,16 +7,20 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.xmonad.enable {
-    # Install Xserver + Xmonad as root
+    # Enable X.Org Server + startx
     services.xserver = {
       enable = true;
-      windowManager.xmonad = {
-        enable = true;
-        enableContribAndExtras = true;
-      };
+      displayManager.startx.enable = true;
     };
 
-    # Install user Xmonad configuration
+    # Enable X Session
+    my.home.xsession.enable = true;
+
+    # Enable Xmonad
+    my.home.xsession.windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+    };
     my.home.home.file.".xmonad/xmonad.hs".source = <config/xmonad/xmonad.hs>;
 
     # XDG User Directories
