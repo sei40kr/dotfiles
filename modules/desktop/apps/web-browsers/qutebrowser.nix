@@ -7,6 +7,9 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.apps.webBrowsers.qutebrowser.enable {
-    my.home.programs.qutebrowser.enable = true;
+    my.home.programs.qutebrowser = {
+      enable = true;
+      extraConfig = "config.source('${<config/qutebrowser/config.py>}')";
+    };
   };
 }
