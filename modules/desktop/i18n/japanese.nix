@@ -29,6 +29,6 @@ with lib; {
 
     # Fontconfig configuration
     my.home.xdg.configFile."fontconfig/conf.d/70-noto-cjk.conf".source =
-      "${pkgs.fontconfig}/share/fontconfig/conf.avail/70-noto-cjk.conf";
+      "${pkgs.fontconfig_210}/share/fontconfig/conf.avail/70-noto-cjk.conf";
   };
 }
