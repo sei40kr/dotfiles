@@ -1863,6 +1863,8 @@ c.url.start_pages = [c.url.default_page]
 # config.bind('yy', 'yank')
 # config.bind('{{', 'navigate prev -t')
 # config.bind('}}', 'navigate next -t')
+config.bind('<Ctrl-O>', 'back')
+config.bind('<Ctrl-I>', 'forward')
 
 ## Bindings for caret mode
 # config.bind('$', 'move-to-end-of-line', mode='caret')
