@@ -49,7 +49,7 @@ line-color = #f00
 
 modules-left   = workspaces-xmonad
 modules-center = date
-modules-right  = gnome-pomodoro-timer dropbox-status fcitx-status alsa wlan battery
+modules-right  = gnome-pomodoro-timer fcitx-status alsa wlan battery
 
 module-margin-left  = 0
 module-margin-right = 0
@@ -118,16 +118,6 @@ format = <label>
 label = %output%
 
 click-left = gnome-pomodoro
-
-[module/dropbox-status]
-type = custom/script
-
-exec = ~/polybar-scripts/dropbox-status/dropbox-status.sh
-interval = 10
-
-format = <label>
-label      = %output%
-label-font = 2
 
 [module/fcitx-status]
 type = custom/script
