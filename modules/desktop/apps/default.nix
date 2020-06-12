@@ -1,5 +1,5 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  imports = [ ./deluge.nix ./rofi.nix ./slack.nix ./thunar.nix ];
+  imports = [ ./web-browsers ./deluge.nix ./rofi.nix ./slack.nix ./thunar.nix ];
 }

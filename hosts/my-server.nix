@@ -14,6 +14,7 @@
       xmonad.enable = true;
 
       apps = {
+        webBrowsers.chromium.enable = true;
         slack.enable = true;
         deluge = {
           enable = true;
