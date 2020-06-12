@@ -8,12 +8,34 @@ with lib; {
 
   config = mkIf config.modules.dev.ruby.enable (let
     rbenv = builtins.fetchGit { url = "https://github.com/rbenv/rbenv.git"; };
-    # TODO Install a rbenv plugin: ruby-build
+    rbenvRootFiles = [ "bin" "completions" "libexec" "rbenv.d" "src" ];
+    rubyBuild =
+      builtins.fetchGit { url = "https://github.com/rbenv/ruby-build.git"; };
   in {
-    my = rec {
-      packages = with pkgs; [ ruby rubyPackages.rake ];
+    my = {
+      home.home.file = foldl (files: name:
+        files // {
+          ".rbenv/${name}".source = "${rbenv.outPath}/${name}";
+        }) { } rbenvRootFiles // {
+          ".rbenv/plugins/ruby-build".source = rubyBuild.outPath;
+        };
+
+      packages = with pkgs; [
+        ruby
+        rubyPackages.rake
+
+        # NOTE rbenv: Ruby build environment
+        #      See https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
+        gcc10
+        bzip2
+        openssl
+        libyaml
+        libffi
+        readline
+        zlib
+      ];
       env = rec {
-        RBENV_ROOT = rbenv.outPath;
+        RBENV_ROOT = "\${HOME}/.rbenv";
         PATH = [ "${RBENV_ROOT}/bin" "${RBENV_ROOT}/shims" ];
       };
     };
