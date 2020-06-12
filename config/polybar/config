@@ -90,13 +90,6 @@ module-margin-right = 0
 
 separator = %{O8}·%{O8}
 
-[module/workspaces-xmonad]
-type = custom/script
-
-exec    = tail -F /tmp/.xmonad-workspace-log
-exec-if = [ -p /tmp/.xmonad-workspace-log ]
-tail = true
-
 [module/date]
 type = internal/date
 

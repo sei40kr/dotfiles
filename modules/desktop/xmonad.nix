@@ -73,7 +73,18 @@ with lib; {
     # Polybar
     my.home.services.polybar = {
       enable = true;
-      config = <config/polybar/config>;
+      config = {
+        "section/base".include-file = "${<config/polybar/config>}";
+
+        # NOTE Polybar systemd service can't import user environment variables,
+        #      so define some modules here which calls external programs.
+        "module/workspaces-xmonad" = {
+          type = "custom/script";
+          exec = "${pkgs.coreutils}/bin/tail -F /tmp/.xmonad-workspace-log";
+          exec-if = "[ -p /tmp/.xmonad-workspace-log ]";
+          tail = true;
+        };
+      };
       script = ''
         polybar top &
         polybar bottom &
