@@ -1,5 +1,5 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  imports = [ ./chromium.nix ];
+  imports = [ ./chromium.nix ./qutebrowser.nix ];
 }
