@@ -36,8 +36,6 @@ with lib; {
         . ${escapeShellArg <config/zsh/env-extra.zsh>}
       '';
       profileExtra = ''
-        . "''${HOME}/.nix-profile/etc/profile.d/nix.sh"
-
         . ${escapeShellArg <config/zsh/profile-extra.zsh>}
       '';
     };
