@@ -10,7 +10,8 @@ with lib; {
     jenv = builtins.fetchGit { url = "https://github.com/jenv/jenv.git"; };
     jenvRootFiles =
       [ "available-plugins" "bin" "completions" "fish" "libexec" ];
-    jenvPlugins = [ "export" ];
+    jenvPlugins = [ "export" "gradle" "maven" ]
+      ++ optionals config.modules.dev.groovy.enable [ "groovy" ];
   in {
     my = {
       home.home.file = (foldl (files: name:
