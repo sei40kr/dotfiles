@@ -308,6 +308,7 @@ myManageHook =
     -- Internet Apps
     , stringProperty "WM_WINDOW_ROLE" =? "browser" <||>
       className =? "Google-chrome" <||>
+      className =? "qutebrowser" <||>
       className =? "Geary" <||>
       className =? "Gnome-calendar" <||>
       className =? "Gnome-contacts" <||>
