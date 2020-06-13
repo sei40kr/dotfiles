@@ -1,12 +1,24 @@
 { config, lib, options, pkgs, ... }:
 
-with lib; {
+with lib;
+let cfg = config.modules.desktop.xmonad;
+in {
   options.modules.desktop.xmonad.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
-  config = mkIf config.modules.desktop.xmonad.enable {
+  options.modules.desktop.xmonad.autoRepeatDelay = mkOption {
+    type = types.int;
+    default = 150;
+  };
+
+  options.modules.desktop.xmonad.autoRepeatInterval = mkOption {
+    type = types.int;
+    default = 30;
+  };
+
+  config = mkIf cfg.enable {
     # Enable X.Org Server + startx
     services.xserver = {
       enable = true;
@@ -116,6 +128,10 @@ with lib; {
     };
 
     my.xsession.init = ''
+      xset r rate ${toString cfg.autoRepeatDelay} ${
+        toString cfg.autoRepeatInterval
+      }
+
       . "''${XDG_CONFIG_HOME:-''${HOME}/.config}/user-dirs.dirs"
 
       rm -f /tmp/.xmonad-workspace-log
