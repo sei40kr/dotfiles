@@ -46,13 +46,17 @@
           enableGitFlow = true;
           enableGitCrypt = true;
         };
+        zeal.enable = true;
 
+        # Infrastructure & CI Tools
+        docker = {
+          enable = true;
+          enableAutoPrune = true;
+        };
         awsShell.enable = true;
         googleCloudSdk.enable = true;
         circleciCli.enable = true;
         travis.enable = true;
-
-        zeal.enable = true;
       };
 
       cc.enable = true;
