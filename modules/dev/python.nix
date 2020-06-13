@@ -17,12 +17,17 @@ with lib; {
       "src"
       "Makefile"
     ];
+    pyenvVirtualenv = builtins.fetchGit {
+      url = "https://github.com/pyenv/pyenv-virtualenv.git";
+    };
   in {
     my = {
-      home.home.file = foldl (files: name:
+      home.home.file = (foldl (files: name:
         files // {
           ".pyenv/${name}".source = "${pyenv.outPath}/${name}";
-        }) { } pyenvRootFiles;
+        }) { } pyenvRootFiles) // {
+          ".pyenv/plugins/pyenv-virtualenv".source = pyenvVirtualenv.outPath;
+        };
 
       packages = with pkgs; [
         python37
