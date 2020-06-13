@@ -15,5 +15,6 @@ with lib; {
     ./ruby.nix
     ./rust.nix
     ./scala.nix
+    ./sh.nix
   ];
 }
