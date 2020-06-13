@@ -12,6 +12,9 @@ with lib; {
       enable = true;
       displayManager.startx.enable = true;
     };
+    my.home.home.file.".xinitrc".text = ''
+      ./.xsession
+    '';
 
     # Enable X Session
     my.home.xsession.enable = true;
