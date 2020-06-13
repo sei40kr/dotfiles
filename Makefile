@@ -2,7 +2,7 @@ FLAGS := -I "config=$$(pwd)/config" \
 		 -I "packages=$$(pwd)/packages"
 
 .PHONY: build
-switch:
+build:
 	@sudo nixos-rebuild $(FLAGS) build
 
 .PHONY: switch
