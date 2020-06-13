@@ -41,7 +41,11 @@
       };
 
       tools = {
-        git.enable = true;
+        git = {
+          enable = true;
+          enableGitFlow = true;
+          enableGitCrypt = true;
+        };
 
         awsShell.enable = true;
         googleCloudSdk.enable = true;
@@ -59,7 +63,10 @@
       kotlin.enable = true;
       python.enable = true;
       r.enable = true;
-      ruby.enable = true;
+      ruby = {
+        enable = true;
+        enableRails = true;
+      };
       rust.enable = true;
       scala.enable = true;
       sh.enable = true;

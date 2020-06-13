@@ -7,11 +7,12 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.kotlin.enable {
-    modules.dev.tools.jenv = {
-      enable = mkForce true;
-      pluginsToEnable = [ "maven" "gradle" ];
+    modules.dev.tools = {
+      jenv.enable = mkForce true;
+      maven.enable = mkForce true;
+      gradle.enable = mkForce true;
     };
 
-    my.packages = with pkgs; [ kotlin maven gradle ];
+    my.packages = with pkgs; [ kotlin ];
   };
 }

@@ -14,5 +14,13 @@ with lib; {
       # TODO Install prettier, prettier-eslint-cli, and typescript-formatter
       # TODO Install language servers for HTML, CSS, JavaScript, TypeScript, Vue
       my.packages = with pkgs; [ nodejs yarn ];
+
+      my.env.PATH = [ "\${HOME}/.yarn/bin" ];
+
+      modules.shell.zsh.zinitPluginsInit = ''
+        zinit light sei40kr/zsh-lazy-nvm
+
+        zinit snippet OMZP::yarn/yarn.plugin.zsh
+      '';
     });
 }

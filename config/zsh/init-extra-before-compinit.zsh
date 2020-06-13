@@ -50,8 +50,6 @@ __main() {
     . "${ZDOTDIR}/secrets.zsh"
     . "${ZDOTDIR}/custom-history.zsh"
 
-    . "${ZINIT[BIN_DIR]}/zinit.zsh"
-
     HYPHEN_INSENSITIVE=true
     zinit snippet OMZL::clipboard.zsh
     zinit snippet OMZL::completion.zsh
@@ -85,60 +83,6 @@ __main() {
     fi
 
 
-    ## Git
-
-    zinit snippet OMZP::git/git.plugin.zsh
-    zinit snippet OMZP::git-flow/git-flow.plugin.zsh
-
-
-    ## Rust
-
-    zinit ice as'completion' wait''
-    zinit snippet OMZP::rust/_rust
-
-
-    ## Go
-
-    # goenv
-    zinit ice has'goenv' \
-        atclone'goenv init - --no-rehash zsh >goenv-init.zsh' \
-        atpull'%atclone' \
-        id-as'goenv-init'
-    zinit light zdharma/null
-
-    zinit snippet OMZP::golang/golang.plugin.zsh
-
-
-    ## Haskell
-
-    zinit ice wait'' has'stack'
-    zinit snippet OMZP::stack/stack.plugin.zsh
-    zinit ice wait''
-    zinit snippet OMZP::cabal/cabal.plugin.zsh
-
-
-    ## Java
-
-    # jenv
-    zinit ice has'jenv' \
-        atclone'jenv init - --no-rehash zsh >jenv-init.zsh' \
-        atpull'%atclone' \
-        id-as'jenv-init'
-    zinit light zdharma/null
-
-    zinit snippet OMZP::mvn/mvn.plugin.zsh
-    zinit ice trigger-load'!gradle'
-    zinit snippet OMZP::gradle/gradle.plugin.zsh
-
-
-    ## Scala
-
-    zinit ice as'completion' wait''
-    zinit snippet OMZP::scala/_scala
-    zinit ice svn
-    zinit snippet OMZP::sbt
-
-
     ## Perl
 
     if [[ -n "$PERLBREW_ROOT" && -d "$PERLBREW_ROOT" ]]; then
@@ -151,44 +95,6 @@ __main() {
     zinit snippet OMZP::cpanm/_cpanm
 
 
-    ## Python
-
-    # pyenv
-    zinit ice has'pyenv' \
-        atclone'pyenv init - --no-rehash zsh >pyenv-init.zsh' \
-        atpull'%atclone' \
-        id-as'pyenv-init'
-    zinit light zdharma/null
-    zinit ice if'[[ -d "${PYENV_ROOT:-${HOME}/.pyenv}/plugins/pyenv-virtualenv" ]]' \
-        atclone'pyenv virtualenv-init - --no-rehash zsh >pyenv-virtualenv-init.zsh' \
-        atpull'%atclone' \
-        id-as'pyenv-virtualenv-init'
-    zinit light zdharma/null
-
-    zinit ice as'completion' wait''
-    zinit snippet OMZP::pip/_pip
-
-
-    ## Ruby
-
-    # rbenv
-    zinit ice has'rbenv' \
-        atclone'rbenv init - --no-rehash zsh >rbenv-init.zsh' \
-        atpull'%atclone' \
-        id-as'rbenv-init'
-    zinit light zdharma/null
-
-    zinit snippet OMZP::ruby/ruby.plugin.zsh
-    zinit ice as'completion' wait''
-    zinit snippet OMZP::gem/_gem
-    zinit ice wait''
-    zinit snippet OMZP::rake-fast/rake-fast.plugin.zsh
-
-    # Rails
-    zinit ice has'rails'
-    zinit snippet OMZP::rails/rails.plugin.zsh
-
-
     ## PHP
 
     zinit snippet OMZP::composer/composer.plugin.zsh
@@ -197,10 +103,6 @@ __main() {
 
 
     ## Web Frontend
-
-    zinit ice atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "$PWD" "${WORKSPACE_DIR}/sei40kr/zsh-lazy-nvm"'
-    zinit light sei40kr/zsh-lazy-nvm
-    zinit snippet OMZP::yarn/yarn.plugin.zsh
 
     zinit ice wait''
     zinit snippet OMZP::gulp/gulp.plugin.zsh
@@ -240,12 +142,6 @@ __main() {
     zinit ice as'completion' wait''
     zinit snippet OMZP::codeclimate/_codeclimate
 
-    # Travis CI Client
-    if [[ -f "${HOME}/.travis/travis.sh" ]]; then
-        zinit ice wait''
-        zinit snippet "${HOME}/.travis/travis.sh"
-    fi
-
 
     ## Infrastructure
 
@@ -263,22 +159,13 @@ __main() {
         zinit snippet /usr/local/bin/aws_zsh_completer.sh
     fi
 
-    # gcloud
-    if [[ -n "$CLOUDSDK_ROOT_DIR" && -d "$CLOUDSDK_ROOT_DIR" ]]; then
-        zinit ice wait''
-        zinit snippet "${CLOUDSDK_ROOT_DIR}/completion.zsh.inc"
-    fi
-
 
     #
     # Completions
 
     zinit wait'' lucid atpull'%atclone' as'completion' for \
         has'karma'   atclone'karma completion >_karma'             id-as'karma_completion'   zdharma/null \
-        has'kubectl' atclone'kubectl completion zsh >_kubectl'     id-as'kubectl_completion' zdharma/null \
-        has'poetry'  atclone'poetry completions zsh >_poetry'      id-as'poetry_completion'  zdharma/null \
-        has'rustup'  atclone'rustup completions zsh >_rustup'      id-as'rustup_completion'  zdharma/null \
-        has'cargo'   atclone'rustup completions zsh cargo >_cargo' id-as'cargo_completion'   zdharma/null
+        has'kubectl' atclone'kubectl completion zsh >_kubectl'     id-as'kubectl_completion' zdharma/null
 
 
     ## Others
@@ -355,14 +242,8 @@ __main() {
 
     ## Theme & Appearance
 
-    zinit ice from'gh-r' \
-        src'zstarship.zsh' \
-        atclone'./starship init zsh --print-full-init >zstarship.zsh' \
-        atpull'%atclone' \
-        atload'starship_precmd' \
-        as'program' \
-        nocompile'!'
-    zinit light starship/starship
+    zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+    zinit light sindresorhus/pure
 
     export YSU_MESSAGE_FORMAT="💡 You should use: $(tput bold)%alias$(tput sgr0)"
     export YSU_HARDCORE=1

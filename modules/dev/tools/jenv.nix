@@ -31,5 +31,12 @@ with lib; {
         PATH = [ "${JENV_ROOT}/bin" "${JENV_ROOT}/shims" ];
       };
     };
+
+    modules.shell.zsh.zinitPluginsInit = ''
+      zinit ice atclone'jenv init - --no-rehash zsh >jenv-init.zsh' \
+                atpull'%atclone' \
+                id-as'jenv-init'
+      zinit light zdharma/null
+    '';
   });
 }

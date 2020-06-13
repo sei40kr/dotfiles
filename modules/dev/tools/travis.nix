@@ -8,5 +8,10 @@ with lib; {
 
   config = mkIf config.modules.dev.tools.travis.enable {
     my.packages = with pkgs; [ travis ];
+
+    modules.shell.zsh.zinitPluginsInit = ''
+      zinit ice if'[[ -f "''${HOME}/.travis/travis.sh" ]]' wait'''
+      zinit snippet "''${HOME}/.travis/travis.sh"
+    '';
   };
 }

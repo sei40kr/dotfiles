@@ -14,5 +14,26 @@ with lib; {
         PATH = [ "${CARGO_HOME}/bin" ];
       };
     };
+
+    modules.shell.zsh.zinitPluginsInit = ''
+      zinit ice wait''' \
+                lucid \
+                atclone'rustup completions zsh >_rustup' \
+                atpull'%atclone' \
+                as'completion' \
+                id-as'rustup_completion'
+      zinit light zdharma/null
+
+      zinit ice as'completion' wait'''
+      zinit snippet OMZP::rust/_rust
+
+      zinit ice wait''' \
+                lucid \
+                atclone'rustup completions zsh cargo >_cargo' \
+                atpull'%atclone' \
+                as'completion' \
+                id-as'cargo_completion'
+      zinit light zdharma/null
+    '';
   };
 }

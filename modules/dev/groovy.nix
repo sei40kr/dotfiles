@@ -7,11 +7,15 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.groovy.enable {
-    modules.dev.tools.jenv = {
-      enable = mkForce true;
-      pluginsToEnable = [ "groovy" "maven" "gradle" ];
+    modules.dev.tools = {
+      jenv = {
+        enable = mkForce true;
+        pluginsToEnable = [ "groovy" ];
+      };
+      maven.enable = mkForce true;
+      gradle.enable = mkForce true;
     };
 
-    my.packages = with pkgs; [ groovy maven gradle ];
+    my.packages = with pkgs; [ groovy ];
   };
 }

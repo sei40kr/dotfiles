@@ -19,23 +19,6 @@ if [[ "$OSTYPE" == darwin* && "${+commands[brew]}" == 1 ]]; then
 fi
 
 
-## Google Cloud SDK
-
-if [[ -n "$__brew_prefix" ]]; then
-    CLOUDSDK_ROOT_DIR="${__brew_prefix}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
-
-    if [[ -d "$CLOUDSDK_ROOT_DIR" ]]; then
-        export CLOUDSDK_ROOT_DIR
-
-        . "${CLOUDSDK_ROOT_DIR}/path.zsh.inc"
-    else
-        unset CLOUDSDK_ROOT_DIR
-    fi
-
-    unset __brew_prefix
-fi
-
-
 ## Perl
 
 # Perlbrew

@@ -22,5 +22,14 @@ with lib; {
         PATH = [ "${GOENV_ROOT}/bin" "${GOENV_ROOT}/shims" ];
       };
     };
+
+    modules.shell.zsh.zinitPluginsInit = ''
+      zinit ice atclone'goenv init - --no-rehash zsh >goenv-init.zsh' \
+                atpull'%atclone' \
+                id-as'goenv-init'
+      zinit light zdharma/null
+
+      zinit snippet OMZP::golang/golang.plugin.zsh
+    '';
   });
 }

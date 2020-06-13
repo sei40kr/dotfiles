@@ -6,7 +6,13 @@ with lib; {
     default = false;
   };
 
+  options.modules.dev.ruby.enableRails = mkOption {
+    type = types.bool;
+    default = false;
+  };
+
   config = mkIf config.modules.dev.ruby.enable (let
+    cfg = config.modules.dev.ruby;
     rbenv = builtins.fetchGit { url = "https://github.com/rbenv/rbenv.git"; };
     rbenvRootFiles = [ "bin" "completions" "libexec" "rbenv.d" "src" ];
     rubyBuild =
@@ -20,24 +26,40 @@ with lib; {
           ".rbenv/plugins/ruby-build".source = rubyBuild.outPath;
         };
 
-      packages = with pkgs; [
-        ruby
-        rubyPackages.rake
+      packages = with pkgs;
+        ([
+          ruby
+          rubyPackages.rake
 
-        # NOTE rbenv: Ruby build environment
-        #      See https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
-        gcc10
-        bzip2
-        openssl
-        libyaml
-        libffi
-        readline
-        zlib
-      ];
+          # NOTE rbenv: Ruby build environment
+          #      See https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
+          gcc10
+          bzip2
+          openssl
+          libyaml
+          libffi
+          readline
+          zlib
+        ] ++ optionals cfg.enableRails [ rubyPackages.rails ]);
       env = rec {
         RBENV_ROOT = "\${HOME}/.rbenv";
         PATH = [ "${RBENV_ROOT}/bin" "${RBENV_ROOT}/shims" ];
       };
     };
+
+    modules.shell.zsh.zinitPluginsInit = ''
+      zinit ice atclone'rbenv init - --no-rehash zsh >rbenv-init.zsh' \
+                atpull'%atclone' \
+                id-as'rbenv-init'
+      zinit light zdharma/null
+
+      zinit snippet OMZP::ruby/ruby.plugin.zsh
+      zinit ice as'completion' wait'''
+      zinit snippet OMZP::gem/_gem
+      zinit ice wait'''
+      zinit snippet OMZP::rake-fast/rake-fast.plugin.zsh
+    '' + optionals cfg.enableRails ''
+      zinit snippet OMZP::rails/rails.plugin.zsh
+    '';
   });
 }

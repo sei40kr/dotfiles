@@ -6,7 +6,9 @@ with lib; {
     ./circleci-cli.nix
     ./git.nix
     ./google-cloud-sdk.nix
+    ./gradle.nix
     ./jenv.nix
+    ./maven.nix
     ./travis.nix
     ./zeal.nix
   ];

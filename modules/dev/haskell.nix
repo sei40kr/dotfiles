@@ -10,5 +10,12 @@ with lib; {
     my.packages = with pkgs; [ stack ];
 
     my.home.home.file.".stack/config.yml".source = <config/stack/config.yaml>;
+
+    modules.shell.zsh.zinitPluginsInit = ''
+      zinit ice wait'''
+      zinit snippet OMZP::stack/stack.plugin.zsh
+      zinit ice wait'''
+      zinit snippet OMZP::cabal/cabal.plugin.zsh
+    '';
   };
 }

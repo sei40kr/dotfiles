@@ -6,7 +6,13 @@ with lib; {
     default = false;
   };
 
+  options.modules.shell.zsh.zinitPluginsInit = mkOption {
+    type = types.lines;
+    default = "";
+  };
+
   config = mkIf config.modules.shell.zsh.enable (let
+    cfg = config.modules.shell.zsh;
     dotDir = ".zsh";
     zinit = builtins.fetchGit { url = "https://github.com/zdharma/zinit.git"; };
   in {
@@ -26,6 +32,10 @@ with lib; {
       initExtraBeforeCompInit = ''
         declare -A ZINIT
         ZINIT[BIN_DIR]=${escapeShellArg zinit.outPath}
+
+        . "''${ZINIT[BIN_DIR]}/zinit.zsh"
+
+        ${cfg.zinitPluginsInit}
 
         . ${escapeShellArg <config/zsh/init-extra-before-compinit.zsh>}
       '';
