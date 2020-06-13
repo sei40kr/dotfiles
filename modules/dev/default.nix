@@ -16,5 +16,6 @@ with lib; {
     ./rust.nix
     ./scala.nix
     ./sh.nix
+    ./web.nix
   ];
 }

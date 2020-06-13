@@ -63,6 +63,7 @@
       rust.enable = true;
       scala.enable = true;
       sh.enable = true;
+      web.enable = true;
     };
 
     shell = {
