@@ -61,6 +61,7 @@
       r.enable = true;
       ruby.enable = true;
       rust.enable = true;
+      scala.enable = true;
     };
 
     shell = {

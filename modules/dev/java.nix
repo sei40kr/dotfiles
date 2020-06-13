@@ -11,7 +11,8 @@ with lib; {
     jenvRootFiles =
       [ "available-plugins" "bin" "completions" "fish" "libexec" ];
     jenvPlugins = [ "export" "gradle" "maven" ]
-      ++ optionals config.modules.dev.groovy.enable [ "groovy" ];
+      ++ optionals config.modules.dev.groovy.enable [ "groovy" ]
+      ++ optionals config.modules.dev.scala.enable [ "scala" "sbt" ];
   in {
     my = {
       home.home.file = (foldl (files: name:
