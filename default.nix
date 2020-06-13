@@ -12,5 +12,6 @@ device: username:
     coreutils
     diffutils
     findutils
+    vim
   ];
 }
