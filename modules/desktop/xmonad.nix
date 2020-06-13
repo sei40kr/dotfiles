@@ -95,6 +95,26 @@ with lib; {
     };
     my.home.home.file."polybar-scripts".source = <config/polybar/scripts>;
 
+    # Dunst
+    my.home.xdg.configFile."dunst/dunstrc" = {
+      source = <config/dunst/dunstrc>;
+      onChange = "systemctl --user restart dunst.service";
+    };
+    my.home.xdg.dataFile."dbus-1/services/org.knopwob.dunst.service".source =
+      "${pkgs.dunst}/share/dbus-1/services/org.knopwob.dunst.service";
+    my.home.systemd.user.services.dunst = {
+      Unit = {
+        Description = "Dunst notification daemon";
+        After = [ "graphical-session-pre.target" ];
+        PartOf = [ "graphical-session.target" ];
+      };
+      Service = {
+        Type = "dbus";
+        BusName = "org.freedesktop.Notifications";
+        ExecStart = "${pkgs.dunst}/bin/dunst";
+      };
+    };
+
     my.xsession.init = ''
       . "''${XDG_CONFIG_HOME:-''${HOME}/.config}/user-dirs.dirs"
 
@@ -103,6 +123,8 @@ with lib; {
     '';
 
     my.packages = with pkgs; [
+      dunst
+      libnotify
       # Fonts
       noto-fonts
       noto-fonts-emoji
