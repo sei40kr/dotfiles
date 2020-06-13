@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.scala.enable {
-    my.packages = with pkgs; [ scala sbt scalafmt metals ];
+    my.packages = with pkgs; [ scala sbt maven gradle scalafmt metals ];
   };
 }

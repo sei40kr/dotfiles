@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.kotlin.enable {
-    my.packages = with pkgs; [ kotlin ];
+    my.packages = with pkgs; [ kotlin maven gradle ];
   };
 }
