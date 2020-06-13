@@ -20,6 +20,7 @@ with lib; {
       enable = true;
       autocd = true;
       dotDir = dotDir;
+      enableCompletion = false;
       history = {
         size = 10000;
         save = 10000;
@@ -29,7 +30,7 @@ with lib; {
         share = true;
       };
       defaultKeymap = "emacs";
-      initExtraBeforeCompInit = ''
+      initExtra = ''
         declare -A ZINIT
         ZINIT[BIN_DIR]=${escapeShellArg zinit.outPath}
 
@@ -37,9 +38,6 @@ with lib; {
 
         ${cfg.zinitPluginsInit}
 
-        . ${escapeShellArg <config/zsh/init-extra-before-compinit.zsh>}
-      '';
-      initExtra = ''
         . ${escapeShellArg <config/zsh/init-extra.zsh>}
       '';
       envExtra = ''
