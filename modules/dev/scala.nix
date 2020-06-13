@@ -7,6 +7,11 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.scala.enable {
+    modules.dev.tools.jenv = {
+      enable = mkForce true;
+      pluginsToEnable = [ "scala" "sbt" "maven" "gradle" ];
+    };
+
     my.packages = with pkgs; [ scala sbt maven gradle scalafmt metals ];
   };
 }

@@ -6,29 +6,12 @@ with lib; {
     default = false;
   };
 
-  config = mkIf config.modules.dev.java.enable (let
-    jenv = builtins.fetchGit { url = "https://github.com/jenv/jenv.git"; };
-    jenvRootFiles =
-      [ "available-plugins" "bin" "completions" "fish" "libexec" ];
-    jenvPlugins = [ "export" "gradle" "maven" ]
-      ++ optionals config.modules.dev.groovy.enable [ "groovy" ]
-      ++ optionals config.modules.dev.scala.enable [ "scala" "sbt" ];
-  in {
-    my = {
-      home.home.file = (foldl (files: name:
-        files // {
-          ".jenv/${name}".source = "${jenv.outPath}/${name}";
-        }) { } jenvRootFiles) // (foldl (files: name:
-          files // {
-            ".jenv/plugins/${name}".source =
-              "${jenv.outPath}/available-plugins/${name}";
-          }) { } jenvPlugins);
-
-      packages = with pkgs; [ jdk11 maven gradle ];
-      env = rec {
-        JENV_ROOT = "\${HOME}/.jenv";
-        PATH = [ "${JENV_ROOT}/bin" "${JENV_ROOT}/shims" ];
-      };
+  config = mkIf config.modules.dev.java.enable {
+    modules.dev.tools.jenv = {
+      enable = mkForce true;
+      pluginsToEnable = [ "maven" "gradle" ];
     };
-  });
+
+    my.packages = with pkgs; [ jdk11 maven gradle ];
+  };
 }
