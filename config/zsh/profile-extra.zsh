@@ -31,15 +31,6 @@ path=( "${HOME}/perl5/bin" "${PERLBREW_ROOT}/bin" "${path[@]}" )
 manpath=( "${HOME}/perl5/man" "${manpath[@]}" )
 
 
-## Node.js
-
-# nvm
-export NVM_DIR="${HOME}/.nvm"
-
-# Yarn
-path=( "${HOME}/.yarn/bin" "${path[@]}" )
-
-
 path=( "${HOME}/.local/bin" "${path[@]}" )
 fpath=( "${ZDOTDIR}/functions"
         "${ZDOTDIR}/completions"
