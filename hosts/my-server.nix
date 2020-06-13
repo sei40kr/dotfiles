@@ -10,6 +10,8 @@
   };
 
   modules = {
+    system.fstrim.enable = true;
+
     desktop = {
       xmonad.enable = true;
 

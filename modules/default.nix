@@ -10,6 +10,7 @@ with lib; {
     ./desktop
     ./dev
     ./shell
+    ./system
   ];
 
   options.my = {
