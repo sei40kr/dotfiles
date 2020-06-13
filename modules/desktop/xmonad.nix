@@ -19,6 +19,15 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules.desktop = {
+      xdgUserDirs.enable = mkForce true;
+      fonts.enable = mkForce true;
+      xsecurelock.enable = mkForce true;
+      picom.enable = mkForce true;
+      polybar.enable = mkForce true;
+      dunst.enable = mkForce true;
+    };
+
     # Enable X.Org Server + startx
     services.xserver = {
       enable = true;
@@ -28,126 +37,21 @@ in {
       ./.xsession
     '';
 
-    # Enable X Session
-    my.home.xsession.enable = true;
-
-    # Enable Xmonad
-    my.home.xsession.windowManager.xmonad = {
+    # Enable X Session + Xmonad
+    my.home.xsession = {
       enable = true;
-      enableContribAndExtras = true;
+
+      windowManager.xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+      };
     };
     my.home.home.file.".xmonad/xmonad.hs".source = <config/xmonad/xmonad.hs>;
-
-    # XDG User Directories
-    my.home.xdg.userDirs.enable = true;
-
-    # Picom
-    my.home.systemd.user.services.picom = {
-      Unit = {
-        Description = "Picom X11 compositor";
-        After = [ "graphical-session-pre.target" ];
-        PartOf = [ "graphical-session.target" ];
-      };
-      Install.WantedBy = [ "graphical-session.target" ];
-      Service = {
-        ExecStart = "${pkgs.picom}/bin/picom";
-        Restart = "always";
-        RestartSec = 3;
-        # Temporarily fixes corrupt colours with Mesa 18.
-        Environment = [ "allow_rgb10_configs=false" ];
-      };
-    };
-    my.home.xdg.configFile."picom/picom.conf" = {
-      source = <config/picom/picom.conf>;
-      onChange = "systemctl --user restart picom.service";
-    };
-
-    # Install Fontconfig
-    my.home.fonts.fontconfig.enable = mkForce true;
-    my.home.xdg.configFile."fontconfig/conf.d/10-hinting-none.conf".source =
-      "${pkgs.fontconfig_210}/share/fontconfig/conf.avail/10-hinting-none.conf";
-    my.home.xdg.configFile."fontconfig/conf.d/10-sub-pixel-rgb.conf".source =
-      "${pkgs.fontconfig_210}/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf";
-    my.home.xdg.configFile."fontconfig/conf.d/11-lcdfilter-default.conf".source =
-      "${pkgs.fontconfig_210}/share/fontconfig/conf.avail/11-lcdfilter-default.conf";
-    my.home.xdg.configFile."fontconfig/conf.d/66-noto-sans.conf".source =
-      "${pkgs.fontconfig_210}/share/fontconfig/conf.avail/66-noto-sans.conf";
-    my.home.xdg.configFile."fontconfig/conf.d/66-noto-serif.conf".source =
-      "${pkgs.fontconfig_210}/share/fontconfig/conf.avail/66-noto-serif.conf";
-    my.home.xdg.configFile."fontconfig/conf.d/66-noto-mono.conf".source =
-      "${pkgs.fontconfig_210}/share/fontconfig/conf.avail/66-noto-mono.conf";
-
-    # Sesssion Lock: xss-lock + XSecureLock
-    my.home.services.screen-locker = {
-      enable = true;
-      lockCmd = with pkgs;
-        "${xsecurelock}/libexec/xsecurelock/dimmer -l -- ${xsecurelock}/bin/xsecurelock";
-      xssLockExtraOptions = [ "-n" ];
-    };
-
-    # Polybar
-    my.home.services.polybar = {
-      enable = true;
-      config = {
-        "section/base".include-file = "${<config/polybar/config>}";
-
-        # NOTE Polybar systemd service can't import user environment variables,
-        #      so define some modules here which calls external programs.
-        "module/workspaces-xmonad" = {
-          type = "custom/script";
-          exec = "${pkgs.coreutils}/bin/tail -F /tmp/.xmonad-workspace-log";
-          exec-if = "[ -p /tmp/.xmonad-workspace-log ]";
-          tail = true;
-        };
-      };
-      script = ''
-        polybar top &
-        polybar bottom &
-      '';
-    };
-    my.home.home.file."polybar-scripts".source = <config/polybar/scripts>;
-
-    # Dunst
-    my.home.xdg.configFile."dunst/dunstrc" = {
-      source = <config/dunst/dunstrc>;
-      onChange = "systemctl --user restart dunst.service";
-    };
-    my.home.xdg.dataFile."dbus-1/services/org.knopwob.dunst.service".source =
-      "${pkgs.dunst}/share/dbus-1/services/org.knopwob.dunst.service";
-    my.home.systemd.user.services.dunst = {
-      Unit = {
-        Description = "Dunst notification daemon";
-        After = [ "graphical-session-pre.target" ];
-        PartOf = [ "graphical-session.target" ];
-      };
-      Service = {
-        Type = "dbus";
-        BusName = "org.freedesktop.Notifications";
-        ExecStart = "${pkgs.dunst}/bin/dunst";
-      };
-    };
 
     my.xsession.init = ''
       xset r rate ${toString cfg.autoRepeatDelay} ${
         toString cfg.autoRepeatInterval
       }
-
-      . "''${XDG_CONFIG_HOME:-''${HOME}/.config}/user-dirs.dirs"
-
-      rm -f /tmp/.xmonad-workspace-log
-      mkfifo /tmp/.xmonad-workspace-log
     '';
-
-    my.packages = with pkgs; [
-      dunst
-      libnotify
-      # Fonts
-      noto-fonts
-      noto-fonts-emoji
-      # XSecureLock
-      xsecurelock
-      # Polybar
-      material-design-icons
-    ];
   };
 }
