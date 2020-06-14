@@ -20,6 +20,9 @@
           chromium.enable = true;
           qutebrowser.enable = true;
         };
+
+        media.parole.enable = true;
+
         slack.enable = true;
         deluge = {
           enable = true;
