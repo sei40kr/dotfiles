@@ -8,6 +8,7 @@ with lib; {
     ./tools
     ./dunst.nix
     ./fonts.nix
+    ./gtk.nix
     ./picom.nix
     ./polybar.nix
     ./xdg-user-dirs.nix

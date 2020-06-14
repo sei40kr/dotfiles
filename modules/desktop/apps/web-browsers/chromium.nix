@@ -7,6 +7,8 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.apps.webBrowsers.chromium.enable {
+    modules.desktop.gtk.enable = mkForce true;
+
     my.home.programs.chromium.enable = true;
   };
 }

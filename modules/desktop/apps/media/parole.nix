@@ -7,6 +7,8 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.apps.media.parole.enable {
+    modules.desktop.gtk.enable = mkForce true;
+
     my.packages = with pkgs; [ xfce.parole ];
   };
 }
