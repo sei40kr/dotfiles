@@ -3,19 +3,21 @@
 with lib;
 (let cfg = config.modules.dev.tools.git;
 in {
-  options.modules.dev.tools.git.enable = mkOption {
-    type = types.bool;
-    default = false;
-  };
+  options.modules.dev.tools.git = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
 
-  options.modules.dev.tools.git.enableGitFlow = mkOption {
-    type = types.bool;
-    default = false;
-  };
+    enableGitFlow = mkOption {
+      type = types.bool;
+      default = false;
+    };
 
-  options.modules.dev.tools.git.enableGitCrypt = mkOption {
-    type = types.bool;
-    default = false;
+    enableGitCrypt = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = mkIf config.modules.dev.tools.git.enable {

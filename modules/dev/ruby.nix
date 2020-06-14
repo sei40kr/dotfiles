@@ -1,14 +1,16 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  options.modules.dev.ruby.enable = mkOption {
-    type = types.bool;
-    default = false;
-  };
+  options.modules.dev.ruby = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
 
-  options.modules.dev.ruby.enableRails = mkOption {
-    type = types.bool;
-    default = false;
+    enableRails = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = mkIf config.modules.dev.ruby.enable (let

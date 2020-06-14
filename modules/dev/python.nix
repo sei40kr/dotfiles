@@ -17,14 +17,16 @@ with lib;
     url = "https://github.com/pyenv/pyenv-virtualenv.git";
   };
 in {
-  options.modules.dev.python.enable = mkOption {
-    type = types.bool;
-    default = false;
-  };
+  options.modules.dev.python = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
 
-  options.modules.dev.python.enablePoetry = mkOption {
-    type = types.bool;
-    default = true;
+    enablePoetry = mkOption {
+      type = types.bool;
+      default = true;
+    };
   };
 
   config = mkIf cfg.enable {

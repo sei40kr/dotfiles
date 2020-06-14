@@ -1,14 +1,16 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  options.modules.shell.zsh.enable = mkOption {
-    type = types.bool;
-    default = false;
-  };
+  options.modules.shell.zsh = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
 
-  options.modules.shell.zsh.zinitPluginsInit = mkOption {
-    type = types.lines;
-    default = "";
+    zinitPluginsInit = mkOption {
+      type = types.lines;
+      default = "";
+    };
   };
 
   config = mkIf config.modules.shell.zsh.enable (let

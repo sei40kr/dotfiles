@@ -3,15 +3,17 @@
 with lib;
 (let cfg = config.modules.desktop.tools.psd;
 in {
-  options.modules.desktop.tools.psd.enable = mkOption {
-    type = types.bool;
-    default = false;
-  };
+  options.modules.desktop.tools.psd = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
 
-  options.modules.desktop.tools.psd.resyncTimer = mkOption {
-    type = types.str;
-    default = "1h";
-    example = "1h 30min";
+    resyncTimer = mkOption {
+      type = types.str;
+      default = "1h";
+      example = "1h 30min";
+    };
   };
 
   config = mkIf cfg.enable {

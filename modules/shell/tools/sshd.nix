@@ -3,14 +3,16 @@
 with lib;
 (let cfg = config.modules.shell.tools.sshd;
 in {
-  options.modules.shell.tools.sshd.enable = mkOption {
-    type = types.bool;
-    default = false;
-  };
+  options.modules.shell.tools.sshd = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
 
-  options.modules.shell.tools.sshd.enableFail2ban = mkOption {
-    type = types.bool;
-    default = true;
+    enableFail2ban = mkOption {
+      type = types.bool;
+      default = true;
+    };
   };
 
   options.modules.shell.tools.sshd.enableGoogleAuthenticator = mkOption {

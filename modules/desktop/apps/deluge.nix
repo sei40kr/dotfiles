@@ -5,14 +5,16 @@ with lib;
   cfg = config.modules.desktop.apps.deluge;
   package = pkgs.callPackage <packages/deluge.nix> { };
 in {
-  options.modules.desktop.apps.deluge.enable = mkOption {
-    type = types.bool;
-    default = false;
-  };
+  options.modules.desktop.apps.deluge = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
 
-  options.modules.desktop.apps.deluge.enableWebUI = mkOption {
-    type = types.bool;
-    default = false;
+    enableWebUI = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {

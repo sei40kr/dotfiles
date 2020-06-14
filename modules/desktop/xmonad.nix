@@ -3,19 +3,21 @@
 with lib;
 let cfg = config.modules.desktop.xmonad;
 in {
-  options.modules.desktop.xmonad.enable = mkOption {
-    type = types.bool;
-    default = false;
-  };
+  options.modules.desktop.xmonad = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
 
-  options.modules.desktop.xmonad.autoRepeatDelay = mkOption {
-    type = types.int;
-    default = 150;
-  };
+    autoRepeatDelay = mkOption {
+      type = types.int;
+      default = 150;
+    };
 
-  options.modules.desktop.xmonad.autoRepeatInterval = mkOption {
-    type = types.int;
-    default = 30;
+    autoRepeatInterval = mkOption {
+      type = types.int;
+      default = 30;
+    };
   };
 
   config = mkIf cfg.enable {
