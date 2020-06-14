@@ -27,6 +27,8 @@ with lib; {
       '';
     };
     my.home.home.file."polybar-scripts".source = <config/polybar/scripts>;
+    my.home.xdg.configFile."polybar/config".onChange =
+      "systemctl --user restart polybar.service";
 
     my.packages = with pkgs; [ material-design-icons ];
     my.xsession.init = ''
