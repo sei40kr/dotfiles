@@ -33,7 +33,12 @@
       };
 
       term.alacritty.enable = true;
-      tools.psd.enable = true;
+
+      tools = {
+        psd.enable = true;
+        scrot.enable = true;
+      };
+
       i18n.japanese.enable = true;
     };
 
