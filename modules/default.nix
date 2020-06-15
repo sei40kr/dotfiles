@@ -11,6 +11,7 @@ with lib; {
     ./dev
     ./shell
     ./system
+    ./themes
   ];
 
   options.my = {
