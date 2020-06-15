@@ -10,7 +10,6 @@ with lib; {
     ./fonts.nix
     ./gtk.nix
     ./picom.nix
-    ./polybar.nix
     ./xdg-user-dirs.nix
     ./xmonad.nix
     ./xsecurelock.nix

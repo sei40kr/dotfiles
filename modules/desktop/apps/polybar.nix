@@ -1,12 +1,12 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  options.modules.desktop.polybar.enable = mkOption {
+  options.modules.desktop.apps.polybar.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
-  config = mkIf config.modules.desktop.polybar.enable {
+  config = mkIf config.modules.desktop.apps.polybar.enable {
     my.home.services.polybar = {
       enable = true;
       config = {
