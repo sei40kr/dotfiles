@@ -34,7 +34,10 @@
           enableWebUI = true;
         };
         rofi.enable = true;
-        thunar.enable = true;
+        thunar = {
+          enable = true;
+          enableDaemon = true;
+        };
       };
 
       term.alacritty.enable = true;
