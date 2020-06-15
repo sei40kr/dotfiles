@@ -25,7 +25,8 @@ in {
       xdgUserDirs.enable = mkForce true;
       gtk.enable = mkForce true;
       xsecurelock.enable = mkForce true;
-      picom.enable = mkForce true;
+
+      tools.picom.enable = mkForce true;
 
       apps = {
         dunst.enable = mkForce true;

@@ -9,7 +9,6 @@ with lib; {
     ./tools
     ./fonts.nix
     ./gtk.nix
-    ./picom.nix
     ./xdg-user-dirs.nix
     ./xmonad.nix
     ./xsecurelock.nix
