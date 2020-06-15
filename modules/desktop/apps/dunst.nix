@@ -19,7 +19,7 @@ with lib; {
     my.home.systemd.user.services.dunst = {
       Unit = {
         Description = "Dunst notification daemon";
-        After = [ "graphical-session-pre.target" ];
+        Documentation = "man:dunst(1)";
         PartOf = [ "graphical-session.target" ];
       };
       Service = {
@@ -27,6 +27,7 @@ with lib; {
         BusName = "org.freedesktop.Notifications";
         ExecStart = "${pkgs.dunst}/bin/dunst";
       };
+      Install.WantedBy = [ "default.target" ];
     };
   };
 }
