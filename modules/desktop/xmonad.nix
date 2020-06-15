@@ -27,7 +27,8 @@ in {
       xsecurelock.enable = mkForce true;
       picom.enable = mkForce true;
       polybar.enable = mkForce true;
-      dunst.enable = mkForce true;
+
+      apps.dunst.enable = mkForce true;
     };
 
     # Enable X.Org Server + startx

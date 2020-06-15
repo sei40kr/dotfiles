@@ -5,6 +5,7 @@ with lib; {
     ./media
     ./web-browsers
     ./deluge.nix
+    ./dunst.nix
     ./geary.nix
     ./rofi.nix
     ./slack.nix

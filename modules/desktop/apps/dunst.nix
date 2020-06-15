@@ -1,12 +1,12 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  options.modules.desktop.dunst.enable = mkOption {
+  options.modules.desktop.apps.dunst.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
-  config = mkIf config.modules.desktop.dunst.enable {
+  config = mkIf config.modules.desktop.apps.dunst.enable {
     my.packages = with pkgs; [ dunst libnotify ];
     my.home.xdg = {
       configFile."dunst/dunstrc" = {

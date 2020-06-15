@@ -7,7 +7,6 @@ with lib; {
     ./term
     ./i18n
     ./tools
-    ./dunst.nix
     ./fonts.nix
     ./gtk.nix
     ./picom.nix
