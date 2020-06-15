@@ -8,7 +8,10 @@ with lib; {
 
   config = mkIf config.modules.desktop.apps.geary.enable {
     modules.desktop.backends = {
-      dbus.enable = mkForce true;
+      dbus = {
+        enable = mkForce true;
+        packages = with pkgs; [ gnome3.geary ];
+      };
       gnomeKeyring = {
         enable = mkForce true;
         components = [ "secrets" ];
@@ -18,7 +21,5 @@ with lib; {
     };
 
     my.packages = with pkgs; [ gnome3.geary ];
-
-    modules.desktop.backends.dbus.packages = with pkgs; [ gnome3.geary ];
   };
 }
