@@ -3,6 +3,7 @@
 with lib; {
   imports = [
     ./apps
+    ./backends
     ./term
     ./i18n
     ./tools
