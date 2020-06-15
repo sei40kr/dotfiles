@@ -23,8 +23,13 @@ with lib; {
       XMODIFIERS = "@im=fcitx";
     };
     my.home.xdg.configFile."fcitx/config".source = <config/fcitx/config>;
-    my.home.xdg.configFile."fcitx/conf/fcitx-classic-ui.config".source =
-      <config/fcitx/conf/fcitx-classic-ui.config>;
+    my.home.xdg.configFile."fcitx/conf/fcitx-classic-ui.config".text = ''
+      ${readFile <config/fcitx/conf/fcitx-classic-ui.config>}
+      # Skin Name
+      SkinType=${
+        if config.modules.themes.preferDarkTheme then "dark" else "default"
+      }
+    '';
 
     # Fontconfig configuration
     my.home.xdg.configFile."fontconfig/conf.d/70-noto-cjk.conf".source =
