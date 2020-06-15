@@ -23,7 +23,10 @@
         geary.enable = true;
         gnomeCalendar.enable = true;
 
-        media.parole.enable = true;
+        media = {
+          parole.enable = true;
+          ristretto.enable = true;
+        };
 
         slack.enable = true;
         deluge = {
