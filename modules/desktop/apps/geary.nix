@@ -1,0 +1,24 @@
+{ config, lib, options, pkgs, ... }:
+
+with lib; {
+  options.modules.desktop.apps.geary.enable = mkOption {
+    type = types.bool;
+    default = false;
+  };
+
+  config = mkIf config.modules.desktop.apps.geary.enable {
+    modules.desktop.backends = {
+      dbus.enable = mkForce true;
+      gnomeKeyring = {
+        enable = mkForce true;
+        components = [ "secrets" ];
+      };
+      gnomeOnlineAccounts.enable = mkForce true;
+      telepathy.enable = mkForce true;
+    };
+
+    my.packages = with pkgs; [ gnome3.geary ];
+
+    modules.desktop.backends.dbus.packages = with pkgs; [ gnome3.geary ];
+  };
+}

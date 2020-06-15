@@ -20,6 +20,7 @@
           chromium.enable = true;
           qutebrowser.enable = true;
         };
+        geary.enable = true;
 
         media.parole.enable = true;
 

@@ -1,5 +1,11 @@
 { config, lib, pkgs, ... }:
 
 with lib; {
-  imports = [ ./dconf.nix ];
+  imports = [
+    ./dbus.nix
+    ./dconf.nix
+    ./gnome-keyring.nix
+    ./gnome-online-accounts.nix
+    ./telepathy.nix
+  ];
 }

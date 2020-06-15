@@ -7,8 +7,8 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.backends.dconf.enable {
-    services.dbus = {
-      enable = true;
+    modules.desktop.backends.dbus = {
+      enable = mkForce true;
       packages = with pkgs; [ dconf ];
     };
 
