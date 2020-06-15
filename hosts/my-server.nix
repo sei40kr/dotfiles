@@ -21,6 +21,7 @@
           qutebrowser.enable = true;
         };
         geary.enable = true;
+        gnomeCalendar.enable = true;
 
         media.parole.enable = true;
 

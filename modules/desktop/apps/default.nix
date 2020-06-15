@@ -7,6 +7,7 @@ with lib; {
     ./deluge.nix
     ./dunst.nix
     ./geary.nix
+    ./gnome-calendar.nix
     ./polybar.nix
     ./rofi.nix
     ./slack.nix
