@@ -4,7 +4,6 @@ with lib; {
   imports = [
     ./aws-shell.nix
     ./circleci-cli.nix
-    ./docker.nix
     ./git.nix
     ./google-cloud-sdk.nix
     ./gradle.nix

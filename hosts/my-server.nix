@@ -10,8 +10,6 @@
   };
 
   modules = {
-    system.fstrim.enable = true;
-
     desktop = {
       xmonad.enable = true;
 
@@ -70,10 +68,6 @@
         zeal.enable = true;
 
         # Infrastructure & CI Tools
-        docker = {
-          enable = true;
-          enableAutoPrune = true;
-        };
         awsShell.enable = true;
         googleCloudSdk.enable = true;
         circleciCli.enable = true;
@@ -96,6 +90,14 @@
       scala.enable = true;
       sh.enable = true;
       web.enable = true;
+    };
+
+    services = {
+      docker = {
+        enable = true;
+        enableAutoPrune = true;
+      };
+      fstrim.enable = true;
     };
 
     shell = {

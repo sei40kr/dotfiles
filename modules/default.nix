@@ -10,8 +10,8 @@ with lib; {
     ./desktop
     ./dev
     ./media
+    ./services
     ./shell
-    ./system
     ./themes
   ];
 
