@@ -4,6 +4,7 @@ with lib; {
   imports = [
     ./apps
     ./backends
+    ./browsers
     ./term
     ./i18n
     ./tools

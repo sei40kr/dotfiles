@@ -14,10 +14,6 @@
       xmonad.enable = true;
 
       apps = {
-        webBrowsers = {
-          chromium.enable = true;
-          qutebrowser.enable = true;
-        };
         geary.enable = true;
         gnomeCalendar.enable = true;
         gnomeContacts.enable = true;
@@ -31,6 +27,11 @@
         };
         rofi.enable = true;
         seahorse.enable = true;
+      };
+
+      browsers = {
+        chromium.enable = true;
+        qutebrowser.enable = true;
       };
 
       term.alacritty.enable = true;

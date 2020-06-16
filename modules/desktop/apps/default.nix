@@ -2,7 +2,6 @@
 
 with lib; {
   imports = [
-    ./web-browsers
     ./deluge.nix
     ./dunst.nix
     ./geary.nix
