@@ -24,6 +24,7 @@
         gnomeCalendar.enable = true;
         gnomeContacts.enable = true;
         gnomePomodoro.enable = true;
+        nautilus.enable = true;
 
         media = {
           parole.enable = true;
@@ -37,10 +38,6 @@
         };
         rofi.enable = true;
         seahorse.enable = true;
-        thunar = {
-          enable = true;
-          enableDaemon = true;
-        };
       };
 
       term.alacritty.enable = true;
