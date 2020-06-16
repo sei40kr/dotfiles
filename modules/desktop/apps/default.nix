@@ -11,6 +11,7 @@ with lib; {
     ./gnome-control-center.nix
     ./polybar.nix
     ./rofi.nix
+    ./seahorse.nix
     ./slack.nix
     ./thunar.nix
   ];

@@ -34,6 +34,7 @@
           enableWebUI = true;
         };
         rofi.enable = true;
+        seahorse.enable = true;
         thunar = {
           enable = true;
           enableDaemon = true;
