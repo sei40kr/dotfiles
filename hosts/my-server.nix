@@ -22,6 +22,7 @@
         };
         geary.enable = true;
         gnomeCalendar.enable = true;
+        gnomeContacts.enable = true;
 
         media = {
           parole.enable = true;
