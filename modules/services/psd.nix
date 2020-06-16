@@ -1,9 +1,9 @@
 { config, lib, options, pkgs, ... }:
 
 with lib;
-(let cfg = config.modules.desktop.tools.psd;
+(let cfg = config.modules.services.psd;
 in {
-  options.modules.desktop.tools.psd = {
+  options.modules.services.psd = {
     enable = mkOption {
       type = types.bool;
       default = false;

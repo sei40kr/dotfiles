@@ -1,12 +1,12 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  options.modules.desktop.tools.picom.enable = mkOption {
+  options.modules.services.picom.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
-  config = mkIf config.modules.desktop.tools.picom.enable {
+  config = mkIf config.modules.services.picom.enable {
     my.packages = with pkgs; [ picom ];
     my.home.xdg.configFile."picom/picom.conf" = {
       source = <config/picom/picom.conf>;

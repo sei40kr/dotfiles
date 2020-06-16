@@ -1,12 +1,12 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  options.modules.desktop.tools.redshift.enable = mkOption {
+  options.modules.services.redshift.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
-  config = mkIf config.modules.desktop.tools.redshift.enable {
+  config = mkIf config.modules.services.redshift.enable {
     services.redshift = { enable = true; };
   };
 }

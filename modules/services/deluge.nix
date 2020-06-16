@@ -2,10 +2,10 @@
 
 with lib;
 (let
-  cfg = config.modules.desktop.apps.deluge;
+  cfg = config.modules.services.deluge;
   package = pkgs.callPackage <packages/deluge.nix> { };
 in {
-  options.modules.desktop.apps.deluge = {
+  options.modules.services.deluge = {
     enable = mkOption {
       type = types.bool;
       default = false;

@@ -22,10 +22,6 @@
         nautilus.enable = true;
 
         slack.enable = true;
-        deluge = {
-          enable = true;
-          enableWebUI = true;
-        };
         rofi.enable = true;
         seahorse.enable = true;
       };
@@ -38,7 +34,6 @@
       term.alacritty.enable = true;
 
       tools = {
-        psd.enable = true;
         randomBackground = {
           enable = true;
           imageDirectory =
@@ -95,11 +90,16 @@
     };
 
     services = {
+      deluge = {
+        enable = true;
+        enableWebUI = true;
+      };
       docker = {
         enable = true;
         enableAutoPrune = true;
       };
       fstrim.enable = true;
+      psd.enable = true;
     };
 
     shell = {

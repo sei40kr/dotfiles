@@ -2,7 +2,6 @@
 
 with lib; {
   imports = [
-    ./deluge.nix
     ./dunst.nix
     ./evince.nix
     ./geary.nix
