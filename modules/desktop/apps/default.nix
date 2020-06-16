@@ -8,6 +8,7 @@ with lib; {
     ./dunst.nix
     ./geary.nix
     ./gnome-calendar.nix
+    ./gnome-control-center.nix
     ./polybar.nix
     ./rofi.nix
     ./slack.nix
