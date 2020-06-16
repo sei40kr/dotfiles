@@ -452,7 +452,7 @@
 
 ## Height (in pixels or as percentage of the window) of the completion.
 ## Type: PercOrInt
-# c.completion.height = '50%'
+c.completion.height = '30%'
 
 ## Minimum amount of characters needed to update completions.
 ## Type: Int
@@ -946,7 +946,7 @@ c.downloads.position = 'bottom'
 ## either a float value with a "pt" suffix, or an integer value with a
 ## "px" suffix.
 ## Type: String
-c.fonts.default_size = '14pt'
+c.fonts.default_size = '11pt'
 
 ## Font used for the downloadbar.
 ## Type: Font
@@ -1381,7 +1381,7 @@ c.fonts.default_size = '14pt'
 
 ## Padding (in pixels) for the statusbar.
 ## Type: Padding
-# c.statusbar.padding = {'top': 1, 'bottom': 1, 'left': 0, 'right': 0}
+c.statusbar.padding = {'top': 8, 'bottom': 8, 'left': 16, 'right': 16}
 
 ## Position of the status bar.
 ## Type: VerticalPosition
