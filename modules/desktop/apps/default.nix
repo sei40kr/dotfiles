@@ -8,6 +8,7 @@ with lib; {
     ./gnome-calendar.nix
     ./gnome-contacts.nix
     ./gnome-control-center.nix
+    ./gnome-font-viewer.nix
     ./gnome-pomodoro.nix
     ./nautilus.nix
     ./polybar.nix

@@ -18,6 +18,7 @@
         geary.enable = true;
         gnomeCalendar.enable = true;
         gnomeContacts.enable = true;
+        gnomeFontViewer.enable = true;
         gnomePomodoro.enable = true;
         nautilus.enable = true;
 
