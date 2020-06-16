@@ -49,6 +49,7 @@
       eog.enable = true;
       parole.enable = true;
       ristretto.enable = true;
+      totem.enable = true;
     };
 
     dev = {
