@@ -44,6 +44,11 @@
 
       tools = {
         psd.enable = true;
+        randomBackground = {
+          enable = true;
+          imageDirectory =
+            "${pkgs.pantheon.elementary-wallpapers}/share/backgrounds";
+        };
         scrot.enable = true;
       };
 
