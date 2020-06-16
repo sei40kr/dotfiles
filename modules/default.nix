@@ -9,6 +9,7 @@ with lib; {
 
     ./desktop
     ./dev
+    ./media
     ./shell
     ./system
     ./themes

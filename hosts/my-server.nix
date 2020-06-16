@@ -26,11 +26,6 @@
         gnomePomodoro.enable = true;
         nautilus.enable = true;
 
-        media = {
-          parole.enable = true;
-          ristretto.enable = true;
-        };
-
         slack.enable = true;
         deluge = {
           enable = true;
@@ -53,6 +48,11 @@
       };
 
       i18n.japanese.enable = true;
+    };
+
+    media = {
+      parole.enable = true;
+      ristretto.enable = true;
     };
 
     dev = {

@@ -2,7 +2,6 @@
 
 with lib; {
   imports = [
-    ./media
     ./web-browsers
     ./deluge.nix
     ./dunst.nix
