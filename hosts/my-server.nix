@@ -14,6 +14,7 @@
       xmonad.enable = true;
 
       apps = {
+        evince.enable = true;
         geary.enable = true;
         gnomeCalendar.enable = true;
         gnomeContacts.enable = true;
