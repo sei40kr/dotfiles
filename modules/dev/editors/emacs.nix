@@ -11,7 +11,7 @@ with lib; {
   config = mkIf config.modules.dev.editors.emacs.enable {
     my.home.programs.emacs = {
       enable = true;
-      package = pkgs.emacsGit;
+      package = pkgs.emacsUnstable;
     };
 
     my.packages = with pkgs; [
