@@ -57,7 +57,7 @@ in {
       '';
     } // optionalAttrs fontsEnabled {
       "fontconfig/conf.d/70-noto-cjk.conf".source =
-        "${pkgs.fontconfig_210}/share/fontconfig/conf.avail/70-noto-cjk.conf";
+        <config/fontconfig/70-noto-cjk.conf>;
     } // optionalAttrs gtkEnabled {
       "gtk-2.0/immodules.cache".source =
         "${gtk2-immodule-cache}/etc/gtk-2.0/immodules.cache";
