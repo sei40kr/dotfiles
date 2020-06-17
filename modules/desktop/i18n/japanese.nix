@@ -64,5 +64,8 @@ in {
       "gtk-3.0/immodules.cache".source =
         "${gtk3-immodule-cache}/etc/gtk-3.0/immodules.cache";
     };
+    my.xsession.init = ''
+      ${fcitx-with-plugins}/bin/fcitx &
+    '';
   };
 }
