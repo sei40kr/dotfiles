@@ -172,8 +172,8 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
   , ( (modm .|. shiftMask, xK_slash)
     , spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
-  , ((0, xK_Print), spawn "gnome-screenshot")
-  , ((shiftMask, xK_Print), spawn "gnome-screenshot -i")
+  , ((modm, xK_Print), spawn "scrot -b -q 100 ~/Pictures/%Y-%m-%d_\\$wx\\$h_scrot.png")
+  , ((modm .|. shiftMask, xK_Print), spawn "sleep 0.2; scrot -q 100 -s ~/Pictures/%Y-%m-%d_\\$wx\\$h_scrot.png")
   ] ++
     --
     -- mod-[1..9], Switch to workspace N
