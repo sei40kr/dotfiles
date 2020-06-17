@@ -11,7 +11,7 @@ with lib; {
   config = mkIf config.modules.dev.editors.emacs.enable {
     my.home.programs.emacs = {
       enable = true;
-      package = pkgs.emacs.overrideAttrs (oldAttrs: { version = "27.0.91"; });
+      package = pkgs.emacsGit;
     };
 
     my.packages = with pkgs; [

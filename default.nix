@@ -5,7 +5,15 @@ device: username:
   imports = [ ./modules ./hosts/my-server.nix ];
 
   nix.autoOptimiseStore = true;
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    overlays = [
+      (import (builtins.fetchTarball {
+        url =
+          "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+      }))
+    ];
+    config.allowUnfree = true;
+  };
 
   environment.systemPackages = with pkgs; [
     binutils
