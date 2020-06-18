@@ -99,6 +99,7 @@
         enable = true;
         enableAutoPrune = true;
       };
+      flexget.enable = true;
       fstrim.enable = true;
       psd.enable = true;
     };
@@ -112,7 +113,6 @@
 
         bat.enable = true;
         exa.enable = true;
-        flexget.enable = true;
         htop.enable = true;
         strace.enable = true;
         tcpdump.enable = true;

@@ -4,6 +4,7 @@ with lib; {
   imports = [
     ./deluge.nix
     ./docker.nix
+    ./flexget.nix
     ./fstrim.nix
     ./picom.nix
     ./psd.nix

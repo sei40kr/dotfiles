@@ -1,12 +1,12 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  options.modules.shell.tools.flexget.enable = mkOption {
+  options.modules.services.flexget.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
-  config = mkIf config.modules.shell.tools.flexget.enable
+  config = mkIf config.modules.services.flexget.enable
     (let package = pkgs.callPackage <packages/flexget.nix> { };
     in rec {
       my.packages = with pkgs; [ package ];
