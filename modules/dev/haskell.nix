@@ -7,7 +7,7 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.haskell.enable {
-    my.packages = with pkgs; [ stack ];
+    my.packages = with pkgs; [ ghc stack ];
 
     my.home.home.file.".stack/config.yml".source = <config/stack/config.yaml>;
 

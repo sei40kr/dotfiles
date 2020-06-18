@@ -2,7 +2,7 @@ device: username:
 { config, lib, options, pkgs, ... }:
 
 {
-  imports = [ ./modules ./hosts/my-server.nix ];
+  imports = [ /etc/nixos/cachix.nix ./modules ./hosts/my-server.nix ];
 
   nix.autoOptimiseStore = true;
   nixpkgs = {
@@ -17,6 +17,7 @@ device: username:
 
   environment.systemPackages = with pkgs; [
     binutils
+    cachix
     coreutils
     diffutils
     findutils
