@@ -373,7 +373,11 @@ myManageHook = composeAll
   ,
     -- misc
     resource =? "desktop_window" <||> className =? "Rofi" --> doIgnore
-  , isDialog <||> className =? "Gcr-prompter" --> doCenterFloat
+  , (    isDialog
+    <||> (className =? "Xmessage")
+    <||> (className =? "Gcr-prompter")
+    -->  doCenterFloat
+    )
   , isFullscreen --> doFullFloat
   , (    (stringProperty "WM_WINDOW_ROLE" =? "pop-up")
     <&&> (fmap not isChromeApp)
