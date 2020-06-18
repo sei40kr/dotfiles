@@ -83,13 +83,13 @@ myModMask = mod4Mask
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
 
-internetWs = "1"
-devWs = "2"
-fileWs = "3"
-imWs = "4"
+workspaceInternet = "1"
+workspaceDev = "2"
+workspaceFile = "3"
+workspaceIM = "4"
 
 myWorkspaces :: [String]
-myWorkspaces = [internetWs, devWs, fileWs, imWs]
+myWorkspaces = [workspaceInternet, workspaceDev, workspaceFile, workspaceIM]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -279,9 +279,9 @@ myLayout =
   avoidStruts
     $   minimize
     .   boringWindows
-    $   onWorkspace internetWs (tabSpacing myTabbed)
-    $   onWorkspace devWs      (tabSpacing myTabbed)
-    $   onWorkspace fileWs     (tabSpacing myTabbed ||| tiledSpacing tiled)
+    $   onWorkspace workspaceInternet (tabSpacing myTabbed)
+    $   onWorkspace workspaceDev      (tabSpacing myTabbed)
+    $   onWorkspace workspaceFile (tabSpacing myTabbed ||| tiledSpacing tiled)
     $   tiledSpacing tiled
     ||| Full
  where
@@ -326,7 +326,7 @@ myManageHook = composeAll
     <||> (className =? "Geary")
     <||> (className =? "Gnome-calendar")
     <||> (className =? "Gnome-contacts")
-    -->  doShiftAndView internetWs
+    -->  doShiftAndView workspaceInternet
     )
   ,
     -- dev
@@ -335,7 +335,7 @@ myManageHook = composeAll
     <||> (className =? "Zeal")
     <||> (className =? "Code")
     <||> (className =? "jetbrains-idea")
-    -->  doShiftAndView devWs
+    -->  doShiftAndView workspaceDev
     )
   , (    (className =? "jetbrains-idea")
     <&&> (title =? "Welcome to IntelliJ IDEA")
@@ -347,14 +347,14 @@ myManageHook = composeAll
     <||> (className =? "Evince")
     <||> (className =? "Eog")
     <||> (className =? "Totem")
-    -->  doShiftAndView fileWs
+    -->  doShiftAndView workspaceFile
     )
   ,
     -- im
     (    (className =? "Skype")
     <||> (className =? "Slack")
     <||> (className =? "discord")
-    -->  doShiftAndView imWs
+    -->  doShiftAndView workspaceIM
     )
   ,
     -- utilities
