@@ -13,11 +13,6 @@ in {
       type = types.bool;
       default = false;
     };
-
-    enableCompose = mkOption {
-      type = types.bool;
-      default = true;
-    };
   };
 
   config = mkIf cfg.enable {
@@ -25,7 +20,5 @@ in {
       enable = true;
       autoPrune.enable = cfg.enableAutoPrune;
     };
-
-    my.packages = mkIf cfg.enableCompose (with pkgs; [ docker-compose ]);
   };
 }
