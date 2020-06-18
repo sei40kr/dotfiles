@@ -1,11 +1,6 @@
 { config, lib, options, pkgs, ... }:
 
-with lib;
-let
-  all-hies =
-    import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master")
-    { };
-in {
+with lib; {
   imports = [ ./fonts.nix ];
 
   options.modules.dev.editors.emacs.enable = mkOption {
@@ -44,7 +39,7 @@ in {
       # lang/haskell
       haskellPackages.brittany
       haskellPackages.hlint
-      (all-hies.selection { selector = p: p; })
+      haskellPackages.ghcide
       # lang/kotlin
       # TODO Install kotlin-language-server
       ktlint
