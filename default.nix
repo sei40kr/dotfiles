@@ -2,7 +2,8 @@ device: username:
 { config, lib, options, pkgs, ... }:
 
 {
-  imports = [ /etc/nixos/cachix.nix ./modules ./hosts/my-server.nix ];
+  imports =
+    [ /etc/nixos/cachix.nix ./modules ./secrets.nix ./hosts/my-server.nix ];
 
   nix.autoOptimiseStore = true;
   nixpkgs = {

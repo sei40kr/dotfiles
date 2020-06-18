@@ -2,7 +2,19 @@
 
 with lib;
 (let
+  home-manager = config.home-manager.users."${config.my.userName}";
   cfg = config.modules.services.deluge;
+  proxyType = types.submodule {
+    options = {
+      hostName = mkOption { type = types.str; };
+      port = mkOption {
+        type = types.int;
+        default = 8080;
+      };
+      userName = mkOption { type = types.str; };
+      password = mkOption { type = types.str; };
+    };
+  };
   package = pkgs.callPackage <packages/deluge.nix> { };
 in {
   options.modules.services.deluge = {
@@ -15,11 +27,113 @@ in {
       type = types.bool;
       default = false;
     };
+
+    proxy = mkOption { type = proxyType; };
   };
 
   config = mkIf cfg.enable {
     my.packages = [ package ];
-
+    my.home.xdg.configFile."deluge/core.conf".text = ''
+      {
+          "file": 1,
+          "format": 1
+      }{
+          "add_paused": false,
+          "allow_remote": false,
+          "auto_manage_prefer_seeds": false,
+          "auto_managed": true,
+          "autoadd_enable": false,
+          "autoadd_location": "${home-manager.home.homeDirectory}/Downloads",
+          "cache_expiry": 60,
+          "cache_size": 512,
+          "compact_allocation": false,
+          "copy_torrent_file": false,
+          "daemon_port": 58846,
+          "del_copy_torrent_file": false,
+          "dht": true,
+          "dont_count_slow_torrents": false,
+          "download_location": "${home-manager.home.homeDirectory}/Downloads",
+          "download_location_paths_list": [],
+          "enabled_plugins": [],
+          "enc_in_policy": 1,
+          "enc_level": 1,
+          "enc_out_policy": 1,
+          "enc_prefer_rc4": true,
+          "geoip_db_location": "/usr/share/GeoIP/GeoIP.dat",
+          "ignore_limits_on_local_network": true,
+          "info_sent": 0.0,
+          "listen_interface": "",
+          "listen_ports": [
+              6881,
+              6881
+          ],
+          "listen_random_port": 49243,
+          "listen_reuse_port": true,
+          "listen_use_sys_port": false,
+          "lsd": true,
+          "max_active_downloading": 3,
+          "max_active_limit": 8,
+          "max_active_seeding": 5,
+          "max_connections_global": 200,
+          "max_connections_per_second": 20,
+          "max_connections_per_torrent": -1,
+          "max_download_speed": -1.0,
+          "max_download_speed_per_torrent": -1,
+          "max_half_open_connections": 20,
+          "max_upload_slots_global": 4,
+          "max_upload_slots_per_torrent": -1,
+          "max_upload_speed": -1.0,
+          "max_upload_speed_per_torrent": -1,
+          "move_completed": false,
+          "move_completed_path": "${home-manager.home.homeDirectory}/Downloads",
+          "move_completed_paths_list": [],
+          "natpmp": true,
+          "new_release_check": true,
+          "outgoing_interface": "",
+          "outgoing_ports": [
+              0,
+              0
+          ],
+          "path_chooser_accelerator_string": "Tab",
+          "path_chooser_auto_complete_enabled": true,
+          "path_chooser_max_popup_rows": 20,
+          "path_chooser_show_chooser_button_on_localhost": true,
+          "path_chooser_show_hidden_files": false,
+          "peer_tos": "0x00",
+          "plugins_location": "${home-manager.xdg.configHome}/deluge/plugins",
+          "pre_allocate_storage": true,
+          "prioritize_first_last_pieces": false,
+          "proxy": {
+              "anonymous_mode": true,
+              "force_proxy": true,
+              "hostname": "${cfg.proxy.hostName}",
+              "password": "${cfg.proxy.password}",
+              "port": ${toString cfg.proxy.port},
+              "proxy_hostnames": true,
+              "proxy_peer_connections": true,
+              "proxy_tracker_connections": true,
+              "type": 3,
+              "username": "${cfg.proxy.userName}"
+          },
+          "queue_new_to_top": false,
+          "random_outgoing_ports": true,
+          "random_port": true,
+          "rate_limit_ip_overhead": true,
+          "remove_seed_at_ratio": false,
+          "seed_time_limit": 180,
+          "seed_time_ratio_limit": 7.0,
+          "send_info": false,
+          "sequential_download": false,
+          "share_ratio_limit": 2.0,
+          "shared": false,
+          "stop_seed_at_ratio": false,
+          "stop_seed_ratio": 2.0,
+          "super_seeding": false,
+          "torrentfiles_location": "${home-manager.home.homeDirectory}/Downloads",
+          "upnp": true,
+          "utpex": true
+      }
+    '';
     my.home.systemd.user.services = {
       deluged = {
         Unit = {
