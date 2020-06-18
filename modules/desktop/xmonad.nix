@@ -54,8 +54,8 @@ in {
         enableContribAndExtras = true;
       };
     };
+    my.packages = with pkgs; [ xorg.xmessage ]; # required by Xmonad
     my.home.home.file.".xmonad/xmonad.hs".source = <config/xmonad/xmonad.hs>;
-
     my.xsession.init = ''
       xset r rate ${toString cfg.autoRepeatDelay} ${
         toString cfg.autoRepeatInterval
