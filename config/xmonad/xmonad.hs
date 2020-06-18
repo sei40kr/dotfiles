@@ -16,7 +16,6 @@ import           System.IO
 import           XMonad
 import           XMonad.Actions.CopyWindow
 import           XMonad.Actions.Minimize
-import           XMonad.Config.Gnome
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageDocks
@@ -210,7 +209,7 @@ myKeys conf@XConfig { XMonad.modMask = modm } =
     -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
     -- Quit xmonad
        , ( (modm .|. shiftMask, xK_q)
-         , spawn "gnome-session-quit --logout"
+         , io exitSuccess
          )
     -- Restart xmonad
        , ( (modm, xK_q)
@@ -291,7 +290,7 @@ adwaitaTabTheme = def { activeColor         = "#1e1e1e"
                       }
 
 myLayout =
-  desktopLayoutModifiers
+  avoidStruts
     $   minimize
     .   boringWindows
     $   onWorkspace internetWs (tabSpacing myTabbed)
@@ -480,7 +479,7 @@ myLogHook = ewmhDesktopsLogHook <+> do
 -- By default, do nothing.
 
 myStartupHook :: X ()
-myStartupHook = gnomeRegister <+> ewmhDesktopsStartup
+myStartupHook = ewmhDesktopsStartup
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
