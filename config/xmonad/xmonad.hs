@@ -102,19 +102,6 @@ myFocusedBorderColor = "#15539e"
 -- Key bindings. Add, modify or remove key bindings here.
 --
 
-isTodoist :: Query Bool
-isTodoist = resource =? "crx_bgjohebimpjdhhocbknplfelpmdhifhd"
-
-isPersistent :: Query Bool
-isPersistent =
-  className
-    =?   "Bitwarden"
-    <||> className
-    =?   "GoldenDict"
-    <||> className
-    =?   "Geary"
-    <||> isTodoist
-
 isTerminal :: Query Bool
 isTerminal = className =? "Alacritty"
 
@@ -133,10 +120,9 @@ myKeys conf@XConfig { XMonad.modMask = modm } =
        , ( (modm .|. shiftMask, xK_c)
          , withFocused
            (\win -> do
-             terminal   <- runQuery isTerminal win
-             persistent <- runQuery isPersistent win
-             homeDir    <- io getHomeDirectory
-             if persistent then minimizeWindow win else killWindow win
+             terminal <- runQuery isTerminal win
+             homeDir  <- io getHomeDirectory
+             killWindow win
              when terminal $ safeSpawn
                (homeDir ++ "/.tmux/scripts/clean-orphan-sessions.bash")
                []
@@ -294,12 +280,8 @@ myLayout =
     $   minimize
     .   boringWindows
     $   onWorkspace internetWs (tabSpacing myTabbed)
-    $   onWorkspace
-          devWs
-          (tabSpacing $ reflectHoriz $ withIM (1 % 2) vmdProps $ reflectHoriz
-            myTabbed
-          )
-    $   onWorkspace fileWs (tabSpacing myTabbed ||| tiledSpacing tiled)
+    $   onWorkspace devWs      (tabSpacing myTabbed)
+    $   onWorkspace fileWs     (tabSpacing myTabbed ||| tiledSpacing tiled)
     $   tiledSpacing tiled
     ||| Full
  where
@@ -310,7 +292,6 @@ myLayout =
   myTabbed = tabbed shrinkText adwaitaTabTheme
   tabSpacing =
     spacingRaw False (Border 32 32 32 32) True (Border 0 0 0 0) False
-  vmdProps = ClassName "Electron"
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -328,106 +309,73 @@ myLayout =
 -- 'className' and 'resource' are used below.
 --
 
-isChromeExtension :: Query Bool
-isChromeExtension = fmap (isPrefixOf "crx_") resource
-
-isPocket :: Query Bool
-isPocket = resource =? "crx_mjcnijlhddpbdemagnpefmlkjdagkogk"
-
-isLINE :: Query Bool
-isLINE = resource =? "crx_ophjlpahpchlmihnnnihgmmeilfjmjjc"
-
-isKindleCloudReader :: Query Bool
-isKindleCloudReader = resource =? "crx_cemlonfcgoakflacgajmjhfacialphik"
-
-isVmd :: Query Bool
-isVmd = className =? "Electron" <&&> fmap (isSuffixOf " - vmd") title
+isChromeApp :: Query Bool
+isChromeApp = fmap (isPrefixOf "crx_") resource
 
 centerRect :: W.RationalRect
 centerRect = W.RationalRect 0.23 0.14 0.54 0.72
 
 myManageHook :: ManageHook
 myManageHook = composeAll
-  [ resource =? "desktop_window" --> doIgnore
-  , isDialog --> doCenterFloat
+  [
+    -- internet
+    (    (stringProperty "WM_WINDOW_ROLE" =? "browser")
+    <||> (className =? "Chromium-browser")
+    <||> (className =? "Google-chrome")
+    <||> (className =? "qutebrowser")
+    <||> (className =? "Geary")
+    <||> (className =? "Gnome-calendar")
+    <||> (className =? "Gnome-contacts")
+    -->  doShiftAndView internetWs
+    )
+  ,
+    -- dev
+    (    (className =? "Alacritty")
+    <||> (className =? "Emacs")
+    <||> (className =? "Zeal")
+    <||> (className =? "Code")
+    <||> (className =? "jetbrains-idea")
+    -->  doShiftAndView devWs
+    )
+  , (    (className =? "jetbrains-idea")
+    <&&> (title =? "Welcome to IntelliJ IDEA")
+    -->  doCenterFloat
+    )
+  ,
+    -- file
+    (    (className =? "Org.gnome.Nautilus")
+    <||> (className =? "Evince")
+    <||> (className =? "Eog")
+    <||> (className =? "Totem")
+    -->  doShiftAndView fileWs
+    )
+  ,
+    -- im
+    (    (className =? "Skype")
+    <||> (className =? "Slack")
+    <||> (className =? "discord")
+    -->  doShiftAndView imWs
+    )
+  ,
+    -- utilities
+    (    (className =? "Gnome-pomodoro")
+    <||> (className =? "Gnome-control-center")
+    <||> (className =? "Fcitx-config-gtk3")
+    -->  (doCenterFloat <+> doF copyToAll)
+    )
+  , (    (className =? "Dconf-editor")
+    <||> (className =? "Bitwarden")
+    -->  (doRectFloat centerRect <+> doF copyToAll)
+    )
+  ,
+    -- misc
+    resource =? "desktop_window" <||> className =? "Rofi" --> doIgnore
+  , isDialog <||> className =? "Gcr-prompter" --> doCenterFloat
   , isFullscreen --> doFullFloat
-  , stringProperty "WM_WINDOW_ROLE"
-  =?   "pop-up"
-  <&&> fmap not isChromeExtension
-  -->  doCenterFloat
-  , className =? "Rofi" --> doIgnore
-  , className
-  =?   "Gnome-pomodoro"
-  <||> className
-  =?   "Gnome-control-center"
-  <||> className
-  =?   "Xfce4-notifyd-config"
-  <||> className
-  =?   "Gcolor3"
-  <||> className
-  =?   "Fcitx-config-gtk3"
-  -->  doCenterFloat
-  <+>  doF copyToAll
-  , className
-  =?   "Bitwarden"
-  <||> isTodoist
-  <||> className
-  =?   "GoldenDict"
-  -->  doRectFloat centerRect
-  <+>  doF copyToAll
-  , className
-  =?   "Gcr-prompter"
-  <||> className
-  =?   "Gnome-contacts"
-  -->  doCenterFloat
-  , className =? "Dconf-editor" --> doRectFloat centerRect
-    -- Internet Apps
-  , stringProperty "WM_WINDOW_ROLE"
-  =?   "browser"
-  <||> className
-  =?   "Google-chrome"
-  <||> className
-  =?   "qutebrowser"
-  <||> className
-  =?   "Geary"
-  <||> className
-  =?   "Gnome-calendar"
-  <||> className
-  =?   "Gnome-contacts"
-  <||> isKindleCloudReader
-  <||> isPocket
-  -->  doShiftAndView internetWs
-    -- Development
-  , className
-  =?   "Alacritty"
-  <||> className
-  =?   "Emacs"
-  <||> className
-  =?   "Zeal"
-  <||> isVmd
-  <||> className
-  =?   "Code"
-  <||> className
-  =?   "jetbrains-idea"
-  -->  doShiftAndView devWs
-  , className
-  =?   "jetbrains-idea"
-  <&&> title
-  =?   "Welcome to IntelliJ IDEA"
-  -->  doCenterFloat
-    -- File Browsing
-  , className =? "Thunar" --> doShiftAndView fileWs
-    -- Instant Messengers
-  , className
-  =?   "Skype"
-  <||> className
-  =?   "Slack"
-  <||> className
-  =?   "zoom"
-  <||> className
-  =?   "discord"
-  <||> isLINE
-  -->  doShiftAndView imWs
+  , (    (stringProperty "WM_WINDOW_ROLE" =? "pop-up")
+    <&&> (fmap not isChromeApp)
+    -->  doCenterFloat
+    )
   ]
   where doShiftAndView = doF . liftM2 (.) W.view W.shift
 
