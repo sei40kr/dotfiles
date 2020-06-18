@@ -177,9 +177,9 @@ myKeys conf@XConfig { XMonad.modMask = modm } =
          , sendMessage Expand
          )
     -- Push window back into tiling
-       , ( (modm, xK_t)
-         , withFocused $ windows . W.sink
-         )
+       -- , ( (modm, xK_t)
+       --   , withFocused $ windows . W.sink
+       --   )
     -- Increment the number of windows in the master area
        , ( (modm, xK_comma)
          , sendMessage (IncMasterN 1)
@@ -192,7 +192,9 @@ myKeys conf@XConfig { XMonad.modMask = modm } =
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
     -- See also the statusBar function from Hooks.DynamicLog.
     --
-    -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
+       -- , ( (modm, xK_b)
+       --   , sendMessage ToggleStruts
+       --   )
     -- Quit xmonad
        , ( (modm .|. shiftMask, xK_q)
          , io exitSuccess
@@ -236,16 +238,17 @@ myKeys conf@XConfig { XMonad.modMask = modm } =
 -- Mouse bindings: default actions bound to mouse events
 --
 myMouseBindings XConfig { XMonad.modMask = modm } = M.fromList
+  [
     -- mod-button1, Set the window to floating mode and move by dragging
-  [ ( (modm, button1)
-    , \w -> focus w >> mouseMoveWindow w >> windows W.shiftMaster
-    )
+  --   ( (modm, button1)
+  --   , \w -> focus w >> mouseMoveWindow w >> windows W.shiftMaster
+  --   )
+  -- ,
     -- mod-button2, Raise the window to the top of the stack
-  , ( (modm, button2)
-    , \w -> focus w >> windows W.shiftMaster
-    )
+    ((modm, button2), \w -> focus w >> windows W.shiftMaster)
+  ,
     -- mod-button3, Set the window to floating mode and resize by dragging
-  , ( (modm, button3)
+    ( (modm, button3)
     , \w -> focus w >> mouseResizeWindow w >> windows W.shiftMaster
     )
     -- you may also bind events to the mouse scroll wheel (button4 and button5)
@@ -508,7 +511,6 @@ help = unlines
   , "mod-Shift-{w,e,r}  Move client to screen 1, 2, or 3"
   , ""
   , "-- Mouse bindings: default actions bound to mouse events"
-  , "mod-button1  Set the window to floating mode and move by dragging"
   , "mod-button2  Raise the window to the top of the stack"
   , "mod-button3  Set the window to floating mode and resize by dragging"
   ]
