@@ -45,24 +45,16 @@ in {
     my.env = {
       QT_IM_MODULE = "fcitx";
       XMODIFIERS = "@im=fcitx";
-    } // optionalAttrs gtkEnabled { GTK_IM_MODULE = mkIf gtkEnabled "fcitx"; };
+      GTK_IM_MODULE = mkIf gtkEnabled "fcitx";
+    };
     my.home.xdg.configFile = {
       "fcitx/config".source = <config/fcitx/config>;
-      "fcitx/conf/fcitx-classic-ui.config".text = ''
-        ${readFile <config/fcitx/conf/fcitx-classic-ui.config>}
-        # Skin Name
-        SkinType=${
-          if config.modules.themes.preferDarkTheme then "dark" else "default"
-        }
-      '';
-    } // optionalAttrs fontsEnabled {
       "fontconfig/conf.d/70-noto-cjk.conf".source =
-        <config/fontconfig/70-noto-cjk.conf>;
-    } // optionalAttrs gtkEnabled {
+        mkIf fontsEnabled <config/fontconfig/70-noto-cjk.conf>;
       "gtk-2.0/immodules.cache".source =
-        "${gtk2-immodule-cache}/etc/gtk-2.0/immodules.cache";
+        mkIf gtkEnabled "${gtk2-immodule-cache}/etc/gtk-2.0/immodules.cache";
       "gtk-3.0/immodules.cache".source =
-        "${gtk3-immodule-cache}/etc/gtk-3.0/immodules.cache";
+        mkIf gtkEnabled "${gtk3-immodule-cache}/etc/gtk-3.0/immodules.cache";
     };
     my.xsession.init = ''
       ${fcitx-with-plugins}/bin/fcitx &

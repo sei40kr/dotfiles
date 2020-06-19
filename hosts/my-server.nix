@@ -119,13 +119,6 @@
       };
     };
 
-    themes = {
-      preferDarkTheme = true;
-
-      gtkIconTheme = {
-        package = pkgs.gnome3.adwaita-icon-theme;
-        name = "Adwaita";
-      };
-    };
+    themes.adwaitaDark.enable = true;
   };
 }

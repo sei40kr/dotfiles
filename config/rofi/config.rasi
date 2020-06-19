@@ -55,7 +55,6 @@ configuration {
     /* window-format: "{w}    {c}   {t}";*/
     /* click-to-exit: true;*/
     /* show-match: true;*/
-   	theme: "onedark";
     color-normal: "#00000000, #dfdfdf, #00000000, #21242b, #dfdfdf";
     color-urgent: "#00000000, #999999, #00000000, #00000000, #ffffff";
     color-active: "#ff21242b, #dfdfdf, #00000000, #00000000, #ffffff";

@@ -1,8 +1,6 @@
 { config, lib, options, pkgs, ... }:
 
-with lib;
-let themeCfg = config.modules.themes;
-in {
+with lib; {
   options.modules.desktop.gtk.enable = mkOption {
     type = types.bool;
     default = false;
@@ -14,14 +12,6 @@ in {
       fonts.enable = true;
     };
 
-    my.home.gtk = {
-      enable = true;
-
-      iconTheme = themeCfg.gtkIconTheme;
-      theme = themeCfg.gtkTheme;
-
-      gtk3.extraConfig.gtk-application-prefer-dark-theme =
-        themeCfg.preferDarkTheme;
-    };
+    my.home.gtk.enable = true;
   };
 }
