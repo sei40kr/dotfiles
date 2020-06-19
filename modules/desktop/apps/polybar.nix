@@ -1,6 +1,10 @@
 { config, lib, options, pkgs, ... }:
 
-with lib; {
+with lib;
+let
+  pythonForScripts = pkgs.python3.withPackages
+    (pythonPackages: with pythonPackages; [ pygobject3 dbus-python ]);
+in {
   options.modules.desktop.apps.polybar.enable = mkOption {
     type = types.bool;
     default = false;
@@ -21,14 +25,14 @@ with lib; {
           click-left = "${pkgs.fcitx}/bin/fcitx-configtool";
         };
       };
-      script = ''
-        polybar top &
-      '';
+      script = "polybar top &";
     };
-    my.home.home.file."polybar-scripts".source = <config/polybar/scripts>;
     my.home.xdg.configFile."polybar/config".onChange =
       "systemctl --user restart polybar.service";
-
     my.packages = with pkgs; [ material-design-icons ];
+    my.home.systemd.user.services.polybar.Service = {
+      Environment = mkForce
+        "PATH=${pythonForScripts}/bin:${config.my.home.services.polybar.package}/bin:/run/wrappers/bin";
+    };
   };
 }
