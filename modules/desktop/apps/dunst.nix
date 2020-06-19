@@ -7,14 +7,15 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.apps.dunst.enable {
+    modules.desktop.backends.dbus = {
+      enable = mkForce true;
+      packages = with pkgs; [ dunst ];
+    };
+
     my.packages = with pkgs; [ dunst libnotify ];
-    my.home.xdg = {
-      configFile."dunst/dunstrc" = {
-        source = <config/dunst/dunstrc>;
-        onChange = "systemctl --user restart dunst.service";
-      };
-      dataFile."dbus-1/services/org.knopwob.dunst.service".source =
-        "${pkgs.dunst}/share/dbus-1/services/org.knopwob.dunst.service";
+    my.home.xdg.configFile."dunst/dunstrc" = {
+      source = <config/dunst/dunstrc>;
+      onChange = "systemctl --user restart dunst.service";
     };
     my.home.systemd.user.services.dunst = {
       Unit = {
