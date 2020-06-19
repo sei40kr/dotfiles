@@ -9,7 +9,7 @@ in {
       default = false;
     };
 
-    imageDirectory = mkOption { type = types.str; };
+    imageDirectory = mkOption { type = with types; either path str; };
   };
 
   config = mkIf cfg.enable {

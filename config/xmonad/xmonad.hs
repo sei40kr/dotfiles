@@ -59,7 +59,7 @@ myClickJustFocuses = True
 -- Width of the window border in pixels.
 --
 myBorderWidth :: Dimension
-myBorderWidth = 3
+myBorderWidth = 1
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -92,7 +92,7 @@ myWorkspaces = [workspaceInternet, workspaceDev, workspaceFile, workspaceIM]
 myNormalBorderColor :: String
 myNormalBorderColor = "#ffffff"
 myFocusedBorderColor :: String
-myFocusedBorderColor = "#15539e"
+myFocusedBorderColor = "#9a2223"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -432,18 +432,7 @@ myEventHook = ewmhDesktopsEventHook <+> docksEventHook <+> fullscreenEventHook
 --
 
 myLogHook :: X ()
-myLogHook = ewmhDesktopsLogHook <+> do
-  wset <- gets windowset
-  let wss     = map W.tag $ W.workspaces wset
-  let current = W.currentTag wset
-  io $ appendFile "/tmp/.xmonad-workspace-log" $ format current wss
- where
-  format current = (++ "\n") . intercalate "%{O3}" . map (label current) . sort
-  label current ws =
-    (if ws == current then wrap "%{F#ffffff}%{u#ffffff}" "%{-u}%{F-}" else id)
-      $  "   "
-      ++ ws
-      ++ "   "
+myLogHook = ewmhDesktopsLogHook
 
 ------------------------------------------------------------------------
 -- Startup hook

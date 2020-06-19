@@ -18,10 +18,11 @@
 
 [colors]
 background     = #000000
-foreground     = #cccccc
+foreground     = #f2f0f3
 
-gray     = #666666
-darkgray = #444444
+red  = #9a2223
+pink = #d60c7b
+gray = #666666
 
 [bar/top]
 width  = 100%
@@ -34,72 +35,107 @@ border-color = #00000000
 
 radius = 0
 
-padding-left  = 4
-padding-right = 4
+padding-left  = 5
+padding-right = 5
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-font-0 = sans-serif:weight=bold:size=11;2
-font-1 = Material Design Icons:size=15;3
-font-2 = Noto Serif CJK JP:weight=bold:size=11;2
+font-0 = sans-serif:size=10;2
+font-1 = Material Design Icons:size=14;4
 
 line-size  = 2
-line-color = #f00
+line-color = ${colors.pink}
 
-modules-left   = workspaces-xmonad
-modules-center = date
-modules-right  = gnome-pomodoro-timer fcitx-status alsa wlan battery
-
-module-margin-left  = 0
-module-margin-right = 0
-
-separator = %{O16}
-
-[bar/bottom]
-bottom = true
-
-fixed-center = true
-
-width  = 100%
-height = 32
-
-border-size  = 0
-border-color = #00000000
-
-radius       = 0
-
-padding-left  = 12
-padding-right = 12
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-font-0 = sans-serif:size=11;2
-font-1 = Material Design Icons:size=15;3
-
-line-size  = 0
-line-color = #f00
-
-modules-left   =
-modules-center = cpu memory network
-modules-right  =
+modules-left   = cpu memory
+modules-center = ewmh
+modules-right  = gnome-pomodoro-timer fcitx-status alsa wlan battery date
 
 module-margin-left  = 0
 module-margin-right = 0
 
-separator = %{O8}·%{O8}
+separator = %{O20}
 
-[module/date]
-type = internal/date
+[module/cpu]
+type = internal/cpu
 
-interval = 5
+format = %{+u}%{T2}%{T-} <label>%{-u}
 
-date = %b %d %a
-time = %H:%M
+label = %percentage%%
 
-format = <label>
-label = %date%, %time%
+[module/memory]
+type = internal/memory
+
+format = %{+u}%{T2}%{T-} <label>%{-u}
+label = %mb_used% / %mb_total%
+
+[module/ewmh]
+type = internal/xworkspaces
+
+# Only show workspaces defined on the same output as the bar
+#
+# Useful if you want to show monitor specific workspaces
+# on different bars
+#
+# Default: false
+pin-workspaces = false
+
+# Create click handler used to focus desktop
+# Default: true
+enable-click = true
+
+# Create scroll handlers used to cycle desktops
+# Default: true
+enable-scroll = false
+
+# icon-[0-9]+ = <desktop-name>;<icon>
+# NOTE: The desktop name needs to match the name configured by the WM
+# You can get a list of the defined desktops using:
+# $ xprop -root _NET_DESKTOP_NAMES
+# Note: Neither <desktop-name> nor <icon> can contain a semicolon (;)
+icon-default = %{O3}%{O3}
+
+# Available tags:
+#   <label-monitor>
+#   <label-state> - gets replaced with <label-(active|urgent|occupied|empty)>
+# Default: <label-state>
+format = <label-state>
+format-font = 2
+
+# Available tokens:
+#   %name%
+# Default: %name%
+label-monitor = %name%
+
+# Available tokens:
+#   %name%
+#   %icon%
+#   %index%
+# Default: %icon%  %name%
+label-active = %icon%
+label-active-foreground = ${colors.red}
+
+# (unreleased)
+# Available tokens:
+#   %name%
+#   %icon%
+#   %index%
+# Default: %icon%  %name%
+label-occupied = %icon%
+
+# Available tokens:
+#   %name%
+#   %icon%
+#   %index%
+# Default: %icon%  %name%
+label-urgent = %icon%
+
+# Available tokens:
+#   %name%
+#   %icon%
+#   %index%
+# Default: %icon%  %name%
+label-empty = %icon%
 
 [module/gnome-pomodoro-timer]
 type = custom/script
@@ -107,7 +143,7 @@ type = custom/script
 exec = ~/polybar-scripts/gnome-pomodoro-timer/gnome-pomodoro-timer.py
 tail = true
 
-format = <label>
+format = %{+u}<label>%{-u}
 label = %output%
 
 click-left = gnome-pomodoro
@@ -119,19 +155,23 @@ exec = ~/polybar-scripts/fcitx-status/fcitx-status.py
 exec-if = [ -x /usr/bin/fcitx-remote ]
 tail = true
 
-format = <label>
-label      = %output%
-label-font = 3
+format = %{+u}<label>%{-u}
+label = %output%
 
 click-left = fcitx-configtool
 
 [module/alsa]
 type = internal/alsa
 
-format-volume = <ramp-volume>
+format-volume = %{+u}<ramp-volume> <label-volume>%{-u}
 
-format-muted            = <label-muted>
+format-muted            = %{+u}<label-muted>%{-u}
 format-muted-foreground = ${colors.gray}
+
+# Available tokens:
+#   %percentage% (default)
+label-volume = %percentage%%
+
 label-muted      = 
 label-muted-font = 2
 
@@ -172,7 +212,7 @@ adapter = ADP1
 
 poll-interval = 5
 
-format-charging = <animation-charging>
+format-charging = %{+u}<animation-charging>%{-u}
 animation-charging-0         = 
 animation-charging-1         = 
 animation-charging-2         = 
@@ -187,7 +227,7 @@ animation-charging-10        = 
 animation-charging-framerate = 150
 animation-charging-font      = 2
 
-format-discharging = <ramp-capacity>
+format-discharging = %{+u}<ramp-capacity>%{-u}
 ramp-capacity-0    = 
 ramp-capacity-1    = 
 ramp-capacity-2    = 
@@ -201,35 +241,19 @@ ramp-capacity-9    = 
 ramp-capacity-10   = 
 ramp-capacity-font = 2
 
-format-full      = 
+format-full      = %{+u}%{-u}
 format-full-font = 2
 
-[module/cpu]
-type = internal/cpu
+[module/date]
+type = internal/date
 
-format = <label>
-label = %{F#ffffff}cpu%{F-}%{O6}:%{O6}%percentage%%
+interval = 5
 
-[module/memory]
-type = internal/memory
+date = %b %d %a
+time = %H:%M
 
-format = <label>
-label = %{F#ffffff}mem%{F-}%{O6}:%{O6}%mb_used%%{O4}/%{O4}%mb_total%
-
-[module/network]
-type = internal/network
-
-interface = wlp2s0
-
-accumulate-stats = true
-unknown-as-up = true
-
-format-connected = <label-connected>
-label-connected = %{F#ffffff}net%{F-}%{O6}:%{O6}%downspeed%%{O4}%{T2}%{F#ffffff}%{F-}%{T-}%{O8}%upspeed%%{O4}%{T2}%{F#ffffff}%{F-}%{T-}
-
-format-disconnected =
-
-format-packetloss =
+format = %{+u}<label>%{-u}
+label = %date%, %time%
 
 [global/wm]
 margin-top    = 0

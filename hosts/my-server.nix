@@ -35,11 +35,7 @@
       term.alacritty.enable = true;
 
       tools = {
-        randomBackground = {
-          enable = true;
-          imageDirectory =
-            "${pkgs.pantheon.elementary-wallpapers}/share/backgrounds";
-        };
+        randomBackground.enable = true;
         scrot.enable = true;
       };
 
