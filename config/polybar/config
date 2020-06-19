@@ -49,7 +49,7 @@ line-color = ${colors.pink}
 
 modules-left   = cpu memory
 modules-center = ewmh
-modules-right  = gnome-pomodoro-timer fcitx-status alsa wlan battery date
+modules-right  = gnome-pomodoro fcitx alsa wlan battery date
 
 module-margin-left  = 0
 module-margin-right = 0
@@ -137,28 +137,21 @@ label-urgent = %icon%
 # Default: %icon%  %name%
 label-empty = %icon%
 
-[module/gnome-pomodoro-timer]
+[module/gnome-pomodoro]
 type = custom/script
 
-exec = ~/polybar-scripts/gnome-pomodoro-timer/gnome-pomodoro-timer.py
 tail = true
 
 format = %{+u}<label>%{-u}
 label = %output%
 
-click-left = gnome-pomodoro
-
-[module/fcitx-status]
+[module/fcitx]
 type = custom/script
 
-exec = ~/polybar-scripts/fcitx-status/fcitx-status.py
-exec-if = [ -x /usr/bin/fcitx-remote ]
 tail = true
 
 format = %{+u}<label>%{-u}
 label = %output%
-
-click-left = fcitx-configtool
 
 [module/alsa]
 type = internal/alsa
