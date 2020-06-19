@@ -276,7 +276,9 @@ adwaitaTabTheme = def { activeColor         = "#1e1e1e"
 
 myLayout =
   avoidStruts
-    $   onWorkspace workspaceInternet (myTabbed ||| (tabbedTwoPane isBrowser))
+    $   onWorkspace
+          workspaceInternet
+          (myTabbed ||| (tabbedTwoPane (Not isBrowser) myTabbed myTabbed))
     $   onWorkspace
           workspaceDev
           (   myTabbed
@@ -286,36 +288,29 @@ myLayout =
                        myTabbed
                        (layoutAll (relBox 0 (7 / 10) 1 1) Full)
               )
-          ||| (tabbedTwoPane isEditor)
+          ||| (tabbedTwoPane isEditor myTabbed myTabbed)
           )
     $   onWorkspace
           workspaceFile
           (   myTabbed
           ||| (Mirror (Tall 0 (3 / 100) (1 / 2)))
-          ||| (layoutP
-                (Not isFileManager)
-                (relBox 0 0 (1 / 2) 1)
-                (Just fullBox)
-                myTabbed
-                (layoutAll (relBox (1 / 2) 0 1 1) (Tall 0 (3 / 100) (1 / 2)))
+          ||| (tabbedTwoPane (Not isFileManager)
+                             myTabbed
+                             (Tall 0 (3 / 100) (1 / 2))
               )
           )
     $   tiledSpacing tiled
     ||| Full
  where
-  tabbedTwoPane p =
-    (layoutP isEditor
+  tabbedTwoPane p l1 l2 =
+    (layoutP p
              (relBox 0 0 (1 / 2) 1)
              (Just fullBox)
-             Full
-             (layoutAll (relBox (1 / 2) 0 1 1) myTabbed)
+             l1
+             (layoutAll (relBox (1 / 2) 0 1 1) l2)
     )
-  fullBox = relBox 0 0 1 1
-  isBrowser =
-    (Role "browser")
-      `Or` (ClassName "Chromium-browser")
-      `Or` (ClassName "Google-chrome")
-      `Or` (ClassName "qutebrowser")
+  fullBox   = relBox 0 0 1 1
+  isBrowser = Role "browser"
   isEditor =
     (ClassName "Emacs")
       `Or` (ClassName "Code")
