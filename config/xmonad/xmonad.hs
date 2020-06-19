@@ -15,23 +15,19 @@ import           System.Exit
 import           System.IO
 import           XMonad
 import           XMonad.Actions.CopyWindow
-import           XMonad.Actions.Minimize
 import           XMonad.Hooks.DynamicLog
 import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
-import           XMonad.Hooks.Minimize
-import           XMonad.Hooks.SetWMName
-import           XMonad.Layout.BoringWindows
-import           XMonad.Layout.IM
-import           XMonad.Layout.Minimize
+import           XMonad.Layout
+import           XMonad.Layout.LayoutBuilder
 import           XMonad.Layout.PerWorkspace
-import           XMonad.Layout.Reflect
 import           XMonad.Layout.Spacing
 import           XMonad.Layout.Tabbed
 import qualified XMonad.StackSet               as W
 import           XMonad.Util.Run
 import           XMonad.Util.SpawnOnce
+import           XMonad.Util.WindowProperties
 
 -- xmonad.hs ---
 
@@ -142,19 +138,19 @@ myKeys conf@XConfig { XMonad.modMask = modm } =
          )
     -- Move focus to the next window
        , ( (modm, xK_Tab)
-         , focusDown
+         , windows W.focusDown
          )
     -- Move focus to the next window
        , ( (modm, xK_j)
-         , focusDown
+         , windows W.focusDown
          )
     -- Move focus to the previous window
        , ( (modm, xK_k)
-         , focusUp
+         , windows W.focusUp
          )
     -- Move focus to the master window
        , ( (modm, xK_m)
-         , focusMaster
+         , windows W.focusMaster
          )
     -- Swap the focused window and the master window
        , ( (modm, xK_Return)
@@ -280,21 +276,55 @@ adwaitaTabTheme = def { activeColor         = "#1e1e1e"
 
 myLayout =
   avoidStruts
-    $   minimize
-    .   boringWindows
-    $   onWorkspace workspaceInternet (tabSpacing myTabbed)
-    $   onWorkspace workspaceDev      (tabSpacing myTabbed)
-    $   onWorkspace workspaceFile (tabSpacing myTabbed ||| tiledSpacing tiled)
+    $   onWorkspace workspaceInternet (myTabbed ||| (tabbedTwoPane isBrowser))
+    $   onWorkspace
+          workspaceDev
+          (   myTabbed
+          ||| (layoutP isEditor
+                       (relBox 0 0 1 (7 / 10))
+                       (Just fullBox)
+                       myTabbed
+                       (layoutAll (relBox 0 (7 / 10) 1 1) Full)
+              )
+          ||| (tabbedTwoPane isEditor)
+          )
+    $   onWorkspace
+          workspaceFile
+          (   myTabbed
+          ||| (Mirror (Tall 0 (3 / 100) (1 / 2)))
+          ||| (layoutP
+                (Not isFileManager)
+                (relBox 0 0 (1 / 2) 1)
+                (Just fullBox)
+                myTabbed
+                (layoutAll (relBox (1 / 2) 0 1 1) (Tall 0 (3 / 100) (1 / 2)))
+              )
+          )
     $   tiledSpacing tiled
     ||| Full
  where
-    -- default tiling algorithm partitions the screen into two panes
-  tiled = Tall 1 (toRational $ 2 / (1 + sqrt 5 :: Double)) (3 / 100)
+  tabbedTwoPane p =
+    (layoutP isEditor
+             (relBox 0 0 (1 / 2) 1)
+             (Just fullBox)
+             Full
+             (layoutAll (relBox (1 / 2) 0 1 1) myTabbed)
+    )
+  fullBox = relBox 0 0 1 1
+  isBrowser =
+    (Role "browser")
+      `Or` (ClassName "Chromium-browser")
+      `Or` (ClassName "Google-chrome")
+      `Or` (ClassName "qutebrowser")
+  isEditor =
+    (ClassName "Emacs")
+      `Or` (ClassName "Code")
+      `Or` (ClassName "jetbrains-idea")
+  isFileManager = ClassName "Org.gnome.Nautilus"
+  tiled         = Tall 1 (toRational $ 2 / (1 + sqrt 5 :: Double)) (3 / 100)
   tiledSpacing =
     spacingRaw False (Border 24 24 24 24) True (Border 8 8 8 8) True
   myTabbed = tabbed shrinkText adwaitaTabTheme
-  tabSpacing =
-    spacingRaw False (Border 32 32 32 32) True (Border 0 0 0 0) False
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -397,11 +427,7 @@ myManageHook = composeAll
 --
 
 myEventHook :: Event -> X All
-myEventHook =
-  ewmhDesktopsEventHook
-    <+> docksEventHook
-    <+> fullscreenEventHook
-    <+> minimizeEventHook
+myEventHook = ewmhDesktopsEventHook <+> docksEventHook <+> fullscreenEventHook
 
 ------------------------------------------------------------------------
 -- Status bars and logging
