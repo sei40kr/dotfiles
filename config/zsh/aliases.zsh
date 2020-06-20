@@ -61,9 +61,6 @@ alias pip='noglob pip'
 # ptpython
 alias ptpython='PYTHONSTARTUP="${XDG_CONFIG_HOME:-${HOME}/.config}/ptpython/pythonstartup.py" ptpython'
 
-# prettyping
-alias ping='prettyping --nolegend'
-
 # rbenv
 alias rubies='rbenv versions'
 alias gemsets='rbenv gemset list'

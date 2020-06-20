@@ -111,6 +111,7 @@
         bat.enable = true;
         exa.enable = true;
         htop.enable = true;
+        prettyping.enable = true;
         strace.enable = true;
         tcpdump.enable = true;
       };
