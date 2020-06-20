@@ -193,11 +193,12 @@ myKeys conf@XConfig { XMonad.modMask = modm } =
          , spawn ("echo \"" ++ help ++ "\" | xmessage -file -")
          )
        , ( (modm, xK_Print)
-         , spawn "scrot -b -q 100 ~/Pictures/%Y-%m-%d_\\$wx\\$h_scrot.png"
+         , spawn
+           "scrot -b -q 100 ~/Pictures/%Y-%m-%d_\\$wx\\$h_scrot.png && notify-send -u low 'Screenshot taken' 'The screenshot has been saved in ~/Pictures'"
          )
        , ( (modm .|. shiftMask, xK_Print)
          , spawn
-           "sleep 0.2; scrot -q 100 -s ~/Pictures/%Y-%m-%d_\\$wx\\$h_scrot.png"
+           "sleep 0.2; scrot -q 100 -s ~/Pictures/%Y-%m-%d_\\$wx\\$h_scrot.png && notify-send -u low 'Screenshot taken' 'The screenshot has been saved in ~/Pictures'"
          )
        ]
     ++
