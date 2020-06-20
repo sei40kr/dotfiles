@@ -24,12 +24,25 @@ in {
     # TODO Install prettier, prettier-eslint-cli, and typescript-formatter
     # TODO Install language servers for HTML, CSS, JavaScript, TypeScript, Vue
     my.packages = with pkgs; [ nodejs yarn ];
-
     my.env = {
       NVM_DIR = [ "\${HOME}/.nvm" ];
       PATH = [ "\${HOME}/.yarn/bin" ];
     };
-
+    my.zsh.aliases = {
+      npmg = "npm i -g ";
+      npmS = "npm i -S ";
+      npmD = "npm i -D ";
+      npmE = ''PATH="$(npm bin):''${PATH}"'';
+      npmO = "npm outdated";
+      npmV = "npm -v";
+      npmL = "npm list";
+      npmL0 = "npm ls --depth=0";
+      npmst = "npm start";
+      npmt = "npm test";
+      npmR = "npm run";
+      npmP = "npm publish";
+      npmI = "npm init";
+    };
     modules.shell.zsh.zinitPluginsInit = ''
       zinit light sei40kr/zsh-lazy-nvm
 

@@ -49,6 +49,16 @@ with lib; {
       };
     };
 
+    my.zsh.aliases = {
+      be = "bundle exec";
+      bl = "bundle list";
+      bp = "bundle package";
+      bo = "bundle open";
+      bout = "bundle outdated";
+      bu = "bundle update";
+      bi = "bundle_install";
+      bcn = "bundle clean";
+    };
     modules.shell.zsh.zinitPluginsInit = ''
       zinit ice atclone'rbenv init - --no-rehash zsh >rbenv-init.zsh' \
                 atpull'%atclone' \

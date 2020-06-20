@@ -6,6 +6,8 @@ with lib; {
     default = false;
   };
 
-  config =
-    mkIf config.modules.dev.r.enable { my.packages = with pkgs; [ R ]; };
+  config = mkIf config.modules.dev.r.enable {
+    my.packages = with pkgs; [ R ];
+    my.zsh.aliases.R = "R --no-save --no-restore-data -q";
+  };
 }

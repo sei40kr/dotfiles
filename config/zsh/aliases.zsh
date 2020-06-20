@@ -24,16 +24,6 @@ if is_macos; then
     alias bsoff='brew services stop'
 fi
 
-# bundle
-alias be="bundle exec"
-alias bl="bundle list"
-alias bp="bundle package"
-alias bo="bundle open"
-alias bout="bundle outdated"
-alias bu="bundle update"
-alias bi="bundle_install"
-alias bcn="bundle clean"
-
 # cordova
 alias co='cordova'
 alias cob='cordova build'
@@ -51,36 +41,6 @@ alias md='mkdir -p'
 alias rd=rmdir
 alias sortnr='sort -nr'
 
-# docker
-alias di='docker info'
-alias dlg='docker container logs'
-alias dls='docker container ls'
-alias dlsa='docker container ls -a'
-alias dr='docker container run'
-alias dt='docker top'
-alias dv='docker version'
-alias dpo='docker container port'
-alias dpu='docker pull'
-alias dx='docker container exec'
-alias dbl='docker build'
-alias dhh='docker help'
-alias dpsa='docker container ps -a'
-alias dils='docker image ls'
-alias dit='docker image tag'
-alias dip='docker image push'
-alias dib='docker image build'
-alias dnls='docker network ls'
-alias dnc='docker network create'
-alias dncn='docker network connect'
-alias dndcn='docker network disconnect'
-alias dnrm='docker network rm'
-alias dvls='docker volume ls'
-alias dvclean='docker volume rm $(docker volume ls -qf dangling=true)'
-# remove docker intermediate images
-alias drmi='docker rmi -f $(docker images -aq --filter dangling=true) 2>/dev/null'
-# wipe everything, kill all running processes, remove all containers and images
-alias dwipe='docker kill $(docker ps -q) 2>/dev/null;docker rm $(docker ps -aq) 2>/dev/null;docker rmi -f $(docker images -aq) 2>/dev/null'
-
 # fzf
 alias preview="fzf --preview 'bat --color always {}'"
 
@@ -92,21 +52,6 @@ alias lzd=lazydocker
 
 # ncdu
 alias du='ncdu --color dark -rr -x --exclude .git --exclude node_modules'
-
-# npm
-alias npmg='npm i -g '
-alias npmS='npm i -S '
-alias npmD='npm i -D '
-alias npmE='PATH="$(npm bin):${PATH}"'
-alias npmO='npm outdated'
-alias npmV='npm -v'
-alias npmL='npm list'
-alias npmL0='npm ls --depth=0'
-alias npmst='npm start'
-alias npmt='npm test'
-alias npmR='npm run'
-alias npmP='npm publish'
-alias npmI='npm init'
 
 ## Python
 
@@ -129,9 +74,6 @@ alias pygrep="rg --iglob '**/*.py'"
 
 # ruby
 alias rb='ruby'
-
-# R
-alias R='R --no-save --no-restore-data -q'
 
 # ssh
 alias ssh='env TERM=xterm-256color ssh'
