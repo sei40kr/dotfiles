@@ -31,7 +31,7 @@ configuration {
     /* sorting-method: ;*/
     /* case-sensitive: false;*/
     /* cycle: true;*/
-    sidebar-mode: true;
+    /* sidebar-mode: false; */
     /* eh: 1;*/
     /* auto-select: false;*/
     /* parse-hosts: false;*/

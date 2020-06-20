@@ -2,7 +2,7 @@
 
 with lib;
 let
-  accentColor = "#15539e";
+  accentColor = "#9a2223";
   rofiEnabled = config.modules.desktop.apps.rofi.enable;
   japaneseEnabled = config.modules.desktop.i18n.japanese.enable;
 in {

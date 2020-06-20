@@ -1,57 +1,52 @@
 /* -*- mode: css -*- */
 
 * {
-    blue:       #51afef;
-    dark-blue:  #2257a0;
-
-    fg:         #bbc2cf;
-    bg:         #282c34;
-    bg-alt:     #21242b;
+    --background-color: #202124;
+    --border-color: #1c1c1c;
+    --highlight-color: #9a2223;
+    --text-color: #cccccc;
 
     background-color: transparent;
-    font: "sans-serif 13";
-    text-color: @fg;
+    font: "sans-serif 11";
+    text-color: @--text-color;
 }
 
 window {
-    background-color: @bg;
+    background-color: @--background-color;
+    border: 1px;
+    border-color: @--border-color;
+    border-radius: 5px;
+    width: 640px;
 }
 
 inputbar {
-    background-color: @bg-alt;
     children: [prompt, textbox-prompt-colon, entry];
-    padding: 8px 16px;
+    padding: 10px 16px;
 }
 
 prompt {
-    text-color: @blue;
+    text-color: @--highlight-color;
 }
 
 textbox-prompt-colon {
     expand: false;
     margin: 0 0.5em 0 0;
     str: ":";
-    text-color: @blue;
+    text-color: @--highlight-color;
 }
 
 listview {
     dynamic: true;
+    margin: -2px 0 0 0;
     scrollbar: false;
 }
 
 element {
-    highlight: bold #51afef;
-    padding: 4px 16px;
+    highlight: bold;
+    padding: 10px 16px;
+    margin: -2px 0 0 0;
 }
 
 element selected {
-    background-color: @dark-blue;
-}
-
-button {
-    padding: 8px 16px;
-}
-
-button selected {
-    color: @blue;
+    background-color: @--highlight-color;
 }
