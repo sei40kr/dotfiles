@@ -14,6 +14,7 @@
       xmonad.enable = true;
 
       apps = {
+        bitwarden.enable = true;
         evince.enable = true;
         geary.enable = true;
         gnomeCalendar.enable = true;
