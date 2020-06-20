@@ -2,10 +2,14 @@
 
 * {
     --background-color: #202124;
+    --text-color: #cccccc;
+
     --border-color: #1c1c1c;
+
     --highlight-background-color: #9a2223;
     --highlight-text-color: #ffffff;
-    --text-color: #cccccc;
+
+    --accent-color: #d60c7b;
 
     background-color: transparent;
     font: "sans-serif 11";
@@ -26,14 +30,14 @@ inputbar {
 }
 
 prompt {
-    text-color: @--highlight-background-color;
+    text-color: @--accent-color;
 }
 
 textbox-prompt-colon {
     expand: false;
     margin: 0 0.5em 0 0;
     str: ":";
-    text-color: @--highlight-background-color;
+    text-color: @--accent-color;
 }
 
 listview {
