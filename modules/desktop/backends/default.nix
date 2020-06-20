@@ -8,6 +8,7 @@ with lib; {
     ./glib-networking.nix
     ./gnome-keyring.nix
     ./gnome-online-accounts.nix
+    ./gsettings-desktop-schemas.nix
     ./telepathy.nix
   ];
 }

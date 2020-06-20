@@ -52,7 +52,10 @@ with lib; {
       mkAliasDefinitions options.my.home;
     users.users.${config.my.userName} = mkAliasDefinitions options.my.user;
 
-    my.env.PATH = [ "$PATH" ];
+    my.env = {
+      PATH = [ "\${PATH}" ];
+      XDG_DATA_DIRS = [ "\${XDG_DATA_DIRS}" ];
+    };
 
     my.home = {
       home = {
