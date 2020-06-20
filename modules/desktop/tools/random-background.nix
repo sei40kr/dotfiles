@@ -10,12 +10,18 @@ in {
     };
 
     imageDirectory = mkOption { type = with types; either path str; };
+
+    interval = mkOption {
+      type = types.str;
+      default = "10m";
+    };
   };
 
   config = mkIf cfg.enable {
     my.home.services.random-background = {
       enable = true;
       imageDirectory = cfg.imageDirectory;
+      interval = cfg.interval;
     };
   };
 })
