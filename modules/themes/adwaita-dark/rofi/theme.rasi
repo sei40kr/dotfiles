@@ -3,7 +3,8 @@
 * {
     --background-color: #202124;
     --border-color: #1c1c1c;
-    --highlight-color: #9a2223;
+    --highlight-background-color: #9a2223;
+    --highlight-text-color: #ffffff;
     --text-color: #cccccc;
 
     background-color: transparent;
@@ -25,14 +26,14 @@ inputbar {
 }
 
 prompt {
-    text-color: @--highlight-color;
+    text-color: @--highlight-background-color;
 }
 
 textbox-prompt-colon {
     expand: false;
     margin: 0 0.5em 0 0;
     str: ":";
-    text-color: @--highlight-color;
+    text-color: @--highlight-background-color;
 }
 
 listview {
@@ -48,5 +49,6 @@ element {
 }
 
 element selected {
-    background-color: @--highlight-color;
+    background-color: @--highlight-background-color;
+    color: @--highlight-text-color;
 }
