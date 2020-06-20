@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-
-# system.bash
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 items=(

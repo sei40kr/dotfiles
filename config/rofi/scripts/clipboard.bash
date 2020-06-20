@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-
-# clipboard.bash
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 CLIPMENU_MAJOR_VERSION=5
