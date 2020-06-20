@@ -261,17 +261,17 @@ myMouseBindings XConfig { XMonad.modMask = modm } = M.fromList
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-adwaitaTabTheme = def { activeColor         = "#1e1e1e"
-                      , activeBorderColor   = "#1e1e1e"
-                      , activeTextColor     = "#cccccc"
-                      , inactiveColor       = "#353535"
-                      , inactiveBorderColor = "#353535"
+adwaitaTabTheme = def { activeColor         = "#9a2223"
+                      , activeBorderColor   = "#1c1c1c"
+                      , activeTextColor     = "#ffffff"
+                      , inactiveColor       = "#202124"
+                      , inactiveBorderColor = "#1c1c1c"
                       , inactiveTextColor   = "#cccccc"
-                      , urgentColor         = "#353535"
-                      , urgentBorderColor   = "#353535"
+                      , urgentColor         = "#202124"
+                      , urgentBorderColor   = "#1c1c1c"
                       , urgentTextColor     = "#cccccc"
-                      , fontName            = "xft:Noto Sans CJK JP:size=11"
-                      , decoHeight          = 36
+                      , fontName            = "xft:Noto Sans CJK JP:size=10"
+                      , decoHeight          = 32
                       }
 
 myLayout =
