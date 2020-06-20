@@ -1,63 +1,25 @@
-; -*- mode: conf-unix -*-
-;==========================================================
-;
-;
-;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
-;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
-;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
-;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
-;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
-;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
-;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/polybar/polybar
-;
-;   The README contains a lot of information
-;
-;==========================================================
-
-[colors]
-background     = #000000
-foreground     = #cccccc
-
-highlight-background-color = #9a2223
-highlight-text-color = #ffffff
-
-accent-color = #d60c7b
-
-gray = #666666
+# -*- mode: conf-unix -*-
+#==========================================================
+#
+#
+#   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+#   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+#   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+#   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+#   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+#   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+#
+#   To learn more about how to configure Polybar
+#   go to https://github.com/polybar/polybar
+#
+#   The README contains a lot of information
+#
+#==========================================================
 
 [bar/top]
-width  = 100%
-height = 32
-
-fixed-center = true
-
-border-size  = 0
-border-color = #00000000
-
-radius = 0
-
-padding-left  = 5
-padding-right = 5
-
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-font-0 = sans-serif:size=10;2
-font-1 = Material Design Icons:size=14;4
-
-line-size  = 2
-line-color = ${colors.accent-color}
-
 modules-left   = cpu memory
 modules-center = ewmh
 modules-right  = alsa date
-
-module-margin-left  = 0
-module-margin-right = 0
-
-separator = %{O12}
 
 [module/cpu]
 type = internal/cpu
@@ -103,7 +65,6 @@ icon-default = %{O1}  %{O1}
 #   <label-state> - gets replaced with <label-(active|urgent|occupied|empty)>
 # Default: <label-state>
 format = <label-state>
-format-font = 2
 
 # Available tokens:
 #   %name%
@@ -116,8 +77,6 @@ label-monitor = %name%
 #   %index%
 # Default: %icon%  %name%
 label-active = %icon%
-label-active-background = ${colors.highlight-background-color}
-label-active-foreground = ${colors.highlight-text-color}
 
 # (unreleased)
 # Available tokens:
@@ -163,19 +122,16 @@ type = internal/alsa
 format-volume = %{+u}<ramp-volume> <label-volume>%{-u}
 
 format-muted            = %{+u}<label-muted>%{-u}
-format-muted-foreground = ${colors.gray}
 
 # Available tokens:
 #   %percentage% (default)
 label-volume = %percentage%%
 
 label-muted      = 
-label-muted-font = 2
 
 ramp-volume-0    = 
 ramp-volume-1    = 
 ramp-volume-2    = 
-ramp-volume-font = 2
 
 ramp-headphones-0 = 
 
@@ -185,19 +141,14 @@ type = internal/network
 interface = wlp2s0
 
 format-connected           = <ramp-signal>%{O8}<label-connected>
-format-connected-underline =
 ramp-signal-0    = 爛
 ramp-signal-1    = 嵐
 ramp-signal-2    = 襤
 ramp-signal-3    = 蠟
-ramp-signal-font = 2
 label-connected = %essid%
 
 format-disconnected            = <label-disconnected>
-format-disconnected-foreground = ${colors.gray}
-format-disconnected-underline  =
 label-disconnected      = 來
-label-disconnected-font = 2
 
 [module/battery]
 type = internal/battery
@@ -222,7 +173,6 @@ animation-charging-8         = 
 animation-charging-9         = 
 animation-charging-10        = 
 animation-charging-framerate = 150
-animation-charging-font      = 2
 
 format-discharging = %{+u}<ramp-capacity>%{-u}
 ramp-capacity-0    = 
@@ -236,10 +186,8 @@ ramp-capacity-7    = 
 ramp-capacity-8    = 
 ramp-capacity-9    = 
 ramp-capacity-10   = 
-ramp-capacity-font = 2
 
 format-full      = %{+u}%{-u}
-format-full-font = 2
 
 [module/date]
 type = internal/date
@@ -251,7 +199,3 @@ time = %H:%M
 
 format = %{+u}<label>%{-u}
 label = %date%, %time%
-
-[global/wm]
-margin-top    = 0
-margin-bottom = 0

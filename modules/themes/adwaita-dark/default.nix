@@ -26,6 +26,8 @@ in {
 
     modules.desktop.xmonad.themeConfig = ./xmonad/src/Lib/Theme.hs;
 
+    modules.desktop.apps.polybar.themeConfig = ./polybar/theme.conf;
+
     modules.desktop.apps.rofi.theme = "adwaita-dark";
     my.home.xdg.configFile."rofi/adwaita-dark.rasi".source =
       mkIf rofiEnabled ./rofi/theme.rasi;

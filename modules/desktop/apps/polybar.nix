@@ -2,19 +2,30 @@
 
 with lib;
 let
+  cfg = config.modules.desktop.apps.polybar;
+  polybarConfig = pkgs.writeText "polybar-config" ''
+    [section/base]
+    include-file = ${cfg.themeConfig}
+
+    ${readFile <config/polybar/config>}
+  '';
   pythonForScripts = pkgs.python3.withPackages
     (pythonPackages: with pythonPackages; [ pygobject3 dbus-python ]);
 in {
-  options.modules.desktop.apps.polybar.enable = mkOption {
-    type = types.bool;
-    default = false;
+  options.modules.desktop.apps.polybar = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
+
+    themeConfig = mkOption { type = with types; either path str; };
   };
 
-  config = mkIf config.modules.desktop.apps.polybar.enable {
+  config = mkIf cfg.enable {
     my.home.services.polybar = {
       enable = true;
       config = {
-        "section/base".include-file = "${<config/polybar/config>}";
+        "section/base".include-file = "${polybarConfig}";
         "module/gnome-pomodoro" = {
           exec = "${<config/polybar/scripts/gnome-pomodoro.py>}";
           click-left = "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro";
@@ -27,6 +38,7 @@ in {
       };
       script = "polybar top &";
     };
+
     my.packages = with pkgs; [ material-design-icons ];
     my.home.systemd.user.services.polybar = {
       Unit.X-Restart-Triggers = [ "${<config/polybar/config>}" ];
