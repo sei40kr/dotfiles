@@ -53,13 +53,6 @@ enable-click = true
 # Default: true
 enable-scroll = false
 
-# icon-[0-9]+ = <desktop-name>;<icon>
-# NOTE: The desktop name needs to match the name configured by the WM
-# You can get a list of the defined desktops using:
-# $ xprop -root _NET_DESKTOP_NAMES
-# Note: Neither <desktop-name> nor <icon> can contain a semicolon (;)
-icon-default = %{O1}  %{O1}
-
 # Available tags:
 #   <label-monitor>
 #   <label-state> - gets replaced with <label-(active|urgent|occupied|empty)>
