@@ -54,7 +54,7 @@ modules-right  = alsa date
 module-margin-left  = 0
 module-margin-right = 0
 
-separator = %{O20}
+separator = %{O16}
 
 [module/cpu]
 type = internal/cpu
