@@ -20,25 +20,7 @@ in {
       theme = null;
       gtk3 = {
         extraConfig.gtk-application-prefer-dark-theme = true;
-        extraCss = ''
-          /* base background color of selections */
-          @define-color theme_selected_bg_color ${accentColor};
-          /* text/foreground color of selections */
-          @define-color theme_selected_fg_color #ffffff;
-
-          *:selected { background-color: @theme_selected_bg_color; }
-          *.view:selected { background-color: @theme_selected_bg_color; }
-
-          selection { background-color: @theme_selected_bg_color; }
-
-          textview selection { background-color: @theme_selected_bg_color; }
-
-          switch:checked { background-color: @theme_selected_bg_color; }
-
-          menu menuitem:hover, .menu menuitem:hover {
-            background-color: @theme_selected_bg_color;
-          }
-        '';
+        extraCss = "${readFile ./gtk/gtk-3.0/gtk.css}";
       };
     };
 
