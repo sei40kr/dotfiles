@@ -17,12 +17,14 @@ in {
 
   config = mkIf cfg.enable {
     my.packages = [ pkgs.rofi ];
-
     my.home.xdg.configFile."rofi/config.rasi".text = ''
       ${readFile <config/rofi/config.rasi>}
 
       configuration {
-        modi: "combi,clipboard:${<config/rofi/scripts/clipboard.bash>}";
+        modi: "combi${
+          optionalString config.modules.desktop.tools.clipmenu.enable
+          ",clipboard:${<config/rofi/scripts/clipboard.bash>}"
+        }";
         combi-modi: "drun,system:${<config/rofi/scripts/system-menu.bash>}";
         theme: "${cfg.theme}";
       }
