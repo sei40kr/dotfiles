@@ -9,6 +9,8 @@ in {
       default = false;
     };
 
+    themeConfig = mkOption { type = types.path; };
+
     autoRepeatDelay = mkOption {
       type = types.int;
       default = 150;
@@ -56,7 +58,7 @@ in {
     };
     my.packages = with pkgs; [ xorg.xmessage ]; # required by Xmonad
     my.home.home.file.".xmonad/app".source = <config/xmonad/app>;
-    my.home.home.file.".xmonad/src".source = <config/xmonad/src>;
+    my.home.home.file.".xmonad/src/Lib/Theme.hs".source = cfg.themeConfig;
     my.home.home.file.".xmonad/build".source = <config/xmonad/build>;
     my.home.home.file.".xmonad/package.yaml".source =
       <config/xmonad/package.yaml>;

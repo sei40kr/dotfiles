@@ -5,6 +5,7 @@ module Main
   )
 where
 
+import           Lib.Theme
 import           Control.Monad
 import           Data.List
 import qualified Data.Map                      as M
@@ -56,11 +57,6 @@ myFocusFollowsMouse = False
 myClickJustFocuses :: Bool
 myClickJustFocuses = True
 
--- Width of the window border in pixels.
---
-myBorderWidth :: Dimension
-myBorderWidth = 1
-
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
 -- ("right alt"), which does not conflict with emacs keybindings. The
@@ -86,13 +82,6 @@ workspaceIM = "4"
 
 myWorkspaces :: [String]
 myWorkspaces = [workspaceInternet, workspaceDev, workspaceFile, workspaceIM]
-
--- Border colors for unfocused and focused windows, respectively.
---
-myNormalBorderColor :: String
-myNormalBorderColor = "#ffffff"
-myFocusedBorderColor :: String
-myFocusedBorderColor = "#9a2223"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -261,19 +250,6 @@ myMouseBindings XConfig { XMonad.modMask = modm } = M.fromList
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-adwaitaTabTheme = def { activeColor         = "#9a2223"
-                      , activeBorderColor   = "#1c1c1c"
-                      , activeTextColor     = "#ffffff"
-                      , inactiveColor       = "#202124"
-                      , inactiveBorderColor = "#1c1c1c"
-                      , inactiveTextColor   = "#cccccc"
-                      , urgentColor         = "#202124"
-                      , urgentBorderColor   = "#1c1c1c"
-                      , urgentTextColor     = "#cccccc"
-                      , fontName            = "xft:Noto Sans CJK JP:size=10"
-                      , decoHeight          = 32
-                      }
-
 myLayout =
   avoidStruts
     $   onWorkspace
@@ -319,7 +295,7 @@ myLayout =
   tiled         = Tall 1 (toRational $ 2 / (1 + sqrt 5 :: Double)) (3 / 100)
   tiledSpacing =
     spacingRaw False (Border 24 24 24 24) True (Border 8 8 8 8) True
-  myTabbed = tabbed shrinkText adwaitaTabTheme
+  myTabbed = tabbed shrinkText tabTheme
 
 ------------------------------------------------------------------------
 -- Window rules:
