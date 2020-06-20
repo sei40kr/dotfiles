@@ -35,6 +35,8 @@ in {
           dunst.enable = mkForce true;
           polybar.enable = mkForce true;
         };
+
+        tools.xbindkeys.enable = mkForce true;
       };
 
       services.picom.enable = mkForce true;
