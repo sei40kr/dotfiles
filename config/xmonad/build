@@ -1,0 +1,5 @@
+#!/bin/sh
+# author: Seong Yong-ju <sei40kr@gmail.com>
+
+stack build && stack install --local-bin-path . &&
+  mv my-xmonad xmonad-x86_64-linux

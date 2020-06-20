@@ -55,7 +55,15 @@ in {
       };
     };
     my.packages = with pkgs; [ xorg.xmessage ]; # required by Xmonad
-    my.home.home.file.".xmonad/xmonad.hs".source = <config/xmonad/xmonad.hs>;
+    my.home.home.file.".xmonad/app".source = <config/xmonad/app>;
+    my.home.home.file.".xmonad/src".source = <config/xmonad/src>;
+    my.home.home.file.".xmonad/build".source = <config/xmonad/build>;
+    my.home.home.file.".xmonad/package.yaml".source =
+      <config/xmonad/package.yaml>;
+    my.home.home.file.".xmonad/shell.nix".source = <config/xmonad/shell.nix>;
+    my.home.home.file.".xmonad/stack.yaml".source = <config/xmonad/stack.yaml>;
+    my.home.home.file.".xmonad/stack.yaml.lock".source =
+      <config/xmonad/stack.yaml.lock>;
     my.xsession.init = ''
       xset r rate ${toString cfg.autoRepeatDelay} ${
         toString cfg.autoRepeatInterval
