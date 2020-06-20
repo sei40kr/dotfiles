@@ -1,9 +1,9 @@
 { config, lib, options, pkgs, ... }:
 
 with lib;
-(let cfg = config.modules.shell.tools.sshd;
+(let cfg = config.modules.services.sshd;
 in {
-  options.modules.shell.tools.sshd = {
+  options.modules.services.sshd = {
     enable = mkOption {
       type = types.bool;
       default = false;
@@ -13,11 +13,11 @@ in {
       type = types.bool;
       default = true;
     };
-  };
 
-  options.modules.shell.tools.sshd.enableGoogleAuthenticator = mkOption {
-    type = types.bool;
-    default = true;
+    enableGoogleAuthenticator = mkOption {
+      type = types.bool;
+      default = true;
+    };
   };
 
   config = {

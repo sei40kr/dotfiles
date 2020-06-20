@@ -6,7 +6,6 @@ with lib; {
     ./exa.nix
     ./htop.nix
     ./prettyping.nix
-    ./sshd.nix
     ./strace.nix
     ./tcpdump.nix
   ];

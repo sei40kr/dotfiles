@@ -9,6 +9,7 @@ with lib; {
     ./picom.nix
     ./psd.nix
     ./redshift.nix
+    ./sshd.nix
     ./tlp.nix
   ];
 }

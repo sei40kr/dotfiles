@@ -99,6 +99,7 @@
       flexget.enable = true;
       fstrim.enable = true;
       psd.enable = true;
+      sshd.enable = true;
     };
 
     shell = {
@@ -106,8 +107,6 @@
       tmux.enable = true;
 
       tools = {
-        sshd.enable = true;
-
         bat.enable = true;
         exa.enable = true;
         htop.enable = true;
