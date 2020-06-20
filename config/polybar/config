@@ -44,8 +44,8 @@ padding-right = 5
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-font-0 = sans-serif:size=10;1
-font-1 = Material Design Icons:size=14;3
+font-0 = sans-serif:size=10;2
+font-1 = Material Design Icons:size=14;4
 
 line-size  = 2
 line-color = ${colors.accent-color}
@@ -57,7 +57,7 @@ modules-right  = alsa date
 module-margin-left  = 0
 module-margin-right = 0
 
-separator = %{O16}
+separator = %{O12}
 
 [module/cpu]
 type = internal/cpu
@@ -96,7 +96,7 @@ enable-scroll = false
 # You can get a list of the defined desktops using:
 # $ xprop -root _NET_DESKTOP_NAMES
 # Note: Neither <desktop-name> nor <icon> can contain a semicolon (;)
-icon-default = "  "
+icon-default = %{O1}  %{O1}
 
 # Available tags:
 #   <label-monitor>
