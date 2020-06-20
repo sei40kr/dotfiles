@@ -27,12 +27,13 @@ in {
       };
       script = "polybar top &";
     };
-    my.home.xdg.configFile."polybar/config".onChange =
-      "systemctl --user restart polybar.service";
     my.packages = with pkgs; [ material-design-icons ];
-    my.home.systemd.user.services.polybar.Service = {
-      Environment = mkForce
-        "PATH=${pythonForScripts}/bin:${config.my.home.services.polybar.package}/bin:/run/wrappers/bin";
+    my.home.systemd.user.services.polybar = {
+      Unit.X-Restart-Triggers = [ "${<config/polybar/config>}" ];
+      Service = {
+        Environment = mkForce
+          "PATH=${pythonForScripts}/bin:${config.my.home.services.polybar.package}/bin:/run/wrappers/bin";
+      };
     };
   };
 }

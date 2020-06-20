@@ -8,7 +8,10 @@ with lib; {
 
   config = mkIf config.modules.desktop.tools.xbindkeys.enable {
     my.packages = with pkgs; [ xbindkeys ];
-    my.home.home.file.".xbindkeysrc".source = <config/xbindkeys/xbindkeysrc>;
+    my.home.home.file.".xbindkeysrc" = {
+      source = <config/xbindkeys/xbindkeysrc>;
+      onChange = "${pkgs.xbindkeys}/bin/xbindkeys -p";
+    };
     my.xsession.init = ''
       xbindkeys
     '';

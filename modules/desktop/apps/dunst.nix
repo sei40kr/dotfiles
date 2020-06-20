@@ -13,15 +13,13 @@ with lib; {
     };
 
     my.packages = with pkgs; [ dunst libnotify ];
-    my.home.xdg.configFile."dunst/dunstrc" = {
-      source = <config/dunst/dunstrc>;
-      onChange = "systemctl --user restart dunst.service";
-    };
+    my.home.xdg.configFile."dunst/dunstrc".source = <config/dunst/dunstrc>;
     my.home.systemd.user.services.dunst = {
       Unit = {
         Description = "Dunst notification daemon";
         Documentation = "man:dunst(1)";
         PartOf = [ "graphical-session.target" ];
+        X-Restart-Triggers = [ "${<config/dunst/dunstrc>}" ];
       };
       Service = {
         Type = "dbus";

@@ -15,13 +15,14 @@ in {
 
   config = mkIf config.modules.services.flexget.enable {
     my.packages = with pkgs; [ package ];
-    my.home.xdg.configFile."flexget/config.yml" = {
-      source = <config/flexget/config.yml>;
-      onChange = "systemctl --user reload flexget.service";
-    };
+    my.home.xdg.configFile."flexget/config.yml".source =
+      <config/flexget/config.yml>;
 
     my.home.systemd.user.services.flexget = {
-      Unit.Description = "FlexGet Daemon";
+      Unit = {
+        Description = "FlexGet Daemon";
+        X-Restart-Triggers = [ "${<config/flexget/config.yml>}" ];
+      };
       Install.WantedBy = [ "multi-user.target" ];
       Service = {
         ExecStart = "${pkgs.flexget}/bin/flexget daemon start";
