@@ -1,5 +1,11 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  imports = [ ./fcitx.nix ./random-background.nix ./scrot.nix ./xbindkeys.nix ];
+  imports = [
+    ./clipmenu.nix
+    ./fcitx.nix
+    ./random-background.nix
+    ./scrot.nix
+    ./xbindkeys.nix
+  ];
 }

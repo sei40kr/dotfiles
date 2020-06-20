@@ -35,6 +35,7 @@
       term.alacritty.enable = true;
 
       tools = {
+        clipmenu.enable = true;
         randomBackground.enable = true;
         scrot.enable = true;
       };
