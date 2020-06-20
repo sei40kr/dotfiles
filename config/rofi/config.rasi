@@ -1,7 +1,6 @@
 /* -*- mode: css -*- */
 
 configuration {
-    modi: "combi,clipboard:~/rofi-scripts/clipboard.bash";
     /* width: 50;*/
     lines: 10;
     /* columns: 1;*/
@@ -36,7 +35,6 @@ configuration {
     /* auto-select: false;*/
     /* parse-hosts: false;*/
     /* parse-known-hosts: true;*/
-    combi-modi: "drun,system:~/rofi-scripts/system.bash";
     /*  matching: "normal";*/
     /*  tokenize: true;*/
     /*  m: "-5";*/
