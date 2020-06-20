@@ -49,7 +49,7 @@ line-color = ${colors.pink}
 
 modules-left   = cpu memory
 modules-center = ewmh
-modules-right  = gnome-pomodoro fcitx alsa wlan battery date
+modules-right  = alsa date
 
 module-margin-left  = 0
 module-margin-right = 0
