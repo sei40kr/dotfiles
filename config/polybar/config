@@ -18,10 +18,13 @@
 
 [colors]
 background     = #000000
-foreground     = #f2f0f3
+foreground     = #cccccc
 
-red  = #9a2223
-pink = #d60c7b
+highlight-background-color = #9a2223
+highlight-text-color = #ffffff
+
+accent-color = #d60c7b
+
 gray = #666666
 
 [bar/top]
@@ -41,11 +44,11 @@ padding-right = 5
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-font-0 = sans-serif:size=10;2
-font-1 = Material Design Icons:size=14;4
+font-0 = sans-serif:size=10;1
+font-1 = Material Design Icons:size=14;3
 
 line-size  = 2
-line-color = ${colors.pink}
+line-color = ${colors.accent-color}
 
 modules-left   = cpu memory
 modules-center = ewmh
@@ -93,7 +96,7 @@ enable-scroll = false
 # You can get a list of the defined desktops using:
 # $ xprop -root _NET_DESKTOP_NAMES
 # Note: Neither <desktop-name> nor <icon> can contain a semicolon (;)
-icon-default = %{O3}%{O3}
+icon-default = "  "
 
 # Available tags:
 #   <label-monitor>
@@ -113,7 +116,8 @@ label-monitor = %name%
 #   %index%
 # Default: %icon%  %name%
 label-active = %icon%
-label-active-foreground = ${colors.red}
+label-active-background = ${colors.highlight-background-color}
+label-active-foreground = ${colors.highlight-text-color}
 
 # (unreleased)
 # Available tokens:
