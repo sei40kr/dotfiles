@@ -32,10 +32,12 @@ in {
 
     modules.desktop.browsers.qutebrowser.themeConfig = ./qutebrowser/theme.py;
 
+    modules.desktop.tools.fcitx.extraClassicUIConfig = ''
+      # Skin Name
+      SkinType=dark
+    '';
+
     modules.desktop.tools.randomBackground.imageDirectory =
       toString ./random-background;
-
-    my.home.xdg.configFile."fcitx/conf/fcitx-classic-ui.config".source =
-      mkIf japaneseEnabled ./fcitx/conf/fcitx-classic-ui.config;
   };
 }

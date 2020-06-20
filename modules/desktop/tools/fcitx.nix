@@ -32,6 +32,11 @@ in {
       type = types.bool;
       default = false;
     };
+
+    extraClassicUIConfig = mkOption {
+      type = types.lines;
+      default = "";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -45,6 +50,11 @@ in {
         ++ optionals gtkEnabled [ gtk2-immodule-cache gtk3-immodule-cache ]);
     my.home.xdg.configFile = {
       "fcitx/config".source = <config/fcitx/config>;
+      "fcitx/conf/fcitx-classic-ui.config".text = ''
+        ${readFile <config/fcitx/conf/fcitx-classic-ui.config>}
+
+        ${cfg.extraClassicUIConfig}
+      '';
       "gtk-2.0/immodules.cache".source =
         mkIf gtkEnabled "${gtk2-immodule-cache}/etc/gtk-2.0/immodules.cache";
       "gtk-3.0/immodules.cache".source =
