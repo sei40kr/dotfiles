@@ -1,0 +1,58 @@
+/* -*- mode: css -*- */
+
+* {
+    --background-color: #202124;
+    --text-color: #cccccc;
+
+    --border-color: #1c1c1c;
+
+    --highlight-background-color: #0f6776;
+    --highlight-text-color: #ffffff;
+
+    --accent-color: #00adcb;
+
+    background-color: transparent;
+    font: "sans-serif 11";
+    text-color: @--text-color;
+}
+
+window {
+    background-color: @--background-color;
+    border: 1px;
+    border-color: @--border-color;
+    border-radius: 5px;
+    width: 640px;
+}
+
+inputbar {
+    children: [prompt, textbox-prompt-colon, entry];
+    padding: 10px 16px;
+}
+
+prompt {
+    text-color: @--accent-color;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    margin: 0 0.5em 0 0;
+    str: ":";
+    text-color: @--accent-color;
+}
+
+listview {
+    dynamic: true;
+    margin: -2px 0 0 0;
+    scrollbar: false;
+}
+
+element {
+    highlight: bold;
+    padding: 10px 16px;
+    margin: -2px 0 0 0;
+}
+
+element selected {
+    background-color: @--highlight-background-color;
+    color: @--highlight-text-color;
+}
