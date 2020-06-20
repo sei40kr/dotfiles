@@ -1,5 +1,6 @@
 module Lib.Theme
-  ( myNormalBorderColor
+  ( myBorderWidth
+  , myNormalBorderColor
   , myFocusedBorderColor
   , tabTheme
   )
