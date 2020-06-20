@@ -6,12 +6,12 @@ let
   rofiEnabled = config.modules.desktop.apps.rofi.enable;
   japaneseEnabled = config.modules.desktop.i18n.japanese.enable;
 in {
-  options.modules.themes.adwaitaDark.enable = mkOption {
+  options.modules.themes.kaguya.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
-  config = mkIf config.modules.themes.adwaitaDark.enable {
+  config = mkIf config.modules.themes.kaguya.enable {
     my.home.gtk = {
       iconTheme = {
         package = pkgs.gnome3.adwaita-icon-theme;
@@ -28,8 +28,8 @@ in {
 
     modules.desktop.apps.polybar.themeConfig = ./polybar/theme.conf;
 
-    modules.desktop.apps.rofi.theme = "adwaita-dark";
-    my.home.xdg.configFile."rofi/adwaita-dark.rasi".source =
+    modules.desktop.apps.rofi.theme = "kaguya";
+    my.home.xdg.configFile."rofi/kaguya.rasi".source =
       mkIf rofiEnabled ./rofi/theme.rasi;
 
     modules.desktop.browsers.qutebrowser.themeConfig = ./qutebrowser/theme.py;

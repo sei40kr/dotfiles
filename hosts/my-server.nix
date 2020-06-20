@@ -116,6 +116,6 @@
       };
     };
 
-    themes.adwaitaDark.enable = true;
+    themes.kaguya.enable = true;
   };
 }
