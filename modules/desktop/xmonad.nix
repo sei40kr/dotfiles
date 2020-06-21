@@ -60,7 +60,7 @@ in {
         enableContribAndExtras = true;
       };
     };
-    my.packages = with pkgs; [ xorg.xmessage ]; # required by Xmonad
+    my.packages = with pkgs; [ xorg.xmessage gxmessage ]; # required by Xmonad
     my.home.home.file.".xmonad/src/Lib/Theme.hs".source = cfg.themeConfig;
     my.home.home.file.".xmonad/build".source = <config/xmonad/build>;
     my.home.home.file.".xmonad/package.yaml".text = ''

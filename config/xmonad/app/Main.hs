@@ -190,7 +190,7 @@ myKeys conf@XConfig { XMonad.modMask = modm } =
          )
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
        , ( (modm .|. shiftMask, xK_slash)
-         , spawn ("echo \"" ++ help ++ "\" | xmessage -file -")
+         , spawn ("echo \"" ++ help ++ "\" | gxmessage -file -")
          )
        , ( (modm, xK_Print)
          , spawn
@@ -377,6 +377,7 @@ myManageHook = composeAll
     resource =? "desktop_window" <||> className =? "Rofi" --> doIgnore
   , (    isDialog
     <||> (className =? "Xmessage")
+    <||> (className =? "Gxmessage")
     <||> (className =? "Gcr-prompter")
     -->  doCenterFloat
     )
