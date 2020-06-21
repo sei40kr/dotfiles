@@ -44,7 +44,10 @@ in {
 
     my.packages = with pkgs; [ material-design-icons ];
     my.home.systemd.user.services.polybar = {
-      Unit.X-Restart-Triggers = [ "${<config/polybar/config>}" ];
+      Unit = {
+        Requires = [ "dbus.service" ];
+        X-Restart-Triggers = [ "${<config/polybar/config>}" ];
+      };
       Service = {
         Environment = mkForce "";
         ExecStart = mkForce "${polybarStart}/bin/polybar-start";
