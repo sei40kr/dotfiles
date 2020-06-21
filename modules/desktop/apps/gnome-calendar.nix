@@ -16,6 +16,10 @@ with lib; {
         };
         evolutionDataServer.enable = mkForce true;
         gnomeOnlineAccounts.enable = mkForce true;
+        gsettingsDesktopSchemas = {
+          enable = mkForce true;
+          packages = with pkgs; [ gnome3.gnome-calendar ];
+        };
       };
     };
 

@@ -13,6 +13,10 @@ with lib; {
         packages = with pkgs; [ gnome3.gnome-online-accounts ];
       };
       gnomeKeyring.enable = mkForce true;
+      gsettingsDesktopSchemas = {
+        enable = mkForce true;
+        packages = with pkgs; [ gnome3.gnome-online-accounts ];
+      };
     };
 
     my.packages = with pkgs; [ gnome3.gnome-online-accounts ];

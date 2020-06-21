@@ -7,9 +7,15 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.apps.nautilus.enable {
-    modules.desktop.backends.dbus = {
-      enable = mkForce true;
-      packages = with pkgs; [ gnome3.nautilus ];
+    modules.desktop.backends = {
+      dbus = {
+        enable = mkForce true;
+        packages = with pkgs; [ gnome3.nautilus ];
+      };
+      gsettingsDesktopSchemas = {
+        enable = mkForce true;
+        packages = with pkgs; [ gnome3.nautilus ];
+      };
     };
 
     my.packages = with pkgs; [ gnome3.nautilus ];

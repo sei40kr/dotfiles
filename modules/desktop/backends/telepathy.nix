@@ -7,9 +7,15 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.backends.telepathy.enable {
-    modules.desktop.backends.dbus = {
-      enable = mkForce true;
-      packages = with pkgs; [ telepathy-mission-control ];
+    modules.desktop.backends = {
+      dbus = {
+        enable = mkForce true;
+        packages = with pkgs; [ telepathy-mission-control ];
+      };
+      gsettingsDesktopSchemas = {
+        enable = mkForce true;
+        packages = with pkgs; [ telepathy-mission-control ];
+      };
     };
 
     my.packages = with pkgs; [ telepathy-mission-control ];

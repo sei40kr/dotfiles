@@ -17,6 +17,10 @@ with lib; {
         components = [ "secrets" ];
       };
       gnomeOnlineAccounts.enable = mkForce true;
+      gsettingsDesktopSchemas = {
+        enable = mkForce true;
+        packages = with pkgs; [ gnome3.geary ];
+      };
       telepathy.enable = mkForce true;
     };
 

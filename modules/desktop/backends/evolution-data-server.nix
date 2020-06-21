@@ -13,6 +13,10 @@ with lib; {
         packages = with pkgs; [ gnome3.evolution-data-server ];
       };
       glibNetworking.enable = mkForce true;
+      gsettingsDesktopSchemas = {
+        enable = mkForce true;
+        packages = with pkgs; [ gnome3.evolution-data-server ];
+      };
     };
 
     my.packages = with pkgs; [ gnome3.evolution-data-server ];

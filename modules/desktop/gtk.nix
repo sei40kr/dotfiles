@@ -8,7 +8,13 @@ with lib; {
 
   config = mkIf config.modules.desktop.gtk.enable {
     modules.desktop = {
-      backends.dconf.enable = true;
+      backends = {
+        dconf.enable = true;
+        gsettingsDesktopSchemas = {
+          enable = mkForce true;
+          packages = with pkgs; [ gtk3 ];
+        };
+      };
       fonts.enable = true;
     };
 
