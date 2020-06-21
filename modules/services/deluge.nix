@@ -47,7 +47,9 @@ in {
           "auto_manage_prefer_seeds": false,
           "auto_managed": true,
           "autoadd_enable": false,
-          "autoadd_location": "${home-manager.home.homeDirectory}/Downloads",
+          "autoadd_location": ${
+            builtins.toJSON "${home-manager.home.homeDirectory}/Downloads"
+          },
           "cache_expiry": 60,
           "cache_size": 512,
           "compact_allocation": false,
@@ -56,7 +58,9 @@ in {
           "del_copy_torrent_file": false,
           "dht": true,
           "dont_count_slow_torrents": false,
-          "download_location": "${home-manager.home.homeDirectory}/Downloads",
+          "download_location": ${
+            builtins.toJSON "${home-manager.home.homeDirectory}/Downloads"
+          },
           "download_location_paths_list": [],
           "enabled_plugins": [],
           "enc_in_policy": 1,
@@ -86,7 +90,9 @@ in {
           "max_upload_speed": -1.0,
           "max_upload_speed_per_torrent": -1,
           "move_completed": false,
-          "move_completed_path": "${home-manager.home.homeDirectory}/Downloads",
+          "move_completed_path": ${
+            builtins.toJSON "${home-manager.home.homeDirectory}/Downloads"
+          },
           "move_completed_paths_list": [],
           "natpmp": true,
           "new_release_check": true,
@@ -101,20 +107,22 @@ in {
           "path_chooser_show_chooser_button_on_localhost": true,
           "path_chooser_show_hidden_files": false,
           "peer_tos": "0x00",
-          "plugins_location": "${home-manager.xdg.configHome}/deluge/plugins",
+          "plugins_location": ${
+            builtins.toJSON "${home-manager.xdg.configHome}/deluge/plugins"
+          },
           "pre_allocate_storage": true,
           "prioritize_first_last_pieces": false,
           "proxy": {
               "anonymous_mode": true,
               "force_proxy": true,
-              "hostname": "${cfg.proxy.hostName}",
-              "password": "${cfg.proxy.password}",
-              "port": ${toString cfg.proxy.port},
+              "hostname": ${builtins.toJSON cfg.proxy.hostName},
+              "password": ${builtins.toJSON cfg.proxy.password},
+              "port": ${builtins.toJSON cfg.proxy.port},
               "proxy_hostnames": true,
               "proxy_peer_connections": true,
               "proxy_tracker_connections": true,
               "type": 3,
-              "username": "${cfg.proxy.userName}"
+              "username": ${builtins.toJSON cfg.proxy.userName}
           },
           "queue_new_to_top": false,
           "random_outgoing_ports": true,
@@ -130,7 +138,9 @@ in {
           "stop_seed_at_ratio": false,
           "stop_seed_ratio": 2.0,
           "super_seeding": false,
-          "torrentfiles_location": "${home-manager.home.homeDirectory}/Downloads",
+          "torrentfiles_location": ${
+            builtins.toJSON "${home-manager.home.homeDirectory}/Downloads"
+          },
           "upnp": true,
           "utpex": true
       }
