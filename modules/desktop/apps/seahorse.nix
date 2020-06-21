@@ -8,6 +8,10 @@ with lib; {
 
   config = mkIf config.modules.desktop.apps.seahorse.enable {
     modules.desktop.backends = {
+      dbus = {
+        enable = mkForce true;
+        packages = with pkgs; [ gnome3.seahorse ];
+      };
       gnomeKeyring.enable = mkForce true;
       gsettingsDesktopSchemas = {
         enable = mkForce true;
