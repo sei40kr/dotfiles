@@ -2,15 +2,13 @@
 
 ## Requirements
 
-- Arch Linux or macOS
+- NixOS
 - Git
 
-## Install
-
-Clone this repository and run the installer:
+## Getting Started
 
 ```sh
-git clone git@github.com:sei40kr/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-./install
+git clone git@github.com:sei40kr/dotfiles.git /etc/dotfiles
+ln -s /etc/dotfiles ~/.dotfiles
+chown -R "$USER" ~/.dotfiles
 ```
