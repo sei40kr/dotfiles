@@ -16,6 +16,10 @@ with lib;
     };
   };
   package = pkgs.callPackage <packages/deluge.nix> { };
+  listenPorts = {
+    from = 6881;
+    to = 6889;
+  };
 in {
   options.modules.services.deluge = {
     enable = mkOption {
@@ -63,10 +67,7 @@ in {
           "ignore_limits_on_local_network": true,
           "info_sent": 0.0,
           "listen_interface": "",
-          "listen_ports": [
-              6881,
-              6881
-          ],
+          "listen_ports": ${builtins.toJSON (with listenPorts; [ from to ])},
           "listen_random_port": 49243,
           "listen_reuse_port": true,
           "listen_use_sys_port": false,
@@ -134,6 +135,10 @@ in {
           "utpex": true
       }
     '';
+    networking.firewall = {
+      allowedTCPPortRanges = [ listenPorts ];
+      allowedUDPPortRanges = [ listenPorts ];
+    };
     my.home.systemd.user.services = {
       deluged = {
         Unit = {
