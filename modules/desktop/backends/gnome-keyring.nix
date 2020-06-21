@@ -21,13 +21,19 @@ in {
       packages = with pkgs; [ gnome3.gnome-keyring gcr ];
     };
 
-    my.packages = with pkgs; [ gnome3.gnome-keyring gcr ];
-
     # NOTE Avoid "insufficient process capabilities".
     #      See https://unix.stackexchange.com/questions/112030/gnome-keyring-daemon-insufficient-process-capabilities-unsecure-memory-might-g
     security.wrappers.gnome-keyring-daemon = {
       source = "${pkgs.gnome3.gnome-keyring}/bin/gnome-keyring-daemon";
       capabilities = "cap_ipc_lock=ep";
     };
+
+    my.packages = with pkgs; [ gnome3.gnome-keyring gcr ];
+    my.xsession.init = ''
+      eval "$(${config.security.wrapperDir}/gnome-keyring-daemon --start --components=${
+        concatStringsSep "," cfg.components
+      })"
+      export SSH_AUTH_SOCK
+    '';
   };
 }
