@@ -63,10 +63,7 @@ with lib; {
         sessionVariables = config.my.env;
       };
 
-      xsession = {
-        initExtra = config.my.xsession.init;
-        importedVariables = [ "PATH" ];
-      };
+      xsession.initExtra = config.my.xsession.init;
 
       programs.zsh.shellAliases = config.my.zsh.aliases;
     };
