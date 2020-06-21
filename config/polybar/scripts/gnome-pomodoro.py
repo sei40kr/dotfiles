@@ -37,7 +37,7 @@ def output(state: Optional[str], state_duration: int, elapsed: float,
     print(format_icon(state), end='')
     if state is not None:
         print(
-            f'%{{O8}}{format_time(duration=state_duration, elapsed=elapsed)}',
+            f' {format_time(duration=state_duration, elapsed=elapsed)}',
             end='')
     print('', flush=True)
 
