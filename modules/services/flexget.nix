@@ -2,21 +2,34 @@
 
 with lib;
 let
+  cfg = config.modules.services.flexget;
   package = with pkgs;
     flexget.overrideAttrs (oldAttrs: {
       propagatedBuildInputs = oldAttrs.propagatedBuildInputs
         ++ [ python3Packages.deluge-client ];
     });
 in {
-  options.modules.services.flexget.enable = mkOption {
-    type = types.bool;
-    default = false;
+  options.modules.services.flexget = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
+
+    proxy = mkOption {
+      type = with types; nullOr str;
+      default = null;
+    };
   };
 
-  config = mkIf config.modules.services.flexget.enable {
+  config = mkIf cfg.enable {
     my.packages = with pkgs; [ package ];
-    my.home.xdg.configFile."flexget/config.yml".source =
-      <config/flexget/config.yml>;
+    my.home.xdg.configFile."flexget/config.yml".text = ''
+      templates:
+        proxy:
+          ${optionalString (cfg.proxy != null) "proxy: ${cfg.proxy}"}
+
+      ${readFile <config/flexget/config.yml>}
+    '';
 
     my.home.systemd.user.services.flexget = {
       Unit = {
