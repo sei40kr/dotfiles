@@ -9,8 +9,11 @@ let
 
     ${readFile <config/polybar/config>}
   '';
-  pythonForScripts = pkgs.python3.withPackages
+  pythonWithScriptDeps = pkgs.python3.withPackages
     (pythonPackages: with pythonPackages; [ pygobject3 dbus-python ]);
+  polybarStart = pkgs.writeShellScriptBin "polybar-start" "PATH=${
+      escapeShellArg "${pythonWithScriptDeps}/bin"
+    }:\${PATH} polybar top &";
 in {
   options.modules.desktop.apps.polybar = {
     enable = mkOption {
@@ -36,15 +39,15 @@ in {
           click-left = "${pkgs.fcitx}/bin/fcitx-configtool";
         };
       };
-      script = "polybar top &";
+      script = "";
     };
 
     my.packages = with pkgs; [ material-design-icons ];
     my.home.systemd.user.services.polybar = {
       Unit.X-Restart-Triggers = [ "${<config/polybar/config>}" ];
       Service = {
-        Environment = mkForce
-          "PATH=${pythonForScripts}/bin:${config.my.home.services.polybar.package}/bin:/run/wrappers/bin";
+        Environment = mkForce "";
+        ExecStart = mkForce "${polybarStart}/bin/polybar-start";
       };
     };
   };
