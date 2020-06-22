@@ -11,7 +11,7 @@ with lib; {
   config = mkIf config.modules.dev.editors.emacs.enable {
     my.home.programs.emacs = {
       enable = true;
-      package = pkgs.emacsUnstable;
+      package = pkgs.emacsUnstable.override { withXwidgets = true; };
     };
 
     my.packages = with pkgs; [
