@@ -13,5 +13,7 @@ with lib; {
     };
 
     my.home.dconf.enable = true;
+
+    my.env.GIO_EXTRA_MODULES = [ "${pkgs.dconf.lib}/lib/gio/modules" ];
   };
 }

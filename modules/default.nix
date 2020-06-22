@@ -53,6 +53,7 @@ with lib; {
     users.users.${config.my.userName} = mkAliasDefinitions options.my.user;
 
     my.env = {
+      GIO_EXTRA_MODULES = [ "\${GIO_EXTRA_MODULES}" ];
       PATH = [ "\${PATH}" ];
       XDG_DATA_DIRS = [ "\${XDG_DATA_DIRS}" ];
     };
