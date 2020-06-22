@@ -5,12 +5,12 @@ let
   rofiEnabled = config.modules.desktop.apps.rofi.enable;
   japaneseEnabled = config.modules.desktop.i18n.japanese.enable;
 in {
-  options.modules.themes.lozBotw.enable = mkOption {
+  options.modules.themes.zelda.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
-  config = mkIf config.modules.themes.lozBotw.enable {
+  config = mkIf config.modules.themes.zelda.enable {
     my.home.gtk = {
       iconTheme = {
         package = pkgs.gnome3.adwaita-icon-theme;
@@ -27,8 +27,8 @@ in {
 
     modules.desktop.apps.polybar.themeConfig = ./polybar/theme.conf;
 
-    modules.desktop.apps.rofi.theme = "loz-botw";
-    my.home.xdg.configFile."rofi/loz-botw.rasi".source =
+    modules.desktop.apps.rofi.theme = "zelda";
+    my.home.xdg.configFile."rofi/zelda.rasi".source =
       mkIf rofiEnabled ./rofi/theme.rasi;
 
     modules.desktop.browsers.qutebrowser.themeConfig = ./qutebrowser/theme.py;
