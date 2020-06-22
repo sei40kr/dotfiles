@@ -6,12 +6,7 @@ device: username:
 
   nix.autoOptimiseStore = true;
   nixpkgs = {
-    overlays = [
-      (import (builtins.fetchTarball {
-        url =
-          "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-      }))
-    ];
+    overlays = import ./packages;
     config.allowUnfree = true;
   };
 

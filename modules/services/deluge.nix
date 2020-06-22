@@ -15,7 +15,6 @@ with lib;
       password = mkOption { type = types.str; };
     };
   };
-  package = pkgs.callPackage <packages/deluge.nix> { };
   listenPorts = {
     from = 6881;
     to = 6889;
@@ -36,7 +35,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.packages = [ package ];
+    my.packages = with pkgs; [ unstable.deluge ];
     my.home.xdg.configFile."deluge/core.conf".text = ''
       {
           "file": 1,
@@ -157,7 +156,7 @@ in {
         };
         Install.WantedBy = [ "multi-user.target" ];
         Service = {
-          ExecStart = "${package}/bin/deluged --do-not-daemonize";
+          ExecStart = "${pkgs.unstable.deluge}/bin/deluged --do-not-daemonize";
           Restart = "on-success";
           LimitNOFILE = 4096;
         };
@@ -169,7 +168,8 @@ in {
           Requires = [ "deluged.service" ];
         };
         Install.WantedBy = [ "multi-user.target" ];
-        Service.ExecStart = "${package}/bin/deluge-web --do-not-daemonize";
+        Service.ExecStart =
+          "${pkgs.unstable.deluge}/bin/deluge-web --do-not-daemonize";
       };
     };
   };
