@@ -9,11 +9,10 @@ let
 
     ${readFile <config/polybar/config>}
   '';
-  pythonWithScriptDeps = pkgs.python3.withPackages
+  pythonEnv = pkgs.python3.withPackages
     (pythonPackages: with pythonPackages; [ pygobject3 dbus-python ]);
-  polybarStart = pkgs.writeShellScriptBin "polybar-start" "PATH=${
-      escapeShellArg "${pythonWithScriptDeps}/bin"
-    }:\${PATH} polybar top &";
+  polybarStart = pkgs.writeShellScriptBin "polybar-start"
+    "PATH=${escapeShellArg "${pythonEnv}/bin"}:\${PATH} polybar top &";
 in {
   options.modules.desktop.apps.polybar = {
     enable = mkOption {
