@@ -65,6 +65,7 @@
 
         # Infrastructure & CI Tools
         awsShell.enable = true;
+        dockerCompose.enable = true;
         googleCloudSdk.enable = true;
         circleciCli.enable = true;
         travis.enable = true;
