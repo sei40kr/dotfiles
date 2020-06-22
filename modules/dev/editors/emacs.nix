@@ -32,8 +32,8 @@ with lib; {
       rPackages.lintr
       # lang/go
       # TODO Install goimports
-      # TODO Install gopls
-      # TODO Install gore
+      unstable.gopls
+      unstable.gore
       # lang/groovy
       # TODO Install groovy-language-server
       # lang/haskell
@@ -58,7 +58,7 @@ with lib; {
       solargraph
       rubyPackages.rubocop
       # lang/rust
-      # TODO Install rust-analyzer
+      unstable.rust-analyzer
       # lang/scala
       metals
       scalafmt
