@@ -37,7 +37,7 @@ in {
 
         config.gtk.enable = mkForce true;
 
-        tools.xbindkeys.enable = mkForce true;
+        x11.xbindkeys.enable = mkForce true;
       };
 
       services.picom.enable = mkForce true;
