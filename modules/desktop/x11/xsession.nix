@@ -33,6 +33,11 @@ in {
       default = "";
     };
 
+    startDBusSession = mkOption {
+      type = types.bool;
+      default = false;
+    };
+
     variablesImportedIntoSystemdSession = mkOption {
       type = with types; listOf (strMatching "[a-zA-Z_][a-zA-Z0-9_]*");
       default = [
@@ -54,6 +59,13 @@ in {
       enable = true;
       profileExtra = cfg.profile;
       initExtra = ''
+        ${optionalString cfg.startDBusSession ''
+          if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
+            /run/current-system/systemd/bin/systemctl --user start dbus.socket
+            export "$(/run/current-system/systemd/bin/systemctl --user show-environment | grep '^DBUS_SESSION_BUS_ADDRESS')"
+          fi
+        ''}
+
         /run/current-system/systemd/bin/systemctl --user import-environment ${
           escapeShellArgs cfg.variablesImportedIntoSystemdSession
         }

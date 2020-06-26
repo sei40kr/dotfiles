@@ -16,6 +16,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules.desktop.x11.xsession.startDBusSession = mkForce true;
+
     services.dbus = {
       enable = true;
       packages = cfg.packages;
