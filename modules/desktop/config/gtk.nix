@@ -1,12 +1,12 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  options.modules.desktop.gtk.enable = mkOption {
+  options.modules.desktop.config.gtk.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
-  config = mkIf config.modules.desktop.gtk.enable {
+  config = mkIf config.modules.desktop.config.gtk.enable {
     modules.desktop = {
       backends = {
         dconf.enable = true;

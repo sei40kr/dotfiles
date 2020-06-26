@@ -5,11 +5,11 @@ with lib; {
     ./apps
     ./backends
     ./browsers
+    ./config
     ./term
     ./i18n
     ./tools
     ./fonts.nix
-    ./gtk.nix
     ./xdg-user-dirs.nix
     ./xmonad.nix
     ./xsecurelock.nix

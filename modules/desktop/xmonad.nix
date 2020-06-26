@@ -28,13 +28,14 @@ in {
     modules = {
       desktop = {
         xdgUserDirs.enable = mkForce true;
-        gtk.enable = mkForce true;
         xsecurelock.enable = mkForce true;
 
         apps = {
           dunst.enable = mkForce true;
           polybar.enable = mkForce true;
         };
+
+        config.gtk.enable = mkForce true;
 
         tools.xbindkeys.enable = mkForce true;
       };

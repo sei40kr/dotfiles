@@ -5,7 +5,7 @@ with lib;
   cfg = config.modules.desktop.tools.fcitx;
   fcitx-with-plugins =
     (with pkgs; fcitx.override { plugins = with fcitx-engines; [ mozc ]; });
-  gtkEnabled = config.modules.desktop.gtk.enable;
+  gtkEnabled = config.modules.desktop.config.gtk.enable;
   gtk2-immodule-cache = pkgs.stdenv.mkDerivation {
     preferLocalBuild = true;
     allowSubstitutes = false;
