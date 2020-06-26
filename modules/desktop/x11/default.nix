@@ -1,5 +1,5 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  imports = [ ./xbindkeys.nix ];
+  imports = [ ./startx.nix ./xbindkeys.nix ./xsession.nix ];
 }

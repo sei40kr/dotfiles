@@ -41,6 +41,8 @@
         scrot.enable = true;
       };
 
+      x11.startx.enable = true;
+
       i18n.japanese.enable = true;
     };
 

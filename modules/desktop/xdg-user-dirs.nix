@@ -7,9 +7,7 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.xdgUserDirs.enable {
-    my.home.xdg.userDirs.enable = true;
-
-    my.xsession.init = ''
+    modules.desktop.x11.xsession.profile = ''
       . "''${XDG_CONFIG_HOME:-''${HOME}/.config}/user-dirs.dirs"
       export XDG_DESKTOP_DIR
       export XDG_DOCUMENTS_DIR
@@ -20,5 +18,7 @@ with lib; {
       export XDG_TEMPLATES_DIR
       export XDG_VIDEOS_DIR
     '';
+
+    my.home.xdg.userDirs.enable = true;
   };
 }

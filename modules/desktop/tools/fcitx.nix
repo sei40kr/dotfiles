@@ -40,9 +40,14 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.desktop.backends.dbus = {
-      enable = mkForce true;
-      packages = with pkgs; [ fcitx-with-plugins ];
+    modules.desktop = {
+      backends.dbus = {
+        enable = mkForce true;
+        packages = with pkgs; [ fcitx-with-plugins ];
+      };
+      x11.xsession.init = ''
+        ${fcitx-with-plugins}/bin/fcitx &
+      '';
     };
 
     my.packages = with pkgs;
@@ -65,8 +70,5 @@ in {
       XMODIFIERS = "@im=fcitx";
       GTK_IM_MODULE = mkIf gtkEnabled "fcitx";
     };
-    my.xsession.init = ''
-      ${fcitx-with-plugins}/bin/fcitx &
-    '';
   };
 })

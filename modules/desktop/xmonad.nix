@@ -12,16 +12,6 @@ in {
     };
 
     themeConfig = mkOption { type = types.path; };
-
-    autoRepeatDelay = mkOption {
-      type = types.int;
-      default = 150;
-    };
-
-    autoRepeatInterval = mkOption {
-      type = types.int;
-      default = 30;
-    };
   };
 
   config = mkIf cfg.enable {
@@ -37,30 +27,20 @@ in {
 
         config.gtk.enable = mkForce true;
 
-        x11.xbindkeys.enable = mkForce true;
+        x11 = {
+          xbindkeys.enable = mkForce true;
+          xsession.enable = mkForce true;
+        };
       };
 
       services.picom.enable = mkForce true;
     };
 
-    # Enable X.Org Server + startx
-    services.xserver = {
+    my.home.xsession.windowManager.xmonad = {
       enable = true;
-      displayManager.startx.enable = true;
+      enableContribAndExtras = true;
     };
-    my.home.home.file.".xinitrc".text = ''
-      ./.xsession
-    '';
 
-    # Enable X Session + Xmonad
-    my.home.xsession = {
-      enable = true;
-
-      windowManager.xmonad = {
-        enable = true;
-        enableContribAndExtras = true;
-      };
-    };
     my.packages = with pkgs; [ xorg.xmessage gxmessage ]; # required by Xmonad
     my.home.home.file.".xmonad/src/Lib/Theme.hs".source = cfg.themeConfig;
     my.home.home.file.".xmonad/build".source = <config/xmonad/build>;
@@ -109,10 +89,5 @@ in {
     my.home.home.file.".xmonad/stack.yaml".source = <config/xmonad/stack.yaml>;
     my.home.home.file.".xmonad/stack.yaml.lock".source =
       <config/xmonad/stack.yaml.lock>;
-    my.xsession.init = ''
-      xset r rate ${toString cfg.autoRepeatDelay} ${
-        toString cfg.autoRepeatInterval
-      }
-    '';
   };
 }
