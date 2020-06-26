@@ -8,7 +8,7 @@ with lib; {
 
   config = mkIf config.modules.desktop.x11.xbindkeys.enable {
     modules.desktop.x11.xsession.init = ''
-      xbindkeys
+      ${pkgs.xbindkeys}/bin/xbindkeys
     '';
 
     my.packages = with pkgs; [ xbindkeys ];

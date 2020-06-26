@@ -41,7 +41,7 @@ in {
       enable = true;
       profileExtra = cfg.profile;
       initExtra = ''
-        xset r rate ${toString cfg.autoRepeatDelay} ${
+        ${pkgs.xorg.xset}/bin/xset r rate ${toString cfg.autoRepeatDelay} ${
           toString cfg.autoRepeatInterval
         }
 
