@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }:
 
 with lib; {
-  imports = [ ./gtk.nix ];
+  imports = [ ./fontconfig.nix ./gtk.nix ];
 }

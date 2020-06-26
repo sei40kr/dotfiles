@@ -15,6 +15,7 @@ with lib; {
           packages = with pkgs; [ gtk3 ];
         };
       };
+      config.fontconfig.enable = true;
       fonts.enable = true;
     };
 
