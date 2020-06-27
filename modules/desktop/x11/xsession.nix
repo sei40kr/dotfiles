@@ -71,6 +71,12 @@ in {
           fi
         ''}
 
+        # Redirect the output to the systemd journal
+        if [[ -z "$__DID_SYSTEMD_CAT" ]]; then
+          export __DID_SYSTEMD_CAT=1
+          /run/current-system/systemd/bin/systemd-cat -t xsession "$0" "$@"
+        fi
+
         /run/current-system/systemd/bin/systemctl --user import-environment ${
           escapeShellArgs cfg.variablesImportedIntoSystemdSession
         }
