@@ -3,17 +3,17 @@
 with lib;
 let
   cfg = config.modules.desktop.apps.polybar;
+  pythonEnv = pkgs.python3.withPackages
+    (pythonPackages: with pythonPackages; [ pygobject3 dbus-python ]);
+  polybarStart = pkgs.writeShellScriptBin "polybar-start" "PATH=${
+      escapeShellArg "${pythonEnv}/bin"
+    }:\${PATH} ${pkgs.polybar}/bin/polybar top &";
   polybarConfig = pkgs.writeText "polybar-config" ''
     [section/base]
     include-file = ${cfg.themeConfig}
 
     ${readFile <config/polybar/config>}
   '';
-  pythonEnv = pkgs.python3.withPackages
-    (pythonPackages: with pythonPackages; [ pygobject3 dbus-python ]);
-  polybarStart = pkgs.writeShellScriptBin "polybar-start" "PATH=${
-      escapeShellArg "${pythonEnv}/bin"
-    }:\${PATH} ${pkgs.polybar}/bin/polybar top &";
 in {
   options.modules.desktop.apps.polybar = {
     enable = mkOption {
