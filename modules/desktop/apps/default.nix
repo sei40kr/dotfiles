@@ -10,6 +10,7 @@ with lib; {
     ./gnome-calendar.nix
     ./gnome-contacts.nix
     ./gnome-control-center.nix
+    ./gnome-file-roller.nix
     ./gnome-font-viewer.nix
     ./gnome-pomodoro.nix
     ./nautilus.nix

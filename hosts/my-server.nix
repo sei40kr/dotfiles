@@ -20,6 +20,7 @@
         geary.enable = true;
         gnomeCalendar.enable = true;
         gnomeContacts.enable = true;
+        gnomeFileRoller.enable = true;
         gnomeFontViewer.enable = true;
         gnomePomodoro.enable = true;
         nautilus.enable = true;
