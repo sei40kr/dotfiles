@@ -1,24 +1,10 @@
 { config, lib, options, pkgs, ... }:
 
 with lib;
-(let
-  home-manager = config.home-manager.users."${config.my.userName}";
+let
+  home = config.users.users."${config.my.userName}".home;
+  configHome = config.home-manager.users."${config.my.userName}".xdg.configHome;
   cfg = config.modules.services.deluge;
-  proxyType = types.submodule {
-    options = {
-      hostName = mkOption { type = types.str; };
-      port = mkOption {
-        type = types.int;
-        default = 8080;
-      };
-      userName = mkOption { type = types.str; };
-      password = mkOption { type = types.str; };
-    };
-  };
-  listenPorts = {
-    from = 6881;
-    to = 6889;
-  };
 in {
   options.modules.services.deluge = {
     enable = mkOption {
@@ -31,7 +17,31 @@ in {
       default = false;
     };
 
-    proxy = mkOption { type = proxyType; };
+    listenPorts = {
+      from = mkOption {
+        type = types.int;
+        default = 6881;
+      };
+
+      to = mkOption {
+        type = types.int;
+        default = 6889;
+      };
+    };
+
+    proxy = mkOption {
+      type = types.submodule {
+        options = {
+          hostName = mkOption { type = types.str; };
+          port = mkOption {
+            type = types.int;
+            default = 8080;
+          };
+          userName = mkOption { type = types.str; };
+          password = mkOption { type = types.str; };
+        };
+      };
+    };
   };
 
   config = mkIf cfg.enable {
@@ -46,9 +56,7 @@ in {
           "auto_manage_prefer_seeds": false,
           "auto_managed": true,
           "autoadd_enable": false,
-          "autoadd_location": ${
-            builtins.toJSON "${home-manager.home.homeDirectory}/Downloads"
-          },
+          "autoadd_location": ${builtins.toJSON "${home}/Downloads"},
           "cache_expiry": 60,
           "cache_size": 512,
           "compact_allocation": false,
@@ -57,9 +65,7 @@ in {
           "del_copy_torrent_file": false,
           "dht": true,
           "dont_count_slow_torrents": false,
-          "download_location": ${
-            builtins.toJSON "${home-manager.home.homeDirectory}/Downloads"
-          },
+          "download_location": ${builtins.toJSON "${home}/Downloads"},
           "download_location_paths_list": [],
           "enabled_plugins": [],
           "enc_in_policy": 1,
@@ -70,7 +76,9 @@ in {
           "ignore_limits_on_local_network": true,
           "info_sent": 0.0,
           "listen_interface": "",
-          "listen_ports": ${builtins.toJSON (with listenPorts; [ from to ])},
+          "listen_ports": ${
+            builtins.toJSON (with cfg.listenPorts; [ from to ])
+          },
           "listen_random_port": 49243,
           "listen_reuse_port": true,
           "listen_use_sys_port": false,
@@ -89,9 +97,7 @@ in {
           "max_upload_speed": -1.0,
           "max_upload_speed_per_torrent": -1,
           "move_completed": false,
-          "move_completed_path": ${
-            builtins.toJSON "${home-manager.home.homeDirectory}/Downloads"
-          },
+          "move_completed_path": ${builtins.toJSON "${home}/Downloads"},
           "move_completed_paths_list": [],
           "natpmp": true,
           "new_release_check": true,
@@ -106,9 +112,7 @@ in {
           "path_chooser_show_chooser_button_on_localhost": true,
           "path_chooser_show_hidden_files": false,
           "peer_tos": "0x00",
-          "plugins_location": ${
-            builtins.toJSON "${home-manager.xdg.configHome}/deluge/plugins"
-          },
+          "plugins_location": ${builtins.toJSON "${configHome}/deluge/plugins"},
           "pre_allocate_storage": true,
           "prioritize_first_last_pieces": false,
           "proxy": {
@@ -137,16 +141,14 @@ in {
           "stop_seed_at_ratio": false,
           "stop_seed_ratio": 2.0,
           "super_seeding": false,
-          "torrentfiles_location": ${
-            builtins.toJSON "${home-manager.home.homeDirectory}/Downloads"
-          },
+          "torrentfiles_location": ${builtins.toJSON "${home}/Downloads"},
           "upnp": true,
           "utpex": true
       }
     '';
     networking.firewall = {
-      allowedTCPPortRanges = [ listenPorts ];
-      allowedUDPPortRanges = [ listenPorts ];
+      allowedTCPPortRanges = [ cfg.listenPorts ];
+      allowedUDPPortRanges = [ cfg.listenPorts ];
     };
     my.home.systemd.user.services = {
       deluged = {
@@ -173,4 +175,4 @@ in {
       };
     };
   };
-})
+}

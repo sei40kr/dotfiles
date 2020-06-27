@@ -2,8 +2,8 @@
 
 with lib;
 let
+  home = config.users.users."${config.my.userName}".home;
   cfg = config.modules.desktop.xmonad;
-  home-manager = config.home-manager.users."${config.my.userName}";
 in {
   options.modules.desktop.xmonad = {
     enable = mkOption {
@@ -101,7 +101,7 @@ in {
       - xmonad-contrib >=0.15 && <0.16
 
       library:
-        source-dirs: ${home-manager.home.homeDirectory}/.xmonad/src
+        source-dirs: ${home}/.xmonad/src
 
       executables:
         my-xmonad:
