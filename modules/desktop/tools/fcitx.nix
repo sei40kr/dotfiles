@@ -60,10 +60,6 @@ in {
 
         ${cfg.extraClassicUIConfig}
       '';
-      "gtk-2.0/immodules.cache".source =
-        mkIf gtkEnabled "${gtk2-immodule-cache}/etc/gtk-2.0/immodules.cache";
-      "gtk-3.0/immodules.cache".source =
-        mkIf gtkEnabled "${gtk3-immodule-cache}/etc/gtk-3.0/immodules.cache";
     };
     my.env = {
       QT_IM_MODULE = "fcitx";
