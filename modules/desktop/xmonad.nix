@@ -11,6 +11,11 @@ in {
       default = false;
     };
 
+    startupCommands = mkOption {
+      type = with types; listOf str;
+      default = [ ];
+    };
+
     themeConfig = mkOption { type = types.path; };
   };
 
@@ -42,6 +47,30 @@ in {
     };
 
     my.packages = with pkgs; [ xorg.xmessage gxmessage ]; # required by Xmonad
+    my.home.home.file.".xmonad/src/Lib/Hooks.hs".text = ''
+      module Lib.Hooks
+        ( myStartupHook
+        )
+      where
+      import           XMonad
+      import           XMonad.Hooks.EwmhDesktops
+      import           XMonad.Util.SpawnOnce
+
+      ------------------------------------------------------------------------
+      -- Startup hook
+
+      -- Perform an arbitrary action each time xmonad starts or is restarted
+      -- with mod-q.  Used by, e.g., XMonad.Layout.PerWorkspace to initialize
+      -- per-workspace layout choices.
+      --
+      -- By default, do nothing.
+
+      -- TODO Safely escape the command
+      myStartupHook = do
+        ewmhDesktopsStartup
+      ${concatStringsSep "\n"
+      (map (command: "  spawnOnce \"${command}\"") cfg.startupCommands)}
+    '';
     my.home.home.file.".xmonad/src/Lib/Theme.hs".source = cfg.themeConfig;
     my.home.home.file.".xmonad/build".source = <config/xmonad/build>;
     my.home.home.file.".xmonad/package.yaml".text = ''

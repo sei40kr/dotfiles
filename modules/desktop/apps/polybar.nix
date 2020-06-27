@@ -7,7 +7,7 @@ let
     (pythonPackages: with pythonPackages; [ pygobject3 dbus-python ]);
   polybarStart = pkgs.writeShellScriptBin "polybar-start" "PATH=${
       escapeShellArg "${pythonEnv}/bin"
-    }:\${PATH} ${pkgs.polybar}/bin/polybar top &";
+    }:\${PATH} ${pkgs.polybar}/bin/polybar top";
   polybarConfig = pkgs.writeText "polybar-config" ''
     [section/base]
     include-file = ${cfg.themeConfig}
@@ -25,33 +25,22 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.home.services.polybar = {
-      enable = true;
-      config = {
-        "section/base".include-file = "${polybarConfig}";
-        "module/gnome-pomodoro" = {
-          exec = "${<config/polybar/scripts/gnome-pomodoro.py>}";
-          click-left = "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro";
-        };
-        "module/fcitx" = {
-          exec = "${<config/polybar/scripts/fcitx.py>}";
-          exec-if = "[ -x ${escapeShellArg "${pkgs.fcitx}/bin/fcitx-remote"} ]";
-          click-left = "${pkgs.fcitx}/bin/fcitx-configtool";
-        };
-      };
-      script = "";
-    };
+    modules.desktop.xmonad.startupCommands =
+      [ "${polybarStart}/bin/polybar-start" ];
 
-    my.packages = with pkgs; [ material-design-icons ];
-    my.home.systemd.user.services.polybar = {
-      Unit = {
-        Requires = [ "dbus.service" ];
-        X-Restart-Triggers = [ "${<config/polybar/config>}" ];
-      };
-      Service = {
-        Environment = mkForce "";
-        ExecStart = mkForce "${polybarStart}/bin/polybar-start";
-      };
-    };
+    my.packages = with pkgs; [ polybar material-design-icons ];
+    my.home.xdg.configFile."polybar/config".text = ''
+      [section/base]
+      include-file = ${polybarConfig}
+
+      [module/gnome-pomodoro]
+      exec = ${<config/polybar/scripts/gnome-pomodoro.py>}
+      click-left = ${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro
+
+      [module/fcitx]
+      exec = ${<config/polybar/scripts/fcitx.py>}
+      exec-if = [ -x ${escapeShellArg "${pkgs.fcitx}/bin/fcitx-remote"} ]
+      click-left = ${pkgs.fcitx}/bin/fcitx-configtool
+    '';
   };
 }

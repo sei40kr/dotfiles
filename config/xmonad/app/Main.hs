@@ -5,6 +5,7 @@ module Main
   )
 where
 
+import           Lib.Hooks
 import           Lib.Theme
 import           Control.Monad
 import           Data.List
@@ -27,7 +28,6 @@ import           XMonad.Layout.Spacing
 import           XMonad.Layout.Tabbed
 import qualified XMonad.StackSet               as W
 import           XMonad.Util.Run
-import           XMonad.Util.SpawnOnce
 import           XMonad.Util.WindowProperties
 
 -- xmonad.hs ---
@@ -411,18 +411,6 @@ myEventHook = ewmhDesktopsEventHook <+> docksEventHook <+> fullscreenEventHook
 
 myLogHook :: X ()
 myLogHook = ewmhDesktopsLogHook
-
-------------------------------------------------------------------------
--- Startup hook
-
--- Perform an arbitrary action each time xmonad starts or is restarted
--- with mod-q.  Used by, e.g., XMonad.Layout.PerWorkspace to initialize
--- per-workspace layout choices.
---
--- By default, do nothing.
-
-myStartupHook :: X ()
-myStartupHook = ewmhDesktopsStartup
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
