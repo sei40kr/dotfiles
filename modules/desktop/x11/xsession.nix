@@ -38,6 +38,11 @@ in {
       default = false;
     };
 
+    updateDBusEnvironment = mkOption {
+      type = types.bool;
+      default = false;
+    };
+
     variablesImportedIntoSystemdSession = mkOption {
       type = with types; listOf (strMatching "[a-zA-Z_][a-zA-Z0-9_]*");
       default = [
@@ -73,6 +78,9 @@ in {
         ${pkgs.xorg.xset}/bin/xset r rate ${toString cfg.autoRepeatDelay} ${
           toString cfg.autoRepeatInterval
         }
+
+        ${optionalString cfg.updateDBusEnvironment
+        "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all"}
 
         ${cfg.init}
       '';
