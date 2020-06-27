@@ -73,7 +73,10 @@ in {
         ''}
 
         # Redirect the output to the systemd journal
-        ${pkgs.systemd}/bin/systemd-cat -t xsession "$0" "$@"
+        if [[ -z "$__DID_SYSTEMD_CAT" ]]; then
+          export __DID_SYSTEMD_CAT=1
+          ${pkgs.systemd}/bin/systemd-cat -t xsession "$0" "$@"
+        fi
 
         # Import environment variables to the user systemd session
         ${pkgs.systemd}/bin/systemctl --user import-environment ${
