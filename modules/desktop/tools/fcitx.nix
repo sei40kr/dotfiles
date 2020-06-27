@@ -46,7 +46,7 @@ in {
         packages = with pkgs; [ fcitx-with-plugins ];
       };
       x11.xsession.init = ''
-        ${fcitx-with-plugins}/bin/fcitx &
+        ${fcitx-with-plugins}/bin/fcitx
       '';
     };
 
