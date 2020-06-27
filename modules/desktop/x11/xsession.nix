@@ -66,18 +66,18 @@ in {
       initExtra = ''
         ${optionalString cfg.startDBusSession ''
           if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
-            /run/current-system/systemd/bin/systemctl --user start dbus.socket
-            export "$(/run/current-system/systemd/bin/systemctl --user show-environment | grep '^DBUS_SESSION_BUS_ADDRESS')"
+            ${pkgs.systemd}/bin/systemctl --user start dbus.socket
+            export "$(${pkgs.systemd}/bin/systemctl --user show-environment | grep '^DBUS_SESSION_BUS_ADDRESS')"
           fi
         ''}
 
         # Redirect the output to the systemd journal
         if [[ -z "$__DID_SYSTEMD_CAT" ]]; then
           export __DID_SYSTEMD_CAT=1
-          /run/current-system/systemd/bin/systemd-cat -t xsession "$0" "$@"
+          ${pkgs.systemd}/bin/systemd-cat -t xsession "$0" "$@"
         fi
 
-        /run/current-system/systemd/bin/systemctl --user import-environment ${
+        ${pkgs.systemd}/bin/systemctl --user import-environment ${
           escapeShellArgs cfg.variablesImportedIntoSystemdSession
         }
 
