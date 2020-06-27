@@ -11,8 +11,9 @@ let
   '';
   pythonEnv = pkgs.python3.withPackages
     (pythonPackages: with pythonPackages; [ pygobject3 dbus-python ]);
-  polybarStart = pkgs.writeShellScriptBin "polybar-start"
-    "PATH=${escapeShellArg "${pythonEnv}/bin"}:\${PATH} polybar top &";
+  polybarStart = pkgs.writeShellScriptBin "polybar-start" "PATH=${
+      escapeShellArg "${pythonEnv}/bin"
+    }:\${PATH} ${pkgs.polybar}/bin/polybar top &";
 in {
   options.modules.desktop.apps.polybar = {
     enable = mkOption {
