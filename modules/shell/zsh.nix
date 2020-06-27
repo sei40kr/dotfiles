@@ -1,6 +1,11 @@
 { config, lib, options, pkgs, ... }:
 
-with lib; {
+with lib;
+let
+  cfg = config.modules.shell.zsh;
+  zdotDir = ".zsh";
+  zinit = builtins.fetchGit { url = "https://github.com/zdharma/zinit.git"; };
+in {
   options.modules.shell.zsh = {
     enable = mkOption {
       type = types.bool;
@@ -19,15 +24,11 @@ with lib; {
     };
   };
 
-  config = mkIf config.modules.shell.zsh.enable (let
-    cfg = config.modules.shell.zsh;
-    dotDir = ".zsh";
-    zinit = builtins.fetchGit { url = "https://github.com/zdharma/zinit.git"; };
-  in {
+  config = mkIf cfg.enable {
     my.home.programs.zsh = {
       enable = true;
       autocd = true;
-      dotDir = dotDir;
+      dotDir = zdotDir;
       enableCompletion = false;
       history = {
         size = 10000;
@@ -40,7 +41,7 @@ with lib; {
       defaultKeymap = "emacs";
       initExtra = ''
         declare -A ZINIT
-        ZINIT[BIN_DIR]=${escapeShellArg zinit.outPath}
+        ZINIT[BIN_DIR]=${escapeShellArg "${zinit}"}
 
         . "''${ZINIT[BIN_DIR]}/zinit.zsh"
 
@@ -60,13 +61,13 @@ with lib; {
     my.packages = with pkgs; [ subversion ]; # required by zinit
 
     my.home.home.file = {
-      "${dotDir}/completions".source = <config/zsh/completions>;
-      "${dotDir}/functions".source = <config/zsh/functions>;
-      "${dotDir}/aliases.zsh".source = <config/zsh/aliases.zsh>;
-      "${dotDir}/custom-history.zsh".source = <config/zsh/custom-history.zsh>;
-      "${dotDir}/secrets.zsh".source = <config/zsh/secrets.zsh>;
+      "${zdotDir}/completions".source = <config/zsh/completions>;
+      "${zdotDir}/functions".source = <config/zsh/functions>;
+      "${zdotDir}/aliases.zsh".source = <config/zsh/aliases.zsh>;
+      "${zdotDir}/custom-history.zsh".source = <config/zsh/custom-history.zsh>;
+      "${zdotDir}/secrets.zsh".source = <config/zsh/secrets.zsh>;
     };
     my.home.xdg.configFile."starship.toml".source =
       <config/starship/starship.toml>;
-  });
+  };
 }
