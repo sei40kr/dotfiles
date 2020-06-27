@@ -113,7 +113,10 @@
 
     shell = {
       zsh.enable = true;
-      tmux.enable = true;
+      tmux = {
+        enable = true;
+        autostart = true;
+      };
 
       tools = {
         bat.enable = true;

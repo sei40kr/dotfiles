@@ -12,6 +12,12 @@ in {
       default = false;
     };
 
+    tmuxInit = mkOption {
+      visible = false;
+      type = types.lines;
+      default = "";
+    };
+
     graphicalSessionInit = mkOption {
       visible = false;
       type = types.lines;
@@ -40,6 +46,8 @@ in {
       };
       defaultKeymap = "emacs";
       initExtra = ''
+        ${cfg.tmuxInit}
+
         declare -A ZINIT
         ZINIT[BIN_DIR]=${escapeShellArg "${zinit}"}
 

@@ -1,16 +1,31 @@
 { config, lib, options, pkgs, ... }:
 
 with lib;
-(let
+let
+  cfg = config.modules.shell.tmux;
   per-project-session =
     pkgs.callPackage <packages/tmux-plugins/per-project-session.nix> { };
 in {
-  options.modules.shell.tmux.enable = mkOption {
-    type = types.bool;
-    default = false;
+  options.modules.shell.tmux = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
+
+    autostart = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
-  config = mkIf config.modules.shell.tmux.enable {
+  config = mkIf cfg.enable {
+    modules.shell.zsh.tmuxInit = mkIf cfg.autostart ''
+      if [[ -z "$TMUX" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" ]]; then
+        tmux
+        exit
+      fi
+    '';
+
     my.home.programs.tmux = {
       baseIndex = 1;
       enable = true;
@@ -42,4 +57,4 @@ in {
       fzf
     ];
   };
-})
+}
