@@ -43,7 +43,10 @@
         scrot.enable = true;
       };
 
-      x11.startx.enable = true;
+      x11.startx = {
+        enable = true;
+        autorun = true;
+      };
 
       i18n.japanese.enable = true;
     };

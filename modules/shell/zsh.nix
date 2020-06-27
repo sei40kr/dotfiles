@@ -7,6 +7,12 @@ with lib; {
       default = false;
     };
 
+    graphicalSessionInit = mkOption {
+      visible = false;
+      type = types.lines;
+      default = "";
+    };
+
     zinitPluginsInit = mkOption {
       type = types.lines;
       default = "";
@@ -47,6 +53,8 @@ with lib; {
       '';
       profileExtra = ''
         . ${escapeShellArg <config/zsh/profile-extra.zsh>}
+
+        ${cfg.graphicalSessionInit}
       '';
     };
     my.packages = with pkgs; [ subversion ]; # required by zinit
