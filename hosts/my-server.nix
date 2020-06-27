@@ -15,6 +15,7 @@
 
       apps = {
         bitwarden.enable = true;
+        cheese.enable = true;
         evince.enable = true;
         geary.enable = true;
         gnomeCalendar.enable = true;

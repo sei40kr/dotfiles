@@ -3,6 +3,7 @@
 with lib; {
   imports = [
     ./bitwarden.nix
+    ./cheese.nix
     ./dunst.nix
     ./evince.nix
     ./geary.nix
