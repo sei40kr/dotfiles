@@ -64,6 +64,7 @@ in {
       enable = true;
       profileExtra = cfg.profile;
       initExtra = ''
+        # Start a new D-Bus session
         ${optionalString cfg.startDBusSession ''
           if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
             ${pkgs.systemd}/bin/systemctl --user start dbus.socket
@@ -77,6 +78,7 @@ in {
           ${pkgs.systemd}/bin/systemd-cat -t xsession "$0" "$@"
         fi
 
+        # Import environment variables to the user systemd session
         ${pkgs.systemd}/bin/systemctl --user import-environment ${
           escapeShellArgs cfg.variablesImportedIntoSystemdSession
         }
@@ -85,6 +87,7 @@ in {
           toString cfg.autoRepeatInterval
         }
 
+        # Update D-Bus activation environment
         ${optionalString cfg.updateDBusEnvironment
         "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all"}
 
