@@ -25,8 +25,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.desktop.xmonad.startupCommands =
-      [ "${polybarStart}/bin/polybar-start" ];
+    modules.desktop.xmonad.polybarStartExecutable =
+      "${polybarStart}/bin/polybar-start";
 
     my.packages = with pkgs; [ polybar material-design-icons ];
     my.home.xdg.configFile."polybar/config".text = ''

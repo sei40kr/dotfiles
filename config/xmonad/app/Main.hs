@@ -5,7 +5,7 @@ module Main
   )
 where
 
-import           Lib.Hooks
+import           Lib.Actions
 import           Lib.Theme
 import           Control.Monad
 import           Data.List
@@ -99,7 +99,7 @@ myKeys conf@XConfig { XMonad.modMask = modm } =
          )
     -- launch rofi
        , ( (modm, xK_p)
-         , spawn "rofi -show combi"
+         , spawnRofi ["combi"]
          )
     -- close focused window
        , ( (modm .|. shiftMask, xK_c)
@@ -411,6 +411,19 @@ myEventHook = ewmhDesktopsEventHook <+> docksEventHook <+> fullscreenEventHook
 
 myLogHook :: X ()
 myLogHook = ewmhDesktopsLogHook
+
+------------------------------------------------------------------------
+-- Startup hook
+
+-- Perform an arbitrary action each time xmonad starts or is restarted
+-- with mod-q.  Used by, e.g., XMonad.Layout.PerWorkspace to initialize
+-- per-workspace layout choices.
+--
+-- By default, do nothing.
+
+myStartupHook = do
+  ewmhDesktopsStartup
+  spawnStartup
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.

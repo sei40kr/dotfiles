@@ -11,12 +11,12 @@ in {
       default = false;
     };
 
-    startupCommands = mkOption {
-      type = with types; listOf str;
-      default = [ ];
-    };
-
     themeConfig = mkOption { type = types.path; };
+
+    polybarStartExecutable = mkOption {
+      type = with types; either path str;
+      visible = false;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -47,29 +47,39 @@ in {
     };
 
     my.packages = with pkgs; [ xorg.xmessage gxmessage ]; # required by Xmonad
-    my.home.home.file.".xmonad/src/Lib/Hooks.hs".text = ''
-      module Lib.Hooks
-        ( myStartupHook
+    my.home.home.file.".xmonad/src/Lib/Actions.hs".text = ''
+      module Lib.Actions
+        ( spawnPolybar
+        , spawnRofi
+        , spawnStartup
         )
       where
+      import           Data.List
       import           XMonad
-      import           XMonad.Hooks.EwmhDesktops
-      import           XMonad.Util.SpawnOnce
-
-      ------------------------------------------------------------------------
-      -- Startup hook
-
-      -- Perform an arbitrary action each time xmonad starts or is restarted
-      -- with mod-q.  Used by, e.g., XMonad.Layout.PerWorkspace to initialize
-      -- per-workspace layout choices.
-      --
-      -- By default, do nothing.
+      import           XMonad.Util.Run
 
       -- TODO Safely escape the command
-      myStartupHook = do
-        ewmhDesktopsStartup
-      ${concatStringsSep "\n"
-      (map (command: "  spawnOnce \"${command}\"") cfg.startupCommands)}
+      spawnPolybar :: X ()
+      ${if config.modules.desktop.apps.polybar.enable then ''
+        spawnPolybar = safeSpawn
+          "${cfg.polybarStartExecutable}"
+          []
+      '' else ''
+        spawnPolybar = return ()
+      ''}
+
+      -- TODO Safely escape the command
+      spawnRofi :: [String] -> X ()
+      ${if config.modules.desktop.apps.polybar.enable then ''
+        spawnRofi modi = safeSpawn
+          "${pkgs.rofi}/bin/rofi"
+          ["-show", intercalate "," modi]
+      '' else ''
+        spawnRofi = return ()
+      ''}
+
+      spawnStartup :: X ()
+      spawnStartup = spawnPolybar
     '';
     my.home.home.file.".xmonad/src/Lib/Theme.hs".source = cfg.themeConfig;
     my.home.home.file.".xmonad/build".source = <config/xmonad/build>;
