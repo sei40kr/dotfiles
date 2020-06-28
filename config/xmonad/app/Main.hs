@@ -349,6 +349,7 @@ myManageHook = composeAll
   ,
     -- file
     (    (className =? "Org.gnome.Nautilus")
+    <||> (className =? "File-roller")
     <||> (className =? "Evince")
     <||> (className =? "Eog")
     <||> (className =? "Totem")
