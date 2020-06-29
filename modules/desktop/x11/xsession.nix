@@ -55,6 +55,11 @@ in {
         "XDG_SESSION_ID"
       ];
     };
+
+    loadXDefaults = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -90,6 +95,16 @@ in {
         # Update D-Bus activation environment
         ${optionalString cfg.updateDBusEnvironment
         "${pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all"}
+
+        # Load X defaults
+        ${optionalString cfg.loadXDefaults ''
+          if [[ -f ~/.Xresources ]]; then
+            ${pkgs.xorg.xrdb}/bin/xrdb -merge ~/.Xresources
+          fi
+          if [[ -f ~/.Xdefaults ]]; then
+            ${pkgs.xorg.xrdb}/bin/xrdb -merge ~/.Xdefaults
+          fi
+        ''}
 
         ${cfg.init}
       '';
