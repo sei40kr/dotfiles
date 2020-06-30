@@ -71,6 +71,7 @@
           enableGitFlow = true;
           enableGitCrypt = true;
         };
+        streamlit.enable = true;
         zeal.enable = true;
 
         # Infrastructure & CI Tools

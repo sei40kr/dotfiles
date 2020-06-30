@@ -11,6 +11,7 @@ with lib; {
     ./jenv.nix
     ./maven.nix
     ./spring-boot.nix
+    ./streamlit.nix
     ./travis.nix
     ./zeal.nix
   ];
