@@ -156,7 +156,6 @@ in {
           Description = "Deluge BitTorrent Daemon";
           After = [ "network.target" ];
         };
-        Install.WantedBy = [ "multi-user.target" ];
         Service = {
           ExecStart = "${pkgs.unstable.deluge}/bin/deluged --do-not-daemonize";
           Restart = "on-success";
@@ -169,7 +168,6 @@ in {
           After = [ "network.target" "deluged.service" ];
           Requires = [ "deluged.service" ];
         };
-        Install.WantedBy = [ "multi-user.target" ];
         Service.ExecStart =
           "${pkgs.unstable.deluge}/bin/deluge-web --do-not-daemonize";
       };

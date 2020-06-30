@@ -36,7 +36,6 @@ in {
         Description = "FlexGet Daemon";
         X-Restart-Triggers = [ "${<config/flexget/config.yml>}" ];
       };
-      Install.WantedBy = [ "multi-user.target" ];
       Service = {
         ExecStart = "${pkgs.flexget}/bin/flexget daemon start";
         ExecStop = "${pkgs.flexget}/bin/flexget daemon stop";
