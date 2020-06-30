@@ -2,44 +2,33 @@
 
 with lib;
 let
-  cfg = config.modules.services.flexget;
   package = with pkgs;
     flexget.overrideAttrs (oldAttrs: {
       propagatedBuildInputs = oldAttrs.propagatedBuildInputs
         ++ [ python3Packages.deluge-client ];
     });
 in {
-  options.modules.services.flexget = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-    };
-
-    proxy = mkOption {
-      type = with types; nullOr str;
-      default = null;
-    };
+  options.modules.services.flexget.enable = mkOption {
+    type = types.bool;
+    default = false;
   };
 
-  config = mkIf cfg.enable {
+  config = mkIf config.modules.services.flexget.enable {
     my.packages = with pkgs; [ package ];
-    my.home.xdg.configFile."flexget/config.yml".text = ''
-      templates:
-        proxy:
-          ${optionalString (cfg.proxy != null) "proxy: ${cfg.proxy}"}
-
-      ${readFile <config/flexget/config.yml>}
-    '';
-
+    my.home.xdg.configFile = {
+      "flexget/config.yml".source = <config/flexget/config.yml>;
+      "flexget/proxy.yml".source = <config/flexget/proxy.yml>;
+    };
     my.home.systemd.user.services.flexget = {
       Unit = {
         Description = "FlexGet Daemon";
-        X-Restart-Triggers = [ "${<config/flexget/config.yml>}" ];
+        X-Restart-Triggers =
+          [ "%h/.config/flexget/config.yml" "%h/.config/flexget/proxy.yml" ];
       };
       Service = {
-        ExecStart = "${pkgs.flexget}/bin/flexget daemon start";
-        ExecStop = "${pkgs.flexget}/bin/flexget daemon stop";
-        ExecReload = "${pkgs.flexget}/bin/flexget daemon reload";
+        ExecStart = "${package}/bin/flexget daemon start";
+        ExecStop = "${package}/bin/flexget daemon stop";
+        ExecReload = "${package}/bin/flexget daemon reload";
         Restart = "on-failure";
         PrivateTmp = true;
       };
