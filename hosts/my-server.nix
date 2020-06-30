@@ -110,6 +110,7 @@
       };
       flexget.enable = true;
       fstrim.enable = true;
+      jellyfin.enable = true;
       psd.enable = true;
       sshd.enable = true;
     };

@@ -6,6 +6,7 @@ with lib; {
     ./docker.nix
     ./flexget.nix
     ./fstrim.nix
+    ./jellyfin.nix
     ./picom.nix
     ./psd.nix
     ./redshift.nix
