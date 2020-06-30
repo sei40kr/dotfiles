@@ -11,6 +11,7 @@ with lib; {
       jenv.enable = mkForce true;
       maven.enable = mkForce true;
       gradle.enable = mkForce true;
+      springBoot.enable = mkForce true;
     };
 
     my.packages = with pkgs; [ jdk11 ];

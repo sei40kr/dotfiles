@@ -10,6 +10,7 @@ with lib; {
     ./gradle.nix
     ./jenv.nix
     ./maven.nix
+    ./spring-boot.nix
     ./travis.nix
     ./zeal.nix
   ];
