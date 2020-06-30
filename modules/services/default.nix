@@ -9,6 +9,7 @@ with lib; {
     ./jellyfin.nix
     ./picom.nix
     ./psd.nix
+    ./rclone.nix
     ./redshift.nix
     ./sshd.nix
     ./tlp.nix

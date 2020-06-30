@@ -113,6 +113,10 @@
       fstrim.enable = true;
       jellyfin.enable = true;
       psd.enable = true;
+      rclone = {
+        enable = true;
+        remotesToAutoMount = [ "google-drive" ];
+      };
       sshd.enable = true;
     };
 
