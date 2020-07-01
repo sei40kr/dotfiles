@@ -56,14 +56,18 @@ noremap <Leader>cc :<C-u>action CompileDirty<CR>
 noremap <Leader>cd gd
 " Format buffer/region
 noremap <Leader>cf :<C-u>action ReformatCode<CR>
-" Organize imports
-noremap <Leader>ci :<C-u>action OptimizeImports<CR>
+" Find implementations
+noremap <Leader>ci :<C-u>action GotoImplementation<CR>
 " Jump to symbol in current workspace
 noremap <Leader>cj :<C-u>action SearchEverywhere<CR>
 " Jump to documentation
 noremap <Leader>ck :<C-u>action QuickJavaDoc<CR>
+" Organize imports
+noremap <Leader>co :<C-u>action OptimizeImports<CR>
 " Rename
 noremap <Leader>cr :<C-u>action RenameElement<CR>
+" Find type definition
+noremap <Leader>ct :<C-u>action GotoTypeDeclaration<CR>
 " Recompile
 noremap <Leader>cC :<C-u>action Compile<CR>
 
