@@ -205,7 +205,6 @@ nnoremap <Esc> :<C-u>nohl<CR><Esc>
 
 " evil-escape
 imap jk <Esc>
-vmap jk <Esc>
 
 " Retain visual mode on selection shift
 vnoremap < <gv
