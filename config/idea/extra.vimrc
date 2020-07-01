@@ -160,8 +160,10 @@ noremap <Leader>p! :<C-u>action RunAnything<CR>
 noremap <Leader>pi :<C-u>action InvalidateCaches<CR>
 " Switch projects
 noremap <Leader>pp :<C-u>action ManageRecentProjects<CR>
-" List project tasks
+" List project todos
 noremap <Leader>pt :<C-u>action ActivateTODOToolWindow<CR>
+" List project tasks
+noremap <Leader>pz :<C-u>action RunAnything<CR>
 " Run project
 noremap <Leader>pR :<C-u>action Run<CR>
 
