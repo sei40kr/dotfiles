@@ -1,10 +1,7 @@
 { config, lib, options, pkgs, ... }:
 
 with lib;
-let
-  cfg = config.modules.shell.tmux;
-  per-project-session =
-    pkgs.callPackage <packages/tmux-plugins/per-project-session.nix> { };
+let cfg = config.modules.shell.tmux;
 in {
   options.modules.shell.tmux = {
     enable = mkOption {
@@ -32,20 +29,29 @@ in {
       extraConfig = "source-file ${escapeShellArg <config/tmux/extra.conf>}";
       sensibleOnTop = false;
       terminal = "tmux-256color";
-      plugins = with pkgs.tmuxPlugins; [
-        copycat
-        open
-        pain-control
-        {
-          plugin = sensible;
-          extraConfig = "set-option -g prefix C-t";
-        }
-        {
-          plugin = yank;
-          extraConfig = "set-option -g @yank_with_mouse off";
-        }
-        per-project-session
-      ];
+      plugins = with pkgs.tmuxPlugins;
+        with pkgs.my.tmuxPlugins; [
+          copycat
+          open
+          pain-control
+          {
+            plugin = sensible;
+            extraConfig = "set-option -g prefix C-t";
+          }
+          {
+            plugin = yank;
+            extraConfig = "set-option -g @yank_with_mouse off";
+          }
+          {
+            plugin = per-project-session;
+            extraConfig = ''
+              set-option -g detach-on-destroy off
+              set-option -g @per-project-session-workspace-dirs "$WORKSPACE_DIR"
+              set-option -g @per-project-session-known-project-dirs "''${HOME}/.dotfiles:''${HOME}/.emacs.d:''${HOME}/.doom.d"
+              set-option -g @per-project-session-fzf-opts '-d 15 --reverse --inline-info --color=dark --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
+            '';
+          }
+        ];
     };
 
     my.packages = with pkgs; [

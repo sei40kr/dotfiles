@@ -40,7 +40,7 @@ fpath=( "${ZDOTDIR}/functions"
 #
 # Others
 
-WORKSPACE_DIR="${HOME}/projects"
+export WORKSPACE_DIR="${HOME}/projects"
 
 
 export PATH
