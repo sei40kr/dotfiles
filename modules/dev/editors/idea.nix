@@ -16,13 +16,11 @@ with lib; {
     my.packages = with pkgs; [ jetbrains.idea-ultimate ];
 
     my.home.home.file.".ideavimrc".text = ''
-      source ${intellimacs.outPath}/spacemacs/buffers.vim
-      source ${intellimacs.outPath}/spacemacs/help.vim
-      source ${intellimacs.outPath}/spacemacs/misc.vim
-      source ${intellimacs.outPath}/spacemacs/search-symbol.vim
-      source ${intellimacs.outPath}/hybrid.vim
+      source ${../../../idea-doom-emacs/ideavimrc}
 
-      source ${<config/idea/extra.vimrc>}
+      " Do not exit visual mode on a selection shift
+      vnoremap < <gv
+      vnoremap > >gv
     '';
   });
 }
