@@ -343,7 +343,7 @@ myManageHook = composeAll
     -->  doShiftAndView workspaceDev
     )
   , (    (className =? "jetbrains-idea")
-    <&&> (title =? "Welcome to IntelliJ IDEA")
+    <&&> ((title =? "win0") <||> (title =? "Welcome to IntelliJ IDEA"))
     -->  doCenterFloat
     )
   ,
