@@ -63,6 +63,7 @@
       editors = {
         emacs.enable = true;
         idea.enable = true;
+        vscodium.enable = true;
       };
 
       tools = {
