@@ -6,12 +6,6 @@
   "vim.camelCaseMotion.enable": true,
   "vim.easymotion": true,
   "vim.highlightedyank.enable": true,
-  "vim.insertModeKeyBindings": [
-    {
-      "before": ["j", "k"],
-      "after": ["<Esc>"]
-    }
-  ],
   "vim.leader": " ",
   "vim.normalModeKeyBindingsNonRecursive": [
     {
@@ -36,16 +30,6 @@
     {
       "before": ["<C-S-=>"],
       "commands": ["editor.action.smartSelect.expand"]
-    },
-    // Insert newline above
-    {
-      "before": ["[", "<Space>"],
-      "after": ["O", "<Esc>", "j"]
-    },
-    // Insert newline below
-    {
-      "before": ["]", "<Space>"],
-      "after": ["o", "<Esc>", "k"]
     },
     // Jump to bookmark
     {
@@ -79,21 +63,6 @@
     {
       "before": ["<Leader>", "b", "O"],
       "commands": ["workbench.action.closeOtherEditors"]
-    },
-    // Save buffer
-    {
-      "before": ["<Leader>", "b", "s"],
-      "commands": [":w"]
-    },
-    // Save all buffers
-    {
-      "before": ["<Leader>", "b", "S"],
-      "commands": [":wa"]
-    },
-    // Jump to definition
-    {
-      "before": ["<Leader>", "c", "d"],
-      "after": ["g", "d"]
     },
     // Jump to references
     {
@@ -149,11 +118,6 @@
     {
       "before": ["<Leader>", "f", "r"],
       "commands": ["workbench.action.openRecent"]
-    },
-    // Save file
-    {
-      "before": ["<Leader>", "f", "s"],
-      "commands": [":w"]
     },
     // Jump to previous hunk
     {
@@ -242,50 +206,12 @@
     {
       "before": ["<Leader>", "t", "z"],
       "commands": ["workbench.action.toggleZenMode"]
-    },
-    {
-      "before": ["<Leader>", "w", "c"],
-      "after": ["<C-w>", "c"]
-    },
-    {
-      "before": ["<Leader>", "w", "d"],
-      "after": ["<C-w>", "c"]
-    },
-    {
-      "before": ["<Leader>", "w", "h"],
-      "after": ["<C-w>", "h"]
-    },
-    {
-      "before": ["<Leader>", "w", "j"],
-      "after": ["<C-w>", "j"]
-    },
-    {
-      "before": ["<Leader>", "w", "k"],
-      "after": ["<C-w>", "k"]
-    },
-    {
-      "before": ["<Leader>", "w", "l"],
-      "after": ["<C-w>", "l"]
-    },
-    {
-      "before": ["<Leader>", "w", "s"],
-      "after": ["<C-w>", "s"]
-    },
-    {
-      "before": ["<Leader>", "w", "v"],
-      "after": ["<C-w>", "v"]
-    },
-    {
-      "before": ["<Leader>", "w", "w"],
-      "after": ["<C-w>", "w"]
-    },
-    {
-      "before": ["<Leader>", "w", "W"],
-      "after": ["<C-w>", "W"]
     }
   ],
   "vim.sneak": true,
   "vim.sneakReplacesF": true,
   "vim.sneakUseIgnorecaseAndSmartcase": true,
-  "vim.useSystemClipboard": true
+  "vim.useSystemClipboard": true,
+  "vim.vimrc.enable": true,
+  "vim.vimrc.path": "~/.vim/common.vim"
 }

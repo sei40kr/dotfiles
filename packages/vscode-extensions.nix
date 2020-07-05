@@ -83,4 +83,14 @@ with lib; {
     };
     meta.license = stdenv.lib.licenses.mit;
   };
+
+  vscodevim.vim = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+    mktplcRef = {
+      name = "vim";
+      publisher = "vscodevim";
+      version = "1.14.5";
+      sha256 = "013h12qhj1h1pcjns2l5dn2hb52p8j468f5n5sw62gq4vfr9yvyf";
+    };
+    meta.license = stdenv.lib.licenses.mit;
+  };
 }

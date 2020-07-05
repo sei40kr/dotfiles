@@ -65,6 +65,7 @@
       editors = {
         emacs.enable = true;
         idea.enable = true;
+        vim.enable = true;
         vscodium.enable = true;
       };
 
