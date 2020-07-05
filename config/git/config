@@ -1,11 +1,5 @@
 # -*- mode: gitconfig -*-
 
-# config
-# author: Seong Yong-ju <sei40kr@gmail.com>
-
-[user]
-  email = "sei40kr@gmail.com"
-  name = "Seong Yong-ju"
 [branch]
   autosetuprebase = always
 [branch "master"]
