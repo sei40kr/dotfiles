@@ -2,6 +2,8 @@
 
 {
   my.userName = "sei40kr";
+  my.userEmail = "sei40kr@gmail.com";
+
   my.user = {
     isNormalUser = true;
     uid = 1000;

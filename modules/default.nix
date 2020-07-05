@@ -14,6 +14,7 @@ with lib; {
 
   options.my = {
     userName = mkOption { type = types.str; };
+    userEmail = mkOption { type = types.str; };
 
     home = mkOption { type = options.home-manager.users.type.functor.wrapped; };
     user = mkOption { type = types.submodule; };

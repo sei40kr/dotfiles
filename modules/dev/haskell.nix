@@ -9,7 +9,14 @@ with lib; {
   config = mkIf config.modules.dev.haskell.enable {
     my.packages = with pkgs; [ ghc stack ];
 
-    my.home.home.file.".stack/config.yml".source = <config/stack/config.yaml>;
+    my.home.home.file.".stack/config.yaml".text = ''
+      templates:
+        params:
+          author-email: ${config.my.userEmail}
+          author-name: ${config.my.userName}
+          copyright: 'Copyright (c) 2020 ${config.my.userName}'
+          github-username: sei40kr
+    '';
 
     modules.shell.zsh.zinitPluginsInit = ''
       zinit ice wait'''
