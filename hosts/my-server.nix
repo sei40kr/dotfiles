@@ -19,9 +19,9 @@
         bitwarden.enable = true;
         cheese.enable = true;
         evince.enable = true;
-        geary.enable = true;
-        gnomeCalendar.enable = true;
-        gnomeContacts.enable = true;
+        # geary.enable = true;
+        # gnomeCalendar.enable = true;
+        # gnomeContacts.enable = true;
         gnomeFileRoller.enable = true;
         gnomeFontViewer.enable = true;
         gnomePomodoro.enable = true;
