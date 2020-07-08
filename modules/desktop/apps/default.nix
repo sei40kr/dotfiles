@@ -7,6 +7,7 @@ with lib; {
     ./dunst.nix
     ./evince.nix
     ./geary.nix
+    ./gnome-books.nix
     ./gnome-calendar.nix
     ./gnome-contacts.nix
     ./gnome-control-center.nix

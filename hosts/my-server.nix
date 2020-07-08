@@ -20,6 +20,7 @@
         cheese.enable = true;
         evince.enable = true;
         # geary.enable = true;
+        gnomeBooks.enable = true;
         # gnomeCalendar.enable = true;
         # gnomeContacts.enable = true;
         gnomeFileRoller.enable = true;
