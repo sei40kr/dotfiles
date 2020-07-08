@@ -10,5 +10,7 @@ with lib; {
     ./gnome-online-accounts.nix
     ./gsettings-desktop-schemas.nix
     ./telepathy.nix
+    ./tracker.nix
+    ./tracker-miners.nix
   ];
 }
