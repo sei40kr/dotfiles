@@ -4,6 +4,7 @@
   "editor.minimap.enabled": false,
   "vim.autoSwitchInputMethod.enable": false,
   "vim.camelCaseMotion.enable": true,
+  "vim.changeWordIncludesWhitespace": true,
   "vim.easymotion": true,
   "vim.highlightedyank.enable": true,
   "vim.leader": " ",
@@ -213,5 +214,6 @@
   "vim.sneakUseIgnorecaseAndSmartcase": true,
   "vim.useSystemClipboard": true,
   "vim.vimrc.enable": true,
-  "vim.vimrc.path": "~/.vim/common.vim"
+  "vim.vimrc.path": "~/.vim/common.vim",
+  "vim.visualstar": true
 }
