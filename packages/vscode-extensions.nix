@@ -11,6 +11,26 @@ with lib; {
     meta.license = stdenv.lib.licenses.mit;
   };
 
+  castwide.solargraph = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+    mktplcRef = {
+      name = "solargraph";
+      publisher = "castwide";
+      version = "0.21.1";
+      sha256 = "15dy6pg4cm0marj5wf5swqk60vmm0xbz284r26jhyn2jai8ccb33";
+    };
+    meta.license = stdenv.lib.licenses.mit;
+  };
+
+  ccls-project.ccls = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+    mktplcRef = {
+      name = "ccls";
+      publisher = "ccls-project";
+      version = "0.1.29";
+      sha256 = "1q0cs5fnj42a5jc0zgdfsypk63zil6y3gam67rhfk2qvp021hcs6";
+    };
+    meta.license = stdenv.lib.licenses.mit;
+  };
+
   CoenraadS.bracket-pair-colorizer-2 =
     pkgs.vscode-utils.buildVscodeMarketplaceExtension {
       mktplcRef = {
@@ -42,6 +62,17 @@ with lib; {
     meta.license = stdenv.lib.licenses.mit;
   };
 
+  EditorConfig.EditorConfig =
+    pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+      mktplcRef = {
+        name = "EditorConfig";
+        publisher = "EditorConfig";
+        version = "0.15.1";
+        sha256 = "18r19dn1an81l2nw1h8iwh9x3sy71d4ab0s5fvng5y7dcg32zajd";
+      };
+      meta.license = stdenv.lib.licenses.mit;
+    };
+
   esbenp.prettier-vscode = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
     mktplcRef = {
       name = "prettier-vscode";
@@ -52,13 +83,13 @@ with lib; {
     meta.license = stdenv.lib.licenses.mit;
   };
 
-  EditorConfig.EditorConfig =
+  felixfbecker.php-intellisense =
     pkgs.vscode-utils.buildVscodeMarketplaceExtension {
       mktplcRef = {
-        name = "EditorConfig";
-        publisher = "EditorConfig";
-        version = "0.15.1";
-        sha256 = "18r19dn1an81l2nw1h8iwh9x3sy71d4ab0s5fvng5y7dcg32zajd";
+        name = "php-intellisense";
+        publisher = "felixfbecker";
+        version = "2.3.14";
+        sha256 = "19jw0yh7gir8mr9hpglg5gcdhag1wdbh0z9mfww81dbj27gab61p";
       };
       meta.license = stdenv.lib.licenses.mit;
     };
@@ -74,12 +105,83 @@ with lib; {
       meta.license = stdenv.lib.licenses.mit;
     };
 
+  golang.Go = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+    mktplcRef = {
+      name = "Go";
+      publisher = "golang";
+      version = "0.15.1";
+      sha256 = "1h7r781asl890n9fc0dh81l4ffx8xqd81d4hy2680dji8x390axz";
+    };
+    meta.license = stdenv.lib.licenses.mit;
+  };
+
+  rust-lang.rust = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+    mktplcRef = {
+      name = "rust";
+      publisher = "rust-lang";
+      version = "0.7.8";
+      sha256 = "039ns854v1k4jb9xqknrjkj8lf62nfcpfn0716ancmjc4f0xlzb3";
+    };
+    meta.license = stdenv.lib.licenses.mit;
+  };
+
   mechatroner.rainbow-csv = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
     mktplcRef = {
       name = "rainbow-csv";
       publisher = "mechatroner";
       version = "1.7.0";
       sha256 = "1i5avr2zf6n2xmfidfgxhzmhy5f85gkxva0vaj1k0fv0rznfcq5p";
+    };
+    meta.license = stdenv.lib.licenses.mit;
+  };
+
+  redhat.vscode-xml = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+    mktplcRef = {
+      name = "vscode-xml";
+      publisher = "redhat";
+      version = "0.13.0";
+      sha256 = "013h12qhj1h1pcjns2l5dn2hb52p8j468f5n5sw62gq4vfr9yvyf";
+    };
+    meta.license = stdenv.lib.licenses.mit;
+  };
+
+  redhat.vscode-yaml = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+    mktplcRef = {
+      name = "vscode-yaml";
+      publisher = "redhat";
+      version = "0.8.0";
+      sha256 = "08dy5wm24c3bga698925pjwbymdmxi00a84d6xajj750pax7grz0";
+    };
+    meta.license = stdenv.lib.licenses.mit;
+  };
+
+  REditorSupport.r-lsp = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+    mktplcRef = {
+      name = "r-lsp";
+      publisher = "REditorSupport";
+      version = "0.1.6";
+      sha256 = "005ff28d5b6ih7hxfjb7qd1qj4x3x2ndrv82bzj4naf421rxaz4b";
+    };
+    meta.license = stdenv.lib.licenses.mit;
+  };
+
+  Pivotal.vscode-boot-dev-pack =
+    pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+      mktplcRef = {
+        name = "vscode-boot-dev-pack";
+        publisher = "Pivotal";
+        version = "0.0.8";
+        sha256 = "1128xwmy6yf7w1l5pg1kdgrfkldxgvk2bbdlw7h4wk4l5l7mi44h";
+      };
+      meta.license = stdenv.lib.licenses.mit;
+    };
+
+  vscjava.vscode-java-pack = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+    mktplcRef = {
+      name = "vscode-java-pack";
+      publisher = "vscjava";
+      version = "0.9.1";
+      sha256 = "14b65bpgy8r2qm6fr06ph81qpv69yxdxpgx1lbg6xfhf0rp9mafw";
     };
     meta.license = stdenv.lib.licenses.mit;
   };

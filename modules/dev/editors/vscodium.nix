@@ -14,14 +14,28 @@ with lib; {
       package = pkgs.vscodium;
       extensions = with pkgs.vscode-extensions;
         with pkgs.my.vscode-extensions; [
+          alanz.vscode-hie-server
           alefragnani.Bookmarks
+          castwide.solargraph
+          ccls-project.ccls
           CoenraadS.bracket-pair-colorizer-2
           dbaeumer.vscode-eslint
           eamodio.gitlens
-          esbenp.prettier-vscode
           EditorConfig.EditorConfig
+          esbenp.prettier-vscode
+          felixfbecker.php-intellisense
           GitHub.vscode-pull-request-github
+          golang.Go
           mechatroner.rainbow-csv
+          ms-python.python
+          ms-vscode.cpptools
+          Pivotal.vscode-boot-dev-pack
+          redhat.vscode-yaml
+          REditorSupport.r-lsp
+          rust-lang.rust
+          scala-lang.scala
+          scalameta.metals
+          vscjava.vscode-java-pack
           vscodevim.vim
         ];
     };
