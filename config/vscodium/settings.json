@@ -207,6 +207,51 @@
     {
       "before": ["<Leader>", "t", "z"],
       "commands": ["workbench.action.toggleZenMode"]
+    },
+    // easymotion
+    {
+      "before": ["g", "s", "b"],
+      "after": ["<Leader>", "<Leader>", "b"]
+    },
+    {
+      "before": ["g", "s", "e"],
+      "after": ["<Leader>", "<Leader>", "e"]
+    },
+    {
+      "before": ["g", "s", "f"],
+      "after": ["<Leader>", "<Leader>", "f"]
+    },
+    {
+      "before": ["g", "s", "F"],
+      "after": ["<Leader>", "<Leader>", "F"]
+    },
+    {
+      "before": ["g", "s", "g", "e"],
+      "after": ["<Leader>", "<Leader>", "g", "e"]
+    },
+    {
+      "before": ["g", "s", "j"],
+      "after": ["<Leader>", "<Leader>", "j"]
+    },
+    {
+      "before": ["g", "s", "k"],
+      "after": ["<Leader>", "<Leader>", "k"]
+    },
+    {
+      "before": ["g", "s", "s"],
+      "after": ["<Leader>", "<Leader>", "2", "s"]
+    },
+    {
+      "before": ["g", "s", "t"],
+      "after": ["<Leader>", "<Leader>", "t"]
+    },
+    {
+      "before": ["g", "s", "T"],
+      "after": ["<Leader>", "<Leader>", "T"]
+    },
+    {
+      "before": ["g", "s", "w"],
+      "after": ["<Leader>", "<Leader>", "w"]
     }
   ],
   "vim.sneak": true,
@@ -215,5 +260,52 @@
   "vim.useSystemClipboard": true,
   "vim.vimrc.enable": true,
   "vim.vimrc.path": "~/.vim/common.vim",
-  "vim.visualstar": true
+  "vim.visualstar": true,
+  "vim.visualModeKeyBindingsNonRecursive": [
+    // easymotion
+    {
+      "before": ["g", "s", "b"],
+      "after": ["<Leader>", "<Leader>", "b"]
+    },
+    {
+      "before": ["g", "s", "e"],
+      "after": ["<Leader>", "<Leader>", "e"]
+    },
+    {
+      "before": ["g", "s", "f"],
+      "after": ["<Leader>", "<Leader>", "f"]
+    },
+    {
+      "before": ["g", "s", "F"],
+      "after": ["<Leader>", "<Leader>", "F"]
+    },
+    {
+      "before": ["g", "s", "g", "e"],
+      "after": ["<Leader>", "<Leader>", "g", "e"]
+    },
+    {
+      "before": ["g", "s", "j"],
+      "after": ["<Leader>", "<Leader>", "j"]
+    },
+    {
+      "before": ["g", "s", "k"],
+      "after": ["<Leader>", "<Leader>", "k"]
+    },
+    {
+      "before": ["g", "s", "s"],
+      "after": ["<Leader>", "<Leader>", "2", "s"]
+    },
+    {
+      "before": ["g", "s", "t"],
+      "after": ["<Leader>", "<Leader>", "t"]
+    },
+    {
+      "before": ["g", "s", "T"],
+      "after": ["<Leader>", "<Leader>", "T"]
+    },
+    {
+      "before": ["g", "s", "w"],
+      "after": ["<Leader>", "<Leader>", "w"]
+    }
+  ]
 }
