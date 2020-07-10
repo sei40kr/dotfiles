@@ -6,6 +6,8 @@
   "vim.camelCaseMotion.enable": true,
   "vim.changeWordIncludesWhitespace": true,
   "vim.easymotion": true,
+  "vim.easymotionMarkerFontFamily": "\"JetBrains Mono\", monospace",
+  "vim.easymotionMarkerFontSize": 18,
   "vim.highlightedyank.enable": true,
   "vim.leader": " ",
   "vim.normalModeKeyBindingsNonRecursive": [
