@@ -155,7 +155,7 @@
     },
     // Create issue
     {
-      "before": ["<Leader>", "g", "l", "i"],
+      "before": ["<Leader>", "g", "c", "i"],
       "commands": ["issue.createIssue"]
     },
     // Create pull reequest
