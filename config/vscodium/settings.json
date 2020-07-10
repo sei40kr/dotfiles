@@ -2,6 +2,8 @@
   "editor.fontFamily": "\"JetBrains Mono\", monospace",
   "editor.fontSize": 18,
   "editor.minimap.enabled": false,
+  "editor.tabCompletion": "onlySnippets",
+  "rust-client.engine": "rust-analyzer",
   "vim.autoSwitchInputMethod.enable": false,
   "vim.camelCaseMotion.enable": true,
   "vim.changeWordIncludesWhitespace": true,
