@@ -1,7 +1,7 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  imports = [ ./fonts.nix ];
+  imports = [ ./fonts.nix ./tabnine.nix ];
 
   options.modules.dev.editors.vscodium.enable = mkOption {
     type = types.bool;
@@ -35,6 +35,7 @@ with lib; {
           rust-lang.rust
           scala-lang.scala
           scalameta.metals
+          TabNine.tabnine-vscode
           vscjava.vscode-java-pack
           vscodevim.vim
         ];

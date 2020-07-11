@@ -1,7 +1,7 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  imports = [ ./fonts.nix ];
+  imports = [ ./fonts.nix ./tabnine.nix ];
 
   options.modules.dev.editors.emacs.enable = mkOption {
     type = types.bool;

@@ -1,0 +1,62 @@
+[language.c]
+command = "ccls"
+args = []
+num_server_instances = 2
+
+[language.cpp]
+command = "ccls"
+args = []
+num_server_instances = 2
+
+[language.css]
+command = "css-languageserver"
+args = ["--stdio"]
+install = [["npm", "install", "-g", "vscode-css-languageserver-bin"]]
+num_server_instances = 2
+
+[language.go]
+command = "gopls"
+args = []
+num_server_instances = 2
+
+[language.haskell]
+command = "ghcide"
+args = ["-d", "-l", "/tmp/hie.log"]
+num_server_instances = 2
+
+[language.html]
+command = "html-languageserver"
+args = ["--stdio"]
+install = [["npm", "install", "-g", "vscode-html-languageserver-bin"]]
+num_server_instances = 2
+
+[language.javascript]
+command = "javascript-typescript-stdio"
+args = []
+install = [["npm", "install", "-g", "javascript-typescript-langserver"]]
+num_server_instances = 2
+
+[language.python]
+command = "pyls"
+num_server_instances = 2
+
+[language.ruby]
+command = "solargraph"
+args = ["stdio"]
+num_server_instances = 2
+
+[language.rust]
+command = "rust-analyzer"
+num_server_instances = 2
+
+[language.scss]
+command = "css-languageserver"
+args = ["--stdio"]
+install = [["npm", "install", "-g", "vscode-css-languageserver-bin"]]
+num_server_instances = 2
+
+[language.typescript]
+command = "typescript-language-server"
+args = ["--stdio"]
+install = [["npm", "install", "-g", "typescript-language-server"]]
+num_server_instances = 2

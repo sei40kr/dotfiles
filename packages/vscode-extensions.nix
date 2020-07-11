@@ -176,6 +176,16 @@ with lib; {
       meta.license = stdenv.lib.licenses.mit;
     };
 
+  TabNine.tabnine-vscode = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+    mktplcRef = {
+      name = "tabnine-vscode";
+      publisher = "TabNine";
+      version = "2.8.8";
+      sha256 = "07n35nnq0qcdb8nv25zrzsvjypcyq8qk9mwbz0cnh59dvvz5lgp0";
+    };
+    meta.license = stdenv.lib.licenses.mit;
+  };
+
   vscjava.vscode-java-pack = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
     mktplcRef = {
       name = "vscode-java-pack";
