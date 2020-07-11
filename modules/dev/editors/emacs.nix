@@ -9,13 +9,13 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.editors.emacs.enable {
+    modules.shell.tools.ripgrep.enable = true;
+
     my.home.programs.emacs = {
       enable = true;
       package = pkgs.emacsUnstable.override { withXwidgets = true; };
     };
-
     my.packages = with pkgs; [
-      ripgrep
       fd
       # term/vterm
       libvterm
