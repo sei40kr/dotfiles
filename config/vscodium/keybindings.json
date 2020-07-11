@@ -1,0 +1,82 @@
+[
+  {
+    "key": "alt+right",
+    "command": "workbench.action.nextEditor"
+  },
+  {
+    "key": "alt+left",
+    "command": "workbench.action.previousEditor"
+  },
+  // company-active-map
+  {
+    "key": "ctrl+d",
+    "command": "selectNextPageSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "selectPrevSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+m",
+    "command": "acceptSelectedSuggestion",
+    "when": "acceptSuggestionOnEnter && suggestWidgetVisible && suggestionMakesTextEdit && textInputFocus"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "selectNextSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+p",
+    "command": "selectPrevSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  {
+    "key": "ctrl+u",
+    "command": "selectPrevPageSuggestion",
+    "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+  },
+  // treemacs-mode-map (Neotree style)
+  {
+    "key": "tab",
+    "command": "list.toggleExpand",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "list.focusPageUp",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+d",
+    "command": "list.focusPageDown",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+f",
+    "command": "list.focusPageDown",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+i",
+    "command": "list.toggleExpand",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+m",
+    "command": "list.select",
+    "when": "listFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+u",
+    "command": "list.focusPageUp",
+    "when": "listFocus && !inputFocus"
+  }
+]

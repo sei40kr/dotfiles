@@ -40,7 +40,10 @@ with lib; {
           vscodevim.vim
         ];
     };
-    my.home.xdg.configFile."VSCodium/User/settings.json".source =
-      <config/vscodium/settings.json>;
+    my.home.xdg.configFile = {
+      "VSCodium/User/keybindings.json".source =
+        <config/vscodium/keybindings.json>;
+      "VSCodium/User/settings.json".source = <config/vscodium/settings.json>;
+    };
   };
 }
