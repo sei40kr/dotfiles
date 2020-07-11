@@ -5,6 +5,7 @@
   "extensions.autoCheckUpdates": false,
   "extensions.autoUpdate": false,
   "editor.tabCompletion": "onlySnippets",
+  "gitlens.currentLine.enabled": false,
   "rust-client.engine": "rust-analyzer",
   "update.mode": "none",
   "vim.autoSwitchInputMethod.enable": false,
