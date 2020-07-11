@@ -2,10 +2,11 @@
    (self: super:
      with super;
      let
+       python3Packages = (callPackage (import ./python3-packages.nix) { });
        tmuxPlugins = (callPackage (import ./tmux-plugins.nix) { });
        vscode-extensions = (callPackage (import ./vscode-extensions.nix) { });
      in {
-       my = { inherit tmuxPlugins vscode-extensions; };
+       my = { inherit python3Packages tmuxPlugins vscode-extensions; };
 
        unstable = import <nixos-unstable> { inherit config; };
      })

@@ -133,6 +133,7 @@
       };
 
       tools = {
+        atcoderTools.enable = true;
         bat.enable = true;
         exa.enable = true;
         htop.enable = true;

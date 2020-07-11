@@ -2,6 +2,7 @@
 
 with lib; {
   imports = [
+    ./atcoder-tools.nix
     ./bat.nix
     ./exa.nix
     ./htop.nix
