@@ -10,6 +10,8 @@ with lib; {
     ./gradle.nix
     ./jenv.nix
     ./maven.nix
+    ./mycli.nix
+    ./pgcli.nix
     ./spring-boot.nix
     ./streamlit.nix
     ./travis.nix
