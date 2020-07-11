@@ -145,10 +145,30 @@
       "before": ["]", "d"],
       "commands": ["workbench.action.editor.nextChange"]
     },
-    // Blame
+    // Switch branch
     {
       "before": ["<Leader>", "g", "b"],
+      "commands": ["git.checkout"]
+    },
+    // Blame
+    {
+      "before": ["<Leader>", "g", "B"],
       "commands": ["gitlens.toggleFileBlame"]
+    },
+    // Create issue
+    {
+      "before": ["<Leader>", "g", "c", "i"],
+      "commands": ["issue.createIssue"]
+    },
+    // Create pull reequest
+    {
+      "before": ["<Leader>", "g", "c", "p"],
+      "commands": ["pr.create"]
+    },
+    // Fetch
+    {
+      "before": ["<Leader>", "g", "F"],
+      "commands": ["git.fetch"]
     },
     // List issues
     {
@@ -160,15 +180,40 @@
       "before": ["<Leader>", "g", "l", "p"],
       "commands": ["pr:github.focus"]
     },
-    // Create issue
+    // Revert hunk
     {
-      "before": ["<Leader>", "g", "c", "i"],
-      "commands": ["issue.createIssue"]
+      "before": ["<Leader>", "g", "r"],
+      "commands": ["git.revertSelectedRanges"]
     },
-    // Create pull reequest
+    // Revert file
     {
-      "before": ["<Leader>", "g", "c", "p"],
-      "commands": ["pr.create"]
+      "before": ["<Leader>", "g", "R"],
+      "commands": ["git.revertChange"]
+    },
+    // Git stage hunk
+    {
+      "before": ["<Leader>", "g", "s"],
+      "commands": ["git.stageSelectedRanges"]
+    },
+    // Git stage file
+    {
+      "before": ["<Leader>", "g", "S"],
+      "commands": ["git.stage"]
+    },
+    // Git time machine
+    {
+      "before": ["<Leader>", "g", "t"],
+      "commands": ["gitlens.openFileRevision"]
+    },
+    // Git unstage file
+    {
+      "before": ["<Leader>", "g", "U"],
+      "commands": ["git.unstage"]
+    },
+    // Copy link to remote
+    {
+      "before": ["<Leader>", "g", "y"],
+      "commands": ["gitlens.copyRemoteFileUrlToClipboard"]
     },
     // Insert snippet
     {
