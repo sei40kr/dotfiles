@@ -10,9 +10,11 @@ nnoremap ]<Space> o<Esc>k
 " +buffer
 
 " Save buffer
-noremap <Leader>bs :<C-u>w<CR>
+nnoremap <Leader>bs :<C-u>w<CR>
+vnoremap <Leader>bs :<C-u>w<CR>
 " Save all buffers
-noremap <Leader>bS :<C-u>wa<CR>
+nnoremap <Leader>bS :<C-u>wa<CR>
+vnoremap <Leader>bS :<C-u>wa<CR>
 
 
 "
@@ -20,25 +22,37 @@ noremap <Leader>bS :<C-u>wa<CR>
 
 " Jump to definition
 nnoremap <Leader>cd gd
+vnoremap <Leader>cd gd
 
 
 "
 " +file
 
 " Save file
-noremap <Leader>fs :<C-u>w<CR>
+nnoremap <Leader>fs :<C-u>w<CR>
+vnoremap <Leader>fs :<C-u>w<CR>
 
 
 "
 " +window
 
-noremap <Leader>wc <C-w>c
-noremap <Leader>wd <C-w>c
-noremap <Leader>wh <C-w>h
-noremap <Leader>wj <C-w>j
-noremap <Leader>wk <C-w>k
-noremap <Leader>wl <C-w>l
-noremap <Leader>ws <C-w>s
-noremap <Leader>wv <C-w>v
-noremap <Leader>ww <C-w>w
-noremap <Leader>wW <C-w>W
+nnoremap <Leader>wc <C-w>c
+nnoremap <Leader>wd <C-w>c
+vnoremap <Leader>wc <C-w>c
+vnoremap <Leader>wd <C-w>c
+nnoremap <Leader>wh <C-w>h
+vnoremap <Leader>wh <C-w>h
+nnoremap <Leader>wj <C-w>j
+vnoremap <Leader>wj <C-w>j
+nnoremap <Leader>wk <C-w>k
+vnoremap <Leader>wk <C-w>k
+nnoremap <Leader>wl <C-w>l
+vnoremap <Leader>wl <C-w>l
+nnoremap <Leader>ws <C-w>s
+vnoremap <Leader>ws <C-w>s
+nnoremap <Leader>wv <C-w>v
+vnoremap <Leader>wv <C-w>v
+nnoremap <Leader>ww <C-w>w
+vnoremap <Leader>ww <C-w>w
+nnoremap <Leader>wW <C-w>W
+vnoremap <Leader>wW <C-w>W
