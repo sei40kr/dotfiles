@@ -17,10 +17,11 @@ in {
         name = "Adwaita";
       };
       theme = null;
-      gtk3 = {
-        extraConfig.gtk-application-prefer-dark-theme = true;
-        extraCss = "${readFile ./gtk/gtk-3.0/gtk.css}";
-      };
+    };
+
+    modules.desktop.config.gtk = {
+      preferDarkTheme = true;
+      gtk3ExtraCss = ./gtk/gtk-3.0/gtk.css;
     };
 
     modules.desktop.xmonad.themeConfig = ./xmonad/src/Lib/Theme.hs;
