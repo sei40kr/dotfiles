@@ -290,7 +290,7 @@ myLayout =
   isBrowser = Role "browser"
   isEditor =
     (ClassName "Emacs")
-      `Or` (ClassName "Code")
+      `Or` (ClassName "VSCodium")
       `Or` (ClassName "jetbrains-idea")
   isFileManager = ClassName "Org.gnome.Nautilus"
   tiled         = Tall 1 (toRational $ 2 / (1 + sqrt 5 :: Double)) (3 / 100)
@@ -338,7 +338,7 @@ myManageHook = composeAll
     (    (className =? "Alacritty")
     <||> (className =? "Emacs")
     <||> (className =? "Zeal")
-    <||> (className =? "Code")
+    <||> (className =? "VSCodium")
     <||> (className =? "jetbrains-idea")
     -->  doShiftAndView workspaceDev
     )
