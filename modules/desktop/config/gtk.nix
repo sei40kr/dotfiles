@@ -43,13 +43,15 @@ in {
       gtk2.extraConfig = optionalString (cfg.font != null) ''
         gtk-font-name = '${cfg.font}'
       '';
-      gtk3.extraConfig = {
-        gtk-font-name = mkIf (cfg.font != null) cfg.font;
-        # Menu delay
-        gtk-menu-popup-delay = 0;
-        # Disable mouse paste
-        gtk-enable-primary-paste = false;
-
+      gtk3 = {
+        extraConfig = {
+          gtk-application-prefer-dark-theme = cfg.preferDarkTheme;
+          gtk-font-name = mkIf (cfg.font != null) cfg.font;
+          # Menu delay
+          gtk-menu-popup-delay = 0;
+          # Disable mouse paste
+          gtk-enable-primary-paste = false;
+        };
         extraCss =
           optionalString (cfg.gtk3ExtraCss != null) readFile cfg.gtk3ExtraCss;
       };
