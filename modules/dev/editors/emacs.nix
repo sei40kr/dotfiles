@@ -1,15 +1,19 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  imports = [ ./fonts.nix ./tabnine.nix ];
-
   options.modules.dev.editors.emacs.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
   config = mkIf config.modules.dev.editors.emacs.enable {
-    modules.shell.tools.ripgrep.enable = true;
+    modules = {
+      shell.tools.ripgrep.enable = mkForce true;
+      dev.editors = {
+        fonts.enable = mkForce true;
+        tabnine.enable = mkForce true;
+      };
+    };
 
     my.home.programs.emacs = {
       enable = true;

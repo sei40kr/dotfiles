@@ -1,14 +1,17 @@
 { config, lib, options, pkgs, ... }:
 
 with lib; {
-  imports = [ ./fonts.nix ./tabnine.nix ];
-
   options.modules.dev.editors.vscodium.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
   config = mkIf config.modules.dev.editors.vscodium.enable {
+    modules.dev.editors = {
+      fonts.enable = mkForce true;
+      tabnine.enable = mkForce true;
+    };
+
     my.home.programs.vscode = {
       enable = true;
       package = pkgs.vscodium;
