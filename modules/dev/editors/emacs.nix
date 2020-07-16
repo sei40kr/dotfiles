@@ -23,7 +23,7 @@ with lib; {
       # tools/ansible
       python37Packages.ansible-lint
       # tools/docker
-      # TODO Install dockerfile-language-server
+      nodePackages.dockerfile-language-server-nodejs
       # lang/cc
       ccls
       cpplint
@@ -40,6 +40,19 @@ with lib; {
       haskellPackages.brittany
       haskellPackages.hlint
       haskellPackages.ghcide
+      # lang/javascript
+      nodePackages.create-react-app
+      # TODO Install eslint-cli
+      nodePackages.eslint_d
+      # TODO Install gatsby-cli
+      nodePackages.gulp-cli
+      nodePackages.javascript-typescript-langserver
+      nodePackages.prettier
+      # TODO Install prettier-eslint-cli
+      nodePackages.typescript
+      nodePackages.typescript-language-server
+      # TODO Install tslint
+      nodePackages.webpack-cli
       # lang/kotlin
       # TODO Install kotlin-language-server
       ktlint
@@ -64,12 +77,19 @@ with lib; {
       scalafmt
       # TODO Install scalastyle
       # lang/sh
-      # TODO Install bash-language-server
+      nodePackages.bash-language-server
       shellcheck
       shfmt
       # lang/sql
       python37Packages.sqlparse
       sqlint
+      # lang/web
+      nodePackages.vscode-html-languageserver-bin
+      nodePackages.vscode-css-languageserver-bin
+      nodePackages.vue-language-server
+      # TODO Install stylelint-cli
+      # lang/yaml
+      # TODO Install yaml-language-server
     ];
   };
 }

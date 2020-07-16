@@ -19,10 +19,6 @@ in {
         ".nvm/${name}".source = "${nvm.outPath}/${name}";
       }) { } nvmRootFiles;
 
-    # TODO Install gulp, webpack-cli
-    # TODO Install stylelint-cli, eslint-cli, eslint_d, and tslint
-    # TODO Install prettier, prettier-eslint-cli, and typescript-formatter
-    # TODO Install language servers for HTML, CSS, JavaScript, TypeScript, Vue
     my.packages = with pkgs; [ nodejs yarn ];
     my.env = {
       NVM_DIR = [ "\${HOME}/.nvm" ];
