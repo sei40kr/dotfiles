@@ -7,6 +7,11 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.tools.datagrip.enable {
+    modules.dev.editors = {
+      fonts.enable = mkForce true;
+      ideavim.enable = mkForce true;
+    };
+
     my.packages = with pkgs; [ jetbrains.datagrip ];
   };
 }
