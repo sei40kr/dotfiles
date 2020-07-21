@@ -123,6 +123,7 @@
         enable = true;
         remotesToAutoMount = [ "google-drive" ];
       };
+      redshift.enable = true;
       sshd.enable = true;
     };
 
