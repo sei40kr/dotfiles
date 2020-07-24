@@ -4,7 +4,7 @@ with lib;
 let
   cfg = config.modules.shell.zsh;
   zdotDir = ".zsh";
-  zinit = builtins.fetchGit { url = "https://github.com/zdharma/zinit.git"; };
+  zinit = pkgs.my.zinit;
 in {
   options.modules.shell.zsh = {
     enable = mkOption {
@@ -49,7 +49,7 @@ in {
         ${cfg.tmuxInit}
 
         declare -A ZINIT
-        ZINIT[BIN_DIR]=${escapeShellArg "${zinit}"}
+        ZINIT[BIN_DIR]=${escapeShellArg "${zinit}/share/zinit"}
 
         . "''${ZINIT[BIN_DIR]}/zinit.zsh"
 
