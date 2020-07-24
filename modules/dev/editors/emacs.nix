@@ -42,6 +42,7 @@ with lib; {
         # lang/groovy
         # TODO Install groovy-language-server
         # lang/haskell
+        haskell-language-server
         haskellPackages.brittany
         haskellPackages.hlint
         haskellPackages.ghcide
