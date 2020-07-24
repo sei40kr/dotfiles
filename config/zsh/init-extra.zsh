@@ -139,13 +139,6 @@ __main() {
     zinit snippet OMZP::terraform/_terraform
     zinit snippet OMZP::kubectl/kubectl.plugin.zsh
 
-    # AWS
-    # TODO Add support for Linux environment
-    if [[ -f /usr/local/bin/aws_zsh_completer.sh ]]; then
-        zinit ice wait''
-        zinit snippet /usr/local/bin/aws_zsh_completer.sh
-    fi
-
 
     #
     # Completions

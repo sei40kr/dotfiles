@@ -80,6 +80,7 @@
         zeal.enable = true;
 
         # Infrastructure & CI Tools
+        awsCli.enable = true;
         awsShell.enable = true;
         datagrip.enable = true;
         dockerCompose.enable = true;

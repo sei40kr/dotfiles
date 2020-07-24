@@ -2,6 +2,7 @@
 
 with lib; {
   imports = [
+    ./aws-cli.nix
     ./aws-shell.nix
     ./circleci-cli.nix
     ./datagrip.nix
