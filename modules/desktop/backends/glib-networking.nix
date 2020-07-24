@@ -14,7 +14,6 @@ with lib; {
 
     services.udev.packages = with pkgs; [ libmtp ];
 
-    my.packages = with pkgs; [ glib-networking ];
     my.env.GIO_EXTRA_MODULES = [ "${pkgs.glib-networking}/lib/gio/modules" ];
     my.home.systemd.user.services.glib-pacrunner = {
       Unit.Description = "GLib proxy auto-configuration service";
