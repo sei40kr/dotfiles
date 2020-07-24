@@ -80,6 +80,7 @@
         zeal.enable = true;
 
         # Infrastructure & CI Tools
+        ansible.enable = true;
         awsCli.enable = true;
         awsShell.enable = true;
         datagrip.enable = true;

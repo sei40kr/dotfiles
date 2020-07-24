@@ -125,7 +125,6 @@ __main() {
 
     zinit ice as'completion' wait''
     zinit snippet OMZP::vagrant/_vagrant
-    zinit snippet OMZP::ansible/ansible.plugin.zsh
     zinit ice as'completion' wait''
     zinit snippet OMZP::terraform/_terraform
     zinit snippet OMZP::kubectl/kubectl.plugin.zsh

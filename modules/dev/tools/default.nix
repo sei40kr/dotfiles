@@ -2,6 +2,7 @@
 
 with lib; {
   imports = [
+    ./ansible.nix
     ./aws-cli.nix
     ./aws-shell.nix
     ./circleci-cli.nix
