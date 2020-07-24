@@ -66,7 +66,7 @@
       editors = {
         emacs.enable = true;
         idea.enable = true;
-        vim.enable = true;
+        neovim.enable = true;
         vscodium.enable = true;
       };
 
@@ -85,6 +85,8 @@
         dockerCompose.enable = true;
         googleCloudSdk.enable = true;
         circleciCli.enable = true;
+        mycli.enable = true;
+        pgcli.enable = true;
         travis.enable = true;
       };
 
@@ -145,6 +147,7 @@
       };
     };
 
-    themes.kaguya.enable = true;
+    # themes.kaguya.enable = true;
+    themes.zelda.enable = true;
   };
 }

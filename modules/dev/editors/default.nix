@@ -6,8 +6,8 @@ with lib; {
     ./fonts.nix
     ./idea.nix
     ./ideavim.nix
+    ./neovim.nix
     ./tabnine.nix
-    ./vim.nix
     ./vscodium.nix
   ];
 }
