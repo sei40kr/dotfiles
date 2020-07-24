@@ -12,7 +12,6 @@ with lib; {
       packages = with pkgs; [ gnome3.gvfs ];
     };
 
-    my.packages = with pkgs; [ gnome3.gvfs ];
     services.udev.packages = with pkgs; [ libmtp.bin ];
     my.env.GIO_EXTRA_MODULES = [ "${pkgs.gnome3.gvfs}/lib/gio/modules" ];
     my.home.systemd.user.services = {
