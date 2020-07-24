@@ -9,11 +9,11 @@ with lib; {
   config = mkIf config.modules.desktop.xsecurelock.enable {
     my.home.services.screen-locker = {
       enable = true;
-      lockCmd = with pkgs;
-        "${xsecurelock}/libexec/xsecurelock/dimmer -l -- ${xsecurelock}/bin/xsecurelock";
-      xssLockExtraOptions = [ "-n" ];
+      lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
+      xssLockExtraOptions =
+        [ "-n" "${pkgs.xsecurelock}/libexec/xsecurelock/dimmer" "-l" ];
     };
 
-    my.packages = with pkgs; [ xss-lock xsecurelock ];
+    my.packages = with pkgs; [ xss-lock ];
   };
 }
