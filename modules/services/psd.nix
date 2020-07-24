@@ -23,15 +23,21 @@ in {
       services = {
         psd = {
           Unit = {
-            Description = "Profile Sync daemon";
+            Description = "Profile-sync-daemon";
+            Documentation = [
+              "man:psd(1)"
+              "man:profile-sync-daemon(1)"
+              "https://wiki.archlinux.org/index.php/Profile-sync-daemon"
+            ];
             Wants = [ "psd-resync.service" ];
             RequiresMountsFor = [ "/home/" ];
+            After = [ "winbindd.service" ];
           };
           Service = {
             Type = "oneshot";
             RemainAfterExit = "yes";
-            ExecStart =
-              "${pkgs.profile-sync-daemon}/bin/profile-sync-daemon sync";
+            # just call /bin/true and let psd-resync.service do it
+            ExecStart = "${pkgs.coreutils}/bin/true";
             ExecStop =
               "${pkgs.profile-sync-daemon}/bin/profile-sync-daemon unsync";
           };
@@ -39,25 +45,25 @@ in {
         };
         psd-resync = {
           Unit = {
-            Description = "Timed profile resync";
-            Wants = [ "psd-resync.timer" ];
+            Description = "Timed resync";
             After = [ "psd.service" ];
+            Wants = [ "psd-resync.timer" ];
             PartOf = [ "psd.service" ];
           };
-          Install = { WantedBy = [ "default.target" ]; };
           Service = {
             Type = "oneshot";
             ExecStart =
               "${pkgs.profile-sync-daemon}/bin/profile-sync-daemon resync";
           };
+          Install.WantedBy = [ "default.target" ];
         };
       };
       timers.psd-resync = {
         Unit = {
-          Description = "Timer for profile sync daemon - ${cfg.resyncTimer}";
+          Description = "Timer for profile-sync-daemon - ${cfg.resyncTimer}";
           PartOf = [ "psd-resync.service" "psd.service" ];
         };
-        Timer = { OnUnitActiveSec = "${cfg.resyncTimer}"; };
+        Timer.OnUnitActiveSec = cfg.resyncTimer;
       };
     };
   };
