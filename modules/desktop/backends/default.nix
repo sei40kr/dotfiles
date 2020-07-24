@@ -9,6 +9,7 @@ with lib; {
     ./gnome-keyring.nix
     ./gnome-online-accounts.nix
     ./gsettings-desktop-schemas.nix
+    ./gvfs.nix
     ./telepathy.nix
     ./tracker.nix
     ./tracker-miners.nix
