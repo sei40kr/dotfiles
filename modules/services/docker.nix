@@ -51,5 +51,8 @@ in {
       dwipe =
         "docker kill $(docker ps -q) 2>/dev/null;docker rm $(docker ps -aq) 2>/dev/null;docker rmi -f $(docker images -aq) 2>/dev/null";
     };
+    modules.shell.zsh.zinitPluginsInit = ''
+      zinit snippet OMZP::docker-compose/docker-compose.plugin.zsh
+    '';
   };
 }

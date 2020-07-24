@@ -116,15 +116,6 @@ __main() {
 
     ## Continuous Integration
 
-    # Docker
-    zinit snippet OMZP::docker-compose/docker-compose.plugin.zsh
-    if is_macos && [[ -d '/Applications/Docker.app' ]]; then
-        zinit ice as'completion' \
-            wait'' \
-            multisrc'{docker,docker-compose}.zsh-completion'
-        zinit light '/Applications/Docker.app/Contents/Resources/etc'
-    fi
-
     # Code Climate
     zinit ice as'completion' wait''
     zinit snippet OMZP::codeclimate/_codeclimate
