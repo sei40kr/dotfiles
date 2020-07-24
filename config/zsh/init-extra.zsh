@@ -38,10 +38,6 @@ __main() {
         [[ "$OSTYPE" == darwin* ]]
     }
 
-    is_arch() {
-        [[ -f /etc/arch-release ]]
-    }
-
     if [[ "$INSIDE_EMACS" == vterm ]]; then
         alias clear='vterm_printf "51; Evterm-clear-scrollback"; tput clear'
     fi
@@ -72,13 +68,6 @@ __main() {
     zinit ice trigger-load'!gh-clone' \
         atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "$PWD" "${WORKSPACE_DIR}/sei40kr/zsh-gh-clone"'
     zinit light sei40kr/zsh-gh-clone
-
-
-    ## OS-specific Plugins
-
-    if is_arch; then
-        zinit snippet OMZP::archlinux/archlinux.plugin.zsh
-    fi
 
 
     ## Perl
