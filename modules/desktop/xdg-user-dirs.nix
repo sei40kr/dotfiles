@@ -19,6 +19,7 @@ with lib; {
       export XDG_VIDEOS_DIR
     '';
 
+    my.packages = with pkgs; [ xdg-user-dirs ];
     my.home.xdg.userDirs.enable = true;
   };
 }
