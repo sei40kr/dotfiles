@@ -1,4 +1,4 @@
-{ config, fetchFromGitHub, lib, pkgs, ... }:
+{ fetchFromGitHub, lib, pkgs, ... }:
 
 with lib; {
   dein-vim = pkgs.vimUtils.buildVimPlugin {

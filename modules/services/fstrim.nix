@@ -1,4 +1,4 @@
-{ config, lib, options, pkgs, ... }:
+{ config, lib, ... }:
 
 with lib; {
   options.modules.services.fstrim.enable = mkOption {

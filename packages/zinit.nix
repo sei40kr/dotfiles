@@ -1,4 +1,4 @@
-{ fetchFromGitHub, lib, pkgs, stdenv, ... }:
+{ fetchFromGitHub, lib, stdenv, ... }:
 
 with lib;
 stdenv.mkDerivation {

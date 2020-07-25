@@ -1,4 +1,4 @@
-{ config, fetchFromGitHub, lib, pkgs, ... }:
+{ fetchFromGitHub, lib, pkgs, ... }:
 
 with lib; {
   per-project-session = pkgs.tmuxPlugins.mkDerivation {

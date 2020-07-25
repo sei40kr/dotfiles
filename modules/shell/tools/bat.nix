@@ -1,4 +1,4 @@
-{ config, lib, options, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib; {
   options.modules.shell.tools.bat.enable = mkOption {

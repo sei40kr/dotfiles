@@ -1,4 +1,4 @@
-{ config, lib, options, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib; {
   options.modules.desktop.backends.gvfs.enable = mkOption {

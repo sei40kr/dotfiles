@@ -1,4 +1,4 @@
-{ config, lib, options, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   my.userName = "sei40kr";

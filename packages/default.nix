@@ -1,5 +1,5 @@
  [
-   (self: super:
+   (_: super:
      with super;
      let
        unstable = import <nixos-unstable> { inherit config; };

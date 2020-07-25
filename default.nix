@@ -1,5 +1,5 @@
-device: username:
-{ config, lib, options, pkgs, ... }:
+_: _:
+{ pkgs, ... }:
 
 {
   imports = [ ./modules ./secrets.nix ./hosts/my-server.nix ];

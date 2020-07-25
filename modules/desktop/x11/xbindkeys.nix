@@ -1,4 +1,4 @@
-{ config, lib, options, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib; {
   options.modules.desktop.x11.xbindkeys.enable = mkOption {

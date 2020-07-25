@@ -1,11 +1,7 @@
-{ config, lib, options, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
-let
-  cfg = config.modules.desktop.x11.xsession;
-  xsessionWrapper = pkgs.writeScript "xsession-wrapper" ''
-    ${cfg.sessionCommands}
-  '';
+let cfg = config.modules.desktop.x11.xsession;
 in {
   options.modules.desktop.x11.xsession = {
     enable = mkOption {

@@ -1,4 +1,4 @@
-{ config, lib, options, pkgs, ... }:
+{ lib, ... }:
 
 with lib; {
   imports = [ ./eog.nix ./totem.nix ];

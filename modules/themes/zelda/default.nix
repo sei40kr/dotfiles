@@ -1,9 +1,7 @@
-{ config, lib, options, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
-let
-  rofiEnabled = config.modules.desktop.apps.rofi.enable;
-  japaneseEnabled = config.modules.desktop.i18n.japanese.enable;
+let rofiEnabled = config.modules.desktop.apps.rofi.enable;
 in {
   options.modules.themes.zelda.enable = mkOption {
     type = types.bool;

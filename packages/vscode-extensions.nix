@@ -1,4 +1,4 @@
-{ config, lib, pkgs, stdenv, ... }:
+{ lib, pkgs, stdenv, ... }:
 
 with lib; {
   alefragnani.Bookmarks = pkgs.vscode-utils.buildVscodeMarketplaceExtension {

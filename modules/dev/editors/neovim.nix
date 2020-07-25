@@ -1,4 +1,4 @@
-{ config, lib, options, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 let dein-vim = pkgs.my.vimPlugins.dein-vim;

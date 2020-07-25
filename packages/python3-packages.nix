@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 with lib; {
   atcoder-tools = pkgs.python3Packages.buildPythonApplication rec {

@@ -1,4 +1,4 @@
-{ config, lib, options, pkgs, ... }:
+{ config, lib, options, ... }:
 
 with lib; {
   imports = [
@@ -23,11 +23,8 @@ with lib; {
     env = mkOption {
       type = with types;
         attrsOf (either (either str path) (listOf (either str path)));
-      apply = mapAttrs (n: v:
-        if isList v then
-          concatMapStringsSep ":" (x: toString x) v
-        else
-          (toString v));
+      apply =
+        mapAttrs (_: v: if isList v then concatStringsSep ":" v else "${v}");
     };
 
     xsession = {
