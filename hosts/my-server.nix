@@ -125,7 +125,7 @@
       psd.enable = true;
       rclone = {
         enable = true;
-        remotesToAutoMount = [ "google-drive" ];
+        remotesToAutoMount = [ "google-drive" "google-photos" ];
       };
       redshift.enable = true;
       sshd.enable = true;
