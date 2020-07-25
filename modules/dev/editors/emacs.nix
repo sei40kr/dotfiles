@@ -68,6 +68,7 @@ with lib; {
         python37Packages.grip
         # lang/nix
         nixfmt
+        nix-linter
         # lang/plantuml
         plantuml
         # lang/python
