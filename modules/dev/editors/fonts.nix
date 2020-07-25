@@ -7,6 +7,12 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.editors.fonts.enable {
-    my.packages = with pkgs; [ fira-code source-code-pro jetbrains-mono ];
+    my.packages = with pkgs;
+      with pkgs.my; [
+        fira-code
+        jetbrains-mono
+        operator-mono
+        source-code-pro
+      ];
   };
 }

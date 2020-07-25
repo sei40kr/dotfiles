@@ -73,7 +73,6 @@ in {
       "${zdotDir}/functions".source = <config/zsh/functions>;
       "${zdotDir}/aliases.zsh".source = <config/zsh/aliases.zsh>;
       "${zdotDir}/custom-history.zsh".source = <config/zsh/custom-history.zsh>;
-      "${zdotDir}/secrets.zsh".source = <config/zsh/secrets.zsh>;
     };
     my.home.xdg.configFile."starship.toml".source =
       <config/starship/starship.toml>;

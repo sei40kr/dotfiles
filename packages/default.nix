@@ -17,6 +17,7 @@
          kotlin-language-server = callPackage ./kotlin-language-server.nix {
            gradle_6 = unstable.gradle;
          };
+         operator-mono = callPackage ./operator-mono.nix { };
          zinit = callPackage ./zinit.nix { };
        };
      })
