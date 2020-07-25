@@ -22,5 +22,7 @@ with lib; {
                                       "${pkgs.xsecurelock}/bin/xsecurelock"
                                     } &
     '';
+    modules.desktop.apps.rofi.systemMenuItems."Lock" =
+      "${pkgs.systemd}/bin/loginctl lock-session";
   };
 }
