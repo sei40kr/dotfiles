@@ -42,5 +42,15 @@ in {
         };
         Install.WantedBy = [ "default.target" ];
       }) cfg.remotesToAutoMount;
+
+    modules.shell.zsh.zinitPluginsInit = ''
+      zinit ice wait''' \
+                lucid \
+                atclone'rclone genautocomplete zsh _rclone' \
+                atpull'%atclone' \
+                as'completion' \
+                id-as'rclone_completion'
+      zinit light zdharma/null
+    '';
   };
 }
