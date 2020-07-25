@@ -7,13 +7,20 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.xsecurelock.enable {
-    my.home.services.screen-locker = {
-      enable = true;
-      lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
-      xssLockExtraOptions =
-        [ "-n" "${pkgs.xsecurelock}/libexec/xsecurelock/dimmer" "-l" ];
-    };
-
     my.packages = with pkgs; [ xss-lock ];
+
+    modules.desktop.x11.xsession.init = ''
+      ${pkgs.xorg.xset}/bin/xset s 600 5
+      ${pkgs.xss-lock}/bin/xss-lock -s "''${XDG_SESSION_ID}" \
+                                    -n ${
+                                      escapeShellArg
+                                      "${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
+                                    } \
+                                    -l \
+                                    -- ${
+                                      escapeShellArg
+                                      "${pkgs.xsecurelock}/bin/xsecurelock"
+                                    } &
+    '';
   };
 }
