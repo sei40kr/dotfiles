@@ -43,8 +43,9 @@ in {
         call dein#install()
       endif
 
+      autocmd VimEnter * call dein#call_hook('post_source')
+
       filetype plugin indent on
-      syntax enable
     '';
     my.zsh.aliases.vim = "nvim";
   };
