@@ -17,6 +17,8 @@ in {
       ".vim/dein_lazy.toml".source = <config/vim/dein_lazy.toml>;
     };
     my.home.xdg.configFile."nvim/init.vim".text = ''
+      let g:mapleader = "\<Space>"
+
       source ~/.vim/common.vim
 
       set clipboard+=unnamedplus
