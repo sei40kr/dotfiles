@@ -1,0 +1,77 @@
+[[plugins]]
+hook_add = '''
+map gs <Plug>(easymotion-prefix)
+'''
+on_map = '<Plug>(easymotion-prefix)'
+repo = 'easymotion/vim-easymotion'
+rev = 'dd7b4b526775bc8553e16bc402020573b04a948c'
+
+[[plugins]]
+hook_add = '''
+let g:clever_f_not_overwrites_standard_mappings = 1
+
+nmap f <Plug>(clever-f-f)
+xmap f <Plug>(clever-f-f)
+omap f <Plug>(clever-f-f)
+nmap F <Plug>(clever-f-F)
+xmap F <Plug>(clever-f-F)
+omap F <Plug>(clever-f-F)
+nmap t <Plug>(clever-f-t)
+xmap t <Plug>(clever-f-t)
+omap t <Plug>(clever-f-t)
+nmap T <Plug>(clever-f-T)
+xmap T <Plug>(clever-f-T)
+omap T <Plug>(clever-f-T)
+'''
+on_map = '<Plug>(clever-f-'
+repo = 'rhysd/clever-f.vim'
+rev = 'c9c444d36dc52b1989f769946435cf0541fab38b'
+
+[[plugins]]
+hook_add = """
+xmap gc  <Plug>Commentary
+nmap gc  <Plug>Commentary
+omap gc  <Plug>Commentary
+nmap gcc <Plug>CommentaryLine
+if maparg('c', 'n') ==# '' && !exists('v:operator')
+  nmap cgc <Plug>ChangeCommentary
+endif
+nmap gcu <Plug>Commentary<Plug>Commentary
+"""
+on_map = '<Plug>Commentary'
+repo = 'tpope/vim-commentary'
+rev = 'f8238d70f873969fb41bf6a6b07ca63a4c0b82b1'
+
+[[plugins]]
+hook_add = '''
+let g:surround_no_mappings = 1
+
+nmap ds  <Plug>Dsurround
+nmap cs  <Plug>Csurround
+nmap cS  <Plug>CSurround
+nmap ys  <Plug>Ysurround
+nmap yS  <Plug>YSurround
+nmap yss <Plug>Yssurround
+nmap ySs <Plug>YSsurround
+nmap ySS <Plug>YSsurround
+xmap S   <Plug>VSurround
+xmap gS  <Plug>VgSurround
+'''
+on_map = [
+  '<Plug>Csurround',
+  '<Plug>CSurround',
+  '<Plug>Dsurround',
+  '<Plug>Ysurround',
+  '<Plug>YSurround',
+  '<Plug>Yssurround',
+  '<Plug>YSsurround',
+  '<Plug>VSurround',
+  '<Plug>VgSurround'
+]
+repo = 'tpope/vim-surround'
+rev = 'f51a26d3710629d031806305b6c8727189cd1935'
+
+[[plugins]]
+on_cmd = 'DeinUpdate'
+repo = 'wsdjeg/dein-ui.vim'
+rev = '450d8cab41a3b7bd783d558a7570b35998802904'
