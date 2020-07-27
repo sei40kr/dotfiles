@@ -1,24 +1,17 @@
 { config, lib, options, ... }:
 
 with lib; {
-  imports = [
-    <home-manager/nixos>
-
-    ./desktop
-    ./dev
-    ./media
-    ./services
-    ./shell
-    ./themes
-  ];
+  imports = [ ./desktop ./dev ./media ./services ./shell ./themes ];
 
   options.my = {
     userName = mkOption { type = types.str; };
     userEmail = mkOption { type = types.str; };
 
-    home = mkOption { type = options.home-manager.users.type.functor.wrapped; };
     user = mkOption { type = types.submodule; };
-    packages = mkOption { type = with types; listOf package; };
+    packages = mkOption {
+      type = with types; listOf package;
+      default = [ ];
+    };
 
     env = mkOption {
       type = with types;
@@ -43,8 +36,6 @@ with lib; {
   };
 
   config = {
-    home-manager.users.${config.my.userName} =
-      mkAliasDefinitions options.my.home;
     users.users.${config.my.userName} = mkAliasDefinitions options.my.user;
 
     my.env = {
@@ -54,10 +45,8 @@ with lib; {
     };
 
     my.home = {
-      home = {
-        packages = config.my.packages;
-        sessionVariables = config.my.env;
-      };
+      home.packages = config.my.packages;
+      home.sessionVariables = config.my.env;
 
       programs.zsh.shellAliases = config.my.zsh.aliases;
     };
