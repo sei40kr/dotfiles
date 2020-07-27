@@ -7,6 +7,21 @@ repo = 'easymotion/vim-easymotion'
 rev = 'dd7b4b526775bc8553e16bc402020573b04a948c'
 
 [[plugins]]
+on_cmd = 'MANPAGER'
+repo = 'lambdalisue/vim-manpager'
+rev = '25bdd9448651a7669659b1b8d8d7a82acdfbf8af'
+
+[[plugins]]
+on_cmd = 'PAGER'
+repo = 'lambdalisue/vim-pager'
+rev = 'a657d508b4d5a23aada7585c9f1e0063914c0c45'
+
+[[plugins]]
+depends = 'AnsiEsc'
+repo = 'powerman/vim-plugin-AnsiEsc'
+rev = '690f820d20b6e3a79ba20499874eb7333aa4ca5c'
+
+[[plugins]]
 hook_add = '''
 let g:clever_f_not_overwrites_standard_mappings = 1
 

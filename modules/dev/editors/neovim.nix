@@ -1,14 +1,28 @@
 { config, lib, pkgs, ... }:
 
 with lib;
-let dein-vim = pkgs.my.vimPlugins.dein-vim;
+let
+  cfg = config.modules.dev.editors.neovim;
+  dein-vim = pkgs.my.vimPlugins.dein-vim;
 in {
-  options.modules.dev.editors.neovim.enable = mkOption {
-    type = types.bool;
-    default = false;
+  options.modules.dev.editors.neovim = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
+
+    enableVimPager = mkOption {
+      type = types.bool;
+      default = false;
+    };
+
+    enableVimManpager = mkOption {
+      type = types.bool;
+      default = true;
+    };
   };
 
-  config = mkIf config.modules.dev.editors.neovim.enable {
+  config = mkIf cfg.enable {
     my.packages = with pkgs; [ neovim dein-vim ];
 
     my.home.home.file = {
@@ -47,6 +61,9 @@ in {
 
       filetype plugin indent on
     '';
+    my.env.PAGER = mkIf cfg.enableVimPager "${pkgs.neovim}/bin/nvim -c PAGER -";
+    my.env.MANPAGER =
+      mkIf cfg.enableVimManpager "${pkgs.neovim}/bin/nvim -c MANPAGER -";
     my.zsh.aliases.vim = "nvim";
   };
 }

@@ -12,7 +12,5 @@ if [[ -n "$ITERM_SESSION_ID" && -z "$LANG" ]]; then
     export LANG=ja_JP.UTF-8
 fi
 
-export PAGER=less
-export MANPAGER=less
 export EDITOR=vim
 export GIT_EDITOR="$EDITOR"

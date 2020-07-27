@@ -9,9 +9,6 @@ __main() {
     if [[ -n "$TMUX" || -n "$INSIDE_EMACS" || -n "$EMACS" || -n "$VIM" ]]; then
         export PAGER=cat
     fi
-    if [[ "${+commands[vim]}" == 1 && -f "${HOME}/.vim/vimrc" ]]; then
-        export MANPAGER='vim -c MANPAGER -'
-    fi
 
     HISTFILE="${ZDOTDIR}/.zsh_history"
 
