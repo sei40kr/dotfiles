@@ -46,7 +46,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.packages = with pkgs; [ zsh subversion ]; # required by zinit
+    my.packages = with pkgs; [ zsh git subversion ];
 
     my.home.home.file = {
       ".zshenv".text = ''

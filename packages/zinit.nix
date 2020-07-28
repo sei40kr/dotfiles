@@ -1,4 +1,4 @@
-{ fetchFromGitHub, lib, stdenv, ... }:
+{ fetchFromGitHub, lib, pkgs, stdenv, ... }:
 
 with lib;
 stdenv.mkDerivation {
@@ -11,6 +11,8 @@ stdenv.mkDerivation {
     rev = "fbc77d998547ca546115c0fb79a17c653ab57ea1";
     sha256 = "1mpdsfg5caxli1w7dhgxiir01hdc97wqv54i3rki3fq9qrhsk2j9";
   };
+
+  buildInputs = with pkgs; [ git subversion ];
 
   dontBuild = true;
 
