@@ -1,5 +1,5 @@
 { lib, ... }:
 
 with lib; {
-  imports = [ ./slack.nix ];
+  imports = [ ./tools ];
 }

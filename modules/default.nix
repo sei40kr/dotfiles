@@ -1,7 +1,7 @@
 { config, lib, options, ... }:
 
 with lib; {
-  imports = [ ./desktop ./dev ./media ./services ./shell ./themes ];
+  imports = [ ./desktop ./dev ./services ./shell ];
 
   options.my = {
     userName = mkOption { type = types.str; };

@@ -5,6 +5,7 @@ with lib; {
     <home-manager/nix-darwin>
 
     ./modules
+    ./modules-darwin
     ./hosts/my-work-pc.nix
   ];
 
