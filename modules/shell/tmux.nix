@@ -39,7 +39,8 @@ in {
             extraConfig = "set-option -g prefix C-t";
           }
           {
-            plugin = yank;
+            plugin = yank.overrideAttrs
+              (oldAttrs: oldAttrs // { dependencies = with pkgs; [ xsel ]; });
             extraConfig = "set-option -g @yank_with_mouse off";
           }
           {
@@ -53,14 +54,5 @@ in {
           }
         ];
     };
-
-    my.packages = with pkgs; [
-      ## Plugin Requirements
-      # tmux-yank
-      xsel
-      # tmux-per-project-session
-      fd
-      fzf
-    ];
   };
 }
