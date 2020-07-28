@@ -18,7 +18,7 @@ in {
   config = mkIf cfg.enable {
     modules.shell.zsh.tmuxInit = mkIf cfg.autostart ''
       if [[ -z "$TMUX" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" ]]; then
-        tmux
+        ${pkgs.tmux}/bin/tmux
         exit
       fi
     '';
