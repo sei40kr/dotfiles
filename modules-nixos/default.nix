@@ -1,5 +1,5 @@
 { lib, ... }:
 
 with lib; {
-  imports = [ ./desktop ./dev ./media ./themes ];
+  imports = [ ./desktop ./dev ./media ./services ./themes ];
 }

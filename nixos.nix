@@ -14,20 +14,23 @@ with lib; {
   options.my.home =
     mkOption { type = options.home-manager.users.type.functor.wrapped; };
 
-  nix.autoOptimiseStore = true;
+  config = {
+    nix.autoOptimiseStore = true;
 
-  nixpkgs = {
-    config.allowUnfree = true;
-    overlays = import ./packages;
+    nixpkgs = {
+      config.allowUnfree = true;
+      overlays = import ./packages;
+    };
+
+    home-manager.users.${config.my.userName} =
+      mkAliasDefinitions options.my.home;
+
+    environment.systemPackages = with pkgs; [
+      binutils
+      coreutils
+      diffutils
+      findutils
+      vim
+    ];
   };
-
-  home-manager.users.${config.my.userName} = mkAliasDefinitions options.my.home;
-
-  environment.systemPackages = with pkgs; [
-    binutils
-    coreutils
-    diffutils
-    findutils
-    vim
-  ];
 }
