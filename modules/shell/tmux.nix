@@ -41,7 +41,10 @@ in {
           {
             plugin = yank.overrideAttrs
               (oldAttrs: oldAttrs // { dependencies = with pkgs; [ xsel ]; });
-            extraConfig = "set-option -g @yank_with_mouse off";
+            extraConfig = ''
+              set-option -g @yank_with_mouse off
+              set-option -g @custom_copy_command '${pkgs.xsel}/bin/xsel -i --clipboard'
+            '';
           }
           {
             plugin = per-project-session;
