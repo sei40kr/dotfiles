@@ -20,17 +20,15 @@ with lib; {
         mapAttrs (_: v: if isList v then concatStringsSep ":" v else "${v}");
     };
 
+    aliases = mkOption {
+      type = with types; attrsOf str;
+      default = { };
+    };
+
     xsession = {
       init = mkOption {
         type = types.lines;
         default = "";
-      };
-    };
-
-    zsh = {
-      aliases = mkOption {
-        type = with types; attrsOf str;
-        default = { };
       };
     };
   };
@@ -47,8 +45,8 @@ with lib; {
     my.home = {
       home.packages = config.my.packages;
       home.sessionVariables = config.my.env;
-
-      programs.zsh.shellAliases = config.my.zsh.aliases;
     };
+
+    modules.shell.zsh.aliases = config.my.aliases;
   };
 }

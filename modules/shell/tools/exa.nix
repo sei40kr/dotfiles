@@ -7,13 +7,11 @@ with lib; {
   };
 
   config = mkIf config.modules.shell.tools.exa.enable {
-    my = {
-      packages = with pkgs; [ exa ];
-      zsh.aliases = {
-        ls = "exa -F";
-        la = "exa -laFh";
-        tree = "exa -T";
-      };
+    my.packages = with pkgs; [ exa ];
+    my.aliases = {
+      ls = "exa -F";
+      la = "exa -laFh";
+      tree = "exa -T";
     };
   };
 }

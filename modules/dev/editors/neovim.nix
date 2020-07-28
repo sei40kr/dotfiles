@@ -64,6 +64,6 @@ in {
     my.env.PAGER = mkIf cfg.enableVimPager "${pkgs.neovim}/bin/nvim -c PAGER -";
     my.env.MANPAGER =
       mkIf cfg.enableVimManpager "${pkgs.neovim}/bin/nvim -c MANPAGER -";
-    my.zsh.aliases.vim = "nvim";
+    my.aliases.vim = "nvim";
   };
 }

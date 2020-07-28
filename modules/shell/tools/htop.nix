@@ -7,9 +7,7 @@ with lib; {
   };
 
   config = mkIf config.modules.shell.tools.htop.enable {
-    my = {
-      packages = with pkgs; [ htop ];
-      zsh.aliases.top = "htop";
-    };
+    my.packages = with pkgs; [ htop ];
+    my.aliases.top = "htop";
   };
 }

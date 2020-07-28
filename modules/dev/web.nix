@@ -24,7 +24,7 @@ in {
       NVM_DIR = [ "\${HOME}/.nvm" ];
       PATH = [ "\${HOME}/.yarn/bin" ];
     };
-    my.zsh.aliases = {
+    my.aliases = {
       npmg = "npm i -g ";
       npmS = "npm i -S ";
       npmD = "npm i -D ";
