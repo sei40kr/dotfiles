@@ -1,24 +1,17 @@
 { config, lib, options, ... }:
 
 with lib; {
-  imports = [
-    <home-manager/nixos>
-
-    ./desktop
-    ./dev
-    ./media
-    ./services
-    ./shell
-    ./themes
-  ];
+  imports = [ ./desktop ./dev ./services ./shell ];
 
   options.my = {
     userName = mkOption { type = types.str; };
     userEmail = mkOption { type = types.str; };
 
-    home = mkOption { type = options.home-manager.users.type.functor.wrapped; };
     user = mkOption { type = types.submodule; };
-    packages = mkOption { type = with types; listOf package; };
+    packages = mkOption {
+      type = with types; listOf package;
+      default = [ ];
+    };
 
     env = mkOption {
       type = with types;
@@ -27,24 +20,20 @@ with lib; {
         mapAttrs (_: v: if isList v then concatStringsSep ":" v else "${v}");
     };
 
+    aliases = mkOption {
+      type = with types; attrsOf str;
+      default = { };
+    };
+
     xsession = {
       init = mkOption {
         type = types.lines;
         default = "";
       };
     };
-
-    zsh = {
-      aliases = mkOption {
-        type = with types; attrsOf str;
-        default = { };
-      };
-    };
   };
 
   config = {
-    home-manager.users.${config.my.userName} =
-      mkAliasDefinitions options.my.home;
     users.users.${config.my.userName} = mkAliasDefinitions options.my.user;
 
     my.env = {
@@ -54,12 +43,10 @@ with lib; {
     };
 
     my.home = {
-      home = {
-        packages = config.my.packages;
-        sessionVariables = config.my.env;
-      };
-
-      programs.zsh.shellAliases = config.my.zsh.aliases;
+      home.packages = config.my.packages;
+      home.sessionVariables = config.my.env;
     };
+
+    modules.shell.zsh.aliases = config.my.aliases;
   };
 }

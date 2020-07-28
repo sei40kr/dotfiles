@@ -6,7 +6,6 @@ with lib; {
     ./aws-cli.nix
     ./aws-shell.nix
     ./circleci-cli.nix
-    ./datagrip.nix
     ./docker-compose.nix
     ./git.nix
     ./google-cloud-sdk.nix

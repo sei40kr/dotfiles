@@ -8,6 +8,6 @@ with lib; {
 
   config = mkIf config.modules.dev.r.enable {
     my.packages = with pkgs; [ R ];
-    my.zsh.aliases.R = "R --no-save --no-restore-data -q";
+    my.aliases.R = "R --no-save --no-restore-data -q";
   };
 }

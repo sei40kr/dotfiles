@@ -19,7 +19,7 @@ in {
     my.packages = with pkgs;
       ([ ruby rubyPackages.rake ]
         ++ optionals cfg.enableRails [ rubyPackages.rails ]);
-    my.zsh.aliases = {
+    my.aliases = {
       be = "bundle exec";
       bl = "bundle list";
       bp = "bundle package";

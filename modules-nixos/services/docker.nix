@@ -21,7 +21,7 @@ in {
       autoPrune.enable = cfg.enableAutoPrune;
     };
 
-    my.zsh.aliases = {
+    my.aliases = {
       di = "docker info";
       dlg = "docker container logs";
       dls = "docker container ls";

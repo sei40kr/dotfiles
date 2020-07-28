@@ -4,7 +4,17 @@ with lib;
 let
   cfg = config.modules.shell.zsh;
   zdotDir = ".zsh";
+  homeManagerInit = ''
+    . ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+  '';
+  nixDarwinInit = ''
+    if [[ -z "$__NIX_DARWIN_SET_ENVIRONMENT_DONE" ]]; then
+      . ${config.system.build.setEnvironment}
+    fi
+  '';
   zinit = pkgs.my.zinit;
+  aliasDefs = concatStringsSep "\n"
+    (mapAttrsToList (k: v: "alias ${k}=${escapeShellArg v}") cfg.aliases);
 in {
   options.modules.shell.zsh = {
     enable = mkOption {
@@ -28,47 +38,69 @@ in {
       type = types.lines;
       default = "";
     };
+
+    aliases = mkOption {
+      type = with types; attrsOf str;
+      default = { };
+    };
   };
 
   config = mkIf cfg.enable {
-    my.home.programs.zsh = {
-      enable = true;
-      autocd = true;
-      dotDir = zdotDir;
-      enableCompletion = false;
-      history = {
-        size = 10000;
-        save = 10000;
-        ignoreDups = true;
-        ignoreSpace = true;
-        extended = true;
-        share = true;
-      };
-      defaultKeymap = "emacs";
-      initExtra = ''
-        ${cfg.tmuxInit}
+    my.packages = with pkgs; [ zsh subversion ]; # required by zinit
 
-        declare -A ZINIT
-        ZINIT[BIN_DIR]=${escapeShellArg "${zinit}/share/zinit"}
-
-        . "''${ZINIT[BIN_DIR]}/zinit.zsh"
-
-        ${cfg.zinitPluginsInit}
-
-        . ${escapeShellArg <config/zsh/init-extra.zsh>}
+    my.home.home.file = {
+      ".zshenv".text = ''
+        ZDOTDIR="''${HOME}/${zdotDir}"
+        . "''${ZDOTDIR}/.zshenv"
       '';
-      envExtra = ''
+      "${zdotDir}/.zshenv".text = ''
+        ${optionalString pkgs.stdenv.isDarwin nixDarwinInit}
+        ${homeManagerInit}
+
         . ${escapeShellArg <config/zsh/env-extra.zsh>}
       '';
-      profileExtra = ''
+      "${zdotDir}/.zprofile".text = ''
         . ${escapeShellArg <config/zsh/profile-extra.zsh>}
 
         ${cfg.graphicalSessionInit}
       '';
-    };
-    my.packages = with pkgs; [ subversion ]; # required by zinit
+      "${zdotDir}/.zshrc".text = ''
+        typeset -U path cdpath fpath manpath
 
-    my.home.home.file = {
+        for profile in ''${(z)NIX_PROFILES}; do
+          fpath+=(
+            "''${profile}/share/zsh/site-functions"
+            "''${profile}/share/zsh/''${ZSH_VERSION}/functions"
+            "''${profile}/share/zsh/vendor-completions"
+          )
+        done
+
+        ${cfg.tmuxInit}
+
+        HISTSIZE=10000
+        SAVEHIST=10000
+        HISTFILE="''${ZDOTDIR}/.zsh_history"
+
+        setopt AUTO_CD
+        setopt EXTENDED_HISTORY
+        setopt HIST_IGNORE_DUPS
+        setopt HIST_IGNORE_SPACE
+        setopt SHARE_HISTORY
+
+        bindkey -e
+
+        HELPDIR="${pkgs.zsh}/share/zsh/''${ZSH_VERSION}/help"
+
+        declare -A ZINIT
+        ZINIT[BIN_DIR]=${escapeShellArg "${zinit}/share/zinit"}
+        . "''${ZINIT[BIN_DIR]}/zinit.zsh"
+
+        ${cfg.zinitPluginsInit}
+
+        ${aliasDefs}
+
+        . ${escapeShellArg <config/zsh/init-extra.zsh>}
+      '';
       "${zdotDir}/completions".source = <config/zsh/completions>;
       "${zdotDir}/functions".source = <config/zsh/functions>;
       "${zdotDir}/aliases.zsh".source = <config/zsh/aliases.zsh>;
