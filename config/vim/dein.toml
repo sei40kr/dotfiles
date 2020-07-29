@@ -1,5 +1,12 @@
 [[plugins]]
 hook_add = '''
+let g:lightline = { "colorscheme": "onedark" }
+'''
+repo = 'itchyny/lightline.vim'
+rev = '079dc5754c87b4d18b40f916273c2fe56810c4a1'
+
+[[plugins]]
+hook_add = '''
 if (has("autocmd") && !has("gui_running"))
   augroup colorset
     autocmd!
