@@ -57,7 +57,10 @@ in {
         call dein#install()
       endif
 
-      autocmd VimEnter * call dein#call_hook('post_source')
+      " Use 24-bit (true-color) mode in Vim/Neovim
+      if (has("termguicolors"))
+        set termguicolors
+      endif
 
       filetype plugin indent on
     '';
