@@ -16,5 +16,6 @@
         autostart = true;
       };
     };
+    term.iterm2.enable = true;
   };
 }
