@@ -7,6 +7,9 @@ repo = 'easymotion/vim-easymotion'
 rev = 'dd7b4b526775bc8553e16bc402020573b04a948c'
 
 [[plugins]]
+hook_source = '''
+autocmd FileType man setlocal nonumber norelativenumber
+'''
 on_cmd = 'MANPAGER'
 repo = 'lambdalisue/vim-manpager'
 rev = '25bdd9448651a7669659b1b8d8d7a82acdfbf8af'
