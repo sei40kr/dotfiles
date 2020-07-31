@@ -17,7 +17,7 @@ with lib; {
 
     my.home.programs.emacs = {
       enable = true;
-      package = pkgs.emacsUnstable.override { withXwidgets = true; };
+      package = pkgs.emacsGcc.override { withXwidgets = true; };
     };
     my.packages = with pkgs;
       with pkgs.my; [
