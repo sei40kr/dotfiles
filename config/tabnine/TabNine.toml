@@ -20,8 +20,8 @@ args = []
 num_server_instances = 2
 
 [language.haskell]
-command = "ghcide"
-args = ["-d", "-l", "/tmp/hie.log"]
+command = "haskell-language-server-wrapper"
+args = ["-d"]
 num_server_instances = 2
 
 [language.html]
