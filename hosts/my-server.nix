@@ -39,6 +39,8 @@
         qutebrowser.enable = true;
       };
 
+      config.gtk.keyTheme = "Mac";
+
       term.alacritty.enable = true;
 
       tools = {

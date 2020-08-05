@@ -1,0 +1,51 @@
+@binding-set gtk-mac-text-entry {
+  bind "<alt>Delete" { "delete-from-cursor" (word-ends, 1) };
+  bind "<alt>KP_Delete" { "delete-from-cursor" (word-ends, 1) };
+  bind "<alt>BackSpace" { "delete-from-cursor" (word-ends, -1) };
+
+  bind "<ctrl>b" { "move-cursor" (logical-positions, -1, 0) };
+  bind "<shift><ctrl>b" { "move-cursor" (logical-positions, -1, 1) };
+  bind "<ctrl>f" { "move-cursor" (logical-positions, 1, 0) };
+  bind "<shift><ctrl>f" { "move-cursor" (logical-positions, 1, 1) };
+
+  bind "<alt>Right" { "move-cursor" (words, 1, 0) };
+  bind "<alt>KP_Right" { "move-cursor" (words, 1, 0) };
+  bind "<shift><alt>Right" { "move-cursor" (words, 1, 1) };
+  bind "<shift><alt>KP_Right" { "move-cursor" (words, 1, 1) };
+  bind "<alt>Left" { "move-cursor" (words, -1, 0) };
+  bind "<alt>KP_Left" { "move-cursor" (words, -1, 0) };
+  bind "<shift><alt>Left" { "move-cursor" (words, -1, 1) };
+  bind "<shift><alt>KP_Left" { "move-cursor" (words, -1, 1) };
+
+  bind "<ctrl>a" { "move-cursor" (paragraph-ends, -1, 0) };
+  bind "<shift><ctrl>a" { "move-cursor" (paragraph-ends, -1, 1) };
+  bind "<ctrl>e" { "move-cursor" (paragraph-ends, 1, 0) };
+  bind "<shift><ctrl>e" { "move-cursor" (paragraph-ends, 1, 1) };
+
+  bind "<ctrl>d" { "delete-from-cursor" (chars, 1) };
+  bind "<ctrl>k" { "delete-from-cursor" (paragraph-ends, 1) };
+
+  bind "<alt>BackSpace" { "delete-from-cursor" (word-ends, -1) };
+
+  bind "<ctrl>u" {
+    "move-cursor" (paragraph-ends, -1, 0)
+    "delete-from-cursor" (paragraph-ends, 1)
+  };
+
+  bind "<ctrl>h" { "delete-from-cursor" (chars, -1) };
+}
+
+@binding-set gtk-mac-text-view {
+  bind "<ctrl>p" { "move-cursor" (display-lines, -1, 0) };
+  bind "<shift><ctrl>p" { "move-cursor" (display-lines, -1, 1) };
+  bind "<ctrl>n" { "move-cursor" (display-lines, 1, 0) };
+  bind "<shift><ctrl>n" { "move-cursor" (display-lines, 1, 1) };
+}
+
+entry {
+  -gtk-key-bindings: gtk-mac-text-entry;
+}
+
+textview {
+  -gtk-key-bindings: gtk-mac-text-entry, gtk-mac-text-view;
+}

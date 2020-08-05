@@ -19,6 +19,11 @@ in {
       default = false;
     };
 
+    keyTheme = mkOption {
+      type = types.str;
+      default = null;
+    };
+
     gtk3ExtraCss = mkOption {
       type = with types; nullOr path;
       default = null;
@@ -42,11 +47,13 @@ in {
       enable = true;
       gtk2.extraConfig = optionalString (cfg.font != null) ''
         gtk-font-name = '${cfg.font}'
+        gtk-key-theme = '${cfg.keyTheme}'
       '';
       gtk3 = {
         extraConfig = {
           gtk-application-prefer-dark-theme = cfg.preferDarkTheme;
           gtk-font-name = mkIf (cfg.font != null) cfg.font;
+          gtk-key-theme-name = mkIf (cfg.keyTheme != null) cfg.keyTheme;
           # Menu delay
           gtk-menu-popup-delay = 0;
           # Disable mouse paste
@@ -56,5 +63,6 @@ in {
           optionalString (cfg.gtk3ExtraCss != null) readFile cfg.gtk3ExtraCss;
       };
     };
+    my.home.home.file.".themes/Mac".source = <config/gtk/themes/Mac>;
   };
 }
