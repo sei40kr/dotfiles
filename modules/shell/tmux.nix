@@ -13,6 +13,11 @@ in {
       type = types.bool;
       default = false;
     };
+
+    extraConfig = mkOption {
+      type = types.lines;
+      default = "";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -26,7 +31,11 @@ in {
     my.home.programs.tmux = {
       baseIndex = 1;
       enable = true;
-      extraConfig = "source-file ${escapeShellArg <config/tmux/extra.conf>}";
+      extraConfig = ''
+        source-file ${escapeShellArg <config/tmux/extra.conf>}
+
+        ${cfg.extraConfig}
+      '';
       sensibleOnTop = false;
       terminal = "tmux-256color";
       plugins = with pkgs.tmuxPlugins;
