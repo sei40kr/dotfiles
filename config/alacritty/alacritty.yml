@@ -627,6 +627,8 @@ key_bindings:
   #- { key: N,      mods: Command,            action: SpawnNewInstance }
   #- { key: F,      mods: Command|Control,    action: ToggleFullscreen }
 
+  - { key: C,         mods: Super,                   action: Copy             }
+  - { key: V,         mods: Super,                   action: Paste            }
   # cf https://github.com/alacritty/alacritty/issues/62
   - { key: A,         mods: Alt,       chars: "\x1ba"                       }
   - { key: B,         mods: Alt,       chars: "\x1bb"                       }
