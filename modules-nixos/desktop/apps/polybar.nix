@@ -29,18 +29,19 @@ in {
       "${polybarStart}/bin/polybar-start";
 
     my.packages = with pkgs; [ polybar material-design-icons ];
-    my.home.xdg.configFile."polybar/config".text = ''
-      [section/base]
-      include-file = ${polybarConfig}
+    my.home.xdg.configFile."polybar/config".text = generators.toINI { } {
+      "section/base".include-file = "${polybarConfig}";
 
-      [module/gnome-pomodoro]
-      exec = ${<config/polybar/scripts/gnome-pomodoro.py>}
-      click-left = ${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro
+      "module/gnome-pomodoro" = {
+        exec = "${<config/polybar/scripts/gnome-pomodoro.py>}";
+        click-left = "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro";
+      };
 
-      [module/fcitx]
-      exec = ${<config/polybar/scripts/fcitx.py>}
-      exec-if = [ -x ${escapeShellArg "${pkgs.fcitx}/bin/fcitx-remote"} ]
-      click-left = ${pkgs.fcitx}/bin/fcitx-configtool
-    '';
+      "module/fcitx" = {
+        exec = "${<config/polybar/scripts/fcitx.py>}";
+        exec-if = "[ -x ${escapeShellArg "${pkgs.fcitx}/bin/fcitx-remote"} ]";
+        click-left = "${pkgs.fcitx}/bin/fcitx-configtool";
+      };
+    };
   };
 }
