@@ -26,14 +26,13 @@ in {
         ++ optionals cfg.enableGitCrypt [ git-crypt ]);
 
     my.home.xdg.configFile = {
-      "git/config".text = ''
-        [include]
-          path = ${<config/git/config>}
-
-        [user]
-          email = ${config.my.userEmail}
-          name = ${config.my.userFullName}
-      '';
+      "git/config".text = generators.toINI { } {
+        include.path = "${<config/git/config>}";
+        user = {
+          email = config.my.userEmail;
+          name = config.my.userFullName;
+        };
+      };
       "git/ignore".source = <config/git/ignore>;
     };
 
