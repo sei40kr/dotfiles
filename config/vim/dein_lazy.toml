@@ -26,6 +26,8 @@ rev = '690f820d20b6e3a79ba20499874eb7333aa4ca5c'
 
 [[plugins]]
 hook_add = '''
+let g:clever_f_ignore_case = 1
+let g:clever_f_smart_case = 1
 let g:clever_f_not_overwrites_standard_mappings = 1
 
 nmap f <Plug>(clever-f-f)
@@ -40,6 +42,8 @@ omap t <Plug>(clever-f-t)
 nmap T <Plug>(clever-f-T)
 xmap T <Plug>(clever-f-T)
 omap T <Plug>(clever-f-T)
+map ; <Plug>(clever-f-repeat-forward)
+map , <Plug>(clever-f-repeat-back)
 '''
 on_map = '<Plug>(clever-f-'
 repo = 'rhysd/clever-f.vim'
