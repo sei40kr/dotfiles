@@ -5,6 +5,7 @@ with lib; {
 
   options.my = {
     userName = mkOption { type = types.str; };
+    userFullName = mkOption { type = types.str; };
     userEmail = mkOption { type = types.str; };
 
     user = mkOption { type = types.submodule; };

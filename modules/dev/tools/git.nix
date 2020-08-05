@@ -32,7 +32,7 @@ in {
 
         [user]
           email = ${config.my.userEmail}
-          name = ${config.my.userName}
+          name = ${config.my.userFullName}
       '';
       "git/ignore".source = <config/git/ignore>;
     };

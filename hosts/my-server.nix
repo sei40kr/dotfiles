@@ -2,6 +2,7 @@
 
 {
   my.userName = "sei40kr";
+  my.userFullName = "Seong Yong-ju";
   my.userEmail = "sei40kr@gmail.com";
 
   my.user = {
