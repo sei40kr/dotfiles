@@ -2,6 +2,8 @@
 
 {
   my.userName = "rlsuu178967";
+  my.userFullName = "Seong Yong-ju";
+  my.userEmail = "seong_yongju@waku-2.com";
   my.user = {
     uid = 1000;
     shell = pkgs.zsh;
