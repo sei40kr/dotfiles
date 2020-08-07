@@ -1,5 +1,5 @@
 { lib, ... }:
 
 with lib; {
-  imports = [ ./chromium.nix ./qutebrowser.nix ];
+  imports = [ ./chromium.nix ./firefox.nix ./qutebrowser.nix ];
 }
