@@ -114,6 +114,7 @@
     };
 
     services = {
+      cupsd.enable = true;
       deluge = {
         enable = true;
         enableWebUI = true;

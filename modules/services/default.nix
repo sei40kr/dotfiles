@@ -1,5 +1,5 @@
 { lib, ... }:
 
 with lib; {
-  imports = [ ./flexget.nix ./jellyfin.nix ./rclone.nix ];
+  imports = [ ./cupsd.nix ./flexget.nix ./jellyfin.nix ./rclone.nix ];
 }
