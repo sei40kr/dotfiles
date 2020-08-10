@@ -38,6 +38,8 @@ in {
     modules = {
       shell.tools.ripgrep.enable = mkForce true;
       dev.editors = {
+        emacs.variables.lsp-clients-kotlin-server-executable =
+          "${pkgs.my.kotlin-language-server}/bin/kotlin-language-server";
         fonts.enable = mkForce true;
         tabnine.enable = mkForce true;
       };
@@ -88,7 +90,6 @@ in {
         # TODO Install tslint
         nodePackages.webpack-cli
         # lang/kotlin
-        kotlin-language-server
         ktlint
         # lang/markdown
         # TODO Install markdownlint-cli
