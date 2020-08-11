@@ -1,10 +1,6 @@
 { config, lib, pkgs, ... }:
 
-with lib;
-let
-  homeDirectory =
-    config.home-manager.users."${config.my.userName}".home.homeDirectory;
-in {
+with lib; {
   options.modules.shell.tools.atcoderTools.enable = mkOption {
     type = types.bool;
     default = false;
@@ -17,7 +13,7 @@ in {
         indent_type = "space";
         indent_width = 4;
         template_file = "${<config/atcoder-tools/my_template.rs>}";
-        workspace_dir = "${homeDirectory}/projects/sei40kr/hello-atcoder/";
+        workspace_dir = "~/projects/sei40kr/hello-atcoder/";
         lang = "rust";
         code_generator_file =
           "${<config/atcoder-tools/custom_code_generator.py>}";
