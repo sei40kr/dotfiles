@@ -2,6 +2,7 @@
 
 with lib; {
   imports = [
+    ./cupsd.nix
     ./deluge.nix
     ./docker.nix
     ./fstrim.nix
