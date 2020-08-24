@@ -20,6 +20,13 @@ with lib; {
       overlays = import ./packages;
     };
 
+    # Configure nix-darwin to copy the files under $out/share/fonts to
+    # ~/Library/Fonts
+    fonts = {
+      enableFontDir = true;
+      fonts = config.modules.dev.editors.fonts.packages;
+    };
+
     home-manager.users.${config.my.userName} =
       mkAliasDefinitions options.my.home;
   };
