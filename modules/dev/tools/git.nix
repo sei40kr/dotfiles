@@ -38,7 +38,7 @@ in {
 
     modules.shell.zsh.zinitPluginsInit = ''
       zinit snippet OMZP::git/git.plugin.zsh
-    '' + optionals cfg.enableGitFlow ''
+    '' + optionalString cfg.enableGitFlow ''
       zinit snippet OMZP::git-flow/git-flow.plugin.zsh
     '';
   };
