@@ -20,6 +20,13 @@ with lib; {
       overlays = import ./packages;
     };
 
+    # Configure nix-darwin to install the user applications
+    system.build.applications = pkgs.buildEnv {
+      name = "user-applications";
+      paths = config.my.packages;
+      pathsToLink = "/Applications";
+    };
+
     # Configure nix-darwin to copy the files under $out/share/fonts to
     # ~/Library/Fonts
     fonts = {
