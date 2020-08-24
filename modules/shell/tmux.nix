@@ -38,6 +38,7 @@ in {
       '';
       sensibleOnTop = false;
       terminal = "tmux-256color";
+      secureSocket = pkgs.stdenv.isLinux;
       plugins = with pkgs.tmuxPlugins;
         with pkgs.my.tmuxPlugins; [
           copycat
