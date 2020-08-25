@@ -1,4 +1,4 @@
-{ fetchFromGitHub, lib, pkgs, stdenv, ... }:
+{ fetchFromGitHub, lib, stdenv, zsh, ... }:
 
 with lib;
 stdenv.mkDerivation {
@@ -12,9 +12,15 @@ stdenv.mkDerivation {
     sha256 = "1mpdsfg5caxli1w7dhgxiir01hdc97wqv54i3rki3fq9qrhsk2j9";
   };
 
-  buildInputs = with pkgs; [ git subversion ];
+  nativeBuildInputs = [ zsh ];
 
-  dontBuild = true;
+  buildPhase = ''
+    ${zsh}/bin/zsh -c 'zcompile zinit.zsh'
+    ${zsh}/bin/zsh -c 'zcompile zinit-side.zsh'
+    ${zsh}/bin/zsh -c 'zcompile zinit-install.zsh'
+    ${zsh}/bin/zsh -c 'zcompile zinit-autoload.zsh'
+    ${zsh}/bin/zsh -c 'zcompile git-process-output.zsh'
+  '';
 
   installPhase = ''
     mkdir -p $out/share/zinit
