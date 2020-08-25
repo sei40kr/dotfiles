@@ -17,10 +17,12 @@
             my = {
               inherit python3Packages tmuxPlugins vimPlugins vscode-extensions;
 
+              alfred = callPackage ./alfred.nix { };
               haskell-language-server = callPackage ./haskell-language-server.nix { };
               kotlin-language-server = callPackage ./kotlin-language-server.nix {
                 gradle_6 = unstable.gradle;
               };
+              notion = callPackage ./notion.nix { };
               operator-mono = callPackage ./operator-mono.nix { };
               zinit = callPackage ./zinit.nix { };
             };
