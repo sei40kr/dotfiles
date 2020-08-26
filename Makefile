@@ -1,6 +1,6 @@
 FLAGS := -I "config=$$(pwd)/config" \
 		 -I "packages=$$(pwd)/packages"
-DARWIN_CONFIG_FLAG := -I "darwin-config=$$(pwd)/nix-darwin.nix"
+DARWIN_CONFIG_FLAG := -I "darwin-config=$$(pwd)/default-darwin.nix"
 
 UNAME := $(shell uname)
 

@@ -6,7 +6,7 @@ with lib; {
     <home-manager/nixos>
 
     ./modules
-    ./modules-nixos
+    ./modules-linux
     ./secrets.nix
     ./hosts/my-server.nix
   ];
