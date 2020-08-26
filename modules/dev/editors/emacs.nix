@@ -28,6 +28,13 @@ in {
       default = false;
     };
 
+    package = mkOption {
+      type = types.package;
+      default =
+        # NOTE Emacs build with native-comp fails on Darwin platforms
+        if pkgs.stdenv.isDarwin then pkgs.emacsUnstable else pkgs.emacsGcc;
+    };
+
     variables = mkOption {
       type = types.attrs;
       default = { };
@@ -47,14 +54,12 @@ in {
 
     my.home.programs.emacs = {
       enable = true;
-      package = pkgs.emacsGcc;
+      package = cfg.package;
     };
     my.packages = with pkgs;
-      with pkgs.my; [
+      with pkgs.my;
+      [
         fd
-        # term/vterm
-        libvterm
-        cmake
         # tools/ansible
         python37Packages.ansible-lint
         # tools/docker
@@ -97,13 +102,10 @@ in {
         python37Packages.grip
         # lang/nix
         nixfmt
-        nix-linter
         # lang/jupyter
         python37Packages.jupyter
         python37Packages.numpy
         python37Packages.matplotlib
-        python37Packages.pandas
-        python37Packages.seaborn
         # lang/plantuml
         plantuml
         # lang/python
@@ -132,6 +134,16 @@ in {
         # TODO Install stylelint-cli
         # lang/yaml
         # TODO Install yaml-language-server
+      ] ++ optionals stdenv.isLinux [
+        # term/vterm
+        libvterm
+        cmake
+        # lang/jupyter
+        python37Packages.pandas
+        python37Packages.seaborn
+        # lang/nix
+        nixfmt
+        nix-linter
       ];
     my.home.home.file.".doom.d/nix-env.el".text = ''
       ;;; $DOOMDIR/nix-env.el -*- lexical-binding: t; -*-
