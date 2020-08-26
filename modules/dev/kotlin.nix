@@ -7,11 +7,18 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.kotlin.enable {
-    modules.dev.tools = {
-      jenv.enable = mkForce true;
-      maven.enable = mkForce true;
-      gradle.enable = mkForce true;
-      springBoot.enable = mkForce true;
+    modules.dev = {
+      editors.tools.packages = with pkgs;
+        with pkgs.my; [
+          kotlin-language-server
+          ktlint
+        ];
+      tools = {
+        jenv.enable = mkForce true;
+        maven.enable = mkForce true;
+        gradle.enable = mkForce true;
+        springBoot.enable = mkForce true;
+      };
     };
 
     my.packages = with pkgs; [ kotlin ];

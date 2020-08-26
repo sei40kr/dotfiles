@@ -16,6 +16,25 @@ in {
   };
 
   config = mkIf cfg.enable {
+    modules = {
+      dev.editors.tools.packages = with pkgs.python37Packages; [
+        black
+        python-language-server
+      ];
+      shell.zsh.zinitPluginsInit = ''
+        zinit ice as'completion' wait'''
+        zinit snippet OMZP::pip/_pip
+      '' + optionalString cfg.enablePoetry ''
+        zinit ice wait''' \
+                  lucid \
+                  atclone'poetry completions zsh >_poetry' \
+                  atpull'%atclone' \
+                  as'completion' \
+                  id-as'poetry_completion'
+        zinit light zdharma/null
+      '';
+    };
+
     my.packages = with pkgs;
       ([
         python37
@@ -25,17 +44,5 @@ in {
         python37Packages.pandas
       ] ++ optionals cfg.enablePoetry [ poetry ]);
     my.env.PATH = [ "\${HOME}/.poetry/bin" ];
-    modules.shell.zsh.zinitPluginsInit = ''
-      zinit ice as'completion' wait'''
-      zinit snippet OMZP::pip/_pip
-    '' + optionals cfg.enablePoetry ''
-      zinit ice wait''' \
-                lucid \
-                atclone'poetry completions zsh >_poetry' \
-                atpull'%atclone' \
-                as'completion' \
-                id-as'poetry_completion'
-      zinit light zdharma/null
-    '';
   };
 }

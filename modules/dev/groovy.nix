@@ -7,6 +7,7 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.groovy.enable {
+    # TODO groovy-language-server
     modules.dev.tools = {
       jenv = {
         enable = mkForce true;

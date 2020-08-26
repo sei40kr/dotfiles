@@ -7,6 +7,22 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.haskell.enable {
+    modules = {
+      dev.editors.tools.packages = with pkgs.haskellPackages;
+        with pkgs.my; [
+          brittany
+          ghcide
+          haskell-language-server
+          hlint
+        ];
+      shell.zsh.zinitPluginsInit = ''
+        zinit ice wait'''
+        zinit snippet OMZP::stack/stack.plugin.zsh
+        zinit ice wait'''
+        zinit snippet OMZP::cabal/cabal.plugin.zsh
+      '';
+    };
+
     my.packages = with pkgs; [ ghc stack ];
 
     my.home.home.file.".stack/config.yaml".text = ''
@@ -16,13 +32,6 @@ with lib; {
           author-name: ${config.my.userName}
           copyright: 'Copyright (c) 2020 ${config.my.userName}'
           github-username: sei40kr
-    '';
-
-    modules.shell.zsh.zinitPluginsInit = ''
-      zinit ice wait'''
-      zinit snippet OMZP::stack/stack.plugin.zsh
-      zinit ice wait'''
-      zinit snippet OMZP::cabal/cabal.plugin.zsh
     '';
   };
 }

@@ -7,6 +7,8 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.cc.enable {
+    modules.dev.editors.tools.packages = with pkgs; [ ccls cpplint ];
+
     # TODO Install clang
     my.packages = with pkgs; [ llvm_10 gcc10 gdb ];
   };

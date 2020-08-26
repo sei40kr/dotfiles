@@ -14,6 +14,20 @@ in {
   };
 
   config = mkIf config.modules.dev.web.enable {
+    modules = {
+      # TODO stylelint-cli
+      dev.editors.tools.packages = with pkgs.nodePackages; [
+        vscode-html-languageserver-bin
+        vscode-css-languageserver-bin
+        vue-language-server
+      ];
+      shell.zsh.zinitPluginsInit = ''
+        zinit light sei40kr/zsh-lazy-nvm
+
+        zinit snippet OMZP::yarn/yarn.plugin.zsh
+      '';
+    };
+
     my.home.home.file = foldl (files: name:
       files // {
         ".nvm/${name}".source = "${nvm.outPath}/${name}";
@@ -39,10 +53,5 @@ in {
       npmP = "npm publish";
       npmI = "npm init";
     };
-    modules.shell.zsh.zinitPluginsInit = ''
-      zinit light sei40kr/zsh-lazy-nvm
-
-      zinit snippet OMZP::yarn/yarn.plugin.zsh
-    '';
   };
 })

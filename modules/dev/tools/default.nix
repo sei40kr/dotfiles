@@ -11,6 +11,7 @@ with lib; {
     ./google-cloud-sdk.nix
     ./gradle.nix
     ./jenv.nix
+    ./jupyter.nix
     ./maven.nix
     ./mycli.nix
     ./pgcli.nix

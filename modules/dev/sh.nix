@@ -7,7 +7,13 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.sh.enable {
-    # TODO Install bash-language-server
+    modules.dev.editors.tools.packages = with pkgs;
+      with pkgs.nodePackages; [
+        bash-language-server
+        shellcheck
+        shfmt
+      ];
+
     my.packages = with pkgs; [ shellcheck shfmt ];
   };
 }

@@ -10,6 +10,7 @@ with lib; {
     modules.dev.editors = {
       fonts.enable = mkForce true;
       tabnine.enable = mkForce true;
+      tools.enable = mkForce true;
     };
 
     my.home.programs.vscode = {

@@ -7,10 +7,17 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.go.enable {
-    my.packages = with pkgs; [ go ];
+    modules = {
+      # TODO goimports
+      dev.editors.tools.packages = with pkgs.unstable; [
+        unstable.gopls
+        unstable.gore
+      ];
+      shell.zsh.zinitPluginsInit = ''
+        zinit snippet OMZP::golang/golang.plugin.zsh
+      '';
+    };
 
-    modules.shell.zsh.zinitPluginsInit = ''
-      zinit snippet OMZP::golang/golang.plugin.zsh
-    '';
+    my.packages = with pkgs; [ go ];
   };
 }

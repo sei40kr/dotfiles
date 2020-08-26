@@ -8,6 +8,7 @@ with lib; {
     ./ideavim.nix
     ./neovim.nix
     ./tabnine.nix
+    ./tools.nix
     ./vscodium.nix
   ];
 }

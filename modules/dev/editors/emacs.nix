@@ -49,6 +49,7 @@ in {
           "${pkgs.my.kotlin-language-server}/bin/kotlin-language-server";
         fonts.enable = mkForce true;
         tabnine.enable = mkForce true;
+        tools.enable = mkForce true;
       };
     };
 
@@ -60,78 +61,19 @@ in {
       with pkgs.my;
       [
         fd
-        # tools/ansible
-        python37Packages.ansible-lint
         # tools/docker
         nodePackages.dockerfile-language-server-nodejs
-        # lang/cc
-        ccls
-        cpplint
-        # lang/ess
-        rPackages.languageserver
-        rPackages.lintr
-        # lang/go
-        # TODO Install goimports
-        unstable.gopls
-        unstable.gore
-        # lang/groovy
-        # TODO Install groovy-language-server
-        # lang/haskell
-        haskell-language-server
-        haskellPackages.brittany
-        haskellPackages.hlint
-        haskellPackages.ghcide
-        # lang/javascript
-        nodePackages.create-react-app
-        # TODO Install eslint-cli
-        nodePackages.eslint_d
-        # TODO Install gatsby-cli
-        nodePackages.gulp-cli
-        nodePackages.javascript-typescript-langserver
-        nodePackages.prettier
-        # TODO Install prettier-eslint-cli
-        nodePackages.typescript
-        nodePackages.typescript-language-server
-        # TODO Install tslint
-        nodePackages.webpack-cli
-        # lang/kotlin
-        ktlint
         # lang/markdown
         # TODO Install markdownlint-cli
         mdl
         python37Packages.grip
         # lang/nix
         nixfmt
-        # lang/jupyter
-        python37Packages.jupyter
-        python37Packages.numpy
-        python37Packages.matplotlib
         # lang/plantuml
         plantuml
-        # lang/python
-        python37Packages.black
-        python37Packages.python-language-server
-        # lang/ruby
-        solargraph
-        rubyPackages.rubocop
-        # lang/rust
-        unstable.rust-analyzer
-        # lang/scala
-        metals
-        scalafmt
-        # TODO Install scalastyle
-        # lang/sh
-        nodePackages.bash-language-server
-        shellcheck
-        shfmt
         # lang/sql
         python37Packages.sqlparse
         sqlint
-        # lang/web
-        nodePackages.vscode-html-languageserver-bin
-        nodePackages.vscode-css-languageserver-bin
-        nodePackages.vue-language-server
-        # TODO Install stylelint-cli
         # lang/yaml
         # TODO Install yaml-language-server
       ] ++ optionals stdenv.isLinux [
@@ -142,7 +84,6 @@ in {
         python37Packages.pandas
         python37Packages.seaborn
         # lang/nix
-        nixfmt
         nix-linter
       ];
     my.home.home.file.".doom.d/nix-env.el".text = ''

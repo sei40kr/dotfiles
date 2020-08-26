@@ -9,6 +9,7 @@ with lib; {
     ./groovy.nix
     ./haskell.nix
     ./java.nix
+    ./javascript.nix
     ./kotlin.nix
     ./python.nix
     ./r.nix
