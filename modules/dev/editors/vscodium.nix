@@ -1,12 +1,21 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
-  options.modules.dev.editors.vscodium.enable = mkOption {
-    type = types.bool;
-    default = false;
+with lib;
+let cfg = config.modules.dev.editors.vscodium;
+in {
+  options.modules.dev.editors.vscodium = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
+
+    settings = mkOption {
+      type = types.attrs;
+      default = { };
+    };
   };
 
-  config = mkIf config.modules.dev.editors.vscodium.enable {
+  config = mkIf cfg.enable {
     modules.dev.editors = {
       fonts.enable = mkForce true;
       tabnine.enable = mkForce true;
@@ -47,7 +56,8 @@ with lib; {
     my.home.xdg.configFile = {
       "VSCodium/User/keybindings.json".source =
         <config/vscodium/keybindings.json>;
-      "VSCodium/User/settings.json".source = <config/vscodium/settings.json>;
+      "VSCodium/User/settings.json".text = builtins.toJSON
+        ((importJSON <config/vscodium/settings.json>) // cfg.settings);
     };
   };
 }

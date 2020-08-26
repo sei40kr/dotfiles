@@ -26,27 +26,22 @@
       "before": ["Z", "Z"],
       "commands": [":wq"]
     },
-    // Close all folds
     {
       "before": ["z", "m"],
       "commands": ["editor.foldAll"]
     },
-    // Open all folds
     {
       "before": ["z", "r"],
       "commands": ["editor.unfoldAll"]
     },
-    // Expand region
     {
       "before": ["<C-S-=>"],
       "commands": ["editor.action.smartSelect.expand"]
     },
-    // Jump to bookmark
     {
       "before": ["<Leader>", "<CR>"],
       "commands": ["bookmarks.listFromAllFiles"]
     },
-    // Kill buffer
     {
       "before": ["<Leader>", "b", "d"],
       "commands": [":q!"]
@@ -55,12 +50,10 @@
       "before": ["<Leader>", "b", "k"],
       "commands": [":q!"]
     },
-    // Kill all buffers
     {
       "before": ["<Leader>", "b", "K"],
       "commands": [":qa!"]
     },
-    // Set/delete bookmark
     {
       "before": ["<Leader>", "b", "m"],
       "commands": ["bookmarks.toggle"]
@@ -69,67 +62,54 @@
       "before": ["<Leader>", "b", "M"],
       "commands": ["bookmarks.toggle"]
     },
-    // Kill other buffers
     {
       "before": ["<Leader>", "b", "O"],
       "commands": ["workbench.action.closeOtherEditors"]
     },
-    // Jump to references
     {
       "before": ["<Leader>", "c", "D"],
       "commands": ["editor.action.goToReferences"]
     },
-    // Format buffer
     {
       "before": ["<Leader>", "c", "f"],
       "commands": ["editor.action.formatDocument"]
     },
-    // Find implementations
     {
       "before": ["<Leader>", "c", "i"],
       "commands": ["editor.action.goToImplementations"]
     },
-    // Jump to symbol in current workspace
     {
       "before": ["<Leader>", "c", "j"],
       "commands": ["workbench.action.showAllSymbols"]
     },
-    // Organize imports
     {
       "before": ["<Leader>", "c", "o"],
       "commands": ["editor.action.organizeImports"]
     },
-    // Rename
     {
       "before": ["<Leader>", "c", "r"],
       "commands": ["editor.action.rename"]
     },
-    // Find type definition
     {
       "before": ["<Leader>", "c", "t"],
       "commands": ["editor.action.goToTypeDefinition"]
     },
-    // List errors
     {
       "before": ["<Leader>", "c", "x"],
       "commands": ["workbench.actions.view.problems"]
     },
-    // Go to previous error
     {
       "before": ["[", "e"],
       "commands": ["editor.action.marker.prevInFiles"]
     },
-    // Go to next error
     {
       "before": ["]", "e"],
       "commands": ["editor.action.marker.nextInFiles"]
     },
-    // Recent files
     {
       "before": ["<Leader>", "f", "r"],
       "commands": ["workbench.action.openRecent"]
     },
-    // Jump to previous hunk
     {
       "before": ["<Leader>", "g", "["],
       "commands": ["workbench.action.editor.previousChange"]
@@ -138,7 +118,6 @@
       "before": ["[", "d"],
       "commands": ["workbench.action.editor.previousChange"]
     },
-    // Jump to next hunk
     {
       "before": ["<Leader>", "g", "]"],
       "commands": ["workbench.action.editor.nextChange"]
@@ -147,122 +126,98 @@
       "before": ["]", "d"],
       "commands": ["workbench.action.editor.nextChange"]
     },
-    // Switch branch
     {
       "before": ["<Leader>", "g", "b"],
       "commands": ["git.checkout"]
     },
-    // Blame
     {
       "before": ["<Leader>", "g", "B"],
       "commands": ["gitlens.toggleFileBlame"]
     },
-    // Create issue
     {
       "before": ["<Leader>", "g", "c", "i"],
       "commands": ["issue.createIssue"]
     },
-    // Create pull reequest
     {
       "before": ["<Leader>", "g", "c", "p"],
       "commands": ["pr.create"]
     },
-    // Fetch
     {
       "before": ["<Leader>", "g", "F"],
       "commands": ["git.fetch"]
     },
-    // List issues
     {
       "before": ["<Leader>", "g", "l", "i"],
       "commands": ["issues:github.focus"]
     },
-    // List pull requests
     {
       "before": ["<Leader>", "g", "l", "p"],
       "commands": ["pr:github.focus"]
     },
-    // Revert hunk
     {
       "before": ["<Leader>", "g", "r"],
       "commands": ["git.revertSelectedRanges"]
     },
-    // Revert file
     {
       "before": ["<Leader>", "g", "R"],
       "commands": ["git.revertChange"]
     },
-    // Git stage hunk
     {
       "before": ["<Leader>", "g", "s"],
       "commands": ["git.stageSelectedRanges"]
     },
-    // Git stage file
     {
       "before": ["<Leader>", "g", "S"],
       "commands": ["git.stage"]
     },
-    // Git time machine
     {
       "before": ["<Leader>", "g", "t"],
       "commands": ["gitlens.openFileRevision"]
     },
-    // Git unstage file
     {
       "before": ["<Leader>", "g", "U"],
       "commands": ["git.unstage"]
     },
-    // Copy link to remote
     {
       "before": ["<Leader>", "g", "y"],
       "commands": ["gitlens.copyRemoteFileUrlToClipboard"]
     },
-    // Insert snippet
     {
       "before": ["<Leader>", "i", "s"],
       "commands": ["editor.action.showSnippets"]
     },
-    // Toggle terminal
     {
       "before": ["<Leader>", "o", "t"],
       "commands": ["workbench.action.terminal.toggleTerminal"]
     },
-    // Project sidebar
     {
       "before": ["<Leader>", "o", "p"],
       "commands": ["workbench.view.explorer"]
     },
-    // Find file in project sidebar
     {
       "before": ["<Leader>", "o", "P"],
       "commands": ["workbench.files.action.showActiveFileInExplorer"]
     },
-    // List project tasks
     {
       "before": ["<Leader>", "p", "z"],
       "commands": ["workbench.action.tasks.runTask"]
     },
-    // Search project
     {
       "before": ["<Leader>", "s", "p"],
       "commands": ["workbench.action.findInFiles"]
     },
-    // Frame fullscreen
     {
       "before": ["<Leader>", "t", "F"],
       "commands": ["workbench.action.toggleFullScreen"]
     },
-    // Toggle soft line wrapping
     {
       "before": ["<Leader>", "t", "w"],
       "commands": ["editor.action.toggleWordWrap"]
     },
-    // Toggle Zen mode
     {
       "before": ["<Leader>", "t", "z"],
       "commands": ["workbench.action.toggleZenMode"]
     },
-    // easymotion
     {
       "before": ["g", "s", "b"],
       "after": ["<Leader>", "<Leader>", "b"]
@@ -316,7 +271,6 @@
   "vim.vimrc.path": "~/.vim/common.vim",
   "vim.visualstar": true,
   "vim.visualModeKeyBindingsNonRecursive": [
-    // easymotion
     {
       "before": ["g", "s", "b"],
       "after": ["<Leader>", "<Leader>", "b"]
