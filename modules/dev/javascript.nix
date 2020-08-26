@@ -11,16 +11,20 @@ with lib; {
     # TODO gatsby-cli
     # TODO prettier-eslint-cli
     # TODO tslint
-    modules.dev.editors.tools.packages = with pkgs;
-      with pkgs.nodePackages; [
-        create-react-app
-        eslint_d
-        gulp-cli
-        javascript-typescript-langserver
-        prettier
-        typescript
-        typescript-language-server
-        webpack-cli
-      ];
+    modules.dev.editors = {
+      tools.packages = with pkgs;
+        with pkgs.nodePackages; [
+          create-react-app
+          eslint_d
+          gulp-cli
+          javascript-typescript-langserver
+          prettier
+          typescript
+          typescript-language-server
+          webpack-cli
+        ];
+      vscodium.settings."[javascript]"."editor.defaultFormatter" =
+        "esbenp.prettier-vscode";
+    };
   };
 }
