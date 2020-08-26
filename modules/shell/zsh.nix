@@ -46,7 +46,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.packages = with pkgs; [ zsh git subversion ];
+    my.packages = with pkgs; [ zsh ];
 
     my.home.home.file = {
       ".zshenv".text = ''
@@ -91,6 +91,10 @@ in {
 
         HELPDIR="${pkgs.zsh}/share/zsh/''${ZSH_VERSION}/help"
 
+        path=( ${escapeShellArg "${pkgs.curl}/bin"}
+               ${escapeShellArg "${pkgs.git}/bin"}
+               ${escapeShellArg "${pkgs.subversion}/bin"}
+               $path )
         declare -A ZINIT
         ZINIT[BIN_DIR]=${escapeShellArg "${zinit}/share/zinit"}
         . "''${ZINIT[BIN_DIR]}/zinit.zsh"
