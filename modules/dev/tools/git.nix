@@ -21,6 +21,12 @@ in {
   };
 
   config = mkIf config.modules.dev.tools.git.enable {
+    modules.shell.zsh.zinitPluginsInit = ''
+      zinit snippet OMZP::git/git.plugin.zsh
+    '' + optionalString cfg.enableGitFlow ''
+      zinit snippet OMZP::git-flow/git-flow.plugin.zsh
+    '';
+
     my.packages = with pkgs;
       ([ git ] ++ optionals cfg.enableGitFlow [ gitAndTools.gitflow ]
         ++ optionals cfg.enableGitCrypt [ git-crypt ]);
@@ -35,11 +41,5 @@ in {
       };
       "git/ignore".source = <config/git/ignore>;
     };
-
-    modules.shell.zsh.zinitPluginsInit = ''
-      zinit snippet OMZP::git/git.plugin.zsh
-    '' + optionalString cfg.enableGitFlow ''
-      zinit snippet OMZP::git-flow/git-flow.plugin.zsh
-    '';
   };
 })

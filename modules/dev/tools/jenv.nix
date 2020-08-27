@@ -16,27 +16,25 @@ with lib; {
     jenvRootFiles =
       [ "available-plugins" "bin" "completions" "fish" "libexec" ];
   in {
-    my = {
-      home.home.file = (foldl (files: name:
-        files // {
-          ".jenv/${name}".source = "${jenv.outPath}/${name}";
-        }) { } jenvRootFiles) // (foldl (files: name:
-          files // {
-            ".jenv/plugins/${name}".source =
-              "${jenv.outPath}/available-plugins/${name}";
-          }) { } config.modules.dev.tools.jenv.pluginsToEnable);
-
-      env = rec {
-        JENV_ROOT = "\${HOME}/.jenv";
-        PATH = [ "${JENV_ROOT}/bin" "${JENV_ROOT}/shims" ];
-      };
-    };
-
     modules.shell.zsh.zinitPluginsInit = ''
       zinit ice atclone'jenv init - --no-rehash zsh >jenv-init.zsh' \
                 atpull'%atclone' \
                 id-as'jenv-init'
       zinit light zdharma/null
     '';
+
+    my.home.home.file = (foldl (files: name:
+      files // {
+        ".jenv/${name}".source = "${jenv.outPath}/${name}";
+      }) { } jenvRootFiles) // (foldl (files: name:
+        files // {
+          ".jenv/plugins/${name}".source =
+            "${jenv.outPath}/available-plugins/${name}";
+        }) { } config.modules.dev.tools.jenv.pluginsToEnable);
+
+    my.env = rec {
+      JENV_ROOT = "\${HOME}/.jenv";
+      PATH = [ "${JENV_ROOT}/bin" "${JENV_ROOT}/shims" ];
+    };
   });
 }
