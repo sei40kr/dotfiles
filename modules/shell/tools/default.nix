@@ -7,6 +7,7 @@ with lib; {
     ./exa.nix
     ./htop.nix
     ./prettyping.nix
+    ./ranger.nix
     ./ripgrep.nix
     ./strace.nix
     ./tcpdump.nix
