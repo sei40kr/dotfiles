@@ -8,7 +8,7 @@ with lib; {
     ./modules
     ./modules-linux
     ./secrets.nix
-    ./hosts/my-server.nix
+    ./per-host/my-server.nix
   ];
 
   options.my.home =
