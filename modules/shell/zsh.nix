@@ -47,7 +47,6 @@ in {
 
   config = mkIf cfg.enable {
     my.packages = with pkgs; [ zsh ];
-
     my.home.home.file = {
       ".zshenv".text = ''
         ZDOTDIR="''${HOME}/${zdotDir}"
@@ -57,10 +56,10 @@ in {
         ${optionalString pkgs.stdenv.isDarwin nixDarwinInit}
         ${homeManagerInit}
 
-        . ${escapeShellArg <config/zsh/env-extra.zsh>}
+        . ${escapeShellArg <config/zsh/zshenv>}
       '';
       "${zdotDir}/.zprofile".text = ''
-        . ${escapeShellArg <config/zsh/profile-extra.zsh>}
+        . ${escapeShellArg <config/zsh/zprofile>}
 
         ${cfg.graphicalSessionInit}
       '';
@@ -74,36 +73,32 @@ in {
             "''${profile}/share/zsh/vendor-completions"
           )
         done
-
-        ${cfg.tmuxInit}
-
-        HISTSIZE=10000
-        SAVEHIST=10000
-        HISTFILE="''${ZDOTDIR}/.zsh_history"
-
-        setopt AUTO_CD
-        setopt EXTENDED_HISTORY
-        setopt HIST_IGNORE_DUPS
-        setopt HIST_IGNORE_SPACE
-        setopt SHARE_HISTORY
-
-        bindkey -e
-
         HELPDIR="${pkgs.zsh}/share/zsh/''${ZSH_VERSION}/help"
 
-        path=( ${escapeShellArg "${pkgs.curl}/bin"}
-               ${escapeShellArg "${pkgs.git}/bin"}
-               ${escapeShellArg "${pkgs.subversion}/bin"}
-               $path )
-        declare -A ZINIT
-        ZINIT[BIN_DIR]=${escapeShellArg "${zinit}/share/zinit"}
-        . "''${ZINIT[BIN_DIR]}/zinit.zsh"
+        if [[ "$TERM" == dumb ]]; then
+            HISTSIZE=0
+            SAVEHIST=0
+        else
+          ${cfg.tmuxInit}
 
-        ${cfg.zinitPluginsInit}
+          . ${escapeShellArg <config/zsh/before-zinit.zsh>}
 
-        ${aliasDefs}
+          path=(
+            ${escapeShellArg "${pkgs.curl}/bin"}
+            ${escapeShellArg "${pkgs.git}/bin"}
+            ${escapeShellArg "${pkgs.subversion}/bin"}
+            $path
+          )
+          declare -A ZINIT
+          ZINIT[BIN_DIR]=${escapeShellArg "${zinit}/share/zinit"}
+          . "''${ZINIT[BIN_DIR]}/zinit.zsh"
 
-        . ${escapeShellArg <config/zsh/init-extra.zsh>}
+          ${cfg.zinitPluginsInit}
+
+          ${aliasDefs}
+
+          . ${escapeShellArg <config/zsh/after-zinit.zsh>}
+        fi
       '';
       "${zdotDir}/completions".source = <config/zsh/completions>;
       "${zdotDir}/functions".source = <config/zsh/functions>;

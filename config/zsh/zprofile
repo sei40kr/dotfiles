@@ -1,6 +1,5 @@
-# -*- mode: sh -*-
+# -*- mode: sh; sh-shell: zsh -*-
 
-# zprofile
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 if [[ "$OSTYPE" == darwin* && -x /usr/libexec/path_helper ]]; then

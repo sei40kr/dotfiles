@@ -1,6 +1,5 @@
-# -*- mode: sh -*-
+# -*- mode: sh; sh-shell: zsh -*-
 
-# zshenv
 # author: Seong Yong-ju <sei40kr@gmail.com>
 
 export ZDOTDIR="${HOME}/.zsh"
