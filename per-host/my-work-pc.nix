@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  imports = [ ../secrets ];
+
   my.userName = "rlsuu178967";
   my.userFullName = "Seong Yong-ju";
   my.userEmail = "seong_yongju@waku-2.com";

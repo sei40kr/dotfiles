@@ -1,3 +1,6 @@
+[submodule "secrets"]
+	path = secrets
+	url = git@github.com:sei40kr/secrets.git
 [submodule "idea-doom-emacs"]
 	path = idea-doom-emacs
 	url = https://github.com/sei40kr/idea-doom-emacs.git
