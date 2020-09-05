@@ -6,7 +6,7 @@ with lib; {
 
     ./modules
     ./modules-darwin
-    ./per-host/my-work-pc.nix
+    ./per-host/RLSUU178967M01.local.nix
   ];
 
   options.my.home =
