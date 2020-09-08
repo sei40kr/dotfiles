@@ -1,21 +1,33 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
-with lib; {
-  options.modules.dev.tools.jenv.enable = mkOption {
-    type = types.bool;
-    default = false;
+with lib;
+let
+  cfg = config.modules.dev.tools.jenv;
+  package = pkgs.my.jenv.override {
+    inherit (cfg) javaPackages;
+
+    plugins = cfg.pluginsToEnable;
+  };
+in {
+  options.modules.dev.tools.jenv = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
+
+    javaPackages = mkOption {
+      type = types.attrsOf types.package;
+      default = { };
+    };
+
+    # TODO Rename pluginsToEnable -> plugins
+    pluginsToEnable = mkOption {
+      type = with types; listOf str;
+      default = [ "export" ];
+    };
   };
 
-  options.modules.dev.tools.jenv.pluginsToEnable = mkOption {
-    type = with types; listOf str;
-    default = [ "export" ];
-  };
-
-  config = mkIf config.modules.dev.tools.jenv.enable (let
-    jenv = builtins.fetchGit { url = "https://github.com/jenv/jenv.git"; };
-    jenvRootFiles =
-      [ "available-plugins" "bin" "completions" "fish" "libexec" ];
-  in {
+  config = mkIf cfg.enable {
     modules.shell.zsh.zinitPluginsInit = ''
       zinit ice atclone'jenv init - --no-rehash zsh >jenv-init.zsh' \
                 atpull'%atclone' \
@@ -23,18 +35,11 @@ with lib; {
       zinit light zdharma/null
     '';
 
-    my.home.home.file = (foldl (files: name:
-      files // {
-        ".jenv/${name}".source = "${jenv.outPath}/${name}";
-      }) { } jenvRootFiles) // (foldl (files: name:
-        files // {
-          ".jenv/plugins/${name}".source =
-            "${jenv.outPath}/available-plugins/${name}";
-        }) { } config.modules.dev.tools.jenv.pluginsToEnable);
-
+    my.packages = [ package ];
     my.env = rec {
       JENV_ROOT = "\${HOME}/.jenv";
       PATH = [ "${JENV_ROOT}/bin" "${JENV_ROOT}/shims" ];
     };
-  });
+    my.home.home.file.".jenv".source = "${package}/share/jenv";
+  };
 }

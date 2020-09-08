@@ -19,6 +19,7 @@
 
               alfred = callPackage ./alfred.nix { };
               haskell-language-server = callPackage ./haskell-language-server.nix { };
+              jenv = callPackage ./jenv.nix { };
               kotlin-language-server = callPackage ./kotlin-language-server.nix {
                 gradle_6 = unstable.gradle;
               };
