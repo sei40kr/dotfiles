@@ -8,7 +8,7 @@ with lib; {
 
   config = mkIf config.modules.dev.tools.maven.enable {
     modules = {
-      dev.tools.jenv.pluginsToEnable = [ "maven" ];
+      dev.tools.jenv.plugins = [ "maven" ];
 
       shell.zsh.zinitPluginsInit = ''
         zinit snippet OMZP::mvn/mvn.plugin.zsh

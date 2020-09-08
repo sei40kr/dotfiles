@@ -8,7 +8,7 @@ with lib; {
 
   config = mkIf config.modules.dev.tools.gradle.enable {
     modules = {
-      dev.tools.jenv.pluginsToEnable = [ "gradle" ];
+      dev.tools.jenv.plugins = [ "gradle" ];
       shell.zsh.zinitPluginsInit = ''
         zinit ice trigger-load'!gradle'
         zinit snippet OMZP::gradle/gradle.plugin.zsh

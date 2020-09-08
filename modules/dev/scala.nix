@@ -14,7 +14,7 @@ with lib; {
         tools = {
           jenv = {
             enable = mkForce true;
-            pluginsToEnable = [ "scala" "sbt" ];
+            plugins = [ "scala" "sbt" ];
           };
           maven.enable = mkForce true;
           gradle.enable = mkForce true;

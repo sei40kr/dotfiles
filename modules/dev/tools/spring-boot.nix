@@ -8,7 +8,7 @@ with lib; {
 
   config = mkIf config.modules.dev.tools.springBoot.enable {
     modules = {
-      dev.tools.jenv.pluginsToEnable = [ "springboot" ];
+      dev.tools.jenv.plugins = [ "springboot" ];
       shell.zsh.zinitPluginsInit = ''
         zinit ice as'completion' wait'''
         zinit snippet OMZP::spring/_spring

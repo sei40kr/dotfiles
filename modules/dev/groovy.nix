@@ -11,7 +11,7 @@ with lib; {
     modules.dev.tools = {
       jenv = {
         enable = mkForce true;
-        pluginsToEnable = [ "groovy" ];
+        plugins = [ "groovy" ];
       };
       maven.enable = mkForce true;
       gradle.enable = mkForce true;

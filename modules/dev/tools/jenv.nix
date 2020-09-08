@@ -3,11 +3,7 @@
 with lib;
 let
   cfg = config.modules.dev.tools.jenv;
-  package = pkgs.my.jenv.override {
-    inherit (cfg) javaPackages;
-
-    plugins = cfg.pluginsToEnable;
-  };
+  package = pkgs.my.jenv.override { inherit (cfg) plugins javaPackages; };
 in {
   options.modules.dev.tools.jenv = {
     enable = mkOption {
@@ -15,15 +11,14 @@ in {
       default = false;
     };
 
+    plugins = mkOption {
+      type = with types; listOf str;
+      default = [ "export" ];
+    };
+
     javaPackages = mkOption {
       type = types.attrsOf types.package;
       default = { };
-    };
-
-    # TODO Rename pluginsToEnable -> plugins
-    pluginsToEnable = mkOption {
-      type = with types; listOf str;
-      default = [ "export" ];
     };
   };
 
