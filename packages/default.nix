@@ -18,6 +18,7 @@
               inherit python3Packages tmuxPlugins vimPlugins vscode-extensions;
 
               alfred = callPackage ./alfred.nix { };
+              corretto_11 = callPackage ./corretto_11.nix { };
               haskell-language-server = callPackage ./haskell-language-server.nix { };
               jenv = callPackage ./jenv.nix { };
               kotlin-language-server = callPackage ./kotlin-language-server.nix {
