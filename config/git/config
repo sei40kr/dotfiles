@@ -18,17 +18,12 @@
   prune = true
 [github]
   user = "sei40kr"
-[interactive]
-  diffFilter = diff-so-fancy
 [merge]
   conflictstyle = diff3
 [rebase]
   autostash = true
 [rerere]
   enabled = true
-[pager]
-	diff = diff-so-fancy | vimpager
-	show = diff-so-fancy | vimpager
 [push]
   default = current
 [stash]
