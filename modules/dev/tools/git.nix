@@ -42,7 +42,7 @@ in {
 
   config = mkIf config.modules.dev.tools.git.enable {
     modules.shell = {
-      tools.bat.enable = true;
+      tools.bat.enable = lib.mkForce true;
       zsh.zinitPluginsInit = ''
         zinit snippet OMZP::git/git.plugin.zsh
       '' + optionalString cfg.enableGitFlow ''
