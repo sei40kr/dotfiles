@@ -12,6 +12,7 @@ with lib;
   deltaConfig = {
     core.pager = "${pkgs.my.delta}/bin/delta";
     interactive.diffFilter = "${pkgs.my.delta}/bin/delta --color-only";
+    delta.line-numbers = true;
   };
 in {
   options.modules.dev.tools.git = {
