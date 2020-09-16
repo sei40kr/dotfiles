@@ -1,5 +1,5 @@
 { lib, ... }:
 
 with lib; {
-  imports = [ ./desktop ./term ];
+  imports = [ ./desktop ./services ./term ];
 }
