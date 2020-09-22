@@ -185,6 +185,10 @@ zinit snippet OMZP::bgnotify/bgnotify.plugin.zsh
 
 ## Theme & Appearance
 
+PURE_PROMPT_SYMBOL='λ'
+PURE_GIT_DOWN_ARROW='▼'
+PURE_GIT_UP_ARROW='▲'
+zstyle :prompt:pure:prompt:success color yellow
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 
