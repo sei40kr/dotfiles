@@ -32,7 +32,7 @@ in {
       type = types.package;
       default =
         # NOTE Emacs build with native-comp fails on Darwin platforms
-        if pkgs.stdenv.isDarwin then pkgs.emacsUnstable else pkgs.emacsGcc;
+        if pkgs.stdenv.isDarwin then pkgs.my.emacs else pkgs.emacsGcc;
     };
 
     variables = mkOption {
