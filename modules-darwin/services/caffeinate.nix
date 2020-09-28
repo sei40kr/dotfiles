@@ -1,7 +1,9 @@
 { config, lib, pkgs, ... }:
 
 with lib;
-let cfg = config.modules.services.caffeinate;
+let
+  cfg = config.modules.services.caffeinate;
+  workHoursInSeconds = (cfg.workHourRange.end - cfg.workHourRange.start) * 3600;
 in {
   options.modules.services.caffeinate = {
     enable = mkOption {
@@ -16,7 +18,6 @@ in {
         submodule {
           options = {
             start = mkOption { type = int; };
-
             end = mkOption { type = int; };
           };
         };
@@ -25,12 +26,11 @@ in {
 
   config = mkIf cfg.enable {
     launchd.user.agents.caffeinate = {
-      command = "/usr/bin/caffeinate -dim -t 3600";
-      serviceConfig.StartCalendarInterval = flatten (map (weekday:
-        map (hour: {
-          Weekday = weekday;
-          Hour = hour;
-        }) (range cfg.workHourRange.start cfg.workHourRange.end)) cfg.workdays);
+      command = "/usr/bin/caffeinate -dim -t ${toString workHoursInSeconds}";
+      serviceConfig.StartCalendarInterval = map (weekday: {
+        Weekday = weekday;
+        Hour = cfg.workHourRange.start;
+      }) cfg.workdays;
     };
   };
 }
