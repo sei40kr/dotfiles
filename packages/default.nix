@@ -2,7 +2,7 @@
         (_: super:
           with super;
           let
-            unstable = import <nixpkgs-unstable> { inherit config; };
+            unstable = import <nixos-unstable> { inherit config; };
             python3Packages = (callPackage (import ./python3-packages.nix) { });
             tmuxPlugins = (callPackage (import ./tmux-plugins.nix) { });
             vimPlugins = (callPackage (import ./vim-plugins.nix) { });
