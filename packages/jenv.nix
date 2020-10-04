@@ -1,4 +1,5 @@
-{ fetchFromGitHub, jdk, lib, stdenv, javaPackages ? { }, plugins ? [ ], ... }:
+{ bash, fetchFromGitHub, jdk, lib, stdenv, javaPackages ? { }, plugins ? [ ]
+, ... }:
 
 with lib;
 stdenv.mkDerivation {
@@ -12,7 +13,7 @@ stdenv.mkDerivation {
     sha256 = "13b339ak2pmad7hlf9im8rv0rgyr8a207jh7vq1nnj8pf8hb5gfd";
   };
 
-  dontBuild = true;
+  buildInputs = [ bash ];
 
   installPhase = ''
     mkdir -p "''${out}/share/jenv"
@@ -37,7 +38,9 @@ stdenv.mkDerivation {
       ln -s "''${versions[$alias]}" "''${out}/share/jenv/versions/''${alias}"
     done
     echo 'system' >"''${out}/share/jenv/version"
+  '';
 
+  postFixupPhase = ''
     function complete() {
       :
     }
