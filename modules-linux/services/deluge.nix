@@ -3,8 +3,12 @@
 with lib;
 let
   cfg = config.modules.services.deluge;
-  downloadDir =
-    config.home-manager.users."${config.my.userName}".xdg.userDirs.download;
+  home = config.users.users."${config.my.userName}".home;
+  downloadDir = "${home}/Downloads";
+  defaultListenPort = 6881;
+  listenPort =
+    elemAt (cfg.config.listen_ports or [ defaultListenPort defaultListenPort ])
+    0;
   proxy = import <secrets/config/proxy.nix>;
   proxyConfig = {
     proxy = {
@@ -19,10 +23,6 @@ let
       type = 3;
       username = proxy.userName;
     };
-  };
-  listenPorts = {
-    from = elemAt (cfg.config.listen_ports or [ 6881 6889 ]) 0;
-    to = elemAt (cfg.config.listen_ports or [ 6881 6889 ]) 1;
   };
 in {
   options.modules.services.deluge = {
@@ -43,7 +43,10 @@ in {
         autoadd_location = downloadDir;
         dont_count_slow_torrents = true;
         download_location = downloadDir;
+        listen_ports = [ defaultListenPort defaultListenPort ];
         move_completed_path = downloadDir;
+        random_outgoing_ports = true;
+        random_port = false;
       };
     };
 
@@ -91,8 +94,9 @@ in {
 
   config = mkIf cfg.enable {
     networking.firewall = {
-      allowedTCPPortRanges = [ listenPorts ];
-      allowedUDPPortRanges = [ listenPorts ];
+      allowedTCPPorts = optionals cfg.openFirewall [ listenPort ]
+        ++ optionals (cfg.web.enable && cfg.web.openFirewall) [ cfg.web.port ];
+      allowedUDPPorts = optionals cfg.openFirewall [ listenPort ];
     };
 
     my.packages = [ cfg.package ];

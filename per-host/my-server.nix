@@ -118,6 +118,7 @@
       cupsd.enable = true;
       deluge = {
         enable = true;
+        openFirewall = true;
         web.enable = true;
       };
       docker = {
