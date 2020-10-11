@@ -118,7 +118,7 @@
       cupsd.enable = true;
       deluge = {
         enable = true;
-        enableWebUI = true;
+        web.enable = true;
       };
       docker = {
         enable = true;

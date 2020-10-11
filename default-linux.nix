@@ -7,7 +7,6 @@ with lib; {
 
     ./modules
     ./modules-linux
-    ./secrets.nix
     ./per-host/my-server.nix
   ];
 

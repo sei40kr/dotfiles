@@ -2,9 +2,28 @@
 
 with lib;
 let
-  home = config.users.users."${config.my.userName}".home;
-  configHome = config.home-manager.users."${config.my.userName}".xdg.configHome;
   cfg = config.modules.services.deluge;
+  downloadDir =
+    config.home-manager.users."${config.my.userName}".xdg.userDirs.download;
+  proxy = import <secrets/config/proxy.nix>;
+  proxyConfig = {
+    proxy = {
+      anonymous_mode = true;
+      force_proxy = true;
+      hostname = proxy.hostName;
+      password = proxy.password;
+      port = proxy.port;
+      proxy_hostnames = true;
+      proxy_peer_connections = true;
+      proxy_tracker_connections = true;
+      type = 3;
+      username = proxy.userName;
+    };
+  };
+  listenPorts = {
+    from = elemAt (cfg.config.listen_ports or [ 6881 6889 ]) 0;
+    to = elemAt (cfg.config.listen_ports or [ 6881 6889 ]) 1;
+  };
 in {
   options.modules.services.deluge = {
     enable = mkOption {
@@ -12,144 +31,73 @@ in {
       default = false;
     };
 
-    enableWebUI = mkOption {
+    enableProxy = mkOption {
       type = types.bool;
+      default = true;
+    };
+
+    config = mkOption {
+      type = types.attrs;
+      default = {
+        new_release_check = false;
+        autoadd_location = downloadDir;
+        dont_count_slow_torrents = true;
+        download_location = downloadDir;
+        move_completed_path = downloadDir;
+      };
+    };
+
+    openFirewall = mkOption {
       default = false;
+      type = types.bool;
+      description = ''
+        Whether to open the firewall for the ports in
+        <option>modules.services.deluge.config.listen_ports</option>.
+        It does NOT apply to the daemon port nor the web UI port. To access those
+        ports secuerly check the documentation
+        <link xlink:href="https://dev.deluge-torrent.org/wiki/UserGuide/ThinClient#CreateSSHTunnel"/>
+        or use a VPN or configure certificates for deluge.
+      '';
     };
 
-    listenPorts = {
-      from = mkOption {
-        type = types.int;
-        default = 6881;
-      };
-
-      to = mkOption {
-        type = types.int;
-        default = 6889;
-      };
+    package = mkOption {
+      type = types.package;
+      default = pkgs.unstable.deluge;
     };
 
-    proxy = mkOption {
-      type = types.submodule {
-        options = {
-          hostName = mkOption { type = types.str; };
-          port = mkOption {
-            type = types.int;
-            default = 8080;
-          };
-          userName = mkOption { type = types.str; };
-          password = mkOption { type = types.str; };
-        };
+    web = {
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+      };
+
+      port = mkOption {
+        type = types.port;
+        default = 8112;
+        description = ''
+          Deluge web UI port.
+        '';
+      };
+
+      openFirewall = mkOption {
+        type = types.bool;
+        default = false;
+        description = ''
+          Open ports in the firewall for deluge web daemon
+        '';
       };
     };
   };
 
   config = mkIf cfg.enable {
-    my.packages = with pkgs; [ unstable.deluge ];
-    my.home.xdg.configFile."deluge/core.conf".text = ''
-      {
-          "file": 1,
-          "format": 1
-      }{
-          "add_paused": false,
-          "allow_remote": false,
-          "auto_manage_prefer_seeds": false,
-          "auto_managed": true,
-          "autoadd_enable": false,
-          "autoadd_location": ${builtins.toJSON "${home}/Downloads"},
-          "cache_expiry": 60,
-          "cache_size": 512,
-          "compact_allocation": false,
-          "copy_torrent_file": false,
-          "daemon_port": 58846,
-          "del_copy_torrent_file": false,
-          "dht": true,
-          "dont_count_slow_torrents": false,
-          "download_location": ${builtins.toJSON "${home}/Downloads"},
-          "download_location_paths_list": [],
-          "enabled_plugins": [],
-          "enc_in_policy": 1,
-          "enc_level": 1,
-          "enc_out_policy": 1,
-          "enc_prefer_rc4": true,
-          "geoip_db_location": "/usr/share/GeoIP/GeoIP.dat",
-          "ignore_limits_on_local_network": true,
-          "info_sent": 0.0,
-          "listen_interface": "",
-          "listen_ports": ${
-            builtins.toJSON (with cfg.listenPorts; [ from to ])
-          },
-          "listen_random_port": 49243,
-          "listen_reuse_port": true,
-          "listen_use_sys_port": false,
-          "lsd": true,
-          "max_active_downloading": 3,
-          "max_active_limit": 8,
-          "max_active_seeding": 5,
-          "max_connections_global": 200,
-          "max_connections_per_second": 20,
-          "max_connections_per_torrent": -1,
-          "max_download_speed": -1.0,
-          "max_download_speed_per_torrent": -1,
-          "max_half_open_connections": 20,
-          "max_upload_slots_global": 4,
-          "max_upload_slots_per_torrent": -1,
-          "max_upload_speed": -1.0,
-          "max_upload_speed_per_torrent": -1,
-          "move_completed": false,
-          "move_completed_path": ${builtins.toJSON "${home}/Downloads"},
-          "move_completed_paths_list": [],
-          "natpmp": true,
-          "new_release_check": true,
-          "outgoing_interface": "",
-          "outgoing_ports": [
-              0,
-              0
-          ],
-          "path_chooser_accelerator_string": "Tab",
-          "path_chooser_auto_complete_enabled": true,
-          "path_chooser_max_popup_rows": 20,
-          "path_chooser_show_chooser_button_on_localhost": true,
-          "path_chooser_show_hidden_files": false,
-          "peer_tos": "0x00",
-          "plugins_location": ${builtins.toJSON "${configHome}/deluge/plugins"},
-          "pre_allocate_storage": true,
-          "prioritize_first_last_pieces": false,
-          "proxy": {
-              "anonymous_mode": true,
-              "force_proxy": true,
-              "hostname": ${builtins.toJSON cfg.proxy.hostName},
-              "password": ${builtins.toJSON cfg.proxy.password},
-              "port": ${builtins.toJSON cfg.proxy.port},
-              "proxy_hostnames": true,
-              "proxy_peer_connections": true,
-              "proxy_tracker_connections": true,
-              "type": 3,
-              "username": ${builtins.toJSON cfg.proxy.userName}
-          },
-          "queue_new_to_top": false,
-          "random_outgoing_ports": true,
-          "random_port": true,
-          "rate_limit_ip_overhead": true,
-          "remove_seed_at_ratio": false,
-          "seed_time_limit": 180,
-          "seed_time_ratio_limit": 7.0,
-          "send_info": false,
-          "sequential_download": false,
-          "share_ratio_limit": 2.0,
-          "shared": false,
-          "stop_seed_at_ratio": false,
-          "stop_seed_ratio": 2.0,
-          "super_seeding": false,
-          "torrentfiles_location": ${builtins.toJSON "${home}/Downloads"},
-          "upnp": true,
-          "utpex": true
-      }
-    '';
     networking.firewall = {
-      allowedTCPPortRanges = [ cfg.listenPorts ];
-      allowedUDPPortRanges = [ cfg.listenPorts ];
+      allowedTCPPortRanges = [ listenPorts ];
+      allowedUDPPortRanges = [ listenPorts ];
     };
+
+    my.packages = [ cfg.package ];
+    my.home.xdg.configFile."deluge/core.conf".text = builtins.toJSON
+      (cfg.config // (optionalAttrs cfg.enableProxy proxyConfig));
     my.home.systemd.user.services = {
       deluged = {
         Unit = {
@@ -157,19 +105,18 @@ in {
           After = [ "network.target" ];
         };
         Service = {
-          ExecStart = "${pkgs.unstable.deluge}/bin/deluged --do-not-daemonize";
+          ExecStart = "${cfg.package}/bin/deluged --do-not-daemonize";
           Restart = "on-success";
           LimitNOFILE = 4096;
         };
       };
-      deluge-web = mkIf cfg.enableWebUI {
+      deluge-web = mkIf cfg.web.enable {
         Unit = {
           Description = "Deluge BitTorrent Web UI";
           After = [ "network.target" "deluged.service" ];
           Requires = [ "deluged.service" ];
         };
-        Service.ExecStart =
-          "${pkgs.unstable.deluge}/bin/deluge-web --do-not-daemonize";
+        Service.ExecStart = "${cfg.package}/bin/deluge-web --do-not-daemonize";
       };
     };
   };
