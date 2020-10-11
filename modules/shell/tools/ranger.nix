@@ -2,7 +2,7 @@
 
 with lib;
 let
-  iterm2Config = optionalString config.modules.term.iterm2.enable ''
+  iterm2Config = optionalString config.modules.desktop.term.iterm2.enable ''
     # Set the preview image method. Supported methods:
     set preview_images_method iterm2
 
