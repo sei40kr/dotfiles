@@ -1,18 +1,24 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
+with lib;
+let fontsEnabled = config.modules.desktop.fonts.enable;
+in {
   options.modules.desktop.i18n.japanese.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
   config = mkIf config.modules.desktop.i18n.japanese.enable {
-    modules.desktop.tools.fcitx.enable = mkForce true;
+    modules.desktop = {
+      config.fontconfig.defaultFonts = mkIf fontsEnabled {
+        # FIXME do not override default option values
+        sansSerif = [ "Noto Sans CJK JP" ];
+        serif = [ "Noto Serif CJK JP" ];
+        monospace = [ "Noto Sans Mono CJK JP" ];
+      };
+      tools.fcitx.enable = mkForce true;
+    };
 
-    my.packages = with pkgs;
-      optionals config.modules.desktop.fonts.enable [ noto-fonts-cjk ];
-    my.home.xdg.configFile."fontconfig/conf.d/70-noto-cjk.conf".source =
-      mkIf config.modules.desktop.config.fontconfig.enable
-      <config/fontconfig/70-noto-cjk.conf>;
+    my.packages = with pkgs; optionals fontsEnabled [ noto-fonts-cjk ];
   };
 }
