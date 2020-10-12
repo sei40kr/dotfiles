@@ -13,6 +13,14 @@ with lib; {
     ];
 
     my.packages = with pkgs; [ R ];
-    my.aliases.R = "R --no-save --no-restore-data -q";
+    my.aliases.R = "R -q --no-save --no-restore-data";
+    my.home.home.file = {
+      ".Renviron".text = ''
+        R_LIBS=${escapeShellArg "${pkgs.R}/library"}
+      '';
+      ".Rprofile".text = ''
+        options(repos='https://cran.ism.ac.jp');
+      '';
+    };
   };
 }
