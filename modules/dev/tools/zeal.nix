@@ -9,7 +9,7 @@ in {
   };
 
   config = mkIf config.modules.dev.tools.zeal.enable {
-    modules.dev.editors.emacs.variables.dash-docs-docsets-path =
+    modules.dev.editors.doomEmacs.variables.dash-docs-docsets-path =
       "${dataHome}/Zeal/Zeal/docsets";
 
     my.packages = with pkgs; [ zeal ];

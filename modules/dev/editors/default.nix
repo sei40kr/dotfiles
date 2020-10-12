@@ -3,6 +3,7 @@
 with lib; {
   imports = [
     ./emacs.nix
+    ./doom-emacs.nix
     ./fonts.nix
     ./idea.nix
     ./ideavim.nix
