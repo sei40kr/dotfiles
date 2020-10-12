@@ -1,5 +1,5 @@
 { lib, ... }:
 
 with lib; {
-  imports = [ ./apps ];
+  imports = [ ./apps ./term ];
 }
