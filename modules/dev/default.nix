@@ -11,6 +11,7 @@ with lib; {
     ./java.nix
     ./javascript.nix
     ./kotlin.nix
+    ./markdown.nix
     ./python.nix
     ./r.nix
     ./ruby.nix
