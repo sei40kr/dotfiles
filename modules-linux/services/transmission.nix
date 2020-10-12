@@ -70,7 +70,8 @@ in {
         ExecStart =
           "${pkgs.transmission}/bin/transmission-daemon -f --log-error";
         ExecReload = "/bin/kill -s HUP $MAINPID";
-        Environment = [ "http_proxy=${proxy}" "HTTPS_PROXY=${proxy}" ];
+        Environment =
+          [ "http_proxy=${proxy}" "HTTPS_PROXY=${proxy}" "NO_PROXY=localhost" ];
         NoNewPrivileges = true;
       };
       Install.WantedBy = [ "multi-user.target" ];
