@@ -116,11 +116,6 @@
 
     services = {
       cupsd.enable = true;
-      deluge = {
-        enable = true;
-        openFirewall = true;
-        web.enable = true;
-      };
       docker = {
         enable = true;
         enableAutoPrune = true;
@@ -138,6 +133,7 @@
       };
       redshift.enable = true;
       sshd.enable = true;
+      transmission.enable = true;
     };
 
     shell = {

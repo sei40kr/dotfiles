@@ -11,5 +11,6 @@ with lib; {
     ./redshift.nix
     ./sshd.nix
     ./tlp.nix
+    ./transmission.nix
   ];
 }
