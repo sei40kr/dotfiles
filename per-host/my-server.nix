@@ -123,6 +123,7 @@
       flexget.enable = true;
       fstrim.enable = true;
       jellyfin.enable = true;
+      protonvpn.enable = true;
       psd.enable = true;
       rclone = {
         enable = true;

@@ -7,6 +7,7 @@ with lib; {
     ./docker.nix
     ./fstrim.nix
     ./picom.nix
+    ./protonvpn.nix
     ./psd.nix
     ./redshift.nix
     ./sshd.nix
