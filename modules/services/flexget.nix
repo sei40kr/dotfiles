@@ -7,6 +7,10 @@ let
       propagatedBuildInputs = oldAttrs.propagatedBuildInputs
         ++ [ python3Packages.deluge-client ];
     });
+  home = config.users.users."${config.my.userName}".home;
+  downloadDir = "${home}/Downloads";
+  config_yml =
+    import <secrets/config/flexget/config_yml.nix> { inherit downloadDir; };
 in {
   options.modules.services.flexget.enable = mkOption {
     type = types.bool;
@@ -14,16 +18,13 @@ in {
   };
 
   config = mkIf config.modules.services.flexget.enable {
-    my.packages = with pkgs; [ package ];
-    my.home.xdg.configFile = {
-      "flexget/config.yml".source = <config/flexget/config.yml>;
-      "flexget/proxy.yml".source = <config/flexget/proxy.yml>;
-    };
+    my.packages = [ package ];
+    my.home.xdg.configFile."flexget/config.yml".text =
+      generators.toYAML { } config_yml;
     my.home.systemd.user.services.flexget = {
       Unit = {
         Description = "FlexGet Daemon";
-        X-Restart-Triggers =
-          [ "%h/.config/flexget/config.yml" "%h/.config/flexget/proxy.yml" ];
+        X-Restart-Triggers = [ "%h/.config/flexget/config.yml" ];
       };
       Service = {
         ExecStart = "${package}/bin/flexget daemon start";
