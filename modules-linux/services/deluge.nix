@@ -9,31 +9,11 @@ let
   listenPort =
     elemAt (cfg.config.listen_ports or [ defaultListenPort defaultListenPort ])
     0;
-  proxy = import <secrets/config/proxy.nix>;
-  proxyConfig = {
-    proxy = {
-      anonymous_mode = true;
-      force_proxy = true;
-      hostname = proxy.hostName;
-      password = proxy.password;
-      port = proxy.port;
-      proxy_hostnames = true;
-      proxy_peer_connections = true;
-      proxy_tracker_connections = true;
-      type = 3;
-      username = proxy.userName;
-    };
-  };
 in {
   options.modules.services.deluge = {
     enable = mkOption {
       type = types.bool;
       default = false;
-    };
-
-    enableProxy = mkOption {
-      type = types.bool;
-      default = true;
     };
 
     config = mkOption {
@@ -100,8 +80,7 @@ in {
     };
 
     my.packages = [ cfg.package ];
-    my.home.xdg.configFile."deluge/core.conf".text = builtins.toJSON
-      (cfg.config // (optionalAttrs cfg.enableProxy proxyConfig));
+    my.home.xdg.configFile."deluge/core.conf".text = builtins.toJSON cfg.config;
     my.home.systemd.user.services = {
       deluged = {
         Unit = {
