@@ -56,6 +56,7 @@ in {
       Unit = {
         Description = "Transmission BitTorrent Daemon";
         After = [ "network.target" ];
+        X-Restart-Triggers = [ "%h/.config/transmission-daemon/settings.json" ];
       };
       Service = {
         Type = "notify";
