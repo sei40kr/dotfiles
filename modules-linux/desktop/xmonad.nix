@@ -13,7 +13,7 @@ in {
 
     themeConfig = mkOption { type = types.path; };
 
-    polybarStartExecutable = mkOption {
+    polybarStartCommand = mkOption {
       type = with types; either path str;
       visible = false;
     };
@@ -61,9 +61,7 @@ in {
       -- TODO Safely escape the command
       spawnPolybar :: X ()
       ${if config.modules.desktop.apps.polybar.enable then ''
-        spawnPolybar = safeSpawn
-          "${cfg.polybarStartExecutable}"
-          []
+        spawnPolybar = unsafeSpawn "${cfg.polybarStartCommand}"
       '' else ''
         spawnPolybar = return ()
       ''}

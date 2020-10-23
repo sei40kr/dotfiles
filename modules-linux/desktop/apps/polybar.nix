@@ -3,11 +3,6 @@
 with lib;
 let
   cfg = config.modules.desktop.apps.polybar;
-  pythonEnv = pkgs.python3.withPackages
-    (pythonPackages: with pythonPackages; [ pygobject3 dbus-python ]);
-  polybarStart = pkgs.writeShellScriptBin "polybar-start" "PATH=${
-      escapeShellArg "${pythonEnv}/bin"
-    }:\${PATH} ${pkgs.polybar}/bin/polybar top";
   protonvpn-status = pkgs.writeShellScriptBin "protonvpn-status" ''
     export PATH="${
       makeBinPath (with pkgs;
@@ -23,12 +18,14 @@ let
 
     ${<config/polybar/scripts/protonvpn-status>}
   '';
-  polybarConfig = pkgs.writeText "polybar-config" ''
-    [section/base]
-    include-file = ${cfg.themeConfig}
+  polybarConfig = import <config/polybar/config.nix> {
+    inherit lib protonvpn-status;
 
-    ${readFile <config/polybar/config>}
-  '';
+    gnome-pomodoro = "${pkgs.gnome3.pomodoro}";
+    gnome-pomodoro_py = "${<config/polybar/scripts/gnome-pomodoro.py>}";
+    fcitx = "${pkgs.fcitx}";
+    fcitx_py = "${<config/polybar/scripts/fcitx.py>}";
+  };
 in {
   options.modules.desktop.apps.polybar = {
     enable = mkOption {
@@ -40,26 +37,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.desktop.xmonad.polybarStartExecutable =
-      "${polybarStart}/bin/polybar-start";
+    modules.desktop.xmonad.polybarStartCommand =
+      "${pkgs.polybar}/bin/polybar top";
 
     my.packages = with pkgs; [ polybar material-design-icons ];
-    my.home.xdg.configFile."polybar/config".text = generators.toINI { } {
-      "section/base".include-file = "${polybarConfig}";
-
-      "module/gnome-pomodoro" = {
-        exec = "${<config/polybar/scripts/gnome-pomodoro.py>}";
-        click-left = "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro";
-      };
-
-      "module/fcitx" = {
-        exec = "${<config/polybar/scripts/fcitx.py>}";
-        exec-if = "[ -x ${escapeShellArg "${pkgs.fcitx}/bin/fcitx-remote"} ]";
-        click-left = "${pkgs.fcitx}/bin/fcitx-configtool";
-      };
-
-      "module/protonvpn-status".exec =
-        "${protonvpn-status}/bin/protonvpn-status";
-    };
+    my.home.xdg.configFile."polybar/config".text = generators.toINI { }
+      (polybarConfig // {
+        "section/base".include-file = "${cfg.themeConfig}";
+      });
   };
 }
