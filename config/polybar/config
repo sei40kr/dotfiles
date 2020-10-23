@@ -19,7 +19,7 @@
 [bar/top]
 modules-left   = cpu memory
 modules-center = ewmh
-modules-right  = alsa date
+modules-right  = protonvpn-status alsa date
 
 [module/cpu]
 type = internal/cpu
@@ -107,6 +107,14 @@ type = custom/script
 tail = true
 
 format = %{+u}<label>%{-u}
+label = %output%
+
+[module/protonvpn-status]
+type = custom/script
+
+interval = 5
+
+format = %{+u}%{T2}%{T-} <label>%{-u}
 label = %output%
 
 [module/alsa]

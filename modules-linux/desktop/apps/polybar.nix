@@ -8,6 +8,21 @@ let
   polybarStart = pkgs.writeShellScriptBin "polybar-start" "PATH=${
       escapeShellArg "${pythonEnv}/bin"
     }:\${PATH} ${pkgs.polybar}/bin/polybar top";
+  protonvpn-status = pkgs.writeShellScriptBin "protonvpn-status" ''
+    export PATH="${
+      makeBinPath (with pkgs;
+        with pkgs.my.python3Packages; [
+          coreutils
+          gawk
+          gnugrep
+          procps
+          protonvpn-cli
+          unixtools.ping
+        ])
+    }"
+
+    ${<config/polybar/scripts/protonvpn-status>}
+  '';
   polybarConfig = pkgs.writeText "polybar-config" ''
     [section/base]
     include-file = ${cfg.themeConfig}
@@ -42,6 +57,9 @@ in {
         exec-if = "[ -x ${escapeShellArg "${pkgs.fcitx}/bin/fcitx-remote"} ]";
         click-left = "${pkgs.fcitx}/bin/fcitx-configtool";
       };
+
+      "module/protonvpn-status".exec =
+        "${protonvpn-status}/bin/protonvpn-status";
     };
   };
 }

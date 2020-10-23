@@ -1,0 +1,5 @@
+#!/bin/sh
+
+server="$(protonvpn s | awk '$1 == "Server:" { print $2 }')"
+
+echo "${server:-Not connected}"
