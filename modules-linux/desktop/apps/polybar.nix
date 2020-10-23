@@ -3,6 +3,14 @@
 with lib;
 let
   cfg = config.modules.desktop.apps.polybar;
+  openweathermapApiKey =
+    import <secrets/config/polybar/openweathermap-api-key.nix>;
+  openweathermap-pop = pkgs.writeShellScriptBin "openweathermap-pop" ''
+    export PATH=${escapeShellArg (makeBinPath (with pkgs; [ curl jq ]))}
+    export KEY=${escapeShellArg openweathermapApiKey}
+
+    ${escapeShellArg <config/polybar/scripts/openweathermap-pop>}
+  '';
   fcitx-status = pkgs.writeShellScriptBin "fcitx-status" ''
     export PATH="${makeBinPath (with pkgs; [ fcitx ])}"
 
@@ -24,7 +32,7 @@ let
     ${<config/polybar/scripts/protonvpn-status>}
   '';
   polybarConfig = import <config/polybar/config.nix> {
-    inherit fcitx-status lib protonvpn-status;
+    inherit fcitx-status lib openweathermap-pop protonvpn-status;
 
     gnome-pomodoro = "${pkgs.gnome3.pomodoro}";
     gnome-pomodoro_py = "${<config/polybar/scripts/gnome-pomodoro.py>}";

@@ -14,14 +14,15 @@
 #   The README contains a lot of information
 #
 #==========================================================
-{ fcitx, fcitx-status, gnome-pomodoro, gnome-pomodoro_py, lib, protonvpn-status
-}:
+{ fcitx, fcitx-status, gnome-pomodoro, gnome-pomodoro_py, lib
+, openweathermap-pop, protonvpn-status }:
 
 {
   "bar/top" = {
     modules-left = "cpu memory";
     modules-center = "ewmh";
-    modules-right = "fcitx-status protonvpn-status alsa date";
+    modules-right =
+      "openweathermap-pop fcitx-status protonvpn-status alsa date";
   };
 
   "module/cpu" = {
@@ -103,6 +104,14 @@
     format = "%{+u}<label>%{-u}";
     label = "%output%";
     click-left = "${gnome-pomodoro}/bin/gnome-pomodoro";
+  };
+
+  "module/openweathermap-pop" = {
+    type = "custom/script";
+    exec = "${openweathermap-pop}/bin/openweathermap-pop";
+    interval = 600;
+    format = "%{+u}<label>%{-u}";
+    label = "%output%";
   };
 
   "module/fcitx-status" = {
