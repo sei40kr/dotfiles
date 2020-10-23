@@ -2,13 +2,8 @@
 
 with lib;
 let
-  package = with pkgs;
-    flexget.overrideAttrs (oldAttrs: {
-      propagatedBuildInputs = oldAttrs.propagatedBuildInputs
-        ++ [ python3Packages.deluge-client ];
-    });
   home = config.users.users."${config.my.userName}".home;
-  downloadDir = "${home}/Downloads";
+  downloadDir = "${home}/google-drive";
   config_yml =
     import <secrets/config/flexget/config_yml.nix> { inherit downloadDir; };
 in {
@@ -18,7 +13,12 @@ in {
   };
 
   config = mkIf config.modules.services.flexget.enable {
-    my.packages = [ package ];
+    modules.services.rclone = {
+      enable = mkForce true;
+      enableGoogleDrive = mkForce true;
+    };
+
+    my.packages = [ pkgs.flexget ];
     my.home.xdg.configFile."flexget/config.yml".text =
       generators.toYAML { } config_yml;
     my.home.systemd.user.services.flexget = {
@@ -27,9 +27,9 @@ in {
         X-Restart-Triggers = [ "%h/.config/flexget/config.yml" ];
       };
       Service = {
-        ExecStart = "${package}/bin/flexget daemon start";
-        ExecStop = "${package}/bin/flexget daemon stop";
-        ExecReload = "${package}/bin/flexget daemon reload";
+        ExecStart = "${pkgs.flexget}/bin/flexget daemon start";
+        ExecStop = "${pkgs.flexget}/bin/flexget daemon stop";
+        ExecReload = "${pkgs.flexget}/bin/flexget daemon reload";
         Restart = "on-failure";
         PrivateTmp = true;
       };
