@@ -3,6 +3,11 @@
 with lib;
 let
   cfg = config.modules.desktop.apps.polybar;
+  fcitx-status = pkgs.writeShellScriptBin "fcitx-status" ''
+    export PATH="${makeBinPath (with pkgs; [ fcitx ])}"
+
+    ${<config/polybar/scripts/fcitx-status>}
+  '';
   protonvpn-status = pkgs.writeShellScriptBin "protonvpn-status" ''
     export PATH="${
       makeBinPath (with pkgs;
@@ -19,12 +24,11 @@ let
     ${<config/polybar/scripts/protonvpn-status>}
   '';
   polybarConfig = import <config/polybar/config.nix> {
-    inherit lib protonvpn-status;
+    inherit fcitx-status lib protonvpn-status;
 
     gnome-pomodoro = "${pkgs.gnome3.pomodoro}";
     gnome-pomodoro_py = "${<config/polybar/scripts/gnome-pomodoro.py>}";
     fcitx = "${pkgs.fcitx}";
-    fcitx_py = "${<config/polybar/scripts/fcitx.py>}";
   };
 in {
   options.modules.desktop.apps.polybar = {

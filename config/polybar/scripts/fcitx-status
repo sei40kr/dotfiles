@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [[ "$(fcitx-remote)" == 2 ]]; then
+  echo "あ"
+else
+  echo "Aa"
+fi

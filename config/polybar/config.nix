@@ -14,13 +14,14 @@
 #   The README contains a lot of information
 #
 #==========================================================
-{ fcitx, fcitx_py, gnome-pomodoro, gnome-pomodoro_py, lib, protonvpn-status }:
+{ fcitx, fcitx-status, gnome-pomodoro, gnome-pomodoro_py, lib, protonvpn-status
+}:
 
 {
   "bar/top" = {
     modules-left = "cpu memory";
     modules-center = "ewmh";
-    modules-right = "protonvpn-status alsa date";
+    modules-right = "fcitx-status protonvpn-status alsa date";
   };
 
   "module/cpu" = {
@@ -104,12 +105,12 @@
     click-left = "${gnome-pomodoro}/bin/gnome-pomodoro";
   };
 
-  "module/fcitx" = {
+  "module/fcitx-status" = {
     type = "custom/script";
-    exec = fcitx_py;
+    exec = "${fcitx-status}/bin/fcitx-status";
     exec-if = "[ -x ${lib.escapeShellArg "${fcitx}/bin/fcitx-remote"} ]";
-    tail = true;
-    format = "%{+u}<label>%{-u}";
+    interval = 1;
+    format = "%{+u}%{T2}%{T-} <label>%{-u}";
     label = "%output%";
     click-left = "${fcitx}/bin/fcitx-configtool";
   };
