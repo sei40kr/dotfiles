@@ -3,14 +3,17 @@
 with lib;
 let
   cfg = config.modules.desktop.apps.rofi;
-  systemMenu = pkgs.writeScript "rofi-system-menu" ''
-    #!${pkgs.runtimeShell}
-
+  systemMenuItems = cfg.systemMenuItems // {
+    Reboot = "${pkgs.systemd}/bin/systemctl reboot -i";
+    Shutdown = "${pkgs.systemd}/bin/systemctl poweroff -i";
+    Suspend = "${pkgs.systemd}/bin/systemctl suspend -i";
+  };
+  system-menu = pkgs.writeShellScriptBin "system-menu" ''
     menu_items=(
       ${
         concatStringsSep " " (mapAttrsToList
           (title: command: "${escapeShellArg title} ${escapeShellArg command}")
-          cfg.systemMenuItems)
+          systemMenuItems)
       }
     )
 
@@ -30,6 +33,29 @@ let
       eval "''${menu_items[$((++i))]}"
     fi
   '';
+  clipmenu = pkgs.writeShellScriptBin "clipmenu" ''
+    CLIPMENU_MAJOR_VERSION=5
+    CACHE_DIR="''${XDG_RUNTIME_DIR:-''${TMPDIR:-/tmp}}/clipmenu.''${CLIPMENU_MAJOR_VERSION}.''${USER}"
+
+    selection="$1"
+
+    if [[ -z "$selection" ]]; then
+      LC_ALL=C ${escapeShellArg "${pkgs.coreutils}/bin/sort"} -nrk 1 \
+        <"''${CACHE_DIR}/line_cache_clipboard" \
+        <"''${CACHE_DIR}/line_cache_primary" |
+        ${escapeShellArg "${pkgs.coreutils}/bin/cut"} -d' ' -f2- |
+        ${escapeShellArg "${pkgs.gawk}/bin/awk"} '!seen[$0]++'
+    else
+      file="''${CACHE_DIR}/$(${
+        escapeShellArg "${pkgs.coreutils}/bin/cksum"
+      } <<<"$selection")"
+
+      ${escapeShellArg "${pkgs.xsel}/bin/xsel"} -i --clipboard <"$file"
+    fi
+  '';
+  modi = [ "combi" ] ++ (optionals config.modules.desktop.tools.clipmenu.enable
+    [ "clipboard:${clipmenu}/bin/clipmenu" ]);
+  combiModi = [ "drun" "system-menu:${system-menu}/bin/system-menu" ];
 in {
   options.modules.desktop.apps.rofi = {
     enable = mkOption {
@@ -39,11 +65,7 @@ in {
 
     systemMenuItems = mkOption {
       type = with types; attrsOf str;
-      default = {
-        "Suspend" = "${pkgs.systemd}/bin/systemctl suspend -i";
-        "Reboot" = "${pkgs.systemd}/bin/systemctl reboot -i";
-        "Shutdown" = "${pkgs.systemd}/bin/systemctl poweroff -i";
-      };
+      default = { };
     };
 
     theme = mkOption {
@@ -58,11 +80,8 @@ in {
       ${readFile <config/rofi/config.rasi>}
 
       configuration {
-        modi: "combi${
-          optionalString config.modules.desktop.tools.clipmenu.enable
-          ",clipboard:${<config/rofi/scripts/clipboard.bash>}"
-        }";
-        combi-modi: "drun,system-menu:${systemMenu}";
+        modi: "${concatStringsSep "," modi}";
+        combi-modi: "${concatStringsSep "," combiModi}";
         theme: "${cfg.theme}";
       }
     '';

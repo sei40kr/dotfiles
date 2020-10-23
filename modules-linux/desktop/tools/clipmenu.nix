@@ -7,9 +7,17 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.tools.clipmenu.enable {
-    my.home.services.clipmenu.enable = true;
-
     modules.desktop.apps.rofi.systemMenuItems."Clear Clipboard History" =
       "${pkgs.clipmenu}/bin/clipdel -d '.*'";
+
+    my.packages = with pkgs; [ clipmenu ];
+    my.home.systemd.user.services.clipmenu = {
+      Unit = {
+        Description = "Clipboard management daemon";
+        After = [ "graphical-session.target" ];
+      };
+      Service.ExecStart = "${pkgs.clipmenu}/bin/clipmenud";
+      Install.WantedBy = [ "graphical-session.target" ];
+    };
   };
 }
