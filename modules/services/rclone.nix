@@ -1,7 +1,11 @@
 { config, lib, pkgs, ... }:
 
 with lib;
-let cfg = config.modules.services.rclone;
+let
+  cfg = config.modules.services.rclone;
+  remotes = (optionals cfg.enableGooglePhotos [ "google-photos" ])
+    ++ (optionals cfg.enableGoogleDrive [ "google-drive" ]);
+  home = config.users.users."${config.my.userName}".home;
 in {
   options.modules.services.rclone = {
     enable = mkOption {
@@ -9,15 +13,20 @@ in {
       default = false;
     };
 
-    remotesToAutoMount = mkOption {
-      type = with types; attrsOf str;
-      default = { };
+    enableGooglePhotos = mkOption {
+      type = types.bool;
+      default = false;
+    };
+
+    enableGoogleDrive = mkOption {
+      type = types.bool;
+      default = false;
     };
   };
 
   config = mkIf cfg.enable {
     my.packages = with pkgs; [ rclone ];
-    my.home.systemd.user.services = mapAttrs' (remote: mountDir:
+    my.home.systemd.user.services = builtins.listToAttrs (map (remote:
       nameValuePair "rclone-${remote}" {
         Unit = {
           Description =
@@ -28,20 +37,23 @@ in {
         };
         Service = {
           Type = "notify";
-          ExecStartPre =
-            "${pkgs.coreutils}/bin/mkdir -p ${escapeShellArg mountDir}";
-          ExecStart = ''
-            ${pkgs.rclone}/bin/rclone mount ${escapeShellArg "${remote}:/"} \
-                                            ${escapeShellArg mountDir}
+          ExecStartPre = ''
+            ${escapeShellArg "${pkgs.coreutils}/bin/mkdir"} -p "$MOUNT_DIR"
           '';
-          ExecStop = "${config.security.wrapperDir}/fusermount -u ${
-              escapeShellArg mountDir
-            }";
+          ExecStart = ''
+            ${escapeShellArg "${pkgs.rclone}/bin/rclone"} mount \
+              ${escapeShellArg "${remote}:/"} "$MOUNT_DIR"
+          '';
+          ExecStop = ''
+            ${escapeShellArg "${config.security.wrapperDir}/fusermount"} -u \
+              "$MOUNT_DIR"
+          '';
           Restart = "on-success";
           RestartSec = 10;
+          Environment = [ "MOUNT_DIR=%h/${remote}" ];
         };
         Install.WantedBy = [ "default.target" ];
-      }) cfg.remotesToAutoMount;
+      }) remotes);
 
     modules.shell.zsh.zinitPluginsInit = ''
       zinit ice wait''' \
