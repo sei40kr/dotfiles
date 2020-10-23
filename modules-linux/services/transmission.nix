@@ -22,19 +22,11 @@ let
     from = settings_json.peer-port-random-low or 49152;
     to = settings_json.peer-port-random-high or 65535;
   };
-  proxyCredential = import <secrets/config/proxy.nix>;
-  proxy = with proxyCredential;
-    "https://${userName}:${password}@${hostName}:${toString port}";
 in {
   options.modules.services.transmission = {
     enable = mkOption {
       type = types.bool;
       default = false;
-    };
-
-    enableProxy = mkOption {
-      type = types.bool;
-      default = true;
     };
 
     openFirewall = mkOption {
@@ -70,8 +62,6 @@ in {
         ExecStart =
           "${pkgs.transmission}/bin/transmission-daemon -f --log-error";
         ExecReload = "/bin/kill -s HUP $MAINPID";
-        Environment =
-          [ "http_proxy=${proxy}" "HTTPS_PROXY=${proxy}" "NO_PROXY=localhost" ];
         NoNewPrivileges = true;
       };
       Install.WantedBy = [ "multi-user.target" ];
