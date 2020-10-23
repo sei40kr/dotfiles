@@ -122,7 +122,10 @@
       };
       flexget.enable = true;
       fstrim.enable = true;
-      jellyfin.enable = true;
+      jellyfin = {
+        enable = true;
+        openFirewall = true;
+      };
       protonvpn.enable = true;
       psd.enable = true;
       rclone = {

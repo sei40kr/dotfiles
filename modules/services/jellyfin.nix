@@ -1,12 +1,25 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
-  options.modules.services.jellyfin.enable = mkOption {
-    type = types.bool;
-    default = false;
+with lib;
+let cfg = config.modules.services.jellyfin;
+in {
+  options.modules.services.jellyfin = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
+
+    openFirewall = mkOption {
+      type = types.bool;
+      default = false;
+    };
   };
 
-  config = mkIf config.modules.services.jellyfin.enable {
+  config = mkIf cfg.enable {
+    # cf https://jellyfin.org/docs/general/networking/index.html
+    networking.firewall.allowedTCPPorts =
+      optionals cfg.openFirewall [ 8096 8920 ];
+
     my.packages = with pkgs; [ jellyfin ];
     my.home.systemd.user.services.jellyfin = {
       Unit = {
