@@ -1,6 +1,30 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
+with lib;
+let
+  protonvpn-autoconnect = pkgs.writeShellScriptBin "protonvpn-autoconnect" ''
+    export PATH=${
+      escapeShellArg "${
+        (makeBinPath (with pkgs;
+          with pkgs.my.python3Packages; [
+            coreutils
+            dialog
+            gnugrep
+            iproute
+            iptables
+            openvpn
+            procps
+            protonvpn-cli
+            which
+          ]))
+      }:\${PATH}"
+    }
+
+    ${
+      escapeShellArg "${pkgs.my.python3Packages.protonvpn-cli}/bin/protonvpn"
+    } c --p2p
+  '';
+in {
   options.modules.services.protonvpn.enable = mkOption {
     type = types.bool;
     default = false;
@@ -21,22 +45,11 @@ with lib; {
       wantedBy = [ "multi-user.target" ];
       description = "ProtonVPN-CLI auto-connect";
       wants = [ "network-online.target" ];
-      path = with pkgs;
-        with pkgs.my.python3Packages; [
-          protonvpn-cli
-          dialog
-          iproute
-          iptables
-          openvpn
-          procps
-          which
-        ];
       serviceConfig = {
         Type = "forking";
         Environment =
           [ "PVPN_WAIT=300" "PVPN_DEBUG=1" "SUDO_USER=${config.my.userName}" ];
-        ExecStart =
-          "${pkgs.my.python3Packages.protonvpn-cli}/bin/protonvpn c --p2p";
+        ExecStart = "${protonvpn-autoconnect}/bin/protonvpn-autoconnect";
       };
     };
   };
