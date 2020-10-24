@@ -119,7 +119,7 @@
     exec = "${fcitx-status}/bin/fcitx-status";
     exec-if = "[ -x ${lib.escapeShellArg "${fcitx}/bin/fcitx-remote"} ]";
     interval = 1;
-    format = "%{+u}%{T2}%{T-} <label>%{-u}";
+    format = "%{+u}<label>%{-u}";
     label = "%output%";
     click-left = "${fcitx}/bin/fcitx-configtool";
   };
