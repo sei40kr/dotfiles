@@ -1,18 +1,22 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
+with lib;
+let
+  rEnv = pkgs.rWrapper.override {
+    packages = with pkgs.rPackages;
+      optionals config.modules.dev.editors.tools.enable [
+        languageserver
+        lintr
+      ];
+  };
+in {
   options.modules.dev.r.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
   config = mkIf config.modules.dev.r.enable {
-    modules.dev.editors.tools.packages = with pkgs.rPackages; [
-      languageserver
-      lintr
-    ];
-
-    my.packages = with pkgs; [ R ];
+    my.packages = with pkgs; [ rEnv ];
     my.aliases.R = "R -q --no-save --no-restore-data";
     my.home.home.file = {
       ".Renviron".text = ''
