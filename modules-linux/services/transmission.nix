@@ -60,6 +60,12 @@ in {
       };
       Service = {
         Type = "notify";
+        ExecStartPre = ''
+          ${pkgs.coreutils}/bin/mkdir -p \
+            %h/.config/transmission-daemon/blocklists \
+            %h/.config/transmission-daemon/resume \
+            %h/.config/transmission-daemon/torrents
+        '';
         ExecStart =
           "${pkgs.transmission}/bin/transmission-daemon -f --log-error";
         ExecReload = "/bin/kill -s HUP $MAINPID";
