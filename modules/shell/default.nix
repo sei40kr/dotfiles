@@ -1,5 +1,5 @@
 { lib, ... }:
 
 with lib; {
-  imports = [ ./tools ./tmux.nix ./zsh.nix ];
+  imports = [ ./tools ./tmux.nix ./xonsh.nix ./zsh.nix ];
 }
