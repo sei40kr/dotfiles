@@ -1,4 +1,4 @@
-{ config, lib, options, ... }:
+{ config, lib, options, pkgs, ... }:
 
 with lib; {
   imports = [ ./desktop ./dev ./services ./shell ];
@@ -49,5 +49,13 @@ with lib; {
     };
 
     modules.shell.zsh.aliases = config.my.aliases;
+
+    environment.systemPackages = with pkgs; [
+      coreutils
+      git
+      gnumake
+      sysstat
+      vim
+    ];
   };
 }
