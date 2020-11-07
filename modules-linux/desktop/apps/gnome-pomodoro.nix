@@ -19,5 +19,12 @@ with lib; {
     };
 
     my.packages = with pkgs; [ gnome3.pomodoro ];
+
+    modules.desktop.apps.rofi.systemMenuItems = {
+      "Start/Stop Pomodoro" =
+        "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro --start-stop";
+      "Pause/Resume Pomodoro" =
+        "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro --pause-resume";
+    };
   };
 }
