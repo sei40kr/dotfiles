@@ -107,7 +107,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.packages = with pkgs; [ fontconfig ];
+    my.home.fonts.fontconfig.enable = mkForce true;
+
     my.home.xdg.configFile = {
       "fontconfig/conf.d/10-nix-rendering.conf".text = ''
         <?xml version='1.0'?>
@@ -150,7 +151,7 @@ in {
         <fontconfig>
           ${
             optionalString (cfg.defaultFonts.sansSerif != [ ]) ''
-              <alias>
+              <alias binding="same">
                 <family>sans-serif</family>
                 <prefer>
                   ${
@@ -164,7 +165,7 @@ in {
           }
           ${
             optionalString (cfg.defaultFonts.serif != [ ]) ''
-              <alias>
+              <alias binding="same">
                 <family>serif</family>
                 <prefer>
                   ${
@@ -178,7 +179,7 @@ in {
           }
           ${
             optionalString (cfg.defaultFonts.monospace != [ ]) ''
-              <alias>
+              <alias binding="same">
                 <family>monospace</family>
                 <prefer>
                   ${
