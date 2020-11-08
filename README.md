@@ -1,14 +1,5 @@
 # dotfiles
 
-## Requirements
+![Made with Doom Emacs](https://img.shields.io/github/tag/hlissner/doom-emacs.svg?style=flat-square&label=release&color=58839b)
 
-- NixOS
-- Git
-
-## Getting Started
-
-```sh
-git clone git@github.com:sei40kr/dotfiles.git /etc/dotfiles
-ln -s /etc/dotfiles ~/.dotfiles
-chown -R "$USER" ~/.dotfiles
-```
+![Screenshot](https://raw.githubusercontent.com/sei40kr/dotfiles/master/screenshots/main.png)
