@@ -11,7 +11,7 @@ import           XMonad.Layout.Tabbed
 -- Width of the window border in pixels.
 --
 myBorderWidth :: Dimension
-myBorderWidth = 1
+myBorderWidth = 2
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -21,14 +21,14 @@ myFocusedBorderColor :: String
 myFocusedBorderColor = "#9a2223"
 
 tabTheme = def { activeColor         = "#9a2223"
-               , activeBorderColor   = "#1c1c1c"
+               , activeBorderWidth   = 0
                , activeTextColor     = "#ffffff"
                , inactiveColor       = "#202124"
-               , inactiveBorderColor = "#1c1c1c"
+               , inactiveBorderWidth = 0
                , inactiveTextColor   = "#cccccc"
                , urgentColor         = "#202124"
-               , urgentBorderColor   = "#1c1c1c"
+               , urgentBorderWidth   = 0
                , urgentTextColor     = "#cccccc"
                , fontName            = "xft:Noto Sans CJK JP:size=10"
-               , decoHeight          = 32
+               , decoHeight          = 36
                }
