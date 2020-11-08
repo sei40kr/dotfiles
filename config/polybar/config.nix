@@ -15,13 +15,13 @@
 #
 #==========================================================
 { fcitx, fcitx-status, gnome-pomodoro, gnome-pomodoro_py, lib
-, openweathermap-pop, protonvpn-status }:
+, openweathermap-pop, protonvpn-status, youtube-music }:
 
 {
   "bar/top" = {
     modules-left = "ewmh";
     modules-right =
-      "openweathermap-pop fcitx-status protonvpn-status alsa date";
+      "youtube-music openweathermap-pop fcitx-status protonvpn-status alsa date";
   };
 
   "module/ewmh" = {
@@ -82,6 +82,14 @@
     #   %index%
     # Default: %icon%  %name%
     label-empty = "%icon%";
+  };
+
+  "module/youtube-music" = {
+    type = "custom/script";
+    exec = "${youtube-music}/bin/youtube-music";
+    interval = 5;
+    format = "%{+u}<label>%{-u}";
+    label = "%output%";
   };
 
   "module/gnome-pomodoro" = {

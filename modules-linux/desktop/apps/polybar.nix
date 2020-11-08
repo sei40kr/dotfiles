@@ -31,8 +31,13 @@ let
 
     ${<config/polybar/scripts/protonvpn-status>}
   '';
+  youtube-music = pkgs.writeShellScriptBin "youtube-music" ''
+    export PATH="${makeBinPath (with pkgs; [ xdotool ])}"
+
+    ${<config/polybar/scripts/youtube-music>}
+  '';
   polybarConfig = import <config/polybar/config.nix> {
-    inherit fcitx-status lib openweathermap-pop protonvpn-status;
+    inherit fcitx-status lib openweathermap-pop protonvpn-status youtube-music;
 
     gnome-pomodoro = "${pkgs.gnome3.pomodoro}";
     gnome-pomodoro_py = "${<config/polybar/scripts/gnome-pomodoro.py>}";

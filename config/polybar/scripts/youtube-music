@@ -1,0 +1,7 @@
+#!/bin/sh
+
+title="$(xdotool search --classname crx_cinhimbnkkaeohfgghhklpknlkffjgod getwindowname)"
+title="${title% - YouTube Music}"
+title="${title/YouTube Music}"
+
+echo "${title:+%{T2\}%{T-\} ${title}}"
