@@ -19,22 +19,9 @@
 
 {
   "bar/top" = {
-    modules-left = "cpu memory";
-    modules-center = "ewmh";
+    modules-left = "ewmh";
     modules-right =
       "openweathermap-pop fcitx-status protonvpn-status alsa date";
-  };
-
-  "module/cpu" = {
-    type = "internal/cpu";
-    format = "%{+u}%{T2}%{T-} <label>%{-u}";
-    label = "%percentage%%";
-  };
-
-  "module/memory" = {
-    type = "internal/memory";
-    format = "%{+u}%{T2}%{T-} <label>%{-u}";
-    label = "%mb_used% / %mb_total%";
   };
 
   "module/ewmh" = {
