@@ -14,14 +14,13 @@
 #   The README contains a lot of information
 #
 #==========================================================
-{ fcitx, fcitx-status, gnome-pomodoro, gnome-pomodoro_py, lib
-, openweathermap-pop, protonvpn-status, youtube-music }:
+{ fcitx, fcitx-status, gnome-pomodoro, gnome-pomodoro_py, lib, owm-pop
+, protonvpn, youtube-music }:
 
 {
   "bar/top" = {
     modules-left = "ewmh";
-    modules-right =
-      "youtube-music openweathermap-pop fcitx-status protonvpn-status alsa date";
+    modules-right = "youtube-music owm-pop fcitx-status protonvpn alsa date";
   };
 
   "module/ewmh" = {
@@ -102,9 +101,9 @@
     click-left = "${gnome-pomodoro}/bin/gnome-pomodoro";
   };
 
-  "module/openweathermap-pop" = {
+  "module/owm-pop" = {
     type = "custom/script";
-    exec = "${openweathermap-pop}/bin/openweathermap-pop";
+    exec = "${owm-pop}/bin/owm-pop";
     interval = 600;
     format = "%{+u}<label>%{-u}";
     label = "%output%";
@@ -120,9 +119,9 @@
     click-left = "${fcitx}/bin/fcitx-configtool";
   };
 
-  "module/protonvpn-status" = {
+  "module/protonvpn" = {
     type = "custom/script";
-    exec = "${protonvpn-status}/bin/protonvpn-status";
+    exec = "${protonvpn}/bin/protonvpn";
     interval = 5;
     format = "%{+u}%{T2}%{F#59b068}%{F-}%{T-} <label>%{-u}";
     format-underline = "#59b068";

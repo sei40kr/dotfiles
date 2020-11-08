@@ -3,20 +3,25 @@
 with lib;
 let
   cfg = config.modules.desktop.apps.polybar;
-  openweathermapApiKey =
-    import <secrets/config/polybar/openweathermap-api-key.nix>;
-  openweathermap-pop = pkgs.writeShellScriptBin "openweathermap-pop" ''
-    export PATH=${escapeShellArg (makeBinPath (with pkgs; [ curl jq ]))}
-    export KEY=${escapeShellArg openweathermapApiKey}
+  owmApiKey = import <secrets/config/polybar/owm-api-key.nix>;
 
-    ${escapeShellArg <config/polybar/scripts/openweathermap-pop>}
+  youtube-music = pkgs.writeShellScriptBin "youtube-music" ''
+    export PATH="${makeBinPath (with pkgs; [ xdotool ])}"
+
+    ${<config/polybar/scripts/youtube-music>}
+  '';
+  owm-pop = pkgs.writeShellScriptBin "owm-pop" ''
+    export PATH=${escapeShellArg (makeBinPath (with pkgs; [ curl jq ]))}
+    export KEY=${escapeShellArg owmApiKey}
+
+    ${escapeShellArg <config/polybar/scripts/owm-pop>}
   '';
   fcitx-status = pkgs.writeShellScriptBin "fcitx-status" ''
     export PATH="${makeBinPath (with pkgs; [ fcitx ])}"
 
     ${<config/polybar/scripts/fcitx-status>}
   '';
-  protonvpn-status = pkgs.writeShellScriptBin "protonvpn-status" ''
+  protonvpn = pkgs.writeShellScriptBin "protonvpn" ''
     export PATH="${
       makeBinPath (with pkgs;
         with pkgs.my.python3Packages; [
@@ -29,15 +34,11 @@ let
         ])
     }"
 
-    ${<config/polybar/scripts/protonvpn-status>}
+    ${<config/polybar/scripts/protonvpn>}
   '';
-  youtube-music = pkgs.writeShellScriptBin "youtube-music" ''
-    export PATH="${makeBinPath (with pkgs; [ xdotool ])}"
 
-    ${<config/polybar/scripts/youtube-music>}
-  '';
   polybarConfig = import <config/polybar/config.nix> {
-    inherit fcitx-status lib openweathermap-pop protonvpn-status youtube-music;
+    inherit fcitx-status lib owm-pop protonvpn youtube-music;
 
     gnome-pomodoro = "${pkgs.gnome3.pomodoro}";
     gnome-pomodoro_py = "${<config/polybar/scripts/gnome-pomodoro.py>}";
