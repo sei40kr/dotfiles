@@ -89,6 +89,7 @@
     exec = "${youtube-music}/bin/youtube-music";
     interval = 5;
     format = "%{+u}<label>%{-u}";
+    format-underline = "#ff0000";
     label = "%output%";
   };
 
@@ -123,7 +124,8 @@
     type = "custom/script";
     exec = "${protonvpn-status}/bin/protonvpn-status";
     interval = 5;
-    format = "%{+u}%{T2}%{T-} <label>%{-u}";
+    format = "%{+u}%{T2}%{F#59b068}%{F-}%{T-} <label>%{-u}";
+    format-underline = "#59b068";
     label = "%output%";
   };
 
