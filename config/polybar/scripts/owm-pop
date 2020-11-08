@@ -3,9 +3,9 @@
 pop="$(curl -s "https://api.openweathermap.org/data/2.5/forecast?id=1850147&appid=${KEY}&cnt=1" | jq '.list[0].pop * 100 | floor')"
 
 if [[ "$pop" -lt 40 ]]; then
-  icon=''
+  icon='  '
 else
-  icon='%{F#51afef}%{u#51afef}%{F-}'
+  icon='%{u#51afef}  %{F#51afef}%{F-}'
 fi
 
-echo "%{T2}${icon}%{T-} ${pop}%"
+echo "%{T2}${icon}%{T-}  ${pop}%   "

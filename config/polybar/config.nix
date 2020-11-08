@@ -114,7 +114,7 @@
     exec = "${fcitx-status}/bin/fcitx-status";
     exec-if = "[ -x ${lib.escapeShellArg "${fcitx}/bin/fcitx-remote"} ]";
     interval = 1;
-    format = "%{+u}<label>%{-u}";
+    format = "%{+u}  <label>  %{-u}";
     label = "%output%";
     click-left = "${fcitx}/bin/fcitx-configtool";
   };
@@ -123,15 +123,15 @@
     type = "custom/script";
     exec = "${protonvpn}/bin/protonvpn";
     interval = 5;
-    format = "%{+u}%{T2}%{F#59b068}%{F-}%{T-} <label>%{-u}";
+    format = "%{+u}  %{T2}%{F#59b068}%{F-}%{T-}  <label>   %{-u}";
     format-underline = "#59b068";
     label = "%output%";
   };
 
   "module/alsa" = {
     type = "internal/alsa";
-    format-volume = "%{+u}<ramp-volume> <label-volume>%{-u}";
-    format-muted = "%{+u}<label-muted>%{-u}";
+    format-volume = "%{+u}  <ramp-volume>  <label-volume>   %{-u}";
+    format-muted = "%{+u}  <label-muted>  %{-u}";
 
     # Available tokens:
     #   %percentage% (default)
@@ -197,7 +197,7 @@
     interval = 5;
     date = "%b %d %a";
     time = "%H:%M";
-    format = "%{+u}<label>%{-u}";
+    format = "%{+u}  <label>  %{-u}";
     label = "%date%, %time%";
   };
 }

@@ -4,4 +4,4 @@ title="$(xdotool search --classname crx_cinhimbnkkaeohfgghhklpknlkffjgod getwind
 title="${title% - YouTube Music}"
 title="${title/YouTube Music}"
 
-echo "${title:+%{T2\}%{F#ff0000\}%{F-\}%{T-\}  ${title}}"
+echo "${title:+  %{T2\}%{F#ff0000\}%{F-\}%{T-\}  ${title}   }"
