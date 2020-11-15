@@ -4,3 +4,6 @@
 [submodule "idea-doom-emacs"]
 	path = idea-doom-emacs
 	url = https://github.com/sei40kr/idea-doom-emacs.git
+[submodule "polybar-scripts"]
+	path = polybar-scripts
+	url = https://github.com/sei40kr/polybar-scripts

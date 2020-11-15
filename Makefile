@@ -1,5 +1,6 @@
 FLAGS := -I "config=$$(pwd)/config" \
 		 -I "packages=$$(pwd)/packages" \
+		 -I "polybar-scripts=$$(pwd)/polybar-scripts" \
 		 -I "secrets=$$(pwd)/secrets"
 DARWIN_CONFIG_FLAG := -I "darwin-config=$$(pwd)/default-darwin.nix"
 
