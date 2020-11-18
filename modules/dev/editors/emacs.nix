@@ -11,9 +11,10 @@ in {
 
     package = mkOption {
       type = types.package;
-      default =
-        # NOTE Emacs build with native-comp fails on Darwin platforms
-        if pkgs.stdenv.isDarwin then pkgs.my.emacs else pkgs.emacsGcc;
+      default = pkgs.my.emacs.override {
+        withXwidgets = true;
+        nativeComp = !pkgs.stdenv.isDarwin;
+      };
     };
   };
 
