@@ -72,10 +72,15 @@ in {
       type = types.str;
       default = null;
     };
+
+    package = mkOption {
+      type = types.package;
+      default = pkgs.unstable.rofi;
+    };
   };
 
   config = mkIf cfg.enable {
-    my.packages = [ pkgs.rofi ];
+    my.packages = [ cfg.package ];
     my.home.xdg.configFile."rofi/config.rasi".text = ''
       ${readFile <config/rofi/config.rasi>}
 

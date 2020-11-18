@@ -70,7 +70,7 @@ in {
       spawnRofi :: [String] -> X ()
       ${if config.modules.desktop.apps.polybar.enable then ''
         spawnRofi modi = safeSpawn
-          "${pkgs.rofi}/bin/rofi"
+          "${config.modules.desktop.apps.rofi.package}/bin/rofi"
           ["-show", intercalate "," modi]
       '' else ''
         spawnRofi = return ()
