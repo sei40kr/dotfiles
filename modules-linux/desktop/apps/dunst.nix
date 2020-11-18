@@ -1,18 +1,27 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
-  options.modules.desktop.apps.dunst.enable = mkOption {
-    type = types.bool;
-    default = false;
-  };
-
-  config = mkIf config.modules.desktop.apps.dunst.enable {
-    modules.desktop.backends.dbus = {
-      enable = mkForce true;
-      packages = with pkgs; [ dunst ];
+with lib;
+let cfg = config.modules.desktop.apps.dunst;
+in {
+  options.modules.desktop.apps.dunst = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
     };
 
-    my.packages = with pkgs; [ dunst libnotify ];
+    package = mkOption {
+      type = types.package;
+      default = pkgs.unstable.dunst.override { dunstify = true; };
+    };
+  };
+
+  config = mkIf cfg.enable {
+    modules.desktop.backends.dbus = {
+      enable = mkForce true;
+      packages = [ cfg.package ];
+    };
+
+    my.packages = [ cfg.package ];
     my.home.xdg.configFile."dunst/dunstrc".source = <config/dunst/dunstrc>;
     my.home.systemd.user.services.dunst = {
       Unit = {
@@ -24,7 +33,7 @@ with lib; {
       Service = {
         Type = "dbus";
         BusName = "org.freedesktop.Notifications";
-        ExecStart = "${pkgs.dunst}/bin/dunst";
+        ExecStart = "${cfg.package}/bin/dunst";
       };
       Install.WantedBy = [ "default.target" ];
     };
