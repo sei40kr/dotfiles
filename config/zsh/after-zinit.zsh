@@ -149,9 +149,6 @@ zinit light -b junegunn/fzf
 zinit ice has'fzf' trigger-load'!_fzf_complete_docker' \
     atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "$PWD" "${WORKSPACE_DIR}/sei40kr/zsh-fzf-docker"'
 zinit light sei40kr/zsh-fzf-docker
-zinit ice has'fzf' trigger-load'!_fzf_complete_cd' \
-    atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "$PWD" "${WORKSPACE_DIR}/sei40kr/zsh-fzf-cd-dirs"'
-zinit light sei40kr/zsh-fzf-cd-dirs
 
 # Notification
 if is_macos; then

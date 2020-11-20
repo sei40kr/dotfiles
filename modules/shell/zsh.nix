@@ -95,6 +95,9 @@ in {
 
           zinit light ${<config/zsh/zsh-smart-command-history>}
 
+          zinit ice has'fzf' trigger-load'!_fzf_complete_cd'
+          zinit light ${<config/zsh/zsh-fzf-cd-dirs>}
+
           FZF_PROJECTS_WORKSPACE_DIRS=( "$WORKSPACE_DIR" )
           FZF_PROJECTS_PROJECT_DIR_MAX_DEPTH=2
           FZF_PROJECTS_KNOWN_PROJECTS=(
