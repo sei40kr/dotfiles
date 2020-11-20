@@ -36,11 +36,6 @@ zinit snippet OMZP::extract/extract.plugin.zsh
 zinit snippet OMZP::rsync/rsync.plugin.zsh
 zinit snippet OMZP::nmap/nmap.plugin.zsh
 
-GH_CLONE_WORKSPACE_DIR="$WORKSPACE_DIR"
-zinit ice trigger-load'!gh-clone' \
-    atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "$PWD" "${WORKSPACE_DIR}/sei40kr/zsh-gh-clone"'
-zinit light sei40kr/zsh-gh-clone
-
 
 ## Perl
 

@@ -95,6 +95,10 @@ in {
 
           zinit light ${<config/zsh/zsh-smart-command-history>}
 
+          GH_CLONE_WORKSPACE_DIR="$WORKSPACE_DIR"
+          zinit ice trigger-load'!gh-clone'
+          zinit light ${<config/zsh/zsh-gh-clone>}
+
           ${cfg.zinitPluginsInit}
 
           ${aliasDefs}
