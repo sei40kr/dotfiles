@@ -8,7 +8,7 @@ with lib; {
 
   config = mkIf config.modules.dev.editors.ideavim.enable {
     my.home.home.file.".ideavimrc".text = ''
-      source ${../../../idea-doom-emacs/ideavimrc}
+      source ${config/ideavim/idea-doom-emacs/ideavimrc}
 
       " Do not exit visual mode on a selection shift
       vnoremap < <gv
