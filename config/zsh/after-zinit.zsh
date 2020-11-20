@@ -15,7 +15,6 @@ is_macos() {
 if [[ "$INSIDE_EMACS" == vterm ]]; then
     alias clear='vterm_printf "51; Evterm-clear-scrollback"; tput clear'
 fi
-. "${ZDOTDIR}/custom-history.zsh"
 
 HYPHEN_INSENSITIVE=true
 zinit snippet OMZL::clipboard.zsh

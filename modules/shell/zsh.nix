@@ -93,6 +93,8 @@ in {
           ZINIT[BIN_DIR]=${escapeShellArg "${zinit}/share/zinit"}
           . "''${ZINIT[BIN_DIR]}/zinit.zsh"
 
+          zinit light ${<config/zsh/zsh-smart-command-history>}
+
           ${cfg.zinitPluginsInit}
 
           ${aliasDefs}
@@ -103,7 +105,6 @@ in {
       "${zdotDir}/completions".source = <config/zsh/completions>;
       "${zdotDir}/functions".source = <config/zsh/functions>;
       "${zdotDir}/aliases.zsh".source = <config/zsh/aliases.zsh>;
-      "${zdotDir}/custom-history.zsh".source = <config/zsh/custom-history.zsh>;
     };
     my.home.xdg.configFile."starship.toml".source =
       <config/starship/starship.toml>;

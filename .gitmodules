@@ -7,3 +7,6 @@
 [submodule "polybar-scripts"]
 	path = polybar-scripts
 	url = https://github.com/sei40kr/polybar-scripts
+[submodule "zsh-smart-command-history"]
+	path = config/zsh/zsh-smart-command-history
+	url = https://github.com/sei40kr/zsh-smart-command-history
