@@ -7,10 +7,6 @@
             tmuxPlugins = (callPackage (import ./tmux-plugins.nix) { });
             vimPlugins = (callPackage (import ./vim-plugins.nix) { });
             vscode-extensions = (callPackage (import ./vscode-extensions.nix) { });
-            emacsOverlay = import (builtins.fetchTarball {
-              url =
-                "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
-            });
           in {
             inherit unstable;
 
@@ -30,5 +26,5 @@
               operator-mono = callPackage ./operator-mono.nix { };
               zinit = callPackage ./zinit.nix { };
             };
-          } // (emacsOverlay unstable super))
+          })
       ]
