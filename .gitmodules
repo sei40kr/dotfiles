@@ -16,6 +16,9 @@
 [submodule "zsh-gh-clone"]
 	path = config/zsh/zsh-gh-clone
 	url = https://github.com/sei40kr/zsh-gh-clone
+[submodule "zsh-ranger-cd"]
+	path = config/zsh/zsh-ranger-cd
+	url = https://github.com/sei40kr/zsh-ranger-cd
 [submodule "zsh-smart-command-history"]
 	path = config/zsh/zsh-smart-command-history
 	url = https://github.com/sei40kr/zsh-smart-command-history

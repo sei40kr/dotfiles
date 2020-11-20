@@ -111,6 +111,10 @@ in {
           bindkey '^xg' fzf-projects
           bindkey '^x^g' fzf-projects
 
+          zinit ice trigger-load'!ranger-cd'
+          zinit light ${<config/zsh/zsh-ranger-cd>}
+          bindkey '\ec' ranger-cd
+
           GH_CLONE_WORKSPACE_DIR="$WORKSPACE_DIR"
           zinit ice trigger-load'!gh-clone'
           zinit light ${<config/zsh/zsh-gh-clone>}
