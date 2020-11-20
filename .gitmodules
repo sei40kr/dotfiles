@@ -10,6 +10,9 @@
 [submodule "zsh-fzf-cd-dirs"]
 	path = config/zsh/zsh-fzf-cd-dirs
 	url = https://github.com/sei40kr/zsh-fzf-cd-dirs
+[submodule "zsh-fzf-docker"]
+	path = config/zsh/zsh-fzf-docker
+	url = https://github.com/sei40kr/zsh-fzf-docker
 [submodule "zsh-fzf-projects"]
 	path = config/zsh/zsh-fzf-projects
 	url = https://github.com/sei40kr/zsh-fzf-projects

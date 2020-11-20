@@ -95,6 +95,9 @@ in {
 
           zinit light ${<config/zsh/zsh-smart-command-history>}
 
+          zinit ice has'fzf' trigger-load'!_fzf_complete_docker'
+          zinit light ${<config/zsh/zsh-fzf-docker>}
+
           zinit ice has'fzf' trigger-load'!_fzf_complete_cd'
           zinit light ${<config/zsh/zsh-fzf-cd-dirs>}
 

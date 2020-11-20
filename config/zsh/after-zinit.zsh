@@ -140,11 +140,6 @@ FZF_DEFAULT_OPTS='--height=15 --reverse --inline-info --color=dark --color=fg:-1
 zinit ice has'fzf' bindmap'^R ->;\ec ->' multisrc'shell/{completion,key-bindings}.zsh'
 zinit light -b junegunn/fzf
 
-# FZF additional sources
-zinit ice has'fzf' trigger-load'!_fzf_complete_docker' \
-    atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "$PWD" "${WORKSPACE_DIR}/sei40kr/zsh-fzf-docker"'
-zinit light sei40kr/zsh-fzf-docker
-
 # Notification
 if is_macos; then
     zinit ice from'gh-r' as'program'
