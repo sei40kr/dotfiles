@@ -153,20 +153,6 @@ zinit ice has'fzf' trigger-load'!_fzf_complete_cd' \
     atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "$PWD" "${WORKSPACE_DIR}/sei40kr/zsh-fzf-cd-dirs"'
 zinit light sei40kr/zsh-fzf-cd-dirs
 
-FZF_PROJECTS_WORKSPACE_DIRS=( "$WORKSPACE_DIR" )
-FZF_PROJECTS_PROJECT_DIR_MAX_DEPTH=2
-FZF_PROJECTS_KNOWN_PROJECTS=(
-    "${HOME}/.dotfiles"
-    "${HOME}/.emacs.d"
-    "${HOME}/.doom.d"
-)
-zinit ice has'fzf' trigger-load'!fzf-projects' \
-    atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "$PWD" "${WORKSPACE_DIR}/sei40kr/zsh-fzf-projects"'
-zinit light sei40kr/zsh-fzf-projects
-zle -N fzf-projects
-bindkey '^xg' fzf-projects
-bindkey '^x^g' fzf-projects
-
 # Notification
 if is_macos; then
     zinit ice from'gh-r' as'program'

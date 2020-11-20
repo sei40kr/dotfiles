@@ -95,6 +95,19 @@ in {
 
           zinit light ${<config/zsh/zsh-smart-command-history>}
 
+          FZF_PROJECTS_WORKSPACE_DIRS=( "$WORKSPACE_DIR" )
+          FZF_PROJECTS_PROJECT_DIR_MAX_DEPTH=2
+          FZF_PROJECTS_KNOWN_PROJECTS=(
+              "''${HOME}/.dotfiles"
+              "''${HOME}/.emacs.d"
+              "''${HOME}/.doom.d"
+          )
+          zinit ice has'fzf' trigger-load'!fzf-projects'
+          zinit light ${<config/zsh/zsh-fzf-projects>}
+          zle -N fzf-projects
+          bindkey '^xg' fzf-projects
+          bindkey '^x^g' fzf-projects
+
           GH_CLONE_WORKSPACE_DIR="$WORKSPACE_DIR"
           zinit ice trigger-load'!gh-clone'
           zinit light ${<config/zsh/zsh-gh-clone>}

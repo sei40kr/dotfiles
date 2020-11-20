@@ -7,6 +7,9 @@
 [submodule "polybar-scripts"]
 	path = config/polybar/polybar-scripts
 	url = https://github.com/sei40kr/polybar-scripts
+[submodule "zsh-fzf-projects"]
+	path = config/zsh/zsh-fzf-projects
+	url = https://github.com/sei40kr/zsh-fzf-projects
 [submodule "zsh-gh-clone"]
 	path = config/zsh/zsh-gh-clone
 	url = https://github.com/sei40kr/zsh-gh-clone
