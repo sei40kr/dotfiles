@@ -19,6 +19,9 @@
 [submodule "zsh-gh-clone"]
 	path = config/zsh/zsh-gh-clone
 	url = https://github.com/sei40kr/zsh-gh-clone
+[submodule "zsh-lazy-nvm"]
+	path = config/zsh/zsh-lazy-nvm
+	url = https://github.com/sei40kr/zsh-lazy-nvm
 [submodule "zsh-ranger-cd"]
 	path = config/zsh/zsh-ranger-cd
 	url = https://github.com/sei40kr/zsh-ranger-cd
