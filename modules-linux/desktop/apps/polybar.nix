@@ -19,7 +19,7 @@ let
   fcitx-status = pkgs.writeShellScriptBin "fcitx-status" ''
     export PATH="${makeBinPath (with pkgs; [ fcitx ])}"
 
-    ${<polybar-scripts/fcitx-status/fcitx-status>}
+    ${<config/polybar/polybar-scripts/fcitx-status/fcitx-status>}
   '';
   protonvpn = pkgs.writeShellScriptBin "protonvpn" ''
     export PATH="${
@@ -34,7 +34,7 @@ let
         ])
     }"
 
-    ${<polybar-scripts/protonvpn/protonvpn>}
+    ${<config/polybar/polybar-scripts/protonvpn/protonvpn>}
   '';
 
   polybarConfig = import <config/polybar/config.nix> {
