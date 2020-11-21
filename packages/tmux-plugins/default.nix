@@ -16,4 +16,12 @@ with lib; {
         --prefix PATH : ${makeBinPath [ fd fzf ]}
     '';
   };
+
+  doom-one-dark = tmuxPlugins.mkDerivation {
+    pluginName = "doom-one-dark";
+    rtpFilePath = "doom-one-dark.tmux";
+    version = "unstable-2020-11-22";
+
+    src = ./tmux-doom-one-dark;
+  };
 }
