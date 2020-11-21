@@ -7,6 +7,9 @@
 [submodule "polybar-scripts"]
 	path = config/polybar/polybar-scripts
 	url = https://github.com/sei40kr/polybar-scripts
+[submodule "tmux-per-project-session"]
+	path = packages/tmux-plugins/tmux-per-project-session
+	url = https://github.com/sei40kr/tmux-per-project-session
 [submodule "zsh-fzf-cd-dirs"]
 	path = config/zsh/zsh-fzf-cd-dirs
 	url = https://github.com/sei40kr/zsh-fzf-cd-dirs

@@ -4,7 +4,7 @@
           let
             unstable = import <nixos-unstable> { inherit config; };
             python3Packages = (callPackage (import ./python3-packages.nix) { });
-            tmuxPlugins = (callPackage (import ./tmux-plugins.nix) { });
+            tmuxPlugins = (callPackage (import ./tmux-plugins) { });
             vimPlugins = (callPackage (import ./vim-plugins.nix) { });
             vscode-extensions = (callPackage (import ./vscode-extensions.nix) { });
           in {
