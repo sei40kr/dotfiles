@@ -4,6 +4,7 @@
           let
             unstable = import <nixos-unstable> { inherit config; };
             python3Packages = (callPackage (import ./python3-packages.nix) { });
+            rofiScripts = (callPackage (import ./rofi-scripts) { });
             tmuxPlugins = (callPackage (import ./tmux-plugins) { });
             vimPlugins = (callPackage (import ./vim-plugins.nix) { });
             vscode-extensions = (callPackage (import ./vscode-extensions.nix) { });
@@ -11,7 +12,8 @@
             inherit unstable;
 
             my = {
-              inherit python3Packages tmuxPlugins vimPlugins vscode-extensions;
+              inherit python3Packages rofiScripts tmuxPlugins vimPlugins
+                vscode-extensions;
 
               alfred = callPackage ./alfred.nix { };
               corretto_11 = callPackage ./corretto_11.nix { };

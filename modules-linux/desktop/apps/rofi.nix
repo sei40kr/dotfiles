@@ -2,58 +2,40 @@
 
 with lib;
 let
+  clipmenuEnabled = config.modules.desktop.tools.clipmenu.enable;
+
   cfg = config.modules.desktop.apps.rofi;
-  systemMenuItems = cfg.systemMenuItems // {
+  customEntries = cfg.customEntries // {
     Reboot = "${pkgs.systemd}/bin/systemctl reboot -i";
     Shutdown = "${pkgs.systemd}/bin/systemctl poweroff -i";
     Suspend = "${pkgs.systemd}/bin/systemctl suspend -i";
   };
-  system-menu = pkgs.writeShellScriptBin "system-menu" ''
-    menu_items=(
+
+  clipmenu = pkgs.my.rofiScripts.clipmenu;
+  custom-entries = pkgs.writeShellScriptBin "custom-entries" ''
+    entries=(
       ${
         concatStringsSep " "
-        (mapAttrsToList (title: command: escapeShellArgs [ title command ])
-          systemMenuItems)
+        (mapAttrsToList (text: command: escapeShellArgs [ text command ])
+          customEntries)
       }
     )
 
-    selection="$1"
-
-    if [[ -z "$selection" ]]; then
-      for (( i = 0; i < ''${#menu_items[@]}; i+=2 )); do
-        echo "''${menu_items[$i]}"
-      done
-    else
-      for (( i = 0; i < ''${#menu_items[@]}; i+=2 )); do
-        if [[ "''${menu_items[$i]}" == "$selection" ]]; then
-          break
-        fi
-      done
-
-      eval "''${menu_items[$((++i))]}"
+    if [[ "$ROFI_RETV" == 1 ]]; then
+      eval "$ROFI_INFO"
+      exit
     fi
+
+    for (( i = 0; i < ''${#entries[@]}; i++ )); do
+      text="''${entries[$i]}"
+      command="''${entries[$((++i))]}"
+      echo -en "''${text}\0info\x1f''${command}\n"
+    done
   '';
-  clipmenu = pkgs.writeShellScriptBin "clipmenu" ''
-    CLIPMENU_MAJOR_VERSION=5
-    CACHE_DIR="''${XDG_RUNTIME_DIR:-''${TMPDIR:-/tmp}}/clipmenu.''${CLIPMENU_MAJOR_VERSION}.''${USER}"
 
-    selection="$1"
-
-    if [[ -z "$selection" ]]; then
-      LC_ALL=C ${pkgs.coreutils}/bin/sort -nrk 1 \
-        <"''${CACHE_DIR}/line_cache_clipboard" \
-        <"''${CACHE_DIR}/line_cache_primary" |
-        ${pkgs.coreutils}/bin/cut -d' ' -f2- |
-        ${pkgs.gawk}/bin/awk '!seen[$0]++'
-    else
-      file="''${CACHE_DIR}/$(${pkgs.coreutils}/bin/cksum <<<"$selection")"
-
-      ${pkgs.xsel}/bin/xsel -i --clipboard <"$file"
-    fi
-  '';
-  modi = [ "combi" ] ++ (optionals config.modules.desktop.tools.clipmenu.enable
-    [ "clipboard:${clipmenu}/bin/clipmenu" ]);
-  combiModi = [ "drun" "system-menu:${system-menu}/bin/system-menu" ];
+  modi = [ "combi" ]
+    ++ (optionals clipmenuEnabled [ "clipboard:${clipmenu}/bin/clipmenu" ]);
+  combiModi = [ "drun" "custom-entries:${custom-entries}/bin/custom-entries" ];
 in {
   options.modules.desktop.apps.rofi = {
     enable = mkOption {
@@ -61,7 +43,7 @@ in {
       default = false;
     };
 
-    systemMenuItems = mkOption {
+    customEntries = mkOption {
       type = with types; attrsOf str;
       default = { };
     };

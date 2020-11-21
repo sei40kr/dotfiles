@@ -8,7 +8,7 @@ with lib; {
 
   config = mkIf config.modules.desktop.apps.gnomePomodoro.enable {
     modules.desktop = {
-      apps.rofi.systemMenuItems = {
+      apps.rofi.customEntries = {
         "Start/Stop Pomodoro" =
           "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro --start-stop";
         "Pause/Resume Pomodoro" =

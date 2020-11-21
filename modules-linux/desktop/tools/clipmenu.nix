@@ -7,7 +7,7 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.tools.clipmenu.enable {
-    modules.desktop.apps.rofi.systemMenuItems."Clear Clipboard History" =
+    modules.desktop.apps.rofi.customEntries."Clear Clipboard History" =
       "${pkgs.clipmenu}/bin/clipdel -d '.*'";
 
     my.packages = with pkgs; [ clipmenu ];

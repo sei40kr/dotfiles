@@ -31,7 +31,7 @@ in {
         -l \
         -- ${pkgs.xsecurelock}/bin/xsecurelock &
     '';
-    modules.desktop.apps.rofi.systemMenuItems."Lock" =
+    modules.desktop.apps.rofi.customEntries."Lock" =
       "${pkgs.systemd}/bin/loginctl lock-session";
   };
 }
