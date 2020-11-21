@@ -27,9 +27,9 @@ in {
       ${pkgs.xorg.xset}/bin/xset s ${toString cfg.length} ${toString cfg.period}
       ${pkgs.xss-lock}/bin/xss-lock \
         -s "$XDG_SESSION_ID" \
-        -n ${escapeShellArg "${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"} \
+        -n ${pkgs.xsecurelock}/libexec/xsecurelock/dimmer \
         -l \
-        -- ${escapeShellArg "${pkgs.xsecurelock}/bin/xsecurelock"} &
+        -- ${pkgs.xsecurelock}/bin/xsecurelock &
     '';
     modules.desktop.apps.rofi.systemMenuItems."Lock" =
       "${pkgs.systemd}/bin/loginctl lock-session";

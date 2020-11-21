@@ -32,7 +32,7 @@ in {
       baseIndex = 1;
       enable = true;
       extraConfig = ''
-        source-file ${escapeShellArg <config/tmux/tmux.conf>}
+        source-file ${<config/tmux/tmux.conf>}
 
         ${cfg.extraConfig}
       '';

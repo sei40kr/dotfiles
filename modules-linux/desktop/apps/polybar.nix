@@ -14,7 +14,7 @@ let
     export PATH=${escapeShellArg (makeBinPath (with pkgs; [ curl jq ]))}
     export KEY=${escapeShellArg owmApiKey}
 
-    ${escapeShellArg <config/polybar/scripts/owm-pop>}
+    ${<config/polybar/scripts/owm-pop>}
   '';
   fcitx-status = pkgs.writeShellScriptBin "fcitx-status" ''
     export PATH="${makeBinPath (with pkgs; [ fcitx ])}"

@@ -20,7 +20,7 @@ in {
     my.aliases.R = "R -q --no-save --no-restore-data";
     my.home.home.file = {
       ".Renviron".text = ''
-        R_LIBS=${escapeShellArg "${pkgs.R}/library"}
+        R_LIBS=${pkgs.R}/library
       '';
       ".Rprofile".text = ''
         options(repos='https://cran.ism.ac.jp');

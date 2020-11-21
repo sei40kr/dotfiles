@@ -112,7 +112,7 @@
   "module/fcitx-status" = {
     type = "custom/script";
     exec = "${fcitx-status}/bin/fcitx-status";
-    exec-if = "[ -x ${lib.escapeShellArg "${fcitx}/bin/fcitx-remote"} ]";
+    exec-if = "[ -x ${fcitx}/bin/fcitx-remote ]";
     interval = 1;
     format = "%{+u}  <label>  %{-u}";
     label = "%output%";

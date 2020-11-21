@@ -11,8 +11,8 @@ let
   system-menu = pkgs.writeShellScriptBin "system-menu" ''
     menu_items=(
       ${
-        concatStringsSep " " (mapAttrsToList
-          (title: command: "${escapeShellArg title} ${escapeShellArg command}")
+        concatStringsSep " "
+        (mapAttrsToList (title: command: escapeShellArgs [ title command ])
           systemMenuItems)
       }
     )
@@ -40,17 +40,15 @@ let
     selection="$1"
 
     if [[ -z "$selection" ]]; then
-      LC_ALL=C ${escapeShellArg "${pkgs.coreutils}/bin/sort"} -nrk 1 \
+      LC_ALL=C ${pkgs.coreutils}/bin/sort -nrk 1 \
         <"''${CACHE_DIR}/line_cache_clipboard" \
         <"''${CACHE_DIR}/line_cache_primary" |
-        ${escapeShellArg "${pkgs.coreutils}/bin/cut"} -d' ' -f2- |
-        ${escapeShellArg "${pkgs.gawk}/bin/awk"} '!seen[$0]++'
+        ${pkgs.coreutils}/bin/cut -d' ' -f2- |
+        ${pkgs.gawk}/bin/awk '!seen[$0]++'
     else
-      file="''${CACHE_DIR}/$(${
-        escapeShellArg "${pkgs.coreutils}/bin/cksum"
-      } <<<"$selection")"
+      file="''${CACHE_DIR}/$(${pkgs.coreutils}/bin/cksum <<<"$selection")"
 
-      ${escapeShellArg "${pkgs.xsel}/bin/xsel"} -i --clipboard <"$file"
+      ${pkgs.xsel}/bin/xsel -i --clipboard <"$file"
     fi
   '';
   modi = [ "combi" ] ++ (optionals config.modules.desktop.tools.clipmenu.enable

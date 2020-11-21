@@ -17,6 +17,6 @@ in {
 
   config = mkIf cfg.enable {
     my.packages = with pkgs; [ bat ];
-    my.aliases.cat = "bat --theme=${escapeShellArg cfg.theme}";
+    my.aliases.cat = "bat --theme=${cfg.theme}";
   };
 }

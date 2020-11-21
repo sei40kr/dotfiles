@@ -56,10 +56,10 @@ in {
         ${optionalString pkgs.stdenv.isDarwin nixDarwinInit}
         ${homeManagerInit}
 
-        . ${escapeShellArg <config/zsh/zshenv>}
+        . ${<config/zsh/zshenv>}
       '';
       "${zdotDir}/.zprofile".text = ''
-        . ${escapeShellArg <config/zsh/zprofile>}
+        . ${<config/zsh/zprofile>}
 
         ${cfg.graphicalSessionInit}
       '';
@@ -81,16 +81,16 @@ in {
         else
           ${cfg.tmuxInit}
 
-          . ${escapeShellArg <config/zsh/before-zinit.zsh>}
+          . ${<config/zsh/before-zinit.zsh>}
 
           path=(
-            ${escapeShellArg "${pkgs.curl}/bin"}
-            ${escapeShellArg "${pkgs.git}/bin"}
-            ${escapeShellArg "${pkgs.subversion}/bin"}
+            ${pkgs.curl}/bin
+            ${pkgs.git}/bin
+            ${pkgs.subversion}/bin
             $path
           )
           declare -A ZINIT
-          ZINIT[BIN_DIR]=${escapeShellArg "${zinit}/share/zinit"}
+          ZINIT[BIN_DIR]=${zinit}/share/zinit
           . "''${ZINIT[BIN_DIR]}/zinit.zsh"
 
           zinit light ${<config/zsh/zsh-smart-command-history>}
@@ -114,6 +114,7 @@ in {
           bindkey '^xg' fzf-projects
           bindkey '^x^g' fzf-projects
 
+          # TODO Move this in shell/tools/ranger module
           zinit ice trigger-load'!ranger-cd'
           zinit light ${<config/zsh/zsh-ranger-cd>}
           bindkey '\ec' ranger-cd
@@ -126,7 +127,7 @@ in {
 
           ${aliasDefs}
 
-          . ${escapeShellArg <config/zsh/after-zinit.zsh>}
+          . ${<config/zsh/after-zinit.zsh>}
         fi
       '';
       "${zdotDir}/completions".source = <config/zsh/completions>;
