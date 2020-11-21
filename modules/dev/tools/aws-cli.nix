@@ -8,7 +8,7 @@ with lib; {
 
   config = mkIf config.modules.dev.tools.awsCli.enable {
     modules.shell.zsh.zinitPluginsInit = ''
-      zinit ice if'[[ -d ${pkgs.awscli} ]]' wait''' lucid
+      zinit ice wait''' lucid
       zinit snippet ${pkgs.awscli}/share/zsh/site-functions/aws_zsh_completer.sh
     '';
 
