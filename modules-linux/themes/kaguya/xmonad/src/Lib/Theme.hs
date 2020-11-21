@@ -20,12 +20,15 @@ myNormalBorderColor = "#ffffff"
 myFocusedBorderColor :: String
 myFocusedBorderColor = "#9a2223"
 
-tabTheme = def { activeColor       = "#9a2223"
-               , activeTextColor   = "#ffffff"
-               , inactiveColor     = "#202124"
-               , inactiveTextColor = "#cccccc"
-               , urgentColor       = "#202124"
-               , urgentTextColor   = "#cccccc"
-               , fontName          = "xft:Noto Sans CJK JP:size=10"
-               , decoHeight        = 36
+tabTheme = def { activeBorderColor   = "#9a2223"
+               , activeColor         = "#9a2223"
+               , activeTextColor     = "#ffffff"
+               , inactiveBorderColor = "#202124"
+               , inactiveColor       = "#202124"
+               , inactiveTextColor   = "#cccccc"
+               , urgentBorderColor   = "#202124"
+               , urgentColor         = "#202124"
+               , urgentTextColor     = "#cccccc"
+               , fontName            = "xft:Noto Sans CJK JP:size=10"
+               , decoHeight          = 36
                }
