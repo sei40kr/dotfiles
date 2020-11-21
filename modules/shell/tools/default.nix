@@ -6,6 +6,7 @@ with lib; {
     ./bat.nix
     ./exa.nix
     ./htop.nix
+    ./online-judge-tools.nix
     ./prettyping.nix
     ./ranger.nix
     ./ripgrep.nix

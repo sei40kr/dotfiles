@@ -1,6 +1,6 @@
-{ lib, pkgs, python3Packages, ... }:
+{ fetchFromGitHub, lib, pkgs, python3Packages, ... }:
 
-with lib; {
+with lib; rec {
   atcoder-tools = python3Packages.buildPythonApplication rec {
     pname = "atcoder-tools";
     version = "1.1.7.1";
@@ -25,6 +25,80 @@ with lib; {
       license = licenses.mit;
       description =
         "Convenient modules & tools for AtCoder users, written in Python 3.5";
+    };
+  };
+
+  colorlog = python3Packages.buildPythonPackage rec {
+    pname = "colorlog";
+    version = "4.6.2";
+
+    src = python3Packages.fetchPypi {
+      inherit pname version;
+      sha256 =
+        "54e5f153419c22afc283c130c4201db19a3dbd83221a0f4657d5ee66234a2ea4";
+    };
+
+    doCheck = false;
+
+    meta = {
+      license = licenses.mit;
+      description = "A colored formatter for the python logging module";
+    };
+  };
+
+  online-judge-api-client = python3Packages.buildPythonPackage {
+    pname = "online-judge-api-client";
+    version = "10.5.0";
+
+    src = fetchFromGitHub {
+      owner = "online-judge-tools";
+      repo = "api-client";
+      rev = "34b7c215af788252b69607487561f15f3634a33c";
+      sha256 = "066g49kr2npb58d3ysc92qm6402248wk5sjhr3j31sk2v1pdjqn3";
+    };
+
+    propagatedBuildInputs = with python3Packages; [
+      appdirs
+      beautifulsoup4
+      colorlog
+      jsonschema
+      lxml
+      requests
+      toml
+    ];
+
+    doCheck = false;
+
+    meta = {
+      license = licenses.mit;
+      description = "API client to develop tools for competitive programming";
+    };
+  };
+
+  online-judge-tools = python3Packages.buildPythonApplication {
+    pname = "online-judge-tools";
+    version = "11.1.1";
+
+    src = fetchFromGitHub {
+      owner = "online-judge-tools";
+      repo = "oj";
+      rev = "203c2f74c7f061fad57453a198f008cd5a41552e";
+      sha256 = "0c5pyrz39ff0avhblpkxpk10w7hl2a4ladr524vrxvqhkhyhr3y7";
+    };
+
+    propagatedBuildInputs = with python3Packages; [
+      colorama
+      diff-match-patch
+      online-judge-api-client
+      requests
+    ];
+
+    doCheck = false;
+
+    meta = {
+      license = licenses.mit;
+      description =
+        "Tools for various online judges. Downloading sample cases, generating additional test cases, testing your code, and submitting it.";
     };
   };
 
