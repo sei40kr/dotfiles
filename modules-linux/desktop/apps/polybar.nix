@@ -23,15 +23,7 @@ let
   '';
   protonvpn = pkgs.writeShellScriptBin "protonvpn" ''
     export PATH="${
-      makeBinPath (with pkgs;
-        with pkgs.my.python3Packages; [
-          coreutils
-          gawk
-          gnugrep
-          procps
-          protonvpn-cli
-          unixtools.ping
-        ])
+      makeBinPath (with pkgs; with pkgs.my; [ protonvpn-cli-wrapper gawk ])
     }"
 
     ${<config/polybar/polybar-scripts/protonvpn/protonvpn>}

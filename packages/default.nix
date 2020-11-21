@@ -24,6 +24,9 @@
               };
               notion = callPackage ./notion.nix { };
               operator-mono = callPackage ./operator-mono.nix { };
+              protonvpn-cli-wrapper = callPackage ./protonvpn-cli-wrapper.nix {
+                protonvpn-cli = python3Packages.protonvpn-cli;
+              };
               zinit = callPackage ./zinit.nix { };
             };
           })
