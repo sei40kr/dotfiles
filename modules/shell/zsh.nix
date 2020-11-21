@@ -85,6 +85,7 @@ in {
 
           path=(
             ${pkgs.curl}/bin
+            ${pkgs.fzf}/bin
             ${pkgs.git}/bin
             ${pkgs.subversion}/bin
             $path
