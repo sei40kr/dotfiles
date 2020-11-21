@@ -11,23 +11,23 @@
 	path = packages/tmux-plugins/tmux-per-project-session
 	url = https://github.com/sei40kr/tmux-per-project-session
 [submodule "zsh-fzf-cd-dirs"]
-	path = config/zsh/zsh-fzf-cd-dirs
+	path = packages/zsh-plugins/zsh-fzf-cd-dirs
 	url = https://github.com/sei40kr/zsh-fzf-cd-dirs
 [submodule "zsh-fzf-docker"]
-	path = config/zsh/zsh-fzf-docker
+	path = packages/zsh-plugins/zsh-fzf-docker
 	url = https://github.com/sei40kr/zsh-fzf-docker
 [submodule "zsh-fzf-projects"]
-	path = config/zsh/zsh-fzf-projects
+	path = packages/zsh-plugins/zsh-fzf-projects
 	url = https://github.com/sei40kr/zsh-fzf-projects
 [submodule "zsh-gh-clone"]
-	path = config/zsh/zsh-gh-clone
+	path = packages/zsh-plugins/zsh-gh-clone
 	url = https://github.com/sei40kr/zsh-gh-clone
 [submodule "zsh-lazy-nvm"]
-	path = config/zsh/zsh-lazy-nvm
+	path = packages/zsh-plugins/zsh-lazy-nvm
 	url = https://github.com/sei40kr/zsh-lazy-nvm
 [submodule "zsh-ranger-cd"]
-	path = config/zsh/zsh-ranger-cd
+	path = packages/zsh-plugins/zsh-ranger-cd
 	url = https://github.com/sei40kr/zsh-ranger-cd
 [submodule "zsh-smart-command-history"]
-	path = config/zsh/zsh-smart-command-history
+	path = packages/zsh-plugins/zsh-smart-command-history
 	url = https://github.com/sei40kr/zsh-smart-command-history

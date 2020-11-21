@@ -8,12 +8,13 @@
             tmuxPlugins = (callPackage (import ./tmux-plugins) { });
             vimPlugins = (callPackage (import ./vim-plugins.nix) { });
             vscode-extensions = (callPackage (import ./vscode-extensions.nix) { });
+            zshPlugins = (callPackage (import ./zsh-plugins) { });
           in {
             inherit unstable;
 
             my = {
               inherit python3Packages rofiScripts tmuxPlugins vimPlugins
-                vscode-extensions;
+                vscode-extensions zshPlugins;
 
               alfred = callPackage ./alfred.nix { };
               corretto_11 = callPackage ./corretto_11.nix { };

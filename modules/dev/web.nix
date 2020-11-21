@@ -22,7 +22,7 @@ in {
         vue-language-server
       ];
       shell.zsh.zinitPluginsInit = ''
-        zinit light ${<config/zsh/zsh-lazy-nvm>}
+        zinit light ${pkgs.my.zshPlugins.lazy-nvm}/share/zsh/plugins/lazy-nvm
 
         zinit snippet OMZP::yarn/yarn.plugin.zsh
       '';
