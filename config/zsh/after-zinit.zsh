@@ -122,9 +122,6 @@ zinit light -b zdharma/history-search-multi-word
 if [[ "${+aliases[run-help]}" == 1 ]]; then
     unalias run-help
 fi
-zinit ice trigger-load'!run-help' \
-    atclone'mkdir -p "${WORKSPACE_DIR}/sei40kr"; ln -fs "$PWD" "${WORKSPACE_DIR}/sei40kr/zsh-run-help-collections"'
-zinit light sei40kr/zsh-run-help-collections
 
 zinit snippet OMZP::fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
 
