@@ -46,6 +46,27 @@ with lib; rec {
     };
   };
 
+  importlab = python3Packages.buildPythonPackage rec {
+    pname = "importlab";
+    version = "0.5.1";
+
+    src = python3Packages.fetchPypi {
+      inherit pname version;
+      sha256 =
+        "d855350d19dc10a17aabd2fe6f4b428ff1a936071f692fbf686a73694d26a51c";
+    };
+
+    propagatedBuildInputs = with python3Packages; [ networkx six ];
+
+    doCheck = false;
+
+    meta = {
+      license = licenses.asl20;
+      description =
+        "A library that automatically infers dependencies for Python files";
+    };
+  };
+
   online-judge-api-client = python3Packages.buildPythonPackage {
     pname = "online-judge-api-client";
     version = "10.5.0";
@@ -99,6 +120,36 @@ with lib; rec {
       license = licenses.mit;
       description =
         "Tools for various online judges. Downloading sample cases, generating additional test cases, testing your code, and submitting it.";
+    };
+  };
+
+  online-judge-verify-helper = python3Packages.buildPythonApplication {
+    pname = "online-judge-verify-helper";
+    version = "5.3.0";
+
+    src = fetchFromGitHub {
+      owner = "online-judge-tools";
+      repo = "verification-helper";
+      rev = "cee2c43359bf16470fe7981cab5517edceccfb6e";
+      sha256 = "0ap01jrrr7h7xsfa7xrqs9j8k0nyxy0ghhkkl97vqfj45j2fa3cg";
+    };
+
+    propagatedBuildInputs = with python3Packages; [
+      colorlog
+      importlab
+      online-judge-tools
+      pyyaml
+      requests
+      setuptools
+      toml
+    ];
+
+    doCheck = false;
+
+    meta = {
+      license = licenses.mit;
+      description =
+        "a testing framework for snippet libraries used in competitive programming";
     };
   };
 
