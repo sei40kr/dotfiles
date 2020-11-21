@@ -101,7 +101,7 @@ in {
           zinit ice has'fzf' trigger-load'!_fzf_complete_cd'
           zinit light ${<config/zsh/zsh-fzf-cd-dirs>}
 
-          FZF_PROJECTS_WORKSPACE_DIRS=( "$WORKSPACE_DIR" )
+          FZF_PROJECTS_WORKSPACE_DIRS=( "$PROJECT_DIR" )
           FZF_PROJECTS_PROJECT_DIR_MAX_DEPTH=2
           FZF_PROJECTS_KNOWN_PROJECTS=(
               "''${HOME}/.dotfiles"
@@ -119,7 +119,7 @@ in {
           zinit light ${<config/zsh/zsh-ranger-cd>}
           bindkey '\ec' ranger-cd
 
-          GH_CLONE_WORKSPACE_DIR="$WORKSPACE_DIR"
+          GH_CLONE_WORKSPACE_DIR="$PROJECT_DIR"
           zinit ice trigger-load'!gh-clone'
           zinit light ${<config/zsh/zsh-gh-clone>}
 
