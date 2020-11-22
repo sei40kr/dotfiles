@@ -68,9 +68,6 @@ in {
         # term/vterm
         libvterm
         cmake
-        # lang/jupyter
-        python37Packages.pandas
-        python37Packages.seaborn
         # lang/nix
         nix-linter
       ];

@@ -36,13 +36,7 @@ in {
     };
 
     my.packages = with pkgs;
-      ([
-        python37
-        python37Packages.matplotlib
-        python37Packages.numpy
-        python37Packages.jupyter
-        python37Packages.pandas
-      ] ++ optionals cfg.enablePoetry [ poetry ]);
+      ([ python37 ] ++ optionals cfg.enablePoetry [ poetry ]);
     my.env.PATH = [ "\${HOME}/.poetry/bin" ];
   };
 }
