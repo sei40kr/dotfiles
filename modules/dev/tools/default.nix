@@ -18,6 +18,7 @@ with lib; {
     ./pgcli.nix
     ./spring-boot.nix
     ./streamlit.nix
+    ./terraform.nix
     ./travis.nix
     ./zeal.nix
   ];
