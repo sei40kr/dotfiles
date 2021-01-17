@@ -34,3 +34,6 @@
 [submodule "zsh-smart-command-history"]
 	path = packages/zsh-plugins/zsh-smart-command-history
 	url = https://github.com/sei40kr/zsh-smart-command-history
+[submodule "zsh-tmux-man"]
+	path = packages/zsh-plugins/zsh-tmux-man
+	url = git@github.com:sei40kr/zsh-tmux-man.git

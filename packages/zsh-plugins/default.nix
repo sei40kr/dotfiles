@@ -116,4 +116,20 @@ with lib; {
 
     meta.platforms = platforms.all;
   };
+
+  tmux-man = stdenv.mkDerivation {
+    pname = "tmux-man";
+    version = "unstable-2021-01-17";
+
+    src = ./zsh-tmux-man;
+
+    dontBuild = true;
+
+    installPhase = ''
+      install -D tmux-man.plugin.zsh \
+        -T "''${out}/share/zsh/plugins/tmux-man/tmux-man.plugin.zsh"
+    '';
+
+    meta.platforms = platforms.all;
+  };
 }

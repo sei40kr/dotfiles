@@ -96,6 +96,9 @@ in {
 
           zinit light ${pkgs.my.zshPlugins.smart-command-history}/share/zsh/plugins/smart-command-history
 
+          zinit ice trigger-load'__tmux_man' atinit'bindkey "^[h" __tmux_man'
+          zinit light ${pkgs.my.zshPlugins.tmux-man}/share/zsh/plugins/tmux-man
+
           zinit ice has'fzf' trigger-load'!_fzf_complete_docker'
           zinit light ${pkgs.my.zshPlugins.fzf-docker}/share/zsh/plugins/fzf-docker
 
