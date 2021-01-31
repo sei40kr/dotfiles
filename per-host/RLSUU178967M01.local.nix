@@ -18,7 +18,13 @@
       };
       javascript.enable = true;
       web.enable = true;
-      tools.git.enable = true;
+      tools = {
+        awsCli = {
+          enable = true;
+          credentials = import <secrets/aws-credentials.nix>;
+        };
+        git.enable = true;
+      };
     };
     shell = {
       zsh.enable = true;
