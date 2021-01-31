@@ -12,7 +12,7 @@ with lib; {
   per-project-session = tmuxPlugins.mkDerivation {
     pluginName = "per-project-session";
     rtpFilePath = "per-project-session.tmux";
-    version = "unstable-2020-05-26";
+    version = "unstable-2021-01-23";
 
     src = ./tmux-per-project-session;
 
@@ -20,7 +20,7 @@ with lib; {
     dependencies = [ fd fzf ];
 
     postInstall = ''
-      wrapProgram "''${target}/libexec/goto-session.bash" \
+      wrapProgram "''${target}/libexec/switch-session" \
         --prefix PATH : ${makeBinPath [ fd fzf ]}
     '';
   };
