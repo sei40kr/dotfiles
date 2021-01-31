@@ -13,6 +13,7 @@ with lib; {
     ./jenv.nix
     ./jq.nix
     ./jupyter.nix
+    ./kaggle.nix
     ./maven.nix
     ./mycli.nix
     ./pgcli.nix
