@@ -24,6 +24,10 @@
           credentials = import <secrets/aws-credentials.nix>;
         };
         git.enable = true;
+        kaggle = {
+          enable = true;
+          credential = import <secrets/kaggle-credential.nix>;
+        };
       };
     };
     shell = {
