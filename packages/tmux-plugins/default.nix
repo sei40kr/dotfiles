@@ -1,6 +1,14 @@
 { fd, fzf, lib, makeWrapper, tmuxPlugins, ... }:
 
 with lib; {
+  cleanup-unnamed-sessions = tmuxPlugins.mkDerivation {
+    pluginName = "cleanup-unnamed-sessions";
+    rtpFilePath = "cleanup-unnamed-sessions.tmux";
+    version = "unstable-2021-01-23";
+
+    src = ./tmux-cleanup-unnamed-sessions;
+  };
+
   per-project-session = tmuxPlugins.mkDerivation {
     pluginName = "per-project-session";
     rtpFilePath = "per-project-session.tmux";

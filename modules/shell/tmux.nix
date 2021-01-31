@@ -41,6 +41,7 @@ in {
       secureSocket = pkgs.stdenv.isLinux;
       plugins = with pkgs.tmuxPlugins;
         with pkgs.my.tmuxPlugins; [
+          cleanup-unnamed-sessions
           copycat
           open
           pain-control
