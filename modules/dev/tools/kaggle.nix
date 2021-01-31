@@ -26,7 +26,7 @@ in {
 
     my.home.home.file.".kaggle/kaggle.json".text =
       mkIf (cfg.credential != null) builtins.toJSON {
-        usename = cfg.credential.userName;
+        username = cfg.credential.userName;
         key = cfg.credential.key;
       };
   };
