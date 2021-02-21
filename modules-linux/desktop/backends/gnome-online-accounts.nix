@@ -19,6 +19,6 @@ with lib; {
       };
     };
 
-    my.packages = with pkgs; [ gnome3.gnome-online-accounts ];
+    user.packages = with pkgs; [ gnome3.gnome-online-accounts ];
   };
 }

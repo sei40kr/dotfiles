@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib;
 let cfg = config.modules.dev.editors.emacs;
@@ -21,7 +21,7 @@ in {
   config = mkIf cfg.enable {
     modules.dev.editors.fonts.enable = mkForce true;
 
-    my.home.programs.emacs = {
+    home-manager.users.${config.user.name}.programs.emacs = {
       enable = true;
       package = cfg.package;
     };

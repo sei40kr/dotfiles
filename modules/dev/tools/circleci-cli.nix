@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.tools.circleciCli.enable {
-    my.packages = with pkgs; [ circleci-cli ];
+    user.packages = with pkgs; [ circleci-cli ];
   };
 }

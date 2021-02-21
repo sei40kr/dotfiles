@@ -19,7 +19,7 @@ stdenv.mkDerivation {
     cp -R . "''${out}/Applications/Notion.app"
   '';
 
-  meta = with stdenv.lib; {
+  meta = {
     homepage = "https://www.notion.so";
     license = licenses.unfree;
     platforms = platforms.darwin;

@@ -7,6 +7,7 @@ with lib; {
   };
 
   config = mkIf config.modules.shell.tools.onlineJudgeVerifyHelper.enable {
-    my.packages = with pkgs.my.python3Packages; [ online-judge-verify-helper ];
+    user.packages = with pkgs.my.python3Packages;
+      [ online-judge-verify-helper ];
   };
 }

@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.tools.dockerCompose.enable {
-    my.packages = with pkgs; [ docker-compose ];
+    user.packages = with pkgs; [ docker-compose ];
   };
 }

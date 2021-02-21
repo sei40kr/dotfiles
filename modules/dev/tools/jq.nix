@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.tools.jq.enable {
-    my.packages = with pkgs; [ jq ];
+    user.packages = with pkgs; [ jq ];
   };
 }

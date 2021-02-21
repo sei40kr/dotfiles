@@ -1,13 +1,14 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
+with lib;
+with lib.my; {
   options.modules.shell.tools.ripgrep.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
   config = mkIf config.modules.shell.tools.ripgrep.enable {
-    my.packages = with pkgs; [ ripgrep ];
-    my.home.home.file.".ripgreprc".source = <config/ripgrep/ripgreprc>;
+    user.packages = with pkgs; [ ripgrep ];
+    home.file.".ripgreprc".source = "${configDir}/ripgrep/ripgreprc";
   };
 }

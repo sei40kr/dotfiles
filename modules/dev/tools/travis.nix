@@ -12,6 +12,6 @@ with lib; {
       zinit snippet "''${HOME}/.travis/travis.sh"
     '';
 
-    my.packages = with pkgs; [ travis ];
+    user.packages = with pkgs; [ travis ];
   };
 }

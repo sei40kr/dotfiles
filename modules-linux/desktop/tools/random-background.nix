@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, home-manager, lib, ... }:
 
 with lib;
 (let cfg = config.modules.desktop.tools.randomBackground;
@@ -18,7 +18,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.home.services.random-background = {
+    home-manager.users.${config.user.name}.services.random-background = {
       enable = true;
       imageDirectory = cfg.imageDirectory;
       interval = cfg.interval;

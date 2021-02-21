@@ -16,8 +16,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.packages = with pkgs; [ gsettings-desktop-schemas ];
-    my.env.XDG_DATA_DIRS = map (p: "${p}/share/gsettings-schemas/${p.name}")
+    user.packages = with pkgs; [ gsettings-desktop-schemas ];
+    env.XDG_DATA_DIRS = map (p: "${p}/share/gsettings-schemas/${p.name}")
       (cfg.packages ++ [ pkgs.gsettings-desktop-schemas ]);
   };
 }

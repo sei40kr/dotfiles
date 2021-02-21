@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, home-manager, lib, ... }:
 
 with lib; {
   options.modules.desktop.browsers.chromium.enable = mkOption {
@@ -9,6 +9,6 @@ with lib; {
   config = mkIf config.modules.desktop.browsers.chromium.enable {
     modules.desktop.config.gtk.enable = mkForce true;
 
-    my.home.programs.chromium.enable = true;
+    home-manager.users.${config.user.name}.programs.chromium.enable = true;
   };
 }

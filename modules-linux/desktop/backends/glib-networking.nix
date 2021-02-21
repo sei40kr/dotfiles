@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib; {
   options.modules.desktop.backends.glibNetworking.enable = mkOption {
@@ -14,14 +14,14 @@ with lib; {
 
     services.udev.packages = with pkgs; [ libmtp ];
 
-    my.env.GIO_EXTRA_MODULES = [ "${pkgs.glib-networking}/lib/gio/modules" ];
-    my.home.systemd.user.services.glib-pacrunner = {
-      Unit.Description = "GLib proxy auto-configuration service";
-      Service = {
-        Type = "dbus";
-        BusName = "org.gtk.GLib.PACRunner";
-        ExecStart = "${pkgs.glib-networking}/libexec/glib-pacrunner";
+    home-manager.users.${config.user.name}.systemd.user.services.glib-pacrunner =
+      {
+        Unit.Description = "GLib proxy auto-configuration service";
+        Service = {
+          Type = "dbus";
+          BusName = "org.gtk.GLib.PACRunner";
+          ExecStart = "${pkgs.glib-networking}/libexec/glib-pacrunner";
+        };
       };
-    };
   };
 }

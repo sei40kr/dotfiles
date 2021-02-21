@@ -25,6 +25,6 @@ with lib; {
       };
     };
 
-    my.packages = with pkgs; [ kotlin ];
+    user.packages = with pkgs; [ kotlin ];
   };
 }

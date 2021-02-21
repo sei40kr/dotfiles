@@ -21,5 +21,5 @@ in {
     };
   };
 
-  config = mkIf cfg.enable { my.packages = cfg.packages; };
+  config = mkIf cfg.enable { user.packages = cfg.packages; };
 }

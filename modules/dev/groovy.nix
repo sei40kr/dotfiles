@@ -17,6 +17,6 @@ with lib; {
       gradle.enable = mkForce true;
     };
 
-    my.packages = with pkgs; [ groovy ];
+    user.packages = with pkgs; [ groovy ];
   };
 }

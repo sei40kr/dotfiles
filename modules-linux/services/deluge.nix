@@ -1,10 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib;
 let
   cfg = config.modules.services.deluge;
-  home = config.users.users."${config.my.userName}".home;
-  downloadDir = "${home}/Downloads";
+  downloadDir = "${homeDir}/Downloads";
   defaultListenPort = 6881;
   listenPort =
     elemAt (cfg.config.listen_ports or [ defaultListenPort defaultListenPort ])
@@ -45,7 +44,7 @@ in {
 
     package = mkOption {
       type = types.package;
-      default = pkgs.unstable.deluge;
+      default = pkgs.deluge;
     };
 
     web = {
@@ -79,9 +78,9 @@ in {
       allowedUDPPorts = optionals cfg.openFirewall [ listenPort ];
     };
 
-    my.packages = [ cfg.package ];
-    my.home.xdg.configFile."deluge/core.conf".text = builtins.toJSON cfg.config;
-    my.home.systemd.user.services = {
+    user.packages = [ cfg.package ];
+    home.configFile."deluge/core.conf".text = builtins.toJSON cfg.config;
+    home-manager.users.${config.user.name}.systemd.user.services = {
       deluged = {
         Unit = {
           Description = "Deluge BitTorrent Daemon";

@@ -12,6 +12,6 @@ with lib; {
       ideavim.enable = mkForce true;
     };
 
-    my.packages = with pkgs; [ jetbrains.datagrip ];
+    user.packages = with pkgs; [ jetbrains.datagrip ];
   };
 }

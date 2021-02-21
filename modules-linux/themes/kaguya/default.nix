@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib;
 let rofiEnabled = config.modules.desktop.apps.rofi.enable;
@@ -9,7 +9,7 @@ in {
   };
 
   config = mkIf config.modules.themes.kaguya.enable {
-    my.home.gtk = {
+    home-manager.users.${config.user.name}.gtk = {
       iconTheme = {
         package = pkgs.gnome3.adwaita-icon-theme;
         name = "Adwaita";
@@ -27,7 +27,7 @@ in {
     modules.desktop.apps.polybar.themeConfig = ./polybar/theme.conf;
 
     modules.desktop.apps.rofi.theme = "kaguya";
-    my.home.xdg.configFile."rofi/kaguya.rasi".source =
+    home.configFile."rofi/kaguya.rasi".source =
       mkIf rofiEnabled ./rofi/theme.rasi;
 
     modules.desktop.browsers.qutebrowser.themeConfig = ./qutebrowser/theme.py;

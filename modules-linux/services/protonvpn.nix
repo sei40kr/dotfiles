@@ -7,8 +7,8 @@ with lib; {
   };
 
   config = mkIf config.modules.services.protonvpn.enable {
-    my.packages = with pkgs.my; [ protonvpn-cli-wrapper ];
-    my.aliases = {
+    user.packages = with pkgs; [ protonvpn-cli ];
+    modules.shell.zsh.aliases = {
       protonvpn = "sudo protonvpn";
       pvpn = "sudo protonvpn";
     };
@@ -19,8 +19,8 @@ with lib; {
       serviceConfig = {
         Type = "forking";
         Environment =
-          [ "PVPN_WAIT=300" "PVPN_DEBUG=1" "SUDO_USER=${config.my.userName}" ];
-        ExecStart = "${pkgs.my.protonvpn-cli-wrapper}/bin/protonvpn c --p2p";
+          [ "PVPN_WAIT=300" "PVPN_DEBUG=1" "SUDO_USER=${config.user.name}" ];
+        ExecStart = "${pkgs.protonvpn-cli}/bin/protonvpn c --p2p";
       };
     };
   };

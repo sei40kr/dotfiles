@@ -15,6 +15,6 @@ with lib; {
       '';
     };
 
-    my.packages = with pkgs; [ maven ];
+    user.packages = with pkgs; [ maven ];
   };
 }

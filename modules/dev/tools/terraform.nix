@@ -15,8 +15,8 @@ with lib; {
       '';
     };
 
-    my.packages = with pkgs; [ terraform ];
+    user.packages = with pkgs; [ terraform ];
 
-    my.aliases.tf = "terraform";
+    modules.shell.zsh.aliases.tf = "terraform";
   };
 }

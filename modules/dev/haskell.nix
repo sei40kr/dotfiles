@@ -8,12 +8,12 @@ with lib; {
 
   config = mkIf config.modules.dev.haskell.enable {
     modules = {
-      dev.editors.tools.packages = with pkgs.haskellPackages;
+      dev.editors.tools.packages = with pkgs;
         with pkgs.my; [
-          brittany
-          ghcide
-          haskell-language-server
-          hlint
+          haskellPackages.brittany
+          haskellPackages.ghcide
+          haskellPackages.haskell-language-server
+          haskellPackages.hlint
         ];
       shell.zsh.zinitPluginsInit = ''
         zinit ice wait'''
@@ -23,14 +23,14 @@ with lib; {
       '';
     };
 
-    my.packages = with pkgs; [ ghc stack ];
+    user.packages = with pkgs; [ ghc stack ];
 
-    my.home.home.file.".stack/config.yaml".text = ''
+    home.file.".stack/config.yaml".text = ''
       templates:
         params:
-          author-email: ${config.my.userEmail}
-          author-name: ${config.my.userName}
-          copyright: 'Copyright (c) 2020 ${config.my.userName}'
+          author-email: sei40kr@gmail.com
+          author-name: ${config.user.name}
+          copyright: 'Copyright (c) 2021 sei40kr'
           github-username: sei40kr
     '';
   };

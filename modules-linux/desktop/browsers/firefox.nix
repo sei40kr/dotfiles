@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, home-manager, lib, ... }:
 
 with lib; {
   options.modules.desktop.browsers.firefox.enable = mkOption {
@@ -9,6 +9,6 @@ with lib; {
   config = mkIf config.modules.desktop.browsers.firefox.enable {
     modules.desktop.config.gtk.enable = mkForce true;
 
-    my.home.programs.firefox.enable = true;
+    home-manager.users.${config.user.name}.programs.firefox.enable = true;
   };
 }

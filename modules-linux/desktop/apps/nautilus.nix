@@ -19,6 +19,6 @@ with lib; {
       gvfs.enable = true;
     };
 
-    my.packages = with pkgs; [ gnome3.nautilus ];
+    user.packages = with pkgs; [ gnome3.nautilus ];
   };
 }

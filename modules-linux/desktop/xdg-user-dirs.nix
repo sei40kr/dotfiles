@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib; {
   options.modules.desktop.xdgUserDirs.enable = mkOption {
@@ -19,7 +19,7 @@ with lib; {
       export XDG_VIDEOS_DIR
     '';
 
-    my.packages = with pkgs; [ xdg-user-dirs ];
-    my.home.xdg.userDirs.enable = true;
+    user.packages = with pkgs; [ xdg-user-dirs ];
+    home-manager.users.${config.user.name}.xdg.userDirs.enable = true;
   };
 }

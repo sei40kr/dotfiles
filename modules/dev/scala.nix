@@ -28,6 +28,6 @@ with lib; {
       '';
     };
 
-    my.packages = with pkgs; [ scala sbt scalafmt metals ];
+    user.packages = with pkgs; [ scala sbt scalafmt metals ];
   };
 }

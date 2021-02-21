@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.term.iterm2.enable {
-    my.packages = with pkgs; [ iterm2 ];
+    user.packages = with pkgs; [ iterm2 ];
   };
 }

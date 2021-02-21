@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.dev.tools.streamlit.enable {
-    my.packages = with pkgs; [ streamlit ];
+    user.packages = with pkgs; [ streamlit ];
   };
 }

@@ -1,6 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib;
+with lib.my;
 let cfg = config.modules.shell.tmux;
 in {
   options.modules.shell.tmux = {
@@ -28,11 +29,11 @@ in {
       fi
     '';
 
-    my.home.programs.tmux = {
+    home-manager.users.${config.user.name}.programs.tmux = {
       baseIndex = 1;
       enable = true;
       extraConfig = ''
-        source-file ${<config/tmux/tmux.conf>}
+        source-file ${configDir}/tmux/tmux.conf
 
         ${cfg.extraConfig}
       '';

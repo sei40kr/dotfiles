@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.apps.slack.enable {
-    my.packages = [ pkgs.slack ];
+    user.packages = [ pkgs.slack ];
   };
 }

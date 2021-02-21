@@ -20,6 +20,6 @@ with lib; {
       };
     };
 
-    my.packages = with pkgs; [ gnome3.gnome-contacts ];
+    user.packages = with pkgs; [ gnome3.gnome-contacts ];
   };
 }

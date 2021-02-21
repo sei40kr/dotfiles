@@ -1,9 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib;
-let
-  home = config.users.users."${config.my.userName}".home;
-  cfg = config.modules.desktop.xmonad;
+with lib.my;
+let cfg = config.modules.desktop.xmonad;
 in {
   options.modules.desktop.xmonad = {
     enable = mkOption {
@@ -41,13 +40,13 @@ in {
       services.picom.enable = mkForce true;
     };
 
-    my.home.xsession.windowManager.xmonad = {
+    home-manager.users.${config.user.name}.xsession.windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
     };
 
-    my.packages = with pkgs; [ xorg.xmessage gxmessage ]; # required by Xmonad
-    my.home.home.file.".xmonad/src/Lib/Actions.hs".text = ''
+    user.packages = with pkgs; [ xorg.xmessage gxmessage ]; # required by Xmonad
+    home.file.".xmonad/src/Lib/Actions.hs".text = ''
       module Lib.Actions
         ( spawnPolybar
         , spawnRofi
@@ -79,9 +78,9 @@ in {
       spawnStartup :: X ()
       spawnStartup = spawnPolybar
     '';
-    my.home.home.file.".xmonad/src/Lib/Theme.hs".source = cfg.themeConfig;
-    my.home.home.file.".xmonad/build".source = <config/xmonad/build>;
-    my.home.home.file.".xmonad/package.yaml".text = ''
+    home.file.".xmonad/src/Lib/Theme.hs".source = cfg.themeConfig;
+    home.file.".xmonad/build".source = "${configDir}/xmonad/build";
+    home.file.".xmonad/package.yaml".text = ''
       name:                my-xmonad
       version:             0.1.0.0
       github:              "sei40kr/dotfiles"
@@ -109,12 +108,12 @@ in {
       - xmonad-contrib >=0.15 && <0.16
 
       library:
-        source-dirs: ${home}/.xmonad/src
+        source-dirs: ${homeDir}/.xmonad/src
 
       executables:
         my-xmonad:
           main:                Main.hs
-          source-dirs:         ${<config/xmonad/app>}
+          source-dirs:         ${configDir}/xmonad/app
           ghc-options:
           - -threaded
           - -rtsopts
@@ -122,9 +121,9 @@ in {
           dependencies:
           - my-xmonad
     '';
-    my.home.home.file.".xmonad/shell.nix".source = <config/xmonad/shell.nix>;
-    my.home.home.file.".xmonad/stack.yaml".source = <config/xmonad/stack.yaml>;
-    my.home.home.file.".xmonad/stack.yaml.lock".source =
-      <config/xmonad/stack.yaml.lock>;
+    home.file.".xmonad/shell.nix".source = "${configDir}/xmonad/shell.nix";
+    home.file.".xmonad/stack.yaml".source = "${configDir}/xmonad/stack.yaml";
+    home.file.".xmonad/stack.yaml.lock".source =
+      "${configDir}/xmonad/stack.yaml.lock";
   };
 }

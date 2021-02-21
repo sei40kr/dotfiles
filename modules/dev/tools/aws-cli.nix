@@ -27,9 +27,9 @@ in {
       zinit snippet ${pkgs.awscli}/share/zsh/site-functions/aws_zsh_completer.sh
     '';
 
-    my.packages = with pkgs; [ awscli ];
+    user.packages = with pkgs; [ awscli ];
 
-    my.home.home.file.".aws/credentials".text = mkIf (cfg.credentials != { })
+    home.file.".aws/credentials".text = mkIf (cfg.credentials != { })
       (generators.toINI { } (mapAttrs (k: v: {
         aws_access_key_id = v.accessKeyId;
         aws_secret_access_key = v.secretAccessKey;

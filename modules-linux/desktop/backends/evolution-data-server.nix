@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib; {
   options.modules.desktop.backends.evolutionDataServer.enable = mkOption {
@@ -19,8 +19,8 @@ with lib; {
       };
     };
 
-    my.packages = with pkgs; [ gnome3.evolution-data-server ];
-    my.home.systemd.user.services = {
+    user.packages = with pkgs; [ gnome3.evolution-data-server ];
+    home-manager.users.${config.user.name}.systemd.user.services = {
       evolution-addressbook-factory = {
         Unit.Description = "Evolution address book service";
         Service = {

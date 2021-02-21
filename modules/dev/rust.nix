@@ -31,8 +31,8 @@ with lib; {
       '';
     };
 
-    my.packages = with pkgs; [ rustup ];
-    my.env = rec {
+    user.packages = with pkgs; [ rustup ];
+    env = rec {
       CARGO_HOME = "\${HOME}/.cargo";
       PATH = [ "${CARGO_HOME}/bin" ];
     };

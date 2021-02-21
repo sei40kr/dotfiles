@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib; {
   options.modules.desktop.backends.tracker.enable = mkOption {
@@ -19,17 +19,18 @@ with lib; {
       };
     };
 
-    my.packages = with pkgs; [ tracker ];
-    my.home.systemd.user.services.tracker-store = {
-      Unit.Description = "Tracker metadata database store and lookup manager";
-      Service = {
-        Type = "dbus";
-        BusName = "org.freedesktop.Tracker1";
-        ExecStart = "${pkgs.tracker}/libexec/tracker-store";
-        Restart = "on-failure";
-        # Don't restart after tracker daemon -k (aka tracker-control -k)
-        RestartPreventExitStatus = "SIGKILL";
+    user.packages = with pkgs; [ tracker ];
+    home-manager.users.${config.user.name}.systemd.user.services.tracker-store =
+      {
+        Unit.Description = "Tracker metadata database store and lookup manager";
+        Service = {
+          Type = "dbus";
+          BusName = "org.freedesktop.Tracker1";
+          ExecStart = "${pkgs.tracker}/libexec/tracker-store";
+          Restart = "on-failure";
+          # Don't restart after tracker daemon -k (aka tracker-control -k)
+          RestartPreventExitStatus = "SIGKILL";
+        };
       };
-    };
   };
 }

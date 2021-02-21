@@ -17,9 +17,9 @@ in {
   };
 
   config = mkIf config.modules.shell.tools.ranger.enable {
-    my.packages = with pkgs; [ ranger ];
+    user.packages = with pkgs; [ ranger ];
 
-    my.home.xdg.configFile."ranger/rc.conf".text = ''
+    home.configFile."ranger/rc.conf".text = ''
       # ===================================================================
       # This file contains the default startup commands for ranger.
       # To change them, it is recommended to create either /etc/ranger/rc.conf

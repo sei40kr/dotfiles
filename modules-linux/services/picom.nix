@@ -1,21 +1,21 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
-with lib; {
+with lib;
+with lib.my; {
   options.modules.services.picom.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
   config = mkIf config.modules.services.picom.enable {
-    my.packages = with pkgs; [ picom ];
-    my.home.xdg.configFile."picom/picom.conf".source =
-      <config/picom/picom.conf>;
-    my.home.systemd.user.services.picom = {
+    user.packages = with pkgs; [ picom ];
+    home.configFile."picom/picom.conf".source = "${configDir}/picom/picom.conf";
+    home-manager.users.${config.user.name}.systemd.user.services.picom = {
       Unit = {
         Description = "Picom X11 compositor";
         After = [ "graphical-session-pre.target" ];
         PartOf = [ "graphical-session.target" ];
-        X-Restart-Triggers = [ "${<config/picom/picom.conf>}" ];
+        X-Restart-Triggers = [ "${configDir}/picom/picom.conf" ];
       };
       Install.WantedBy = [ "graphical-session.target" ];
       Service = {

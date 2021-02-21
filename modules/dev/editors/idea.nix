@@ -13,6 +13,6 @@ with lib; {
       tabnine.enable = mkForce true;
     };
 
-    my.packages = with pkgs; [ jetbrains.idea-ultimate ];
+    user.packages = with pkgs; [ jetbrains.idea-ultimate ];
   };
 }

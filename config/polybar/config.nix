@@ -14,13 +14,12 @@
 #   The README contains a lot of information
 #
 #==========================================================
-{ fcitx, fcitx-status, gnome-pomodoro, gnome-pomodoro_py, lib, owm-pop
-, protonvpn, youtube-music }:
+{ fcitx, gnome-pomodoro, gnome-pomodoro_py, lib, youtube-music }:
 
 {
   "bar/top" = {
     modules-left = "ewmh";
-    modules-right = "youtube-music owm-pop fcitx-status protonvpn alsa date";
+    modules-right = "youtube-music alsa date";
   };
 
   "module/ewmh" = {
@@ -99,33 +98,6 @@
     format = "%{+u}<label>%{-u}";
     label = "%output%";
     click-left = "${gnome-pomodoro}/bin/gnome-pomodoro";
-  };
-
-  "module/owm-pop" = {
-    type = "custom/script";
-    exec = "${owm-pop}/bin/owm-pop";
-    interval = 600;
-    format = "%{+u}<label>%{-u}";
-    label = "%output%";
-  };
-
-  "module/fcitx-status" = {
-    type = "custom/script";
-    exec = "${fcitx-status}/bin/fcitx-status";
-    exec-if = "[ -x ${fcitx}/bin/fcitx-remote ]";
-    interval = 1;
-    format = "%{+u}  <label>  %{-u}";
-    label = "%output%";
-    click-left = "${fcitx}/bin/fcitx-configtool";
-  };
-
-  "module/protonvpn" = {
-    type = "custom/script";
-    exec = "${protonvpn}/bin/protonvpn";
-    interval = 5;
-    format = "%{+u}  %{T2}%{F#59b068}%{F-}%{T-}  <label>   %{-u}";
-    format-underline = "#59b068";
-    label = "%output%";
   };
 
   "module/alsa" = {

@@ -1,22 +1,23 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
+with lib;
+with lib.my; {
   options.modules.shell.tools.atcoderTools.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
   config = mkIf config.modules.shell.tools.atcoderTools.enable {
-    my.packages = with pkgs; [ my.python3Packages.atcoder-tools ];
-    my.home.home.file.".atcodertools.toml".text = generators.toINI { } {
+    user.packages = with pkgs; [ my.python3Packages.atcoder-tools ];
+    home.file.".atcodertools.toml".text = generators.toINI { } {
       codestyle = {
         indent_type = "space";
         indent_width = 4;
-        template_file = "${<config/atcoder-tools/my_template.rs>}";
+        template_file = "${configDir}/atcoder-tools/my_template.rs";
         workspace_dir = "~/projects/sei40kr/hello-atcoder/";
         lang = "rust";
         code_generator_file =
-          "${<config/atcoder-tools/custom_code_generator.py>}";
+          "${configDir}/atcoder-tools/custom_code_generator.py";
       };
 
       postprocess = {

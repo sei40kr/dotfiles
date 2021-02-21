@@ -19,6 +19,6 @@ with lib; {
       trackerMiners.enable = mkForce true;
     };
 
-    my.packages = with pkgs; [ gnome3.gnome-books ];
+    user.packages = with pkgs; [ gnome3.gnome-books ];
   };
 }

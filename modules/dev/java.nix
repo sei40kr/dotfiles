@@ -27,6 +27,6 @@ in {
       springBoot.enable = mkForce true;
     };
 
-    my.packages = with pkgs; [ jdk11 ];
+    user.packages = with pkgs; [ jdk11 ];
   };
 }

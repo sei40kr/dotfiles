@@ -28,17 +28,17 @@ in {
       '';
     };
 
-    my.home.home.file = foldl (files: name:
+    home.file = foldl (files: name:
       files // {
         ".nvm/${name}".source = "${nvm.outPath}/${name}";
       }) { } nvmRootFiles;
 
-    my.packages = with pkgs; [ nodejs yarn ];
-    my.env = {
+    user.packages = with pkgs; [ nodejs yarn ];
+    env = {
       NVM_DIR = [ "\${HOME}/.nvm" ];
       PATH = [ "\${HOME}/.yarn/bin" ];
     };
-    my.aliases = {
+    modules.shell.zsh.aliases = {
       npmg = "npm i -g ";
       npmS = "npm i -S ";
       npmD = "npm i -D ";

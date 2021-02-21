@@ -30,11 +30,11 @@ in {
       zinit light zdharma/null
     '';
 
-    my.packages = [ package ];
-    my.env = rec {
+    user.packages = [ package ];
+    env = rec {
       JENV_ROOT = "\${HOME}/.jenv";
       PATH = [ "${JENV_ROOT}/bin" "${JENV_ROOT}/shims" ];
     };
-    my.home.home.file.".jenv".source = "${package}/share/jenv";
+    home.file.".jenv".source = "${package}/share/jenv";
   };
 }

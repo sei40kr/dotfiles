@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib; {
   options.modules.desktop.backends.trackerMiners.enable = mkOption {
@@ -20,8 +20,8 @@ with lib; {
       tracker.enable = mkForce true;
     };
 
-    my.packages = with pkgs; [ tracker-miners ];
-    my.home.systemd.user.services = {
+    user.packages = with pkgs; [ tracker-miners ];
+    home-manager.users.${config.user.name}.systemd.user.services = {
       tracker-extract = {
         Unit.Description = "Tracker metadata extractor";
         Service = {

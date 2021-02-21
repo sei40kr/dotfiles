@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.tools.scrot.enable {
-    my.packages = with pkgs; [ scrot ];
+    user.packages = with pkgs; [ scrot ];
   };
 }

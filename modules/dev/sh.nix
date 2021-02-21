@@ -14,6 +14,6 @@ with lib; {
         shfmt
       ];
 
-    my.packages = with pkgs; [ shellcheck shfmt ];
+    user.packages = with pkgs; [ shellcheck shfmt ];
   };
 }

@@ -1,13 +1,14 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
+with lib;
+with lib.my; {
   options.modules.shell.xonsh.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
   config = mkIf config.modules.shell.xonsh.enable {
-    my.packages = with pkgs; [ xonsh ];
-    my.home.home.file.".xonshrc".source = <config/xonsh/xonshrc>;
+    user.packages = with pkgs; [ xonsh ];
+    home.file.".xonshrc".source = "${configDir}/xonsh/xonshrc";
   };
 }

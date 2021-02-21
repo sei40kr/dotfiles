@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
+with lib;
+with lib.my; {
   options.modules.desktop.x11.xbindkeys.enable = mkOption {
     type = types.bool;
     default = false;
@@ -11,9 +12,9 @@ with lib; {
       ${pkgs.xbindkeys}/bin/xbindkeys
     '';
 
-    my.packages = with pkgs; [ xbindkeys ];
-    my.home.home.file.".xbindkeysrc" = {
-      source = <config/xbindkeys/xbindkeysrc>;
+    user.packages = with pkgs; [ xbindkeys ];
+    home.file.".xbindkeysrc" = {
+      source = "${configDir}/xbindkeys/xbindkeysrc";
       onChange = "$DRY_RUN_CMD ${pkgs.xbindkeys}/bin/xbindkeys -p";
     };
   };

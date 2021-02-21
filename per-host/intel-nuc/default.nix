@@ -1,16 +1,27 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
-  my.userName = "sei40kr";
-  my.userFullName = "Seong Yong-ju";
-  my.userEmail = "sei40kr@gmail.com";
+with lib;
+with lib.my; {
+  imports = [ ./hardware-configuration.nix ../personal.nix ];
 
-  my.user = {
-    isNormalUser = true;
-    uid = 1000;
-    extraGroups = [ "wheel" "video" "networkmanager" ];
-    shell = pkgs.zsh;
+  networking.hostName = "nixos"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  networking.interfaces.eno1.useDHCP = true;
+
+  # Select internationalisation properties.
+  # i18n.defaultLocale = "en_US.UTF-8";
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
   };
+
+  # Set your time zone.
+  time.timeZone = "Asia/Tokyo";
+
+  # Enable sound.
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
 
   modules = {
     desktop = {
@@ -86,7 +97,6 @@
         # Infrastructure & CI Tools
         ansible.enable = true;
         awsCli.enable = true;
-        awsShell.enable = true;
         datagrip.enable = true;
         dockerCompose.enable = true;
         googleCloudSdk.enable = true;

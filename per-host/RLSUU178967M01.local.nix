@@ -1,9 +1,8 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
-{
+with lib;
+with lib.my; {
   imports = [ ../secrets/per-host/RLSUU178967M01.local.nix ];
-
-  my.user.shell = pkgs.zsh;
 
   modules = {
     dev = {
@@ -19,15 +18,9 @@
       javascript.enable = true;
       web.enable = true;
       tools = {
-        awsCli = {
-          enable = true;
-          credentials = import <secrets/aws-credentials.nix>;
-        };
+        awsCli.enable = true;
         git.enable = true;
-        kaggle = {
-          enable = true;
-          credential = import <secrets/kaggle-credential.nix>;
-        };
+        kaggle.enable = true;
       };
     };
     shell = {

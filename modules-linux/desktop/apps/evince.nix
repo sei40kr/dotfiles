@@ -18,6 +18,6 @@ with lib; {
       };
     };
 
-    my.packages = with pkgs; [ evince ];
+    user.packages = with pkgs; [ evince ];
   };
 }

@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.shell.tools.strace.enable {
-    my.packages = with pkgs; [ strace ];
+    user.packages = with pkgs; [ strace ];
   };
 }

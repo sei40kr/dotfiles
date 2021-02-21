@@ -12,6 +12,6 @@ with lib; {
       packages = with pkgs; [ gnome3.eog ];
     };
 
-    my.packages = with pkgs; [ gnome3.eog ];
+    user.packages = with pkgs; [ gnome3.eog ];
   };
 }

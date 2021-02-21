@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib;
 let cfg = config.modules.services.jellyfin;
@@ -20,8 +20,8 @@ in {
     networking.firewall.allowedTCPPorts =
       optionals cfg.openFirewall [ 8096 8920 ];
 
-    my.packages = with pkgs; [ jellyfin ];
-    my.home.systemd.user.services.jellyfin = {
+    user.packages = with pkgs; [ jellyfin ];
+    home-manager.users.${config.user.name}.systemd.user.services.jellyfin = {
       Unit = {
         Description = "Jellyfin Media Server";
         After = [ "network.target" ];

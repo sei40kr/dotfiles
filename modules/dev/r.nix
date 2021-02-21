@@ -16,9 +16,9 @@ in {
   };
 
   config = mkIf config.modules.dev.r.enable {
-    my.packages = with pkgs; [ rEnv ];
-    my.aliases.R = "R -q --no-save --no-restore-data";
-    my.home.home.file = {
+    user.packages = with pkgs; [ rEnv ];
+    modules.shell.zsh.aliases.R = "R -q --no-save --no-restore-data";
+    home.file = {
       ".Renviron".text = ''
         R_LIBS=${pkgs.R}/library
       '';

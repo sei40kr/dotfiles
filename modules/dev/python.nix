@@ -35,8 +35,8 @@ in {
       '';
     };
 
-    my.packages = with pkgs;
+    user.packages = with pkgs;
       ([ python37 ] ++ optionals cfg.enablePoetry [ poetry ]);
-    my.env.PATH = [ "\${HOME}/.poetry/bin" ];
+    env.PATH = [ "\${HOME}/.poetry/bin" ];
   };
 }

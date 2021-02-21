@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib;
 (let cfg = config.modules.services.psd;
@@ -17,9 +17,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.packages = with pkgs; [ profile-sync-daemon ];
+    user.packages = with pkgs; [ profile-sync-daemon ];
 
-    my.home.systemd.user = {
+    home-manager.users.${config.user.name}.systemd.user = {
       services = {
         psd = {
           Unit = {

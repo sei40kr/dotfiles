@@ -24,6 +24,6 @@ with lib; {
       telepathy.enable = mkForce true;
     };
 
-    my.packages = with pkgs; [ gnome3.geary ];
+    user.packages = with pkgs; [ gnome3.geary ];
   };
 }

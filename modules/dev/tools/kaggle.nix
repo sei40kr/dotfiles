@@ -22,9 +22,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.packages = with pkgs; [ kaggle ];
+    user.packages = with pkgs; [ kaggle ];
 
-    my.home.home.file.".kaggle/kaggle.json".text = mkIf (cfg.credential != null)
+    home.file.".kaggle/kaggle.json".text = mkIf (cfg.credential != null)
       (builtins.toJSON {
         username = cfg.credential.userName;
         key = cfg.credential.key;

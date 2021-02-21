@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.shell.tools.onlineJudgeTools.enable {
-    my.packages = with pkgs.my.python3Packages; [ online-judge-tools ];
+    user.packages = with pkgs.my.python3Packages; [ online-judge-tools ];
   };
 }

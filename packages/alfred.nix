@@ -19,7 +19,7 @@ stdenv.mkDerivation {
     cp -R . "''${out}/Applications/Alfred 4.app"
   '';
 
-  meta = with stdenv.lib; {
+  meta = {
     homepage = "https://www.alfredapp.com";
     license = licenses.unfree;
     platforms = platforms.darwin;

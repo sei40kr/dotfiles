@@ -1,13 +1,14 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
+with lib;
+with lib.my; {
   options.modules.dev.tools.mycli.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
   config = mkIf config.modules.dev.tools.mycli.enable {
-    my.packages = with pkgs; [ mycli ];
-    my.home.home.file.".myclirc".source = <config/mycli/myclirc>;
+    user.packages = with pkgs; [ mycli ];
+    home.file.".myclirc".source = "${configDir}/mycli/myclirc";
   };
 }

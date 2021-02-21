@@ -1,16 +1,17 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
-with lib; {
+with lib;
+with lib.my; {
   options.modules.services.redshift.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
   config = mkIf config.modules.services.redshift.enable {
-    my.packages = with pkgs; [ redshift ];
-    my.home.xdg.configFile."redshift/redshift.conf".source =
-      <config/redshift/redshift.conf>;
-    my.home.systemd.user.services.redshift = {
+    user.packages = with pkgs; [ redshift ];
+    home.configFile."redshift/redshift.conf".source =
+      "${configDir}/redshift/redshift.conf";
+    home-manager.users.${config.user.name}.systemd.user.services.redshift = {
       Unit = {
         Description = "Redshift colour temperature adjuster";
         After = [ "graphical-session-pre.target" ];

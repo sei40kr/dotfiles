@@ -15,6 +15,6 @@ with lib; {
       '';
     };
 
-    my.packages = with pkgs; [ gradle ];
+    user.packages = with pkgs; [ gradle ];
   };
 }

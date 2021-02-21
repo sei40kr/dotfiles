@@ -10,6 +10,6 @@ with lib; {
     modules.dev.editors.tools.packages = with pkgs; [ ccls cpplint ];
 
     # TODO Install clang
-    my.packages = with pkgs; [ llvm_10 gcc10 gdb ];
+    user.packages = with pkgs; [ llvm_10 gcc10 gdb ];
   };
 }

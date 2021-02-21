@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.apps.bitwarden.enable {
-    my.packages = with pkgs; [ bitwarden ];
+    user.packages = with pkgs; [ bitwarden ];
   };
 }

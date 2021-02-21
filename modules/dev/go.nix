@@ -8,16 +8,13 @@ with lib; {
 
   config = mkIf config.modules.dev.go.enable {
     modules = {
-      # TODO goimports
-      dev.editors.tools.packages = with pkgs.unstable; [
-        unstable.gopls
-        unstable.gore
-      ];
+      # TODO Install goimports
+      dev.editors.tools.packages = with pkgs; [ gopls gore ];
       shell.zsh.zinitPluginsInit = ''
         zinit snippet OMZP::golang/golang.plugin.zsh
       '';
     };
 
-    my.packages = with pkgs; [ go ];
+    user.packages = with pkgs; [ go ];
   };
 }

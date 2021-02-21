@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
 with lib;
+with lib.my;
 let
   clipmenuEnabled = config.modules.desktop.tools.clipmenu.enable;
 
@@ -60,9 +61,9 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.packages = [ cfg.package ];
-    my.home.xdg.configFile."rofi/config.rasi".text = ''
-      ${readFile <config/rofi/config.rasi>}
+    user.packages = [ cfg.package ];
+    home.configFile."rofi/config.rasi".text = ''
+      ${readFile "${configDir}/rofi/config.rasi"}
 
       configuration {
         modi: "${concatStringsSep "," modi}";

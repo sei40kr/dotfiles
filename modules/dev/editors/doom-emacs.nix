@@ -45,7 +45,7 @@ in {
       };
     };
 
-    my.packages = with pkgs;
+    user.packages = with pkgs;
       with pkgs.my;
       [
         fd
@@ -69,9 +69,11 @@ in {
         libvterm
         cmake
         # lang/nix
-        nix-linter
+        # TODO Fix nix-linter build & install it
+        #      cf. https://github.com/NixOS/nixpkgs/pull/109081
+        # nix-linter
       ];
-    my.home.home.file.".doom.d/nix-variables.el".text = ''
+    home.file.".doom.d/nix-variables.el".text = ''
       ;;; $DOOMDIR/nix-variables.el -*- lexical-binding: t; -*-
 
       ${optionalString (variables != { }) ''

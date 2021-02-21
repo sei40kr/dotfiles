@@ -42,6 +42,6 @@ in {
       capabilities = "cap_ipc_lock=ep";
     };
 
-    my.packages = with pkgs; [ gnome3.gnome-keyring gcr ];
+    user.packages = with pkgs; [ gnome3.gnome-keyring gcr ];
   };
 }

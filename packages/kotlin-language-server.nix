@@ -1,5 +1,6 @@
-{ fetchurl, stdenv, unzip, ... }:
+{ fetchurl, lib, stdenv, unzip, ... }:
 
+with lib;
 stdenv.mkDerivation rec {
   pname = "kotlin-language-server";
   version = "0.7.0";
@@ -19,7 +20,7 @@ stdenv.mkDerivation rec {
     cp -r bin lib "$out"
   '';
 
-  meta = with stdenv.lib; {
+  meta = {
     description =
       "Intelligent Kotlin support for any editor/IDE using the Language Server Protocol";
     license = licenses.mit;

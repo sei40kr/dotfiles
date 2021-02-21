@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib;
 let
@@ -107,9 +107,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.home.fonts.fontconfig.enable = mkForce true;
+    home-manager.users.${config.user.name}.fonts.fontconfig.enable =
+      mkForce true;
 
-    my.home.xdg.configFile = {
+    home.configFile = {
       "fontconfig/conf.d/10-nix-rendering.conf".text = ''
         <?xml version='1.0'?>
         <!DOCTYPE fontconfig SYSTEM 'fonts.dtd'>

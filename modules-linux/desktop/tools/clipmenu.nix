@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib; {
   options.modules.desktop.tools.clipmenu.enable = mkOption {
@@ -10,8 +10,8 @@ with lib; {
     modules.desktop.apps.rofi.customEntries."Clear Clipboard History" =
       "${pkgs.clipmenu}/bin/clipdel -d '.*'";
 
-    my.packages = with pkgs; [ clipmenu ];
-    my.home.systemd.user.services.clipmenu = {
+    user.packages = with pkgs; [ clipmenu ];
+    home-manager.users.${config.user.name}.systemd.user.services.clipmenu = {
       Unit = {
         Description = "Clipboard management daemon";
         After = [ "graphical-session.target" ];

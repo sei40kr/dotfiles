@@ -1,36 +1,24 @@
-      [
-        (_: super:
-          with super;
-          let
-            unstable = import <nixos-unstable> { inherit config; };
-            python3Packages = (callPackage (import ./python3-packages.nix) { });
-            rofiScripts = (callPackage (import ./rofi-scripts) { });
-            tmuxPlugins = (callPackage (import ./tmux-plugins) { });
-            vimPlugins = (callPackage (import ./vim-plugins.nix) { });
-            vscode-extensions = (callPackage (import ./vscode-extensions.nix) { });
-            zshPlugins = (callPackage (import ./zsh-plugins) { });
-          in {
-            inherit unstable;
+{ pkgs, uPkgs }:
 
-            my = {
-              inherit python3Packages rofiScripts tmuxPlugins vimPlugins
-                vscode-extensions zshPlugins;
+# TODO refactoring
+let
+  python3Packages = (pkgs.callPackage (import ./python3-packages.nix) { });
+  rofiScripts = (pkgs.callPackage (import ./rofi-scripts) { });
+  tmuxPlugins = (pkgs.callPackage (import ./tmux-plugins) { });
+  vimPlugins = (pkgs.callPackage (import ./vim-plugins.nix) { });
+  vscode-extensions = (pkgs.callPackage (import ./vscode-extensions.nix) { });
+  zshPlugins = (pkgs.callPackage (import ./zsh-plugins) { });
+in {
+  inherit python3Packages rofiScripts tmuxPlugins vimPlugins vscode-extensions
+    zshPlugins;
 
-              alfred = callPackage ./alfred.nix { };
-              corretto_11 = callPackage ./corretto_11.nix { };
-              delta = callPackage ./delta.nix { };
-              emacs = callPackage ./emacs.nix { emacs = unstable.emacs; };
-              haskell-language-server = callPackage ./haskell-language-server.nix { };
-              jenv = callPackage ./jenv.nix { };
-              kotlin-language-server = callPackage ./kotlin-language-server.nix {
-                gradle_6 = unstable.gradle;
-              };
-              notion = callPackage ./notion.nix { };
-              operator-mono = callPackage ./operator-mono.nix { };
-              protonvpn-cli-wrapper = callPackage ./protonvpn-cli-wrapper.nix {
-                protonvpn-cli = python3Packages.protonvpn-cli;
-              };
-              zinit = callPackage ./zinit.nix { };
-            };
-          })
-      ]
+  alfred = pkgs.callPackage ./alfred.nix { };
+  corretto_11 = pkgs.callPackage ./corretto_11.nix { };
+  emacs = pkgs.callPackage ./emacs.nix { emacs = uPkgs.emacs; };
+  jenv = pkgs.callPackage ./jenv.nix { };
+  kotlin-language-server =
+    pkgs.callPackage ./kotlin-language-server.nix { gradle_6 = uPkgs.gradle; };
+  notion = pkgs.callPackage ./notion.nix { };
+  operator-mono = pkgs.callPackage ./operator-mono.nix { };
+  zinit = pkgs.callPackage ./zinit.nix { };
+}

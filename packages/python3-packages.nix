@@ -1,4 +1,4 @@
-{ fetchFromGitHub, lib, pkgs, python3Packages, ... }:
+{ fetchFromGitHub, lib, python3Packages, ... }:
 
 with lib; rec {
   atcoder-tools = python3Packages.buildPythonApplication rec {
@@ -150,33 +150,6 @@ with lib; rec {
       license = licenses.mit;
       description =
         "a testing framework for snippet libraries used in competitive programming";
-    };
-  };
-
-  protonvpn-cli = python3Packages.buildPythonApplication rec {
-    pname = "protonvpn-cli";
-    version = "2.2.4";
-
-    src = python3Packages.fetchPypi {
-      inherit version;
-      pname = "protonvpn_cli";
-      sha256 =
-        "e018976f38a666b9f7318b3c63bbefb5cf97db94e7963ef6e4abd3c3acd54b89";
-    };
-
-    propagatedBuildInputs = with python3Packages; [
-      docopt
-      jinja2
-      pythondialog
-      requests
-    ];
-
-    doCheck = false;
-
-    meta = {
-      license = licenses.gpl3;
-      description =
-        "Linux command-line client for ProtonVPN. Written in Python.";
     };
   };
 }

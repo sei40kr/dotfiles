@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.shell.tools.tcpdump.enable {
-    my.packages = with pkgs; [ tcpdump ];
+    user.packages = with pkgs; [ tcpdump ];
   };
 }

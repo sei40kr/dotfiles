@@ -1,17 +1,18 @@
 { config, lib, pkgs, ... }:
 
 with lib;
+with lib.my;
 (let
   cfg = config.modules.dev.tools.git;
   gitConfig = {
     user = {
-      email = config.my.userEmail;
-      name = config.my.userFullName;
+      email = "sei40kr@gmail.com";
+      name = "Seong Yong-ju";
     };
   };
   deltaConfig = {
-    core.pager = "${pkgs.my.delta}/bin/delta";
-    interactive.diffFilter = "${pkgs.my.delta}/bin/delta --color-only";
+    core.pager = "${pkgs.delta}/bin/delta";
+    interactive.diffFilter = "${pkgs.delta}/bin/delta --color-only";
     delta = {
       syntax-theme = config.modules.shell.tools.bat.theme;
       line-numbers = true;
@@ -50,17 +51,16 @@ in {
       '';
     };
 
-    my.packages = with pkgs;
-      with pkgs.my;
+    user.packages = with pkgs;
       ([ git ] ++ optionals cfg.enableGitFlow [ gitAndTools.gitflow ]
         ++ optionals cfg.enableGitCrypt [ git-crypt ]
-        ++ optionals cfg.enableDelta [ delta ]);
+        ++ optionals cfg.enableDelta [ gitAndTools.delta ]);
 
-    my.home.xdg.configFile = {
+    home.configFile = {
       "git/config".text = generators.toINI { } ({
-        include.path = "${<config/git/config>}";
+        include.path = "${configDir}/git/config";
       } // gitConfig // optionalAttrs cfg.enableDelta deltaConfig);
-      "git/ignore".source = <config/git/ignore>;
+      "git/ignore".source = "${configDir}/git/ignore";
     };
   };
 })

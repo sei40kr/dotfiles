@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib; {
   options.modules.desktop.backends.dconf.enable = mkOption {
@@ -12,8 +12,6 @@ with lib; {
       packages = with pkgs; [ dconf ];
     };
 
-    my.home.dconf.enable = true;
-
-    my.env.GIO_EXTRA_MODULES = [ "${pkgs.dconf.lib}/lib/gio/modules" ];
+    home-manager.users.${config.user.name}.dconf.enable = true;
   };
 }

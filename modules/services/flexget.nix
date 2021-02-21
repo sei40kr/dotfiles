@@ -1,11 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib;
-let
-  home = config.users.users."${config.my.userName}".home;
-  downloadDir = "${home}/google-drive";
-  config_yml =
-    import <secrets/config/flexget/config_yml.nix> { inherit downloadDir; };
+with lib.my;
+let downloadDir = "${homeDir}/google-drive";
 in {
   options.modules.services.flexget.enable = mkOption {
     type = types.bool;
@@ -18,10 +15,9 @@ in {
       enableGoogleDrive = mkForce true;
     };
 
-    my.packages = [ pkgs.flexget ];
-    my.home.xdg.configFile."flexget/config.yml".text =
-      generators.toYAML { } config_yml;
-    my.home.systemd.user.services.flexget = {
+    user.packages = [ pkgs.flexget ];
+    # TODO Install FlexGet config
+    home-manager.users.${config.user.name}.systemd.user.services.flexget = {
       Unit = {
         Description = "FlexGet Daemon";
         X-Restart-Triggers = [ "%h/.config/flexget/config.yml" ];

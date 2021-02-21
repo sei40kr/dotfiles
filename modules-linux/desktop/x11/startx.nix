@@ -27,7 +27,7 @@ in {
 
     services.xserver.displayManager.startx.enable = true;
 
-    my.home.home.file.".xinitrc".text = ''
+    home.file.".xinitrc".text = ''
       ./.xsession
     '';
   };

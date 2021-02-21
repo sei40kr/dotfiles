@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
 with lib;
+with lib.my;
 let
   cfg = config.modules.dev.editors.neovim;
   dein-vim = pkgs.my.vimPlugins.dein-vim;
@@ -23,14 +24,14 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.packages = with pkgs; [ neovim dein-vim ];
+    user.packages = with pkgs; [ neovim dein-vim ];
 
-    my.home.home.file = {
-      ".vim/common.vim".source = <config/vim/common.vim>;
-      ".vim/dein.toml".source = <config/vim/dein.toml>;
-      ".vim/dein_lazy.toml".source = <config/vim/dein_lazy.toml>;
+    home.file = {
+      ".vim/common.vim".source = "${configDir}/vim/common.vim";
+      ".vim/dein.toml".source = "${configDir}/vim/dein.toml";
+      ".vim/dein_lazy.toml".source = "${configDir}/vim/dein_lazy.toml";
     };
-    my.home.xdg.configFile."nvim/init.vim".text = ''
+    home.configFile."nvim/init.vim".text = ''
       let g:mapleader = "\<Space>"
 
       source ~/.vim/common.vim
@@ -64,9 +65,9 @@ in {
 
       filetype plugin indent on
     '';
-    my.env.PAGER = mkIf cfg.enableVimPager "${pkgs.neovim}/bin/nvim -c PAGER -";
-    my.env.MANPAGER =
+    env.PAGER = mkIf cfg.enableVimPager "${pkgs.neovim}/bin/nvim -c PAGER -";
+    env.MANPAGER =
       mkIf cfg.enableVimManpager "${pkgs.neovim}/bin/nvim -c MANPAGER -";
-    my.aliases.vim = "nvim";
+    modules.shell.zsh.aliases.vim = "nvim";
   };
 }

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib;
 let cfg = config.modules.desktop.x11.xsession;
@@ -61,7 +61,7 @@ in {
   config = mkIf cfg.enable {
     services.xserver.enable = true;
 
-    my.home.xsession = {
+    home-manager.users.${config.user.name}.xsession = {
       enable = true;
       profileExtra = cfg.profile;
       initExtra = ''

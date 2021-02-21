@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 with lib;
-let dataHome = config.home-manager.users."${config.my.userName}".xdg.dataHome;
+let dataHome = config.home-manager.users.${config.user.name}.xdg.dataHome;
 in {
   options.modules.dev.tools.zeal.enable = mkOption {
     type = types.bool;
@@ -12,6 +12,6 @@ in {
     modules.dev.editors.doomEmacs.variables.dash-docs-docsets-path =
       "${dataHome}/Zeal/Zeal/docsets";
 
-    my.packages = with pkgs; [ zeal ];
+    user.packages = with pkgs; [ zeal ];
   };
 }

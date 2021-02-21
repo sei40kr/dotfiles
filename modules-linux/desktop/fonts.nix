@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.fonts.enable {
-    my.packages = with pkgs; [ fontconfig noto-fonts noto-fonts-emoji ];
+    user.packages = with pkgs; [ fontconfig noto-fonts noto-fonts-emoji ];
   };
 }

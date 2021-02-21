@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.apps.notion.enable {
-    my.packages = with pkgs.my; [ notion ];
+    user.packages = with pkgs.my; [ notion ];
   };
 }

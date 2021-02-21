@@ -19,7 +19,7 @@ with lib; {
       };
     };
 
-    my.packages = with pkgs; [ gnome3.gnome-control-center ];
-    my.env.XDG_CURRENT_DESKTOP = "GNOME";
+    user.packages = with pkgs; [ gnome3.gnome-control-center ];
+    env.XDG_CURRENT_DESKTOP = "GNOME";
   };
 }

@@ -12,7 +12,7 @@ with lib; {
       zinit snippet "''${CLOUDSDK_ROOT_DIR}/completion.zsh.inc"
     '';
 
-    my.packages = with pkgs; [ google-cloud-sdk ];
-    my.env.CLOUDSDK_ROOT_DIR = "${pkgs.google-cloud-sdk}/google-cloud-sdk";
+    user.packages = with pkgs; [ google-cloud-sdk ];
+    env.CLOUDSDK_ROOT_DIR = "${pkgs.google-cloud-sdk}/google-cloud-sdk";
   };
 }

@@ -21,7 +21,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.packages = with pkgs; [ xss-lock ];
+    user.packages = with pkgs; [ xss-lock ];
 
     modules.desktop.x11.xsession.init = ''
       ${pkgs.xorg.xset}/bin/xset s ${toString cfg.length} ${toString cfg.period}

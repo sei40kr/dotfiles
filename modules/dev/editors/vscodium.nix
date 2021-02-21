@@ -1,6 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib;
+with lib.my;
 let cfg = config.modules.dev.editors.vscodium;
 in {
   options.modules.dev.editors.vscodium = {
@@ -22,7 +23,7 @@ in {
       tools.enable = mkForce true;
     };
 
-    my.home.programs.vscode = {
+    home-manager.users.${config.user.name}.programs.vscode = {
       enable = true;
       package = pkgs.vscodium;
       extensions = with pkgs.vscode-extensions;
@@ -53,11 +54,11 @@ in {
           vscodevim.vim
         ];
     };
-    my.home.xdg.configFile = {
+    home.configFile = {
       "VSCodium/User/keybindings.json".source =
-        <config/vscodium/keybindings.json>;
+        "${configDir}/vscodium/keybindings.json";
       "VSCodium/User/settings.json".text = builtins.toJSON
-        ((importJSON <config/vscodium/settings.json>) // cfg.settings);
+        ((importJSON "${configDir}/vscodium/settings.json") // cfg.settings);
     };
   };
 }

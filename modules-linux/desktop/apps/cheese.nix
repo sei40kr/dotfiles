@@ -18,6 +18,6 @@ with lib; {
       };
     };
 
-    my.packages = with pkgs; [ gnome3.cheese ];
+    user.packages = with pkgs; [ gnome3.cheese ];
   };
 }

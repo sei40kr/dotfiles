@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
 with lib;
+with lib.my;
 (let
   cfg = config.modules.desktop.tools.fcitx;
   fcitx-with-plugins =
@@ -50,18 +51,18 @@ in {
       '';
     };
 
-    my.packages = with pkgs;
+    user.packages = with pkgs;
       ([ fcitx-with-plugins fcitx-configtool ]
         ++ optionals gtkEnabled [ gtk2-immodule-cache gtk3-immodule-cache ]);
-    my.home.xdg.configFile = {
-      "fcitx/config".source = <config/fcitx/config>;
+    home.configFile = {
+      "fcitx/config".source = "${configDir}/fcitx/config";
       "fcitx/conf/fcitx-classic-ui.config".text = ''
-        ${readFile <config/fcitx/conf/fcitx-classic-ui.config>}
+        ${readFile "${configDir}/fcitx/conf/fcitx-classic-ui.config"}
 
         ${cfg.extraClassicUIConfig}
       '';
     };
-    my.env = {
+    env = {
       QT_IM_MODULE = "fcitx";
       XMODIFIERS = "@im=fcitx";
       GTK_IM_MODULE = mkIf gtkEnabled "fcitx";

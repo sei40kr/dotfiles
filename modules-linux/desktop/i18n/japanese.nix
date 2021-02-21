@@ -19,6 +19,6 @@ in {
       tools.fcitx.enable = mkForce true;
     };
 
-    my.packages = with pkgs; optionals fontsEnabled [ noto-fonts-cjk ];
+    user.packages = with pkgs; optionals fontsEnabled [ noto-fonts-cjk ];
   };
 }

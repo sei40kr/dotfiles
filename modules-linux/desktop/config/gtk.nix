@@ -1,6 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib;
+with lib.my;
 let cfg = config.modules.desktop.config.gtk;
 in {
   options.modules.desktop.config.gtk = {
@@ -43,7 +44,7 @@ in {
       fonts.enable = true;
     };
 
-    my.home.gtk = {
+    home-manager.users.${config.user.name}.gtk = {
       enable = true;
       gtk2.extraConfig = optionalString (cfg.font != null) ''
         gtk-font-name = '${cfg.font}'
@@ -63,6 +64,6 @@ in {
           optionalString (cfg.gtk3ExtraCss != null) readFile cfg.gtk3ExtraCss;
       };
     };
-    my.home.home.file.".themes/Mac".source = <config/gtk/themes/Mac>;
+    home.file.".themes/Mac".source = "${configDir}/gtk/themes/Mac";
   };
 }

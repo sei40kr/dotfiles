@@ -18,6 +18,6 @@ with lib; {
       };
     };
 
-    my.packages = with pkgs; [ telepathy-mission-control ];
+    user.packages = with pkgs; [ telepathy-mission-control ];
   };
 }

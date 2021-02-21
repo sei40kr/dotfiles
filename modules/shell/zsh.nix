@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
 with lib;
+with lib.my;
 let
   cfg = config.modules.shell.zsh;
   zdotDir = ".zsh";
@@ -16,7 +17,7 @@ let
   aliasDefs = concatStringsSep "\n"
     (mapAttrsToList (k: v: "alias ${k}=${escapeShellArg v}") cfg.aliases);
 in {
-  options.modules.shell.zsh = {
+  options.modules.shell.zsh = with types; {
     enable = mkOption {
       type = types.bool;
       default = false;
@@ -39,15 +40,12 @@ in {
       default = "";
     };
 
-    aliases = mkOption {
-      type = with types; attrsOf str;
-      default = { };
-    };
+    aliases = mkOpt (attrsOf (either str path)) { };
   };
 
   config = mkIf cfg.enable {
-    my.packages = with pkgs; [ zsh ];
-    my.home.home.file = {
+    user.packages = with pkgs; [ zsh ];
+    home.file = {
       ".zshenv".text = ''
         ZDOTDIR="''${HOME}/${zdotDir}"
         . "''${ZDOTDIR}/.zshenv"
@@ -56,10 +54,10 @@ in {
         ${optionalString pkgs.stdenv.isDarwin nixDarwinInit}
         ${homeManagerInit}
 
-        . ${<config/zsh/zshenv>}
+        . ${configDir}/zsh/zshenv
       '';
       "${zdotDir}/.zprofile".text = ''
-        . ${<config/zsh/zprofile>}
+        . ${configDir}/zsh/zprofile
 
         ${cfg.graphicalSessionInit}
       '';
@@ -81,7 +79,7 @@ in {
         else
           ${cfg.tmuxInit}
 
-          . ${<config/zsh/before-zinit.zsh>}
+          . ${configDir}/zsh/before-zinit.zsh
 
           path=(
             ${pkgs.curl}/bin
@@ -131,14 +129,14 @@ in {
 
           ${aliasDefs}
 
-          . ${<config/zsh/after-zinit.zsh>}
+          . ${configDir}/zsh/after-zinit.zsh
         fi
       '';
-      "${zdotDir}/completions".source = <config/zsh/completions>;
-      "${zdotDir}/functions".source = <config/zsh/functions>;
-      "${zdotDir}/aliases.zsh".source = <config/zsh/aliases.zsh>;
+      "${zdotDir}/completions".source = "${configDir}/zsh/completions";
+      "${zdotDir}/functions".source = "${configDir}/zsh/functions";
+      "${zdotDir}/aliases.zsh".source = "${configDir}/zsh/aliases.zsh";
     };
-    my.home.xdg.configFile."starship.toml".source =
-      <config/starship/starship.toml>;
+    home.configFile."starship.toml".source =
+      "${configDir}/starship/starship.toml";
   };
 }

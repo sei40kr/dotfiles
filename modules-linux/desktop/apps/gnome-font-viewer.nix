@@ -12,6 +12,6 @@ with lib; {
       packages = with pkgs; [ gnome3.gnome-font-viewer ];
     };
 
-    my.packages = with pkgs; [ gnome3.gnome-font-viewer ];
+    user.packages = with pkgs; [ gnome3.gnome-font-viewer ];
   };
 }

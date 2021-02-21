@@ -1,6 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib;
+with lib.my;
 let cfg = config.modules.desktop.apps.dunst;
 in {
   options.modules.desktop.apps.dunst = {
@@ -11,7 +12,7 @@ in {
 
     package = mkOption {
       type = types.package;
-      default = pkgs.unstable.dunst.override { dunstify = true; };
+      default = pkgs.dunst.override { dunstify = true; };
     };
   };
 
@@ -21,14 +22,14 @@ in {
       packages = [ cfg.package ];
     };
 
-    my.packages = [ cfg.package ];
-    my.home.xdg.configFile."dunst/dunstrc".source = <config/dunst/dunstrc>;
-    my.home.systemd.user.services.dunst = {
+    user.packages = [ cfg.package ];
+    home.configFile."dunst/dunstrc".source = "${configDir}/dunst/dunstrc";
+    home-manager.users.${config.user.name}.systemd.user.services.dunst = {
       Unit = {
         Description = "Dunst notification daemon";
         Documentation = "man:dunst(1)";
         PartOf = [ "graphical-session.target" ];
-        X-Restart-Triggers = [ "${<config/dunst/dunstrc>}" ];
+        X-Restart-Triggers = [ "${configDir}/dunst/dunstrc" ];
       };
       Service = {
         Type = "dbus";

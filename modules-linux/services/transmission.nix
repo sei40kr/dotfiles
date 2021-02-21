@@ -1,19 +1,20 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib;
+with lib.my;
 let
   cfg = config.modules.services.transmission;
-  home = config.users.users."${config.my.userName}".home;
-  downloadDir = "${home}/Downloads";
-  settings_json = (import <config/transmission-daemon/settings_json.nix>) {
-    inherit downloadDir;
-  };
+  downloadDir = "${homeDir}/Downloads";
+  settings_json =
+    (import "${configDir}/transmission-daemon/settings_json.nix") {
+      inherit downloadDir;
+    };
   rpc-authentication-required =
     settings_json.rpc-authentication-required or false;
   rpc-password = settings_json.rpc-password or "";
   rpc-port = settings_json.rpc-port or 9091;
   rpc-username = settings_json.rpc-username or "";
-  config_json = import <config/transmission-remote-gtk/config_json.nix> {
+  config_json = import "${configDir}/transmission-remote-gtk/config_json.nix" {
     inherit rpc-authentication-required rpc-password rpc-port rpc-username;
   };
   peer-port = settings_json.peer-port or 51413;
@@ -47,31 +48,33 @@ in {
         [ randomPeerPortRange ];
     };
 
-    my.packages = with pkgs; [ transmission transmission-remote-gtk ];
-    my.home.xdg.configFile = {
+    user.packages = with pkgs; [ transmission transmission-remote-gtk ];
+    home.configFile = {
       "transmission-daemon/settings.json".text = builtins.toJSON settings_json;
       "transmission-remote-gtk/config.json".text = builtins.toJSON config_json;
     };
-    my.home.systemd.user.services.transmission-daemon = {
-      Unit = {
-        Description = "Transmission BitTorrent Daemon";
-        After = [ "network.target" ];
-        X-Restart-Triggers = [ "%h/.config/transmission-daemon/settings.json" ];
+    home-manager.users.${config.user.name}.systemd.user.services.transmission-daemon =
+      {
+        Unit = {
+          Description = "Transmission BitTorrent Daemon";
+          After = [ "network.target" ];
+          X-Restart-Triggers =
+            [ "%h/.config/transmission-daemon/settings.json" ];
+        };
+        Service = {
+          Type = "notify";
+          ExecStartPre = ''
+            ${pkgs.coreutils}/bin/mkdir -p \
+              %h/.config/transmission-daemon/blocklists \
+              %h/.config/transmission-daemon/resume \
+              %h/.config/transmission-daemon/torrents
+          '';
+          ExecStart =
+            "${pkgs.transmission}/bin/transmission-daemon -f --log-error";
+          ExecReload = "/bin/kill -s HUP $MAINPID";
+          NoNewPrivileges = true;
+        };
+        Install.WantedBy = [ "multi-user.target" ];
       };
-      Service = {
-        Type = "notify";
-        ExecStartPre = ''
-          ${pkgs.coreutils}/bin/mkdir -p \
-            %h/.config/transmission-daemon/blocklists \
-            %h/.config/transmission-daemon/resume \
-            %h/.config/transmission-daemon/torrents
-        '';
-        ExecStart =
-          "${pkgs.transmission}/bin/transmission-daemon -f --log-error";
-        ExecReload = "/bin/kill -s HUP $MAINPID";
-        NoNewPrivileges = true;
-      };
-      Install.WantedBy = [ "multi-user.target" ];
-    };
   };
 }

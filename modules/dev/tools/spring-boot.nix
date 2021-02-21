@@ -15,6 +15,6 @@ with lib; {
       '';
     };
 
-    my.packages = with pkgs; [ spring-boot ];
+    user.packages = with pkgs; [ spring-boot ];
   };
 }

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
 with lib; {
   options.modules.desktop.backends.gvfs.enable = mkOption {
@@ -13,8 +13,7 @@ with lib; {
     };
 
     services.udev.packages = with pkgs; [ libmtp.bin ];
-    my.env.GIO_EXTRA_MODULES = [ "${pkgs.gnome3.gvfs}/lib/gio/modules" ];
-    my.home.systemd.user.services = {
+    home-manager.users.${config.user.name}.systemd.user.services = {
       gvfs-afc-volume-monitor = {
         Unit.Description =
           "Virtual filesystem service - Apple File Conduit monitor";

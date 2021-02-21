@@ -23,6 +23,6 @@ with lib; {
       };
     };
 
-    my.packages = with pkgs; [ gnome3.gnome-calendar ];
+    user.packages = with pkgs; [ gnome3.gnome-calendar ];
   };
 }

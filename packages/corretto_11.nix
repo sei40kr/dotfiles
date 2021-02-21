@@ -1,5 +1,6 @@
-{ fetchurl, stdenv, ... }:
+{ fetchurl, lib, stdenv, ... }:
 
+with lib;
 stdenv.mkDerivation rec {
   pname = "corretto11";
   version = "11.0.8.10.1";
@@ -18,7 +19,7 @@ stdenv.mkDerivation rec {
     cp -r Contents/Home "$out"
   '';
 
-  meta = with stdenv.lib; {
+  meta = {
     license = licenses.gpl2;
     platforms = platforms.darwin;
   };

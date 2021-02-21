@@ -19,6 +19,6 @@ with lib; {
       };
     };
 
-    my.packages = with pkgs; [ gnome3.seahorse ];
+    user.packages = with pkgs; [ gnome3.seahorse ];
   };
 }

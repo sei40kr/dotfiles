@@ -7,6 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.apps.alfred.enable {
-    my.packages = with pkgs.my; [ alfred ];
+    user.packages = with pkgs.my; [ alfred ];
   };
 }

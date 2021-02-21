@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
+with lib;
+with lib.my; {
   options.modules.desktop.term.alacritty.enable = mkOption {
     type = types.bool;
     default = false;
@@ -14,9 +15,9 @@ with lib; {
       }
     '';
 
-    my.packages = with pkgs; [ alacritty ];
-    my.env.TERMINAL = "${pkgs.alacritty}/bin/alacritty";
-    my.home.xdg.configFile."alacritty/alacritty.yml".source =
-      <config/alacritty/alacritty.yml>;
+    user.packages = with pkgs; [ alacritty ];
+    env.TERMINAL = "${pkgs.alacritty}/bin/alacritty";
+    home.configFile."alacritty/alacritty.yml".source =
+      "${configDir}/alacritty/alacritty.yml";
   };
 }

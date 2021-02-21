@@ -1,6 +1,7 @@
-{ config, lib, ... }:
+{ config, home-manager, lib, ... }:
 
 with lib;
+with lib.my;
 let cfg = config.modules.desktop.browsers.qutebrowser;
 in {
   options.modules.desktop.browsers.qutebrowser = {
@@ -16,10 +17,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    my.home.programs.qutebrowser = {
+    home-manager.users.${config.user.name}.programs.qutebrowser = {
       enable = true;
       extraConfig = ''
-        config.source('${<config/qutebrowser/config.py>}')
+        config.source('${configDir}/qutebrowser/config.py')
 
         ${optionalString (cfg.themeConfig != null)
         "config.source('${cfg.themeConfig}')"}

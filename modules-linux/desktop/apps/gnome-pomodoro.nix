@@ -26,6 +26,6 @@ with lib; {
       };
     };
 
-    my.packages = with pkgs; [ gnome3.pomodoro ];
+    user.packages = with pkgs; [ gnome3.pomodoro ];
   };
 }

@@ -33,10 +33,10 @@ in {
       '';
     };
 
-    my.packages = with pkgs;
+    user.packages = with pkgs;
       ([ ruby rubyPackages.rake ]
         ++ optionals cfg.enableRails [ rubyPackages.rails ]);
-    my.aliases = {
+    modules.shell.zsh.aliases = {
       be = "bundle exec";
       bl = "bundle list";
       bp = "bundle package";
