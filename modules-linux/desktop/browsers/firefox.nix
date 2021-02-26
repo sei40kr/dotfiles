@@ -7,8 +7,6 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.browsers.firefox.enable {
-    modules.desktop.config.gtk.enable = mkForce true;
-
     home-manager.users.${config.user.name}.programs.firefox.enable = true;
   };
 }

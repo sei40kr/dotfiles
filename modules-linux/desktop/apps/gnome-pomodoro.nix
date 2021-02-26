@@ -7,22 +7,14 @@ with lib; {
   };
 
   config = mkIf config.modules.desktop.apps.gnomePomodoro.enable {
-    modules.desktop = {
-      apps.rofi.customEntries = {
-        "Start/Stop Pomodoro" =
-          "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro --start-stop";
-        "Pause/Resume Pomodoro" =
-          "${pkgs.gnome3.pomodoro}/bin/gnome-pomodoro --pause-resume";
+    modules.desktop.backends = {
+      dbus = {
+        enable = mkForce true;
+        packages = with pkgs; [ gnome3.pomodoro ];
       };
-      backends = {
-        dbus = {
-          enable = mkForce true;
-          packages = with pkgs; [ gnome3.pomodoro ];
-        };
-        gsettingsDesktopSchemas = {
-          enable = true;
-          packages = with pkgs; [ gnome3.pomodoro ];
-        };
+      gsettingsDesktopSchemas = {
+        enable = true;
+        packages = with pkgs; [ gnome3.pomodoro ];
       };
     };
 

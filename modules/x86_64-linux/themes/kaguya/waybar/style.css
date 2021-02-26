@@ -1,0 +1,55 @@
+@define-color pink #d60c7b;
+@define-color red #9a2223;
+@define-color white #ffffff;
+
+@define-color module_border_color @pink;
+@define-color workspace_focused_bg_color @red;
+@define-color workspace_focused_text_color @white;
+
+window#waybar {
+  background: #000;
+  color: #ccc;
+  font-family: serif;
+  font-size: 11pt;
+}
+
+.modules-left {
+  margin: 0 20px 0 0;
+  padding: 0 0 0 16px;
+}
+.modules-center {
+  margin: 0 20px;
+}
+.modules-right {
+  margin: 0 0 0 20px;
+  padding: 0 16px 0 0;
+}
+
+#pulseaudio,
+#clock,
+#network {
+  border-bottom: 2px solid @module_border_color;
+  margin: 0 8px;
+  padding: 0 4px;
+}
+
+#network.disconnected,
+#network.ethernet,
+#pulseaudio.muted,
+#workspaces button {
+  font-family: "Material Design Icons";
+  font-size: 12pt;
+  font-weight: normal;
+}
+
+#workspaces button {
+  border-radius: 0;
+  color: @workspace_text_color;
+  font-size: 13pt;
+  padding: 0 2px;
+  text-shadow: none;
+}
+#workspaces button.focused {
+  background: @workspace_focused_bg_color;
+  color: @workspace_focused_text_color;
+}

@@ -1,0 +1,66 @@
+@define-color gold #baa065;
+@define-color gray #666;
+@define-color pink #fd3f3c;
+@define-color yellow #f9fc0d;
+
+@define-color module_border_color @gold;
+@define-color workspace_text_color @gray;
+@define-color workspace_focused_text_color @pink;
+@define-color workspace_urgent_text_color @yellow;
+@define-color symbol_text_color @gold;
+
+window#waybar {
+  background: #000;
+  color: #ccc;
+  font-family: serif;
+  font-size: 11pt;
+}
+
+.modules-left {
+  margin: 0 20px 0 0;
+  padding: 0 0 0 16px;
+}
+.modules-center {
+  margin: 0 20px;
+}
+.modules-right {
+  margin: 0 0 0 20px;
+  padding: 0 16px 0 0;
+}
+
+#pulseaudio,
+#clock,
+#network {
+  border-bottom: 2px solid @module_border_color;
+  margin: 0 8px;
+  padding: 0 4px;
+}
+
+#custom-symbol,
+#network.disconnected,
+#network.ethernet,
+#pulseaudio.muted,
+#workspaces button {
+  font-family: "Material Design Icons";
+  font-size: 12pt;
+  font-weight: normal;
+}
+
+#custom-symbol {
+  font-size: 14pt;
+  color: @symbol_text_color;
+}
+
+#workspaces button {
+  border-radius: 0;
+  color: @workspace_text_color;
+  font-size: 13pt;
+  padding: 0 2px;
+  text-shadow: none;
+}
+#workspaces button.urgent {
+  color: @workspace_urgent_text_color;
+}
+#workspaces button.focused {
+  color: @workspace_focused_text_color;
+}

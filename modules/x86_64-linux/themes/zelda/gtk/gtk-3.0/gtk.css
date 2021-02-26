@@ -1,0 +1,17 @@
+@define-color selected_bg_color #0f6776;
+
+*:selected {
+  background-color: @selected_bg_color;
+}
+menu menuitem:hover {
+  background-color: @selected_bg_color;
+}
+switch:checked {
+  background-color: @selected_bg_color;
+}
+selection {
+  background-color: @selected_bg_color;
+}
+textview selection {
+  background-color: @selected_bg_color;
+}

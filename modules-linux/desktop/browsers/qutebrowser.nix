@@ -9,11 +9,6 @@ in {
       type = types.bool;
       default = false;
     };
-
-    themeConfig = mkOption {
-      type = types.path;
-      default = null;
-    };
   };
 
   config = mkIf cfg.enable {
@@ -21,9 +16,6 @@ in {
       enable = true;
       extraConfig = ''
         config.source('${configDir}/qutebrowser/config.py')
-
-        ${optionalString (cfg.themeConfig != null)
-        "config.source('${cfg.themeConfig}')"}
       '';
     };
   };

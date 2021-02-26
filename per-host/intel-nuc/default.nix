@@ -25,7 +25,7 @@ with lib.my; {
 
   modules = {
     desktop = {
-      xmonad.enable = true;
+      sway.enable = true;
 
       apps = {
         bitwarden.enable = true;
@@ -41,7 +41,6 @@ with lib.my; {
         nautilus.enable = true;
 
         slack.enable = true;
-        rofi.enable = true;
         seahorse.enable = true;
       };
 
@@ -51,25 +50,7 @@ with lib.my; {
         qutebrowser.enable = true;
       };
 
-      config.gtk.keyTheme = "Mac";
-
-      term.alacritty.enable = true;
-
-      tools = {
-        clipmenu.enable = true;
-        randomBackground.enable = true;
-        scrot.enable = true;
-      };
-
-      x11 = {
-        startx = {
-          enable = true;
-          autorun = true;
-        };
-        xresources.enable = true;
-      };
-
-      i18n.japanese.enable = true;
+      term.termite.enable = true;
     };
 
     media = {
@@ -96,7 +77,7 @@ with lib.my; {
 
         # Infrastructure & CI Tools
         ansible.enable = true;
-        awsCli.enable = true;
+        # awsCli.enable = true;
         datagrip.enable = true;
         dockerCompose.enable = true;
         googleCloudSdk.enable = true;
@@ -126,24 +107,27 @@ with lib.my; {
 
     services = {
       cupsd.enable = true;
+      # deluge = {
+      #   enable = true;
+      #   openFirewall = true;
+      #   web.enable = true;
+      # };
       docker = {
         enable = true;
         enableAutoPrune = true;
       };
-      flexget.enable = true;
+      # flexget.enable = true;
       fstrim.enable = true;
       jellyfin = {
         enable = true;
         openFirewall = true;
       };
-      protonvpn.enable = true;
       psd.enable = true;
       rclone = {
         enable = true;
         enableGoogleDrive = true;
         enableGooglePhotos = true;
       };
-      redshift.enable = true;
       sshd.enable = true;
       transmission.enable = true;
     };
@@ -152,7 +136,7 @@ with lib.my; {
       zsh.enable = true;
       tmux = {
         enable = true;
-        autostart = true;
+        autostart = false;
       };
 
       tools = {
@@ -166,7 +150,6 @@ with lib.my; {
       };
     };
 
-    # themes.kaguya.enable = true;
-    themes.zelda.enable = true;
+    theme.active = "zelda";
   };
 }

@@ -3,14 +3,12 @@
 # TODO refactoring
 let
   python3Packages = (pkgs.callPackage (import ./python3-packages.nix) { });
-  rofiScripts = (pkgs.callPackage (import ./rofi-scripts) { });
   tmuxPlugins = (pkgs.callPackage (import ./tmux-plugins) { });
   vimPlugins = (pkgs.callPackage (import ./vim-plugins.nix) { });
   vscode-extensions = (pkgs.callPackage (import ./vscode-extensions.nix) { });
   zshPlugins = (pkgs.callPackage (import ./zsh-plugins) { });
 in {
-  inherit python3Packages rofiScripts tmuxPlugins vimPlugins vscode-extensions
-    zshPlugins;
+  inherit python3Packages tmuxPlugins vimPlugins vscode-extensions zshPlugins;
 
   alfred = pkgs.callPackage ./alfred.nix { };
   corretto_11 = pkgs.callPackage ./corretto_11.nix { };

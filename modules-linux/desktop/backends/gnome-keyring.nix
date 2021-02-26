@@ -16,23 +16,15 @@ in {
   };
 
   config = mkIf cfg.enable {
-    modules.desktop = {
-      backends = {
-        dbus = {
-          enable = mkForce true;
-          packages = with pkgs; [ gnome3.gnome-keyring gcr ];
-        };
-        gsettingsDesktopSchemas = {
-          enable = mkForce true;
-          packages = with pkgs; [ gnome3.gnome-keyring gcr ];
-        };
+    modules.desktop.backends = {
+      dbus = {
+        enable = mkForce true;
+        packages = with pkgs; [ gnome3.gnome-keyring gcr ];
       };
-      x11.xsession.init = ''
-        eval "$(${config.security.wrapperDir}/gnome-keyring-daemon --start --components=${
-          concatStringsSep "," cfg.components
-        })"
-        export SSH_AUTH_SOCK
-      '';
+      gsettingsDesktopSchemas = {
+        enable = mkForce true;
+        packages = with pkgs; [ gnome3.gnome-keyring gcr ];
+      };
     };
 
     # NOTE Avoid "insufficient process capabilities".

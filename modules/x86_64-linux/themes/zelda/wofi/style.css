@@ -1,0 +1,27 @@
+#outer-box {
+  background: #202124;
+  border: 2px solid #1c1c1c;
+  border-radius: 5px;
+  color: #cccccc;
+  font-size: 11pt;
+}
+
+#input {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 10px 16px;
+}
+
+#entry {
+  outline: 0;
+  padding: 10px 16px;
+}
+
+#entry:selected {
+  background: #9a2223;
+}
+
+#img {
+  display: none;
+}
