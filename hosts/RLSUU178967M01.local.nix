@@ -6,29 +6,31 @@ with lib.my; {
 
   modules = {
     dev = {
-      editors = {
-        emacs.enable = true;
-        doomEmacs.enable = true;
-        neovim.enable = true;
-      };
+      aws-cli.enable = true;
       java = {
         enable = true;
         javaPackages."corretto64-11.0.8.10.1" = pkgs.my.corretto_11;
       };
       javascript.enable = true;
       web.enable = true;
-      tools = {
-        awsCli.enable = true;
-        git.enable = true;
-        kaggle.enable = true;
-      };
     };
+
+    editors = {
+      emacs = {
+        enable = true;
+        doom.enable = true;
+      };
+      neovim.enable = true;
+    };
+
     shell = {
+      git.enable = true;
       zsh.enable = true;
       tmux = {
         enable = true;
         autostart = true;
       };
+      kaggle.enable = true;
       tools.atcoderTools.enable = true;
     };
   };

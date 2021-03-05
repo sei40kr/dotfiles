@@ -59,50 +59,46 @@ with lib.my; {
     };
 
     dev = {
-      editors = {
-        emacs.enable = true;
-        idea.enable = true;
-        neovim.enable = true;
-        vscodium.enable = true;
-      };
-
-      tools = {
-        git = {
-          enable = true;
-          enableGitFlow = true;
-          enableGitCrypt = true;
-        };
-        streamlit.enable = true;
-        zeal.enable = true;
-
-        # Infrastructure & CI Tools
-        ansible.enable = true;
-        # awsCli.enable = true;
-        datagrip.enable = true;
-        dockerCompose.enable = true;
-        googleCloudSdk.enable = true;
-        circleciCli.enable = true;
-        mycli.enable = true;
-        pgcli.enable = true;
-        travis.enable = true;
-      };
-
+      ansible.enable = true;
+      aws-cli.enable = true;
+      circleci-cli.enable = true;
       cc.enable = true;
       go.enable = true;
+      google-cloud-sdk.enable = true;
       groovy.enable = true;
       haskell.enable = true;
       java.enable = true;
       kotlin.enable = true;
       python.enable = true;
-      r.enable = true;
+      r = {
+        enable = true;
+        jupyter.enable = true;
+      };
       ruby = {
         enable = true;
-        enableRails = true;
+        rails.enable = true;
       };
       rust.enable = true;
       scala.enable = true;
-      sh.enable = true;
+      shell.enable = true;
+      spring-boot.enable = true;
+      sql.enable = true;
+      travis.enable = true;
       web.enable = true;
+    };
+
+    editors = {
+      datagrip.enable = true;
+      emacs = {
+        enable = true;
+        doom.enable = true;
+      };
+      idea.enable = true;
+      neovim = {
+        enable = true;
+        manpager.enable = true;
+      };
+      vscodium.enable = true;
     };
 
     services = {
@@ -114,7 +110,8 @@ with lib.my; {
       # };
       docker = {
         enable = true;
-        enableAutoPrune = true;
+        autoPrune.enable = true;
+        compose.enable = true;
       };
       # flexget.enable = true;
       fstrim.enable = true;
@@ -133,6 +130,7 @@ with lib.my; {
     };
 
     shell = {
+      git.enable = true;
       zsh.enable = true;
       tmux = {
         enable = true;
