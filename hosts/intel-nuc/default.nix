@@ -30,7 +30,6 @@ with lib.my; {
       apps = {
         bitwarden.enable = true;
         cheese.enable = true;
-        evince.enable = true;
         # geary.enable = true;
         gnomeBooks.enable = true;
         # gnomeCalendar.enable = true;
@@ -50,12 +49,13 @@ with lib.my; {
         qutebrowser.enable = true;
       };
 
-      term.termite.enable = true;
-    };
+      media = {
+        eog.enable = true;
+        evince.enable = true;
+        totem.enable = true;
+      };
 
-    media = {
-      eog.enable = true;
-      totem.enable = true;
+      term.termite.enable = true;
     };
 
     dev = {
