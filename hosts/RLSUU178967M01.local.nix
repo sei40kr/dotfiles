@@ -2,7 +2,7 @@
 
 with lib;
 with lib.my; {
-  imports = [ ../secrets/per-host/RLSUU178967M01.local.nix ];
+  imports = [ ../secrets/hosts/RLSUU178967M01.local.nix ];
 
   modules = {
     dev = {

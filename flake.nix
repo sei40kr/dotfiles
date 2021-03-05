@@ -44,6 +44,6 @@
       } // (mapModulesRec ./modules import)
         // (mapModulesRec ./modules-linux import);
 
-      nixosConfigurations = mapHosts ./per-host { inherit system; };
+      nixosConfigurations = mapHosts ./hosts { inherit system; };
     };
 }
