@@ -46,6 +46,9 @@ with lib.my; {
       allowedUsers = users;
     };
 
-    env.PATH = [ "\${PATH}" ];
+    env = {
+      PATH = [ "\${PATH}" ];
+      GIO_EXTRA_MODULES = [ ];
+    };
   };
 }
