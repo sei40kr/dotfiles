@@ -1,4 +1,4 @@
-{ config, home-manager, lib, pkgs, ... }:
+{ config, home-manager, inputs, lib, pkgs, ... }:
 
 with lib;
 with lib.my;
@@ -10,12 +10,12 @@ in {
   };
 
   config = mkIf cfg.enable {
+    nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
+
     user.packages = with pkgs;
       [
-        (my.emacs.override {
-          withXwidgets = true;
-          nativeComp = !pkgs.stdenv.isDarwin;
-        })
+        # 28 + native-comp
+        emacsGcc
         binutils
       ] ++ optionals cfg.doom.enable [
         ## Doom dependencies

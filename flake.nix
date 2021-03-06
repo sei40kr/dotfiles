@@ -2,11 +2,12 @@
   inputs = {
     nixpkgs.url = "nixpkgs/master";
     nixpkgs-unstable.url = "nixpkgs/master";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    emacs-overlay.url =
+      "github:nix-community/emacs-overlay?rev=e18aa3af84a181f86adf7f9cb31d004edcf7d287";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
