@@ -23,6 +23,8 @@ in {
         ripgrep
 
         ## Module dependencies
+        # :lang json
+        nodePackages.vscode-json-languageserver-bin
         # :lang markdown
         mdl
         python3Packages.grip
