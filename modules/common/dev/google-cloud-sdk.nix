@@ -15,7 +15,7 @@ in {
     user.packages = [ package ];
     modules.shell.zsh.extraZinitCommands = ''
       zinit ice wait'''
-      zinit snippet "${package}/completion.zsh.inc"
+      zinit snippet "${package}/google-cloud-sdk/completion.zsh.inc"
     '';
   };
 }
