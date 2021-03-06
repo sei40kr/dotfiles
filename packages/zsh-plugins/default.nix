@@ -88,27 +88,6 @@ with lib; {
     meta.platforms = platforms.all;
   };
 
-  lazy-nvm = stdenv.mkDerivation {
-    pname = "lazy-nvm";
-    version = "unstable-2021-01-24";
-
-    src = fetchFromGitHub {
-      owner = "sei40kr";
-      repo = "zsh-lazy-nvm";
-      rev = "3875f8d57317971111d60400d430f0ac747a577b";
-      sha256 = "1ycby996cm9jv86mibb5gjhl32jjknx1586ckkp6zk9yx91g49v4";
-    };
-
-    dontBuild = true;
-
-    installPhase = ''
-      install -D lazy-nvm.plugin.zsh \
-        -T "''${out}/share/zsh/plugins/lazy-nvm/lazy-nvm.plugin.zsh"
-    '';
-
-    meta.platforms = platforms.all;
-  };
-
   ranger-cd = stdenv.mkDerivation {
     pname = "ranger-cd";
     version = "unstable-2020-01-24";

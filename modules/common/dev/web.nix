@@ -2,13 +2,7 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.dev.web;
-  nvm = builtins.fetchGit {
-    url = "https://github.com/nvm-sh/nvm.git";
-    rev = "258938ef66a2a49a4a400554a6dce890226ae34c"; # v0.35.3
-  };
-  nvmRootFiles = [ "bash_completion" "nvm-exec" "nvm.sh" ];
+let cfg = config.modules.dev.web;
 in {
   options.modules.dev.web = { enable = mkBoolOpt false; };
 
@@ -21,14 +15,7 @@ in {
       nodePackages.vscode-css-languageserver-bin
       nodePackages.vue-language-server
     ];
-    home.file = foldl (files: name:
-      files // {
-        ".nvm/${name}".source = "${nvm.outPath}/${name}";
-      }) { } nvmRootFiles;
-    env = {
-      NVM_DIR = [ "\${HOME}/.nvm" ];
-      PATH = [ "\${HOME}/.yarn/bin" ];
-    };
+    env = { PATH = [ "\${HOME}/.yarn/bin" ]; };
     modules.shell = {
       aliases = {
         npmg = "npm i -g ";
@@ -46,7 +33,6 @@ in {
         npmI = "npm init";
       };
       zsh.extraZinitCommands = ''
-        zinit light ${pkgs.my.zshPlugins.lazy-nvm}/share/zsh/plugins/lazy-nvm
         zinit snippet OMZP::yarn/yarn.plugin.zsh
       '';
     };
