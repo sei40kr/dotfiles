@@ -108,13 +108,6 @@ fi
 
 zinit snippet OMZP::fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
 
-zinit ice from'gh-r' \
-    as'program' \
-    mv'direnv* -> direnv' \
-    atclone'./direnv hook zsh >zhook.zsh' \
-    atpull'%atclone'
-zinit light direnv/direnv
-
 # FZF
 FZF_DEFAULT_OPTS='--height=15 --reverse --inline-info --color=dark --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
 zinit ice has'fzf' bindmap'^R ->;\ec ->' multisrc'shell/{completion,key-bindings}.zsh'
