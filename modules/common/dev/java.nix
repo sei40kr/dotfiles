@@ -8,7 +8,7 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ jdk11 gradle maven ];
-    modules.shell.zsh.zinitPluginsInit = ''
+    modules.shell.zsh.extraZinitCommands = ''
       zinit ice trigger-load'!gradle'
       zinit snippet OMZP::gradle/gradle.plugin.zsh
       zinit snippet OMZP::mvn/mvn.plugin.zsh

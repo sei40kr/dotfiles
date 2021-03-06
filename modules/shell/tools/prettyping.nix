@@ -8,6 +8,6 @@ with lib; {
 
   config = mkIf config.modules.shell.tools.prettyping.enable {
     user.packages = with pkgs; [ prettyping ];
-    modules.shell.zsh.aliases.ping = "prettyping --nolegend";
+    modules.shell.aliases.ping = "prettyping --nolegend";
   };
 }

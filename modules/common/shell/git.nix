@@ -16,7 +16,7 @@ in {
       userName = "Seong Yong-ju";
       userEmail = "sei40kr@gmail.com";
     };
-    modules.shell.zsh.zinitPluginsInit = ''
+    modules.shell.zsh.extraZinitCommands = ''
       zinit snippet OMZP::git/git.plugin.zsh
       zinit snippet OMZP::git-flow/git-flow.plugin.zsh
     '';

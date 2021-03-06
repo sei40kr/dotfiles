@@ -8,7 +8,7 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ travis ];
-    modules.shell.zsh.zinitPluginsInit = ''
+    modules.shell.zsh.extraZinitCommands = ''
       zinit ice if'[[ -f "''${HOME}/.travis/travis.sh" ]]' wait'''
       zinit snippet "''${HOME}/.travis/travis.sh"
     '';

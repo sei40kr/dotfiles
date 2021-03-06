@@ -22,7 +22,7 @@ in {
           copyright: 'Copyright (c) 2021 sei40kr'
           github-username: sei40kr
     '';
-    modules.shell.zsh.zinitPluginsInit = ''
+    modules.shell.zsh.extraZinitCommands = ''
       zinit ice wait'''
       zinit snippet OMZP::stack/stack.plugin.zsh
       zinit ice wait'''

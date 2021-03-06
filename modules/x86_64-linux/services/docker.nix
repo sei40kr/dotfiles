@@ -17,7 +17,7 @@ in {
       enable = true;
       autoPrune.enable = cfg.autoPrune.enable;
     };
-    modules.shell.zsh = {
+    modules.shell = {
       aliases = {
         di = "docker info";
         dlg = "docker container logs";
@@ -48,7 +48,7 @@ in {
         dwipe =
           "docker kill $(docker ps -q) 2>/dev/null;docker rm $(docker ps -aq) 2>/dev/null;docker rmi -f $(docker images -aq) 2>/dev/null";
       };
-      zinitPluginsInit = ''
+      zsh.extraZinitCommands = ''
         zinit snippet OMZP::docker-compose/docker-compose.plugin.zsh
       '';
     };

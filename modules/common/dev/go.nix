@@ -8,7 +8,7 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ go gopls gore ];
-    modules.shell.zsh.zinitPluginsInit = ''
+    modules.shell.zsh.extraZinitCommands = ''
       zinit snippet OMZP::golang/golang.plugin.zsh
     '';
   };

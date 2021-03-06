@@ -12,7 +12,7 @@ in {
         ansible
         #ansible-lint
       ];
-    modules.shell.zsh.zinitPluginsInit = ''
+    modules.shell.zsh.extraZinitCommands = ''
       zinit snippet OMZP::ansible/ansible.plugin.zsh
     '';
   };

@@ -13,7 +13,7 @@ in {
     user.packages = with pkgs;
       ([ ruby rubocop rubyPackages.rake solargraph ]
         ++ optionals cfg.rails.enable [ rubyPackages.rails ]);
-    modules.shell.zsh = {
+    modules.shell = {
       aliases = {
         be = "bundle exec";
         bl = "bundle list";
@@ -24,7 +24,7 @@ in {
         bi = "bundle_install";
         bcn = "bundle clean";
       };
-      zinitPluginsInit = ''
+      zsh.extraZinitCommands = ''
         zinit snippet OMZP::ruby/ruby.plugin.zsh
         zinit ice as'completion' wait'''
         zinit snippet OMZP::gem/_gem

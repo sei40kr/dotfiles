@@ -15,6 +15,6 @@ in {
       enable = true;
       config.theme = cfg.theme;
     };
-    modules.shell.zsh.aliases.cat = "bat";
+    modules.shell.aliases.cat = "bat";
   };
 }

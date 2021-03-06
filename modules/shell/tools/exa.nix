@@ -8,7 +8,7 @@ with lib; {
 
   config = mkIf config.modules.shell.tools.exa.enable {
     user.packages = with pkgs; [ exa ];
-    modules.shell.zsh.aliases = {
+    modules.shell.aliases = {
       ls = "exa -F";
       la = "exa -laFh";
       tree = "exa -T";

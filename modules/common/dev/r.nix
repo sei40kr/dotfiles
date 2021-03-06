@@ -21,6 +21,6 @@ in {
         options(repos='https://cran.ism.ac.jp');
       '';
     };
-    modules.shell.zsh.aliases.R = "R -q --no-save --no-restore-data";
+    modules.shell.aliases = { R = "R -q --no-save --no-restore-data"; };
   };
 }

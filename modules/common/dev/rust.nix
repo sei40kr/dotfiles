@@ -12,7 +12,7 @@ in {
       CARGO_HOME = "\${HOME}/.cargo";
       PATH = [ "${CARGO_HOME}/bin" ];
     };
-    modules.shell.zsh.zinitPluginsInit = ''
+    modules.shell.zsh.extraZinitCommands = ''
       zinit ice wait''' \
                 lucid \
                 atclone'rustup completions zsh >_rustup' \

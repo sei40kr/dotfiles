@@ -14,7 +14,7 @@ in {
       ([ python3 black python-language-server ]
         ++ optionals cfg.poetry.enable [ poetry ]);
     env.PATH = [ "\${HOME}/.poetry/bin" ];
-    modules.shell.zsh.zinitPluginsInit = ''
+    modules.shell.zsh.extraZinitCommands = ''
       zinit ice as'completion' wait'''
       zinit snippet OMZP::pip/_pip
     '' + optionalString cfg.poetry.enable ''

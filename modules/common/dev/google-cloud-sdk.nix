@@ -13,10 +13,9 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = [ package ];
-    env.CLOUDSDK_ROOT_DIR = "${package}/google-cloud-sdk";
-    modules.shell.zsh.zinitPluginsInit = ''
+    modules.shell.zsh.extraZinitCommands = ''
       zinit ice wait'''
-      zinit snippet "''${CLOUDSDK_ROOT_DIR}/completion.zsh.inc"
+      zinit snippet "${package}/completion.zsh.inc"
     '';
   };
 }

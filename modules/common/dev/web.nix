@@ -29,7 +29,7 @@ in {
       NVM_DIR = [ "\${HOME}/.nvm" ];
       PATH = [ "\${HOME}/.yarn/bin" ];
     };
-    modules.shell.zsh = {
+    modules.shell = {
       aliases = {
         npmg = "npm i -g ";
         npmS = "npm i -S ";
@@ -45,7 +45,7 @@ in {
         npmP = "npm publish";
         npmI = "npm init";
       };
-      zinitPluginsInit = ''
+      zsh.extraZinitCommands = ''
         zinit light ${pkgs.my.zshPlugins.lazy-nvm}/share/zsh/plugins/lazy-nvm
         zinit snippet OMZP::yarn/yarn.plugin.zsh
       '';

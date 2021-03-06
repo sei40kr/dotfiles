@@ -131,7 +131,7 @@ with lib.my; {
       zsh.enable = true;
       tmux = {
         enable = true;
-        autostart = false;
+        autoRun.enable = true;
       };
       bat.enable = true;
       tools = {

@@ -9,7 +9,7 @@ in {
   config = mkIf cfg.enable {
     # TODO scalastyle
     user.packages = with pkgs; [ scala sbt gradle maven metals scalafmt ];
-    modules.shell.zsh.zinitPluginsInit = ''
+    modules.shell.zsh.extraZinitCommands = ''
       zinit ice as'completion' wait'''
       zinit snippet OMZP::scala/_scala
       zinit ice svn

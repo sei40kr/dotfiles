@@ -8,9 +8,9 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ terraform terraform-ls ];
-    modules.shell.zsh = {
+    modules.shell = {
       aliases.tf = "terraform";
-      zinitPluginsInit = ''
+      zsh.extraZinitCommands = ''
         zinit ice as'completion' wait'''
         zinit snippet OMZP::terraform/_terraform
       '';

@@ -8,6 +8,6 @@ with lib; {
 
   config = mkIf config.modules.shell.tools.htop.enable {
     user.packages = with pkgs; [ htop ];
-    modules.shell.zsh.aliases.top = "htop";
+    modules.shell.aliases.top = "htop";
   };
 }

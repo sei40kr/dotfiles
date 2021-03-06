@@ -4,14 +4,6 @@ autoload -Uz \
           run-help-git \
           pyclean
 
-if [[ -n "$TMUX" || -n "$INSIDE_EMACS" || -n "$EMACS" || -n "$VIM" ]]; then
-    export PAGER=cat
-fi
-
-is_macos() {
-    [[ "$OSTYPE" == darwin* ]]
-}
-
 if [[ "$INSIDE_EMACS" == vterm ]]; then
     alias clear='vterm_printf "51; Evterm-clear-scrollback"; tput clear'
 fi
@@ -25,10 +17,6 @@ zinit snippet OMZP::zsh_reload/zsh_reload.plugin.zsh
 zinit ice pick'' blockf wait''
 zinit light zsh-users/zsh-completions
 
-if is_macos; then
-    zinit ice svn
-    zinit snippet PZT::modules/gnu-utility
-fi
 zinit ice trigger-load'!cd-gitroot'
 zinit light mollifier/cd-gitroot
 zinit ice trigger-load'!extract;!x'
@@ -38,11 +26,6 @@ zinit snippet OMZP::nmap/nmap.plugin.zsh
 
 
 ## Perl
-
-if [[ -n "$PERLBREW_ROOT" && -d "$PERLBREW_ROOT" ]]; then
-    zinit ice wait''
-    zinit snippet "${PERLBREW_ROOT}/etc/perlbrew-completion.bash"
-fi
 
 zinit snippet OMZP::perl/perl.plugin.zsh
 zinit ice as'completion' wait''
@@ -138,14 +121,7 @@ zinit ice has'fzf' bindmap'^R ->;\ec ->' multisrc'shell/{completion,key-bindings
 zinit light -b junegunn/fzf
 
 # Notification
-if is_macos; then
-    zinit ice from'gh-r' as'program'
-    zinit light julienXX/terminal-notifier
-fi
 zinit snippet OMZP::bgnotify/bgnotify.plugin.zsh
-
-# Other alias definitions
-. "${ZDOTDIR}/aliases.zsh"
 
 ## Theme & Appearance
 

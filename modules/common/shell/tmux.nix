@@ -5,41 +5,21 @@ with lib.my;
 let cfg = config.modules.shell.tmux;
 in {
   options.modules.shell.tmux = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-    };
-
-    autostart = mkOption {
-      type = types.bool;
-      default = false;
-    };
-
-    extraConfig = mkOption {
-      type = types.lines;
-      default = "";
-    };
+    enable = mkBoolOpt false;
+    autoRun.enable = mkBoolOpt false;
+    secureSocket.enable = mkBoolOpt pkgs.stdenv.isLinux;
   };
 
   config = mkIf cfg.enable {
-    modules.shell.zsh.tmuxInit = mkIf cfg.autostart ''
-      if [[ -z "$TMUX" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" ]]; then
-        ${pkgs.tmux}/bin/tmux
-        exit
-      fi
-    '';
-
     home-manager.users.${config.user.name}.programs.tmux = {
       baseIndex = 1;
       enable = true;
       extraConfig = ''
         source-file ${configDir}/tmux/tmux.conf
-
-        ${cfg.extraConfig}
       '';
       sensibleOnTop = false;
       terminal = "tmux-256color";
-      secureSocket = pkgs.stdenv.isLinux;
+      secureSocket = cfg.secureSocket.enable;
       plugins = with pkgs.tmuxPlugins;
         with pkgs.my.tmuxPlugins; [
           cleanup-unnamed-sessions
@@ -51,8 +31,8 @@ in {
             extraConfig = "set-option -g prefix C-t";
           }
           {
-            plugin = yank.overrideAttrs
-              (oldAttrs: oldAttrs // { dependencies = with pkgs; [ xsel ]; });
+            plugin = yank;
+            # TODO Add supports for wl-clipboard
             extraConfig = ''
               set-option -g @yank_with_mouse off
               set-option -g @custom_copy_command '${pkgs.xsel}/bin/xsel -i --clipboard'

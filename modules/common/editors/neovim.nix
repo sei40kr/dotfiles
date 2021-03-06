@@ -58,6 +58,6 @@ in {
       MANPAGER =
         mkIf cfg.manpager.enable "${pkgs.neovim}/bin/nvim -c MANPAGER -";
     };
-    modules.shell.zsh.aliases.vim = "nvim";
+    modules.shell.aliases = { vim = "nvim"; };
   };
 }

@@ -28,7 +28,7 @@ with lib.my; {
       zsh.enable = true;
       tmux = {
         enable = true;
-        autostart = true;
+        autoRun.enable = true;
       };
       kaggle.enable = true;
       tools.atcoderTools.enable = true;
