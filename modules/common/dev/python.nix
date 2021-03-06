@@ -11,7 +11,7 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = with pkgs;
-      ([ python black python-language-server ]
+      ([ python3 black python-language-server ]
         ++ optionals cfg.poetry.enable [ poetry ]);
     env.PATH = [ "\${HOME}/.poetry/bin" ];
     modules.shell.zsh.zinitPluginsInit = ''

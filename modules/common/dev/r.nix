@@ -4,23 +4,18 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.dev.r;
-  rPackages = with pkgs; [
-    rPackages.languageserver
-    rPackages.lintr
-    (mkIf cfg.jupyter.enable rPackages.IRkernel)
-  ];
-  package = pkgs.rWrapper.override { packages = rPackages; };
+  package = with pkgs;
+    rWrapper.override {
+      packages = [ rPackages.languageserver rPackages.lintr ];
+    };
 in {
-  options.modules.dev.r = {
-    enable = mkBoolOpt false;
-    jupyter.enable = mkBoolOpt false;
-  };
+  options.modules.dev.r = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ package ];
+    user.packages = [ package ];
     home.file = {
       ".Renviron".text = ''
-        R_LIBS=${pkgs.R}/library
+        R_LIBS=${package}/library
       '';
       ".Rprofile".text = ''
         options(repos='https://cran.ism.ac.jp');

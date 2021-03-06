@@ -17,9 +17,9 @@ in {
     user.packages = with pkgs; [
       nodejs
       yarn
-      vscode-html-languageserver-bin
-      vscode-css-languageserver-bin
-      vue-language-server
+      nodePackages.vscode-html-languageserver-bin
+      nodePackages.vscode-css-languageserver-bin
+      nodePackages.vue-language-server
     ];
     home.file = foldl (files: name:
       files // {

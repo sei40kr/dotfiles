@@ -70,10 +70,7 @@ with lib.my; {
       java.enable = true;
       kotlin.enable = true;
       python.enable = true;
-      r = {
-        enable = true;
-        jupyter.enable = true;
-      };
+      r.enable = true;
       ruby = {
         enable = true;
         rails.enable = true;
@@ -136,10 +133,9 @@ with lib.my; {
         enable = true;
         autostart = false;
       };
-
+      bat.enable = true;
       tools = {
         atcoderTools.enable = true;
-        bat.enable = true;
         exa.enable = true;
         htop.enable = true;
         prettyping.enable = true;

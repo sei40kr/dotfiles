@@ -1,7 +1,9 @@
 { config, lib, pkgs, ... }:
 
 with lib;
-with lib.my; {
+with lib.my;
+let cfg = config.modules.shell.git;
+in {
   options.modules.shell.git = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
@@ -9,13 +11,7 @@ with lib.my; {
     home.configFile."git/ignore".source = "${configDir}/git/ignore";
     home-manager.users.${config.user.name}.programs.git = {
       enable = true;
-      delta = {
-        enable = true;
-        options = {
-          syntax-theme = config.modules.shell.bat.theme;
-          line-numbers = true;
-        };
-      };
+      delta.enable = true;
       includes = [{ path = "${configDir}/git/config"; }];
       userName = "Seong Yong-ju";
       userEmail = "sei40kr@gmail.com";

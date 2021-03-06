@@ -10,31 +10,31 @@ in {
     home-manager.users.${config.user.name}.programs.vscode = {
       enable = true;
       package = pkgs.vscodium;
-      extensions = with pkgs;
-        with pkgs.my; [
-          vscode-extensions.alanz.vscode-hie-server
-          vscode-extensions.alefragnani.Bookmarks
-          vscode-extensions.castwide.solargraph
-          vscode-extensions.ccls-project.ccls
-          vscode-extensions.CoenraadS.bracket-pair-colorizer-2
-          vscode-extensions.dbaeumer.vscode-eslint
-          vscode-extensions.eamodio.gitlens
-          vscode-extensions.EditorConfig.EditorConfig
-          vscode-extensions.esbenp.prettier-vscode
-          vscode-extensions.felixfbecker.php-intellisense
-          vscode-extensions.GitHub.vscode-pull-request-github
-          vscode-extensions.golang.Go
-          vscode-extensions.mechatroner.rainbow-csv
-          vscode-extensions.ms-python.python
-          vscode-extensions.ms-vscode.cpptools
-          vscode-extensions.Pivotal.vscode-boot-dev-pack
-          vscode-extensions.redhat.vscode-yaml
-          vscode-extensions.REditorSupport.r-lsp
-          vscode-extensions.rust-lang.rust
-          vscode-extensions.scala-lang.scala
-          vscode-extensions.scalameta.metals
-          vscode-extensions.vscjava.vscode-java-pack
-          vscode-extensions.vscodevim.vim
+      extensions = with pkgs.vscode-extensions;
+        with pkgs.my.vscode-extensions; [
+          alanz.vscode-hie-server
+          alefragnani.Bookmarks
+          castwide.solargraph
+          ccls-project.ccls
+          CoenraadS.bracket-pair-colorizer-2
+          dbaeumer.vscode-eslint
+          eamodio.gitlens
+          EditorConfig.EditorConfig
+          esbenp.prettier-vscode
+          felixfbecker.php-intellisense
+          GitHub.vscode-pull-request-github
+          golang.Go
+          mechatroner.rainbow-csv
+          ms-python.python
+          ms-vscode.cpptools
+          Pivotal.vscode-boot-dev-pack
+          redhat.vscode-yaml
+          REditorSupport.r-lsp
+          rust-lang.rust
+          scala-lang.scala
+          scalameta.metals
+          vscjava.vscode-java-pack
+          vscodevim.vim
         ];
     };
     home.configFile = {

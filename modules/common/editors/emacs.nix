@@ -25,7 +25,7 @@ in {
         ## Module dependencies
         # :lang markdown
         mdl
-        pythonPackages.grip
+        python3Packages.grip
         # :lang nix
         nixfmt
         # nix-linter
@@ -33,7 +33,7 @@ in {
         plantuml
         # :lang sql
         sqlint
-        pythonPackages.sqlparse
+        python3Packages.sqlparse
         # :lang yaml
         nodePackages.yaml-language-server
         # :tools docker

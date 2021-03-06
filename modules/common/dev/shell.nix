@@ -7,6 +7,10 @@ in {
   options.modules.dev.shell = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ bash-language-server shellcheck shfmt ];
+    user.packages = with pkgs; [
+      nodePackages.bash-language-server
+      shellcheck
+      shfmt
+    ];
   };
 }

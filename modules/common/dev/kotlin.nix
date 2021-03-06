@@ -7,12 +7,13 @@ in {
   options.modules.dev.kotlin = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      kotlin
-      gradle
-      kotlin-language-server
-      ktlint
-      maven
-    ];
+    user.packages = with pkgs;
+      with pkgs.my; [
+        kotlin
+        gradle
+        kotlin-language-server
+        ktlint
+        maven
+      ];
   };
 }
