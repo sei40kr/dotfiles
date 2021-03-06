@@ -76,7 +76,10 @@ with lib.my; {
         rails.enable = true;
       };
       rust.enable = true;
-      scala.enable = true;
+      scala = {
+        enable = true;
+        bloop.enable = true;
+      };
       shell.enable = true;
       spring-boot.enable = true;
       sql.enable = true;
