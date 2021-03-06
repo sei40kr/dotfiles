@@ -21,8 +21,7 @@ in {
           Type = "simple";
           ExecStart = "${pkgs.bloop}/bin/bloop server";
           Restart = "always";
-          Environment =
-            [ "PATH=${makeBinPath [ config.programs.java.package ]}" ];
+          Environment = [ "PATH=${makeBinPath [ pkgs.jdk ]}" ];
         };
       };
     modules.shell.zsh.extraZinitCommands = ''
