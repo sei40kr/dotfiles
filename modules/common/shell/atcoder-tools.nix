@@ -16,13 +16,10 @@ let
         <${pkgs.writeText "config.json" (toJSON config)} >"$out"
     '';
 in {
-  options.modules.shell.atcoder-tools.enable = mkOption {
-    type = types.bool;
-    default = false;
-  };
+  options.modules.shell.atcoder-tools = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ my.python3Packages.atcoder-tools ];
+    user.packages = with pkgs.my; [ python3Packages.atcoder-tools ];
     home.file.".atcodertools.toml".source = configFile {
       codestyle = {
         indent_type = "space";
