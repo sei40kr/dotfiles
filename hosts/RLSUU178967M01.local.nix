@@ -24,14 +24,14 @@ with lib.my; {
     };
 
     shell = {
-      git.enable = true;
       zsh.enable = true;
       tmux = {
         enable = true;
         autoRun.enable = true;
       };
+      atcoder-tools.enable = true;
+      git.enable = true;
       kaggle.enable = true;
-      tools.atcoderTools.enable = true;
     };
   };
 }

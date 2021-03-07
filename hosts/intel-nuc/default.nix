@@ -130,15 +130,15 @@ with lib.my; {
     };
 
     shell = {
-      git.enable = true;
       zsh.enable = true;
       tmux = {
         enable = true;
         autoRun.enable = true;
       };
+      atcoder-tools.enable = true;
       bat.enable = true;
+      git.enable = true;
       tools = {
-        atcoderTools.enable = true;
         exa.enable = true;
         htop.enable = true;
         prettyping.enable = true;

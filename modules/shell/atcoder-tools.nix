@@ -1,15 +1,29 @@
 { config, lib, pkgs, ... }:
 
+with builtins;
 with lib;
-with lib.my; {
-  options.modules.shell.tools.atcoderTools.enable = mkOption {
+with lib.my;
+let
+  cfg = config.modules.shell.atcoder-tools;
+  configFile = config:
+    with pkgs;
+    runCommand ".atcodertools.toml" {
+      buildInputs = [ remarshal ];
+      preferLocalBuild = true;
+      allowSubstitutes = false;
+    } ''
+      remarshal -if json -of toml \
+        <${pkgs.writeText "config.json" (toJSON config)} >"$out"
+    '';
+in {
+  options.modules.shell.atcoder-tools.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
-  config = mkIf config.modules.shell.tools.atcoderTools.enable {
+  config = mkIf cfg.enable {
     user.packages = with pkgs; [ my.python3Packages.atcoder-tools ];
-    home.file.".atcodertools.toml".text = generators.toINI { } {
+    home.file.".atcodertools.toml".source = configFile {
       codestyle = {
         indent_type = "space";
         indent_width = 4;
