@@ -3,7 +3,9 @@
 with builtins;
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.waybar;
+let
+  cfg = config.modules.desktop.waybar;
+  package = pkgs.waybar;
 in {
   options.modules.desktop.waybar = with types; {
     enable = mkBoolOpt false;
@@ -31,6 +33,7 @@ in {
   config = mkIf cfg.enable {
     home-manager.users.${config.user.name} = {
       programs.waybar = {
+        inherit package;
         enable = true;
         settings = [
           (let symbolIcon = cfg.theme.symbol.icon;
@@ -91,17 +94,30 @@ in {
             position = "top";
           })
         ];
-        systemd.enable = true;
       };
-      systemd.user.services.waybar.Unit = {
-        After = [ "graphical-session-pre.target" ];
-        X-Restart-Triggers = let
-          configFile =
-            config.home-manager.users.${config.user.name}.xdg.configFile;
-        in [
-          "${configFile."waybar/config".source}"
-          (hashString "md5" configFile."waybar/style.css".text)
-        ];
+      systemd.user.services.waybar = {
+        Unit = {
+          After = [ "graphical-session-pre.target" ];
+          Description =
+            "Highly customizable Wayland bar for Sway and Wlroots based compositors.";
+          Documentation = "https://github.com/Alexays/Waybar/wiki";
+          PartOf = [ "graphical-session.target" ];
+          X-Restart-Triggers = let
+            configFile =
+              config.home-manager.users.${config.user.name}.xdg.configFile;
+          in [
+            "${configFile."waybar/config".source}"
+            (hashString "md5" configFile."waybar/style.css".text)
+          ];
+        };
+        Service = {
+          Type = "dbus";
+          BusName = "fr.arouillard.waybar";
+          ExecStart = "${package}/bin/waybar";
+          Restart = "always";
+          RestartSec = "1sec";
+        };
+        Install = { WantedBy = [ "graphical-session.target" ]; };
       };
     };
     # TODO Use user-level fonts

@@ -17,9 +17,14 @@ in {
           night = 5500;
         };
       };
-      systemd.user.services.gammastep.Unit.X-Restart-Triggers = [
-        "${config.home-manager.users.${config.user.name}.xdg.configFile."gammastep/config.ini".source}"
-      ];
+      systemd.user.services.gammastep = {
+        Unit = {
+          X-Restart-Triggers = let
+            configFile =
+              config.home-manager.users.${config.user.name}.xdg.configFile;
+          in [ "${configFile."gammastep/config.ini".source}" ];
+        };
+      };
     };
   };
 }

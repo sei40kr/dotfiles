@@ -2,7 +2,14 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.sway;
+let
+  cfg = config.modules.desktop.sway;
+  package = pkgs.sway.override {
+    extraSessionCommands = concatStringsSep "\n"
+      (mapAttrsToList (n: v: ''export ${n}="${v}"'')
+        config.modules.desktop.env);
+    withGtkWrapper = true;
+  };
 in {
   options.modules.desktop.sway = with types; {
     enable = mkBoolOpt false;
@@ -25,6 +32,7 @@ in {
     };
     home-manager.users.${config.user.name} = {
       wayland.windowManager.sway = {
+        inherit package;
         enable = true;
         config = with pkgs; {
           assigns = {
@@ -183,36 +191,44 @@ in {
                 kill "$pid"
               done
             '';
-          in [
-            {
-              command = ''
-                ${swayidle}/bin/swayidle -w -d \
-                    timeout 600 '${sway}/bin/swaymsg "output * dpms off"' \
-                    resume '${sway}/bin/swaymsg "output * dpms on"'
-              '';
-            }
-            { command = "${random-backgrounds}/bin/random-backgrounds"; }
-            { command = "${mako}/bin/mako"; }
-          ];
+          in [{ command = "${random-backgrounds}/bin/random-backgrounds"; }];
           window.titlebar = true;
         };
         extraConfig = ''
+          exec "systemctl --user import-environment; systemctl --user start graphical-session.target"
           title_align center
           input "type:keyboard" {
             repeat_delay 150
             repeat_rate 30
           }
         '';
-        extraSessionCommands = concatStringsSep "\n"
-          (mapAttrsToList (n: v: ''export ${n}="${v}"'')
-            config.modules.desktop.env);
-        systemdIntegration = true;
-        wrapperFeatures.gtk = true;
       };
-      gtk = {
-        enable = true;
-        # Disable mouse paste
-        gtk3.extraConfig.gtk-enable-primary-paste = false;
+      systemd.user.services = {
+        sway-session = {
+          Unit = {
+            After = [ "graphical-session-pre.target" ];
+            Description = "sway compositor session";
+            Documentation = [ "man:systemd.special(7)" ];
+            PartOf = [ "graphical-session.target" ];
+            Wants = [ "swayidle.service" ];
+          };
+          Install = { WantedBy = [ "graphical-session.target" ]; };
+        };
+        swayidle = {
+          Unit = {
+            Description = "Idle manager for Wayland";
+            Documentation = "man:swayidle(1)";
+            PartOf = [ "sway-session.target" ];
+          };
+          Service = {
+            Type = "simple";
+            ExecStart = ''
+              ${pkgs.swayidle}/bin/swayidle -w -d \
+                  timeout 600 '${package}/bin/swaymsg "output * dpms off"' \
+                  resume '${package}/bin/swaymsg "output * dpms on"'
+            '';
+          };
+        };
       };
     };
     # TODO Use user-level Fontconfig
@@ -233,6 +249,7 @@ in {
       dconf.enable = true;
       fcitx.enable = true;
       gammastep.enable = true;
+      gtk.enable = true;
       mako.enable = true;
       waybar.enable = true;
       wofi.enable = true;
