@@ -138,6 +138,7 @@ with lib.my; {
       atcoder-tools.enable = true;
       bat.enable = true;
       git.enable = true;
+      online-judge-tools.enable = true;
       tools = {
         exa.enable = true;
         htop.enable = true;
