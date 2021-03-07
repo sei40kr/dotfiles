@@ -2,8 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.editors.emacs;
-in {
+let
+  cfg = config.modules.editors.emacs;
+in
+{
   options.modules.editors.emacs = {
     enable = mkBoolOpt false;
     doom.enable = mkBoolOpt false;
@@ -31,6 +33,7 @@ in {
         # :lang nix
         nixfmt
         # nix-linter
+        rnix-lsp
         # :lang plantuml
         plantuml
         # :lang sql

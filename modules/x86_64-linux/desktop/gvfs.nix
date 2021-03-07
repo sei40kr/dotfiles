@@ -10,7 +10,7 @@ in {
 
   config = mkIf config.modules.desktop.gvfs.enable {
     user.packages = [ package ];
-    env.GIO_EXTRA_MODULES = [ "${package}/lib/gio/modules" ];
+    modules.desktop.env.GIO_EXTRA_MODULES = [ "${package}/lib/gio/modules" ];
     home-manager.users.${config.user.name}.systemd.user.services = {
       gvfs-afc-volume-monitor = {
         Unit.Description =

@@ -9,7 +9,6 @@ let
 in {
   options.modules.shell.zsh = with types; {
     enable = mkBoolOpt false;
-    env = mkOpt attrs { };
     extraZinitCommands = mkOpt lines "";
     aliases = mkOpt attrs { };
   };
@@ -42,7 +41,6 @@ in {
         defaultKeymap = "emacs";
         dotDir = zDotDir;
         enableCompletion = false;
-        sessionVariables = config.modules.shell.env // cfg.env;
         shellAliases = config.modules.shell.aliases // cfg.aliases;
 
         profileExtra = ''
@@ -54,6 +52,9 @@ in {
 
           export PATH
           export FPATH
+
+          ${concatStringsSep "\n"
+          (mapAttrsToList (n: v: ''export ${n}="${v}"'') config.env)}
         '';
         initExtraFirst = ''
           ${optionalString config.modules.shell.tmux.autoRun.enable ''

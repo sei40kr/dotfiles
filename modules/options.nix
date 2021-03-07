@@ -26,7 +26,6 @@ with lib.my; {
       users.${config.user.name} = {
         home = {
           file = mkAliasDefinitions options.home.file;
-          sessionVariables = config.env;
           # Necessary for home-manager to work with flakes, otherwise it will
           # look for a nixpkgs channel.
           stateVersion = config.system.stateVersion;
@@ -46,9 +45,6 @@ with lib.my; {
       allowedUsers = users;
     };
 
-    env = {
-      PATH = [ "\${PATH}" ];
-      GIO_EXTRA_MODULES = [ ];
-    };
+    env = { PATH = [ "\${PATH}" ]; };
   };
 }
