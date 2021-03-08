@@ -8,10 +8,10 @@ in {
 
   config = mkIf cfg.enable {
     fonts.fonts = with pkgs;
-      with pkgs.my; [
+      with pkgs; [
         fira-code
         jetbrains-mono
-        operator-mono
+        my.operator-mono
         source-code-pro
       ];
   };

@@ -7,12 +7,11 @@ in {
   options.modules.dev.groovy = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs;
-      with pkgs.my; [
-        groovy
-        groovy-language-server
-        gradle
-        maven
-      ];
+    user.packages = with pkgs; [
+      groovy
+      my.groovy-language-server
+      gradle
+      maven
+    ];
   };
 }
