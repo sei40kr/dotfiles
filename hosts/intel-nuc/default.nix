@@ -36,7 +36,7 @@ with lib.my; {
         # gnomeContacts.enable = true;
         gnomeFileRoller.enable = true;
         gnomeFontViewer.enable = true;
-        gnomePomodoro.enable = true;
+        gnome-pomodoro.enable = true;
         nautilus.enable = true;
 
         slack.enable = true;
