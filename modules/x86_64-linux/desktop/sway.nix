@@ -245,6 +245,7 @@ in {
       };
       fonts = with pkgs; [ noto-fonts noto-fonts-cjk noto-fonts-emoji ];
     };
+    hardware.opengl.enable = true;
     modules.desktop = {
       dconf.enable = true;
       fcitx.enable = true;
