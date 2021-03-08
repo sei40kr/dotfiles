@@ -56,38 +56,37 @@ in {
           ${concatStringsSep "\n"
           (mapAttrsToList (n: v: ''export ${n}="${v}"'') config.env)}
         '';
-        initExtraFirst = ''
-          ${optionalString config.modules.shell.tmux.autoRun.enable ''
-            if [[ -z "$TMUX" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" ]]; then
-              tmux new-session && exit
-            fi
-          ''}
-
-          if [[ -n "$TMUX" || -n "$INSIDE_EMACS" || -n "$EMACS" || -n "$VIM" ]]; then
-            export PAGER=cat
-          fi
-
-          setopt APPEND_HISTORY
-          setopt AUTO_CD
-          setopt AUTO_LIST
-          setopt AUTO_MENU
-          setopt AUTO_PARAM_KEYS
-          setopt AUTO_PARAM_SLASH
-          setopt AUTO_PUSHD
-          setopt AUTO_RESUME
-          setopt EQUALS
-          setopt GLOB_DOTS
-          setopt HIST_REDUCE_BLANKS
-          setopt INTERACTIVE_COMMENTS
-          setopt NO_BEEP
-          setopt NUMERIC_GLOB_SORT
-          setopt PRINT_EIGHT_BIT
-          setopt PROMPT_SUBST
-          setopt PUSHD_IGNORE_DUPS
-          unsetopt LIST_BEEP
-        '';
         initExtraBeforeCompInit = with pkgs;
           with pkgs.my; ''
+            ${optionalString config.modules.shell.tmux.autoRun.enable ''
+              if [[ -z "$TMUX" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" ]]; then
+                tmux new-session && exit
+              fi
+            ''}
+
+            if [[ -n "$TMUX" || -n "$INSIDE_EMACS" || -n "$EMACS" || -n "$VIM" ]]; then
+              export PAGER=cat
+            fi
+
+            setopt APPEND_HISTORY
+            setopt AUTO_CD
+            setopt AUTO_LIST
+            setopt AUTO_MENU
+            setopt AUTO_PARAM_KEYS
+            setopt AUTO_PARAM_SLASH
+            setopt AUTO_PUSHD
+            setopt AUTO_RESUME
+            setopt EQUALS
+            setopt GLOB_DOTS
+            setopt HIST_REDUCE_BLANKS
+            setopt INTERACTIVE_COMMENTS
+            setopt NO_BEEP
+            setopt NUMERIC_GLOB_SORT
+            setopt PRINT_EIGHT_BIT
+            setopt PROMPT_SUBST
+            setopt PUSHD_IGNORE_DUPS
+            unsetopt LIST_BEEP
+
             declare -A ZINIT
             ZINIT[BIN_DIR]=${zinit}/share/zinit
             . "''${ZINIT[BIN_DIR]}/zinit.zsh"

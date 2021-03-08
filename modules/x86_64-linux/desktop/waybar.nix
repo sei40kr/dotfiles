@@ -88,7 +88,7 @@ in {
             };
 
             modules-left = [ "sway/workspaces" ];
-            modules-center = mkIf (symbolIcon != null) [ "custom/symbol" ];
+            modules-center = optionals (symbolIcon != null) [ "custom/symbol" ];
             modules-right = [ "network" "pulseaudio" "clock" ];
 
             position = "top";
