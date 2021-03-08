@@ -13,8 +13,7 @@ in {
   alfred = pkgs.callPackage ./alfred.nix { };
   corretto_11 = pkgs.callPackage ./corretto_11.nix { };
   emacs = pkgs.callPackage ./emacs.nix { emacs = uPkgs.emacs; };
-  kotlin-language-server =
-    pkgs.callPackage ./kotlin-language-server.nix { gradle_6 = uPkgs.gradle; };
+  kotlin-language-server = pkgs.callPackage ./kotlin-language-server.nix { };
   groovy-language-server = pkgs.callPackage ./groovy-language-server { };
   notion = pkgs.callPackage ./notion.nix { };
   operator-mono = pkgs.callPackage ./operator-mono.nix { };

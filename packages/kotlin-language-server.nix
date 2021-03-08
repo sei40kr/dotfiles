@@ -1,23 +1,25 @@
-{ fetchurl, lib, stdenv, unzip, ... }:
+{ fetchzip, jre, lib, makeWrapper, stdenv, unzip, ... }:
 
 with lib;
 stdenv.mkDerivation rec {
   pname = "kotlin-language-server";
-  version = "0.7.0";
+  version = "1.1.1";
 
-  src = fetchurl {
+  src = fetchzip {
     url =
       "https://github.com/fwcd/kotlin-language-server/releases/download/${version}/server.zip";
-    sha256 = "1m9mw29sg3dknhvzs30izk2k3jls114cvfl0fzsjxlr7b7xhxs5p";
+    sha256 = "12gnxhmdkcr2wp789ia8l9xhh26v7h8ckwlhvm8m2xzxq8nvavv8";
   };
 
-  nativeBuildInputs = [ unzip ];
-
-  unpackCmd = ''unzip -o "$curSrc"'';
+  nativeBuildInputs = [ makeWrapper ];
+  buildInputs = [ jre ];
 
   installPhase = ''
-    mkdir -p $out
-    cp -r bin lib "$out"
+    install -D bin/kotlin-language-server -t "''${out}/bin"
+    cp -r lib "''${out}/lib"
+
+    wrapProgram "''${out}/bin/kotlin-language-server" \
+        --prefix PATH : ${jre}/bin
   '';
 
   meta = {
