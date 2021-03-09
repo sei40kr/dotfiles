@@ -29,18 +29,10 @@ with lib.my; {
 
       apps = {
         bitwarden.enable = true;
-        cheese.enable = true;
-        # geary.enable = true;
-        gnomeBooks.enable = true;
-        # gnomeCalendar.enable = true;
-        # gnomeContacts.enable = true;
-        gnomeFileRoller.enable = true;
-        gnomeFontViewer.enable = true;
         gnome-pomodoro.enable = true;
         nautilus.enable = true;
 
         slack.enable = true;
-        seahorse.enable = true;
       };
 
       browsers = {
