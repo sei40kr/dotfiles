@@ -61,7 +61,10 @@ with lib.my; {
       haskell.enable = true;
       java.enable = true;
       kotlin.enable = true;
-      python.enable = true;
+      python = {
+        enable = true;
+        jupyter.enable = true;
+      };
       r.enable = true;
       ruby = {
         enable = true;

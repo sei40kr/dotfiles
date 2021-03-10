@@ -2,16 +2,22 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.python;
+let
+  cfg = config.modules.dev.python;
+  package = pkgs.python3.withPackages (p:
+    with p;
+    [ ipython ]
+    ++ optionals cfg.jupyter.enable [ jupyter matplotlib numpy pandas ]);
 in {
   options.modules.dev.python = {
     enable = mkBoolOpt false;
     poetry.enable = mkBoolOpt false;
+    jupyter.enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs;
-      ([ python3 black python-language-server ]
+      ([ package black python-language-server ]
         ++ optionals cfg.poetry.enable [ poetry ]);
     env.PATH = [ "\${HOME}/.poetry/bin" ];
     modules.shell.zsh.extraZinitCommands = ''
