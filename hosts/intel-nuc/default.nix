@@ -36,7 +36,7 @@ with lib.my; {
       };
 
       browsers = {
-        chromium.enable = true;
+        google-chrome.enable = true;
         firefox.enable = true;
         qutebrowser.enable = true;
       };
