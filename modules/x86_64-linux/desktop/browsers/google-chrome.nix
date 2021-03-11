@@ -2,7 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.browsers.google-chrome;
+let
+  cfg = config.modules.desktop.browsers.google-chrome;
+  package =
+    pkgs.unstable.google-chrome.override { commandLineArgs = "--disable-gpu"; };
 in {
   options.modules.desktop.browsers.google-chrome = {
     enable = mkBoolOpt false;
@@ -10,8 +13,8 @@ in {
 
   config = mkIf cfg.enable {
     home-manager.users.${config.user.name}.programs.google-chrome = {
+      inherit package;
       enable = true;
-      package = pkgs.unstable.google-chrome;
     };
   };
 }
