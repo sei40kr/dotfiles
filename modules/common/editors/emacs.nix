@@ -4,8 +4,14 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.editors.emacs;
-in
-{
+  # 28 + native-comp
+  emacs = pkgs.emacsGcc;
+  package = if cfg.doom.enable then
+    ((pkgs.emacsPackagesGen emacs).emacsWithPackages
+      (epkgs: [ epkgs.melpaPackages.vterm ]))
+  else
+    emacs;
+in {
   options.modules.editors.emacs = {
     enable = mkBoolOpt false;
     doom.enable = mkBoolOpt false;
@@ -15,11 +21,7 @@ in
     nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
 
     user.packages = with pkgs;
-      [
-        # 28 + native-comp
-        emacsGcc
-        binutils
-      ] ++ optionals cfg.doom.enable [
+      [ package binutils ] ++ optionals cfg.doom.enable [
         ## Doom dependencies
         fd
         ripgrep
