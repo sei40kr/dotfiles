@@ -4,15 +4,11 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.dev.python;
-  package = pkgs.python3.withPackages (p:
-    with p;
-    [ ipython ]
-    ++ optionals cfg.jupyter.enable [ jupyter matplotlib numpy pandas ]);
+  package = pkgs.python3.withPackages (p: with p; [ ipython ]);
 in {
   options.modules.dev.python = {
     enable = mkBoolOpt false;
     poetry.enable = mkBoolOpt false;
-    jupyter.enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
