@@ -31,6 +31,7 @@ with lib.my; {
         bitwarden.enable = true;
         gnome-pomodoro.enable = true;
         nautilus.enable = true;
+        torrential.enable = true;
 
         slack.enable = true;
       };
