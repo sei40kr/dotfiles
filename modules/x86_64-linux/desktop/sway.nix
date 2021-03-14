@@ -76,6 +76,10 @@ in {
               { class = "^Gnome-control-center$"; }
               { class = "^Gnome-pomodoro$"; }
               { class = "^Gxmessage$"; }
+              {
+                class = "^jetbrains-";
+                title = "^win0$";
+              }
               { class = "^Xmessage$"; }
             ];
             titlebar = true;
