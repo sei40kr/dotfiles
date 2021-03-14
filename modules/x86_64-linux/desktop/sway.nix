@@ -247,6 +247,7 @@ in {
     };
     hardware.opengl.enable = true;
     modules.desktop = {
+      wayland = true;
       dconf.enable = true;
       fcitx.enable = true;
       gammastep.enable = true;

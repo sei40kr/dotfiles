@@ -3,6 +3,7 @@
 with lib;
 with lib.my; {
   options.modules.desktop = with types; {
+    wayland = mkBoolOpt false;
     env = mkOption {
       type = attrsOf (oneOf [ str path (listOf (either str path)) ]);
       apply = mapAttrs (_: v:
