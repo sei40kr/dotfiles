@@ -146,4 +146,6 @@ with lib.my; {
 
     theme.active = "zelda";
   };
+
+  services.upower.enable = true;
 }
