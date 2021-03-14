@@ -4,7 +4,17 @@ with lib;
 with lib.my;
 let
   ps = pkgs.rPackages;
-  rEnv = pkgs.rWrapper.override { packages = with ps; [ IRkernel ]; };
+  rEnv = pkgs.rWrapper.override {
+    packages = with ps; [
+      IRkernel
+      dslabs
+      magrittr
+      modelr
+      randomForest
+      rpart
+      tidyverse
+    ];
+  };
   kernel = {
     displayName = "R";
     argv = [
