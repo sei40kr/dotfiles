@@ -59,7 +59,7 @@ in {
         initExtraBeforeCompInit = with pkgs;
           with pkgs; ''
             ${optionalString config.modules.shell.tmux.autoRun.enable ''
-              if [[ -z "$TMUX" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" ]]; then
+              if [[ -n "$DISPLAY" && -z "$TMUX" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" ]]; then
                 tmux new-session && exit
               fi
             ''}
