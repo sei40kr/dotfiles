@@ -6,7 +6,7 @@ let
   cfg = config.modules.dev.r;
   package = with pkgs;
     rWrapper.override {
-      packages = [ rPackages.languageserver rPackages.lintr ];
+      packages = [ rPackages.languageserver rPackages.lintr rPackages.styler ];
     };
 in {
   options.modules.dev.r = { enable = mkBoolOpt false; };
