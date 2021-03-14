@@ -27,6 +27,8 @@ in {
         ripgrep
 
         ## Module dependencies
+        # :input japanese
+        unstable.cmigemo
         # :lang json
         nodePackages.vscode-json-languageserver-bin
         # :lang markdown
