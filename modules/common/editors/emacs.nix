@@ -4,8 +4,8 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.editors.emacs;
-  # 28 + native-comp
-  emacs = pkgs.emacsGcc;
+  # 28 + native-comp + pgtk + xwidgets
+  emacs = pkgs.emacsPgtkGcc.override { withXwidgets = true; };
   package = if cfg.doom.enable then
     ((pkgs.emacsPackagesGen emacs).emacsWithPackages
       (epkgs: [ epkgs.melpaPackages.vterm ]))
