@@ -29,6 +29,7 @@ with lib.my; {
 
       apps = {
         bitwarden.enable = true;
+        discord.enable = true;
         gnome-pomodoro.enable = true;
         nautilus.enable = true;
         torrential.enable = true;
