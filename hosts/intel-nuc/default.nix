@@ -97,7 +97,6 @@ with lib.my; {
     };
 
     services = {
-      cupsd.enable = true;
       # deluge = {
       #   enable = true;
       #   openFirewall = true;
@@ -109,7 +108,6 @@ with lib.my; {
         compose.enable = true;
       };
       # flexget.enable = true;
-      fstrim.enable = true;
       jellyfin = {
         enable = true;
         openFirewall = true;
@@ -120,7 +118,6 @@ with lib.my; {
         enableGoogleDrive = true;
         enableGooglePhotos = true;
       };
-      sshd.enable = true;
       transmission.enable = true;
     };
 
@@ -147,5 +144,14 @@ with lib.my; {
     theme.active = "zelda";
   };
 
-  services.upower.enable = true;
+  services = {
+    fstrim.enable = true;
+    openssh = {
+      enable = true;
+      permitRootLogin = "no";
+    };
+    printing.enable = true;
+    tlp.enable = true;
+    upower.enable = true;
+  };
 }
