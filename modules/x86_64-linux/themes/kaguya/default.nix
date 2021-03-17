@@ -62,7 +62,6 @@ with lib.my; {
     modules = {
       colorschemes.active = "one-dark";
       desktop = {
-        sway.theme.background.imageDirectory = ./backgrounds;
         waybar.theme = let
           icon = icon: ''<span font="Material Design Icons 12">${icon}</span>'';
         in {
@@ -84,6 +83,7 @@ with lib.my; {
           };
         };
       };
+      services.random-background.imageDirectory = ./backgrounds;
     };
   };
 }

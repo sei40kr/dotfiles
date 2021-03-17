@@ -2,18 +2,15 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.desktop.sway;
-  package = pkgs.sway.override {
-    extraSessionCommands = concatStringsSep "\n"
-      (mapAttrsToList (n: v: ''export ${n}="${v}"'')
-        config.modules.desktop.env);
-    withGtkWrapper = true;
-  };
+let cfg = config.modules.desktop.sway;
 in {
   options.modules.desktop.sway = with types; {
     enable = mkBoolOpt false;
-    theme.background.imageDirectory = mkOpt (either path str) null;
+    package = mkOption {
+      type = package;
+      default = null;
+      visible = false;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -21,18 +18,9 @@ in {
       extraGroups = [ "video" ];
       packages = with pkgs; [ wl-clipboard ];
     };
-    modules.desktop.env = {
-      SDL_VIDEODRIVER = "wayland";
-      # Needs qt5.qtwayland in systemPackages
-      QT_QPA_PLATFORM = "wayland";
-      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-      # Fix for some Java AWT applications (e.g. Android Studio),
-      # use this if they aren't displayed properly:
-      _JAVA_AWT_WM_NONREPARENTING = "1";
-    };
     home-manager.users.${config.user.name} = {
       wayland.windowManager.sway = {
-        inherit package;
+        inherit (cfg) package;
         enable = true;
         config = with pkgs; {
           assigns = {
@@ -112,7 +100,6 @@ in {
             "${mod}+v" = "splitv";
             "${mod}+f" = "fullscreen toggle";
             "${mod}+a" = "focus parent";
-            "${mod}+s" = "layout stacking";
             "${mod}+w" = "layout tabbed";
             "${mod}+e" = "layout toggle split";
             "${mod}+1" = "workspace number 1";
@@ -174,28 +161,6 @@ in {
             "${mod}+d" =
               "exec ${wofi}/bin/wofi -S drun -p 'Search Applications'";
           };
-          startup = let
-            random-backgrounds = writeShellScriptBin "random-backgrounds" ''
-              IMAGE_DIRECTORY=${
-                escapeShellArg cfg.theme.background.imageDirectory
-              }
-
-              shopt -s nullglob
-              cd "$IMAGE_DIRECTORY"
-              while true; do
-                for file in *.jpg *.png; do
-                  if [[ -f "$file" ]]; then
-                    files+=("$file")
-                  fi
-                done
-                range="''${#files[@]}"
-                swaybg -i "''${files[RANDOM % range]}" -m fill -o '*' &
-                pid="$!"
-                sleep 1h
-                kill "$pid"
-              done
-            '';
-          in [{ command = "${random-backgrounds}/bin/random-backgrounds"; }];
           window.titlebar = true;
         };
         extraConfig = ''
@@ -228,8 +193,8 @@ in {
             Type = "simple";
             ExecStart = ''
               ${pkgs.swayidle}/bin/swayidle -w -d \
-                  timeout 600 '${package}/bin/swaymsg "output * dpms off"' \
-                  resume '${package}/bin/swaymsg "output * dpms on"'
+                  timeout 600 '${cfg.package}/bin/swaymsg "output * dpms off"' \
+                  resume '${cfg.package}/bin/swaymsg "output * dpms on"'
             '';
           };
         };
@@ -250,15 +215,34 @@ in {
       fonts = with pkgs; [ noto-fonts noto-fonts-cjk noto-fonts-emoji ];
     };
     hardware.opengl.enable = true;
-    modules.desktop = {
-      wayland = true;
-      dconf.enable = true;
-      fcitx.enable = true;
-      gammastep.enable = true;
-      gtk.enable = true;
-      mako.enable = true;
-      waybar.enable = true;
-      wofi.enable = true;
+    modules = {
+      desktop = {
+        sway.package = pkgs.sway.override {
+          extraSessionCommands = concatStringsSep "\n"
+            (mapAttrsToList (n: v: ''export ${n}="${v}"'')
+              config.modules.desktop.env);
+          withGtkWrapper = true;
+        };
+        env = {
+          SDL_VIDEODRIVER = "wayland";
+          # Needs qt5.qtwayland in systemPackages
+          QT_QPA_PLATFORM = "wayland";
+          QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+          # Fix for some Java AWT applications (e.g. Android Studio),
+          # use this if they aren't displayed properly:
+          _JAVA_AWT_WM_NONREPARENTING = "1";
+        };
+        wayland = true;
+
+        dconf.enable = true;
+        fcitx.enable = true;
+        gammastep.enable = true;
+        gtk.enable = true;
+        mako.enable = true;
+        waybar.enable = true;
+        wofi.enable = true;
+      };
+      services.random-background.enable = true;
     };
   };
 }
