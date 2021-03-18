@@ -31,6 +31,12 @@ in {
   };
 
   config = mkIf cfg.enable {
+    assertions = [{
+      assertion = config.modules.desktop.sway.enable;
+      message =
+        "The swaybg module requires 'modules.desktop.sway.enable = true'.";
+    }];
+
     home-manager.users.${config.user.name} = {
       programs.waybar = {
         inherit package;
@@ -97,11 +103,11 @@ in {
       };
       systemd.user.services.waybar = {
         Unit = {
-          After = [ "graphical-session-pre.target" ];
+          After = [ "sway-session.target" ];
           Description =
             "Highly customizable Wayland bar for Sway and Wlroots based compositors.";
           Documentation = "https://github.com/Alexays/Waybar/wiki";
-          PartOf = [ "graphical-session.target" ];
+          PartOf = [ "sway-session.target" ];
           X-Restart-Triggers = let
             configFile =
               config.home-manager.users.${config.user.name}.xdg.configFile;
@@ -117,7 +123,7 @@ in {
           Restart = "always";
           RestartSec = "1sec";
         };
-        Install = { WantedBy = [ "graphical-session.target" ]; };
+        Install.WantedBy = [ "sway-session.target" ];
       };
     };
     # TODO Use user-level fonts
