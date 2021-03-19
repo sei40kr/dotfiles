@@ -10,6 +10,7 @@ in {
     user.packages = with pkgs; [ wofi ];
     home.configFile."wofi/config".text = ''
       hide_scroll=true
+      insensitive=true
       no_actions=true
       term=${config.modules.desktop.term.terminal}
       width=640
