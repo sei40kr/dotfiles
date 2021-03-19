@@ -8,14 +8,14 @@ let
   sway = config.modules.desktop.sway.package;
   swaybg-random = pkgs.writeShellScriptBin "swaybg-random" ''
     pid="$(${pkgs.procps}/bin/pgrep -x sway)"
-    socket="''${XDG_RUNTIME_DIR:-/run/user/''${UID}}/sway-ipc.''${UID}.''${pid}.sock"
-    if [[ -S "$socket" ]]; then
+    SWAYSOCK="''${XDG_RUNTIME_DIR:-/run/user/''${UID}}/sway-ipc.''${UID}.''${pid}.sock"
+    if [[ -S "$SWAYSOCK" ]]; then
       background="$(${pkgs.findutils}/bin/find ${
         escapeShellArg (toString cfg.imageDirectory)
       } \
         -type f \( -name '*.jpg' -o -name '*.png' \) |
         ${pkgs.coreutils}/bin/shuf -n1)"
-      ${sway}/bin/swaymsg -s "$socket" "output * bg ''${background} fill"
+      ${sway}/bin/swaymsg -s "$SWAYSOCK" "output * bg ''${background} fill"
     fi
   '';
 in {
