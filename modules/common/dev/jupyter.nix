@@ -4,8 +4,8 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.dev.jupyter;
-  pythonEnv =
-    pkgs.python3.withPackages (p: with p; [ jupyter_core jupyter_client ]);
+  pythonEnv = pkgs.python3.withPackages
+    (p: with p; [ jupyter_client jupyter_console jupyter_core ]);
   jupyterPath = pkgs.jupyter-kernel.create { definitions = cfg.kernels; };
   package = pkgs.writeShellScriptBin "jupyter" ''
     export PYTHONPATH=${pythonEnv}/${pythonEnv.sitePackages}
