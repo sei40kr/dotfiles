@@ -15,7 +15,19 @@ in {
       baseIndex = 1;
       enable = true;
       extraConfig = ''
-        source-file ${configDir}/tmux/tmux.conf
+        set-option -as terminal-overrides ,*-256color*:Tc
+        set-option -g bell-action none
+        set-option -g destroy-unattached off
+        set-option -g focus-events off
+        set-option -g renumber-windows on
+        set-option -g set-titles on
+        set-option -g wrap-search on
+        set-option -g xterm-keys on
+        set-option -wg mode-keys vi
+        set-option -wg status-keys emacs
+
+        bind-key C new-session
+        bind-key -T copy-mode-vi v send -X begin-selection
       '';
       sensibleOnTop = false;
       terminal = "tmux-256color";
