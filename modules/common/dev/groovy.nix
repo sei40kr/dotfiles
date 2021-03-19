@@ -13,5 +13,7 @@ in {
       gradle
       maven
     ];
+    modules.editors.emacs.doom.variables.lsp-groovy-server-file =
+      "${pkgs.my.groovy-language-server}/lib/groovy-language-server-all.jar";
   };
 }
