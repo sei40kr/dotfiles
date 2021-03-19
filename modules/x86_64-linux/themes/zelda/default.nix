@@ -60,7 +60,7 @@ with lib.my; {
       };
     };
     modules = {
-      colorschemes.active = "one-dark";
+      colorschemes.active = "doom-one";
       desktop = {
         waybar.theme = let
           icon = icon: ''<span font="Material Design Icons 12">${icon}</span>'';
