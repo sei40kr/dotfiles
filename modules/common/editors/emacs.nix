@@ -50,6 +50,10 @@ in {
         nodePackages.yaml-language-server
         # :tools docker
         nodePackages.dockerfile-language-server-nodejs
+        # :tools lookup +docsets
+        sqlite
+        # :tools lookup +dictionary +offline
+        wordnet
       ];
     home.file.".doom.d/nix-doom-vars.el" =
       mkIf (cfg.doom.enable && cfg.doom.variables != { }) {
