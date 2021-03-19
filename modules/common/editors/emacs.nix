@@ -12,9 +12,12 @@ let
   else
     emacs;
 in {
-  options.modules.editors.emacs = {
+  options.modules.editors.emacs = with types; {
     enable = mkBoolOpt false;
-    doom.enable = mkBoolOpt false;
+    doom = {
+      enable = mkBoolOpt false;
+      variables = mkOpt attrs { };
+    };
   };
 
   config = mkIf cfg.enable {
@@ -48,6 +51,15 @@ in {
         # :tools docker
         nodePackages.dockerfile-language-server-nodejs
       ];
+    home.file.".doom.d/nix-doom-vars.el" =
+      mkIf (cfg.doom.enable && cfg.doom.variables != { }) {
+        text = ''
+          (setq ${
+            concatStringsSep "\n      "
+            (mapAttrsToList (k: v: "${k} ${toEmacsLisp v}") cfg.doom.variables)
+          })
+        '';
+      };
     fonts.fonts = with pkgs; [ emacs-all-the-icons-fonts ];
     modules.editors.fonts.enable = true;
   };
