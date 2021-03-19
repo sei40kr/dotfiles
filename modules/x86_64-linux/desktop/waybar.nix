@@ -6,6 +6,14 @@ with lib.my;
 let
   cfg = config.modules.desktop.waybar;
   package = pkgs.waybar;
+  waybar-start = pkgs.writeShellScriptBin "waybar-start" ''
+    pid="$(${pkgs.procps}/bin/pgrep -x sway)"
+    SWAYSOCK="''${XDG_RUNTIME_DIR:-/run/user/''${UID}}/sway-ipc.''${UID}.''${pid}.sock"
+    if [[ -S "$SWAYSOCK" ]]; then
+      export SWAYSOCK
+    fi
+    ${package}/bin/waybar "$@"
+  '';
 in {
   options.modules.desktop.waybar = with types; {
     enable = mkBoolOpt false;
@@ -119,7 +127,7 @@ in {
         Service = {
           Type = "dbus";
           BusName = "fr.arouillard.waybar";
-          ExecStart = "${package}/bin/waybar";
+          ExecStart = "${waybar-start}/bin/waybar-start";
           Restart = "always";
           RestartSec = "1sec";
         };
