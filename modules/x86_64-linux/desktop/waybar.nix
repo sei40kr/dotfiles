@@ -125,8 +125,7 @@ in {
           ];
         };
         Service = {
-          Type = "dbus";
-          BusName = "fr.arouillard.waybar";
+          Type = "simple";
           ExecStart = "${waybar-start}/bin/waybar-start";
           Restart = "always";
           RestartSec = "1sec";
