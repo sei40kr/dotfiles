@@ -64,6 +64,7 @@ with lib.my; {
       java.enable = true;
       jupyter.enable = true;
       kotlin.enable = true;
+      latex.enable = true;
       python.enable = true;
       r.enable = true;
       ruby = {
