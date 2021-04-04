@@ -1,9 +1,9 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-20.09";
+    nixpkgs.url = "nixpkgs/master";
     nixpkgs-unstable.url = "nixpkgs/master";
     home-manager = {
-      url = "github:nix-community/home-manager/release-20.09";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs-overlay.url =

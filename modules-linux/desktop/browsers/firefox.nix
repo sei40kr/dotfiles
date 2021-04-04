@@ -1,12 +1,13 @@
-{ config, home-manager, lib, ... }:
+{ config, home-manager, lib, pkgs, ... }:
 
-with lib; {
+with lib;
+with lib.my;
+let cfg = config.modules.desktop.browsers.firefox;
+in {
   options.modules.desktop.browsers.firefox.enable = mkOption {
     type = types.bool;
     default = false;
   };
 
-  config = mkIf config.modules.desktop.browsers.firefox.enable {
-    home-manager.users.${config.user.name}.programs.firefox.enable = true;
-  };
+  config = mkIf cfg.enable { user.packages = with pkgs; [ firefox ]; };
 }

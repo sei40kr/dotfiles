@@ -5,7 +5,7 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.desktop.waybar;
-  package = pkgs.unstable.waybar;
+  package = pkgs.waybar;
   waybar-start = pkgs.writeShellScriptBin "waybar-start" ''
     pid="$(${pkgs.procps}/bin/pgrep -x sway)"
     SWAYSOCK="''${XDG_RUNTIME_DIR:-/run/user/''${UID}}/sway-ipc.''${UID}.''${pid}.sock"

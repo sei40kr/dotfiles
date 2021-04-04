@@ -4,13 +4,12 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.desktop.fcitx;
-  package = pkgs.unstable.fcitx5-with-addons.override {
-    addons = with pkgs; [ unstable.fcitx5-mozc ];
-  };
+  package =
+    pkgs.fcitx5-with-addons.override { addons = with pkgs; [ fcitx5-mozc ]; };
   gtk3_cache = pkgs.runCommand "gtk3-immodule.cache" {
     preferLocalBuild = true;
     allowSubstitutes = false;
-    buildInputs = [ package pkgs.unstable.gtk3 ];
+    buildInputs = [ package pkgs.gtk3 ];
   } ''
     mkdir -p "''${out}/lib/gtk-3.0/3.0.0"
     GTK_PATH='${package}/lib/gtk-3.0' gtk-query-immodules-3.0 >"''${out}/lib/gtk-3.0/3.0.0/immodules.cache"
