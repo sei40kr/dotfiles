@@ -231,6 +231,7 @@ in {
           # Fix for some Java AWT applications (e.g. Android Studio),
           # use this if they aren't displayed properly:
           _JAVA_AWT_WM_NONREPARENTING = "1";
+          XDG_SESSION_TYPE = "wayland";
         };
         wayland = true;
 
