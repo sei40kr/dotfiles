@@ -2,7 +2,9 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.sway;
+let
+  cfg = config.modules.desktop.sway;
+  nwg-launchers = config.modules.desktop.nwg-launchers.package;
 in {
   options.modules.desktop.sway = with types; {
     enable = mkBoolOpt false;
@@ -22,7 +24,7 @@ in {
       wayland.windowManager.sway = {
         inherit (cfg) package;
         enable = true;
-        config = with pkgs; {
+        config = {
           assigns = {
             "1" = [
               { window_role = "^browser$"; }
@@ -137,29 +139,28 @@ in {
             "${mod}+r" = "mode resize";
 
             "XF86MonBrightnessDown" =
-              "exec ${brightnessctl}/bin/brightnessctl set 2%-";
+              "exec ${pkgs.brightnessctl}/bin/brightnessctl set 2%-";
             "XF86MonBrightnessUp" =
-              "exec ${brightnessctl}/bin/brightnessctl set +4%";
+              "exec ${pkgs.brightnessctl}/bin/brightnessctl set +4%";
             "XF86AudioRaiseVolume" =
-              "exec ${pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
+              "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
             "XF86AudioLowerVolume" =
-              "exec ${pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+              "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
             "XF86AudioMute" =
-              "exec ${pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+              "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
 
             # mako
-            "${mod}+space" = "exec ${mako}/bin/makoctl dismiss";
-            "${mod}+Shift+space" = "exec ${mako}/bin/makoctl dismiss -a";
+            "${mod}+space" = "exec ${pkgs.mako}/bin/makoctl dismiss";
+            "${mod}+Shift+space" = "exec ${pkgs.mako}/bin/makoctl dismiss -a";
             "${mod}+Shift+period" =
-              "exec ${mako}/bin/makoctl menu wofi -dp 'Choose Action'";
+              "exec ${pkgs.mako}/bin/makoctl menu ${nwg-launchers}/bin/nwgdmenu -n";
 
             # grimshot
             "Print" =
-              "exec ${sway-contrib.grimshot}/bin/grimshot --notify copy screen";
+              "exec ${pkgs.sway-contrib.grimshot}/bin/grimshot --notify copy screen";
 
-            # wofi
-            "${mod}+d" =
-              "exec ${wofi}/bin/wofi -S drun -p 'Search Applications'";
+            # nwggrid
+            "${mod}+d" = "exec ${nwg-launchers}/bin/nwggrid";
           };
           window.titlebar = true;
         };
@@ -240,6 +241,7 @@ in {
         gammastep.enable = true;
         gtk.enable = true;
         mako.enable = true;
+        nwg-launchers.enable = true;
         waybar.enable = true;
         wofi.enable = true;
       };
