@@ -7,8 +7,8 @@ with lib.my; {
     home-manager.users.${config.user.name} = {
       gtk = {
         iconTheme = {
-          package = pkgs.gnome3.adwaita-icon-theme;
-          name = "Adwaita";
+          package = pkgs.papirus-icon-theme;
+          name = "Papirus";
         };
         gtk3 = {
           extraConfig.gtk-application-prefer-dark-theme = true;
