@@ -50,7 +50,7 @@ in {
         enable = true;
         settings = [{
           height = 56;
-          layer = "top";
+          layer = "bottom";
           modules = {
             clock = {
               format = "{:%H:%M}";
