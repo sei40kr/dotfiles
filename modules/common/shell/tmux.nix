@@ -53,7 +53,7 @@ in {
           plugin = my.tmuxPlugins.per-project-session;
           extraConfig = ''
             set-option -g detach-on-destroy off
-            set-option -g @per-project-session-workspace-dirs "$PROJECT_DIR"
+            set-option -g @per-project-session-workspace-dirs "$WORKSPACE_DIR"
             set-option -g @per-project-session-known-project-dirs "''${HOME}/.dotfiles:''${HOME}/.emacs.d:''${HOME}/.doom.d"
             set-option -g @per-project-session-fzf-tmux-opts '-d 15 --reverse --inline-info --color=dark --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
           '';

@@ -8,12 +8,12 @@ gh-create() {
     local answer
     local repo_dir
 
-    if [[ -z "$PROJECT_DIR" ]]; then
-        echo 'PROJECT_DIR is not set. Aborting.' >&2
+    if [[ -z "$WORKSPACE_DIR" ]]; then
+        echo 'WORKSPACE_DIR is not set. Aborting.' >&2
         exit 1
     fi
 
-    repo_dir="${PROJECT_DIR}/sei40kr/${repo_name}"
+    repo_dir="${WORKSPACE_DIR}/sei40kr/${repo_name}"
 
     if [[ -n "$GOPATH" ]]; then
         echo -n 'Would you like to create a Go project? [yn]: '

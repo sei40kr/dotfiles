@@ -3,7 +3,8 @@
 with lib;
 with lib.my;
 let
-  cfg = config.modules.shell.zsh;
+  shellCfg = config.modules.shell;
+  cfg = shellCfg.zsh;
   zDotDir = ".zsh";
   zinit = pkgs.my.zinit;
 in {
@@ -41,7 +42,7 @@ in {
         defaultKeymap = "emacs";
         dotDir = zDotDir;
         enableCompletion = false;
-        shellAliases = config.modules.shell.aliases // cfg.aliases;
+        shellAliases = shellCfg.aliases // cfg.aliases;
 
         profileExtra = ''
           ${optionalString pkgs.stdenv.isDarwin ''
@@ -53,12 +54,12 @@ in {
           export PATH
           export FPATH
 
-          ${concatStringsSep "\n"
-          (mapAttrsToList (n: v: ''export ${n}="${v}"'') config.env)}
+          ${concatStringsSep "\n" (mapAttrsToList (n: v: ''export ${n}="${v}"'')
+            (config.env // shellCfg.env))}
         '';
         initExtraBeforeCompInit = with pkgs;
           with pkgs; ''
-            ${optionalString config.modules.shell.tmux.autoRun.enable ''
+            ${optionalString shellCfg.tmux.autoRun.enable ''
               if [[ -n "$DISPLAY" && -z "$TMUX" && -z "$INSIDE_EMACS" && -z "$EMACS" && -z "$VIM" ]]; then
                 tmux new-session && exit
               fi
@@ -112,7 +113,7 @@ in {
             zinit ice has'fzf' trigger-load'!_fzf_complete_cd'
             zinit light ${my.zshPlugins.fzf-cd-dirs}/share/zsh/plugins/fzf-cd-dirs
 
-            FZF_PROJECTS_WORKSPACE_DIRS=( "$PROJECT_DIR" )
+            FZF_PROJECTS_WORKSPACE_DIRS=( "$WORKSPACE_DIR" )
             FZF_PROJECTS_PROJECT_DIR_MAX_DEPTH=2
             FZF_PROJECTS_KNOWN_PROJECTS=(
                 "''${HOME}/.dotfiles"
@@ -130,7 +131,7 @@ in {
             zinit light ${my.zshPlugins.ranger-cd}/share/zsh/plugins/ranger-cd
             bindkey '\ec' ranger-cd
 
-            GH_CLONE_WORKSPACE_DIR="$PROJECT_DIR"
+            GH_CLONE_WORKSPACE_DIR="$WORKSPACE_DIR"
             zinit ice trigger-load'!gh-clone'
             zinit light ${my.zshPlugins.gh-clone}/share/zsh/plugins/gh-clone
 

@@ -25,7 +25,7 @@ in {
         indent_type = "space";
         indent_width = 4;
         template_file = "${configDir}/atcoder-tools/my_template.rs";
-        workspace_dir = "~/projects/sei40kr/hello-atcoder/";
+        workspace_dir = "~/dev/ws/sei40kr/hello-atcoder/";
         lang = "rust";
         code_generator_file =
           "${configDir}/atcoder-tools/custom_code_generator.py";
