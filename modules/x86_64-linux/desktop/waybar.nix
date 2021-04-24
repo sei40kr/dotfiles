@@ -34,7 +34,6 @@ in {
         focused = mkOpt str null;
         urgent = mkOpt str null;
       };
-      symbol.icon = mkOpt (nullOr str) null;
     };
   };
 
@@ -49,65 +48,64 @@ in {
       programs.waybar = {
         inherit package;
         enable = true;
-        settings = [
-          (let symbolIcon = cfg.theme.symbol.icon;
-          in {
-            height = 36;
-            layer = "top";
-            modules = {
-              clock = {
-                format = "{:%b %d %a %H:%M}";
-                timezone = "Asia/Tokyo";
-                tooltip = false;
+        settings = [{
+          height = 56;
+          layer = "top";
+          modules = {
+            clock = {
+              format = "{:%H:%M}";
+              timezone = "Asia/Tokyo";
+              tooltip = false;
+            };
+            network = let networkIcon = cfg.theme.network.icon;
+            in {
+              format-disconnected = networkIcon.disconnected;
+              format-ethernet = networkIcon.ethernet;
+              format-icons = networkIcon.wifi;
+              format-wifi = "{icon}";
+              tooltip = false;
+            };
+            pulseaudio = let audioIcon = cfg.theme.audio.icon;
+            in {
+              format = "{icon}";
+              format-icons = {
+                default = audioIcon.default;
+                headphone = audioIcon.headphone;
+                headset = audioIcon.headset;
               };
-              "custom/symbol" =
-                mkIf (symbolIcon != null) { format = "${symbolIcon}"; };
-              network = let networkIcon = cfg.theme.network.icon;
+              format-muted = audioIcon.muted;
+              tooltip = false;
+            };
+            "sway/workspaces" = {
+              all-outputs = true;
+              disable-scroll = true;
+              format = "{icon}";
+              format-icons = let workspaceIcon = cfg.theme.workspace.icon;
               in {
-                format-disconnected = networkIcon.disconnected;
-                format-ethernet = networkIcon.ethernet;
-                format-icons = networkIcon.wifi;
-                format-wifi = "{icon}  {essid}";
-                tooltip = false;
+                default = workspaceIcon.default;
+                focused = workspaceIcon.focused;
+                persistent = workspaceIcon.default;
+                urgent = workspaceIcon.urgent;
               };
-              pulseaudio = let audioIcon = cfg.theme.audio.icon;
-              in {
-                format = "{icon}  {volume}%";
-                format-icons = {
-                  default = audioIcon.default;
-                  headphone = audioIcon.headphone;
-                  headset = audioIcon.headset;
-                };
-                format-muted = audioIcon.muted;
-                tooltip = false;
-              };
-              "sway/workspaces" = {
-                all-outputs = true;
-                disable-scroll = true;
-                format = "{icon}";
-                format-icons = let workspaceIcon = cfg.theme.workspace.icon;
-                in {
-                  default = workspaceIcon.default;
-                  focused = workspaceIcon.focused;
-                  persistent = workspaceIcon.default;
-                  urgent = workspaceIcon.urgent;
-                };
-                persistent_workspaces = {
-                  "1" = [ ];
-                  "2" = [ ];
-                  "3" = [ ];
-                  "4" = [ ];
-                };
+              persistent_workspaces = {
+                "1" = [ ];
+                "2" = [ ];
+                "3" = [ ];
+                "4" = [ ];
               };
             };
+            "wlr/taskbar" = {
+              icon-size = 40;
+              on-click = "activate";
+            };
+          };
 
-            modules-left = [ "sway/workspaces" ];
-            modules-center = optionals (symbolIcon != null) [ "custom/symbol" ];
-            modules-right = [ "network" "pulseaudio" "clock" ];
+          modules-left = [ "sway/workspaces" ];
+          modules-center = [ "wlr/taskbar" ];
+          modules-right = [ "pulseaudio" "network" "clock" ];
 
-            position = "top";
-          })
-        ];
+          position = "bottom";
+        }];
       };
       systemd.user.services.waybar = {
         Unit = {

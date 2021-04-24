@@ -62,21 +62,18 @@ with lib.my; {
     modules = {
       colorschemes.active = "doom-one";
       desktop = {
-        waybar.theme = let
-          icon = icon: ''<span font="Material Design Icons 12">${icon}</span>'';
-        in {
+        waybar.theme = {
           audio.icon = {
-            default = [ (icon "󰕿") (icon "󰖀") (icon "󰕾") ];
-            headphone = icon "󰋋";
-            headset = icon "󰋎";
+            default = [ "󰕿" "󰖀" "󰕾" ];
+            headphone = "󰋋";
+            headset = "󰋎";
             muted = "󰝟";
           };
           network.icon = {
             disconnected = "󰈂";
             ethernet = "󰈁";
-            wifi = [ (icon "󰤯") (icon "󰤟") (icon "󰤢") (icon "󰤥") (icon "󰤨") ];
+            wifi = [ "󰤯" "󰤟" "󰤢" "󰤥" "󰤨" ];
           };
-          symbol.icon = "󰯙";
           workspace.icon = {
             default = "󰣐";
             focused = "󰣐";
