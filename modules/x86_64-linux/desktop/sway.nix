@@ -10,7 +10,7 @@ in {
     enable = mkBoolOpt false;
     package = mkOption {
       type = package;
-      default = null;
+      default = pkgs.sway;
       visible = false;
     };
   };
@@ -134,8 +134,7 @@ in {
             "${mod}+Shift+minus" = "move scratchpad";
             "${mod}+minus" = "scratchpad show";
             "${mod}+Shift+c" = "reload";
-            "${mod}+Shift+e" =
-              "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'";
+            "${mod}+Shift+e" = "exec ${nwg-launchers}/bin/nwgbar";
             "${mod}+r" = "mode resize";
 
             "XF86MonBrightnessDown" =
