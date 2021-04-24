@@ -2,7 +2,12 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.shell.tmux;
+let
+  cfg = config.modules.shell.tmux;
+  copyCommand = if config.modules.desktop.wayland then
+    "${pkgs.wl-clipboard}/bin/wl-copy"
+  else
+    "${pkgs.xsel}/bin/xsel -i --clipboard";
 in {
   options.modules.shell.tmux = {
     enable = mkBoolOpt false;
@@ -43,10 +48,9 @@ in {
         }
         {
           plugin = tmuxPlugins.yank;
-          # TODO Add supports for wl-clipboard
           extraConfig = ''
             set-option -g @yank_with_mouse off
-            set-option -g @custom_copy_command '${pkgs.xsel}/bin/xsel -i --clipboard'
+            set-option -g @custom_copy_command '${copyCommand}'
           '';
         }
         {
