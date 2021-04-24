@@ -32,7 +32,7 @@ with lib.my; {
         discord.enable = true;
         gnome-pomodoro.enable = true;
         nautilus.enable = true;
-        torrential.enable = true;
+        qbittorrent.enable = true;
 
         slack.enable = true;
       };
