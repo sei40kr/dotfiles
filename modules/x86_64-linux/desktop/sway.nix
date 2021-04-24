@@ -242,6 +242,7 @@ in {
         gtk.enable = true;
         mako.enable = true;
         nwg-launchers.enable = true;
+        qt.enable = true;
         waybar.enable = true;
         wofi.enable = true;
       };
