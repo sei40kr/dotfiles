@@ -33,8 +33,8 @@ with lib.my; {
         gnome-pomodoro.enable = true;
         nautilus.enable = true;
         qbittorrent.enable = true;
-
         slack.enable = true;
+        zeal.enable = true;
       };
 
       browsers = {
