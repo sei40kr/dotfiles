@@ -1,26 +1,17 @@
 { config, lib, pkgs, ... }:
 
 with lib;
+with lib.my;
 let
   cfg = config.modules.services.caffeinate;
   workHoursInSeconds = (cfg.workHourRange.end - cfg.workHourRange.start) * 3600;
 in {
-  options.modules.services.caffeinate = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-    };
-
-    workdays = mkOption { type = with types; listOf int; };
-
-    workHourRange = mkOption {
-      type = with types;
-        submodule {
-          options = {
-            start = mkOption { type = int; };
-            end = mkOption { type = int; };
-          };
-        };
+  options.modules.services.caffeinate = with types; {
+    enable = mkBoolOpt false;
+    workdays = mkOpt (listOf int) [ ];
+    workHourRange = {
+      start = mkOpt int null;
+      end = mkOpt int null;
     };
   };
 

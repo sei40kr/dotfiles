@@ -1,4 +1,4 @@
-{ config, home-manager, lib, options, ... }:
+{ config, inputs, lib, options, pkgs, ... }:
 
 with lib;
 with lib.my; {
@@ -28,7 +28,10 @@ with lib.my; {
           file = mkAliasDefinitions options.home.file;
           # Necessary for home-manager to work with flakes, otherwise it will
           # look for a nixpkgs channel.
-          stateVersion = config.system.stateVersion;
+          stateVersion = if pkgs.stdenv.isDarwin then
+            config.system.nixpkgsRelease
+          else
+            config.system.stateVersion;
         };
         xdg = {
           configFile = mkAliasDefinitions options.home.configFile;
@@ -45,6 +48,6 @@ with lib.my; {
       allowedUsers = users;
     };
 
-    env = { PATH = [ "\${PATH}" ]; };
+    env.PATH = [ "\${PATH}" ];
   };
 }

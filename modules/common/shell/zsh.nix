@@ -33,8 +33,8 @@ in {
     home-manager.users.${config.user.name}.programs = {
       direnv = {
         enable = true;
-        enableNixDirenvIntegration = true;
         enableZshIntegration = false;
+        enableNixDirenvIntegration = true;
       };
       zsh = {
         enable = true;
@@ -43,20 +43,6 @@ in {
         dotDir = zDotDir;
         enableCompletion = false;
         shellAliases = shellCfg.aliases // cfg.aliases;
-
-        profileExtra = ''
-          ${optionalString pkgs.stdenv.isDarwin ''
-            eval "$(/usr/libexec/path_helper -s)"
-          ''}
-
-          fpath+=( "${zDotDir}/functions" "${zDotDir}/completions" )
-
-          export PATH
-          export FPATH
-
-          ${concatStringsSep "\n" (mapAttrsToList (n: v: ''export ${n}="${v}"'')
-            (config.env // shellCfg.env))}
-        '';
         initExtraBeforeCompInit = with pkgs;
           with pkgs; ''
             ${optionalString shellCfg.tmux.autoRun.enable ''
@@ -139,6 +125,20 @@ in {
 
             . ${configDir}/zsh/after-zinit.zsh
           '';
+        envExtra = optionalString pkgs.stdenv.isDarwin ''
+          if [[ -z "$__NIX_DARWIN_SET_ENVIRONMENT_DONE" ]]; then
+            . ${config.system.build.setEnvironment}
+          fi
+        '';
+        profileExtra = ''
+          fpath+=( "${zDotDir}/functions" "${zDotDir}/completions" )
+
+          export PATH
+          export FPATH
+
+          ${concatStringsSep "\n" (mapAttrsToList (n: v: ''export ${n}="${v}"'')
+            (config.env // shellCfg.env))}
+        '';
       };
     };
     environment.pathsToLink = [ "/share/zsh" ];

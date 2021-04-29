@@ -2,19 +2,13 @@
 
 with lib;
 with lib.my; {
-  imports = [ ../secrets/hosts/RLSUU178967M01.local.nix ];
-
   modules = {
     dev = {
       aws-cli.enable = true;
-      java = {
-        enable = true;
-        javaPackages."corretto64-11.0.8.10.1" = pkgs.my.corretto_11;
-      };
+      java.enable = true;
       javascript.enable = true;
       web.enable = true;
     };
-
     editors = {
       emacs = {
         enable = true;
@@ -22,7 +16,6 @@ with lib.my; {
       };
       neovim.enable = true;
     };
-
     shell = {
       zsh.enable = true;
       tmux = {
@@ -33,5 +26,11 @@ with lib.my; {
       git.enable = true;
       kaggle.enable = true;
     };
+  };
+
+  user = {
+    name = "RLSUU178967";
+    shell = pkgs.zsh;
+    uid = 1000;
   };
 }

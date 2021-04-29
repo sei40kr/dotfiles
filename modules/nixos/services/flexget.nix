@@ -1,8 +1,8 @@
-{ config, home-manager, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with lib.my;
-let downloadDir = "${homeDir}/google-drive";
+let downloadDir = "${config.user.home}/google-drive";
 in {
   options.modules.services.flexget.enable = mkOption {
     type = types.bool;

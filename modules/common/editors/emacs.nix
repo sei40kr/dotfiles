@@ -1,11 +1,11 @@
-{ config, home-manager, inputs, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with lib.my;
 let
   cfg = config.modules.editors.emacs;
-  # 28 + native-comp + pgtk + xwidgets
-  emacs = pkgs.emacsPgtkGcc.override { withXwidgets = true; };
+  # 28 + native-comp + pgtk
+  emacs = pkgs.emacsPgtkGcc.override { withXwidgets = !pkgs.stdenv.isDarwin; };
   package = if cfg.doom.enable then
     ((pkgs.emacsPackagesGen emacs).emacsWithPackages
       (epkgs: [ epkgs.melpaPackages.vterm ]))
@@ -21,8 +21,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    nixpkgs.overlays = [ inputs.emacs-overlay.overlay ];
-
     user.packages = with pkgs;
       [ package binutils ] ++ optionals cfg.doom.enable [
         ## Doom dependencies

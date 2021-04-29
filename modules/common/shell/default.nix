@@ -9,7 +9,7 @@ with lib.my; {
 
   config = {
     modules.shell = {
-      env = { WORKSPACE_DIR = "${homeDir}/dev/ws"; };
+      env.WORKSPACE_DIR = "${config.user.home}/dev/ws";
       aliases = {
         u = "cd ..";
         cx = "chmod +x";

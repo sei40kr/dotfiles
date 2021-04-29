@@ -2,7 +2,9 @@
 
 with lib;
 with lib.my; {
-  imports = [ ./hardware-configuration.nix ../personal.nix ];
+  imports = [ ./hardware-configuration.nix ];
+
+  system = "x86_64-linux";
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -99,11 +101,6 @@ with lib.my; {
     };
 
     services = {
-      # deluge = {
-      #   enable = true;
-      #   openFirewall = true;
-      #   web.enable = true;
-      # };
       docker = {
         enable = true;
         autoPrune.enable = true;
@@ -115,12 +112,6 @@ with lib.my; {
         openFirewall = true;
       };
       psd.enable = true;
-      rclone = {
-        enable = true;
-        enableGoogleDrive = true;
-        enableGooglePhotos = true;
-      };
-      transmission.enable = true;
     };
 
     shell = {
@@ -155,5 +146,13 @@ with lib.my; {
     printing.enable = true;
     tlp.enable = true;
     upower.enable = true;
+  };
+
+  user = {
+    isNormalUser = true;
+    name = "sei40kr";
+    uid = 1000;
+    extraGroups = [ "wheel" ];
+    shell = pkgs.zsh;
   };
 }
