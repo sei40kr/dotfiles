@@ -26,7 +26,7 @@
       lib = nixpkgs.lib.extend
         (lib: _: { my = import ./lib { inherit inputs lib; }; });
 
-      supportedSystem = rec {
+      supportedSystems = rec {
         darwin = [ "x86_64-darwin" ];
         linux = [ "x86_64-linux" ];
         all = darwin ++ linux;
@@ -37,9 +37,9 @@
           config.allowUnfree = true;
           overlays = extraOverlays ++ (attrValues self.overlays);
         };
-      pkgs = genAttrs supportedSystem.all
+      pkgs = genAttrs supportedSystems.all
         (mkPkgs nixpkgs [ emacs-overlay.overlay self.overlay ]);
-      pkgs' = genAttrs supportedSystem.all (mkPkgs nixpkgs-unstable [ ]);
+      pkgs' = genAttrs supportedSystems.all (mkPkgs nixpkgs-unstable [ ]);
 
       mkNixosHost = path:
         { system, ... }@attrs:
@@ -112,16 +112,16 @@
 
       overlays = mapModules ./overlays import;
 
-      packages = (genAttrs supportedSystem.all (system:
+      packages = (genAttrs supportedSystems.all (system:
         let
           args = {
             pkgs = pkgs.${system};
             pkgs' = pkgs'.${system};
           };
         in (import ./packages/all args)
-        // (optionalAttrs (elem system supportedSystem.darwin)
+        // (optionalAttrs (elem system supportedSystems.darwin)
           (import ./packages/darwin args))
-        // (optionalAttrs (elem system supportedSystem.linux)
+        // (optionalAttrs (elem system supportedSystems.linux)
           (import ./packages/linux args))));
 
       nixosModules = {
