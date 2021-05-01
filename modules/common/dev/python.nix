@@ -13,7 +13,7 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = with pkgs;
-      ([ package black python-language-server ]
+      ([ package black nodePackages.pyright ]
         ++ optionals cfg.poetry.enable [ poetry ]);
     env.PATH = [ "\${HOME}/.poetry/bin" ];
     modules.shell.zsh.extraZinitCommands = ''
