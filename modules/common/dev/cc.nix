@@ -8,6 +8,7 @@ in {
 
   config = mkIf cfg.enable {
     # TODO Install clang
-    user.packages = with pkgs; [ ccls cpplint gcc10 gdb llvm_10 ];
+    user.packages = with pkgs;
+      [ ccls cpplint ] ++ (optionals pkgs.stdenv.isLinux [ gcc10 gdb llvm_10 ]);
   };
 }
