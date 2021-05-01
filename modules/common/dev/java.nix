@@ -7,7 +7,7 @@ in {
   options.modules.dev.java = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ jdk11 gradle maven ];
+    user.packages = with pkgs; [ gradle maven ];
     modules.shell.zsh.extraZinitCommands = ''
       zinit ice trigger-load'!gradle'
       zinit snippet OMZP::gradle/gradle.plugin.zsh
