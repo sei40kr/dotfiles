@@ -5,6 +5,9 @@ with lib.my; {
   time.timeZone = "Asia/Tokyo";
 
   modules = {
+    desktop = {
+      apps.dash.enable = true;
+    };
     dev = {
       ansible.enable = true;
       aws-cli.enable = true;
