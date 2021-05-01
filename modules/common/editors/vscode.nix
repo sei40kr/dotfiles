@@ -41,15 +41,15 @@ in {
       package = pkgs.vscode;
     };
     home.file = mkIf isDarwin {
-      "Library/Application Support/VSCode/User/keybindings.json".source =
+      "Library/Application Support/Code/User/keybindings.json".source =
         "${configDir}/vscode/keybindings.json";
-      "Library/Application Support/VSCode/User/settings.json".source =
+      "Library/Application Support/Code/User/settings.json".source =
         "${configDir}/vscode/settings.json";
     };
     home.configFile = mkIf (!isDarwin) {
-      "VSCode/User/keybindings.json".source =
+      "Code/User/keybindings.json".source =
         "${configDir}/vscode/keybindings.json";
-      "VSCode/User/settings.json".source = "${configDir}/vscode/settings.json";
+      "Code/User/settings.json".source = "${configDir}/vscode/settings.json";
     };
     modules.editors.fonts.enable = true;
   };
