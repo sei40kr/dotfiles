@@ -29,4 +29,8 @@ let
     logo32 = null;
     logo64 = "${ps.IRkernel}/library/IRkernel/kernelspec/logo-64x64.png";
   };
-in { config = { modules.dev.jupyter.kernels.ir = kernel; }; }
+in {
+  config = mkIf config.modules.dev.r.enable {
+    modules.dev.jupyter.kernels.ir = kernel;
+  };
+}
