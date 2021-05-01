@@ -37,7 +37,7 @@ in {
         python3Packages.grip
         # :lang nix
         nixfmt
-        # nix-linter
+        nix-linter
         rnix-lsp
         # :lang plantuml
         plantuml
@@ -46,8 +46,12 @@ in {
         python3Packages.sqlparse
         # :lang yaml
         nodePackages.yaml-language-server
+        # :checkers spell
+        aspell
         # :tools docker
         nodePackages.dockerfile-language-server-nodejs
+        # :tools editorconfig
+        editorconfig-core-c
         # :tools lookup +docsets
         sqlite
         # :tools lookup +dictionary +offline
