@@ -115,23 +115,21 @@ with lib.my; {
     };
 
     shell = {
-      zsh.enable = true;
-      tmux = {
-        enable = true;
-        autoRun.enable = true;
-      };
+      exa.enable = true;
+      htop.enable = true;
+      prettyping.enable = true;
+      strace.enable = true;
+      tcpdump.enable = true;
       atcoder-tools.enable = true;
       bat.enable = true;
       git.enable = true;
       hugo.enable = true;
       online-judge-tools.enable = true;
-      tools = {
-        exa.enable = true;
-        htop.enable = true;
-        prettyping.enable = true;
-        strace.enable = true;
-        tcpdump.enable = true;
+      tmux = {
+        enable = true;
+        autoRun.enable = true;
       };
+      zsh.enable = true;
     };
 
     theme.active = "zelda";

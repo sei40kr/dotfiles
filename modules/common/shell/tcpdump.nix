@@ -1,12 +1,10 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
-  options.modules.shell.tools.tcpdump.enable = mkOption {
-    type = types.bool;
-    default = false;
-  };
+with lib;
+with lib.my;
+let cfg = config.modules.shell.tcpdump;
+in {
+  options.modules.shell.tcpdump = { enable = mkBoolOpt false; };
 
-  config = mkIf config.modules.shell.tools.tcpdump.enable {
-    user.packages = with pkgs; [ tcpdump ];
-  };
+  config = mkIf cfg.enable { user.packages = with pkgs; [ tcpdump ]; };
 }

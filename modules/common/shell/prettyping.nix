@@ -1,12 +1,12 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
-  options.modules.shell.tools.prettyping.enable = mkOption {
-    type = types.bool;
-    default = false;
-  };
+with lib;
+with lib.my;
+let cfg = config.modules.shell.prettyping;
+in {
+  options.modules.shell.prettyping = { enable = mkBoolOpt false; };
 
-  config = mkIf config.modules.shell.tools.prettyping.enable {
+  config = mkIf cfg.enable {
     user.packages = with pkgs; [ prettyping ];
     modules.shell.aliases.ping = "prettyping --nolegend";
   };

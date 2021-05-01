@@ -1,7 +1,9 @@
 { config, lib, pkgs, ... }:
 
 with lib;
+with lib.my;
 let
+  cfg = config.modules.shell.ranger;
   iterm2Config = optionalString config.modules.desktop.term.iterm2.enable ''
     # Set the preview image method. Supported methods:
     set preview_images_method iterm2
@@ -11,12 +13,9 @@ let
     set iterm2_font_height 11
   '';
 in {
-  options.modules.shell.tools.ranger.enable = mkOption {
-    type = types.bool;
-    default = false;
-  };
+  options.modules.shell.ranger = { enable = mkBoolOpt false; };
 
-  config = mkIf config.modules.shell.tools.ranger.enable {
+  config = mkIf cfg.enable {
     user.packages = with pkgs; [ ranger ];
 
     home.configFile."ranger/rc.conf".text = ''

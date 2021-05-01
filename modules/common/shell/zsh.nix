@@ -112,7 +112,7 @@ in {
             bindkey '^xg' fzf-projects
             bindkey '^x^g' fzf-projects
 
-            # TODO Move this in shell/tools/ranger module
+            # TODO Move this in shell/ranger module
             zinit ice trigger-load'!ranger-cd'
             zinit light ${my.zshPlugins.ranger-cd}/share/zsh/plugins/ranger-cd
             bindkey '\ec' ranger-cd

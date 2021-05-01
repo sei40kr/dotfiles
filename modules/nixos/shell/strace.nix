@@ -1,12 +1,10 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
-  options.modules.shell.tools.strace.enable = mkOption {
-    type = types.bool;
-    default = false;
-  };
+with lib;
+with lib.my;
+let cfg = config.modules.shell.strace;
+in {
+  options.modules.shell.strace = { enable = mkBoolOpt false; };
 
-  config = mkIf config.modules.shell.tools.strace.enable {
-    user.packages = with pkgs; [ strace ];
-  };
+  config = mkIf cfg.enable { user.packages = with pkgs; [ strace ]; };
 }

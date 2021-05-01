@@ -2,12 +2,9 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.shell.tools.ripgrep;
+let cfg = config.modules.shell.ripgrep;
 in {
-  options.modules.shell.tools.ripgrep.enable = mkOption {
-    type = types.bool;
-    default = false;
-  };
+  options.modules.shell.ripgrep = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ ripgrep ];
