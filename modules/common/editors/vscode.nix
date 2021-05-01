@@ -2,14 +2,15 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.editors.vscodium;
+let
+  cfg = config.modules.editors.vscode;
+  isDarwin = pkgs.stdenv.isDarwin;
 in {
-  options.modules.editors.vscodium = { enable = mkBoolOpt false; };
+  options.modules.editors.vscode = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     home-manager.users.${config.user.name}.programs.vscode = {
       enable = true;
-      package = pkgs.vscodium;
       extensions = with pkgs;
         [
           vscode-extensions.alanz.vscode-hie-server
@@ -33,16 +34,22 @@ in {
           my.vscode-extensions.rust-lang.rust
           my.vscode-extensions.vscjava.vscode-java-pack
           my.vscode-extensions.vscodevim.vim
-        ] ++ (optionals pkgs.stdenv.isDarwin [
+        ] ++ (optionals (!isDarwin) [
           vscode-extensions.ms-python.python
           vscode-extensions.ms-vscode.cpptools
         ]);
+      package = pkgs.vscode;
     };
-    home.configFile = {
-      "VSCodium/User/keybindings.json".source =
-        "${configDir}/vscodium/keybindings.json";
-      "VSCodium/User/settings.json".source =
-        "${configDir}/vscodium/settings.json";
+    home.file = mkIf isDarwin {
+      "Library/Application Support/VSCode/User/keybindings.json".source =
+        "${configDir}/vscode/keybindings.json";
+      "Library/Application Support/VSCode/User/settings.json".source =
+        "${configDir}/vscode/settings.json";
+    };
+    home.configFile = mkIf (!isDarwin) {
+      "VSCode/User/keybindings.json".source =
+        "${configDir}/vscode/keybindings.json";
+      "VSCode/User/settings.json".source = "${configDir}/vscode/settings.json";
     };
     modules.editors.fonts.enable = true;
   };
