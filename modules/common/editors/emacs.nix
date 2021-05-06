@@ -4,11 +4,23 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.editors.emacs;
+  isDarwin = pkgs.stdenv.isDarwin;
   # 28 + native-comp + pgtk
-  emacs = pkgs.emacsPgtkGcc.override { withXwidgets = !pkgs.stdenv.isDarwin; };
+  emacs = pkgs.emacsPgtkGcc.override { withXwidgets = !isDarwin; };
   package = if cfg.doom.enable then
-    ((pkgs.emacsPackagesGen emacs).emacsWithPackages
-      (epkgs: [ epkgs.melpaPackages.vterm ]))
+    ((pkgs.emacsPackagesGen emacs).emacsWithPackages (epkgs:
+      with epkgs; [
+        melpaPackages.vterm
+        (melpaPackages.zmq.overrideAttrs ({ postInstall, ... }: {
+          postInstall = postInstall + optionalString isDarwin ''
+
+            (
+              cd ''${out}/share/emacs/site-lisp/elpa/zmq-*
+              mv emacs-zmq.so emacs-zmq.dylib
+            )
+          '';
+        }))
+      ]))
   else
     emacs;
 in {
