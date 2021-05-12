@@ -7,6 +7,7 @@
   zshPlugins = (pkgs.callPackage (import ./zsh-plugins) { });
 
   groovy-language-server = pkgs.callPackage ./groovy-language-server { };
+  idea-doom-emacs = pkgs.callPackage ./idea-doom-emacs.nix { };
   kotlin-language-server = pkgs.callPackage ./kotlin-language-server.nix { };
   operator-mono = pkgs.callPackage ./operator-mono.nix { };
   vscode-extensions = (pkgs.callPackage (import ./vscode-extensions.nix) { });

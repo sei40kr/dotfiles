@@ -14,6 +14,10 @@ with lib.my; {
         enable = true;
         doom.enable = true;
       };
+      ideavim = {
+        enable = true;
+        enableDoom = true;
+      };
       neovim.enable = true;
     };
     shell = {
