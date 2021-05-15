@@ -3,13 +3,13 @@
 with lib;
 vimUtils.buildVimPlugin {
   pname = "idea-doom-emacs";
-  version = "unstable-2021-05-13";
+  version = "unstable-2021-05-14";
   namePrefix = "";
   src = fetchFromGitHub {
     owner = "sei40kr";
     repo = "idea-doom-emacs";
-    rev = "4aa2eb51c121be9cbe0aa45258bd566935158fae";
-    sha256 = "0rzvwliqcpp6jhhxaaqyn94f0z54l1gjxwpsp6nnv3l9rii97hv7";
+    rev = "42eb397f0a80bc32925ab2f75ac2229e8d312c9b";
+    sha256 = "07f3jp5gsdxhfpryrpv74svv991zj54vl5wnbw9lip3vjw0bqp2p";
   };
   path = "idea-doom-emacs";
 }
