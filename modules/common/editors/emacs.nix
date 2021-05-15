@@ -3,9 +3,9 @@
 with lib;
 with lib.my;
 let
+  inherit (pkgs.stdenv) isDarwin;
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.emacs;
-  isDarwin = pkgs.stdenv.isDarwin;
   # 28 + native-comp + pgtk
   emacs = pkgs.emacsPgtkGcc.override { withXwidgets = !isDarwin; };
   package = if cfg.doom.enable then

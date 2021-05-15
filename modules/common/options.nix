@@ -1,7 +1,9 @@
-{ config, inputs, lib, options, pkgs, ... }:
+{ config, lib, options, pkgs, ... }:
 
 with lib;
-with lib.my; {
+with lib.my;
+let inherit (pkgs.stdenv) isDarwin;
+in {
   options = with types; {
     user = mkOpt attrs { };
 
@@ -28,7 +30,7 @@ with lib.my; {
           file = mkAliasDefinitions options.home.file;
           # Necessary for home-manager to work with flakes, otherwise it will
           # look for a nixpkgs channel.
-          stateVersion = if pkgs.stdenv.isDarwin then
+          stateVersion = if isDarwin then
             config.system.nixpkgsRelease
           else
             config.system.stateVersion;

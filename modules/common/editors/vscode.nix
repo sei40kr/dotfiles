@@ -3,9 +3,9 @@
 with lib;
 with lib.my;
 let
+  inherit (pkgs.stdenv) isDarwin;
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.vscode;
-  isDarwin = pkgs.stdenv.isDarwin;
   settings = builtins.toJSON (importJSON "${configDir}/vscode/settings.json"
     // {
       "editor.fontFamily" = editorsCfg.font.family;
