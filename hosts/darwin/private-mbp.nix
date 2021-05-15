@@ -38,6 +38,10 @@ with lib.my; {
         enable = true;
         doom.enable = true;
       };
+      font = {
+        family = "Input";
+        size = 17;
+      };
       neovim = {
         enable = true;
         manpager.enable = true;

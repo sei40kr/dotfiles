@@ -3,7 +3,8 @@
 with lib;
 with lib.my;
 let
-  cfg = config.modules.editors.emacs;
+  editorsCfg = config.modules.editors;
+  cfg = editorsCfg.emacs;
   isDarwin = pkgs.stdenv.isDarwin;
   # 28 + native-comp + pgtk
   emacs = pkgs.emacsPgtkGcc.override { withXwidgets = !isDarwin; };
@@ -72,10 +73,14 @@ in {
     home.file.".doom.d/nix-doom-vars.el" =
       mkIf (cfg.doom.enable && cfg.doom.variables != { }) {
         text = ''
-          (setq ${
-            concatStringsSep "\n      "
-            (mapAttrsToList (k: v: "${k} ${toEmacsLisp v}") cfg.doom.variables)
-          })
+          (setq doom-font (font-spec
+                            :family ${toEmacsLisp editorsCfg.font.family}
+                            :size ${toEmacsLisp editorsCfg.font.size}.0)
+                ${
+                  (concatStringsSep "\n      "
+                    (mapAttrsToList (k: v: "${k} ${toEmacsLisp v}")
+                      cfg.doom.variables))
+                })
         '';
       };
     fonts.fonts = with pkgs; [ emacs-all-the-icons-fonts ];

@@ -1,7 +1,5 @@
 {
   "breadcrumbs.enabled": false,
-  "editor.fontFamily": "\"JetBrains Mono\", monospace",
-  "editor.fontSize": 18,
   "editor.minimap.enabled": false,
   "extensions.autoCheckUpdates": false,
   "extensions.autoUpdate": false,

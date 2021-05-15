@@ -3,8 +3,14 @@
 with lib;
 with lib.my;
 let
-  cfg = config.modules.editors.vscode;
+  editorsCfg = config.modules.editors;
+  cfg = editorsCfg.vscode;
   isDarwin = pkgs.stdenv.isDarwin;
+  settings = builtins.toJSON (importJSON "${configDir}/vscode/settings.json"
+    // {
+      "editor.fontFamily" = editorsCfg.font.family;
+      "editor.fontSize" = editorsCfg.font.size;
+    });
 in {
   options.modules.editors.vscode = { enable = mkBoolOpt false; };
 
@@ -43,13 +49,12 @@ in {
     home.file = mkIf isDarwin {
       "Library/Application Support/Code/User/keybindings.json".source =
         "${configDir}/vscode/keybindings.json";
-      "Library/Application Support/Code/User/settings.json".source =
-        "${configDir}/vscode/settings.json";
+      "Library/Application Support/Code/User/settings.json".text = settings;
     };
     home.configFile = mkIf (!isDarwin) {
       "Code/User/keybindings.json".source =
         "${configDir}/vscode/keybindings.json";
-      "Code/User/settings.json".source = "${configDir}/vscode/settings.json";
+      "Code/User/settings.json".text = settings;
     };
     modules.editors.fonts.enable = true;
   };
