@@ -60,7 +60,6 @@ with lib.my; {
       };
     };
     modules = {
-      colorschemes.active = "doom-one";
       desktop = {
         waybar.theme = {
           audio.icon = {
@@ -82,6 +81,7 @@ with lib.my; {
         };
       };
       services.random-background.imageDirectory = ./backgrounds;
+      term.colorschemes.active = "doom-one";
     };
   };
 }

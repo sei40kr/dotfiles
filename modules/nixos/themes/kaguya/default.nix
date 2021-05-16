@@ -60,7 +60,6 @@ with lib.my; {
       };
     };
     modules = {
-      colorschemes.active = "doom-one";
       desktop = {
         waybar.theme = let
           icon = icon: ''<span font="Material Design Icons 12">${icon}</span>'';
@@ -84,6 +83,7 @@ with lib.my; {
         };
       };
       services.random-background.imageDirectory = ./backgrounds;
+      term.colorschemes.active = "doom-one";
     };
   };
 }

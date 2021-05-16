@@ -65,8 +65,10 @@ with lib.my; {
       };
       zsh.enable = true;
     };
-
-    colorschemes.active = "doom-one";
+    term = {
+      alacritty.enable = true;
+      colorschemes.active = "doom-one";
+    };
   };
 
   user = {
