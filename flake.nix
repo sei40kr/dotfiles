@@ -77,23 +77,10 @@
               };
               users.nix.configureBuildUsers = true;
 
-              system = rec {
-                build.applications = pkgs.buildEnv {
-                  name = "user-applications";
-                  paths = config.users.users.${config.user.name}.packages;
-                  pathsToLink = "/Applications";
-                };
-
-                activationScripts.applications.text = ''
-                  # Set up applications.
-                  echo "setting up ~/Applications..." >&2
-
-                  if [ ! -e ~/Applications -o -L ~/Applications ]; then
-                    ln -sfn ${build.applications}/Applications ~/Applications
-                  else
-                    echo "warning: ~/Applications is a directory, skipping App linking..." >&2
-                  fi
-                '';
+              system.build.applications = pkgs.buildEnv {
+                name = "user-applications";
+                paths = config.users.users.${config.user.name}.packages;
+                pathsToLink = "/Applications";
               };
 
               user.home = "/Users/${config.user.name}";
