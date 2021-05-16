@@ -7,23 +7,22 @@ let
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.emacs;
   # 28 + native-comp + pgtk
-  emacs = pkgs.emacsPgtkGcc.override { withXwidgets = !isDarwin; };
   package = if cfg.doom.enable then
-    ((pkgs.emacsPackagesGen emacs).emacsWithPackages (epkgs:
+    ((pkgs.emacsPackagesGen pkgs.my.emacs).emacsWithPackages (epkgs:
       with epkgs; [
+        melpaPackages.emacsql-sqlite
         melpaPackages.vterm
-        (melpaPackages.zmq.overrideAttrs ({ postInstall, ... }: {
-          postInstall = postInstall + optionalString isDarwin ''
-
+        (melpaPackages.zmq.overrideAttrs ({ postInstall ? "", ... }: {
+          postInstall = postInstall + (optionalString isDarwin ''
             (
-              cd ''${out}/share/emacs/site-lisp/elpa/zmq-*
+              cd $out/share/emacs/site-lisp/elpa/zmq-*
               mv emacs-zmq.so emacs-zmq.dylib
             )
-          '';
+          '');
         }))
       ]))
   else
-    emacs;
+    pkgs.my.emacs;
 in {
   options.modules.editors.emacs = with types; {
     enable = mkBoolOpt false;
