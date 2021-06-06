@@ -127,7 +127,7 @@ with lib.my; {
       online-judge-tools.enable = true;
       tmux = {
         enable = true;
-        autoRun.enable = true;
+        autoRun = true;
       };
       zsh.enable = true;
     };

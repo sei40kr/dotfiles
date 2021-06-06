@@ -9,7 +9,7 @@ let
 in {
   options.modules.shell.tmux = {
     enable = mkBoolOpt false;
-    autoRun.enable = mkBoolOpt false;
+    autoRun = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {

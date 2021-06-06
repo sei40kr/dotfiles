@@ -24,7 +24,7 @@ with lib.my; {
       zsh.enable = true;
       tmux = {
         enable = true;
-        autoRun.enable = true;
+        autoRun = true;
       };
       atcoder-tools.enable = true;
       git.enable = true;
