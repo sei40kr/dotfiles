@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with lib.my;
@@ -11,6 +11,7 @@ in {
   config = mkIf cfg.enable {
     home-manager.users.${config.user.name}.programs.alacritty = {
       enable = true;
+      package = pkgs.my.alacritty;
       settings = {
         # Any items in the `env` entry below will be added as
         # environment variables. Some entries may override variables

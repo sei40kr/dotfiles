@@ -6,6 +6,7 @@
   vimPlugins = (pkgs.callPackage (import ./vim-plugins.nix) { });
   zshPlugins = (pkgs.callPackage (import ./zsh-plugins) { });
 
+  alacritty = pkgs.callPackage ./alacritty { };
   emacs = pkgs.callPackage ./emacs.nix { };
   groovy-language-server = pkgs.callPackage ./groovy-language-server { };
   idea-doom-emacs = pkgs.callPackage ./idea-doom-emacs.nix { };
