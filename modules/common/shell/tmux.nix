@@ -1,37 +1,29 @@
-{ config, home-manager, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with lib.my;
-let cfg = config.modules.shell.tmux;
+let
+  inherit (pkgs.stdenv) isDarwin isLinux;
+  cfg = config.modules.shell.tmux;
 in {
   options.modules.shell.tmux = {
     enable = mkBoolOpt false;
     autoRun.enable = mkBoolOpt false;
-    secureSocket.enable = mkBoolOpt pkgs.stdenv.isLinux;
   };
 
   config = mkIf cfg.enable {
     home-manager.users.${config.user.name}.programs.tmux = {
-      baseIndex = 1;
       enable = true;
-      extraConfig = ''
-        set-option -as terminal-overrides ,*-256color*:Tc
-        set-option -g bell-action none
-        set-option -g destroy-unattached off
-        set-option -g focus-events off
-        set-option -g renumber-windows on
-        set-option -g set-titles on
-        set-option -g wrap-search on
-        set-option -g xterm-keys on
-        set-option -wg mode-keys vi
-        set-option -wg status-keys emacs
 
-        bind-key C new-session
-        bind-key -T copy-mode-vi v send -X begin-selection
-      '';
+      baseIndex = 1;
+      escapeTime = 10;
       sensibleOnTop = false;
-      terminal = "tmux-256color";
-      secureSocket = cfg.secureSocket.enable;
+      # The screen-256color in most cases is enough. But it does not support any
+      # italic font style.
+      # https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95#the-fast-blazing-solution
+      terminal = if isDarwin then "screen-256color" else "tmux-256color";
+      secureSocket = isLinux;
+
       plugins = with pkgs; [
         my.tmuxPlugins.cleanup-unnamed-sessions
         tmuxPlugins.copycat
@@ -56,6 +48,22 @@ in {
         }
         my.tmuxPlugins.doom-one-dark
       ];
+
+      extraConfig = ''
+        set-option -as terminal-overrides ,*-256color*:Tc
+        set-option -g bell-action none
+        set-option -g destroy-unattached off
+        set-option -g focus-events off
+        set-option -g renumber-windows on
+        set-option -g set-titles on
+        set-option -g wrap-search on
+        set-option -g xterm-keys on
+        set-option -wg mode-keys vi
+        set-option -wg status-keys emacs
+
+        bind-key C new-session
+        bind-key -T copy-mode-vi v send -X begin-selection
+      '';
     };
   };
 }

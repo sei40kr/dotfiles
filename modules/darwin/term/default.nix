@@ -1,12 +1,18 @@
 { config, lib, ... }:
 
 with lib;
-with lib.my; {
+with lib.my;
+let
+  terminfoDirs = (map (p: "${p}/share/terminfo") config.environment.profiles)
+    ++ [ "/usr/share/terminfo" ];
+in {
   config = {
-    environment.pathsToLink = [ "/share/terminfo" ];
+    environment = {
+      pathsToLink = [ "/share/terminfo" ];
 
-    environment.variables.TERMINFO_DIRS = concatStringsSep ":"
-      ((map (p: "${p}/share/terminfo") config.environment.profiles)
-        ++ [ "/usr/share/terminfo" ]);
+      etc.terminfo.source = "${config.system.path}/share/terminfo";
+
+      variables.TERMINFO_DIRS = concatStringsSep ":" terminfoDirs;
+    };
   };
 }

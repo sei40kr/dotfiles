@@ -3,9 +3,10 @@
 with lib;
 with lib.my;
 let
+  package = pkgs.zsh;
   shellCfg = config.modules.shell;
   cfg = shellCfg.zsh;
-  zDotDir = ".zsh";
+  dotDir = ".zsh";
   zinit = pkgs.my.zinit;
 in {
   options.modules.shell.zsh = with types; {
@@ -15,9 +16,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs;
-      ([
-        zsh
+    user.packages = [ package ] ++ (with pkgs;
+      [
         nix-zsh-completions
 
         ## zinit dependencies
@@ -27,9 +27,10 @@ in {
         subversion
       ] ++ optionals stdenv.isDarwin [ terminal-notifier ]);
     home.file = {
-      "${zDotDir}/completions".source = "${configDir}/zsh/completions";
-      "${zDotDir}/functions".source = "${configDir}/zsh/functions";
+      "${dotDir}/completions".source = "${configDir}/zsh/completions";
+      "${dotDir}/functions".source = "${configDir}/zsh/functions";
     };
+
     home-manager.users.${config.user.name}.programs = {
       direnv = {
         enable = true;
@@ -38,11 +39,16 @@ in {
       };
       zsh = {
         enable = true;
+        enableCompletion = false;
+
         autocd = true;
         defaultKeymap = "emacs";
-        dotDir = zDotDir;
-        enableCompletion = false;
+        dotDir = dotDir;
         shellAliases = shellCfg.aliases // cfg.aliases;
+
+        initExtra = ''
+          KEYTIMEOUT=1
+        '';
         initExtraBeforeCompInit = with pkgs;
           with pkgs; ''
             ${optionalString shellCfg.tmux.autoRun.enable ''
@@ -131,7 +137,7 @@ in {
           fi
         '';
         profileExtra = ''
-          fpath+=( "${zDotDir}/functions" "${zDotDir}/completions" )
+          fpath+=( "${dotDir}/functions" "${dotDir}/completions" )
 
           export PATH
           export FPATH
@@ -141,7 +147,9 @@ in {
         '';
       };
     };
+
     environment.pathsToLink = [ "/share/zsh" ];
+
     modules.shell.zsh.aliases = {
       d = "dirs";
       po = "popd";
