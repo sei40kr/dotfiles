@@ -5,6 +5,7 @@ with lib.my;
 let
   inherit (pkgs.stdenv) isDarwin isLinux;
   cfg = config.modules.shell.tmux;
+  prefix = "C-t";
 in {
   options.modules.shell.tmux = {
     enable = mkBoolOpt false;
@@ -15,14 +16,15 @@ in {
     home-manager.users.${config.user.name}.programs.tmux = {
       enable = true;
 
+      inherit prefix;
       baseIndex = 1;
       escapeTime = 10;
       sensibleOnTop = false;
+      secureSocket = isLinux;
       # The screen-256color in most cases is enough. But it does not support any
       # italic font style.
       # https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95#the-fast-blazing-solution
       terminal = if isDarwin then "screen-256color" else "tmux-256color";
-      secureSocket = isLinux;
 
       plugins = with pkgs; [
         my.tmuxPlugins.cleanup-unnamed-sessions
@@ -31,7 +33,7 @@ in {
         tmuxPlugins.pain-control
         {
           plugin = tmuxPlugins.sensible;
-          extraConfig = "set-option -g prefix C-t";
+          extraConfig = "set-option -g prefix ${prefix}";
         }
         {
           plugin = tmuxPlugins.yank;
