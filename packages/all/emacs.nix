@@ -11,14 +11,14 @@ let
     sha256 = "1d3znwhcafxlwp8bqzwy07mgwr868z22pfnivw88213sp10v5zsk";
   };
 in ((emacsPgtkGcc.override { withXwidgets = !isDarwin; }).overrideAttrs
-  ({ patches ? [ ], postInstall ? "", ... }: {
+  ({ patches ? [ ], postPatch ? "", ... }: {
     patches = patches ++ (optionals isDarwin [
       "${emacsPlus}/patches/emacs-28/fix-window-role.patch"
       "${emacsPlus}/patches/emacs-28/no-frame-refocus-cocoa.patch"
       "${emacsPlus}/patches/emacs-28/system-appearance.patch"
     ]);
-
-    postInstall = postInstall + (optionalString isDarwin ''
-      cp -f ${emacsPlus}/icons/nobu417-big-sur.icns $out/Applications/Emacs.app/Contents/Resources/Emacs.icns
-    '');
+    postPatch = ''
+      ${postPatch}
+      cp -f ${emacsPlus}/icons/nobu417-big-sur.icns nextstep/Cocoa/Emacs.base/Contents/Resources/Emacs.icns
+    '';
   }))

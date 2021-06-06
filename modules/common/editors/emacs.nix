@@ -14,6 +14,7 @@ let
         melpaPackages.vterm
         (melpaPackages.zmq.overrideAttrs ({ postInstall ? "", ... }: {
           postInstall = postInstall + (optionalString isDarwin ''
+
             (
               cd $out/share/emacs/site-lisp/elpa/zmq-*
               mv emacs-zmq.so emacs-zmq.dylib
