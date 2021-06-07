@@ -54,8 +54,6 @@ in {
           FZF_PROJECTS_PROJECT_DIR_MAX_DEPTH = 2;
 
           PURE_PROMPT_SYMBOL = "λ";
-          PURE_GIT_DOWN_ARROW = "▾";
-          PURE_GIT_UP_ARROW = "▴";
         };
 
         envExtra = ''
@@ -127,7 +125,8 @@ in {
           fi
 
           # Prompt
-          zstyle :prompt:pure:prompt:success color yellow
+          zstyle :prompt:pure:prompt:success color green
+          zstyle :prompt:pure:git:dirty color 242
           prompt_pure_setup
         '';
       };
