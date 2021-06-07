@@ -119,6 +119,7 @@ in {
           bindkey '^xg' fzf-projects
           bindkey '^x^g' fzf-projects
 
+          zle -N ranger-cd
           bindkey '\ec' ranger-cd
 
           if [[ "$INSIDE_EMACS" == vterm ]]; then
