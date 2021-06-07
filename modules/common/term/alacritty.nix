@@ -24,6 +24,8 @@ in {
           # check the local terminfo database and use `alacritty` if it is
           # available, otherwise `xterm-256color` is used.
           TERM = "alacritty";
+
+          LANG = "en_US.UTF-8";
         };
 
         scrolling = {
