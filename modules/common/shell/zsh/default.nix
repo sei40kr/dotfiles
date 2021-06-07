@@ -193,7 +193,7 @@ in {
           }
           {
             source =
-              "${pkgs.my.zsh-smart-command-history}/share/zsh/plugins/zsh-smart-command-history";
+              "${pkgs.my.zsh-smart-history}/share/zsh/plugins/zsh-smart-history";
           }
           {
             source = "${pkgs.my.zsh-tmux-man}/share/zsh/plugins/zsh-tmux-man";

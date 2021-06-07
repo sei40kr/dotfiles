@@ -18,7 +18,6 @@
   zsh-fzf-projects = pkgs.callPackage ./zsh-fzf-projects.nix { };
   zsh-gh-clone = pkgs.callPackage ./zsh-gh-clone.nix { };
   zsh-ranger-cd = pkgs.callPackage ./zsh-ranger-cd.nix { };
-  zsh-smart-command-history =
-    pkgs.callPackage ./zsh-smart-command-history.nix { };
+  zsh-smart-history = pkgs.callPackage ./zsh-smart-history.nix { };
   zsh-tmux-man = pkgs.callPackage ./zsh-tmux-man.nix { };
 }
