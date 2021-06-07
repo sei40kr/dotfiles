@@ -52,7 +52,7 @@ in {
       ];
 
       extraConfig = ''
-        set-option -as terminal-overrides ,*-256color*:Tc
+        set-option -as terminal-overrides ,alacritty:RGB
         set-option -g bell-action none
         set-option -g destroy-unattached off
         set-option -g focus-events off
