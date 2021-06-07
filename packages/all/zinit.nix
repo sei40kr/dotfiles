@@ -3,24 +3,16 @@
 with lib;
 stdenv.mkDerivation {
   pname = "zinit";
-  version = "v3.1";
+  version = "v3.7";
 
   src = fetchFromGitHub {
     owner = "zdharma";
     repo = "zinit";
-    rev = "fbc77d998547ca546115c0fb79a17c653ab57ea1";
-    sha256 = "1mpdsfg5caxli1w7dhgxiir01hdc97wqv54i3rki3fq9qrhsk2j9";
+    rev = "1641f10c7a77ba3edcacba4f4347eef2bb620c74";
+    sha256 = "04bbnk118rb9yj4y14s2x7xfnc0283a5vcayv9vc9w4l7wdi7rq7";
   };
 
   nativeBuildInputs = [ zsh ];
-
-  buildPhase = ''
-    ${zsh}/bin/zsh -c 'zcompile zinit.zsh'
-    ${zsh}/bin/zsh -c 'zcompile zinit-side.zsh'
-    ${zsh}/bin/zsh -c 'zcompile zinit-install.zsh'
-    ${zsh}/bin/zsh -c 'zcompile zinit-autoload.zsh'
-    ${zsh}/bin/zsh -c 'zcompile git-process-output.zsh'
-  '';
 
   installPhase = ''
     mkdir -p $out/share/zinit
