@@ -21,7 +21,7 @@ in {
 
         # Plugin deps
         fzf
-        my.zsh-fzf-cd-dirs
+        my.zsh-fzf-chdir
         my.zsh-fzf-docker
         my.zsh-fzf-projects
         my.zsh-gh-clone
