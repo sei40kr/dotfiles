@@ -98,8 +98,9 @@ in {
             "''${HOME}/.doom.d"
           )
 
-          autoload -Uz gh-clone ranger-cd \
+          autoload -Uz select-word-style \
                        run-help run-help-git \
+                       gh-clone ranger-cd \
                        _fzf_complete_cd _fzf_complete_cd_post \
                        _fzf_complete_docker _fzf_complete_docker_post \
                        prompt_pure_setup \
@@ -112,6 +113,9 @@ in {
                  NUMERIC_GLOB_SORT PRINT_EIGHT_BIT PROMPT_SUBST \
                  PUSHD_IGNORE_DUPS
           unsetopt LIST_BEEP
+
+          select-word-style bash
+          bindkey '^U' backward-kill-line
 
           zle -N fzf-projects
           bindkey '^xg' fzf-projects
