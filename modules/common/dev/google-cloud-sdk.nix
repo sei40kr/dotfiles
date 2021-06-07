@@ -13,9 +13,13 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = [ package ];
-    modules.shell.zsh.extraZinitCommands = ''
-      zinit ice wait'''
-      zinit snippet "${package}/google-cloud-sdk/completion.zsh.inc"
-    '';
+
+    modules.shell.zsh.zinit.snippets = [{
+      source = "${package}/google-cloud-sdk/completion.zsh.inc";
+      ice = {
+        wait = "";
+        lucid = true;
+      };
+    }];
   };
 }

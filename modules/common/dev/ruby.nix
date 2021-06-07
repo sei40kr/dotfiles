@@ -24,15 +24,36 @@ in {
         bi = "bundle_install";
         bcn = "bundle clean";
       };
-      zsh.extraZinitCommands = ''
-        zinit snippet OMZP::ruby/ruby.plugin.zsh
-        zinit ice as'completion' wait'''
-        zinit snippet OMZP::gem/_gem
-        zinit ice wait'''
-        zinit snippet OMZP::rake-fast/rake-fast.plugin.zsh
-      '' + optionalString cfg.rails.enable ''
-        zinit snippet OMZP::rails/rails.plugin.zsh
-      '';
+
+      zsh.zinit.snippets = [
+        {
+          source =
+            "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/ruby/ruby.plugin.zsh";
+          ice.id-as = "OMZP::ruby";
+        }
+        {
+          source = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/gem/_gem";
+          ice = {
+            wait = "";
+            lucid = true;
+            as = "completion";
+            id-as = "OMZP::gem";
+          };
+        }
+        {
+          source =
+            "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/rake-fast/rake-fast.plugin.zsh";
+          ice = {
+            wait = "";
+            lucid = true;
+            id-as = "OMZP::rake-fast";
+          };
+        }
+      ] ++ (optionals cfg.rails.enable [{
+        source =
+          "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/rails/rails.plugin.zsh";
+        ice.id-as = "OMZP::rails";
+      }]);
     };
   };
 }

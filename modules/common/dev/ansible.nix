@@ -10,8 +10,11 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = [ package ];
-    modules.shell.zsh.extraZinitCommands = ''
-      zinit snippet OMZP::ansible/ansible.plugin.zsh
-    '';
+
+    modules.shell.zsh.zinit.snippets = [{
+      source =
+        "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/ansible/ansible.plugin.zsh";
+      ice.id-as = "OMZP::ansible";
+    }];
   };
 }

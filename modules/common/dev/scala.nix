@@ -14,6 +14,7 @@ in {
     user.packages = with pkgs;
       ([ scala sbt gradle maven metals scalafmt ]
         ++ optionals cfg.bloop.enable [ bloop ]);
+
     home-manager.users.${config.user.name}.systemd.user.services.bloop =
       mkIf cfg.bloop.enable {
         Unit.Description = "Bloop Scala build server";
@@ -24,11 +25,21 @@ in {
           Environment = [ "PATH=${makeBinPath [ pkgs.jdk ]}" ];
         };
       };
-    modules.shell.zsh.extraZinitCommands = ''
-      zinit ice as'completion' wait'''
-      zinit snippet OMZP::scala/_scala
-      zinit ice svn
-      zinit snippet OMZP::sbt
-    '';
+
+    modules.shell.zsh.zinit.snippets = [
+      {
+        source = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/scala/_scala";
+        ice = {
+          wait = "";
+          lucid = true;
+          as = "completion";
+          id-as = "OMZP::scala";
+        };
+      }
+      {
+        source = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/sbt";
+        ice.id-as = "OMZP::sbt";
+      }
+    ];
   };
 }

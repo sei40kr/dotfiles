@@ -16,17 +16,15 @@ in {
       ([ package black nodePackages.pyright ]
         ++ optionals cfg.poetry.enable [ poetry ]);
     env.PATH = [ "\${HOME}/.poetry/bin" ];
-    modules.shell.zsh.extraZinitCommands = ''
-      zinit ice as'completion' wait'''
-      zinit snippet OMZP::pip/_pip
-    '' + optionalString cfg.poetry.enable ''
-      zinit ice wait''' \
-                lucid \
-                atclone'poetry completions zsh >_poetry' \
-                atpull'%atclone' \
-                as'completion' \
-                id-as'poetry_completion'
-      zinit light zdharma/null
-    '';
+
+    modules.shell.zsh.zinit.snippets = [{
+      source = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/pip/_pip";
+      ice = {
+        wait = "";
+        lucid = true;
+        as = "completion";
+        id-as = "OMZP::pip";
+      };
+    }];
   };
 }

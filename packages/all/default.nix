@@ -4,7 +4,6 @@
   python3Packages = (pkgs.callPackage (import ./python3-packages.nix) { });
   tmuxPlugins = (pkgs.callPackage (import ./tmux-plugins) { });
   vimPlugins = (pkgs.callPackage (import ./vim-plugins.nix) { });
-  zshPlugins = (pkgs.callPackage (import ./zsh-plugins) { });
 
   alacritty = pkgs.callPackage ./alacritty { };
   emacs = pkgs.callPackage ./emacs.nix { };
@@ -14,4 +13,12 @@
   operator-mono = pkgs.callPackage ./operator-mono.nix { };
   vscode-extensions = (pkgs.callPackage (import ./vscode-extensions.nix) { });
   zinit = pkgs.callPackage ./zinit.nix { };
+  zsh-fzf-cd-dirs = pkgs.callPackage ./zsh-fzf-cd-dirs.nix { };
+  zsh-fzf-docker = pkgs.callPackage ./zsh-fzf-docker.nix { };
+  zsh-fzf-projects = pkgs.callPackage ./zsh-fzf-projects.nix { };
+  zsh-gh-clone = pkgs.callPackage ./zsh-gh-clone.nix { };
+  zsh-ranger-cd = pkgs.callPackage ./zsh-ranger-cd.nix { };
+  zsh-smart-command-history =
+    pkgs.callPackage ./zsh-smart-command-history.nix { };
+  zsh-tmux-man = pkgs.callPackage ./zsh-tmux-man.nix { };
 }

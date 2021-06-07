@@ -8,9 +8,15 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ spring-boot ];
-    modules.shell.zsh.extraZinitCommands = ''
-      zinit ice as'completion' wait'''
-      zinit snippet OMZP::spring/_spring
-    '';
+
+    modules.shell.zsh.zinit.snippets = [{
+      source = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/spring/_spring";
+      ice = {
+        wait = "";
+        lucid = true;
+        as = "completion";
+        id-as = "OMZP::spring";
+      };
+    }];
   };
 }

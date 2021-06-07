@@ -32,9 +32,12 @@ in {
         npmP = "npm publish";
         npmI = "npm init";
       };
-      zsh.extraZinitCommands = ''
-        zinit snippet OMZP::yarn/yarn.plugin.zsh
-      '';
+
+      zsh.zinit.snippets = [{
+        source =
+          "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/yarn/yarn.plugin.zsh";
+        ice.id-as = "OMZP::yarn";
+      }];
     };
   };
 }

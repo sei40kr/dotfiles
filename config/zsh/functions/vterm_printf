@@ -1,6 +1,3 @@
-# vterm_printf
-# author: Seong Yong-ju <sei40kr@gmail.com>
-
 vterm_printf() {
     if [[ -n "$TMUX" ]]; then
         # tell tmux to pass the escape sequences through

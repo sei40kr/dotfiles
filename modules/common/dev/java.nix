@@ -8,10 +8,20 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ gradle maven ];
-    modules.shell.zsh.extraZinitCommands = ''
-      zinit ice trigger-load'!gradle'
-      zinit snippet OMZP::gradle/gradle.plugin.zsh
-      zinit snippet OMZP::mvn/mvn.plugin.zsh
-    '';
+
+    modules.shell.zsh.zinit.snippets = [
+      {
+        source =
+          "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/gradle/gradle.plugin.zsh";
+        ice = {
+          trigger-load = [ "!gradle" ];
+          id-as = "OMZP::gradle";
+        };
+      }
+      {
+        source = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/mvn/mvn.plugin.zsh";
+        ice.id-as = "OMZP::mvn";
+      }
+    ];
   };
 }

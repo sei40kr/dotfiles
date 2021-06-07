@@ -10,10 +10,17 @@ in {
     user.packages = with pkgs; [ terraform terraform-ls ];
     modules.shell = {
       aliases.tf = "terraform";
-      zsh.extraZinitCommands = ''
-        zinit ice as'completion' wait'''
-        zinit snippet OMZP::terraform/_terraform
-      '';
+
+      zsh.zinit.snippets = [{
+        source =
+          "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/terraform/_terraform";
+        ice = {
+          wait = "";
+          lucid = true;
+          as = "completion";
+          id-as = "OMZP::terraform";
+        };
+      }];
     };
   };
 }

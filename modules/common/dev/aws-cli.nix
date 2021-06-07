@@ -10,9 +10,13 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = [ package ];
-    modules.shell.zsh.extraZinitCommands = ''
-      zinit ice wait''' lucid
-      zinit snippet ${package}/share/zsh/site-functions/aws_zsh_completer.sh
-    '';
+
+    modules.shell.zsh.zinit.snippets = [{
+      source = "${package}/share/zsh/site-functions/aws_zsh_completer.sh";
+      ice = {
+        wait = "";
+        lucid = true;
+      };
+    }];
   };
 }

@@ -8,8 +8,11 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ go gopls gore ];
-    modules.shell.zsh.extraZinitCommands = ''
-      zinit snippet OMZP::golang/golang.plugin.zsh
-    '';
+
+    modules.shell.zsh.zinit.snippets = [{
+      source =
+        "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/golang/golang.plugin.zsh";
+      ice.id-as = "OMZP::golang";
+    }];
   };
 }
