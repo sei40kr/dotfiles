@@ -37,7 +37,7 @@ in {
         };
       }
       {
-        source = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/sbt";
+        source = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/sbt/sbt.plugin.zsh";
         ice.id-as = "OMZP::sbt";
       }
     ];
