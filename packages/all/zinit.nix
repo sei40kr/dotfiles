@@ -14,6 +14,13 @@ stdenv.mkDerivation {
 
   nativeBuildInputs = [ zsh ];
 
+  buildPhase = ''
+    ${zsh}/bin/zsh -c 'zcompile zinit.zsh'
+    ${zsh}/bin/zsh -c 'zcompile zinit-side.zsh'
+    ${zsh}/bin/zsh -c 'zcompile zinit-install.zsh'
+    ${zsh}/bin/zsh -c 'zcompile zinit-autoload.zsh'
+  '';
+
   installPhase = ''
     mkdir -p $out/share/zinit
     cp -r . $out/share/zinit

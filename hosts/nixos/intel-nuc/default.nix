@@ -1,10 +1,7 @@
 { lib, pkgs, ... }:
 
-with lib;
-with lib.my; {
+with lib; {
   imports = [ ./hardware-configuration.nix ];
-
-  system = "x86_64-linux";
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -97,7 +94,7 @@ with lib.my; {
         enable = true;
         manpager.enable = true;
       };
-      vscodium.enable = true;
+      vscode.enable = true;
     };
 
     services = {

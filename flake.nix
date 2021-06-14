@@ -41,11 +41,14 @@
         (mkPkgs nixpkgs [ emacs-overlay.overlay self.overlay ]);
       pkgs' = genAttrs supportedSystems.all (mkPkgs nixpkgs-unstable [ ]);
 
-      mkNixosHost = path:
-        { system, ... }@attrs:
+      mkNixosHost = { system, ... }@attrs:
+        path:
         nixosSystem {
           inherit system;
-          specialArgs = { inherit lib inputs; };
+          specialArgs = {
+            inherit lib inputs;
+            pkgs = pkgs.${system};
+          };
           modules = [
             {
               nixpkgs.pkgs = pkgs.${system};
@@ -53,7 +56,7 @@
                 mkDefault (removeSuffix ".nix" (baseNameOf path));
             }
             (filterAttrs (n: _: !elem n [ "system" ]) attrs)
-            ../.
+            ./.
             (import path)
           ];
         };
@@ -115,12 +118,13 @@
         dotfiles = import ./.;
       } // (mapModulesRec ./modules/common import)
         // (mapModulesRec ./modules/nixos import);
-      nixosConfigurations = mapModulesRec ./hosts/nixos mkNixosHost;
+      nixosConfigurations =
+        mapModules ./hosts/nixos (mkNixosHost { system = "x86_64-linux"; });
 
       darwinModules = {
         dotfiles = import ./.;
       } // (mapModulesRec ./modules/common import)
         // (mapModulesRec ./modules/darwin import);
-      darwinConfigurations = mapModulesRec ./hosts/darwin mkDarwinHost;
+      darwinConfigurations = mapModules ./hosts/darwin mkDarwinHost;
     };
 }

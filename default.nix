@@ -22,4 +22,6 @@ with lib.my; {
   };
 
   environment.systemPackages = with pkgs; [ coreutils git gnumake vim ];
+
+  user.home = "/home/${config.user.name}";
 }
