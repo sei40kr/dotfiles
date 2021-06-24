@@ -10,11 +10,6 @@ in {
   };
 
   config = mkIf config.modules.services.flexget.enable {
-    modules.services.rclone = {
-      enable = mkForce true;
-      enableGoogleDrive = mkForce true;
-    };
-
     user.packages = [ pkgs.flexget ];
     # TODO Install FlexGet config
     home-manager.users.${config.user.name}.systemd.user.services.flexget = {
