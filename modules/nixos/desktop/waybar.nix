@@ -15,10 +15,9 @@ let
   '';
   style = readFile "${configDir}/waybar/style.css";
 
-  waybar-mpris-play-pause =
-    pkgs.writeShellScriptBin "waybar-mpris-play-pause" ''
-      ${pkgs.playerctl}/bin/playerctl metadata -f '{"alt":"{{lc(status)}}"}' -F
-    '';
+  waybar-mpris-status = pkgs.writeShellScriptBin "waybar-mpris-status" ''
+    ${pkgs.playerctl}/bin/playerctl metadata -f '{"alt":"{{lc(status)}}"}' -F
+  '';
   waybar-mpris = pkgs.writeShellScriptBin "waybar-mpris" ''
     ${pkgs.playerctl}/bin/playerctl metadata -f '{{title}}' -F
   '';
@@ -78,12 +77,19 @@ in {
               tooltip = false;
             };
             "custom/mpris-previous" = {
-              format = cfg.theme.mpris.icon.previous;
+              exec = "${waybar-mpris-status}/bin/waybar-mpris-status";
+              return-type = "json";
+              restart-interval = 10;
+              format = "{icon}";
+              format-icons = {
+                playing = cfg.theme.mpris.icon.previous;
+                paused = cfg.theme.mpris.icon.previous;
+              };
               on-click = "${pkgs.playerctl}/bin/playerctl previous";
               tooltip = false;
             };
             "custom/mpris-play-pause" = {
-              exec = "${waybar-mpris-play-pause}/bin/waybar-mpris-play-pause";
+              exec = "${waybar-mpris-status}/bin/waybar-mpris-status";
               return-type = "json";
               restart-interval = 10;
               format = "{icon}";
@@ -92,7 +98,14 @@ in {
               tooltip = false;
             };
             "custom/mpris-next" = {
-              format = cfg.theme.mpris.icon.next;
+              exec = "${waybar-mpris-status}/bin/waybar-mpris-status";
+              return-type = "json";
+              restart-interval = 10;
+              format = "{icon}";
+              format-icons = {
+                playing = cfg.theme.mpris.icon.next;
+                paused = cfg.theme.mpris.icon.next;
+              };
               on-click = "${pkgs.playerctl}/bin/playerctl next";
               tooltip = false;
             };
