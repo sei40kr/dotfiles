@@ -72,8 +72,8 @@ with lib.my; {
             enabled = "󰂯";
           };
           mpris.icon = {
-            playing = "󰏤";
-            paused = "󰐊";
+            pause = "󰏤";
+            play = "󰐊";
             previous = "󰒮";
             next = "󰒭";
           };

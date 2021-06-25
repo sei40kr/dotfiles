@@ -16,10 +16,11 @@ let
   style = readFile "${configDir}/waybar/style.css";
 
   waybar-mpris-status = pkgs.writeShellScriptBin "waybar-mpris-status" ''
-    ${pkgs.playerctl}/bin/playerctl metadata -f '{"alt":"{{lc(status)}}"}' -F
+    ${pkgs.playerctl}/bin/playerctl -f '{{lc(status)}}' -F status |
+      ${pkgs.jq}/bin/jq -Rc --unbuffered '{alt:.}'
   '';
   waybar-mpris = pkgs.writeShellScriptBin "waybar-mpris" ''
-    ${pkgs.playerctl}/bin/playerctl metadata -f '{{title}}' -F
+    ${pkgs.playerctl}/bin/playerctl -F metadata title
   '';
 in {
   options.modules.desktop.waybar = with types; {
@@ -36,8 +37,8 @@ in {
         disabled = mkOpt str null;
       };
       mpris.icon = {
-        playing = mkOpt str null;
-        paused = mkOpt str null;
+        pause = mkOpt str null;
+        play = mkOpt str null;
         previous = mkOpt str null;
         next = mkOpt str null;
       };
@@ -93,7 +94,10 @@ in {
               return-type = "json";
               restart-interval = 10;
               format = "{icon}";
-              format-icons = { inherit (cfg.theme.mpris.icon) playing paused; };
+              format-icons = {
+                playing = cfg.theme.mpris.icon.pause;
+                paused = cfg.theme.mpris.icon.play;
+              };
               on-click = "${pkgs.playerctl}/bin/playerctl play-pause";
               tooltip = false;
             };
