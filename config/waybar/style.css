@@ -14,9 +14,41 @@ window#waybar {
   padding: 0 .5rem;
 }
 
+#bluetooth,
+#custom-mpris-previous,
+#custom-mpris-play-pause,
+#custom-mpris-next,
+#network,
+#pulseaudio {
+  font-family: "Material Design Icons";
+  font-size: 15pt;
+  font-weight: normal;
+}
+
+#bluetooth,
+#clock,
+#network,
+#pulseaudio {
+  margin: 0 .5rem;
+}
+
 #clock {
   font-weight: bold;
-  padding: 0 .5rem;
+  margin: 0 .5rem;
+}
+
+#custom-mpris-previous,
+#custom-mpris-play-pause,
+#custom-mpris-next {
+  margin: 0 .125rem;
+}
+
+#custom-mpris-previous {
+  margin-left: 1rem;
+}
+
+#custom-mpris {
+  margin-left: .875rem;
 }
 
 #workspaces {
@@ -30,13 +62,4 @@ window#waybar {
   color: @bar_text_color;
   font-weight: bold;
   padding: 0 .35rem;
-}
-
-#bluetooth,
-#network,
-#pulseaudio {
-  font-family: "Material Design Icons";
-  font-size: 15pt;
-  font-weight: normal;
-  margin: 0 .5rem;
 }

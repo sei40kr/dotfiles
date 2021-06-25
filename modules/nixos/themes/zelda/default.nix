@@ -71,6 +71,12 @@ with lib.my; {
             disabled = "󰂲";
             enabled = "󰂯";
           };
+          mpris.icon = {
+            playing = "󰏤";
+            paused = "󰐊";
+            previous = "󰒮";
+            next = "󰒭";
+          };
           network.icon = {
             disconnected = "󰈂";
             ethernet = "󰈁";

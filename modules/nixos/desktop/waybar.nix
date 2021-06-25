@@ -14,6 +14,14 @@ let
     ${pkgs.waybar}/bin/waybar "$@"
   '';
   style = readFile "${configDir}/waybar/style.css";
+
+  waybar-mpris-play-pause =
+    pkgs.writeShellScriptBin "waybar-mpris-play-pause" ''
+      ${pkgs.playerctl}/bin/playerctl metadata -f '{"alt":"{{lc(status)}}"}' -F
+    '';
+  waybar-mpris = pkgs.writeShellScriptBin "waybar-mpris" ''
+    ${pkgs.playerctl}/bin/playerctl metadata -f '{{title}}' -F
+  '';
 in {
   options.modules.desktop.waybar = with types; {
     enable = mkBoolOpt false;
@@ -27,6 +35,12 @@ in {
       bluetooth.icon = {
         enabled = mkOpt str null;
         disabled = mkOpt str null;
+      };
+      mpris.icon = {
+        playing = mkOpt str null;
+        paused = mkOpt str null;
+        previous = mkOpt str null;
+        next = mkOpt str null;
       };
       network.icon = {
         ethernet = mkOpt str null;
@@ -63,6 +77,30 @@ in {
               timezone = "Asia/Tokyo";
               tooltip = false;
             };
+            "custom/mpris-previous" = {
+              format = cfg.theme.mpris.icon.previous;
+              on-click = "${pkgs.playerctl}/bin/playerctl previous";
+              tooltip = false;
+            };
+            "custom/mpris-play-pause" = {
+              exec = "${waybar-mpris-play-pause}/bin/waybar-mpris-play-pause";
+              return-type = "json";
+              restart-interval = 10;
+              format = "{icon}";
+              format-icons = { inherit (cfg.theme.mpris.icon) playing paused; };
+              on-click = "${pkgs.playerctl}/bin/playerctl play-pause";
+              tooltip = false;
+            };
+            "custom/mpris-next" = {
+              format = cfg.theme.mpris.icon.next;
+              on-click = "${pkgs.playerctl}/bin/playerctl next";
+              tooltip = false;
+            };
+            "custom/mpris" = {
+              exec = "${waybar-mpris}/bin/waybar-mpris";
+              restart-interval = 10;
+              tooltip = false;
+            };
             network = {
               format-ethernet = cfg.theme.network.icon.ethernet;
               format-wifi = "{icon}";
@@ -87,13 +125,22 @@ in {
             };
           };
 
-          modules-left = [ "sway/workspaces" ];
+          modules-left = [
+            "sway/workspaces"
+            "custom/mpris-previous"
+            "custom/mpris-play-pause"
+            "custom/mpris-next"
+            "custom/mpris"
+          ];
           modules-center = [ "clock" ];
           modules-right = [ "bluetooth" "pulseaudio" "network" ];
 
           position = "top";
         }];
       };
+
+      services.playerctld.enable = true;
+
       systemd.user.services.waybar = {
         Unit = {
           After = [ "sway-session.target" ];
@@ -115,6 +162,7 @@ in {
         Install.WantedBy = [ "sway-session.target" ];
       };
     };
+
     # TODO Use user-level fonts
     fonts.fonts = with pkgs; [ material-design-icons ];
   };
