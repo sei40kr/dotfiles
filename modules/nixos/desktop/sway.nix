@@ -240,6 +240,7 @@ in {
         gammastep.enable = true;
         gtk.enable = true;
         mako.enable = true;
+        nwg-dock.enable = true;
         nwg-launchers.enable = true;
         qt.enable = true;
         waybar.enable = true;
