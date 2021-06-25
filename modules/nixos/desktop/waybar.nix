@@ -5,15 +5,15 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.desktop.waybar;
-  package = pkgs.waybar;
-  waybar-start = pkgs.writeShellScriptBin "waybar-start" ''
-    pid="$(${pkgs.procps}/bin/pgrep -x sway)"
-    SWAYSOCK="''${XDG_RUNTIME_DIR:-/run/user/''${UID}}/sway-ipc.''${UID}.''${pid}.sock"
+  wrapper = pkgs.writeShellScriptBin "waybar" ''
+    pid=$(${pkgs.procps}/bin/pgrep -x sway)
+    SWAYSOCK=''${XDG_RUNTIME_DIR:-/run/user/$UID}/sway-ipc.$UID.$pid.sock
     if [[ -S "$SWAYSOCK" ]]; then
       export SWAYSOCK
     fi
-    ${package}/bin/waybar "$@"
+    ${pkgs.waybar}/bin/waybar "$@"
   '';
+  style = readFile "${configDir}/waybar/style.css";
 in {
   options.modules.desktop.waybar = with types; {
     enable = mkBoolOpt false;
@@ -24,15 +24,14 @@ in {
         headset = mkOpt str null;
         muted = mkOpt str null;
       };
+      bluetooth.icon = {
+        enabled = mkOpt str null;
+        disabled = mkOpt str null;
+      };
       network.icon = {
-        disconnected = mkOpt str null;
         ethernet = mkOpt str null;
         wifi = mkOpt (listOf str) null;
-      };
-      workspace.icon = {
-        default = mkOpt str null;
-        focused = mkOpt str null;
-        urgent = mkOpt str null;
+        disconnected = mkOpt str null;
       };
     };
   };
@@ -46,65 +45,53 @@ in {
 
     home-manager.users.${config.user.name} = {
       programs.waybar = {
-        inherit package;
+        inherit style;
         enable = true;
+        package = wrapper;
         settings = [{
-          height = 56;
+          height = 36;
           layer = "bottom";
           modules = {
+            bluetooth = {
+              format-icons = {
+                inherit (cfg.theme.bluetooth.icon) enabled disabled;
+              };
+              tooltip = false;
+            };
             clock = {
-              format = "{:%H:%M}";
+              format = "{:%b %e %R}";
               timezone = "Asia/Tokyo";
               tooltip = false;
             };
-            network = let networkIcon = cfg.theme.network.icon;
-            in {
-              format-disconnected = networkIcon.disconnected;
-              format-ethernet = networkIcon.ethernet;
-              format-icons = networkIcon.wifi;
+            network = {
+              format-ethernet = cfg.theme.network.icon.ethernet;
               format-wifi = "{icon}";
+              format-disconnected = cfg.theme.network.icon.disconnected;
+              format-icons = cfg.theme.network.icon.wifi;
               tooltip = false;
             };
-            pulseaudio = let audioIcon = cfg.theme.audio.icon;
-            in {
+            pulseaudio = {
               format = "{icon}";
               format-icons = {
-                default = audioIcon.default;
-                headphone = audioIcon.headphone;
-                headset = audioIcon.headset;
+                default = cfg.theme.audio.icon.default;
+                headphone = cfg.theme.audio.icon.headphone;
+                headset = cfg.theme.audio.icon.headset;
               };
-              format-muted = audioIcon.muted;
+              format-muted = cfg.theme.audio.icon.muted;
               tooltip = false;
             };
             "sway/workspaces" = {
-              all-outputs = true;
               disable-scroll = true;
-              format = "{icon}";
-              format-icons = let workspaceIcon = cfg.theme.workspace.icon;
-              in {
-                default = workspaceIcon.default;
-                focused = workspaceIcon.focused;
-                persistent = workspaceIcon.default;
-                urgent = workspaceIcon.urgent;
-              };
-              persistent_workspaces = {
-                "1" = [ ];
-                "2" = [ ];
-                "3" = [ ];
-                "4" = [ ];
-              };
-            };
-            "wlr/taskbar" = {
-              icon-size = 40;
-              on-click = "activate";
+              disable-click = true;
+              current-only = true;
             };
           };
 
           modules-left = [ "sway/workspaces" ];
-          modules-center = [ "wlr/taskbar" ];
-          modules-right = [ "pulseaudio" "network" "clock" ];
+          modules-center = [ "clock" ];
+          modules-right = [ "bluetooth" "pulseaudio" "network" ];
 
-          position = "bottom";
+          position = "top";
         }];
       };
       systemd.user.services.waybar = {
@@ -114,17 +101,14 @@ in {
             "Highly customizable Wayland bar for Sway and Wlroots based compositors.";
           Documentation = "https://github.com/Alexays/Waybar/wiki";
           PartOf = [ "sway-session.target" ];
-          X-Restart-Triggers = let
-            configFile =
-              config.home-manager.users.${config.user.name}.xdg.configFile;
-          in [
-            "${configFile."waybar/config".source}"
-            (hashString "md5" configFile."waybar/style.css".text)
+          X-Restart-Triggers = [
+            "${config.home-manager.users.${config.user.name}.xdg.configFile."waybar/config".source}"
+            (hashString "md5" style)
           ];
         };
         Service = {
           Type = "simple";
-          ExecStart = "${waybar-start}/bin/waybar-start";
+          ExecStart = "${wrapper}/bin/waybar";
           Restart = "always";
           RestartSec = "1sec";
         };

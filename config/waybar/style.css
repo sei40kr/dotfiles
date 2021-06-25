@@ -1,0 +1,42 @@
+@define-color bar_bg_color #000;
+@define-color bar_text_color #fff;
+
+window#waybar {
+  background: @bar_bg_color;
+  color: @bar_text_color;
+  font-family: sans-serif;
+  font-size: 11pt;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  padding: 0 .5rem;
+}
+
+#clock {
+  font-weight: bold;
+  padding: 0 .5rem;
+}
+
+#workspaces {
+  padding: 5px .5rem;
+}
+
+#workspaces button {
+  background: alpha(@bar_text_color, .3);
+  border: 1px solid alpha(@bar_text_color, .5);
+  border-radius: 0;
+  color: @bar_text_color;
+  font-weight: bold;
+  padding: 0 .35rem;
+}
+
+#bluetooth,
+#network,
+#pulseaudio {
+  font-family: "Material Design Icons";
+  font-size: 15pt;
+  font-weight: normal;
+  margin: 0 .5rem;
+}

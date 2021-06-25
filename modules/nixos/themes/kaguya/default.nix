@@ -27,7 +27,6 @@ with lib.my; {
           textColor = "#ccccccff";
           width = 360;
         };
-        waybar.style = readFile ./waybar/style.css;
       };
       wayland.windowManager.sway = {
         config = {
@@ -74,11 +73,6 @@ with lib.my; {
             disconnected = "󰈂";
             ethernet = "󰈁";
             wifi = [ (icon "󰤯") (icon "󰤟") (icon "󰤢") (icon "󰤥") (icon "󰤨") ];
-          };
-          workspace.icon = {
-            default = "󰣏";
-            focused = "󰣏";
-            urgent = "󰣏";
           };
         };
       };
