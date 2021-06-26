@@ -138,7 +138,7 @@ in {
       direnv = {
         enable = true;
         enableZshIntegration = false;
-        enableNixDirenvIntegration = true;
+        nix-direnv.enable = true;
       };
     };
 

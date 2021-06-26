@@ -11,7 +11,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs-overlay.url =
-      "github:nix-community/emacs-overlay?rev=e18aa3af84a181f86adf7f9cb31d004edcf7d287";
+      "github:nix-community/emacs-overlay?rev=67fe74d6e73e3c8a983b09a76d809acc730ad911";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, darwin, home-manager

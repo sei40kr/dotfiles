@@ -98,7 +98,10 @@ in {
             titlebar = true;
           };
           focus.followMouse = "no";
-          fonts = [ "sans-serif 11" ];
+          fonts = {
+            names = [ "sans-serif" ];
+            size = 11.0;
+          };
           gaps = {
             outer = 16;
             inner = 32;
