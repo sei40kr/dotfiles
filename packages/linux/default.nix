@@ -1,5 +1,5 @@
 { pkgs, ... }:
 
 {
-  nwg-dock = pkgs.callPackage ./nwg-dock.nix { };
+  gnomeExtensions = pkgs.callPackage ./gnome-extensions { };
 }

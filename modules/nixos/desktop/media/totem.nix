@@ -2,18 +2,9 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.desktop.media.totem;
-  package = pkgs.gnome3.totem;
+let cfg = config.modules.desktop.media.totem;
 in {
   options.modules.desktop.media.totem.enable = mkBoolOpt false;
 
-  config = mkIf cfg.enable {
-    user.packages = [ package ];
-    # TODO Use user D-Bus module
-    services.dbus = {
-      enable = true;
-      packages = [ package ];
-    };
-  };
+  config = mkIf cfg.enable { user.packages = with pkgs; [ gnome.totem ]; };
 }

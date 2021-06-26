@@ -24,15 +24,19 @@ with lib; {
 
   modules = {
     desktop = {
-      sway.enable = true;
+      gnome.enable = true;
 
       apps = {
         bitwarden.enable = true;
+        calendar.enable = true;
         discord.enable = true;
         file-roller.enable = true;
-        gnome-pomodoro.enable = true;
+        font-viewer.enable = true;
+        geary.enable = true;
         nautilus.enable = true;
+        pomodoro.enable = true;
         qbittorrent.enable = true;
+        seahorse.enable = true;
         slack.enable = true;
         zeal.enable = true;
       };
@@ -48,8 +52,6 @@ with lib; {
         evince.enable = true;
         totem.enable = true;
       };
-
-      term.termite.enable = true;
     };
 
     dev = {
@@ -109,6 +111,7 @@ with lib; {
         openFirewall = true;
       };
       psd.enable = true;
+      sushi.enable = true;
     };
 
     shell = {
@@ -129,7 +132,7 @@ with lib; {
       zsh.enable = true;
     };
 
-    theme.active = "zelda";
+    term.alacritty.enable = true;
   };
 
   services = {
@@ -139,7 +142,6 @@ with lib; {
       permitRootLogin = "no";
     };
     printing.enable = true;
-    tlp.enable = true;
     upower.enable = true;
   };
 

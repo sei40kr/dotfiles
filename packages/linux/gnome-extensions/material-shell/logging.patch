@@ -1,0 +1,575 @@
+diff --git a/src/extension.ts b/src/extension.ts
+index 48ae944..312a57e 100644
+--- a/src/extension.ts
++++ b/src/extension.ts
+@@ -64,14 +64,21 @@ function enable() {
+ 
+         return;
+     }
++    log('Point 1');
+     debug.initDebug();
++    log('Point 2');
+     Me.monitorsLength = Main.layoutManager.monitors.length;
++    log('Point 3');
+     // Show a splashscreen while we are updating the UI layout and theme
+     if (Main.layoutManager._startingUp) {
++        log('Point 4');
+         Me.showSplashScreens();
+     }
++    log('Point 5');
+     Me.loaded = false;
++    log('Point 6');
+     Me.stateManager = new StateManager();
++    log('Point 7');
+     /*  Main.layoutManager.overviewGroup.remove_child(oldOverview._desktopFade);
+     Main.layoutManager.overviewGroup.remove_child(oldOverview._coverPane);
+     Main.layoutManager.overviewGroup.remove_child(oldOverview._overview);
+@@ -83,38 +90,59 @@ function enable() {
+     Main.overview.show = OverviewShow; */
+
+     GLib.idle_add(GLib.PRIORITY_LOW, () => {
++        log('Point 8');
+         //Then disable incompatibles extensions;
+         disableIncompatibleExtensionsModule = new DisableIncompatibleExtensionsModule();
++        log('Point 9');
+
+         //Load persistent data
+         Me.stateManager.loadRegistry((state) => {
++            log('Point 10');
+             modules = [new RequiredSettingsModule(), new OverrideModule()];
++            log('Point 11');
+             Me.tooltipManager = new TooltipManager();
++            log('Point 12');
+             Me.layoutManager = new LayoutManager();
++            log('Point 13');
+             Me.msWindowManager = new MsWindowManager();
++            log('Point 14');
+             Me.msWorkspaceManager = new MsWorkspaceManager(
+                 state['workspaces-state']
+             );
++            log('Point 15');
+             Me.msNotificationManager = new MsNotificationManager();
++            log('Point 16');
+             modules = [...modules, (Me.hotKeysModule = new HotKeysModule())];
++            log('Point 17');
+             Me.msThemeManager = new MsThemeManager();
++            log('Point 18');
+             Me.msThemeManager.regenerateStylesheet();
++            log('Point 19');
+             if (getSettings('tweaks').get_boolean('enable-persistence')) {
++                log('Point 20');
+                 Me.msWorkspaceManager.restorePreviousState();
+             } else {
++                log('Point 21');
+                 Me.msWorkspaceManager.initState();
+             }
++            log('Point 22');
+             new MsMain();
++            log('Point 23');
+             Me.msWindowManager.handleExistingMetaWindow();
++            log('Point 24');
+             if (Main.layoutManager._startingUp) {
++                log('Point 25');
+                 _startupPreparedId = Main.layoutManager.connect(
+                     'startup-complete',
+                     () => loaded(true)
+                 );
+             } else {
++                log('Point 26');
+                 loaded(false);
+             }
++            log('Point 27');
+         });
++        log('Point 28');
+         return GLib.SOURCE_REMOVE;
+     });
+ }
+diff --git a/src/layout/msWorkspace/horizontalPanel/horizontalPanel.ts b/src/layout/msWorkspace/horizontalPanel/horizontalPanel.ts
+index 0d2b3ad..7f7317a 100644
+--- a/src/layout/msWorkspace/horizontalPanel/horizontalPanel.ts
++++ b/src/layout/msWorkspace/horizontalPanel/horizontalPanel.ts
+@@ -31,28 +31,42 @@ export class HorizontalPanel extends St.BoxLayout {
+     msWorkspace: MsWorkspace;
+
+     constructor(msWorkspace: MsWorkspace) {
++        log('Point 100');
+         super({
+             name: 'horizontalPanel',
+         });
++        log('Point 101');
+         this._delegate = this;
+
++        log('Point 102');
+         this.msWorkspace = msWorkspace;
++        log('Point 103');
+         this.menuManager = new PopupMenu.PopupMenuManager(this);
++        log('Point 104');
+         this.taskBar = new TaskBar(msWorkspace, this.menuManager);
++        log('Point 105');
+         this.layoutSwitcher = new LayoutSwitcher(msWorkspace, this.menuManager);
++        log('Point 106');
+
+         this.add_child(this.taskBar);
++        log('Point 107');
+         this.add_child(this.layoutSwitcher);
++        log('Point 108');
+         Me.msThemeManager.connect('clock-horizontal-changed', () => {
+             if (Me.msThemeManager.clockHorizontal) {
++                log('Point 109');
+                 this.createClock();
+             } else {
++                log('Point 110');
+                 this.removeClock();
+             }
+         });
++        log('Point 111');
+         if (Me.msThemeManager.clockHorizontal) {
++        log('Point 112');
+             this.createClock();
+         }
++        log('Point 113');
+     }
+
+     createClock() {
+diff --git a/src/layout/msWorkspace/horizontalPanel/layoutSwitcher.ts b/src/layout/msWorkspace/horizontalPanel/layoutSwitcher.ts
+index 1de4429..12b748b 100644
+--- a/src/layout/msWorkspace/horizontalPanel/layoutSwitcher.ts
++++ b/src/layout/msWorkspace/horizontalPanel/layoutSwitcher.ts
+@@ -28,20 +28,25 @@ export class LayoutSwitcher extends St.BoxLayout {
+     menu: any;
+
+     constructor(msWorkspace, panelMenuManager) {
++        log('Point 140');
+         super({});
++        log('Point 141');
+         this.layoutQuickWidgetBin = new St.Bin({
+             style_class: 'layout-quick-widget-bin',
+             y_align: Clutter.ActorAlign.CENTER,
+         });
++        log('Point 142');
+         this.tilingIcon = new St.Icon({
+             style_class: 'mat-panel-button-icon',
+         });
++        log('Point 143');
+         this.switcherButton = new MatPanelButton({
+             child: this.tilingIcon,
+             style_class: 'mat-panel-button',
+             can_focus: true,
+             track_hover: true,
+         });
++        log('Point 144');
+         this.switcherButton.connect('scroll-event', (_, event) => {
+             switch (event.get_scroll_direction()) {
+                 case Clutter.ScrollDirection.UP:
+@@ -52,26 +57,36 @@ export class LayoutSwitcher extends St.BoxLayout {
+                     break;
+             }
+         });
++        log('Point 145');
+         this.add_child(this.layoutQuickWidgetBin);
++        log('Point 146');
+         this.add_child(this.switcherButton);
++        log('Point 147');
+
+         this.msWorkspace = msWorkspace;
++        log('Point 148');
+         this.menuManager = panelMenuManager;
++        log('Point 149');
+
+         this.switcherButton.connect('clicked', (_actor, _button) => {
+             // Go in reverse direction on right click (button: 3)
+             //msWorkspace.nextLayout(button === 3 ? -1 : 1);
+             this.menu.toggle();
+         });
++        log('Point 150');
+         this.updateLayoutWidget();
++        log('Point 151');
+         const connectId = this.msWorkspace.connect(
+             'tiling-layout-changed',
+             this.updateLayoutWidget.bind(this)
+         );
++        log('Point 152');
+         this.buildMenu();
++        log('Point 153');
+         this.connect('destroy', () => {
+             this.msWorkspace.disconnect(connectId);
+         });
++        log('Point 154');
+     }
+
+     updateLayoutWidget() {
+diff --git a/src/layout/msWorkspace/horizontalPanel/taskBar.ts b/src/layout/msWorkspace/horizontalPanel/taskBar.ts
+index 67fad6c..2b32dc4 100644
+--- a/src/layout/msWorkspace/horizontalPanel/taskBar.ts
++++ b/src/layout/msWorkspace/horizontalPanel/taskBar.ts
+@@ -36,21 +36,28 @@ export class TaskBar extends St.Widget {
+     menuManager: any;
+
+     constructor(msWorkspace: MsWorkspace, panelMenuManager) {
++        log('Point 120');
+         super({
+             name: 'taskBar',
+             x_expand: true,
+             reactive: true,
+         });
++        log('Point 121');
+         this._delegate = this;
++        log('Point 122');
+         this.taskActiveIndicator = new TaskActiveIndicator({
+             style_class: 'task-active-indicator',
+         });
++        log('Point 123');
+         this.add_child(this.taskActiveIndicator);
++        log('Point 124');
+         this.taskButtonContainer = new ReorderableList(false, [TaskBarItem]);
++        log('Point 125');
+         this.taskButtonContainer.connect('actor-moved', (_, item, index) => {
+             this.msWorkspace.setTileableAtIndex(item.tileable, index);
+             this.msWorkspace.focusTileable(item.tileable);
+         });
++        log('Point 126');
+         this.taskButtonContainer.connect(
+             'foreign-actor-inserted',
+             (_, actor, index) => {
+@@ -65,21 +72,27 @@ export class TaskBar extends St.Widget {
+                 }
+             }
+         );
++        log('Point 127');
+         this.taskButtonContainer.connect(
+             'drag-start',
+             (_, actor, foreignActor) => {
+                 this.taskActiveIndicator.hide();
+             }
+         );
++        log('Point 128');
+         this.taskButtonContainer.connect(
+             'drag-end',
+             (_, actor, foreignActor) => {
+                 this.taskActiveIndicator.show();
+             }
+         );
++        log('Point 129');
+         this.add_child(this.taskButtonContainer);
++        log('Point 130');
+         this.msWorkspace = msWorkspace;
++        log('Point 131');
+         this.connect('destroy', this._onDestroy.bind(this));
++        log('Point 132');
+         this.msWorkspaceSignals = [
+             msWorkspace.connect('tileableList-changed', () => {
+                 this.onTileableListChange();
+@@ -91,6 +104,7 @@ export class TaskBar extends St.Widget {
+                 }
+             ),
+         ];
++        log('Point 133');
+
+         this.connect('scroll-event', (_, event) => {
+             switch (event.get_scroll_direction()) {
+@@ -103,12 +117,18 @@ export class TaskBar extends St.Widget {
+                     break;
+             }
+         });
++        log('Point 134');
+
+         this.tracker = Shell.WindowTracker.get_default();
++        log('Point 135');
+         this.windowFocused = null;
++        log('Point 136');
+         this.items = [];
++        log('Point 137');
+         this.menuManager = panelMenuManager;
++        log('Point 138');
+         this.updateItems();
++        log('Point 139');
+     }
+
+     onTileableListChange() {
+@@ -144,35 +164,52 @@ export class TaskBar extends St.Widget {
+     }
+
+     updateItems() {
++        log('Point 200');
+         this.items.forEach((item) => item.destroy());
++        log('Point 201');
++        log(typeof this.msWorkspace.tileableList);
+         this.items = this.msWorkspace.tileableList.map((tileable, _index) => {
++            log('Point 210');
+             let item: TileableItem | IconTaskBarItem;
++            log('Point 211');
+             if (tileable instanceof MsWindow) {
++            log('Point 212');
+                 item = new TileableItem(tileable);
++            log('Point 213');
+                 this.menuManager.addMenu(item.menu);
++            log('Point 214');
+                 item.connect('middle-clicked', (_) => {
+                     tileable.kill();
+                 });
++            log('Point 215');
+                 item.connect('close-clicked', (_) => {
+                     tileable.kill();
+                 });
++            log('Point 216');
+             } else {
++            log('Point 217');
+                 item = new IconTaskBarItem(
+                     tileable,
+                     Gio.icon_new_for_string(
+                         `${Me.path}/assets/icons/plus-symbolic.svg`
+                     )
+                 );
++            log('Point 218');
+             }
++            log('Point 219');
+             item.connect('left-clicked', (_) => {
+                 this.msWorkspace.focusTileable(tileable);
+             });
++            log('Point 220');
+             this.taskButtonContainer.add_child(item);
++            log('Point 221');
+             return item;
+         });
++        log('Point 202');
+         if (this.items[this.msWorkspace.focusedIndex]) {
+             this.items[this.msWorkspace.focusedIndex].setActive(true);
+         }
++        log('Point 203');
+     }
+
+     getTaskBarItemOfTileable(tileable) {
+diff --git a/src/layout/msWorkspace/msWorkspace.ts b/src/layout/msWorkspace/msWorkspace.ts
+index 0de2608..4f6fc67 100644
+--- a/src/layout/msWorkspace/msWorkspace.ts
++++ b/src/layout/msWorkspace/msWorkspace.ts
+@@ -59,9 +59,13 @@ export class MsWorkspace extends WithSignals {
+         monitor: Monitor,
+         state: Partial<MsWorkspaceState> = {}
+     ) {
++        log('Point 70');
+         super();
++        log('Point 70');
+         this.msWorkspaceManager = msWorkspaceManager;
++        log('Point 71');
+         this.setMonitor(monitor);
++        log('Point 72');
+         this._state = Object.assign(
+             {
+                 // This is different from monitorIsExternal since it's used to determined if it's should be moved to an external monitor when one is plugged
+@@ -79,17 +83,23 @@ export class MsWorkspace extends WithSignals {
+             },
+             state
+         );
++        log('Point 73');
+         this.insertedMsWindow = null;
++        log('Point 74');
+         this.appLauncher = new MsApplicationLauncher(this);
++        log('Point 75');
+
+         // First add AppLauncher since windows are inserted before it otherwise the order is a mess
+         this.tileableList = [this.appLauncher];
++        log('Point 76');
+
+         this.msWorkspaceCategory = new MsWorkspaceCategory(
+             this,
+             this._state.forcedCategory
+         );
++        log('Point 77');
+         this.precedentIndex = this._state.focusedIndex;
++        log('Point 78');
+
+         this._state.msWindowList.forEach((msWindowData) => {
+             Me.msWindowManager.createNewMsWindow(
+@@ -110,15 +120,20 @@ export class MsWorkspace extends WithSignals {
+                 }
+             );
+         });
++        log('Point 79');
+
+         this.msWorkspaceCategory.refreshCategory();
++        log('Point 80');
+
+         this.msWorkspaceActor = new MsWorkspaceActor(this);
++        log('Point 81');
+         this.setLayoutByKey(this._state.layoutKey);
++        log('Point 82');
+
+         this.connect('tileableList-changed', () => {
+             this.msWorkspaceCategory.refreshCategory();
+         });
++        log('Point 83');
+     }
+
+     destroy() {
+@@ -601,21 +616,29 @@ export class MsWorkspaceActor extends Clutter.Actor {
+     msWorkspace: MsWorkspace;
+
+     constructor(msWorkspace: MsWorkspace) {
++        log('Point 90');
+         super({
+             clip_to_allocation: true,
+             x_expand: true,
+             y_expand: true,
+             //background_color: new Clutter.Color({ red: 120, alpha: 255 }),
+         });
++        log('Point 91');
+         this.msWorkspace = msWorkspace;
++        log('Point 92');
+         this.tileableContainer = new Clutter.Actor({
+             //background_color: new Clutter.Color({ blue: 120, alpha: 255 }),
+         });
++        log('Point 93');
+
+         this.panel = new HorizontalPanel(msWorkspace);
++        log('Point 94');
+         this.add_child(this.tileableContainer);
++        log('Point 95');
+         this.add_child(this.panel);
++        log('Point 96');
+         this.updateUI();
++        log('Point 97');
+     }
+
+     updateUI() {
+diff --git a/src/layout/verticalPanel/panelButton.ts b/src/layout/verticalPanel/panelButton.ts
+index a8bea06..d834a01 100644
+--- a/src/layout/verticalPanel/panelButton.ts
++++ b/src/layout/verticalPanel/panelButton.ts
+@@ -14,15 +14,20 @@ export class MatPanelButton extends MatButton {
+     monitorIndex: number;
+
+     constructor(params = {}) {
++        log('Point 160');
+         super(params);
++        log('Point 161');
+         this.add_style_class_name('mat-panel-button');
++        log('Point 162');
+         const panelSizeSignal = Me.msThemeManager.connect(
+             'panel-size-changed',
+             () => {
+                 this.queue_relayout();
+             }
+         );
++        log('Point 163');
+         this.monitorIndex = this.findMonitor();
++        log('Point 164');
+         const monitorSignal = Main.layoutManager.connect(
+             'monitors-changed',
+             () => {
+@@ -32,14 +37,18 @@ export class MatPanelButton extends MatButton {
+                 });
+             }
+         );
++        log('Point 165');
+         this.connect('destroy', () => {
+             Me.msThemeManager.disconnect(panelSizeSignal);
+             Main.layoutManager.disconnect(monitorSignal);
+         });
++        log('Point 166');
+     }
+
+     findMonitor() {
++        //log('Point 170');
+         const [x, y] = this.get_transformed_position();
++        //log('Point 171');
+         return (
+             global.display.get_monitor_index_for_rect(
+                 new Meta.Rectangle({ x: x!, y: y!, width: 0, height: 0 })
+diff --git a/src/manager/msWorkspaceManager.ts b/src/manager/msWorkspaceManager.ts
+index f204e9b..20b4ddb 100644
+--- a/src/manager/msWorkspaceManager.ts
++++ b/src/manager/msWorkspaceManager.ts
+@@ -247,18 +247,26 @@ export class MsWorkspaceManager extends MsManager {
+     }
+
+     initState() {
++        log('Point 30');
+         Main.layoutManager.monitors
+             .filter((monitor) => monitor != Main.layoutManager.primaryMonitor)
+             .forEach((monitor) => {
++                log('Point 31');
+                 this.createNewMsWorkspace(monitor);
+             });
++        log('Point 32');
+         for (let i = 0; i < this.workspaceManager.n_workspaces; i++) {
++            log('Point 32 ' + i);
+             if (!this.primaryMsWorkspaces[i]) {
++                log('Point 33 ' + i);
+                 const workspace = this.workspaceManager.get_workspace_by_index(
+                     i
+                 );
++                log('Point 34 ' + i);
+                 assert(workspace !== null, 'Workspace does not exist');
++                log('Point 35 ' + i);
+                 this.setupNewWorkspace(workspace);
++                log('Point 36 ' + i);
+             }
+         }
+     }
+@@ -492,44 +500,65 @@ export class MsWorkspaceManager extends MsManager {
+         workspace: Meta.Workspace,
+         initialState?: Partial<MsWorkspaceState>
+     ) {
++        log('Point 40');
+         this.createNewMsWorkspace(
+             Main.layoutManager.primaryMonitor,
+             initialState
+         );
++        log('Point 41');
+         this.observe(workspace, 'window-added', (workspace, window) => {
++            log('Point 42');
+             this.metaWindowEnteredWorkspace(window, workspace);
+         });
++        log('Point 43');
+     }
+
+     createNewMsWorkspace(
+         monitor: Monitor,
+         initialState?: Partial<MsWorkspaceState>
+     ) {
++        log('Point 50');
+         const msWorkspace = new MsWorkspace(this, monitor, initialState);
++        log('Point 51');
+         msWorkspace.connect('tileableList-changed', (_) => {
++            log('Point 52');
+             this.stateChanged();
+         });
++        log('Point 53');
+         msWorkspace.connect('tiling-layout-changed', (_) => {
++            log('Point 54');
+             Me.stateManager.stateChanged();
+         });
++        log('Point 55');
+         msWorkspace.connect('readyToBeClosed', () => {
++            log('Point 56');
+             const index = this.primaryMsWorkspaces.indexOf(msWorkspace);
++            log('Point 57');
+             if (
+                 this.getActivePrimaryMsWorkspace() === msWorkspace &&
+                 !msWorkspace.msWindowList.length
+             ) {
++                log('Point 58');
+                 // Try to switch to the prev workspace is there is no next one before kill it
+                 if (this.primaryMsWorkspaces[index - 1]) {
++                    log('Point 59');
+                     this.primaryMsWorkspaces[index - 1].activate();
++                    log('Point 60');
+                 } else if (this.primaryMsWorkspaces[index + 1]) {
++                    log('Point 61');
+                     // Try to switch to the next workspace before kill it
+                     this.primaryMsWorkspaces[index + 1].activate();
++                    log('Point 62');
+                 }
+             }
+         });
++        log('Point 63');
+         this.msWorkspaceList.push(msWorkspace);
++        log('Point 64');
+         this.stateChanged();
++        log('Point 65');
+         this.emit('dynamic-super-workspaces-changed');
++        log('Point 66');
+     }
+
+     removeMsWorkspaceAtIndex(index: number) {

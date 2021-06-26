@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 with lib;
 with lib.my;
@@ -10,11 +10,11 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ bat ];
     home-manager.users.${config.user.name}.programs.bat = {
       enable = true;
       config.theme = cfg.theme;
     };
+
     modules.shell.aliases.cat = "bat";
   };
 }

@@ -2,11 +2,9 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.desktop.media.eog;
-  package = pkgs.gnome3.eog;
+let cfg = config.modules.desktop.media.eog;
 in {
   options.modules.desktop.media.eog = { enable = mkBoolOpt false; };
 
-  config = mkIf cfg.enable { user.packages = [ package ]; };
+  config = mkIf cfg.enable { user.packages = with pkgs; [ gnome.eog ]; };
 }

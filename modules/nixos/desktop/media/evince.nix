@@ -1,19 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.desktop.media.evince;
-  package = pkgs.evince;
+let cfg = config.modules.desktop.media.evince;
 in {
-  options.modules.desktop.media.evince = { enable = mkBoolOpt false; };
+  options.modules.desktop.media.evince.enable = mkBoolOpt false;
 
-  config = mkIf cfg.enable {
-    user.packages = [ package ];
-    # TODO Use user D-Bus module
-    services.dbus = {
-      enable = true;
-      packages = [ package ];
-    };
-  };
+  config.programs.evince.enable = cfg.enable;
 }

@@ -2,16 +2,7 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.shell.ranger;
-  iterm2Config = optionalString config.modules.desktop.term.iterm2.enable ''
-    # Set the preview image method. Supported methods:
-    set preview_images_method iterm2
-
-    # Default iTerm2 font size (see: preview_images_method: iterm2)
-    set iterm2_font_width 8
-    set iterm2_font_height 11
-  '';
+let cfg = config.modules.shell.ranger;
 in {
   options.modules.shell.ranger = { enable = mkBoolOpt false; };
 
@@ -51,8 +42,6 @@ in {
       # Valid values are "always", "never", "multiple" (default)
       # With "multiple", ranger will ask only if you delete multiple files at once.
       set confirm_on_delete always
-
-      ${iterm2Config}
 
       # Which colorscheme to use?  These colorschemes are available by default:
       # default, jungle, snow, solarized

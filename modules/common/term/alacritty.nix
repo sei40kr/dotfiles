@@ -3,10 +3,11 @@
 with lib;
 with lib.my;
 let
-  cfg = config.modules.term.alacritty;
-  colors = config.modules.term.colorschemes.colors;
+  termCfg = config.modules.term;
+  cfg = termCfg.alacritty;
+  colors = termCfg.theme.colors;
 in {
-  options.modules.term.alacritty = { enable = mkBoolOpt false; };
+  options.modules.term.alacritty.enable = mkBoolOpt false;
 
   config = mkIf cfg.enable {
     home-manager.users.${config.user.name}.programs.alacritty = {
@@ -26,6 +27,7 @@ in {
           TERM = "alacritty";
 
           LANG = "en_US.UTF-8";
+          LC_CTYPE = "ja_JP.UTF-8";
         };
 
         scrolling = {
@@ -44,14 +46,14 @@ in {
             #   - (macOS) Menlo
             #   - (Linux/BSD) monospace
             #   - (Windows) Consolas
-            family = "Input";
+            family = termCfg.font.name;
 
             # The `style` can be specified to pick a specific face.
             # style = "Regular";
           };
 
           # Point size
-          size = 17;
+          inherit (termCfg.font) size;
         };
 
         # Thin stroke font rendering (macOS only)
@@ -67,8 +69,8 @@ in {
         colors = {
           # Default colors
           primary = {
-            background = "${colors.background}";
-            foreground = "${colors.foreground}";
+            background = colors.bg;
+            foreground = colors.fg;
           };
 
           # Cursor colors
@@ -77,9 +79,17 @@ in {
           #
           # Allowed values are CellForeground/CellBackground, which reference the
           # affected cell, or hexadecimal colors like #ff00ff.
-          cursor.cursor = "${colors.cursor}";
+          cursor = { inherit (colors) cursor; };
 
-          inherit (colors) normal bright;
+          # Normal colors
+          normal = {
+            inherit (colors) black red green yellow blue magenta cyan white;
+          };
+
+          # Bright colors
+          bright = {
+            inherit (colors) black red green yellow blue magenta cyan white;
+          };
         };
 
         # Key bindings

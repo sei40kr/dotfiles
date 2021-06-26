@@ -21,7 +21,9 @@ with lib.my; {
     systemd-boot.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [ coreutils git gnumake vim ];
-
   user.home = "/home/${config.user.name}";
+
+  i18n.extraLocaleSettings.LC_CTYPE = "ja_JP.UTF-8";
+
+  environment.systemPackages = with pkgs; [ coreutils git gnumake vim ];
 }
