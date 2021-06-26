@@ -141,12 +141,6 @@ in {
               "exec ${pkgs.brightnessctl}/bin/brightnessctl set 2%-";
             "XF86MonBrightnessUp" =
               "exec ${pkgs.brightnessctl}/bin/brightnessctl set +4%";
-            "XF86AudioRaiseVolume" =
-              "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
-            "XF86AudioLowerVolume" =
-              "exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
-            "XF86AudioMute" =
-              "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
 
             # mako
             "${mod}+space" = "exec ${pkgs.mako}/bin/makoctl dismiss";
@@ -244,6 +238,7 @@ in {
         nwg-launchers.enable = true;
         qt.enable = true;
         waybar.enable = true;
+        wob.enable = true;
         wofi.enable = true;
       };
       services.random-background.enable = true;
