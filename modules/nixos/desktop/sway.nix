@@ -4,6 +4,8 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.desktop.sway;
+  themeCfg = config.modules.theme;
+  colorsCfg = themeCfg.colors;
   nwg-launchers = config.modules.desktop.nwg-launchers.package;
 in {
   options.modules.desktop.sway = with types; {
@@ -56,7 +58,28 @@ in {
             ];
           };
           bars = [ ];
+          colors = let
+            inactive = {
+              background = colorsCfg.base;
+              border = colorsCfg.border;
+              childBorder = colorsCfg.border;
+              indicator = colorsCfg.base;
+              text = colorsCfg.text;
+            };
+          in {
+            focused = {
+              background = colorsCfg.selection.bg;
+              border = colorsCfg.selection.bg;
+              childBorder = colorsCfg.selection.bg;
+              indicator = colorsCfg.selection.bg;
+              text = colorsCfg.selection.text;
+            };
+            focusedInactive = inactive;
+            unfocused = inactive;
+            urgent = inactive;
+          };
           floating = {
+            border = 2;
             criteria = [
               { window_role = "^pop-up$"; }
               { class = "^Bitwarden$"; }
@@ -75,7 +98,11 @@ in {
             titlebar = true;
           };
           focus.followMouse = "no";
-          fonts = [ "sans-serif 10" ];
+          fonts = [ "sans-serif 11" ];
+          gaps = {
+            outer = 16;
+            inner = 32;
+          };
           keybindings = let mod = "Mod4";
           in {
             "${mod}+Return" =
@@ -155,9 +182,15 @@ in {
             # nwggrid
             "${mod}+d" = "exec ${nwg-launchers}/bin/nwggrid";
           };
-          window.titlebar = true;
+          window = {
+            border = 2;
+            titlebar = true;
+          };
         };
         extraConfig = ''
+          titlebar_border_thickness 0
+          titlebar_padding 20 10
+
           exec "systemctl --user import-environment; systemctl --user start graphical-session.target"
           title_align center
           input "type:keyboard" {
