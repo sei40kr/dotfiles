@@ -35,7 +35,6 @@ with lib; {
         geary.enable = true;
         nautilus.enable = true;
         pomodoro.enable = true;
-        qbittorrent.enable = true;
         seahorse.enable = true;
         slack.enable = true;
         zeal.enable = true;
@@ -112,6 +111,7 @@ with lib; {
       };
       psd.enable = true;
       sushi.enable = true;
+      transmission.enable = true;
     };
 
     shell = {
