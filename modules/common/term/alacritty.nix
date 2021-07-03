@@ -30,6 +30,17 @@ in {
           LC_CTYPE = "ja_JP.UTF-8";
         };
 
+        window = {
+          # Window padding (changes require restart)
+          #
+          # Blank space added around the window in pixels. This padding is scaled
+          # by DPI and the specified value is always added at both opposing sides.
+          padding = {
+            x = 4;
+            y = 4;
+          };
+        };
+
         scrolling = {
           # Maximum number of lines in the scrollback buffer.
           # Specifying '0' will disable scrolling.
