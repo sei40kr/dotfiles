@@ -38,6 +38,7 @@ in {
         dconf = {
           enable = true;
           settings = {
+            "org/gnome/desktop/interface".enable-animations = false;
             "org/gnome/desktop/peripherals/keyboard" = {
               delay = 150;
               repeat-interval = 30;
