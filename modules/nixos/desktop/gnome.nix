@@ -4,7 +4,10 @@ with lib;
 with lib.my;
 let cfg = config.modules.desktop.gnome;
 in {
-  options.modules.desktop.gnome.enable = mkBoolOpt false;
+  options.modules.desktop.gnome = with types; {
+    enable = mkBoolOpt false;
+    enabledExtensions = mkOpt (listOf str) [ ];
+  };
 
   config = mkIf cfg.enable {
     services = {
@@ -20,9 +23,6 @@ in {
       [ gnome.networkmanager-openvpn ];
 
     user.packages = with pkgs; [
-      # GNOME Shell Extensions
-      my.gnomeExtensions.material-shell
-
       # GNOME core utilities
       gnome.gnome-calculator
       gnome.gnome-screenshot
@@ -44,6 +44,8 @@ in {
               repeat-interval = 30;
             };
             "org/gnome/desktop/peripherals/mouse".accel-profile = "flat";
+            "org/gnome/shell".enabled-extensions =
+              mkIf (cfg.enabledExtensions != [ ]) cfg.enabledExtensions;
           };
         };
         fontconfig.enable = true;

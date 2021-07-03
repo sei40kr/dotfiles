@@ -16,9 +16,6 @@ in {
   } // mkIf config.modules.desktop.gnome.enable {
     user.packages = with pkgs; [ gnomeExtensions.kimpanel ];
 
-    modules.desktop.dconf = {
-      enable = true;
-      settings."org/gnome/shell".enabled-extensions = [ "kimpanel@kde.org" ];
-    };
+    modules.desktop.gnome.enabledExtensions = [ "kimpanel@kde.org" ];
   };
 }
