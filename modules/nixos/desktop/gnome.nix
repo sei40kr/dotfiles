@@ -21,7 +21,6 @@ in {
 
     user.packages = with pkgs; [
       # GNOME Shell Extensions
-      gnomeExtensions.kimpanel
       my.gnomeExtensions.material-shell
 
       # GNOME core utilities

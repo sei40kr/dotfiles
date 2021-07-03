@@ -13,5 +13,12 @@ in {
     };
 
     home.configFile."fcitx5/config".source = "${configDir}/fcitx5/config";
+  } // mkIf config.modules.desktop.gnome.enable {
+    user.packages = with pkgs; [ gnomeExtensions.kimpanel ];
+
+    modules.desktop.dconf = {
+      enable = true;
+      settings."org/gnome/shell".enabled-extensions = [ "kimpanel@kde.org" ];
+    };
   };
 }
