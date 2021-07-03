@@ -53,8 +53,8 @@ in {
           enable = true;
           font = {
             package = pkgs.roboto;
-            name = "Roboto";
-            size = 10;
+            name = "sans-serif";
+            size = 11;
           };
           theme = {
             theme.name = "Adwaita-dark";
@@ -75,9 +75,16 @@ in {
           };
         };
       };
+      editors.fonts = {
+        code = {
+          family = "monospace";
+          size = 13;
+        };
+        ui.size = 12;
+      };
       term = {
         font = {
-          name = "JetBrains Mono";
+          name = "monospace";
           size = 13;
         };
         theme.colorscheme = "doom-one";

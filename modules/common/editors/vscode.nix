@@ -1,4 +1,4 @@
-{ config, home-manager, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with lib.my;
@@ -8,11 +8,11 @@ let
   cfg = editorsCfg.vscode;
   settings = builtins.toJSON (importJSON "${configDir}/vscode/settings.json"
     // {
-      "editor.fontFamily" = editorsCfg.font.family;
-      "editor.fontSize" = editorsCfg.font.size;
+      "editor.fontFamily" = editorsCfg.fonts.code.family;
+      "editor.fontSize" = editorsCfg.fonts.code.size;
     });
 in {
-  options.modules.editors.vscode = { enable = mkBoolOpt false; };
+  options.modules.editors.vscode.enable = mkBoolOpt false;
 
   config = mkIf cfg.enable {
     home-manager.users.${config.user.name}.programs.vscode = {

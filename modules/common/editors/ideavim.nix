@@ -15,8 +15,8 @@ in {
     home.file.".ideavimrc".text =
       (let idea-doom-emacs = pkgs.my.idea-doom-emacs;
       in optionalString cfg.enableDoom ''
-        let g:WhichKey_FontFamily = ${toVimScript editorsCfg.font.family}
-        let g:WhichKey_FontSize = ${toVimScript editorsCfg.font.size}
+        let g:WhichKey_FontFamily = ${toVimScript editorsCfg.fonts.code.family}
+        let g:WhichKey_FontSize = ${toVimScript editorsCfg.fonts.code.size}
 
         source ${idea-doom-emacs}/share/vim-plugins/idea-doom-emacs/ideavimrc
         source ${idea-doom-emacs}/share/vim-plugins/idea-doom-emacs/expand-region.vim

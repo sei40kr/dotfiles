@@ -74,8 +74,11 @@ in {
       mkIf (cfg.doom.enable && cfg.doom.variables != { }) {
         text = ''
           (setq doom-font (font-spec
-                            :family ${toEmacsLisp editorsCfg.font.family}
-                            :size ${toEmacsLisp editorsCfg.font.size}.0)
+                  :family ${toEmacsLisp editorsCfg.fonts.code.family}
+                  :size ${toEmacsLisp editorsCfg.fonts.code.size}.0)
+                doom-variable-pitch-font (font-spec
+                  :family ${toEmacsLisp editorsCfg.fonts.ui.family}
+                  :size ${toEmacsLisp editorsCfg.fonts.ui.size}.0)
                 ${
                   (concatStringsSep "\n      "
                     (mapAttrsToList (k: v: "${k} ${toEmacsLisp v}")

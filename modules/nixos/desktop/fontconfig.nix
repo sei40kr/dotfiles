@@ -2,24 +2,55 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.fontconfig;
+let
+  cfg = config.modules.desktop.fontconfig;
+  fontType = with types;
+    submodule {
+      options = {
+        packages = mkOpt (listOf package) [ ];
+        names = mkOpt (listOf str) [ ];
+      };
+    };
+
+  fontPackages = cfg.fonts.sansSerif.packages ++ cfg.fonts.serif.packages
+    ++ cfg.fonts.monospace.packages ++ cfg.fonts.emoji.packages;
 in {
-  options.modules.desktop.fontconfig.enable = mkBoolOpt false;
+  options.modules.desktop.fontconfig = {
+    enable = mkBoolOpt false;
+    fonts = {
+      sansSerif = mkOpt fontType {
+        packages = with pkgs; [ roboto noto-fonts noto-fonts-cjk ];
+        names = [ "Roboto" "Noto Sans Mono" "Noto Sans Mono CJK JP" ];
+      };
+      serif = mkOpt fontType {
+        packages = with pkgs; [ noto-fonts noto-fonts-cjk ];
+        names = [ "Noto Serif" "Noto Serif CJK JP" ];
+      };
+      monospace = mkOpt fontType {
+        packages = with pkgs; [ jetbrains-mono noto-fonts noto-fonts-cjk ];
+        names = [ "JetBrains Mono" "Noto Sans Mono" "Noto Sans Mono CJK JP" ];
+      };
+      emoji = mkOpt fontType {
+        packages = with pkgs; [ noto-fonts-emoji ];
+        names = [ "Noto Color Emoji" ];
+      };
+    };
+  };
 
   config = mkIf cfg.enable {
     fonts = {
       fontconfig = {
         enable = true;
         defaultFonts = {
-          emoji = [ "Noto Color Emoji" ];
-          monospace = [ "Noto Sans Mono" "Noto Sans Mono CJK JP" ];
-          sansSerif = [ "Noto Sans" "Noto Sans CJK JP" ];
-          serif = [ "Noto Serif" "Noto Serif CJK JP" ];
+          sansSerif = cfg.fonts.sansSerif.names;
+          serif = cfg.fonts.serif.names;
+          monospace = cfg.fonts.monospace.names;
+          emoji = cfg.fonts.emoji.names;
         };
         hinting.enable = false;
       };
 
-      fonts = with pkgs; [ noto-fonts noto-fonts-cjk noto-fonts-emoji ];
+      fonts = fontPackages;
     };
 
     modules.desktop.dconf = mkIf config.modules.desktop.gnome.enable {

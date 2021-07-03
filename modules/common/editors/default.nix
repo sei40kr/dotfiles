@@ -1,13 +1,17 @@
-{ config, lib, pkgs, ... }:
+{ lib, ... }:
 
 with lib;
-with lib.my;
-let cfg = config.modules.editors;
-in {
+with lib.my; {
   options.modules.editors = with types; {
-    font = {
-      family = mkOpt str "monospace";
-      size = mkOpt int 12;
+    fonts = {
+      code = {
+        family = mkOpt str "monospace";
+        size = mkOpt int 12;
+      };
+      ui = {
+        family = mkOpt str "sans-serif";
+        size = mkOpt int 11;
+      };
     };
   };
 }
