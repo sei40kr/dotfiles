@@ -60,6 +60,48 @@ in {
             toggle-maximized = [ ];
             unmaximize = [ ];
           };
+          "org/gnome/shell/extensions/materialshell/bindings" = {
+            app-launcher = [ "<Super>d" ];
+            focus-monitor-down = [ ];
+            focus-monitor-left = [ ];
+            focus-monitor-right = [ ];
+            focus-monitor-up = [ ];
+            kill-focused-window = [ "<Shift><Super>q" ];
+            last-workspace = [ ];
+            move-window-down = [ ];
+            move-window-left = [ "<Shift><Super>k" ];
+            move-window-monitor-down = [ ];
+            move-window-monitor-left = [ ];
+            move-window-monitor-right = [ ];
+            move-window-monitor-up = [ ];
+            move-window-right = [ "<Shift><Super>j" ];
+            move-window-up = [ ];
+            next-window = [ "<Super>j" ];
+            next-workspace = [ ];
+            previous-window = [ "<Super>k" ];
+            previous-workspace = [ ];
+            resize-window-down = [ ];
+            resize-window-left = [ ];
+            resize-window-right = [ ];
+            resize-window-up = [ ];
+            toggle-material-shell-ui = [ ];
+            use-half-horizontal-layout = [ ];
+            use-maximize-layout = [ "<Super>w" ];
+            use-ratio-layout = [ "<Super>e" ];
+            use-simple-horizontal-layout = [ "<Super>b" ];
+            use-simple-vertical-layout = [ "<Super>v" ];
+          };
+          "org/gnome/shell/extensions/materialshell/layouts" = {
+            half = false;
+            simple = true;
+            split = false;
+          };
+          "org/gnome/shell/extensions/materialshell/theme" = {
+            focus-effect = "border";
+            panel-icon-style = "category";
+          };
+          "org/gnome/shell/extensions/materialshell/tweaks".cycle-through-windows =
+            true;
           "org/gnome/shell/keybindings" = {
             focus-active-notification = [ ];
             open-application-menu = [ ];
