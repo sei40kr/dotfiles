@@ -11,6 +11,13 @@ in {
       enabled = "fcitx5";
       fcitx5.addons = with pkgs; [ fcitx5-mozc ];
     };
+    environment.sessionVariables = {
+      NIX_PROFILES =
+        "${concatStringsSep " " (reverseList config.environment.profiles)}";
+      GTK_IM_MODULE = "fcitx";
+      QT_IM_MODULE = "fcitx";
+      XMODIFIERS = "@im=fcitx";
+    };
 
     home.configFile."fcitx5/config".source = "${configDir}/fcitx5/config";
   } // mkIf config.modules.desktop.gnome.enable {
