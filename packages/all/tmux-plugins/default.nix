@@ -30,6 +30,18 @@ with lib; {
     '';
   };
 
+  cowboy = tmuxPlugins.mkTmuxPlugin {
+    pluginName = "cowboy";
+    rtpFilePath = "cowboy.tmux";
+    version = "unstable-2021-05-11";
+    src = fetchFromGitHub {
+      owner = "tmux-plugins";
+      repo = "tmux-cowboy";
+      rev = "75702b6d0a866769dd14f3896e9d19f7e0acd4f2";
+      sha256 = "16wqwfaqy7nhiy1ijkng1x4baqq7s9if0m3ffcrnakza69s6r4r8";
+    };
+  };
+
   doom-one-dark = tmuxPlugins.mkTmuxPlugin {
     pluginName = "doom-one-dark";
     rtpFilePath = "doom-one-dark.tmux";

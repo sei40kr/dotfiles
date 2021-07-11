@@ -50,6 +50,7 @@ in {
           '';
         }
         my.tmuxPlugins.cleanup-unnamed-sessions
+        my.tmuxPlugins.cowboy
         my.tmuxPlugins.doom-one-dark
       ];
 
