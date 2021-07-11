@@ -27,14 +27,14 @@ in {
       terminal = if isDarwin then "screen-256color" else "tmux-256color";
 
       plugins = with pkgs; [
-        my.tmuxPlugins.cleanup-unnamed-sessions
-        tmuxPlugins.copycat
-        tmuxPlugins.open
-        tmuxPlugins.pain-control
         {
           plugin = tmuxPlugins.sensible;
           extraConfig = "set-option -g prefix ${prefix}";
         }
+        tmuxPlugins.copycat
+        tmuxPlugins.open
+        tmuxPlugins.pain-control
+        tmuxPlugins.urlview
         {
           plugin = tmuxPlugins.yank;
           extraConfig = "set-option -g @yank_with_mouse off";
@@ -49,6 +49,7 @@ in {
             set-option -g @per-project-session-fzf-tmux-opts '-d 15 --reverse --inline-info --color=dark --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
           '';
         }
+        my.tmuxPlugins.cleanup-unnamed-sessions
         my.tmuxPlugins.doom-one-dark
       ];
 
