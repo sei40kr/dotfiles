@@ -35,6 +35,7 @@ in {
         tmuxPlugins.open
         tmuxPlugins.pain-control
         tmuxPlugins.urlview
+        tmuxPlugins.sessionist
         {
           plugin = tmuxPlugins.yank;
           extraConfig = "set-option -g @yank_with_mouse off";
