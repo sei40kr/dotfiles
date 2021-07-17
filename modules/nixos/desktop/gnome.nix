@@ -2,7 +2,20 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.gnome;
+let
+  cfg = config.modules.desktop.gnome;
+  themeType = with types;
+    submodule {
+      options = {
+        package = mkOpt package null;
+        name = mkOpt str null;
+      };
+    };
+
+  extensionPackages = cfg.extensions.packages ++ (optionals (cfg.theme != null)
+    (with pkgs; [ gnomeExtensions.user-themes ]));
+  extensionNames = cfg.extensions.names ++ (optionals (cfg.theme != null)
+    [ "user-theme@gnome-shell-extensions.gcampax.github.com" ]);
 in {
   options.modules.desktop.gnome = with types; {
     enable = mkBoolOpt false;
@@ -10,6 +23,7 @@ in {
       packages = mkOpt (listOf package) [ ];
       names = mkOpt (listOf str) [ ];
     };
+    theme = mkOpt (nullOr themeType) null;
   };
 
   config = mkIf cfg.enable {
@@ -34,10 +48,8 @@ in {
         # GNOME core developer tools
         gnome.dconf-editor
         gnome.gnome-tweaks
-
-        # GNOME Shell Extensions
-        gnomeExtensions.user-themes
-      ] ++ cfg.extensions.packages;
+      ] ++ extensionPackages
+      ++ (optionals (cfg.theme != null) [ cfg.theme.package ]);
 
     modules = {
       desktop = {
@@ -51,8 +63,9 @@ in {
               repeat-interval = 30;
             };
             "org/gnome/desktop/peripherals/mouse".accel-profile = "flat";
-            "org/gnome/shell".enabled-extensions =
-              mkIf (cfg.extensions.names != [ ]) cfg.extensions.names;
+            "org/gnome/shell".enabled-extensions = extensionNames;
+            "org/gnome/shell/extensions/user-theme".name =
+              mkIf (cfg.theme != null) cfg.theme.name;
           };
         };
         fontconfig.enable = true;
