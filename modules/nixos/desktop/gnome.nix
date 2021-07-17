@@ -6,7 +6,10 @@ let cfg = config.modules.desktop.gnome;
 in {
   options.modules.desktop.gnome = with types; {
     enable = mkBoolOpt false;
-    enabledExtensions = mkOpt (listOf str) [ ];
+    extensions = {
+      packages = mkOpt (listOf package) [ ];
+      names = mkOpt (listOf str) [ ];
+    };
   };
 
   config = mkIf cfg.enable {
@@ -22,18 +25,19 @@ in {
     networking.networkmanager.packages = with pkgs;
       [ gnome.networkmanager-openvpn ];
 
-    user.packages = with pkgs; [
-      # GNOME core utilities
-      gnome.gnome-calculator
-      gnome.gnome-screenshot
+    user.packages = with pkgs;
+      [
+        # GNOME core utilities
+        gnome.gnome-calculator
+        gnome.gnome-screenshot
 
-      # GNOME core developer tools
-      gnome.dconf-editor
-      gnome.gnome-tweaks
+        # GNOME core developer tools
+        gnome.dconf-editor
+        gnome.gnome-tweaks
 
-      # GNOME Shell Extensions
-      gnomeExtensions.user-themes
-    ];
+        # GNOME Shell Extensions
+        gnomeExtensions.user-themes
+      ] ++ cfg.extensions.packages;
 
     modules = {
       desktop = {
@@ -48,7 +52,7 @@ in {
             };
             "org/gnome/desktop/peripherals/mouse".accel-profile = "flat";
             "org/gnome/shell".enabled-extensions =
-              mkIf (cfg.enabledExtensions != [ ]) cfg.enabledExtensions;
+              mkIf (cfg.extensions.names != [ ]) cfg.extensions.names;
           };
         };
         fontconfig.enable = true;

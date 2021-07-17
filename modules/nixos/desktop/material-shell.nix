@@ -13,8 +13,6 @@ in {
         "The material-shell module requires 'modules.desktop.gnome.enable = true'.";
     }];
 
-    user.packages = with pkgs; [ my.gnomeExtensions.material-shell ];
-
     modules.desktop = {
       dconf = {
         enable = true;
@@ -120,7 +118,10 @@ in {
           };
         };
       };
-      gnome.enabledExtensions = [ "material-shell@papyelgringo" ];
+      gnome.extensions = {
+        packages = with pkgs; [ my.gnomeExtensions.material-shell ];
+        names = [ "material-shell@papyelgringo" ];
+      };
     };
   };
 }
