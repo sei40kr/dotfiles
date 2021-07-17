@@ -34,6 +34,7 @@ with lib; {
         file-roller.enable = true;
         font-viewer.enable = true;
         geary.enable = true;
+        gnome-books.enable = true;
         gnome-todo.enable = true;
         nautilus.enable = true;
         pomodoro.enable = true;
