@@ -69,6 +69,10 @@ in {
           };
         };
         fontconfig.enable = true;
+        gnome.theme = {
+          package = pkgs.materia-theme;
+          name = "Materia-dark";
+        };
         gtk = {
           enable = true;
           font = {
