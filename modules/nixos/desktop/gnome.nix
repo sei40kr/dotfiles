@@ -30,6 +30,9 @@ in {
       # GNOME core developer tools
       gnome.dconf-editor
       gnome.gnome-tweaks
+
+      # GNOME Shell Extensions
+      gnomeExtensions.user-themes
     ];
 
     modules = {
