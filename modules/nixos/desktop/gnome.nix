@@ -57,20 +57,13 @@ in {
             size = 11;
           };
           theme = {
-            theme.name = "Adwaita-dark";
+            theme = {
+              package = pkgs.materia-theme;
+              name = "Materia-dark";
+            };
             iconTheme = {
               package = pkgs.papirus-icon-theme;
               name = "Papirus";
-            };
-          };
-        };
-        qt = {
-          enable = true;
-          theme = {
-            platformTheme = "gnome";
-            style = {
-              package = pkgs.adwaita-qt;
-              name = "adwaita-dark";
             };
           };
         };
