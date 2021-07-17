@@ -36,6 +36,7 @@ with lib; {
         geary.enable = true;
         gnome-books.enable = true;
         gnome-todo.enable = true;
+        gnome-weather.enable = true;
         nautilus.enable = true;
         pomodoro.enable = true;
         seahorse.enable = true;
