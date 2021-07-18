@@ -26,6 +26,7 @@ with lib; {
     desktop = {
       gnome.enable = true;
       material-shell.enable = true;
+      themes.active = "material-design";
 
       apps = {
         bitwarden.enable = true;

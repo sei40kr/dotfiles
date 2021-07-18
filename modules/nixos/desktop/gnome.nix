@@ -69,28 +69,7 @@ in {
           };
         };
         fontconfig.enable = true;
-        gnome.theme = {
-          package = pkgs.materia-theme;
-          name = "Materia-dark";
-        };
-        gtk = {
-          enable = true;
-          font = {
-            package = pkgs.roboto;
-            name = "sans-serif";
-            size = 11;
-          };
-          theme = {
-            theme = {
-              package = pkgs.materia-theme;
-              name = "Materia-dark";
-            };
-            iconTheme = {
-              package = pkgs.papirus-icon-theme;
-              name = "Papirus";
-            };
-          };
-        };
+        gtk.enable = true;
       };
       editors.fonts = {
         code = {
