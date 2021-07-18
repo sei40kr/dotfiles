@@ -99,7 +99,6 @@ with lib; {
         enable = true;
         manpager.enable = true;
       };
-      vscode.enable = true;
     };
 
     services = {

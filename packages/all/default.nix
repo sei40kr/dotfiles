@@ -11,7 +11,6 @@
   idea-doom-emacs = pkgs.callPackage ./idea-doom-emacs.nix { };
   kotlin-language-server = pkgs.callPackage ./kotlin-language-server.nix { };
   operator-mono = pkgs.callPackage ./operator-mono.nix { };
-  vscode-extensions = (pkgs.callPackage (import ./vscode-extensions.nix) { });
   zinit = pkgs.callPackage ./zinit.nix { };
   zsh-fzf-chdir = pkgs.callPackage ./zsh-fzf-chdir.nix { };
   zsh-fzf-docker = pkgs.callPackage ./zsh-fzf-docker.nix { };

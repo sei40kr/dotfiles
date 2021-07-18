@@ -81,7 +81,7 @@ in {
           fi
 
           ${optionalString shellCfg.tmux.autoRun ''
-            if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIM" && -z "$INSIDE_EMACS" && "$TERM_PROGRAM" != vscode ]]; then
+            if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIM" && -z "$INSIDE_EMACS" ]]; then
               exec tmux new-session
             fi
           ''}

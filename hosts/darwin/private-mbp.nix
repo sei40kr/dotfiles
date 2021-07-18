@@ -46,7 +46,6 @@ with lib.my; {
         enable = true;
         manpager.enable = true;
       };
-      vscode.enable = true;
     };
     shell = {
       atcoder-tools.enable = true;
