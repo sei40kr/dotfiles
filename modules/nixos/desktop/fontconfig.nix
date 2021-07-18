@@ -19,8 +19,8 @@ in {
     enable = mkBoolOpt false;
     fonts = {
       sansSerif = mkOpt fontType {
-        packages = with pkgs; [ roboto noto-fonts noto-fonts-cjk ];
-        names = [ "Roboto" "Noto Sans Mono" "Noto Sans Mono CJK JP" ];
+        packages = with pkgs; [ noto-fonts noto-fonts-cjk ];
+        names = [ "Noto Sans Mono" "Noto Sans Mono CJK JP" ];
       };
       serif = mkOpt fontType {
         packages = with pkgs; [ noto-fonts noto-fonts-cjk ];

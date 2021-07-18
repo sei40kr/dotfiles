@@ -6,6 +6,10 @@ let themesCfg = config.modules.desktop.themes;
 in {
   config = mkIf (themesCfg.active == "material-design") {
     modules.desktop = {
+      fontconfig.fonts.sansSerif = {
+        packages = with pkgs; [ roboto noto-fonts noto-fonts-cjk ];
+        names = [ "Roboto" "Noto Sans Mono" "Noto Sans Mono CJK JP" ];
+      };
       gnome.theme = {
         package = pkgs.materia-theme;
         name = "Materia-dark";
