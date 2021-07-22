@@ -16,16 +16,16 @@ with lib; {
   per-project-session = tmuxPlugins.mkTmuxPlugin {
     pluginName = "per-project-session";
     rtpFilePath = "per-project-session.tmux";
-    version = "unstable-2021-01-24";
+    version = "unstable-2021-07-22";
     src = fetchFromGitHub {
       owner = "sei40kr";
       repo = "tmux-per-project-session";
-      rev = "4fca3b42f1510a7ba4820264284f30fe60556a2d";
-      sha256 = "0yb2zpvwgh5k7nnr0y3sqkx3z77ig5dwakcc3mhqlr42y1g9d1b3";
+      rev = "caa53406de77ee8d787a42b9df9b13d7244c3b2f";
+      sha256 = "0g8p9m2k9mnfz51gajahf415xq9hs8asknbhsdjc2z88v1l1yz0d";
     };
     nativeBuildInputs = [ makeWrapper ];
     postInstall = ''
-      wrapProgram "''${target}/libexec/switch-session" \
+      wrapProgram $out/share/tmux-plugins/per-project-session/scripts/goto_session.sh \
         --prefix PATH : ${makeBinPath [ fd fzf ]}
     '';
   };
