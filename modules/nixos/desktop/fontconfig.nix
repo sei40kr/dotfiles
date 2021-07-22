@@ -27,8 +27,18 @@ in {
         names = [ "Noto Serif" "Noto Serif CJK JP" ];
       };
       monospace = mkOpt fontType {
-        packages = with pkgs; [ jetbrains-mono noto-fonts noto-fonts-cjk ];
-        names = [ "JetBrains Mono" "Noto Sans Mono" "Noto Sans Mono CJK JP" ];
+        packages = with pkgs; [
+          jetbrains-mono
+          noto-fonts
+          noto-fonts-cjk
+          powerline-symbols
+        ];
+        names = [
+          "JetBrains Mono"
+          "Noto Sans Mono"
+          "Noto Sans Mono CJK JP"
+          "PowerlineSymbols"
+        ];
       };
       emoji = mkOpt fontType {
         packages = with pkgs; [ noto-fonts-emoji ];
