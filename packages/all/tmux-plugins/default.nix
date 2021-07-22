@@ -20,8 +20,8 @@ with lib; {
     src = fetchFromGitHub {
       owner = "sei40kr";
       repo = "tmux-per-project-session";
-      rev = "caa53406de77ee8d787a42b9df9b13d7244c3b2f";
-      sha256 = "0g8p9m2k9mnfz51gajahf415xq9hs8asknbhsdjc2z88v1l1yz0d";
+      rev = "24878496ef8e8c3814df3af05b1a407af576bb65";
+      sha256 = "156k77ga1lpk216rb9nprwz78rhnpchdijq84i4bgljrw3qcj80n";
     };
     nativeBuildInputs = [ makeWrapper ];
     postInstall = ''
