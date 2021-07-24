@@ -22,5 +22,9 @@ in {
     };
   };
 
-  config = mkIf cfg.enable { user.packages = [ package ]; };
+  config = mkIf cfg.enable {
+    user.packages = [ package ];
+    home.file.".jupyter/jupyter_console_config.py".source =
+      "${configDir}/jupyter/jupyter_console_config.py";
+  };
 }
