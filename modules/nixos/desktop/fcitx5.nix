@@ -2,7 +2,9 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.fcitx5;
+let
+  inherit (config.dotfiles) configDir;
+  cfg = config.modules.desktop.fcitx5;
 in {
   options.modules.desktop.fcitx5.enable = mkBoolOpt false;
 

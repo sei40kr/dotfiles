@@ -2,7 +2,9 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.sql;
+let
+  inherit (config.dotfiles) configDir;
+  cfg = config.modules.dev.sql;
 in {
   options.modules.dev.sql.enable = mkOption {
     type = types.bool;

@@ -7,6 +7,13 @@ in {
   options = with types; {
     user = mkOpt attrs { };
 
+    dotfiles = {
+      # TODO
+      dir = mkOpt (either str path) "${../..}";
+      binDir = mkOpt (either str path) "${config.dotfiles.dir}/bin";
+      configDir = mkOpt (either str path) "${config.dotfiles.dir}/config";
+    };
+
     home = {
       file = mkOpt' attrs { } "Files to place directly in $HOME";
       configFile = mkOpt' attrs { } "Files to place in $XDG_CONFIG_HOME";
