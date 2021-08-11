@@ -292,6 +292,8 @@ in {
     modules.desktop = {
       fcitx5.enable = true;
       fontconfig.enable = true;
+      rofi.enable = true;
+      waybar.enable = true;
     };
 
     # TODO move this

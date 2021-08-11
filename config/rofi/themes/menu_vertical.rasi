@@ -1,0 +1,56 @@
+/* -*- mode: css -*- */
+
+* {
+  background-color: transparent;
+  color: inherit;
+}
+
+window {
+  background-color: #fff;
+  border-radius: 4px;
+  color: #000;
+  font: "sans-serif 11";
+}
+
+mainbox {
+  padding: 8px 0;
+}
+
+inputbar {
+  border: 0 solid 0 solid 1px solid;
+  border-color: rgba(0, 0, 0, 0.12);
+  children: [entry];
+  margin: 0 0 8px;
+  padding: 0 0 8px;
+}
+
+entry {
+  padding: 8px 16px;
+  placeholder-color: #757575;
+}
+
+listview {
+  fixed-columns: true;
+  lines: 5;
+  spacing: 0;
+}
+
+element {
+  padding: 8px 16px;
+}
+
+element selected {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+element-icon {
+  margin: 2px 32px 2px 0;
+  size: 32;
+}
+
+element-text {
+  expand: true;
+  highlight: bold;
+  margin: 4px 0;
+  vertical-align: 0.5;
+}

@@ -1,0 +1,17 @@
+/* -*- mode: css -*- */
+
+configuration {
+  drun-display-format: "{name}";
+  scroll-method: 1;
+  show-icons: true;
+}
+
+@import "menu_vertical"
+
+window {
+  width: 480px;
+}
+
+entry {
+  placeholder: "Search Apps ..";
+}
