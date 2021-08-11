@@ -1,0 +1,24 @@
+# -*- mode: conf -*-
+
+font=sans-serif 11
+background-color=#ffffff
+width=400
+margin=8
+padding=12,16
+border-size=0
+border-radius=16
+max-icon-size=32
+icon-location=right
+markup=1
+format=%a\n\n<span foreground='#000000'>%s</span>\n<span foreground='#757575'>%b</span>
+max-visible=5
+anchor=top-right
+
+[urgency=low]
+text-color=#1976d2
+
+[urgency=normal]
+text-color=#388e3c
+
+[urgency=critical]
+text-color=#d32f2f
