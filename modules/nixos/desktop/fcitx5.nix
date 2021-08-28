@@ -5,7 +5,8 @@ with lib.my;
 let
   inherit (config.dotfiles) configDir;
   inherit (config.i18n.inputMethod) package;
-  cfg = config.modules.desktop.fcitx5;
+  desktopCfg = config.modules.desktop;
+  cfg = desktopCfg.fcitx5;
 in {
   options.modules.desktop.fcitx5 = { enable = mkBoolOpt false; };
 
@@ -21,13 +22,9 @@ in {
     };
     home.configFile."fcitx5/config".source = "${configDir}/fcitx5/config";
 
-    environment.etc = mkIf config.modules.desktop.sway.enable {
-      "sway/config.d/startup/fcitx5.conf".text = ''
+    environment.etc."sway/config.d/startup/fcitx5.conf".text =
+      mkIf desktopCfg.sway.enable ''
         exec ${package}/bin/fcitx5
       '';
-      "sway/config.d/bindings/fcitx5.conf".text = ''
-        bindsym Control+space exec ${pkgs.procps}/bin/pkill --signal SIGUSR2 waybar
-      '';
-    };
   };
 }
