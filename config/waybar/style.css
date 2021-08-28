@@ -1,0 +1,68 @@
+window#waybar {
+  background: rgba(0, 0, 0, .9);
+  color: #fff;
+  font: 12pt sans-serif;
+}
+
+button {
+  color: inherit;
+}
+
+.modules-left {
+  margin: 0 12px 0 0;
+}
+
+.modules-center {
+  margin: 0 12px;
+}
+
+.modules-right {
+  margin: 0 24px 0 12px;
+}
+
+#custom-appmenu {
+  background: #1976d2;
+  font: 16pt "Material Design Icons";
+  min-width: 44px;
+}
+
+#workspaces {
+  margin: 0 -6px 0 calc(24px - 6px);
+}
+
+#workspaces button {
+  border-radius: 100%;
+  font: 14pt "Material Design Icons";
+  min-width: 0;
+  padding: 0 6px;
+}
+
+#workspaces button:first-child {
+  margin-left: 0;
+}
+
+#workspaces button:last-child {
+  margin-right: 0;
+}
+
+#clock {
+  font-weight: bold;
+}
+
+#custom-imestatus {
+  font-weight: bold;
+  margin: 0 16px 0 0;
+}
+
+#clock {
+    font-weight: bold;
+}
+
+#pulseaudio {
+  font: 16pt "Material Design Icons";
+  margin: 0 16px 0 0;
+}
+
+#custom-powermenu {
+  font: 16pt "Material Design Icons";
+}

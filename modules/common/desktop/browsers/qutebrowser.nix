@@ -2,7 +2,9 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.browsers.qutebrowser;
+let
+  inherit (config.dotfiles) configDir;
+  cfg = config.modules.desktop.browsers.qutebrowser;
 in {
   options.modules.desktop.browsers.qutebrowser = {
     enable = mkOption {

@@ -2,7 +2,9 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.shell.ripgrep;
+let
+  inherit (config.dotfiles) configDir;
+  cfg = config.modules.shell.ripgrep;
 in {
   options.modules.shell.ripgrep = { enable = mkBoolOpt false; };
 

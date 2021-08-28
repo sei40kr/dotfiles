@@ -3,6 +3,7 @@
 with lib;
 with lib.my;
 let
+  inherit (config.dotfiles) configDir;
   cfg = config.modules.dev.jupyter;
   pythonEnv = pkgs.python3.withPackages
     (ps: with ps; [ jupyter_client jupyter_console jupyter_core ]);

@@ -24,8 +24,7 @@ with lib; {
 
   modules = {
     desktop = {
-      gnome.enable = true;
-      material-shell.enable = true;
+      sway.enable = true;
       themes.active = "material-design";
 
       apps = {
