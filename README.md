@@ -47,9 +47,15 @@
 
 ## Acknowledgements
 
+- [Flakes - NixOS Wiki](https://nixos.wiki/wiki/Flakes)
 - [hlissner/dotfiles](https://github.com/hlissner/dotfiles)
 - [berbiche/dotfiles](https://github.com/berbiche/dotfiles)
 - [Regolith](https://regolith-linux.org)
 - [Archcraft OS](https://archcraft.io)
-   - [adi1090x/rofi](https://github.com/adi1090x/rofi)
-   - [adi1090x/polybar-themes](https://github.com/adi1090x/polybar-themes)
+- [adi1090x/rofi](https://github.com/adi1090x/rofi)
+- [adi1090x/polybar-themes](https://github.com/adi1090x/polybar-themes)
+- [Sway - NixOS Wiki](https://nixos.wiki/wiki/Sway)
+- [Sway - ArchWiki](https://wiki.archlinux.org/title/Sway)
+- [Running programs natively under Wayland](https://github.com/swaywm/sway/wiki/Running-programs-natively-under-wayland)
+- [Awesome Wayland](https://github.com/natpen/awesome-wayland)
+- [polybar/polybar-scripts](https://github.com/polybar/polybar-scripts)
