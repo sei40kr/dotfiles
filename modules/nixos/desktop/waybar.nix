@@ -20,14 +20,17 @@ let
       tooltip = false;
     };
     "sway/workspaces" = {
-      disable-scroll = true;
       format = "{icon}";
       format-icons = {
+        "1" = "󰖟";
+        "2" = "󰅩";
+        "3" = "󰉋";
         default = "󰐽";
         urgent = "󰐽";
         focused = "󰐾";
       };
-      persistent_workspaces = [ "1" "2" "3" "4" "5" ];
+      disable-scroll = true;
+      persistent_workspaces = [ "1" "2" "3" ];
       tooltip = false;
     };
 

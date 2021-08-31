@@ -27,14 +27,16 @@ button {
 }
 
 #workspaces {
-  margin: 0 -6px 0 calc(24px - 6px);
+  margin: 0 0 0 16px;
 }
 
 #workspaces button {
-  border-radius: 100%;
-  font: 14pt "Material Design Icons";
-  min-width: 0;
-  padding: 0 6px;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  border-top: 2px solid transparent;
+  font: 16pt "Material Design Icons";
+  margin: 0 4px;
+  min-width: 32px;
 }
 
 #workspaces button:first-child {
@@ -43,6 +45,10 @@ button {
 
 #workspaces button:last-child {
   margin-right: 0;
+}
+
+#workspaces button.focused {
+  border-top-color: #1976d2;
 }
 
 #clock {
