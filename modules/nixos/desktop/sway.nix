@@ -261,11 +261,10 @@ in {
           bindsym XF86AudioLowerVolume exec ${pkgs.pamixer}/bin/pamixer -ud 2
           bindsym XF86AudioMute exec ${pkgs.pamixer}/bin/pamixer --toggle-mute
 
-        client.focused #115293 #1976d2 #ffffff
-        client.focused_inactive #115293 #115293 #ffffff
-        client.placeholder #115293 #115293 #ffffff
-        client.unfocused #115293 #115293 #ffffff
-        client.urgent #115293 #115293 #ffffff
+        client.focused #292929 #292929 #ffffff #ffffff #ffffff
+        client.focused_inactive #000000 #000000 #b3b3b3 #ffffff #ffffff
+        client.unfocused #000000 #000000 #b3b3b3 #ffffff #ffffff
+        client.urgent #000000 #000000 #b3b3b3 #ffffff #ffffff
         default_border normal 2
         default_floating_border normal 2
         font pango:sans-serif 11
