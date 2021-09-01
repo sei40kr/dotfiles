@@ -1,9 +1,0 @@
-/* -*- mode: css -*- */
-
-@import "appmenu.rasi"
-
-window {
-  anchor: north west;
-  location: north west;
-  margin: calc(44px + 8px) 0 0 8px;
-}

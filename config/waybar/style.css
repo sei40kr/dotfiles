@@ -1,5 +1,5 @@
 window#waybar {
-  background: rgba(0, 0, 0, .9);
+  background: #000;
   color: #fff;
   font: 12pt sans-serif;
 }
@@ -31,12 +31,11 @@ button {
 }
 
 #workspaces button {
-  border-bottom: 2px solid transparent;
   border-radius: 0;
-  border-top: 2px solid transparent;
   font: 16pt "Material Design Icons";
   margin: 0 4px;
-  min-width: 32px;
+  min-width: 44px;
+  padding: 2px 0 0;
 }
 
 #workspaces button:first-child {
@@ -48,7 +47,9 @@ button {
 }
 
 #workspaces button.focused {
-  border-top-color: #1976d2;
+  background: rgba(255, 255, 255, .1);
+  border-top: 2px solid #1976d2;
+  padding: 0;
 }
 
 #clock {
@@ -61,7 +62,7 @@ button {
 }
 
 #clock {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 #pulseaudio {

@@ -16,7 +16,7 @@ let
     "custom/appmenu" = {
       format = "{icon}";
       format-icons = "󰀻";
-      on-click = "rofi-appmenu_topleft";
+      on-click = "rofi-appmenu";
       tooltip = false;
     };
     "sway/workspaces" = {
