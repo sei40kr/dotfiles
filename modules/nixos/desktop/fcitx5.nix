@@ -19,12 +19,11 @@ in {
       GTK_IM_MODULE = "fcitx";
       QT_IM_MODULE = "fcitx";
       XMODIFIERS = "@im=fcitx";
+
+      # cf. https://github.com/NixOS/nixpkgs/issues/129442
+      NIX_PROFILES =
+        concatStringsSep " " (reverseList config.environment.profiles);
     };
     home.configFile."fcitx5/config".source = "${configDir}/fcitx5/config";
-
-    environment.etc."sway/config.d/startup/fcitx5.conf".text =
-      mkIf desktopCfg.sway.enable ''
-        exec ${package}/bin/fcitx5
-      '';
   };
 }

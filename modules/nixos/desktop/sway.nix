@@ -280,6 +280,10 @@ in {
 
         include /etc/sway/config.d/*
         include /etc/sway/config.d/bindings/*
+
+        # Import environment variables into the systemd user environment.
+        exec systemctl --user import-environment
+
         include /etc/sway/config.d/startup/*
       '';
       "sway/config.d/startup/dex.conf".text = ''
