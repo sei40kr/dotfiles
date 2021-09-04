@@ -84,7 +84,6 @@ with lib; {
       shell.enable = true;
       spring-boot.enable = true;
       sql.enable = true;
-      travis.enable = true;
       web.enable = true;
     };
 
