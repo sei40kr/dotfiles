@@ -8,13 +8,5 @@ let
 in {
   options.modules.dev.ansible = { enable = mkBoolOpt false; };
 
-  config = mkIf cfg.enable {
-    user.packages = [ package ];
-
-    modules.shell.zsh.zinit.snippets = [{
-      source =
-        "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/ansible/ansible.plugin.zsh";
-      ice.id-as = "OMZP::ansible";
-    }];
-  };
+  config = mkIf cfg.enable { user.packages = [ package ]; };
 }

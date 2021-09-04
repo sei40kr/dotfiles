@@ -17,43 +17,5 @@ in {
       enable = true;
       autoPrune.enable = cfg.autoPrune.enable;
     };
-    modules.shell = {
-      aliases = {
-        di = "docker info";
-        dlg = "docker container logs";
-        dls = "docker container ls";
-        dlsa = "docker container ls -a";
-        dr = "docker container run";
-        dt = "docker top";
-        dv = "docker version";
-        dpo = "docker container port";
-        dpu = "docker pull";
-        dx = "docker container exec";
-        dbl = "docker build";
-        dhh = "docker help";
-        dpsa = "docker container ps -a";
-        dils = "docker image ls";
-        dit = "docker image tag";
-        dip = "docker image push";
-        dib = "docker image build";
-        dnls = "docker network ls";
-        dnc = "docker network create";
-        dncn = "docker network connect";
-        dndcn = "docker network disconnect";
-        dnrm = "docker network rm";
-        dvls = "docker volume ls";
-        dvclean = "docker volume rm $(docker volume ls -qf dangling=true)";
-        drmi =
-          "docker rmi -f $(docker images -aq --filter dangling=true) 2>/dev/null";
-        dwipe =
-          "docker kill $(docker ps -q) 2>/dev/null;docker rm $(docker ps -aq) 2>/dev/null;docker rmi -f $(docker images -aq) 2>/dev/null";
-      };
-
-      zsh.zinit.snippets = [{
-        source =
-          "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/docker-compose/docker-compose.plugin.zsh";
-        ice.id-as = "OMZP::docker-compose";
-      }];
-    };
   };
 }

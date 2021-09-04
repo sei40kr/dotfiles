@@ -19,17 +19,5 @@ in {
       userName = "Seong Yong-ju";
       userEmail = "sei40kr@gmail.com";
     };
-
-    modules.shell.zsh.zinit.snippets = [
-      {
-        source = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/git/git.plugin.zsh";
-        ice.id-as = "OMZP::git";
-      }
-      {
-        source =
-          "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/git-flow/git-flow.plugin.zsh";
-        ice.id-as = "OMZP::git-flow";
-      }
-    ];
   };
 }

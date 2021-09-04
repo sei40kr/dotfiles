@@ -22,24 +22,5 @@ in {
           copyright: 'Copyright (c) 2021 sei40kr'
           github-username: sei40kr
     '';
-
-    modules.shell.zsh.zinit.snippets = [
-      {
-        source =
-          "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/stack/stack.plugin.zsh";
-        ice = {
-          id-as = "OMZP::stack";
-          wait = "";
-        };
-      }
-      {
-        source =
-          "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/cabal/cabal.plugin.zsh";
-        ice = {
-          id-as = "OMZP::cabal";
-          wait = "";
-        };
-      }
-    ];
   };
 }

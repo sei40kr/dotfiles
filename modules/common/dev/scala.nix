@@ -25,21 +25,5 @@ in {
           Environment = [ "PATH=${makeBinPath [ pkgs.jdk ]}" ];
         };
       };
-
-    modules.shell.zsh.zinit.snippets = [
-      {
-        source = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/scala/_scala";
-        ice = {
-          wait = "";
-          lucid = true;
-          as = "completion";
-          id-as = "OMZP::scala";
-        };
-      }
-      {
-        source = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/sbt/sbt.plugin.zsh";
-        ice.id-as = "OMZP::sbt";
-      }
-    ];
   };
 }

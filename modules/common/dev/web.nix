@@ -16,28 +16,5 @@ in {
       nodePackages.vue-language-server
     ];
     env = { PATH = [ "\${HOME}/.yarn/bin" ]; };
-    modules.shell = {
-      aliases = {
-        npmg = "npm i -g ";
-        npmS = "npm i -S ";
-        npmD = "npm i -D ";
-        npmE = ''PATH="$(npm bin):''${PATH}"'';
-        npmO = "npm outdated";
-        npmV = "npm -v";
-        npmL = "npm list";
-        npmL0 = "npm ls --depth=0";
-        npmst = "npm start";
-        npmt = "npm test";
-        npmR = "npm run";
-        npmP = "npm publish";
-        npmI = "npm init";
-      };
-
-      zsh.zinit.snippets = [{
-        source =
-          "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/yarn/yarn.plugin.zsh";
-        ice.id-as = "OMZP::yarn";
-      }];
-    };
   };
 }

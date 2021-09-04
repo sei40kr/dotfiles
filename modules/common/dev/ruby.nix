@@ -49,11 +49,7 @@ in {
             id-as = "OMZP::rake-fast";
           };
         }
-      ] ++ (optionals cfg.rails.enable [{
-        source =
-          "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/rails/rails.plugin.zsh";
-        ice.id-as = "OMZP::rails";
-      }]);
+      ];
     };
   };
 }
