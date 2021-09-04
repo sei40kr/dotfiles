@@ -109,7 +109,7 @@ in {
       PATH="''${PATH:+''${PATH}:}${pkgs.curl}/bin:${pkgs.git}/bin:${pkgs.subversion}/bin"
 
       declare -A ZINIT
-      ZINIT[BIN_DIR]=${pkgs.my.zinit}/share/zinit
+      ZINIT[BIN_DIR]=${pkgs.zinit}/share/zinit
       . "''${ZINIT[BIN_DIR]}/zinit.zsh"
 
       ${concatMapStringsSep "\n" ({ source, ice, config }:
