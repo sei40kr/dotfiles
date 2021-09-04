@@ -27,6 +27,15 @@ in {
     programs.sway = {
       enable = true;
       wrapperFeatures.gtk = true;
+      extraSessionCommands = ''
+        # SDL
+        export SDL_VIDEODRIVER=wayland
+        # QT
+        export QT_QPA_PLATFORM=wayland-egl
+        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+        # Fix for some Java AWT applications
+        export _JAVA_AWT_WM_NONREPARENTING=1
+      '';
       extraPackages = with pkgs; [ pulseaudio wl-clipboard ];
     };
     environment.etc = {
