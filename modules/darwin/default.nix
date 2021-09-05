@@ -15,9 +15,9 @@ with lib.my; {
       libtool
     ];
 
-    modules.shell.zsh.zinit.plugins = {
-      source = "${pkgs.zsh-prezto}/modules/gnu-utility";
-      ice.id-as = "PZT::modules--gnu-utility";
-    };
+    modules.shell.zsh.rcInit = ''
+      zinit ice id-as'PZT::modules--gnu-utility'
+      zinit light ${pkgs.zsh-prezto}/modules/gnu-utility
+    '';
   };
 }

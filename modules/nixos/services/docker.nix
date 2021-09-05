@@ -17,5 +17,10 @@ in {
       enable = true;
       autoPrune.enable = cfg.autoPrune.enable;
     };
+
+    modules.shell.aliases = {
+      dk = "docker";
+      dko = mkIf cfg.compose.enable "docker-compose";
+    };
   };
 }

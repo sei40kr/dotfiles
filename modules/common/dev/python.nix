@@ -17,14 +17,9 @@ in {
         ++ optionals cfg.poetry.enable [ poetry ]);
     env.PATH = [ "\${HOME}/.poetry/bin" ];
 
-    modules.shell.zsh.zinit.snippets = [{
-      source = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/pip/_pip";
-      ice = {
-        wait = "";
-        lucid = true;
-        as = "completion";
-        id-as = "OMZP::pip";
-      };
-    }];
+    modules.shell.zsh.rcInit = ''
+      zinit ice wait''' lucid as'completion' id-as'OMZP::pip'
+      zinit snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/pip/_pip
+    '';
   };
 }

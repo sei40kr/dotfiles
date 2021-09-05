@@ -13,14 +13,9 @@ in {
       PATH = [ "${CARGO_HOME}/bin" ];
     };
 
-    modules.shell.zsh.zinit.snippets = [{
-      source = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/rust/_rust";
-      ice = {
-        wait = "";
-        lucid = true;
-        as = "completion";
-        id-as = "OMZP::rust";
-      };
-    }];
+    modules.shell.zsh.rcInit = ''
+      zinit ice wait''' lucid as'completion' id-as'OMZP::rust'
+      zinit snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/rust/_rust
+    '';
   };
 }

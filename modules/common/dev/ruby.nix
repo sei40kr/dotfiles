@@ -13,43 +13,13 @@ in {
     user.packages = with pkgs;
       ([ ruby rubocop rubyPackages.rake solargraph ]
         ++ optionals cfg.rails.enable [ rubyPackages.rails ]);
-    modules.shell = {
-      aliases = {
-        be = "bundle exec";
-        bl = "bundle list";
-        bp = "bundle package";
-        bo = "bundle open";
-        bout = "bundle outdated";
-        bu = "bundle update";
-        bi = "bundle_install";
-        bcn = "bundle clean";
-      };
 
-      zsh.zinit.snippets = [
-        {
-          source =
-            "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/ruby/ruby.plugin.zsh";
-          ice.id-as = "OMZP::ruby";
-        }
-        {
-          source = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/gem/_gem";
-          ice = {
-            wait = "";
-            lucid = true;
-            as = "completion";
-            id-as = "OMZP::gem";
-          };
-        }
-        {
-          source =
-            "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/rake-fast/rake-fast.plugin.zsh";
-          ice = {
-            wait = "";
-            lucid = true;
-            id-as = "OMZP::rake-fast";
-          };
-        }
-      ];
-    };
+    modules.shell.zsh.rcInit = ''
+      zinit ice wait''' lucid as'completion' id-as'OMZP::gem'
+      zinit snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/gem/_gem
+
+      zinit ice wait''' lucid as'completion' id-as'OMZP::rake-fast'
+      zinit snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/rake-fast/rake-fast.plugin.zsh
+    '';
   };
 }

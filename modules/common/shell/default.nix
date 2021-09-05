@@ -10,14 +10,7 @@ with lib.my; {
   config = {
     modules.shell = {
       env.WORKSPACE_DIR = "${config.user.home}/dev/ws";
-      aliases = {
-        u = "cd ..";
-        cx = "chmod +x";
-
-        md = "mkdir -p";
-        rd = "rmdir";
-        sortnr = "sort -nr";
-      };
+      aliases.u = "cd ..";
     };
   };
 }

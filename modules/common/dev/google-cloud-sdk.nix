@@ -14,12 +14,10 @@ in {
   config = mkIf cfg.enable {
     user.packages = [ package ];
 
-    modules.shell.zsh.zinit.snippets = [{
-      source = "${package}/google-cloud-sdk/completion.zsh.inc";
-      ice = {
-        wait = "";
-        lucid = true;
-      };
-    }];
+    # TODO install completion in google-cloud-sdk derivation
+    modules.shell.zsh.rcInit = ''
+      zinit ice wait''' lucid
+      zinit snippet ${package}/google-cloud-sdk/completion.zsh.inc
+    '';
   };
 }
