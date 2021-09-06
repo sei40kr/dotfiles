@@ -20,16 +20,20 @@ in {
       [ fzf pure-prompt zsh-completions ]
       ++ optionals isDarwin [ terminal-notifier ];
 
-    programs.zsh = {
+    home-manager.users.${config.user.name}.programs.zsh = {
       enable = true;
+      enableCompletion = false;
+      completionInit = "";
+      autocd = true;
+      dotDir = ".zsh";
+      defaultKeymap = "emacs";
       shellAliases = shellCfg.aliases;
-      shellInit = ''
-        ZDOTDIR=$HOME/.zsh
-
-        # Don't execute this file when running in a pure nix-shell.
+      envExtra = ''
+        # Don't execute this file when running in a pure nix-shell
         if [[ -n "$IN_NIX_SHELL" ]]; then
           return
         fi
+
 
         ${optionalString isDarwin ''
           if [[ -z "$__NIX_DARWIN_SET_ENVIRONMENT_DONE" ]]; then
@@ -37,19 +41,43 @@ in {
           fi
         ''}
 
+
         ${cfg.envInit}
       '';
-      # TODO refactor
-      loginShellInit = ''
+      profileExtra = ''
         ${concatStringsSep "\n" (mapAttrsToList (n: v: ''export ${n}="${v}"'')
           (config.env // shellCfg.env))}
       '';
-      interactiveShellInit = ''
+      initExtraFirst = ''
         ${optionalString shellCfg.tmux.autoRun ''
           if [[ -z $TMUX && -z $EMACS && -z $VIM && -z $INSIDE_EMACS ]]; then
             exec tmux new-session
           fi
         ''}
+
+
+        # Disable some features to support TRAMP
+        if [[ $TERM == dumb ]]; then
+          unsetopt ZLE PROMPT_CR PROMPT_SUBST
+          unset RPS1 RPROMPT
+          PS1='$ '
+          PROMPT='$ '
+          return
+        fi
+
+
+        setopt APPEND_HISTORY AUTO_LIST AUTO_MENU AUTO_PARAM_KEYS \
+               AUTO_PARAM_SLASH AUTO_PUSHD AUTO_RESUME EQUALS GLOB_DOTS \
+               HIST_REDUCE_BLANKS INTERACTIVE_COMMENTS NO_BEEP \
+               NUMERIC_GLOB_SORT PRINT_EIGHT_BIT PROMPT_SUBST \
+               PUSHD_IGNORE_DUPS
+        unsetopt LIST_BEEP
+      '';
+      initExtraBeforeCompInit = ''
+        KEYTIMEOUT=1
+        autoload -Uz select-word-style
+        select-word-style bash
+        bindkey '^u' backward-kill-line
 
 
         PATH="''${PATH:+$PATH:}${
@@ -112,48 +140,23 @@ in {
         zinit ice bindmap'^R->;\\ec->' multisrc'{completion,key-bindings}.zsh'
         zinit light ${pkgs.fzf}/share/fzf
 
-        KEYTIMEOUT=1
-        bindkey -e
-        autoload -Uz select-word-style
-        select-word-style bash
-        bindkey '^u' backward-kill-line
 
-        ## Others
+        ## Prompt
 
-        ${cfg.rcInit}
-      '';
-      promptInit = ''
         PURE_PROMPT_SYMBOL='λ'
         zstyle :prompt:pure:prompt:success color green
         zstyle :prompt:pure:git:dirty color 242
         autoload -Uz prompt_pure_setup
         prompt_pure_setup
       '';
-      histSize = 10000;
-      histFile = "$ZDOTDIR/.zsh_history";
-      setOptions = [
-        "APPEND_HISTORY"
-        "AUTO_CD"
-        "AUTO_LIST"
-        "AUTO_MENU"
-        "AUTO_PARAM_KEYS"
-        "AUTO_PARAM_SLASH"
-        "AUTO_PUSHD"
-        "AUTO_RESUME"
-        "EQUALS"
-        "GLOB_DOTS"
-        "HIST_REDUCE_BLANKS"
-        "INTERACTIVE_COMMENTS"
-        "NO_BEEP"
-        "NUMERIC_GLOB_SORT"
-        "PRINT_EIGHT_BIT"
-        "PROMPT_SUBST"
-        "PUSHD_IGNORE_DUPS"
-      ];
-      enableCompletion = true;
-      enableBashCompletion = false;
-      enableGlobalCompInit = false;
+      initExtra = ''
+        ${cfg.rcInit}
+      '';
     };
-    home.file.".zsh/.zshrc".text = "";
+
+    environment = {
+      pathsToLink = [ "/share/zsh" ];
+      shells = [ "/run/current-system/sw/bin/zsh" "${pkgs.zsh}/bin/zsh" ];
+    };
   };
 }
