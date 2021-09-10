@@ -70,8 +70,11 @@ with lib; {
       jupyter.enable = true;
       kotlin.enable = true;
       latex.enable = true;
-      python.enable = true;
       r.enable = true;
+      python = {
+        enable = true;
+        enablePoetry = true;
+      };
       ruby = {
         enable = true;
         rails.enable = true;

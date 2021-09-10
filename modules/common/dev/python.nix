@@ -2,19 +2,17 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.dev.python;
-  package = pkgs.python3.withPackages (p: with p; [ ipython ]);
+let cfg = config.modules.dev.python;
 in {
   options.modules.dev.python = {
     enable = mkBoolOpt false;
-    poetry.enable = mkBoolOpt false;
+    enablePoetry = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs;
-      ([ package black nodePackages.pyright ]
-        ++ optionals cfg.poetry.enable [ poetry ]);
+      [ python3 black nodePackages.pyright ]
+      ++ optionals cfg.enablePoetry (with pkgs; [ poetry ]);
     env.PATH = [ "\${HOME}/.poetry/bin" ];
 
     modules.shell.zsh.rcInit = ''
