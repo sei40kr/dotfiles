@@ -3,23 +3,22 @@
 with lib;
 stdenv.mkDerivation rec {
   pname = "kotlin-language-server";
-  version = "1.1.1";
+  version = "1.1.2";
 
   src = fetchzip {
     url =
       "https://github.com/fwcd/kotlin-language-server/releases/download/${version}/server.zip";
-    sha256 = "12gnxhmdkcr2wp789ia8l9xhh26v7h8ckwlhvm8m2xzxq8nvavv8";
+    sha256 = "021h9239lr19r9r726hfjlfgwa8fl4m8vfryzsg8fbm0hsziklkz";
   };
 
   nativeBuildInputs = [ makeWrapper ];
   buildInputs = [ jre ];
 
   installPhase = ''
-    install -D bin/kotlin-language-server -t "''${out}/bin"
-    cp -r lib "''${out}/lib"
+    install -Dm755 bin/kotlin-language-server -t $out/bin
+    cp -r lib $out/lib
 
-    wrapProgram "''${out}/bin/kotlin-language-server" \
-        --prefix PATH : ${jre}/bin
+    wrapProgram $out/bin/kotlin-language-server --prefix PATH : ${jre}/bin
   '';
 
   meta = {
