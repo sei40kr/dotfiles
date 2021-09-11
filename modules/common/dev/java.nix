@@ -6,5 +6,9 @@ let cfg = config.modules.dev.java;
 in {
   options.modules.dev.java = { enable = mkBoolOpt false; };
 
-  config = mkIf cfg.enable { user.packages = with pkgs; [ gradle maven ]; };
+  config = mkIf cfg.enable {
+    user.packages = with pkgs; [ jdk11 gradle maven ];
+
+    modules.shell.aliases.mvnag = "mvn archetype:generate";
+  };
 }
