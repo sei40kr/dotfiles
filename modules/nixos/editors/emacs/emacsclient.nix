@@ -28,7 +28,7 @@ let
       frames="$(emacsclient -e "(delete t (mapcar #'framep (frame-list)))" 2>/dev/null)"
 
       if [[ -n "$frames" && "$frames" != 'nil' ]]; then
-        exec ${emacs}/bin/emacsclient -c "$@" 2>/dev/null
+        exec ${emacs}/bin/emacsclient -c "$@"
       fi
     fi
 
