@@ -7,7 +7,7 @@ let
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.emacs;
   # 28 + native-comp + pgtk
-  package = if cfg.doom.enable then
+  emacs = if cfg.doom.enable then
     ((pkgs.emacsPackagesGen pkgs.my.emacs).emacsWithPackages (epkgs:
       with epkgs; [
         melpaPackages.emacsql-sqlite
@@ -24,35 +24,6 @@ let
       ]))
   else
     pkgs.my.emacs;
-
-  vterm_printf = pkgs.writeTextFile {
-    name = "/share/zsh/site-functions/vterm_printf";
-    text = ''
-      vterm_printf() {
-        if [ -n $TMUX ]; then
-          # tell tmux to pass the escape sequences through
-          # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
-          printf "\ePtmux;\e\e]%s\007\e\\" $1
-        elif [ $TERM == screen-* ]; then
-          # GNU screen (screen, screen-256color, screen-256color-bce)
-          printf "\eP\e]%s\007\e\\" $1
-        else
-          printf "\e]%s\e\\" $1
-        fi
-      }
-    '';
-    destination = "/share/zsh/site-functions";
-  };
-  vterm_clear = pkgs.writeTextFile {
-    name = "/share/zsh/site-functions/vterm_clear";
-    text = ''
-      clear() {
-        vterm_printf "51;Evterm-clear-scrollback"
-        tput clear
-      }
-    '';
-    destination = "/share/zsh/site-functions";
-  };
 in {
   options.modules.editors.emacs = with types; {
     enable = mkBoolOpt false;
@@ -60,11 +31,16 @@ in {
       enable = mkBoolOpt false;
       variables = mkOpt attrs { };
     };
+    package = mkOption {
+      type = package;
+      default = emacs;
+      visible = false;
+    };
   };
 
   config = mkIf cfg.enable {
-    user.packages = [ package vterm_printf vterm_clear pkgs.binutils ]
-      ++ optionals cfg.doom.enable (with pkgs; [
+    user.packages = [ emacs pkgs.binutils ] ++ optionals cfg.doom.enable
+      (with pkgs; [
         ## Doom dependencies
         fd
         ripgrep
@@ -119,12 +95,7 @@ in {
 
     modules = {
       editors.fonts.enable = true;
-      shell.zsh.rcInit = ''
-        if [[ $INSIDE_EMACS == vterm ]]; then
-          autoload -Uz vterm_printf vterm_clear
-          alias clear=vterm_clear
-        fi
-      '';
+      shell.aliases.e = "emacs";
     };
   };
 }
