@@ -11,6 +11,7 @@ let
     ((pkgs.emacsPackagesGen pkgs.my.emacs).emacsWithPackages (epkgs:
       with epkgs; [
         melpaPackages.emacsql-sqlite
+        melpaPackages.libgit
         melpaPackages.vterm
         (melpaPackages.zmq.overrideAttrs ({ postInstall ? "", ... }: {
           postInstall = postInstall + (optionalString isDarwin ''
