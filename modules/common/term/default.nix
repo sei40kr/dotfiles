@@ -16,7 +16,7 @@ in {
   options.modules.term = with types; {
     font = mkOpt fontType {
       name = "monospace";
-      size = 10;
+      size = 12;
     };
     theme = {
       colorscheme = mkOpt str null;
