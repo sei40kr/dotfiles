@@ -56,7 +56,7 @@
                 mkDefault (removeSuffix ".nix" (baseNameOf path));
             }
             (filterAttrs (n: _: !elem n [ "system" ]) attrs)
-            ./.
+            ./nixos-modules
             (import path)
           ];
         };
@@ -67,29 +67,7 @@
             inherit inputs lib;
             pkgs = pkgs.x86_64-darwin;
           };
-          modules = [
-            ({ config, pkgs, ... }: {
-              imports = [ inputs.home-manager.darwinModules.home-manager ]
-                ++ (mapModulesRec' (toString ./modules/common) import)
-                ++ (mapModulesRec' (toString ./modules/darwin) import);
-
-              nix = {
-                extraOptions = "experimental-features = nix-command flakes";
-                package = pkgs.nixFlakes;
-                useDaemon = true;
-              };
-              users.nix.configureBuildUsers = true;
-
-              system.build.applications = pkgs.buildEnv {
-                name = "user-applications";
-                paths = config.users.users.${config.user.name}.packages;
-                pathsToLink = "/Applications";
-              };
-
-              user.home = "/Users/${config.user.name}";
-            })
-            (import path)
-          ];
+          modules = [ ./darwin-modules (import path) ];
         };
     in {
       lib = lib.my;
@@ -114,17 +92,13 @@
         // (optionalAttrs (elem system supportedSystems.linux)
           (import ./packages/linux args))));
 
-      nixosModules = {
-        dotfiles = import ./.;
-      } // (mapModulesRec ./modules/common import)
-        // (mapModulesRec ./modules/nixos import);
+      nixosModules = mapModulesRec ./modules import
+        // (mapModulesRec ./nixos-modules import);
       nixosConfigurations =
         mapModules ./hosts/nixos (mkNixosHost { system = "x86_64-linux"; });
 
-      darwinModules = {
-        dotfiles = import ./.;
-      } // (mapModulesRec ./modules/common import)
-        // (mapModulesRec ./modules/darwin import);
+      darwinModules = mapModulesRec ./modules import
+        // (mapModulesRec ./darwin-modules import);
       darwinConfigurations = mapModules ./hosts/darwin mkDarwinHost;
     };
 }

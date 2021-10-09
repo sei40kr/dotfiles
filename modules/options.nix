@@ -9,7 +9,7 @@ in {
 
     dotfiles = {
       # TODO
-      dir = mkOpt (either str path) "${../..}";
+      dir = mkOpt (either str path) "${../.}";
       binDir = mkOpt (either str path) "${config.dotfiles.dir}/bin";
       configDir = mkOpt (either str path) "${config.dotfiles.dir}/config";
     };

@@ -3,8 +3,8 @@
 with lib;
 with lib.my; {
   imports = [ inputs.home-manager.nixosModules.home-manager ]
-    ++ (mapModulesRec' (toString ./modules/common) import)
-    ++ (mapModulesRec' (toString ./modules/nixos) import);
+    ++ (mapModulesRec' (toString ../modules) import)
+    ++ (mapModulesRec' (toString ./.) import);
 
   environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
   nix = {
