@@ -5,7 +5,6 @@
   tmuxPlugins = (pkgs.callPackage (import ./tmux-plugins) { });
   vimPlugins = (pkgs.callPackage (import ./vim-plugins.nix) { });
 
-  alacritty = pkgs.callPackage ./alacritty { };
   emacs = pkgs.callPackage ./emacs.nix { };
   groovy-language-server = pkgs.callPackage ./groovy-language-server { };
   idea-doom-emacs = pkgs.callPackage ./idea-doom-emacs.nix { };
