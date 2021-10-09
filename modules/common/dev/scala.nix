@@ -10,7 +10,8 @@ in {
   };
 
   config = mkIf cfg.enable {
-    # TODO scalastyle
+    # TODO Install scala, sbt completions
+    # TODO Install scalastyle
     user.packages = with pkgs;
       ([ scala sbt gradle maven metals scalafmt ]
         ++ optionals cfg.bloop.enable [ bloop ]);
