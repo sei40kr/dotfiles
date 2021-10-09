@@ -9,7 +9,7 @@ let
   termCfg = config.modules.term;
 
   sway-sensible-browser = pkgs.writeShellScriptBin "sway-sensible-browser"
-    (if browsersCfg.google-chrome.enable then
+    (if browsersCfg.chrome.enable then
       ''${pkgs.google-chrome}/bin/google-chrome-stable "$@"''
     else if browsersCfg.firefox.enable then
       ''${pkgs.firefox}/bin/firefox "$@"''

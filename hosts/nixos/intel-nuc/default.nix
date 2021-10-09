@@ -45,7 +45,7 @@ with lib; {
       };
 
       browsers = {
-        google-chrome.enable = true;
+        chrome.enable = true;
         firefox.enable = true;
         qutebrowser.enable = true;
       };

@@ -2,9 +2,9 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.browsers.google-chrome;
+let cfg = config.modules.desktop.browsers.chrome;
 in {
-  options.modules.desktop.browsers.google-chrome = with types; {
+  options.modules.desktop.browsers.chrome = with types; {
     enable = mkBoolOpt false;
   };
 
