@@ -1,4 +1,4 @@
-{ config, inputs, lib, pkgs, ... }:
+{ inputs, lib, pkgs, ... }:
 
 with lib;
 with lib.my; {
@@ -20,8 +20,6 @@ with lib.my; {
     efi.canTouchEfiVariables = true;
     systemd-boot.enable = true;
   };
-
-  user.home = "/home/${config.user.name}";
 
   i18n.extraLocaleSettings.LC_CTYPE = "ja_JP.UTF-8";
 

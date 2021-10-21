@@ -16,9 +16,10 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs;
-      [ fzf pure-prompt zsh-completions ]
-      ++ optionals isDarwin [ terminal-notifier ];
+    user = {
+      packages = with pkgs; [ pure-prompt zsh-completions ];
+      shell = pkgs.zsh;
+    };
 
     home-manager.users.${config.user.name}.programs.zsh = {
       enable = true;
@@ -93,6 +94,10 @@ in {
         zinit ice trigger-load '!extract;!x' id-as'OMZP::extract'
         zinit snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/extract/extract.plugin.zsh
 
+        ${optionalString isDarwin ''
+          zinit ice id-as'PZT::modules--gnu-utility'
+          zinit light ${pkgs.zsh-prezto}/modules/gnu-utility
+        ''}
 
         ## Shell Enhancements
 
@@ -117,6 +122,9 @@ in {
           unalias run-help
         fi
 
+        ${optionalString isDarwin ''
+          PATH="''${PATH:+$PATH:}${pkgs.terminal-notifier}/bin"
+        ''}
         zinit ice id-as'OMZP::bgnotify'
         zinit snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/bgnotify/bgnotify.plugin.zsh
 
@@ -136,6 +144,7 @@ in {
         zinit ice id-as'OMZP::fancy-ctrl-z'
         zinit snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
 
+        PATH="''${PATH:+$PATH:}${pkgs.fzf}/bin"
         FZF_DEFAULT_OPTS='--height=15 --reverse --inline-info --color=dark --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
         zinit ice bindmap'^R->;\\ec->' multisrc'{completion,key-bindings}.zsh'
         zinit light ${pkgs.fzf}/share/fzf

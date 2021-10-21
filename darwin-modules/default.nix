@@ -13,16 +13,6 @@ with lib.my; {
       useDaemon = true;
     };
 
-    users.nix.configureBuildUsers = true;
-
-    system.build.applications = pkgs.buildEnv {
-      name = "user-applications";
-      paths = config.users.users.${config.user.name}.packages;
-      pathsToLink = "/Applications";
-    };
-
-    user.home = "/Users/${config.user.name}";
-
     user.packages = with pkgs; [
       coreutils
       diffutils
@@ -34,10 +24,5 @@ with lib.my; {
       gzip
       libtool
     ];
-
-    modules.shell.zsh.rcInit = ''
-      zinit ice id-as'PZT::modules--gnu-utility'
-      zinit light ${pkgs.zsh-prezto}/modules/gnu-utility
-    '';
   };
 }

@@ -67,7 +67,14 @@
             inherit inputs lib;
             pkgs = pkgs.x86_64-darwin;
           };
-          modules = [ ./darwin-modules (import path) ];
+          modules = [
+            {
+              networking.hostName =
+                mkDefault (removeSuffix ".nix" (baseNameOf path));
+            }
+            ./darwin-modules
+            (import path)
+          ];
         };
     in {
       lib = lib.my;

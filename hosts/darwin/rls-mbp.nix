@@ -32,9 +32,5 @@ with lib.my; {
     };
   };
 
-  user = {
-    name = "RLSUU178967";
-    shell = pkgs.zsh;
-    uid = 1000;
-  };
+  user.name = "RLSUU178967";
 }

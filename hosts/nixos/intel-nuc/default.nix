@@ -150,11 +150,5 @@ with lib; {
     upower.enable = true;
   };
 
-  user = {
-    isNormalUser = true;
-    name = "sei40kr";
-    uid = 1000;
-    extraGroups = [ "wheel" ];
-    shell = pkgs.zsh;
-  };
+  user.name = "sei40kr";
 }

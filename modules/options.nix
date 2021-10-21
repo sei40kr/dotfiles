@@ -29,6 +29,15 @@ in {
   };
 
   config = {
+    user = {
+      description = "The primary user account";
+      extraGroups = [ "wheel" ];
+      group = "users";
+      home = (if isDarwin then "/Users/" else "/home/") + config.user.name;
+      isNormalUser = true;
+      uid = 1000;
+    };
+
     home-manager = {
       useUserPackages = true;
 
