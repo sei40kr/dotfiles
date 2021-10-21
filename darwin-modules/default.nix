@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with lib.my; {
@@ -6,6 +6,11 @@ with lib.my; {
     imports = [ home-manager.darwinModules.home-manager ]
       ++ (mapModulesRec' (toString ../modules) import)
       ++ (mapModulesRec' (toString ./.) import);
+
+    environment.variables = {
+      DOTFILES = config.dotfiles.dir;
+      DOTFILES_BIN = config.dotfiles.binDir;
+    };
 
     nix = {
       extraOptions = "experimental-features = nix-command flakes";

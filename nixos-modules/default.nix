@@ -1,10 +1,13 @@
-{ inputs, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 
 with lib;
 with lib.my; {
   imports = [ inputs.home-manager.nixosModules.home-manager ]
     ++ (mapModulesRec' (toString ../modules) import)
     ++ (mapModulesRec' (toString ./.) import);
+
+  environment.variables.DOTFILES = config.dotfiles.dir;
+  environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
 
   environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
   nix = {

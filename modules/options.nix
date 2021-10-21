@@ -7,11 +7,14 @@ in {
   options = with types; {
     user = mkOpt attrs { };
 
-    dotfiles = {
-      # TODO
-      dir = mkOpt (either str path) "${../.}";
-      binDir = mkOpt (either str path) "${config.dotfiles.dir}/bin";
-      configDir = mkOpt (either str path) "${config.dotfiles.dir}/config";
+    dotfiles = let t = either str path;
+    in {
+      dir = mkOpt t (findFirst pathExists (toString ../.) [
+        "${config.user.home}/.config/dotfiles"
+        "/etc/dotfiles"
+      ]);
+      binDir = mkOpt t "${config.dotfiles.dir}/bin";
+      configDir = mkOpt t "${config.dotfiles.dir}/config";
     };
 
     home = {
@@ -66,6 +69,6 @@ in {
       allowedUsers = users;
     };
 
-    env.PATH = [ "\${PATH}" ];
+    env.PATH = [ "$DOTFILES_BIN" "$XDG_BIN_HOME" "$PATH" ];
   };
 }
