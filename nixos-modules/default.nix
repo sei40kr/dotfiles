@@ -1,19 +1,11 @@
-{ config, inputs, lib, pkgs, ... }:
+{ inputs, lib, pkgs, ... }:
 
 with lib;
 with lib.my; {
   imports = [ inputs.home-manager.nixosModules.home-manager ]
-    ++ (mapModulesRec' (toString ../modules) import)
     ++ (mapModulesRec' (toString ./.) import);
 
-  environment.variables.DOTFILES = config.dotfiles.dir;
-  environment.variables.DOTFILES_BIN = config.dotfiles.binDir;
-
   environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
-  };
   system.stateVersion = "20.09";
 
   # Use the latest kernel
@@ -25,6 +17,4 @@ with lib.my; {
   };
 
   i18n.extraLocaleSettings.LC_CTYPE = "ja_JP.UTF-8";
-
-  environment.systemPackages = with pkgs; [ coreutils git gnumake vim ];
 }

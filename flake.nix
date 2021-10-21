@@ -56,6 +56,7 @@
                 mkDefault (removeSuffix ".nix" (baseNameOf path));
             }
             (filterAttrs (n: _: !elem n [ "system" ]) attrs)
+            ./modules
             ./nixos-modules
             (import path)
           ];
@@ -72,6 +73,7 @@
               networking.hostName =
                 mkDefault (removeSuffix ".nix" (baseNameOf path));
             }
+            ./modules
             ./darwin-modules
             (import path)
           ];

@@ -1,22 +1,12 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 with lib;
 with lib.my; {
   config = {
     imports = [ home-manager.darwinModules.home-manager ]
-      ++ (mapModulesRec' (toString ../modules) import)
       ++ (mapModulesRec' (toString ./.) import);
 
-    environment.variables = {
-      DOTFILES = config.dotfiles.dir;
-      DOTFILES_BIN = config.dotfiles.binDir;
-    };
-
-    nix = {
-      extraOptions = "experimental-features = nix-command flakes";
-      package = pkgs.nixFlakes;
-      useDaemon = true;
-    };
+    nix.useDaemon = true;
 
     user.packages = with pkgs; [
       coreutils
