@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=SC2153
+for browser in "$BROWSER" qutebrowser google-chrome-stable chromium firefox; do
+  if command -v "$browser" 1>/dev/null 2>&1; then
+    exec "$browser" "$@"
+  fi
+done
+
+swaynag \
+  -m 'sensible-browser could not find a web browser. Please install one.' \
+  -t error

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=SC2153
+for terminal in "$TERMINAL" kitty alacritty; do
+  if command -v "$terminal" 1>/dev/null 2>&1; then
+    exec "$terminal" "$@"
+  fi
+done
+
+swaynag \
+  -m 'sensible-terminal could not find a terminal emulator. Please install one.' \
+  -t error

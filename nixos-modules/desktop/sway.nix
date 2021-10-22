@@ -7,19 +7,6 @@ let
   cfg = config.modules.desktop.sway;
   browsersCfg = config.modules.desktop.browsers;
   termCfg = config.modules.term;
-
-  sway-sensible-browser = pkgs.writeShellScriptBin "sway-sensible-browser"
-    (if browsersCfg.chrome.enable then
-      ''${pkgs.google-chrome}/bin/google-chrome-stable "$@"''
-    else if browsersCfg.firefox.enable then
-      ''${pkgs.firefox}/bin/firefox "$@"''
-    else
-      "${pkgs.sway}/bin/swaynag -m 'sway-sensible-browser could not find a web browser. Please install one.' -t error");
-  sway-sensible-terminal = pkgs.writeShellScriptBin "sway-sensible-terminal"
-    (if termCfg.alacritty.enable then
-      ''${pkgs.alacritty}/bin/alacritty "$@"''
-    else
-      "${pkgs.sway}/bin/swaynag -m 'sway-sensible-terminal could not find a terminal emulator. Please install one.' -t error");
 in {
   options.modules.desktop.sway = { enable = mkBoolOpt false; };
 
@@ -92,7 +79,7 @@ in {
         # Launch:
         #
           # Browser
-          bindsym --no-repeat $mod+Shift+Return exec ${sway-sensible-browser}/bin/sway-sensible-browser
+          bindsym --no-repeat $mod+Shift+Return exec $DOTFILES_BIN/sway/sensible-browser
 
           # TODO Command
 
@@ -103,7 +90,7 @@ in {
           # TODO Notification Viewer
 
           # Terminal
-          bindsym --no-repeat $mod+Return exec ${sway-sensible-terminal}/bin/sway-sensible-terminal
+          bindsym --no-repeat $mod+Return exec $DOTFILES_BIN/sway/sensible-terminal
 
         #
         # Modify:
