@@ -1,0 +1,58 @@
+/* -*- mode: css -*- */
+
+* {
+  background-color: transparent;
+  color: inherit;
+  font: "monospace 11";
+}
+
+window {
+  background-color: #111827;
+  color: #f3f4f6;
+  width: 748px;
+}
+
+inputbar {
+  background-color: #1f2937;
+}
+
+prompt {
+  background-color: #1e40af;
+  color: #f3f4f6;
+  padding: 0.5em 1.25em;
+}
+
+entry {
+  padding: 0.5em 1.25em;
+}
+
+message {
+  padding: 0.5em 1.25em;
+}
+
+listview {
+  lines: 10;
+}
+
+element {
+  border: 0 solid 0 solid 0 solid 3px solid;
+  margin: 0.125em 0;
+  padding: 0 1.25em 0 calc(1em - 3px);
+}
+
+element selected {
+  background-color: #1f2937;
+  border-color: #1e40ef;
+}
+
+element-icon {
+  margin: 0.25em 0.75em 0.25em 0;
+  size: 22;
+  vertical-align: 0.5;
+}
+
+element-text {
+  highlight: bold underline #fff;
+  margin: 0.5em 0 0.5em 0.25em;
+  vertical-align: 0.5;
+}

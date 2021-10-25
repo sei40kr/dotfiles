@@ -257,18 +257,17 @@ in {
           bindsym XF86AudioLowerVolume exec ${pkgs.pamixer}/bin/pamixer -ud 2
           bindsym XF86AudioMute exec ${pkgs.pamixer}/bin/pamixer --toggle-mute
 
-        client.focused #292929 #292929 #ffffff #ffffff #ffffff
-        client.focused_inactive #000000 #000000 #b3b3b3 #ffffff #ffffff
-        client.unfocused #000000 #000000 #b3b3b3 #ffffff #ffffff
-        client.urgent #000000 #000000 #b3b3b3 #ffffff #ffffff
+        client.focused #1f2937 #1f2937 #f3f4f6 #ffffff #ffffff
+        client.focused_inactive #111827 #111827 #b3b3b3 #f3f4f6 #ffffff
+        client.unfocused #111827 #111827 #b3b3b3 #f3f4f6 #ffffff
+        client.urgent #111827 #111827 #b3b3b3 #f3f4f6 #ffffff
         default_border normal 2
         default_floating_border normal 2
-        font pango:sans-serif 11
-        gaps inner 16
-        gaps outer 32
+        font pango:monospace 11
+        gaps outer 16
         title_align center
         titlebar_border_thickness 0
-        titlebar_padding 16 8
+        titlebar_padding 20 12
 
         assign [class="Google-chrome"] workspace 1
         assign [app_id="Alacritty"] workspace 2

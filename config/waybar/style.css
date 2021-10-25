@@ -1,7 +1,13 @@
+@define-color bg #111827;
+@define-color bg-alt #1f2937;
+@define-color text #f3f4f6;
+@define-color primary #1e40ef;
+
 window#waybar {
-  background: #000;
-  color: #fff;
-  font: 12pt sans-serif;
+  background: @bg;
+  color: @text;
+  font: 11pt monospace;
+  margin: 1rem;
 }
 
 button {
@@ -9,33 +15,25 @@ button {
 }
 
 .modules-left {
-  margin: 0 12px 0 0;
-}
-
-.modules-center {
-  margin: 0 12px;
+  margin: 0 1rem 0 1.5rem;
 }
 
 .modules-right {
-  margin: 0 24px 0 12px;
-}
-
-#custom-appmenu {
-  background: #115293;
-  font: 18pt "Material Design Icons";
-  min-width: 44px;
+  margin: 0 1.5rem 0 1rem;
 }
 
 #workspaces {
-  margin: 0 0 0 16px;
+  margin: 0;
 }
 
 #workspaces button {
+  border-bottom: 3px solid transparent;
   border-radius: 0;
-  font: 16pt "Material Design Icons";
-  margin: 0 4px;
-  min-width: 44px;
-  padding: 2px 0 0;
+  border-top: 3px solid transparent;
+  font: 14pt "Material Design Icons";
+  margin: 0 0.125rem;
+  min-width: 48px;
+  padding: 0;
 }
 
 #workspaces button:first-child {
@@ -46,34 +44,24 @@ button {
   margin-right: 0;
 }
 
-#workspaces button.focused {
-  background: rgba(255, 255, 255, .16);
-  border-top: 2px solid #115293;
-  padding: 0;
+#workspaces button:hover {
+  background: @bg-alt;
 }
 
-#workspaces button:not(.focused):hover {
-  background: rgba(255, 255, 255, .08);
+#workspaces button.focused,
+#workspaces button.urgent {
+  background: @bg-alt;
+  border-top-color: @primary;
 }
 
-#clock {
-  font-weight: bold;
-}
-
-#custom-imestatus {
-  font-weight: bold;
-  margin: 0 16px 0 0;
-}
-
-#clock {
-  font-weight: bold;
+#custom-fcitx:not(.close) {
+  margin: 0 1.5rem 0 0;
 }
 
 #pulseaudio {
-  font: 16pt "Material Design Icons";
-  margin: 0 16px 0 0;
+  margin: 0 1.5rem 0 0;
 }
 
-#custom-powermenu {
-  font: 16pt "Material Design Icons";
+#clock {
+  margin: 0 1.5rem 0 0;
 }

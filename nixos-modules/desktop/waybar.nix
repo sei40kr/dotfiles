@@ -6,21 +6,39 @@ let
   inherit (config.dotfiles) configDir;
   cfg = config.modules.desktop.waybar;
 
+  fonts = {
+    base.size = 11;
+    icon = {
+      size = 14;
+      family = "Material Design Icons";
+    };
+  };
+  markup = { family ? null, size ? null, rise ? null }:
+    text:
+    "<span${
+      optionalString (family != null || size != null)
+      " font_desc='${toString family} ${toString size}'"
+    }${
+      optionalString (rise != null)
+      # HACK floating-point number -> integer
+      " rise='${head (splitString "." (toString rise))}'"
+    }>${text}</span>";
+  icon = markup (let base = fonts.base.size;
+  in rec {
+    inherit (fonts.icon) family size;
+    rise = -5000 - (size - base) * 1.0 / size / 2 * 10000;
+  });
+  label = markup { rise = -5000; };
+
   configJSON = builtins.toJSON {
     position = "top";
-    height = 44;
-    modules-left = [ "custom/appmenu" "sway/workspaces" ];
-    modules-center = [ "clock" ];
-    modules-right = [ "custom/imestatus" "pulseaudio" "custom/powermenu" ];
+    height = 48;
+    margin = "16 16 0 16";
+    modules-left = [ "sway/workspaces" ];
+    modules-right = [ "custom/fcitx" "pulseaudio" "clock" "custom/powermenu" ];
 
-    "custom/appmenu" = {
-      format = "{icon}";
-      format-icons = "󰀻";
-      on-click = "rofi-appmenu";
-      tooltip = false;
-    };
     "sway/workspaces" = {
-      format = "{icon}";
+      format = icon "{icon}";
       format-icons = {
         "1" = "󰖟";
         "2" = "󰅩";
@@ -34,13 +52,15 @@ let
       tooltip = false;
     };
 
-    "custom/imestatus" = {
-      exec = "${configDir}/waybar/scripts/imestatus.bash";
+    "custom/fcitx" = {
+      exec = "$DOTFILES_BIN/waybar/fcitx";
+      return-type = "json";
       interval = 1;
       tooltip = false;
     };
+
     pulseaudio = {
-      format = "{icon}";
+      format = "${icon "{icon}"}${label " {volume}%"}";
       format-icons = {
         default = [ "󰖀" "󰕾" ];
         headphone = "󰋋";
@@ -48,14 +68,16 @@ let
       format-muted = "󰸈";
       tooltip = false;
     };
+
     clock = {
       format = "{:%b %e, %H:%M}";
       tooltip = false;
     };
+
     "custom/powermenu" = {
-      format = "{icon}";
+      format = icon "{icon}";
       format-icons = "󰐥";
-      on-click = "rofi-powermenu_topright";
+      on-click = "$DOTFILES_BIN/rofi/powermenu";
       tooltip = false;
     };
   };

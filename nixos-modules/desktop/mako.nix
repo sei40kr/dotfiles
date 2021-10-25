@@ -17,8 +17,10 @@ in {
 
     user.packages = with pkgs; [ mako ];
 
+    home.configFile."mako/config".source = "${configDir}/mako/config";
+
     environment.etc."sway/config.d/startup/mako.conf".text = ''
-      exec ${pkgs.mako}/bin/mako -c ${configDir}/mako/config
+      exec ${pkgs.mako}/bin/mako
     '';
   };
 }
