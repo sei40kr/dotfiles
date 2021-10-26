@@ -54,14 +54,11 @@ button {
   border-top-color: @primary;
 }
 
-#custom-fcitx:not(.close) {
-  margin: 0 1.5rem 0 0;
-}
-
-#pulseaudio {
-  margin: 0 1.5rem 0 0;
-}
-
-#clock {
+#custom-fcitx:not(.close),
+#pulseaudio,
+#clock,
+#cpu,
+#memory,
+#network {
   margin: 0 1.5rem 0 0;
 }

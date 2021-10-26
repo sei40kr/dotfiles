@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }:
 
+with builtins;
 with lib;
 with lib.my;
 let
@@ -13,6 +14,7 @@ let
       family = "Material Design Icons";
     };
   };
+
   markup = { family ? null, size ? null, rise ? null }:
     text:
     "<span${
@@ -30,10 +32,11 @@ let
   });
   label = markup { rise = -5000; };
 
-  configJSON = builtins.toJSON {
+  topJSON = toJSON {
     position = "top";
     height = 48;
     margin = "16 16 0 16";
+    name = "top";
     modules-left = [ "sway/workspaces" ];
     modules-right = [ "custom/fcitx" "pulseaudio" "clock" "custom/powermenu" ];
 
@@ -81,6 +84,42 @@ let
       tooltip = false;
     };
   };
+
+  bottomJSON = toJSON {
+    position = "bottom";
+    height = 48;
+    margin = "0 16 16 16";
+    name = "bottom";
+    modules-right = [ "cpu" "memory" "network" "disk" ];
+
+    "cpu" = {
+      interval = 10;
+      format = "${icon "󰘚"}${label " {usage}%"}";
+      tooltip = false;
+    };
+
+    "memory" = {
+      interval = 30;
+      format = "${icon "󰍛"}${label " {used:0.1f}GiB / {total:0.1f}GiB"}";
+      tooltip = false;
+    };
+
+    "network" = {
+      interval = 30;
+      format = concatStringsSep (label " ") [
+        "${icon "󰁅"}${label " {bandwidthDownOctets}"}"
+        "${icon "󰁝"}${label " {bandwidthUpOctets}"}"
+      ];
+      tooltip = false;
+    };
+
+    "disk" = {
+      interval = 30;
+      format = "${icon "󰆼"}${label " {used} / {total}"}";
+      path = "/";
+      tooltip = false;
+    };
+  };
 in {
   options.modules.desktop.waybar = with types; { enable = mkBoolOpt false; };
 
@@ -93,12 +132,13 @@ in {
 
     user.packages = with pkgs; [ waybar ];
 
-    # TODO Specify stylesheet
     environment.etc = {
-      "xdg/waybar/config".text = configJSON;
+      "xdg/waybar/top.json".text = topJSON;
+      "xdg/waybar/bottom.json".text = bottomJSON;
       "xdg/waybar/style.css".source = "${configDir}/waybar/style.css";
       "sway/config.d/startup/waybar.conf".text = ''
-        exec ${pkgs.waybar}/bin/waybar
+        exec ${pkgs.waybar}/bin/waybar -c /etc/xdg/waybar/top.json
+        exec ${pkgs.waybar}/bin/waybar -c /etc/xdg/waybar/bottom.json
       '';
     };
     fonts.fonts = with pkgs; [ material-design-icons ];
