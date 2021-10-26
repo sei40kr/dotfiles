@@ -19,7 +19,13 @@ in {
     home-manager.users.${config.user.name}.gtk = {
       inherit (cfg) enable font;
       inherit (themeCfg) iconTheme theme;
-      gtk3.extraConfig.gtk-enable-primary-paste = false;
+      gtk2.extraConfig = ''
+        gtk-key-theme-name = "Emacs"
+      '';
+      gtk3.extraConfig = {
+        gtk-enable-primary-paste = false;
+        gtk-key-theme-name = "Emacs";
+      };
     };
 
     modules.desktop.dconf = mkIf config.modules.desktop.gnome.enable {
