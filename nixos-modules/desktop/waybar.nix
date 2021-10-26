@@ -96,6 +96,7 @@ in {
     # TODO Specify stylesheet
     environment.etc = {
       "xdg/waybar/config".text = configJSON;
+      "xdg/waybar/style.css".source = "${configDir}/waybar/style.css";
       "sway/config.d/startup/waybar.conf".text = ''
         exec ${pkgs.waybar}/bin/waybar
       '';
