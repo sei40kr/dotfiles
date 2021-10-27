@@ -34,10 +34,6 @@ in {
   config = {
     user = {
       description = "The primary user account";
-      extraGroups = [ "wheel" ];
-      group = "users";
-      home = (if isDarwin then "/Users/" else "/home/") + config.user.name;
-      isNormalUser = true;
       uid = 1000;
     };
 
@@ -45,15 +41,7 @@ in {
       useUserPackages = true;
 
       users.${config.user.name} = {
-        home = {
-          file = mkAliasDefinitions options.home.file;
-          # Necessary for home-manager to work with flakes, otherwise it will
-          # look for a nixpkgs channel.
-          stateVersion = if isDarwin then
-            config.system.nixpkgsRelease
-          else
-            config.system.stateVersion;
-        };
+        home.file = mkAliasDefinitions options.home.file;
         xdg = {
           configFile = mkAliasDefinitions options.home.configFile;
           dataFile = mkAliasDefinitions options.home.dataFile;
