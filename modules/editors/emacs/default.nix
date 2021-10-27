@@ -13,15 +13,7 @@ let
         melpaPackages.emacsql-sqlite
         melpaPackages.libgit
         melpaPackages.vterm
-        (melpaPackages.zmq.overrideAttrs ({ postInstall ? "", ... }: {
-          postInstall = postInstall + (optionalString isDarwin ''
-
-            (
-              cd $out/share/emacs/site-lisp/elpa/zmq-*
-              mv emacs-zmq.so emacs-zmq.dylib
-            )
-          '');
-        }))
+        melpaPackages.zmq
       ]))
   else
     pkgs.my.emacs;
