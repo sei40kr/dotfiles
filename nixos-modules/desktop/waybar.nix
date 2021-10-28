@@ -99,7 +99,21 @@ let
     height = 48;
     margin = "0 16 16 16";
     name = "bottom";
+    modules-left = [ "custom/mpris" ];
     modules-right = [ "cpu" "memory" "network" "disk" ];
+
+    "custom/mpris" = {
+      exec = "$DOTFILES_BIN/waybar/mpris";
+      return-type = "json";
+      format = "{icon}${label "{}"}";
+      format-icons = {
+        stopped = "";
+        playing = "${icon "󰝚"}${label " "}";
+        paused = "${icon "󰏤"}${label " "}";
+      };
+      tooltip = false;
+      escape = true;
+    };
 
     "cpu" = {
       interval = 10;
@@ -139,7 +153,7 @@ in {
         "The waybar module requires 'modules.desktop.sway.enable = true'.";
     }];
 
-    user.packages = with pkgs; [ waybar ];
+    user.packages = with pkgs; [ waybar playerctl ];
 
     environment.etc = {
       "xdg/waybar/top.json".text = topJSON;
