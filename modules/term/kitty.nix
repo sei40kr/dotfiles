@@ -76,10 +76,13 @@ in {
       extraConfig = let
         inherit (colors) fg bg black red green yellow blue magenta cyan white;
       in ''
-        # Fonts
+        ## Fonts
         adjust_column_width -1
 
-        # Color scheme
+        ## Window layout
+        window_padding_width 12
+
+        ## Color scheme
         foreground ${fg}
         background ${bg}
         color0  ${black}
@@ -99,7 +102,7 @@ in {
         color7  ${white}
         color15 ${white}
 
-        # OS specific tweaks
+        ## OS specific tweaks
         macos_option_as_alt yes
       '';
     };
