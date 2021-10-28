@@ -26,7 +26,7 @@ in {
       enableCompletion = false;
       completionInit = "";
       autocd = true;
-      dotDir = ".zsh";
+      dotDir = ".config/zsh";
       defaultKeymap = "emacs";
       shellAliases = shellCfg.aliases;
       envExtra = ''
