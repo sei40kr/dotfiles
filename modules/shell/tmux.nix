@@ -74,6 +74,10 @@ in {
         bind-key C new-session
         bind-key -T copy-mode-vi v send -X begin-selection
       '';
+
+      tmuxinator.enable = true;
     };
+
+    modules.shell.aliases.mux = "tmuxinator";
   };
 }
