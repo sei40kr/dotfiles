@@ -8,10 +8,19 @@ in {
 
   config = mkIf cfg.enable {
     fonts.fonts = with pkgs; [
+      anonymousPro
+      fantasque-sans-mono
       fira-code
+      hack-font
+      hasklig
+      inconsolata
+      # input-fonts
+      iosevka
       jetbrains-mono
-      my.operator-mono
       source-code-pro
+      source-han-code-jp
+      ubuntu_font_family
+      victor-mono
     ];
   };
 }
