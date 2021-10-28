@@ -38,7 +38,8 @@ let
     margin = "16 16 0 16";
     name = "top";
     modules-left = [ "sway/workspaces" ];
-    modules-right = [ "custom/fcitx" "pulseaudio" "clock" "custom/powermenu" ];
+    modules-right =
+      [ "custom/fcitx" "network" "pulseaudio" "clock" "custom/powermenu" ];
 
     "sway/workspaces" = {
       format = icon "{icon}";
@@ -59,6 +60,14 @@ let
       exec = "$DOTFILES_BIN/waybar/fcitx";
       return-type = "json";
       interval = 1;
+      tooltip = false;
+    };
+
+    "network" = {
+      format-ethernet = "${icon "󰈀"}";
+      format-wifi = "${icon "{icon}"}${label " {essid}"}";
+      format-disconnected = "${icon "󰤮"}";
+      format-icons = [ "󰤟" "󰤢" "󰤥" "󰤨" ];
       tooltip = false;
     };
 
