@@ -38,8 +38,14 @@ let
     margin = "16 16 0 16";
     name = "top";
     modules-left = [ "sway/workspaces" ];
-    modules-right =
-      [ "custom/fcitx" "network" "pulseaudio" "clock" "custom/powermenu" ];
+    modules-right = [
+      "custom/fcitx"
+      "custom/protonvpn"
+      "network"
+      "pulseaudio"
+      "clock"
+      "custom/powermenu"
+    ];
 
     "sway/workspaces" = {
       format = icon "{icon}";
@@ -61,6 +67,19 @@ let
       return-type = "json";
       interval = 1;
       tooltip = false;
+    };
+
+    "custom/protonvpn" = {
+      exec = "$DOTFILES_BIN/waybar/protonvpn";
+      return-type = "json";
+      interval = 5;
+      format = "{icon}${label "{}"}";
+      format-icons = {
+        disconnected = "";
+        connected = "${icon "󰕥"}${label " "}";
+      };
+      tooltip = false;
+      escape = true;
     };
 
     "network" = {
@@ -153,7 +172,7 @@ in {
         "The waybar module requires 'modules.desktop.sway.enable = true'.";
     }];
 
-    user.packages = with pkgs; [ waybar playerctl ];
+    user.packages = with pkgs; [ waybar gawk playerctl ];
 
     environment.etc = {
       "xdg/waybar/top.json".text = topJSON;

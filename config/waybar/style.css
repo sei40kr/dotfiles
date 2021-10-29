@@ -55,6 +55,7 @@ button {
 }
 
 #custom-fcitx:not(.close),
+#custom-protonvpn:not(.disconnected),
 #pulseaudio,
 #clock,
 #cpu,
