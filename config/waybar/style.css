@@ -54,6 +54,7 @@ button {
   border-top-color: @primary;
 }
 
+#custom-pomodoro:not(.null),
 #custom-fcitx:not(.close),
 #custom-protonvpn:not(.disconnected),
 #pulseaudio,

@@ -39,6 +39,7 @@ let
     name = "top";
     modules-left = [ "sway/workspaces" ];
     modules-right = [
+      "custom/pomodoro"
       "custom/fcitx"
       "custom/protonvpn"
       "network"
@@ -59,6 +60,19 @@ let
       };
       disable-scroll = true;
       persistent_workspaces = [ "1" "2" "3" ];
+      tooltip = false;
+    };
+
+    "custom/pomodoro" = {
+      exec = "$DOTFILES_BIN/waybar/pomodoro";
+      return-type = "json";
+      format = "{icon}${label "{}"}";
+      format-icons = {
+        null = "";
+        pomodoro = "${icon "󱑂"}${label " "}";
+        short-break = "${icon "󰅶"}${label " "}";
+        long-break = "${icon "󰅶"}${label " "}";
+      };
       tooltip = false;
     };
 
@@ -172,7 +186,7 @@ in {
         "The waybar module requires 'modules.desktop.sway.enable = true'.";
     }];
 
-    user.packages = with pkgs; [ waybar gawk playerctl ];
+    user.packages = with pkgs; [ waybar dconf gawk playerctl ];
 
     environment.etc = {
       "xdg/waybar/top.json".text = topJSON;
