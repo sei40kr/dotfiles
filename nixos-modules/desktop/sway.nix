@@ -24,12 +24,35 @@ in {
       extraPackages = with pkgs; [ pulseaudio wl-clipboard ];
     };
 
-    systemd.user.targets.sway-session = {
-      description = "Sway compositor session";
-      documentation = [ "man:systemd.special(7)" ];
-      bindsTo = [ "graphical-session.target" ];
-      wants = [ "graphical-session-pre.target" ];
-      after = [ "graphical-session-pre.target" ];
+    systemd.user = {
+      targets.sway-session = {
+        description = "Sway compositor session";
+        documentation = [ "man:systemd.special(7)" ];
+        bindsTo = [ "graphical-session.target" ];
+        wants = [ "graphical-session-pre.target" ];
+        after = [ "graphical-session-pre.target" ];
+      };
+      services.swayidle = {
+        description = "Idle Manager for Wayland";
+        documentation = [ "man:swayidle(1)" ];
+        partOf = [ "graphical-session.target" ];
+        path = [ pkgs.bash ];
+        serviceConfig = {
+          # This will lock your screen after 300 seconds of inactivity, then turn off
+          # your displays after another 300 seconds, and turn your screens back on when
+          # resumed. It will also lock your screen before your computer goes to sleep.
+          ExecStart = let lock = "${pkgs.swaylock-effects}/bin/swaylock -f";
+          in ''
+            ${pkgs.swayidle}/bin/swayidle -w \
+              timeout 300 ${escapeShellArg lock} \
+              timeout 600 '${pkgs.sway}/bin/swaymsg "output * dpms off"' \
+              resume '${pkgs.sway}/bin/swaymsg "output * dpms on"' \
+              before-sleep ${escapeShellArg lock}
+          '';
+        };
+        wantedBy = [ "sway-session.target" ];
+        restartIfChanged = true;
+      };
     };
 
     environment.etc = {
@@ -54,18 +77,6 @@ in {
         #   output HDMI-A-1 resolution 1920x1080 position 1920,0
         #
         # You can get the names of your outputs by running: swaymsg -t get_outputs
-
-        ### Idle configuration
-        #
-        set $lock ${pkgs.swaylock-effects}/bin/swaylock -f
-        exec ${pkgs.swayidle}/bin/swayidle -w \
-                 timeout 300 $lock \
-                 timeout 600 '${pkgs.sway}/bin/swaymsg "output * dpms off"' \
-                 resume '${pkgs.sway}/bin/swaymsg "output * dpms on"' \
-                 before-sleep $lock
-        # This will lock your screen after 300 seconds of inactivity, then turn off
-        # your displays after another 300 seconds, and turn your screens back on when
-        # resumed. It will also lock your screen before your computer goes to sleep.
 
         ### Input configuration
         #
