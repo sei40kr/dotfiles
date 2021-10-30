@@ -1,7 +1,7 @@
 @define-color bg #111827;
 @define-color bg-alt #1f2937;
 @define-color text #f3f4f6;
-@define-color primary #1e40ef;
+@define-color primary #1d4ed8;
 
 window#waybar {
   background: @bg;
@@ -27,9 +27,7 @@ button {
 }
 
 #workspaces button {
-  border-bottom: 3px solid transparent;
   border-radius: 0;
-  border-top: 3px solid transparent;
   font: 14pt "Material Design Icons";
   margin: 0 0.125rem;
   min-width: 48px;
@@ -50,8 +48,7 @@ button {
 
 #workspaces button.focused,
 #workspaces button.urgent {
-  background: @bg-alt;
-  border-top-color: @primary;
+  background: @primary;
 }
 
 #custom-pomodoro:not(.null),
@@ -63,4 +60,12 @@ button {
 #memory,
 #network {
   margin: 0 1.5rem 0 0;
+}
+
+#custom-protonvpn.connected {
+  color: #34d399;
+}
+
+#custom-powermenu {
+  color: #f87171;
 }
