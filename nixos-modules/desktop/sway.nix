@@ -96,12 +96,16 @@ in {
         #
         # Launch:
         #
+          # Application
+          bindsym $mod+space exec rofi -show combi
+
           # Browser
           bindsym --no-repeat $mod+Shift+Return exec $DOTFILES_BIN/sway/sensible-browser
 
           # TODO Command
 
-          # TODO File Browser
+          # File Browser
+          bindsym --no-repeat $mod+Shift+n exec rofi -show filebrowser -show-icons
 
           # TODO File Search
 
@@ -192,7 +196,8 @@ in {
           # Scratchpad
           bindsym --no-repeat $mod+Control+a scratchpad show
 
-          # TODO Window by Name
+          # Window by Name
+          bindsym --no-repeat $mod+Shift+space exec rofi -show window
 
           # Workspace 1-9
           bindsym --no-repeat $mod+1 workspace number 1

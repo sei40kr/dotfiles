@@ -1,6 +1,0 @@
-/* -*- mode: css -*- */
-
-configuration {
-  display-drun: "Apps";
-  drun-display-format: "{name} [<small>({generic})</small>]";
-}

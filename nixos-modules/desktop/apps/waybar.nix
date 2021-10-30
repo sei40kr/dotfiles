@@ -123,7 +123,6 @@ let
     "custom/powermenu" = {
       format = icon "{icon}";
       format-icons = "󰐥";
-      on-click = "${binDir}/rofi/powermenu";
       tooltip = false;
     };
   };

@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-rofi -show powermenu \
-  -modi powermenu:"${XDG_CONFIG_HOME}/rofi/powermenu.bash" \
-  -show-icons \
-  -theme 'default.rasi'
