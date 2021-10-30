@@ -116,6 +116,7 @@ with lib; {
       };
       psd.enable = true;
       sushi.enable = true;
+      ssh.enable = true;
       transmission.enable = true;
     };
 
@@ -142,10 +143,6 @@ with lib; {
 
   services = {
     fstrim.enable = true;
-    openssh = {
-      enable = true;
-      permitRootLogin = "no";
-    };
     printing.enable = true;
     upower.enable = true;
   };
