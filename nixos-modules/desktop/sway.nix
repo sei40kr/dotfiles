@@ -302,7 +302,6 @@ in {
       fcitx5.enable = true;
       fontconfig.enable = true;
       mako.enable = true;
-      waybar.enable = true;
     };
 
     # TODO move this
