@@ -1,7 +1,7 @@
 @define-color bg #111827;
 @define-color bg-alt #1f2937;
 @define-color text #f3f4f6;
-@define-color primary #1d4ed8;
+@define-color primary #1e40af;
 
 window#waybar {
   background: @bg;
