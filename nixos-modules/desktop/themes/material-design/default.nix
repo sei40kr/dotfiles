@@ -10,10 +10,6 @@ in {
         packages = with pkgs; [ roboto noto-fonts noto-fonts-cjk ];
         names = [ "Roboto" "Noto Sans Mono" "Noto Sans Mono CJK JP" ];
       };
-      gnome.theme = {
-        package = pkgs.materia-theme;
-        name = "Materia-dark";
-      };
       gtk = {
         font = {
           package = pkgs.roboto;

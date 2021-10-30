@@ -27,14 +27,5 @@ in {
         gtk-key-theme-name = "Emacs";
       };
     };
-
-    modules.desktop.dconf = mkIf config.modules.desktop.gnome.enable {
-      enable = true;
-      settings."org/gnome/desktop/interface" = {
-        font-name = "${themeCfg.font.name} ${themeCfg.size}";
-        gtk-theme = themeCfg.theme;
-        icon-theme = themeCfg.iconTheme.name;
-      };
-    };
   };
 }

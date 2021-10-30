@@ -62,14 +62,5 @@ in {
 
       fonts = fontPackages;
     };
-
-    modules.desktop.dconf = mkIf config.modules.desktop.gnome.enable {
-      enable = true;
-      settings."org/gnome/desktop/interface" = {
-        font-antialiasing = "rgba";
-        font-hinting = "none";
-        font-rgba-order = "rgb";
-      };
-    };
   };
 }
