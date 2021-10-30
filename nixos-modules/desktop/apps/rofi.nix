@@ -4,9 +4,9 @@ with lib;
 with lib.my;
 let
   inherit (config.dotfiles) configDir;
-  cfg = config.modules.desktop.rofi;
+  cfg = config.modules.desktop.apps.rofi;
 in {
-  options.modules.desktop.rofi = with types; { enable = mkBoolOpt false; };
+  options.modules.desktop.apps.rofi = with types; { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ rofi ];
