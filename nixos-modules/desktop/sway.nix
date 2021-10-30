@@ -5,8 +5,6 @@ with lib.my;
 let
   inherit (config.dotfiles) configDir;
   cfg = config.modules.desktop.sway;
-  browsersCfg = config.modules.desktop.browsers;
-  termCfg = config.modules.term;
 in {
   options.modules.desktop.sway = { enable = mkBoolOpt false; };
 
