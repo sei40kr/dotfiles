@@ -4,7 +4,7 @@ with builtins;
 with lib;
 with lib.my;
 let
-  inherit (config.dotfiles) configDir;
+  inherit (config.dotfiles) binDir configDir;
   cfg = config.modules.desktop.apps.waybar;
 
   fonts = {
@@ -64,7 +64,7 @@ let
     };
 
     "custom/pomodoro" = {
-      exec = "$DOTFILES_BIN/waybar/pomodoro";
+      exec = "${binDir}/waybar/pomodoro";
       return-type = "json";
       format = "{icon}${label "{}"}";
       format-icons = {
@@ -77,14 +77,14 @@ let
     };
 
     "custom/fcitx" = {
-      exec = "$DOTFILES_BIN/waybar/fcitx";
+      exec = "${binDir}/waybar/fcitx";
       return-type = "json";
       interval = 1;
       tooltip = false;
     };
 
     "custom/protonvpn" = {
-      exec = "$DOTFILES_BIN/waybar/protonvpn";
+      exec = "${binDir}/waybar/protonvpn";
       return-type = "json";
       interval = 5;
       format = "{icon}${label "{}"}";
@@ -122,7 +122,7 @@ let
     "custom/powermenu" = {
       format = icon "{icon}";
       format-icons = "󰐥";
-      on-click = "$DOTFILES_BIN/rofi/powermenu";
+      on-click = "${binDir}/rofi/powermenu";
       tooltip = false;
     };
   };
@@ -136,7 +136,7 @@ let
     modules-right = [ "cpu" "memory" "network" "disk" ];
 
     "custom/mpris" = {
-      exec = "$DOTFILES_BIN/waybar/mpris";
+      exec = "${binDir}/waybar/mpris";
       return-type = "json";
       format = "{icon}${label "{}"}";
       format-icons = {
