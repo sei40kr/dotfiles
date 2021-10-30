@@ -68,7 +68,8 @@ let
       return-type = "json";
       format = "{icon}${label "{}"}";
       format-icons = {
-        null = "";
+        "null" = "";
+        paused = "${icon "󰏤"}${label " "}";
         pomodoro = "${icon "󱑂"}${label " "}";
         short-break = "${icon "󰅶"}${label " "}";
         long-break = "${icon "󰅶"}${label " "}";

@@ -14,7 +14,7 @@ state_duration="$(dconf read '/org/gnome/pomodoro/state/timer-state-duration')"
 } | jq -ncM --unbuffered 'foreach inputs as $item (
     {}; . + $item; {
       text: (if .State != "null" then (.StateDuration - .Elapsed | strftime("%M:%S")) else "" end),
-      alt: .State,
-      class: .State
+      alt: (if .IsPaused then "paused" else .State end),
+      class: (if .IsPaused then "paused" else .State end)
     }
   )'
