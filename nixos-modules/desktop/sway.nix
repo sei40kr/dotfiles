@@ -288,7 +288,10 @@ in {
     home.configFile."swaylock/config".source = "${configDir}/swaylock/config";
 
     modules.desktop = {
-      apps.rofi.enable = true;
+      apps = {
+        rofi.enable = true;
+        waybar.enable = true;
+      };
       fcitx5.enable = true;
       fontconfig.enable = true;
       mako.enable = true;

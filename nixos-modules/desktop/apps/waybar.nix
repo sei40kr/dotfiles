@@ -5,7 +5,7 @@ with lib;
 with lib.my;
 let
   inherit (config.dotfiles) configDir;
-  cfg = config.modules.desktop.waybar;
+  cfg = config.modules.desktop.apps.waybar;
 
   fonts = {
     base.size = 11;
@@ -177,7 +177,9 @@ let
     };
   };
 in {
-  options.modules.desktop.waybar = with types; { enable = mkBoolOpt false; };
+  options.modules.desktop.apps.waybar = with types; {
+    enable = mkBoolOpt false;
+  };
 
   config = mkIf cfg.enable {
     assertions = [{
