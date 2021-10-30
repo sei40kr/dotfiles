@@ -111,7 +111,7 @@ let
         default = [ "󰖀" "󰕾" ];
         headphone = "󰋋";
       };
-      format-muted = "󰸈";
+      format-muted = "${icon "󰸈"}";
       tooltip = false;
     };
 
