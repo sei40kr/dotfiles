@@ -23,6 +23,15 @@ in {
       '';
       extraPackages = with pkgs; [ pulseaudio wl-clipboard ];
     };
+
+    systemd.user.targets.sway-session = {
+      description = "Sway compositor session";
+      documentation = [ "man:systemd.special(7)" ];
+      bindsTo = [ "graphical-session.target" ];
+      wants = [ "graphical-session-pre.target" ];
+      after = [ "graphical-session-pre.target" ];
+    };
+
     environment.etc = {
       # Read `man 5 sway` for a complete reference.
       "sway/config".text = ''
@@ -273,16 +282,16 @@ in {
 
         include /etc/sway/config.d/*
         include /etc/sway/config.d/bindings/*
-
-        # Import environment variables into the systemd user environment.
-        exec systemctl --user import-environment
-
         include /etc/sway/config.d/startup/*
+      '';
+      "sway/config.d/10-systemd.conf".text = ''
+        exec "systemctl --user import-environment; systemctl --user start sway-session.target"
       '';
       "sway/config.d/startup/dex.conf".text = ''
         exec ${pkgs.dex}/bin/dex -a
       '';
     };
+
     home.configFile."swaylock/config".source = "${configDir}/swaylock/config";
 
     modules.desktop = {
