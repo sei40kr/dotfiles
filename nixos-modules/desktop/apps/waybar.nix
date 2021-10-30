@@ -188,17 +188,31 @@ in {
         "The waybar module requires 'modules.desktop.sway.enable = true'.";
     }];
 
-    user.packages = with pkgs; [ waybar dconf gawk playerctl ];
+    user.packages = with pkgs; [ dconf gawk playerctl ];
+
+    systemd.user.services = listToAttrs (map (name:
+      nameValuePair "waybar-${name}" {
+        description =
+          "Highly customizable Wayland bar for Sway and Wlroots based compositors.";
+        documentation = [ "https://github.com/Alexays/Waybar/wiki/" ];
+        partOf = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        requisite = [ "graphical-session.target" ];
+        environment.PATH = mkForce null;
+        serviceConfig = {
+          ExecStart = "${pkgs.waybar}/bin/waybar -c /etc/xdg/waybar/${name}";
+          ExecReload = "kill -SIGUSR2 $MAINPID";
+        };
+        wantedBy = [ "sway-session.target" ];
+        reloadIfChanged = true;
+      }) [ "top" "bottom" ]);
 
     environment.etc = {
-      "xdg/waybar/top.json".text = topJSON;
-      "xdg/waybar/bottom.json".text = bottomJSON;
+      "xdg/waybar/top".text = topJSON;
+      "xdg/waybar/bottom".text = bottomJSON;
       "xdg/waybar/style.css".source = "${configDir}/waybar/style.css";
-      "sway/config.d/startup/waybar.conf".text = ''
-        exec ${pkgs.waybar}/bin/waybar -c /etc/xdg/waybar/top.json
-        exec ${pkgs.waybar}/bin/waybar -c /etc/xdg/waybar/bottom.json
-      '';
     };
+
     fonts.fonts = with pkgs; [ material-design-icons ];
   };
 }
