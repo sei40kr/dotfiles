@@ -12,6 +12,9 @@ icon-location=right
 format=<b>%s</b> <small>(%a)</small>\n%b
 max-visible=5
 
+[app-name=]
+format=<b>%s</b>\n%b
+
 [urgency=critical]
 border-size=2
 border-color=#b91c1c
