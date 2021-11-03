@@ -4,17 +4,15 @@ if [[ "$ROFI_RETV" == 1 ]]; then
   case "$ROFI_INFO" in
     'sleep')
       systemctl suspend
-      exit
       ;;
     reboot)
       systemctl reboot
-      exit
       ;;
     shutdown)
       systemctl poweroff
-      exit
       ;;
   esac
+  exit
 fi
 
 echo -e '\0no-custom\x1ftrue'

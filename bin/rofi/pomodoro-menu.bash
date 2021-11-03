@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 if [[ "$ROFI_RETV" == 1 ]]; then
-  gnome-pomodoro "--${ROFI_INFO}"
+  opt="$ROFI_INFO"
+  gnome-pomodoro "--${opt}"
   exit
 fi
 

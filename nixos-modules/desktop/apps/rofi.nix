@@ -9,7 +9,7 @@ in {
   options.modules.desktop.apps.rofi = with types; { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ rofi jq playerctl ];
+    user.packages = with pkgs; [ rofi dconf jq playerctl xdg-utils ];
 
     home.configFile = {
       "rofi/config.rasi".text = ''
@@ -32,7 +32,6 @@ in {
           window-format: "{t}";
           theme: "default.rasi";
           combi-hide-mode-prefix: true;
-          display-window: "Windows";
           display-combi: ">";
           me-select-entry: "";
           me-accept-entry: "MousePrimary";

@@ -8,23 +8,20 @@ if [[ "$ROFI_RETV" == 1 ]]; then
   case "$ROFI_INFO" in
     disconnect)
       sudo protonvpn d
-      exit
       ;;
     connect-sc)
       sudo protonvpn c --sc
-      exit
       ;;
 
     connect-p2p)
       sudo protonvpn c --p2p
-      exit
       ;;
 
     connect-tor)
       sudo protonvpn c --tor
-      exit
       ;;
   esac
+  exit
 fi
 
 echo -e '\0no-custom\x1ftrue'
