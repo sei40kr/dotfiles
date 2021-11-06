@@ -5,27 +5,16 @@ if ! hash protonvpn 2>/dev/null; then
 fi
 
 if [[ "$ROFI_RETV" == 1 ]]; then
-  case "$ROFI_INFO" in
-    disconnect)
-      sudo protonvpn d
-      ;;
-    connect-sc)
-      sudo protonvpn c --sc
-      ;;
-
-    connect-p2p)
-      sudo protonvpn c --p2p
-      ;;
-
-    connect-tor)
-      sudo protonvpn c --tor
-      ;;
-  esac
+  args=(${ROFI_INFO})
+  sudo protonvpn "${args[@]}" >/dev/null &
+  disown
   exit
 fi
 
 echo -e '\0no-custom\x1ftrue'
-echo -e 'VPN: Disconnect\0info\x1fdisconnect'
-echo -e 'VPN: Connect to the fastest Secure-Core server\0info\x1fconnect-sc'
-echo -e 'VPN: Connect to the fastest torrent server\0info\x1fconnect-p2p'
-echo -e 'VPN: Connect to the fastest Tor server\0info\x1fconnect-tor'
+echo -e 'VPN: Disconnect\0info\x1fd'
+echo -e 'ProtonVPN: Connect to the fastest server\0info\x1fc -f'
+echo -e 'ProtonVPN: Connect to a random server\0info\x1fc -r'
+echo -e 'ProtonVPN: Connect to the fastest Secure-Core server\0info\x1fc -sc'
+echo -e 'ProtonVPN: Connect to the fastest torrent server\0info\x1fc --p2p'
+echo -e 'ProtonVPN: Connect to the fastest Tor server\0info\x1fc --tor'
