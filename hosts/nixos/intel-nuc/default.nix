@@ -134,6 +134,7 @@ with lib; {
 
     shell = {
       exa.enable = true;
+      ghq.enable = true;
       htop.enable = true;
       prettyping.enable = true;
       strace.enable = true;
