@@ -114,6 +114,8 @@ with lib; {
       };
     };
 
+    hardware.printing = enable;
+
     services = {
       docker = {
         enable = true;
@@ -154,7 +156,6 @@ with lib; {
 
   services = {
     fstrim.enable = true;
-    printing.enable = true;
     upower.enable = true;
   };
 
