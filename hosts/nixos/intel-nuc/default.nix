@@ -18,10 +18,6 @@ with lib; {
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";
 
-  # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
   modules = {
     desktop = {
       sway.enable = true;
@@ -114,7 +110,10 @@ with lib; {
       };
     };
 
-    hardware.printing = enable;
+    hardware = {
+      audio.enable = true;
+      printing.enable = true;
+    };
 
     services = {
       docker = {
