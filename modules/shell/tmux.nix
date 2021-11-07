@@ -3,6 +3,7 @@
 with lib;
 with lib.my;
 let
+  inherit (config.dotfiles) binDir;
   inherit (pkgs.stdenv) isDarwin isLinux;
   cfg = config.modules.shell.tmux;
   prefix = "C-t";
@@ -45,16 +46,6 @@ in {
           plugin = tmuxPlugins.yank;
           extraConfig = "set-option -g @yank_with_mouse off";
         }
-        {
-          plugin = my.tmuxPlugins.per-project-session;
-          extraConfig = ''
-            set-option -g detach-on-destroy off
-            set-option -g @per-project-session-workspace-dirs "$WORKSPACE_DIR"
-            set-option -g @per-project-session-max-depth 3
-            set-option -g @per-project-session-known-project-dirs "''${HOME}/.dotfiles:''${HOME}/.emacs.d:''${HOME}/.doom.d"
-            set-option -g @per-project-session-fzf-tmux-opts '-p 62%,38%'
-          '';
-        }
         my.tmuxPlugins.cowboy
         my.tmuxPlugins.doom-one-dark
       ];
@@ -72,6 +63,7 @@ in {
         set-option -wg status-keys emacs
 
         bind-key C new-session
+        bind-key g run-shell -b ${binDir}/tmux/create-or-switch-to-ghq-session
         bind-key -T copy-mode-vi v send -X begin-selection
       '';
 
