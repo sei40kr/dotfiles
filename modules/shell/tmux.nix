@@ -62,7 +62,7 @@ in {
       extraConfig = ''
         set-option -as terminal-overrides ,alacritty:RGB
         set-option -g bell-action none
-        set-option -g destroy-unattached off
+        set-option -g destroy-unattached on
         set-option -g focus-events off
         set-option -g renumber-windows on
         set-option -g set-titles on

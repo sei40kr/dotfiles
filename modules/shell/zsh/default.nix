@@ -57,7 +57,14 @@ in {
         ''}
         ${optionalString shellCfg.tmux.autoRun ''
           if [[ -z $TMUX && -z $EMACS && -z $VIM && -z $INSIDE_EMACS ]]; then
-            exec tmux new-session
+            tmux start-server
+
+            if ! tmux has-session 2>/dev/null; then
+              tmux new-session -ds main \; \
+                   set-option -t main destroy-unattached off
+            fi
+
+            exec tmux attach-session -d
           fi
         ''}
 
