@@ -53,13 +53,14 @@ let
       format-icons = {
         "1" = "󰖟";
         "2" = "󰅩";
-        "3" = "󰉋";
+        "3" = "󰉏";
+        "4" = "󰭹";
         default = "󰐽";
         urgent = "󰐽";
         focused = "󰐾";
       };
       disable-scroll = true;
-      persistent_workspaces = [ "1" "2" "3" ];
+      persistent_workspaces = [ "1" "2" "3" "4" ];
       tooltip = false;
     };
 

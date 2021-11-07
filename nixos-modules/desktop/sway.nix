@@ -292,9 +292,36 @@ in {
         titlebar_border_thickness 0
         titlebar_padding 20 12
 
-        assign [class="Google-chrome"] workspace 1
-        assign [app_id="Alacritty"] workspace 2
-        assign [app_id="emacs"] workspace 2
+        set $ws_web 1
+        set $ws_dev 2
+        set $ws_media 3
+        set $ws_im 4
+
+        assign [app_id="Google-chrome"]               workspace $ws_web
+        assign [class="Google-chrome"]                workspace $ws_web
+        assign [app_id="firefox"]                     workspace $ws_web
+        assign [class="Firefox"]                      workspace $ws_web
+        assign [app_id="org.qutebrowser.qutebrowser"] workspace $ws_web
+        assign [app_id="transmission-gtk"]            workspace $ws_web
+        assign [app_id="Alacritty"]                   workspace $ws_dev
+        assign [app_id="emacs"]                       workspace $ws_dev
+        assign [class="jetbrains-datagrip"]           workspace $ws_dev
+        assign [class="jetbrains-idea"]               workspace $ws_dev
+        for_window [class="jetbrains-idea" title="Welcome to IntelliJ IDEA"] floating enable
+        assign [app_id="kitty"]                       workspace $ws_dev
+        assign [app_id="org.zealdocs.Zeal"]           workspace $ws_dev
+        assign [app_id="calibre-ebook-viewer"]        workspace $ws_media
+        assign [app_id="calibre-edit-book"]           workspace $ws_media
+        assign [app_id="calibre-gui"]                 workspace $ws_media
+        assign [class="Gimp-2.10"]                    workspace $ws_media
+        assign [class="krita"]                        workspace $ws_media
+        assign [app_id="org.gnome.Nautilus"]          workspace $ws_media
+        assign [app_id="org.inkscape.Inkscape"]       workspace $ws_media
+        assign [class="Slack"]                        workspace $ws_im
+
+        for_window [class="Bitwarden"]       floating enable
+        for_window [app_id="gnome-pomodoro"] floating enable
+        for_window [class="Todoist"]         floating enable
 
         include /etc/sway/config.d/*
         include /etc/sway/config.d/bindings/*
