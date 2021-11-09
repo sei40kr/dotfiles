@@ -133,9 +133,9 @@ with lib; {
     };
 
     shell = {
+      bottom.enable = true;
       exa.enable = true;
       ghq.enable = true;
-      htop.enable = true;
       prettyping.enable = true;
       strace.enable = true;
       tcpdump.enable = true;
