@@ -34,6 +34,7 @@ with lib; {
         gnome-todo.enable = true;
         gnome-weather.enable = true;
         nautilus.enable = true;
+        notion.enable = true;
         pomodoro.enable = true;
         seahorse.enable = true;
         slack.enable = true;
