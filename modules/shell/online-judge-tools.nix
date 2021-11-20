@@ -8,8 +8,9 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      my.python3Packages.online-judge-tools
-      my.python3Packages.online-judge-verify-helper
+      my.online-judge-tools
+      my.online-judge-template-generator
+      my.online-judge-verify-helper
     ];
   };
 }

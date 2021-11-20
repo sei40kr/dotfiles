@@ -1,0 +1,13 @@
+diff --git a/onlinejudge/service/library_checker.py b/onlinejudge/service/library_checker.py
+index b63c7b7..137390f 100644
+--- a/onlinejudge/service/library_checker.py
++++ b/onlinejudge/service/library_checker.py
+@@ -100,7 +100,7 @@ class LibraryCheckerProblem(onlinejudge.type.Problem):
+             logger.warning("generate.py may not work on Windows")
+ 
+         problem_spec = str(self._get_problem_directory_path() / 'info.toml')
+-        command = [sys.executable, str(path / 'generate.py'), problem_spec]
++        command = ['@pythonInterpreter@', str(path / 'generate.py'), problem_spec]
+         if compile_checker:
+             command.append('--compile-checker')
+         logger.info('$ %s', ' '.join(command))
