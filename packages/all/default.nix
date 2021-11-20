@@ -24,11 +24,6 @@ rec {
       inherit (python3Packages) importlab online-judge-tools;
     };
 
-  zsh-fzf-chdir = pkgs.callPackage ./zsh-fzf-chdir.nix { };
-  zsh-fzf-docker = pkgs.callPackage ./zsh-fzf-docker.nix { };
-  zsh-fzf-projects = pkgs.callPackage ./zsh-fzf-projects.nix { };
-  zsh-gh-clone = pkgs.callPackage ./zsh-gh-clone.nix { };
-  zsh-ranger-cd = pkgs.callPackage ./zsh-ranger-cd.nix { };
   zsh-smart-history = pkgs.callPackage ./zsh-smart-history.nix { };
   zsh-tmux-man = pkgs.callPackage ./zsh-tmux-man.nix { };
 }
