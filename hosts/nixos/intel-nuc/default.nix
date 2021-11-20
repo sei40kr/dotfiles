@@ -143,7 +143,7 @@ with lib; {
       bat.enable = true;
       git.enable = true;
       hugo.enable = true;
-      online-judge-tools.enable = true;
+      oj.enable = true;
       tmux = {
         enable = true;
         autoRun = true;

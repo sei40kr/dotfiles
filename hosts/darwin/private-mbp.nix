@@ -55,7 +55,7 @@ with lib.my; {
       htop.enable = true;
       kaggle.enable = true;
       prettyping.enable = true;
-      online-judge-tools.enable = true;
+      oj.enable = true;
       tcpdump.enable = true;
       tmux = {
         enable = true;
