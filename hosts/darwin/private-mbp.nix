@@ -48,7 +48,6 @@ with lib.my; {
       };
     };
     shell = {
-      atcoder-tools.enable = true;
       bat.enable = true;
       exa.enable = true;
       git.enable = true;

@@ -140,7 +140,6 @@ with lib; {
       prettyping.enable = true;
       strace.enable = true;
       tcpdump.enable = true;
-      atcoder-tools.enable = true;
       bat.enable = true;
       git.enable = true;
       hugo.enable = true;

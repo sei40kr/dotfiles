@@ -26,7 +26,6 @@ with lib.my; {
         enable = true;
         autoRun = true;
       };
-      atcoder-tools.enable = true;
       git.enable = true;
       kaggle.enable = true;
     };
