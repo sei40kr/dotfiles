@@ -86,6 +86,12 @@ in {
       };
     fonts.fonts = with pkgs; [ emacs-all-the-icons-fonts ];
 
+    env = mkIf cfg.doom.enable rec {
+      EMACSDIR = "\${HOME}/.config/emacs";
+      DOOMDIR = "\${HOME}/.config/doom";
+      PATH = [ "\${EMACSDIR}/bin" ];
+    };
+
     modules = {
       editors.fonts.enable = true;
       shell.aliases.e = "emacs";
