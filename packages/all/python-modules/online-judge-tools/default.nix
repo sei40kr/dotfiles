@@ -17,6 +17,8 @@ buildPythonPackage rec {
   # Needs internet access
   doCheck = false;
 
+  pythonImportsCheck = [ "onlinejudge_command" ];
+
   meta = with lib; {
     description =
       "Tools for various online judges. Downloading sample cases, generating additional test cases, testing your code, and submitting it.";

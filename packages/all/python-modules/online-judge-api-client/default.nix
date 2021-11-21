@@ -28,6 +28,8 @@ in buildPythonPackage rec {
   # Requires internet access
   doCheck = false;
 
+  pythonImportsCheck = [ "onlinejudge" "onlinejudge_api" ];
+
   meta = with lib; {
     description = "API client to develop tools for competitive programming";
     homepage = "https://github.com/online-judge-tools/api-client";
