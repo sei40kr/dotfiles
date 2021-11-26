@@ -6,7 +6,11 @@ let
   inherit (config.dotfiles) configDir;
   cfg = config.modules.desktop.sway;
 in {
-  options.modules.desktop.sway = { enable = mkBoolOpt false; };
+  options.modules.desktop.sway = with types; {
+    enable = mkBoolOpt false;
+
+    wallpaper = mkOpt (nullOr path) null;
+  };
 
   config = mkIf cfg.enable {
     programs.sway = {
@@ -69,14 +73,11 @@ in {
         set $right l
 
         ### Output configuration
-        #
-        output * bg ${configDir}/sway/backgrounds/material-design.jpg fill
-        #
-        # Example configuration:
-        #
-        #   output HDMI-A-1 resolution 1920x1080 position 1920,0
-        #
-        # You can get the names of your outputs by running: swaymsg -t get_outputs
+
+        ${optionalString (cfg.wallpaper != null) ''
+          output * bg ${cfg.wallpaper} fill
+        ''}
+
 
         ### Input configuration
         #
@@ -349,18 +350,5 @@ in {
 
     # TODO move this
     modules.term.theme.colorscheme = "doom-one";
-    modules.desktop.gtk = {
-      enable = true;
-      theme = {
-        iconTheme = {
-          package = pkgs.tela-icon-theme;
-          name = "Tela";
-        };
-        theme = {
-          package = pkgs.materia-theme;
-          name = "Materia-light-compact";
-        };
-      };
-    };
   };
 }
