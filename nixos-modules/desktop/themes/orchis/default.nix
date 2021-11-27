@@ -3,10 +3,10 @@
 with lib;
 with lib.my;
 let
-  themesCfg = config.modules.desktop.themes;
-  cfg = themesCfg.orchis;
+  themeCfg = config.modules.desktop.theme;
+  cfg = themeCfg.orchis;
 in {
-  options.modules.desktop.themes.orchis = with types; {
+  options.modules.desktop.theme.orchis = with types; {
     accentColor = mkOpt (enum [
       "default"
       "purple"
@@ -19,7 +19,7 @@ in {
     ]) "default";
   };
 
-  config = mkIf (themesCfg.active == "orchis") {
+  config = mkIf (themeCfg.active == "orchis") {
     modules.desktop = {
       fontconfig.fonts.sansSerif = {
         packages = with pkgs; [ roboto noto-fonts noto-fonts-cjk ];

@@ -2,9 +2,9 @@
 
 with lib;
 with lib.my;
-let themesCfg = config.modules.desktop.themes;
+let themeCfg = config.modules.desktop.theme;
 in {
-  config = mkIf (themesCfg.active == "material-design") {
+  config = mkIf (themeCfg.active == "material-design") {
     modules.desktop = {
       fontconfig.fonts.sansSerif = {
         packages = with pkgs; [ roboto noto-fonts noto-fonts-cjk ];

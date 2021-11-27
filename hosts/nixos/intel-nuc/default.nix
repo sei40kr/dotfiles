@@ -21,7 +21,7 @@ with lib; {
   modules = {
     desktop = {
       sway.enable = true;
-      themes.active = "orchis";
+      theme.active = "orchis";
 
       apps = {
         bitwarden.enable = true;
