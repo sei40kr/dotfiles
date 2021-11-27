@@ -96,5 +96,7 @@ in {
       editors.fonts.enable = true;
       shell.aliases.e = "emacs";
     };
+
+    modules.editors.emacs.vterm.enable = cfg.doom.enable;
   };
 }
