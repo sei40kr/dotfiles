@@ -338,14 +338,17 @@ in {
 
     home.configFile."swaylock/config".source = "${configDir}/swaylock/config";
 
-    modules.desktop = {
-      apps = {
-        rofi.enable = true;
-        waybar.enable = true;
-      };
-      fcitx5.enable = true;
-      fontconfig.enable = true;
-      mako.enable = true;
+    modules.desktop.wayland.enable = true;
+
+    modules.desktop.fontconfig.enable = true;
+    modules.desktop.gtk.enable = true;
+    modules.desktop.qt.enable = true;
+
+    modules.desktop.fcitx5.enable = true;
+    modules.desktop.mako.enable = true;
+    modules.desktop.apps = {
+      rofi.enable = true;
+      waybar.enable = true;
     };
 
     # TODO move this
