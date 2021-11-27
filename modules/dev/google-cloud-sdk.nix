@@ -11,13 +11,5 @@ in {
     default = false;
   };
 
-  config = mkIf cfg.enable {
-    user.packages = [ package ];
-
-    # TODO install completion in google-cloud-sdk derivation
-    modules.shell.zsh.rcInit = ''
-      zinit ice wait''' lucid
-      zinit snippet ${package}/google-cloud-sdk/completion.zsh.inc
-    '';
-  };
+  config = mkIf cfg.enable { user.packages = [ package ]; };
 }
