@@ -25,23 +25,23 @@ in {
         packages = with pkgs; [ roboto noto-fonts noto-fonts-cjk ];
         names = [ "Roboto" "Noto Sans Mono" "Noto Sans Mono CJK JP" ];
       };
+
       gtk = {
         font = {
           package = pkgs.roboto;
           name = "sans-serif";
           size = 11;
         };
+        iconTheme = {
+          package = pkgs.tela-icon-theme;
+          name = "Tela";
+        };
         theme = {
-          theme = {
-            package = pkgs.orchis-theme.override { inherit (cfg) accentColor; };
-            name = "Orchis";
-          };
-          iconTheme = {
-            package = pkgs.tela-icon-theme;
-            name = "Tela";
-          };
+          package = pkgs.orchis-theme.override { inherit (cfg) accentColor; };
+          name = "Orchis";
         };
       };
+
       sway.wallpaper =
         "${pkgs.orchis-theme}/share/backgrounds/orchis-wallpaper.jpg";
     };

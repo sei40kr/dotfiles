@@ -10,6 +10,7 @@ in {
         packages = with pkgs; [ roboto noto-fonts noto-fonts-cjk ];
         names = [ "Roboto" "Noto Sans Mono" "Noto Sans Mono CJK JP" ];
       };
+
       gtk = {
         font = {
           package = pkgs.roboto;
@@ -17,14 +18,12 @@ in {
           size = 11;
         };
         theme = {
-          theme = {
-            package = pkgs.materia-theme;
-            name = "Materia-dark";
-          };
-          iconTheme = {
-            package = pkgs.papirus-icon-theme;
-            name = "Papirus";
-          };
+          package = pkgs.materia-theme;
+          name = "Materia-dark";
+        };
+        iconTheme = {
+          package = pkgs.papirus-icon-theme;
+          name = "Papirus";
         };
       };
     };
