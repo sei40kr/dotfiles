@@ -6,6 +6,8 @@ rec {
   tmuxPlugins = (pkgs.callPackage (import ./tmux-plugins) { });
   vimPlugins = (pkgs.callPackage (import ./vim-plugins.nix) { });
 
+  dataspell = pkgs.callPackage ./dataspell { };
+
   emacs = pkgs.callPackage ./emacs.nix { };
   idea-doom-emacs = pkgs.callPackage ./idea-doom-emacs.nix { };
   kotlin-language-server = pkgs.callPackage ./kotlin-language-server.nix { };

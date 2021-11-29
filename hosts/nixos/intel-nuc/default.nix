@@ -100,6 +100,7 @@ with lib; {
 
     editors = {
       datagrip.enable = true;
+      dataspell.enable = true;
       emacs = {
         enable = true;
         doom.enable = true;
