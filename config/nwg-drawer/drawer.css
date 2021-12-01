@@ -1,0 +1,37 @@
+window {
+  background-color: rgba(36, 47, 79, 0.95);
+  color: #eeeeee;
+}
+
+/* search entry */
+entry {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: inherit;
+}
+
+button,
+image {
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* in case you wanted to give category buttons a different look */
+#category-button {
+  margin: 0 10px 0 10px;
+}
+
+#pinned-box {
+  border-bottom: 1px dotted gray;
+  padding-bottom: 5px;
+}
+
+#files-box {
+  border: 1px dotted gray;
+  border-radius: 15px;
+  padding: 5px;
+}

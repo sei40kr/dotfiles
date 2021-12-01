@@ -98,7 +98,7 @@ in {
         # Launch:
         #
           # Application
-          bindsym $mod+space exec rofi -show combi
+          bindsym $mod+space exec nwg-drawer -nofs -ovl
 
           # Browser
           bindsym --no-repeat $mod+Shift+Return exec $DOTFILES_BIN/sway/sensible-browser
@@ -347,6 +347,7 @@ in {
     modules.desktop.fcitx5.enable = true;
     modules.desktop.mako.enable = true;
     modules.desktop.apps = {
+      nwg-drawer.enable = true;
       rofi.enable = true;
       waybar.enable = true;
     };
