@@ -24,6 +24,5 @@ in {
       NIX_PROFILES =
         concatStringsSep " " (reverseList config.environment.profiles);
     };
-    home.configFile."fcitx5/config".source = "${configDir}/fcitx5/config";
   };
 }
