@@ -5,6 +5,8 @@ with lib.my;
 let
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.ideavim;
+
+  idea-doom-emacs = ../../repos/idea-doom-emacs;
 in {
   options.modules.editors.ideavim = {
     enable = mkBoolOpt false;
@@ -12,19 +14,18 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.file.".ideavimrc".text =
-      (let idea-doom-emacs = pkgs.my.idea-doom-emacs;
-      in optionalString cfg.enableDoom ''
+    home.file.".ideavimrc".text = ''
+      ${optionalString cfg.enableDoom ''
         let g:WhichKey_FontFamily = ${toVimScript editorsCfg.fonts.code.family}
         let g:WhichKey_FontSize = ${toVimScript editorsCfg.fonts.code.size}
 
-        source ${idea-doom-emacs}/share/vim-plugins/idea-doom-emacs/ideavimrc
-        source ${idea-doom-emacs}/share/vim-plugins/idea-doom-emacs/expand-region.vim
-      '') + ''
+        source ${idea-doom-emacs}/ideavimrc
+        source ${idea-doom-emacs}/expand-region.vim
+      ''}
 
-        " Do not exit visual mode on a selection shift
-        vnoremap < <gv
-        vnoremap > >gv
-      '';
+      " Do not exit visual mode on a selection shift
+      vnoremap < <gv
+      vnoremap > >gv
+    '';
   };
 }
