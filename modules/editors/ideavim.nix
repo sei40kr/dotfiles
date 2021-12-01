@@ -14,7 +14,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.file.".ideavimrc".text = ''
+    home.configFile."ideavim/ideavimrc".text = ''
       ${optionalString cfg.enableDoom ''
         let g:WhichKey_FontFamily = ${toVimScript editorsCfg.fonts.code.family}
         let g:WhichKey_FontSize = ${toVimScript editorsCfg.fonts.code.size}
