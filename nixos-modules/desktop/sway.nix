@@ -306,9 +306,8 @@ in {
         assign [app_id="transmission-gtk"]            workspace $ws_web
         assign [app_id="Alacritty"]                   workspace $ws_dev
         assign [app_id="emacs"]                       workspace $ws_dev
-        assign [class="jetbrains-datagrip"]           workspace $ws_dev
-        assign [class="jetbrains-idea"]               workspace $ws_dev
-        for_window [class="jetbrains-idea" title="Welcome to IntelliJ IDEA"] floating enable
+        assign [class="jetbrains-(.*)"]               workspace $ws_dev
+        for_window [class="jetbrains-(.*)" title="win0"] floating enable
         assign [app_id="kitty"]                       workspace $ws_dev
         assign [app_id="org.zealdocs.Zeal"]           workspace $ws_dev
         assign [app_id="calibre-ebook-viewer"]        workspace $ws_media
