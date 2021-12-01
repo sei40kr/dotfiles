@@ -345,8 +345,8 @@ in {
     modules.desktop.qt.enable = true;
 
     modules.desktop.fcitx5.enable = true;
-    modules.desktop.mako.enable = true;
     modules.desktop.apps = {
+      dunst.enable = true;
       nwg-drawer.enable = true;
       rofi.enable = true;
       waybar.enable = true;
