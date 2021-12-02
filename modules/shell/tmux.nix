@@ -4,9 +4,25 @@ with lib;
 with lib.my;
 let
   inherit (config.dotfiles) binDir;
-  inherit (pkgs.stdenv) isDarwin isLinux;
   cfg = config.modules.shell.tmux;
-  prefix = "C-t";
+
+  tmux-wrapped = pkgs.symlinkJoin {
+    name = "tmux-wrapped";
+
+    paths = with pkgs; [ tmux ];
+    nativeBuildInputs = with pkgs; [ makeWrapper ];
+
+    postBuild = ''
+      wrapProgram $out/bin/tmux \
+        --set __ETC_BASHRC_SOURCED "" \
+        --set __ETC_ZSHENV_SOURCED "" \
+        --set __ETC_ZPROFILE_SOURCED  "" \
+        --set __ETC_ZSHRC_SOURCED "" \
+        --set __NIX_SET_ENVIRONMENT_DONE "" \
+        --set __NIX_DARWIN_SET_ENVIRONMENT_DONE ""
+    '';
+  };
+
 in {
   options.modules.shell.tmux = {
     enable = mkBoolOpt false;
@@ -17,21 +33,18 @@ in {
     home-manager.users.${config.user.name}.programs.tmux = {
       enable = true;
 
-      inherit prefix;
+      package = tmux-wrapped;
+
       baseIndex = 1;
       escapeTime = 10;
-      sensibleOnTop = false;
-      secureSocket = isLinux;
-      # The screen-256color in most cases is enough. But it does not support any
-      # italic font style.
-      # https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95#the-fast-blazing-solution
-      terminal = if isDarwin then "screen-256color" else "tmux-256color";
+      shortcut = "t";
+      # NOTE macOS has ncurses version 5.7 which does not ship the terminfo
+      #      description for tmux.
+      #      https://gist.github.com/bbqtd/a4ac060d6f6b9ea6fe3aabe735aa9d95#the-fast-blazing-solution
+      terminal =
+        if pkgs.stdenv.isDarwin then "screen-256color" else "tmux-256color";
 
       plugins = with pkgs; [
-        {
-          plugin = tmuxPlugins.sensible;
-          extraConfig = "set-option -g prefix ${prefix}";
-        }
         tmuxPlugins.copycat
         tmuxPlugins.open
         tmuxPlugins.pain-control
