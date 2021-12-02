@@ -21,6 +21,23 @@ in {
       shell = pkgs.zsh;
     };
 
+    environment.etc.zshenv.text = ''
+      # Only execute this file once per shell.
+      if [[ -n "$__ETC_ZSHENV_SOURCED" ]]; then
+        return
+      fi
+      export __ETC_ZSHENV_SOURCED=1
+
+      if [[ -z "$__NIXOS_SET_ENVIRONMENT_DONE" && -z "$__NIX_DARWIN_SET_ENVIRONMENT_DONE" ]]; then
+        . ${config.system.build.setEnvironment}
+      fi
+
+      # Read system-wide modifications.
+      if [[ -f /etc/zshenv.local ]]; then
+        . /etc/zshenv.local
+      fi
+    '';
+
     home-manager.users.${config.user.name}.programs.zsh = {
       enable = true;
       enableCompletion = false;
@@ -34,14 +51,6 @@ in {
         if [[ -n "$IN_NIX_SHELL" ]]; then
           return
         fi
-
-
-        ${optionalString isDarwin ''
-          if [[ -z "$__NIX_DARWIN_SET_ENVIRONMENT_DONE" ]]; then
-            . ${config.system.build.setEnvironment}
-          fi
-        ''}
-
 
         ${cfg.envInit}
       '';
