@@ -21,7 +21,14 @@ in {
       shell = pkgs.zsh;
     };
 
-    environment.etc.zshenv.text = ''
+    environment.etc.zshenv.text = let
+      system_zsh-completions = pkgs.buildEnv {
+        name = "system_zsh-completions";
+        paths = config.environment.systemPackages;
+        pathsToLink = [ "/share/zsh" ];
+        ignoreCollisions = true;
+      };
+    in ''
       # Only execute this file once per shell.
       if [[ -n "$__ETC_ZSHENV_SOURCED" ]]; then
         return
@@ -31,6 +38,13 @@ in {
       if [[ -z "$__NIXOS_SET_ENVIRONMENT_DONE" && -z "$__NIX_DARWIN_SET_ENVIRONMENT_DONE" ]]; then
         . ${config.system.build.setEnvironment}
       fi
+
+      fpath=(
+        "${system_zsh-completions}/share/zsh/site-functions"
+        "${system_zsh-completions}/share/zsh/''${ZSH_VERSION}/functions"
+        "${system_zsh-completions}/share/zsh/vendor-completions"
+        "''${fpath[@]}"
+      )
 
       # Read system-wide modifications.
       if [[ -f /etc/zshenv.local ]]; then
@@ -46,11 +60,25 @@ in {
       dotDir = ".config/zsh";
       defaultKeymap = "emacs";
       shellAliases = shellCfg.aliases;
-      envExtra = ''
+      envExtra = let
+        user_zsh-completions = pkgs.buildEnv {
+          name = "user_zsh-completions";
+          paths = config.users.users.${config.user.name}.packages;
+          pathsToLink = [ "/share/zsh" ];
+          ignoreCollisions = true;
+        };
+      in ''
         # Don't execute this file when running in a pure nix-shell
         if [[ -n "$IN_NIX_SHELL" ]]; then
           return
         fi
+
+        fpath=(
+          "${user_zsh-completions}/share/zsh/site-functions"
+          "${user_zsh-completions}/share/zsh/''${ZSH_VERSION}/functions"
+          "${user_zsh-completions}/share/zsh/vendor-completions"
+          "''${fpath[@]}"
+        )
 
         ${cfg.envInit}
       '';
@@ -183,9 +211,7 @@ in {
       '';
     };
 
-    environment = {
-      pathsToLink = [ "/share/zsh" ];
-      shells = [ "/run/current-system/sw/bin/zsh" "${pkgs.zsh}/bin/zsh" ];
-    };
+    environment.shells =
+      [ "/run/current-system/sw/bin/zsh" "${pkgs.zsh}/bin/zsh" ];
   };
 }
