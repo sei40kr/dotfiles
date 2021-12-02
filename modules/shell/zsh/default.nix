@@ -16,10 +16,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user = {
-      packages = with pkgs; [ fzf pure-prompt zsh-completions ];
-      shell = pkgs.zsh;
-    };
+    user.packages = with pkgs; [
+      zsh
+      zsh-completions
+
+      fzf
+      pure-prompt
+    ];
 
     environment.etc.zshenv.text = let
       system_zsh-completions = pkgs.buildEnv {
@@ -213,5 +216,6 @@ in {
 
     environment.shells =
       [ "/run/current-system/sw/bin/zsh" "${pkgs.zsh}/bin/zsh" ];
+    user.shell = pkgs.zsh;
   };
 }
