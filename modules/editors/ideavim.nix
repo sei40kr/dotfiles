@@ -3,10 +3,11 @@
 with lib;
 with lib.my;
 let
+  inherit (config.dotfiles) reposDir;
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.ideavim;
 
-  idea-doom-emacs = ../../repos/idea-doom-emacs;
+  idea-doom-emacs = "${reposDir}/idea-doom-emacs";
 in {
   options.modules.editors.ideavim = {
     enable = mkBoolOpt false;
