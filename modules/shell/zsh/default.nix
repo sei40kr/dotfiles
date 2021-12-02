@@ -18,7 +18,6 @@ in {
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
       zsh
-      zsh-completions
 
       fzf
       pure-prompt
@@ -80,6 +79,7 @@ in {
           "${user_zsh-completions}/share/zsh/site-functions"
           "${user_zsh-completions}/share/zsh/''${ZSH_VERSION}/functions"
           "${user_zsh-completions}/share/zsh/vendor-completions"
+          "${pkgs.zsh-completions}/share/zsh/site-functions"
           "''${fpath[@]}"
         )
 
