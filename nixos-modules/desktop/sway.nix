@@ -288,7 +288,7 @@ in {
         default_border normal 2
         default_floating_border normal 2
         font pango:monospace 11
-        gaps outer 16
+        gaps inner 16
         title_align center
         titlebar_border_thickness 0
         titlebar_padding 20 12
