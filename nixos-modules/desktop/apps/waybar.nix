@@ -1,10 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 
 with builtins;
 with lib;
 with lib.my;
 let
-  inherit (config.dotfiles) binDir configDir;
+  inherit (config.dotfiles) configDir;
+  inherit (inputs) waybar-scripts;
   cfg = config.modules.desktop.apps.waybar;
 
   fonts = {
@@ -39,9 +40,9 @@ let
     name = "top";
     modules-left = [ "sway/workspaces" ];
     modules-right = [
-      "custom/pomodoro"
-      "custom/fcitx"
-      "custom/protonvpn"
+      "custom/gnome-pomodoro-timer"
+      "custom/fcitx5-status"
+      "custom/protonvpn-status"
       "network"
       "pulseaudio"
       "clock"
@@ -64,8 +65,9 @@ let
       tooltip = false;
     };
 
-    "custom/pomodoro" = {
-      exec = "${binDir}/waybar/pomodoro";
+    "custom/gnome-pomodoro-timer" = {
+      exec =
+        "${waybar-scripts}/gnome-pomodoro-timer-tail/gnome-pomodoro-timer-tail.bash";
       return-type = "json";
       format = "{icon}${label "{}"}";
       format-icons = {
@@ -78,15 +80,15 @@ let
       tooltip = false;
     };
 
-    "custom/fcitx" = {
-      exec = "${binDir}/waybar/fcitx";
+    "custom/fcitx5-status" = {
+      exec = "${waybar-scripts}/fcitx5-status/fcitx5-status.bash";
       return-type = "json";
       interval = 1;
       tooltip = false;
     };
 
-    "custom/protonvpn" = {
-      exec = "${binDir}/waybar/protonvpn";
+    "custom/protonvpn-status" = {
+      exec = "${waybar-scripts}/protonvpn-status/protonvpn-status.bash";
       return-type = "json";
       interval = 5;
       format = "{icon}${label "{}"}";
@@ -133,11 +135,12 @@ let
     height = 48;
     margin = "0 16 16 16";
     name = "bottom";
-    modules-left = [ "custom/mpris" ];
+    modules-left = [ "custom/mpris-track-info" ];
     modules-right = [ "cpu" "memory" "network" "disk" ];
 
-    "custom/mpris" = {
-      exec = "${binDir}/waybar/mpris";
+    "custom/mpris-track-info" = {
+      exec =
+        "${waybar-scripts}/mpris-track-info-tail/mpris-track-info-tail.bash";
       return-type = "json";
       format = "{icon}${label "{}"}";
       format-icons = {

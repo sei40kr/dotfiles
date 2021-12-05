@@ -115,7 +115,24 @@
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "waybar-scripts": "waybar-scripts"
+      }
+    },
+    "waybar-scripts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1639209594,
+        "narHash": "sha256-7I8aYaiUp0iFJDfAP/ZwczFwpNvJ+UaYnSkhZ10drLc=",
+        "owner": "sei40kr",
+        "repo": "waybar-scripts",
+        "rev": "4701f1739166d81aa9d87830074b70e89cf67a46",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sei40kr",
+        "repo": "waybar-scripts",
+        "type": "github"
       }
     }
   },

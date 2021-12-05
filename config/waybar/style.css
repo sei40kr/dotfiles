@@ -51,9 +51,9 @@ button {
   background: @primary;
 }
 
-#custom-pomodoro:not(.null),
-#custom-fcitx:not(.close),
-#custom-protonvpn:not(.disconnected),
+#custom-gnome-pomodoro-timer:not(.null),
+#custom-fcitx5-status:not(.close),
+#custom-protonvpn-status:not(.disconnected),
 #pulseaudio,
 #clock,
 #cpu,
@@ -62,7 +62,7 @@ button {
   margin: 0 1.5rem 0 0;
 }
 
-#custom-protonvpn.connected {
+#custom-protonvpn-status.connected {
   color: #34d399;
 }
 
