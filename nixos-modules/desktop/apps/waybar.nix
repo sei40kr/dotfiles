@@ -7,183 +7,8 @@ let
   inherit (config.dotfiles) configDir;
   inherit (inputs) waybar-scripts;
   cfg = config.modules.desktop.apps.waybar;
-
-  fonts = {
-    base.size = 11;
-    icon = {
-      size = 14;
-      family = "Material Design Icons";
-    };
-  };
-
-  markup = { family ? null, size ? null, rise ? null }:
-    text:
-    "<span${
-      optionalString (family != null || size != null)
-      " font_desc='${toString family} ${toString size}'"
-    }${
-      optionalString (rise != null)
-      # HACK floating-point number -> integer
-      " rise='${head (splitString "." (toString rise))}'"
-    }>${text}</span>";
-  icon = markup (let base = fonts.base.size;
-  in rec {
-    inherit (fonts.icon) family size;
-    rise = -5000 - (size - base) * 1.0 / size / 2 * 10000;
-  });
-  label = markup { rise = -5000; };
-
-  topJSON = toJSON {
-    position = "top";
-    height = 48;
-    margin = "16 16 0 16";
-    name = "top";
-    modules-left = [ "sway/workspaces" ];
-    modules-right = [
-      "custom/gnome-pomodoro-timer"
-      "custom/fcitx5-status"
-      "custom/protonvpn-status"
-      "network"
-      "pulseaudio"
-      "clock"
-      "custom/powermenu"
-    ];
-
-    "sway/workspaces" = {
-      format = icon "{icon}";
-      format-icons = {
-        "1" = "󰖟";
-        "2" = "󰅩";
-        "3" = "󰉏";
-        "4" = "󰭹";
-        default = "󰐽";
-        urgent = "󰐽";
-        focused = "󰐾";
-      };
-      disable-scroll = true;
-      persistent_workspaces = [ "1" "2" "3" "4" ];
-      tooltip = false;
-    };
-
-    "custom/gnome-pomodoro-timer" = {
-      exec =
-        "${waybar-scripts}/gnome-pomodoro-timer-tail/gnome-pomodoro-timer-tail.bash";
-      return-type = "json";
-      format = "{icon}${label "{}"}";
-      format-icons = {
-        "null" = "";
-        paused = "${icon "󰏤"}${label " "}";
-        pomodoro = "${icon "󱑂"}${label " "}";
-        short-break = "${icon "󰅶"}${label " "}";
-        long-break = "${icon "󰅶"}${label " "}";
-      };
-      tooltip = false;
-    };
-
-    "custom/fcitx5-status" = {
-      exec = "${waybar-scripts}/fcitx5-status/fcitx5-status.bash";
-      return-type = "json";
-      interval = 1;
-      tooltip = false;
-    };
-
-    "custom/protonvpn-status" = {
-      exec = "${waybar-scripts}/protonvpn-status/protonvpn-status.bash";
-      return-type = "json";
-      interval = 5;
-      format = "{icon}${label "{}"}";
-      format-icons = {
-        disconnected = "";
-        connected = "${icon "󰕥"}${label " "}";
-      };
-      tooltip = false;
-      escape = true;
-    };
-
-    "network" = {
-      format-ethernet = "${icon "󰈀"}";
-      format-wifi = "${icon "{icon}"}${label " {essid}"}";
-      format-disconnected = "${icon "󰤮"}";
-      format-icons = [ "󰤟" "󰤢" "󰤥" "󰤨" ];
-      tooltip = false;
-    };
-
-    pulseaudio = {
-      format = "${icon "{icon}"}${label " {volume}%"}";
-      format-icons = {
-        default = [ "󰖀" "󰕾" ];
-        headphone = "󰋋";
-      };
-      format-muted = "${icon "󰸈"}";
-      tooltip = false;
-    };
-
-    clock = {
-      format = "{:%b %e, %H:%M}";
-      tooltip = false;
-    };
-
-    "custom/powermenu" = {
-      format = icon "{icon}";
-      format-icons = "󰐥";
-      tooltip = false;
-    };
-  };
-
-  bottomJSON = toJSON {
-    position = "bottom";
-    height = 48;
-    margin = "0 16 16 16";
-    name = "bottom";
-    modules-left = [ "custom/mpris-track-info" ];
-    modules-right = [ "cpu" "memory" "network" "disk" ];
-
-    "custom/mpris-track-info" = {
-      exec =
-        "${waybar-scripts}/mpris-track-info-tail/mpris-track-info-tail.bash";
-      return-type = "json";
-      format = "{icon}${label "{}"}";
-      format-icons = {
-        stopped = "";
-        playing = "${icon "󰝚"}${label " "}";
-        paused = "${icon "󰏤"}${label " "}";
-      };
-      tooltip = false;
-      escape = true;
-    };
-
-    "cpu" = {
-      interval = 10;
-      format = "${icon "󰘚"}${label " {usage}%"}";
-      tooltip = false;
-    };
-
-    "memory" = {
-      interval = 30;
-      format = "${icon "󰍛"}${label " {used:0.1f}GiB / {total:0.1f}GiB"}";
-      tooltip = false;
-    };
-
-    "network" = {
-      interval = 30;
-      format = concatStringsSep (label " ") [
-        "${icon "󰁅"}${label " {bandwidthDownOctets}"}"
-        "${icon "󰁝"}${label " {bandwidthUpOctets}"}"
-      ];
-      tooltip = false;
-    };
-
-    "disk" = {
-      interval = 30;
-      format = "${icon "󰆼"}${label " {used} / {total}"}";
-      path = "/";
-      tooltip = false;
-    };
-  };
 in {
-  options.modules.desktop.apps.waybar = with types; {
-    enable = mkBoolOpt false;
-  };
+  options.modules.desktop.apps.waybar = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
     assertions = [{
@@ -195,7 +20,7 @@ in {
     user.packages = with pkgs; [ dconf gawk playerctl ];
 
     systemd.user.services = listToAttrs (map (name:
-      nameValuePair "waybar-${name}" {
+      nameValuePair "waybar_${name}" {
         description =
           "Highly customizable Wayland bar for Sway and Wlroots based compositors.";
         documentation = [ "https://github.com/Alexays/Waybar/wiki/" ];
@@ -204,7 +29,8 @@ in {
         requisite = [ "graphical-session.target" ];
         environment.PATH = mkForce null;
         serviceConfig = {
-          ExecStart = "${pkgs.waybar}/bin/waybar -c /etc/xdg/waybar/${name}";
+          ExecStart =
+            "${pkgs.waybar}/bin/waybar -c /etc/xdg/waybar/config_${name}";
           ExecReload = "kill -SIGUSR2 $MAINPID";
         };
         wantedBy = [ "sway-session.target" ];
@@ -212,8 +38,15 @@ in {
       }) [ "top" "bottom" ]);
 
     environment.etc = {
-      "xdg/waybar/top".text = topJSON;
-      "xdg/waybar/bottom".text = bottomJSON;
+      "xdg/waybar/config_top".text = toJSON
+        (import "${configDir}/waybar/config_top.nix" {
+          inherit (inputs) waybar-scripts;
+        });
+      "xdg/waybar/config_bottom".text = toJSON
+        (import "${configDir}/waybar/config_bottom.nix" {
+          inherit lib;
+          inherit (inputs) waybar-scripts;
+        });
       "xdg/waybar/style.css".source = "${configDir}/waybar/style.css";
     };
 
