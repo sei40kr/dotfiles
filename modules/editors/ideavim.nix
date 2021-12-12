@@ -9,12 +9,16 @@ let
 in {
   options.modules.editors.ideavim = {
     enable = mkBoolOpt false;
-    enableDoom = mkBoolOpt false;
+
+    doom.enable = mkOption {
+      type = types.bool;
+      default = editorsCfg.emacs.doom.enable;
+    };
   };
 
   config = mkIf cfg.enable {
     home.configFile."ideavim/ideavimrc".text = ''
-      ${optionalString cfg.enableDoom ''
+      ${optionalString cfg.doom.enable ''
         let g:WhichKey_FontFamily = ${toVimScript editorsCfg.fonts.code.family}
         let g:WhichKey_FontSize = ${toVimScript editorsCfg.fonts.code.size}
 
