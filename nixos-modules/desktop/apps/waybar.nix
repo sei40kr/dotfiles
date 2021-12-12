@@ -27,6 +27,11 @@ in {
         partOf = [ "graphical-session.target" ];
         after = [ "graphical-session.target" ];
         requisite = [ "graphical-session.target" ];
+        restartTriggers = [
+          (hashString "md5"
+            config.environment.etc."xdg/waybar/config_${name}".text)
+          config.environment.etc."xdg/waybar/style.css".source
+        ];
         environment.PATH = mkForce null;
         serviceConfig = {
           ExecStart =
