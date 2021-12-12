@@ -18,6 +18,10 @@
     emacs-overlay.url =
       "github:nix-community/emacs-overlay?rev=67fe74d6e73e3c8a983b09a76d809acc730ad911";
 
+    idea-doom-emacs = {
+      url = "github:sei40kr/idea-doom-emacs";
+      flake = false;
+    };
     waybar-scripts = {
       url = "github:sei40kr/waybar-scripts";
       flake = false;

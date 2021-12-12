@@ -78,6 +78,22 @@
         "type": "github"
       }
     },
+    "idea-doom-emacs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1621359431,
+        "narHash": "sha256-AUntGa8JbhZ6LYIOf6nuTFZ6H/fCbNJYqUpcPf1CoDM=",
+        "owner": "sei40kr",
+        "repo": "idea-doom-emacs",
+        "rev": "3e8e6bcbe597629709de567f0b7712667cb9bf60",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sei40kr",
+        "repo": "idea-doom-emacs",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1637977519,
@@ -114,6 +130,7 @@
         "darwin": "darwin",
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
+        "idea-doom-emacs": "idea-doom-emacs",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "waybar-scripts": "waybar-scripts"

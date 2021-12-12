@@ -1,13 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, inputs, lib, ... }:
 
 with lib;
 with lib.my;
 let
-  inherit (config.dotfiles) reposDir;
+  inherit (inputs) idea-doom-emacs;
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.ideavim;
-
-  idea-doom-emacs = "${reposDir}/idea-doom-emacs";
 in {
   options.modules.editors.ideavim = {
     enable = mkBoolOpt false;
