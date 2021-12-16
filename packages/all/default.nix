@@ -4,7 +4,8 @@ rec {
   python3Packages =
     (pkgs.python3Packages.callPackage (import ./python3-packages.nix) { });
   tmuxPlugins = (pkgs.callPackage (import ./tmux-plugins) { });
-  vimPlugins = (pkgs.callPackage (import ./vim-plugins.nix) { });
+
+  vimPlugins = pkgs.callPackage ./vim-plugins { };
 
   dataspell = pkgs.callPackage ./dataspell { inherit (pkgs.jetbrains) jdk; };
 
