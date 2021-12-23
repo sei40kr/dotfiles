@@ -109,21 +109,6 @@
         "type": "indirect"
       }
     },
-    "nixpkgs-unstable": {
-      "locked": {
-        "lastModified": 1638001932,
-        "narHash": "sha256-B2Hvq9lCw07ZtgmjlSyxuLFS7vszPS/yawRM5POENTA=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "d920e9a8c59b302ce0e0cbb0d27103bcbbdfb950",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "master",
-        "type": "indirect"
-      }
-    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -132,7 +117,6 @@
         "home-manager": "home-manager",
         "idea-doom-emacs": "idea-doom-emacs",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-unstable": "nixpkgs-unstable",
         "waybar-scripts": "waybar-scripts"
       }
     },

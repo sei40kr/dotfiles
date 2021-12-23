@@ -1,7 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/master";
-    nixpkgs-unstable.url = "nixpkgs/master";
     darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,8 +27,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, darwin, home-manager
-    , emacs-overlay, ... }@inputs:
+  outputs = { self, nixpkgs, darwin, home-manager, emacs-overlay, ... }@inputs:
     let
       inherit (lib)
         attrValues elem filterAttrs genAttrs mkDefault nixosSystem optionalAttrs
@@ -45,15 +43,13 @@
         linux = [ "x86_64-linux" ];
         all = darwin ++ linux;
       };
-      mkPkgs = pkgs: extraOverlays: system:
-        import pkgs {
+      pkgs = genAttrs supportedSystems.all (system:
+        import nixpkgs {
           inherit system;
           config.allowUnfree = true;
-          overlays = extraOverlays ++ (attrValues self.overlays);
-        };
-      pkgs = genAttrs supportedSystems.all
-        (mkPkgs nixpkgs [ emacs-overlay.overlay self.overlay ]);
-      pkgs' = genAttrs supportedSystems.all (mkPkgs nixpkgs-unstable [ ]);
+          overlays = [ emacs-overlay.overlay self.overlay ]
+            ++ (attrValues self.overlays);
+        });
 
       mkNixosHost = { system, ... }@attrs:
         path:
@@ -95,25 +91,16 @@
     in {
       lib = lib.my;
 
-      overlay = _:
-        { system, ... }: {
-          unstable = pkgs'.${system};
-          my = self.packages.${system};
-        };
+      overlay = _: { system, ... }: { my = self.packages.${system}; };
 
       overlays = mapModules ./overlays import;
 
       packages = (genAttrs supportedSystems.all (system:
-        let
-          args = {
-            pkgs = pkgs.${system};
-            pkgs' = pkgs'.${system};
-          };
-        in (import ./packages/all args)
+        (import ./packages/all { pkgs = pkgs.${system}; })
         // (optionalAttrs (elem system supportedSystems.darwin)
-          (import ./packages/darwin args))
+          (import ./packages/darwin { pkgs = pkgs.${system}; }))
         // (optionalAttrs (elem system supportedSystems.linux)
-          (import ./packages/linux args))));
+          (import ./packages/linux { pkgs = pkgs.${system}; }))));
 
       nixosModules = mapModulesRec ./modules import
         // (mapModulesRec ./nixos-modules import);
