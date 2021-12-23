@@ -315,8 +315,8 @@ in {
         assign [app_id="calibre-gui"]                 workspace $ws_media
         assign [class="Gimp-2.10"]                    workspace $ws_media
         assign [class="krita"]                        workspace $ws_media
-        assign [app_id="org.gnome.Nautilus"]          workspace $ws_media
         assign [app_id="org.inkscape.Inkscape"]       workspace $ws_media
+        assign [app_id="thunar"]                      workspace $ws_media
         assign [class="Slack"]                        workspace $ws_im
 
         for_window [class="Bitwarden"]       floating enable

@@ -27,17 +27,16 @@ with lib; {
         bitwarden.enable = true;
         calendar.enable = true;
         discord.enable = true;
-        file-roller.enable = true;
         font-viewer.enable = true;
         geary.enable = true;
         gnome-books.enable = true;
         gnome-todo.enable = true;
         gnome-weather.enable = true;
-        nautilus.enable = true;
         notion.enable = true;
         pomodoro.enable = true;
         seahorse.enable = true;
         slack.enable = true;
+        thunar.enable = true;
         zeal.enable = true;
       };
 
