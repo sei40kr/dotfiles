@@ -53,13 +53,13 @@ with lib; {
           pdf.enable = true;
           ebook.enable = true;
         };
-        eog.enable = true;
         evince.enable = true;
         graphics.enable = true;
         recording = {
           enable = true;
           video.enable = true;
         };
+        ristretto.enable = true;
         totem.enable = true;
       };
     };
