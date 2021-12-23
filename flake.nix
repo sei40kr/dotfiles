@@ -91,12 +91,8 @@
 
       overlays = mapModules ./overlays import;
 
-      packages = (genAttrs supportedSystems.all (system:
-        (import ./packages/all { pkgs = pkgs.${system}; })
-        // (optionalAttrs (elem system supportedSystems.darwin)
-          (import ./packages/darwin { pkgs = pkgs.${system}; }))
-        // (optionalAttrs (elem system supportedSystems.linux)
-          (import ./packages/linux { pkgs = pkgs.${system}; }))));
+      packages = genAttrs supportedSystems.all
+        (system: import ./packages { pkgs = pkgs.${system}; });
 
       nixosModules = mapModulesRec ./modules import
         // (mapModulesRec ./nixos-modules import);
