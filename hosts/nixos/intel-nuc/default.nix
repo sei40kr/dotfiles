@@ -34,6 +34,7 @@ with lib; {
         gnome-weather.enable = true;
         notion.enable = true;
         pomodoro.enable = true;
+        qbittorrent.enable = true;
         seahorse.enable = true;
         slack.enable = true;
         thunar.enable = true;
@@ -130,7 +131,6 @@ with lib; {
       psd.enable = true;
       sushi.enable = true;
       ssh.enable = true;
-      transmission.enable = true;
     };
 
     shell = {
