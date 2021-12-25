@@ -49,10 +49,7 @@ in {
         let g:mapleader = "\<Space>"
         exec 'source ' . s:xdg_config_home . '/nvim/common.vim'
 
-        set clipboard+=unnamedplus
         set ignorecase
-        set number
-        set relativenumber
         set smartcase
         set wrapscan
 

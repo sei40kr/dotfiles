@@ -2,6 +2,11 @@
 
 {
   plugins = [
+    { repo = vimPlugins.vim-sensible.rtp; }
+    {
+      repo = vimPlugins.neovim-sensible.rtp;
+      "if" = "has('nvim')";
+    }
     {
       repo = vimPlugins.lightline-vim.rtp;
       hook_add = ''
