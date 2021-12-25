@@ -322,6 +322,7 @@ in {
 
         for_window [class="Bitwarden"]       floating enable
         for_window [app_id="gnome-pomodoro"] floating enable
+        for_window [app_id="org.fcitx."]     floating enable
         for_window [class="Todoist"]         floating enable
 
         include /etc/sway/config.d/*
