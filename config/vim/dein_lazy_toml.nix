@@ -48,6 +48,14 @@
       on_map = "<Plug>(easymotion-prefix)";
     }
     {
+      repo = vimPlugins.vim-expand-region.rtp;
+      hook_add = ''
+        map <C-+> <Plug>(expand_region_expand)
+        map <C-=> <Plug>(expand_region_shrink)
+      '';
+      on_map = "<Plug>(expand_region_";
+    }
+    {
       repo = vimPlugins.vim-manpager.rtp;
       hook_source = ''
         autocmd FileType man setlocal nonumber norelativenumber
