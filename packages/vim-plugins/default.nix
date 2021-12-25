@@ -16,4 +16,16 @@ in {
 
     dependencies = [ git ];
   };
+
+  onedark-nvim = vimUtils.buildVimPluginFrom2Nix rec {
+    pname = "onedark-nvim";
+    version = "unstable-2021-12-01";
+
+    src = fetchFromGitHub {
+      owner = "navarasu";
+      repo = "onedark.nvim";
+      rev = "ce49cf36dc839564e95290e2cdace396c148bca1";
+      sha256 = "1q7y7vhgk8r28nq4q3aamvkg2hfylfxq25i2avj45prap23b73zy";
+    };
+  };
 }
