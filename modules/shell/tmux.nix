@@ -61,6 +61,7 @@ in {
         }
         my.tmuxPlugins.cowboy
         my.tmuxPlugins.doom-one-dark
+        my.tmuxPlugins.ghq
       ];
 
       extraConfig = ''
@@ -76,7 +77,6 @@ in {
         set-option -wg status-keys emacs
 
         bind-key C new-session
-        bind-key g run-shell -b ${binDir}/tmux/create-or-switch-to-ghq-session
         bind-key -T copy-mode-vi v send -X begin-selection
       '';
 

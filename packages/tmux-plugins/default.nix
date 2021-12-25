@@ -13,19 +13,22 @@ with lib; {
     };
   };
 
-  per-project-session = tmuxPlugins.mkTmuxPlugin {
-    pluginName = "per-project-session";
-    rtpFilePath = "per-project-session.tmux";
-    version = "unstable-2021-07-22";
+  ghq = tmuxPlugins.mkTmuxPlugin {
+    pluginName = "ghq";
+    rtpFilePath = "ghq.tmux";
+    version = "unstable-2021-12-10";
+
     src = fetchFromGitHub {
       owner = "sei40kr";
-      repo = "tmux-per-project-session";
-      rev = "24878496ef8e8c3814df3af05b1a407af576bb65";
-      sha256 = "156k77ga1lpk216rb9nprwz78rhnpchdijq84i4bgljrw3qcj80n";
+      repo = "tmux-ghq";
+      rev = "c484d6e7b286fddbd33e37f15e5d49b29b4b7b7f";
+      sha256 = "10r5hp44gvh7m1z21zkhkpi0lkcma4y66iaxnl6ivlqn3740sdqq";
     };
+
     nativeBuildInputs = [ makeWrapper ];
+
     postInstall = ''
-      wrapProgram $out/share/tmux-plugins/per-project-session/scripts/goto_session.sh \
+      wrapProgram $out/share/tmux-plugins/ghq/libexec/create-or-switch-to.bash \
         --prefix PATH : ${makeBinPath [ fd fzf ]}
     '';
   };
