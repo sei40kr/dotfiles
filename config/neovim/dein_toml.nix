@@ -25,6 +25,7 @@ let
     p.tree-sitter-scala
     p.tree-sitter-swift
     p.tree-sitter-typescript
+    p.tree-sitter-toml
     p.tree-sitter-tsx
     p.tree-sitter-vim
     p.tree-sitter-yaml
