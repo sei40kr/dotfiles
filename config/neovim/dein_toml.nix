@@ -1,4 +1,4 @@
-{ vimPlugins, ... }:
+{ vimPlugins, vimPlugins', ... }:
 
 let
   nvim-treesitter = vimPlugins.nvim-treesitter.withPlugins (p: [
@@ -63,15 +63,12 @@ in {
       "if" = "has('nvim')";
     }
     {
-      repo = vimPlugins.onedark-vim.rtp;
+      repo = vimPlugins'.onedark-nvim.rtp;
       hook_add = ''
-        if (has("autocmd") && !has("gui_running"))
-            augroup colorset
-            autocmd!
-            let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
-            autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white })
-            augroup END
-        endif
+        lua <<EOF
+          vim.g.onedark_transparent_background = true
+          vim.g.onedark_toggle_style_keymap = "<Nop>"
+        EOF
       '';
       hook_post_source = "colorscheme onedark";
     }

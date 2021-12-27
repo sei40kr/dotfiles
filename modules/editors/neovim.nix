@@ -7,11 +7,14 @@ let
   cfg = config.modules.editors.neovim;
 
   toml = (pkgs.formats.toml { }).generate;
-  dein_toml = toml "dein.toml"
-    (import "${configDir}/neovim/dein_toml.nix" { inherit (pkgs) vimPlugins; });
+  dein_toml = toml "dein.toml" (import "${configDir}/neovim/dein_toml.nix" {
+    inherit (pkgs) vimPlugins;
+    vimPlugins' = pkgs.my.vimPlugins;
+  });
   dein_lazy_toml = toml "dein_lazy.toml"
     (import "${configDir}/neovim/dein_lazy_toml.nix" {
       inherit (pkgs) vimPlugins;
+      vimPlugins' = pkgs.my.vimPlugins;
     });
 in {
   options.modules.editors.neovim = with types; {
