@@ -8,9 +8,9 @@ let
 
   toml = (pkgs.formats.toml { }).generate;
   dein_toml = toml "dein.toml"
-    (import "${configDir}/vim/dein_toml.nix" { inherit (pkgs) vimPlugins; });
+    (import "${configDir}/neovim/dein_toml.nix" { inherit (pkgs) vimPlugins; });
   dein_lazy_toml = toml "dein_lazy.toml"
-    (import "${configDir}/vim/dein_lazy_toml.nix" {
+    (import "${configDir}/neovim/dein_lazy_toml.nix" {
       inherit (pkgs) vimPlugins;
     });
 in {
@@ -26,48 +26,39 @@ in {
     user.packages = with pkgs; [ neovim ];
 
     home.configFile = {
-      "nvim/init.vim".text = ''
-        let s:xdg_cache_home = !empty($XDG_CACHE_HOME) ? $XDG_CACHE_HOME : expand('~/.cache')
-        let s:xdg_config_home = !empty($XDG_CONFIG_HOME) ? $XDG_CONFIG_HOME : expand('~/.config')
+      "nvim/init.lua".source = "${configDir}/neovim/init.lua";
+      "nvim/lua/dein.lua".text = ''
+        vim.opt.runtimepath:append { '${pkgs.my.vimPlugins.dein-vim.rtp}' }
 
-        set runtimepath+=${pkgs.my.vimPlugins.dein-vim.rtp}
+        local dein_cache_dir = (vim.call('stdpath', 'cache')) .. '/dein'
 
-        let s:dein_cache_dir = s:xdg_cache_home . '/dein'
+        if vim.call('dein#load_state', dein_cache_dir) == 1 then
+          vim.call('dein#begin', dein_cache_dir)
 
-        if dein#load_state(s:dein_cache_dir)
-          call dein#begin(s:dein_cache_dir)
+          vim.call('dein#load_toml', config_dir .. '/dein.toml')
+          vim.call('dein#load_toml', config_dir .. '/dein_lazy.toml', { lazy = 1 })
 
-          call dein#load_toml(s:xdg_config_home . '/nvim/dein.toml', {'lazy': v:false})
-          call dein#load_toml(s:xdg_config_home . '/nvim/dein_lazy.toml', {'lazy': v:true})
+          vim.call('dein#end')
+          vim.call('dein#save_state')
+        end
 
-          call dein#end()
-          call dein#save_state()
-        endif
-
-        autocmd VimEnter * call dein#call_hook('post_source')
-
-        let g:mapleader = "\<Space>"
-        exec 'source ' . s:xdg_config_home . '/nvim/common.vim'
-
-        set ignorecase
-        set smartcase
-        set wrapscan
-
-        " Use 24-bit (true-color) mode in Vim/Neovim
-        if (has("termguicolors"))
-          set termguicolors
-        endif
-
-        filetype plugin indent on
+        vim.cmd([[
+          augroup dein
+            autocmd!
+            autocmd VimEnter * call dein#call_hook('post_source')
+          augroup END
+        ]])
       '';
-      "nvim/common.vim".source = "${configDir}/vim/common.vim";
       "nvim/dein.toml".source = dein_toml;
       "nvim/dein_lazy.toml".source = dein_lazy_toml;
+      "nvim/doom.vim".source = "${configDir}/neovim/doom.vim";
     };
 
-    system.userActivationScripts.dein-vim = ''
+    system.userActivationScripts.neovim = ''
       : ''${XDG_CACHE_HOME:=''${HOME}/.cache}
-      ( shopt -s nullglob; rm -f ''${XDG_CACHE_HOME}/dein/state_*.vim ''${XDG_CACHE_HOME}/dein/cache_* )
+
+      rm -f ''${XDG_CACHE_HOME}/dein/state_nvim.vim \
+            ''${XDG_CACHE_HOME}/dein/cache_nvim
     '';
 
     env = {
