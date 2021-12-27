@@ -17,6 +17,24 @@ in {
 
       url = mkOpt str null;
 
+      border = {
+        active = mkOpt str null;
+        inactive = mkOpt str null;
+        bell = mkOpt str null;
+      };
+
+      tab = {
+        active = {
+          bg = mkOpt str null;
+          fg = mkOpt str null;
+        };
+        inactive = {
+          bg = mkOpt str null;
+          fg = mkOpt str null;
+        };
+        bg = mkOpt str null;
+      };
+
       fg = mkOpt str null;
       bg = mkOpt str null;
       selection = {

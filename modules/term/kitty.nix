@@ -85,7 +85,21 @@ in {
         url_color #${colors.url}
 
         ## Window layout
+        window_border_width 1px
         window_padding_width 12
+        active_border_color #${colors.border.active}
+        inactive_border_color #${colors.border.inactive}
+        bell_border_color #${colors.border.bell}
+
+        ## Tab bar
+        tab_bar_style separator
+        tab_separator " "
+        tab_title_template " [{index}] {title} "
+        active_tab_foreground #${colors.tab.active.fg}
+        active_tab_background #${colors.tab.active.bg}
+        inactive_tab_foreground #${colors.tab.inactive.fg}
+        inactive_tab_background #${colors.tab.inactive.bg}
+        tab_bar_background #${colors.tab.bg}
 
         ## Color scheme
         foreground #${colors.fg}

@@ -4,6 +4,31 @@ with lib;
 with lib.my; {
   config = mkIf (config.modules.term.theme.active == "doom-one") {
     modules.term.theme.colors = {
+      cursor = {
+        fg = "dfdfdf";
+        bg = "51afef";
+      };
+
+      url = "51afef";
+
+      border = {
+        active = "191b20";
+        inactive = "191b20";
+        bell = "191b20";
+      };
+
+      tab = {
+        active = {
+          fg = "282c34";
+          bg = "51afef";
+        };
+        inactive = {
+          fg = "bfbfbf";
+          bg = "21242b";
+        };
+        bg = "1d2026";
+      };
+
       fg = "dfdfdf";
       bg = "21242b";
       selection = {
@@ -27,12 +52,6 @@ with lib.my; {
       base13 = "c678dd";
       base14 = "46d9ff";
       base15 = "dfdfdf";
-
-      cursor = {
-        fg = "dfdfdf";
-        bg = "51afef";
-      };
-      url = "51afef";
     };
 
     modules.shell.bat.theme = "TwoDark";
