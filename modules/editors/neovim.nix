@@ -58,8 +58,8 @@ in {
     system.userActivationScripts.neovim = ''
       : ''${XDG_CACHE_HOME:=''${HOME}/.cache}
 
-      rm -f ''${XDG_CACHE_HOME}/dein/state_nvim.vim \
-            ''${XDG_CACHE_HOME}/dein/cache_nvim
+      rm -f ''${XDG_CACHE_HOME}/nvim/dein/state_nvim.vim \
+            ''${XDG_CACHE_HOME}/nvim/dein/cache_nvim
     '';
 
     env = {
