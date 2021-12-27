@@ -1,11 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 with lib;
 with lib.my;
 let
   termCfg = config.modules.term;
   cfg = termCfg.alacritty;
-  colors = termCfg.theme.colors;
 in {
   options.modules.term.alacritty = with types; { enable = mkBoolOpt false; };
 
@@ -76,29 +75,48 @@ in {
         # draw_bold_text_with_bright_colors = false;
 
         # Colors
-        colors = {
+        colors = let inherit (termCfg.theme) colors;
+        in {
           # Default colors
           primary = {
-            background = colors.bg;
-            foreground = colors.fg;
+            background = "#${colors.bg}";
+            foreground = "#${colors.fg}";
           };
 
           # Cursor colors
-          #
-          # Colors which should be used to draw the terminal cursor.
-          #
-          # Allowed values are CellForeground/CellBackground, which reference the
-          # affected cell, or hexadecimal colors like #ff00ff.
-          cursor = { inherit (colors) cursor; };
+          cursor = {
+            text = "#${colors.cursor.fg}";
+            cursor = "#${colors.cursor.bg}";
+          };
 
           # Normal colors
           normal = {
-            inherit (colors) black red green yellow blue magenta cyan white;
+            black = "#${colors.base0}";
+            red = "#${colors.base1}";
+            green = "#${colors.base2}";
+            yellow = "#${colors.base3}";
+            blue = "#${colors.base4}";
+            magenta = "#${colors.base5}";
+            cyan = "#${colors.base6}";
+            white = "#${colors.base7}";
           };
 
           # Bright colors
           bright = {
-            inherit (colors) black red green yellow blue magenta cyan white;
+            black = "#${colors.base8}";
+            red = "#${colors.base9}";
+            green = "#${colors.base10}";
+            yellow = "#${colors.base11}";
+            blue = "#${colors.base12}";
+            magenta = "#${colors.base13}";
+            cyan = "#${colors.base14}";
+            white = "#${colors.base15}";
+          };
+
+          # Selection colors
+          selection = {
+            text = "#${colors.selection.fg}";
+            background = "#${colors.selection.bg}";
           };
         };
 

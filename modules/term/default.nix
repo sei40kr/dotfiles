@@ -18,26 +18,9 @@ in {
       name = "monospace";
       size = 12;
     };
-    theme = {
-      colorscheme = mkOpt str null;
-
-      colors = {
-        fg = mkOpt str null;
-        bg = mkOpt str null;
-        cursor = mkOpt str null;
-
-        black = mkOpt str null;
-        red = mkOpt str null;
-        green = mkOpt str null;
-        yellow = mkOpt str null;
-        blue = mkOpt str null;
-        magenta = mkOpt str null;
-        cyan = mkOpt str null;
-        white = mkOpt str null;
-      };
-    };
   };
 
-  config.user.packages =
-    optionals (cfg.font.package != null) [ cfg.font.package ];
+  config = {
+    user.packages = optionals (cfg.font.package != null) [ cfg.font.package ];
+  };
 }

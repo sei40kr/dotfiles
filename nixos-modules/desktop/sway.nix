@@ -354,6 +354,6 @@ in {
     };
 
     # TODO move this
-    modules.term.theme.colorscheme = "doom-one";
+    modules.term.theme.active = "doom-one";
   };
 }
