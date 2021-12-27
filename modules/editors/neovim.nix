@@ -28,9 +28,10 @@ in {
     home.configFile = {
       "nvim/init.lua".source = "${configDir}/neovim/init.lua";
       "nvim/lua/dein.lua".text = ''
-        vim.opt.runtimepath:append { '${pkgs.my.vimPlugins.dein-vim.rtp}' }
-
+        local config_dir = vim.call('stdpath', 'config')
         local dein_cache_dir = (vim.call('stdpath', 'cache')) .. '/dein'
+
+        vim.opt.runtimepath:append { '${pkgs.my.vimPlugins.dein-vim.rtp}' }
 
         if vim.call('dein#load_state', dein_cache_dir) == 1 then
           vim.call('dein#begin', dein_cache_dir)
