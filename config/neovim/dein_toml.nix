@@ -37,10 +37,18 @@ in {
       "if" = "has('nvim')";
     }
     {
-      repo = vimPlugins.lightline-vim.rtp;
-      hook_add = ''
-        let g:lightline = { "colorscheme": "onedark" }
+      repo = vimPlugins.lualine-nvim.rtp;
+      hook_post_source = ''
+        lua <<EOF
+        require 'lualine'.setup {
+          options = {
+            section_separators = "",
+            component_separators = "",
+          }
+        }
+        EOF
       '';
+      "if" = "has('nvim')";
     }
     {
       repo = nvim-treesitter.rtp;
