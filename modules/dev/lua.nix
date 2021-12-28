@@ -7,6 +7,10 @@ in {
   options.modules.dev.lua = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ lua nodePackages.lua-fmt ];
+    user.packages = with pkgs; [
+      lua
+      nodePackages.lua-fmt
+      sumneko-lua-language-server
+    ];
   };
 }

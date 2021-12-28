@@ -9,6 +9,14 @@ nnoremap ]<Space> o<Esc>k
 "
 " +buffer
 
+" Kill buffer
+nnoremap <Leader>bd :<C-u>bdelete<CR>
+" Kill buffer
+nnoremap <Leader>bk :<C-u>bdelete<CR>
+" Next buffer
+nnoremap <Leader>bn :<C-u>bn<CR>
+" Previous buffer
+nnoremap <Leader>bp :<C-u>bp<CR>
 " Save buffer
 nnoremap <Leader>bs :<C-u>w<CR>
 vnoremap <Leader>bs :<C-u>w<CR>
