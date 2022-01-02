@@ -35,6 +35,14 @@ packer.startup(
             }
 
             use {
+                "@nvim_web_devicons@",
+                as = "nvim-web-devicons",
+                opt = true,
+                config = require("config.plugins.nvim-web-devicons").config,
+                module = "nvim-web-devicons"
+            }
+
+            use {
                 "@plenary_nvim@",
                 as = "plenary.nvim",
                 opt = true,
@@ -135,14 +143,14 @@ packer.startup(
 
             use {
                 "@nvim_tree_lua@",
-                requires = "@nvim_web_devicons@",
+                requires = "nvim-web-devicons",
                 config = require("config.plugins.nvim-tree").config,
                 cmd = {"NvimTreeFindFile", "NvimTreeToggle"}
             }
 
             use {
                 "@telescope_nvim@",
-                requires = {"plenary.nvim", "@telescope_project_nvim@", "@telescope_symbols_nvim@"},
+                requires = {"nvim-web-devicons", "plenary.nvim", "@telescope_project_nvim@", "@telescope_symbols_nvim@"},
                 config = require("config.plugins.telescope_nvim").config,
                 cmd = "Telescope",
                 module = "telescope"
@@ -164,7 +172,7 @@ packer.startup(
 
             use {
                 "@trouble_nvim@",
-                requires = "@nvim_web_devicons@",
+                requires = "nvim-web-devicons",
                 config = require("config.plugins.trouble_nvim").config,
                 cmd = {"Trouble", "TroubleToggle"}
             }
@@ -175,7 +183,7 @@ packer.startup(
             use {
                 "@diffview_nvim@",
                 as = "diffview.nvim",
-                requires = "plenary.nvim",
+                requires = {"nvim-web-devicons", "plenary.nvim"},
                 config = require("config.plugins.diffview_nvim").config,
                 cmd = {"DiffviewOpen", "DiffviewToggleFiles", "DiffviewFileHistory"},
                 module = "diffview"

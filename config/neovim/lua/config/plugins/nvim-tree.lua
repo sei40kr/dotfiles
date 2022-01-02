@@ -1,6 +1,8 @@
 local M = {}
 
 function M.config()
+    local nvim_tree = require("nvim-tree")
+
     vim.g.nvim_tree_git_hl = 1
     vim.g.nvim_tree_special_files = {}
     vim.g.nvim_tree_show_icons = {
@@ -9,8 +11,20 @@ function M.config()
         files = 1,
         folder_arrows = 1
     }
+    vim.g.nvim_tree_icons = {
+        default = " ",
+        symlink = " ",
+        folder = {
+            default = " ",
+            open = " ",
+            empty = " ",
+            empty_open = " ",
+            symlink = " ",
+            symlink_open = " "
+        }
+    }
 
-    require("nvim-tree").setup(
+    nvim_tree.setup(
         {
             update_cwd = true,
             view = {

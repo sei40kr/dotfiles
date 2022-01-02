@@ -5,7 +5,10 @@ function M.config()
     local cb = require("diffview.config").diffview_callback
 
     diffview.setup {
-        use_icons = true,
+        icons = {
+            folder_closed = " ",
+            folder_open = " "
+        },
         file_panel = {listing_style = "list"},
         key_bindings = {
             view = {q = cb("close")},
