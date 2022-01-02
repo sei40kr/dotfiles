@@ -3,7 +3,7 @@ local M = {}
 function M.config()
     local nvim_tree = require("nvim-tree")
 
-    vim.g.nvim_tree_git_hl = 1
+    vim.g.nvim_tree_git_hl = 0
     vim.g.nvim_tree_special_files = {}
     vim.g.nvim_tree_show_icons = {
         git = 0,
@@ -33,7 +33,8 @@ function M.config()
                     custom_only = false,
                     -- TODO Add custom keymaps
                     list = {}
-                }
+                },
+                signcolumn = "no"
             }
         }
     )
