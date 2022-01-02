@@ -8,8 +8,8 @@ function M.config()
         defaults = {
             mappings = {
                 i = {
-                    ["<C-j>"] = actions.move_selection_previous,
-                    ["<C-k>"] = actions.move_selection_next,
+                    ["<C-k>"] = actions.move_selection_previous,
+                    ["<C-j>"] = actions.move_selection_next,
                     ["<Esc>"] = actions.close,
                     jk = actions.close
                 }
