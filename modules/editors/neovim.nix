@@ -116,7 +116,8 @@ in {
     };
 
     system.userActivationScripts.neovim = ''
-      rm -f ''${XDG_CONFIG_HOME:-$HOME/.cache}/nvim/plugin/packer_compiled.lua
+      rm -f ''${XDG_CACHE_HOME:-~/.cache}/nvim/luacache \
+            ''${XDG_CONFIG_HOME:-~/.config}/nvim/lua/packer_compiled.lua
     '';
 
     env = {
