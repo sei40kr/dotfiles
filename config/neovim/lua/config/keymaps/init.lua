@@ -29,11 +29,13 @@ wk.register({
         ["["] = {
             ["<Space>"] = {'<Cmd>pu! =repeat("\n", v:count1)<CR>', "Insert space above"},
             b = {"<Cmd>BufferLineCyclePrev<CR>", "Previous buffer"},
+            c = "Previous comment",
             d = {"<Cmd>Gitsigns prev_hunk<CR>", "Jump to previous hunk"}
         },
         ["]"] = {
             ["<Space>"] = {'<Cmd>pu =repeat("\n", v:count1)<CR>', "Insert space below"},
             b = {"<Cmd>BufferLineCycleNext<CR>", "Next buffer"},
+            c = "Next comment",
             d = {"<Cmd>Gitsigns next_hunk<CR>", "Jump to next hunk"}
         }
 })

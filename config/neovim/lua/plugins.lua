@@ -207,6 +207,7 @@ packer.startup(
                 "@nvim_treesitter@",
                 requires = {
                     "@nvim_treesitter_refactor@",
+                    "@nvim_treesitter_textobjects@",
                     "@nvim_ts_autotag@",
                     "@nvim_ts_context_commentstring@",
                     "@nvim_ts_rainbow@"

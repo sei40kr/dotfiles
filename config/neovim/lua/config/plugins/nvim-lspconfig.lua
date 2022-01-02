@@ -22,7 +22,7 @@ function M.config()
         wk.register(
             {
                 ["<Leader>c"] = {
-                    a = {'<Cmd>lua require("telescope.builtin").lsp_code_actions()<CR>', "LSP Execute code action"},
+                    a = {'<Cmd>lua require("telescope.builtin").lsp_code_actions()<CR>', "Execute code action"},
                     d = {"gd", "Jump to definition", noremap = false},
                     D = {"gD", "Jump to references", noremap = false},
                     f = {"<Cmd>lua vim.lsp.buf.formatting()<CR>", "Format buffer"},
@@ -57,7 +57,7 @@ function M.config()
         wk.register(
             {
                 name = "+code",
-                a = {':lua require("telescope.builtin").lsp_range_code_actions()<CR>', "LSP Execute code action"},
+                a = {':lua require("telescope.builtin").lsp_range_code_actions()<CR>', "Execute code action"},
                 f = {":lua vim.lsp.buf.range_formatting()<CR>", "Format region"}
             },
             {

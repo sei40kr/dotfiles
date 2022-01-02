@@ -22,7 +22,8 @@ wk.register(
             name = "+code",
             d = {"gd", "Jump to definition", noremap = false},
             D = {"gD", "Jump to references", noremap = false},
-            k = {"K", "Jump to documentation", noremap = false}
+            k = {"K", "Jump to documentation", noremap = false},
+            r = "TS Rename"
         },
         f = {
             name = "+file",

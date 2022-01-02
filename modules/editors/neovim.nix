@@ -68,6 +68,8 @@ let
     nvim_lspconfig = pkgs.my.vimPlugins.nvim-lspconfig.rtp;
     nvim_tree_lua = pkgs.vimPlugins.nvim-tree-lua.rtp;
     nvim_treesitter_refactor = pkgs.vimPlugins.nvim-treesitter-refactor.rtp;
+    nvim_treesitter_textobjects =
+      pkgs.vimPlugins.nvim-treesitter-textobjects.rtp;
     nvim_ts_autotag = pkgs.my.vimPlugins.nvim-ts-autotag.rtp;
     nvim_ts_context_commentstring =
       pkgs.vimPlugins.nvim-ts-context-commentstring.rtp;
