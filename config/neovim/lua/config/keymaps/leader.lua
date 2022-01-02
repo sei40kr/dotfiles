@@ -54,11 +54,13 @@ wk.register(
             },
             h = {
                 name = "+help",
-                h = {'<Cmd>lua require("telescope.builtin").highlights()<CR>', "highlight"},
-                k = {'<Cmd>lua require("telescope.builtin").keymaps()<CR>', "keymap"},
-                m = {'<Cmd>lua require("telescope.builtin").man_pages()<CR>', "manpage"},
-                o = {'<Cmd>lua require("telescope.builtin").vim_options()<CR>', "vim option"},
-                t = {'<Cmd>lua require("telescope.builtin").help_tags()<CR>', "help tag"}
+                a = {'<Cmd>lua require("telescope.builtin").autocommands()<CR>', "autocommands"},
+                f = {'<Cmd>lua require("telescope.builtin").filetypes()<CR>', "filetypes"},
+                h = {'<Cmd>lua require("telescope.builtin").help_tags()<CR>', "help tags"},
+                H = {'<Cmd>lua require("telescope.builtin").highlights()<CR>', "highlights"},
+                k = {'<Cmd>lua require("telescope.builtin").keymaps()<CR>', "keymaps"},
+                m = {'<Cmd>lua require("telescope.builtin").man_pages()<CR>', "man pages"},
+                o = {'<Cmd>lua require("telescope.builtin").vim_options()<CR>', "vim options"}
             },
             i = {
                 name = "+insert",
