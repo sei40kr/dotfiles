@@ -57,8 +57,8 @@ function M.config()
         wk.register(
             {
                 name = "+code",
-                a = {'<Cmd>lua require("telescope.builtin").lsp_range_code_actions()<CR>', "LSP Execute code action"},
-                f = {"<Cmd>lua vim.lsp.buf.range_formatting()<CR>", "Format region"}
+                a = {':lua require("telescope.builtin").lsp_range_code_actions()<CR>', "LSP Execute code action"},
+                f = {":lua vim.lsp.buf.range_formatting()<CR>", "Format region"}
             },
             {
                 mode = "x",

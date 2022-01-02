@@ -112,7 +112,6 @@ in {
       "nvim/init.lua".source = "${configDir}/neovim/init.lua";
       "nvim/lua/plugins.lua".source = "${plugins_lua}/lua/plugins.lua";
       "nvim/lua/config".source = "${configDir}/neovim/lua/config";
-      "nvim/doom_keymaps.vim".source = "${configDir}/neovim/doom_keymaps.vim";
     };
 
     system.userActivationScripts.neovim = ''

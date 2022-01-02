@@ -31,17 +31,6 @@ if vim.call("has", "termguicolors") == 1 then
     vim.opt.termguicolors = true
 end
 
--- Import Doom keymaps
-vim.cmd("source " .. vim.fn.stdpath("config") .. "/doom_keymaps.vim")
-
--- Disable Ex mode
-vim.api.nvim_set_keymap("n", "Q", "<Nop>", {noremap = true})
-
-vim.api.nvim_set_keymap("i", "<C-u>", "<C-g>u<C-u>", {noremap = true})
-vim.api.nvim_set_keymap("i", "<C-w>", "<C-g>u<C-w>", {noremap = true})
-
-vim.api.nvim_set_keymap("t", "jk", "<C-\\><C-n>", {noremap = true})
-
 vim.cmd [[
 augroup init
 autocmd!
