@@ -37,7 +37,8 @@ packer.startup(
             use {
                 "@plenary_nvim@",
                 as = "plenary.nvim",
-                opt = true
+                opt = true,
+                module = "plenary"
             }
 
             use {
@@ -127,8 +128,8 @@ packer.startup(
 
             use {
                 "@lualine_nvim@",
-                after = "colorscheme",
-                requires = "colorscheme",
+                after = "tokyonight.nvim",
+                requires = "tokyonight.nvim",
                 config = require("config.plugins.lualine_nvim").config
             }
 
