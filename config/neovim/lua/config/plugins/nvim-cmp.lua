@@ -16,7 +16,9 @@ function M.config()
                     end
                 end,
                 ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item()),
-                ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item())
+                ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item()),
+                ["<Tab>"] = cmp.config.disable,
+                ["<S-Tab>"] = cmp.config.disable
             },
             snippet = {
                 expand = function(args)
@@ -46,48 +48,30 @@ function M.config()
         }
     )
 
-    _G.vimrc.cmp = {
-        buffer = function()
-            cmp.complete(
-                {
-                    config = {
-                        sources = {{name = "buffer"}}
-                    }
-                }
-            )
-        end,
-        omni = function()
-            cmp.complete(
-                {
-                    config = {
-                        sources = {{name = "omni"}}
-                    }
-                }
-            )
-        end,
-        path = function()
-            cmp.complete(
-                {
-                    config = {
-                        sources = {{name = "path"}}
-                    }
-                }
-            )
-        end,
-        spell = function()
-            cmp.complete(
-                {
-                    config = {
-                        sources = {{name = "spell"}}
-                    }
-                }
-            )
-        end
-    }
-    vim.api.nvim_set_keymap("i", "<C-x><C-f>", "<Cmd>lua vimrc.cmp.path()<CR>", {noremap = true})
-    vim.api.nvim_set_keymap("i", "<C-x><C-k>", "<Cmd>lua vimrc.cmp.buffer()<CR>", {noremap = true})
-    vim.api.nvim_set_keymap("i", "<C-x><C-o>", "<Cmd>lua vimrc.cmp.omni()<CR>", {noremap = true})
-    vim.api.nvim_set_keymap("i", "<C-x>s", "<Cmd>lua vimrc.cmp.spell()<CR>", {noremap = true})
+    vim.api.nvim_set_keymap(
+        "i",
+        "<C-x><C-f>",
+        '<Cmd>lua require("config.api.completion").complete_path()<CR>',
+        {noremap = true}
+    )
+    vim.api.nvim_set_keymap(
+        "i",
+        "<C-x><C-k>",
+        '<Cmd>lua require("config.api.completion").complete_buffer()<CR>',
+        {noremap = true}
+    )
+    vim.api.nvim_set_keymap(
+        "i",
+        "<C-x><C-o>",
+        '<Cmd>lua require("config.api.completion").complete_omni()<CR>',
+        {noremap = true}
+    )
+    vim.api.nvim_set_keymap(
+        "i",
+        "<C-x>s",
+        '<Cmd>lua require("config.api.completion").complete_spell()<CR>',
+        {noremap = true}
+    )
 end
 
 return M

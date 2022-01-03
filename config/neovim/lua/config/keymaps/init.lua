@@ -23,6 +23,14 @@ vim.api.nvim_set_keymap("i", "jk", "<Esc>", {noremap = true})
 vim.api.nvim_set_keymap("i", "<C-u>", "<C-g>u<C-u>", {noremap = true})
 vim.api.nvim_set_keymap("i", "<C-w>", "<C-g>u<C-w>", {noremap = true})
 
+vim.api.nvim_set_keymap("i", "<Tab>", '<Cmd>lua require("config.api.completion").tab_complete()<CR>', {noremap = true})
+vim.api.nvim_set_keymap(
+    "i",
+    "<S-Tab>",
+    '<Cmd>lua require("config.api.completion").s_tab_complete()<CR>',
+    {noremap = true}
+)
+
 vim.api.nvim_set_keymap("t", "jk", "<C-\\><C-n>", {noremap = true})
 
 wk.register({
