@@ -12,6 +12,7 @@ vim.opt.encoding = "utf-8"
 vim.opt.expandtab = true
 vim.opt.fillchars = {diff = "╱"}
 vim.opt.formatoptions:append {"j"}
+vim.opt.hidden = true
 vim.opt.history = 1000
 vim.opt.ignorecase = true
 vim.opt.laststatus = 2
