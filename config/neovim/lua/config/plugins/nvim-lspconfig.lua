@@ -46,8 +46,8 @@ function M.config()
                     },
                     r = {"<Cmd>lua vim.lsp.buf.rename()<CR>", "LSP Rename"},
                     t = {'<Cmd>lua require("telescope.builtin").lsp_type_definitions()<CR>', "Find type definition"},
-                    x = {"<Cmd>Trouble lsp_document_diagnostics<CR>", "List errors"},
-                    X = {"<Cmd>Trouble lsp_workspace_diagnostics<CR>", "Errors list"}
+                    x = {"<Cmd>Trouble lsp_document_diagnostics<CR>", "List errors in current buffer"},
+                    X = {"<Cmd>Trouble lsp_workspace_diagnostics<CR>", "List errors in current workspace"}
                 },
                 ["[e"] = {"<Cmd>lua vim.diagnostic.goto_prev()<CR>", "Jump to previous error"},
                 ["]e"] = {"<Cmd>lua vim.diagnostic.goto_next()<CR>", "Jump to next error"}
