@@ -28,6 +28,8 @@ with lib.my; {
     };
   };
 
+  modules.shell.ghq.enable = true;
+
   modules.term.kitty.enable = true;
 
   modules.term.font = {
