@@ -20,11 +20,11 @@ function M.setup(client, bufnr)
                 },
             },
             x = {
-                "<Cmd>Trouble lsp_document_diagnostics<CR>",
+                "<Cmd>Trouble document_diagnostics<CR>",
                 "List errors in current buffer",
             },
             X = {
-                "<Cmd>Trouble lsp_workspace_diagnostics<CR>",
+                "<Cmd>Trouble workspace_diagnostics<CR>",
                 "List errors in current workspace",
             },
         },
