@@ -28,5 +28,15 @@ with lib.my; {
     };
   };
 
+  modules.term.kitty.enable = true;
+
+  modules.term.font = {
+    package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
+    name = "Iosevka Nerd Font";
+    size = 20;
+  };
+
+  modules.term.theme.active = "doom-one";
+
   user.name = "RLSUU178967";
 }
