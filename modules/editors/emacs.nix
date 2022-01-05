@@ -7,16 +7,16 @@ let
   cfg = editorsCfg.emacs;
 
   emacs = if cfg.doom.enable then
-    ((pkgs.emacsPackagesGen pkgs.my.emacs).emacsWithPackages (epkgs:
+    pkgs.emacs.pkgs.withPackages (epkgs:
       with epkgs; [
         melpaPackages.emacsql
         melpaPackages.emacsql-sqlite
         melpaPackages.libgit
         melpaPackages.vterm
         melpaPackages.zmq
-      ]))
+      ])
   else
-    pkgs.my.emacs;
+    pkgs.emacs;
 
   vterm_printf = pkgs.writeTextFile {
     name = "vterm_printf";
