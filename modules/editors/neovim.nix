@@ -60,10 +60,10 @@ let
     lua_dev_nvim = pkgs.my.vimPlugins.lua-dev-nvim.rtp;
     lualine_nvim = pkgs.vimPlugins.lualine-nvim.rtp;
     luasnip = pkgs.vimPlugins.luasnip.rtp;
-    neoformat = pkgs.vimPlugins.neoformat.rtp;
     neogit = pkgs.vimPlugins.neogit.rtp;
     neorg = pkgs.vimPlugins.neorg.rtp;
     nvim_autopairs = pkgs.vimPlugins.nvim-autopairs.rtp;
+    null_ls_nvim = pkgs.vimPlugins.null-ls-nvim.rtp;
     nvim_cmp = pkgs.vimPlugins.nvim-cmp.rtp;
     nvim_lspconfig = pkgs.vimPlugins.nvim-lspconfig.rtp;
     nvim_tree_lua = pkgs.vimPlugins.nvim-tree-lua.rtp;

@@ -104,12 +104,6 @@ packer.startup(
             }
 
             use {
-                "@neoformat@",
-                config = require("config.plugins.neoformat").config,
-                cmd = "Neoformat"
-            }
-
-            use {
                 "@nvim_autopairs@",
                 config = require("config.plugins.nvim-autopairs").config,
                 event = "InsertEnter *"
@@ -195,6 +189,12 @@ packer.startup(
                 config = require("config.plugins.neogit").config,
                 cmd = "Neogit"
             }
+
+            use({
+                "@null_ls_nvim@",
+                requires = { "plenary.nvim" },
+                config = require("config.plugins.null-ls-nvim").config,
+            })
 
             use {
                 "@nvim_lspconfig@",
