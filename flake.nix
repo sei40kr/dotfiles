@@ -10,9 +10,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    emacs-overlay.url =
-      "github:nix-community/emacs-overlay?rev=67fe74d6e73e3c8a983b09a76d809acc730ad911";
-
     idea-doom-emacs = {
       url = "github:sei40kr/idea-doom-emacs";
       flake = false;
@@ -23,7 +20,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, darwin, home-manager, emacs-overlay, ... }@inputs:
+  outputs = { self, nixpkgs, darwin, home-manager, ... }@inputs:
     let
       inherit (lib)
         attrValues elem filterAttrs genAttrs mkDefault nixosSystem optionalAttrs
@@ -43,8 +40,7 @@
         import nixpkgs {
           inherit system;
           config.allowUnfree = true;
-          overlays = [ emacs-overlay.overlay self.overlay ]
-            ++ (attrValues self.overlays);
+          overlays = [ self.overlay ] ++ (attrValues self.overlays);
         });
 
       mkNixosHost = { system, ... }@attrs:

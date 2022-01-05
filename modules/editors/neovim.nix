@@ -65,7 +65,7 @@ let
     neorg = pkgs.vimPlugins.neorg.rtp;
     nvim_autopairs = pkgs.vimPlugins.nvim-autopairs.rtp;
     nvim_cmp = pkgs.vimPlugins.nvim-cmp.rtp;
-    nvim_lspconfig = pkgs.my.vimPlugins.nvim-lspconfig.rtp;
+    nvim_lspconfig = pkgs.vimPlugins.nvim-lspconfig.rtp;
     nvim_tree_lua = pkgs.vimPlugins.nvim-tree-lua.rtp;
     nvim_treesitter_refactor = pkgs.vimPlugins.nvim-treesitter-refactor.rtp;
     nvim_treesitter_textobjects =

@@ -27,18 +27,6 @@ in {
     meta.homepage = "https://github.com/folke/lua-dev.nvim/";
   };
 
-  nvim-lspconfig = vimUtils.buildVimPluginFrom2Nix {
-    pname = "nvim-lspconfig";
-    version = "2021-12-31";
-    src = fetchFromGitHub {
-      owner = "neovim";
-      repo = "nvim-lspconfig";
-      rev = "4b21740aae18ecec2d527b79d1072b3b01bb5a2a";
-      sha256 = "1qzzll8m9ry685vx31sp88ix5gkaky4a18awdyz25cdxm83dmv83";
-    };
-    meta.homepage = "https://github.com/neovim/nvim-lspconfig/";
-  };
-
   nvim-ts-autotag = vimUtils.buildVimPluginFrom2Nix {
     pname = "nvim-ts-autotag";
     version = "2021-12-19";
