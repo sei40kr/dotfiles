@@ -4,7 +4,8 @@ with lib;
 with lib.my;
 let
   inherit (config.dotfiles) configDir;
-  cfg = config.modules.editors.neovim;
+  editorsCfg = config.modules.editors;
+  cfg = editorsCfg.neovim;
 
   nvim_treesitter = (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
     p.tree-sitter-bash
@@ -38,6 +39,13 @@ let
     p.tree-sitter-yaml
   ])).rtp;
 
+  ginit_lua = pkgs.substituteAll {
+    src = ../../config/neovim/lua/ginit.lua;
+    dir = "lua";
+
+    fontFamily = editorsCfg.fonts.code.family;
+    fontSize = editorsCfg.fonts.code.size;
+  };
   plugins_lua = pkgs.substituteAll {
     src = ../../config/neovim/lua/plugins.lua;
     dir = "lua";
@@ -100,7 +108,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ neovim ];
+    user.packages = with pkgs; [ neovim neovim-qt ];
 
     home.dataFile = {
       "nvim/site/pack/packer/start/impatient.nvim".source =
@@ -112,6 +120,10 @@ in {
     };
     home.configFile = {
       "nvim/init.lua".source = "${configDir}/neovim/init.lua";
+      "nvim/ginit.vim".text = ''
+        lua require("ginit")
+      '';
+      "nvim/lua/ginit.lua".source = "${ginit_lua}/lua/ginit.lua";
       "nvim/lua/plugins.lua".source = "${plugins_lua}/lua/plugins.lua";
       "nvim/lua/config".source = "${configDir}/neovim/lua/config";
     };
