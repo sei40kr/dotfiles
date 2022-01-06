@@ -46,6 +46,15 @@ command! PackerClean lua require('plugins').clean()
 command! PackerCompile lua require('plugins').compile()
 ]]
 
-_G.vimrc = {}
-require("packer_compiled")
+local function prequire(...)
+    local status, lib = pcall(require, ...)
+    if status then
+        return lib
+    end
+    return nil
+end
+if not prequire("packer_compiled") then
+    vim.cmd([[PackerSync]])
+end
+
 require("config.keymaps")
