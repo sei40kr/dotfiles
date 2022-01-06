@@ -144,7 +144,13 @@ packer.startup(
 
             use {
                 "@telescope_nvim@",
-                requires = {"nvim-web-devicons", "plenary.nvim", "@telescope_project_nvim@", "@telescope_symbols_nvim@"},
+                requires = {
+                    "nvim-web-devicons",
+                    "plenary.nvim",
+                    "@telescope_file_browser_nvim@",
+                    "@telescope_project_nvim@",
+                    "@telescope_symbols_nvim@",
+                },
                 config = require("config.plugins.telescope_nvim").config,
                 cmd = "Telescope",
                 module = "telescope"

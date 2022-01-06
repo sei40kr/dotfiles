@@ -27,7 +27,10 @@ wk.register(
         },
         f = {
             name = "+file",
-            f = {'<Cmd>lua require("telescope.builtin").file_browser()<CR>', "Find file"},
+            f = {
+                '<Cmd>lua require("telescope").extensions.file_browser.file_browser()<CR>',
+                "Find file"
+            },
             F = {'<Cmd>lua require("telescope.builtin").find_files()<CR>', "Find file from here"},
             r = {'<Cmd>lua require("telescope.builtin").oldfiles()<CR>', "Recent files"},
             s = {"<Cmd>w<CR>", "Save file"}

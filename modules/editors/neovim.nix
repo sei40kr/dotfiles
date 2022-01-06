@@ -90,6 +90,8 @@ let
     plenary_nvim = pkgs.vimPlugins.plenary-nvim.rtp;
     surround_nvim = pkgs.vimPlugins.surround-nvim.rtp;
     telescope_nvim = pkgs.vimPlugins.telescope-nvim.rtp;
+    telescope_file_browser_nvim =
+      pkgs.vimPlugins.telescope-file-browser-nvim.rtp;
     telescope_project_nvim = pkgs.vimPlugins.telescope-project-nvim.rtp;
     telescope_symbols_nvim = pkgs.vimPlugins.telescope-symbols-nvim.rtp;
     todo_comments_nvim = pkgs.vimPlugins.todo-comments-nvim.rtp;
