@@ -63,9 +63,9 @@ let
     diffview_nvim = pkgs.vimPlugins.diffview-nvim.rtp;
     gitsigns_nvim = pkgs.vimPlugins.gitsigns-nvim.rtp;
     hop_nvim = pkgs.vimPlugins.hop-nvim.rtp;
-    impatient_nvim = pkgs.my.vimPlugins.impatient-nvim;
+    impatient_nvim = pkgs.vimPlugins.impatient-nvim;
     lspkind_nvim = pkgs.vimPlugins.lspkind-nvim.rtp;
-    lua_dev_nvim = pkgs.my.vimPlugins.lua-dev-nvim.rtp;
+    lua_dev_nvim = pkgs.vimPlugins.lua-dev-nvim.rtp;
     lualine_nvim = pkgs.vimPlugins.lualine-nvim.rtp;
     luasnip = pkgs.vimPlugins.luasnip.rtp;
     neogit = pkgs.vimPlugins.neogit.rtp;
@@ -78,7 +78,7 @@ let
     nvim_treesitter_refactor = pkgs.vimPlugins.nvim-treesitter-refactor.rtp;
     nvim_treesitter_textobjects =
       pkgs.vimPlugins.nvim-treesitter-textobjects.rtp;
-    nvim_ts_autotag = pkgs.my.vimPlugins.nvim-ts-autotag.rtp;
+    nvim_ts_autotag = pkgs.vimPlugins.nvim-ts-autotag.rtp;
     nvim_ts_context_commentstring =
       pkgs.vimPlugins.nvim-ts-context-commentstring.rtp;
     nvim_ts_rainbow = pkgs.vimPlugins.nvim-ts-rainbow.rtp;
@@ -88,7 +88,7 @@ let
     open_browser_github_vim = pkgs.vimPlugins.open-browser-github-vim.rtp;
     packer_nvim = pkgs.vimPlugins.packer-nvim.rtp;
     plenary_nvim = pkgs.vimPlugins.plenary-nvim.rtp;
-    surround_nvim = pkgs.my.vimPlugins.surround-nvim.rtp;
+    surround_nvim = pkgs.vimPlugins.surround-nvim.rtp;
     telescope_nvim = pkgs.vimPlugins.telescope-nvim.rtp;
     telescope_project_nvim = pkgs.vimPlugins.telescope-project-nvim.rtp;
     telescope_symbols_nvim = pkgs.vimPlugins.telescope-symbols-nvim.rtp;
@@ -112,7 +112,7 @@ in {
 
     home.dataFile = {
       "nvim/site/pack/packer/start/impatient.nvim".source =
-        pkgs.my.vimPlugins.impatient-nvim;
+        pkgs.vimPlugins.impatient-nvim;
       "nvim/site/pack/packer/opt/packer.nvim".source =
         pkgs.vimPlugins.packer-nvim.rtp;
       "nvim/site/pack/packer/start/which-key.nvim".source =
