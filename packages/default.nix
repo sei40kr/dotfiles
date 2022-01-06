@@ -16,8 +16,6 @@ rec {
 
   dataspell = pkgs.callPackage ./dataspell { inherit (pkgs.jetbrains) jdk; };
 
-  emacs = pkgs.callPackage ./emacs.nix { };
-
   kotlin-language-server = pkgs.callPackage ./kotlin-language-server.nix { };
 
   online-judge-tools =
