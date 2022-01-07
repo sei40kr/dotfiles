@@ -20,7 +20,11 @@ wk.register(
             },
             p = {"<Cmd>BufferLineCyclePrev<CR>", "Previous buffer"},
             s = {"<Cmd>w<CR>", "Save buffer"},
-            S = {"<Cmd>wa<CR>", "Save all buffers"}
+            S = {"<Cmd>wa<CR>", "Save all buffers"},
+            z = {
+                "<Cmd>lua vim.api.nvim_buf_delete(0, { unload = true })<CR>",
+                "Unload buffer",
+            },
         },
         c = {
             name = "+code",
