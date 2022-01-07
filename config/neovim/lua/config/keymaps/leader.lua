@@ -100,7 +100,7 @@ wk.register(
             name = "+window",
             ["+"] = {"<C-w>+", "Increase height"},
             ["-"] = {"<C-w>-", "Decrease height"},
-            ["<"] = {"<C-w><", "Decrease width"},
+            ["<"] = {"<C-w>\\<", "Decrease width"},
             ["="] = {"<C-w>=", "Equally high and wide"},
             [">"] = {"<C-w>>", "Increase width"},
             h = {"<C-w>h", "Go to the left window"},
