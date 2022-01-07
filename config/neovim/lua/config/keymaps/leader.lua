@@ -14,6 +14,10 @@ wk.register(
             k = {"<Cmd>bd<CR>", "Kill buffer"},
             -- TODO Exclude special buffers
             n = {"<Cmd>BufferLineCycleNext<CR>", "Next buffer"},
+            O = {
+                '<Cmd>lua require("config.api.buffers").delete_other_buffers()<CR>',
+                "Kill other buffers",
+            },
             p = {"<Cmd>BufferLineCyclePrev<CR>", "Previous buffer"},
             s = {"<Cmd>w<CR>", "Save buffer"},
             S = {"<Cmd>wa<CR>", "Save all buffers"}
