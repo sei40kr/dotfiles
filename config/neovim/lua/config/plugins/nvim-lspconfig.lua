@@ -80,11 +80,11 @@ function M.config()
     for severity, sign in pairs({
         Error = "",
         Hint = "",
-        Information = "",
-        Warning = "",
+        Info = "",
+        Warn = "",
     }) do
-        local name = "LspDiagnosticsSign" .. severity
-        vim.fn.sign_define(name, { text = sign, texthl = hl, numhl = "" })
+        local name = "DiagnosticSign" .. severity
+        vim.fn.sign_define(name, { text = sign, texthl = name, numhl = "" })
     end
 
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
