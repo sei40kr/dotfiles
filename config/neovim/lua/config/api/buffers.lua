@@ -34,4 +34,8 @@ function M.delete_unloaded_buffers()
     )
 end
 
+function M.new_empty_buffer()
+    vim.api.nvim_set_current_buf(vim.api.nvim_create_buf(true, false))
+end
+
 return M
