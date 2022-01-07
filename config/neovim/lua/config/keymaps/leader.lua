@@ -25,6 +25,10 @@ wk.register(
                 "<Cmd>lua vim.api.nvim_buf_delete(0, { unload = true })<CR>",
                 "Unload buffer",
             },
+            Z = {
+                '<Cmd>lua require("config.api.buffers").delete_unloaded_buffers()<CR>',
+                "Kill unloaded buffers",
+            },
         },
         c = {
             name = "+code",
