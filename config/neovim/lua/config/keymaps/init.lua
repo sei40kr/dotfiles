@@ -20,8 +20,6 @@ vim.api.nvim_set_keymap("n", "<Esc>", "<Cmd>nohls<CR>", {})
 vim.api.nvim_set_keymap("n", "Q", "<Nop>", {noremap = true})
 
 vim.api.nvim_set_keymap("i", "jk", "<Esc>", {noremap = true})
-vim.api.nvim_set_keymap("i", "<C-u>", "<C-g>u<C-u>", {noremap = true})
-vim.api.nvim_set_keymap("i", "<C-w>", "<C-g>u<C-w>", {noremap = true})
 
 vim.api.nvim_set_keymap("i", "<Tab>", '<Cmd>lua require("config.api.completion").tab_complete()<CR>', {noremap = true})
 vim.api.nvim_set_keymap(
@@ -50,3 +48,4 @@ wk.register({
 
 require("config.keymaps.gs")
 require("config.keymaps.leader")
+require("config.keymaps.vimacs")
