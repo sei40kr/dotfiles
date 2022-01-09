@@ -88,6 +88,7 @@ let
     open_browser_github_vim = pkgs.vimPlugins.open-browser-github-vim.rtp;
     packer_nvim = pkgs.vimPlugins.packer-nvim.rtp;
     plenary_nvim = pkgs.vimPlugins.plenary-nvim.rtp;
+    project_nvim = pkgs.vimPlugins.project-nvim.rtp;
     surround_nvim = pkgs.vimPlugins.surround-nvim.rtp;
     telescope_nvim = pkgs.vimPlugins.telescope-nvim.rtp;
     telescope_file_browser_nvim =

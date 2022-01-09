@@ -49,6 +49,13 @@ packer.startup(
                 module = "plenary"
             }
 
+            use({
+                "@project_nvim@",
+                opt = true,
+                config = require("config.plugins.project_nvim").config,
+                module = "project_nvim",
+            })
+
             use {
                 "@which_key_nvim@",
                 as = "which-key.nvim"
