@@ -16,7 +16,11 @@ function M.tab_complete()
     elseif cmp.visible() then
         cmp.select_next_item()
     elseif check_backspace() then
-        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, true, true), "n", true)
+        vim.api.nvim_feedkeys(
+            vim.api.nvim_replace_termcodes("<Tab>", true, true, true),
+            "n",
+            true
+        )
     end
 
     cmp.complete()
@@ -32,47 +36,27 @@ function M.s_tab_complete()
         cmp.select_prev_item()
     end
 
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<S-Tab>", true, true, true), "n", true)
+    vim.api.nvim_feedkeys(
+        vim.api.nvim_replace_termcodes("<S-Tab>", true, true, true),
+        "n",
+        true
+    )
 end
 
 function M.complete_buffer()
-    require("cmp").complete(
-        {
-            config = {
-                sources = {{name = "buffer"}}
-            }
-        }
-    )
+    require("cmp").complete({ config = { sources = { { name = "buffer" } } } })
 end
 
 function M.complete_omni()
-    require("cmp").complete(
-        {
-            config = {
-                sources = {{name = "omni"}}
-            }
-        }
-    )
+    require("cmp").complete({ config = { sources = { { name = "omni" } } } })
 end
 
 function M.complete_path()
-    require("cmp").complete(
-        {
-            config = {
-                sources = {{name = "path"}}
-            }
-        }
-    )
+    require("cmp").complete({ config = { sources = { { name = "path" } } } })
 end
 
 function M.complete_spell()
-    require("cmp").complete(
-        {
-            config = {
-                sources = {{name = "spell"}}
-            }
-        }
-    )
+    require("cmp").complete({ config = { sources = { { name = "spell" } } } })
 end
 
 return M

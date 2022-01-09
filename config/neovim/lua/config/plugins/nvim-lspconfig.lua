@@ -2,9 +2,6 @@ local M = {}
 
 function M.config()
     local nvim_lsp = require("lspconfig")
-    local cmp_nvim_lsp = require("cmp_nvim_lsp")
-    local luadev = require("lua-dev").setup({})
-    local wk = require("which-key")
 
     local on_attach = function(client, bufnr)
         if client.resolved_capabilities.completion then
@@ -17,7 +14,7 @@ function M.config()
 
         require("config.keymaps.lsp").setup(client, bufnr)
     end
-    local capabilities = cmp_nvim_lsp.update_capabilities(
+    local capabilities = require("cmp_nvim_lsp").update_capabilities(
         vim.lsp.protocol.make_client_capabilities()
     )
 
@@ -47,7 +44,7 @@ function M.config()
         rust_analyzer = {},
         sorbet = {},
         sourcekit = {},
-        sumneko_lua = luadev,
+        sumneko_lua = require("lua-dev").setup({}),
         -- tailwindcss = {},
         terraformls = {},
         tsserver = {

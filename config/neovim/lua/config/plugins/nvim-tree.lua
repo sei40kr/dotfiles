@@ -9,7 +9,7 @@ function M.config()
         git = 0,
         folders = 1,
         files = 1,
-        folder_arrows = 1
+        folder_arrows = 1,
     }
     vim.g.nvim_tree_icons = {
         default = " ",
@@ -20,24 +20,22 @@ function M.config()
             empty = " ",
             empty_open = " ",
             symlink = " ",
-            symlink_open = " "
-        }
+            symlink_open = " ",
+        },
     }
 
-    nvim_tree.setup(
-        {
-            update_cwd = true,
-            view = {
-                width = 35,
-                mappings = {
-                    custom_only = false,
-                    -- TODO Add custom keymaps
-                    list = {}
-                },
-                signcolumn = "no"
-            }
-        }
-    )
+    nvim_tree.setup({
+        update_cwd = true,
+        view = {
+            width = 35,
+            mappings = {
+                custom_only = false,
+                -- TODO Add custom keymaps
+                list = {},
+            },
+            signcolumn = "no",
+        },
+    })
 end
 
 return M

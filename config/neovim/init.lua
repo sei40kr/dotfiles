@@ -3,16 +3,16 @@ require("impatient")
 vim.opt.autochdir = true
 vim.opt.autoindent = true
 vim.opt.autoread = true
-vim.opt.backspace = {"indent", "eol", "start"}
-vim.opt.clipboard = {"unnamedplus"}
+vim.opt.backspace = { "indent", "eol", "start" }
+vim.opt.clipboard = { "unnamedplus" }
 vim.opt.colorcolumn = "80"
-vim.opt.completeopt = {"menu", "menuone", "noselect"}
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.confirm = true
-vim.opt.display:append {"lastline"}
+vim.opt.display:append({ "lastline" })
 vim.opt.encoding = "utf-8"
 vim.opt.expandtab = true
-vim.opt.fillchars = {diff = "╱"}
-vim.opt.formatoptions:append {"j"}
+vim.opt.fillchars = { diff = "╱" }
+vim.opt.formatoptions:append({ "j" })
 vim.opt.hidden = true
 vim.opt.history = 1000
 vim.opt.ignorecase = true
@@ -33,18 +33,18 @@ if vim.call("has", "termguicolors") == 1 then
     vim.opt.termguicolors = true
 end
 
-vim.cmd [[
+vim.cmd([[
 augroup init
 autocmd!
 autocmd FileType help nnoremap <buffer> q <Cmd>bdelete<CR>
 augroup END
-]]
+]])
 
-vim.cmd [[
+vim.cmd([[
 command! PackerSync lua require('plugins').sync()
 command! PackerClean lua require('plugins').clean()
 command! PackerCompile lua require('plugins').compile()
-]]
+]])
 
 local function prequire(...)
     local status, lib = pcall(require, ...)

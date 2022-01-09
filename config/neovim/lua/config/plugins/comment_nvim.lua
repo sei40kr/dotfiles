@@ -1,19 +1,19 @@
 local M = {}
 
 function M.config()
-    require("Comment").setup {
+    require("Comment").setup({
         toggler = {
             line = "gcc",
-            block = "<Nop>"
+            block = "<Nop>",
         },
         opleader = {
             line = "gc",
-            block = "<Nop>"
+            block = "<Nop>",
         },
         mappings = {
-            extra = false
-        }
-    }
+            extra = false,
+        },
+    })
 end
 
 return M

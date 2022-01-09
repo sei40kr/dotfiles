@@ -1,11 +1,11 @@
 local M = {}
 
 function M.config()
-    require("lualine").setup {
+    require("lualine").setup({
         options = {
             section_separators = "",
             component_separators = "",
-            disabled_filetypes = {"NvimTree"}
+            disabled_filetypes = { "NvimTree" },
         },
         sections = {
             lualine_b = {
@@ -16,12 +16,12 @@ function M.config()
                         error = " ",
                         warn = " ",
                         info = " ",
-                        hint = " "
-                    }
-                }
-            }
-        }
-    }
+                        hint = " ",
+                    },
+                },
+            },
+        },
+    })
 end
 
 return M
