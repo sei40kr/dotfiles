@@ -84,6 +84,7 @@ let
     nvim_ts_rainbow = pkgs.vimPlugins.nvim-ts-rainbow.rtp;
     nvim_web_devicons = pkgs.vimPlugins.nvim-web-devicons.rtp;
     onedark_nvim = pkgs.vimPlugins.onedark-nvim.rtp;
+    octo_nvim = pkgs.my.vimPlugins.octo-nvim.rtp;
     open_browser_vim = pkgs.vimPlugins.open-browser-vim.rtp;
     open_browser_github_vim = pkgs.vimPlugins.open-browser-github-vim.rtp;
     packer_nvim = pkgs.vimPlugins.packer-nvim.rtp;
@@ -111,7 +112,13 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ neovim neovim-qt ];
+    user.packages = with pkgs; [
+      neovim
+      neovim-qt
+
+      # octo.nvim
+      gh
+    ];
 
     home.dataFile = {
       "nvim/site/pack/packer/start/impatient.nvim".source =

@@ -151,6 +151,7 @@ packer.startup(
 
             use {
                 "@telescope_nvim@",
+                as = "telescope.nvim",
                 requires = {
                     "nvim-web-devicons",
                     "plenary.nvim",
@@ -227,6 +228,13 @@ packer.startup(
                 },
                 config = require("config.plugins.nvim-treesitter").config
             }
+
+            use({
+                "@octo_nvim@",
+                requires = {"nvim-web-devicons", "plenary.nvim", "telescope.nvim"},
+                config = require("config.plugins.octo_nvim").config,
+                cmd = "Octo",
+            })
 
             use {
                 "@open_browser_github_vim@",

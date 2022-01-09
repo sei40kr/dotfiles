@@ -56,7 +56,23 @@ wk.register(
             ["["] = {"<Cmd>Gitsigns prev_hunk<CR>", "Jump to previous hunk"},
             ["]"] = {"<Cmd>Gitsigns next_hunk<CR>", "Jump to next hunk"},
             b = {'<Cmd>lua require("telescope.builtin").git_branches()<CR>', "Switch branch"},
+            c = {
+                name = "+create",
+                i = { "<Cmd>Octo issue create<CR>", "Issue" },
+                p = { "<Cmd>Octo pr create<CR>", "Pull request" },
+            },
+            f = {
+                name = "+find",
+                i = { "<Cmd>Octo issue search<CR>", "Find issue" },
+                p = { "<Cmd>Octo pr search<CR>", "Find pull request" },
+            },
             g = {"<Cmd>Neogit<CR>", "Neogit status"},
+            l = {
+                name = "+list",
+                i = { "<Cmd>Octo issue list<CR>", "List issues" },
+                p = { "<Cmd>Octo pr list<CR>", "List pull requests" },
+                g = { "<Cmd>Octo gist list<CR>", "List gists" },
+            },
             o = {
                 name = "+open in browser",
                 o = {"<Cmd>OpenGithubFile<CR>", "Browse file"},
