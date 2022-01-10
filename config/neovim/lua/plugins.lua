@@ -56,6 +56,19 @@ packer.startup({
         })
 
         use({
+            "@vim_repeat@",
+            as = "vim-repeat",
+            opt = true,
+            config = require("config.plugins.vim-repeat").setup,
+            keys = {
+                "<Plug>(RepeatDot)",
+                "<Plug>(RepeatUndo)",
+                "<Plug>(RepeatUndoLine)",
+                "<Plug>(RepeatRedo)",
+            },
+        })
+
+        use({
             "@which_key_nvim@",
             as = "which-key.nvim",
         })
@@ -116,8 +129,21 @@ packer.startup({
         })
 
         use({
-            "@surround_nvim@",
-            config = require("config.plugins.surround_nvim").config,
+            "@vim_surround@",
+            requires = "vim-repeat",
+            setup = require("config.plugins.vim-surround").setup,
+            keys = {
+                "<Plug>Dsurround",
+                "<Plug>Csurround",
+                "<Plug>CSurround",
+                "<Plug>Ysurround",
+                "<Plug>YSurround",
+                "<Plug>Yssurround",
+                "<Plug>YSsurround",
+                "<Plug>YSsurround",
+                { "x", "<Plug>VSurround" },
+                { "x", "<Plug>VgSurround" },
+            },
         })
 
         --
