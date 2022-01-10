@@ -104,12 +104,6 @@ packer.startup({
         })
 
         use({
-            "@comment_nvim@",
-            config = require("config.plugins.comment_nvim").config,
-            event = "InsertEnter *",
-        })
-
-        use({
             "@hop_nvim@",
             config = function()
                 require("hop").setup()
@@ -126,6 +120,19 @@ packer.startup({
             "@nvim_autopairs@",
             config = require("config.plugins.nvim-autopairs").config,
             event = "InsertEnter *",
+        })
+
+        use({
+            "@vim_commentary@",
+            requires = "vim-repeat",
+            setup = require("config.plugins.vim-commentary").setup,
+            keys = {
+                "<Plug>Commentary",
+                { "x", "<Plug>Commentary" },
+                { "o", "<Plug>Commentary" },
+                "<Plug>CommentaryLine",
+                "<Plug>ChangeCommentary",
+            },
         })
 
         use({

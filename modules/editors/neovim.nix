@@ -99,6 +99,7 @@ let
     toggleterm_nvim = pkgs.vimPlugins.toggleterm-nvim.rtp;
     tokyonight_nvim = pkgs.vimPlugins.tokyonight-nvim.rtp;
     trouble_nvim = pkgs.vimPlugins.trouble-nvim.rtp;
+    vim_commentary = pkgs.vimPlugins.vim-commentary.rtp;
     vim_repeat = pkgs.vimPlugins.vim-repeat.rtp;
     vim_surround = pkgs.vimPlugins.vim-surround.rtp;
     which_key_nvim = pkgs.vimPlugins.which-key-nvim.rtp;
