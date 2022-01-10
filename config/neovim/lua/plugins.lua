@@ -136,6 +136,28 @@ packer.startup({
         })
 
         use({
+            "@vim_visual_multi@",
+            setup = require("config.plugins.vim-visual-multi").setup,
+            keys = {
+                "<Plug>(VM-Find-Under)",
+                "<Plug>(VM-Add-Cursor-Down)",
+                "<Plug>(VM-Add-Cursor-Up)",
+                "<Plug>(VM-Select-l)",
+                "<Plug>(VM-Select-h)",
+                "<Plug>(VM-Select-All)",
+                "<Plug>(VM-Start-Regex-Search)",
+                "<Plug>(VM-Add-Cursor-At-Pos)",
+                { "x", "<Plug>(VM-Find-Subword-Under)" },
+                { "x", "<Plug>(VM-Visual-Add)" },
+                { "x", "<Plug>(VM-Visual-Find)" },
+                { "x", "<Plug>(VM-Visual-Cursors)" },
+                "<Plug>(VM-Mouse-Cursor)",
+                "<Plug>(VM-Mouse-Word)",
+                "<Plug>(VM-Mouse-Column)",
+            },
+        })
+
+        use({
             "@vim_surround@",
             requires = "vim-repeat",
             setup = require("config.plugins.vim-surround").setup,
