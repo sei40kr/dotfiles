@@ -157,13 +157,13 @@ in {
         zinit light ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions
 
         zinit ice wait'0' lucid
-        zinit light hlissner/zsh-autopair
+        zinit light ${pkgs.zsh-autopair}/share/zsh/zsh-autopair
 
         zinit ice wait'0' atinit'zpcompinit; zpcdreplay' lucid
         zinit light ${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions
 
         zinit ice wait'0' lucid
-        zinit light zdharma/history-search-multi-word
+        zinit light ${pkgs.zsh-history-search-multi-word}/share/zsh/zsh-history-search-multi-word
 
         zinit light ${pkgs.my.zsh-smart-history}/share/zsh/plugins/zsh-smart-history
 
