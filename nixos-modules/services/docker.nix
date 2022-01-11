@@ -20,7 +20,8 @@ in {
 
     modules.shell.aliases = {
       dk = "docker";
-      dko = mkIf cfg.compose.enable "docker-compose";
-    };
+    } //
+      # FIXME mkIf didn't work for some reason
+      (optionalAttrs cfg.compose.enable { dko = "docker-compose"; });
   };
 }
