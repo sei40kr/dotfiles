@@ -39,8 +39,8 @@ vim.api.nvim_set_keymap("t", "jk", "<C-\\><C-n>", { noremap = true })
 wk.register({
     ["["] = {
         ["<Space>"] = {
-            '<Cmd>pu! =repeat("\n", v:count1)<CR>',
-            "Insert space above",
+            '<Cmd>lua require("config.api.insert").insert_newline_above()<CR>',
+            "Insert newline above",
         },
         b = { "<Cmd>BufferLineCyclePrev<CR>", "Previous buffer" },
         c = "Previous comment",
@@ -48,8 +48,8 @@ wk.register({
     },
     ["]"] = {
         ["<Space>"] = {
-            '<Cmd>pu =repeat("\n", v:count1)<CR>',
-            "Insert space below",
+            '<Cmd>lua require("config.api.insert").insert_newline_below()<CR>',
+            "Insert newline below",
         },
         b = { "<Cmd>BufferLineCycleNext<CR>", "Next buffer" },
         c = "Next comment",
