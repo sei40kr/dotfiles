@@ -7,7 +7,7 @@ wk.register({
     },
     [":"] = { '<Cmd>lua require("telescope.builtin").commands()<CR>', ":" },
     ["<Space>"] = {
-        '<Cmd>lua require("telescope.builtin").git_files()<CR>',
+        '<Cmd>lua require("config.api.project").find_file_in_project()<CR>',
         "Find file in project",
     },
     b = {
