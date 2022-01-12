@@ -34,6 +34,11 @@ packer.startup({
         })
 
         use({
+            "@mini_nvim@",
+            config = require("config.plugins.mini").config,
+        })
+
+        use({
             "@nvim_web_devicons@",
             as = "nvim-web-devicons",
             opt = true,
@@ -53,19 +58,6 @@ packer.startup({
             opt = true,
             config = require("config.plugins.project_nvim").config,
             module = "project_nvim",
-        })
-
-        use({
-            "@vim_repeat@",
-            as = "vim-repeat",
-            opt = true,
-            config = require("config.plugins.vim-repeat").setup,
-            keys = {
-                "<Plug>(RepeatDot)",
-                "<Plug>(RepeatUndo)",
-                "<Plug>(RepeatUndoLine)",
-                "<Plug>(RepeatRedo)",
-            },
         })
 
         use({
@@ -99,11 +91,6 @@ packer.startup({
         --- Editor
 
         use({
-            "@clever_f_vim@",
-            setup = require("config.plugins.clever-f_vim").setup,
-        })
-
-        use({
             "@hop_nvim@",
             config = function()
                 require("hop").setup()
@@ -120,19 +107,6 @@ packer.startup({
             "@nvim_autopairs@",
             config = require("config.plugins.nvim-autopairs").config,
             event = "InsertEnter *",
-        })
-
-        use({
-            "@vim_commentary@",
-            requires = "vim-repeat",
-            setup = require("config.plugins.vim-commentary").setup,
-            keys = {
-                "<Plug>Commentary",
-                { "x", "<Plug>Commentary" },
-                { "o", "<Plug>Commentary" },
-                "<Plug>CommentaryLine",
-                "<Plug>ChangeCommentary",
-            },
         })
 
         use({
@@ -154,24 +128,6 @@ packer.startup({
                 "<Plug>(VM-Mouse-Cursor)",
                 "<Plug>(VM-Mouse-Word)",
                 "<Plug>(VM-Mouse-Column)",
-            },
-        })
-
-        use({
-            "@vim_surround@",
-            requires = "vim-repeat",
-            setup = require("config.plugins.vim-surround").setup,
-            keys = {
-                "<Plug>Dsurround",
-                "<Plug>Csurround",
-                "<Plug>CSurround",
-                "<Plug>Ysurround",
-                "<Plug>YSurround",
-                "<Plug>Yssurround",
-                "<Plug>YSsurround",
-                "<Plug>YSsurround",
-                { "x", "<Plug>VSurround" },
-                { "x", "<Plug>VgSurround" },
             },
         })
 

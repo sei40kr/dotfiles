@@ -52,7 +52,6 @@ let
 
     inherit nvim_treesitter;
     bufferline_nvim = pkgs.vimPlugins.bufferline-nvim.rtp;
-    clever_f_vim = pkgs.vimPlugins.clever-f-vim.rtp;
     cmp_cmdline = pkgs.vimPlugins.cmp-cmdline.rtp;
     cmp_luasnip = pkgs.vimPlugins.cmp_luasnip.rtp;
     cmp_nvim_lsp = pkgs.vimPlugins.cmp-nvim-lsp.rtp;
@@ -68,6 +67,7 @@ let
     lua_dev_nvim = pkgs.vimPlugins.lua-dev-nvim.rtp;
     lualine_nvim = pkgs.vimPlugins.lualine-nvim.rtp;
     luasnip = pkgs.vimPlugins.luasnip.rtp;
+    mini_nvim = pkgs.my.vimPlugins.mini-nvim.rtp;
     neogit = pkgs.vimPlugins.neogit.rtp;
     neorg = pkgs.vimPlugins.neorg.rtp;
     nvim_autopairs = pkgs.vimPlugins.nvim-autopairs.rtp;
@@ -99,10 +99,7 @@ let
     toggleterm_nvim = pkgs.vimPlugins.toggleterm-nvim.rtp;
     tokyonight_nvim = pkgs.vimPlugins.tokyonight-nvim.rtp;
     trouble_nvim = pkgs.vimPlugins.trouble-nvim.rtp;
-    vim_commentary = pkgs.vimPlugins.vim-commentary.rtp;
     vim_visual_multi = pkgs.vimPlugins.vim-visual-multi.rtp;
-    vim_repeat = pkgs.vimPlugins.vim-repeat.rtp;
-    vim_surround = pkgs.vimPlugins.vim-surround.rtp;
     which_key_nvim = pkgs.vimPlugins.which-key-nvim.rtp;
   };
 in {

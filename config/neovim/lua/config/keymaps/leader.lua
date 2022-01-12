@@ -17,9 +17,8 @@ wk.register({
             '<Cmd>lua require("telescope.builtin").buffers()<CR>',
             "Switch buffer",
         },
-        -- TODO Confirm before killing an unsaved buffer
-        d = { "<Cmd>bd<CR>", "Kill buffer" },
-        k = { "<Cmd>bd<CR>", "Kill buffer" },
+        d = { '<Cmd>lua require("mini.bufremove").delete()<CR>', "Kill buffer" },
+        k = { '<Cmd>lua require("mini.bufremove").delete()<CR>', "Kill buffer" },
         -- TODO Exclude special buffers
         n = { "<Cmd>BufferLineCycleNext<CR>", "Next buffer" },
         N = {

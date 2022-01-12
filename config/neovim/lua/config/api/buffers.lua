@@ -5,7 +5,7 @@ function M.delete_other_buffers()
 
     for _, buf in ipairs(bufs) do
         if buf ~= vim.api.nvim_get_current_buf() then
-            vim.api.nvim_buf_delete(buf, {})
+            require("mini.bufremove").delete(buf)
         end
     end
 
@@ -22,7 +22,7 @@ function M.delete_unloaded_buffers()
 
     for _, buf in ipairs(bufs) do
         if not vim.api.nvim_buf_is_loaded(buf) then
-            vim.api.nvim_buf_delete(buf, {})
+            require("mini.bufremove").delete(buf)
             count = count + 1
         end
     end
