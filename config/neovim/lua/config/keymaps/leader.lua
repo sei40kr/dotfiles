@@ -52,11 +52,11 @@ wk.register({
     f = {
         name = "+file",
         f = {
-            '<Cmd>lua require("telescope").extensions.file_browser.file_browser()<CR>',
+            '<Cmd>lua require("config.api.file").find_file()<CR>',
             "Find file",
         },
         F = {
-            '<Cmd>lua require("telescope.builtin").find_files()<CR>',
+            '<Cmd>lua require("config.api.file").find_file_from_here()<CR>',
             "Find file from here",
         },
         r = {
@@ -169,7 +169,7 @@ wk.register({
             "Jump list",
         },
         p = {
-            '<Cmd>lua require("config.api.project").search_project()<CR>',
+            '<Cmd>lua require("telescope.builtin").live_grep()<CR>',
             "Search project",
         },
         r = {

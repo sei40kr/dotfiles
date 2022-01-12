@@ -5,6 +5,7 @@ function M.config()
 
     vim.g.nvim_tree_git_hl = 0
     vim.g.nvim_tree_special_files = {}
+    vim.g.nvim_tree_respect_buf_cwd = 1
     vim.g.nvim_tree_show_icons = {
         git = 0,
         folders = 1,
@@ -26,6 +27,10 @@ function M.config()
 
     nvim_tree.setup({
         update_cwd = true,
+        update_focused_file = {
+            enable = true,
+            update_cwd = true,
+        },
         view = {
             width = 35,
             mappings = {

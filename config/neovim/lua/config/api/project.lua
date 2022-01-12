@@ -10,15 +10,8 @@ function M.find_file_in_project()
 
     local success, _ = pcall(telescope_builtin.git_files)
     if not success then
-        telescope_builtin.find_files({
-            cwd = get_project_root(),
-            hidden = true,
-        })
+        telescope_builtin.find_files({ hidden = true })
     end
-end
-
-function M.search_project()
-    require("telescope.builtin").live_grep({ cwd = get_project_root() })
 end
 
 return M
