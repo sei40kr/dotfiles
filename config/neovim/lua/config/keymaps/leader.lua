@@ -169,7 +169,7 @@ wk.register({
             "Jump list",
         },
         p = {
-            '<Cmd>lua require("telescope.builtin").live_grep()<CR>',
+            '<Cmd>lua require("config.api.project").search_project()<CR>',
             "Search project",
         },
         r = {

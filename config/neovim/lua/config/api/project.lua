@@ -17,4 +17,8 @@ function M.find_file_in_project()
     end
 end
 
+function M.search_project()
+    require("telescope.builtin").live_grep({ cwd = get_project_root() })
+end
+
 return M
