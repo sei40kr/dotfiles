@@ -29,6 +29,8 @@ let
     # Colors
     border_active = "#${colors.border.active}";
     border_inactive = "#${colors.border.inactive}";
+    selection_bg = "#${colors.selection.bg}";
+    selection_fg = "#${colors.selection.fg}";
     tab_active_bg = "#${colors.tab.active.bg}";
     tab_active_fg = "#${colors.tab.active.fg}";
     tab_bg = "#${colors.tab.bg}";
