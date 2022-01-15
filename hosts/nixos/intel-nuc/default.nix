@@ -76,6 +76,7 @@ with lib; {
       haskell.enable = true;
       java.enable = true;
       jupyter.enable = true;
+      lua.enable = true;
       kotlin.enable = true;
       latex.enable = true;
       r.enable = true;
