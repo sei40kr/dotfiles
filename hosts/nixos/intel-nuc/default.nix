@@ -160,4 +160,6 @@ with lib; {
   };
 
   user.name = "sei40kr";
+
+  modules.term.theme.active = "doom-one";
 }

@@ -352,8 +352,5 @@ in {
       rofi.enable = true;
       waybar.enable = true;
     };
-
-    # TODO move this
-    modules.term.theme.active = "doom-one";
   };
 }
