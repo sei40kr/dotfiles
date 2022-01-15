@@ -6,15 +6,30 @@ let
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.emacs;
 
+  default_el = pkgs.writeTextFile {
+    name = "default.el";
+    text = ''
+      ${optionalString cfg.doom.enable ''
+        (setq doom-font (font-spec
+                :family ${toEmacsLisp editorsCfg.fonts.code.family}
+                :size ${toEmacsLisp editorsCfg.fonts.code.size}.0)
+              doom-variable-pitch-font (font-spec
+                :family ${toEmacsLisp editorsCfg.fonts.ui.family}
+                :size ${toEmacsLisp editorsCfg.fonts.ui.size}.0))
+      ''}
+    '';
+    destination = "/share/emacs/site-lisp/default.el";
+  };
+
   emacs = if cfg.doom.enable then
-    pkgs.emacs.pkgs.withPackages (epkgs:
-      with epkgs; [
-        melpaPackages.emacsql
-        melpaPackages.emacsql-sqlite
-        melpaPackages.libgit
-        melpaPackages.vterm
-        melpaPackages.zmq
-      ])
+    pkgs.emacs.pkgs.withPackages (epkgs: [
+      epkgs.melpaPackages.emacsql
+      epkgs.melpaPackages.emacsql-sqlite
+      epkgs.melpaPackages.libgit
+      epkgs.melpaPackages.vterm
+      epkgs.melpaPackages.zmq
+      default_el
+    ])
   else
     pkgs.emacs;
 
@@ -83,15 +98,6 @@ in {
       DOOMDIR = "\${HOME}/.config/doom";
       PATH = [ "\${EMACSDIR}/bin" ];
     };
-
-    home.configFile."doom/nix-doom-fonts.el".text = mkIf cfg.doom.enable ''
-      (setq doom-font (font-spec
-              :family ${toEmacsLisp editorsCfg.fonts.code.family}
-              :size ${toEmacsLisp editorsCfg.fonts.code.size}.0)
-            doom-variable-pitch-font (font-spec
-              :family ${toEmacsLisp editorsCfg.fonts.ui.family}
-              :size ${toEmacsLisp editorsCfg.fonts.ui.size}.0))
-    '';
 
     modules.editors.fonts.enable = true;
 
