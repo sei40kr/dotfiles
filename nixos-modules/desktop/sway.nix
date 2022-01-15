@@ -302,7 +302,6 @@ in {
         assign [class="Google-chrome"]                workspace $ws_web
         assign [app_id="firefox"]                     workspace $ws_web
         assign [class="Firefox"]                      workspace $ws_web
-        assign [app_id="org.qutebrowser.qutebrowser"] workspace $ws_web
         assign [app_id="org.qbittorrent.qBittorrent"] workspace $ws_web
         assign [app_id="Alacritty"]                   workspace $ws_dev
         assign [app_id="emacs"]                       workspace $ws_dev

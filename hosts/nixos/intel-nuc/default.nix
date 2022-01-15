@@ -44,11 +44,9 @@ with lib; {
       browsers = {
         chrome.enable = true;
         firefox.enable = true;
-        qutebrowser.enable = true;
       };
 
       media = {
-        daw.enable = true;
         documents = {
           enable = true;
           pdf.enable = true;
