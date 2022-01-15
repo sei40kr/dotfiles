@@ -67,7 +67,7 @@ let
     lua_dev_nvim = pkgs.vimPlugins.lua-dev-nvim.rtp;
     lualine_nvim = pkgs.vimPlugins.lualine-nvim.rtp;
     luasnip = pkgs.vimPlugins.luasnip.rtp;
-    mini_nvim = pkgs.my.vimPlugins.mini-nvim.rtp;
+    mini_nvim = pkgs.vimPlugins.mini-nvim.rtp;
     neogit = pkgs.vimPlugins.neogit.rtp;
     neorg = pkgs.vimPlugins.neorg.rtp;
     nvim_autopairs = pkgs.vimPlugins.nvim-autopairs.rtp;

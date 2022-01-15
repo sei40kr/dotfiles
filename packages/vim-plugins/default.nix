@@ -2,18 +2,6 @@
 
 with lib;
 {
-  mini-nvim = vimUtils.buildVimPluginFrom2Nix {
-    pname = "mini.nvim";
-    version = "2022-01-06";
-    src = fetchFromGitHub {
-      owner = "echasnovski";
-      repo = "mini.nvim";
-      rev = "a1aa674e94c81feb1fc210527324bfb1e4a08b6f";
-      sha256 = "1blpk5p1lpd87ramnp5nqv188p8wdxsg8d1w811pmxqwas2ji7f5";
-    };
-    meta.homepage = "https://github.com/echasnovski/mini.nvim";
-  };
-
   octo-nvim = vimUtils.buildVimPluginFrom2Nix {
     pname = "octo.nvim";
     version = "2022-01-04";
