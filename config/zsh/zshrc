@@ -60,11 +60,12 @@ zinit light '@zsh_history_search_multi_word@/share/zsh/zsh-history-search-multi-
 
 zinit light '@zsh_smart_history@/share/zsh/plugins/zsh-smart-history'
 
-zinit ice load'[[ -n $TMUX ]]' unload'[[ -z $TMUX ]]'
-zinit light '@zsh_tmux_man@/share/zsh/plugins/zsh-tmux-man'
-# Remove alias run-help=man
-if [[ ${+aliases[run-help]} == 1 ]]; then
-  unalias run-help
+if [[ -n "$TMUX" ]]; then
+  zinit light '@zsh_tmux_man@/share/zsh/plugins/zsh-tmux-man'
+  # Remove alias run-help=man
+  if [[ ${+aliases[run-help]} == 1 ]]; then
+    unalias run-help
+  fi
 fi
 
 zinit ice id-as'OMZP::bgnotify'
