@@ -2,23 +2,8 @@
 
 with lib;
 with lib.my;
-let
-  themeCfg = config.modules.desktop.theme;
-  cfg = themeCfg.orchis;
+let themeCfg = config.modules.desktop.theme;
 in {
-  options.modules.desktop.theme.orchis = with types; {
-    accentColor = mkOpt (enum [
-      "default"
-      "purple"
-      "pink"
-      "red"
-      "orange"
-      "yellow"
-      "green"
-      "grey"
-    ]) "default";
-  };
-
   config = mkIf (themeCfg.active == "orchis") {
     modules.desktop = {
       fontconfig.fonts.sansSerif = {
@@ -37,7 +22,7 @@ in {
           name = "Tela";
         };
         theme = {
-          package = pkgs.orchis-theme.override { inherit (cfg) accentColor; };
+          package = pkgs.orchis-theme;
           name = "Orchis";
         };
       };
