@@ -13,7 +13,6 @@ in {
       nodePackages.create-react-app
       nodePackages.eslint
       nodePackages.eslint_d
-      nodePackages.javascript-typescript-langserver
       nodePackages.prettier
       nodePackages.typescript
       nodePackages.typescript-language-server
