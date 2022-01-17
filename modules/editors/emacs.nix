@@ -15,7 +15,8 @@ let
                 :size ${toEmacsLisp editorsCfg.fonts.code.size}.0)
               doom-variable-pitch-font (font-spec
                 :family ${toEmacsLisp editorsCfg.fonts.ui.family}
-                :size ${toEmacsLisp editorsCfg.fonts.ui.size}.0))
+                :size ${toEmacsLisp editorsCfg.fonts.ui.size}.0)
+              doom-theme '${cfg.doom.theme})
       ''}
     '';
     destination = "/share/emacs/site-lisp/default.el";
@@ -54,7 +55,11 @@ in {
   options.modules.editors.emacs = with types; {
     enable = mkBoolOpt false;
 
-    doom.enable = mkBoolOpt false;
+    doom = {
+      enable = mkBoolOpt false;
+
+      theme = mkOpt str "doom-one";
+    };
   };
 
   config = mkIf cfg.enable {

@@ -54,6 +54,8 @@ with lib.my; {
       base15 = "c0caf5";
     };
 
+    modules.editors.emacs.doom.theme = "doom-tokyo-night";
+
     modules.shell.bat.theme = "TwoDark";
   };
 }
