@@ -34,7 +34,7 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      nwg-drawer
+      my.nwg-drawer
 
       suspend
       reboot
