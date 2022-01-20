@@ -1,0 +1,16 @@
+diff --git a/tools.go b/tools.go
+index a817198..555bc47 100644
+--- a/tools.go
++++ b/tools.go
+@@ -214,10 +214,7 @@ func copyFile(src, dst string) error {
+ }
+ 
+ func getDataHome() string {
+-	if os.Getenv("XDG_DATA_HOME") != "" {
+-		return os.Getenv("XDG_DATA_HOME")
+-	}
+-	return "/usr/share/"
++	return "@out@/share/"
+ }
+ 
+ func getAppDirs() []string {

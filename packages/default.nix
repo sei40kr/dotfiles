@@ -18,6 +18,8 @@ rec {
 
   kotlin-language-server = pkgs.callPackage ./kotlin-language-server.nix { };
 
+  nwg-drawer = pkgs.callPackage ./nwg-drawer { };
+
   online-judge-tools =
     pkgs.python3Packages.toPythonApplication python3Packages.online-judge-tools;
 
