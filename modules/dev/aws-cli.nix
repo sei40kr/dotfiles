@@ -2,11 +2,9 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.dev.aws-cli;
-  package = pkgs.awscli;
+let cfg = config.modules.dev.aws-cli;
 in {
   options.modules.dev.aws-cli = { enable = mkBoolOpt false; };
 
-  config = mkIf cfg.enable { user.packages = [ package ]; };
+  config = mkIf cfg.enable { user.packages = with pkgs; [ awscli2 ]; };
 }
