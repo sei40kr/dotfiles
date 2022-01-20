@@ -83,7 +83,6 @@ let
       pkgs.vimPlugins.nvim-ts-context-commentstring.rtp;
     nvim_ts_rainbow = pkgs.vimPlugins.nvim-ts-rainbow.rtp;
     nvim_web_devicons = pkgs.vimPlugins.nvim-web-devicons.rtp;
-    onedark_nvim = pkgs.vimPlugins.onedark-nvim.rtp;
     octo_nvim = pkgs.my.vimPlugins.octo-nvim.rtp;
     open_browser_vim = pkgs.vimPlugins.open-browser-vim.rtp;
     open_browser_github_vim = pkgs.vimPlugins.open-browser-github-vim.rtp;
