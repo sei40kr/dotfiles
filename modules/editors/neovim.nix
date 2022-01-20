@@ -138,9 +138,11 @@ in {
       "nvim/lua/config".source = "${configDir}/neovim/lua/config";
     };
 
-    system.userActivationScripts.neovim = ''
-      rm -f ''${XDG_CACHE_HOME:-~/.cache}/nvim/luacache \
-            ''${XDG_CONFIG_HOME:-~/.config}/nvim/lua/packer_compiled.lua
+    system.activationScripts.neovimClean = let
+      xdg = config.home-manager.users.${config.user.name}.xdg;
+    in ''
+      rm -f ${xdg.cacheHome}/nvim/luacache \
+            ${xdg.configHome}/nvim/lua/packer_compiled.lua
     '';
 
     env = {
