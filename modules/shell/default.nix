@@ -8,9 +8,6 @@ with lib.my; {
   };
 
   config = {
-    modules.shell = {
-      env.WORKSPACE_DIR = "${config.user.home}/dev/ws";
-      aliases.u = "cd ..";
-    };
+    modules.shell.aliases.u = "cd ..";
   };
 }
