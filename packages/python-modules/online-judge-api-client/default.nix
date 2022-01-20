@@ -2,7 +2,7 @@
 , jsonschema, lib, lxml, markdown, python, requests, substituteAll, toml }:
 
 let
-  library-checker-generate-py-pythonEnv =
+  pythonEnv =
     python.withPackages (ps: with ps; [ colorlog jinja2 markdown toml ]);
 in buildPythonPackage rec {
   pname = "online-judge-api-client";
@@ -15,12 +15,11 @@ in buildPythonPackage rec {
     sha256 = "0lmryqi0bv82v9k9kf1rzzq9zr83smpmy8ivzw4fk31hvpczp4fn";
   };
 
-  patches = [
-    (substituteAll {
-      src = ./fix-library-checker-generate-py-python-env.patch;
-      pythonInterpreter = library-checker-generate-py-pythonEnv.interpreter;
-    })
-  ];
+  patches = [ ./fix-paths.patch ];
+  postPatch = ''
+    substituteInPlace onlinejudge/service/library_checker.py \
+      --replace @pythonInterpreter@ ${pythonEnv.interpreter}
+  '';
 
   propagatedBuildInputs =
     [ appdirs beautifulsoup4 colorlog jsonschema lxml requests toml ];
@@ -31,7 +30,7 @@ in buildPythonPackage rec {
   pythonImportsCheck = [ "onlinejudge" "onlinejudge_api" ];
 
   meta = with lib; {
-    description = "API client to develop tools for competitive programming";
+    description = "Tools for various online judges. Download sample cases, generat additional test cases, test your code, and submit it.";
     homepage = "https://github.com/online-judge-tools/api-client";
     license = licenses.mit;
     maintainers = with maintainers; [ sei40kr ];
