@@ -5,6 +5,7 @@ function M.config()
     vim.g.minicursorword_disable = true
     vim.g.minipairs_disable = true
     vim.g.minisessions_disable = true
+    vim.g.ministarter_disable = true
     vim.g.ministatusline_disable = true
     vim.g.minitabline_disable = true
     vim.g.minitrailspace_disable = true
@@ -14,8 +15,6 @@ function M.config()
     require("mini.comment").setup({})
 
     require("mini.jump").setup({})
-
-    require("mini.starter").setup({})
 
     require("mini.surround").setup({
         mappings = {
