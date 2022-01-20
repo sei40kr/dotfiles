@@ -5,7 +5,7 @@
 with lib;
 let
   name = "data-spell-${version}";
-  version = "2021.3";
+  version = "2021.3.1";
   vmoptsName = "dataspell"
     + (if (with stdenv.hostPlatform; (is32bit || isDarwin)) then "" else "64")
     + ".vmoptions";
@@ -33,7 +33,7 @@ in stdenv.mkDerivation {
 
   src = fetchurl {
     url = "https://download.jetbrains.com/python/dataspell-${version}.tar.gz";
-    sha256 = "1164rdzzpv4rlvfpgc1srr9qaj1lgmd3pznygxacs8namcd3s1rm";
+    sha256 = "sha256-IPC8mfeG6aQvV9fAwoB/CrA0f5tGiRQKgUh8Ew0/pyc=";
   };
 
   postPatch = lib.optionalString (!stdenv.isDarwin) ''
