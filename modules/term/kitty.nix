@@ -75,6 +75,7 @@ in {
       extraConfig = let inherit (termCfg.theme) colors;
       in ''
         ## Fonts
+        disable_ligatures always
 
         ## Cursor customization
         cursor            #${colors.cursor.bg}
