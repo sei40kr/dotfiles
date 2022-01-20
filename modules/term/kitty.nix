@@ -75,7 +75,6 @@ in {
       extraConfig = let inherit (termCfg.theme) colors;
       in ''
         ## Fonts
-        adjust_column_width -1
 
         ## Cursor customization
         cursor            #${colors.cursor.bg}
