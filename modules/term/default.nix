@@ -21,6 +21,6 @@ in {
   };
 
   config = {
-    user.packages = optionals (cfg.font.package != null) [ cfg.font.package ];
+    fonts.fonts = mkIf (cfg.font.package != null) [ cfg.font.package ];
   };
 }
