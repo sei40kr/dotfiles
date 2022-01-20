@@ -136,20 +136,20 @@ packer.startup({
 
         use({
             "@bufferline_nvim@",
-            config = require("config.plugins.bufferline_nvim").config,
+            config = require("config.plugins.bufferline").config,
         })
 
         use({
             "@gitsigns_nvim@",
             requires = "plenary.nvim",
-            config = require("config.plugins.gitsigns_nvim").config,
+            config = require("config.plugins.gitsigns").config,
         })
 
         use({
             "@lualine_nvim@",
             after = "tokyonight.nvim",
             requires = "tokyonight.nvim",
-            config = require("config.plugins.lualine_nvim").config,
+            config = require("config.plugins.lualine").config,
         })
 
         use({
@@ -211,7 +211,7 @@ packer.startup({
             "@diffview_nvim@",
             as = "diffview.nvim",
             requires = { "nvim-web-devicons", "plenary.nvim" },
-            config = require("config.plugins.diffview_nvim").config,
+            config = require("config.plugins.diffview").config,
             cmd = {
                 "DiffviewOpen",
                 "DiffviewToggleFiles",
@@ -230,7 +230,7 @@ packer.startup({
         use({
             "@null_ls_nvim@",
             requires = { "plenary.nvim" },
-            config = require("config.plugins.null-ls-nvim").config,
+            config = require("config.plugins.null-ls").config,
         })
 
         use({
@@ -259,7 +259,7 @@ packer.startup({
                 "plenary.nvim",
                 "telescope.nvim",
             },
-            config = require("config.plugins.octo_nvim").config,
+            config = require("config.plugins.octo").config,
             cmd = "Octo",
         })
 
