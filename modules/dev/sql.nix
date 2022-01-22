@@ -12,10 +12,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ mycli pgcli ];
-    home = {
-      file.".myclirc".source = "${configDir}/mycli/myclirc";
-      configFile."pgcli/config".source = "${configDir}/pgcli/config";
-    };
+    user.packages = with pkgs; [ litecli mycli pgcli ];
+
+    home.configFile."litecli/config".source = "${configDir}/litecli/config";
+
+    home.file.".myclirc".source = "${configDir}/mycli/myclirc";
+
+    home.configFile."pgcli/config".source = "${configDir}/pgcli/config";
   };
 }
