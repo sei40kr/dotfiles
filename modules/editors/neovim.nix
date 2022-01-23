@@ -7,7 +7,7 @@ let
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.neovim;
 
-  nvim_treesitter = (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
+  nvim-treesitter = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
     p.tree-sitter-bash
     p.tree-sitter-c
     p.tree-sitter-c-sharp
@@ -37,70 +37,62 @@ let
     p.tree-sitter-tsx
     p.tree-sitter-vim
     p.tree-sitter-yaml
-  ])).rtp;
-
-  ginit_lua = pkgs.substituteAll {
-    src = ../../config/neovim/lua/ginit.lua;
-    dir = "lua";
-
-    fontFamily = editorsCfg.fonts.code.family;
-    fontSize = editorsCfg.fonts.code.size;
-  };
-  plugins_lua = pkgs.substituteAll {
-    src = ../../config/neovim/lua/plugins.lua;
-    dir = "lua";
-
-    inherit nvim_treesitter;
-    bufferline_nvim = pkgs.vimPlugins.bufferline-nvim.rtp;
-    cmp_cmdline = pkgs.vimPlugins.cmp-cmdline.rtp;
-    cmp_luasnip = pkgs.vimPlugins.cmp_luasnip.rtp;
-    cmp_nvim_lsp = pkgs.vimPlugins.cmp-nvim-lsp.rtp;
-    cmp_omni = pkgs.vimPlugins.cmp-omni.rtp;
-    cmp_path = pkgs.vimPlugins.cmp-path.rtp;
-    cmp_spell = pkgs.vimPlugins.cmp-spell.rtp;
-    comment_nvim = pkgs.vimPlugins.comment-nvim.rtp;
-    diffview_nvim = pkgs.vimPlugins.diffview-nvim.rtp;
-    gitsigns_nvim = pkgs.vimPlugins.gitsigns-nvim.rtp;
-    hop_nvim = pkgs.vimPlugins.hop-nvim.rtp;
-    impatient_nvim = pkgs.vimPlugins.impatient-nvim;
-    lspkind_nvim = pkgs.vimPlugins.lspkind-nvim.rtp;
-    lua_dev_nvim = pkgs.vimPlugins.lua-dev-nvim.rtp;
-    lualine_nvim = pkgs.vimPlugins.lualine-nvim.rtp;
-    luasnip = pkgs.vimPlugins.luasnip.rtp;
-    mini_nvim = pkgs.vimPlugins.mini-nvim.rtp;
-    neogit = pkgs.vimPlugins.neogit.rtp;
-    neorg = pkgs.vimPlugins.neorg.rtp;
-    nvim_autopairs = pkgs.vimPlugins.nvim-autopairs.rtp;
-    null_ls_nvim = pkgs.vimPlugins.null-ls-nvim.rtp;
-    nvim_cmp = pkgs.vimPlugins.nvim-cmp.rtp;
-    nvim_lspconfig = pkgs.vimPlugins.nvim-lspconfig.rtp;
-    nvim_tree_lua = pkgs.vimPlugins.nvim-tree-lua.rtp;
-    nvim_treesitter_refactor = pkgs.vimPlugins.nvim-treesitter-refactor.rtp;
-    nvim_treesitter_textobjects =
-      pkgs.vimPlugins.nvim-treesitter-textobjects.rtp;
-    nvim_ts_autotag = pkgs.vimPlugins.nvim-ts-autotag.rtp;
-    nvim_ts_context_commentstring =
-      pkgs.vimPlugins.nvim-ts-context-commentstring.rtp;
-    nvim_ts_rainbow = pkgs.vimPlugins.nvim-ts-rainbow.rtp;
-    nvim_web_devicons = pkgs.vimPlugins.nvim-web-devicons.rtp;
-    octo_nvim = pkgs.my.vimPlugins.octo-nvim.rtp;
-    open_browser_vim = pkgs.vimPlugins.open-browser-vim.rtp;
-    open_browser_github_vim = pkgs.vimPlugins.open-browser-github-vim.rtp;
-    packer_nvim = pkgs.vimPlugins.packer-nvim.rtp;
-    plenary_nvim = pkgs.vimPlugins.plenary-nvim.rtp;
-    project_nvim = pkgs.vimPlugins.project-nvim.rtp;
-    telescope_nvim = pkgs.vimPlugins.telescope-nvim.rtp;
-    telescope_file_browser_nvim =
-      pkgs.vimPlugins.telescope-file-browser-nvim.rtp;
-    telescope_project_nvim = pkgs.vimPlugins.telescope-project-nvim.rtp;
-    telescope_symbols_nvim = pkgs.vimPlugins.telescope-symbols-nvim.rtp;
-    todo_comments_nvim = pkgs.vimPlugins.todo-comments-nvim.rtp;
-    toggleterm_nvim = pkgs.vimPlugins.toggleterm-nvim.rtp;
-    tokyonight_nvim = pkgs.vimPlugins.tokyonight-nvim.rtp;
-    trouble_nvim = pkgs.vimPlugins.trouble-nvim.rtp;
-    vim_visual_multi = pkgs.vimPlugins.vim-visual-multi.rtp;
-    which_key_nvim = pkgs.vimPlugins.which-key-nvim.rtp;
-  };
+  ]);
+  ginit_lua = pkgs.runCommandLocal "ginit.lua" {} ''
+    substitute ${../../config/neovim/lua/ginit.lua} $out \
+      --subst-var-by fontFamily ${escapeShellArg editorsCfg.fonts.code.family} \
+      --subst-var-by fontSize ${toString editorsCfg.fonts.code.size}
+  '';
+  plugins_lua = pkgs.runCommandLocal "plugins.lua" {} ''
+    substitute ${../../config/neovim/lua/plugins.lua} $out \
+      --subst-var-by bufferline_nvim               ${pkgs.vimPlugins.bufferline-nvim.rtp} \
+      --subst-var-by cmp_cmdline                   ${pkgs.vimPlugins.cmp-cmdline.rtp} \
+      --subst-var-by cmp_luasnip                   ${pkgs.vimPlugins.cmp_luasnip.rtp} \
+      --subst-var-by cmp_nvim_lsp                  ${pkgs.vimPlugins.cmp-nvim-lsp.rtp} \
+      --subst-var-by cmp_omni                      ${pkgs.vimPlugins.cmp-omni.rtp} \
+      --subst-var-by cmp_path                      ${pkgs.vimPlugins.cmp-path.rtp} \
+      --subst-var-by cmp_spell                     ${pkgs.vimPlugins.cmp-spell.rtp} \
+      --subst-var-by comment_nvim                  ${pkgs.vimPlugins.comment-nvim.rtp} \
+      --subst-var-by diffview_nvim                 ${pkgs.vimPlugins.diffview-nvim.rtp} \
+      --subst-var-by gitsigns_nvim                 ${pkgs.vimPlugins.gitsigns-nvim.rtp} \
+      --subst-var-by hop_nvim                      ${pkgs.vimPlugins.hop-nvim.rtp} \
+      --subst-var-by impatient_nvim                ${pkgs.vimPlugins.impatient-nvim} \
+      --subst-var-by lspkind_nvim                  ${pkgs.vimPlugins.lspkind-nvim.rtp} \
+      --subst-var-by lua_dev_nvim                  ${pkgs.vimPlugins.lua-dev-nvim.rtp} \
+      --subst-var-by lualine_nvim                  ${pkgs.vimPlugins.lualine-nvim.rtp} \
+      --subst-var-by luasnip                       ${pkgs.vimPlugins.luasnip.rtp} \
+      --subst-var-by mini_nvim                     ${pkgs.vimPlugins.mini-nvim.rtp} \
+      --subst-var-by neogit                        ${pkgs.vimPlugins.neogit.rtp} \
+      --subst-var-by neorg                         ${pkgs.vimPlugins.neorg.rtp} \
+      --subst-var-by nvim_autopairs                ${pkgs.vimPlugins.nvim-autopairs.rtp} \
+      --subst-var-by null_ls_nvim                  ${pkgs.vimPlugins.null-ls-nvim.rtp} \
+      --subst-var-by nvim_cmp                      ${pkgs.vimPlugins.nvim-cmp.rtp} \
+      --subst-var-by nvim_lspconfig                ${pkgs.vimPlugins.nvim-lspconfig.rtp} \
+      --subst-var-by nvim_tree_lua                 ${pkgs.vimPlugins.nvim-tree-lua.rtp} \
+      --subst-var-by nvim_treesitter               ${nvim-treesitter.rtp} \
+      --subst-var-by nvim_treesitter_refactor      ${pkgs.vimPlugins.nvim-treesitter-refactor.rtp} \
+      --subst-var-by nvim_treesitter_textobjects   ${pkgs.vimPlugins.nvim-treesitter-textobjects.rtp} \
+      --subst-var-by nvim_ts_autotag               ${pkgs.vimPlugins.nvim-ts-autotag.rtp} \
+      --subst-var-by nvim_ts_context_commentstring ${pkgs.vimPlugins.nvim-ts-context-commentstring.rtp} \
+      --subst-var-by nvim_ts_rainbow               ${pkgs.vimPlugins.nvim-ts-rainbow.rtp} \
+      --subst-var-by nvim_web_devicons             ${pkgs.vimPlugins.nvim-web-devicons.rtp} \
+      --subst-var-by octo_nvim                     ${pkgs.my.vimPlugins.octo-nvim.rtp} \
+      --subst-var-by open_browser_vim              ${pkgs.vimPlugins.open-browser-vim.rtp} \
+      --subst-var-by open_browser_github_vim       ${pkgs.vimPlugins.open-browser-github-vim.rtp} \
+      --subst-var-by packer_nvim                   ${pkgs.vimPlugins.packer-nvim.rtp} \
+      --subst-var-by plenary_nvim                  ${pkgs.vimPlugins.plenary-nvim.rtp} \
+      --subst-var-by project_nvim                  ${pkgs.vimPlugins.project-nvim.rtp} \
+      --subst-var-by telescope_nvim                ${pkgs.vimPlugins.telescope-nvim.rtp} \
+      --subst-var-by telescope_file_browser_nvim   ${pkgs.vimPlugins.telescope-file-browser-nvim.rtp} \
+      --subst-var-by telescope_project_nvim        ${pkgs.vimPlugins.telescope-project-nvim.rtp} \
+      --subst-var-by telescope_symbols_nvim        ${pkgs.vimPlugins.telescope-symbols-nvim.rtp} \
+      --subst-var-by todo_comments_nvim            ${pkgs.vimPlugins.todo-comments-nvim.rtp} \
+      --subst-var-by toggleterm_nvim               ${pkgs.vimPlugins.toggleterm-nvim.rtp} \
+      --subst-var-by tokyonight_nvim               ${pkgs.vimPlugins.tokyonight-nvim.rtp} \
+      --subst-var-by trouble_nvim                  ${pkgs.vimPlugins.trouble-nvim.rtp} \
+      --subst-var-by vim_visual_multi              ${pkgs.vimPlugins.vim-visual-multi.rtp} \
+      --subst-var-by which_key_nvim                ${pkgs.vimPlugins.which-key-nvim.rtp}
+  '';
 in {
   options.modules.editors.neovim = with types; {
     enable = mkBoolOpt false;
@@ -132,8 +124,8 @@ in {
       "nvim/ginit.vim".text = ''
         lua require("ginit")
       '';
-      "nvim/lua/ginit.lua".source = "${ginit_lua}/lua/ginit.lua";
-      "nvim/lua/plugins.lua".source = "${plugins_lua}/lua/plugins.lua";
+      "nvim/lua/ginit.lua".source = ginit_lua;
+      "nvim/lua/plugins.lua".source = plugins_lua;
       "nvim/lua/config".source = "${configDir}/neovim/lua/config";
     };
 

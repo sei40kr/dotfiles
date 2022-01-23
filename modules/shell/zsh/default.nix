@@ -8,24 +8,19 @@ let
   shellCfg = config.modules.shell;
   cfg = shellCfg.zsh;
 
-  zshrc = pkgs.substituteAll {
-    src = ../../../config/zsh/zshrc;
-
-    inherit (pkgs) zinit;
-
-    # Frameworks (& plugins)
-    oh_my_zsh = pkgs.oh-my-zsh;
-    zsh_prezto = pkgs.zsh-prezto;
-
-    # Plugins
-    inherit (pkgs) fzf;
-    zsh_autosuggestions = pkgs.zsh-autosuggestions;
-    zsh_autopair = pkgs.zsh-autopair;
-    zsh_fast_syntax_highlighting = pkgs.zsh-fast-syntax-highlighting;
-    zsh_smart_history = pkgs.my.zsh-smart-history;
-    zsh_tmux_man = pkgs.my.zsh-tmux-man;
-    zsh_history_search_multi_word = pkgs.zsh-history-search-multi-word;
-  };
+  zshrc = pkgs.runCommandLocal "zshrc" {} ''
+    substitute ${../../../config/zsh/zshrc} $out \
+      --subst-var-by zinit                         ${pkgs.zinit} \
+      --subst-var-by oh_my_zsh                     ${pkgs.oh-my-zsh} \
+      --subst-var-by zsh_prezto                    ${pkgs.zsh-prezto} \
+      --subst-var-by fzf                           ${pkgs.fzf} \
+      --subst-var-by zsh_autosuggestions           ${pkgs.zsh-autosuggestions} \
+      --subst-var-by zsh_autopair                  ${pkgs.zsh-autopair} \
+      --subst-var-by zsh_fast_syntax_highlighting  ${pkgs.zsh-fast-syntax-highlighting} \
+      --subst-var-by zsh_smart_history             ${pkgs.my.zsh-smart-history} \
+      --subst-var-by zsh_tmux_man                  ${pkgs.my.zsh-tmux-man} \
+      --subst-var-by zsh_history_search_multi_word ${pkgs.zsh-history-search-multi-word}
+  '';
 in {
   options.modules.shell.zsh = with types; {
     enable = mkBoolOpt false;

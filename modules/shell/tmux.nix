@@ -23,30 +23,26 @@ let
   };
 
   inherit (config.modules.term.theme) colors;
-  tmux_conf = pkgs.substituteAll {
-    src = ../../config/tmux/tmux.conf;
-
-    # Colors
-    border_active = "#${colors.border.active}";
-    border_inactive = "#${colors.border.inactive}";
-    selection_bg = "#${colors.selection.bg}";
-    selection_fg = "#${colors.selection.fg}";
-    tab_active_bg = "#${colors.tab.active.bg}";
-    tab_active_fg = "#${colors.tab.active.fg}";
-    tab_bg = "#${colors.tab.bg}";
-    tab_inactive_bg = "#${colors.tab.inactive.bg}";
-    tab_inactive_fg = "#${colors.tab.inactive.fg}";
-
-    # Plugins
-    copycat = pkgs.tmuxPlugins.copycat.rtp;
-    cowboy = pkgs.my.tmuxPlugins.cowboy.rtp;
-    ghq = pkgs.my.tmuxPlugins.ghq.rtp;
-    open = pkgs.tmuxPlugins.open.rtp;
-    pain_control = pkgs.tmuxPlugins.pain-control;
-    sessionist = pkgs.tmuxPlugins.sessionist.rtp;
-    urlview = pkgs.tmuxPlugins.urlview.rtp;
-    yank = pkgs.tmuxPlugins.yank.rtp;
-  };
+  tmux_conf = pkgs.runCommandLocal "tmux.conf" {} ''
+    substitute ${../../config/tmux/tmux.conf} $out \
+      --subst-var-by border_active   ${escapeShellArg "#${colors.border.active}"} \
+      --subst-var-by border_inactive ${escapeShellArg "#${colors.border.inactive}"} \
+      --subst-var-by selection_bg    ${escapeShellArg "#${colors.selection.bg}"} \
+      --subst-var-by selection_fg    ${escapeShellArg "#${colors.selection.fg}"} \
+      --subst-var-by tab_active_bg   ${escapeShellArg "#${colors.tab.active.bg}"} \
+      --subst-var-by tab_active_fg   ${escapeShellArg "#${colors.tab.active.fg}"} \
+      --subst-var-by tab_bg          ${escapeShellArg "#${colors.tab.bg}"} \
+      --subst-var-by tab_inactive_bg ${escapeShellArg "#${colors.tab.inactive.bg}"} \
+      --subst-var-by tab_inactive_fg ${escapeShellArg "#${colors.tab.inactive.fg}"} \
+      --subst-var-by copycat      ${pkgs.tmuxPlugins.copycat.rtp} \
+      --subst-var-by cowboy       ${pkgs.my.tmuxPlugins.cowboy.rtp} \
+      --subst-var-by ghq          ${pkgs.my.tmuxPlugins.ghq.rtp} \
+      --subst-var-by open         ${pkgs.tmuxPlugins.open.rtp} \
+      --subst-var-by pain_control ${pkgs.tmuxPlugins.pain-control} \
+      --subst-var-by sessionist   ${pkgs.tmuxPlugins.sessionist.rtp} \
+      --subst-var-by urlview      ${pkgs.tmuxPlugins.urlview.rtp} \
+      --subst-var-by yank         ${pkgs.tmuxPlugins.yank.rtp}
+  '';
 in {
   options.modules.shell.tmux = {
     enable = mkBoolOpt false;
