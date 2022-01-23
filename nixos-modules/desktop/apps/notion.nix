@@ -7,5 +7,5 @@ in {
   options.modules.desktop.apps.notion.enable = mkBoolOpt false;
 
   config =
-    mkIf cfg.enable { user.packages = with pkgs; [ my.notion-app-enhanced ]; };
+    mkIf cfg.enable { user.packages = with pkgs; [ notion-app-enhanced ]; };
 }

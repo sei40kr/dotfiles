@@ -37,8 +37,6 @@ rec {
 
   notion = pkgs.callPackage ./notion.nix { };
 
-  notion-app-enhanced = pkgs.callPackage ./notion-app-enhanced { };
-
   zsh-smart-history = pkgs.callPackage ./zsh-smart-history.nix { };
 
   zsh-tmux-man = pkgs.callPackage ./zsh-tmux-man.nix { };

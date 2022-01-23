@@ -76,7 +76,7 @@ let
       --subst-var-by nvim_ts_context_commentstring ${pkgs.vimPlugins.nvim-ts-context-commentstring.rtp} \
       --subst-var-by nvim_ts_rainbow               ${pkgs.vimPlugins.nvim-ts-rainbow.rtp} \
       --subst-var-by nvim_web_devicons             ${pkgs.vimPlugins.nvim-web-devicons.rtp} \
-      --subst-var-by octo_nvim                     ${pkgs.my.vimPlugins.octo-nvim.rtp} \
+      --subst-var-by octo_nvim                     ${pkgs.vimPlugins.octo-nvim.rtp} \
       --subst-var-by open_browser_vim              ${pkgs.vimPlugins.open-browser-vim.rtp} \
       --subst-var-by open_browser_github_vim       ${pkgs.vimPlugins.open-browser-github-vim.rtp} \
       --subst-var-by packer_nvim                   ${pkgs.vimPlugins.packer-nvim.rtp} \
