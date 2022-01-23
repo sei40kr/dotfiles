@@ -315,6 +315,7 @@ in {
         assign [app_id="org.inkscape.Inkscape"]       workspace $ws_media
         assign [app_id="ristretto"]                   workspace $ws_media
         assign [app_id="thunar"]                      workspace $ws_media
+        assign [class="discord"]                      workspace $ws_im
         assign [class="Element"]                      workspace $ws_im
         assign [class="Slack"]                        workspace $ws_im
 
