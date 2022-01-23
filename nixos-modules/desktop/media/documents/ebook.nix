@@ -21,7 +21,7 @@ in {
     modules.desktop.dconf = {
       enable = true;
       settings = {
-        "org/gnome/desktop/interface" = { restore-last-file = false; };
+        "com/github/johnfactotum/Foliate" = { restore-last-file = false; };
       };
     };
   };
