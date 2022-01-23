@@ -309,9 +309,7 @@ in {
         for_window [class="jetbrains-(.*)" title="win0"] floating enable
         assign [app_id="kitty"]                       workspace $ws_dev
         assign [app_id="org.zealdocs.Zeal"]           workspace $ws_dev
-        assign [app_id="calibre-ebook-viewer"]        workspace $ws_media
-        assign [app_id="calibre-edit-book"]           workspace $ws_media
-        assign [app_id="calibre-gui"]                 workspace $ws_media
+        assign [app_id="com.github.johnfactotum.Foliate"] workspace $ws_media
         assign [class="Gimp-2.10"]                    workspace $ws_media
         assign [class="krita"]                        workspace $ws_media
         assign [app_id="org.inkscape.Inkscape"]       workspace $ws_media
