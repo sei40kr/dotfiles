@@ -11,9 +11,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      (mkIf cfg.pdf.enable evince)
-      (mkIf cfg.ebook.enable foliate)
-    ];
+    user.packages = with pkgs; [ (mkIf cfg.pdf.enable evince) ];
   };
 }
