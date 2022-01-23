@@ -9,6 +9,10 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    secrets = {
+      url = "github:sei40kr/dotfiles-secrets";
+      flake = false;
+    };
 
     idea-doom-emacs = {
       url = "github:sei40kr/idea-doom-emacs";

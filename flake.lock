@@ -79,7 +79,24 @@
         "home-manager": "home-manager",
         "idea-doom-emacs": "idea-doom-emacs",
         "nixpkgs": "nixpkgs",
+        "secrets": "secrets",
         "waybar-scripts": "waybar-scripts"
+      }
+    },
+    "secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1642916443,
+        "narHash": "sha256-z3YwltgDItpLyqMb0AQhUoIrPNlo0Z5nodVWHRirrp0=",
+        "owner": "sei40kr",
+        "repo": "dotfiles-secrets",
+        "rev": "3f74ebe039a017d4be5668c1fd0368c5f6c4e63c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sei40kr",
+        "repo": "dotfiles-secrets",
+        "type": "github"
       }
     },
     "waybar-scripts": {
