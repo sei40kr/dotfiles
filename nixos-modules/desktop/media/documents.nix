@@ -13,7 +13,7 @@ in {
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
       (mkIf cfg.pdf.enable evince)
-      (mkIf cfg.ebook.enable calibre)
+      (mkIf cfg.ebook.enable foliate)
     ];
   };
 }
