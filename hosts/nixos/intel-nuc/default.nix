@@ -34,7 +34,7 @@ with lib; {
         gnome-weather.enable = true;
         notion.enable = true;
         pomodoro.enable = true;
-        qbittorrent.enable = true;
+        fragments.enable = true;
         seahorse.enable = true;
         slack.enable = true;
         thunar.enable = true;
