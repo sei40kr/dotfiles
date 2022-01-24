@@ -37,6 +37,8 @@ rec {
 
   notion = pkgs.callPackage ./notion.nix { };
 
+  todoist-electron = pkgs.callPackage ./todoist-electron { };
+
   zsh-smart-history = pkgs.callPackage ./zsh-smart-history.nix { };
 
   zsh-tmux-man = pkgs.callPackage ./zsh-tmux-man.nix { };
