@@ -19,18 +19,18 @@ in {
     enable = mkBoolOpt false;
     fonts = {
       sansSerif = mkOpt fontType {
-        packages = with pkgs; [ noto-fonts noto-fonts-cjk ];
+        packages = with pkgs; [ noto-fonts noto-fonts-cjk-sans ];
         names = [ "Noto Sans Mono" "Noto Sans Mono CJK JP" ];
       };
       serif = mkOpt fontType {
-        packages = with pkgs; [ noto-fonts noto-fonts-cjk ];
+        packages = with pkgs; [ noto-fonts noto-fonts-cjk-serif ];
         names = [ "Noto Serif" "Noto Serif CJK JP" ];
       };
       monospace = mkOpt fontType {
         packages = with pkgs; [
           jetbrains-mono
           noto-fonts
-          noto-fonts-cjk
+          noto-fonts-cjk-sans
           powerline-symbols
         ];
         names = [
