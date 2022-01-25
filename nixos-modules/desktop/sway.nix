@@ -331,9 +331,6 @@ in {
       "sway/config.d/10-systemd.conf".text = ''
         exec "systemctl --user import-environment; systemctl --user start sway-session.target"
       '';
-      "sway/config.d/startup/dex.conf".text = ''
-        exec ${pkgs.dex}/bin/dex -a
-      '';
     };
 
     home.configFile."swaylock/config".source = "${configDir}/swaylock/config";
