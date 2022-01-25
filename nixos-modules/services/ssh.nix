@@ -11,7 +11,7 @@ in {
       enable = true;
       permitRootLogin = "no";
       passwordAuthentication = false;
-      challengeResponseAuthentication = false;
+      kbdInteractiveAuthentication = false;
     };
 
     user.openssh.authorizedKeys.keys = if config.user.name == "sei40kr" then
