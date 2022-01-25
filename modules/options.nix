@@ -15,7 +15,6 @@ in {
       ]);
       binDir = mkOpt t "${config.dotfiles.dir}/bin";
       configDir = mkOpt t "${config.dotfiles.dir}/config";
-      reposDir = mkOpt t "${config.dotfiles.dir}/repos";
       secretsDir = mkOpt t inputs.secrets;
     };
 
