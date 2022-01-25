@@ -30,7 +30,11 @@ in {
 
     systemd.user.services.fcitx5-daemon = {
       enable = true;
-      script = "${fcitx5-with-addons}/bin/fcitx5";
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${fcitx5-with-addons}/bin/fcitx5 -r";
+        Restart = "on-failure";
+      };
       wantedBy = [ "graphical-session.target" ];
     };
 
