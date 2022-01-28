@@ -58,6 +58,40 @@ in {
       ${calibre-web-start} -s admin:${escapeShellArg adminPassword} >/dev/null
     '';
 
-    networking.firewall.allowedTCPPorts = [ cfg.port ];
+    # TODO Extract these proxy settings to a module
+    services.nginx = {
+      enable = true;
+      recommendedOptimisation = true;
+      recommendedProxySettings = true;
+      enableReload = true;
+      clientMaxBodySize = "50m";
+      virtualHosts = {
+        "calibre-web.yong-ju.me" = {
+          listen = [
+            {
+              port = 10080;
+              addr = "*";
+            }
+            {
+              port = 10443;
+              addr = "*";
+              ssl = true;
+            }
+          ];
+          enableACME = true;
+          forceSSL = true;
+          http2 = true;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:${toString cfg.port}";
+          };
+        };
+      };
+    };
+    security.acme = {
+      acceptTerms = true;
+      defaults.email = "sei40kr@gmail.com";
+    };
+
+    networking.firewall.allowedTCPPorts = [ 10080 10443 ];
   };
 }
