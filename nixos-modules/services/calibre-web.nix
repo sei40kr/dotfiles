@@ -8,15 +8,10 @@ let
   inherit (config.dotfiles) secretsDir;
   adminPassword = import "${secretsDir}/calibre-web-admin-password.nix";
 
-  app_db = "/var/lib/calibre-web/app.db";
-  gdrive_db = "/var/lib/calibre-web/gdrive.db";
-
-  wrapper = pkgs.writeShellScript "calibre-web" ''
-    exec ${pkgs.calibre-web}/bin/calibre-web -p ${app_db} -g ${gdrive_db} "$@"
-  '';
+  dataDir = "calibre-web";
 
   settings = concatStringsSep "," [
-    "config_calibre_dir = '${cfg.libraryDir}'"
+    "config_calibre_dir = '/var/lib/${dataDir}/books'"
     "config_converterpath = '${pkgs.calibre}/bin/ebook-convert'"
     "config_port = ${toString cfg.port}"
     "config_uploading = 1"
@@ -26,29 +21,31 @@ in {
     enable = mkBoolOpt false;
 
     port = mkOpt int 8083;
-
-    libraryDir = mkOpt str "${config.user.home}/Calibre Library";
   };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ calibre-web ];
 
     systemd.services.calibre-web = {
-      description = "Calibre-Web";
+      description =
+        "Web app for browsing, reading and downloading eBooks stored in a Calibre database";
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         Type = "simple";
+        Environment = [ "CALIBRE_DBPATH=/var/lib/${dataDir}" ];
         ExecStartPre = pkgs.writeShellScript "calibre-web-pre-start" ''
-          __RUN_MIGRATIONS_AND_EXIT=1 ${wrapper}
+          mkdir -p /var/lib/${dataDir}/books
 
-          ${pkgs.sqlite}/bin/sqlite3 ${app_db} "UPDATE settings SET ${settings}"
-          if [ ! -f ${escapeShellArg "${cfg.libraryDir}/metadata.db"} ]; then
-            echo "Invalid Calibre library" >&2
-            exit 1
-          fi
+          # Set admin's password
+          ${pkgs.calibre-web}/bin/calibre-web \
+            -s admin:${escapeShellArg adminPassword} >/dev/null
+
+          __RUN_MIGRATIONS_AND_EXIT=1 ${pkgs.calibre-web}/bin/calibre-web
+          ${pkgs.sqlite}/bin/sqlite3 /var/lib/${dataDir}/app.db \
+            "UPDATE settings SET ${settings}"
         '';
-        ExecStart = wrapper;
+        ExecStart = "${pkgs.calibre-web}/bin/calibre-web";
         Restart = "on-failure";
         User = "calibre-web";
         Group = "calibre-web";
@@ -63,11 +60,6 @@ in {
       };
       groups.calibre-web = { };
     };
-
-    # Set admin's password
-    system.activationScripts.calibre-web.text = ''
-      ${wrapper} -s admin:${escapeShellArg adminPassword} >/dev/null
-    '';
 
     # TODO Extract these proxy settings to a module
     services.nginx = {
