@@ -8,7 +8,7 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      my.online-judge-tools
+      online-judge-tools
       my.online-judge-template-generator
       my.online-judge-verify-helper
     ];
