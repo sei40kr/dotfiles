@@ -9,8 +9,11 @@ let
     title = "Calibre-Web (local)";
     uri = "http://localhost:8083/opds";
     preview = "http://localhost:8083/opds/discover";
-  }] else
-    [ ];
+  }] else [{
+    title = "Calibre-Web";
+    uri = "https://calibre-web.yong-ju.me/opds";
+    preview = "https://calibre-web.yong-ju.me/opds/discover";
+  }];
 in {
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ foliate ];
