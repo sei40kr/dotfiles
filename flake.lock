@@ -86,11 +86,11 @@
     "secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1642916443,
-        "narHash": "sha256-z3YwltgDItpLyqMb0AQhUoIrPNlo0Z5nodVWHRirrp0=",
+        "lastModified": 1643467730,
+        "narHash": "sha256-AyW4REdEC0UjQ/cp5r8TFR3gCmdR5XcDSsw6JP7pD7Q=",
         "owner": "sei40kr",
         "repo": "dotfiles-secrets",
-        "rev": "3f74ebe039a017d4be5668c1fd0368c5f6c4e63c",
+        "rev": "3164a0de0f4941f0b519dd5d4564650320196b2e",
         "type": "github"
       },
       "original": {
