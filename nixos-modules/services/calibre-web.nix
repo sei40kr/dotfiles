@@ -11,6 +11,14 @@ let
   dataDir = "calibre-web";
 
   settings = concatStringsSep "," [
+    "mail_server = 'smtp.gmail.com'"
+    "mail_port = 587"
+    "mail_use_ssl = 1"
+    "mail_login = 'sei40kr@gmail.com'"
+    "mail_password = '${secrets.gmailPassword}'"
+    "mail_from = 'sei40kr@gmail.com <Seong Yong-ju>'"
+    "mail_size = 26214400"
+    "mail_server_type = 0"
     "config_calibre_dir = '/var/lib/${dataDir}/books'"
     "config_converterpath = '${pkgs.calibre}/bin/ebook-convert'"
     "config_port = ${toString cfg.port}"
