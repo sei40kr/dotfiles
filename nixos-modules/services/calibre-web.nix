@@ -6,7 +6,7 @@ let
   cfg = config.modules.services.calibre-web;
 
   inherit (config.dotfiles) secretsDir;
-  adminPassword = import "${secretsDir}/calibre-web-admin-password.nix";
+  secrets = import "${secretsDir}/calibre-web/secrets.nix";
 
   dataDir = "calibre-web";
 
@@ -15,6 +15,10 @@ let
     "config_converterpath = '${pkgs.calibre}/bin/ebook-convert'"
     "config_port = ${toString cfg.port}"
     "config_uploading = 1"
+  ];
+  user = concatStringsSep "," [
+    "kindle_mail = '${secrets.adminKindleMail}'"
+    "sidebar_view = 4428"
   ];
 in {
   options.modules.services.calibre-web = with types; {
@@ -37,13 +41,16 @@ in {
         ExecStartPre = pkgs.writeShellScript "calibre-web-pre-start" ''
           mkdir -p /var/lib/${dataDir}/books
 
-          # Set admin's password
-          ${pkgs.calibre-web}/bin/calibre-web \
-            -s admin:${escapeShellArg adminPassword} >/dev/null
-
           __RUN_MIGRATIONS_AND_EXIT=1 ${pkgs.calibre-web}/bin/calibre-web
+
           ${pkgs.sqlite}/bin/sqlite3 /var/lib/${dataDir}/app.db \
             "UPDATE settings SET ${settings}"
+
+          ${pkgs.sqlite}/bin/sqlite3 /var/lib/${dataDir}/app.db \
+            "UPDATE user SET ${user} WHERE name = 'admin'"
+          # Set admin's password
+          ${pkgs.calibre-web}/bin/calibre-web \
+            -s admin:${escapeShellArg secrets.adminPassword} >/dev/null
         '';
         ExecStart = "${pkgs.calibre-web}/bin/calibre-web";
         Restart = "on-failure";
