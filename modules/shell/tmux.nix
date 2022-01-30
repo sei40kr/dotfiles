@@ -38,7 +38,7 @@ let
       --subst-var-by cowboy       ${pkgs.my.tmuxPlugins.cowboy.rtp} \
       --subst-var-by ghq          ${pkgs.my.tmuxPlugins.ghq.rtp} \
       --subst-var-by open         ${pkgs.tmuxPlugins.open.rtp} \
-      --subst-var-by pain_control ${pkgs.tmuxPlugins.pain-control} \
+      --subst-var-by pain_control ${pkgs.tmuxPlugins.pain-control.rtp} \
       --subst-var-by sessionist   ${pkgs.tmuxPlugins.sessionist.rtp} \
       --subst-var-by urlview      ${pkgs.tmuxPlugins.urlview.rtp} \
       --subst-var-by yank         ${pkgs.tmuxPlugins.yank.rtp}
