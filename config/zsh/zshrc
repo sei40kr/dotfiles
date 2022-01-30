@@ -86,7 +86,13 @@ zinit snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/zsh_reload/zsh_reload.plugin.
 zinit ice id-as'OMZP::fancy-ctrl-z'
 zinit snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
 
-FZF_DEFAULT_OPTS='--height=15 --reverse --inline-info --color=dark --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
+FZF_DEFAULT_OPTS='--cycle --reverse --info=inline'
+FZF_DEFAULT_COMMAND='@fd@/bin/fd -HL -t f -E .git'
+FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+FZF_CTRL_T_OPTS="--preview='@bat@/bin/bat -pp --color=always {}'"
+FZF_ALT_C_OPTS="--preview='@exa@/bin/exa -la {}'"
+FZF_TMUX=1
+FZF_TMUX_OPTS='-p 80%,80%'
 zinit ice bindmap'^R->;\\ec->' multisrc'{completion,key-bindings}.zsh'
 zinit light '@fzf@/share/fzf'
 

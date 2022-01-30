@@ -14,6 +14,9 @@ let
       --subst-var-by oh_my_zsh                     ${pkgs.oh-my-zsh} \
       --subst-var-by zsh_prezto                    ${pkgs.zsh-prezto} \
       --subst-var-by fzf                           ${pkgs.fzf} \
+      --subst-var-by fd                            ${pkgs.fd} \
+      --subst-var-by bat                           ${pkgs.bat} \
+      --subst-var-by exa                           ${pkgs.exa} \
       --subst-var-by zsh_autosuggestions           ${pkgs.zsh-autosuggestions} \
       --subst-var-by zsh_autopair                  ${pkgs.zsh-autopair} \
       --subst-var-by zsh_fast_syntax_highlighting  ${pkgs.zsh-fast-syntax-highlighting} \
