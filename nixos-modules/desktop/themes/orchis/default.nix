@@ -2,7 +2,10 @@
 
 with lib;
 with lib.my;
-let themeCfg = config.modules.desktop.theme;
+let
+  themeCfg = config.modules.desktop.theme;
+
+  orchis-theme = pkgs.orchis-theme.override { withWallpapers = true; };
 in {
   config = mkIf (themeCfg.active == "orchis") {
     modules.desktop = {
@@ -22,13 +25,12 @@ in {
           name = "Tela";
         };
         theme = {
-          package = pkgs.orchis-theme;
+          package = orchis-theme;
           name = "Orchis";
         };
       };
 
-      sway.wallpaper =
-        "${pkgs.orchis-theme}/share/backgrounds/orchis-wallpaper.jpg";
+      sway.wallpaper = "${orchis-theme}/share/backgrounds/4k.jpg";
     };
   };
 }
