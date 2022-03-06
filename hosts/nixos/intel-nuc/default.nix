@@ -43,7 +43,6 @@ with lib; {
 
       browsers = {
         chrome.enable = true;
-        firefox.enable = true;
       };
 
       media = {
