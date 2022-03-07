@@ -5,6 +5,7 @@
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +25,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, darwin, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, darwin, emacs-overlay, home-manager, ... }@inputs:
     let
       inherit (lib)
         attrValues elem filterAttrs genAttrs mkDefault nixosSystem optionalAttrs
@@ -44,7 +45,8 @@
         import nixpkgs {
           inherit system;
           config.allowUnfree = true;
-          overlays = [ self.overlay ] ++ (attrValues self.overlays);
+          overlays = [ self.overlay emacs-overlay.overlay ]
+            ++ (attrValues self.overlays);
         });
 
       mkNixosHost = { system, ... }@attrs:

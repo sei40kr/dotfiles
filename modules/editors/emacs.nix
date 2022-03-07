@@ -22,8 +22,8 @@ let
     destination = "/share/emacs/site-lisp/default.el";
   };
 
-  emacs = if cfg.doom.enable then
-    pkgs.emacs.pkgs.withPackages (epkgs: [
+  package = if cfg.doom.enable then
+    pkgs.emacsPgtk.pkgs.withPackages (epkgs: [
       epkgs.melpaPackages.emacsql
       epkgs.melpaPackages.emacsql-sqlite
       epkgs.melpaPackages.libgit
@@ -32,7 +32,7 @@ let
       default_el
     ])
   else
-    pkgs.emacs;
+    pkgs.emacsPgtk;
 
   vterm_printf = pkgs.writeTextFile {
     name = "vterm_printf";
@@ -63,7 +63,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    user.packages = [ emacs pkgs.binutils ] ++ optionals cfg.doom.enable
+    user.packages = [ package pkgs.binutils ] ++ (optionals cfg.doom.enable
       (with pkgs; [
         fd
         ripgrep
@@ -95,7 +95,7 @@ in {
         nodePackages.yaml-language-server
         # :tools vterm
         vterm_printf
-      ]);
+      ]));
     fonts.fonts = with pkgs; [ emacs-all-the-icons-fonts ];
 
     env = mkIf cfg.doom.enable {
