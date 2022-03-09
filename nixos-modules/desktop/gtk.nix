@@ -5,8 +5,6 @@ with lib.my;
 let
   cfg = config.modules.desktop.gtk;
 
-  keyTheme = "Emacs";
-
   formatGtk2Option = n: v:
     let
       v' = if isBool v then
@@ -52,7 +50,6 @@ in {
       "gtk-3.0/settings.ini".text = toGtkIni {
         Settings = {
           gtk-enable-primary-paste = false;
-          gtk-key-theme-name = keyTheme;
         } // (optionalAttrs (cfg.font != null) {
           gtk-font-name = "${cfg.font.name} ${toString cfg.font.size}";
         }) // (optionalAttrs (cfg.theme != null) {
@@ -75,7 +72,6 @@ in {
         "org/gnome/desktop/interface" = {
           icon-theme = mkIf (cfg.iconTheme != null) cfg.iconTheme.name;
           gtk-theme = mkIf (cfg.theme != null) cfg.theme.name;
-          gtk-key-theme = keyTheme;
         };
       };
     };
