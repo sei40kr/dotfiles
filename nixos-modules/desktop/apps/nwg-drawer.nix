@@ -41,9 +41,7 @@ in {
       powerOff
     ];
 
-    # NOTE The config directory had been moved since v0.2.0.
-    #      ${XDG_CONFIG_HOME}/nwg-panel -> ${XDG_CONFIG_HOME}/nwg-drawer
-    home.configFile."nwg-panel/drawer.css".source =
+    home.configFile."nwg-drawer/drawer.css".source =
       "${configDir}/nwg-drawer/drawer.css";
   };
 }
