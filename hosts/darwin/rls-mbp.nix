@@ -7,6 +7,7 @@ with lib.my; {
       aws-cli.enable = true;
       java.enable = true;
       javascript.enable = true;
+      nix.enable = true;
       web.enable = true;
     };
     editors = {

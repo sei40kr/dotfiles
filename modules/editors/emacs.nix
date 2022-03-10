@@ -75,10 +75,6 @@ in {
         # :lang markdown
         mdl
         python3Packages.grip
-        # :lang nix
-        nixfmt
-        nix-linter
-        rnix-lsp
         # :lang plantuml
         plantuml
         # :lang sql

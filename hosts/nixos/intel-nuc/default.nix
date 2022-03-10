@@ -77,6 +77,7 @@ with lib; {
       kotlin.enable = true;
       latex.enable = true;
       r.enable = true;
+      nix.enable = true;
       python = {
         enable = true;
         enablePoetry = true;
