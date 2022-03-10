@@ -43,5 +43,17 @@ in {
 
     home.configFile."nwg-drawer/drawer.css".source =
       "${configDir}/nwg-drawer/drawer.css";
+
+    systemd.user.services.nwg-drawer = {
+      enable = true;
+      description = "Application drawer for sway Wayland compositor";
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.my.nwg-drawer}/bin/nwg-drawer -nofs -ovl -r";
+        Restart = "on-failure";
+      };
+      wantedBy = [ "graphical-session.target" ];
+    };
   };
 }

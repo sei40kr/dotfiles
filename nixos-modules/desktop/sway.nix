@@ -98,7 +98,7 @@ in {
         # Launch:
         #
           # Application
-          bindsym $mod+space exec nwg-drawer -nofs -ovl
+          bindsym $mod+space exec nwg-drawer
 
           # Browser
           bindsym --no-repeat $mod+Shift+Return exec $DOTFILES_BIN/sway/sensible-browser
