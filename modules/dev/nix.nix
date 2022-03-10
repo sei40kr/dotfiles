@@ -7,6 +7,6 @@ in {
   options.modules.dev.nix = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ scala sbt gradle maven metals scalafmt ];
+    user.packages = with pkgs; [ nixpkgs-fmt nix-linter rnix-lsp ];
   };
 }
