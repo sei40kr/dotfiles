@@ -11,21 +11,21 @@ let
     desktopName = "Suspend";
     icon = "system-suspend";
     exec = "systemctl suspend";
-    categories = "System";
+    categories = [ "System" ];
   };
   reboot = pkgs.makeDesktopItem {
     name = "reboot";
     desktopName = "Reboot";
     icon = "system-reboot";
     exec = "systemctl reboot";
-    categories = "System";
+    categories = [ "System" ];
   };
   powerOff = pkgs.makeDesktopItem {
     name = "power-off";
     desktopName = "Power Off";
     icon = "system-shutdown";
     exec = "systemctl poweroff";
-    categories = "System";
+    categories = [ "System" ];
   };
 in {
   options.modules.desktop.apps.nwg-drawer = with types; {
@@ -34,7 +34,7 @@ in {
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      my.nwg-drawer
+      nwg-drawer
 
       suspend
       reboot
@@ -50,7 +50,7 @@ in {
       after = [ "graphical-session.target" ];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.my.nwg-drawer}/bin/nwg-drawer -nofs -ovl -r";
+        ExecStart = "${pkgs.nwg-drawer}/bin/nwg-drawer -nofs -ovl -r";
         Restart = "on-failure";
       };
       wantedBy = [ "graphical-session.target" ];

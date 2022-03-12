@@ -17,8 +17,6 @@ rec {
 
   nwg-bar = pkgs.callPackage ./nwg-bar { };
 
-  nwg-drawer = pkgs.callPackage ./nwg-drawer { };
-
   online-judge-template-generator =
     pkgs.python3Packages.callPackage ./online-judge-template-generator { };
 
@@ -26,8 +24,6 @@ rec {
     pkgs.python3Packages.callPackage ./online-judge-verify-helper { };
 
   notion = pkgs.callPackage ./notion.nix { };
-
-  todoist-electron = pkgs.callPackage ./todoist-electron { };
 
   zsh-smart-history = pkgs.callPackage ./zsh-smart-history.nix { };
 

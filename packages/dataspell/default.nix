@@ -22,11 +22,11 @@ let
     comment = lib.replaceChars [ "\n" ] [ " " ] longDescription;
     desktopName = "DataSpell";
     genericName = description;
-    categories = "Development;";
+    categories = [ "Development" ];
     icon = "dataspell";
-    extraEntries = ''
-      StartupWMClass=jetbrains-dataspell
-    '';
+    extraConfig = {
+      StartupWMClass = "jetbrains-dataspell";
+    };
   };
 in stdenv.mkDerivation {
   inherit name version desktopItem;
