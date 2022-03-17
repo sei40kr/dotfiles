@@ -30,6 +30,9 @@ in {
 
     systemd.user.services.fcitx5-daemon = {
       enable = true;
+      description = "A Flexible Input Method Framework";
+      documentation = [ "man:fcitx(1)" ];
+      after = [ "graphical-session.target" ];
       serviceConfig = {
         Type = "simple";
         ExecStart = "${fcitx5-with-addons}/bin/fcitx5 -r";
