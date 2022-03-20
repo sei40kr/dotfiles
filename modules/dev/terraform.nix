@@ -7,7 +7,12 @@ in {
   options.modules.dev.terraform = { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ terraform terraform-ls tflint ];
+    user.packages = with pkgs; [
+      (terraform.withPlugins (plugins:
+        (optionals config.modules.dev.oci.enable [ plugins.oci ])))
+      terraform-ls
+      tflint
+    ];
 
     modules.shell.aliases = {
       tf = "terraform";
