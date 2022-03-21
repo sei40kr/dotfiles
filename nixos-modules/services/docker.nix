@@ -18,6 +18,8 @@ in {
       autoPrune.enable = cfg.autoPrune.enable;
     };
 
+    user.extraGroups = [ "docker" ];
+
     modules.shell.aliases = {
       dk = "docker";
     } //
