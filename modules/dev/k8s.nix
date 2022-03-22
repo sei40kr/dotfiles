@@ -21,6 +21,7 @@ in
     user.packages = with pkgs; [
       kubectl
       kubectx
+      stern
       (mkIf cfg.kind.enable kind)
     ];
   };
