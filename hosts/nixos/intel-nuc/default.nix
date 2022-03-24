@@ -25,17 +25,18 @@ with lib; {
 
       apps = {
         bitwarden.enable = true;
-        calendar.enable = true;
         discord.enable = true;
-        font-viewer.enable = true;
-        geary.enable = true;
-        gnome-books.enable = true;
-        gnome-todo.enable = true;
-        gnome-weather.enable = true;
+        gnome = {
+          calendar.enable = true;
+          font-viewer.enable = true;
+          fragments.enable = true;
+          geary.enable = true;
+          pomodoro.enable = true;
+          seahorse.enable = true;
+          todo.enable = true;
+          weather.enable = true;
+        };
         notion.enable = true;
-        pomodoro.enable = true;
-        fragments.enable = true;
-        seahorse.enable = true;
         slack.enable = true;
         thunar.enable = true;
         zeal.enable = true;
@@ -48,17 +49,18 @@ with lib; {
       media = {
         documents = {
           enable = true;
-          pdf.enable = true;
           ebook.enable = true;
         };
-        evince.enable = true;
+        gnome = {
+          evince.enable = true;
+          totem.enable = true;
+        };
         graphics.enable = true;
         recording = {
           enable = true;
           video.enable = true;
         };
         ristretto.enable = true;
-        totem.enable = true;
       };
     };
 
@@ -123,12 +125,14 @@ with lib; {
         compose.enable = true;
       };
       # flexget.enable = true;
+      gnome = {
+        sushi.enable = true;
+      };
       jellyfin = {
         enable = true;
         openFirewall = true;
       };
       psd.enable = true;
-      sushi.enable = true;
       ssh.enable = true;
     };
 

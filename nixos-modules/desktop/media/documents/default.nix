@@ -1,16 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ lib, ... }:
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.media.documents;
-in {
+{
   options.modules.desktop.media.documents = {
     enable = mkBoolOpt false;
-    pdf.enable = mkBoolOpt false;
-    ebook.enable = mkBoolOpt false;
-  };
 
-  config = mkIf cfg.enable {
-    user.packages = with pkgs; [ (mkIf cfg.pdf.enable evince) ];
+    ebook.enable = mkBoolOpt false;
   };
 }

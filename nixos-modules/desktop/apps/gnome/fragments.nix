@@ -2,9 +2,12 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.apps.fragments;
-in {
-  options.modules.desktop.apps.fragments = { enable = mkBoolOpt false; };
+let cfg = config.modules.desktop.apps.gnome.fragments;
+in
+{
+  options.modules.desktop.apps.gnome.fragments = {
+    enable = mkBoolOpt false;
+  };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ fragments ];
