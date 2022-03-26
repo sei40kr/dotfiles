@@ -9,7 +9,7 @@ in {
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
       lua
-      nodePackages.lua-fmt
+      stylua
       sumneko-lua-language-server
     ];
   };
