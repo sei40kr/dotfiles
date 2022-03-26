@@ -31,6 +31,7 @@ with lib; {
           font-viewer.enable = true;
           fragments.enable = true;
           geary.enable = true;
+          nautilus.enable = true;
           pomodoro.enable = true;
           seahorse.enable = true;
           todo.enable = true;

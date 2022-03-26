@@ -24,6 +24,7 @@ with lib; {
           calendar.enable = true;
           font-viewer.enable = true;
           geary.enable = true;
+          nautilus.enable = true;
           pomodoro.enable = true;
           weather.enable = true;
         };
