@@ -3,6 +3,12 @@
 with lib; {
   imports = [ ./hardware-configuration.nix ];
 
+  # Use kernel 5.10
+  boot.kernelPackages = pkgs.linuxPackages_5_10;
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.enable = true;
+
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
