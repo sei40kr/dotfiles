@@ -17,6 +17,13 @@ with lib; {
 
   networking.interfaces.enp0s31f6.useDHCP = true;
 
+  # Enable CUPS to print documents
+  services.printing.enable = true;
+
+  # Enable sound
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -99,11 +106,6 @@ with lib; {
         enable = true;
         manpager.enable = true;
       };
-    };
-
-    hardware = {
-      audio.enable = true;
-      printing.enable = true;
     };
 
     services = {
