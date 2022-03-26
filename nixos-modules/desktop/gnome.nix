@@ -57,6 +57,8 @@ in
       user-themes
     ];
 
+    modules.desktop.wayland.enable = true;
+
     modules.desktop.dconf = {
       enable = true;
       settings = {
@@ -77,5 +79,9 @@ in
         };
       };
     };
+
+    modules.desktop.fontconfig.enable = true;
+    modules.desktop.gtk.enable = true;
+    modules.desktop.qt.enable = true;
   };
 }
