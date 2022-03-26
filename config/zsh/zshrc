@@ -78,9 +78,6 @@ HYPHEN_INSENSITIVE=true
 zinit ice id-as'OMZL::completion.zsh'
 zinit snippet '@oh_my_zsh@/share/oh-my-zsh/lib/completion.zsh'
 
-zinit ice id-as'OMZP::zsh_reload'
-zinit snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/zsh_reload/zsh_reload.plugin.zsh'
-
 ## Key Bindings
 
 zinit ice id-as'OMZP::fancy-ctrl-z'
