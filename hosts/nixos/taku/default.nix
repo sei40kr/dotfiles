@@ -37,6 +37,7 @@ with lib; {
     desktop = {
       gdm.enable = true;
       gnome.enable = true;
+      theme.active = "orchis";
 
       apps = {
         bitwarden.enable = true;
