@@ -55,6 +55,7 @@ in
       places-status-indicator
       removable-drive-menu
       user-themes
+      workspace-indicator
     ];
 
     modules.desktop.wayland.enable = true;
