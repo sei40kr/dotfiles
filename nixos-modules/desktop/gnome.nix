@@ -64,6 +64,8 @@ in
       settings = {
         "org/gnome/desktop/interface" = {
           enable-animations = false;
+          # Disable Activities Overview hot corner
+          enable-hot-corners = false;
         };
         "org/gnome/desktop/wm/keybindings" = {
           switch-applications = [ ];
