@@ -13,7 +13,8 @@ let
     workspace-indicator
   ]
   ++ (optionals config.modules.i18n.japanese.enable [ kimpanel ]);
-  extUuids = map (ext: ext.extensionUuid) exts;
+  extUuids = map (ext: ext.extensionUuid) exts
+    ++ (optionals config.modules.desktop.apps.gnome.pomodoro.enable [ "pomodoro@arun.codito.in" ]);
 in
 {
   options.modules.desktop.gnome = with types; {
