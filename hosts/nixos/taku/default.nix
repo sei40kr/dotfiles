@@ -109,6 +109,8 @@ with lib; {
       };
     };
 
+    i18n.japanese.enable = true;
+
     services = {
       docker = {
         enable = true;

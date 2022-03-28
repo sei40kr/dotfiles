@@ -341,7 +341,6 @@ in {
     modules.desktop.gtk.enable = true;
     modules.desktop.qt.enable = true;
 
-    modules.desktop.fcitx5.enable = true;
     modules.desktop.apps = {
       dunst.enable = true;
       nwg-drawer.enable = true;

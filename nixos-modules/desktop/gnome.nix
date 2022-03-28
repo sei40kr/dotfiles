@@ -5,14 +5,15 @@ with lib.my;
 let
   cfg = config.modules.desktop.gnome;
 
-  extensions = with pkgs.gnomeExtensions; [
+  exts = with pkgs.gnomeExtensions; [
     dash-to-dock
     places-status-indicator
     removable-drive-menu
     user-themes
     workspace-indicator
-  ];
-  extensionUuids = map (ext: ext.extensionUuid) extensions;
+  ]
+  ++ (optionals config.modules.i18n.japanese.enable [ kimpanel ]);
+  extUuids = map (ext: ext.extensionUuid) exts;
 in
 {
   options.modules.desktop.gnome = with types; {
@@ -59,7 +60,7 @@ in
       sushi
     ];
 
-    user.packages = extensions;
+    user.packages = exts;
 
     modules.desktop.wayland.enable = true;
 
@@ -79,7 +80,7 @@ in
         };
         "org/gnome/shell/extensions" = {
           disable-user-extensions = false;
-          enabled-extensions = extensionUuids;
+          enabled-extensions = extUuids;
         };
         "org/gnome/shell/extensions/dash-to-dock" = {
           dock-fixed = true;
