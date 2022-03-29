@@ -11,5 +11,14 @@ in
 
   config = mkIf cfg.enable {
     user.packages = with pkgs.gnome; [ pomodoro ];
+
+    modules.desktop.dconf = {
+      enable = true;
+      settings = {
+        "org/gnome/pomodoro/preferences" = {
+          enabled-plugins = [ "notifications" "sounds" ];
+        };
+      };
+    };
   };
 }
