@@ -13,6 +13,7 @@ let
   cfg = config.modules.desktop.gnome;
 
   exts = with pkgs.gnomeExtensions; [
+    # blur-me
     dash-to-dock
     places-status-indicator
     removable-drive-menu
@@ -102,6 +103,9 @@ in
           disable-user-extensions = false;
           enabled-extensions = extUuids;
         };
+        # "org/gnome/shell/extensions/blur-me" = {
+        #   toggle-app-blur = false;
+        # };
         "org/gnome/shell/extensions/dash-to-dock" = {
           dock-fixed = true;
         };
