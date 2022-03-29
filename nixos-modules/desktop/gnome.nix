@@ -3,6 +3,13 @@
 with lib;
 with lib.my;
 let
+  shellThemeType = with types; submodule {
+    options = {
+      package = mkOpt package null;
+      name = mkOpt str null;
+    };
+  };
+
   cfg = config.modules.desktop.gnome;
 
   exts = with pkgs.gnomeExtensions; [
@@ -19,6 +26,8 @@ in
 {
   options.modules.desktop.gnome = with types; {
     enable = mkBoolOpt false;
+
+    shell.theme = mkOpt (nullOr shellThemeType) null;
   };
 
   config = mkIf cfg.enable {
@@ -61,7 +70,8 @@ in
       sushi
     ];
 
-    user.packages = exts;
+    user.packages = exts
+      ++ [ (mkIf (cfg.shell.theme != null) cfg.shell.theme.package) ];
 
     modules.desktop.wayland.enable = true;
 
@@ -88,6 +98,11 @@ in
         };
         "org/gnome/shell/window-switcher" = {
           current-workspace-only = false;
+        };
+      }
+      // optionalAttrs (cfg.shell.theme != null) {
+        "org/gnome/shell/extensions/user-theme" = {
+          inherit (cfg.shell.theme) name;
         };
       };
     };
