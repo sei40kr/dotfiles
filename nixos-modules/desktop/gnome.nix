@@ -83,6 +83,15 @@ in
           # Disable Activities Overview hot corner
           enable-hot-corners = false;
         };
+        "org/gnome/desktop/peripherals/keyboard" = {
+          delay = 200;
+          repeat = true;
+          repeat-interval = 30;
+        };
+        "org/gnome/desktop/peripherals/mouse" = {
+          accel-profile = "flat";
+          speed = 0.7;
+        };
         "org/gnome/desktop/wm/keybindings" = {
           switch-applications = [ ];
           switch-applications-backward = [ ];
