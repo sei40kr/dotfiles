@@ -60,10 +60,7 @@ with lib; {
       };
 
       media = {
-        documents = {
-          enable = true;
-          ebook.enable = true;
-        };
+        documents.ebook.enable = true;
         gnome = {
           evince.enable = true;
           totem.enable = true;

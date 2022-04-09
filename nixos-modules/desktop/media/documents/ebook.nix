@@ -5,6 +5,10 @@ with lib.my;
 let cfg = config.modules.desktop.media.documents.ebook;
 in
 {
+  options.modules.desktop.media.documents.ebook = {
+    enable = mkBoolOpt false;
+  };
+
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ foliate ];
 
