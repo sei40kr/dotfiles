@@ -3,6 +3,12 @@
 with lib;
 with lib.my;
 let
+  cursorThemeType = with types; submodule {
+    options = {
+      package = mkOpt package null;
+      name = mkOpt str null;
+    };
+  };
   shellThemeType = with types; submodule {
     options = {
       package = mkOpt package null;
@@ -35,6 +41,7 @@ in
   options.modules.desktop.gnome = with types; {
     enable = mkBoolOpt false;
 
+    cursor.theme = mkOpt (nullOr cursorThemeType) null;
     shell.theme = mkOpt (nullOr shellThemeType) null;
 
     background = mkOpt (nullOr backgroundType) null;
@@ -80,8 +87,10 @@ in
       sushi
     ];
 
-    user.packages = exts
-      ++ [ (mkIf (cfg.shell.theme != null) cfg.shell.theme.package) ];
+    user.packages = exts ++ [
+      (mkIf (cfg.cursor.theme != null) cfg.cursor.theme.package)
+      (mkIf (cfg.shell.theme != null) cfg.shell.theme.package)
+    ];
 
     modules.desktop.wayland.enable = true;
 
@@ -92,6 +101,8 @@ in
           enable-animations = false;
           # Disable Activities Overview hot corner
           enable-hot-corners = false;
+        } // optionalAttrs (cfg.cursor.theme != null) {
+          cursor-theme = cfg.cursor.theme.name;
         };
         "org/gnome/desktop/peripherals/keyboard" = {
           delay = 200;
