@@ -10,6 +10,13 @@ let
     };
   };
 
+  backgroundType = with types; submodule {
+    options = {
+      image = mkOpt (either str path) null;
+      mode = mkOpt (enum [ "none" "wallpaper" "centered" "scaled" "stretched" "zoom" "spanned" ]) "zoom";
+    };
+  };
+
   cfg = config.modules.desktop.gnome;
 
   exts = with pkgs.gnomeExtensions; [
@@ -29,6 +36,8 @@ in
     enable = mkBoolOpt false;
 
     shell.theme = mkOpt (nullOr shellThemeType) null;
+
+    background = mkOpt (nullOr backgroundType) null;
   };
 
   config = mkIf cfg.enable {
@@ -116,6 +125,12 @@ in
       // optionalAttrs (cfg.shell.theme != null) {
         "org/gnome/shell/extensions/user-theme" = {
           inherit (cfg.shell.theme) name;
+        };
+      }
+      // optionalAttrs (cfg.background != null) {
+        "org/gnome/desktop/background" = {
+          picture-uri = "file://${cfg.background.image}";
+          picture-options = cfg.background.mode;
         };
       };
     };
