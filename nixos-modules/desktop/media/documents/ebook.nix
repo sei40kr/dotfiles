@@ -14,11 +14,23 @@ in
 
     home.dataFile."com.github.johnfactotum.Foliate/catalogs/catalogs.json".text =
       builtins.toJSON {
-        catalogs = [{
-          title = "Calibre-Web";
-          uri = "https://calibre.yong-ju.me/opds";
-          preview = "https://calibre.yong-ju.me/opds/new";
-        }];
+        catalogs = [
+          {
+            title = "Calibre-Web";
+            uri = "https://calibre.yong-ju.me/opds";
+            preview = "https://calibre.yong-ju.me/opds/new";
+          }
+          {
+            title = "Gihyo Digital Publishing";
+            uri = "https://gihyo.jp/dp/catalogs.opds";
+            preview = "https://gihyo.jp/dp/new.opds";
+          }
+          {
+            title = "O'Reilly Japan Ebook Store";
+            uri = "https://www.oreilly.co.jp/ebook/catalogs.opds";
+            preview = "https://www.oreilly.co.jp/ebook/new.opds";
+          }
+        ];
       };
 
     modules.desktop.dconf = {
