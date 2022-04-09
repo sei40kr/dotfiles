@@ -128,6 +128,8 @@ in
         # };
         "org/gnome/shell/extensions/dash-to-dock" = {
           dock-fixed = true;
+          # Hide "Show Applications" button
+          show-show-apps-button = true;
         };
         "org/gnome/shell/window-switcher" = {
           current-workspace-only = false;
