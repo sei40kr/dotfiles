@@ -7,9 +7,16 @@ let
 in
 {
   config = mkIf (cfg.active == "whitesur") {
-    modules.desktop.gnome.shell.theme = {
-      package = pkgs.whitesur-gtk-theme;
-      name = "WhiteSur-light";
+    modules.desktop.gnome = {
+      shell.theme = {
+        package = pkgs.whitesur-gtk-theme;
+        name = "WhiteSur-light";
+      };
+
+      background = {
+        image = "${pkgs.my.whitesur-wallpapers}/share/backgrounds/WhiteSur-light.png";
+        mode = "zoom";
+      };
     };
 
     modules.desktop.gtk = {
