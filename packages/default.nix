@@ -25,6 +25,8 @@ rec {
 
   notion = pkgs.callPackage ./notion.nix { };
 
+  whitesur-cursors = pkgs.callPackage ./whitesur-cursors { };
+
   zsh-smart-history = pkgs.callPackage ./zsh-smart-history.nix { };
 
   zsh-tmux-man = pkgs.callPackage ./zsh-tmux-man.nix { };
