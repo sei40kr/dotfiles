@@ -16,8 +16,8 @@ in
       builtins.toJSON {
         catalogs = [{
           title = "Calibre-Web";
-          uri = "https://calibre-web.yong-ju.me/opds";
-          preview = "https://calibre-web.yong-ju.me/opds/discover";
+          uri = "https://calibre.yong-ju.me/opds";
+          preview = "https://calibre.yong-ju.me/opds/new";
         }];
       };
 
