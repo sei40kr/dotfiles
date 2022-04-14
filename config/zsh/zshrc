@@ -78,6 +78,9 @@ HYPHEN_INSENSITIVE=true
 zinit ice id-as'OMZL::completion.zsh'
 zinit snippet '@oh_my_zsh@/share/oh-my-zsh/lib/completion.zsh'
 
+zinit ice from'gh-r' ver'v2.19.0' as'program' atclone'./navi widget zsh >zhook.zsh' atpull'%atclone' src'zhook.zsh'
+zinit light denisidoro/navi
+
 ## Key Bindings
 
 zinit ice id-as'OMZP::fancy-ctrl-z'
