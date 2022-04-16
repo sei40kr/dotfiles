@@ -27,8 +27,8 @@ in {
     };
 
     modules.shell.zsh.rcInit = ''
-      zinit ice as'completion' id-as'OMZP::terraform'
-      zinit snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/terraform/_terraform
+      zi ice as'completion' id-as'OMZP::terraform'
+      zi snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/terraform/_terraform
     '';
   };
 }

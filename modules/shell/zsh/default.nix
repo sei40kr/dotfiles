@@ -10,7 +10,6 @@ let
 
   zshrc = pkgs.runCommandLocal "zshrc" {} ''
     substitute ${../../../config/zsh/zshrc} $out \
-      --subst-var-by zinit                         ${pkgs.zinit} \
       --subst-var-by oh_my_zsh                     ${pkgs.oh-my-zsh} \
       --subst-var-by zsh_prezto                    ${pkgs.zsh-prezto} \
       --subst-var-by fzf                           ${pkgs.fzf} \
@@ -36,9 +35,10 @@ in {
     user.packages = with pkgs; [
       zsh
 
-      # zinit & dependencies
-      zinit
+      # zi dependencies
+      my.zi
       curl
+      file
       git
       subversion
 
@@ -179,6 +179,8 @@ in {
         fi
       '';
     };
+
+    home.file.".zi/bin".source = pkgs.my.zi;
 
     environment.shells =
       [ "/run/current-system/sw/bin/zsh" "${pkgs.zsh}/bin/zsh" ];

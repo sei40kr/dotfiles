@@ -30,61 +30,60 @@ unsetopt LIST_BEEP
 HISTSIZE=10000
 SAVEHIST=10000
 
-declare -A ZINIT
-ZINIT[BIN_DIR]="@zinit@/share/zinit"
-. "${ZINIT[BIN_DIR]}/zinit.zsh"
+zi_home="${HOME}/.zi"
+. "${zi_home}/bin/zi.zsh"
 
 ## Commands
 
-zinit ice trigger-load '!extract;!x' id-as'OMZP::extract'
-zinit snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/extract/extract.plugin.zsh'
+zi ice trigger-load '!extract;!x' id-as'OMZP::extract'
+zi snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/extract/extract.plugin.zsh'
 
 if [[ "$OSTYPE" == darwin* ]]; then
-  zinit ice id-as'PZT::modules--gnu-utility'
-  zinit light '@zsh_prezto@/modules/gnu-utility'
+  zi ice id-as'PZT::modules--gnu-utility'
+  zi light '@zsh_prezto@/modules/gnu-utility'
 fi
 
 ## Shell Enhancements
 
-zinit ice wait'0' lucid
-zinit light '@zsh_autosuggestions@/share/zsh-autosuggestions'
+zi ice wait'0' lucid
+zi light '@zsh_autosuggestions@/share/zsh-autosuggestions'
 
-zinit ice wait'0' lucid
-zinit light '@zsh_autopair@/share/zsh/zsh-autopair'
+zi ice wait'0' lucid
+zi light '@zsh_autopair@/share/zsh/zsh-autopair'
 
-zinit ice wait'0' atinit'zpcompinit; zpcdreplay' lucid
-zinit light '@zsh_fast_syntax_highlighting@/share/zsh/site-functions'
+zi ice wait'0' atinit'zpcompinit; zpcdreplay' lucid
+zi light '@zsh_fast_syntax_highlighting@/share/zsh/site-functions'
 
-zinit ice wait'0' lucid
-zinit light '@zsh_history_search_multi_word@/share/zsh/zsh-history-search-multi-word'
+zi ice wait'0' lucid
+zi light '@zsh_history_search_multi_word@/share/zsh/zsh-history-search-multi-word'
 
-zinit light '@zsh_smart_history@/share/zsh/plugins/zsh-smart-history'
+zi light '@zsh_smart_history@/share/zsh/plugins/zsh-smart-history'
 
 if [[ -n "$TMUX" ]]; then
-  zinit light '@zsh_tmux_man@/share/zsh/plugins/zsh-tmux-man'
+  zi light '@zsh_tmux_man@/share/zsh/plugins/zsh-tmux-man'
   # Remove alias run-help=man
   if [[ ${+aliases[run-help]} == 1 ]]; then
     unalias run-help
   fi
 fi
 
-zinit ice id-as'OMZP::bgnotify'
-zinit snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/bgnotify/bgnotify.plugin.zsh'
+zi ice id-as'OMZP::bgnotify'
+zi snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/bgnotify/bgnotify.plugin.zsh'
 
-zinit ice id-as'OMZL::clipboard.zsh'
-zinit snippet '@oh_my_zsh@/share/oh-my-zsh/lib/clipboard.zsh'
+zi ice id-as'OMZL::clipboard.zsh'
+zi snippet '@oh_my_zsh@/share/oh-my-zsh/lib/clipboard.zsh'
 
 HYPHEN_INSENSITIVE=true
-zinit ice id-as'OMZL::completion.zsh'
-zinit snippet '@oh_my_zsh@/share/oh-my-zsh/lib/completion.zsh'
+zi ice id-as'OMZL::completion.zsh'
+zi snippet '@oh_my_zsh@/share/oh-my-zsh/lib/completion.zsh'
 
-zinit ice from'gh-r' ver'v2.19.0' as'program' atclone'./navi widget zsh >zhook.zsh' atpull'%atclone' src'zhook.zsh'
-zinit light denisidoro/navi
+zi ice from'gh-r' ver'v2.19.0' as'program' atclone'./navi widget zsh >zhook.zsh' atpull'%atclone' src'zhook.zsh'
+zi light denisidoro/navi
 
 ## Key Bindings
 
-zinit ice id-as'OMZP::fancy-ctrl-z'
-zinit snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
+zi ice id-as'OMZP::fancy-ctrl-z'
+zi snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
 
 FZF_DEFAULT_OPTS='--cycle --reverse --info=inline'
 FZF_DEFAULT_COMMAND='@fd@/bin/fd -HL -t f -E .git'
@@ -93,8 +92,8 @@ FZF_CTRL_T_OPTS="--preview='@bat@/bin/bat -pp --color=always {}'"
 FZF_ALT_C_OPTS="--preview='@exa@/bin/exa -la {}'"
 FZF_TMUX=1
 FZF_TMUX_OPTS='-p 80%,80%'
-zinit ice bindmap'^R->;\\ec->' multisrc'{completion,key-bindings}.zsh'
-zinit light '@fzf@/share/fzf'
+zi ice bindmap'^R->;\\ec->' multisrc'{completion,key-bindings}.zsh'
+zi light '@fzf@/share/fzf'
 
 ## Prompt
 

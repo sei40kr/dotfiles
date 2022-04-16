@@ -16,8 +16,8 @@ in {
     env.PATH = [ "\${HOME}/.poetry/bin" ];
 
     modules.shell.zsh.rcInit = ''
-      zinit ice wait''' lucid as'completion' id-as'OMZP::pip'
-      zinit snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/pip/_pip
+      zi ice wait''' lucid as'completion' id-as'OMZP::pip'
+      zi snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/pip/_pip
     '';
   };
 }
