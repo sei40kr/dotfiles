@@ -23,7 +23,7 @@ let
   };
 
   package = if cfg.doom.enable then
-    pkgs.emacsPgtk.pkgs.withPackages (epkgs: [
+    pkgs.emacs28NativeComp.pkgs.withPackages (epkgs: [
       epkgs.melpaPackages.emacsql
       epkgs.melpaPackages.emacsql-sqlite
       epkgs.melpaPackages.libgit
@@ -32,7 +32,7 @@ let
       default_el
     ])
   else
-    pkgs.emacsPgtk;
+    pkgs.emacs28NativeComp;
 
   vterm_printf = pkgs.writeTextFile {
     name = "vterm_printf";
