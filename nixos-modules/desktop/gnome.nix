@@ -59,7 +59,6 @@ in
       eog
       epiphany
       gedit
-      gnome-calculator
       gnome-calendar
       gnome-characters
       gnome-clocks
