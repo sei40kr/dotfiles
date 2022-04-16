@@ -51,8 +51,8 @@ zi light '@zsh_autosuggestions@/share/zsh-autosuggestions'
 zi ice wait'0' lucid
 zi light '@zsh_autopair@/share/zsh/zsh-autopair'
 
-zi ice wait'0' atinit'zpcompinit; zpcdreplay' lucid
-zi light '@zsh_fast_syntax_highlighting@/share/zsh/site-functions'
+zi ice ver'v1.55' wait lucid atinit'ZI[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay'
+zi light z-shell/F-Sy-H
 
 zi ice wait'0' lucid
 zi light '@zsh_history_search_multi_word@/share/zsh/zsh-history-search-multi-word'

@@ -18,7 +18,6 @@ let
       --subst-var-by exa                           ${pkgs.exa} \
       --subst-var-by zsh_autosuggestions           ${pkgs.zsh-autosuggestions} \
       --subst-var-by zsh_autopair                  ${pkgs.zsh-autopair} \
-      --subst-var-by zsh_fast_syntax_highlighting  ${pkgs.zsh-fast-syntax-highlighting} \
       --subst-var-by zsh_smart_history             ${pkgs.my.zsh-smart-history} \
       --subst-var-by zsh_tmux_man                  ${pkgs.my.zsh-tmux-man} \
       --subst-var-by zsh_history_search_multi_word ${pkgs.zsh-history-search-multi-word}
