@@ -95,9 +95,9 @@ in {
       '';
     };
 
-    home.file.".zshenv".text = ''. "''${HOME}/.config/zsh/.zshenv"'';
-    home.configFile = {
-      "zsh/.zshenv".text = let
+    home.file = {
+      ".zshenv".text = ''. "''${HOME}/.zsh/.zshenv"'';
+      ".zsh/.zshenv".text = let
         completions = pkgs.buildEnv {
           name = "zsh-completions_user";
           paths = config.users.users.${config.user.name}.packages;
@@ -105,7 +105,7 @@ in {
           ignoreCollisions = true;
         };
       in ''
-        ZDOTDIR="''${HOME}/.config/zsh"
+        ZDOTDIR="''${HOME}/.zsh"
 
         . "${
           config.home-manager.users.${config.user.name}.home.profileDirectory
@@ -125,7 +125,7 @@ in {
 
         ${cfg.envInit}
       '';
-      "zsh/.zshrc".text = ''
+      ".zsh/.zshrc".text = ''
         ${optionalString config.modules.desktop.sway.enable ''
           if [[ -z $DISPLAY && "$(tty)" == /dev/tty1 ]]; then
             exec sway
