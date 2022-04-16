@@ -29,6 +29,8 @@ rec {
 
   whitesur-wallpapers = pkgs.callPackage ./whitesur-wallpapers { };
 
+  zi = pkgs.callPackage ./zi { };
+
   zsh-smart-history = pkgs.callPackage ./zsh-smart-history.nix { };
 
   zsh-tmux-man = pkgs.callPackage ./zsh-tmux-man.nix { };
