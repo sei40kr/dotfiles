@@ -178,9 +178,9 @@ in {
           PROMPT='$ '
         fi
       '';
-    };
 
-    home.file.".zi/bin".source = pkgs.my.zi;
+      ".zsh/.zi/bin".source = pkgs.my.zi;
+    };
 
     environment.shells =
       [ "/run/current-system/sw/bin/zsh" "${pkgs.zsh}/bin/zsh" ];

@@ -30,7 +30,7 @@ unsetopt LIST_BEEP
 HISTSIZE=10000
 SAVEHIST=10000
 
-zi_home="${HOME}/.zi"
+zi_home="${ZDOTDIR}/.zi"
 . "${zi_home}/bin/zi.zsh"
 
 ## Commands
