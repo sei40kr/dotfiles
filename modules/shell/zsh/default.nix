@@ -10,17 +10,16 @@ let
 
   zshrc = pkgs.runCommandLocal "zshrc" {} ''
     substitute ${../../../config/zsh/zshrc} $out \
-      --subst-var-by oh_my_zsh                     ${pkgs.oh-my-zsh} \
-      --subst-var-by zsh_prezto                    ${pkgs.zsh-prezto} \
-      --subst-var-by fzf                           ${pkgs.fzf} \
-      --subst-var-by fd                            ${pkgs.fd} \
-      --subst-var-by bat                           ${pkgs.bat} \
-      --subst-var-by exa                           ${pkgs.exa} \
-      --subst-var-by zsh_autosuggestions           ${pkgs.zsh-autosuggestions} \
-      --subst-var-by zsh_autopair                  ${pkgs.zsh-autopair} \
-      --subst-var-by zsh_smart_history             ${pkgs.my.zsh-smart-history} \
-      --subst-var-by zsh_tmux_man                  ${pkgs.my.zsh-tmux-man} \
-      --subst-var-by zsh_history_search_multi_word ${pkgs.zsh-history-search-multi-word}
+      --subst-var-by oh_my_zsh           ${pkgs.oh-my-zsh} \
+      --subst-var-by zsh_prezto          ${pkgs.zsh-prezto} \
+      --subst-var-by fzf                 ${pkgs.fzf} \
+      --subst-var-by fd                  ${pkgs.fd} \
+      --subst-var-by bat                 ${pkgs.bat} \
+      --subst-var-by exa                 ${pkgs.exa} \
+      --subst-var-by zsh_autosuggestions ${pkgs.zsh-autosuggestions} \
+      --subst-var-by zsh_autopair        ${pkgs.zsh-autopair} \
+      --subst-var-by zsh_smart_history   ${pkgs.my.zsh-smart-history} \
+      --subst-var-by zsh_tmux_man        ${pkgs.my.zsh-tmux-man}
   '';
 in {
   options.modules.shell.zsh = with types; {
