@@ -1,4 +1,21 @@
-require("impatient")
+local function prequire(...)
+    local status, lib = pcall(require, ...)
+    if status then
+        return lib
+    end
+    return nil
+end
+
+prequire("impatient")
+
+vim.cmd([[
+command! PackerSync lua require('plugins').sync()
+command! PackerClean lua require('plugins').clean()
+command! PackerCompile lua require('plugins').compile()
+]])
+if not prequire("packer_compiled") then
+    require("plugins").sync()
+end
 
 vim.opt.autoindent = true
 vim.opt.autoread = true
@@ -38,22 +55,5 @@ autocmd!
 autocmd FileType help nnoremap <buffer> q <Cmd>bdelete<CR>
 augroup END
 ]])
-
-vim.cmd([[
-command! PackerSync lua require('plugins').sync()
-command! PackerClean lua require('plugins').clean()
-command! PackerCompile lua require('plugins').compile()
-]])
-
-local function prequire(...)
-    local status, lib = pcall(require, ...)
-    if status then
-        return lib
-    end
-    return nil
-end
-if not prequire("packer_compiled") then
-    vim.cmd([[PackerSync]])
-end
 
 require("config.keymaps")
