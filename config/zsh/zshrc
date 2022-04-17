@@ -45,11 +45,11 @@ fi
 
 ## Shell Enhancements
 
-zi ice wait'0' lucid
-zi light '@zsh_autosuggestions@/share/zsh-autosuggestions'
+zi ice ver'v0.7.0' wait'0' lucid
+zi light 'zsh-users/zsh-autosuggestions'
 
-zi ice wait'0' lucid
-zi light '@zsh_autopair@/share/zsh/zsh-autopair'
+zi ice ver'9d003fc02dbaa6db06e6b12e8c271398478e0b5d' wait'0' lucid
+zi light 'hlissner/zsh-autopair'
 
 zi ice ver'v1.55' wait lucid atinit'ZI[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay'
 zi light z-shell/F-Sy-H
@@ -57,10 +57,12 @@ zi light z-shell/F-Sy-H
 zi ice ver'v1.0.0' wait lucid
 zi light z-shell/H-S-MW
 
-zi light '@zsh_smart_history@/share/zsh/plugins/zsh-smart-history'
+zi ice ver'c8625305797b1d8f822c7575e85b26e5b32560c7'
+zi light sei40kr/zsh-smart-history
 
 if [[ -n "$TMUX" ]]; then
-  zi light '@zsh_tmux_man@/share/zsh/plugins/zsh-tmux-man'
+  zi ice ver'37a3c697461b33dd2f85998431cdfec6d963be37'
+  zi light 'sei40kr/zsh-tmux-man'
   # Remove alias run-help=man
   if [[ ${+aliases[run-help]} == 1 ]]; then
     unalias run-help
