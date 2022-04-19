@@ -5,7 +5,7 @@ let
     repo = "homebrew-emacs-plus";
     owner = "d12frosted";
     rev = "328a0beee56a4f099f9a6eb31290223238dd24bc";
-    sha256 = lib.fakeSha256;
+    sha256 = "06vl4f6ihlgzxmzrfdndc5jg02qpycj9fivv218gkw2vbzfsnfv3";
   };
 in
 {
