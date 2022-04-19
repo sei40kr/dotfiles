@@ -54,6 +54,11 @@ in {
 
     home.configFile."tmux/tmux.conf".source = tmux_conf;
 
+    environment.variables = {
+      # Store the tmux sockets under /run, which is more secure than /tmp
+      TMUX_TMPDIR = optional pkgs.stdenv.isLinux ''''${XDG_RUNTIME_DIR:-"/run/user/$(id -u)"}'';
+    };
+
     modules.shell.aliases.mux = "tmuxinator";
   };
 }
