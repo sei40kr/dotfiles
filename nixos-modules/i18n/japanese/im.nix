@@ -8,11 +8,8 @@ in
 {
   config = mkIf cfg.enable {
     i18n.inputMethod = {
-      enabled = "ibus";
-      ibus = {
-        engines = with pkgs.ibus-engines; [ mozc ];
-        panel = "${pkgs.plasma5Packages.plasma-desktop}/lib/libexec/kimpanel-ibus-panel";
-      };
+      enabled = "fcitx5";
+      fcitx5.addons = with pkgs; [ fcitx5-mozc ];
     };
   };
 }
