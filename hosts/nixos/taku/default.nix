@@ -3,8 +3,8 @@
 with lib; {
   imports = [ ./hardware-configuration.nix ];
 
-  # Use kernel 5.16
-  boot.kernelPackages = pkgs.linuxPackages_5_16;
+  # Use kernel 5.17
+  boot.kernelPackages = pkgs.linuxPackages_5_17;
   # Use the systemd-boot EFI boot loader.
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
