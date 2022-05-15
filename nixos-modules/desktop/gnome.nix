@@ -117,6 +117,8 @@ in
           switch-applications-backward = [ ];
           switch-windows = [ "<Super>Tab" ];
           switch-windows-backward = [ "<Shift><Super>Tab" ];
+        } // optionalAttrs config.modules.editors.emacs.doom.enable {
+          activate-window-menu = [ ];
         };
         "org/gnome/shell/extensions" = {
           disable-user-extensions = false;
