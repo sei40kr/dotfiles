@@ -4,8 +4,6 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.shell.kaggle;
-
-  package = pkgs.kaggle.overrideAttrs (_: { doCheck = false; });
 in
 {
   options.modules.shell.kaggle = {
@@ -13,6 +11,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = [ package ];
+    user.packages = with pkgs; [ kaggle ];
   };
 }
