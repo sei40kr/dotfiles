@@ -4,9 +4,15 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.dev.ansible;
-  package = pkgs.ansible.overrideAttrs (_: { doCheck = false; });
-in {
-  options.modules.dev.ansible = { enable = mkBoolOpt false; };
 
-  config = mkIf cfg.enable { user.packages = [ package ]; };
+  package = pkgs.ansible.overrideAttrs (_: { doCheck = false; });
+in
+{
+  options.modules.dev.ansible = {
+    enable = mkBoolOpt false;
+  };
+
+  config = mkIf cfg.enable {
+    user.packages = [ package ];
+  };
 }

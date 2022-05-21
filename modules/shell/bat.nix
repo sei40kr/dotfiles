@@ -3,9 +3,11 @@
 with lib;
 with lib.my;
 let cfg = config.modules.shell.bat;
-in {
+in
+{
   options.modules.shell.bat = with types; {
     enable = mkBoolOpt false;
+
     theme = mkOpt str null;
   };
 

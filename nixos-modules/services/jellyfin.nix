@@ -1,26 +1,22 @@
-{ config, home-manager, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
+with lib.my;
 let cfg = config.modules.services.jellyfin;
-in {
+in
+{
   options.modules.services.jellyfin = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-    };
+    enable = mkBoolOpt false;
 
-    openFirewall = mkOption {
-      type = types.bool;
-      default = false;
-    };
+    openFirewall = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
     # cf https://jellyfin.org/docs/general/networking/index.html
-    networking.firewall.allowedTCPPorts =
-      optionals cfg.openFirewall [ 8096 8920 ];
+    networking.firewall.allowedTCPPorts = optionals cfg.openFirewall [ 8096 8920 ];
 
     user.packages = with pkgs; [ jellyfin ];
+
     home-manager.users.${config.user.name}.systemd.user.services.jellyfin = {
       Unit = {
         Description = "Jellyfin Media Server";

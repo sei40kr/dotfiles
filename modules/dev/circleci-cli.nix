@@ -3,8 +3,13 @@
 with lib;
 with lib.my;
 let cfg = config.modules.dev.circleci-cli;
-in {
-  options.modules.dev.circleci-cli = { enable = mkBoolOpt false; };
+in
+{
+  options.modules.dev.circleci-cli = {
+    enable = mkBoolOpt false;
+  };
 
-  config = mkIf cfg.enable { user.packages = with pkgs; [ circleci-cli ]; };
+  config = mkIf cfg.enable {
+    user.packages = with pkgs; [ circleci-cli ];
+  };
 }

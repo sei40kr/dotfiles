@@ -1,6 +1,21 @@
-{ coreutils, e2fsprogs, fetchurl, git, gnugrep, jdk, lib, libnotify, libsecret
-, makeDesktopItem, makeWrapper, patchelf, stdenv, unzip, which, writeText
-, vmopts ? null }:
+{ coreutils
+, e2fsprogs
+, fetchurl
+, git
+, gnugrep
+, jdk
+, lib
+, libnotify
+, libsecret
+, makeDesktopItem
+, makeWrapper
+, patchelf
+, stdenv
+, unzip
+, which
+, writeText
+, vmopts ? null
+}:
 
 with lib;
 let
@@ -28,7 +43,8 @@ let
       StartupWMClass = "jetbrains-dataspell";
     };
   };
-in stdenv.mkDerivation {
+in
+stdenv.mkDerivation {
   inherit name version desktopItem;
 
   src = fetchurl {

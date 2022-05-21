@@ -5,7 +5,8 @@ with lib.my;
 let
   terminfoDirs = (map (p: "${p}/share/terminfo") config.environment.profiles)
     ++ [ "/usr/share/terminfo" ];
-in {
+in
+{
   config = {
     environment = {
       pathsToLink = [ "/share/terminfo" ];

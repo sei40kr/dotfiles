@@ -14,9 +14,11 @@ let
 
   fontPackages = cfg.fonts.sansSerif.packages ++ cfg.fonts.serif.packages
     ++ cfg.fonts.monospace.packages ++ cfg.fonts.emoji.packages;
-in {
+in
+{
   options.modules.desktop.fontconfig = {
     enable = mkBoolOpt false;
+
     fonts = {
       sansSerif = mkOpt fontType {
         packages = with pkgs; [ noto-fonts noto-fonts-cjk-sans ];

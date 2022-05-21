@@ -2,15 +2,16 @@
 
 with lib;
 with lib.my;
-let downloadDir = "${config.user.home}/google-drive";
-in {
-  options.modules.services.flexget.enable = mkOption {
-    type = types.bool;
-    default = false;
+let cfg = config.modules.services.flexget;
+in
+{
+  options.modules.services.flexget = {
+    enable = mkBoolOpt false;
   };
 
-  config = mkIf config.modules.services.flexget.enable {
-    user.packages = [ pkgs.flexget ];
+  config = mkIf cfg.enable {
+    user.packages = with pkgs; [ flexget ];
+
     # TODO Install FlexGet config
     home-manager.users.${config.user.name}.systemd.user.services.flexget = {
       Unit = {

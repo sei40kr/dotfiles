@@ -1,5 +1,14 @@
-{ buildPythonApplication, colorlog, fetchFromGitHub, git, importlab, lib
-, online-judge-tools, pyyaml, setuptools, substituteAll, toml, ... }:
+{ buildPythonApplication
+, colorlog
+, fetchFromGitHub
+, importlab
+, lib
+, online-judge-tools
+, pyyaml
+, setuptools
+, toml
+, ...
+}:
 
 buildPythonApplication rec {
   pname = "online-judge-verify-helper";

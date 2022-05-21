@@ -5,10 +5,10 @@ with lib.my;
 let
   inherit (config.dotfiles) configDir;
   cfg = config.modules.dev.sql;
-in {
-  options.modules.dev.sql.enable = mkOption {
-    type = types.bool;
-    default = false;
+in
+{
+  options.modules.dev.sql = {
+    enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {

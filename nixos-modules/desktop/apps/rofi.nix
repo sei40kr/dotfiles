@@ -5,8 +5,11 @@ with lib.my;
 let
   inherit (config.dotfiles) binDir configDir;
   cfg = config.modules.desktop.apps.rofi;
-in {
-  options.modules.desktop.apps.rofi = with types; { enable = mkBoolOpt false; };
+in
+{
+  options.modules.desktop.apps.rofi = with types; {
+    enable = mkBoolOpt false;
+  };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ rofi dconf jq playerctl xdg-utils ];

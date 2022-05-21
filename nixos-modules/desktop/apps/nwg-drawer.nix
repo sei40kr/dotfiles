@@ -27,7 +27,8 @@ let
     exec = "systemctl poweroff";
     categories = [ "System" ];
   };
-in {
+in
+{
   options.modules.desktop.apps.nwg-drawer = with types; {
     enable = mkBoolOpt false;
   };

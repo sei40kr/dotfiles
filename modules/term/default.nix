@@ -12,7 +12,8 @@ let
         size = mkOpt int null;
       };
     };
-in {
+in
+{
   options.modules.term = with types; {
     font = mkOpt fontType {
       name = "monospace";

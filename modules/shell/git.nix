@@ -5,7 +5,8 @@ with lib.my;
 let
   inherit (config.dotfiles) configDir;
   cfg = config.modules.shell.git;
-in {
+in
+{
   options.modules.shell.git = with types; {
     enable = mkBoolOpt false;
 

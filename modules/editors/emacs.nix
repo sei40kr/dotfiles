@@ -22,17 +22,19 @@ let
     destination = "/share/emacs/site-lisp/default.el";
   };
 
-  package = if cfg.doom.enable then
-    pkgs.emacs28NativeComp.pkgs.withPackages (epkgs: [
-      epkgs.melpaPackages.emacsql
-      epkgs.melpaPackages.emacsql-sqlite
-      epkgs.melpaPackages.libgit
-      epkgs.melpaPackages.vterm
-      epkgs.melpaPackages.zmq
-      default_el
-    ])
-  else
-    pkgs.emacs28NativeComp;
+  package =
+    if cfg.doom.enable then
+      pkgs.emacs28NativeComp.pkgs.withPackages
+        (epkgs: [
+          epkgs.melpaPackages.emacsql
+          epkgs.melpaPackages.emacsql-sqlite
+          epkgs.melpaPackages.libgit
+          epkgs.melpaPackages.vterm
+          epkgs.melpaPackages.zmq
+          default_el
+        ])
+    else
+      pkgs.emacs28NativeComp;
 
   vterm_printf = pkgs.writeTextFile {
     name = "vterm_printf";
@@ -51,7 +53,8 @@ let
     '';
     destination = "/share/zsh/site-functions/vterm_printf";
   };
-in {
+in
+{
   options.modules.editors.emacs = with types; {
     enable = mkBoolOpt false;
 

@@ -23,7 +23,7 @@ let
   };
 
   inherit (config.modules.term.theme) colors;
-  tmux_conf = pkgs.runCommandLocal "tmux.conf" {} ''
+  tmux_conf = pkgs.runCommandLocal "tmux.conf" { } ''
     substitute ${../../config/tmux/tmux.conf} $out \
       --subst-var-by border_active   ${escapeShellArg "#${colors.border.active}"} \
       --subst-var-by border_inactive ${escapeShellArg "#${colors.border.inactive}"} \
@@ -43,9 +43,11 @@ let
       --subst-var-by urlview      ${pkgs.tmuxPlugins.urlview.rtp} \
       --subst-var-by yank         ${pkgs.tmuxPlugins.yank.rtp}
   '';
-in {
+in
+{
   options.modules.shell.tmux = {
     enable = mkBoolOpt false;
+
     autoRun = mkBoolOpt false;
   };
 

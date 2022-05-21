@@ -4,12 +4,13 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.dev.google-cloud-sdk;
-  package = pkgs.google-cloud-sdk;
-in {
-  options.modules.dev.google-cloud-sdk.enable = mkOption {
-    type = types.bool;
-    default = false;
+in
+{
+  options.modules.dev.google-cloud-sdk = {
+    enable = mkBoolOpt false;
   };
 
-  config = mkIf cfg.enable { user.packages = [ package ]; };
+  config = mkIf cfg.enable {
+    user.packages = with pkgs; [ google-cloud-sdk ];
+  };
 }

@@ -38,12 +38,12 @@ let
     p.tree-sitter-vim
     p.tree-sitter-yaml
   ]);
-  ginit_lua = pkgs.runCommandLocal "ginit.lua" {} ''
+  ginit_lua = pkgs.runCommandLocal "ginit.lua" { } ''
     substitute ${../../config/neovim/lua/ginit.lua} $out \
       --subst-var-by fontFamily ${escapeShellArg editorsCfg.fonts.code.family} \
       --subst-var-by fontSize ${toString editorsCfg.fonts.code.size}
   '';
-  plugins_lua = pkgs.runCommandLocal "plugins.lua" {} ''
+  plugins_lua = pkgs.runCommandLocal "plugins.lua" { } ''
     substitute ${../../config/neovim/lua/plugins.lua} $out \
       --subst-var-by impatient_nvim  ${pkgs.vimPlugins.impatient-nvim.rtp} \
       --subst-var-by nvim_treesitter ${nvim-treesitter.rtp} \
@@ -51,12 +51,12 @@ let
       --subst-var-by packer_nvim     ${pkgs.vimPlugins.packer-nvim.rtp} \
       --subst-var-by which_key_nvim  ${pkgs.vimPlugins.which-key-nvim.rtp}
   '';
-in {
+in
+{
   options.modules.editors.neovim = with types; {
     enable = mkBoolOpt false;
 
     pager.enable = mkBoolOpt false;
-
     manpager.enable = mkBoolOpt false;
   };
 
@@ -85,12 +85,14 @@ in {
         pkgs.vimPlugins.packer-nvim.rtp;
     };
 
-    system.activationScripts.neovimClean = let
-      xdg = config.home-manager.users.${config.user.name}.xdg;
-    in ''
-      rm -f ${xdg.cacheHome}/nvim/luacache \
-            ${xdg.configHome}/nvim/lua/packer_compiled.lua
-    '';
+    system.activationScripts.neovimClean =
+      let
+        xdg = config.home-manager.users.${config.user.name}.xdg;
+      in
+      ''
+        rm -f ${xdg.cacheHome}/nvim/luacache \
+              ${xdg.configHome}/nvim/lua/packer_compiled.lua
+      '';
 
     env = {
       PAGER = mkIf cfg.pager.enable "${pkgs.neovim}/bin/nvim -c PAGER -";

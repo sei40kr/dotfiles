@@ -3,8 +3,11 @@
 with lib;
 with lib.my;
 let cfg = config.modules.dev.kotlin;
-in {
-  options.modules.dev.kotlin = { enable = mkBoolOpt false; };
+in
+{
+  options.modules.dev.kotlin = {
+    enable = mkBoolOpt false;
+  };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [

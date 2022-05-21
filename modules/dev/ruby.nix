@@ -3,16 +3,17 @@
 with lib;
 with lib.my;
 let cfg = config.modules.dev.ruby;
-in {
+in
+{
   options.modules.dev.ruby = {
     enable = mkBoolOpt false;
+
     rails.enable = mkBoolOpt false;
   };
 
   config = mkIf config.modules.dev.ruby.enable {
-    user.packages = with pkgs;
-      ([ ruby rubocop rubyPackages.rake solargraph ]
-        ++ optionals cfg.rails.enable [ rubyPackages.rails ]);
+    user.packages = with pkgs; ([ ruby rubocop rubyPackages.rake solargraph ]
+      ++ optionals cfg.rails.enable [ rubyPackages.rails ]);
 
     modules.shell.zsh.rcInit = ''
       zi ice wait''' lucid as'completion' id-as'OMZP::gem'

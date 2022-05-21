@@ -6,14 +6,12 @@ let
   inherit (inputs) idea-doom-emacs;
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.ideavim;
-in {
+in
+{
   options.modules.editors.ideavim = {
     enable = mkBoolOpt false;
 
-    doom.enable = mkOption {
-      type = types.bool;
-      default = editorsCfg.emacs.doom.enable;
-    };
+    doom.enable = mkBoolOpt editorsCfg.emacs.doom.enable;
   };
 
   config = mkIf cfg.enable {

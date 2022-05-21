@@ -1,12 +1,16 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
-  options.modules.services.protonvpn.enable = mkOption {
-    type = types.bool;
-    default = false;
+with lib;
+with lib.my;
+let
+  cfg = config.modules.services.protonvpn;
+in
+{
+  options.modules.services.protonvpn = {
+    enable = mkBoolOpt false;
   };
 
-  config = mkIf config.modules.services.protonvpn.enable {
+  config = mkIf cfg.enable {
     user.packages = with pkgs; [ protonvpn-cli ];
 
     # systemd.services.protonvpn-autoconnect = {

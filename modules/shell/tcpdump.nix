@@ -3,8 +3,13 @@
 with lib;
 with lib.my;
 let cfg = config.modules.shell.tcpdump;
-in {
-  options.modules.shell.tcpdump = { enable = mkBoolOpt false; };
+in
+{
+  options.modules.shell.tcpdump = {
+    enable = mkBoolOpt false;
+  };
 
-  config = mkIf cfg.enable { user.packages = with pkgs; [ tcpdump ]; };
+  config = mkIf cfg.enable {
+    user.packages = with pkgs; [ tcpdump ];
+  };
 }

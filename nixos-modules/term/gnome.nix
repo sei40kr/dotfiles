@@ -4,8 +4,8 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.term.gnome;
-
   termCfg = config.modules.term;
+
   inherit (termCfg) font;
   inherit (termCfg.theme) colors;
 in

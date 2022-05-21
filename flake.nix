@@ -24,7 +24,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, darwin, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, darwin, ... }@inputs:
     let
       inherit (lib)
         attrValues elem filterAttrs genAttrs mkDefault nixosSystem optionalAttrs
@@ -85,7 +85,8 @@
             (import path)
           ];
         };
-    in {
+    in
+    {
       lib = lib.my;
 
       overlay = _: { system, ... }: { my = self.packages.${system}; };

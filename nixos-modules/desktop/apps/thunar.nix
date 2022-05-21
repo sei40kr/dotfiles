@@ -3,8 +3,11 @@
 with lib;
 with lib.my;
 let cfg = config.modules.desktop.apps.thunar;
-in {
-  options.modules.desktop.apps.thunar = { enable = mkBoolOpt false; };
+in
+{
+  options.modules.desktop.apps.thunar = {
+    enable = mkBoolOpt false;
+  };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [

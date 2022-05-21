@@ -3,8 +3,11 @@
 with lib;
 with lib.my;
 let cfg = config.modules.dev.javascript;
-in {
-  options.modules.dev.javascript = { enable = mkBoolOpt false; };
+in
+{
+  options.modules.dev.javascript = {
+    enable = mkBoolOpt false;
+  };
 
   config = mkIf cfg.enable {
     # TODO gatsby-cli

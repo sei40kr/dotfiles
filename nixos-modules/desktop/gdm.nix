@@ -6,7 +6,7 @@ let
   cfg = config.modules.desktop.gdm;
 in
 {
-  options.modules.desktop.gdm = with types; {
+  options.modules.desktop.gdm = {
     enable = mkBoolOpt false;
   };
 

@@ -6,11 +6,12 @@ let
     concatMapStringsSep escape isBool isInt isList isString replaceStrings;
   escapeEmacsLispString = v:
     escape [ "\\" ''"'' ]
-    (replaceStrings [ "\n" "\r" "	" ] [ "\\n" "\\r" "\\t" ] v);
+      (replaceStrings [ "\n" "\r" "  " ] [ "\\n" "\\r" "\\t" ] v);
   escapeVimScriptString = v:
     escape [ "\\" ''"'' ]
-    (replaceStrings [ "\n" "\r" "	" ] [ "\\n" "\\r" "\\t" ] v);
-in rec {
+      (replaceStrings [ "\n" "\r" "  " ] [ "\\n" "\\r" "\\t" ] v);
+in
+rec {
   toEmacsLisp = v:
     if isNull v then
       "nil"

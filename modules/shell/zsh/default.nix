@@ -8,7 +8,7 @@ let
   shellCfg = config.modules.shell;
   cfg = shellCfg.zsh;
 
-  zshrc = pkgs.runCommandLocal "zshrc" {} ''
+  zshrc = pkgs.runCommandLocal "zshrc" { } ''
     substitute ${../../../config/zsh/zshrc} $out \
       --subst-var-by oh_my_zsh  ${pkgs.oh-my-zsh} \
       --subst-var-by zsh_prezto ${pkgs.zsh-prezto} \
@@ -17,7 +17,8 @@ let
       --subst-var-by bat        ${pkgs.bat} \
       --subst-var-by exa        ${pkgs.exa}
   '';
-in {
+in
+{
   options.modules.shell.zsh = with types; {
     enable = mkBoolOpt false;
 
@@ -61,64 +62,68 @@ in {
           . /etc/zshenv.local
         fi
       '';
-      zshrc.text = let
-        completions = pkgs.buildEnv {
-          name = "zsh-completions_system";
-          paths = config.environment.systemPackages;
-          pathsToLink = [ "/share/zsh" ];
-          ignoreCollisions = true;
-        };
-      in ''
-        # Only execute this file once per shell.
-        if [[ -n "$__ETC_ZSHRC_SOURCED" || -n "$NOSYSZSHRC" ]]; then
-          return
-        fi
-        __ETC_ZSHRC_SOURCED=1
+      zshrc.text =
+        let
+          completions = pkgs.buildEnv {
+            name = "zsh-completions_system";
+            paths = config.environment.systemPackages;
+            pathsToLink = [ "/share/zsh" ];
+            ignoreCollisions = true;
+          };
+        in
+        ''
+          # Only execute this file once per shell.
+          if [[ -n "$__ETC_ZSHRC_SOURCED" || -n "$NOSYSZSHRC" ]]; then
+            return
+          fi
+          __ETC_ZSHRC_SOURCED=1
 
-        fpath=(
-          "${completions}/share/zsh/site-functions"
-          "${completions}/share/zsh/''${ZSH_VERSION}/functions"
-          "${completions}/share/zsh/vendor-completions"
-          "''${fpath[@]}"
-        )
+          fpath=(
+            "${completions}/share/zsh/site-functions"
+            "${completions}/share/zsh/''${ZSH_VERSION}/functions"
+            "${completions}/share/zsh/vendor-completions"
+            "''${fpath[@]}"
+          )
 
-        # Read system-wide modifications.
-        if test -f /etc/zshrc.local; then
-            . /etc/zshrc.local
-        fi
-      '';
+          # Read system-wide modifications.
+          if test -f /etc/zshrc.local; then
+              . /etc/zshrc.local
+          fi
+        '';
     };
 
     home.file = {
       ".zshenv".text = ''. "''${HOME}/.zsh/.zshenv"'';
-      ".zsh/.zshenv".text = let
-        completions = pkgs.buildEnv {
-          name = "zsh-completions_user";
-          paths = config.users.users.${config.user.name}.packages;
-          pathsToLink = [ "/share/zsh" ];
-          ignoreCollisions = true;
-        };
-      in ''
-        ZDOTDIR="''${HOME}/.zsh"
+      ".zsh/.zshenv".text =
+        let
+          completions = pkgs.buildEnv {
+            name = "zsh-completions_user";
+            paths = config.users.users.${config.user.name}.packages;
+            pathsToLink = [ "/share/zsh" ];
+            ignoreCollisions = true;
+          };
+        in
+        ''
+          ZDOTDIR="''${HOME}/.zsh"
 
-        . "${
-          config.home-manager.users.${config.user.name}.home.profileDirectory
-        }/etc/profile.d/hm-session-vars.sh"
+          . "${
+            config.home-manager.users.${config.user.name}.home.profileDirectory
+          }/etc/profile.d/hm-session-vars.sh"
 
-        # Don't execute this file when running in a pure nix-shell.
-        if [[ -n "$IN_NIX_SHELL" ]]; then
-          return
-        fi
+          # Don't execute this file when running in a pure nix-shell.
+          if [[ -n "$IN_NIX_SHELL" ]]; then
+            return
+          fi
 
-        fpath=(
-          "${completions}/share/zsh/site-functions"
-          "${completions}/share/zsh/''${ZSH_VERSION}/functions"
-          "${completions}/share/zsh/vendor-completions"
-          "''${fpath[@]}"
-        )
+          fpath=(
+            "${completions}/share/zsh/site-functions"
+            "${completions}/share/zsh/''${ZSH_VERSION}/functions"
+            "${completions}/share/zsh/vendor-completions"
+            "''${fpath[@]}"
+          )
 
-        ${cfg.envInit}
-      '';
+          ${cfg.envInit}
+        '';
       ".zsh/.zshrc".text = ''
         ${optionalString config.modules.desktop.sway.enable ''
           if [[ -z $DISPLAY && "$(tty)" == /dev/tty1 ]]; then

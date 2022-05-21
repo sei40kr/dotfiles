@@ -7,19 +7,22 @@ let
 
   formatGtk2Option = n: v:
     let
-      v' = if isBool v then
-        (if v then "true" else "false")
-      else if isString v then
-        ''"${v}"''
-      else
-        toString v;
-    in "${n} = ${v'}";
+      v' =
+        if isBool v then
+          (if v then "true" else "false")
+        else if isString v then
+          ''"${v}"''
+        else
+          toString v;
+    in
+    "${n} = ${v'}";
   toGtkIni = lib.generators.toINI {
     mkKeyValue = n: v:
       let v' = if isBool v then (if v then "true" else "false") else toString v;
       in "${n}=${v'}";
   };
-in {
+in
+{
   options.modules.desktop.gtk = with types; {
     enable = mkBoolOpt false;
 

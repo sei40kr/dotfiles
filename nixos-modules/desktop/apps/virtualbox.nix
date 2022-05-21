@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 with lib;
 with lib.my;
 let cfg = config.modules.desktop.apps.virtualbox;
 in
 {
-  options.modules.desktop.apps.virtualbox = with types; {
+  options.modules.desktop.apps.virtualbox = {
     enable = mkBoolOpt false;
   };
 

@@ -4,15 +4,20 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.dev.r;
+
   package = with pkgs;
     rWrapper.override {
       packages = [ rPackages.languageserver rPackages.lintr rPackages.styler ];
     };
-in {
-  options.modules.dev.r = { enable = mkBoolOpt false; };
+in
+{
+  options.modules.dev.r = {
+    enable = mkBoolOpt false;
+  };
 
   config = mkIf cfg.enable {
     user.packages = [ package ];
+
     home.file = {
       ".Renviron".text = ''
         R_LIBS=${package}/library
@@ -21,6 +26,7 @@ in {
         options(repos='https://cran.ism.ac.jp');
       '';
     };
+
     modules.shell.aliases = { R = "R -q --no-save --no-restore-data"; };
   };
 }

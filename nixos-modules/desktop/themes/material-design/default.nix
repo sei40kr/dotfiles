@@ -3,7 +3,8 @@
 with lib;
 with lib.my;
 let themeCfg = config.modules.desktop.theme;
-in {
+in
+{
   config = mkIf (themeCfg.active == "material-design") {
     modules.desktop = {
       fontconfig.fonts.sansSerif = {

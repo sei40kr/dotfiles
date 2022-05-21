@@ -3,8 +3,11 @@
 with lib;
 with lib.my;
 let cfg = config.modules.dev.haskell;
-in {
-  options.modules.dev.haskell = { enable = mkBoolOpt false; };
+in
+{
+  options.modules.dev.haskell = {
+    enable = mkBoolOpt false;
+  };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
@@ -14,6 +17,7 @@ in {
       haskellPackages.haskell-language-server
       haskellPackages.hlint
     ];
+
     home.file.".stack/config.yaml".text = ''
       templates:
         params:

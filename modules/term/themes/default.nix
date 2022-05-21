@@ -5,7 +5,8 @@ with lib.my;
 let
   cfg = config.modules.term.theme;
   inherit (cfg) colors;
-in {
+in
+{
   options.modules.term.theme = with types; {
     active = mkOpt str null;
 

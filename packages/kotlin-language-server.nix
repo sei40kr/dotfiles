@@ -1,4 +1,4 @@
-{ fetchzip, jre, lib, makeWrapper, stdenv, unzip, ... }:
+{ fetchzip, jre, lib, makeWrapper, stdenv, ... }:
 
 with lib;
 stdenv.mkDerivation rec {

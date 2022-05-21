@@ -3,18 +3,19 @@
 with lib;
 with lib.my;
 let cfg = config.modules.dev.scala;
-in {
+in
+{
   options.modules.dev.scala = {
     enable = mkBoolOpt false;
+
     bloop.enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
     # TODO Install scala, sbt completions
     # TODO Install scalastyle
-    user.packages = with pkgs;
-      ([ scala sbt gradle maven metals scalafmt ]
-        ++ optionals cfg.bloop.enable [ bloop ]);
+    user.packages = with pkgs; [ scala sbt gradle maven metals scalafmt ]
+      ++ (optionals cfg.bloop.enable [ bloop ]);
 
     home-manager.users.${config.user.name}.systemd.user.services.bloop =
       mkIf cfg.bloop.enable {

@@ -2,8 +2,7 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.i18n.japanese;
+let cfg = config.modules.i18n.japanese;
 in
 {
   config = mkIf cfg.enable {

@@ -3,20 +3,23 @@
 with lib;
 with lib.my;
 let inherit (pkgs.stdenv) isDarwin;
-in {
+in
+{
   options = with types; {
     user = mkOpt attrs { };
 
-    dotfiles = let t = either str path;
-    in {
-      dir = mkOpt t (findFirst pathExists (toString ../.) [
-        "${config.user.home}/.config/dotfiles"
-        "/etc/dotfiles"
-      ]);
-      binDir = mkOpt t "${config.dotfiles.dir}/bin";
-      configDir = mkOpt t "${config.dotfiles.dir}/config";
-      secretsDir = mkOpt t inputs.secrets;
-    };
+    dotfiles =
+      let t = either str path;
+      in
+      {
+        dir = mkOpt t (findFirst pathExists (toString ../.) [
+          "${config.user.home}/.config/dotfiles"
+          "/etc/dotfiles"
+        ]);
+        binDir = mkOpt t "${config.dotfiles.dir}/bin";
+        configDir = mkOpt t "${config.dotfiles.dir}/config";
+        secretsDir = mkOpt t inputs.secrets;
+      };
 
     home = {
       file = mkOpt' attrs { } "Files to place directly in $HOME";
@@ -52,11 +55,13 @@ in {
 
     users.users.${config.user.name} = mkAliasDefinitions options.user;
 
-    nix.settings = let users = [ "root" config.user.name ];
-    in {
-      trusted-users = users;
-      allowed-users = users;
-    };
+    nix.settings =
+      let users = [ "root" config.user.name ];
+      in
+      {
+        trusted-users = users;
+        allowed-users = users;
+      };
 
     env.PATH = [ "$DOTFILES_BIN" "$XDG_BIN_HOME" "$PATH" ];
   };

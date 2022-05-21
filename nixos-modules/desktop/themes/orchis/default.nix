@@ -6,7 +6,8 @@ let
   themeCfg = config.modules.desktop.theme;
 
   orchis-theme = pkgs.orchis-theme.override { withWallpapers = true; };
-in {
+in
+{
   config = mkIf (themeCfg.active == "orchis") {
     modules.desktop = {
       fontconfig.fonts.sansSerif = {

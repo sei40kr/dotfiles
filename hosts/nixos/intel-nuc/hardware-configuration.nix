@@ -1,4 +1,4 @@
-{ config, inputs, lib, pkgs, ... }:
+{ inputs, lib, ... }:
 
 {
   imports = [ inputs.nixpkgs.nixosModules.notDetected ];

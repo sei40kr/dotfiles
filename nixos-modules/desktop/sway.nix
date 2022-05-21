@@ -5,7 +5,8 @@ with lib.my;
 let
   inherit (config.dotfiles) configDir;
   cfg = config.modules.desktop.sway;
-in {
+in
+{
   options.modules.desktop.sway = with types; {
     enable = mkBoolOpt false;
 
@@ -45,14 +46,16 @@ in {
           # This will lock your screen after 300 seconds of inactivity, then turn off
           # your displays after another 300 seconds, and turn your screens back on when
           # resumed. It will also lock your screen before your computer goes to sleep.
-          ExecStart = let lock = "${pkgs.swaylock-effects}/bin/swaylock -f";
-          in ''
-            ${pkgs.swayidle}/bin/swayidle -w \
-              timeout 300 ${escapeShellArg lock} \
-              timeout 600 '${pkgs.sway}/bin/swaymsg "output * dpms off"' \
-              resume '${pkgs.sway}/bin/swaymsg "output * dpms on"' \
-              before-sleep ${escapeShellArg lock}
-          '';
+          ExecStart =
+            let lock = "${pkgs.swaylock-effects}/bin/swaylock -f";
+            in
+            ''
+              ${pkgs.swayidle}/bin/swayidle -w \
+                timeout 300 ${escapeShellArg lock} \
+                timeout 600 '${pkgs.sway}/bin/swaymsg "output * dpms off"' \
+                resume '${pkgs.sway}/bin/swaymsg "output * dpms on"' \
+                before-sleep ${escapeShellArg lock}
+            '';
         };
         wantedBy = [ "sway-session.target" ];
         restartIfChanged = true;

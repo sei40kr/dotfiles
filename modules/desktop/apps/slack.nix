@@ -1,12 +1,16 @@
 { config, lib, pkgs, ... }:
 
-with lib; {
-  options.modules.desktop.apps.slack.enable = mkOption {
-    type = types.bool;
-    default = false;
+with lib;
+with lib.my;
+let
+  cfg = config.modules.desktop.apps.slack;
+in
+{
+  options.modules.desktop.apps.slack = {
+    enable = mkBoolOpt false;
   };
 
-  config = mkIf config.modules.desktop.apps.slack.enable {
-    user.packages = [ pkgs.slack ];
+  config = mkIf cfg.enable {
+    user.packages = with pkgs ; [ slack ];
   };
 }

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 with lib;
 with lib.my;
@@ -24,4 +24,9 @@ let
     logo64 =
       "${pythonEnv}/${pythonEnv.sitePackages}/ipykernel/resources/logo-64x64.png";
   };
-in { config = { modules.dev.jupyter.kernels.python3 = kernel; }; }
+in
+{
+  config = {
+    modules.dev.jupyter.kernels.python3 = kernel;
+  };
+}

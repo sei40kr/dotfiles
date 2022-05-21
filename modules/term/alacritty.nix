@@ -5,7 +5,8 @@ with lib.my;
 let
   termCfg = config.modules.term;
   cfg = termCfg.alacritty;
-in {
+in
+{
   options.modules.term.alacritty = with types; { enable = mkBoolOpt false; };
 
   config = mkIf cfg.enable {
@@ -75,50 +76,52 @@ in {
         # draw_bold_text_with_bright_colors = false;
 
         # Colors
-        colors = let inherit (termCfg.theme) colors;
-        in {
-          # Default colors
-          primary = {
-            background = "#${colors.bg}";
-            foreground = "#${colors.fg}";
-          };
+        colors =
+          let inherit (termCfg.theme) colors;
+          in
+          {
+            # Default colors
+            primary = {
+              background = "#${colors.bg}";
+              foreground = "#${colors.fg}";
+            };
 
-          # Cursor colors
-          cursor = {
-            text = "#${colors.cursor.fg}";
-            cursor = "#${colors.cursor.bg}";
-          };
+            # Cursor colors
+            cursor = {
+              text = "#${colors.cursor.fg}";
+              cursor = "#${colors.cursor.bg}";
+            };
 
-          # Normal colors
-          normal = {
-            black = "#${colors.base0}";
-            red = "#${colors.base1}";
-            green = "#${colors.base2}";
-            yellow = "#${colors.base3}";
-            blue = "#${colors.base4}";
-            magenta = "#${colors.base5}";
-            cyan = "#${colors.base6}";
-            white = "#${colors.base7}";
-          };
+            # Normal colors
+            normal = {
+              black = "#${colors.base0}";
+              red = "#${colors.base1}";
+              green = "#${colors.base2}";
+              yellow = "#${colors.base3}";
+              blue = "#${colors.base4}";
+              magenta = "#${colors.base5}";
+              cyan = "#${colors.base6}";
+              white = "#${colors.base7}";
+            };
 
-          # Bright colors
-          bright = {
-            black = "#${colors.base8}";
-            red = "#${colors.base9}";
-            green = "#${colors.base10}";
-            yellow = "#${colors.base11}";
-            blue = "#${colors.base12}";
-            magenta = "#${colors.base13}";
-            cyan = "#${colors.base14}";
-            white = "#${colors.base15}";
-          };
+            # Bright colors
+            bright = {
+              black = "#${colors.base8}";
+              red = "#${colors.base9}";
+              green = "#${colors.base10}";
+              yellow = "#${colors.base11}";
+              blue = "#${colors.base12}";
+              magenta = "#${colors.base13}";
+              cyan = "#${colors.base14}";
+              white = "#${colors.base15}";
+            };
 
-          # Selection colors
-          selection = {
-            text = "#${colors.selection.fg}";
-            background = "#${colors.selection.bg}";
+            # Selection colors
+            selection = {
+              text = "#${colors.selection.fg}";
+              background = "#${colors.selection.bg}";
+            };
           };
-        };
 
         # Key bindings
         #

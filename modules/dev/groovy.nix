@@ -3,9 +3,13 @@
 with lib;
 with lib.my;
 let cfg = config.modules.dev.groovy;
-in {
-  options.modules.dev.groovy = { enable = mkBoolOpt false; };
+in
+{
+  options.modules.dev.groovy = {
+    enable = mkBoolOpt false;
+  };
 
-  config =
-    mkIf cfg.enable { user.packages = with pkgs; [ groovy gradle maven ]; };
+  config = mkIf cfg.enable {
+    user.packages = with pkgs; [ groovy gradle maven ];
+  };
 }
