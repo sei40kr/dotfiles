@@ -4,6 +4,15 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.services.protonvpn;
+
+  protonvpn-gui = pkgs.protonvpn-gui.overrideAttrs ({ postInstall, ... }: {
+    postInstall = ''
+      ${postInstall}
+      substituteInPlace $out/share/applications/protonvpn.desktop \
+        --replace 'Icon=protonvpn' 'Icon=protonvpn-gui' \
+        --replace 'StartupWMClass=Protonvpn' 'StartupWMClass=.protonvpn-wrapped'
+    '';
+  });
 in
 {
   options.modules.services.protonvpn = {
@@ -11,7 +20,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ protonvpn-cli ];
+    user.packages = [ pkgs.protonvpn-cli protonvpn-gui ];
 
     # systemd.services.protonvpn-autoconnect = {
     #   wantedBy = [ "multi-user.target" ];
