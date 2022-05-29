@@ -6,7 +6,7 @@ let
   cfg = config.modules.desktop.apps.element;
 
   package =
-    if config.modules.desktop.wayland.enable then
+    if config.modules.desktop.wayland then
       pkgs.element-desktop-wayland
     else
       pkgs.element-desktop;

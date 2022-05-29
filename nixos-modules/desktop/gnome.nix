@@ -91,7 +91,10 @@ in
       (mkIf (cfg.shell.theme != null) cfg.shell.theme.package)
     ];
 
-    modules.desktop.wayland.enable = true;
+    modules.desktop = {
+      enable = true;
+      wayland = true;
+    };
 
     modules.desktop.dconf = {
       enable = true;

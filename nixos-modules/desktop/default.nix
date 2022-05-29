@@ -3,7 +3,9 @@
 with lib;
 with lib.my;
 {
-  options.modules.desktop.wayland = {
+  options.modules.desktop = {
     enable = mkBoolOpt false;
+
+    wayland = mkBoolOpt false;
   };
 }

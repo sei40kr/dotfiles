@@ -338,7 +338,10 @@ in
 
     home.configFile."swaylock/config".source = "${configDir}/swaylock/config";
 
-    modules.desktop.wayland.enable = true;
+    modules.desktop = {
+      enable = true;
+      wayland = true;
+    };
 
     modules.desktop.fontconfig.enable = true;
     modules.desktop.gtk.enable = true;
