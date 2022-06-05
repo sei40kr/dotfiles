@@ -15,8 +15,6 @@ rec {
 
   kotlin-language-server = pkgs.callPackage ./kotlin-language-server.nix { };
 
-  nwg-bar = pkgs.callPackage ./nwg-bar { };
-
   online-judge-template-generator =
     pkgs.python3Packages.callPackage ./online-judge-template-generator { };
 

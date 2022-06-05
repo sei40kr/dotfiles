@@ -125,12 +125,6 @@ in
           ${cfg.envInit}
         '';
       ".zsh/.zshrc".text = ''
-        ${optionalString config.modules.desktop.sway.enable ''
-          if [[ -z $DISPLAY && "$(tty)" == /dev/tty1 ]]; then
-            exec sway
-          fi
-        ''}
-
         ${optionalString shellCfg.tmux.autoRun ''
           if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIM" && -z "$INSIDE_EMACS" ]]; then
             tmux start-server

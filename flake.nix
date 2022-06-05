@@ -18,10 +18,6 @@
       url = "github:sei40kr/idea-doom-emacs";
       flake = false;
     };
-    waybar-scripts = {
-      url = "github:sei40kr/waybar-scripts";
-      flake = false;
-    };
   };
 
   outputs = { self, nixpkgs, darwin, ... }@inputs:

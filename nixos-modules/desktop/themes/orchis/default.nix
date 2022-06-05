@@ -30,8 +30,6 @@ in
           name = "Orchis";
         };
       };
-
-      sway.wallpaper = "${orchis-theme}/share/backgrounds/4k.jpg";
     };
   };
 }
