@@ -3,29 +3,32 @@ local M = {}
 function M.config()
     local nvim_tree = require("nvim-tree")
 
-    vim.g.nvim_tree_git_hl = 0
-    vim.g.nvim_tree_special_files = {}
-    vim.g.nvim_tree_respect_buf_cwd = 1
-    vim.g.nvim_tree_show_icons = {
-        git = 0,
-        folders = 1,
-        files = 1,
-        folder_arrows = 1,
-    }
-    vim.g.nvim_tree_icons = {
-        default = " ",
-        symlink = " ",
-        folder = {
-            default = " ",
-            open = " ",
-            empty = " ",
-            empty_open = " ",
-            symlink = " ",
-            symlink_open = " ",
-        },
-    }
-
     nvim_tree.setup({
+        renderer = {
+            highlight_git = false,
+            icons = {
+                glyphs = {
+                    default = " ",
+                    symlink = " ",
+                    folder = {
+                        default = " ",
+                        open = " ",
+                        empty = " ",
+                        empty_open = " ",
+                        symlink = " ",
+                        symlink_open = " ",
+                    },
+                },
+                show = {
+                    git = false,
+                    folder = true,
+                    file = true,
+                    folder_arrow = true,
+                },
+            },
+            special_files = {},
+        },
+        respect_buf_cwd = true,
         update_cwd = true,
         update_focused_file = {
             enable = true,
