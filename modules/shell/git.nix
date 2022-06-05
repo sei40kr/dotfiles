@@ -17,7 +17,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ git gitAndTools.gitflow ];
+    user.packages = with pkgs; [ git gitAndTools.gitflow gitui ];
 
     home.configFile."git/ignore".source = "${configDir}/git/ignore";
 
@@ -28,5 +28,7 @@ in
       userName = cfg.user.name;
       userEmail = cfg.user.email;
     };
+
+    home.configFile."gitui/key_bindings.ron".source = "${configDir}/gitui/key_bindings.ron";
   };
 }
