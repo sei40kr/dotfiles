@@ -11,5 +11,17 @@ in
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ ulauncher ];
+
+    systemd.user.services.ulauncher = {
+      description = "Linux Application Launcher";
+      documentation = [ "https://ulauncher.io/" ];
+      wantedBy = [ "graphical-session.target" ];
+      serviceConfig = {
+        Type = "simple";
+        Restart = "always";
+        RestartSec = 1;
+        ExecStart = "${pkgs.ulauncher}/bin/ulauncher --hide-window";
+      };
+    };
   };
 }
