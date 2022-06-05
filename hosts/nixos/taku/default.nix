@@ -150,4 +150,14 @@ with lib; {
   user.name = "sei40kr";
 
   modules.term.theme.active = "tokyo-night";
+
+  modules.term.font = {
+    package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
+    name = "Iosevka Nerd Font";
+    size = 15;
+  };
+  modules.editors.fonts.code = {
+    family = "Iosevka Nerd Font";
+    size = 15;
+  };
 }
