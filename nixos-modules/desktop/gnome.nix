@@ -88,10 +88,11 @@ in
       sushi
     ];
 
-    user.packages = exts ++ [
+    user.packages = [
+      pkgs.gnome.dconf-editor
       (mkIf (cfg.cursor.theme != null) cfg.cursor.theme.package)
       (mkIf (cfg.shell.theme != null) cfg.shell.theme.package)
-    ];
+    ] ++ exts;
 
     modules.desktop = {
       enable = true;
