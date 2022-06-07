@@ -118,6 +118,10 @@ in
           accel-profile = "flat";
           speed = 0.7;
         };
+        "org/gnome/settings-daemon/plugins/power" = {
+          power-button-action = "suspend";
+          sleep-inactive-ac-type = "nothing";
+        };
         "org/gnome/desktop/wm/keybindings" = {
           switch-applications = [ ];
           switch-applications-backward = [ ];
