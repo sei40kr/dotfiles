@@ -17,7 +17,7 @@ in
   config = mkIf cfg.enable {
     home.configFile."ideavim/ideavimrc".text = ''
       ${optionalString cfg.doom.enable ''
-        let g:WhichKey_FontFamily = ${toVimScript editorsCfg.fonts.code.family}
+        let g:WhichKey_FontFamily = ${toVimScript editorsCfg.fonts.code.name}
         let g:WhichKey_FontSize = ${toVimScript editorsCfg.fonts.code.size}
 
         source ${idea-doom-emacs}/ideavimrc

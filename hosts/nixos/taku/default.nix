@@ -157,7 +157,8 @@ with lib; {
     size = 15;
   };
   modules.editors.fonts.code = {
-    family = "Iosevka Nerd Font";
+    package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
+    name = "Iosevka Nerd Font";
     size = 15;
   };
 }

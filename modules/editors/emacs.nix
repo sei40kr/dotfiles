@@ -11,10 +11,10 @@ let
     text = ''
       ${optionalString cfg.doom.enable ''
         (setq doom-font (font-spec
-                :family ${toEmacsLisp editorsCfg.fonts.code.family}
+                :family ${toEmacsLisp editorsCfg.fonts.code.name}
                 :size ${toEmacsLisp editorsCfg.fonts.code.size}.0)
               doom-variable-pitch-font (font-spec
-                :family ${toEmacsLisp editorsCfg.fonts.ui.family}
+                :family ${toEmacsLisp editorsCfg.fonts.ui.name}
                 :size ${toEmacsLisp editorsCfg.fonts.ui.size}.0)
               doom-theme '${cfg.doom.theme})
       ''}

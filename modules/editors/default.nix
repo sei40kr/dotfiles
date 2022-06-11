@@ -1,17 +1,36 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
 with lib;
-with lib.my; {
+with lib.my;
+let
+  cfg = config.modules.editors;
+
+  fontType = with types; submodule {
+    options = {
+      package = mkOpt (nullOr package) null;
+      name = mkOpt str null;
+      size = mkOpt int null;
+    };
+  };
+in
+{
   options.modules.editors = with types; {
     fonts = {
-      code = {
-        family = mkOpt str "monospace";
-        size = mkOpt int 12;
+      code = mkOpt fontType {
+        name = "monospace";
+        size = 12;
       };
-      ui = {
-        family = mkOpt str "sans-serif";
-        size = mkOpt int 11;
+      ui = mkOpt fontType {
+        name = "sans-serif";
+        size = 11;
       };
     };
+  };
+
+  config = {
+    fonts.fonts = [
+      (mkIf (cfg.fonts.code.package != null) cfg.fonts.code.package)
+      (mkIf (cfg.fonts.ui.package != null) cfg.fonts.ui.package)
+    ];
   };
 }

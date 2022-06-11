@@ -40,7 +40,7 @@ let
   ]);
   ginit_lua = pkgs.runCommandLocal "ginit.lua" { } ''
     substitute ${../../config/neovim/lua/ginit.lua} $out \
-      --subst-var-by fontFamily ${escapeShellArg editorsCfg.fonts.code.family} \
+      --subst-var-by fontFamily ${escapeShellArg editorsCfg.fonts.code.name} \
       --subst-var-by fontSize ${toString editorsCfg.fonts.code.size}
   '';
   plugins_lua = pkgs.runCommandLocal "plugins.lua" { } ''
