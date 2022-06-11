@@ -64,6 +64,9 @@ in
     user.packages = with pkgs; [
       neovim
       neovim-qt
+      # VTE terminals (ex. GNOME Terminal) does not support "Ms" capability.
+      # See https://github.com/tmux/tmux/wiki/Clipboard#terminal-support---vte-terminals
+      wl-clipboard
 
       # octo.nvim
       gh

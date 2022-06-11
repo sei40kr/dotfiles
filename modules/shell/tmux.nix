@@ -52,7 +52,13 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = [ tmux-wrapped pkgs.tmuxinator ];
+    user.packages = [
+      tmux-wrapped
+      pkgs.tmuxinator
+      # VTE terminals (ex. GNOME Terminal) does not support "Ms" capability.
+      # See https://github.com/tmux/tmux/wiki/Clipboard#terminal-support---vte-terminals
+      (mkIf pkgs.stdenv.isLinux pkgs.wl-clipboard)
+    ];
 
     home.configFile."tmux/tmux.conf".source = tmux_conf;
 
