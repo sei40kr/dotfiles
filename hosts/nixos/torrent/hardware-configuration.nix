@@ -10,7 +10,10 @@
 
   hardware = {
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+    nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      powerManagement.enable = true;
+    };
     opengl.enable = true;
     # high-resolution display
     video.hidpi.enable = lib.mkDefault true;
