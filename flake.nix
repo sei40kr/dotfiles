@@ -18,6 +18,11 @@
       url = "github:sei40kr/idea-doom-emacs";
       flake = false;
     };
+
+    yonvim = {
+      url = "github:sei40kr/yonvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, darwin, ... }@inputs:
