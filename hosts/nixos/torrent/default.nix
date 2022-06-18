@@ -12,7 +12,7 @@ with lib; {
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";
 
-  networking.hostName = "taku"; # Define your hostname.
+  networking.hostName = "torrent"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   networking.interfaces.enp0s31f6.useDHCP = true;
