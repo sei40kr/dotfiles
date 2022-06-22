@@ -25,6 +25,8 @@ rec {
 
   whitesur-cursors = pkgs.callPackage ./whitesur-cursors { };
 
+  whitesur-dark-ulauncher = pkgs.callPackage ./whitesur-dark-ulauncher { };
+
   whitesur-wallpapers = pkgs.callPackage ./whitesur-wallpapers { };
 
   zi = pkgs.callPackage ./zi { };
