@@ -94,10 +94,7 @@ in
       (mkIf (cfg.shell.theme != null) cfg.shell.theme.package)
     ] ++ exts;
 
-    modules.desktop = {
-      enable = true;
-      wayland = true;
-    };
+    modules.desktop.enable = true;
 
     modules.desktop.dconf = {
       enable = true;

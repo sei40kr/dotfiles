@@ -5,7 +5,5 @@ with lib.my;
 {
   options.modules.desktop = {
     enable = mkBoolOpt false;
-
-    wayland = mkBoolOpt false;
   };
 }
