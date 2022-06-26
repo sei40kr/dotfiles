@@ -3,10 +3,15 @@
 with lib;
 with lib.my;
 let
-  cfg = config.modules.desktop.theme;
+  cfg = config.modules.desktop.theme.whitesur;
+  themeCfg = config.modules.desktop.theme;
 in
 {
-  config = mkIf (cfg.active == "whitesur") {
+  options.modules.desktop.theme.whitesur = with types; {
+    variant = mkOpt (enum [ "light" "dark" ]) "light";
+  };
+
+  config = mkIf (themeCfg.active == "whitesur") {
     modules.desktop.gnome = {
       cursor.theme = {
         package = pkgs.my.whitesur-cursors;
@@ -33,5 +38,10 @@ in
         name = "WhiteSur";
       };
     };
+
+    modules.desktop.apps.ulauncher.theme =
+      if cfg.variant == "light" then
+        pkgs.my.whitesur-light-ulauncher
+      else pkgs.my.whitesur-dark-ulauncher;
   };
 }
