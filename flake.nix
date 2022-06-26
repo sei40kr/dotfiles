@@ -65,7 +65,7 @@
             }
             (filterAttrs (n: _: !elem n [ "system" ]) attrs)
             ./modules
-            ./nixos-modules
+            ./nixos/modules
             (import path)
           ];
         };
@@ -98,7 +98,7 @@
         (system: import ./packages { pkgs = pkgs.${system}; });
 
       nixosModules = mapModulesRec ./modules import
-        // (mapModulesRec ./nixos-modules import);
+        // (mapModulesRec ./nixos/modules import);
       nixosConfigurations =
         mapModules ./hosts/nixos (mkNixosHost { system = "x86_64-linux"; });
 
