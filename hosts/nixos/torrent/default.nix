@@ -100,7 +100,7 @@ with lib; {
         doom.enable = true;
       };
       idea.enable = true;
-      neovim = {
+      nvim = {
         enable = true;
         manpager.enable = true;
       };

@@ -5,10 +5,10 @@ with lib.my;
 let
   inherit (pkgs.stdenv.hostPlatform) system;
   editorsCfg = config.modules.editors;
-  cfg = editorsCfg.neovim;
+  cfg = editorsCfg.nvim;
 in
 {
-  options.modules.editors.neovim = with types; {
+  options.modules.editors.nvim = with types; {
     enable = mkBoolOpt false;
 
     pager.enable = mkBoolOpt false;

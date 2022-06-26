@@ -16,7 +16,7 @@ with lib.my; {
         doom.enable = true;
       };
       ideavim.enable = true;
-      neovim.enable = true;
+      nvim.enable = true;
     };
     shell = {
       zsh.enable = true;
