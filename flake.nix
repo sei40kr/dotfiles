@@ -82,7 +82,7 @@
                 mkDefault (removeSuffix ".nix" (baseNameOf path));
             }
             ./modules
-            ./darwin-modules
+            ./darwin/modules
             (import path)
           ];
         };
@@ -103,7 +103,7 @@
         mapModules ./hosts/nixos (mkNixosHost { system = "x86_64-linux"; });
 
       darwinModules = mapModulesRec ./modules import
-        // (mapModulesRec ./darwin-modules import);
+        // (mapModulesRec ./darwin/modules import);
       darwinConfigurations = mapModules ./hosts/darwin mkDarwinHost;
     };
 }
