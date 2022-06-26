@@ -57,7 +57,7 @@ in
       pkgs.tmuxinator
       # VTE terminals (ex. GNOME Terminal) does not support "Ms" capability.
       # See https://github.com/tmux/tmux/wiki/Clipboard#terminal-support---vte-terminals
-      (mkIf pkgs.stdenv.isLinux pkgs.wl-clipboard)
+      (mkIf pkgs.stdenv.isLinux pkgs.xclip)
     ];
 
     home.configFile."tmux/tmux.conf".source = tmux_conf;
