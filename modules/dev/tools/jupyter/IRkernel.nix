@@ -32,6 +32,6 @@ let
 in
 {
   config = mkIf config.modules.dev.r.enable {
-    modules.dev.jupyter.kernels.ir = kernel;
+    modules.dev.tools.jupyter.kernels.ir = kernel;
   };
 }

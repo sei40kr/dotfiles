@@ -3,10 +3,10 @@
 with lib;
 with lib.my;
 let
-  cfg = config.modules.dev.google-cloud-sdk;
+  cfg = config.modules.dev.tools.google-cloud-sdk;
 in
 {
-  options.modules.dev.google-cloud-sdk = {
+  options.modules.dev.tools.google-cloud-sdk = {
     enable = mkBoolOpt false;
   };
 

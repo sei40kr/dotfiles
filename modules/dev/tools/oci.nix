@@ -2,14 +2,14 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.aws-cli;
+let cfg = config.modules.dev.tools.oci;
 in
 {
-  options.modules.dev.aws-cli = {
+  options.modules.dev.tools.oci = {
     enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ awscli2 ];
+    user.packages = with pkgs; [ oci-cli ];
   };
 }

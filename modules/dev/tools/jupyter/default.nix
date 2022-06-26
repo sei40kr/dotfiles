@@ -4,7 +4,7 @@ with lib;
 with lib.my;
 let
   inherit (config.dotfiles) configDir;
-  cfg = config.modules.dev.jupyter;
+  cfg = config.modules.dev.tools.jupyter;
 
   pythonEnv = pkgs.python3.withPackages
     (ps: with ps; [ jupyter_client jupyter_console jupyter_core ]);
@@ -16,7 +16,7 @@ let
   '';
 in
 {
-  options.modules.dev.jupyter = with types; {
+  options.modules.dev.tools.jupyter = with types; {
     enable = mkBoolOpt false;
 
     kernels = mkOption {

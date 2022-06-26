@@ -2,18 +2,18 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.terraform;
+let cfg = config.modules.dev.tools.terraform;
 in
 {
-  options.modules.dev.terraform = {
+  options.modules.dev.tools.terraform = {
     enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
       (terraform.withPlugins (plugins:
-        (optionals config.modules.dev.k8s.enable [ plugins.kubernetes ]) ++
-        (optionals config.modules.dev.oci.enable [ plugins.oci ])
+        (optionals config.modules.dev.tools.k8s.enable [ plugins.kubernetes ]) ++
+        (optionals config.modules.dev.tools.oci.enable [ plugins.oci ])
       ))
       terraform-ls
       tflint

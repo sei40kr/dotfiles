@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.circleci-cli;
+let cfg = config.modules.dev.tools.circleci-cli;
 in
 {
-  options.modules.dev.circleci-cli = {
+  options.modules.dev.tools.circleci-cli = {
     enable = mkBoolOpt false;
   };
 

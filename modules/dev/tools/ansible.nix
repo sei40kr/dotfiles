@@ -3,10 +3,10 @@
 with lib;
 with lib.my;
 let
-  cfg = config.modules.dev.ansible;
+  cfg = config.modules.dev.tools.ansible;
 in
 {
-  options.modules.dev.ansible = {
+  options.modules.dev.tools.ansible = {
     enable = mkBoolOpt false;
   };
 

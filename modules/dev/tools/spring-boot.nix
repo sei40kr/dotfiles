@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.spring-boot;
+let cfg = config.modules.dev.tools.spring-boot;
 in
 {
-  options.modules.dev.spring-boot = {
+  options.modules.dev.tools.spring-boot = {
     enable = mkBoolOpt false;
   };
 

@@ -26,7 +26,5 @@ let
   };
 in
 {
-  config = {
-    modules.dev.jupyter.kernels.python3 = kernel;
-  };
+  config.modules.dev.tools.jupyter.kernels.python3 = kernel;
 }

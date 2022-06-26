@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.k8s;
+let cfg = config.modules.dev.tools.k8s;
 in
 {
-  options.modules.dev.k8s = {
+  options.modules.dev.tools.k8s = {
     enable = mkBoolOpt false;
 
     kind.enable = mkBoolOpt false;
