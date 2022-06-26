@@ -57,6 +57,7 @@ with lib; {
 
       browsers = {
         chrome.enable = true;
+        psd.enable = true;
       };
 
       media = {
@@ -124,7 +125,6 @@ with lib; {
         enable = true;
         openFirewall = true;
       };
-      psd.enable = true;
       ssh.enable = true;
     };
 

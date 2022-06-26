@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.services.psd;
+let cfg = config.modules.desktop.browsers.psd;
 in
 {
-  options.modules.services.psd = {
+  options.modules.desktop.browsers.psd = {
     enable = mkBoolOpt false;
   };
 
