@@ -19,11 +19,11 @@ in
       };
       shell.theme = {
         package = pkgs.whitesur-gtk-theme;
-        name = "WhiteSur-light";
+        name = "WhiteSur-${cfg.variant}";
       };
 
       background = {
-        image = "${pkgs.my.whitesur-wallpapers}/share/backgrounds/WhiteSur-light.png";
+        image = "${pkgs.my.whitesur-wallpapers}/share/backgrounds/WhiteSur-${cfg.variant}.png";
         mode = "zoom";
       };
     };
@@ -31,7 +31,7 @@ in
     modules.desktop.gtk = {
       theme = {
         package = pkgs.whitesur-gtk-theme;
-        name = "WhiteSur-light";
+        name = "WhiteSur-${cfg.variant}";
       };
       iconTheme = {
         package = pkgs.whitesur-icon-theme;
