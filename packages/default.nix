@@ -23,6 +23,8 @@ rec {
 
   notion = pkgs.callPackage ./notion.nix { };
 
+  video-trimmer = pkgs.callPackage ./video-trimmer { };
+
   whitesur-cursors = pkgs.callPackage ./whitesur-cursors { };
 
   whitesur-dark-ulauncher = pkgs.callPackage ./whitesur-dark-ulauncher { };
