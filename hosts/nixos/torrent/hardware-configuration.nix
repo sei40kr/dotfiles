@@ -10,13 +10,20 @@
 
   hardware = {
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-      powerManagement.enable = true;
-    };
     opengl.enable = true;
     # high-resolution display
     video.hidpi.enable = lib.mkDefault true;
+  };
+
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_470.overrideAttrs (_attrs: {
+    postPatch = ''
+      rm systemd/system-sleep/nvidia
+    '';
+  });
+  systemd.services = {
+    "nvidia-suspend" = { enable = false; };
+    "nvidia-hibernate" = { enable = false; };
+    "nvidia-resume" = { enable = false; };
   };
 
   fileSystems = {
