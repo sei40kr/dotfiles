@@ -106,11 +106,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1656830491,
-        "narHash": "sha256-cgwk0l3RT1mp6u7WYJtqlTeKfv6nRDLgwnO7mUX2fWk=",
+        "lastModified": 1657371583,
+        "narHash": "sha256-oBmRhWDhs6oT6Z8NpnII9OjmUn7XhfClVCuUYJhxCps=",
         "owner": "sei40kr",
         "repo": "yonvim",
-        "rev": "7ed6d13669468c28e11a3b3a74f0911c581c7f1d",
+        "rev": "420f1d6be7403dff263fb769621e3953593b8c33",
         "type": "github"
       },
       "original": {
