@@ -20,7 +20,9 @@ in
       (inputs.yonvim.packages.${system}.yonvim.override {
         inherit (pkgs) neovim;
       })
-      inputs.yonvim.packages.${system}.yonvim-qt
+      (inputs.yonvim.packages.${system}.yonvim-qt.override {
+        inherit (pkgs) neovim-qt;
+      })
 
       # VTE terminals (ex. GNOME Terminal) does not support "Ms" capability.
       # See https://github.com/tmux/tmux/wiki/Clipboard#terminal-support---vte-terminals
