@@ -155,11 +155,11 @@ with lib; {
   modules.term.font = {
     package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
     name = "Iosevka Nerd Font";
-    size = 15;
+    size = 17;
   };
   modules.editors.fonts.code = {
     package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
     name = "Iosevka Nerd Font";
-    size = 15;
+    size = 17;
   };
 }
