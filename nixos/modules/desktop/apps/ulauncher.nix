@@ -37,7 +37,7 @@ in
         Type = "simple";
         Restart = "always";
         RestartSec = 1;
-        ExecStart = "${pkgs.ulauncher}/bin/ulauncher --hide-window";
+        ExecStart = "${pkgs.bash}/bin/bash -c 'source ${config.system.build.setEnvironment}; exec ${pkgs.ulauncher}/bin/ulauncher --hide-window'";
         ExecReload = "/bin/kill -HUP $MAINPID";
       };
     };
