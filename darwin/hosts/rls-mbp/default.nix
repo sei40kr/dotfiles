@@ -3,7 +3,7 @@
 with lib;
 let
   system = "x86_64-darwin";
-  pkgs = pkgs'.system;
+  pkgs = pkgs'.${system};
 in
 {
   inherit system;
