@@ -17,7 +17,9 @@ in
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      inputs.yonvim.packages.${system}.yonvim
+      (inputs.yonvim.packages.${system}.yonvim.override {
+        inherit (pkgs) neovim;
+      })
       inputs.yonvim.packages.${system}.yonvim-qt
 
       # VTE terminals (ex. GNOME Terminal) does not support "Ms" capability.
