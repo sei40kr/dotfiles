@@ -1,10 +1,8 @@
 { config, lib, ... }:
 
 {
-  boot.initrd = {
-    availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-    kernelModules = [ ];
-  };
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" ];
+  boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
@@ -21,9 +19,9 @@
     '';
   });
   systemd.services = {
-    "nvidia-suspend" = { enable = false; };
-    "nvidia-hibernate" = { enable = false; };
-    "nvidia-resume" = { enable = false; };
+    "nvidia-suspend".enable = false;
+    "nvidia-hibernate".enable = false;
+    "nvidia-resume".enable = false;
   };
 
   fileSystems = {
