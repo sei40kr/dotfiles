@@ -56,7 +56,14 @@ with lib; {
       };
 
       browsers = {
-        chrome.enable = true;
+        chrome = {
+          enable = true;
+          mail.enable = true;
+          calendar.enable = true;
+          maps.enable = true;
+          photos.enable = true;
+          music.enable = true;
+        };
         psd.enable = true;
       };
 
