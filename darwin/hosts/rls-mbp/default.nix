@@ -1,7 +1,13 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs', ... }:
 
 with lib;
-with lib.my; {
+let
+  system = "x86_64-darwin";
+  pkgs = pkgs'.system;
+in
+{
+  inherit system;
+
   modules = {
     dev = {
       aws-cli.enable = true;
