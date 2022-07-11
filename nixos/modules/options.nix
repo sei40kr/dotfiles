@@ -9,11 +9,5 @@ with lib.my; {
       home = "/home/${config.user.name}";
       isNormalUser = true;
     };
-
-    # Necessary for home-manager to work with flakes, otherwise it will
-    # look for a nixpkgs channel.
-    home-manager.users.${config.user.name}.home = {
-      inherit (config.system) stateVersion;
-    };
   };
 }

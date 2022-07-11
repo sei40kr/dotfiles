@@ -64,14 +64,21 @@
           (nixosSystem {
             inherit system specialArgs;
             modules = modules ++ [
-              { system.stateVersion = hostCfg.stateVersion; }
+              { system = { inherit (hostCfg) stateVersion; }; }
               ./nixos/modules
             ];
           })
         else if isDarwin system then
           (darwinSystem {
             inherit specialArgs;
-            modules = modules ++ [ ./darwin/modules ];
+            modules = modules ++ [
+              {
+                home-manager.users.${hostCfg.user.name}.home = {
+                  inherit (hostCfg) stateVersion;
+                };
+              }
+              ./darwin/modules
+            ];
           })
         else abort "[mkHost] Unknown system architecture: ${system}";
     in

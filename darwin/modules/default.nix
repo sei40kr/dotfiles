@@ -1,11 +1,16 @@
 { config, inputs, lib, pkgs, ... }:
 
 with lib;
-with lib.my; {
+with lib.my;
+let users = [ "root" (toLower config.user.name) ];
+in
+{
   imports = [ inputs.home-manager.darwinModules.home-manager ]
     ++ (mapModulesRec' (toString ./.) import);
 
   nix.useDaemon = true;
+  nix.allowedUsers = users;
+  nix.trustedUsers = users;
 
   system.activationScripts.applications.text =
     let

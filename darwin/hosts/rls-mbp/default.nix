@@ -8,6 +8,8 @@ in
 {
   inherit system;
 
+  stateVersion = "22.05";
+
   modules = {
     dev = {
       aws-cli.enable = true;
