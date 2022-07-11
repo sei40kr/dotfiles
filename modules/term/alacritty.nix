@@ -1,8 +1,9 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with lib.my;
 let
+  inherit (pkgs) stdenv;
   termCfg = config.modules.term;
   cfg = termCfg.alacritty;
 in
@@ -24,7 +25,7 @@ in
           # check the local terminfo database and use `alacritty` if it is
           # available, otherwise `xterm-256color` is used.
           TERM = "alacritty";
-
+        } // optionalAttrs (stdenv.isDarwin && config.modules.i18n.japanese.enable) {
           LANG = "en_US.UTF-8";
           LC_CTYPE = "ja_JP.UTF-8";
         };

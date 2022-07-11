@@ -4,6 +4,7 @@ with builtins;
 with lib;
 with lib.my;
 let
+  inherit (pkgs) stdenv;
   termCfg = config.modules.term;
   cfg = termCfg.kitty;
   inherit (termCfg) font;
@@ -70,6 +71,12 @@ in
       color13 #${colors.base13}
       color14 #${colors.base14}
       color15 #${colors.base15}
+
+      ## Advanced
+      ${optionalString (stdenv.isDarwin && config.modules.i18n.japanese.enable) ''
+        env LANG=en_US.UTF-8
+        env LC_CTYPE=ja_JP.UTF-8
+      ''}
 
       ## OS specific tweaks
       macos_option_as_alt yes
