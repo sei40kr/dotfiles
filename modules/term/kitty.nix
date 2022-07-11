@@ -6,6 +6,8 @@ with lib.my;
 let
   termCfg = config.modules.term;
   cfg = termCfg.kitty;
+  inherit (termCfg) font;
+  inherit (termCfg.theme) colors;
 in
 {
   options.modules.term.kitty = {
@@ -17,8 +19,8 @@ in
 
     home.configFile."kitty/kitty.conf".text = ''
       ## Fonts
-      font_family       ${termCfg.font.name}
-      font_size         ${toString termCfg.font.size}.0
+      font_family       ${font.name}
+      font_size         ${toString font.size}.0
       disable_ligatures always
 
       ## Cursor customization
