@@ -64,7 +64,12 @@
           (nixosSystem {
             inherit system specialArgs;
             modules = modules ++ [
-              { system = { inherit (hostCfg) stateVersion; }; }
+              {
+                system = { inherit (hostCfg) stateVersion; };
+                home-manager.users.${hostCfg.user.name}.home = {
+                  inherit (hostCfg) stateVersion;
+                };
+              }
               ./nixos/modules
             ];
           })
