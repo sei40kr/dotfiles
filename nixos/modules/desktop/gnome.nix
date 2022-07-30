@@ -53,8 +53,6 @@ in
       desktopManager.gnome.enable = true;
     };
 
-    programs.gpaste.enable = true;
-
     environment.gnome.excludePackages = with pkgs.gnome; [
       baobab
       cheese
