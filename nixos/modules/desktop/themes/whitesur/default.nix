@@ -31,7 +31,7 @@ in
     modules.desktop.gtk = {
       theme = {
         package = pkgs.whitesur-gtk-theme;
-        name = "WhiteSur-${cfg.variant}";
+        name = "WhiteSur-${cfg.variant}-solid";
       };
       iconTheme = {
         package = pkgs.whitesur-icon-theme;
