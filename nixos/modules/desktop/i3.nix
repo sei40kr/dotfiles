@@ -5,7 +5,7 @@ with lib.my;
 let inherit (config.dotfiles) configDir;
   cfg = config.modules.desktop.i3;
 
-  package = pkgs.i3;
+  package = pkgs.i3-gaps;
 in
 {
   options.modules.desktop.i3 = {
