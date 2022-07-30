@@ -44,6 +44,7 @@ in
     desktop = {
       gdm.enable = true;
       gnome.enable = true;
+      i3.enable = true;
       theme.active = "whitesur";
 
       apps = {
