@@ -135,6 +135,7 @@ in
       gnome = {
         sushi.enable = true;
       };
+      google-drive.enable = true;
       jellyfin = {
         enable = true;
         openFirewall = true;
