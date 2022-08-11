@@ -105,5 +105,7 @@
       darwinModules = mapModulesRec ./modules import
         // (mapModulesRec ./darwin/modules import);
       darwinConfigurations = mapModules ./darwin/hosts mkHost;
+
+      devShells = genAttrs systems (system: import ./shells { pkgs = pkgs'.${system}; });
     };
 }

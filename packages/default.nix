@@ -33,6 +33,8 @@ rec {
 
   whitesur-wallpapers = pkgs.callPackage ./whitesur-wallpapers { };
 
+  yonmux = pkgs.callPackage ./yonmux { tmuxPlugins = pkgs.tmuxPlugins // tmuxPlugins; };
+
   zi = pkgs.callPackage ./zi { };
 
   zsh-smart-history = pkgs.callPackage ./zsh-smart-history.nix { };
