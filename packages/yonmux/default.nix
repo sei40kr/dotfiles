@@ -12,20 +12,25 @@ let
     cp ${./doom-statusline.tmux} $out
     patchShebangs --build $out
   '';
+  nvim-tmux-navigation = runCommandLocal "nvim-tmux-navigation.tmux" { } ''
+    cp ${./nvim-tmux-navigation.tmux} $out
+    patchShebangs --build $out
+  '';
   cfg = runCommandLocal "tmux.conf" { } ''
     substitute ${./tmux.conf} $out \
-      --subst-var-by copycat          ${tmuxPlugins.copycat.rtp} \
-      --subst-var-by cowboy           ${tmuxPlugins.cowboy.rtp} \
-      --subst-var-by cpu              ${tmuxPlugins.cpu.rtp} \
-      --subst-var-by doom_statusline  ${doom-statusline} \
-      --subst-var-by ghq              ${tmuxPlugins.ghq.rtp} \
-      --subst-var-by online_status    ${tmuxPlugins.online-status.rtp} \
-      --subst-var-by open             ${tmuxPlugins.open.rtp} \
-      --subst-var-by pain_control     ${tmuxPlugins.pain-control.rtp} \
-      --subst-var-by prefix_highlight ${tmuxPlugins.prefix-highlight.rtp} \
-      --subst-var-by sessionist       ${tmuxPlugins.sessionist.rtp} \
-      --subst-var-by urlview          ${tmuxPlugins.urlview.rtp} \
-      --subst-var-by yank             ${tmuxPlugins.yank.rtp}
+      --subst-var-by copycat              ${tmuxPlugins.copycat.rtp} \
+      --subst-var-by cowboy               ${tmuxPlugins.cowboy.rtp} \
+      --subst-var-by cpu                  ${tmuxPlugins.cpu.rtp} \
+      --subst-var-by doom_statusline      ${doom-statusline} \
+      --subst-var-by ghq                  ${tmuxPlugins.ghq.rtp} \
+      --subst-var-by nvim_tmux_navigation ${nvim-tmux-navigation} \
+      --subst-var-by online_status        ${tmuxPlugins.online-status.rtp} \
+      --subst-var-by open                 ${tmuxPlugins.open.rtp} \
+      --subst-var-by pain_control         ${tmuxPlugins.pain-control.rtp} \
+      --subst-var-by prefix_highlight     ${tmuxPlugins.prefix-highlight.rtp} \
+      --subst-var-by sessionist           ${tmuxPlugins.sessionist.rtp} \
+      --subst-var-by urlview              ${tmuxPlugins.urlview.rtp} \
+      --subst-var-by yank                 ${tmuxPlugins.yank.rtp}
   '';
 in
 symlinkJoin {
