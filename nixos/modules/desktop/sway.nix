@@ -31,7 +31,15 @@ in
   config = mkIf cfg.enable {
     user.packages = [ package ];
 
-    home.configFile."sway/config".source = "${configDir}/sway/config";
+    home.configFile."sway/config" = {
+      source = "${configDir}/sway/config";
+      onChange = ''
+        SWAYSOCK=''${XDG_RUNTIME_DIR:-/run/user/$UID}/sway-ipc.$UID.$(${pkgs.procps}/bin/pgrep -x sway || true).sock
+        if [[ -S $SWAYSOCK ]]; then
+          ${package}/bin/swaymsg -s $SWAYSOCK reload
+        fi
+      '';
+    };
 
     systemd.user.targets."sway-session" = {
       description = "sway compositor session";
