@@ -13,17 +13,6 @@
     video.hidpi.enable = lib.mkDefault true;
   };
 
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_470.overrideAttrs (_attrs: {
-    postPatch = ''
-      rm systemd/system-sleep/nvidia
-    '';
-  });
-  systemd.services = {
-    "nvidia-suspend".enable = false;
-    "nvidia-hibernate".enable = false;
-    "nvidia-resume".enable = false;
-  };
-
   fileSystems = {
     "/" =
       {
@@ -44,5 +33,5 @@
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nouveau" ];
 }
