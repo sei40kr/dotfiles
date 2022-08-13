@@ -13,8 +13,13 @@ let
   '';
 in
 {
-  options.modules.desktop = {
+  options.modules.desktop = with types; {
     enable = mkBoolOpt false;
+
+    autoRepeat = {
+      delay = mkOpt int 200;
+      interval = mkOpt int 30;
+    };
   };
 
   config = mkIf cfg.enable {

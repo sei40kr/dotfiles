@@ -3,8 +3,8 @@
 with lib;
 with lib.my;
 let
-  inherit (config.dotfiles) configDir;
-  cfg = config.modules.desktop.sway;
+  desktopCfg = config.modules.desktop;
+  cfg = desktopCfg.sway;
 
   package = pkgs.sway.override {
     extraSessionCommands = ''
@@ -32,7 +32,11 @@ in
     user.packages = [ package ];
 
     home.configFile."sway/config" = {
-      source = "${configDir}/sway/config";
+      source = pkgs.substituteAll {
+        src = ../../../config/sway/config;
+        autoRepeatDelay = desktopCfg.autoRepeat.delay;
+        autoRepeatInterval = desktopCfg.autoRepeat.interval;
+      };
       onChange = ''
         SWAYSOCK=''${XDG_RUNTIME_DIR:-/run/user/$UID}/sway-ipc.$UID.$(${pkgs.procps}/bin/pgrep -x sway || true).sock
         if [[ -S $SWAYSOCK ]]; then

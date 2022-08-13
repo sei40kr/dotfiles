@@ -23,7 +23,8 @@ let
     };
   };
 
-  cfg = config.modules.desktop.gnome;
+  desktopCfg = config.modules.desktop;
+  cfg = desktopCfg.gnome;
 
   exts = with pkgs.gnomeExtensions; [
     # blur-me
@@ -105,9 +106,9 @@ in
           cursor-theme = cfg.cursor.theme.name;
         };
         "org/gnome/desktop/peripherals/keyboard" = {
-          delay = 200;
+          delay = desktopCfg.autoRepeat.delay;
           repeat = true;
-          repeat-interval = 30;
+          repeat-interval = desktopCfg.autoRepeat.interval;
         };
         "org/gnome/desktop/peripherals/mouse" = {
           accel-profile = "flat";

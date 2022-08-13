@@ -176,4 +176,9 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+input * {
+    repeat_delay @autoRepeatDelay@
+    repeat_rate @autoRepeatInterval@
+}
+
 exec systemctl --user import-environment {,WAYLAND_}DISPLAY SWAYSOCK; systemctl --user start sway-session.target
