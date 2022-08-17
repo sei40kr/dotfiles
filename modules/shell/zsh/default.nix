@@ -126,7 +126,7 @@ in
         '';
       ".zsh/.zshrc".text = ''
         ${optionalString shellCfg.tmux.autoRun ''
-          if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIM" && -z "$INSIDE_EMACS" ]]; then
+          if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIMRUNTIME" && -z "$INSIDE_EMACS" ]]; then
             tmux start-server
 
             if ! tmux has-session 2>/dev/null; then
