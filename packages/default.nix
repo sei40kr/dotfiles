@@ -23,6 +23,8 @@ rec {
 
   notion = pkgs.callPackage ./notion.nix { };
 
+  qbittorrent-ee = pkgs.callPackage ./qbittorrent-ee { };
+
   video-trimmer = pkgs.callPackage ./video-trimmer { };
 
   whitesur-cursors = pkgs.callPackage ./whitesur-cursors { };

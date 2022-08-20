@@ -10,6 +10,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ qbittorrent ];
+    user.packages = with pkgs; [ my.qbittorrent-ee ];
   };
 }
