@@ -29,6 +29,8 @@ rec {
 
   video-trimmer = pkgs.callPackage ./video-trimmer { };
 
+  wayland-sensible-terminal = pkgs.callPackage ./wayland-sensible-terminal { };
+
   whitesur-cursors = pkgs.callPackage ./whitesur-cursors { };
 
   whitesur-dark-ulauncher = pkgs.callPackage ./whitesur-dark-ulauncher { };
