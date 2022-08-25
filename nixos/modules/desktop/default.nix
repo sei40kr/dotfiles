@@ -17,6 +17,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ my.wayland-sensible-terminal ];
+    user.packages = with pkgs; [ my.sensible-terminal-wayland ];
   };
 }
