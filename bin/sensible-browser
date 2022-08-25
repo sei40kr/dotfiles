@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [[ -n "$BROWSER" ]]; then
+  exec "$BROWSER" "$@"
+fi
+
+for browser in google-chrome-stable firefox; do
+	if [[ -x "$(command -v "$browser")" ]]; then
+		exec "$browser" "$@"
+	fi
+done
+
+echo "Could not find a browser to open the URL." 1>&2

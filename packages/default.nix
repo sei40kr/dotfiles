@@ -25,6 +25,8 @@ rec {
 
   qbittorrent-ee = pkgs.callPackage ./qbittorrent-ee { };
 
+  sensible-browser = pkgs.callPackage ./sensible-browser { };
+
   video-trimmer = pkgs.callPackage ./video-trimmer { };
 
   whitesur-cursors = pkgs.callPackage ./whitesur-cursors { };
