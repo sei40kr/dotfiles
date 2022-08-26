@@ -144,6 +144,9 @@ in
     };
 
     shell = {
+      apps = {
+        neofetch.enable = true;
+      };
       bottom.enable = true;
       exa.enable = true;
       ghq.enable = true;
