@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 
 with lib;
 with lib.my; {
@@ -9,10 +9,21 @@ with lib.my; {
     DOTFILES_BIN = config.dotfiles.binDir;
   };
 
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
-  };
+  nix =
+    let
+      filteredInputs = filterAttrs (n: _: n != "self") inputs;
+      nixPathInputs = mapAttrsToList (n: v: "${n}=${v}") filteredInputs;
+      registryInputs = mapAttrs (_: v: { flake = v; }) filteredInputs;
+    in
+    {
+      package = pkgs.nixFlakes;
+      extraOptions = "experimental-features = nix-command flakes";
+      nixPath = nixPathInputs ++ [
+        "nixpkgs-overlays=${config.dotfiles.dir}/overlays"
+        "dotfiles=${config.dotfiles.dir}"
+      ];
+      registry = registryInputs // { dotfiles.flake = inputs.self; };
+    };
 
   environment.systemPackages = with pkgs; [ coreutils git gnumake vim ];
 }
