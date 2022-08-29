@@ -1,17 +1,15 @@
 {
   inputs = {
     nixpkgs.url = "nixpkgs/master";
+
     darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    secrets = {
-      url = "github:sei40kr/dotfiles-secrets";
-      flake = false;
     };
 
     idea-doom-emacs = {

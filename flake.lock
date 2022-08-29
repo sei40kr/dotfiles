@@ -79,24 +79,7 @@
         "home-manager": "home-manager",
         "idea-doom-emacs": "idea-doom-emacs",
         "nixpkgs": "nixpkgs",
-        "secrets": "secrets",
         "yonvim": "yonvim"
-      }
-    },
-    "secrets": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1643467730,
-        "narHash": "sha256-AyW4REdEC0UjQ/cp5r8TFR3gCmdR5XcDSsw6JP7pD7Q=",
-        "owner": "sei40kr",
-        "repo": "dotfiles-secrets",
-        "rev": "3164a0de0f4941f0b519dd5d4564650320196b2e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "sei40kr",
-        "repo": "dotfiles-secrets",
-        "type": "github"
       }
     },
     "yonvim": {
@@ -106,11 +89,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1659875479,
-        "narHash": "sha256-YStNZpNRUk81ht5UfvgEQgr4dT6TYPQIND0deOyGKyw=",
+        "lastModified": 1661388108,
+        "narHash": "sha256-oKBGnxVfwLWtONS8eMe39wPJVjJLdkakSvx3lzfr/6A=",
         "owner": "sei40kr",
         "repo": "yonvim",
-        "rev": "cde15ffa6dbc0359ae922826bb973cc644ba9d03",
+        "rev": "5f83c8cfe000b557a2485928b7af6caafd7664b2",
         "type": "github"
       },
       "original": {
