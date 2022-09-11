@@ -25,6 +25,7 @@ let
 
   desktopCfg = config.modules.desktop;
   cfg = desktopCfg.gnome;
+  inherit (desktopCfg) autoRepeat fonts;
 
   exts = with pkgs.gnomeExtensions; [
     # blur-me
@@ -100,16 +101,22 @@ in
       enable = true;
       settings = {
         "org/gnome/desktop/interface" = {
+          # Document font
+          document-font-name = "${fonts.document.name} ${toString fonts.document.size}";
           enable-animations = false;
           # Disable Activities Overview hot corner
           enable-hot-corners = false;
+          # Default font
+          font-name = "${fonts.ui.name} ${toString fonts.ui.size}";
+          # Monospace font
+          monospace-font-name = "${fonts.fixed.name} ${toString fonts.fixed.size}";
         } // optionalAttrs (cfg.cursor.theme != null) {
           cursor-theme = cfg.cursor.theme.name;
         };
         "org/gnome/desktop/peripherals/keyboard" = {
-          delay = desktopCfg.autoRepeat.delay;
+          delay = autoRepeat.delay;
           repeat = true;
-          repeat-interval = desktopCfg.autoRepeat.interval;
+          repeat-interval = autoRepeat.interval;
         };
         "org/gnome/desktop/peripherals/mouse" = {
           accel-profile = "flat";
@@ -230,6 +237,13 @@ in
           toggle-maximized = [ ];
           # Restore window
           unmaximize = [ "<Super>Down" "<Super>j" ];
+        };
+        "org/gnome/desktop/wm/preferences" = {
+          # Use standard system font in window titles
+          titlebar-uses-system-font = fonts.titlebar == null;
+        } // optionalAttrs (fonts.titlebar != null) {
+          # Window title font
+          titlebar-font = "${fonts.titlebar.name} ${toString fonts.titlebar.size}";
         };
         "org/gnome/mutter/keybindings" = {
           # View split on left

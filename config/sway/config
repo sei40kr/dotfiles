@@ -178,9 +178,13 @@ set $right l
     bindsym $mod+Shift+q kill
 
 
+font @titlebarFontName@ @titlebarFontSize@
+
+
 input * {
     repeat_delay @autoRepeatDelay@
     repeat_rate @autoRepeatInterval@
 }
+
 
 exec systemctl --user import-environment {,WAYLAND_}DISPLAY SWAYSOCK; systemctl --user start sway-session.target

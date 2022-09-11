@@ -5,6 +5,7 @@ with lib.my;
 let
   desktopCfg = config.modules.desktop;
   cfg = desktopCfg.sway;
+  inherit (desktopCfg) autoRepeat fonts;
 
   package = pkgs.sway.override {
     extraSessionCommands = ''
@@ -34,8 +35,10 @@ in
     home.configFile."sway/config" = {
       source = pkgs.substituteAll {
         src = ../../../config/sway/config;
-        autoRepeatDelay = desktopCfg.autoRepeat.delay;
-        autoRepeatInterval = desktopCfg.autoRepeat.interval;
+        autoRepeatDelay = autoRepeat.delay;
+        autoRepeatInterval = autoRepeat.interval;
+        titlebarFontName = fonts.titlebar.name or fonts.ui.name;
+        titlebarFontSize = fonts.titlebar.size or fonts.ui.size;
       };
       onChange = ''
         SWAYSOCK=''${XDG_RUNTIME_DIR:-/run/user/$UID}/sway-ipc.$UID.$(${pkgs.procps}/bin/pgrep -x sway || true).sock
