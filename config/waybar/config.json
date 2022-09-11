@@ -1,0 +1,57 @@
+{
+    "layer": "top",
+    "height": 34,
+    "modules-left": [
+        "sway/workspaces"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "network",
+        "pulseaudio"
+    ],
+    "spacing": 0,
+    "mode": "dock",
+    "sway/workspaces": {
+        "all-outputs": true,
+        "format": "{icon}",
+        "format-icons": {
+            "default": "○",
+            "urgent": "○",
+            "focused": "●",
+            "persistent": "○"
+        }
+    },
+    "clock": {
+        "format": "{:%m/%d %H:%M}",
+        "timezone": "Japan"
+    },
+    "network": {
+        "format-wifi": "{icon}",
+        "format-ethernet": "󰈁",
+        "format-disconnected": "",
+        "format-icons": [
+            "󰤯",
+            "󰤟",
+            "󰤢",
+            "󰤥",
+            "󰤨"
+        ],
+        "tooltip-format": "",
+        "tooltip-format-ethernet": "",
+        "tooltip-format-disconnected": "",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)"
+    },
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": "󰖁",
+        "format-icons": {
+            "default": [
+                "󰕿",
+                "󰖀",
+                "󰕾"
+            ]
+        }
+    }
+}

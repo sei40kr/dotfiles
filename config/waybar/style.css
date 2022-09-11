@@ -1,0 +1,39 @@
+window#waybar {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  text-shadow: 0 0 2px #000;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  margin: 0 0.5rem;
+}
+
+#workspaces,
+#network,
+#pulseaudio {
+  margin: 0 0.5rem;
+}
+
+#workspaces button {
+  border: 0;
+  color: inherit;
+  margin: 0;
+  padding: 0 0.25rem;
+  text-shadow: inherit;
+}
+#workspaces button:hover,
+#workspaces button:active {
+  background: inherit;
+  box-shadow: none;
+}
+
+#clock {
+  font-weight: 700;
+}
+
+#network,
+#pulseaudio {
+  font: 1.25rem "Material Design Icons";
+}

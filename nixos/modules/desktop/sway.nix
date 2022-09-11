@@ -72,5 +72,6 @@ in
     modules.desktop.qt.enable = true;
     modules.desktop.apps.dunst.enable = true;
     modules.desktop.apps.rofi.enable = true;
+    modules.desktop.apps.waybar.enable = true;
   };
 }

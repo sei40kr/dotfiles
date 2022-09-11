@@ -187,4 +187,5 @@ input * {
 }
 
 
-exec systemctl --user import-environment {,WAYLAND_}DISPLAY SWAYSOCK; systemctl --user start sway-session.target
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP; \
+     systemctl --user start sway-session.target
