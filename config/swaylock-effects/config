@@ -1,0 +1,7 @@
+indicator
+clock
+timestr=%H:%M
+datestr=%m/%d %a
+screenshots
+indicator-radius=100
+font=@fontName@

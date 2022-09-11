@@ -61,17 +61,19 @@ in
       displayManager.sessionPackages = [ package ];
     };
 
-    security.pam.services.swaylock = { };
     security.polkit.enable = true;
     # For screen sharing (this option only has an effect with xdg.portal.enable):
     xdg.portal.extraPortals = with pkgs; [ xdg-desktop-portal-wlr ];
+
+    modules.desktop.swaylock.enable = true;
+
+    modules.desktop.apps.dunst.enable = true;
+    modules.desktop.apps.rofi.enable = true;
+    modules.desktop.apps.waybar.enable = true;
 
     modules.desktop.dconf.enable = true;
     modules.desktop.fontconfig.enable = true;
     modules.desktop.gtk.enable = true;
     modules.desktop.qt.enable = true;
-    modules.desktop.apps.dunst.enable = true;
-    modules.desktop.apps.rofi.enable = true;
-    modules.desktop.apps.waybar.enable = true;
   };
 }
