@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }:
 
+with builtins;
 with lib;
 with lib.my;
 let
@@ -34,13 +35,14 @@ in
       partOf = [ "autostart.target" ];
       serviceConfig = {
         ExecStart = "${pkgs.waybar}/bin/waybar";
+        ExecReload = "${pkgs.coreutils}/bin/kill -SIGUSR2 $MAINPID";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;
       };
-      restartIfChanged = true;
-      restartTriggers = [
-        (builtins.hashFile "md5" "${configDir}/waybar/config.json")
+      reloadIfChanged = true;
+      reloadTriggers = [
+        (hashFile "md5" "${configDir}/waybar/config.json")
         style_css
       ];
     };
