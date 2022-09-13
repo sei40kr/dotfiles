@@ -25,20 +25,32 @@ let
   };
 in
 {
-  options.modules.desktop.sway = {
+  options.modules.desktop.sway = with types; {
     enable = mkBoolOpt false;
+
+    gaps = {
+      inner = mkOpt int 16;
+      outer = mkOpt int 32;
+    };
   };
 
   config = mkIf cfg.enable {
+    assertions = [{
+      assertion = cfg.gaps.inner <= cfg.gaps.outer;
+      message = "The 'modules.desktop.sway.gaps.outer' must be equal to or greater than 'modules.desktop.sway.gaps.inner'.";
+    }];
+
     user.packages = [ package ];
 
     home.configFile."sway/config" = {
       source = pkgs.substituteAll {
         src = ../../../config/sway/config;
-        autoRepeatDelay = autoRepeat.delay;
-        autoRepeatInterval = autoRepeat.interval;
         titlebarFontName = fonts.titlebar.name or fonts.ui.name;
         titlebarFontSize = fonts.titlebar.size or fonts.ui.size;
+        innerGaps = cfg.gaps.inner;
+        outerGaps = cfg.gaps.outer - cfg.gaps.inner;
+        autoRepeatDelay = autoRepeat.delay;
+        autoRepeatInterval = autoRepeat.interval;
       };
       onChange = ''
         SWAYSOCK=''${XDG_RUNTIME_DIR:-/run/user/$UID}/sway-ipc.$UID.$(${pkgs.procps}/bin/pgrep -x sway || true).sock

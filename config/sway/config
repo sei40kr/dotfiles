@@ -170,6 +170,9 @@ set $right l
 
 font @titlebarFontName@ @titlebarFontSize@
 
+gaps inner @innerGaps@
+gaps outer @outerGaps@
+
 
 input * {
     repeat_delay @autoRepeatDelay@
