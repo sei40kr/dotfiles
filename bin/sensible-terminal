@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+if [[ -n "$WAYLAND_DISPLAY" ]]; then
+	for term in alacritty kitty gnome-terminal; do
+		if [[ -x "$(command -v "$term")" ]]; then
+			exec $term "$@"
+		fi
+	done
+
+	echo "No Wayland terminal emulator found." 1>&2
+	exit 1
+fi
+
+if [[ -n "$DISPLAY" ]]; then
+	for term in alacritty kitty gnome-terminal; do
+		if [[ -x "$(command -v "$term")" ]]; then
+			exec $term "$@"
+		fi
+	done
+
+	echo "No X11 terminal emulator found." 1>&2
+	exit 1
+fi
+
+echo "No display found." >&2
+exit 1

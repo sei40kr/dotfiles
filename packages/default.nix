@@ -27,7 +27,7 @@ rec {
 
   sensible-browser = pkgs.callPackage ./sensible-browser { };
 
-  sensible-terminal-wayland = pkgs.callPackage ./sensible-terminal-wayland { };
+  sensible-terminal = pkgs.callPackage ./sensible-terminal { };
 
   video-trimmer = pkgs.callPackage ./video-trimmer { };
 

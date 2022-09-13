@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-for term in alacritty kitty; do
-	if [[ -x "$(command -v "$term")" ]]; then
-		exec $term "$@"
-	fi
-done
-
-echo "No terminal emulator found." 1>&2

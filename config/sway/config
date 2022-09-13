@@ -30,7 +30,7 @@ set $right l
     bindsym $mod+Shift+Return exec sensible-browser
 
     # Terminal
-    bindsym $mod+Return exec sensible-terminal-wayland
+    bindsym $mod+Return exec sensible-terminal
 
 
 #

@@ -277,7 +277,7 @@ in
         };
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
           binding = "<Super>Return";
-          command = "${pkgs.my.sensible-terminal-wayland}/bin/sensible-terminal-wayland";
+          command = "${pkgs.my.sensible-terminal}/bin/sensible-terminal";
           name = "Launch terminal";
         };
         "org/gnome/settings-daemon/plugins/power" = {
