@@ -47,8 +47,9 @@ in
   };
 
   config = mkIf cfg.enable {
+    user.packages = with pkgs; [ my.sensible-terminal ];
+
     fonts.fonts = with pkgs; [
-      my.sensible-terminal
       (mkIf (fonts.ui.package != null) fonts.ui.package)
       (mkIf (fonts.fixed.package != null) fonts.fixed.package)
       (mkIf (fonts.document.package != null) fonts.document.package)
