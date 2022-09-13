@@ -4,7 +4,13 @@ with lib;
 with lib.my;
 let
   inherit (config.dotfiles) configDir;
-  cfg = config.modules.desktop.apps.waybar;
+  desktopCfg = config.modules.desktop;
+  cfg = desktopCfg.apps.waybar;
+
+  style_css = pkgs.substituteAll {
+    src = ../../../../config/waybar/style.css;
+    sidePadding = if desktopCfg.sway.enable then desktopCfg.sway.gaps.outer else 16;
+  };
 in
 {
   options.modules.desktop.apps.waybar = {
@@ -18,7 +24,7 @@ in
 
     environment.etc = {
       "xdg/waybar/config".source = "${configDir}/waybar/config.json";
-      "xdg/waybar/style.css".source = "${configDir}/waybar/style.css";
+      "xdg/waybar/style.css".source = style_css;
     };
 
     systemd.user.services.waybar = {
@@ -35,7 +41,7 @@ in
       restartIfChanged = true;
       restartTriggers = [
         (builtins.hashFile "md5" "${configDir}/waybar/config.json")
-        (builtins.hashFile "md5" "${configDir}/waybar/style.css")
+        style_css
       ];
     };
 
