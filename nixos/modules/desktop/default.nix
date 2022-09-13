@@ -54,5 +54,10 @@ in
       (mkIf (fonts.document.package != null) fonts.document.package)
       (mkIf (fonts.titlebar != null && fonts.titlebar.package != null) fonts.titlebar.package)
     ];
+
+    systemd.user.targets.autostart = {
+      description = "Current graphical user session";
+      documentation = [ "man:systemd.special(7)" ];
+    };
   };
 }

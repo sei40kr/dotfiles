@@ -48,12 +48,15 @@ in
       '';
     };
 
-    systemd.user.targets."sway-session" = {
-      description = "sway compositor session";
-      documentation = [ "man:systemd.special(7)" ];
-      bindsTo = [ "graphical-session.target" ];
-      wants = [ "graphical-session-pre.target" ];
-      after = [ "graphical-session-pre.target" ];
+    systemd.user.targets = {
+      sway-session = {
+        description = "sway compositor session";
+        documentation = [ "man:systemd.special(7)" ];
+        bindsTo = [ "graphical-session.target" ];
+        wants = [ "graphical-session-pre.target" "autostart.target" ];
+        after = [ "graphical-session-pre.target" ];
+      };
+      autostart = { partOf = [ "sway-session.target" ]; };
     };
 
     services.xserver = {

@@ -24,8 +24,8 @@ in
     systemd.user.services.waybar = {
       description = "Highly customizable Wayland bar for Sway and Wlroots based compositors";
       documentation = [ "man:waybar(1)" "https://github.com/Alexays/Waybar/wiki" ];
-      wantedBy = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
+      wantedBy = [ "autostart.target" ];
+      partOf = [ "autostart.target" ];
       serviceConfig = {
         ExecStart = "${pkgs.waybar}/bin/waybar";
         Restart = "on-failure";
