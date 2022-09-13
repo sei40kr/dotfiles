@@ -2,6 +2,6 @@ indicator
 clock
 timestr=%H:%M
 datestr=%m/%d %a
-screenshots
 indicator-radius=100
+@backgroundOpts@
 font=@fontName@

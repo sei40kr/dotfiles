@@ -3,6 +3,12 @@
 with lib;
 with lib.my;
 let
+  backgroundImageType = with types; submodule {
+    options = {
+      path = mkOpt (either str path) null;
+      mode = mkOpt (enum [ "stretch" "fill" "fit" "center" "tile" ]) null;
+    };
+  };
   fontType = with types; submodule {
     options = {
       package = mkOpt (nullOr package) null;
@@ -21,6 +27,11 @@ in
     autoRepeat = {
       delay = mkOpt int 200;
       interval = mkOpt int 30;
+    };
+
+    background = {
+      color = mkOpt str "#404040";
+      image = mkOpt (nullOr backgroundImageType) null;
     };
 
     fonts = {

@@ -16,16 +16,9 @@ let
     };
   };
 
-  backgroundType = with types; submodule {
-    options = {
-      image = mkOpt (either str path) null;
-      mode = mkOpt (enum [ "none" "wallpaper" "centered" "scaled" "stretched" "zoom" "spanned" ]) "zoom";
-    };
-  };
-
   desktopCfg = config.modules.desktop;
   cfg = desktopCfg.gnome;
-  inherit (desktopCfg) autoRepeat fonts;
+  inherit (desktopCfg) autoRepeat background fonts;
 
   exts = with pkgs.gnomeExtensions; [
     # blur-me
@@ -38,6 +31,14 @@ let
   ++ (optionals config.modules.i18n.japanese.enable [ kimpanel ]);
   extUuids = map (ext: ext.extensionUuid) exts
     ++ (optionals config.modules.desktop.apps.gnome.pomodoro.enable [ "pomodoro@arun.codito.in" ]);
+  toPictureOpts = backgroundMode:
+    if backgroundMode == "stretch" then "stretched"
+    else if backgroundMode == "fill" then "scaled"
+    else if backgroundMode == "fit" then "zoom"
+    else if backgroundMode == "center" then "centered"
+    else if backgroundMode == "tile" then "wallpaper"
+    else throw "Unexpected background mode: ${backgroundMode}";
+  pictureOpts = toPictureOpts background.image.mode;
 in
 {
   options.modules.desktop.gnome = with types; {
@@ -45,8 +46,6 @@ in
 
     cursor.theme = mkOpt (nullOr cursorThemeType) null;
     shell.theme = mkOpt (nullOr shellThemeType) null;
-
-    background = mkOpt (nullOr backgroundType) null;
   };
 
   config = mkIf cfg.enable {
@@ -122,6 +121,12 @@ in
           accel-profile = "flat";
           speed = 0.7;
         };
+        "org/gnome/desktop/screensaver" = ({
+          primary-color = background.color;
+        } // optionalAttrs (background.image != null) {
+          picture-uri = "file://${background.image.path}";
+          picture-options = pictureOpts;
+        });
         "org/gnome/desktop/wm/keybindings" = {
           # Activate the window menu
           activate-window-menu = [ ];
@@ -337,10 +342,10 @@ in
           inherit (cfg.shell.theme) name;
         };
       }
-      // optionalAttrs (cfg.background != null) {
+      // optionalAttrs (background.image != null) {
         "org/gnome/desktop/background" = {
-          picture-uri = "file://${cfg.background.image}";
-          picture-options = cfg.background.mode;
+          picture-uri = "file://${background.image.path}";
+          picture-options = pictureOpts;
         };
       };
     };

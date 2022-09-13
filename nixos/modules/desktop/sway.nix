@@ -5,7 +5,7 @@ with lib.my;
 let
   desktopCfg = config.modules.desktop;
   cfg = desktopCfg.sway;
-  inherit (desktopCfg) autoRepeat fonts;
+  inherit (desktopCfg) autoRepeat background fonts;
 
   package = pkgs.sway.override {
     extraSessionCommands = ''
@@ -23,6 +23,10 @@ let
     '';
     withGtkWrapper = true;
   };
+  backgroundCommand =
+    if background.image != null then
+      "output * bg ${background.image.path} ${background.image.mode} ${background.color}"
+    else "output * bg ${background.color} solid_color";
 in
 {
   options.modules.desktop.sway = with types; {
@@ -40,11 +44,12 @@ in
       message = "The 'modules.desktop.sway.gaps.outer' must be equal to or greater than 'modules.desktop.sway.gaps.inner'.";
     }];
 
-    user.packages = [ package ];
+    user.packages = [ package pkgs.swaybg ];
 
     home.configFile."sway/config" = {
       source = pkgs.substituteAll {
         src = ../../../config/sway/config;
+        inherit backgroundCommand;
         titlebarFontName = fonts.titlebar.name or fonts.ui.name;
         titlebarFontSize = fonts.titlebar.size or fonts.ui.size;
         innerGaps = cfg.gaps.inner;

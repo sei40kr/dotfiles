@@ -12,6 +12,11 @@ in
   };
 
   config = mkIf (themeCfg.active == "whitesur") {
+    modules.desktop.background.image = {
+      path = "${pkgs.my.whitesur-wallpapers}/share/backgrounds/WhiteSur-${cfg.variant}.png";
+      mode = "fit";
+    };
+
     modules.desktop.gnome = {
       cursor.theme = {
         package = pkgs.my.whitesur-cursors;
@@ -20,11 +25,6 @@ in
       shell.theme = {
         package = pkgs.whitesur-gtk-theme;
         name = "WhiteSur-${cfg.variant}";
-      };
-
-      background = {
-        image = "${pkgs.my.whitesur-wallpapers}/share/backgrounds/WhiteSur-${cfg.variant}.png";
-        mode = "zoom";
       };
     };
 
