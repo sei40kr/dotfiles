@@ -22,7 +22,7 @@ in
     fonts = {
       sansSerif = mkOpt fontType {
         packages = with pkgs; [ noto-fonts noto-fonts-cjk-sans ];
-        names = [ "Noto Sans Mono" "Noto Sans Mono CJK JP" ];
+        names = [ "Noto Sans" "Noto Sans CJK JP" ];
       };
       serif = mkOpt fontType {
         packages = with pkgs; [ noto-fonts noto-fonts-cjk-serif ];
