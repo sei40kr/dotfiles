@@ -79,7 +79,6 @@ in
         documents.ebook.enable = true;
         gnome.evince.enable = true;
         video.totem.enable = true;
-        };
       };
     };
 
