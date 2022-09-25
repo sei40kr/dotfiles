@@ -1,7 +1,7 @@
 indicator
 clock
 timestr=%H:%M
-datestr=%m/%d %a
+datestr=%b %e %a
 indicator-radius=100
 @backgroundOpts@
 font=@fontName@

@@ -24,7 +24,7 @@
         }
     },
     "clock": {
-        "format": "{:%m/%d %H:%M}",
+        "format": "{:%b %e %a  %H:%M}",
         "timezone": "Japan"
     },
     "network": {
