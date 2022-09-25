@@ -282,7 +282,7 @@ in
         };
         "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
           binding = "<Super>Return";
-          command = "${pkgs.my.sensible-terminal}/bin/sensible-terminal";
+          command = "sensible-terminal";
           name = "Launch terminal";
         };
         "org/gnome/settings-daemon/plugins/power" = {
@@ -353,5 +353,7 @@ in
     modules.desktop.fontconfig.enable = true;
     modules.desktop.gtk.enable = true;
     modules.desktop.qt.enable = true;
+
+    modules.term.sensible.enable = true;
   };
 }
