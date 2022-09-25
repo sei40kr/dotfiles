@@ -4,7 +4,8 @@ tmux set -g message-command-style 'bg=#16161e' \; \
      set -g message-style 'bg=#16161e' \; \
      set -g mode-style 'fg=#c0caf5,bg=#33467c' \; \
      set -g status-justify absolute-centre \; \
-     set -g status-left '#[fg=#7aa2f7]▎#[default] #[fg=#7aa2f7,bold]#S#[default]  #{prefix_highlight}' \; \
+     set -g status-left '#[fg=#7aa2f7]▎#[default] #[fg=#7aa2f7,bold]#{=/10/...:session_name}#[default]  #{prefix_highlight}' \; \
+     set -g status-left-length 21 \; \
      set -g status-right 'CPU: #{cpu_percentage}  Mem: #{ram_percentage}  #{online_status}  %m/%d %H:%M ' \; \
      set -g status-style 'fg=#c0caf5,bg=#16161e' \; \
      set -wg pane-active-border-style 'fg=#15161e' \; \
