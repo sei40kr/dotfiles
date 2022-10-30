@@ -49,6 +49,9 @@ in
           configFile = mkAliasDefinitions options.home.configFile;
           dataFile = mkAliasDefinitions options.home.dataFile;
         };
+
+        # NOTE: Temporary workaround for NixOS/nixpkgs#196651
+        manual.manpages.enable = false;
       };
     };
 

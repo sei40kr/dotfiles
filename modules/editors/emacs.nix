@@ -28,7 +28,6 @@ let
         (epkgs: [
           epkgs.melpaPackages.emacsql
           epkgs.melpaPackages.emacsql-sqlite
-          epkgs.melpaPackages.libgit
           epkgs.melpaPackages.vterm
           epkgs.melpaPackages.zmq
           default_el
