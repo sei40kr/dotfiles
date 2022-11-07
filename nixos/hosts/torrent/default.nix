@@ -10,8 +10,8 @@ in
 
   imports = [ ./hardware-configuration.nix ];
 
-  # Use kernel 5.18
-  boot.kernelPackages = pkgs.linuxPackages_5_18;
+  # Use kernel 6.0
+  boot.kernelPackages = pkgs.linuxPackages_6_0;
   # Use the systemd-boot EFI boot loader.
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
