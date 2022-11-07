@@ -127,7 +127,6 @@ in
     services = {
       docker = {
         enable = true;
-        autoPrune.enable = true;
         compose.enable = true;
       };
       # flexget.enable = true;

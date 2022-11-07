@@ -8,25 +8,49 @@ in
   options.modules.services.docker = {
     enable = mkBoolOpt false;
 
-    autoPrune.enable = mkBoolOpt false;
     compose.enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ (mkIf cfg.compose.enable docker-compose) ];
+    user.packages = with pkgs; [
+      docker
+      (mkIf cfg.compose.enable docker-compose)
+    ];
 
-    # TODO Use user Docker service
-    virtualisation.docker = {
-      enable = true;
-      autoPrune.enable = cfg.autoPrune.enable;
+    users.groups.docker = { };
+
+    boot.kernelModules = [ "bridge" "veth" ];
+    boot.kernel.sysctl = {
+      "net.ipv4.conf.all.forwarding" = mkOverride 98 true;
+      "net.ipv4.conf.default.forwarding" = mkOverride 98 true;
+    };
+
+    systemd.services.docker = {
+      wantedBy = [ "multi-user.target" ];
+      after = [ "network.target" "docker.socket" ];
+      requires = [ "docker.socket" ];
+      serviceConfig = {
+        Type = "notify";
+        ExecStart = "${pkgs.docker}/bin/dockerd";
+        ExecReload = "${pkgs.procps}/bin/kill -s HUP $MAINPID";
+      };
+      path = [ pkgs.kmod ];
+    };
+    systemd.sockets.docker = {
+      description = "Docker Socket for the API";
+      wantedBy = [ "sockets.target" ];
+      socketConfig = {
+        ListenStream = "/run/docker.sock";
+        SocketMode = "0660";
+        SocketUser = "root";
+        SocketGroup = "docker";
+      };
     };
 
     user.extraGroups = [ "docker" ];
 
     modules.shell.aliases = {
       dk = "docker";
-    }
-    # FIXME mkIf didn't work for some reason
-    // (optionalAttrs cfg.compose.enable { dko = "docker-compose"; });
+    } // (optionalAttrs cfg.compose.enable { dko = "docker-compose"; });
   };
 }
