@@ -13,7 +13,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ docker-compose ];
+    user.packages = with pkgs; [ (mkIf cfg.compose.enable docker-compose) ];
 
     # TODO Use user Docker service
     virtualisation.docker = {
