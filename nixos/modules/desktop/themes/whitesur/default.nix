@@ -5,6 +5,8 @@ with lib.my;
 let
   cfg = config.modules.desktop.theme.whitesur;
   themeCfg = config.modules.desktop.theme;
+
+  Variant = toUpper (substring 0 1 cfg.variant) + substring 1 (-1) cfg.variant;
 in
 {
   options.modules.desktop.theme.whitesur = with types; {
@@ -24,7 +26,7 @@ in
       };
       shell.theme = {
         package = pkgs.whitesur-gtk-theme;
-        name = "WhiteSur-${cfg.variant}";
+        name = "WhiteSur-${Variant}";
       };
     };
 
