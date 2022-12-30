@@ -289,6 +289,32 @@ in
           power-button-action = "suspend";
           sleep-inactive-ac-type = "nothing";
         };
+        "org/gnome/shell" = {
+          favorite-apps =
+            optionals config.modules.desktop.apps.gnome.nautilus.enable [ "org.gnome.Nautilus.desktop" ] ++
+              optionals config.modules.desktop.apps.thunar.enable [ "thunar.desktop" ] ++
+              optionals config.modules.desktop.browsers.chrome.enable [ "google-chrome.desktop" ] ++
+              optionals config.modules.desktop.browsers.firefox.enable [ "firefox.desktop" ] ++
+              optionals config.modules.desktop.apps.gnome.geary.enable [ "org.gnome.Geary.desktop" ] ++
+              optionals config.modules.desktop.apps.gnome.calendar.enable [ "org.gnome.Calendar.desktop" ] ++
+              optionals config.modules.desktop.apps.gnome.todo.enable [ "org.gnome.Todo.desktop" ] ++
+              optionals config.modules.desktop.apps.todoist.enable [ "todoist-electron.desktop" ] ++
+              optionals config.modules.desktop.apps.slack.enable [ "slack.desktop" ] ++
+              optionals config.modules.desktop.apps.element.enable [ "element-desktop.desktop" ] ++
+              optionals config.modules.desktop.apps.discord.enable [ "discord.desktop" ] ++
+              optionals config.modules.desktop.apps.zoom.enable [ "Zoom.desktop" ] ++
+              optionals config.modules.desktop.apps.qbittorrent.enable [ "org.qbittorrent.qBittorrent.desktop" ] ++
+              optionals config.modules.term.gnome.enable [ "org.gnome.Terminal.desktop" ] ++
+              optionals config.modules.term.alacritty.enable [ "Alacritty.desktop" ] ++
+              optionals config.modules.term.kitty.enable [ "kitty.desktop" ] ++
+              optionals config.modules.editors.nvim.enable [ "yvim-qt.desktop" ] ++
+              optionals config.modules.editors.emacs.enable [ "emacs.desktop" ] ++
+              optionals config.modules.editors.idea.enable [ "idea-ultimate.desktop" ] ++
+              optionals config.modules.editors.datagrip.enable [ "datagrip.desktop" ] ++
+              optionals config.modules.editors.dataspell.enable [ "dataspell.desktop" ] ++
+              optionals config.modules.desktop.apps.zeal.enable [ "org.zealdocs.zeal.desktop" ] ++
+              [ "org.gnome.Settings.desktop" "ca.desrt.dconf-editor.desktop" ];
+        };
         "org/gnome/shell/extensions" = {
           disable-user-extensions = false;
           enabled-extensions = extUuids;
