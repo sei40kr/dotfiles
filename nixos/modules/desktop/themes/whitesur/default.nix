@@ -40,10 +40,5 @@ in
         name = "WhiteSur";
       };
     };
-
-    modules.desktop.apps.ulauncher.theme =
-      if cfg.variant == "light" then
-        pkgs.my.whitesur-light-ulauncher
-      else pkgs.my.whitesur-dark-ulauncher;
   };
 }
