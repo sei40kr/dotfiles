@@ -18,7 +18,6 @@ in
       hasklig
       inconsolata
       # input-fonts
-      iosevka
       jetbrains-mono
       source-code-pro
       source-han-code-jp
