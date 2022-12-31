@@ -69,6 +69,22 @@ in
       (mkIf cfg.webapps.youtube-music.enable youtube-music)
     ];
 
+    environment.etc."opt/chrome/policies/managed/default.json".text = builtins.toJSON {
+      ExtensionInstallForcelist = [
+        # Keepa
+        "neebplgakaahbhdphmkckjjcegoiijjo"
+        # アマゾン注文履歴フィルタ
+        "jaikhcpoplnhinlglnkmihfdlbamhgig"
+      ] ++ optionals config.modules.desktop.apps.bitwarden.enable [
+        # Bitwarden
+        "nngceckbapebfimnlniiiahkandclblb"
+      ] ++ optionals config.modules.dev.web.enable [
+        # React Developer Tools
+        "fmkadmapgofadopljbjfkapdkoienihi"
+        # Redux DevTools
+        "lmhkpmbekcpmknklioeibfkpmmfibljd"
+      ];
+    };
     environment.etc."opt/chrome/policies/managed/extra.json".text = builtins.toJSON {
       WebAppInstallForceList = optionals cfg.webapps.gmail.enable [
         {
