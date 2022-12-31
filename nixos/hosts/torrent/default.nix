@@ -58,7 +58,6 @@ in
           pomodoro.enable = true;
           weather.enable = true;
         };
-        notion.enable = true;
         slack.enable = true;
         zeal.enable = true;
       };

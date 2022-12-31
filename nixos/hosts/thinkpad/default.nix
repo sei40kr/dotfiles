@@ -52,7 +52,6 @@ in
           nautilus.enable = true;
           pomodoro.enable = true;
         };
-        notion.enable = true;
         qbittorrent.enable = true;
         slack.enable = true;
         todoist.enable = true;
