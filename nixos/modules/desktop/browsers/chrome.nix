@@ -5,45 +5,43 @@ with lib.my;
 let
   cfg = config.modules.desktop.browsers.chrome;
 
-  package = pkgs.google-chrome;
-
   gmail = pkgs.makeDesktopItem {
-    name = "gmail";
+    name = "web-gmail";
     desktopName = "Gmail";
     terminal = false;
-    exec = "${package}/bin/google-chrome-stable --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm";
-    icon = "internet-mail";
+    exec = "${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory=Default --app-id=fmgjjmmmlfnkbppncabfkddbjimcfncm";
+    icon = "web-google-gmail";
     startupWMClass = "crx_fmgjjmmmlfnkbppncabfkddbjimcfncm";
   };
   google-calendar = pkgs.makeDesktopItem {
-    name = "google-calendar";
+    name = "web-google-calendar";
     desktopName = "Google Calendar";
     terminal = false;
-    exec = "${package}/bin/google-chrome-stable --profile-directory=Default --app-id=kjbdgfilnfhdoflbpgamdcdgpehopbep";
+    exec = "${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory=Default --app-id=kjbdgfilnfhdoflbpgamdcdgpehopbep";
     icon = "calendar";
     startupWMClass = "crx_kjbdgfilnfhdoflbpgamdcdgpehopbep";
   };
   google-maps = pkgs.makeDesktopItem {
-    name = "google-maps";
+    name = "web-google-maps";
     desktopName = "Google Maps";
     terminal = false;
-    exec = "${package}/bin/google-chrome-stable --profile-directory=Default --app-id=mnhkaebcjjhencmpkapnbdaogjamfbcj";
+    exec = "${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory=Default --app-id=mnhkaebcjjhencmpkapnbdaogjamfbcj";
     icon = "web-google-maps";
     startupWMClass = "crx_mnhkaebcjjhencmpkapnbdaogjamfbcj";
   };
   google-photos = pkgs.makeDesktopItem {
-    name = "google-photos";
+    name = "web-google-photos";
     desktopName = "Google Photos";
     terminal = false;
-    exec = "${package}/bin/google-chrome-stable --profile-directory=Default --app-id=ncmjhecbjeaamljdfahankockkkdmedg";
-    icon = "image-viewer";
+    exec = "${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory=Default --app-id=ncmjhecbjeaamljdfahankockkkdmedg";
+    icon = "photos";
     startupWMClass = "crx_ncmjhecbjeaamljdfahankockkkdmedg";
   };
   youtube-music = pkgs.makeDesktopItem {
-    name = "youtube-music";
+    name = "web-youtube-music";
     desktopName = "YouTube Music";
     terminal = false;
-    exec = "${package}/bin/google-chrome-stable --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod";
+    exec = "${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod";
     icon = "youtube-music-desktop-app";
     startupWMClass = "crx_cinhimbnkkaeohfgghhklpknlkffjgod";
   };
@@ -52,21 +50,62 @@ in
   options.modules.desktop.browsers.chrome = with types; {
     enable = mkBoolOpt false;
 
-    mail.enable = mkBoolOpt false;
-    calendar.enable = mkBoolOpt false;
-    maps.enable = mkBoolOpt false;
-    photos.enable = mkBoolOpt false;
-    music.enable = mkBoolOpt false;
+    webapps = {
+      gmail.enable = mkBoolOpt false;
+      google-calendar.enable = mkBoolOpt false;
+      google-maps.enable = mkBoolOpt false;
+      google-photos.enable = mkBoolOpt false;
+      youtube-music.enable = mkBoolOpt false;
+    };
   };
 
   config = mkIf cfg.enable {
     user.packages = [
-      package
-      (mkIf cfg.mail.enable gmail)
-      (mkIf cfg.calendar.enable google-calendar)
-      (mkIf cfg.maps.enable google-maps)
-      (mkIf cfg.photos.enable google-photos)
-      (mkIf cfg.music.enable youtube-music)
+      pkgs.google-chrome
+      (mkIf cfg.webapps.gmail.enable gmail)
+      (mkIf cfg.webapps.google-calendar.enable google-calendar)
+      (mkIf cfg.webapps.google-maps.enable google-maps)
+      (mkIf cfg.webapps.google-photos.enable google-photos)
+      (mkIf cfg.webapps.youtube-music.enable youtube-music)
     ];
+
+    environment.etc."opt/chrome/policies/managed/extra.json".text = builtins.toJSON {
+      WebAppInstallForceList = optionals cfg.webapps.gmail.enable [
+        {
+          custom_name = "Gmail";
+          default_launch_container = "window";
+          install_as_shortcut = true;
+          url = "https://mail.google.com/";
+        }
+      ] ++ optionals cfg.webapps.google-calendar.enable [
+        {
+          custom_name = "Google Calendar";
+          default_launch_container = "window";
+          install_as_shortcut = true;
+          url = "https://calendar.google.com/";
+        }
+      ] ++ optionals cfg.webapps.google-maps.enable [
+        {
+          custom_name = "Google Maps";
+          default_launch_container = "window";
+          install_as_shortcut = false;
+          url = "https://www.google.com/maps";
+        }
+      ] ++ optionals cfg.webapps.google-photos.enable [
+        {
+          custom_name = "Google Photos";
+          default_launch_container = "window";
+          install_as_shortcut = false;
+          url = "https://photos.google.com/";
+        }
+      ] ++ optionals cfg.webapps.youtube-music.enable [
+        {
+          custom_name = "YouTube Music";
+          default_launch_container = "window";
+          install_as_shortcut = false;
+          url = "https://music.youtube.com/";
+        }
+      ];
+    };
   };
 }

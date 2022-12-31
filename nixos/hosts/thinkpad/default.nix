@@ -63,11 +63,13 @@ in
       browsers = {
         chrome = {
           enable = true;
-          mail.enable = true;
-          calendar.enable = true;
-          maps.enable = true;
-          photos.enable = true;
-          music.enable = true;
+          webapps = {
+            gmail.enable = true;
+            google-calendar.enable = true;
+            google-maps.enable = true;
+            google-photos.enable = true;
+            youtube-music.enable = true;
+          };
         };
         psd.enable = true;
       };
