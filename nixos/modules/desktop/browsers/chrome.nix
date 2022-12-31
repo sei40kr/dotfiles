@@ -37,6 +37,14 @@ let
     icon = "photos";
     startupWMClass = "crx_ncmjhecbjeaamljdfahankockkkdmedg";
   };
+  notion = pkgs.makeDesktopItem {
+    name = "web-notion";
+    desktopName = "Notion";
+    terminal = false;
+    exec = "${pkgs.google-chrome}/bin/google-chrome-stable --profile-directory=Default --app-id=ojeiemicjheiejhdhbaglaeofgfhloea";
+    icon = "notion";
+    startupWMClass = "crx_ojeiemicjheiejhdhbaglaeofgfhloea";
+  };
   youtube-music = pkgs.makeDesktopItem {
     name = "web-youtube-music";
     desktopName = "YouTube Music";
@@ -55,6 +63,7 @@ in
       google-calendar.enable = mkBoolOpt false;
       google-maps.enable = mkBoolOpt false;
       google-photos.enable = mkBoolOpt false;
+      notion.enable = mkBoolOpt false;
       youtube-music.enable = mkBoolOpt false;
     };
   };
@@ -66,6 +75,7 @@ in
       (mkIf cfg.webapps.google-calendar.enable google-calendar)
       (mkIf cfg.webapps.google-maps.enable google-maps)
       (mkIf cfg.webapps.google-photos.enable google-photos)
+      (mkIf cfg.webapps.notion.enable notion)
       (mkIf cfg.webapps.youtube-music.enable youtube-music)
     ];
 
@@ -113,6 +123,13 @@ in
           default_launch_container = "window";
           install_as_shortcut = false;
           url = "https://photos.google.com/";
+        }
+      ] ++ optionals cfg.webapps.notion.enable [
+        {
+          custom_name = "Notion";
+          default_launch_container = "window";
+          install_as_shortcut = false;
+          url = "https://notion.so/";
         }
       ] ++ optionals cfg.webapps.youtube-music.enable [
         {
