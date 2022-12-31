@@ -22,18 +22,15 @@ let
     destination = "/share/emacs/site-lisp/default.el";
   };
 
-  package =
-    if cfg.doom.enable then
-      pkgs.emacs28NativeComp.pkgs.withPackages
-        (epkgs: [
-          epkgs.melpaPackages.emacsql
-          epkgs.melpaPackages.emacsql-sqlite
-          epkgs.melpaPackages.vterm
-          epkgs.melpaPackages.zmq
-          default_el
-        ])
-    else
-      pkgs.emacs28NativeComp;
+  package = (if cfg.doom.enable then
+    (pkgs.emacs.pkgs.withPackages (epkgs: [
+      epkgs.melpaPackages.emacsql
+      epkgs.melpaPackages.emacsql-sqlite
+      epkgs.melpaPackages.vterm
+      epkgs.melpaPackages.zmq
+      default_el
+    ]))
+  else pkgs.emacs);
 
   vterm_printf = pkgs.writeTextFile {
     name = "vterm_printf";
