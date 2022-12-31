@@ -296,8 +296,13 @@ in
               optionals config.modules.desktop.browsers.chrome.enable [ "google-chrome.desktop" ] ++
               optionals config.modules.desktop.browsers.firefox.enable [ "firefox.desktop" ] ++
               optionals config.modules.desktop.apps.gnome.geary.enable [ "org.gnome.Geary.desktop" ] ++
+              optionals config.modules.desktop.browsers.chrome.webapps.gmail.enable [ "web-gmail.desktop" ] ++
+              optionals config.modules.desktop.browsers.chrome.webapps.google-maps.enable [ "web-google-maps.desktop" ] ++
+              optionals config.modules.desktop.browsers.chrome.webapps.google-photos.enable [ "web-google-photos.desktop" ] ++
               optionals config.modules.desktop.apps.gnome.calendar.enable [ "org.gnome.Calendar.desktop" ] ++
+              optionals config.modules.desktop.browsers.chrome.webapps.google-calendar.enable [ "web-google-calendar.desktop" ] ++
               optionals config.modules.desktop.apps.gnome.todo.enable [ "org.gnome.Todo.desktop" ] ++
+              optionals config.modules.desktop.browsers.chrome.webapps.youtube-music.enable [ "web-youtube-music.desktop" ] ++
               optionals config.modules.desktop.apps.todoist.enable [ "todoist-electron.desktop" ] ++
               optionals config.modules.desktop.apps.slack.enable [ "slack.desktop" ] ++
               optionals config.modules.desktop.apps.element.enable [ "element-desktop.desktop" ] ++
