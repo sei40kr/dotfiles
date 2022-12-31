@@ -12,7 +12,7 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
       online-judge-tools
-      my.online-judge-template-generator
+      online-judge-template-generator
       my.online-judge-verify-helper
     ];
   };

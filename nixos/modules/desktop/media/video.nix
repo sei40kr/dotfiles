@@ -13,7 +13,7 @@ in
   config = {
     user.packages = with pkgs; [
       (mkIf cfg.totem.enable gnome.totem)
-      (mkIf cfg.trimmer.enable my.video-trimmer)
+      (mkIf cfg.trimmer.enable video-trimmer)
     ];
   };
 }

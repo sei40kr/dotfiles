@@ -13,7 +13,7 @@ in
     user.packages = with pkgs; [
       kotlin
       gradle
-      my.kotlin-language-server
+      kotlin-language-server
       ktlint
       maven
     ];

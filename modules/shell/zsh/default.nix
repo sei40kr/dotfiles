@@ -31,7 +31,7 @@ in
       zsh
 
       # zi dependencies
-      my.zi
+      zi
       curl
       file
       git
@@ -172,7 +172,7 @@ in
         fi
       '';
 
-      ".zsh/.zi/bin".source = pkgs.my.zi;
+      ".zsh/.zi/bin".source = pkgs.zi;
     };
 
     environment.shells =

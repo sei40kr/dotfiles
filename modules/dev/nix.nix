@@ -10,6 +10,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ nixpkgs-fmt nix-linter rnix-lsp ];
+    user.packages = with pkgs; [ nixpkgs-fmt rnix-lsp ];
   };
 }

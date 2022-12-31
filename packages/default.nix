@@ -13,11 +13,6 @@ rec {
 
   dataspell = pkgs.callPackage ./dataspell { inherit (pkgs.jetbrains) jdk; };
 
-  kotlin-language-server = pkgs.callPackage ./kotlin-language-server.nix { };
-
-  online-judge-template-generator =
-    pkgs.python3Packages.callPackage ./online-judge-template-generator { };
-
   online-judge-verify-helper =
     pkgs.python3Packages.callPackage ./online-judge-verify-helper { };
 
@@ -29,8 +24,6 @@ rec {
 
   sensible-terminal = pkgs.callPackage ./sensible-terminal { };
 
-  video-trimmer = pkgs.callPackage ./video-trimmer { };
-
   whitesur-cursors = pkgs.callPackage ./whitesur-cursors { };
 
   whitesur-dark-ulauncher = pkgs.callPackage ./whitesur-dark-ulauncher { };
@@ -40,8 +33,6 @@ rec {
   whitesur-wallpapers = pkgs.callPackage ./whitesur-wallpapers { };
 
   yonmux = pkgs.callPackage ./yonmux { tmuxPlugins = pkgs.tmuxPlugins // tmuxPlugins; };
-
-  zi = pkgs.callPackage ./zi { };
 
   zsh-smart-history = pkgs.callPackage ./zsh-smart-history.nix { };
 

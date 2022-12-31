@@ -35,7 +35,7 @@ let
   desktopItem = makeDesktopItem {
     name = "dataspell";
     exec = "dataspell";
-    comment = lib.replaceChars [ "\n" ] [ " " ] longDescription;
+    comment = replaceStrings [ "\n" ] [ " " ] longDescription;
     desktopName = "DataSpell";
     genericName = description;
     categories = [ "Development" ];
