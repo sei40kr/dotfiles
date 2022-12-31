@@ -1,16 +1,24 @@
-{ fetchFromGitHub }:
+{ fetchFromGitHub, lib }:
 
 fetchFromGitHub {
   owner = "vinceliuice";
   repo = "WhiteSur-wallpapers";
-  rev = "v1.0";
-  sha256 = "sha256-8H46/ujn+v4VC80D41joo1vgiIMly7JyrGPK+bjhV/8=";
-  leaveDotGit = true;
+  rev = "v2.0";
+  hash = "sha256-b2gN0sU2VppIm9ckrv9MIhJZ2CpNMFOAMI6eCtSPaFM=";
+
   postFetch = ''
     export HOME=$(mktemp -d)
     bash $out/install-wallpapers.sh
-    rm -rf $out/{.git,*}
-    mv $HOME/.local/share $out
+    rm -rf $out
+    mkdir -p $out
+    mv $HOME/.local/share $out/share
     rm -rf $HOME
   '';
+
+  meta = with lib; {
+    description = "WhiteSur wallpapers";
+    homepage = "https://github.com/vinceliuice/WhiteSur-wallpapers";
+    license = licenses.mit;
+    platforms = platforms.linux;
+  };
 }
