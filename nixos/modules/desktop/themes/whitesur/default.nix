@@ -36,7 +36,9 @@ in
         name = "WhiteSur-${cfg.variant}-solid";
       };
       iconTheme = {
-        package = pkgs.whitesur-icon-theme;
+        package = pkgs.whitesur-icon-theme.override {
+          boldPanelIcons = true;
+        };
         name = "WhiteSur";
       };
     };
