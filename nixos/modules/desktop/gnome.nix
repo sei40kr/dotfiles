@@ -23,6 +23,7 @@ let
   exts = with pkgs.gnomeExtensions; [
     # blur-me
     dash-to-dock
+    openweather
     places-status-indicator
     removable-drive-menu
     user-themes
@@ -334,6 +335,17 @@ in
           hot-keys = false;
           # Hide "Show Applications" button
           show-show-apps-button = true;
+        };
+        # OpenWeather
+        "org/gnome/shell/extensions/openweather" = {
+          # Position in panel: right
+          position-in-panel = "right";
+          # Hide conditions in forecast
+          show-comment-in-forecast = false;
+          # Keep forecast expanded
+          expand-forecast = true;
+          # Locations
+          city = "35.561206,139.715843>大田区, 東京都, 日本>0 && 33.6752943,130.9814491>京都郡, 福岡県, 800-0334, 日本>0";
         };
         "org/gnome/shell/keybindings" = {
           # Focus the active notification
