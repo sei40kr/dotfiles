@@ -1,7 +1,10 @@
 { config, inputs, lib, pkgs, ... }:
 
 with lib;
-with lib.my; {
+with lib.my;
+let users = [ "root" config.user.name ];
+in
+{
   imports = mapModulesRec' (toString ./.) import;
 
   environment.variables = {
@@ -16,13 +19,16 @@ with lib.my; {
       registryInputs = mapAttrs (_: v: { flake = v; }) filteredInputs;
     in
     {
-      package = pkgs.nixFlakes;
-      extraOptions = "experimental-features = nix-command flakes";
       nixPath = nixPathInputs ++ [
         "nixpkgs-overlays=${config.dotfiles.dir}/overlays"
         "dotfiles=${config.dotfiles.dir}"
       ];
+      extraOptions = "experimental-features = nix-command flakes";
       registry = registryInputs // { dotfiles.flake = inputs.self; };
+      settings = {
+        allowed-users = users;
+        trusted-users = users;
+      };
     };
 
   environment.systemPackages = with pkgs; [ coreutils git gnumake vim ];
