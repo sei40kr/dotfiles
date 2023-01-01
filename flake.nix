@@ -25,8 +25,9 @@
 
   outputs = { self, nixpkgs, darwin, ... }@inputs:
     let
-      inherit (lib) attrValues elem filterAttrs genAttrs hasSuffix mkDefault
-        nixosSystem optionalAttrs removeSuffix;
+      inherit (builtins) removeAttrs;
+      inherit (lib) attrValues elem genAttrs hasSuffix mkDefault nixosSystem
+        optionalAttrs removeSuffix;
       inherit (darwin.lib) darwinSystem;
       inherit (lib.my) mapModules mapModulesRec mapModulesRec';
 
@@ -55,7 +56,7 @@
           modules = [
             { networking.hostName = mkDefault (removeSuffix ".nix" (baseNameOf path)); }
             ./modules
-            (filterAttrs (n: _: !elem n [ "system" "stateVersion" ]) hostCfg)
+            (removeAttrs hostCfg [ "system" "stateVersion" ])
           ];
         in
         if isLinux system then
