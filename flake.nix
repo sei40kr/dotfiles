@@ -35,7 +35,7 @@
         my = import ./lib { inherit inputs lib; };
       });
 
-      systems = [ "x86_64-darwin" "x86_64-linux" ];
+      systems = [ "aarch64-darwin" "x86_64-darwin" "x86_64-linux" ];
       pkgs' = genAttrs systems (system: import nixpkgs {
         inherit system;
         config.allowUnfree = true;
