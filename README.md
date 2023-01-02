@@ -57,6 +57,24 @@
    nixos-rebuild switch --flake '.#<hostname>'
    ```
 
+## Things to Do Manually
+
+### Darwin
+
+- Generate a pair of SSH keys and add it to your GitHub account:
+
+  ```sh
+  ssh-keygen -t ecdsa
+  ```
+- Install [Google Chrome](https://www.google.com/intl/ja/chrome)
+- Install [Doom Emacs](https://github.com/doomemacs/doomemacs):
+
+  ```sh
+  git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
+  ~/.emacs.d/bin/doom install
+  ```
+- Install [Docker Desktop for Mac](https://docs.docker.com/desktop/install/mac-install/)
+
 ## Acknowledgements
 
 - [Flakes - NixOS Wiki](https://nixos.wiki/wiki/Flakes)
