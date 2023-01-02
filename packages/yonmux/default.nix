@@ -3,6 +3,7 @@
 , runCommandLocal
 , symlinkJoin
 , sysstat
+, stdenv
 , tmux
 , tmuxPlugins
 }:
@@ -46,7 +47,7 @@ symlinkJoin {
                               --set __ETC_ZSHRC_SOURCED "" \
                               --set __NIX_SET_ENVIRONMENT_DONE "" \
                               --set __NIX_DARWIN_SET_ENVIRONMENT_DONE "" \
-                              --prefix PATH : ${lib.makeBinPath [ sysstat ]} \
+                              ${lib.optionalString stdenv.isLinux "--prefix PATH : ${lib.makeBinPath [ sysstat ]}"} \
                               --add-flags "-f ${cfg}"
   '';
 }
