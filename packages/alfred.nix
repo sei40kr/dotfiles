@@ -3,20 +3,20 @@
 with lib;
 stdenv.mkDerivation {
   pname = "alfred";
-  version = "4.1_1167";
+  version = "5.0.6_2110";
 
   src = fetchurl {
-    url = "https://cachefly.alfredapp.com/Alfred_4.1_1167.dmg";
-    sha256 = "0gvwsb5b5kzvwkn31cby7kdg7fyf7sd99yibhhwdzsi4frma0kd8";
+    url = "https://cachefly.alfredapp.com/Alfred_5.0.6_2110.dmg";
+    hash = "sha256-ziY41r8vFp6J9VFdUcks3S24qf1odGLeQfwLETvzS5o=";
   };
 
   nativeBuildInputs = [ undmg ];
 
-  sourceRoot = "Alfred 4.app";
+  sourceRoot = "Alfred 5.app";
 
   installPhase = ''
-    mkdir -p "''${out}/Applications/Alfred 4.app"
-    cp -R . "''${out}/Applications/Alfred 4.app"
+    mkdir -p $out/Applications
+    cp -r . "$out/Applications/Alfred 5.app"
   '';
 
   meta = {
