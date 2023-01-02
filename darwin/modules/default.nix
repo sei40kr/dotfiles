@@ -33,6 +33,8 @@ with lib.my;
       fi
     '';
 
+  fonts.fontDir.enable = true;
+
   user.packages = with pkgs; [
     coreutils
     diffutils
