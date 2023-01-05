@@ -11,12 +11,14 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ undmg ];
 
-  sourceRoot = "Rectangle.app";
+  sourceRoot = ".";
 
   installPhase = ''
-    mkdir -p $out/Applications/Rectangle.app
-    cp -R . $out/Applications/Rectangle.app
+    mkdir -p $out/Applications
+    cp -r Rectangle.app $out/Applications
   '';
+
+  dontFixup = true;
 
   meta = with lib; {
     homepage = "https://github.com/rxhanson/Rectangle";
