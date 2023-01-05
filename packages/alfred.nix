@@ -1,6 +1,5 @@
 { fetchurl, lib, stdenv, undmg, ... }:
 
-with lib;
 stdenv.mkDerivation {
   pname = "alfred";
   version = "5.0.6_2110";
@@ -12,14 +11,16 @@ stdenv.mkDerivation {
 
   nativeBuildInputs = [ undmg ];
 
-  sourceRoot = "Alfred 5.app";
+  sourceRoot = ".";
 
   installPhase = ''
     mkdir -p $out/Applications
-    cp -r . "$out/Applications/Alfred 5.app"
+    cp -r 'Alfred 5.app' $out/Applications
   '';
 
-  meta = {
+  dontFixup = true;
+
+  meta = with lib; {
     homepage = "https://www.alfredapp.com";
     license = licenses.unfree;
     platforms = platforms.darwin;
