@@ -19,6 +19,8 @@ in
     user.packages = with pkgs; [ kitty ];
 
     home.configFile."kitty/kitty.conf".text = ''
+      confirm_os_window_close 0
+
       ## Fonts
       font_family       ${font.name}
       font_size         ${toString font.size}.0
