@@ -43,6 +43,18 @@ if [[ "$OSTYPE" == darwin* ]]; then
   zi light '@zsh_prezto@/modules/gnu-utility'
 fi
 
+
+#
+## Completions
+
+if [[ "$OSTYPE" == darwin* && -d /Applications/Docker.app ]]; then
+    zi ice lucid wait as'completion' mv'docker.zsh-completion -> _docker'
+    zi snippet /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion
+    zi ice lucid wait as'completion' mv'docker-compose.zsh-completion -> _docker-compose'
+    zi snippet /Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion
+fi
+
+
 ## Shell Enhancements
 
 zi ice ver'v0.7.0' wait'0' lucid
