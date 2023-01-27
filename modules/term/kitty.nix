@@ -75,9 +75,8 @@ in
       color15 #${colors.base15}
 
       ## Advanced
-      ${optionalString (stdenv.isDarwin && config.modules.i18n.japanese.enable) ''
+      ${optionalString stdenv.isDarwin ''
         env LANG=en_US.UTF-8
-        env LC_CTYPE=ja_JP.UTF-8
       ''}
 
       ## OS specific tweaks
