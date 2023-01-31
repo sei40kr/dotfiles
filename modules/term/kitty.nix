@@ -78,6 +78,10 @@ in
       ${optionalString stdenv.isDarwin ''
         env LANG=en_US.UTF-8
       ''}
+      # A workaround for a bug where it appends to the clipboard each time text
+      # is copied rather than replacing it.
+      # See https://github.com/tmux/tmux/wiki/Clipboard#terminal-support---kitty
+      clipboard_control write-primary write-clipboard no-append
 
       ## OS specific tweaks
       macos_option_as_alt yes
