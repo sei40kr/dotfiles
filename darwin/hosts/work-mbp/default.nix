@@ -43,7 +43,7 @@ in
     name = "Iosevka Nerd Font";
     size = 24;
   };
-  modules.term.alacritty.enable = true;
+  modules.term.kitty.enable = true;
 
   user.name = "sei40kr";
 }
