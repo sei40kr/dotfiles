@@ -19,6 +19,7 @@ in
   modules.dev.nix.enable = true;
   modules.dev.rust.enable = true;
   modules.dev.web.enable = true;
+  modules.dev.tools.pre-commit.enable = true;
 
   modules.editors.nvim.enable = true;
   modules.editors.emacs = {
