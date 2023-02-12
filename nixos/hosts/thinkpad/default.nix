@@ -140,8 +140,8 @@ in
     };
 
     term = {
-      alacritty.enable = true;
       gnome.enable = true;
+      kitty.enable = true;
     };
   };
 
