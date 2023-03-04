@@ -54,6 +54,7 @@ in
       enable = true;
       desktopManager.gnome.enable = true;
     };
+    qt.enable = mkForce false;
 
     environment.gnome.excludePackages = with pkgs.gnome; [
       baobab
