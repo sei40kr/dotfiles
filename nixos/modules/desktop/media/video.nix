@@ -6,14 +6,12 @@ let cfg = config.modules.desktop.media.video;
 in
 {
   options.modules.desktop.media.video = {
-    totem.enable = mkBoolOpt true;
-    trimmer.enable = mkBoolOpt true;
+    vlc.enable = mkBoolOpt true;
   };
 
   config = {
     user.packages = with pkgs; [
-      (mkIf cfg.totem.enable gnome.totem)
-      (mkIf cfg.trimmer.enable video-trimmer)
+      (mkIf cfg.vlc.enable vlc)
     ];
   };
 }
