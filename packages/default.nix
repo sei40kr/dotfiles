@@ -28,6 +28,8 @@ rec {
 
   whitesur-cursors = pkgs.callPackage ./whitesur-cursors { };
 
+  whitesur-kde = pkgs.callPackage ./whitesur-kde { };
+
   whitesur-wallpapers = pkgs.callPackage ./whitesur-wallpapers { };
 
   yonmux = pkgs.callPackage ./yonmux { tmuxPlugins = pkgs.tmuxPlugins // tmuxPlugins; };
