@@ -43,5 +43,10 @@ in
         name = "WhiteSur";
       };
     };
+
+    modules.desktop.qt.kvantum.theme = {
+      package = pkgs.my.whitesur-kde;
+      name = "WhiteSur-solid";
+    };
   };
 }
