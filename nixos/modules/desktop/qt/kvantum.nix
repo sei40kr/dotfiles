@@ -9,6 +9,7 @@ let
   themeType = with types; submodule {
     options = {
       package = mkOpt package null;
+      dir = mkOpt str null;
       name = mkOpt str null;
     };
   };
@@ -23,8 +24,7 @@ in
 
     environment.variables.QT_STYLE_OVERRIDE = "kvantum";
 
-    home.configFile."Kvantum/${cfg.theme.name}".source =
-      "${cfg.theme.package}/share/Kvantum/${cfg.theme.name}";
+    home.configFile."Kvantum/${cfg.theme.dir}".source = "${cfg.theme.package}/share/Kvantum/${cfg.theme.dir}";
     home.configFile."Kvantum/kvantum.kvconfig".text = ''
       [General]
       theme=${cfg.theme.name}

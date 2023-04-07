@@ -46,6 +46,7 @@ in
 
     modules.desktop.qt.kvantum.theme = {
       package = pkgs.my.whitesur-kde;
+      dir = "WhiteSur-solid";
       name = "WhiteSur-solid";
     };
   };
