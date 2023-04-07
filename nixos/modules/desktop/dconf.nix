@@ -8,7 +8,7 @@ in
   options.modules.desktop.dconf = with types; {
     enable = mkBoolOpt false;
 
-    settings = mkOpt attrs { };
+    settings = mkOpt (attrsOf anything) { };
   };
 
   config = mkIf cfg.enable {
