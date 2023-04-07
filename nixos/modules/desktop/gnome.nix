@@ -346,7 +346,7 @@ in
           # Keep forecast expanded
           expand-forecast = true;
           # Locations
-          city = "35.561206,139.715843>大田区, 東京都, 日本>0 && 33.6752943,130.9814491>京都郡, 福岡県, 800-0334, 日本>0";
+          city = "33.6752943,130.9814491>京都郡, 福岡県, 800-0334, 日本>0";
         };
         "org/gnome/shell/keybindings" = {
           # Focus the active notification
