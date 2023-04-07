@@ -339,8 +339,10 @@ in
         };
         # OpenWeather
         "org/gnome/shell/extensions/openweather" = {
-          # Position in panel: right
-          position-in-panel = "right";
+          # Position In Panel
+          position-in-panel = "center";
+          # Position Offset
+          position-index = 1;
           # Hide conditions in forecast
           show-comment-in-forecast = false;
           # Keep forecast expanded
