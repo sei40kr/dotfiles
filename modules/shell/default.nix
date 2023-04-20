@@ -3,7 +3,7 @@
 with lib;
 with lib.my; {
   options.modules.shell = with types; {
-    aliases = mkOpt attrs { };
+    aliases = mkOpt (attrsOf (nullOr (either str path))) { };
     env = mkOpt attrs { };
   };
 

@@ -27,42 +27,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      zsh
-
-      # zi dependencies
-      zi
-      curl
-      file
-      git
-      subversion
-
-      # Completions
-      nix-zsh-completions
-
-      fzf
-      starship
-      (mkIf stdenv.isDarwin terminal-notifier)
-    ];
-
-    environment.etc = {
-      zshenv.text = ''
-        # Only execute this file once per shell.
-        if [[ -n "$__ETC_ZSHENV_SOURCED" ]]; then
-          return
-        fi
-        export __ETC_ZSHENV_SOURCED=1
-
-        if [[ -z "$__NIXOS_SET_ENVIRONMENT_DONE" && -z "$__NIX_DARWIN_SET_ENVIRONMENT_DONE" ]]; then
-          . ${config.system.build.setEnvironment}
-        fi
-
-        # Read system-wide modifications.
-        if [[ -f /etc/zshenv.local ]]; then
-          . /etc/zshenv.local
-        fi
-      '';
-      zshrc.text =
+    programs.zsh = {
+      enable = true;
+      interactiveShellInit =
         let
           completions = pkgs.buildEnv {
             name = "zsh-completions_system";
@@ -72,29 +39,28 @@ in
           };
         in
         ''
-          # Only execute this file once per shell.
-          if [[ -n "$__ETC_ZSHRC_SOURCED" || -n "$NOSYSZSHRC" ]]; then
-            return
-          fi
-          __ETC_ZSHRC_SOURCED=1
-
           fpath=(
             "${completions}/share/zsh/site-functions"
             "${completions}/share/zsh/''${ZSH_VERSION}/functions"
             "${completions}/share/zsh/vendor-completions"
             "''${fpath[@]}"
           )
-
-          # Read system-wide modifications.
-          if test -f /etc/zshrc.local; then
-              . /etc/zshrc.local
-          fi
         '';
+      enableCompletion = true;
+      enableBashCompletion = false;
     };
 
-    home.file = {
-      ".zshenv".text = ''. "''${HOME}/.zsh/.zshenv"'';
-      ".zsh/.zshenv".text =
+    home-manager.users.${config.user.name}.programs.zsh = {
+      enable = true;
+      dotDir = ".zsh";
+      shellAliases = shellCfg.aliases;
+      enableCompletion = true;
+      completionInit = "";
+      history = {
+        size = 10000;
+        save = 10000;
+      };
+      initExtraBeforeCompInit =
         let
           completions = pkgs.buildEnv {
             name = "zsh-completions_user";
@@ -104,79 +70,58 @@ in
           };
         in
         ''
-          ZDOTDIR="''${HOME}/.zsh"
+            fpath=(
+              "${completions}/share/zsh/site-functions"
+              "${completions}/share/zsh/''${ZSH_VERSION}/functions"
+              "${completions}/share/zsh/vendor-completions"
+              "''${fpath[@]}"
+            )
+          ${builtins.readFile zshrc}
 
-          . "${
-            config.home-manager.users.${config.user.name}.home.profileDirectory
-          }/etc/profile.d/hm-session-vars.sh"
+          ${cfg.rcInit}
 
-          # Don't execute this file when running in a pure nix-shell.
-          if [[ -n "$IN_NIX_SHELL" ]]; then
-            return
+          # Disable some features to support TRAMP
+          if [[ "$TERM" == dumb ]]; then
+            unsetopt ZLE PROMPT_CR PROMPT_SUBST
+            unset RPS1 RPROMPT
+            PS1='$ '
+            PROMPT='$ '
           fi
-
-          fpath=(
-            "${completions}/share/zsh/site-functions"
-            "${completions}/share/zsh/''${ZSH_VERSION}/functions"
-            "${completions}/share/zsh/vendor-completions"
-            "''${fpath[@]}"
-          )
-
-          ${cfg.envInit}
         '';
-      ".zsh/.zshrc".text = ''
-        ${optionalString shellCfg.tmux.autoRun ''
-          if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIMRUNTIME" && -z "$INSIDE_EMACS" ]]; then
-            tmux start-server
+      initExtraFirst = optionalString shellCfg.tmux.autoRun ''
+        if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIMRUNTIME" && -z "$INSIDE_EMACS" ]]; then
+          tmux start-server
 
-            if ! tmux has-session 2>/dev/null; then
-              tmux new-session -ds main \; \
-                   set-option -t main destroy-unattached off
-            fi
-
-            exec tmux attach-session -d
+          if ! tmux has-session 2>/dev/null; then
+            tmux new-session -ds main \; \
+                 set-option -t main destroy-unattached off
           fi
-        ''}
 
-        typeset -U path cdpath fpath manpath
-
-        for profile in "''${(z)NIX_PROFILES}"; do
-          fpath+=(
-            "''${profile}/share/zsh/site-functions"
-            "''${profile}/share/zsh/''${ZSH_VERSION}/functions"
-            "''${profile}/share/zsh/vendor-completions"
-          )
-        done
-
-        HELPDIR="${pkgs.zsh}/share/zsh/''${ZSH_VERSION}/help"
-
-        HISTFILE="''${ZDOTDIR}/.zsh_history"
-
-        ${builtins.readFile zshrc}
-
-        ${cfg.rcInit}
-
-        #
-        ## Aliases
-
-        ${concatStringsSep "\n"
-        (mapAttrsToList (k: v: "alias ${k}=${escapeShellArg v}")
-          shellCfg.aliases)}
-
-        # Disable some features to support TRAMP
-        if [[ "$TERM" == dumb ]]; then
-          unsetopt ZLE PROMPT_CR PROMPT_SUBST
-          unset RPS1 RPROMPT
-          PS1='$ '
-          PROMPT='$ '
+          exec tmux attach-session -d
         fi
       '';
-
-      ".zsh/.zi/bin".source = pkgs.zi;
+      envExtra = cfg.envInit;
     };
 
-    environment.shells =
-      [ "/run/current-system/sw/bin/zsh" "${pkgs.zsh}/bin/zsh" ];
+    user.packages = with pkgs; [
+      # zi dependencies
+      zi
+      curl
+      file
+      git
+      subversion
+
+      fzf
+      starship
+      (mkIf stdenv.isDarwin terminal-notifier)
+    ];
+
+    home.file.".zsh/.zi/bin".source = pkgs.zi;
+
+    environment.shells = [
+      "/run/current-system/sw/bin/zsh"
+      "${pkgs.zsh}/bin/zsh"
+    ];
 
     user.shell = pkgs.zsh;
   };

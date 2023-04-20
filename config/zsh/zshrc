@@ -27,11 +27,7 @@ setopt APPEND_HISTORY \
        SHARE_HISTORY
 unsetopt LIST_BEEP
 
-HISTSIZE=10000
-SAVEHIST=10000
-
-zi_home="${ZDOTDIR}/.zi"
-. "${zi_home}/bin/zi.zsh"
+. "${ZDOTDIR}/.zi/bin/zi.zsh"
 
 ## Commands
 
