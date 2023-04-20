@@ -16,7 +16,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = [ package ];
+    user.packages = [ package pkgs.python3Packages.radian ];
 
     home.file = {
       ".Renviron".text = ''
@@ -27,6 +27,6 @@ in
       '';
     };
 
-    modules.shell.aliases = { R = "R -q --no-save --no-restore-data"; };
+    modules.shell.aliases.R = "radian -q";
   };
 }
