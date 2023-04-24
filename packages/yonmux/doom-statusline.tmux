@@ -10,6 +10,8 @@ tmux set -g message-command-style 'bg=#16161e' \; \
      set -g status-style 'fg=#c0caf5,bg=#16161e' \; \
      set -wg pane-active-border-style 'fg=#15161e' \; \
      set -wg pane-border-style 'fg=#15161e' \; \
+     set -wg popup-border-lines rounded \; \
+     set -wg popup-border-style 'fg=#27a1b9,bg=#16161e' \; \
      set -wg window-status-current-format '#[fg=#7aa2f7]▎#[default] #[fg=#7aa2f7,bold]#I#[default]  #[bold]#W#[default]  ' \; \
      set -wg window-status-current-style 'fg=default,bg=#1a1b26' \; \
      set -wg window-status-format '  #I  #W  ' \; \
