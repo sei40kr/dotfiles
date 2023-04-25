@@ -10,12 +10,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ my.rectangle ];
+    user.packages = with pkgs; [ rectangle ];
 
     launchd.user.agents.rectangle = {
       serviceConfig = {
         Label = "com.knollsoft.Rectangle";
-        Program = "${pkgs.my.rectangle}/Applications/Rectangle.app/Contents/MacOS/Rectangle";
+        Program = "${pkgs.rectangle}/Applications/Rectangle.app/Contents/MacOS/Rectangle";
         KeepAlive = { SuccessfulExit = false; };
         RunAtLoad = true;
       };

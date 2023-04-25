@@ -20,8 +20,6 @@ rec {
 
   qbittorrent-ee = pkgs.callPackage ./qbittorrent-ee { };
 
-  rectangle = pkgs.callPackage ./rectangle { };
-
   sensible-browser = pkgs.callPackage ./sensible-browser { };
 
   sensible-terminal = pkgs.callPackage ./sensible-terminal { };
