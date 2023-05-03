@@ -27,6 +27,11 @@ in
       '';
     };
 
+    # Disable completion because does not work well with a narrow terminal
+    home.configFile."radian/profile".text = ''
+      options(radian.complete_while_typing = FALSE)
+    '';
+
     modules.shell.aliases.R = "radian -q";
   };
 }
