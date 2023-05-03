@@ -11,10 +11,7 @@ in
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      (terraform.withPlugins (plugins:
-        (optionals config.modules.dev.tools.k8s.enable [ plugins.kubernetes ]) ++
-        (optionals config.modules.dev.tools.oci.enable [ plugins.oci ])
-      ))
+      terraform
       terraform-ls
       tflint
     ];
