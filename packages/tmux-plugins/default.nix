@@ -13,26 +13,6 @@ with lib; {
     };
   };
 
-  ghq = tmuxPlugins.mkTmuxPlugin {
-    pluginName = "ghq";
-    rtpFilePath = "ghq.tmux";
-    version = "unstable-2021-12-10";
-
-    src = fetchFromGitHub {
-      owner = "sei40kr";
-      repo = "tmux-ghq";
-      rev = "c484d6e7b286fddbd33e37f15e5d49b29b4b7b7f";
-      sha256 = "10r5hp44gvh7m1z21zkhkpi0lkcma4y66iaxnl6ivlqn3740sdqq";
-    };
-
-    nativeBuildInputs = [ makeWrapper ];
-
-    postInstall = ''
-      wrapProgram $out/share/tmux-plugins/ghq/libexec/create-or-switch-to.bash \
-        --prefix PATH : ${makeBinPath [ fd fzf ]}
-    '';
-  };
-
   cowboy = tmuxPlugins.mkTmuxPlugin {
     pluginName = "cowboy";
     rtpFilePath = "cowboy.tmux";

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, tmux-project, ... }:
 
 rec {
   tmuxPlugins = (pkgs.callPackage (import ./tmux-plugins) { });
@@ -32,7 +32,10 @@ rec {
 
   whitesur-wallpapers = pkgs.callPackage ./whitesur-wallpapers { };
 
-  yonmux = pkgs.callPackage ./yonmux { tmuxPlugins = pkgs.tmuxPlugins // tmuxPlugins; };
+  yonmux = pkgs.callPackage ./yonmux {
+    inherit tmux-project;
+    tmuxPlugins = pkgs.tmuxPlugins // tmuxPlugins;
+  };
 
   zsh-smart-history = pkgs.callPackage ./zsh-smart-history.nix { };
 

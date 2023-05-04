@@ -17,6 +17,11 @@
       flake = false;
     };
 
+    tmux-project = {
+      url = "github:sei40kr/tmux-project";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     yonvim = {
       url = "github:sei40kr/yonvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -95,6 +100,7 @@
 
       packages = genAttrs systems (system: import ./packages {
         pkgs = pkgs'.${system};
+        tmux-project = inputs.tmux-project.packages.${system}.default;
       });
 
       nixosModules = mapModulesRec ./modules import
