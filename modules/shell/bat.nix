@@ -18,5 +18,9 @@ in
     };
 
     modules.shell.aliases.cat = "bat";
+
+    modules.shell.zsh.rcInit = ''
+      export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+    '';
   };
 }
