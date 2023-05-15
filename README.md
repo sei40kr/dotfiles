@@ -59,6 +59,21 @@
 
 ## Things to Do Manually
 
+### Enable GNOME Extensions
+
+The Flake installs GNOME extensions automatically, but you need to enable them manually.
+
+The following extensions are installed:
+
+- [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/)
+- [Input Method Panel](https://extensions.gnome.org/extension/261/kimpanel/)
+- [OpenWeather](https://extensions.gnome.org/extension/750/openweather/)
+- [Place Status Indicator](https://extensions.gnome.org/extension/8/places-status-indicator/)
+- Pomodoro
+- [Removable Drive Menu](https://extensions.gnome.org/extension/7/removable-drive-menu/)
+- [User Themes](https://extensions.gnome.org/extension/19/user-themes/)
+- [Workspace Indicator](https://extensions.gnome.org/extension/21/workspace-indicator/)
+
 ### Darwin
 
 - Generate a pair of SSH keys and add it to your GitHub account:

@@ -20,18 +20,6 @@ let
   cfg = desktopCfg.gnome;
   inherit (desktopCfg) autoRepeat background fonts;
 
-  exts = with pkgs.gnomeExtensions; [
-    # blur-me
-    dash-to-dock
-    openweather
-    places-status-indicator
-    removable-drive-menu
-    user-themes
-    workspace-indicator
-  ]
-  ++ (optionals config.modules.i18n.japanese.enable [ kimpanel ]);
-  extUuids = map (ext: ext.extensionUuid) exts
-    ++ (optionals config.modules.desktop.apps.gnome.pomodoro.enable [ "pomodoro@arun.codito.in" ]);
   toPictureOpts = backgroundMode:
     if backgroundMode == "stretch" then "stretched"
     else if backgroundMode == "fill" then "scaled"
@@ -94,7 +82,14 @@ in
       pkgs.my.sensible-browser
       (mkIf (cfg.cursor.theme != null) cfg.cursor.theme.package)
       (mkIf (cfg.shell.theme != null) cfg.shell.theme.package)
-    ] ++ exts;
+      # pkgs.gnomeExtensions.blur-me
+      pkgs.gnomeExtensions.dash-to-dock
+      pkgs.gnomeExtensions.openweather
+      pkgs.gnomeExtensions.places-status-indicator
+      pkgs.gnomeExtensions.removable-drive-menu
+      pkgs.gnomeExtensions.user-themes
+      pkgs.gnomeExtensions.workspace-indicator
+    ];
 
     modules.desktop.enable = true;
 
@@ -322,10 +317,7 @@ in
               optionals config.modules.desktop.apps.zeal.enable [ "org.zealdocs.zeal.desktop" ] ++
               [ "org.gnome.Settings.desktop" "ca.desrt.dconf-editor.desktop" ];
         };
-        "org/gnome/shell/extensions" = {
-          disable-user-extensions = false;
-          enabled-extensions = extUuids;
-        };
+        "org/gnome/shell/extensions" = { disable-user-extensions = false; };
         # "org/gnome/shell/extensions/blur-me" = {
         #   toggle-app-blur = false;
         # };
