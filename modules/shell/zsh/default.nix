@@ -12,6 +12,7 @@ let
     substitute ${../../../config/zsh/zshrc} $out \
       --subst-var-by oh_my_zsh  ${pkgs.oh-my-zsh} \
       --subst-var-by zsh_prezto ${pkgs.zsh-prezto} \
+      --subst-var-by atuin      ${pkgs.atuin} \
       --subst-var-by fzf        ${pkgs.fzf} \
       --subst-var-by fd         ${pkgs.fd} \
       --subst-var-by bat        ${pkgs.bat} \
@@ -111,12 +112,15 @@ in
       git
       subversion
 
+      atuin
       fzf
       starship
       (mkIf stdenv.isDarwin terminal-notifier)
     ];
 
     home.file.".zsh/.zi/bin".source = pkgs.zi;
+
+    home.configFile."atuin/config.toml".source = "${configDir}/atuin/config.toml";
 
     environment.shells = [
       "/run/current-system/sw/bin/zsh"

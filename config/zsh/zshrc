@@ -62,8 +62,21 @@ zi light 'hlissner/zsh-autopair'
 zi ice ver'v1.55' wait lucid atinit'ZI[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay'
 zi light z-shell/F-Sy-H
 
-zi ice ver'v1.0.0' wait lucid
-zi light z-shell/H-S-MW
+FZF_DEFAULT_OPTS='--cycle --reverse --info=inline'
+FZF_DEFAULT_COMMAND='@fd@/bin/fd -HL -t f -E .git'
+FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+FZF_CTRL_T_OPTS="--preview='@bat@/bin/bat -pp --color=always {}'"
+FZF_ALT_C_OPTS="--preview='@exa@/bin/exa -la {}'"
+FZF_TMUX=1
+FZF_TMUX_OPTS='-p 80%,80%'
+zi ice bindmap'^R->;\\ec->' multisrc'{completion,key-bindings}.zsh'
+zi light '@fzf@/share/fzf'
+bindkey -M emacs -r '^R'
+bindkey -M vicmd -r '^R'
+bindkey -M viins -r '^R'
+
+zi ice src'zhook.zsh' id-as'atuin' atclone'atuin init zsh >zhook.zsh' atpull'%atclone'
+zi light z-shell/0
 
 zi ice ver'c8625305797b1d8f822c7575e85b26e5b32560c7'
 zi light sei40kr/zsh-smart-history
@@ -94,16 +107,6 @@ zi light denisidoro/navi
 
 zi ice id-as'OMZP::fancy-ctrl-z'
 zi snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
-
-FZF_DEFAULT_OPTS='--cycle --reverse --info=inline'
-FZF_DEFAULT_COMMAND='@fd@/bin/fd -HL -t f -E .git'
-FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-FZF_CTRL_T_OPTS="--preview='@bat@/bin/bat -pp --color=always {}'"
-FZF_ALT_C_OPTS="--preview='@exa@/bin/exa -la {}'"
-FZF_TMUX=1
-FZF_TMUX_OPTS='-p 80%,80%'
-zi ice bindmap'^R->;\\ec->' multisrc'{completion,key-bindings}.zsh'
-zi light '@fzf@/share/fzf'
 
 ## Prompt
 
