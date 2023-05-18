@@ -185,7 +185,7 @@ in
           # Move window one workspace up
           move-to-workspace-up = [ ];
           # Show the run command prompt
-          panel-run-dialog = [ ];
+          panel-run-dialog = [ "<Alt>F2" ];
           # Switch applications
           switch-applications = [ ];
           switch-applications-backward = [ ];
