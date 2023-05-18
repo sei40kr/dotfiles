@@ -54,7 +54,6 @@ in
         };
         qbittorrent.enable = true;
         slack.enable = true;
-        todoist.enable = true;
         zeal.enable = true;
         zoom.enable = true;
       };

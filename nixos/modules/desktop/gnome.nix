@@ -305,7 +305,6 @@ in
               optionals config.modules.desktop.browsers.chrome.webapps.google-calendar.enable [ "web-google-calendar.desktop" ] ++
               optionals config.modules.desktop.apps.gnome.todo.enable [ "org.gnome.Todo.desktop" ] ++
               optionals config.modules.desktop.browsers.chrome.webapps.youtube-music.enable [ "web-youtube-music.desktop" ] ++
-              optionals config.modules.desktop.apps.todoist.enable [ "todoist-electron.desktop" ] ++
               optionals config.modules.desktop.browsers.chrome.webapps.notion.enable [ "web-notion.desktop" ] ++
               optionals config.modules.desktop.apps.slack.enable [ "slack.desktop" ] ++
               optionals config.modules.desktop.apps.element.enable [ "element-desktop.desktop" ] ++
