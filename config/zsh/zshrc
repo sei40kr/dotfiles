@@ -93,6 +93,9 @@ fi
 zi ice id-as'OMZP::bgnotify'
 zi snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/bgnotify/bgnotify.plugin.zsh'
 
+zi ice id-as'OMZP::git-auto-fetch'
+zi snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/git-auto-fetch/git-auto-fetch.plugin.zsh'
+
 zi ice id-as'OMZL::clipboard.zsh'
 zi snippet '@oh_my_zsh@/share/oh-my-zsh/lib/clipboard.zsh'
 
