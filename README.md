@@ -59,7 +59,9 @@
 
 ## Things to Do Manually
 
-### Enable GNOME Extensions
+### NixOS
+
+#### Enable GNOME Extensions
 
 The Flake installs GNOME extensions automatically, but you need to enable them manually.
 
@@ -75,6 +77,16 @@ The following extensions are installed:
 - [Workspace Indicator](https://extensions.gnome.org/extension/21/workspace-indicator/)
 
 ### Darwin
+
+#### Install Homebrew
+
+Some packages are installed via Homebrew.
+You need to install Homebrew manually first; otherwise, the installation of
+those packages will be skipped.
+
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
 
 - Generate a pair of SSH keys and add it to your GitHub account:
 
