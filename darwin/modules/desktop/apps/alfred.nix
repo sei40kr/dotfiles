@@ -10,19 +10,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ my.alfred ];
-
-    launchd.user.agents.alfred = {
-      serviceConfig = {
-        Label = "com.runningwithcrayons.Alfred";
-        Program = "${pkgs.my.alfred}/Applications/Alfred.app/Contents/MacOS/Alfred";
-        KeepAlive = { SuccessfulExit = false; };
-        RunAtLoad = true;
-      };
-    };
-
-    system.defaults.CustomUserPreferences."com.runningwithcrayons.Alfred" = {
-      suppressMoveToApplications = true;
+    homebrew = {
+      enable = true;
+      casks = [ "alfred" ];
     };
   };
 }
