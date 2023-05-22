@@ -10,6 +10,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ my.dash ];
+    homebrew = {
+      enable = true;
+      brews = [ "dash" ];
+    };
   };
 }

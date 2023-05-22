@@ -7,8 +7,6 @@ rec {
 
   corretto_11 = pkgs.callPackage ./corretto_11.nix { };
 
-  dash = pkgs.callPackage ./dash.nix { };
-
   dataspell = pkgs.callPackage ./dataspell { inherit (pkgs.jetbrains) jdk; };
 
   online-judge-verify-helper =
