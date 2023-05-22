@@ -100,7 +100,6 @@ those packages will be skipped.
   git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
   ~/.emacs.d/bin/doom install
   ```
-- Install [Docker Desktop for Mac](https://docs.docker.com/desktop/install/mac-install/)
 
 ## Acknowledgements
 
