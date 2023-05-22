@@ -10,6 +10,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ my.notion ];
+    homebrew = {
+      enable = true;
+      casks = [ "notion" ];
+    };
   };
 }
