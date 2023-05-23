@@ -10,6 +10,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ julia ];
+    user.packages = with pkgs; [ julia-bin ];
   };
 }
