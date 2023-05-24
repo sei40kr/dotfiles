@@ -12,6 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     idea-doom-emacs = {
       url = "github:sei40kr/idea-doom-emacs";
       flake = false;
@@ -28,7 +33,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, darwin, ... }@inputs:
+  outputs = { self, nixpkgs, darwin, fenix, ... }@inputs:
     let
       inherit (builtins) removeAttrs;
       inherit (lib) attrValues elem genAttrs hasSuffix mkDefault nixosSystem
@@ -41,10 +46,11 @@
       });
 
       systems = [ "aarch64-darwin" "x86_64-darwin" "x86_64-linux" ];
+      extraOverlays = [ fenix.overlays.default ];
       pkgs' = genAttrs systems (system: import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [ self.overlay ] ++ (attrValues self.overlays);
+        overlays = [ self.overlay ] ++ (attrValues self.overlays) ++ extraOverlays;
       });
 
       isLinux = hasSuffix "-linux";

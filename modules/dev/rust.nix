@@ -10,16 +10,15 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ rustup rust-analyzer ];
-
-    env = rec {
-      CARGO_HOME = "\${HOME}/.cargo";
-      PATH = [ "${CARGO_HOME}/bin" ];
-    };
-
-    modules.shell.zsh.rcInit = ''
-      zi ice wait''' lucid as'completion' id-as'OMZP::rust'
-      zi snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/rust/_rustc
-    '';
+    user.packages = with pkgs; [
+      (fenix.stable.withComponents [
+        "cargo"
+        "clippy"
+        "rust-analyzer"
+        "rust-src"
+        "rustc"
+        "rustfmt"
+      ])
+    ];
   };
 }
