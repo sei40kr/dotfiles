@@ -10,6 +10,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ raycast ];
+    # Install Raycast via Homebrew Cask because it checks for updates every time
+    # it starts, and it's difficult to keep it up to date with Nix.
+    homebrew = {
+      enable = true;
+      casks = [ "raycast" ];
+    };
   };
 }
