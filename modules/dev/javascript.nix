@@ -19,6 +19,7 @@ in
       nodePackages.prettier
       nodePackages.typescript
       nodePackages.typescript-language-server
+      nodePackages.vue-language-server
       nodePackages.webpack-cli
     ];
   };
