@@ -73,7 +73,6 @@ in
             youtube-music.enable = true;
           };
         };
-        psd.enable = true;
       };
 
       media = {
