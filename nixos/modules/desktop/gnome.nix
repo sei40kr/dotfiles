@@ -87,6 +87,7 @@ in
       pkgs.gnomeExtensions.openweather
       pkgs.gnomeExtensions.places-status-indicator
       pkgs.gnomeExtensions.removable-drive-menu
+      pkgs.gnomeExtensions.search-light
       pkgs.gnomeExtensions.user-themes
       pkgs.gnomeExtensions.workspace-indicator
     ];
@@ -340,6 +341,15 @@ in
           expand-forecast = true;
           # Locations
           city = "33.6752943,130.9814491>京都郡, 福岡県, 800-0334, 日本>0";
+        };
+        # Search Light
+        "org/gnome/shell/extensions/search-light" = {
+          background-color = "(0.0, 0.0, 0.0, 0.84999999999999998)";
+          border-radius = 1.0;
+          popup-at-cursor-monitor = true;
+          scale-width = 0.25;
+          scale-height = 0.1;
+          shortcut-search = [ "<Super>space" ];
         };
         "org/gnome/shell/keybindings" = {
           # Focus the active notification

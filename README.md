@@ -73,6 +73,7 @@ The following extensions are installed:
 - [Place Status Indicator](https://extensions.gnome.org/extension/8/places-status-indicator/)
 - Pomodoro
 - [Removable Drive Menu](https://extensions.gnome.org/extension/7/removable-drive-menu/)
+- [Search Light](https://extensions.gnome.org/extension/5489/search-light/)
 - [User Themes](https://extensions.gnome.org/extension/19/user-themes/)
 - [Workspace Indicator](https://extensions.gnome.org/extension/21/workspace-indicator/)
 
