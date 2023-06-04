@@ -31,19 +31,9 @@ in
 {
   options.modules.desktop.sway = with types; {
     enable = mkBoolOpt false;
-
-    gaps = {
-      inner = mkOpt int 16;
-      outer = mkOpt int 32;
-    };
   };
 
   config = mkIf cfg.enable {
-    assertions = [{
-      assertion = cfg.gaps.inner <= cfg.gaps.outer;
-      message = "The 'modules.desktop.sway.gaps.outer' must be equal to or greater than 'modules.desktop.sway.gaps.inner'.";
-    }];
-
     user.packages = [ package pkgs.swaybg ];
 
     home.configFile."sway/config" = {
@@ -52,8 +42,8 @@ in
         inherit backgroundCommand;
         titlebarFontName = fonts.titlebar.name or fonts.ui.name;
         titlebarFontSize = fonts.titlebar.size or fonts.ui.size;
-        innerGaps = cfg.gaps.inner;
-        outerGaps = cfg.gaps.outer - cfg.gaps.inner;
+        innerGaps = desktopCfg.gaps.inner;
+        outerGaps = desktopCfg.gaps.outer - desktopCfg.gaps.inner;
         autoRepeatDelay = autoRepeat.delay;
         autoRepeatInterval = autoRepeat.interval;
       };

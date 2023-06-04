@@ -74,6 +74,7 @@ The following extensions are installed:
 - Pomodoro
 - [Removable Drive Menu](https://extensions.gnome.org/extension/7/removable-drive-menu/)
 - [Search Light](https://extensions.gnome.org/extension/5489/search-light/)
+- [Useless Gaps](https://extensions.gnome.org/extension/4684/useless-gaps/)
 - [User Themes](https://extensions.gnome.org/extension/19/user-themes/)
 - [Workspace Indicator](https://extensions.gnome.org/extension/21/workspace-indicator/)
 
