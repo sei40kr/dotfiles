@@ -10,7 +10,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ my.dataspell ];
+    user.packages = with pkgs; [ jetbrains.dataspell ];
 
     modules.editors = {
       fonts.enable = true;
