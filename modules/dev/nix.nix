@@ -10,6 +10,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ nixd nixpkgs-fmt ];
+    user.packages = with pkgs; [ nixpkgs-fmt ];
   };
 }
