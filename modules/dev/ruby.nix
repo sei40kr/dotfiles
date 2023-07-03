@@ -12,7 +12,7 @@ in
   };
 
   config = mkIf config.modules.dev.ruby.enable {
-    user.packages = with pkgs; ([ ruby rubocop rubyPackages.rake solargraph ]
+    user.packages = with pkgs; ([ ruby rubocop solargraph ]
       ++ optionals cfg.rails.enable [ rubyPackages.rails ]);
 
     modules.shell.zsh.rcInit = ''
