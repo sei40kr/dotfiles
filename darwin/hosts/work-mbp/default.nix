@@ -10,24 +10,34 @@ in
 
   stateVersion = "22.05";
 
-  modules.desktop.apps.alfred.enable = true;
+  modules.desktop.apps.amphetamine.enable = true;
+  modules.desktop.apps.bitwarden.enable = true;
+  modules.desktop.apps.cron.enable = true;
+  modules.desktop.apps.dash.enable = true;
+  modules.desktop.apps.just-focus.enable = true;
+  modules.desktop.apps.pocket.enable = true;
+  modules.desktop.apps.raycast.enable = true;
   modules.desktop.apps.rectangle.enable = true;
-  modules.desktop.apps.zoom.enable = true;
+  modules.desktop.apps.slack.enable = true;
+  modules.desktop.apps.todoist.enable = true;
 
-  modules.dev.java.enable = true;
   modules.dev.javascript.enable = true;
   modules.dev.nix.enable = true;
-  modules.dev.rust.enable = true;
+  modules.dev.ruby = {
+    enable = true;
+    rails.enable = true;
+  };
   modules.dev.web.enable = true;
-  modules.dev.tools.pre-commit.enable = true;
+  modules.dev.tools.mutagen = {
+    enable = true;
+    compose.enable = true;
+  };
 
   modules.editors.nvim.enable = true;
-  modules.editors.emacs = {
-    enable = true;
-    doom.enable = true;
-  };
   modules.editors.idea.enable = true;
   modules.editors.datagrip.enable = true;
+
+  modules.services.docker.enable = true;
 
   modules.shell.zsh.enable = true;
   modules.shell.tmux = {
@@ -37,7 +47,7 @@ in
   modules.shell.git.enable = true;
   modules.shell.ghq.enable = true;
 
-  modules.term.theme.active = "doom-one";
+  modules.term.theme.active = "tokyo-night";
   modules.term.font = {
     package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
     name = "Iosevka Nerd Font";
