@@ -20,6 +20,7 @@ in
   modules.desktop.apps.rectangle.enable = true;
   modules.desktop.apps.slack.enable = true;
   modules.desktop.apps.todoist.enable = true;
+  modules.desktop.apps.zoom.enable = true;
 
   modules.dev.javascript.enable = true;
   modules.dev.nix.enable = true;
