@@ -46,9 +46,5 @@ in
     };
 
     user.extraGroups = [ "docker" ];
-
-    modules.shell.aliases = mkIf cfg.compose.enable {
-      dko = "docker-compose";
-    };
   };
 }
