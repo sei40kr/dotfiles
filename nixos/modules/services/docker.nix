@@ -6,8 +6,6 @@ let cfg = config.modules.services.docker;
 in
 {
   options.modules.services.docker = {
-    enable = mkBoolOpt false;
-
     compose.enable = mkBoolOpt false;
   };
 
@@ -49,8 +47,8 @@ in
 
     user.extraGroups = [ "docker" ];
 
-    modules.shell.aliases = {
-      dk = "docker";
-    } // (optionalAttrs cfg.compose.enable { dko = "docker-compose"; });
+    modules.shell.aliases = mkIf cfg.compose.enable {
+      dko = "docker-compose";
+    };
   };
 }
