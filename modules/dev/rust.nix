@@ -19,6 +19,8 @@ in
         "rustc"
         "rustfmt"
       ])
+
+      (mkIf config.modules.dev.tools.aws-cli.enable cargo-lambda)
     ];
   };
 }
