@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.tools.aws-cli;
+let cfg = config.modules.dev.aws;
 in
 {
-  options.modules.dev.tools.aws-cli = {
+  options.modules.dev.aws = {
     enable = mkBoolOpt false;
 
     cfn.enable = mkBoolOpt false;

@@ -12,7 +12,7 @@ in
 
   modules = {
     dev = {
-      aws-cli.enable = true;
+      aws.enable = true;
       java.enable = true;
       javascript.enable = true;
       nix.enable = true;

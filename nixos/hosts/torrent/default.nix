@@ -83,6 +83,7 @@ in
     };
 
     dev = {
+      aws.enable = true;
       cc.enable = true;
       go.enable = true;
       java.enable = true;
@@ -102,7 +103,6 @@ in
       sql.enable = true;
       tools = {
         ansible.enable = true;
-        aws-cli.enable = true;
         jupyter.enable = true;
       };
       web.enable = true;

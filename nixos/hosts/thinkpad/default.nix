@@ -79,6 +79,7 @@ in
     };
 
     dev = {
+      aws.enable = true;
       go.enable = true;
       java.enable = true;
       javascript.enable = true;
@@ -89,7 +90,6 @@ in
       shell.enable = true;
       sql.enable = true;
       web.enable = true;
-      tools = { aws-cli.enable = true; };
     };
 
     editors = {
