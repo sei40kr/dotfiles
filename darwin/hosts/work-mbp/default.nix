@@ -4,6 +4,8 @@ with lib;
 let
   system = "aarch64-darwin";
   pkgs = pkgs'.${system};
+
+  victor-mono-nf = pkgs.nerdfonts.override { fonts = [ "VictorMono" ]; };
 in
 {
   inherit system;
@@ -49,12 +51,20 @@ in
   modules.shell.ghq.enable = true;
 
   modules.term.theme.active = "tokyo-night";
-  modules.term.font = {
-    package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
-    name = "Iosevka Nerd Font";
+  modules.term.kitty.enable = true;
+
+  modules.editors.fonts.code = {
+    package = victor-mono-nf;
+    name = "VictorMono Nerd Font Mono";
     size = 24;
   };
-  modules.term.kitty.enable = true;
+  modules.term.font = {
+    # FIXME: The font installation fails when there're multiple same fonts in
+    #  fonts.fonts. So comment out the following line for now.
+    # package = victor-mono-nf;
+    name = "VictorMono Nerd Font Mono";
+    size = 24;
+  };
 
   user.name = "sei40kr";
 }
