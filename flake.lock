@@ -84,11 +84,11 @@
     "idea-doom-emacs": {
       "flake": false,
       "locked": {
-        "lastModified": 1621359431,
-        "narHash": "sha256-AUntGa8JbhZ6LYIOf6nuTFZ6H/fCbNJYqUpcPf1CoDM=",
+        "lastModified": 1690294808,
+        "narHash": "sha256-Suv03sZVGOGF20sHcpujttxWqsdQ8yL817mWo9r+4Wg=",
         "owner": "sei40kr",
         "repo": "idea-doom-emacs",
-        "rev": "3e8e6bcbe597629709de567f0b7712667cb9bf60",
+        "rev": "5a618125b440845c784de966b18273f8641ae7b2",
         "type": "github"
       },
       "original": {

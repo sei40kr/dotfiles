@@ -20,7 +20,7 @@ in
         let g:WhichKey_FontFamily = ${toVimScript editorsCfg.fonts.code.name}
         let g:WhichKey_FontSize = ${toVimScript editorsCfg.fonts.code.size}
 
-        source ${idea-doom-emacs}/ideavimrc
+        source ${idea-doom-emacs}/init.vim
         source ${idea-doom-emacs}/expand-region.vim
       ''}
 
