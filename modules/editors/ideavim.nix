@@ -21,8 +21,13 @@ in
         let g:WhichKey_FontSize = ${toVimScript editorsCfg.fonts.code.size}
 
         source ${idea-doom-emacs}/init.vim
-        source ${idea-doom-emacs}/expand-region.vim
       ''}
+
+      " Expand/contract region
+      map <Leader>v <Action>(EditorSelectWord)
+      let g:WhichKeyDesc_expand_region = '<leader>v Expand region'
+      vmap v <Action>(EditorSelectWord)
+      vmap V <Action>(EditorUnSelectWord)
 
       " Alt-Left/Right to switch tabs
       nnoremap <A-Left>  :tabp<CR>
