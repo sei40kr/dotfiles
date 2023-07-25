@@ -24,6 +24,14 @@ in
         source ${idea-doom-emacs}/expand-region.vim
       ''}
 
+      " Alt-Left/Right to switch tabs
+      nnoremap <A-Left>  :tabp<CR>
+      nnoremap <A-Right> :tabn<CR>
+
+      " Alt-Shift-Left/Right to move tabs
+      nnoremap <A-S-Left>  :tabm -1<CR>
+      nnoremap <A-S-Right> :tabm +1<CR>
+
       " Do not exit visual mode on a selection shift
       vnoremap < <gv
       vnoremap > >gv
