@@ -105,8 +105,8 @@ in
     };
 
     user.packages = with pkgs; [
-      # zi dependencies
-      zi
+      zinit
+      # zinit dependencies
       curl
       file
       git
@@ -118,7 +118,7 @@ in
       (mkIf stdenv.isDarwin terminal-notifier)
     ];
 
-    home.file.".zsh/.zi/bin".source = pkgs.zi;
+    home.dataFile."zinit/zinit.git".source = "${pkgs.zinit}/share/zinit";
 
     home.configFile."atuin/config.toml".source = "${configDir}/atuin/config.toml";
 

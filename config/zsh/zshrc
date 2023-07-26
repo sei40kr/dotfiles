@@ -27,16 +27,17 @@ setopt APPEND_HISTORY \
        SHARE_HISTORY
 unsetopt LIST_BEEP
 
-. "${ZDOTDIR}/.zi/bin/zi.zsh"
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+. "${ZINIT_HOME}/zinit.zsh"
 
 ## Commands
 
-zi ice trigger-load '!extract;!x' id-as'OMZP::extract'
-zi snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/extract/extract.plugin.zsh'
+zinit ice trigger-load '!extract;!x' id-as'OMZP::extract'
+zinit snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/extract/extract.plugin.zsh'
 
 if [[ "$OSTYPE" == darwin* ]]; then
-  zi ice id-as'PZT::modules--gnu-utility'
-  zi light '@zsh_prezto@/modules/gnu-utility'
+  zinit ice id-as'PZT::modules--gnu-utility'
+  zinit light '@zsh_prezto@/modules/gnu-utility'
 fi
 
 
@@ -44,23 +45,23 @@ fi
 ## Completions
 
 if [[ "$OSTYPE" == darwin* && -d /Applications/Docker.app ]]; then
-    zi ice lucid wait as'completion' mv'docker.zsh-completion -> _docker'
-    zi snippet /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion
-    zi ice lucid wait as'completion' mv'docker-compose.zsh-completion -> _docker-compose'
-    zi snippet /Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion
+    zinit ice lucid wait as'completion' mv'docker.zsh-completion -> _docker'
+    zinit snippet /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion
+    zinit ice lucid wait as'completion' mv'docker-compose.zsh-completion -> _docker-compose'
+    zinit snippet /Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion
 fi
 
 
 ## Shell Enhancements
 
-zi ice ver'v0.7.0' wait'0' lucid
-zi light 'zsh-users/zsh-autosuggestions'
+zinit ice ver'v0.7.0' wait'0' lucid
+zinit light 'zsh-users/zsh-autosuggestions'
 
-zi ice ver'9d003fc02dbaa6db06e6b12e8c271398478e0b5d' wait'0' lucid
-zi light 'hlissner/zsh-autopair'
+zinit ice ver'9d003fc02dbaa6db06e6b12e8c271398478e0b5d' wait'0' lucid
+zinit light 'hlissner/zsh-autopair'
 
-zi ice ver'v1.55' wait lucid atinit'ZI[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay'
-zi light z-shell/F-Sy-H
+zinit ice ver'v1.55' wait lucid atinit'ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay'
+zinit light z-shell/F-Sy-H
 
 FZF_DEFAULT_OPTS='--cycle --reverse --info=inline'
 FZF_DEFAULT_COMMAND='@fd@/bin/fd -HL -t f -E .git'
@@ -69,47 +70,47 @@ FZF_CTRL_T_OPTS="--preview='@bat@/bin/bat -pp --color=always {}'"
 FZF_ALT_C_OPTS="--preview='@exa@/bin/exa -la {}'"
 FZF_TMUX=1
 FZF_TMUX_OPTS='-p 80%,80%'
-zi ice bindmap'^R->;\\ec->' multisrc'{completion,key-bindings}.zsh'
-zi light '@fzf@/share/fzf'
+zinit ice bindmap'^R->;\\ec->' multisrc'{completion,key-bindings}.zsh'
+zinit light '@fzf@/share/fzf'
 bindkey -M emacs -r '^R'
 bindkey -M vicmd -r '^R'
 bindkey -M viins -r '^R'
 
-zi ice src'zhook.zsh' id-as'atuin' atclone'atuin init zsh >zhook.zsh' atpull'%atclone'
-zi light z-shell/0
+zinit ice src'zhook.zsh' id-as'atuin' atclone'atuin init zsh >zhook.zsh' atpull'%atclone'
+zinit light zdharma-continuum/null
 
-zi ice ver'c8625305797b1d8f822c7575e85b26e5b32560c7'
-zi light sei40kr/zsh-smart-history
+zinit ice ver'c8625305797b1d8f822c7575e85b26e5b32560c7'
+zinit light sei40kr/zsh-smart-history
 
 if [[ -n "$TMUX" ]]; then
-  zi ice ver'37a3c697461b33dd2f85998431cdfec6d963be37'
-  zi light 'sei40kr/zsh-tmux-man'
+  zinit ice ver'37a3c697461b33dd2f85998431cdfec6d963be37'
+  zinit light 'sei40kr/zsh-tmux-man'
   # Remove alias run-help=man
   if [[ ${+aliases[run-help]} == 1 ]]; then
     unalias run-help
   fi
 fi
 
-zi ice id-as'OMZP::bgnotify'
-zi snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/bgnotify/bgnotify.plugin.zsh'
+zinit ice id-as'OMZP::bgnotify'
+zinit snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/bgnotify/bgnotify.plugin.zsh'
 
-zi ice id-as'OMZP::git-auto-fetch'
-zi snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/git-auto-fetch/git-auto-fetch.plugin.zsh'
+zinit ice id-as'OMZP::git-auto-fetch'
+zinit snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/git-auto-fetch/git-auto-fetch.plugin.zsh'
 
-zi ice id-as'OMZL::clipboard.zsh'
-zi snippet '@oh_my_zsh@/share/oh-my-zsh/lib/clipboard.zsh'
+zinit ice id-as'OMZL::clipboard.zsh'
+zinit snippet '@oh_my_zsh@/share/oh-my-zsh/lib/clipboard.zsh'
 
 HYPHEN_INSENSITIVE=true
-zi ice id-as'OMZL::completion.zsh'
-zi snippet '@oh_my_zsh@/share/oh-my-zsh/lib/completion.zsh'
+zinit ice id-as'OMZL::completion.zsh'
+zinit snippet '@oh_my_zsh@/share/oh-my-zsh/lib/completion.zsh'
 
-zi ice from'gh-r' ver'v2.19.0' as'program' atclone'./navi widget zsh >zhook.zsh' atpull'%atclone' src'zhook.zsh'
-zi light denisidoro/navi
+zinit ice from'gh-r' ver'v2.19.0' as'program' atclone'./navi widget zsh >zhook.zsh' atpull'%atclone' src'zhook.zsh'
+zinit light denisidoro/navi
 
 ## Key Bindings
 
-zi ice id-as'OMZP::fancy-ctrl-z'
-zi snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
+zinit ice id-as'OMZP::fancy-ctrl-z'
+zinit snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh'
 
 ## Prompt
 

@@ -16,11 +16,11 @@ in
       ++ optionals cfg.rails.enable [ rubyPackages.rails ]);
 
     modules.shell.zsh.rcInit = ''
-      zi ice wait''' lucid as'completion' id-as'OMZP::gem'
-      zi snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/gem/_gem
+      zinit ice wait''' lucid as'completion' id-as'OMZP::gem'
+      zinit snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/gem/_gem
 
-      zi ice wait''' lucid as'completion' id-as'OMZP::rake-fast'
-      zi snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/rake-fast/rake-fast.plugin.zsh
+      zinit ice wait''' lucid as'completion' id-as'OMZP::rake-fast'
+      zinit snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/rake-fast/rake-fast.plugin.zsh
     '';
   };
 }

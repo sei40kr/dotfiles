@@ -13,11 +13,11 @@ in
     user.packages = with pkgs; [ direnv nix-direnv ];
 
     modules.shell.zsh.rcInit = ''
-      zi ice src'zhook.zsh' id-as'direnv' atclone'direnv hook zsh >zhook.zsh' atpull'%atclone'
-      zi light z-shell/0
+      zinit ice src'zhook.zsh' id-as'direnv' atclone'direnv hook zsh >zhook.zsh' atpull'%atclone'
+      zinit light zdharma-continuum/null
 
-      zi ice id-as'nix-direnv'
-      zi snippet ${pkgs.nix-direnv}/share/nix-direnv/direnvrc
+      zinit ice id-as'nix-direnv'
+      zinit snippet ${pkgs.nix-direnv}/share/nix-direnv/direnvrc
     '';
   };
 }
