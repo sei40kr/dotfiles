@@ -3,8 +3,8 @@
 with lib;
 with lib.my;
 let
-  dockerCfg = config.modules.services.docker;
   cfg = config.modules.dev.tools.mutagen;
+  dockerCfg = config.modules.services.docker;
 in
 {
   options.modules.dev.tools.mutagen = {
@@ -15,15 +15,8 @@ in
 
   config = mkIf cfg.enable {
     assertions = [{
-      assertion = !cfg.compose.enable || pkgs.stdenv.isDarwin ||
-        (cfg.enable && cfg.compose.enable);
-      message = "Docker Compose should be enabled when using Mutagen Compose.";
+      assertion = !cfg.enable || dockerCfg.enable;
+      message = "Docker should be enabled when using Mutagen.";
     }];
-
-    user.packages = with pkgs;
-      [
-        mutagen
-        (mkIf cfg.compose.enable mutagen-compose)
-      ];
   };
 }
