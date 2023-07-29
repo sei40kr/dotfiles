@@ -8,8 +8,9 @@ _self: super: {
       # Zplugin's source files
       install -dm0755 "$outdir"
       # Installing backward compatibility layer
-      install -m0644 zinit{,-side,-install,-autoload}.zsh "$outdir"
-      install -m0755 share/git-process-output.zsh "$outdir"
+      install -m0644 zinit{,-side,-install,-autoload}.zsh $outdir
+      mkdir -p $outdir/share
+      install -m0755 share/git-process-output.zsh $outdir/share
       installManPage doc/zinit.1
 
       # Zplugin autocompletion
