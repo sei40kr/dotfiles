@@ -119,12 +119,9 @@ in
         neofetch.enable = true;
       };
       bottom.enable = true;
-      exa.enable = true;
       ghq.enable = true;
-      prettyping.enable = true;
       strace.enable = true;
       tcpdump.enable = true;
-      bat.enable = true;
       git.enable = true;
       hugo.enable = true;
       oj.enable = true;

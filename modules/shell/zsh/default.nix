@@ -12,11 +12,7 @@ let
     substitute ${../../../config/zsh/zshrc} $out \
       --subst-var-by oh_my_zsh  ${pkgs.oh-my-zsh} \
       --subst-var-by zsh_prezto ${pkgs.zsh-prezto} \
-      --subst-var-by atuin      ${pkgs.atuin} \
-      --subst-var-by fzf        ${pkgs.fzf} \
-      --subst-var-by fd         ${pkgs.fd} \
-      --subst-var-by bat        ${pkgs.bat} \
-      --subst-var-by exa        ${pkgs.exa}
+      --subst-var-by fzf        ${pkgs.fzf}
   '';
 in
 {
@@ -128,5 +124,7 @@ in
     ];
 
     user.shell = pkgs.zsh;
+
+    modules.shell.enable = true;
   };
 }

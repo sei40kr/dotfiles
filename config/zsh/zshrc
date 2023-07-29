@@ -66,8 +66,8 @@ zinit light z-shell/F-Sy-H
 FZF_DEFAULT_OPTS='--cycle --reverse --info=inline'
 FZF_DEFAULT_COMMAND='@fd@/bin/fd -HL -t f -E .git'
 FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-FZF_CTRL_T_OPTS="--preview='@bat@/bin/bat -pp --color=always {}'"
-FZF_ALT_C_OPTS="--preview='@exa@/bin/exa -la {}'"
+FZF_CTRL_T_OPTS="--preview='bat -pp --color=always {}'"
+FZF_ALT_C_OPTS="--preview='exa -la {}'"
 FZF_TMUX=1
 FZF_TMUX_OPTS='-p 80%,80%'
 zinit ice bindmap'^R->;\\ec->' multisrc'{completion,key-bindings}.zsh'
