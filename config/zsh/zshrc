@@ -54,6 +54,11 @@ fi
 
 ## Shell Enhancements
 
+ZSH_AUTOSUGGEST_STRATEGY=(atuin)
+_zsh_autosuggest_strategy_atuin() {
+  typeset -g suggestion
+  suggestion="$(atuin search --limit 1 --search-mode prefix --cmd-only "$1")"
+}
 zinit ice ver'v0.7.0' wait'0' lucid
 zinit light 'zsh-users/zsh-autosuggestions'
 
