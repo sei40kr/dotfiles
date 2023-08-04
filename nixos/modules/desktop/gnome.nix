@@ -296,6 +296,7 @@ in
               optionals config.modules.desktop.browsers.firefox.enable [ "firefox.desktop" ] ++
               optionals config.modules.desktop.apps.gnome.geary.enable [ "org.gnome.Geary.desktop" ] ++
               optionals config.modules.desktop.browsers.chrome.webapps.gmail.enable [ "web-gmail.desktop" ] ++
+              optionals config.modules.desktop.apps.thunderbird.enable [ "thunderbird.desktop" ] ++
               optionals config.modules.desktop.browsers.chrome.webapps.google-maps.enable [ "web-google-maps.desktop" ] ++
               optionals config.modules.desktop.browsers.chrome.webapps.google-photos.enable [ "web-google-photos.desktop" ] ++
               optionals config.modules.desktop.apps.gnome.calendar.enable [ "org.gnome.Calendar.desktop" ] ++
