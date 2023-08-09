@@ -5,6 +5,8 @@ rec {
 
   vimPlugins = pkgs.callPackage ./vim-plugins { };
 
+  amphetamine-enhancer = pkgs.callPackage ./amphetamine-enhancer { };
+
   corretto_11 = pkgs.callPackage ./corretto_11.nix { };
 
   online-judge-verify-helper =
