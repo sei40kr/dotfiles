@@ -39,6 +39,7 @@ in
       QT_IM_MODULE = "fcitx";
       XMODIFIERS = "@im=fcitx";
       QT_PLUGIN_PATH = [ "${package}/${pkgs.qt6.qtbase.qtPluginPrefix}" ];
+      GLFW_IM_MODULE = "ibus";
     };
 
     systemd.user.services.fcitx5-daemon = {
