@@ -10,7 +10,7 @@ let
 
   style_css = pkgs.substituteAll {
     src = ../../../../config/waybar/style.css;
-    sidePadding = if desktopCfg.sway.enable then desktopCfg.sway.gaps.outer else 16;
+    sidePadding = desktopCfg.gaps.outer;
   };
 in
 {
