@@ -18,6 +18,8 @@ rec {
 
   sensible-terminal = pkgs.callPackage ./sensible-terminal { };
 
+  spark-desktop = pkgs.callPackage ./spark-desktop { };
+
   whitesur-cursors = pkgs.callPackage ./whitesur-cursors { };
 
   whitesur-kde = pkgs.callPackage ./whitesur-kde { };
