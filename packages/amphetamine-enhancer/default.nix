@@ -1,5 +1,4 @@
-{ lib, fetchurl, runtimeShell, stdenv, undmg }:
-
+{ lib, fetchurl, stdenv, undmg }:
 
 stdenv.mkDerivation {
   pname = "amphetamine-enhancer";
@@ -26,7 +25,6 @@ stdenv.mkDerivation {
 
     for file in $out/Applications/Amphetamine\ Enhancer.app/Contents/Resources/*.plist; do
       substituteInPlace "$file" \
-        --replace /bin/sh                                 ${runtimeShell} \
         --replace /Applications/Amphetamine\ Enhancer.app $out/Applications/Amphetamine\ Enhancer.app
     done
 
