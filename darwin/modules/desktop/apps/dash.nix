@@ -12,7 +12,7 @@ in
   config = mkIf cfg.enable {
     homebrew = {
       enable = true;
-      brews = [ "dash" ];
+      casks = [ "dash" ];
     };
   };
 }
