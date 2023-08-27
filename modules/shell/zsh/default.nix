@@ -14,6 +14,11 @@ let
       --subst-var-by zsh_prezto ${pkgs.zsh-prezto} \
       --subst-var-by fzf        ${pkgs.fzf}
   '';
+
+  starship-nerd-font-symbols-preset = pkgs.runCommandLocal "starship-nerd-font-symbols-preset-${pkgs.starship.version}" { } ''
+    mkdir -p $out/etc
+    ${pkgs.starship}/bin/starship preset nerd-font-symbols >$out/etc/starship.toml
+  '';
 in
 {
   options.modules.shell.zsh = with types; {
@@ -117,6 +122,10 @@ in
     home.dataFile."zinit/zinit.git".source = "${pkgs.zinit}/share/zinit";
 
     home.configFile."atuin/config.toml".source = "${configDir}/atuin/config.toml";
+
+    home.configFile."starship.toml".text = ''
+      ${builtins.readFile "${starship-nerd-font-symbols-preset}/etc/starship.toml"}
+    '';
 
     environment.shells = [
       "/run/current-system/sw/bin/zsh"
