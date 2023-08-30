@@ -81,6 +81,7 @@ in
 
     environment.etc."opt/chrome/policies/managed/default.json".text = builtins.toJSON {
       ExtensionInstallForcelist = [
+        "cofdbpoegempjloogbagkncekinflcnj" # DeepL翻訳
         "neebplgakaahbhdphmkckjjcegoiijjo" # Keepa
         "difoiogjjojoaoomphldepapgpbgkhkb" # Sider
         "jaikhcpoplnhinlglnkmihfdlbamhgig" # アマゾン注文履歴フィルタ
