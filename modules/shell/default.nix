@@ -22,7 +22,7 @@ in
       nix-direnv
       du-dust
       fd
-      exa
+      eza
       htop
       prettyping
       procs
@@ -43,10 +43,10 @@ in
     # dust
     modules.shell.aliases.du = "dust";
 
-    # exa
-    modules.shell.aliases.la = "exa -laFh";
-    modules.shell.aliases.ls = "exa -F";
-    modules.shell.aliases.tree = "exa -T";
+    # eza
+    modules.shell.aliases.la = "eza -laFh";
+    modules.shell.aliases.ls = "eza -F";
+    modules.shell.aliases.tree = "eza -T";
 
     # htop
     modules.shell.aliases.top = "htop";
