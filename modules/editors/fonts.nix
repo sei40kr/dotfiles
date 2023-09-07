@@ -10,7 +10,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    fonts.fonts = with pkgs; [
+    fonts.packages = with pkgs; [
       anonymousPro
       fantasque-sans-mono
       fira-code

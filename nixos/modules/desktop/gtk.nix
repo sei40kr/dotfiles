@@ -39,7 +39,7 @@ in
       (mkIf (cfg.iconTheme != null) cfg.iconTheme.package)
     ];
 
-    fonts.fonts = with pkgs; [ (mkIf (cfg.font != null) cfg.font.package) ];
+    fonts.packages = with pkgs; [ (mkIf (cfg.font != null) cfg.font.package) ];
 
     home.configFile = {
       "gtk-2.0/gtkrc".text = concatStringsSep "\n"

@@ -60,7 +60,7 @@ in
   };
   modules.term.font = {
     # FIXME: The font installation fails when there're multiple same fonts in
-    #  fonts.fonts. So comment out the following line for now.
+    #  fonts.packages. So comment out the following line for now.
     # package = victor-mono-nf;
     name = "VictorMono Nerd Font Mono";
     size = 24;

@@ -28,7 +28,7 @@ in
   };
 
   config = {
-    fonts.fonts = [
+    fonts.packages = [
       (mkIf (cfg.fonts.code.package != null) cfg.fonts.code.package)
       (mkIf (cfg.fonts.ui.package != null) cfg.fonts.ui.package)
     ];

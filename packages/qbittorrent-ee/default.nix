@@ -1,8 +1,8 @@
 { lib, fetchFromGitHub, qbittorrent }:
 
 let
-  version = "4.5.4";
-  eeVersion = "4.5.4.10";
+  version = "4.5.5";
+  eeVersion = "4.5.5.10";
 in
 qbittorrent.overrideAttrs (attrs:
 if attrs.version != version then
@@ -15,7 +15,7 @@ else {
     owner = "c0re100";
     repo = "qBittorrent-Enhanced-Edition";
     rev = "release-${eeVersion}";
-    hash = "sha256-2kHjW3CMcAEITbYzw8QNRqkTWrMkaktkdAd69moyk2M=";
+    hash = "sha256-wGEH83zX7u1KnHxKuMbVIhZ/AbNUkSme1leh5lHPLAk=";
   };
 
   meta = with lib; {

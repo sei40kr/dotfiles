@@ -91,7 +91,7 @@ in
         # :tools vterm
         vterm_printf
       ]));
-    fonts.fonts = with pkgs; [ emacs-all-the-icons-fonts ];
+    fonts.packages = with pkgs; [ emacs-all-the-icons-fonts ];
 
     env = mkIf cfg.doom.enable {
       EMACSDIR = "\${HOME}/.config/emacs";

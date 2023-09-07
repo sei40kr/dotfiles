@@ -22,6 +22,6 @@ in
   };
 
   config = {
-    fonts.fonts = mkIf (cfg.font.package != null) [ cfg.font.package ];
+    fonts.packages = mkIf (cfg.font.package != null) [ cfg.font.package ];
   };
 }

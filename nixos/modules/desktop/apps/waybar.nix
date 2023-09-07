@@ -21,7 +21,7 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ waybar ];
 
-    fonts.fonts = with pkgs; [ material-design-icons ];
+    fonts.packages = with pkgs; [ material-design-icons ];
 
     environment.etc = {
       "xdg/waybar/config".source = "${configDir}/waybar/config.json";

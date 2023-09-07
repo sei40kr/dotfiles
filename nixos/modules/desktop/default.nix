@@ -68,7 +68,7 @@ in
       message = "The 'modules.desktop.gaps.outer' must be equal to or greater than 'modules.desktop.gaps.inner'.";
     }];
 
-    fonts.fonts = with pkgs; [
+    fonts.packages = with pkgs; [
       (mkIf (fonts.ui.package != null) fonts.ui.package)
       (mkIf (fonts.fixed.package != null) fonts.fixed.package)
       (mkIf (fonts.document.package != null) fonts.document.package)

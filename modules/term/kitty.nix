@@ -18,7 +18,7 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ kitty ];
 
-    fonts.fonts = with pkgs; [
+    fonts.packages = with pkgs; [
       (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     ];
 
