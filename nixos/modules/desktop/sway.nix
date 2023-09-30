@@ -27,6 +27,14 @@ let
     if background.image != null then
       "output * bg ${background.image.path} ${background.image.mode} ${background.color}"
     else "output * bg ${background.color} solid_color";
+
+  init-edp-state = pkgs.writeShellScriptBin "init-edp-state" ''
+    if ${pkgs.gnugrep}/bin/grep -q open /proc/acpi/button/lid/LID/state; then
+      ${package}/bin/swaymsg output eDP-1 enable
+    else
+      ${package}/bin/swaymsg output eDP-1 disable
+    fi
+  '';
 in
 {
   options.modules.desktop.sway = with types; {
@@ -37,16 +45,25 @@ in
     user.packages = [ package pkgs.swaybg ];
 
     home.configFile."sway/config" = {
-      source = pkgs.substituteAll {
-        src = ../../../config/sway/config;
-        inherit backgroundCommand;
-        titlebarFontName = fonts.titlebar.name or fonts.ui.name;
-        titlebarFontSize = fonts.titlebar.size or fonts.ui.size;
-        innerGaps = desktopCfg.gaps.inner;
-        outerGaps = desktopCfg.gaps.outer - desktopCfg.gaps.inner;
-        autoRepeatDelay = autoRepeat.delay;
-        autoRepeatInterval = autoRepeat.interval;
-      };
+      text = ''
+        ${backgroundCommand}
+
+        bindswitch --reload --locked lid:on output eDP-1 disable
+        bindswitch --reload --locked lid:off output eDP-1 enable
+        exec_always ${init-edp-state}/bin/init-edp-state
+
+        font ${fonts.titlebar.name or fonts.ui.name} ${toString (fonts.titlebar.size or fonts.ui.size)}
+
+        gaps inner ${toString desktopCfg.gaps.inner}
+        gaps outer ${toString (desktopCfg.gaps.outer - desktopCfg.gaps.inner)}
+
+        input * {
+            repeat_delay ${toString autoRepeat.delay}
+            repeat_rate ${toString autoRepeat.interval}
+        }
+
+        ${builtins.readFile ../../../config/sway/config}
+      '';
       onChange = ''
         SWAYSOCK=''${XDG_RUNTIME_DIR:-/run/user/$UID}/sway-ipc.$UID.$(${pkgs.procps}/bin/pgrep -x sway || true).sock
         if [[ -S $SWAYSOCK ]]; then

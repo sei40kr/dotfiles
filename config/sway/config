@@ -4,10 +4,6 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-### Output configuration
-
-@backgroundCommand@
-
 ### Key bindings
 
 # Logo key. Use Mod1 for Alt.
@@ -165,18 +161,6 @@ set $right l
 
     # Exit App
     bindsym $mod+Shift+q kill
-
-
-font @titlebarFontName@ @titlebarFontSize@
-
-gaps inner @innerGaps@
-gaps outer @outerGaps@
-
-
-input * {
-    repeat_delay @autoRepeatDelay@
-    repeat_rate @autoRepeatInterval@
-}
 
 
 exec 'systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP; systemctl --user start sway-session.target'
