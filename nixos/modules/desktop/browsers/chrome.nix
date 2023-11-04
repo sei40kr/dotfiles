@@ -70,7 +70,11 @@ in
 
   config = mkIf cfg.enable {
     user.packages = [
-      pkgs.google-chrome
+      (pkgs.google-chrome.override {
+        # Use GTK4 to get IM support on Wayland
+        # https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
+        commandLineArgs = "--gtk-version=4";
+      })
       (mkIf cfg.webapps.gmail.enable gmail)
       (mkIf cfg.webapps.google-calendar.enable google-calendar)
       (mkIf cfg.webapps.google-maps.enable google-maps)
