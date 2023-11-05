@@ -77,7 +77,6 @@ in
         # :lang plantuml
         plantuml
         # :lang sql
-        sqlint
         python3Packages.sqlparse
         # :tools editorconfig
         editorconfig-core-c
