@@ -22,6 +22,11 @@
       flake = false;
     };
 
+    swayfx = {
+      url = "github:WillPower3309/swayfx";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     tmux-project = {
       url = "github:sei40kr/tmux-project";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,7 +38,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, darwin, fenix, ... }@inputs:
+  outputs = { self, nixpkgs, darwin, fenix, swayfx, ... }@inputs:
     let
       inherit (builtins) removeAttrs;
       inherit (lib) attrValues elem genAttrs hasSuffix mkDefault nixosSystem
@@ -46,7 +51,7 @@
       });
 
       systems = [ "aarch64-darwin" "x86_64-darwin" "x86_64-linux" ];
-      extraOverlays = [ fenix.overlays.default ];
+      extraOverlays = [ fenix.overlays.default swayfx.overlays.default ];
       pkgs' = genAttrs systems (system: import nixpkgs {
         inherit system;
         config.allowUnfree = true;

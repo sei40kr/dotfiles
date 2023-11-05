@@ -8,6 +8,8 @@ let
   inherit (desktopCfg) autoRepeat background fonts;
 
   package = pkgs.sway.override {
+    sway-unwrapped = pkgs.swayfx-unwrapped;
+
     extraSessionCommands = ''
       export WLR_NO_HARDWARE_CURSORS=1
 
@@ -21,7 +23,6 @@ let
       # Fix for some Java AWT applications
       export _JAVA_AWT_WM_NONREPARENTING=1
     '';
-    withGtkWrapper = true;
   };
   backgroundCommand =
     if background.image != null then
