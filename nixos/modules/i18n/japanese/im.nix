@@ -11,7 +11,71 @@ in
   config = mkIf (cfg.enable && config.modules.desktop.enable) {
     i18n.inputMethod = {
       enabled = "fcitx5";
-      fcitx5.addons = with pkgs; [ fcitx5-mozc ];
+      fcitx5 = {
+        addons = with pkgs; [ fcitx5-mozc ];
+        settings = {
+          globalOptions = {
+            Hotkey = {
+              # Enumerate when press trigger key repeatedly
+              EnumerateWithTriggerKeys = "True";
+              # Skip first input method while enumerating
+              EnumerateSkipFirst = "False";
+            };
+            "Hotkey/EnumerateForwardKeys" = { "0" = "Control+space"; };
+            "Hotkey/EnumerateBackwardKeys" = { "0" = "Control+Shift+space"; };
+            "Hotkey/PrevPage" = { "0" = "Up"; };
+            "Hotkey/NextPage" = { "0" = "Down"; };
+            "Hotkey/PrevCandidate" = { "0" = "Shift+Tab"; };
+            "Hotkey/NextCandidate" = { "0" = "Tab"; };
+            Behavior = {
+              # Active By Default
+              ActiveByDefault = "False";
+              # Share Input State
+              ShareInputState = "No";
+              # Show preedit in application
+              PreeditEnabledByDefault = "True";
+              # Show Input Method Information when switch input method
+              ShowInputMethodInformation = "True";
+              # Show Input Method Information when changing focus
+              showInputMethodInformationWhenFocusIn = "False";
+              # Show compact input method information
+              CompactInputMethodInformation = "True";
+              # Show first input method information
+              ShowFirstInputMethodInformation = "True";
+              # Default page size
+              DefaultPageSize = "5";
+              # Override Xkb Option
+              OverrideXkbOption = "False";
+              # Preload input method to be used by default
+              PreloadInputMethod = "True";
+            };
+          };
+          inputMethod = {
+            "Groups/0" = {
+              # Group name
+              Name = "Default";
+              # Layout
+              "Default Layout" = "us";
+              # Default Input Method
+              DefaultIM = "mozc";
+            };
+            "Groups/0/Items/0" = {
+              # Name
+              Name = "keyboard-us";
+              # Layout
+              Layout = "";
+            };
+            "Groups/0/Items/1" = {
+              # Name
+              Name = "mozc";
+              # Layout
+              Layout = "";
+            };
+            "GroupOrder" = { "0" = "Default"; };
+          };
+        };
+        ignoreUserConfig = true;
+      };
     };
 
     # This still works because Fcitx5 can simulate IBus protocol
