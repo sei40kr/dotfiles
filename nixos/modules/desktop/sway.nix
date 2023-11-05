@@ -73,6 +73,8 @@ in
       '';
     };
 
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
     systemd.user.targets = {
       sway-session = {
         description = "sway compositor session";
