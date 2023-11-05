@@ -1,8 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.nix;
+let
+  inherit (pkgs.stdenv.hostPlatform) system;
+  cfg = config.modules.dev.nix;
 in
 {
   options.modules.dev.nix = {
@@ -14,6 +16,7 @@ in
       nix-init
       nixpkgs-fmt
       nurl
+      inputs.nil.packages.${system}.default
     ];
   };
 }

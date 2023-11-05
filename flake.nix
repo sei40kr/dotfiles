@@ -22,6 +22,11 @@
       flake = false;
     };
 
+    nil = {
+      url = "github:oxalica/nil";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     swayfx = {
       url = "github:WillPower3309/swayfx";
       inputs.nixpkgs.follows = "nixpkgs";
