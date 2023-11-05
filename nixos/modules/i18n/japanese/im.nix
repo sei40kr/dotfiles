@@ -17,6 +17,15 @@ in
     # This still works because Fcitx5 can simulate IBus protocol
     environment.variables.GLFW_IM_MODULE = "ibus";
 
+    # Set the same environment variables as environment.variables to
+    # environment.sessionVariables or we can't export them to apps in some
+    # cases. See NixOS/nixpkgs#129442.
+    environment.sessionVariables = {
+      GTK_IM_MODULE = "fcitx";
+      QT_IM_MODULE = "fcitx";
+      XMODIFIERS = "@im=fcitx";
+    };
+
     systemd.user.services.fcitx5-daemon = {
       description = "Fcitx5 input method editor";
       documentation = [ "https://fcitx-im.org" ];
