@@ -23,7 +23,7 @@ in
 
   config = mkIf (themeCfg.active == "graphite") {
     modules.desktop.background.image = {
-      path = "${gtkTheme}/share/backgrounds/wave-${color}.png";
+      path = "${gtkTheme}/share/backgrounds/wave-${Color}.png";
       mode = "fit";
     };
 
