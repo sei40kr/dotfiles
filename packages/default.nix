@@ -12,8 +12,6 @@ rec {
   online-judge-verify-helper =
     pkgs.python3Packages.callPackage ./online-judge-verify-helper { };
 
-  qbittorrent-ee = pkgs.callPackage ./qbittorrent-ee { };
-
   sensible-browser = pkgs.callPackage ./sensible-browser { };
 
   sensible-terminal = pkgs.callPackage ./sensible-terminal { };
