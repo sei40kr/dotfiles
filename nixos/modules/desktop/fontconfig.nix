@@ -62,7 +62,7 @@ in
         hinting.enable = false;
       };
 
-      fonts = fontPackages;
+      packages = fontPackages;
     };
   };
 }
