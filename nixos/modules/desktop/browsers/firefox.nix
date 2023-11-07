@@ -10,6 +10,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ firefox ];
+    user.packages = with pkgs; [ firefox-bin ];
   };
 }
