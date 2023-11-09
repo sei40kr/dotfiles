@@ -10,14 +10,17 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      xfce.thunar
-      ffmpegthumbnailer
-      xfce.thunar-archive-plugin
-      xfce.thunar-media-tags-plugin
-      xfce.thunar-volman
-    ];
+    programs.thunar = {
+      enable = true;
+      plugins = with pkgs; [
+        xfce.thunar-archive-plugin
+        xfce.thunar-media-tags-plugin
+        xfce.thunar-volman
+      ];
+    };
 
+    # Necessary to generate thumbnails
     services.tumbler.enable = true;
+    user.packages = with pkgs; [ ffmpegthumbnailer ];
   };
 }
