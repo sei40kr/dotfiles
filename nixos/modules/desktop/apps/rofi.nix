@@ -14,7 +14,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ rofi ];
+    user.packages = with pkgs; [ rofi-wayland ];
 
     home.configFile = {
       "rofi/config.rasi".source = "${configDir}/rofi/rofi.rasi";
