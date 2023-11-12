@@ -59,6 +59,7 @@ in
 
     modules.shell.zsh.rcInit = ''
       export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+      export MANROFFOPT='-c'
 
       zinit ice src'zhook.zsh' id-as'direnv' atclone'direnv hook zsh >zhook.zsh' atpull'%atclone'
       zinit light zdharma-continuum/null
