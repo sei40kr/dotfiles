@@ -1,10 +1,20 @@
-{ config, inputs, lib, pkgs, ... }:
+{ config, inputs, lib, options, pkgs, ... }:
 
 with lib;
 with lib.my;
 {
   imports = [ inputs.home-manager.darwinModules.home-manager ]
     ++ (mapModulesRec' (toString ./.) import);
+
+  options = with types; {
+    fonts.packages = mkOption {
+      type = listOf path;
+      default = [ ];
+      description = mkDoc ''
+        List of primary font packages.
+      '';
+    };
+  };
 
   config = {
     user.packages = with pkgs; [
@@ -21,7 +31,11 @@ with lib.my;
 
     nix.useDaemon = true;
 
-    fonts.fontDir.enable = true;
+    fonts = {
+      fontDir.enable = true;
+      # Workaround for LnL7/nix-darwin#752
+      fonts = mkAliasDefinitions options.fonts.packages;
+    };
 
     system.build.applications = mkForce (pkgs.buildEnv {
       name = "system-applications";
