@@ -12,12 +12,10 @@ in
   config = mkIf cfg.enable {
     # TODO stylelint-cli
     user.packages = with pkgs; [
-      nodejs
-      yarn
+      bun
       nodePackages.vscode-html-languageserver-bin
       nodePackages.vscode-css-languageserver-bin
       nodePackages.vue-language-server
     ];
-    env = { PATH = [ "\${HOME}/.yarn/bin" ]; };
   };
 }
