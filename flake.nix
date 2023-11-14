@@ -95,7 +95,7 @@
           })
         else if isDarwin system then
           (darwinSystem {
-            inherit specialArgs;
+            inherit system specialArgs;
             modules = modules ++ [
               {
                 home-manager.users.${hostCfg.user.name}.home = {
