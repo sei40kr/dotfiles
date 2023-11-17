@@ -110,7 +110,6 @@ in
 
     services = {
       gnome = { sushi.enable = true; };
-      protonvpn.enable = true;
       ssh.enable = true;
     };
 
