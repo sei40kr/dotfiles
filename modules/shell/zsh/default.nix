@@ -91,7 +91,11 @@ in
           fi
         '';
       initExtraFirst = optionalString shellCfg.tmux.autoRun ''
-        if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIMRUNTIME" && -z "$INSIDE_EMACS" ]]; then
+        if [[ -z "$TMUX" &&
+              -z "$EMACS" &&
+              -z "$VIMRUNTIME" &&
+              -z "$INSIDE_EMACS" &&
+              "$TERM_PROGRAM" != 'WezTerm' ]]; then
           tmux start-server
 
           if ! tmux has-session 2>/dev/null; then

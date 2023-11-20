@@ -12,7 +12,7 @@ if [[ -n "$WAYLAND_DISPLAY" ]]; then
 fi
 
 if [[ -n "$DISPLAY" ]]; then
-	for term in alacritty kitty gnome-terminal; do
+	for term in wezterm alacritty kitty gnome-terminal; do
 		if [[ -x "$(command -v "$term")" ]]; then
 			exec $term "$@"
 		fi
