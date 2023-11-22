@@ -9,8 +9,6 @@ rec {
 
   corretto_11 = pkgs.callPackage ./corretto_11.nix { };
 
-  nushell = pkgs.callPackage ./nushell { };
-
   online-judge-verify-helper =
     pkgs.python3Packages.callPackage ./online-judge-verify-helper { };
 
