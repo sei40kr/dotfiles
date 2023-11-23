@@ -136,7 +136,7 @@ in
 
   user.name = "sei40kr";
 
-  modules.term.theme.active = "tokyo-night";
+  modules.term.colorschemes.active = "tokyo-night";
 
   modules.term.font = {
     package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };

@@ -50,7 +50,7 @@ in
   modules.shell.git.enable = true;
   modules.shell.ghq.enable = true;
 
-  modules.term.theme.active = "tokyo-night";
+  modules.term.colorschemes.active = "tokyo-night";
   modules.term.kitty.enable = true;
 
   modules.editors.fonts.code = {

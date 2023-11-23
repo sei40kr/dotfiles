@@ -8,7 +8,8 @@ let
   termCfg = config.modules.term;
   cfg = termCfg.kitty;
   inherit (termCfg) font;
-  inherit (termCfg.theme) colors;
+  inherit (termCfg.colorschemes.colors) fg bg ansi bright cursor link selection
+    paneBorder tabBar;
 in
 {
   options.modules.term.kitty = {
@@ -33,52 +34,52 @@ in
       disable_ligatures always
 
       ## Cursor customization
-      cursor            #${colors.cursor.bg}
-      cursor_text_color #${colors.cursor.fg}
+      cursor            #${cursor.bg}
+      cursor_text_color #${cursor.fg}
 
       ## Mouse
-      url_color #${colors.url}
+      url_color #${link}
 
       ## Window layout
       window_border_width 1px
       window_padding_width 12
-      active_border_color #${colors.border.active}
-      inactive_border_color #${colors.border.inactive}
-      bell_border_color #${colors.border.bell}
+      active_border_color   #${paneBorder.focused}
+      inactive_border_color #${paneBorder.default}
+      bell_border_color     #${paneBorder.urgent}
 
       ## Tab bar
       tab_bar_style separator
       tab_separator " "
       tab_title_template " [{index}] {title} "
-      active_tab_foreground #${colors.tab.active.fg}
-      active_tab_background #${colors.tab.active.bg}
-      inactive_tab_foreground #${colors.tab.inactive.fg}
-      inactive_tab_background #${colors.tab.inactive.bg}
-      tab_bar_background #${colors.tab.bg}
+      active_tab_foreground   #${tabBar.activeTab.fg}
+      active_tab_background   #${tabBar.activeTab.bg}
+      inactive_tab_foreground #${tabBar.inactiveTab.fg}
+      inactive_tab_background #${tabBar.inactiveTab.bg}
+      tab_bar_background      #${tabBar.bg}
 
       ## Color scheme
-      foreground #${colors.fg}
-      background #${colors.bg}
-      selection_foreground #${colors.selection.fg}
-      selection_background #${colors.selection.bg}
+      foreground           #${fg}
+      background           #${bg}
+      selection_foreground #${selection.fg}
+      selection_background #${selection.bg}
 
       # The color table
-      color0  #${colors.base0}
-      color1  #${colors.base1}
-      color2  #${colors.base2}
-      color3  #${colors.base3}
-      color4  #${colors.base4}
-      color5  #${colors.base5}
-      color6  #${colors.base6}
-      color7  #${colors.base7}
-      color8  #${colors.base8}
-      color9  #${colors.base9}
-      color10 #${colors.base10}
-      color11 #${colors.base11}
-      color12 #${colors.base12}
-      color13 #${colors.base13}
-      color14 #${colors.base14}
-      color15 #${colors.base15}
+      color0  #${ansi.black}
+      color1  #${ansi.red}
+      color2  #${ansi.green}
+      color3  #${ansi.yellow}
+      color4  #${ansi.blue}
+      color5  #${ansi.magenta}
+      color6  #${ansi.cyan}
+      color7  #${ansi.white}
+      color8  #${ansi.brightBlack}
+      color9  #${ansi.brightRed}
+      color10 #${ansi.brightGreen}
+      color11 #${ansi.brightYellow}
+      color12 #${ansi.brightBlue}
+      color13 #${ansi.brightMagenta}
+      color14 #${ansi.brightCyan}
+      color15 #${ansi.brightWhite}
 
       ## Advanced
       ${optionalString stdenv.isDarwin ''

@@ -6,7 +6,7 @@ let
   inherit (config.dotfiles) configDir;
   inherit (pkgs) stdenv;
   termCfg = config.modules.term;
-  inherit (termCfg.theme) colors;
+  inherit (termCfg.colorschemes.colors) fg bg ansi cursor link selection paneBorder tabBar;
   cfg = termCfg.wezterm;
 in
 {
@@ -47,50 +47,50 @@ in
       config.tab_bar_at_bottom = true
 
       config.colors = {
-        foreground = "#${colors.fg}",
-        background = "#${colors.bg}",
+        foreground = "#${fg}",
+        background = "#${bg}",
 
-        cursor_bg = "#${colors.cursor.bg}",
-        cursor_fg = "#${colors.cursor.fg}",
+        cursor_bg = "#${cursor.bg}",
+        cursor_fg = "#${cursor.fg}",
 
-        selection_bg = "#${colors.selection.bg}",
-        selection_fg = "#${colors.selection.fg}",
+        selection_bg = "#${selection.bg}",
+        selection_fg = "#${selection.fg}",
 
-        split = "#${colors.border.inactive}",
+        split = "#${paneBorder.default}",
 
         ansi = {
-          "#${colors.base0}",
-          "#${colors.base1}",
-          "#${colors.base2}",
-          "#${colors.base3}",
-          "#${colors.base4}",
-          "#${colors.base5}",
-          "#${colors.base6}",
-          "#${colors.base7}",
+          "#${ansi.black}",
+          "#${ansi.red}",
+          "#${ansi.green}",
+          "#${ansi.yellow}",
+          "#${ansi.blue}",
+          "#${ansi.magenta}",
+          "#${ansi.cyan}",
+          "#${ansi.white}",
         },
         brights = {
-          "#${colors.base8}",
-          "#${colors.base9}",
-          "#${colors.base10}",
-          "#${colors.base11}",
-          "#${colors.base12}",
-          "#${colors.base13}",
-          "#${colors.base14}",
-          "#${colors.base15}",
+          "#${ansi.brightBlack}",
+          "#${ansi.brightRed}",
+          "#${ansi.brightGreen}",
+          "#${ansi.brightYellow}",
+          "#${ansi.brightBlue}",
+          "#${ansi.brightMagenta}",
+          "#${ansi.brightCyan}",
+          "#${ansi.brightWhite}",
         },
 
         tab_bar = {
-          background = "#${colors.tab.bg}",
+          background = "#${tabBar.bg}",
 
           active_tab = {
-            bg_color = "#${colors.tab.active.bg}",
-            fg_color = "#${colors.tab.active.fg}",
+            bg_color = "#${tabBar.activeTab.bg}",
+            fg_color = "#${tabBar.activeTab.fg}",
             intensity = "Bold",
           },
 
           inactive_tab = {
-            bg_color = "#${colors.tab.inactive.bg}",
-            fg_color = "#${colors.tab.inactive.fg}",
+            bg_color = "#${tabBar.inactiveTab.bg}",
+            fg_color = "#${tabBar.inactiveTab.fg}",
           },
         },
       }
