@@ -1,13 +1,33 @@
-{ config, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 
 with lib;
 with lib.my;
 let
   inherit (config.dotfiles) configDir;
   inherit (pkgs) stdenv;
+  inherit (stdenv.hostPlatform) system;
   termCfg = config.modules.term;
   inherit (termCfg.colorschemes.colors) fg bg ansi cursor link selection paneBorder tabBar;
   cfg = termCfg.wezterm;
+
+  plugins = stdenv.mkDerivation {
+    name = "wezterm-plugins";
+
+    phases = [ "installPhase" ];
+
+    buildInputs = [
+      inputs.wez-tmux.packages.${system}.default
+      inputs.wez-pain-control.packages.${system}.default
+      inputs.wez-per-project-workspace.packages.${system}.default
+    ];
+
+    installPhase = ''
+      mkdir -p $out/share/wezterm
+      cp -r ${inputs.wez-tmux.packages.${system}.default} $out/share/wezterm/wez-tmux
+      cp -r ${inputs.wez-pain-control.packages.${system}.default} $out/share/wezterm/wez-pain-control
+      cp -r ${inputs.wez-per-project-workspace.packages.${system}.default} $out/share/wezterm/wez-per-project-workspace
+    '';
+  };
 in
 {
   options.modules.term.wezterm = with types; { enable = mkBoolOpt false; };
@@ -16,13 +36,11 @@ in
     user.packages = with pkgs; [ wezterm ];
 
     home.configFile."wezterm/wezterm.lua".text = ''
+      package.path = package.path .. ";${plugins}/share/wezterm/?.lua;${plugins}/share/wezterm/?/init.lua"
+
       local wezterm = require("wezterm")
 
       local act = wezterm.action
-
-      local tmux = require("tmux")
-      local pain_control = require("pain-control")
-      local per_project_workspace = require("per-project-workspace")
 
       local config = {}
 
@@ -95,15 +113,17 @@ in
         },
       }
 
+      config.leader = { key = "t", mods = "CTRL" }
+
       config.keys = {
         { key = "r", mods = "LEADER|SHIFT", action = act.ReloadConfiguration },
       }
 
-      tmux.apply_to_config(config, { leader = { key = "t", mods = "CTRL" } })
+      require("wez-tmux").apply_to_config(config, {})
 
-      pain_control.apply_to_config(config, {})
+      require("wez-pain-control").apply_to_config(config, {})
 
-      per_project_workspace.apply_to_config(config, {})
+      local per_project_workspace = require("wez-per-project-workspace")
       table.insert(config.keys, {
         key = "g",
         mods = "LEADER",
@@ -125,8 +145,6 @@ in
 
       return config
     '';
-    home.configFile."wezterm/tmux.lua".source = "${configDir}/wezterm/tmux.lua";
-    home.configFile."wezterm/pain-control.lua".source = "${configDir}/wezterm/pain-control.lua";
-    home.configFile."wezterm/per-project-workspace.lua".source = "${configDir}/wezterm/per-project-workspace.lua";
   };
 }
+

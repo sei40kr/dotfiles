@@ -37,6 +37,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    wez-tmux = {
+      url = "github:sei40kr/wez-tmux";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    wez-pain-control = {
+      url = "github:sei40kr/wez-pain-control";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    wez-per-project-workspace = {
+      url = "github:sei40kr/wez-per-project-workspace";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     yonvim = {
       url = "github:sei40kr/yonvim";
       inputs.nixpkgs.follows = "nixpkgs";

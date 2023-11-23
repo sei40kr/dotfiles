@@ -94,6 +94,60 @@
         "type": "github"
       }
     },
+    "flake-utils_3": {
+      "inputs": {
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1694529238,
+        "narHash": "sha256-zsNZZGTGnMOf9YpHKJqMSsa0dXbfmxeoJ7xHlrt+xmY=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "ff7b65b44d01cf9ba6a71320833626af21126384",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_4": {
+      "inputs": {
+        "systems": "systems_4"
+      },
+      "locked": {
+        "lastModified": 1694529238,
+        "narHash": "sha256-zsNZZGTGnMOf9YpHKJqMSsa0dXbfmxeoJ7xHlrt+xmY=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "ff7b65b44d01cf9ba6a71320833626af21126384",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_5": {
+      "inputs": {
+        "systems": "systems_5"
+      },
+      "locked": {
+        "lastModified": 1694529238,
+        "narHash": "sha256-zsNZZGTGnMOf9YpHKJqMSsa0dXbfmxeoJ7xHlrt+xmY=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "ff7b65b44d01cf9ba6a71320833626af21126384",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -178,6 +232,9 @@
         "nixpkgs": "nixpkgs",
         "swayfx": "swayfx",
         "tmux-project": "tmux-project",
+        "wez-pain-control": "wez-pain-control",
+        "wez-per-project-workspace": "wez-per-project-workspace",
+        "wez-tmux": "wez-tmux",
         "yonvim": "yonvim"
       }
     },
@@ -274,6 +331,51 @@
         "type": "github"
       }
     },
+    "systems_3": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_4": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_5": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "tmux-project": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -292,6 +394,69 @@
       "original": {
         "owner": "sei40kr",
         "repo": "tmux-project",
+        "type": "github"
+      }
+    },
+    "wez-pain-control": {
+      "inputs": {
+        "flake-utils": "flake-utils_3",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1700578726,
+        "narHash": "sha256-GT4oeCF/FZJCRTiSzTV1Wt3EJ26Z90iUO/OqxmB1Ods=",
+        "owner": "sei40kr",
+        "repo": "wez-pain-control",
+        "rev": "f11241a846af2aaec6d41ece80f429cae09e3b86",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sei40kr",
+        "repo": "wez-pain-control",
+        "type": "github"
+      }
+    },
+    "wez-per-project-workspace": {
+      "inputs": {
+        "flake-utils": "flake-utils_4",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1700723934,
+        "narHash": "sha256-J81u7SNYKekg+BIf7H4RZaA4JUe+mjnaZZkOhZbRQV0=",
+        "owner": "sei40kr",
+        "repo": "wez-per-project-workspace",
+        "rev": "ffb1aac8b52c22ac1159eaad7371bfdbb462e7db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sei40kr",
+        "repo": "wez-per-project-workspace",
+        "type": "github"
+      }
+    },
+    "wez-tmux": {
+      "inputs": {
+        "flake-utils": "flake-utils_5",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1700702060,
+        "narHash": "sha256-0HZdnxnsZrWlL1AmiIxbYvtZOd+ApiWwI0weIhSgUjM=",
+        "owner": "sei40kr",
+        "repo": "wez-tmux",
+        "rev": "c4ad372e9b84880c31cc99b8f167211217b4fa09",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sei40kr",
+        "repo": "wez-tmux",
         "type": "github"
       }
     },
