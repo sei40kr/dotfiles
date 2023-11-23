@@ -159,7 +159,7 @@ in
       zsh.enable = true;
     };
 
-    term.alacritty.enable = true;
+    term.kitty.enable = true;
   };
 
   user.name = "sei40kr";

@@ -11,7 +11,7 @@ in
 
   config = mkIf cfg.enable {
     assertions = [{
-      assertion = config.modules.term.alacritty.enable || config.modules.term.kitty.enable || config.modules.term.gnome.enable;
+      assertion = config.modules.term.kitty.enable || config.modules.term.gnome.enable;
       message = "The sensible module requires at least one terminal emulator installed.";
     }];
 
