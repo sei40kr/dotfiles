@@ -16,13 +16,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    user.packages = [
       inputs.yonvim.packages.${system}.yonvim
       inputs.yonvim.packages.${system}.yonvim-qt
-
-      # VTE terminals (ex. GNOME Terminal) does not support "Ms" capability.
-      # See https://github.com/tmux/tmux/wiki/Clipboard#terminal-support---vte-terminals
-      xclip
     ];
 
     env = {

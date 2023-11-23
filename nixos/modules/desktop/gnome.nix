@@ -309,7 +309,6 @@ in
               optionals config.modules.desktop.apps.discord.enable [ "discord.desktop" ] ++
               optionals config.modules.desktop.apps.zoom.enable [ "Zoom.desktop" ] ++
               optionals config.modules.desktop.apps.qbittorrent.enable [ "org.qbittorrent.qBittorrent.desktop" ] ++
-              optionals config.modules.term.gnome.enable [ "org.gnome.Terminal.desktop" ] ++
               optionals config.modules.term.kitty.enable [ "kitty.desktop" ] ++
               optionals config.modules.editors.nvim.enable [ "yvim-qt.desktop" ] ++
               optionals config.modules.editors.emacs.enable [ "emacs.desktop" ] ++

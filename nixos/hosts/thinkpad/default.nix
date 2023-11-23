@@ -131,10 +131,7 @@ in
       zsh.enable = true;
     };
 
-    term = {
-      gnome.enable = true;
-      kitty.enable = true;
-    };
+    term.kitty.enable = true;
   };
 
   user.name = "sei40kr";
