@@ -11,8 +11,21 @@ in
     enable = mkBoolOpt false;
 
     user = {
-      name = mkOpt str "Seong Yong-ju";
-      email = mkOpt str "sei40kr@gmail.com";
+      name = mkOption {
+        type = types.str;
+        default = "Seong Yong-ju";
+        description = mdDoc ''
+          The name of the user.
+        '';
+      };
+
+      email = mkOption {
+        type = types.str;
+        default = "sei40kr@gmail.com";
+        description = mdDoc ''
+          The email of the user.
+        '';
+      };
     };
   };
 
