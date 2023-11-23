@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [[ -n "$WAYLAND_DISPLAY" ]]; then
-	for term in kitty gnome-terminal; do
+	for term in wezterm kitty gnome-terminal; do
 		if [[ -x "$(command -v "$term")" ]]; then
 			exec $term "$@"
 		fi
