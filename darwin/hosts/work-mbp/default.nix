@@ -47,7 +47,10 @@ in
     enable = true;
     autoRun = true;
   };
-  modules.shell.git.enable = true;
+  modules.shell.git = {
+    enable = true;
+    user.email = "yongju.seong@codetakt.com";
+  };
   modules.shell.ghq.enable = true;
 
   modules.term.colorschemes.active = "tokyo-night";
