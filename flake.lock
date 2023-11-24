@@ -447,11 +447,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1700702060,
-        "narHash": "sha256-0HZdnxnsZrWlL1AmiIxbYvtZOd+ApiWwI0weIhSgUjM=",
+        "lastModified": 1700841484,
+        "narHash": "sha256-m8wixLJad6Kd+Grkmh+1anBURGDQBY4+dJiNBE8oH+Q=",
         "owner": "sei40kr",
         "repo": "wez-tmux",
-        "rev": "c4ad372e9b84880c31cc99b8f167211217b4fa09",
+        "rev": "f159bee2c56afcf2a84a1168f113afd6cb2f30b0",
         "type": "github"
       },
       "original": {
