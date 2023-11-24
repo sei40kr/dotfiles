@@ -426,11 +426,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1700723934,
-        "narHash": "sha256-J81u7SNYKekg+BIf7H4RZaA4JUe+mjnaZZkOhZbRQV0=",
+        "lastModified": 1700838295,
+        "narHash": "sha256-cMYB6hbm3OmdVVvDFLrPOQS+l+ub7zWbi8S8Ckh3mP0=",
         "owner": "sei40kr",
         "repo": "wez-per-project-workspace",
-        "rev": "ffb1aac8b52c22ac1159eaad7371bfdbb462e7db",
+        "rev": "1fa76b0cd8025c0d445895cb835bedddff077657",
         "type": "github"
       },
       "original": {
