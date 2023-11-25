@@ -62,11 +62,9 @@ in
     size = 24;
   };
   modules.term.font = {
-    # FIXME: The font installation fails when there're multiple same fonts in
-    #  fonts.packages. So comment out the following line for now.
-    # package = victor-mono-nf;
-    name = "VictorMono Nerd Font Mono";
-    size = 24;
+    package = pkgs.nerdfonts.override { fonts = [ "IosevkaTerm" ]; };
+    name = "IosevkaTerm Nerd Font Mono";
+    size = 28;
   };
 
   user.name = "sei40kr";
