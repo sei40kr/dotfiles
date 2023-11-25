@@ -39,9 +39,9 @@ with lib.my; {
       };
 
       paneBorder = {
-        focused = "191b20";
-        default = "191b20";
-        urgent = "191b20";
+        focused = "7aa2f7";
+        default = "3b4261";
+        urgent = "3b4261";
       };
 
       tabBar = {
