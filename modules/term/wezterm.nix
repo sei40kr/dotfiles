@@ -53,6 +53,7 @@ in
 
       config.font = wezterm.font("${termCfg.font.name}")
       config.font_size = ${toString termCfg.font.size}
+      config.freetype_load_target = "HorizontalLcd"
 
       config.use_fancy_tab_bar = false
 
