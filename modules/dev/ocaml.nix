@@ -18,6 +18,7 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
       ocaml
+      ocamlPackages.ocamlbuild
       ocamlPackages.findlib
       dune_3
       ocamlformat
