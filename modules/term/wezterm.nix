@@ -114,6 +114,8 @@ in
         },
       }
 
+      config.term = "wezterm"
+
       config.leader = { key = "t", mods = "CTRL" }
 
       config.keys = {
