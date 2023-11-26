@@ -1,15 +1,13 @@
-{ pkgs', ... }:
+{ darwinSystem }:
 
+darwinSystem "aarch64-darwin" ({ pkgs, ... }:
 let
-  system = "aarch64-darwin";
-  pkgs = pkgs'.${system};
-
   victor-mono-nf = pkgs.nerdfonts.override { fonts = [ "VictorMono" ]; };
 in
-{
-  inherit system;
+rec {
+  networking.hostName = "work-mbp";
 
-  stateVersion = "22.05";
+  home-manager.users.${user.name}.home.stateVersion = "22.05";
 
   modules.desktop.apps.amphetamine.enable = true;
   modules.desktop.apps.bitwarden.enable = true;
@@ -67,4 +65,4 @@ in
   };
 
   user.name = "sei40kr";
-}
+})

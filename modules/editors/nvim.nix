@@ -1,9 +1,8 @@
-{ config, inputs, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with lib.my;
 let
-  inherit (pkgs.stdenv.hostPlatform) system;
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.nvim;
 in
@@ -16,9 +15,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = [
-      inputs.yonvim.packages.${system}.yonvim
-      inputs.yonvim.packages.${system}.yonvim-qt
+    user.packages = with pkgs; [
+      yonvim
+      yonvim-qt
     ];
 
     env = {

@@ -17,6 +17,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
     idea-doom-emacs = {
       url = "github:sei40kr/idea-doom-emacs";
       flake = false;
@@ -58,90 +60,87 @@
     };
   };
 
-  outputs = { self, nixpkgs, darwin, fenix, swayfx, ... }@inputs:
+  outputs =
+    { self
+    , darwin
+    , fenix
+    , flake-parts
+    , home-manager
+    , nil
+    , nixpkgs
+    , swayfx
+    , ...
+    }@inputs:
     let
-      inherit (builtins) removeAttrs;
-      inherit (lib) attrValues genAttrs hasSuffix mkDefault nixosSystem
-        removeSuffix;
-      inherit (darwin.lib) darwinSystem;
-      inherit (lib.my) mapModules mapModulesRec;
-
-      lib = nixpkgs.lib.extend (lib: _: {
-        my = import ./lib { inherit inputs lib; };
-      });
-
-      systems = [ "aarch64-darwin" "x86_64-darwin" "x86_64-linux" ];
-      extraOverlays = [ fenix.overlays.default swayfx.overlays.default ];
-      pkgs' = genAttrs systems (system: import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        overlays = [ self.overlay ] ++ (attrValues self.overlays) ++ extraOverlays;
-      });
-
-      isLinux = hasSuffix "-linux";
-      isDarwin = hasSuffix "-darwin";
-      mkHost = path:
-        let
-          hostCfg = (import path) { inherit inputs lib pkgs'; };
-          inherit (hostCfg) system;
-
-          specialArgs = {
-            inherit inputs lib;
-            pkgs = pkgs'.${system};
-          };
+      inherit (flake-parts.lib) mkFlake;
+      lib = nixpkgs.lib.extend (lib: _: { my = self.lib; });
+      inherit (lib) attrValues;
+      inherit (lib.my) mapModules;
+    in
+    mkFlake { inherit inputs; } ({ withSystem, ... }:
+    let
+      nixosSystem = system: hostCfg: withSystem system ({ pkgs, ... }:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = { inherit inputs lib pkgs; };
           modules = [
-            { networking.hostName = mkDefault (removeSuffix ".nix" (baseNameOf path)); }
+            home-manager.nixosModules.home-manager
             ./modules
-            (removeAttrs hostCfg [ "system" "stateVersion" ])
+            ./nixos/modules
+            hostCfg
           ];
-        in
-        if isLinux system then
-          (nixosSystem {
-            inherit system specialArgs;
-            modules = modules ++ [
-              {
-                system = { inherit (hostCfg) stateVersion; };
-                home-manager.users.${hostCfg.user.name}.home = {
-                  inherit (hostCfg) stateVersion;
-                };
-              }
-              ./nixos/modules
-            ];
-          })
-        else if isDarwin system then
-          (darwinSystem {
-            inherit system specialArgs;
-            modules = modules ++ [
-              {
-                home-manager.users.${hostCfg.user.name}.home = {
-                  inherit (hostCfg) stateVersion;
-                };
-              }
-              ./darwin/modules
-            ];
-          })
-        else abort "[mkHost] Unknown system architecture: ${system}";
+        });
+
+      darwinSystem = system: hostCfg: withSystem system ({ pkgs, ... }:
+        darwin.lib.darwinSystem {
+          inherit system;
+          specialArgs = { inherit inputs lib pkgs; };
+          modules = [
+            home-manager.darwinModules.home-manager
+            ./modules
+            ./darwin/modules
+            hostCfg
+          ];
+        });
     in
     {
-      lib = lib.my;
+      flake = {
+        lib = import ./lib { inherit inputs lib; };
 
-      overlay = _: { system, ... }: { my = self.packages.${system}; };
+        overlays = mapModules ./overlays import;
 
-      overlays = mapModules ./overlays import;
+        nixosConfigurations = mapModules ./nixos/hosts (path: import path {
+          inherit nixosSystem;
+        });
 
-      packages = genAttrs systems (system: import ./packages {
-        pkgs = pkgs'.${system};
-        tmux-project = inputs.tmux-project.packages.${system}.default;
-      });
+        darwinConfigurations = mapModules ./darwin/hosts (path: import path {
+          inherit darwinSystem;
+        });
+      };
 
-      nixosModules = mapModulesRec ./modules import
-        // (mapModulesRec ./nixos/modules import);
-      nixosConfigurations = mapModules ./nixos/hosts mkHost;
+      systems = [ "x86_64-linux" "aarch64-darwin" ];
 
-      darwinModules = mapModulesRec ./modules import
-        // (mapModulesRec ./darwin/modules import);
-      darwinConfigurations = mapModules ./darwin/hosts mkHost;
+      perSystem = { inputs', pkgs, self', system, ... }: {
+        config._module.args.pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+          overlays = [
+            (_: _: { my = self'.packages; })
+            fenix.overlays.default
+            nil.overlays.default
+            swayfx.overlays.default
+            (_: _: { inherit (inputs'.yonvim.packages) yonvim yonvim-qt; })
+            (_: _: { wez-tmux = inputs'.wez-tmux.packages.default; })
+            (_: _: { wez-pain-control = inputs'.wez-pain-control.packages.default; })
+            (_: _: { wez-per-project-workspace = inputs'.wez-per-project-workspace.packages.default; })
+          ] ++ attrValues self.overlays;
+        };
 
-      devShells = genAttrs systems (system: import ./shells { pkgs = pkgs'.${system}; });
-    };
+        config.packages = pkgs.callPackage ./packages {
+          tmux-project = inputs'.tmux-project.packages.default;
+        };
+
+        config.devShells = pkgs.callPackage ./shells { };
+      };
+    });
 }

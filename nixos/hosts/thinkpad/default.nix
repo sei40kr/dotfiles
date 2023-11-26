@@ -1,13 +1,7 @@
-{ pkgs', ... }:
+{ nixosSystem }:
 
-let
-  system = "x86_64-linux";
-  pkgs = pkgs'.${system};
-in
-{
-  inherit system;
-
-  imports = [ ./hardware-configuration.nix ];
+nixosSystem "x86_64-linux" ({ pkgs, ... }: {
+  imports = [ ./_hardware-configuration.nix ];
 
   # Use kernel 6.1
   boot.kernelPackages = pkgs.linuxPackages_6_1;
@@ -33,7 +27,7 @@ in
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  stateVersion = "21.11";
+  system.stateVersion = "21.11";
 
 
   modules = {
@@ -147,4 +141,4 @@ in
     name = "Iosevka Nerd Font";
     size = 17;
   };
-}
+})

@@ -1,10 +1,9 @@
-{ config, inputs, lib, options, pkgs, ... }:
+{ config, lib, options, pkgs, ... }:
 
 with lib;
 with lib.my;
 {
-  imports = [ inputs.home-manager.darwinModules.home-manager ]
-    ++ (mapModulesRec' (toString ./.) import);
+  imports = mapModulesRec' (toString ./.) import;
 
   options = with types; {
     fonts.packages = mkOption {

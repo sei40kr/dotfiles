@@ -1,10 +1,11 @@
-{ inputs, lib, ... }:
+{ config, lib, ... }:
 
 with lib;
 with lib.my;
 {
-  imports = [ inputs.home-manager.nixosModules.home-manager ]
-    ++ (mapModulesRec' (toString ./.) import);
+  imports = mapModulesRec' (toString ./.) import;
 
   environment.variables.NIXPKGS_ALLOW_UNFREE = "1";
+
+  home-manager.users.${config.user.name}.home.stateVersion = config.system.stateVersion;
 }

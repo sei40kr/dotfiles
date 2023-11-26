@@ -1,35 +1,37 @@
-{ pkgs, tmux-project, ... }:
+{ callPackage, python3Packages, tmux-project, tmuxPlugins, ... }:
 
-rec {
-  tmuxPlugins = (pkgs.callPackage (import ./tmux-plugins) { });
+let
+  myTmuxPlugins = callPackage ./tmux-plugins { };
+in
+{
+  tmuxPlugins = myTmuxPlugins;
 
-  vimPlugins = pkgs.callPackage ./vim-plugins { };
+  vimPlugins = callPackage ./vim-plugins { };
 
-  amphetamine-enhancer = pkgs.callPackage ./amphetamine-enhancer { };
+  amphetamine-enhancer = callPackage ./amphetamine-enhancer { };
 
-  corretto_11 = pkgs.callPackage ./corretto_11.nix { };
+  corretto_11 = callPackage ./corretto_11.nix { };
 
-  online-judge-verify-helper =
-    pkgs.python3Packages.callPackage ./online-judge-verify-helper { };
+  online-judge-verify-helper = python3Packages.callPackage ./online-judge-verify-helper { };
 
-  sensible-browser = pkgs.callPackage ./sensible-browser { };
+  sensible-browser = callPackage ./sensible-browser { };
 
-  sensible-terminal = pkgs.callPackage ./sensible-terminal { };
+  sensible-terminal = callPackage ./sensible-terminal { };
 
-  spark-desktop = pkgs.callPackage ./spark-desktop { };
+  spark-desktop = callPackage ./spark-desktop { };
 
-  whitesur-cursors = pkgs.callPackage ./whitesur-cursors { };
+  whitesur-cursors = callPackage ./whitesur-cursors { };
 
-  whitesur-kde = pkgs.callPackage ./whitesur-kde { };
+  whitesur-kde = callPackage ./whitesur-kde { };
 
-  whitesur-wallpapers = pkgs.callPackage ./whitesur-wallpapers { };
+  whitesur-wallpapers = callPackage ./whitesur-wallpapers { };
 
-  yonmux = pkgs.callPackage ./yonmux {
+  yonmux = callPackage ./yonmux {
     inherit tmux-project;
-    tmuxPlugins = pkgs.tmuxPlugins // tmuxPlugins;
+    tmuxPlugins = tmuxPlugins // myTmuxPlugins;
   };
 
-  zsh-smart-history = pkgs.callPackage ./zsh-smart-history.nix { };
+  zsh-smart-history = callPackage ./zsh-smart-history.nix { };
 
-  zsh-tmux-man = pkgs.callPackage ./zsh-tmux-man.nix { };
+  zsh-tmux-man = callPackage ./zsh-tmux-man.nix { };
 }

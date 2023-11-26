@@ -1,10 +1,9 @@
-{ config, inputs, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 with lib.my;
 let
   inherit (pkgs) stdenv;
-  inherit (stdenv.hostPlatform) system;
   termCfg = config.modules.term;
   inherit (termCfg.colorschemes.colors) fg bg ansi cursor selection paneBorder tabBar;
   cfg = termCfg.wezterm;
@@ -14,17 +13,17 @@ let
 
     phases = [ "installPhase" ];
 
-    buildInputs = [
-      inputs.wez-tmux.packages.${system}.default
-      inputs.wez-pain-control.packages.${system}.default
-      inputs.wez-per-project-workspace.packages.${system}.default
+    buildInputs = with pkgs; [
+      wez-tmux
+      wez-pain-control
+      wez-per-project-workspace
     ];
 
     installPhase = ''
       mkdir -p $out/share/wezterm
-      cp -r ${inputs.wez-tmux.packages.${system}.default} $out/share/wezterm/wez-tmux
-      cp -r ${inputs.wez-pain-control.packages.${system}.default} $out/share/wezterm/wez-pain-control
-      cp -r ${inputs.wez-per-project-workspace.packages.${system}.default} $out/share/wezterm/wez-per-project-workspace
+      cp -r ${pkgs.wez-tmux} $out/share/wezterm/wez-tmux
+      cp -r ${pkgs.wez-pain-control} $out/share/wezterm/wez-pain-control
+      cp -r ${pkgs.wez-per-project-workspace} $out/share/wezterm/wez-per-project-workspace
     '';
   };
 in

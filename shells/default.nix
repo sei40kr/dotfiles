@@ -1,9 +1,9 @@
-{ pkgs }:
+{ callPackage }:
 
 {
-  rofi = pkgs.callPackage ./rofi.nix { };
+  rofi = callPackage ./rofi.nix { };
 
-  waybar = pkgs.callPackage ./waybar.nix { };
+  waybar = callPackage ./waybar.nix { };
 
-  yonmux = pkgs.callPackage ./yonmux.nix { };
+  yonmux = callPackage ./yonmux.nix { };
 }
