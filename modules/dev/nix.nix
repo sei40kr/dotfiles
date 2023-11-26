@@ -14,8 +14,9 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
       nix-init
-      nixpkgs-fmt
+      nix-melt
       nurl
+      nixpkgs-fmt
       inputs.nil.packages.${system}.default
     ];
   };
