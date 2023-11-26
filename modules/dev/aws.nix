@@ -18,6 +18,7 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
       awscli2
+      ssm-session-manager-plugin
       (mkIf cfg.cfn.enable python3Packages.cfn-lint)
       (mkIf cfg.cfn.enable cfn-nag)
       (mkIf cfg.copilot.enable copilot-cli)
