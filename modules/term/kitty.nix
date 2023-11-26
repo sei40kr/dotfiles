@@ -8,7 +8,7 @@ let
   termCfg = config.modules.term;
   cfg = termCfg.kitty;
   inherit (termCfg) font;
-  inherit (termCfg.colorschemes.colors) fg bg ansi bright cursor link selection
+  inherit (termCfg.colorschemes.colors) fg bg ansi cursor link selection
     paneBorder tabBar;
 in
 {

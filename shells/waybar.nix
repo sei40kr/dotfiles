@@ -1,4 +1,4 @@
-{ gnused, material-design-icons, mkShell, waybar, substituteAll, writeShellScriptBin }:
+{ gnused, material-design-icons, mkShell, waybar, writeShellScriptBin }:
 
 let waybar_dev = writeShellScriptBin "waybar" ''
   export XDG_DATA_DIRS=${material-design-icons}/share:''${XDG_DATA_DIRS:+:''${XDG_DATA_DIRS}}

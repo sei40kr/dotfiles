@@ -1,9 +1,7 @@
-{ config, inputs, lib, options, pkgs, ... }:
+{ config, lib, options, ... }:
 
 with lib;
 with lib.my;
-let inherit (pkgs.stdenv) isDarwin;
-in
 {
   options = with types; {
     user = mkOpt attrs { };

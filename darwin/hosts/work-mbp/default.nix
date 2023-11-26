@@ -1,6 +1,5 @@
-{ lib, pkgs', ... }:
+{ pkgs', ... }:
 
-with lib;
 let
   system = "aarch64-darwin";
   pkgs = pkgs'.${system};

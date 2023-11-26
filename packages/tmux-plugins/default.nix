@@ -1,6 +1,6 @@
-{ fd, fetchFromGitHub, fzf, lib, makeWrapper, tmuxPlugins, ... }:
+{ fetchFromGitHub, tmuxPlugins }:
 
-with lib; {
+{
   cleanup-unnamed-sessions = tmuxPlugins.mkTmuxPlugin {
     pluginName = "cleanup-unnamed-sessions";
     rtpFilePath = "cleanup-unnamed-sessions.tmux";

@@ -1,4 +1,4 @@
-{ self, lib, ... }:
+{ lib, ... }:
 
 let
   inherit (builtins) isNull isFloat;

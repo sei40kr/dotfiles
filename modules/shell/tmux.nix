@@ -3,7 +3,6 @@
 with lib;
 with lib.my;
 let
-  inherit (config.dotfiles) binDir;
   cfg = config.modules.shell.tmux;
 in
 {

@@ -1,7 +1,6 @@
-{ config, lib, ... }:
+{ config, ... }:
 
-with lib;
-with lib.my; {
+{
   config.home-manager.users.${config.user.name}.xdg = {
     enable = true;
     cacheHome = "${config.user.home}/.cache";

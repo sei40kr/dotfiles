@@ -3,11 +3,10 @@
 with lib;
 with lib.my;
 let
-  inherit (config.dotfiles) configDir;
   inherit (pkgs) stdenv;
   inherit (stdenv.hostPlatform) system;
   termCfg = config.modules.term;
-  inherit (termCfg.colorschemes.colors) fg bg ansi cursor link selection paneBorder tabBar;
+  inherit (termCfg.colorschemes.colors) fg bg ansi cursor selection paneBorder tabBar;
   cfg = termCfg.wezterm;
 
   plugins = stdenv.mkDerivation {

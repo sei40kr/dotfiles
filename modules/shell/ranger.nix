@@ -3,7 +3,6 @@
 with lib;
 with lib.my;
 let
-  inherit (config.dotfiles) configDir;
   cfg = config.modules.shell.ranger;
 in
 {

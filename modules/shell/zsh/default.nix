@@ -4,7 +4,6 @@ with lib;
 with lib.my;
 let
   inherit (config.dotfiles) configDir;
-  inherit (pkgs.stdenv) isDarwin;
   shellCfg = config.modules.shell;
   cfg = shellCfg.zsh;
 

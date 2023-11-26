@@ -1,7 +1,7 @@
 { lib, ... }:
 
 with builtins;
-with lib; rec {
+with lib; {
   # mapFilterAttrs ::
   #   (name -> value -> bool)
   #   (name -> value -> { name = any; value = any; })

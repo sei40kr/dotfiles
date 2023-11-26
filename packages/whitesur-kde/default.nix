@@ -1,6 +1,6 @@
 { fetchFromGitHub, lib, stdenv }:
 
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "whitesur-kde";
   version = "unstable-2023-02-21";
 

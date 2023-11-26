@@ -61,10 +61,10 @@
   outputs = { self, nixpkgs, darwin, fenix, swayfx, ... }@inputs:
     let
       inherit (builtins) removeAttrs;
-      inherit (lib) attrValues elem genAttrs hasSuffix mkDefault nixosSystem
-        optionalAttrs removeSuffix;
+      inherit (lib) attrValues genAttrs hasSuffix mkDefault nixosSystem
+        removeSuffix;
       inherit (darwin.lib) darwinSystem;
-      inherit (lib.my) mapModules mapModulesRec mapModulesRec';
+      inherit (lib.my) mapModules mapModulesRec;
 
       lib = nixpkgs.lib.extend (lib: _: {
         my = import ./lib { inherit inputs lib; };

@@ -1,6 +1,5 @@
-{ lib, pkgs', ... }:
+{ pkgs', ... }:
 
-with lib;
 let
   system = "x86_64-linux";
   pkgs = pkgs'.${system};
