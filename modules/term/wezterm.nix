@@ -122,6 +122,10 @@ in
         { key = "r", mods = "LEADER|SHIFT", action = act.ReloadConfiguration },
       }
 
+      wezterm.on("window-config-reloaded", function(window, _)
+        window:toast_notification("wezterm", "Configuration reloaded!")
+      end)
+
       require("wez-tmux").apply_to_config(config, {})
 
       require("wez-pain-control").apply_to_config(config, {})
