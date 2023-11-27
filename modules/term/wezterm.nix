@@ -113,6 +113,9 @@ in
         },
       }
 
+      config.window_background_opacity = ${toString termCfg.bgOpacity}
+      config.macos_window_background_blur = ${toString termCfg.bgBlur}
+
       config.term = "wezterm"
 
       config.leader = { key = "t", mods = "CTRL" }

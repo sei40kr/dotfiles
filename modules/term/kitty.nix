@@ -60,6 +60,8 @@ in
       ## Color scheme
       foreground           #${fg}
       background           #${bg}
+      background_opacity   ${toString termCfg.bgOpacity}
+      background_blur      ${toString termCfg.bgBlur}
       selection_foreground #${selection.fg}
       selection_background #${selection.bg}
 
