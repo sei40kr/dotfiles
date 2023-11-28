@@ -21,6 +21,7 @@ in
     # TODO stylelint-cli
     user.packages = with pkgs; [
       nodejs_20
+      nodePackages.prettier
       nodePackages.vscode-html-languageserver-bin
       nodePackages.vscode-css-languageserver-bin
       nodePackages.vue-language-server

@@ -14,9 +14,9 @@ in
     # TODO prettier-eslint-cli
     user.packages = with pkgs; [
       nodePackages.create-react-app
+      biome
       nodePackages.eslint
       nodePackages.eslint_d
-      nodePackages.prettier
       nodePackages.typescript
       nodePackages.typescript-language-server
       nodePackages.vue-language-server
