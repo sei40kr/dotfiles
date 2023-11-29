@@ -54,6 +54,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    wez-status-generator = {
+      url = "github:sei40kr/wez-status-generator";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     yonvim = {
       url = "github:sei40kr/yonvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -133,6 +138,7 @@
             (_: _: { wez-tmux = inputs'.wez-tmux.packages.default; })
             (_: _: { wez-pain-control = inputs'.wez-pain-control.packages.default; })
             (_: _: { wez-per-project-workspace = inputs'.wez-per-project-workspace.packages.default; })
+            (_: _: { wez-status-generator = inputs'.wez-status-generator.packages.default; })
           ] ++ attrValues self.overlays;
         };
 

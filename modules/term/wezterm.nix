@@ -5,7 +5,8 @@ with lib.my;
 let
   inherit (pkgs) stdenv;
   termCfg = config.modules.term;
-  inherit (termCfg.colorschemes.colors) fg bg ansi cursor selection paneBorder tabBar;
+  inherit (termCfg.colorschemes.colors) fg bg ansi cursor selection paneBorder
+    tabBar statusLine;
   cfg = termCfg.wezterm;
 
   plugins = stdenv.mkDerivation {
@@ -17,6 +18,7 @@ let
       wez-tmux
       wez-pain-control
       wez-per-project-workspace
+      wez-status-generator
     ];
 
     installPhase = ''
@@ -24,6 +26,7 @@ let
       cp -r ${pkgs.wez-tmux} $out/share/wezterm/wez-tmux
       cp -r ${pkgs.wez-pain-control} $out/share/wezterm/wez-pain-control
       cp -r ${pkgs.wez-per-project-workspace} $out/share/wezterm/wez-per-project-workspace
+      cp -r ${pkgs.wez-status-generator} $out/share/wezterm/wez-status-generator
     '';
   };
 in
@@ -39,6 +42,7 @@ in
       local wezterm = require("wezterm")
 
       local act = wezterm.action
+      local nerdfonts = wezterm.nerdfonts
 
       local config = {}
 
@@ -125,6 +129,85 @@ in
         { key = "r", mods = "LEADER|SHIFT", action = act.ReloadConfiguration },
       }
 
+      local status_generator = require("wez-status-generator")
+      wezterm.on("update-status", function(window, pane)
+        local left_status = status_generator.generate_left_status({
+          sections = {
+            {
+              components = {
+                function()
+                  return window:mux_window():get_workspace():gsub(".*/", "")
+                end,
+              },
+              foreground = "#${statusLine.sections.a.fg}",
+              background = "#${statusLine.sections.a.bg}",
+            },
+            {
+              components = {
+                function()
+                  local domain_name = pane:get_domain_name()
+
+                  if domain_name ~= "local" then
+                    return domain_name
+                  end
+                end,
+              },
+              foreground = "#${statusLine.sections.b.fg}",
+              background = "#${statusLine.sections.b.bg}",
+            },
+          },
+          separator = status_generator.separators.ROUND,
+          hide_empty_sections = false,
+        })
+        local right_status = status_generator.generate_right_status({
+          sections = {
+            {
+              components = {
+                function()
+                  local battery_info = wezterm.battery_info()[1]
+
+                  if not battery_info or battery_info.state == "Unknown" then
+                    return
+                  end
+
+                  local icon
+                  local percentage = battery_info.state_of_charge * 100
+
+                  if battery_info.state == "Charging" then
+                    icon = "md_battery_charging_" .. math.floor(percentage / 10 + 0.5) * 10
+                  elseif battery_info.state == "Discharging" then
+                    icon = "md_battery_" .. math.floor(percentage / 10 + 0.5) * 10
+                  elseif battery_info.state == "Empty" then
+                    icon = "md_battery_outline"
+                  elseif battery_info.state == "Full" then
+                    icon = "md_battery"
+                  end
+                  -- There're no icons for 0% and 100%.
+                  icon = icon:gsub("_0", "_outline"):gsub("_100", "")
+
+                  return string.format("%s %.0f%% ", nerdfonts[icon], percentage)
+                end,
+              },
+              foreground = "#${statusLine.sections.x.fg}",
+              background = "#${statusLine.sections.x.bg}",
+            },
+            {
+              components = {
+                function()
+                  return nerdfonts.md_clock_outline .. " " .. wezterm.strftime("%-m/%-d %a, %H:%M")
+                end,
+              },
+              foreground = "#${statusLine.sections.y.fg}",
+              background = "#${statusLine.sections.y.bg}",
+            },
+          },
+          separator = status_generator.separators.ROUND,
+        })
+
+        window:set_left_status(left_status .. (" "):rep(2))
+        window:set_right_status(right_status)
+      end)
+
       wezterm.on("window-config-reloaded", function(window, _)
         window:toast_notification("wezterm", "Configuration reloaded!")
       end)
@@ -157,4 +240,3 @@ in
     '';
   };
 }
-
