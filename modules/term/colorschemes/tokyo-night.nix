@@ -57,6 +57,29 @@ with lib.my; {
           fg = "545c7e";
         };
       };
+
+      statusLine = {
+        sections = rec {
+          a = {
+            fg = "15161e";
+            bg = "7aa2f7";
+          };
+
+          b = {
+            fg = "7aa2f7";
+            bg = "3b4261";
+          };
+
+          c = {
+            fg = "a9b1d6";
+            bg = "16161e";
+          };
+
+          x = c;
+          y = b;
+          z = a;
+        };
+      };
     };
 
     modules.editors.emacs.doom.theme = "doom-tokyo-night";

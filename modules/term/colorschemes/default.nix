@@ -2,6 +2,29 @@
 
 with lib;
 with lib.my;
+let
+  statusLineSectionType = with types; submodule {
+    options = {
+      fg = mkOption {
+        type = str;
+        default = null;
+        description = mdDoc ''
+          The color of the status line section foreground.
+        '';
+        visible = false;
+      };
+
+      bg = mkOption {
+        type = str;
+        default = null;
+        description = mdDoc ''
+          The color of the status line section background.
+        '';
+        visible = false;
+      };
+    };
+  };
+in
 {
   options.modules.term.colorschemes = with types; {
     active = mkOption {
@@ -304,6 +327,17 @@ with lib.my;
             visible = false;
           };
         };
+      };
+
+      statusLine = {
+        sections = genAttrs [ "a" "b" "c" "x" "y" "z" ] (name: mkOption {
+          type = statusLineSectionType;
+          default = null;
+          description = mdDoc ''
+            The colors of the status line section ${toUpper name}.
+          '';
+          visible = false;
+        });
       };
     };
   };
