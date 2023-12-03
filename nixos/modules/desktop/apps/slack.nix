@@ -11,9 +11,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    homebrew = {
-      enable = true;
-      casks = [ "slack" ];
-    };
+    user.packages = with pkgs; [ slack ];
   };
 }
