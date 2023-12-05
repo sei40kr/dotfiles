@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.azure;
+let cfg = config.modules.dev.tools.azure;
 in
 {
-  options.modules.dev.azure = {
+  options.modules.dev.tools.azure = {
     enable = mkBoolOpt false;
 
     kubelogin.enable = mkBoolOpt false;

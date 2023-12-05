@@ -72,7 +72,6 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
     };
 
     dev = {
-      aws.enable = true;
       go.enable = true;
       java.enable = true;
       javascript.enable = true;
@@ -83,6 +82,9 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
       shell.enable = true;
       sql.enable = true;
       web.enable = true;
+      tools = {
+        aws.enable = true;
+      };
     };
 
     editors = {
