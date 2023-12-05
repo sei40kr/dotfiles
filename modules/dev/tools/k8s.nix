@@ -8,6 +8,8 @@ in
   options.modules.dev.tools.k8s = {
     enable = mkBoolOpt false;
 
+    helm.enable = mkBoolOpt false;
+
     kind.enable = mkBoolOpt false;
   };
 
@@ -22,6 +24,7 @@ in
       kubectl
       kubectx
       stern
+      (mkIf cfg.helm.enable kubernetes-helm)
       (mkIf cfg.kind.enable kind)
     ];
   };
