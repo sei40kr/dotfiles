@@ -8,7 +8,7 @@ let
   fcitx5Package = config.i18n.inputMethod.package;
 in
 {
-  config = mkIf (cfg.enable && config.modules.desktop.enable) {
+  config = mkIf (cfg.enable && config.modules.desktop.de.enable) {
     i18n.inputMethod = {
       enabled = "fcitx5";
       fcitx5 = {
@@ -93,8 +93,6 @@ in
     systemd.user.services.fcitx5-daemon = {
       description = "Fcitx5 input method editor";
       documentation = [ "https://fcitx-im.org" ];
-      partOf = [ "autostart.target" ];
-      wantedBy = [ "autostart.target" ];
       aliases = [ "input-method.service" ];
       serviceConfig = {
         ExecStart = "${fcitx5Package}/bin/fcitx5";

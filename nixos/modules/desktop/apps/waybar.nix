@@ -6,11 +6,12 @@ with lib.my;
 let
   inherit (config.dotfiles) configDir;
   desktopCfg = config.modules.desktop;
+  wmCfg = desktopCfg.wm;
   cfg = desktopCfg.apps.waybar;
 
   style_css = pkgs.substituteAll {
     src = ../../../../config/waybar/style.css;
-    sidePadding = desktopCfg.gaps.outer;
+    sidePadding = wmCfg.gaps.outer;
   };
 in
 {
@@ -31,8 +32,6 @@ in
     systemd.user.services.waybar = {
       description = "Highly customizable Wayland bar for Sway and Wlroots based compositors";
       documentation = [ "man:waybar(1)" "https://github.com/Alexays/Waybar/wiki" ];
-      wantedBy = [ "autostart.target" ];
-      partOf = [ "autostart.target" ];
       serviceConfig = {
         ExecStart = "${pkgs.waybar}/bin/waybar";
         ExecReload = "${pkgs.coreutils}/bin/kill -SIGUSR2 $MAINPID";

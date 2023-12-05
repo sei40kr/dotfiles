@@ -14,7 +14,7 @@ in
   };
 
   config = mkIf (themeCfg.active == "whitesur") {
-    modules.desktop.background.image = {
+    modules.desktop.de.background.image = {
       path = "${pkgs.my.whitesur-wallpapers}/share/backgrounds/WhiteSur-${cfg.variant}.png";
       mode = "fit";
     };

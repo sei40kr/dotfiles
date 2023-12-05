@@ -37,7 +37,7 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
   modules = {
     desktop = {
       gdm.enable = true;
-      sway.enable = true;
+      wm.sway.enable = true;
       theme.active = "whitesur";
 
       apps = {

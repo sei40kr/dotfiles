@@ -5,8 +5,8 @@ with lib.my;
 let
   inherit (config.dotfiles) configDir;
   desktopCfg = config.modules.desktop;
+  deCfg = desktopCfg.de;
   cfg = desktopCfg.apps.rofi;
-  inherit (desktopCfg) fonts;
 in
 {
   options.modules.desktop.apps.rofi = {
@@ -20,8 +20,8 @@ in
       "rofi/config.rasi".source = "${configDir}/rofi/rofi.rasi";
       "rofi/themes/mytheme.rasi".source = pkgs.substituteAll {
         src = ../../../../config/rofi/themes/mytheme.rasi;
-        fontName = fonts.ui.name;
-        fontSize = toString fonts.ui.size;
+        fontName = deCfg.defaultFonts.ui.name;
+        fontSize = toString deCfg.defaultFonts.ui.size;
       };
     };
   };
