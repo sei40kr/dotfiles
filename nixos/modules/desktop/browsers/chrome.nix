@@ -91,7 +91,7 @@ in
         "jaikhcpoplnhinlglnkmihfdlbamhgig" # アマゾン注文履歴フィルタ
       ] ++ optionals config.modules.desktop.apps.bitwarden.enable [
         "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
-      ] ++ optionals config.modules.dev.web.enable [
+      ] ++ optionals config.modules.dev.lang.web.enable [
         "pbjjkligggfmakdaogkfomddhfmpjeni" # Accessibility Insights for Web
         "blipmdconlkpinefehnmjammfjpmpbjk" # Lighthouse
         "fmkadmapgofadopljbjfkapdkoienihi" # React Developer Tools

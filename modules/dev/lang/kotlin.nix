@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.kotlin;
+let cfg = config.modules.dev.lang.kotlin;
 in
 {
-  options.modules.dev.kotlin = {
+  options.modules.dev.lang.kotlin = {
     enable = mkBoolOpt false;
   };
 

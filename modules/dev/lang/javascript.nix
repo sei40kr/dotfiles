@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.javascript;
+let cfg = config.modules.dev.lang.javascript;
 in
 {
-  options.modules.dev.javascript = {
+  options.modules.dev.lang.javascript = {
     enable = mkBoolOpt false;
   };
 

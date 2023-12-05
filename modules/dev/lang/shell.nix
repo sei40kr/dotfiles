@@ -2,18 +2,18 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.lua;
+let cfg = config.modules.dev.lang.shell;
 in
 {
-  options.modules.dev.lua = {
+  options.modules.dev.lang.shell = {
     enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      lua
-      stylua
-      sumneko-lua-language-server
+      nodePackages.bash-language-server
+      shellcheck
+      shfmt
     ];
   };
 }

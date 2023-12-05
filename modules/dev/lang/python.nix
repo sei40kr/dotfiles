@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.python;
+let cfg = config.modules.dev.lang.python;
 in
 {
-  options.modules.dev.python = {
+  options.modules.dev.lang.python = {
     enable = mkBoolOpt false;
 
     enablePoetry = mkBoolOpt false;

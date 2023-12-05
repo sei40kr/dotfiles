@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.haskell;
+let cfg = config.modules.dev.lang.haskell;
 in
 {
-  options.modules.dev.haskell = {
+  options.modules.dev.lang.haskell = {
     enable = mkBoolOpt false;
   };
 

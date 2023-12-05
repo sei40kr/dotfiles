@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.ocaml;
+let cfg = config.modules.dev.lang.ocaml;
 in
 {
-  options.modules.dev.ocaml = {
+  options.modules.dev.lang.ocaml = {
     enable = mkOption {
       type = types.bool;
       default = false;

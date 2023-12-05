@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.cc;
+let cfg = config.modules.dev.lang.cc;
 in
 {
-  options.modules.dev.cc = {
+  options.modules.dev.lang.cc = {
     enable = mkBoolOpt false;
   };
 

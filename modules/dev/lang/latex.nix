@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.latex;
+let cfg = config.modules.dev.lang.latex;
 in
 {
-  options.modules.dev.latex = {
+  options.modules.dev.lang.latex = {
     enable = mkBoolOpt false;
   };
 

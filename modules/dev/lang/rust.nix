@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.rust;
+let cfg = config.modules.dev.lang.rust;
 in
 {
-  options.modules.dev.rust = {
+  options.modules.dev.lang.rust = {
     enable = mkBoolOpt false;
   };
 

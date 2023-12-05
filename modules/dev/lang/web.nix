@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.web;
+let cfg = config.modules.dev.lang.web;
 in
 {
-  options.modules.dev.web = {
+  options.modules.dev.lang.web = {
     enable = mkBoolOpt false;
 
     bun.enable = mkOption {

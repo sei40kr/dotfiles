@@ -76,29 +76,31 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
     };
 
     dev = {
-      cc.enable = true;
-      go.enable = true;
-      java.enable = true;
-      lua.enable = true;
-      r.enable = true;
-      nix.enable = true;
-      python = {
-        enable = true;
-        enablePoetry = true;
+      lang = {
+        cc.enable = true;
+        go.enable = true;
+        java.enable = true;
+        lua.enable = true;
+        r.enable = true;
+        nix.enable = true;
+        python = {
+          enable = true;
+          enablePoetry = true;
+        };
+        rust.enable = true;
+        scala = {
+          enable = true;
+          bloop.enable = true;
+        };
+        shell.enable = true;
+        sql.enable = true;
+        web.enable = true;
       };
-      rust.enable = true;
-      scala = {
-        enable = true;
-        bloop.enable = true;
-      };
-      shell.enable = true;
-      sql.enable = true;
       tools = {
         ansible.enable = true;
         aws.enable = true;
         jupyter.enable = true;
       };
-      web.enable = true;
     };
 
     editors = {

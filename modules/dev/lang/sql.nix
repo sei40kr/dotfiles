@@ -4,10 +4,10 @@ with lib;
 with lib.my;
 let
   inherit (config.dotfiles) configDir;
-  cfg = config.modules.dev.sql;
+  cfg = config.modules.dev.lang.sql;
 in
 {
-  options.modules.dev.sql = {
+  options.modules.dev.lang.sql = {
     enable = mkBoolOpt false;
   };
 

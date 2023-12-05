@@ -2,21 +2,18 @@
 
 with lib;
 with lib.my;
-let
-  cfg = config.modules.dev.nix;
+let cfg = config.modules.dev.lang.lua;
 in
 {
-  options.modules.dev.nix = {
+  options.modules.dev.lang.lua = {
     enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      nix-init
-      nix-melt
-      nurl
-      nixpkgs-fmt
-      nil
+      lua
+      stylua
+      sumneko-lua-language-server
     ];
   };
 }

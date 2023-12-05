@@ -3,7 +3,7 @@
 with lib;
 with lib.my;
 let
-  cfg = config.modules.dev.r;
+  cfg = config.modules.dev.lang.r;
 
   package = with pkgs;
     rWrapper.override {
@@ -11,7 +11,7 @@ let
     };
 in
 {
-  options.modules.dev.r = {
+  options.modules.dev.lang.r = {
     enable = mkBoolOpt false;
   };
 

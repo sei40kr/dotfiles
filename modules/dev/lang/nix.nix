@@ -2,18 +2,21 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.shell;
+let
+  cfg = config.modules.dev.lang.nix;
 in
 {
-  options.modules.dev.shell = {
+  options.modules.dev.lang.nix = {
     enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      nodePackages.bash-language-server
-      shellcheck
-      shfmt
+      nix-init
+      nix-melt
+      nurl
+      nixpkgs-fmt
+      nil
     ];
   };
 }

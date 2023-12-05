@@ -2,16 +2,16 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.ruby;
+let cfg = config.modules.dev.lang.ruby;
 in
 {
-  options.modules.dev.ruby = {
+  options.modules.dev.lang.ruby = {
     enable = mkBoolOpt false;
 
     rails.enable = mkBoolOpt false;
   };
 
-  config = mkIf config.modules.dev.ruby.enable {
+  config = mkIf cfg.enable {
     user.packages = with pkgs; ([ ruby rubocop solargraph ]
       ++ optionals cfg.rails.enable [ rubyPackages.rails ]);
 

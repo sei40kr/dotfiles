@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.scala;
+let cfg = config.modules.dev.lang.scala;
 in
 {
-  options.modules.dev.scala = {
+  options.modules.dev.lang.scala = {
     enable = mkBoolOpt false;
 
     bloop.enable = mkBoolOpt false;

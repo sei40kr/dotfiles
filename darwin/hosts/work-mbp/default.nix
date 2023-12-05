@@ -21,13 +21,13 @@ rec {
   modules.desktop.apps.todoist.enable = true;
   modules.desktop.apps.zoom.enable = true;
 
-  modules.dev.javascript.enable = true;
-  modules.dev.nix.enable = true;
-  modules.dev.ruby = {
+  modules.dev.lang.javascript.enable = true;
+  modules.dev.lang.nix.enable = true;
+  modules.dev.lang.ruby = {
     enable = true;
     rails.enable = true;
   };
-  modules.dev.web.enable = true;
+  modules.dev.lang.web.enable = true;
   modules.dev.tools.mutagen = {
     enable = true;
     compose.enable = true;

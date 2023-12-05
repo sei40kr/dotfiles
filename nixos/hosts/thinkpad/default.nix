@@ -72,16 +72,18 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
     };
 
     dev = {
-      go.enable = true;
-      java.enable = true;
-      javascript.enable = true;
-      kotlin.enable = true;
-      lua.enable = true;
-      nix.enable = true;
-      rust.enable = true;
-      shell.enable = true;
-      sql.enable = true;
-      web.enable = true;
+      lang = {
+        go.enable = true;
+        java.enable = true;
+        javascript.enable = true;
+        kotlin.enable = true;
+        lua.enable = true;
+        nix.enable = true;
+        rust.enable = true;
+        shell.enable = true;
+        sql.enable = true;
+        web.enable = true;
+      };
       tools = {
         aws.enable = true;
       };

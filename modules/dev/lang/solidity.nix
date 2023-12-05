@@ -2,10 +2,10 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.solidity;
+let cfg = config.modules.dev.lang.solidity;
 in
 {
-  options.modules.dev.solidity = {
+  options.modules.dev.lang.solidity = {
     enable = mkBoolOpt false;
   };
 
