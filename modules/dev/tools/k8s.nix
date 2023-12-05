@@ -9,23 +9,14 @@ in
     enable = mkBoolOpt false;
 
     helm.enable = mkBoolOpt false;
-
-    kind.enable = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
-    assertions = [{
-      assertion = !cfg.kind.enable || config.modules.services.docker.enable;
-      message =
-        "The k8s module requires 'modules.desktop.docker.enable = true'.";
-    }];
-
     user.packages = with pkgs; [
       kubectl
       kubectx
       stern
       (mkIf cfg.helm.enable kubernetes-helm)
-      (mkIf cfg.kind.enable kind)
     ];
   };
 }
