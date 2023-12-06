@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "nixpkgs/master";
 
-    darwin = {
+    nix-darwin = {
       url = "github:LnL7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -62,7 +62,7 @@
 
   outputs =
     { self
-    , darwin
+    , nix-darwin
     , fenix
     , flake-parts
     , home-manager
@@ -92,7 +92,7 @@
         });
 
       darwinSystem = system: hostCfg: withSystem system ({ pkgs, ... }:
-        darwin.lib.darwinSystem {
+        nix-darwin.lib.darwinSystem {
           inherit system;
           specialArgs = { inherit inputs lib pkgs; };
           modules = [
