@@ -13,6 +13,7 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
   time.timeZone = "Asia/Tokyo";
 
   networking.hostName = "torrent"; # Define your hostname.
+  networking.networkmanager.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   networking.interfaces.enp0s31f6.useDHCP = true;
@@ -36,21 +37,13 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
   modules = {
     desktop = {
       gdm.enable = true;
-      gnome.enable = true;
       sway.enable = true;
       theme.active = "whitesur";
 
       apps = {
         bitwarden.enable = true;
         discord.enable = true;
-        gnome = {
-          calendar.enable = true;
-          font-viewer.enable = true;
-          geary.enable = true;
-          nautilus.enable = true;
-          pomodoro.enable = true;
-          weather.enable = true;
-        };
+        gnome.pomodoro.enable = true;
         slack.enable = true;
         zeal.enable = true;
       };
@@ -70,7 +63,6 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
 
       media = {
         documents.ebook.enable = true;
-        gnome.evince.enable = true;
         video.vlc.enable = true;
       };
     };
@@ -125,9 +117,6 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
         compose.enable = true;
       };
       # flexget.enable = true;
-      gnome = {
-        sushi.enable = true;
-      };
       google-drive.enable = true;
       jellyfin = {
         enable = true;

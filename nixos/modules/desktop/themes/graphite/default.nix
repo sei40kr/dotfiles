@@ -27,13 +27,6 @@ in
       mode = "fit";
     };
 
-    # TODO: install Graphite cursor theme
-
-    modules.desktop.gnome.shell.theme = {
-      package = gtkTheme;
-      name = "Graphite-${Color}";
-    };
-
     # TODO: support hi-dpi theme variants
     modules.desktop.gtk.theme = {
       package = gtkTheme;

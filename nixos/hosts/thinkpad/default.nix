@@ -13,6 +13,7 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
   time.timeZone = "Asia/Tokyo";
 
   networking.hostName = "thinkpad"; # Define your hostname.
+  networking.networkmanager.enable = true;
 
   # Enable CUPS to print documents
   services.printing.enable = true;
@@ -33,7 +34,6 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
   modules = {
     desktop = {
       gdm.enable = true;
-      gnome.enable = true;
       theme.active = "whitesur";
 
       apps = {
@@ -41,8 +41,6 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
         discord.enable = true;
         dunst.enable = true;
         gnome = {
-          font-viewer.enable = true;
-          nautilus.enable = true;
           pomodoro.enable = true;
         };
         qbittorrent.enable = true;
@@ -66,7 +64,6 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
 
       media = {
         documents.ebook.enable = true;
-        gnome.evince.enable = true;
         video.vlc.enable = true;
       };
     };
@@ -106,7 +103,6 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
     i18n.japanese.enable = true;
 
     services = {
-      gnome = { sushi.enable = true; };
       ssh.enable = true;
     };
 

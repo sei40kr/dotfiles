@@ -49,7 +49,6 @@ in
 
     # NOTE: Somehow these services increase the startup time of Waybar.
     #       See Alexays/Waybar#1266
-    systemd.user.services.xdg-desktop-portal-gnome.enable = false;
     systemd.user.services.xdg-desktop-portal-gtk.enable = false;
     systemd.user.services.xdg-desktop-portal-rewrite-launchers.enable = false;
   };

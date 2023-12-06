@@ -19,17 +19,6 @@ in
       mode = "fit";
     };
 
-    modules.desktop.gnome = {
-      cursor.theme = {
-        package = pkgs.my.whitesur-cursors;
-        name = "WhiteSur-cursors";
-      };
-      shell.theme = {
-        package = pkgs.whitesur-gtk-theme;
-        name = "WhiteSur-${Variant}";
-      };
-    };
-
     modules.desktop.gtk = {
       theme = {
         package = pkgs.whitesur-gtk-theme;

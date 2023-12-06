@@ -59,25 +59,6 @@
 
 ## Things to Do Manually
 
-### NixOS
-
-#### Enable GNOME Extensions
-
-The Flake installs GNOME extensions automatically, but you need to enable them manually.
-
-The following extensions are installed:
-
-- [Dash to Dock](https://extensions.gnome.org/extension/307/dash-to-dock/)
-- [Input Method Panel](https://extensions.gnome.org/extension/261/kimpanel/)
-- [OpenWeather](https://extensions.gnome.org/extension/750/openweather/)
-- [Place Status Indicator](https://extensions.gnome.org/extension/8/places-status-indicator/)
-- Pomodoro
-- [Removable Drive Menu](https://extensions.gnome.org/extension/7/removable-drive-menu/)
-- [Search Light](https://extensions.gnome.org/extension/5489/search-light/)
-- [Useless Gaps](https://extensions.gnome.org/extension/4684/useless-gaps/)
-- [User Themes](https://extensions.gnome.org/extension/19/user-themes/)
-- [Workspace Indicator](https://extensions.gnome.org/extension/21/workspace-indicator/)
-
 ### Darwin
 
 #### Install Homebrew
