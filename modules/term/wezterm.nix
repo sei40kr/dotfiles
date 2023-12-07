@@ -59,6 +59,8 @@ in
       config.freetype_load_target = "HorizontalLcd"
       config.warn_about_missing_glyphs = false
 
+      config.hide_mouse_cursor_when_typing = false
+
       config.use_fancy_tab_bar = false
 
       config.set_environment_variables = {
