@@ -5,7 +5,7 @@ with lib.my;
 {
   options.modules.term.colorschemes = with types; {
     active = mkOption {
-      type = enum [ "doom-one" "tokyo-night" ];
+      type = enum [ "tokyo-night" ];
       default = null;
       description = lib.mdDoc ''
         The name of the active colorscheme.
