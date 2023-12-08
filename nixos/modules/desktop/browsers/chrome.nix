@@ -23,7 +23,6 @@ in
       ExtensionInstallForcelist = [
         "cofdbpoegempjloogbagkncekinflcnj" # DeepL翻訳
         "neebplgakaahbhdphmkckjjcegoiijjo" # Keepa
-        "difoiogjjojoaoomphldepapgpbgkhkb" # Sider
         "jaikhcpoplnhinlglnkmihfdlbamhgig" # アマゾン注文履歴フィルタ
       ] ++ optionals config.modules.desktop.apps.bitwarden.enable [
         "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
