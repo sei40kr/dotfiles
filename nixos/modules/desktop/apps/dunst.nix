@@ -1,17 +1,23 @@
 { config, lib, pkgs, ... }:
 
-with lib;
-with lib.my;
-let inherit (config.dotfiles) configDir;
+let
+  inherit (lib) mdDoc mkEnableOption mkIf mkOption types;
+  inherit (types) package;
+  inherit (config.dotfiles) configDir;
   cfg = config.modules.desktop.apps.dunst;
 in
 {
   options.modules.desktop.apps.dunst = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption (mdDoc ''
+      Whether to enable Dunst.
+    '');
 
     package = mkOption {
+      type = package;
       default = pkgs.dunst;
-      type = types.package;
+      description = mdDoc ''
+        The package to use for Dunst.
+      '';
       visible = false;
     };
   };
