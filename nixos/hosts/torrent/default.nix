@@ -49,16 +49,7 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
       };
 
       browsers = {
-        chrome = {
-          enable = true;
-          webapps = {
-            gmail.enable = true;
-            google-calendar.enable = true;
-            google-maps.enable = true;
-            google-photos.enable = true;
-            youtube-music.enable = true;
-          };
-        };
+        chrome.enable = true;
       };
 
       media = {
