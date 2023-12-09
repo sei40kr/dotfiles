@@ -166,12 +166,13 @@ in
             {
               components = {
                 function()
-                  local battery_info = wezterm.battery_info()[1]
+                  local ok, battery_infos = pcall(wezterm.battery_info)
 
-                  if not battery_info or battery_info.state == "Unknown" then
+                  if not ok or #battery_infos <= 0 or battery_infos[1].state == "Unknown" then
                     return
                   end
 
+                  local battery_info = battery_infos[1]
                   local icon
                   local percentage = battery_info.state_of_charge * 100
 
