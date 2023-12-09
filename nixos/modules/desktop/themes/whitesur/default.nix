@@ -16,7 +16,7 @@ in
   config = mkIf (themeCfg.active == "whitesur") {
     modules.desktop.de.background.image = {
       path = "${pkgs.my.whitesur-wallpapers}/share/backgrounds/WhiteSur-${cfg.variant}.png";
-      mode = "fit";
+      mode = "fill";
     };
 
     modules.desktop.apps.dunst = {
