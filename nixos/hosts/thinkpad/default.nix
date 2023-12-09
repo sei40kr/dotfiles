@@ -31,105 +31,83 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
   system.stateVersion = "21.11";
 
 
-  modules = {
-    desktop = {
-      gdm.enable = true;
-      theme.active = "whitesur";
-
-      apps = {
-        bitwarden.enable = true;
-        discord.enable = true;
-        dunst.enable = true;
-        gnome = {
-          pomodoro.enable = true;
-        };
-        qbittorrent.enable = true;
-        slack.enable = true;
-        zeal.enable = true;
-        zoom.enable = true;
-      };
-
-      browsers = {
-        chrome.enable = true;
-      };
-
-      media = {
-        documents.ebook.enable = true;
-        video.vlc.enable = true;
-      };
-    };
-
-    dev = {
-      lang = {
-        go.enable = true;
-        java.enable = true;
-        javascript.enable = true;
-        kotlin.enable = true;
-        lua.enable = true;
-        nix.enable = true;
-        rust.enable = true;
-        shell.enable = true;
-        sql.enable = true;
-        web.enable = true;
-      };
-      tools = {
-        aws.enable = true;
-      };
-    };
-
-    editors = {
-      datagrip.enable = true;
-      dataspell.enable = true;
-      emacs = {
-        enable = true;
-        doom.enable = true;
-      };
-      idea.enable = true;
-      nvim = {
-        enable = true;
-        manpager.enable = true;
-      };
-    };
-
-    i18n.japanese.enable = true;
-
-    services = {
-      ssh.enable = true;
-    };
-
-    shell = {
-      apps = {
-        neofetch.enable = true;
-      };
-      bottom.enable = true;
-      ghq.enable = true;
-      strace.enable = true;
-      tcpdump.enable = true;
-      git.enable = true;
-      hugo.enable = true;
-      oj.enable = true;
-      tmux = {
-        enable = true;
-        autoRun = true;
-      };
-      zsh.enable = true;
-    };
-
-    term.kitty.enable = true;
-  };
-
   user.name = "sei40kr";
 
-  modules.term.colorschemes.active = "tokyo-night";
+  modules.desktop.gdm.enable = true;
+  modules.desktop.theme.active = "whitesur";
+
+  modules.desktop.apps.bitwarden.enable = true;
+  modules.desktop.apps.discord.enable = true;
+  modules.desktop.apps.dunst.enable = true;
+  modules.desktop.apps.gnome.pomodoro.enable = true;
+  modules.desktop.apps.qbittorrent.enable = true;
+  modules.desktop.apps.slack.enable = true;
+  modules.desktop.apps.zeal.enable = true;
+  modules.desktop.apps.zoom.enable = true;
+
+  modules.desktop.browsers.chrome.enable = true;
+
+  modules.desktop.media.documents.ebook.enable = true;
+  modules.desktop.media.video.vlc.enable = true;
+
+  modules.dev.lang.go.enable = true;
+  modules.dev.lang.java.enable = true;
+  modules.dev.lang.javascript.enable = true;
+  modules.dev.lang.kotlin.enable = true;
+  modules.dev.lang.lua.enable = true;
+  modules.dev.lang.nix.enable = true;
+  modules.dev.lang.rust.enable = true;
+  modules.dev.lang.shell.enable = true;
+  modules.dev.lang.sql.enable = true;
+  modules.dev.lang.web.enable = true;
+  modules.dev.tools.aws.enable = true;
+
+  modules.editors.fonts.code = {
+    package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
+    name = "Iosevka Nerd Font";
+    size = 17;
+  };
+  modules.editors.datagrip.enable = true;
+  modules.editors.dataspell.enable = true;
+  modules.editors.emacs = {
+    enable = true;
+    doom.enable = true;
+  };
+  modules.editors.idea.enable = true;
+  modules.editors.nvim = {
+    enable = true;
+    manpager.enable = true;
+  };
+
+  modules.i18n.japanese.enable = true;
+
+  modules.services.docker.enable = true;
+  modules.services.k8s = {
+    roles = [ "master" "node" ];
+    easyCerts = true;
+    masterHostname = "localhost";
+  };
+  modules.services.ssh.enable = true;
+
+  modules.shell.apps.neofetch.enable = true;
+  modules.shell.bottom.enable = true;
+  modules.shell.ghq.enable = true;
+  modules.shell.strace.enable = true;
+  modules.shell.tcpdump.enable = true;
+  modules.shell.git.enable = true;
+  modules.shell.hugo.enable = true;
+  modules.shell.oj.enable = true;
+  modules.shell.tmux = {
+    enable = true;
+    autoRun = true;
+  };
+  modules.shell.zsh.enable = true;
 
   modules.term.font = {
     package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
     name = "Iosevka Nerd Font";
     size = 17;
   };
-  modules.editors.fonts.code = {
-    package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
-    name = "Iosevka Nerd Font";
-    size = 17;
-  };
+  modules.term.colorschemes.active = "tokyo-night";
+  modules.term.kitty.enable = true;
 })
