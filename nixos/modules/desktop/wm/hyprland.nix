@@ -110,18 +110,22 @@ in
 
       env = WLR_NO_HARDWARE_CURSORS,1
 
-      exec-once = hyprpaper &
+      ${optionalString (deCfg.background.image != null) ''
+        exec-once = hyprpaper &
+      ''}
       exec = systemctl --user start swayidle.service &
       exec = systemctl --user start waybar.service &
       ${optionalString config.modules.i18n.japanese.enable ''
         exec = systemctl --user start fcitx5-daemon.service &
       ''}
     '';
-    home.configFile."hypr/hyprpaper.conf".text = ''
-      preload = ${deCfg.background.image.path}
-      wallpaper = ,${optionalString (deCfg.background.image.mode == "fit") "contain:"}${deCfg.background.image.path}
-      ipc = off
-    '';
+    home.configFile."hypr/hyprpaper.conf" = mkIf (deCfg.background.image != null) {
+      text = ''
+        preload = ${deCfg.background.image.path}
+        wallpaper = ,${optionalString (deCfg.background.image.mode == "fit") "contain:"}${deCfg.background.image.path}
+        ipc = off
+      '';
+    };
 
     modules.desktop.de.enable = true;
     modules.desktop.de.wayland = true;
