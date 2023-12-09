@@ -24,7 +24,7 @@ in
   config = mkIf (themeCfg.active == "graphite") {
     modules.desktop.de.background.image = {
       path = "${gtkTheme}/share/backgrounds/wave-${Color}.png";
-      mode = "fit";
+      mode = "fill";
     };
 
     modules.desktop.apps.dunst = {
