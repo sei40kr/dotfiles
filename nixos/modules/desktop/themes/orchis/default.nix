@@ -14,6 +14,11 @@ in
       names = [ "Roboto" "Noto Sans Mono" "Noto Sans Mono CJK JP" ];
     };
 
+    modules.desktop.de.background.image = {
+      path = "${orchis-theme}/share/backgrounds/4k.jpg";
+      mode = "fill";
+    };
+
     modules.desktop.apps.dunst = {
       padding = {
         x = 18;
