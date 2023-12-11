@@ -20,7 +20,7 @@ configuration {
 /*      drun-match-fields: "name,generic,exec,categories,keywords";*/
 /*      drun-categories: ;*/
 /*      drun-show-actions: false;*/
-  drun-display-format: "<span size='14pt'>{name}</span>\n<span size='11pt'>{comment}</span>";
+  drun-display-format: "{name} [<span size='small'>({generic})</span>]";
 /*      drun-url-launcher: "xdg-open";*/
 /*      disable-history: false;*/
 /*      ignored-prefixes: "";*/
@@ -30,7 +30,7 @@ configuration {
 /*      cycle: true;*/
 /*      sidebar-mode: false;*/
 /*      hover-select: false;*/
-  eh: 2;
+/*      eh: 1;*/
 /*      auto-select: false;*/
 /*      parse-hosts: false;*/
 /*      parse-known-hosts: true;*/

@@ -41,6 +41,56 @@ in
       };
     };
 
+    modules.desktop.apps.rofi = {
+      window = {
+        cornerRadius = 12;
+
+        bg = if cfg.variant == "light" then "#f5f5f5" else "#333333";
+        fg = if cfg.variant == "light" then "#363636" else "#dadada";
+      };
+
+      input = {
+        padding = {
+          x = 18;
+          y = 12;
+        };
+
+        prompt = {
+          margin.x = 12;
+          fg = if cfg.variant == "light" then "#565656" else "#999999";
+        };
+
+        info = {
+          margin.x = 12;
+          fg = if cfg.variant == "light" then "#565656" else "#999999";
+        };
+      };
+
+      item = {
+        iconSize = 24;
+
+        padding = {
+          x = 18;
+          y = 8;
+          textIcon = 12;
+        };
+
+        normal.highlight = {
+          fg = "#0860f2";
+          fontStyles = [ "bold" ];
+        };
+
+        selected = {
+          bg = "#0860f2";
+          fg = "#ffffff";
+          highlight = {
+            fg = "#ffffff";
+            fontStyles = [ "bold" ];
+          };
+        };
+      };
+    };
+
     modules.desktop.gtk = {
       theme = {
         package = pkgs.whitesur-gtk-theme;
