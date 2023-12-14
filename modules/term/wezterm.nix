@@ -158,7 +158,7 @@ in
               background = "#${statusLine.sections.b.bg}",
             },
           },
-          separator = status_generator.separators.ROUND,
+          separator = status_generator.separators.SLANT_REVERSE,
           hide_empty_sections = false,
         })
         local right_status = status_generator.generate_right_status({
@@ -204,7 +204,7 @@ in
               background = "#${statusLine.sections.y.bg}",
             },
           },
-          separator = status_generator.separators.ROUND,
+          separator = status_generator.separators.SLANT_REVERSE,
         })
 
         window:set_left_status(left_status .. (" "):rep(2))
