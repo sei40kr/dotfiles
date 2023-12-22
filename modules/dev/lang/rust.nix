@@ -19,7 +19,8 @@ in
         "rustc"
         "rustfmt"
       ])
-
+      pkg-config
+      openssl
       (mkIf config.modules.dev.tools.aws.enable cargo-lambda)
     ];
   };
