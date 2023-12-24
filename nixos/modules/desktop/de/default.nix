@@ -277,6 +277,11 @@ in
   };
 
   config = mkIf cfg.enable {
+    user.packages = with pkgs; [
+      (mkIf (!cfg.wayland) xclip)
+      (mkIf cfg.wayland wl-clipboard)
+    ];
+
     fonts.packages = [
       (mkIf (cfg.defaultFonts.ui.package != null) cfg.defaultFonts.ui.package)
       (mkIf (cfg.defaultFonts.fixed.package != null) cfg.defaultFonts.fixed.package)
