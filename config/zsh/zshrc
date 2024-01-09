@@ -35,6 +35,10 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 zinit ice trigger-load '!extract;!x' id-as'OMZP::extract'
 zinit snippet '@oh_my_zsh@/share/oh-my-zsh/plugins/extract/extract.plugin.zsh'
 
+zinit ice ver'66f6ba7549b9973eb57bfbc188e29d2f73bf31bb' trigger-load '!cd-gitroot'
+zinit light 'mollifier/cd-gitroot'
+alias U='cd-gitroot'
+
 if [[ "$OSTYPE" == darwin* ]]; then
   zinit ice id-as'PZT::modules--gnu-utility'
   zinit light '@zsh_prezto@/modules/gnu-utility'
