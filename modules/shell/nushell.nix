@@ -44,6 +44,7 @@ in
 
     home-manager.users.${config.user.name}.programs.nushell = {
       enable = true;
+      package = pkgs.unstable.nushell;
       extraConfig = ''
         $env.config = {
           show_banner: false
