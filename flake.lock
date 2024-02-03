@@ -295,6 +295,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1706683685,
+        "narHash": "sha256-FtPPshEpxH/ewBOsdKBNhlsL2MLEFv1hEnQ19f/bFsQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "5ad9903c16126a7d949101687af0aa589b1d7d3d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "fenix": "fenix",
@@ -304,6 +320,7 @@
         "nil": "nil",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "swayfx": "swayfx",
         "tmux-project": "tmux-project",
         "wez-pain-control": "wez-pain-control",
@@ -563,11 +580,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1703431965,
-        "narHash": "sha256-3KWSLHOMb9+l/2AegExmxc3Ep8JuGbR0mvv7jry47qs=",
+        "lastModified": 1706436303,
+        "narHash": "sha256-66sWPLNXgVWEA8T8KZ2ax6IyWsV0aP/2skJr9zlA4gg=",
         "owner": "sei40kr",
         "repo": "yonvim",
-        "rev": "b0f1ede8cb96ef4e435c5d65d4fa632f2c1fef59",
+        "rev": "5ccd00611573a3291304666902746e7d08b53d21",
         "type": "github"
       },
       "original": {

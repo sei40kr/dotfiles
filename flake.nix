@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/23.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin/master";
@@ -73,6 +74,7 @@
     , home-manager
     , nil
     , nixpkgs
+    , nixpkgs-unstable
     , swayfx
     , ...
     }@inputs:
@@ -126,21 +128,32 @@
       systems = [ "x86_64-linux" "aarch64-darwin" ];
 
       perSystem = { inputs', pkgs, self', system, ... }: {
-        config._module.args.pkgs = import nixpkgs {
-          inherit system;
-          config.allowUnfree = true;
-          overlays = [
-            (_: _: { my = self'.packages; })
-            fenix.overlays.default
-            nil.overlays.default
-            swayfx.overlays.default
-            (_: _: { inherit (inputs'.yonvim.packages) yonvim yonvim-qt; })
-            (_: _: { wez-tmux = inputs'.wez-tmux.packages.default; })
-            (_: _: { wez-pain-control = inputs'.wez-pain-control.packages.default; })
-            (_: _: { wez-per-project-workspace = inputs'.wez-per-project-workspace.packages.default; })
-            (_: _: { wez-status-generator = inputs'.wez-status-generator.packages.default; })
-          ] ++ attrValues self.overlays;
-        };
+        config._module.args.pkgs =
+          let
+            pkgs' = import nixpkgs-unstable {
+              inherit system;
+              config.allowUnfree = true;
+            };
+            pkgs = import nixpkgs {
+              inherit system;
+              config.allowUnfree = true;
+              overlays = [
+                (_: _: {
+                  unstable = pkgs';
+                  my = self'.packages;
+                })
+                fenix.overlays.default
+                nil.overlays.default
+                swayfx.overlays.default
+                (_: _: { inherit (inputs'.yonvim.packages) yonvim yonvim-qt; })
+                (_: _: { wez-tmux = inputs'.wez-tmux.packages.default; })
+                (_: _: { wez-pain-control = inputs'.wez-pain-control.packages.default; })
+                (_: _: { wez-per-project-workspace = inputs'.wez-per-project-workspace.packages.default; })
+                (_: _: { wez-status-generator = inputs'.wez-status-generator.packages.default; })
+              ] ++ attrValues self.overlays;
+            };
+          in
+          pkgs;
 
         config.packages = pkgs.callPackage ./packages {
           tmux-project = inputs'.tmux-project.packages.default;
