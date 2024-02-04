@@ -87,6 +87,8 @@ bindkey -M viins -r '^R'
 
 zinit ice src'zhook.zsh' id-as'atuin' atclone'atuin init zsh >zhook.zsh' atpull'%atclone'
 zinit light zdharma-continuum/null
+bindkey -M emacs -r '^[[A'
+bindkey -M emacs -r '^[[OA'
 
 zinit ice ver'c8625305797b1d8f822c7575e85b26e5b32560c7'
 zinit light sei40kr/zsh-smart-history
