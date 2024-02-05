@@ -12,21 +12,6 @@ let
     atuin init nu >$out
   '';
 
-  direnv_nu = pkgs.writeTextFile {
-    name = "direnv.nu";
-    text = ''
-      $env.config.hooks.env_change.PWD = (
-          $env.config.hooks.env_change.PWD | append ({ ||
-              if (which direnv | is-empty) {
-                  return
-              }
-
-              direnv export json | from json | default {} | load-env
-          })
-      )
-    '';
-  };
-
   starship_nu = pkgs.runCommandLocal "starship.nu"
     {
       buildInputs = [ pkgs.starship ];
@@ -60,9 +45,9 @@ in
 
         source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/npm/npm-completions.nu
 
-        source ${atuin_nu}
+        source ${pkgs.nu_scripts}/share/nu_scripts/nu-hooks/direnv/direnv.nu
 
-        source ${direnv_nu}
+        source ${atuin_nu}
 
         source ${starship_nu}
       '';
