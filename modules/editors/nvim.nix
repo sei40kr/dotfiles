@@ -5,6 +5,8 @@ with lib.my;
 let
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.nvim;
+
+  package = pkgs.yonvim;
 in
 {
   options.modules.editors.nvim = with types; {
@@ -15,14 +17,15 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      yonvim
-      yonvim-qt
+    user.packages = [
+      package
+      (pkgs.yonvim-qt.override { yonvim = package; })
     ];
 
-    env = {
-      PAGER = mkIf cfg.pager.enable "${pkgs.neovim}/bin/nvim -c PAGER -";
-      MANPAGER = mkIf cfg.manpager.enable "${pkgs.neovim}/bin/nvim +'Man!'";
+    environment.variables = {
+      PAGER = mkIf cfg.pager.enable "${package}/bin/yonvim -c PAGER -";
+      MANPAGER = mkIf cfg.manpager.enable "${package}/bin/yonvim +'Man!'";
+      EDITOR = "${package}/bin/yonvim";
     };
 
     modules.shell.aliases = { vim = "nvim"; };
