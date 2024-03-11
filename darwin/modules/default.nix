@@ -28,7 +28,10 @@ with lib.my;
       libtool
     ];
 
-    nix.useDaemon = true;
+    nix = {
+      package = pkgs.unstable.nixVersions.nix_2_20;
+      useDaemon = true;
+    };
 
     fonts = {
       fontDir.enable = true;
