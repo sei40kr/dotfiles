@@ -27,7 +27,10 @@ rec {
     enable = true;
     rails.enable = true;
   };
-  modules.dev.lang.web.enable = true;
+  modules.dev.lang.web = {
+    enable = true;
+    bun.enable = true;
+  };
   modules.dev.tools.mutagen = {
     enable = true;
     compose.enable = true;
