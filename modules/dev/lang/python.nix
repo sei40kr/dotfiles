@@ -12,8 +12,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ python3 pylyzer ruff-lsp ] ++
-      optionals cfg.enablePoetry (with pkgs; [ poetry ]);
+    user.packages = with pkgs; [
+      python3
+      python3Packages.python-lsp-server
+      ruff-lsp
+    ] ++ optionals cfg.enablePoetry (with pkgs; [ poetry ]);
     env.PATH = [ "\${HOME}/.poetry/bin" ];
 
     modules.shell.zsh.rcInit = ''
