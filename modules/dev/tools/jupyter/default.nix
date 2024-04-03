@@ -1,35 +1,37 @@
 { config, lib, pkgs, ... }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf mkOption mkEnableOption types;
   inherit (config.dotfiles) configDir;
+  inherit (pkgs) stdenv;
   cfg = config.modules.dev.tools.jupyter;
 
-  pythonEnv = pkgs.python3.withPackages
-    (ps: with ps; [ jupyter_client jupyter_console jupyter_core ]);
-  jupyterPath = pkgs.jupyter-kernel.create { definitions = cfg.kernels; };
-  package = pkgs.writeShellScriptBin "jupyter" ''
-    export PYTHONPATH=${pythonEnv}/${pythonEnv.sitePackages}
-    export JUPYTER_PATH=${jupyterPath}
-    ${pythonEnv}/bin/jupyter "$@"
-  '';
+  kernels = pkgs.jupyter-kernel.create {
+    definitions = cfg.kernels;
+  };
 in
 {
-  options.modules.dev.tools.jupyter = with types; {
-    enable = mkBoolOpt false;
+  options.modules.dev.tools.jupyter = {
+    enable = mkEnableOption "Jupyter";
 
     kernels = mkOption {
-      type = attrs;
+      type = types.attrs;
       default = { };
       visible = false;
     };
   };
 
   config = mkIf cfg.enable {
-    user.packages = [ package ];
+    user.packages = with pkgs; [ python3Packages.notebook ];
 
     home.file.".jupyter/jupyter_console_config.py".source =
       "${configDir}/jupyter/jupyter_console_config.py";
+
+    home.file."Library/Jupyter/kernels" = mkIf stdenv.isDarwin {
+      source = "${kernels}/kernels";
+    };
+    home.dataFile."jupyter/kernels" = mkIf stdenv.isLinux {
+      source = "${kernels}/kernels";
+    };
   };
 }
