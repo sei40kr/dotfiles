@@ -25,6 +25,7 @@ in
         "{connection_file}"
       ];
       language = "julia";
+      interruptMode = "signal";
       logo32 = "${ijulia}/deps/logo-32x32.png";
       logo64 = "${ijulia}/deps/logo-64x64.png";
     };
