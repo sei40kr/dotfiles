@@ -16,7 +16,7 @@ in
 {
   config = mkIf config.modules.dev.lang.julia.enable {
     modules.dev.tools.jupyter.kernels.ijulia = {
-      displayName = "IJulia";
+      displayName = "Julia ${juliaEnv.julia.version}";
       argv = [
         "${juliaEnv}/bin/julia"
         "-i"
