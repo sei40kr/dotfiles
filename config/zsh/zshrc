@@ -29,6 +29,8 @@ unsetopt LIST_BEEP
 
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 . "${ZINIT_HOME}/zinit.zsh"
+# Unalias zi since it conflicts with zoxide
+unalias zi
 
 ## Commands
 
@@ -44,6 +46,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
   zinit light '@zsh_prezto@/modules/gnu-utility'
 fi
 
+eval "$(zoxide init zsh)"
 
 #
 ## Completions

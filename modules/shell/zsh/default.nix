@@ -119,6 +119,7 @@ in
       atuin
       fzf
       starship
+      zoxide
       (mkIf stdenv.isDarwin terminal-notifier)
     ];
 
