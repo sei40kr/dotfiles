@@ -13,7 +13,7 @@ in
     user.packages = with pkgs; [
       ghc
       stack
-      haskellPackages.brittany
+      ormolu
       haskellPackages.haskell-language-server
       haskellPackages.hlint
     ];
