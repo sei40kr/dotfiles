@@ -25,7 +25,7 @@ in
         {
           publicKey = "8n68GM7n6dm6Hj3RIIh5q1q6Un52Cq82LYEXHRAtPg4=";
           allowedIPs = [ "0.0.0.0/0" "::/0" ];
-          endpoint = "hnd-148-wg.whiskergalaxy.com:65142";
+          endpoint = "hnd-148-wg.whiskergalaxy.com:443";
           presharedKeyFile = config.age.secrets.wg0-peer1-psk.path;
         }
         # Tokyo Wabi-sabi
