@@ -13,6 +13,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        darwin.follows = "nix-darwin";
+        home-manager.follows = "home-manager";
+      };
+    };
+
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,11 +77,12 @@
 
   outputs =
     { self
-    , nix-darwin
+    , agenix
     , fenix
     , flake-parts
     , home-manager
     , nil
+    , nix-darwin
     , nixpkgs
     , nixpkgs-unstable
     , swayfx
@@ -91,6 +101,7 @@
           inherit system;
           specialArgs = { inherit inputs lib pkgs; };
           modules = [
+            agenix.nixosModules.default
             home-manager.nixosModules.home-manager
             ./modules
             ./nixos/modules
@@ -103,6 +114,7 @@
           inherit system;
           specialArgs = { inherit inputs lib pkgs; };
           modules = [
+            agenix.darwinModules.default
             home-manager.darwinModules.home-manager
             ./modules
             ./darwin/modules
@@ -142,6 +154,7 @@
                   unstable = pkgs';
                   my = self'.packages;
                 })
+                (_: _: { agenix = inputs'.agenix.packages.default; })
                 fenix.overlays.default
                 nil.overlays.default
                 swayfx.overlays.default
