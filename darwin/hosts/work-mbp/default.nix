@@ -11,7 +11,7 @@ rec {
 
   modules.desktop.apps.amphetamine.enable = true;
   modules.desktop.apps.bitwarden.enable = true;
-  modules.desktop.apps.cron.enable = true;
+  modules.desktop.apps.notion-calendar.enable = true;
   modules.desktop.apps.dash.enable = true;
   modules.desktop.apps.just-focus.enable = true;
   modules.desktop.apps.pocket.enable = true;
