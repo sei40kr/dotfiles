@@ -21,6 +21,7 @@ in
     # TODO stylelint-cli
     user.packages = with pkgs; [
       nodejs_20
+      unstable.emmet-language-server
       nodePackages.prettier
       nodePackages.vscode-html-languageserver-bin
       nodePackages.vscode-css-languageserver-bin
