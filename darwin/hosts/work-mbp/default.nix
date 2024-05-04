@@ -52,6 +52,7 @@ rec {
     user.email = "yongju.seong@codetakt.com";
   };
   modules.shell.ghq.enable = true;
+  modules.shell.apps.fastfetch.enable = true;
 
   modules.term.colorschemes.active = "tokyo-night";
   modules.term.kitty.enable = true;
