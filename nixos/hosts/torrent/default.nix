@@ -117,9 +117,7 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
     };
 
     shell = {
-      apps = {
-        neofetch.enable = true;
-      };
+      apps.fastfetch.enable = true;
       bottom.enable = true;
       ghq.enable = true;
       strace.enable = true;

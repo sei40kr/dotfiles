@@ -89,7 +89,7 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
   };
   modules.services.ssh.enable = true;
 
-  modules.shell.apps.neofetch.enable = true;
+  modules.shell.apps.fastfetch.enable = true;
   modules.shell.bottom.enable = true;
   modules.shell.ghq.enable = true;
   modules.shell.strace.enable = true;
