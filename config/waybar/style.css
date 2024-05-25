@@ -15,7 +15,8 @@ window#waybar {
 }
 
 #workspaces,
-#network,
+#network.internet,
+#network.wireguard,
 #pulseaudio {
   margin: 0 0.5rem;
 }
@@ -37,7 +38,8 @@ window#waybar {
   font-weight: 700;
 }
 
-#network,
+#network.internet,
+#network.wireguard,
 #pulseaudio {
   font: 1.25rem "Material Design Icons";
 }

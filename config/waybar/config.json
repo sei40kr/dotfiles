@@ -8,7 +8,8 @@
         "clock"
     ],
     "modules-right": [
-        "network",
+        "network#wireguard",
+        "network#internet",
         "pulseaudio"
     ],
     "spacing": 0,
@@ -27,7 +28,7 @@
         "format": "{:%b %e %a  %H:%M}",
         "timezone": "Japan"
     },
-    "network": {
+    "network#internet": {
         "format-wifi": "{icon}",
         "format-ethernet": "󰈁",
         "format-disconnected": "",
@@ -42,6 +43,12 @@
         "tooltip-format-ethernet": "",
         "tooltip-format-disconnected": "",
         "tooltip-format-wifi": "{essid} ({signalStrength}%)"
+    },
+    "network#wireguard": {
+      "interface": "wg*",
+      "format": "󰖂",
+      "format-disconnected": "",
+      "tooltip-format": "{ifname}"
     },
     "pulseaudio": {
         "format": "{icon}",
