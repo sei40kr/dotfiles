@@ -9,6 +9,12 @@ let
     {
       buildInputs = [ pkgs.atuin ];
     } ''
+    # HACK: Atuin tries to create a directory in `homeless-shelter/.local/share`
+    #  and fails because it doesn't have permission to create a directory in.
+    #  We can work around this by setting `$HOME` to a temporary directory.
+    export HOME=$(mktemp -d)
+    mkdir -p $HOME/.local/share/atuin
+
     atuin init nu >$out
   '';
 
@@ -29,7 +35,6 @@ in
 
     home-manager.users.${config.user.name}.programs.nushell = {
       enable = true;
-      package = pkgs.unstable.nushell;
       extraConfig = ''
         $env.config = {
           show_banner: false

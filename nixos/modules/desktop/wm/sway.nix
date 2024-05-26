@@ -9,9 +9,7 @@ let
   wmCfg = desktopCfg.wm;
   cfg = wmCfg.sway;
 
-  package = pkgs.sway.override {
-    sway-unwrapped = pkgs.swayfx-unwrapped;
-
+  package = pkgs.swayfx.override {
     extraSessionCommands = ''
       export WLR_NO_HARDWARE_CURSORS=1
 
@@ -146,10 +144,8 @@ in
       after = [ "graphical-session-pre.target" ];
     };
 
-    services.xserver = {
-      enable = true;
-      displayManager.sessionPackages = [ package ];
-    };
+    services.xserver.enable = true;
+    services.displayManager.sessionPackages = [ package ];
 
     security.polkit.enable = true;
     # For screen sharing (this option only has an effect with xdg.portal.enable):

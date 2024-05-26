@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     nix-darwin = {
@@ -9,7 +9,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -32,16 +32,6 @@
     idea-doom-emacs = {
       url = "github:sei40kr/idea-doom-emacs";
       flake = false;
-    };
-
-    nil = {
-      url = "github:oxalica/nil";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    swayfx = {
-      url = "github:WillPower3309/swayfx";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     tmux-project = {
@@ -81,11 +71,9 @@
     , fenix
     , flake-parts
     , home-manager
-    , nil
     , nix-darwin
     , nixpkgs
     , nixpkgs-unstable
-    , swayfx
     , ...
     }@inputs:
     let
@@ -156,8 +144,6 @@
                 })
                 (_: _: { agenix = inputs'.agenix.packages.default; })
                 fenix.overlays.default
-                nil.overlays.default
-                swayfx.overlays.default
                 (_: _: { inherit (inputs'.yonvim.packages) yonvim yonvim-qt; })
                 (_: _: { wez-tmux = inputs'.wez-tmux.packages.default; })
                 (_: _: { wez-pain-control = inputs'.wez-pain-control.packages.default; })

@@ -4,6 +4,8 @@ let
   inherit (builtins) readFile;
   inherit (lib) mkIf;
 
+  # FIXME: We should use the Julia from Nixpkgs stable release, but somehow it
+  #  fails to build the IJulia package. So we use the unstable version for now.
   juliaEnv = pkgs.unstable.julia-stable-bin.withPackages [ "IJulia" "Plots" ];
   # Run a command to get the package directory of IJulia
   ijulia = readFile (pkgs.runCommand "${juliaEnv.name}-ijulia-pkgdir"
