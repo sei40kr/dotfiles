@@ -20,8 +20,6 @@ in
 
   spark-desktop = callPackage ./spark-desktop { };
 
-  whitesur-cursors = callPackage ./whitesur-cursors { };
-
   whitesur-kde = callPackage ./whitesur-kde { };
 
   whitesur-wallpapers = callPackage ./whitesur-wallpapers { };
