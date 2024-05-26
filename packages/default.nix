@@ -10,8 +10,6 @@ in
 
   amphetamine-enhancer = callPackage ./amphetamine-enhancer { };
 
-  corretto_11 = callPackage ./corretto_11.nix { };
-
   online-judge-verify-helper = python3Packages.callPackage ./online-judge-verify-helper { };
 
   sensible-browser = callPackage ./sensible-browser { };
