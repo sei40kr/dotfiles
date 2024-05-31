@@ -22,5 +22,7 @@ in
     # Necessary to generate thumbnails
     services.tumbler.enable = true;
     user.packages = with pkgs; [ ffmpegthumbnailer ];
+
+    xdg.mime.defaultApplications."inode/directory" = "thunar.desktop";
   };
 }
