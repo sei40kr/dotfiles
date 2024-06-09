@@ -13,7 +13,14 @@ in
   config = mkIf cfg.enable {
     services.xserver = {
       enable = true;
-      displayManager.gdm.enable = true;
+      displayManager.gdm = {
+        enable = true;
+        settings = {
+          "org/gnome/settings-daemon/plugins/power" = {
+            sleep-inactive-battery-timeout = 0;
+          };
+        };
+      };
     };
   };
 }
