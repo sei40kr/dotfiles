@@ -15,6 +15,11 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
   networking.hostName = "thinkpad"; # Define your hostname.
   networking.networkmanager.enable = true;
 
+  services.logind = {
+    lidSwitchExternalPower = "ignore";
+    lidSwitchDocked = "ignore";
+  };
+
   # Enable CUPS to print documents
   services.printing.enable = true;
 
