@@ -1,0 +1,22 @@
+{ lib, config, ... }:
+
+let
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.modules.desktop.wm.xmonad;
+in
+{
+  options.modules.desktop.wm.xmonad = {
+    enable = mkEnableOption "XMonad";
+  };
+
+  config = mkIf cfg.enable {
+    services.xserver.enable = true;
+    services.xserver.windowManager.xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+      config = ../../../../config/xmonad/xmonad.hs;
+    };
+    services.xserver.desktopManager.runXdgAutostartIfNone = true;
+    services.picom.enable = true;
+  };
+}
