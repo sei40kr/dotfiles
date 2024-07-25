@@ -21,6 +21,22 @@ in
 
   services.autorandr = {
     enable = true;
+    hooks = {
+      postswitch = {
+        change-dpi = ''
+          case "$AUTORANDR_CURRENT_PROFILE" in
+            docked )
+              DPI=${toString (floor (96 * 1.2))}
+              ;;
+            * )
+              DPI=96
+              ;;
+          esac
+
+          echo "Xft.dpi: $DPI" | ${pkgs.xorg.xrdb}/bin/xrdb -merge
+        '';
+      };
+    };
     profiles = {
       docked = {
         fingerprint = {
