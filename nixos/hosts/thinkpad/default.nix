@@ -1,6 +1,10 @@
 { nixosSystem }:
 
-nixosSystem "x86_64-linux" ({ pkgs, ... }: {
+nixosSystem "x86_64-linux" ({ pkgs, ... }:
+let
+  inherit (builtins) floor;
+in
+{
   imports = [ ./_hardware-configuration.nix ];
 
   # Use kernel 6.1
@@ -14,6 +18,24 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
 
   networking.hostName = "thinkpad"; # Define your hostname.
   networking.networkmanager.enable = true;
+
+  services.autorandr = {
+    enable = true;
+    profiles = {
+      docked = {
+        fingerprint = {
+          DP-2 = "00ffffffffffff0009d13580455400002b1f0103803c22782a3355ac524ea026105054a56b80d1c0b300a9c08180810081c001010101565e00a0a0a029503020350055502100001a000000ff005a414d30303431353031390a20000000fd00184c1e873c000a202020202020000000fc0042656e5120504432373035510a015b020344f14f5d5e5f6061101f22212004131203012309070783010000e200cf6d030c001000383c20006001020367d85dc401788003e305c301e30f1800e6060501575748565e00a0a0a029503020350055502100001a00000000000000000000000000000000000000000000000000000000000000000000000000000000007c";
+        };
+        config = {
+          DP-2 = {
+            enable = true;
+            primary = true;
+            mode = "2560x1440";
+          };
+        };
+      };
+    };
+  };
 
   services.logind = {
     lidSwitchExternalPower = "ignore";
