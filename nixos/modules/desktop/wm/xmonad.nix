@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs, ... }:
 
 let
   inherit (lib) mkEnableOption mkIf;
@@ -20,5 +20,7 @@ in
     services.picom.enable = true;
 
     modules.desktop.apps.feh.enable = true;
+
+    environment.systemPackages = with pkgs; [ xsel ];
   };
 }
