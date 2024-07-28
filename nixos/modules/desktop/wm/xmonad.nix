@@ -18,5 +18,7 @@ in
     };
     services.xserver.desktopManager.runXdgAutostartIfNone = true;
     services.picom.enable = true;
+
+    modules.desktop.apps.feh.enable = true;
   };
 }
