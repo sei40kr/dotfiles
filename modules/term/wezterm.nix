@@ -36,6 +36,10 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ wezterm ];
 
+    fonts.packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    ];
+
     home.configFile."wezterm/wezterm.lua".text = ''
       package.path = package.path .. ";${plugins}/share/wezterm/?.lua;${plugins}/share/wezterm/?/init.lua"
 
@@ -53,7 +57,10 @@ in
       config.show_update_window = false
       config.automatically_reload_config = false
 
-      config.font = wezterm.font("${termCfg.font.name}")
+      config.font = wezterm.font_with_fallback({
+        "${termCfg.font.name}",
+        "Symbols Nerd Font Mono",
+      })
       config.font_size = ${toString termCfg.font.size}
       config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
       config.freetype_load_target = "HorizontalLcd"
