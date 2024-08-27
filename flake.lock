@@ -71,6 +71,24 @@
         "nixpkgs-lib": "nixpkgs-lib_2"
       },
       "locked": {
+        "lastModified": 1725024810,
+        "narHash": "sha256-ODYRm8zHfLTH3soTFWE452ydPYz2iTvr9T8ftDMUQ3E=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "af510d4a62d071ea13925ce41c95e3dec816c01d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_3": {
+      "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib_3"
+      },
+      "locked": {
         "lastModified": 1698882062,
         "narHash": "sha256-HkhafUayIqxXyHH1X8d9RDl1M2CkFgZLjKD3MzabiEo=",
         "owner": "hercules-ci",
@@ -193,6 +211,27 @@
         "type": "github"
       }
     },
+    "lazyvim": {
+      "inputs": {
+        "flake-parts": "flake-parts_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1725039041,
+        "narHash": "sha256-OExnWZy6LEyq1hFJz/LDG2GKdc/GJ7qCQWdPi9LCBI0=",
+        "owner": "sei40kr",
+        "repo": "nix-lazyvim",
+        "rev": "6ffaae2f097f42c36183b0eba233394b33ceb0b7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sei40kr",
+        "repo": "nix-lazyvim",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -250,6 +289,18 @@
     },
     "nixpkgs-lib_2": {
       "locked": {
+        "lastModified": 1722555339,
+        "narHash": "sha256-uFf2QeW7eAHlYXuDktm9c25OxOyCoUOQmh5SZ9amE5Q=",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/a5d394176e64ab29c852d03346c1fc9b0b7d33eb.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs/archive/a5d394176e64ab29c852d03346c1fc9b0b7d33eb.tar.gz"
+      }
+    },
+    "nixpkgs-lib_3": {
+      "locked": {
         "dir": "lib",
         "lastModified": 1698611440,
         "narHash": "sha256-jPjHjrerhYDy3q9+s5EAsuhyhuknNfowY6yt6pjn9pc=",
@@ -289,6 +340,7 @@
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "idea-doom-emacs": "idea-doom-emacs",
+        "lazyvim": "lazyvim",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
@@ -457,7 +509,7 @@
     },
     "wez-status-generator": {
       "inputs": {
-        "flake-parts": "flake-parts_2",
+        "flake-parts": "flake-parts_3",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -504,11 +556,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1722094027,
-        "narHash": "sha256-nQKLQWfVTKUsi/I+I4OpksknBOavSqv5JVu5KPbYBsE=",
+        "lastModified": 1722100581,
+        "narHash": "sha256-Turhu3KqcTO/+2hVAOFhL8zaxJ+46HnuEBtx9V5P/ws=",
         "owner": "sei40kr",
         "repo": "yonvim",
-        "rev": "775210d6e50e3d624c46d96c8cbbc67be61fc9b1",
+        "rev": "4876486982144fb2a806fe1aa014ee707cce0220",
         "type": "github"
       },
       "original": {

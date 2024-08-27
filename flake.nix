@@ -34,6 +34,11 @@
       flake = false;
     };
 
+    lazyvim = {
+      url = "github:sei40kr/nix-lazyvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     tmux-project = {
       url = "github:sei40kr/tmux-project";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -84,10 +89,10 @@
     in
     mkFlake { inherit inputs; } ({ withSystem, ... }:
     let
-      nixosSystem = system: hostCfg: withSystem system ({ pkgs, ... }:
+      nixosSystem = system: hostCfg: withSystem system ({ inputs', pkgs, ... }:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs lib pkgs; };
+          specialArgs = { inherit inputs inputs' lib pkgs; };
           modules = [
             agenix.nixosModules.default
             home-manager.nixosModules.home-manager
