@@ -117,10 +117,6 @@ in
     doom.enable = true;
   };
   modules.editors.idea.enable = true;
-  modules.editors.nvim = {
-    enable = true;
-    manpager.enable = true;
-  };
 
   modules.i18n.japanese.enable = true;
 

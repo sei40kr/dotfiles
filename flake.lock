@@ -348,8 +348,7 @@
         "wez-pain-control": "wez-pain-control",
         "wez-per-project-workspace": "wez-per-project-workspace",
         "wez-status-generator": "wez-status-generator",
-        "wez-tmux": "wez-tmux",
-        "yonvim": "yonvim"
+        "wez-tmux": "wez-tmux"
       }
     },
     "rust-analyzer-src": {
@@ -546,26 +545,6 @@
       "original": {
         "owner": "sei40kr",
         "repo": "wez-tmux",
-        "type": "github"
-      }
-    },
-    "yonvim": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1722100581,
-        "narHash": "sha256-Turhu3KqcTO/+2hVAOFhL8zaxJ+46HnuEBtx9V5P/ws=",
-        "owner": "sei40kr",
-        "repo": "yonvim",
-        "rev": "4876486982144fb2a806fe1aa014ee707cce0220",
-        "type": "github"
-      },
-      "original": {
-        "owner": "sei40kr",
-        "repo": "yonvim",
         "type": "github"
       }
     }

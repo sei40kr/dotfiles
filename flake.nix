@@ -63,11 +63,6 @@
       url = "github:sei40kr/wez-status-generator";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    yonvim = {
-      url = "github:sei40kr/yonvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -149,7 +144,6 @@
                 })
                 (_: _: { agenix = inputs'.agenix.packages.default; })
                 fenix.overlays.default
-                (_: _: { inherit (inputs'.yonvim.packages) yonvim yonvim-qt; })
                 (_: _: { wez-tmux = inputs'.wez-tmux.packages.default; })
                 (_: _: { wez-pain-control = inputs'.wez-pain-control.packages.default; })
                 (_: _: { wez-per-project-workspace = inputs'.wez-per-project-workspace.packages.default; })

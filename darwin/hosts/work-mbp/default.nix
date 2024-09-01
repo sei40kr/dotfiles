@@ -36,7 +36,6 @@ rec {
     compose.enable = true;
   };
 
-  modules.editors.nvim.enable = true;
   modules.editors.idea.enable = true;
   modules.editors.datagrip.enable = true;
 

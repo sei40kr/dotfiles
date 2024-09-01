@@ -94,10 +94,6 @@ nixosSystem "x86_64-linux" ({ pkgs, ... }: {
         doom.enable = true;
       };
       idea.enable = true;
-      nvim = {
-        enable = true;
-        manpager.enable = true;
-      };
     };
 
     i18n.japanese.enable = true;
