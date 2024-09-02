@@ -8,15 +8,11 @@ in
 
   vimPlugins = callPackage ./vim-plugins { };
 
-  amphetamine-enhancer = callPackage ./amphetamine-enhancer { };
-
   online-judge-verify-helper = python3Packages.callPackage ./online-judge-verify-helper { };
 
   sensible-browser = callPackage ./sensible-browser { };
 
   sensible-terminal = callPackage ./sensible-terminal { };
-
-  spark-desktop = callPackage ./spark-desktop { };
 
   whitesur-kde = callPackage ./whitesur-kde { };
 

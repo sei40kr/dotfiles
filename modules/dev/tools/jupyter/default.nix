@@ -26,12 +26,6 @@ in
 
     home.file.".jupyter/jupyter_console_config.py".source =
       "${configDir}/jupyter/jupyter_console_config.py";
-
-    home.file."Library/Jupyter/kernels" = mkIf stdenv.isDarwin {
-      source = "${kernels}/kernels";
-    };
-    home.dataFile."jupyter/kernels" = mkIf stdenv.isLinux {
-      source = "${kernels}/kernels";
-    };
+    home.dataFile."jupyter/kernels".source = "${kernels}/kernels";
   };
 }

@@ -70,12 +70,6 @@ in
 
       config.use_fancy_tab_bar = false
 
-      config.set_environment_variables = {
-        ${optionalString stdenv.isDarwin ''
-          LANG = "en_US.UTF-8",
-        ''}
-      }
-
       config.tab_bar_at_bottom = true
 
       config.colors = {

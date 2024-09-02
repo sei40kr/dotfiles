@@ -10,7 +10,7 @@ let
   cfg = desktopCfg.apps.waybar;
 
   style_css = pkgs.substituteAll {
-    src = ../../../../config/waybar/style.css;
+    src = ../../../config/waybar/style.css;
     sidePadding = wmCfg.gaps.outer;
   };
 in

@@ -122,7 +122,7 @@ in
               repeat_rate ${toString deCfg.autoRepeat.interval}
           }
 
-          ${builtins.readFile ../../../../config/sway/config}
+          ${builtins.readFile ../../../config/sway/config}
 
           exec_always systemctl --user start swayidle.service
           exec_always systemctl --user start waybar.service

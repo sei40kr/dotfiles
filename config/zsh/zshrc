@@ -41,23 +41,7 @@ zinit ice ver'66f6ba7549b9973eb57bfbc188e29d2f73bf31bb' trigger-load '!cd-gitroo
 zinit light 'mollifier/cd-gitroot'
 alias U='cd-gitroot'
 
-if [[ "$OSTYPE" == darwin* ]]; then
-  zinit ice id-as'PZT::modules--gnu-utility'
-  zinit light '@zsh_prezto@/modules/gnu-utility'
-fi
-
 eval "$(zoxide init zsh)"
-
-#
-## Completions
-
-if [[ "$OSTYPE" == darwin* && -d /Applications/Docker.app ]]; then
-    zinit ice lucid wait as'completion' mv'docker.zsh-completion -> _docker'
-    zinit snippet /Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion
-    zinit ice lucid wait as'completion' mv'docker-compose.zsh-completion -> _docker-compose'
-    zinit snippet /Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion
-fi
-
 
 ## Shell Enhancements
 

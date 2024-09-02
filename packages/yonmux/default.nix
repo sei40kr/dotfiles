@@ -47,8 +47,7 @@ symlinkJoin {
                               --set __ETC_ZPROFILE_SOURCED  "" \
                               --set __ETC_ZSHRC_SOURCED "" \
                               --set __NIX_SET_ENVIRONMENT_DONE "" \
-                              --set __NIX_DARWIN_SET_ENVIRONMENT_DONE "" \
-                              ${lib.optionalString stdenv.isLinux "--prefix PATH : ${lib.makeBinPath [ sysstat ]}"} \
+                              --prefix PATH : ${lib.makeBinPath [ sysstat ]} \
                               --add-flags "-f ${cfg}"
   '';
 }

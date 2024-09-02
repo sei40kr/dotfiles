@@ -84,9 +84,6 @@ in
       color15 #${ansi.brightWhite}
 
       ## Advanced
-      ${optionalString stdenv.isDarwin ''
-        env LANG=en_US.UTF-8
-      ''}
       # A workaround for a bug where it appends to the clipboard each time text
       # is copied rather than replacing it.
       # See https://github.com/tmux/tmux/wiki/Clipboard#terminal-support---kitty

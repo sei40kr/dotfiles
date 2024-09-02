@@ -120,7 +120,6 @@ in
       fzf
       starship
       zoxide
-      (mkIf stdenv.isDarwin terminal-notifier)
     ];
 
     home.dataFile."zinit/zinit.git".source = "${pkgs.zinit}/share/zinit";

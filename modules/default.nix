@@ -7,11 +7,6 @@ in
 {
   imports = mapModulesRec' (toString ./.) import;
 
-  environment.variables = {
-    DOTFILES = config.dotfiles.dir;
-    DOTFILES_BIN = config.dotfiles.binDir;
-  };
-
   nix =
     let
       filteredInputs = filterAttrs (n: _: n != "self") inputs;
@@ -32,4 +27,12 @@ in
     };
 
   environment.systemPackages = with pkgs; [ coreutils git gnumake vim ];
+
+  environment.variables = {
+    NIXPKGS_ALLOW_UNFREE = "1";
+    DOTFILES = config.dotfiles.dir;
+    DOTFILES_BIN = config.dotfiles.binDir;
+  };
+  
+  home-manager.users.${config.user.name}.home.stateVersion = config.system.stateVersion;
 }

@@ -14,7 +14,7 @@ in
     services.xserver.windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
-      config = ../../../../config/xmonad/xmonad.hs;
+      config = ../../../config/xmonad/xmonad.hs;
     };
     services.xserver.desktopManager.runXdgAutostartIfNone = true;
     services.picom.enable = true;

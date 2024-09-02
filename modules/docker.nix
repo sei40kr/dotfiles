@@ -45,7 +45,7 @@ in
       dvprune = "docker volume prune";
       dxc = "docker container exec";
       dxcit = "docker container exec -it";
-    } // (optionalAttrs (pkgs.stdenv.isDarwin || cfg.compose.enable) {
+    } // (optionalAttrs cfg.compose.enable {
       # For docker-compose
       dco = "docker-compose";
       dcb = "docker-compose build";

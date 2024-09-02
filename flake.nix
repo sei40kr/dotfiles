@@ -3,11 +3,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/release-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-    nix-darwin = {
-      url = "github:LnL7/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,7 +12,6 @@
       url = "github:ryantm/agenix";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        darwin.follows = "nix-darwin";
         home-manager.follows = "home-manager";
       };
     };
@@ -71,7 +65,6 @@
     , fenix
     , flake-parts
     , home-manager
-    , nix-darwin
     , nixpkgs
     , nixpkgs-unstable
     , ...
@@ -92,20 +85,6 @@
             agenix.nixosModules.default
             home-manager.nixosModules.home-manager
             ./modules
-            ./nixos/modules
-            hostCfg
-          ];
-        });
-
-      darwinSystem = system: hostCfg: withSystem system ({ pkgs, ... }:
-        nix-darwin.lib.darwinSystem {
-          inherit system;
-          specialArgs = { inherit inputs lib pkgs; };
-          modules = [
-            agenix.darwinModules.default
-            home-manager.darwinModules.home-manager
-            ./modules
-            ./darwin/modules
             hostCfg
           ];
         });
@@ -116,16 +95,12 @@
 
         overlays = mapModules ./overlays import;
 
-        nixosConfigurations = mapModules ./nixos/hosts (path: import path {
+        nixosConfigurations = mapModules ./hosts (path: import path {
           inherit nixosSystem;
-        });
-
-        darwinConfigurations = mapModules ./darwin/hosts (path: import path {
-          inherit darwinSystem;
         });
       };
 
-      systems = [ "x86_64-linux" "aarch64-darwin" ];
+      systems = [ "x86_64-linux" ];
 
       perSystem = { inputs', pkgs, self', system, ... }: {
         config._module.args.pkgs =

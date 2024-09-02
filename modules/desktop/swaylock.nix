@@ -41,7 +41,7 @@ in
     user.packages = with pkgs; [ swaylock-effects ];
 
     home.configFile."swaylock/config".source = pkgs.substituteAll {
-      src = ../../../config/swaylock-effects/config;
+      src = ../../config/swaylock-effects/config;
       inherit backgroundOpts;
       fontName = deCfg.defaultFonts.ui.name;
     };

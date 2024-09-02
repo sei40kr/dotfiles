@@ -36,6 +36,10 @@ with lib.my;
     user = {
       description = "The primary user account";
       uid = 1000;
+      isNormalUser = true;
+      group = "users";
+      extraGroups = [ "wheel" ];
+      home = "/home/${config.user.name}";
     };
 
     home-manager = {
