@@ -31,6 +31,28 @@ in
         omz = path: "${pkgs.oh-my-zsh}/share/oh-my-zsh/${path}";
         omzl = path: omz "lib/${path}";
         omzp = path: omz "plugins/${path}";
+
+        atuin-zhook = pkgs.runCommandLocal "atuin-zhook" {
+          buildInputs = with pkgs; [ atuin zsh ];
+        } ''
+          mkdir -p $out
+          XDG_CONFIG_HOME=$(mktemp -d) XDG_DATA_HOME=$(mktemp -d) ${pkgs.atuin}/bin/atuin init zsh >$out/zhook.zsh
+          zsh -c "zcompile $out/zhook.zsh"
+        '';
+        navi-zhook = pkgs.runCommandLocal "navi-zhook" {
+            buildInputs = with pkgs; [ navi zsh ];
+        } ''
+          mkdir -p $out
+          ${pkgs.navi}/bin/navi widget zsh >$out/zhook.zsh
+          zsh -c "zcompile $out/zhook.zsh"
+        '';
+        zoxide-zhook = pkgs.runCommandLocal "zoxide-zhook" {
+          buildInputs = with pkgs; [ zoxide zsh ];
+        } ''
+          mkdir -p $out
+          ${pkgs.zoxide}/bin/zoxide init zsh >$out/zhook.zsh
+          zsh -c "zcompile $out/zhook.zsh"
+        '';
       in ''
         ${optionalString shellCfg.tmux.autoRun ''
           if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIMRUNTIME" && -z "$INSIDE_EMACS" && "$TERM_PROGRAM" != 'WezTerm' ]]; then
@@ -63,7 +85,7 @@ in
         zinit light 'mollifier/cd-gitroot'
         alias U='cd-gitroot'
 
-        eval "$(zoxide init zsh)"
+        . "${zoxide-zhook}/zhook.zsh"
         
         ZSH_AUTOSUGGEST_STRATEGY=(atuin)
         _zsh_autosuggest_strategy_atuin() {
@@ -92,8 +114,7 @@ in
         bindkey -M vicmd -r '^R'
         bindkey -M viins -r '^R'
         
-        zinit ice src'zhook.zsh' id-as'atuin' atclone'atuin init zsh >zhook.zsh' atpull'%atclone'
-        zinit light zdharma-continuum/null
+        . "${atuin-zhook}/zhook.zsh"
         bindkey -M emacs -r '^[[A'
         bindkey -M emacs -r '^[[OA'
         
@@ -119,16 +140,23 @@ in
         zinit ice id-as'OMZL::completion.zsh'
         zinit snippet ${omzl "completion.zsh"}
 
-        zinit ice from'gh-r' ver'v2.19.0' as'program' atclone'./navi widget zsh >zhook.zsh' atpull'%atclone' src'zhook.zsh'
-        zinit light denisidoro/navi
+        . "${navi-zhook}/zhook.zsh"
 
         zinit ice id-as'OMZP::fancy-ctrl-z'
         zinit snippet ${omzp "fancy-ctrl-z/fancy-ctrl-z.plugin.zsh"}
 
         ${cfg.rcInit}
       '';
-      promptInit = ''
-        eval "$(starship init zsh)"
+      promptInit = let
+        starship-zhook = pkgs.runCommandLocal "starship-zhook" {
+          buildInputs = [ pkgs.starship pkgs.zsh ];
+        } ''
+          mkdir -p $out
+          XDG_CACHE_HOME=$(mktemp -d) ${pkgs.starship}/bin/starship init zsh >$out/zhook.zsh
+          zsh -c "zcompile $out/zhook.zsh"
+        '';
+      in ''
+        . "${starship-zhook}/zhook.zsh"
       '';
       histSize = 10000;
       histFile = "$HOME/.zsh/.zsh_history";
@@ -184,6 +212,7 @@ in
       atuin
       fd
       fzf
+      navi
       starship
       zoxide
 
