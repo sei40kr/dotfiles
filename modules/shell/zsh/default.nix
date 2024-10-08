@@ -97,9 +97,6 @@ in
         bindkey -M emacs -r '^[[A'
         bindkey -M emacs -r '^[[OA'
         
-        zinit ice ver'c8625305797b1d8f822c7575e85b26e5b32560c7'
-        zinit light sei40kr/zsh-smart-history
-        
         if [[ -n "$TMUX" ]]; then
           zinit ice ver'37a3c697461b33dd2f85998431cdfec6d963be37'
           zinit light 'sei40kr/zsh-tmux-man'
