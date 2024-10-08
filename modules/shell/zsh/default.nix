@@ -70,11 +70,11 @@ in
           typeset -g suggestion
           suggestion="$(atuin search --limit 1 --search-mode prefix --cmd-only "$1")"
         }
-        zinit ice ver'v0.7.0' wait'0' lucid
-        zinit light 'zsh-users/zsh-autosuggestions'
+        zinit ice wait'0' lucid
+        zinit light ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions
         
-        zinit ice ver'9d003fc02dbaa6db06e6b12e8c271398478e0b5d' wait'0' lucid
-        zinit light 'hlissner/zsh-autopair'
+        zinit ice wait'0' lucid
+        zinit light ${pkgs.zsh-autopair}/share/zsh/zsh-autopair
 
         zinit ice ver'v1.55' wait lucid atinit'ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay'
         zinit light z-shell/F-Sy-H
