@@ -31,7 +31,7 @@ myBorderWidth :: Dimension
 myBorderWidth = 2
 
 myWorkspaces :: [String]
-myWorkspaces = ["1", "2", "3", "4", "5"]
+myWorkspaces = ["1", "2", "3", "4"]
 
 myLayout = avoidStruts $ group simpleTabbedAlways $ mySpacing 32 16 $ Mirror $ Column 1.0
  where
@@ -45,6 +45,35 @@ myModMask = mod4Mask
 
 myLogHook = fadeInactiveLogHook 0.9
 
+myManageHook :: ManageHook
+myManageHook =
+  composeAll
+    [ className =? "firefox" --> doShift wsWeb
+    , className =? "Google-chrome" --> doShift wsWeb
+    , className =? "Vivaldi-stable" --> doShift wsWeb
+    , className =? "jetbrains-idea" --> doShift wsDev
+    , className =? "jetbrains-datagrip" --> doShift wsDev
+    , className =? "jetbrains-dataspell" --> doShift wsDev
+    , className =? "kitty" --> doShift wsDev
+    , className =? "Zeal" --> doShift wsDev <+> doFloat
+    , className =? "org.wezfurlong.wezterm" --> doShift wsDev
+    , className =? "file-roller" --> doShift wsFiles
+    , className =? "Ristretto" --> doShift wsFiles
+    , className =? "Thunar" --> doShift wsFiles
+    , className =? "vlc" --> doShift wsFiles
+    , className =? "Zathura" --> doShift wsFiles
+    , className =? "discord" --> doShift wsIM
+    , className =? "Slack" --> doShift wsIM
+    , className =? "zoom" --> doShift wsIM
+    , className =? "Bitwarden" --> doFloat
+    , className =? "fcitx5-config-qt" --> doFloat
+    ]
+ where
+  wsWeb = "1"
+  wsDev = "2"
+  wsFiles = "3"
+  wsIM = "4"
+
 main :: IO ()
 main =
   xmonad $
@@ -56,6 +85,7 @@ main =
         , terminal = myTerminal
         , modMask = myModMask
         , logHook = myLogHook
+        , manageHook = myManageHook
         , focusFollowsMouse = False
         }
         `additionalKeys` [
