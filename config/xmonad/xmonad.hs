@@ -34,8 +34,8 @@ myWorkspaces :: [String]
 myWorkspaces = ["1", "2", "3", "4", "5"]
 
 myLayout = avoidStruts $ group simpleTabbedAlways $ mySpacing 32 16 $ Mirror $ Column 1.0
-  where
-    mySpacing i j = spacingRaw False (Border i i i i) True (Border j j j j) True
+ where
+  mySpacing i j = spacingRaw False (Border i i i i) True (Border j j j j) True
 
 myTerminal :: String
 myTerminal = "sensible-terminal"
@@ -50,45 +50,45 @@ main =
   xmonad $
     ewmh . docks . toggleFullFloatEwmhFullscreen . ewmhFullscreen $
       def
-        { borderWidth = myBorderWidth,
-          workspaces = myWorkspaces,
-          layoutHook = myLayout,
-          terminal = myTerminal,
-          modMask = myModMask,
-          logHook = myLogHook,
-          focusFollowsMouse = False
+        { borderWidth = myBorderWidth
+        , workspaces = myWorkspaces
+        , layoutHook = myLayout
+        , terminal = myTerminal
+        , modMask = myModMask
+        , logHook = myLogHook
+        , focusFollowsMouse = False
         }
         `additionalKeys` [
                            -- Exit app
-                           ((myModMask .|. shiftMask, xK_q), kill),
-                           -- Restart XMonad
-                           ((myModMask .|. controlMask, xK_r), restart "xmonad" True),
-                           -- Window Fullscreen Toggle
-                           ((myModMask, xK_f), withFocused toggleFullFloat),
-                           -- Window Position
-                           ((myModMask, xK_h), focusGroupUp),
-                           ((myModMask, xK_j), focusDown),
-                           ((myModMask, xK_k), focusUp),
-                           ((myModMask, xK_l), focusGroupDown),
-                           ((myModMask, xK_Left), focusGroupUp),
-                           ((myModMask, xK_Down), focusDown),
-                           ((myModMask, xK_Up), focusUp),
-                           ((myModMask, xK_Right), focusGroupDown),
-                           ((myModMask, xK_Tab), nextWS),
-                           ((myModMask .|. shiftMask, xK_Tab), prevWS),
-                           ((myModMask .|. shiftMask, xK_h), moveToGroupUp False),
-                           ((myModMask .|. shiftMask, xK_j), swapUp),
-                           ((myModMask .|. shiftMask, xK_k), swapDown),
-                           ((myModMask .|. shiftMask, xK_l), moveToGroupDown False),
-                           ((myModMask .|. shiftMask, xK_Left), moveToGroupUp False),
-                           ((myModMask .|. shiftMask, xK_Down), swapDown),
-                           ((myModMask .|. shiftMask, xK_Up), swapUp),
-                           ((myModMask .|. shiftMask, xK_Right), moveToGroupDown False),
-                           ((myModMask, xK_space), spawn "rofi -modi drun -show drun"),
-                           ((myModMask .|. shiftMask, xK_Return), spawn myTerminal),
-                           ((myModMask, xK_Return), spawn "sensible-terminal")
+                           ((myModMask .|. shiftMask, xK_q), kill)
+                         , -- Restart XMonad
+                           ((myModMask .|. controlMask, xK_r), restart "xmonad" True)
+                         , -- Window Fullscreen Toggle
+                           ((myModMask, xK_f), withFocused toggleFullFloat)
+                         , -- Window Position
+                           ((myModMask, xK_h), focusGroupUp)
+                         , ((myModMask, xK_j), focusDown)
+                         , ((myModMask, xK_k), focusUp)
+                         , ((myModMask, xK_l), focusGroupDown)
+                         , ((myModMask, xK_Left), focusGroupUp)
+                         , ((myModMask, xK_Down), focusDown)
+                         , ((myModMask, xK_Up), focusUp)
+                         , ((myModMask, xK_Right), focusGroupDown)
+                         , ((myModMask, xK_Tab), nextWS)
+                         , ((myModMask .|. shiftMask, xK_Tab), prevWS)
+                         , ((myModMask .|. shiftMask, xK_h), moveToGroupUp False)
+                         , ((myModMask .|. shiftMask, xK_j), swapUp)
+                         , ((myModMask .|. shiftMask, xK_k), swapDown)
+                         , ((myModMask .|. shiftMask, xK_l), moveToGroupDown False)
+                         , ((myModMask .|. shiftMask, xK_Left), moveToGroupUp False)
+                         , ((myModMask .|. shiftMask, xK_Down), swapDown)
+                         , ((myModMask .|. shiftMask, xK_Up), swapUp)
+                         , ((myModMask .|. shiftMask, xK_Right), moveToGroupDown False)
+                         , ((myModMask, xK_space), spawn "rofi -modi drun -show drun")
+                         , ((myModMask .|. shiftMask, xK_Return), spawn myTerminal)
+                         , ((myModMask, xK_Return), spawn "sensible-terminal")
                          ]
         `additionalKeys` [ ((m .|. myModMask, k), windows $ f i)
-                           | (i, k) <- zip myWorkspaces [xK_1 ..],
-                             (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask), (copy, controlMask)]
+                         | (i, k) <- zip myWorkspaces [xK_1 ..]
+                         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask), (copy, controlMask)]
                          ]
