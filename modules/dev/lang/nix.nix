@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
@@ -15,7 +20,7 @@ in
       nix-init
       nix-melt
       nurl
-      nixpkgs-fmt
+      nixfmt-rfc-style
       nil
     ];
   };
