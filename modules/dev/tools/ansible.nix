@@ -11,6 +11,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ ansible ];
+    user.packages = with pkgs; [ ansible ansible-lint ];
   };
 }
