@@ -118,6 +118,9 @@ in
         bindkey -M emacs -r '^[[A'
         bindkey -M emacs -r '^[[OA'
         
+        zinit ice if'[[ "$TERM_PROGRAM" == "WezTerm" ]]'
+        zinit light 'sei40kr/zsh-wez-man'
+
         if [[ -n "$TMUX" ]]; then
           zinit ice ver'37a3c697461b33dd2f85998431cdfec6d963be37'
           zinit light 'sei40kr/zsh-tmux-man'
