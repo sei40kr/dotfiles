@@ -28,10 +28,6 @@ in
       wantedBy = [ "graphical-session.target" ];
       partOf = [ "graphical-session.target" ];
       script = "${pkgs.feh}/bin/feh --image-bg ${escapeShellArg deCfg.background.color} --bg-${bgMode} --no-fehbg ${deCfg.background.image.path}";
-      serviceConfig = {
-        type = "oneshot";
-        restart = "on-failure";
-      };
     };
   };
 }
