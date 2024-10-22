@@ -12,8 +12,6 @@ in
 
   sensible-browser = callPackage ./sensible-browser { };
 
-  sensible-terminal = callPackage ./sensible-terminal { };
-
   whitesur-kde = callPackage ./whitesur-kde { };
 
   whitesur-wallpapers = callPackage ./whitesur-wallpapers { };

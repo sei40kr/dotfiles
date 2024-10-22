@@ -1,21 +1,29 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.term.sensible;
+let
+  termCfg = config.modules.term;
+  cfg = termCfg.sensible;
+
+  sensible-terminal = pkgs.writeShellScriptBin "sensible-terminal" (
+    if termCfg.wezterm.enable then
+      ''exec wezterm "$@"''
+    else if termCfg.kitty.enable then
+      ''exec kitty "$@"''
+    else
+      abort "sensible-terminal: no terminal emulator found"
+  );
 in
 {
   options.modules.term.sensible = with types; {
     enable = mkBoolOpt false;
   };
 
-  config = mkIf cfg.enable {
-    assertions = [{
-      assertion = config.modules.term.wezterm.enable
-        || config.modules.term.kitty.enable;
-      message = "The sensible module requires at least one terminal emulator installed.";
-    }];
-
-    user.packages = with pkgs; [ my.sensible-terminal ];
-  };
+  config = mkIf cfg.enable { environment.systemPackages = [ sensible-terminal ]; };
 }
