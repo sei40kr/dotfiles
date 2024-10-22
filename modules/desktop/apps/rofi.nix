@@ -377,5 +377,7 @@ in
         highlight: ${concatStringsSep " " cfg.item.selected.highlight.fontStyles} ${cfg.item.selected.highlight.fg};
       }
     '';
+
+    modules.term.sensible.enable = true;
   };
 }
