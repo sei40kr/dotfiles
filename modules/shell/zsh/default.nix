@@ -261,6 +261,9 @@ in
       subversion
     ];
 
+    # Create an empty .zshrc to prevent zsh-newuser-install from running on start-up
+    home.file.".zshrc".text = "";
+
     home.configFile."atuin/config.toml".source = "${configDir}/atuin/config.toml";
 
     home.configFile."starship.toml".text = ''
