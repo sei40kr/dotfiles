@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.lang.ocaml;
+let
+  cfg = config.modules.dev.lang.ocaml;
 in
 {
   options.modules.dev.lang.ocaml = {

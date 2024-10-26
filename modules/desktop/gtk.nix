@@ -1,11 +1,17 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
 let
   cfg = config.modules.desktop.gtk;
 
-  formatGtk2Option = n: v:
+  formatGtk2Option =
+    n: v:
     let
       v' =
         if isBool v then
@@ -17,9 +23,12 @@ let
     in
     "${n} = ${v'}";
   toGtkIni = lib.generators.toINI {
-    mkKeyValue = n: v:
-      let v' = if isBool v then (if v then "true" else "false") else toString v;
-      in "${n}=${v'}";
+    mkKeyValue =
+      n: v:
+      let
+        v' = if isBool v then (if v then "true" else "false") else toString v;
+      in
+      "${n}=${v'}";
   };
 in
 {
@@ -42,31 +51,28 @@ in
     fonts.packages = with pkgs; [ (mkIf (cfg.font != null) cfg.font.package) ];
 
     home.configFile = {
-      "gtk-2.0/gtkrc".text = concatStringsSep "\n"
-        (mapAttrsToList formatGtk2Option ((optionalAttrs (cfg.font != null) {
-          gtk-font-name = "${cfg.font.name} ${toString cfg.font.size}";
-        }) // (optionalAttrs (cfg.theme != null) {
-          gtk-theme-name = cfg.theme.name;
-        }) // (optionalAttrs (cfg.iconTheme != null) {
-          gtk-icon-theme-name = cfg.iconTheme.name;
-        })));
+      "gtk-2.0/gtkrc".text = concatStringsSep "\n" (
+        mapAttrsToList formatGtk2Option (
+          (optionalAttrs (cfg.font != null) { gtk-font-name = "${cfg.font.name} ${toString cfg.font.size}"; })
+          // (optionalAttrs (cfg.theme != null) { gtk-theme-name = cfg.theme.name; })
+          // (optionalAttrs (cfg.iconTheme != null) { gtk-icon-theme-name = cfg.iconTheme.name; })
+        )
+      );
       "gtk-3.0/settings.ini".text = toGtkIni {
-        Settings = {
-          gtk-enable-primary-paste = false;
-        } // (optionalAttrs (cfg.font != null) {
-          gtk-font-name = "${cfg.font.name} ${toString cfg.font.size}";
-        }) // (optionalAttrs (cfg.theme != null) {
-          gtk-theme-name = cfg.theme.name;
-        }) // (optionalAttrs (cfg.iconTheme != null) {
-          gtk-icon-theme-name = cfg.iconTheme.name;
-        });
+        Settings =
+          {
+            gtk-enable-primary-paste = false;
+          }
+          // (optionalAttrs (cfg.font != null) {
+            gtk-font-name = "${cfg.font.name} ${toString cfg.font.size}";
+          })
+          // (optionalAttrs (cfg.theme != null) { gtk-theme-name = cfg.theme.name; })
+          // (optionalAttrs (cfg.iconTheme != null) { gtk-icon-theme-name = cfg.iconTheme.name; });
       };
     };
 
     environment.sessionVariables = {
-      GTK2_RC_FILES = "${
-          config.home-manager.users.${config.user.name}.xdg.configHome
-        }/gtk-2.0/gtkrc";
+      GTK2_RC_FILES = "${config.home-manager.users.${config.user.name}.xdg.configHome}/gtk-2.0/gtkrc";
     };
 
     modules.desktop.dconf = {

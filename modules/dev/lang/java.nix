@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.lang.java;
+let
+  cfg = config.modules.dev.lang.java;
 in
 {
   options.modules.dev.lang.java = {
@@ -10,7 +16,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ jdk11 gradle maven ];
+    user.packages = with pkgs; [
+      jdk11
+      gradle
+      maven
+    ];
 
     modules.shell.aliases.mvnag = "mvn archetype:generate";
   };

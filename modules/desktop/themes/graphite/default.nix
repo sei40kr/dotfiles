@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
@@ -8,16 +13,22 @@ let
 
   inherit (cfg.variant) color;
   Color =
-    if cfg.variant.color == "light" then "Light"
-    else if cfg.variant.color == "dark" then "Dark"
-    else abort "Invalid color variant (variant.color = ${cfg.variant.color})";
+    if cfg.variant.color == "light" then
+      "Light"
+    else if cfg.variant.color == "dark" then
+      "Dark"
+    else
+      abort "Invalid color variant (variant.color = ${cfg.variant.color})";
 
   gtkTheme = pkgs.graphite-gtk-theme.override { wallpapers = true; };
 in
 {
   options.modules.desktop.theme.graphite = with types; {
     variant = {
-      color = mkOpt (types.enum [ "light" "dark" ]) "light";
+      color = mkOpt (types.enum [
+        "light"
+        "dark"
+      ]) "light";
     };
   };
 
@@ -141,4 +152,3 @@ in
     };
   };
 }
-

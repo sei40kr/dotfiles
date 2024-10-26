@@ -2,7 +2,8 @@
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.dconf;
+let
+  cfg = config.modules.desktop.dconf;
 in
 {
   options.modules.desktop.dconf = with types; {

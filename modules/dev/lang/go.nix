@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.lang.go;
+let
+  cfg = config.modules.dev.lang.go;
 in
 {
   options.modules.dev.lang.go = {
@@ -10,6 +16,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ go gopls gore ];
+    user.packages = with pkgs; [
+      go
+      gopls
+      gore
+    ];
   };
 }

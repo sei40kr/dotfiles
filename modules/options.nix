@@ -1,4 +1,9 @@
-{ config, lib, options, ... }:
+{
+  config,
+  lib,
+  options,
+  ...
+}:
 
 with lib;
 with lib.my;
@@ -7,13 +12,16 @@ with lib.my;
     user = mkOpt attrs { };
 
     dotfiles =
-      let t = either str path;
+      let
+        t = either str path;
       in
       {
-        dir = mkOpt t (findFirst pathExists (toString ../.) [
-          "${config.user.home}/.config/dotfiles"
-          "/etc/dotfiles"
-        ]);
+        dir = mkOpt t (
+          findFirst pathExists (toString ../.) [
+            "${config.user.home}/.config/dotfiles"
+            "/etc/dotfiles"
+          ]
+        );
         binDir = mkOpt t "${config.dotfiles.dir}/bin";
         configDir = mkOpt t "${config.dotfiles.dir}/config";
       };
@@ -25,9 +33,12 @@ with lib.my;
     };
 
     env = mkOption {
-      type = attrsOf (oneOf [ str path (listOf (either str path)) ]);
-      apply = mapAttrs (_: v:
-        if isList v then concatMapStringsSep ":" toString v else (toString v));
+      type = attrsOf (oneOf [
+        str
+        path
+        (listOf (either str path))
+      ]);
+      apply = mapAttrs (_: v: if isList v then concatMapStringsSep ":" toString v else (toString v));
       default = { };
     };
   };
@@ -56,6 +67,10 @@ with lib.my;
 
     users.users.${config.user.name} = mkAliasDefinitions options.user;
 
-    env.PATH = [ "$DOTFILES_BIN" "$XDG_BIN_HOME" "$PATH" ];
+    env.PATH = [
+      "$DOTFILES_BIN"
+      "$XDG_BIN_HOME"
+      "$PATH"
+    ];
   };
 }

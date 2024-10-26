@@ -60,14 +60,15 @@
   };
 
   outputs =
-    { self
-    , agenix
-    , fenix
-    , flake-parts
-    , home-manager
-    , nixpkgs
-    , nixpkgs-unstable
-    , ...
+    {
+      self,
+      agenix,
+      fenix,
+      flake-parts,
+      home-manager,
+      nixpkgs,
+      nixpkgs-unstable,
+      ...
     }@inputs:
     let
       inherit (flake-parts.lib) mkFlake;
@@ -75,64 +76,83 @@
       inherit (lib) attrValues;
       inherit (lib.my) mapModules;
     in
-    mkFlake { inherit inputs; } ({ withSystem, ... }:
-    let
-      nixosSystem = system: hostCfg: withSystem system ({ inputs', pkgs, ... }:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs inputs' lib pkgs; };
-          modules = [
-            agenix.nixosModules.default
-            home-manager.nixosModules.home-manager
-            ./modules
-            hostCfg
-          ];
-        });
-    in
-    {
-      flake = {
-        lib = import ./lib { inherit inputs lib; };
-
-        overlays = mapModules ./overlays import;
-
-        nixosConfigurations = mapModules ./hosts (path: import path {
-          inherit nixosSystem;
-        });
-      };
-
-      systems = [ "x86_64-linux" ];
-
-      perSystem = { inputs', pkgs, self', system, ... }: {
-        config._module.args.pkgs =
-          let
-            pkgs' = import nixpkgs-unstable {
+    mkFlake { inherit inputs; } (
+      { withSystem, ... }:
+      let
+        nixosSystem =
+          system: hostCfg:
+          withSystem system (
+            { inputs', pkgs, ... }:
+            nixpkgs.lib.nixosSystem {
               inherit system;
-              config.allowUnfree = true;
-            };
-            pkgs = import nixpkgs {
-              inherit system;
-              config.allowUnfree = true;
-              overlays = [
-                (_: _: {
-                  unstable = pkgs';
-                  my = self'.packages;
-                })
-                (_: _: { agenix = inputs'.agenix.packages.default; })
-                fenix.overlays.default
-                (_: _: { wez-tmux = inputs'.wez-tmux.packages.default; })
-                (_: _: { wez-pain-control = inputs'.wez-pain-control.packages.default; })
-                (_: _: { wez-per-project-workspace = inputs'.wez-per-project-workspace.packages.default; })
-                (_: _: { wez-status-generator = inputs'.wez-status-generator.packages.default; })
-              ] ++ attrValues self.overlays;
-            };
-          in
-          pkgs;
+              specialArgs = {
+                inherit
+                  inputs
+                  inputs'
+                  lib
+                  pkgs
+                  ;
+              };
+              modules = [
+                agenix.nixosModules.default
+                home-manager.nixosModules.home-manager
+                ./modules
+                hostCfg
+              ];
+            }
+          );
+      in
+      {
+        flake = {
+          lib = import ./lib { inherit inputs lib; };
 
-        config.packages = pkgs.callPackage ./packages {
-          tmux-project = inputs'.tmux-project.packages.default;
+          overlays = mapModules ./overlays import;
+
+          nixosConfigurations = mapModules ./hosts (path: import path { inherit nixosSystem; });
         };
 
-        config.devShells = pkgs.callPackage ./shells { };
-      };
-    });
+        systems = [ "x86_64-linux" ];
+
+        perSystem =
+          {
+            inputs',
+            pkgs,
+            self',
+            system,
+            ...
+          }:
+          {
+            config._module.args.pkgs =
+              let
+                pkgs' = import nixpkgs-unstable {
+                  inherit system;
+                  config.allowUnfree = true;
+                };
+                pkgs = import nixpkgs {
+                  inherit system;
+                  config.allowUnfree = true;
+                  overlays = [
+                    (_: _: {
+                      unstable = pkgs';
+                      my = self'.packages;
+                    })
+                    (_: _: { agenix = inputs'.agenix.packages.default; })
+                    fenix.overlays.default
+                    (_: _: { wez-tmux = inputs'.wez-tmux.packages.default; })
+                    (_: _: { wez-pain-control = inputs'.wez-pain-control.packages.default; })
+                    (_: _: { wez-per-project-workspace = inputs'.wez-per-project-workspace.packages.default; })
+                    (_: _: { wez-status-generator = inputs'.wez-status-generator.packages.default; })
+                  ] ++ attrValues self.overlays;
+                };
+              in
+              pkgs;
+
+            config.packages = pkgs.callPackage ./packages {
+              tmux-project = inputs'.tmux-project.packages.default;
+            };
+
+            config.devShells = pkgs.callPackage ./shells { };
+          };
+      }
+    );
 }

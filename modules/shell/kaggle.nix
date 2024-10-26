@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
@@ -10,7 +15,5 @@ in
     enable = mkBoolOpt false;
   };
 
-  config = mkIf cfg.enable {
-    user.packages = with pkgs; [ kaggle ];
-  };
+  config = mkIf cfg.enable { user.packages = with pkgs; [ kaggle ]; };
 }

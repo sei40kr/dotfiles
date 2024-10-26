@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.editors.idea;
+let
+  cfg = config.modules.editors.idea;
 in
 {
   options.modules.editors.idea = {

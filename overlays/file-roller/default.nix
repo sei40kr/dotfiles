@@ -1,5 +1,4 @@
-_self: super:
-{
+_self: super: {
   gnome = super.gnome // {
     file-roller = super.gnome.file-roller.overrideAttrs (attrs: {
       preFixup = ''

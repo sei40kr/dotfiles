@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.services.expressvpn;
+let
+  cfg = config.modules.services.expressvpn;
 in
 {
   options.modules.services.expressvpn = {

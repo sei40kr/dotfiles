@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with builtins;
 with lib;
@@ -8,8 +13,10 @@ let
   deCfg = desktopCfg.de;
   cfg = desktopCfg.swaylock;
 
-  blurImage = path:
-    let drvName = strings.sanitizeDerivationName "${baseNameOf path}-blurred";
+  blurImage =
+    path:
+    let
+      drvName = strings.sanitizeDerivationName "${baseNameOf path}-blurred";
     in
     pkgs.runCommand drvName
       {
@@ -23,13 +30,16 @@ let
         convert ${path} -blur 0x60 -modulate 55,100,100 $out
       '';
   backgroundOpts =
-    if deCfg.background.image != null then ''
-      image=${blurImage deCfg.background.image.path}
-      scaling=${deCfg.background.image.mode}
-      color=${deCfg.background.color}
-    '' else ''
-      color=${deCfg.background.color}
-    '';
+    if deCfg.background.image != null then
+      ''
+        image=${blurImage deCfg.background.image.path}
+        scaling=${deCfg.background.image.mode}
+        color=${deCfg.background.color}
+      ''
+    else
+      ''
+        color=${deCfg.background.color}
+      '';
   lockCommand = "${pkgs.swaylock-effects}/bin/swaylock -f";
 in
 {
@@ -52,11 +62,12 @@ in
       description = "Swayidle to trigger idle actions";
       documentation = [ "man:swayidle(1)" ];
       serviceConfig = {
-        ExecStart = "${pkgs.swayidle}/bin/swayidle -w " +
-          "timeout 300 ${escapeShellArg lockCommand} " +
-          "timeout 600 'swaymsg \"output * dpms off\"' " +
-          "resume 'swaymsg \"output * dpms on\"' " +
-          "before-sleep ${escapeShellArg lockCommand}";
+        ExecStart =
+          "${pkgs.swayidle}/bin/swayidle -w "
+          + "timeout 300 ${escapeShellArg lockCommand} "
+          + "timeout 600 'swaymsg \"output * dpms off\"' "
+          + "resume 'swaymsg \"output * dpms on\"' "
+          + "before-sleep ${escapeShellArg lockCommand}";
       };
     };
   };

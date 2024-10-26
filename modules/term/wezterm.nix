@@ -1,12 +1,25 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
 let
   inherit (pkgs) stdenv;
   termCfg = config.modules.term;
-  inherit (termCfg.colorschemes.colors) fg bg ansi cursor selection paneBorder
-    tabBar statusLine;
+  inherit (termCfg.colorschemes.colors)
+    fg
+    bg
+    ansi
+    cursor
+    selection
+    paneBorder
+    tabBar
+    statusLine
+    ;
   cfg = termCfg.wezterm;
 
   plugins = stdenv.mkDerivation {
@@ -31,14 +44,14 @@ let
   };
 in
 {
-  options.modules.term.wezterm = with types; { enable = mkBoolOpt false; };
+  options.modules.term.wezterm = with types; {
+    enable = mkBoolOpt false;
+  };
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ wezterm ];
 
-    fonts.packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-    ];
+    fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; }) ];
 
     home.configFile."wezterm/wezterm.lua".text = ''
       package.path = package.path .. ";${plugins}/share/wezterm/?.lua;${plugins}/share/wezterm/?/init.lua"

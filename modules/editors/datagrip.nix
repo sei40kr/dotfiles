@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.editors.datagrip;
+let
+  cfg = config.modules.editors.datagrip;
 in
 {
   options.modules.editors.datagrip = {

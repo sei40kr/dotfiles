@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.lang.latex;
+let
+  cfg = config.modules.dev.lang.latex;
 in
 {
   options.modules.dev.lang.latex = {
@@ -10,6 +16,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ texlive.combined.scheme-medium texlab ];
+    user.packages = with pkgs; [
+      texlive.combined.scheme-medium
+      texlab
+    ];
   };
 }

@@ -8,9 +8,15 @@ in
 {
   options.modules.services.k8s = with types; {
     roles = mkOption {
-      type = listOf (enum [ "master" "node" ]);
+      type = listOf (enum [
+        "master"
+        "node"
+      ]);
       default = [ ];
-      example = [ "master" "node" ];
+      example = [
+        "master"
+        "node"
+      ];
       description = mdDoc ''
         The roles of this node in the Kubernetes cluster. If empty, Kubernetes
         will not be enabled on this node.

@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.lang.cc;
+let
+  cfg = config.modules.dev.lang.cc;
 in
 {
   options.modules.dev.lang.cc = {
@@ -11,7 +17,16 @@ in
 
   config = mkIf cfg.enable {
     # TODO Install clang
-    user.packages = with pkgs; [ ccls cpplint ]
-      ++ (optionals pkgs.stdenv.isLinux [ gcc10 gdb llvm_10 ]);
+    user.packages =
+      with pkgs;
+      [
+        ccls
+        cpplint
+      ]
+      ++ (optionals pkgs.stdenv.isLinux [
+        gcc10
+        gdb
+        llvm_10
+      ]);
   };
 }

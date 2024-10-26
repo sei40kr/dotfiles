@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.media.documents.ebook;
+let
+  cfg = config.modules.desktop.media.documents.ebook;
 in
 {
   options.modules.desktop.media.documents.ebook = {
@@ -12,31 +18,32 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ foliate ];
 
-    home.dataFile."com.github.johnfactotum.Foliate/catalogs/catalogs.json".text =
-      builtins.toJSON {
-        catalogs = [
-          {
-            title = "Calibre-Web";
-            uri = "https://calibre.yong-ju.me/opds";
-            preview = "https://calibre.yong-ju.me/opds/new";
-          }
-          {
-            title = "Gihyo Digital Publishing";
-            uri = "https://gihyo.jp/dp/catalogs.opds";
-            preview = "https://gihyo.jp/dp/new.opds";
-          }
-          {
-            title = "O'Reilly Japan Ebook Store";
-            uri = "https://www.oreilly.co.jp/ebook/catalogs.opds";
-            preview = "https://www.oreilly.co.jp/ebook/new.opds";
-          }
-        ];
-      };
+    home.dataFile."com.github.johnfactotum.Foliate/catalogs/catalogs.json".text = builtins.toJSON {
+      catalogs = [
+        {
+          title = "Calibre-Web";
+          uri = "https://calibre.yong-ju.me/opds";
+          preview = "https://calibre.yong-ju.me/opds/new";
+        }
+        {
+          title = "Gihyo Digital Publishing";
+          uri = "https://gihyo.jp/dp/catalogs.opds";
+          preview = "https://gihyo.jp/dp/new.opds";
+        }
+        {
+          title = "O'Reilly Japan Ebook Store";
+          uri = "https://www.oreilly.co.jp/ebook/catalogs.opds";
+          preview = "https://www.oreilly.co.jp/ebook/new.opds";
+        }
+      ];
+    };
 
     modules.desktop.dconf = {
       enable = true;
       settings = {
-        "com/github/johnfactotum/Foliate" = { restore-last-file = false; };
+        "com/github/johnfactotum/Foliate" = {
+          restore-last-file = false;
+        };
       };
     };
   };

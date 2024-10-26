@@ -1,7 +1,12 @@
 { config, lib, ... }:
 
 let
-  inherit (lib) mdDoc mkIf mkOption types;
+  inherit (lib)
+    mdDoc
+    mkIf
+    mkOption
+    types
+    ;
   inherit (lib.my.extraTypes) font;
   cfg = config.modules.desktop.wm;
   deCfg = config.modules.desktop.de;
@@ -39,13 +44,13 @@ in
   };
 
   config = {
-    assertions = [{
-      assertion = cfg.gaps.inner <= cfg.gaps.outer;
-      message = "The outer gaps must be greater than or equal to the inner gaps.";
-    }];
-
-    fonts.packages = [
-      (mkIf (cfg.fonts.titleBar.package != null) cfg.fonts.titleBar.package)
+    assertions = [
+      {
+        assertion = cfg.gaps.inner <= cfg.gaps.outer;
+        message = "The outer gaps must be greater than or equal to the inner gaps.";
+      }
     ];
+
+    fonts.packages = [ (mkIf (cfg.fonts.titleBar.package != null) cfg.fonts.titleBar.package) ];
   };
 }

@@ -1,12 +1,13 @@
-{ lib
-, makeWrapper
-, runCommandLocal
-, symlinkJoin
-, sysstat
-, stdenv
-, tmux
-, tmuxPlugins
-, tmux-project
+{
+  lib,
+  makeWrapper,
+  runCommandLocal,
+  symlinkJoin,
+  sysstat,
+  stdenv,
+  tmux,
+  tmuxPlugins,
+  tmux-project,
 }:
 
 let

@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.apps.gnome.pomodoro;
+let
+  cfg = config.modules.desktop.apps.gnome.pomodoro;
 in
 {
   options.modules.desktop.apps.gnome.pomodoro = {
@@ -16,7 +22,10 @@ in
       enable = true;
       settings = {
         "org/gnome/pomodoro/preferences" = {
-          enabled-plugins = [ "notifications" "sounds" ];
+          enabled-plugins = [
+            "notifications"
+            "sounds"
+          ];
         };
       };
     };

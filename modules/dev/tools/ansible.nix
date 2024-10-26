@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
@@ -11,6 +16,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ ansible ansible-lint ];
+    user.packages = with pkgs; [
+      ansible
+      ansible-lint
+    ];
   };
 }

@@ -2,7 +2,13 @@
 
 let
   inherit (lib) mdDoc mkOption types;
-  inherit (types) nullOr package str float submodule;
+  inherit (types)
+    nullOr
+    package
+    str
+    float
+    submodule
+    ;
 in
 {
   extraTypes = {

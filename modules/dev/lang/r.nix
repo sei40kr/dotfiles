@@ -1,13 +1,23 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
 let
   cfg = config.modules.dev.lang.r;
 
-  package = with pkgs;
+  package =
+    with pkgs;
     rWrapper.override {
-      packages = [ rPackages.languageserver rPackages.lintr rPackages.styler ];
+      packages = [
+        rPackages.languageserver
+        rPackages.lintr
+        rPackages.styler
+      ];
     };
 in
 {
@@ -16,7 +26,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = [ package pkgs.python3Packages.radian ];
+    user.packages = [
+      package
+      pkgs.python3Packages.radian
+    ];
 
     home.file = {
       ".Renviron".text = ''

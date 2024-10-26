@@ -1,8 +1,26 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  inherit (lib) concatStringsSep max mdDoc mkEnableOption mkIf mkOption types;
-  inherit (types) enum int listOf str;
+  inherit (lib)
+    concatStringsSep
+    max
+    mdDoc
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
+  inherit (types)
+    enum
+    int
+    listOf
+    str
+    ;
   inherit (lib.my.extraTypes) font;
   inherit (config.dotfiles) configDir;
   desktopCfg = config.modules.desktop;
@@ -241,7 +259,11 @@ in
           };
 
           fontStyles = mkOption {
-            type = listOf (enum [ "bold" "underline" "italic" ]);
+            type = listOf (enum [
+              "bold"
+              "underline"
+              "italic"
+            ]);
             default = [ ];
             description = "The font styles of the search highlight of the Rofi items.";
           };
@@ -269,7 +291,11 @@ in
           };
 
           fontStyles = mkOption {
-            type = listOf (enum [ "bold" "underline" "italic" ]);
+            type = listOf (enum [
+              "bold"
+              "underline"
+              "italic"
+            ]);
             default = [ ];
             description = "The font styles of the search highlight of the Rofi items.";
           };
@@ -298,7 +324,9 @@ in
       }
 
       inputbar {
-        margin: ${toString (max (cfg.input.margin.y - cfg.window.padding.y) 0)} 0 ${toString cfg.input.margin.y}px 0;
+        margin: ${
+          toString (max (cfg.input.margin.y - cfg.window.padding.y) 0)
+        } 0 ${toString cfg.input.margin.y}px 0;
         padding: ${toString cfg.input.padding.y}px ${toString cfg.input.padding.x}px;
         border: ${toString cfg.input.border.width}px solid;
         border-color: ${cfg.input.border.color};
@@ -308,7 +336,9 @@ in
       }
 
       prompt {
-        margin: 0 ${toString cfg.input.prompt.margin.x} 0 ${toString (max (cfg.input.prompt.margin.x - cfg.input.padding.x) 0)}px;
+        margin: 0 ${toString cfg.input.prompt.margin.x} 0 ${
+          toString (max (cfg.input.prompt.margin.x - cfg.input.padding.x) 0)
+        }px;
         background-color: #00000000;
         text-color: ${cfg.input.prompt.fg};
         font: "${cfg.input.prompt.font.name} ${toString cfg.input.prompt.font.size}";

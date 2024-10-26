@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with builtins;
 with lib;
@@ -31,7 +36,10 @@ in
 
     systemd.user.services.waybar = {
       description = "Highly customizable Wayland bar for Sway and Wlroots based compositors";
-      documentation = [ "man:waybar(1)" "https://github.com/Alexays/Waybar/wiki" ];
+      documentation = [
+        "man:waybar(1)"
+        "https://github.com/Alexays/Waybar/wiki"
+      ];
       serviceConfig = {
         ExecStart = "${pkgs.waybar}/bin/waybar";
         ExecReload = "${pkgs.coreutils}/bin/kill -SIGUSR2 $MAINPID";

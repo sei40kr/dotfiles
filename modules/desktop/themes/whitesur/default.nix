@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
@@ -10,7 +15,10 @@ let
 in
 {
   options.modules.desktop.theme.whitesur = with types; {
-    variant = mkOpt (enum [ "light" "dark" ]) "light";
+    variant = mkOpt (enum [
+      "light"
+      "dark"
+    ]) "light";
   };
 
   config = mkIf (themeCfg.active == "whitesur") {

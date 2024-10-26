@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.lang.python;
+let
+  cfg = config.modules.dev.lang.python;
 in
 {
   options.modules.dev.lang.python = {
@@ -12,11 +18,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      python3
-      python3Packages.python-lsp-server
-      ruff-lsp
-    ] ++ optionals cfg.enablePoetry (with pkgs; [ poetry ]);
+    user.packages =
+      with pkgs;
+      [
+        python3
+        python3Packages.python-lsp-server
+        ruff-lsp
+      ]
+      ++ optionals cfg.enablePoetry (with pkgs; [ poetry ]);
     env.PATH = [ "\${HOME}/.poetry/bin" ];
 
     modules.shell.zsh.rcInit = ''

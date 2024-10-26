@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.lang.web;
+let
+  cfg = config.modules.dev.lang.web;
 in
 {
   options.modules.dev.lang.web = {
@@ -19,13 +25,16 @@ in
 
   config = mkIf cfg.enable {
     # TODO stylelint-cli
-    user.packages = with pkgs; [
-      nodejs_20
-      emmet-language-server
-      nodePackages.prettier
-      nodePackages.vscode-html-languageserver-bin
-      nodePackages.vscode-css-languageserver-bin
-      nodePackages.vue-language-server
-    ] ++ (if cfg.bun.enable then [ bun ] else [ ]);
+    user.packages =
+      with pkgs;
+      [
+        nodejs_20
+        emmet-language-server
+        nodePackages.prettier
+        nodePackages.vscode-html-languageserver-bin
+        nodePackages.vscode-css-languageserver-bin
+        nodePackages.vue-language-server
+      ]
+      ++ (if cfg.bun.enable then [ bun ] else [ ]);
   };
 }

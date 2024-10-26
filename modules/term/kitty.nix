@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with builtins;
 with lib;
@@ -8,8 +13,16 @@ let
   termCfg = config.modules.term;
   cfg = termCfg.kitty;
   inherit (termCfg) font;
-  inherit (termCfg.colorschemes.colors) fg bg ansi cursor link selection
-    paneBorder tabBar;
+  inherit (termCfg.colorschemes.colors)
+    fg
+    bg
+    ansi
+    cursor
+    link
+    selection
+    paneBorder
+    tabBar
+    ;
 in
 {
   options.modules.term.kitty = {
@@ -19,9 +32,7 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ kitty ];
 
-    fonts.packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-    ];
+    fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; }) ];
 
     home.configFile."kitty/kitty.conf".text = ''
       confirm_os_window_close 0

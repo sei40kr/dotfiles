@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
@@ -20,18 +25,21 @@ in
     ];
 
     environment.etc."opt/chrome/policies/managed/default.json".text = builtins.toJSON {
-      ExtensionInstallForcelist = [
-        "cofdbpoegempjloogbagkncekinflcnj" # DeepL翻訳
-        "neebplgakaahbhdphmkckjjcegoiijjo" # Keepa
-        "jaikhcpoplnhinlglnkmihfdlbamhgig" # アマゾン注文履歴フィルタ
-      ] ++ optionals config.modules.desktop.apps.bitwarden.enable [
-        "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
-      ] ++ optionals config.modules.dev.lang.web.enable [
-        "pbjjkligggfmakdaogkfomddhfmpjeni" # Accessibility Insights for Web
-        "blipmdconlkpinefehnmjammfjpmpbjk" # Lighthouse
-        "fmkadmapgofadopljbjfkapdkoienihi" # React Developer Tools
-        "lmhkpmbekcpmknklioeibfkpmmfibljd" # Redux DevTools
-      ];
+      ExtensionInstallForcelist =
+        [
+          "cofdbpoegempjloogbagkncekinflcnj" # DeepL翻訳
+          "neebplgakaahbhdphmkckjjcegoiijjo" # Keepa
+          "jaikhcpoplnhinlglnkmihfdlbamhgig" # アマゾン注文履歴フィルタ
+        ]
+        ++ optionals config.modules.desktop.apps.bitwarden.enable [
+          "nngceckbapebfimnlniiiahkandclblb" # Bitwarden
+        ]
+        ++ optionals config.modules.dev.lang.web.enable [
+          "pbjjkligggfmakdaogkfomddhfmpjeni" # Accessibility Insights for Web
+          "blipmdconlkpinefehnmjammfjpmpbjk" # Lighthouse
+          "fmkadmapgofadopljbjfkapdkoienihi" # React Developer Tools
+          "lmhkpmbekcpmknklioeibfkpmmfibljd" # Redux DevTools
+        ];
     };
   };
 }

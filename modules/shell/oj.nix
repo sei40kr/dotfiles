@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.shell.oj;
+let
+  cfg = config.modules.shell.oj;
 in
 {
   options.modules.shell.oj = {

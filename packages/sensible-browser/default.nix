@@ -1,6 +1,7 @@
 { runCommandLocal }:
 
-let version = "unstable-2022-08-25";
+let
+  version = "unstable-2022-08-25";
 in
 runCommandLocal "sensible-browser-${version}" { } ''
   mkdir -p $out/bin

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   inherit (lib) mdDoc mkEnableOption mkIf;
@@ -11,7 +16,5 @@ in
     '');
   };
 
-  config = mkIf cfg.enable {
-    user.packages = with pkgs; [ hyperfine ];
-  };
+  config = mkIf cfg.enable { user.packages = with pkgs; [ hyperfine ]; };
 }

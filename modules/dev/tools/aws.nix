@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.tools.aws;
+let
+  cfg = config.modules.dev.tools.aws;
 in
 {
   options.modules.dev.tools.aws = {

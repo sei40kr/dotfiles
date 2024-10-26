@@ -1,14 +1,22 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  inherit (lib) mkIf mkOption mkEnableOption types;
+  inherit (lib)
+    mkIf
+    mkOption
+    mkEnableOption
+    types
+    ;
   inherit (config.dotfiles) configDir;
   inherit (pkgs) stdenv;
   cfg = config.modules.dev.tools.jupyter;
 
-  kernels = pkgs.jupyter-kernel.create {
-    definitions = cfg.kernels;
-  };
+  kernels = pkgs.jupyter-kernel.create { definitions = cfg.kernels; };
 in
 {
   options.modules.dev.tools.jupyter = {
@@ -24,8 +32,7 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ python3Packages.notebook ];
 
-    home.file.".jupyter/jupyter_console_config.py".source =
-      "${configDir}/jupyter/jupyter_console_config.py";
+    home.file.".jupyter/jupyter_console_config.py".source = "${configDir}/jupyter/jupyter_console_config.py";
     home.dataFile."jupyter/kernels".source = "${kernels}/kernels";
   };
 }

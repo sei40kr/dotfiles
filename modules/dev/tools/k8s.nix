@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.tools.k8s;
+let
+  cfg = config.modules.dev.tools.k8s;
 in
 {
   options.modules.dev.tools.k8s = {

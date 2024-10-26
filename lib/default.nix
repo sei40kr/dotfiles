@@ -10,7 +10,8 @@ let
     };
   };
 
-  mylib = makeExtensible (self:
-    modules.mapModules ./. (file: import file { inherit self lib inputs; }));
+  mylib = makeExtensible (
+    self: modules.mapModules ./. (file: import file { inherit self lib inputs; })
+  );
 in
 mylib.extend (_: super: foldr (a: b: a // b) { } (attrValues super))

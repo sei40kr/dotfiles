@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.services.flexget;
+let
+  cfg = config.modules.services.flexget;
 in
 {
   options.modules.services.flexget = {

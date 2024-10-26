@@ -1,4 +1,10 @@
-{ config, inputs', lib, pkgs, ... }:
+{
+  config,
+  inputs',
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   inherit (lib) mkIf mkEnableOption;
@@ -11,9 +17,7 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = [
-      (inputs'.lazyvim.packages.default.override {
-        inherit (pkgs.unstable) neovim-unwrapped;
-      })
+      (inputs'.lazyvim.packages.default.override { inherit (pkgs.unstable) neovim-unwrapped; })
     ];
   };
 }

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   inherit (lib) mkEnableOption mkIf;
@@ -9,7 +14,5 @@ in
     enable = mkEnableOption "LTEX";
   };
 
-  config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ ltex-ls ];
-  };
+  config = mkIf cfg.enable { environment.systemPackages = with pkgs; [ ltex-ls ]; };
 }

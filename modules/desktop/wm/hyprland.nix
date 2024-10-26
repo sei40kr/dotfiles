@@ -1,8 +1,25 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  inherit (builtins) attrValues concatStringsSep elem mapAttrs;
-  inherit (lib) filterAttrs mdDoc mkEnableOption mkIf optionalString removePrefix;
+  inherit (builtins)
+    attrValues
+    concatStringsSep
+    elem
+    mapAttrs
+    ;
+  inherit (lib)
+    filterAttrs
+    mdDoc
+    mkEnableOption
+    mkIf
+    optionalString
+    removePrefix
+    ;
   inherit (config.dotfiles) configDir;
   desktopCfg = config.modules.desktop;
   deCfg = desktopCfg.de;
@@ -11,45 +28,65 @@ let
 
   package = pkgs.hyprland;
 
-  toMonitorParams = { enable, scale, ... }@monitor:
+  toMonitorParams =
+    { enable, scale, ... }@monitor:
     let
       resolution =
         if monitor.resolution != null then
-          (toString monitor.resolution.width) + "x" + (toString monitor.resolution.height)
+          (toString monitor.resolution.width)
+          + "x"
+          + (toString monitor.resolution.height)
           + (optionalString (monitor.refreshRate != null) "@" + monitor.refreshRate)
-        else "preferred";
+        else
+          "preferred";
       position =
         if monitor.position != null then
           (toString monitor.position.x) + "x" + (toString monitor.position.y)
-        else "auto";
+        else
+          "auto";
       mirror = optionalString (monitor.mirror != null) ", mirror, ${monitor.mirror}";
       bitDepth = optionalString (monitor.bitDepth != 8) ", bit_depth, ${toString monitor.bitDepth}";
       vrr = optionalString monitor.vrr ", vrr, 1";
-      transform = ", transform, " + (
-        if monitor.rotation.degrees == 0 && !monitor.rotation.flipped then "0"
-        else if monitor.rotation.degrees == 90 && !monitor.rotation.flipped then "1"
-        else if monitor.rotation.degrees == 180 && !monitor.rotation.flipped then "2"
-        else if monitor.rotation.degrees == 270 && !monitor.rotation.flipped then "3"
-        else if monitor.rotation.degrees == 0 && monitor.rotation.flipped then "4"
-        else if monitor.rotation.degrees == 90 && monitor.rotation.flipped then "5"
-        else if monitor.rotation.degrees == 180 && monitor.rotation.flipped then "6"
-        else if monitor.rotation.degrees == 270 && monitor.rotation.flipped then "7"
-        else throw "Invalid rotation"
-      );
+      transform =
+        ", transform, "
+        + (
+          if monitor.rotation.degrees == 0 && !monitor.rotation.flipped then
+            "0"
+          else if monitor.rotation.degrees == 90 && !monitor.rotation.flipped then
+            "1"
+          else if monitor.rotation.degrees == 180 && !monitor.rotation.flipped then
+            "2"
+          else if monitor.rotation.degrees == 270 && !monitor.rotation.flipped then
+            "3"
+          else if monitor.rotation.degrees == 0 && monitor.rotation.flipped then
+            "4"
+          else if monitor.rotation.degrees == 90 && monitor.rotation.flipped then
+            "5"
+          else if monitor.rotation.degrees == 180 && monitor.rotation.flipped then
+            "6"
+          else if monitor.rotation.degrees == 270 && monitor.rotation.flipped then
+            "7"
+          else
+            throw "Invalid rotation"
+        );
     in
     if enable then
       "${resolution}, ${position}, ${toString scale}${transform}${mirror}${bitDepth}${vrr}"
-    else "disable";
+    else
+      "disable";
 
   embeddedMonitorParams =
-    if deCfg.monitors ? eDP-1 then toMonitorParams deCfg.monitors.eDP-1
-    else "preferred, auto, 1";
+    if deCfg.monitors ? eDP-1 then toMonitorParams deCfg.monitors.eDP-1 else "preferred, auto, 1";
 
   monitors-conf = pkgs.writeTextFile {
     name = "monitors.conf";
-    text = concatStringsSep "\n" (attrValues (mapAttrs
-      (name: monitor: "monitor = ${name}, ${toMonitorParams monitor}")
-      (filterAttrs (k: _: k != "eDP-1") deCfg.monitors)));
+    text = concatStringsSep "\n" (
+      attrValues (
+        mapAttrs (name: monitor: "monitor = ${name}, ${toMonitorParams monitor}") (
+          filterAttrs (k: _: k != "eDP-1") deCfg.monitors
+        )
+      )
+    );
   };
 
   sync-lid-state = pkgs.writeShellScriptBin "hyprland-sync-lid-state" ''
@@ -70,7 +107,12 @@ in
   config = mkIf cfg.enable {
     assertions = [
       {
-        assertion = deCfg.background.image == null || elem deCfg.background.image.mode [ "fill" "fit" ];
+        assertion =
+          deCfg.background.image == null
+          || elem deCfg.background.image.mode [
+            "fill"
+            "fit"
+          ];
         message = "The background image mode must be either \"fill\" or \"fit\" when using Hyprland";
       }
     ];
@@ -122,7 +164,9 @@ in
     home.configFile."hypr/hyprpaper.conf" = mkIf (deCfg.background.image != null) {
       text = ''
         preload = ${deCfg.background.image.path}
-        wallpaper = ,${optionalString (deCfg.background.image.mode == "fit") "contain:"}${deCfg.background.image.path}
+        wallpaper = ,${
+          optionalString (deCfg.background.image.mode == "fit") "contain:"
+        }${deCfg.background.image.path}
         ipc = off
       '';
     };
@@ -143,4 +187,3 @@ in
     modules.desktop.qt.enable = true;
   };
 }
-

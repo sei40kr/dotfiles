@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
@@ -31,7 +36,5 @@ let
   };
 in
 {
-  config = mkIf config.modules.dev.lang.r.enable {
-    modules.dev.tools.jupyter.kernels.ir = kernel;
-  };
+  config = mkIf config.modules.dev.lang.r.enable { modules.dev.tools.jupyter.kernels.ir = kernel; };
 }

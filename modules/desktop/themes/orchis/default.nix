@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
@@ -10,8 +15,16 @@ in
 {
   config = mkIf (themeCfg.active == "orchis") {
     modules.desktop.fontconfig.fonts.sansSerif = {
-      packages = with pkgs; [ roboto noto-fonts noto-fonts-cjk ];
-      names = [ "Roboto" "Noto Sans Mono" "Noto Sans Mono CJK JP" ];
+      packages = with pkgs; [
+        roboto
+        noto-fonts
+        noto-fonts-cjk
+      ];
+      names = [
+        "Roboto"
+        "Noto Sans Mono"
+        "Noto Sans Mono CJK JP"
+      ];
     };
 
     modules.desktop.de.background.image = {

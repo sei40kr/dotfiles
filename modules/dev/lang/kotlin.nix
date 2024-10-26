@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.lang.kotlin;
+let
+  cfg = config.modules.dev.lang.kotlin;
 in
 {
   options.modules.dev.lang.kotlin = {

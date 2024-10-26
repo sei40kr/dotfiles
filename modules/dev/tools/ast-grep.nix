@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   inherit (lib) mdDoc mkEnableOption mkIf;
@@ -9,8 +14,5 @@ in
     enable = mkEnableOption (mdDoc "ast-grep");
   };
 
-  config = mkIf cfg.enable {
-    user.packages = with pkgs; [ ast-grep ];
-  };
+  config = mkIf cfg.enable { user.packages = with pkgs; [ ast-grep ]; };
 }
-

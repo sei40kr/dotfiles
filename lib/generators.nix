@@ -3,16 +3,60 @@
 let
   inherit (builtins) isNull isFloat;
   inherit (lib)
-    concatMapStringsSep escape isBool isInt isList isString replaceStrings;
-  escapeEmacsLispString = v:
-    escape [ "\\" ''"'' ]
-      (replaceStrings [ "\n" "\r" "  " ] [ "\\n" "\\r" "\\t" ] v);
-  escapeVimScriptString = v:
-    escape [ "\\" ''"'' ]
-      (replaceStrings [ "\n" "\r" "  " ] [ "\\n" "\\r" "\\t" ] v);
+    concatMapStringsSep
+    escape
+    isBool
+    isInt
+    isList
+    isString
+    replaceStrings
+    ;
+  escapeEmacsLispString =
+    v:
+    escape
+      [
+        "\\"
+        ''"''
+      ]
+      (
+        replaceStrings
+          [
+            "\n"
+            "\r"
+            "  "
+          ]
+          [
+            "\\n"
+            "\\r"
+            "\\t"
+          ]
+          v
+      );
+  escapeVimScriptString =
+    v:
+    escape
+      [
+        "\\"
+        ''"''
+      ]
+      (
+        replaceStrings
+          [
+            "\n"
+            "\r"
+            "  "
+          ]
+          [
+            "\\n"
+            "\\r"
+            "\\t"
+          ]
+          v
+      );
 in
 rec {
-  toEmacsLisp = v:
+  toEmacsLisp =
+    v:
     if isNull v then
       "nil"
     else if isFloat v then
@@ -28,7 +72,8 @@ rec {
     else
       abort "toEmacsLisp: unexpected type (v = ${v})";
 
-  toVimScript = v:
+  toVimScript =
+    v:
     if isFloat v then
       toString v
     else if isInt v then

@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.lang.groovy;
+let
+  cfg = config.modules.dev.lang.groovy;
 in
 {
   options.modules.dev.lang.groovy = {
@@ -10,6 +16,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ groovy gradle maven ];
+    user.packages = with pkgs; [
+      groovy
+      gradle
+      maven
+    ];
   };
 }

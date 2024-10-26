@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.tools.terraform;
+let
+  cfg = config.modules.dev.tools.terraform;
 in
 {
   options.modules.dev.tools.terraform = {

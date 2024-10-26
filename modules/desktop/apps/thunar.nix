@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.apps.thunar;
+let
+  cfg = config.modules.desktop.apps.thunar;
 in
 {
   options.modules.desktop.apps.thunar = {

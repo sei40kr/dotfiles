@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
@@ -16,6 +21,8 @@ in
 
     home.file.".ripgreprc".source = "${configDir}/ripgrep/ripgreprc";
 
-    modules.shell.aliases = { notes = "rg 'TODO|FIXME|HACK|OPTIMIZE|REVIEW'"; };
+    modules.shell.aliases = {
+      notes = "rg 'TODO|FIXME|HACK|OPTIMIZE|REVIEW'";
+    };
   };
 }

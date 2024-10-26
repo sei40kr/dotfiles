@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.tools.azure;
+let
+  cfg = config.modules.dev.tools.azure;
 in
 {
   options.modules.dev.tools.azure = {

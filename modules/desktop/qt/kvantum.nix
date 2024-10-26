@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
@@ -6,13 +11,15 @@ let
   qtCfg = config.modules.desktop.qt;
   cfg = qtCfg.kvantum;
 
-  themeType = with types; submodule {
-    options = {
-      package = mkOpt package null;
-      dir = mkOpt str null;
-      name = mkOpt str null;
+  themeType =
+    with types;
+    submodule {
+      options = {
+        package = mkOpt package null;
+        dir = mkOpt str null;
+        name = mkOpt str null;
+      };
     };
-  };
 in
 {
   options.modules.desktop.qt.kvantum = with types; {

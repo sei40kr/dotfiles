@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.services.docker;
+let
+  cfg = config.modules.services.docker;
 in
 {
   options.modules.services.docker = {
@@ -17,7 +23,10 @@ in
 
     users.groups.docker = { };
 
-    boot.kernelModules = [ "bridge" "veth" ];
+    boot.kernelModules = [
+      "bridge"
+      "veth"
+    ];
     boot.kernel.sysctl = {
       "net.ipv4.conf.all.forwarding" = mkOverride 98 true;
       "net.ipv4.conf.default.forwarding" = mkOverride 98 true;
@@ -25,7 +34,10 @@ in
 
     systemd.services.docker = {
       wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" "docker.socket" ];
+      after = [
+        "network.target"
+        "docker.socket"
+      ];
       requires = [ "docker.socket" ];
       serviceConfig = {
         Type = "notify";

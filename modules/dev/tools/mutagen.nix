@@ -14,11 +14,13 @@ in
   };
 
   config = mkIf cfg.enable {
-    assertions = [{
-      assertion = !cfg.enable || dockerCfg.enable;
-      message = "Docker should be enabled when using Mutagen.";
-    }];
-    
+    assertions = [
+      {
+        assertion = !cfg.enable || dockerCfg.enable;
+        message = "Docker should be enabled when using Mutagen.";
+      }
+    ];
+
     user.packages = with pkgs; [
       mutagen
       (mkIf cfg.compose.enable mutagen-compose)

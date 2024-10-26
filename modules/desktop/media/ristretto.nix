@@ -1,15 +1,19 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.media.ristretto;
+let
+  cfg = config.modules.desktop.media.ristretto;
 in
 {
   options.modules.desktop.media.ristretto = {
     enable = mkBoolOpt false;
   };
 
-  config = mkIf cfg.enable {
-    user.packages = with pkgs; [ xfce.ristretto ];
-  };
+  config = mkIf cfg.enable { user.packages = with pkgs; [ xfce.ristretto ]; };
 }

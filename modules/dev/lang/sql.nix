@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
@@ -12,7 +17,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ litecli mycli pgcli ];
+    user.packages = with pkgs; [
+      litecli
+      mycli
+      pgcli
+    ];
 
     home.configFile."litecli/config".source = "${configDir}/litecli/config";
 

@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.lang.ruby;
+let
+  cfg = config.modules.dev.lang.ruby;
 in
 {
   options.modules.dev.lang.ruby = {
@@ -12,8 +18,16 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; ([ ruby rubocop solargraph ]
-      ++ optionals cfg.rails.enable [ rubyPackages.rails ]);
+    user.packages =
+      with pkgs;
+      (
+        [
+          ruby
+          rubocop
+          solargraph
+        ]
+        ++ optionals cfg.rails.enable [ rubyPackages.rails ]
+      );
 
     modules.shell.zsh.rcInit = ''
       zinit ice wait''' lucid as'completion' id-as'OMZP::gem'

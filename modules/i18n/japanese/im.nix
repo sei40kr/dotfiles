@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
@@ -21,12 +26,24 @@ in
               # Skip first input method while enumerating
               EnumerateSkipFirst = "False";
             };
-            "Hotkey/EnumerateForwardKeys" = { "0" = "Control+space"; };
-            "Hotkey/EnumerateBackwardKeys" = { "0" = "Control+Shift+space"; };
-            "Hotkey/PrevPage" = { "0" = "Up"; };
-            "Hotkey/NextPage" = { "0" = "Down"; };
-            "Hotkey/PrevCandidate" = { "0" = "Shift+Tab"; };
-            "Hotkey/NextCandidate" = { "0" = "Tab"; };
+            "Hotkey/EnumerateForwardKeys" = {
+              "0" = "Control+space";
+            };
+            "Hotkey/EnumerateBackwardKeys" = {
+              "0" = "Control+Shift+space";
+            };
+            "Hotkey/PrevPage" = {
+              "0" = "Up";
+            };
+            "Hotkey/NextPage" = {
+              "0" = "Down";
+            };
+            "Hotkey/PrevCandidate" = {
+              "0" = "Shift+Tab";
+            };
+            "Hotkey/NextCandidate" = {
+              "0" = "Tab";
+            };
             Behavior = {
               # Active By Default
               ActiveByDefault = "False";
@@ -71,7 +88,9 @@ in
               # Layout
               Layout = "";
             };
-            "GroupOrder" = { "0" = "Default"; };
+            "GroupOrder" = {
+              "0" = "Default";
+            };
           };
         };
         ignoreUserConfig = true;

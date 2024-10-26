@@ -1,4 +1,10 @@
-{ callPackage, python3Packages, tmux-project, tmuxPlugins, ... }:
+{
+  callPackage,
+  python3Packages,
+  tmux-project,
+  tmuxPlugins,
+  ...
+}:
 
 let
   myTmuxPlugins = callPackage ./tmux-plugins { };

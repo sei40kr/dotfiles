@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   inherit (lib) generators mkEnableOption mkIf;
@@ -12,9 +17,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ polybarFull ];
 
-    fonts.packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-    ];
+    fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; }) ];
 
     systemd.user.services.polybar-top = {
       description = "Polybar top bar as systemd service";

@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.lang.solidity;
+let
+  cfg = config.modules.dev.lang.solidity;
 in
 {
   options.modules.dev.lang.solidity = {
@@ -10,6 +16,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ solc nodePackages.ganache ];
+    user.packages = with pkgs; [
+      solc
+      nodePackages.ganache
+    ];
   };
 }

@@ -1,14 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
 let
   cfg = config.modules.shell.nushell;
 
-  atuin_nu = pkgs.runCommandLocal "atuin.nu"
-    {
-      buildInputs = [ pkgs.atuin ];
-    } ''
+  atuin_nu = pkgs.runCommandLocal "atuin.nu" { buildInputs = [ pkgs.atuin ]; } ''
     # HACK: Atuin tries to create a directory in `homeless-shelter/.local/share`
     #  and fails because it doesn't have permission to create a directory in.
     #  We can work around this by setting `$HOME` to a temporary directory.
@@ -18,10 +20,7 @@ let
     atuin init nu >$out
   '';
 
-  starship_nu = pkgs.runCommandLocal "starship.nu"
-    {
-      buildInputs = [ pkgs.starship ];
-    } ''
+  starship_nu = pkgs.runCommandLocal "starship.nu" { buildInputs = [ pkgs.starship ]; } ''
     starship init nu >$out
   '';
 in

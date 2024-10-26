@@ -4,7 +4,8 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.term;
-  fontType = with types;
+  fontType =
+    with types;
     submodule {
       options = {
         package = mkOpt (nullOr package) null;
@@ -22,7 +23,7 @@ in
 
     bgOpacity = mkOption {
       type = float;
-      default = 1.00;
+      default = 1.0;
       example = 0.95;
       description = mdDoc ''
         Opacity of the background color.
@@ -42,7 +43,7 @@ in
   config = {
     assertions = [
       {
-        assertion = 0.00 <= cfg.bgOpacity && cfg.bgOpacity <= 1.00;
+        assertion = 0.0 <= cfg.bgOpacity && cfg.bgOpacity <= 1.0;
         message = "modules.term.bgOpacity must be between 0.00 and 1.00";
       }
       {

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
@@ -195,7 +200,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ git gitAndTools.gitflow gitui ];
+    user.packages = with pkgs; [
+      git
+      gitAndTools.gitflow
+      gitui
+    ];
 
     programs.git = {
       enable = true;

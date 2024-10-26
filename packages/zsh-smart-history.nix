@@ -1,4 +1,9 @@
-{ fetchFromGitHub, lib, stdenv, ... }:
+{
+  fetchFromGitHub,
+  lib,
+  stdenv,
+  ...
+}:
 
 with lib;
 stdenv.mkDerivation {

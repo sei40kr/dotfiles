@@ -1,10 +1,30 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  inherit (lib) genAttrs mdDoc mkEnableOption mkIf mkOption removePrefix types;
+  inherit (lib)
+    genAttrs
+    mdDoc
+    mkEnableOption
+    mkIf
+    mkOption
+    removePrefix
+    types
+    ;
   inherit (lib.generators) toINI;
   inherit (lib.my.extraTypes) font;
-  inherit (types) enum int nullOr package str submodule;
+  inherit (types)
+    enum
+    int
+    nullOr
+    package
+    str
+    submodule
+    ;
   desktopCfg = config.modules.desktop;
   deCfg = desktopCfg.de;
   wmCfg = desktopCfg.wm;
@@ -33,69 +53,85 @@ let
 
   # NOTE: Wrap hex colors in quotes to prevent them from being interpreted as
   #  comments. e.g. "${color}" -> ''"${color}"''
-  dunstrc = {
-    global = {
-      monitor = 0;
-      follow = "mouse";
-      width = cfg.width;
-      height = cfg.height;
-      origin = cfg.position.origin;
-      offset = "${toString cfg.position.offset.x}x${toString cfg.position.offset.y}";
-      scale = 0;
-      notification_limit = 0;
-      progress_bar = false;
-      indicate_hidden = "yes";
-      separator_height = if cfg.separator != null then cfg.separator.height else 0;
-      padding = cfg.padding.y;
-      horizontal_padding = cfg.padding.x;
-      text_icon_padding = cfg.padding.textIcon;
-      frame_width = cfg.borderWidth;
-      gap_size = cfg.gap;
-      separator_color = if cfg.separator != null then ''"${cfg.separator.color}"'' else "";
-      sort = "yes";
-      font = "${cfg.font.name} ${toString cfg.font.size}";
-      line_height = if cfg.lineHeight != null then cfg.lineHeight else 0;
-      markup = "full";
-      format = "<b>%s</b>\\n%b";
-      alignment = cfg.alignments.horizontal;
-      vertical_alignment = cfg.alignments.vertical;
-      show_age_threshold = 60;
-      ellipsize = "end";
-      ignore_newline = "no";
-      stack_duplicates = true;
-      hide_duplicate_count = false;
-      show_indicators = "no";
-      enable_recursive_icon_lookup = true;
-      icon_theme = gtkCfg.iconTheme.name or "";
-      icon_position = if cfg.icon.position != null then cfg.icon.position else "off";
-      min_icon_size = cfg.icon.size.min;
-      max_icon_size = cfg.icon.size.max;
-      sticky_history = "yes";
-      history_length = 20;
-      dmenu = "${pkgs.dmenu}/bin/dmenu -p dunst:";
-      browser = "${pkgs.xdg-utils}/bin/xdg-open";
-      always_run_script = true;
-      title = "Dunst";
-      class = "Dunst";
-      corner_radius = cfg.cornerRadius;
-      ignore_dbusclose = false;
-      force_xwayland = false;
-      force_xinerama = false;
-      mouse_left_click = "context";
-      mouse_middle_click = "none";
-      mouse_right_click = "close_current";
-    };
-  } // (genAttrs [ "urgency_low" "urgency_normal" "urgency_critical" ]
-    (name:
-      let
-        level = removePrefix "urgency_" name;
-      in
-      {
-        background = ''"${cfg.${level}.background}"'';
-        foreground = ''"${cfg.${level}.foreground}"'';
-        timeout = cfg.${level}.timeout;
-        frame_color = ''"${cfg.${level}.borderColor}"'';
-      }) // ({ experimental = { per_monitor_dpi = true; }; }));
+  dunstrc =
+    {
+      global = {
+        monitor = 0;
+        follow = "mouse";
+        width = cfg.width;
+        height = cfg.height;
+        origin = cfg.position.origin;
+        offset = "${toString cfg.position.offset.x}x${toString cfg.position.offset.y}";
+        scale = 0;
+        notification_limit = 0;
+        progress_bar = false;
+        indicate_hidden = "yes";
+        separator_height = if cfg.separator != null then cfg.separator.height else 0;
+        padding = cfg.padding.y;
+        horizontal_padding = cfg.padding.x;
+        text_icon_padding = cfg.padding.textIcon;
+        frame_width = cfg.borderWidth;
+        gap_size = cfg.gap;
+        separator_color = if cfg.separator != null then ''"${cfg.separator.color}"'' else "";
+        sort = "yes";
+        font = "${cfg.font.name} ${toString cfg.font.size}";
+        line_height = if cfg.lineHeight != null then cfg.lineHeight else 0;
+        markup = "full";
+        format = "<b>%s</b>\\n%b";
+        alignment = cfg.alignments.horizontal;
+        vertical_alignment = cfg.alignments.vertical;
+        show_age_threshold = 60;
+        ellipsize = "end";
+        ignore_newline = "no";
+        stack_duplicates = true;
+        hide_duplicate_count = false;
+        show_indicators = "no";
+        enable_recursive_icon_lookup = true;
+        icon_theme = gtkCfg.iconTheme.name or "";
+        icon_position = if cfg.icon.position != null then cfg.icon.position else "off";
+        min_icon_size = cfg.icon.size.min;
+        max_icon_size = cfg.icon.size.max;
+        sticky_history = "yes";
+        history_length = 20;
+        dmenu = "${pkgs.dmenu}/bin/dmenu -p dunst:";
+        browser = "${pkgs.xdg-utils}/bin/xdg-open";
+        always_run_script = true;
+        title = "Dunst";
+        class = "Dunst";
+        corner_radius = cfg.cornerRadius;
+        ignore_dbusclose = false;
+        force_xwayland = false;
+        force_xinerama = false;
+        mouse_left_click = "context";
+        mouse_middle_click = "none";
+        mouse_right_click = "close_current";
+      };
+    }
+    // (
+      genAttrs
+        [
+          "urgency_low"
+          "urgency_normal"
+          "urgency_critical"
+        ]
+        (
+          name:
+          let
+            level = removePrefix "urgency_" name;
+          in
+          {
+            background = ''"${cfg.${level}.background}"'';
+            foreground = ''"${cfg.${level}.foreground}"'';
+            timeout = cfg.${level}.timeout;
+            frame_color = ''"${cfg.${level}.borderColor}"'';
+          }
+        )
+      // ({
+        experimental = {
+          per_monitor_dpi = true;
+        };
+      })
+    );
 in
 {
   options.modules.desktop.apps.dunst = {

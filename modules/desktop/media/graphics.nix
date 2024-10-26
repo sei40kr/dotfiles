@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.media.graphics;
+let
+  cfg = config.modules.desktop.media.graphics;
 in
 {
   options.modules.desktop.media.graphics = {
@@ -14,8 +20,13 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; (optionals cfg.vector.enable [ inkscape ])
-      ++ (optionals cfg.raster.enable [ gimp krita ])
+    user.packages =
+      with pkgs;
+      (optionals cfg.vector.enable [ inkscape ])
+      ++ (optionals cfg.raster.enable [
+        gimp
+        krita
+      ])
       ++ (optionals cfg.tools.enable [ imagemagick ]);
   };
 }

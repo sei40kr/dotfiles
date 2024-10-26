@@ -1,9 +1,31 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  inherit (lib) mdDoc mkEnableOption mkIf mkOption types;
+  inherit (lib)
+    mdDoc
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   inherit (lib.my.extraTypes) font;
-  inherit (types) attrsOf bool either enum float int nullOr path str submodule;
+  inherit (types)
+    attrsOf
+    bool
+    either
+    enum
+    float
+    int
+    nullOr
+    path
+    str
+    submodule
+    ;
   cfg = config.modules.desktop.de;
 
   monitorResolutionType = submodule {
@@ -49,7 +71,12 @@ let
   monitorRotationType = submodule {
     options = {
       degrees = mkOption {
-        type = enum [ 0 90 180 270 ];
+        type = enum [
+          0
+          90
+          180
+          270
+        ];
         default = 0;
         description = mdDoc ''
           The degrees to rotate the monitor.
@@ -68,14 +95,21 @@ let
 
   monitorType = submodule {
     options = {
-      enable = (mkEnableOption (mdDoc ''
-        Whether to enable the monitor.
-      '')) // { default = true; };
+      enable =
+        (mkEnableOption (mdDoc ''
+          Whether to enable the monitor.
+        ''))
+        // {
+          default = true;
+        };
 
       resolution = mkOption {
         type = nullOr monitorResolutionType;
         default = null;
-        example = { width = 1920; height = 1080; };
+        example = {
+          width = 1920;
+          height = 1080;
+        };
         description = mdDoc ''
           The resolution of the monitor.
           If not specified, the default resolution of the monitor will be used.
@@ -95,7 +129,10 @@ let
       position = mkOption {
         type = nullOr monitorPositionType;
         default = null;
-        example = { x = 0; y = 0; };
+        example = {
+          x = 0;
+          y = 0;
+        };
         description = mdDoc ''
           The position of the monitor.
         '';
@@ -119,7 +156,10 @@ let
       };
 
       bitDepth = mkOption {
-        type = enum [ 8 10 ];
+        type = enum [
+          8
+          10
+        ];
         default = 8;
         description = mdDoc ''
           The bit depth of the monitor.
@@ -136,7 +176,10 @@ let
 
       rotation = mkOption {
         type = monitorRotationType;
-        default = { degrees = 0; flipped = false; };
+        default = {
+          degrees = 0;
+          flipped = false;
+        };
         description = mdDoc ''
           The rotation of the monitor.
         '';
@@ -155,7 +198,13 @@ let
       };
 
       mode = mkOption {
-        type = enum [ "stretch" "fill" "fit" "center" "tile" ];
+        type = enum [
+          "stretch"
+          "fill"
+          "fit"
+          "center"
+          "tile"
+        ];
         default = "fill";
         description = mdDoc ''
           The mode to use for the background image.
@@ -166,13 +215,21 @@ let
 in
 {
   options.modules.desktop.de = {
-    enable = (mkEnableOption (mdDoc ''
-      Set this to true when you want to use a desktop environment.
-    '')) // { visible = false; };
+    enable =
+      (mkEnableOption (mdDoc ''
+        Set this to true when you want to use a desktop environment.
+      ''))
+      // {
+        visible = false;
+      };
 
-    wayland = (mkEnableOption (mdDoc ''
-      Set this to true when you want to use a Wayland session.
-    '')) // { default = false; };
+    wayland =
+      (mkEnableOption (mdDoc ''
+        Set this to true when you want to use a Wayland session.
+      ''))
+      // {
+        default = false;
+      };
 
     monitors = mkOption {
       type = attrsOf monitorType;
@@ -180,9 +237,15 @@ in
       example = {
         "HDMI-1" = {
           enable = true;
-          resolution = { width = 1920; height = 1080; };
+          resolution = {
+            width = 1920;
+            height = 1080;
+          };
           refreshRate = 60;
-          position = { x = 0; y = 0; };
+          position = {
+            x = 0;
+            y = 0;
+          };
           scale = 1.0;
           mirror = null;
           bitDepth = 8;

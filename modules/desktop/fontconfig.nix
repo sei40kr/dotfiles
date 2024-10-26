@@ -1,10 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
 let
   cfg = config.modules.desktop.fontconfig;
-  fontType = with types;
+  fontType =
+    with types;
     submodule {
       options = {
         packages = mkOpt (listOf package) [ ];
@@ -12,8 +18,11 @@ let
       };
     };
 
-  fontPackages = cfg.fonts.sansSerif.packages ++ cfg.fonts.serif.packages
-    ++ cfg.fonts.monospace.packages ++ cfg.fonts.emoji.packages;
+  fontPackages =
+    cfg.fonts.sansSerif.packages
+    ++ cfg.fonts.serif.packages
+    ++ cfg.fonts.monospace.packages
+    ++ cfg.fonts.emoji.packages;
 in
 {
   options.modules.desktop.fontconfig = {
@@ -21,12 +30,24 @@ in
 
     fonts = {
       sansSerif = mkOpt fontType {
-        packages = with pkgs; [ noto-fonts noto-fonts-cjk-sans ];
-        names = [ "Noto Sans" "Noto Sans CJK JP" ];
+        packages = with pkgs; [
+          noto-fonts
+          noto-fonts-cjk-sans
+        ];
+        names = [
+          "Noto Sans"
+          "Noto Sans CJK JP"
+        ];
       };
       serif = mkOpt fontType {
-        packages = with pkgs; [ noto-fonts noto-fonts-cjk-serif ];
-        names = [ "Noto Serif" "Noto Serif CJK JP" ];
+        packages = with pkgs; [
+          noto-fonts
+          noto-fonts-cjk-serif
+        ];
+        names = [
+          "Noto Serif"
+          "Noto Serif CJK JP"
+        ];
       };
       monospace = mkOpt fontType {
         packages = with pkgs; [

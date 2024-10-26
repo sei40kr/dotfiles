@@ -5,13 +5,15 @@ with lib.my;
 let
   cfg = config.modules.editors;
 
-  fontType = with types; submodule {
-    options = {
-      package = mkOpt (nullOr package) null;
-      name = mkOpt str null;
-      size = mkOpt int null;
+  fontType =
+    with types;
+    submodule {
+      options = {
+        package = mkOpt (nullOr package) null;
+        name = mkOpt str null;
+        size = mkOpt int null;
+      };
     };
-  };
 in
 {
   options.modules.editors = with types; {

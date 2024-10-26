@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   inherit (lib) mkEnableOption mkIf;
@@ -9,7 +14,5 @@ in
     enable = mkEnableOption "Lean language support";
   };
 
-  config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ lean4 ];
-  };
+  config = mkIf cfg.enable { environment.systemPackages = with pkgs; [ lean4 ]; };
 }

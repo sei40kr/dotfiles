@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.desktop.media.documents;
+let
+  cfg = config.modules.desktop.media.documents;
 in
 {
   options.modules.desktop.media.documents = {

@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with builtins;
 with lib;
@@ -28,7 +33,8 @@ let
   backgroundCommand =
     if deCfg.background.image != null then
       "output * bg ${deCfg.background.image.path} ${deCfg.background.image.mode} ${deCfg.background.color}"
-    else "output * bg ${deCfg.background.color} solid_color";
+    else
+      "output * bg ${deCfg.background.color} solid_color";
 
   init-edp-state = pkgs.writeShellScriptBin "init-edp-state" ''
     if ${pkgs.gnugrep}/bin/grep -q open /proc/acpi/button/lid/LID/state; then
@@ -57,49 +63,61 @@ in
         message = "Sway does not support mirroring";
       }
       {
-        assertion = all ({ resolution, refreshRate, ... }: resolution != null || refreshRate == null) (attrValues deCfg.monitors);
+        assertion = all ({ resolution, refreshRate, ... }: resolution != null || refreshRate == null) (
+          attrValues deCfg.monitors
+        );
         message = "Sway does not support setting refresh rate without resolution";
       }
     ];
 
-    user.packages = [ package pkgs.swaybg ];
+    user.packages = [
+      package
+      pkgs.swaybg
+    ];
 
     home.configFile = {
       "sway/config.d/outputs.conf" = {
-        text = builtins.concatStringsSep "\n" (mapAttrsToList
-          (name: { enable
-                 , resolution
-                 , refreshRate
-                 , position
-                 , scale
-                 , bitDepth
-                 , vrr
-                 , rotation
-                 , ...
-                 }@monitor: ''
-            ${optionalString (!enable) ''
-              output ${name} disable
-            ''}
-            ${optionalString (resolution != null) ''
-              output ${name} resolution ${toString resolution.width}x${toString resolution.height}${optionalString (refreshRate != null) "@${toString refreshRate}"}
-            ''}
-            ${optionalString (position != null) ''
-              output ${name} position ${toString position.x} ${toString position.y}
-            ''}
-            ${optionalString (scale != null) ''
-              output ${name} scale ${toString scale}
-            ''}
-            ${optionalString (rotation != null) ''
-              output ${name} transform ${optionalString rotation.flipped "flipped-"}${toString rotation.degrees}
-            ''}
-            ${optionalString monitor.vrr ''
-              output ${name} adaptive_sync on
-            ''}
-            ${optionalString (bitDepth != 8) ''
-              output ${name} render_bit_depth ${toString bitDepth}
-            ''}
-          '')
-          deCfg.monitors);
+        text = builtins.concatStringsSep "\n" (
+          mapAttrsToList (
+            name:
+            {
+              enable,
+              resolution,
+              refreshRate,
+              position,
+              scale,
+              bitDepth,
+              vrr,
+              rotation,
+              ...
+            }@monitor:
+            ''
+              ${optionalString (!enable) ''
+                output ${name} disable
+              ''}
+              ${optionalString (resolution != null) ''
+                output ${name} resolution ${toString resolution.width}x${toString resolution.height}${
+                  optionalString (refreshRate != null) "@${toString refreshRate}"
+                }
+              ''}
+              ${optionalString (position != null) ''
+                output ${name} position ${toString position.x} ${toString position.y}
+              ''}
+              ${optionalString (scale != null) ''
+                output ${name} scale ${toString scale}
+              ''}
+              ${optionalString (rotation != null) ''
+                output ${name} transform ${optionalString rotation.flipped "flipped-"}${toString rotation.degrees}
+              ''}
+              ${optionalString monitor.vrr ''
+                output ${name} adaptive_sync on
+              ''}
+              ${optionalString (bitDepth != 8) ''
+                output ${name} render_bit_depth ${toString bitDepth}
+              ''}
+            ''
+          ) deCfg.monitors
+        );
         onChange = onConfigChange;
       };
       "sway/config" = {

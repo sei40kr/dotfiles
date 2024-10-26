@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.dev.lang.clojure;
+let
+  cfg = config.modules.dev.lang.clojure;
 in
 {
   options.modules.dev.lang.clojure = {
@@ -10,6 +16,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ clojure clojure-lsp ];
+    user.packages = with pkgs; [
+      clojure
+      clojure-lsp
+    ];
   };
 }

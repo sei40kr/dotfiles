@@ -1,8 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
-let cfg = config.modules.services.jellyfin;
+let
+  cfg = config.modules.services.jellyfin;
 in
 {
   options.modules.services.jellyfin = {
@@ -13,7 +19,10 @@ in
 
   config = mkIf cfg.enable {
     # cf https://jellyfin.org/docs/general/networking/index.html
-    networking.firewall.allowedTCPPorts = optionals cfg.openFirewall [ 8096 8920 ];
+    networking.firewall.allowedTCPPorts = optionals cfg.openFirewall [
+      8096
+      8920
+    ];
 
     user.packages = with pkgs; [ jellyfin ];
 

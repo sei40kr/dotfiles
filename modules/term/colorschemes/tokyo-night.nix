@@ -1,7 +1,8 @@
 { config, lib, ... }:
 
 with lib;
-with lib.my; {
+with lib.my;
+{
   config = mkIf (config.modules.term.colorschemes.active == "tokyo-night") {
     modules.term.colorschemes.colors = {
       fg = "c0caf5";

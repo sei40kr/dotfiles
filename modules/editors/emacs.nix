@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.my;
@@ -22,15 +27,18 @@ let
     destination = "/share/emacs/site-lisp/default.el";
   };
 
-  package = (if cfg.doom.enable then
-    (pkgs.emacs.pkgs.withPackages (epkgs: [
-      epkgs.melpaPackages.emacsql
-      epkgs.melpaPackages.emacsql-sqlite
-      epkgs.melpaPackages.vterm
-      epkgs.melpaPackages.zmq
-      default_el
-    ]))
-  else pkgs.emacs);
+  package = (
+    if cfg.doom.enable then
+      (pkgs.emacs.pkgs.withPackages (epkgs: [
+        epkgs.melpaPackages.emacsql
+        epkgs.melpaPackages.emacsql-sqlite
+        epkgs.melpaPackages.vterm
+        epkgs.melpaPackages.zmq
+        default_el
+      ]))
+    else
+      pkgs.emacs
+  );
 
   vterm_printf = pkgs.writeTextFile {
     name = "vterm_printf";
@@ -62,34 +70,41 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = [ package pkgs.binutils ] ++ (optionals cfg.doom.enable
-      (with pkgs; [
-        fd
-        ripgrep
+    user.packages =
+      [
+        package
+        pkgs.binutils
+      ]
+      ++ (optionals cfg.doom.enable (
+        with pkgs;
+        [
+          fd
+          ripgrep
 
-        # :checkers spell
-        aspell
-        # :input japanese
-        cmigemo
-        # :lang markdown
-        mdl
-        python3Packages.grip
-        # :lang plantuml
-        plantuml
-        # :lang sql
-        python3Packages.sqlparse
-        # :tools editorconfig
-        editorconfig-core-c
-        # :tools lookup
-        sqlite
-        wordnet
-        # :tools lsp
-        nodePackages.dockerfile-language-server-nodejs
-        nodePackages.vscode-json-languageserver-bin
-        nodePackages.yaml-language-server
-        # :tools vterm
-        vterm_printf
-      ]));
+          # :checkers spell
+          aspell
+          # :input japanese
+          cmigemo
+          # :lang markdown
+          mdl
+          python3Packages.grip
+          # :lang plantuml
+          plantuml
+          # :lang sql
+          python3Packages.sqlparse
+          # :tools editorconfig
+          editorconfig-core-c
+          # :tools lookup
+          sqlite
+          wordnet
+          # :tools lsp
+          nodePackages.dockerfile-language-server-nodejs
+          nodePackages.vscode-json-languageserver-bin
+          nodePackages.yaml-language-server
+          # :tools vterm
+          vterm_printf
+        ]
+      ));
     fonts.packages = with pkgs; [ emacs-all-the-icons-fonts ];
 
     env = mkIf cfg.doom.enable {
