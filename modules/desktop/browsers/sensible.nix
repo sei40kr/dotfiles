@@ -15,6 +15,8 @@ let
       ''exec google-chrome-stable "$@"''
     else if browsersCfg.firefox.enable then
       ''exec firefox "$@"''
+    else if browsersCfg.vivaldi.enable then
+      ''exec vivaldi "$@"''
     else
       abort "sensible-browser: no browser enabled"
   );
