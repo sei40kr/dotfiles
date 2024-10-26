@@ -16,8 +16,6 @@ in
 
   online-judge-verify-helper = python3Packages.callPackage ./online-judge-verify-helper { };
 
-  sensible-browser = callPackage ./sensible-browser { };
-
   whitesur-kde = callPackage ./whitesur-kde { };
 
   whitesur-wallpapers = callPackage ./whitesur-wallpapers { };
