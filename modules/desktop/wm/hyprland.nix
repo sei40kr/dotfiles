@@ -176,6 +176,7 @@ in
 
     modules.desktop.swaylock.enable = true;
 
+    modules.desktop.browsers.sensible.enable = true;
     modules.term.sensible.enable = true;
     modules.desktop.apps.dunst.enable = true;
     modules.desktop.apps.rofi.enable = true;
