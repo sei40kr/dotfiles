@@ -11,10 +11,10 @@ let
   cfg = browsersCfg.sensible;
 
   sensible-browser = pkgs.writeShellScriptBin "sensible-browser" (
-    if browsersCfg.chrome.enable then
-      ''exec google-chrome-stable "$@"''
-    else if browsersCfg.firefox.enable then
+    if browsersCfg.firefox.enable then
       ''exec firefox "$@"''
+    else if browsersCfg.chrome.enable then
+      ''exec google-chrome-stable "$@"''
     else if browsersCfg.vivaldi.enable then
       ''exec vivaldi "$@"''
     else
