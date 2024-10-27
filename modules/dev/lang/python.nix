@@ -20,7 +20,7 @@ in
       python3
       unstable.uv
       unstable.basedpyright
-      ruff-lsp
+      ruff
     ];
     env.PATH = [ "\${HOME}/.poetry/bin" ];
 
