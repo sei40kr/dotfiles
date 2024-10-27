@@ -13,19 +13,15 @@ in
 {
   options.modules.dev.lang.python = {
     enable = mkBoolOpt false;
-
-    enablePoetry = mkBoolOpt false;
   };
 
   config = mkIf cfg.enable {
-    user.packages =
-      with pkgs;
-      [
-        python3
-        unstable.basedpyright
-        ruff-lsp
-      ]
-      ++ optionals cfg.enablePoetry (with pkgs; [ poetry ]);
+    user.packages = with pkgs; [
+      python3
+      unstable.uv
+      unstable.basedpyright
+      ruff-lsp
+    ];
     env.PATH = [ "\${HOME}/.poetry/bin" ];
 
     modules.shell.zsh.rcInit = ''

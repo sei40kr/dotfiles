@@ -67,10 +67,7 @@ nixosSystem "x86_64-linux" (
           lua.enable = true;
           r.enable = true;
           nix.enable = true;
-          python = {
-            enable = true;
-            enablePoetry = true;
-          };
+          python.enable = true;
           rust.enable = true;
           scala = {
             enable = true;
