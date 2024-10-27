@@ -22,7 +22,7 @@ in
       with pkgs;
       [
         python3
-        python3Packages.python-lsp-server
+        unstable.basedpyright
         ruff-lsp
       ]
       ++ optionals cfg.enablePoetry (with pkgs; [ poetry ]);
