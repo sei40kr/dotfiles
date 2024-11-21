@@ -84,6 +84,7 @@ nixosSystem "x86_64-linux" (
       doom.enable = true;
     };
     modules.editors.idea.enable = true;
+    modules.editors.lazyvim.enable = true;
 
     modules.i18n.japanese.enable = true;
 
