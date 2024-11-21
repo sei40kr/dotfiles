@@ -26,7 +26,7 @@ in
       ++ (optionals pkgs.stdenv.isLinux [
         gcc10
         gdb
-        llvm_10
+        llvm
       ]);
   };
 }
