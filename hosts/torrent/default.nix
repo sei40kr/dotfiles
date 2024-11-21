@@ -33,7 +33,7 @@ nixosSystem "x86_64-linux" (
     # this value at the release version of the first install of this system.
     # Before changing this value read the documentation for this option
     # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-    system.stateVersion = "21.11";
+    system.stateVersion = "23.11";
 
     user.name = "sei40kr";
 
