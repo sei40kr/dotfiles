@@ -25,6 +25,7 @@ in
     services.picom.enable = true;
 
     modules.desktop.apps.feh.enable = true;
+    modules.desktop.apps.polybar.enable = true;
     modules.term.sensible.enable = true;
 
     environment.systemPackages = with pkgs; [ xsel ];
