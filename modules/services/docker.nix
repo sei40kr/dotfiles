@@ -17,7 +17,10 @@ in
   config = mkIf cfg.enable {
     virtualisation.docker.enable = true;
 
-    environment.systemPackages = with pkgs; [ (mkIf cfg.compose.enable docker-compose) ];
+    environment.systemPackages = with pkgs; [
+      docker-credential-helpers
+      (mkIf cfg.compose.enable docker-compose)
+    ];
 
     user.extraGroups = [ "docker" ];
   };
