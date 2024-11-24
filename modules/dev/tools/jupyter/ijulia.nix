@@ -11,7 +11,7 @@ let
 
   # FIXME: We should use the Julia from Nixpkgs stable release, but somehow it
   #  fails to build the IJulia package. So we use the unstable version for now.
-  juliaEnv = pkgs.unstable.julia-stable-bin.withPackages [
+  juliaEnv = pkgs.julia-stable-bin.withPackages [
     "IJulia"
     "Plots"
   ];

@@ -16,7 +16,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs.gnome; [ pomodoro ];
+    user.packages = with pkgs; [ gnome-pomodoro ];
 
     modules.desktop.dconf = {
       enable = true;

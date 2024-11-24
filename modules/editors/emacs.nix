@@ -99,7 +99,7 @@ in
           wordnet
           # :tools lsp
           nodePackages.dockerfile-language-server-nodejs
-          nodePackages.vscode-json-languageserver-bin
+          nodePackages.vscode-langservers-extracted
           nodePackages.yaml-language-server
           # :tools vterm
           vterm_printf

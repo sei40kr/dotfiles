@@ -18,8 +18,8 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
       python3
-      unstable.uv
-      unstable.basedpyright
+      uv
+      basedpyright
       ruff
     ];
     env.PATH = [ "\${HOME}/.poetry/bin" ];

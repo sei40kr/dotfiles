@@ -31,8 +31,7 @@ in
         nodejs_20
         emmet-language-server
         nodePackages.prettier
-        nodePackages.vscode-html-languageserver-bin
-        nodePackages.vscode-css-languageserver-bin
+        nodePackages.vscode-langservers-extracted
         nodePackages.vue-language-server
       ]
       ++ (if cfg.bun.enable then [ bun ] else [ ]);

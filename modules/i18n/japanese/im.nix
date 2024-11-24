@@ -15,9 +15,12 @@ in
 {
   config = mkIf (cfg.enable && config.modules.desktop.de.enable) {
     i18n.inputMethod = {
-      enabled = "fcitx5";
+      enable = true;
+      type = "fcitx5";
       fcitx5 = {
-        addons = with pkgs; [ fcitx5-mozc ];
+        # NOTE: The build of fcitx5-mozc is broken in Nixpkgs as of 24.11
+        #  https://github.com/NixOS/nixpkgs/issues/355852
+        addons = with pkgs; [ unstable.fcitx5-mozc ];
         settings = {
           globalOptions = {
             Hotkey = {

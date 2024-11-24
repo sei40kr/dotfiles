@@ -67,8 +67,12 @@ in
         config = wezterm.config_builder()
       end
 
-      config.show_update_window = false
       config.automatically_reload_config = false
+
+      -- NOTE: The text rendering of WezTerm in Nixpkgs is broken with OpenGL
+      --  renderer:
+      --  https://github.com/wez/wezterm/issues/5990
+      config.front_end = "WebGpu"
 
       config.font = wezterm.font_with_fallback({
         "${termCfg.font.name}",

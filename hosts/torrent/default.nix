@@ -24,8 +24,7 @@ nixosSystem "x86_64-linux" (
     services.printing.enable = true;
 
     # Enable sound
-    sound.enable = true;
-    hardware.pulseaudio.enable = true;
+    hardware.pulseaudio.enable = false;
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
