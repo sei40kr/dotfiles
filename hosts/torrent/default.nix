@@ -5,8 +5,8 @@ nixosSystem "x86_64-linux" (
   {
     imports = [ ./_hardware-configuration.nix ];
 
-    # Use kernel 6.10
-    boot.kernelPackages = pkgs.linuxPackages_6_10;
+    # Use kernel 6.11
+    boot.kernelPackages = pkgs.linuxPackages_6_11;
     # Use the systemd-boot EFI boot loader.
     boot.loader.efi.canTouchEfiVariables = true;
     boot.loader.systemd-boot.enable = true;
