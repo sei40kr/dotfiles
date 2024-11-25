@@ -25,7 +25,6 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
       direnv
-      nix-direnv
       du-dust
       fd
       eza
@@ -36,6 +35,8 @@ in
       tealdeer
       xcp
     ];
+
+    services.lorri.enable = true;
 
     modules.shell.aliases.u = "cd ..";
 
@@ -69,9 +70,6 @@ in
 
       zinit ice src'zhook.zsh' id-as'direnv' atclone'direnv hook zsh >zhook.zsh' atpull'%atclone'
       zinit light zdharma-continuum/null
-
-      zinit ice id-as'nix-direnv'
-      zinit snippet ${pkgs.nix-direnv}/share/nix-direnv/direnvrc
     '';
   };
 }
