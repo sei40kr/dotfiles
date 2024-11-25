@@ -18,9 +18,7 @@ in
       enable = true;
       type = "fcitx5";
       fcitx5 = {
-        # NOTE: The build of fcitx5-mozc is broken in Nixpkgs as of 24.11
-        #  https://github.com/NixOS/nixpkgs/issues/355852
-        addons = with pkgs; [ unstable.fcitx5-mozc ];
+        addons = with pkgs; [ fcitx5-mozc ];
         settings = {
           globalOptions = {
             Hotkey = {
