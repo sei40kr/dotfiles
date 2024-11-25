@@ -24,6 +24,7 @@ in
       registryInputs = mapAttrs (_: v: { flake = v; }) filteredInputs;
     in
     {
+      package = pkgs.lix;
       nixPath = nixPathInputs ++ [
         "nixpkgs-overlays=${config.dotfiles.dir}/overlays"
         "dotfiles=${config.dotfiles.dir}"
