@@ -4,7 +4,7 @@
 
 ## Install
 
-1. Clone this repository:
+1. Clone this repository into `/etc/dotfiles`:
 
    ```sh
    sudo git clone https://github.com/sei40kr/dotfiles.git /etc/dotfiles
@@ -12,16 +12,23 @@
    ln -fs /etc/dotfiles ~/.dotfiles
    ```
 
-1. Enter Nix shell (for the first time only):
+1. Move to `/etc/dotfiles`
 
    ```sh
-   nix-shell
+   cd /etc/dotfiles
    ```
 
-1. Then, switch to the new configuration:
+1. Build and switch to the configuration:
 
    ```sh
-   nixos-rebuild switch --flake '.#<hostname>'
+   sudo nixos-rebuild switch --flake ".#${HOST}"
+   ```
+
+1. Once you switch to the configuration, you can use `nh` to update the system
+   (you may need to re-login before using `nh`):
+
+   ```sh
+   nh os switch
    ```
 
 ## Acknowledgements

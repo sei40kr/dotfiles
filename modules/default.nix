@@ -53,4 +53,9 @@ in
   };
 
   home-manager.users.${config.user.name}.home.stateVersion = config.system.stateVersion;
+
+  programs.nh = {
+    enable = true;
+    flake = "/etc/dotfiles";
+  };
 }
