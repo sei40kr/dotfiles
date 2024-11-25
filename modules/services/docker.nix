@@ -15,7 +15,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    virtualisation.docker.enable = true;
+    virtualisation.docker = {
+      enable = true;
+      autoPrune.enable = true;
+    };
 
     environment.systemPackages = with pkgs; [
       docker-credential-helpers
