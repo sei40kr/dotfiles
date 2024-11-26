@@ -16,7 +16,13 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ jetbrains.datagrip ];
+    user.packages = with pkgs; [
+      (jetbrains.plugins.addPlugins jetbrains.datagrip [
+        "acejump"
+        "github-copilot"
+        "ideavim"
+      ])
+    ];
 
     modules.editors = {
       fonts.enable = true;

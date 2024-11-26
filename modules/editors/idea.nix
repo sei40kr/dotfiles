@@ -16,7 +16,15 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ jetbrains.idea-ultimate ];
+    user.packages = with pkgs; [
+      (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [
+        "acejump"
+        "github-copilot"
+        "ideavim"
+        "python"
+        "rust"
+      ])
+    ];
 
     modules.editors = {
       fonts.enable = true;
