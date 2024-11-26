@@ -45,6 +45,7 @@ nixosSystem "x86_64-linux" (
     modules.desktop.apps.discord.enable = true;
     modules.desktop.apps.gnome.pomodoro.enable = true;
     modules.desktop.apps.slack.enable = true;
+    modules.desktop.apps.steam.enable = true;
     modules.desktop.apps.zeal.enable = true;
 
     modules.desktop.browsers.chrome.enable = true;
