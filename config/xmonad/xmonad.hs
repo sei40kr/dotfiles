@@ -1,4 +1,5 @@
 import Data.Map qualified as M
+import Data.Monoid (All)
 import XMonad
 import XMonad.Actions.CopyWindow (copy)
 import XMonad.Actions.CycleWS (nextWS, prevWS)
@@ -25,6 +26,7 @@ import XMonad.Layout.Tabbed (simpleTabbedAlways)
 import XMonad.Layout.ToggleLayouts (toggleLayouts)
 import XMonad.StackSet qualified as W
 import XMonad.Util.EZConfig (additionalKeys, additionalKeysP)
+import XMonad.Util.Hacks (fixSteamFlicker)
 import XMonad.Util.SpawnOnce
 
 myBorderWidth :: Dimension
@@ -74,6 +76,9 @@ myManageHook =
   wsFiles = "3"
   wsIM = "4"
 
+myHandleEventHook :: Event -> X All
+myHandleEventHook = fixSteamFlicker
+
 main :: IO ()
 main =
   xmonad $
@@ -86,6 +91,7 @@ main =
         , modMask = myModMask
         , logHook = myLogHook
         , manageHook = myManageHook
+        , handleEventHook = myHandleEventHook
         , focusFollowsMouse = False
         }
         `additionalKeys` [
