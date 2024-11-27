@@ -5,35 +5,29 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.dev.lang.web;
 in
 {
   options.modules.dev.lang.web = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Web development";
 
-    bun.enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = ''
-        Whether to install Bun.
-      '';
-    };
+    bun.enable = mkEnableOption "Bun";
+
+    deno.enable = mkEnableOption "Deno";
   };
 
   config = mkIf cfg.enable {
     # TODO stylelint-cli
-    user.packages =
-      with pkgs;
-      [
-        nodejs_20
-        emmet-language-server
-        nodePackages.prettier
-        nodePackages.vscode-langservers-extracted
-        nodePackages.vue-language-server
-      ]
-      ++ (if cfg.bun.enable then [ bun ] else [ ]);
+    environment.systemPackages = with pkgs; [
+      nodejs_20
+      emmet-language-server
+      nodePackages.prettier
+      nodePackages.vscode-langservers-extracted
+      nodePackages.vue-language-server
+      (mkIf cfg.bun.enable bun)
+      (mkIf cfg.deno.enable deno)
+    ];
   };
 }
