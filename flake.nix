@@ -23,8 +23,8 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
-    idea-doom-emacs = {
-      url = "github:sei40kr/idea-doom-emacs";
+    idea-LazyVim = {
+      url = "github:sei40kr/idea-LazyVim";
       flake = false;
     };
 

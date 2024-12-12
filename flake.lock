@@ -215,19 +215,19 @@
         "type": "github"
       }
     },
-    "idea-doom-emacs": {
+    "idea-LazyVim": {
       "flake": false,
       "locked": {
-        "lastModified": 1692025387,
-        "narHash": "sha256-iiBz7WSb8TTP6Y4JcvqAUn3L/yev0mCzX3nt/S/ceHM=",
+        "lastModified": 1733996753,
+        "narHash": "sha256-TtU0crOimuILMRXkbmZKv/QKd2ofxl7pP9qTmaOJajg=",
         "owner": "sei40kr",
-        "repo": "idea-doom-emacs",
-        "rev": "ea57343edabf480c49cb15f0ea234eb6ab317675",
+        "repo": "idea-LazyVim",
+        "rev": "2aa7c75fc44d5b7bee40e4bd18582314a4a4f860",
         "type": "github"
       },
       "original": {
         "owner": "sei40kr",
-        "repo": "idea-doom-emacs",
+        "repo": "idea-LazyVim",
         "type": "github"
       }
     },
@@ -338,7 +338,7 @@
         "fenix": "fenix",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
-        "idea-doom-emacs": "idea-doom-emacs",
+        "idea-LazyVim": "idea-LazyVim",
         "lazyvim": "lazyvim",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",

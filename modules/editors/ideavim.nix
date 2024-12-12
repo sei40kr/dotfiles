@@ -8,7 +8,7 @@
 with lib;
 with lib.my;
 let
-  inherit (inputs) idea-doom-emacs;
+  inherit (inputs) idea-LazyVim;
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.ideavim;
 in
@@ -25,7 +25,7 @@ in
         let g:WhichKey_FontFamily = ${toVimScript editorsCfg.fonts.code.name}
         let g:WhichKey_FontSize = ${toVimScript editorsCfg.fonts.code.size}
 
-        source ${idea-doom-emacs}/init.vim
+        source ${idea-LazyVim}/init.vim
       ''}
 
       " Expand/contract region
