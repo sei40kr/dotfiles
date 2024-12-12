@@ -114,11 +114,6 @@ in
 
           . "${zoxide-zhook}/zhook.zsh"
 
-          ZSH_AUTOSUGGEST_STRATEGY=(atuin)
-          _zsh_autosuggest_strategy_atuin() {
-            typeset -g suggestion
-            suggestion="$(atuin search --limit 1 --search-mode prefix --cmd-only "$1")"
-          }
           zinit ice wait'0' lucid
           zinit light ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions
 
