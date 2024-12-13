@@ -26,6 +26,7 @@ in
       nodePackages.prettier
       nodePackages.vscode-langservers-extracted
       nodePackages.vue-language-server
+      vtsls
       (mkIf cfg.bun.enable bun)
       (mkIf cfg.deno.enable deno)
     ];
