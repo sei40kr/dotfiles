@@ -1,15 +1,18 @@
 { nixosSystem }:
 
 nixosSystem "x86_64-linux" (
-  { pkgs, ... }:
+  { inputs, pkgs, ... }:
   {
-    imports = [ ./_hardware-configuration.nix ];
+    imports = [
+      "${inputs.nixpkgs}/nixos/modules/profiles/hardened.nix"
+      ./_hardware-configuration.nix
+    ];
 
-    # Use kernel 6.11
-    boot.kernelPackages = pkgs.linuxPackages_6_11;
     # Use the systemd-boot EFI boot loader.
     boot.loader.efi.canTouchEfiVariables = true;
     boot.loader.systemd-boot.enable = true;
+
+    security.unprivilegedUsernsClone = true;
 
     # Set your time zone.
     time.timeZone = "Asia/Tokyo";
