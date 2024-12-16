@@ -28,6 +28,9 @@ in
         source ${idea-LazyVim}/init.vim
       ''}
 
+      " Escape sequence
+      imap jk <Esc>
+
       " Expand/contract region
       map <Leader>v <Action>(EditorSelectWord)
       let g:WhichKeyDesc_expand_region = '<leader>v Expand region'
