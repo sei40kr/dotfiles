@@ -28,6 +28,9 @@ in
         source ${idea-LazyVim}/init.vim
       ''}
 
+      " Use system clipboard
+      set clipboard+=unnamed
+
       " Escape sequence
       imap jk <Esc>
 
