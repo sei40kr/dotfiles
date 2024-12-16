@@ -12,6 +12,7 @@ nixosSystem "x86_64-linux" (
     boot.loader.efi.canTouchEfiVariables = true;
     boot.loader.systemd-boot.enable = true;
 
+    environment.memoryAllocator.provider = "libc";
     security.unprivilegedUsernsClone = true;
 
     # Set your time zone.
