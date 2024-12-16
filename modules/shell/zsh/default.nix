@@ -164,6 +164,7 @@ in
           HYPHEN_INSENSITIVE=true
           zinit ice id-as'OMZL::completion.zsh'
           zinit snippet ${omzl "completion.zsh"}
+          bindkey -M menuselect '^[[Z' reverse-menu-complete
 
           . "${navi-zhook}/zhook.zsh"
 
