@@ -79,7 +79,7 @@ nixosSystem "x86_64-linux" (
 
     modules.editors.fonts.code = {
       package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
-      name = "Iosevka Nerd Font";
+      name = "Iosevka NFM";
       size = 17;
     };
     modules.editors.datagrip.enable = true;
