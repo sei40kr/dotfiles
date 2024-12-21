@@ -24,15 +24,24 @@ in
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
+      csvlens
       direnv
       du-dust
       fd
       eza
+      hexyl
       htop
+      jaq
+      lurk
+      netscanner
+      pik
       prettyping
       procs
       rm-improved
+      rustscan
+      sd
       tealdeer
+      trippy
       xcp
     ];
 
