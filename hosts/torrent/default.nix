@@ -28,7 +28,13 @@ nixosSystem "x86_64-linux" (
     services.printing.enable = true;
 
     # Enable sound
-    hardware.pulseaudio.enable = false;
+    hardware.pulseaudio = {
+      enable = false;
+      extraConfig = ''
+        set-default-sink alsa_output.pci-0000_01_00.1.hdmi-stereo
+        set-default-source alsa_input.usb-Razer_Inc_Razer_Seiren_Mini_UC2203L03500294-00.mono-fallback
+      '';
+    };
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
