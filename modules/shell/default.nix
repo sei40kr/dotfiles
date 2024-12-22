@@ -60,7 +60,7 @@ in
     modules.shell.aliases.du = "dust";
 
     # eza
-    modules.shell.aliases.la = "eza -lbhHigUmuSa --time-style=long-iso --git --color-scale";
+    modules.shell.aliases.la = "eza -lbhHigUmuSa --time-style=long-iso --git";
     modules.shell.aliases.ll = "eza -lbF --git";
     modules.shell.aliases.ls = "eza";
     modules.shell.aliases.tree = "eza -T";
