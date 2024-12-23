@@ -25,7 +25,10 @@ in
       config = ../../../config/xmonad/xmonad.hs;
     };
     services.xserver.desktopManager.runXdgAutostartIfNone = true;
-    services.picom.enable = true;
+    services.picom = {
+      enable = true;
+      vSync = true;
+    };
 
     modules.desktop.apps.feh.enable = true;
     modules.desktop.apps.polybar.enable = true;
