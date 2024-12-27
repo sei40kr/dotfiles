@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 
@@ -14,6 +15,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.steam.enable = true;
+    programs.steam = {
+      enable = true;
+      extraCompatPackages = with pkgs; [ proton-ge-bin ];
+    };
   };
 }
