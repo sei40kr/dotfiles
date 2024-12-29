@@ -1,35 +1,24 @@
+{-# OPTIONS_GHC -Wall -Werror -Wno-missing-signatures -Wno-name-shadowing #-}
+
 import Data.Map qualified as M
 import Data.Monoid (All)
 import System.Exit (exitSuccess)
 import XMonad
 import XMonad.Actions.CopyWindow (copy)
 import XMonad.Actions.CycleWS (nextWS, prevWS, shiftToNext, shiftToPrev)
-import XMonad.Actions.Submap (submap)
 import XMonad.Actions.ToggleFullFloat (toggleFullFloat, toggleFullFloatEwmhFullscreen)
-import XMonad.Config.Desktop
 import XMonad.Hooks.EwmhDesktops (ewmh, ewmhFullscreen)
 import XMonad.Hooks.FadeInactive (fadeInactiveLogHook)
 import XMonad.Hooks.ManageDocks (avoidStruts, docks)
 import XMonad.Layout.Column (Column (Column))
-import XMonad.Layout.Gaps
-import XMonad.Layout.Groups (GroupsMessage (ModifyX), group)
+import XMonad.Layout.Groups (group)
 import XMonad.Layout.Groups.Helpers (focusDown, focusGroupDown, focusGroupUp, focusUp, swapDown, swapUp)
-import XMonad.Layout.Groups.Wmii (moveToGroupDown, moveToGroupUp, shrinkText, wmii)
-import XMonad.Layout.MultiColumns (multiCol)
-import XMonad.Layout.MultiToggle (EOT (EOT), Toggle (Toggle), mkToggle, mkToggle1, single)
-import XMonad.Layout.MultiToggle.Instances (StdTransformers (MIRROR, NBFULL))
-import XMonad.Layout.Renamed (named)
-import XMonad.Layout.ResizableThreeColumns (MirrorResize (MirrorExpand, MirrorShrink), ResizableThreeCol (ResizableThreeCol))
-import XMonad.Layout.Simplest (Simplest (Simplest))
+import XMonad.Layout.Groups.Wmii (moveToGroupDown, moveToGroupUp)
 import XMonad.Layout.Spacing
-import XMonad.Layout.TabBarDecoration (simpleTabBar)
 import XMonad.Layout.Tabbed (simpleTabbedAlways)
-import XMonad.Layout.ToggleLayouts (toggleLayouts)
 import XMonad.Prelude (find)
 import XMonad.StackSet qualified as W
-import XMonad.Util.EZConfig (additionalKeys, additionalKeysP)
 import XMonad.Util.Hacks (fixSteamFlicker)
-import XMonad.Util.SpawnOnce
 
 myBorderWidth :: Dimension
 myBorderWidth = 2
@@ -48,7 +37,7 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
-myKeys conf@(XConfig{XMonad.modMask = myModMask}) =
+myKeys (XConfig{XMonad.modMask = myModMask}) =
   M.fromList $
     [ -- Launch - Application
       ((myModMask, xK_space), spawn "rofi -modi drun -show drun")
@@ -123,6 +112,7 @@ myKeys conf@(XConfig{XMonad.modMask = myModMask}) =
     fromMaybe x Nothing = x
     fromMaybe _ (Just x) = x
 
+myLogHook :: X ()
 myLogHook = fadeInactiveLogHook 0.9
 
 myManageHook :: ManageHook
