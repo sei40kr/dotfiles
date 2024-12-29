@@ -6,16 +6,18 @@ import System.Exit (exitSuccess)
 import XMonad
 import XMonad.Actions.CopyWindow (copy)
 import XMonad.Actions.CycleWS (nextWS, prevWS, shiftToNext, shiftToPrev)
+import XMonad.Actions.Submap (submap)
 import XMonad.Actions.ToggleFullFloat (toggleFullFloat, toggleFullFloatEwmhFullscreen)
 import XMonad.Hooks.EwmhDesktops (ewmh, ewmhFullscreen)
 import XMonad.Hooks.FadeInactive (fadeInactiveLogHook)
 import XMonad.Hooks.ManageDocks (avoidStruts, docks)
-import XMonad.Layout.Column (Column (Column))
 import XMonad.Layout.Groups (group)
+import XMonad.Layout.Groups.Examples (zoomColumnIn, zoomColumnOut)
 import XMonad.Layout.Groups.Helpers (focusDown, focusGroupDown, focusGroupUp, focusUp, swapDown, swapUp)
 import XMonad.Layout.Groups.Wmii (moveToGroupDown, moveToGroupUp)
 import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed (simpleTabbedAlways)
+import XMonad.Layout.ZoomRow (zoomRow)
 import XMonad.Prelude (find)
 import XMonad.StackSet qualified as W
 import XMonad.Util.Hacks (fixSteamFlicker)
@@ -26,7 +28,7 @@ myBorderWidth = 2
 myWorkspaces :: [String]
 myWorkspaces = ["1", "2", "3", "4"]
 
-myLayout = avoidStruts $ group simpleTabbedAlways $ mySpacing 32 16 $ Mirror $ Column 1.0
+myLayout = avoidStruts $ group simpleTabbedAlways $ mySpacing 32 16 zoomRow
  where
   mySpacing i j = spacingRaw False (Border i i i i) True (Border j j j j) True
 
@@ -78,6 +80,8 @@ myKeys (XConfig{XMonad.modMask = myModMask}) =
     , ((myModMask, xK_Down), focusDown)
     , ((myModMask, xK_Up), focusUp)
     , ((myModMask, xK_Right), focusGroupDown)
+    , -- Resize - Enter Resize Mode
+      ((myModMask, xK_r), resizeMode)
     , -- Session - Exit App
       ((myModMask .|. shiftMask, xK_q), kill)
     , -- Session - Logout
@@ -111,6 +115,17 @@ myKeys (XConfig{XMonad.modMask = myModMask}) =
    where
     fromMaybe x Nothing = x
     fromMaybe _ (Just x) = x
+  resizeMode =
+    submap $
+      M.fromList
+        [ ((0, xK_h), zoomColumnOut >> resizeMode)
+        , ((0, xK_l), zoomColumnIn >> resizeMode)
+        , ((0, xK_Left), zoomColumnOut >> resizeMode)
+        , ((0, xK_Right), zoomColumnIn >> resizeMode)
+        , ((0, xK_Return), return ())
+        , ((0, xK_Escape), return ())
+        , ((myModMask, xK_r), return ())
+        ]
 
 myLogHook :: X ()
 myLogHook = fadeInactiveLogHook 0.9
