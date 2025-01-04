@@ -11,6 +11,7 @@ import XMonad.Actions.ToggleFullFloat (toggleFullFloat, toggleFullFloatEwmhFulls
 import XMonad.Hooks.EwmhDesktops (ewmh, ewmhFullscreen)
 import XMonad.Hooks.FadeInactive (fadeInactiveLogHook)
 import XMonad.Hooks.ManageDocks (avoidStruts, docks)
+import XMonad.Hooks.ManageHelpers (doCenterFloat)
 import XMonad.Layout.Groups (group)
 import XMonad.Layout.Groups.Examples (zoomColumnIn, zoomColumnOut)
 import XMonad.Layout.Groups.Helpers (focusDown, focusGroupDown, focusGroupUp, focusUp, swapDown, swapUp)
@@ -140,6 +141,7 @@ myManageHook =
     , className =? "jetbrains-datagrip" --> doShift wsDev
     , className =? "jetbrains-dataspell" --> doShift wsDev
     , className =? "kitty" --> doShift wsDev
+    , className =? "Matplotlib" --> doShift wsDev <+> doCenterFloat
     , className =? "Zeal" --> doShift wsDev <+> doFloat
     , className =? "org.wezfurlong.wezterm" --> doShift wsDev
     , className =? "file-roller" --> doShift wsFiles
