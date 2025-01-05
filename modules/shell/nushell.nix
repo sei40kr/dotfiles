@@ -5,10 +5,18 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
-  cfg = config.modules.shell.nushell;
+  inherit (builtins) readFile;
+  inherit (lib)
+    concatStringsSep
+    mapAttrsToList
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
+  shellCfg = config.modules.shell;
+  cfg = shellCfg.nushell;
 
   atuin_nu = pkgs.runCommandLocal "atuin.nu" { buildInputs = [ pkgs.atuin ]; } ''
     # HACK: Atuin tries to create a directory in `homeless-shelter/.local/share`
@@ -20,13 +28,24 @@ let
     atuin init nu >$out
   '';
 
-  starship_nu = pkgs.runCommandLocal "starship.nu" { buildInputs = [ pkgs.starship ]; } ''
-    starship init nu >$out
+  zoxide_nu = pkgs.runCommandLocal "zoxide.nu" { buildInputs = [ pkgs.zoxide ]; } ''
+    zoxide init nushell >$out
   '';
+
+  config_nu = pkgs.substituteAll {
+    inherit atuin_nu zoxide_nu;
+    src = ../../config/nushell/config.nu;
+    nu_scripts = "${pkgs.nu_scripts}/share/nu_scripts";
+  };
 in
 {
-  options.modules.shell.nushell = with types; {
-    enable = mkBoolOpt false;
+  options.modules.shell.nushell = {
+    enable = mkEnableOption "Nushell";
+
+    rcInit = mkOption {
+      type = types.lines;
+      default = "";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -35,26 +54,14 @@ in
     home-manager.users.${config.user.name}.programs.nushell = {
       enable = true;
       extraConfig = ''
-        $env.config = {
-          show_banner: false
-        }
+        ${readFile config_nu}
 
-        source ${pkgs.nu_scripts}/share/nu_scripts/modules/data_extraction/ultimate_extractor.nu
+        ${concatStringsSep "\n" (mapAttrsToList (name: value: "alias ${name} = ${value}") shellCfg.aliases)}
 
-        source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/git/git-completions.nu
-
-        source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/man/man-completions.nu
-
-        source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/nix/nix-completions.nu
-
-        source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/npm/npm-completions.nu
-
-        source ${pkgs.nu_scripts}/share/nu_scripts/nu-hooks/direnv/direnv.nu
-
-        source ${atuin_nu}
-
-        source ${starship_nu}
+        ${cfg.rcInit}
       '';
     };
+
+    modules.shell.enable = true;
   };
 }

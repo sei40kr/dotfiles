@@ -44,7 +44,6 @@ in
         "drm!" = "docker container rm -f";
         dst = "docker container start";
         drs = "docker container restart";
-        dsta = "docker stop $(docker ps -q)";
         dstp = "docker container stop";
         dtop = "docker top";
         dvi = "docker volume inspect";
