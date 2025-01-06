@@ -136,6 +136,8 @@ myManageHook =
   composeAll
     [ className =? "firefox" --> doShift wsWeb
     , className =? "Google-chrome" --> doShift wsWeb
+    , -- Bitwarden browser extension
+      appName =? "crx_nngceckbapebfimnlniiiahkandclblb" --> doCenterFloat
     , className =? "Vivaldi-stable" --> doShift wsWeb
     , className =? "jetbrains-idea" --> doShift wsDev
     , className =? "jetbrains-datagrip" --> doShift wsDev
