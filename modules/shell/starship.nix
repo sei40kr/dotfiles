@@ -33,6 +33,9 @@ in
 
     home.configFile."starship.toml".text = ''
       ${builtins.readFile "${starship-nerd-font-symbols-preset}/etc/starship.toml"}
+
+      [shell]
+      disabled = false
     '';
 
     programs.zsh.promptInit = ''
