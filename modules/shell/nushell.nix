@@ -63,6 +63,7 @@ in
     };
 
     modules.shell.enable = true;
+    modules.shell.carapace.enable = true;
     modules.shell.starship.enable = true;
   };
 }
