@@ -14,6 +14,8 @@ in
 
   vimPlugins = callPackage ./vim-plugins { };
 
+  julia-mono-nf = callPackage ./julia-mono-nf { };
+
   online-judge-verify-helper = python3Packages.callPackage ./online-judge-verify-helper { };
 
   whitesur-kde = callPackage ./whitesur-kde { };
