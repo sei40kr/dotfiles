@@ -63,5 +63,6 @@ in
     };
 
     modules.shell.enable = true;
+    modules.shell.starship.enable = true;
   };
 }
