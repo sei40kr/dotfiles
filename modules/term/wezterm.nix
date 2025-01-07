@@ -80,7 +80,6 @@ in
       })
       config.font_size = ${toString termCfg.font.size}
       config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
-      config.freetype_load_target = "HorizontalLcd"
       config.warn_about_missing_glyphs = false
 
       config.hide_mouse_cursor_when_typing = false
