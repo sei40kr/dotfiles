@@ -11,13 +11,6 @@ let
   inherit (config.dotfiles) configDir;
   shellCfg = config.modules.shell;
   cfg = shellCfg.zsh;
-
-  starship-nerd-font-symbols-preset =
-    pkgs.runCommandLocal "starship-nerd-font-symbols-preset-${pkgs.starship.version}" { }
-      ''
-        mkdir -p $out/etc
-        ${pkgs.starship}/bin/starship preset nerd-font-symbols >$out/etc/starship.toml
-      '';
 in
 {
   options.modules.shell.zsh = with types; {
@@ -173,25 +166,6 @@ in
 
           ${cfg.rcInit}
         '';
-      promptInit =
-        let
-          starship-zhook =
-            pkgs.runCommandLocal "starship-zhook"
-              {
-                buildInputs = [
-                  pkgs.starship
-                  pkgs.zsh
-                ];
-              }
-              ''
-                mkdir -p $out
-                XDG_CACHE_HOME=$(mktemp -d) ${pkgs.starship}/bin/starship init zsh >$out/zhook.zsh
-                zsh -c "zcompile $out/zhook.zsh"
-              '';
-        in
-        ''
-          . "${starship-zhook}/zhook.zsh"
-        '';
       histSize = 10000;
       histFile = "$HOME/.zsh/.zsh_history";
       setOptions = [
@@ -247,7 +221,6 @@ in
       fd
       fzf
       navi
-      starship
       zoxide
 
       # For zinit
@@ -262,12 +235,9 @@ in
 
     home.configFile."atuin/config.toml".source = "${configDir}/atuin/config.toml";
 
-    home.configFile."starship.toml".text = ''
-      ${builtins.readFile "${starship-nerd-font-symbols-preset}/etc/starship.toml"}
-    '';
-
     user.shell = pkgs.zsh;
 
     modules.shell.enable = true;
+    modules.shell.starship.enable = true;
   };
 }
