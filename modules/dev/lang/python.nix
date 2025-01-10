@@ -9,6 +9,16 @@ with lib;
 with lib.my;
 let
   cfg = config.modules.dev.lang.python;
+
+  patchedPython3 = pkgs.symlinkJoin {
+    name = "${pkgs.python3.name}-patched";
+    paths = [ pkgs.python3 ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/python3.12 \
+        --prefix LD_LIBRARY_PATH : "${makeLibraryPath config.programs.nix-ld.libraries}"
+    '';
+  };
 in
 {
   options.modules.dev.lang.python = {
@@ -17,7 +27,7 @@ in
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      python3
+      patchedPython3
       uv
       basedpyright
       ruff
