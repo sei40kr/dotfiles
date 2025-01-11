@@ -127,9 +127,9 @@ nixosSystem "x86_64-linux" (
     modules.shell.zsh.enable = true;
 
     modules.term.font = {
-      package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
-      name = "Iosevka Nerd Font";
-      size = 17;
+      package = pkgs.my.julia-mono-nf;
+      name = "JuliaMono Nerd Font";
+      size = 18;
     };
     modules.term.colorschemes.active = "tokyo-night";
     modules.term.kitty.enable = true;
