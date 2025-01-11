@@ -239,11 +239,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1732424037,
-        "narHash": "sha256-joNYF0Ip2SKJoAFLDsdIm09H3fKerFwr0TGeATxso1o=",
+        "lastModified": 1734542139,
+        "narHash": "sha256-95LdlPjll2pNgRo/E1H60iSWcCydOC2igMTc/jvNLEw=",
         "owner": "sei40kr",
         "repo": "nix-lazyvim",
-        "rev": "2fc3625552e17046b431508fb40546a0e5538aaa",
+        "rev": "d8713471240352294b197cb20d50efc229118c2f",
         "type": "github"
       },
       "original": {
