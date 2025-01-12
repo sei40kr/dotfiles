@@ -79,7 +79,10 @@ nixosSystem "x86_64-linux" (
     };
     modules.dev.lang.shell.enable = true;
     modules.dev.lang.sql.enable = true;
-    modules.dev.lang.web.enable = true;
+    modules.dev.lang.web = {
+      enable = true;
+      bun.enable = true;
+    };
 
     modules.dev.tools.ansible.enable = true;
     modules.dev.tools.aws.enable = true;
