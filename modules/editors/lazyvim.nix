@@ -2,6 +2,7 @@
   config,
   inputs',
   lib,
+  pkgs,
   ...
 }:
 
@@ -15,6 +16,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ inputs'.lazyvim.packages.default ];
+    environment.systemPackages = [
+      inputs'.lazyvim.packages.default
+      # For Snacks dashboard
+      pkgs.dwt1-shell-color-scripts
+      pkgs.gh
+      pkgs.gh-notify
+    ];
   };
 }
