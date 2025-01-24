@@ -6,6 +6,7 @@ nixosSystem "x86_64-linux" (
     imports = [
       "${inputs.nixpkgs}/nixos/modules/profiles/hardened.nix"
       ./_hardware-configuration.nix
+      ./_disko-config.nix
     ];
 
     # Use the systemd-boot EFI boot loader.

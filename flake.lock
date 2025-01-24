@@ -47,6 +47,26 @@
         "type": "github"
       }
     },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1737038063,
+        "narHash": "sha256-rMEuiK69MDhjz1JgbaeQ9mBDXMJ2/P8vmOYRbFndXsk=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "bf0abfde48f469c256f2b0f481c6281ff04a5db2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -218,11 +238,11 @@
     "idea-LazyVim": {
       "flake": false,
       "locked": {
-        "lastModified": 1733996753,
-        "narHash": "sha256-TtU0crOimuILMRXkbmZKv/QKd2ofxl7pP9qTmaOJajg=",
+        "lastModified": 1734368146,
+        "narHash": "sha256-+J2Zb/pPAv6xJoVSsdcBOibvkfk0rI+WvTj5ES9mSJo=",
         "owner": "sei40kr",
         "repo": "idea-LazyVim",
-        "rev": "2aa7c75fc44d5b7bee40e4bd18582314a4a4f860",
+        "rev": "ca3040222e631786f4280ad4880e3a98acd9a580",
         "type": "github"
       },
       "original": {
@@ -335,6 +355,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "disko": "disko",
         "fenix": "fenix",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",

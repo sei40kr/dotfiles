@@ -16,6 +16,11 @@
       };
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,6 +68,7 @@
     {
       self,
       agenix,
+      disko,
       fenix,
       flake-parts,
       home-manager,
@@ -95,6 +101,7 @@
               };
               modules = [
                 agenix.nixosModules.default
+                disko.nixosModules.default
                 home-manager.nixosModules.home-manager
                 ./modules
                 hostCfg
