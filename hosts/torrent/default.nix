@@ -9,8 +9,26 @@ nixosSystem "x86_64-linux" (
     ];
 
     # Use the systemd-boot EFI boot loader.
-    boot.loader.efi.canTouchEfiVariables = true;
-    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+    boot.loader.grub = {
+      enable = true;
+      devices = [ "nodev" ];
+      extraEntries = ''
+        menuentry "Windows 11" {
+          insmod part_gpt
+          insmod fat
+          insmod search_fs_uuid
+          insmod chain
+          search --fs-uuid --set=root 3448-B644
+          chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+        }
+      '';
+      default = "saved";
+      efiSupport = true;
+    };
 
     environment.memoryAllocator.provider = "libc";
     security.unprivilegedUsernsClone = true;
