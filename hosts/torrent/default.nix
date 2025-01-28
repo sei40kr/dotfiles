@@ -17,6 +17,7 @@ nixosSystem "x86_64-linux" (
 
     # Set your time zone.
     time.timeZone = "Asia/Tokyo";
+    time.hardwareClockInLocalTime = true;
 
     networking.hostName = "torrent"; # Define your hostname.
     networking.networkmanager.enable = true;
