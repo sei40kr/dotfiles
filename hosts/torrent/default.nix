@@ -57,6 +57,7 @@ nixosSystem "x86_64-linux" (
               enable = true;
               primary = true;
               mode = "2560x1440";
+              dpi = builtins.floor (96 * 1.2);
             };
           };
         };
