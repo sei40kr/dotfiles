@@ -99,7 +99,7 @@ nixosSystem "x86_64-linux" (
     modules.desktop.apps.steam.enable = true;
     modules.desktop.apps.zeal.enable = true;
 
-    modules.desktop.browsers.chrome.enable = true;
+    modules.desktop.browsers.vivaldi.enable = true;
 
     modules.desktop.media.documents.ebook.enable = true;
     modules.desktop.media.video.vlc.enable = true;
