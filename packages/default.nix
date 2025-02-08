@@ -14,6 +14,8 @@ in
 
   vimPlugins = callPackage ./vim-plugins { };
 
+  gnome-pomodoro-watcher = callPackage ./gnome-pomodoro-watcher { };
+
   julia-mono-nf = callPackage ./julia-mono-nf { };
 
   online-judge-verify-helper = python3Packages.callPackage ./online-judge-verify-helper { };
