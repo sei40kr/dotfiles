@@ -13,6 +13,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    programs.dconf.enable = true;
+
     home-manager.users.${config.user.name}.dconf = {
       inherit (cfg) settings;
 
