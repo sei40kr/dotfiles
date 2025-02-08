@@ -44,10 +44,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      polybarFull
-      my.gnome-pomodoro-watcher
-    ];
+    environment.systemPackages = with pkgs; [ polybarFull ];
 
     fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; }) ];
 
