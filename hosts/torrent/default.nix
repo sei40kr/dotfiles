@@ -43,6 +43,11 @@ nixosSystem "x86_64-linux" (
 
     networking.interfaces.enp0s31f6.useDHCP = true;
 
+    services.xserver.displayManager.setupCommands = "${pkgs.autorandr}/bin/autorandr -c";
+    services.xserver.displayManager.lightdm = {
+      enable = true;
+    };
+
     services.autorandr = {
       enable = true;
       profiles = {
@@ -88,7 +93,6 @@ nixosSystem "x86_64-linux" (
 
     user.name = "sei40kr";
 
-    modules.desktop.gdm.enable = true;
     modules.desktop.wm.sway.enable = true;
     modules.desktop.wm.xmonad.enable = true;
     modules.desktop.theme.active = "whitesur";
