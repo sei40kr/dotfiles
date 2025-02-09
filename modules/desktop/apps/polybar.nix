@@ -69,6 +69,35 @@ let
           }
       '';
 
+  polybar-wireguard =
+    pkgs.runCommand "polybar-wireguard"
+      {
+        src = ../../../bin/polybar-wireguard;
+        nativeBuildInputs = [
+          pkgs.gnused
+          pkgs.makeWrapper
+        ];
+        buildInputs = [
+          pkgs.gnugrep
+          pkgs.iproute2
+          pkgs.wireguard-tools
+        ];
+      }
+      ''
+        mkdir -p $out/bin
+        cp $src $out/bin/polybar-wireguard
+        sed -i '1,2c#!/usr/bin/env bash' $out/bin/polybar-wireguard
+        patchShebangs $out
+        wrapProgram $out/bin/polybar-wireguard \
+          --prefix PATH : ${
+            makeBinPath [
+              pkgs.gnugrep
+              pkgs.iproute2
+              pkgs.wireguard-tools
+            ]
+          }
+      '';
+
   configIni = pkgs.substituteAll {
     src = ../../../config/polybar/config.ini;
 
@@ -76,6 +105,7 @@ let
 
     polybar_gnome_pomodoro = "${polybar-gnome-pomodoro}/bin/polybar-gnome-pomodoro";
     polybar_openweathermap = "${polybar-openweathermap}/bin/polybar-openweathermap";
+    polybar_wireguard = "${polybar-wireguard}/bin/polybar-wireguard";
     openweathermap_key_file = config.age.secrets.openweathermap-key.path;
     openweathermap_city_id = cfg.openweathermap.cityId;
   };
