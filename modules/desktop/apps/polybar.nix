@@ -33,9 +33,38 @@ let
           }
       '';
 
+  polybar-openweathermap =
+    pkgs.runCommand "polybar-openweathermap"
+      {
+        src = ../../../bin/polybar-openweathermap;
+        nativeBuildInputs = [
+          pkgs.gnused
+          pkgs.makeWrapper
+        ];
+        buildInputs = [
+          pkgs.curl
+          pkgs.jq
+        ];
+      }
+      ''
+        mkdir -p $out/bin
+        cp $src $out/bin/polybar-openweathermap
+        sed -i '1,2c#!/usr/bin/env bash' $out/bin/polybar-openweathermap
+        patchShebangs $out
+        wrapProgram $out/bin/polybar-openweathermap \
+          --prefix PATH : ${
+            makeBinPath [
+              pkgs.curl
+              pkgs.jq
+            ]
+          }
+      '';
+
   configIni = pkgs.substituteAll {
     src = ../../../config/polybar/config.ini;
     polybar_gnome_pomodoro = "${polybar-gnome-pomodoro}/bin/polybar-gnome-pomodoro";
+    polybar_openweathermap = "${polybar-openweathermap}/bin/polybar-openweathermap";
+    openweathermap_key_file = config.age.secrets.openweathermap-key.path;
   };
 in
 {
@@ -61,6 +90,11 @@ in
       partOf = [ "graphical-session.target" ];
       restartTriggers = [ configIni ];
       script = "${pkgs.polybarFull}/bin/polybar bottom";
+    };
+
+    age.secrets.openweathermap-key = {
+      file = ../../../config/polybar/openweathermap.key.age;
+      owner = config.user.name;
     };
 
     environment.etc."xdg/polybar/config.ini".source = configIni;

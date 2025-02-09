@@ -1,0 +1,116 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p jq curl
+
+API_KEY_FILE=''
+CITY_ID=''
+ICON_FONT=0
+SUNNY_COLOR="#ffb86c"
+CLOUDY_COLOR="#8be9fd"
+RAINY_COLOR="#6272a4"
+SNOWY_COLOR="#f8f8f2"
+TEMP_HIGH_COLOR="#ff5555"
+TEMP_LOW_COLOR="#8be9fd"
+
+while [[ "$#" -gt 0 ]]; do
+  case $1 in
+  --api-key-file)
+    API_KEY_FILE="$2"
+    shift 2
+    ;;
+  --city-id)
+    CITY_ID="$2"
+    shift 2
+    ;;
+  --icon-font)
+    ICON_FONT="$2"
+    shift 2
+    ;;
+  --sunny-color)
+    SUNNY_COLOR="$2"
+    shift 2
+    ;;
+  --cloudy-color)
+    CLOUDY_COLOR="$2"
+    shift 2
+    ;;
+  --rainy-color)
+    RAINY_COLOR="$2"
+    shift 2
+    ;;
+  --snowy-color)
+    SNOWY_COLOR="$2"
+    shift 2
+    ;;
+  --temp-high-color)
+    TEMP_HIGH_COLOR="$2"
+    shift 2
+    ;;
+  --temp-low-color)
+    TEMP_LOW_COLOR="$2"
+    shift 2
+    ;;
+  *)
+    echo "Error: Invalid option: $1" >&2
+    exit 1
+    ;;
+  esac
+done
+
+if [[ ! -f "$API_KEY_FILE" ]]; then
+  echo "Error: API key file not found: ${API_KEY_FILE}" >&2
+  exit 1
+fi
+
+API_KEY="$(tr -d '[:space:]' <"$API_KEY_FILE")"
+
+if [[ -z "$API_KEY" ]]; then
+  echo "Error: Empty API key in file: ${API_KEY_FILE}" >&2
+  exit 1
+fi
+
+if [[ -z "$CITY_ID" ]]; then
+  echo "Error: City ID is required" >&2
+  exit 1
+fi
+
+curl -s "https://api.openweathermap.org/data/2.5/weather?id=${CITY_ID}&appid=${API_KEY}&units=metric" | jq -r \
+  --arg sunny_color "$SUNNY_COLOR" \
+  --arg cloudy_color "$CLOUDY_COLOR" \
+  --arg rainy_color "$RAINY_COLOR" \
+  --arg snowy_color "$SNOWY_COLOR" \
+  --arg temp_high_color "$TEMP_HIGH_COLOR" \
+  --arg temp_low_color "$TEMP_LOW_COLOR" \
+  --arg icon_font "$ICON_FONT" \
+  'def get_icon:
+    if . == "01d" then
+      "%{F\($sunny_color)}󰖙%{F-}"        # clear sky day
+    elif . == "01n" then
+      "%{F\($sunny_color)}󰖔%{F-}"        # clear sky night
+    elif . == "02d" then
+      "%{F\($cloudy_color)}󰖕%{F-}"       # few clouds day
+    elif . == "02n" then
+      "%{F\($cloudy_color)}󰼱%{F-}"       # few clouds night
+    elif . == "03d" or . == "03n" then
+      "%{F\($cloudy_color)}󰖐%{F-}"       # scattered clouds
+    elif . == "04d" or . == "04n" then
+      "%{F\($cloudy_color)}󰖐%{F-}"       # broken clouds
+    elif . == "09d" or . == "09n" then
+      "%{F\($rainy_color)}󰖗%{F-}"        # shower rain
+    elif . == "10d" or . == "10n" then
+      "%{F\($rainy_color)}󰼳%{F-}"        # rain
+    elif . == "11d" or . == "11n" then
+      "%{F\($rainy_color)}󰙾%{F-}"        # thunderstorm
+    elif . == "13d" or . == "13n" then
+      "%{F\($snowy_color)}󰖘%{F-}"        # snow
+    elif . == "50d" or . == "50n" then
+      "%{F\($cloudy_color)}󰖑%{F-}"       # mist
+    else
+      "%{F\($cloudy_color)}󰖑%{F-}"       # default
+    end;
+
+  (.weather[0].icon | get_icon) as $weather_icon
+  | .main.temp_max as $temp_max
+  | .main.temp_min as $temp_min
+  | "%{T\($icon_font)}\($weather_icon)%{T-} %{F\($temp_high_color)}\($temp_max | round)°%{F-}/%{F\($temp_low_color)}\($temp_min | round)°%{F-}"'
+
+# vim: ft=bash
