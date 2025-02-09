@@ -100,6 +100,7 @@ nixosSystem "x86_64-linux" (
     modules.desktop.apps.bitwarden.enable = true;
     modules.desktop.apps.discord.enable = true;
     modules.desktop.apps.gnome.pomodoro.enable = true;
+    modules.desktop.apps.polybar.openweathermap.cityId = 1860234;
     modules.desktop.apps.slack.enable = true;
     modules.desktop.apps.steam.enable = true;
     modules.desktop.apps.zeal.enable = true;

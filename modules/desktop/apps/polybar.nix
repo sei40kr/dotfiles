@@ -6,7 +6,13 @@
 }:
 
 let
-  inherit (lib) makeBinPath mkEnableOption mkIf;
+  inherit (lib)
+    makeBinPath
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.modules.desktop.apps.polybar;
 
   polybar-gnome-pomodoro =
@@ -68,11 +74,20 @@ let
     polybar_gnome_pomodoro = "${polybar-gnome-pomodoro}/bin/polybar-gnome-pomodoro";
     polybar_openweathermap = "${polybar-openweathermap}/bin/polybar-openweathermap";
     openweathermap_key_file = config.age.secrets.openweathermap-key.path;
+    openweathermap_city_id = cfg.openweathermap.cityId;
   };
 in
 {
   options.modules.desktop.apps.polybar = {
     enable = mkEnableOption "Polybar";
+
+    openweathermap = {
+      cityId = mkOption {
+        type = types.int;
+        example = 1850147;
+        description = "City ID for OpenWeatherMap API";
+      };
+    };
   };
 
   config = mkIf cfg.enable {
