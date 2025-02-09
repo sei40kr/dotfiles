@@ -71,6 +71,9 @@ let
 
   configIni = pkgs.substituteAll {
     src = ../../../config/polybar/config.ini;
+
+    xdg_utils = "${pkgs.xdg-utils}";
+
     polybar_gnome_pomodoro = "${polybar-gnome-pomodoro}/bin/polybar-gnome-pomodoro";
     polybar_openweathermap = "${polybar-openweathermap}/bin/polybar-openweathermap";
     openweathermap_key_file = config.age.secrets.openweathermap-key.path;
