@@ -17,7 +17,10 @@ let
           pkgs.gnused
           pkgs.makeWrapper
         ];
-        buildInputs = [ pkgs.jq ];
+        buildInputs = [
+          pkgs.my.gnome-pomodoro-watcher
+          pkgs.jq
+        ];
       }
       ''
         mkdir -p $out/bin
