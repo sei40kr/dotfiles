@@ -23,10 +23,7 @@ let
           pkgs.gnused
           pkgs.makeWrapper
         ];
-        buildInputs = [
-          pkgs.my.gnome-pomodoro-watcher
-          pkgs.jq
-        ];
+        buildInputs = [ pkgs.glib ];
       }
       ''
         mkdir -p $out/bin
@@ -34,12 +31,7 @@ let
         sed -i '1,2c#!/usr/bin/env bash' $out/bin/polybar-gnome-pomodoro
         patchShebangs $out
         wrapProgram $out/bin/polybar-gnome-pomodoro \
-          --prefix PATH : ${
-            makeBinPath [
-              pkgs.my.gnome-pomodoro-watcher
-              pkgs.jq
-            ]
-          }
+          --prefix PATH : ${makeBinPath [ pkgs.glib ]}
       '';
 
   polybar-openweathermap =

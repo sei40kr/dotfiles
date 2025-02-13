@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#! nix-shell -i bash -p jq
+#!nix-shell -i bash -p glib
 
 while [[ "$#" -gt 0 ]]; do
   case $1 in
@@ -14,22 +14,110 @@ while [[ "$#" -gt 0 ]]; do
   esac
 done
 
-gnome-pomodoro-watcher | jq -r --unbuffered \
-  --arg icon_font "${ICON_FONT}" \
-  'def format_icon(icon): "%{T" + $icon_font + "}" + icon + "%{T-}";
+format_time() {
+  local total_seconds="$1"
+  local minutes seconds
 
-  if .state != "stopped" then
-    (if .is_paused then
-      format_icon("󰏤") + " "
-    elif .state == "pomodoro" then
-      format_icon("") + " "
-    elif .state == "short-break" then
-      format_icon("󰅶") + " "
-    elif .state == "long-break" then
-      format_icon("󰢠") + " "
-    end) + (.remaining_secs | strftime("%M:%S"))
+  minutes=$((total_seconds / 60))
+  seconds=$((total_seconds % 60))
+  printf "%02d:%02d" "$minutes" "$seconds"
+}
+
+format_icon() {
+  local icon="$1"
+
+  if [[ "$ICON_FONT" ]]; then
+    echo "%{T${ICON_FONT}}$icon%{T-}"
   else
-    ""
-  end'
+    echo "$icon"
+  fi
+}
 
-# vim: ft=bash
+format_state_output() {
+  local state="$1"
+  local is_paused="$2"
+  local remaining_seconds="$3"
+
+  if [[ "$state" != 'stopped' && "$state" != "null" ]]; then
+    local icon=''
+
+    if [[ "$is_paused" == 'true' ]]; then
+      icon='󰏤'
+    elif [[ "$state" == 'pomodoro' ]]; then
+      icon=''
+    elif [[ "$state" == 'short-break' ]]; then
+      icon='󰅶'
+    elif [[ "$state" == 'long-break' ]]; then
+      icon='󰢠'
+    fi
+
+    local formatted_icon formatted_time
+    formatted_icon="$(format_icon "$icon")"
+    formatted_time="$(format_time "$remaining_seconds")"
+    echo -n "${formatted_icon} ${formatted_time}"
+  else
+    echo -n ''
+  fi
+}
+
+get_properties() {
+  gdbus call --session \
+    --dest org.gnome.Pomodoro \
+    --object-path /org/gnome/Pomodoro \
+    --method org.freedesktop.DBus.Properties.GetAll \
+    org.gnome.Pomodoro
+}
+
+extract_property() {
+  local properties="$1"
+  local name="$2"
+  local pattern="'${name}': <([^>]+)>"
+
+  if [[ "$properties" =~ $pattern ]]; then
+    local value="${BASH_REMATCH[1]}"
+    case "$name" in
+    'Elapsed' | 'StateDuration')
+      echo -n "${value%.*}"
+      ;;
+    'IsPaused')
+      echo -n "$value"
+      ;;
+    'State')
+      [[ "$value" =~ \'([^\']+)\' ]] && echo -n "${BASH_REMATCH[1]}"
+      ;;
+    esac
+  fi
+}
+
+process_state() {
+  local properties="$1"
+
+  local elapsed
+  local is_paused
+  local state
+  local state_duration
+
+  elapsed="$(extract_property "$properties" 'Elapsed')"
+  is_paused="$(extract_property "$properties" 'IsPaused')"
+  state="$(extract_property "$properties" 'State')"
+  state_duration="$(extract_property "$properties" 'StateDuration')"
+
+  local remaining_secs=$((state_duration - elapsed))
+  format_state_output "$state" "$is_paused" "$remaining_secs"
+  echo ''
+}
+
+initial_properties="$(get_properties)"
+process_state "$initial_properties"
+
+gdbus monitor --session \
+  --dest org.gnome.Pomodoro \
+  --object-path /org/gnome/Pomodoro |
+  while IFS= read -r line; do
+    if [[ "$line" =~ 'PropertiesChanged' ]]; then
+      properties="$(get_properties)"
+      process_state "$properties"
+    fi
+  done
+
+# vim: set ft=bash:
