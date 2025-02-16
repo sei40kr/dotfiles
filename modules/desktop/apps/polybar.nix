@@ -15,6 +15,36 @@ let
     ;
   cfg = config.modules.desktop.apps.polybar;
 
+  polybar-google-calendar-next-event =
+    pkgs.runCommand "polybar-google-calendar-next-event"
+      {
+        src = ../../../bin/polybar-google-calendar-next-event;
+        nativeBuildInputs = [
+          pkgs.gnused
+          pkgs.makeWrapper
+        ];
+        buildInputs = [
+          pkgs.curl
+          pkgs.jq
+          pkgs.openssl
+        ];
+      }
+      ''
+        mkdir -p $out/bin
+        cp $src $out/bin/polybar-google-calendar-next-event
+        sed -i '1,2c#!/usr/bin/env bash' $out/bin/polybar-google-calendar-next-event
+        patchShebangs $out
+        wrapProgram $out/bin/polybar-google-calendar-next-event \
+          --set SERVICE_ACCOUNT_FILE ${config.age.secrets.google-calendar-service-account.path} \
+          --prefix PATH : ${
+            makeBinPath [
+              pkgs.curl
+              pkgs.jq
+              pkgs.openssl
+            ]
+          }
+      '';
+
   polybar-gnome-pomodoro =
     pkgs.runCommand "polybar-gnome-pomodoro"
       {
@@ -96,6 +126,7 @@ let
     xdg_utils = "${pkgs.xdg-utils}";
 
     polybar_gnome_pomodoro = "${polybar-gnome-pomodoro}/bin/polybar-gnome-pomodoro";
+    polybar_google_calendar_next_event = "${polybar-google-calendar-next-event}/bin/polybar-google-calendar-next-event";
     polybar_openweathermap = "${polybar-openweathermap}/bin/polybar-openweathermap";
     polybar_wireguard = "${polybar-wireguard}/bin/polybar-wireguard";
     openweathermap_key_file = config.age.secrets.openweathermap-key.path;
@@ -135,6 +166,10 @@ in
       script = "${pkgs.polybarFull}/bin/polybar bottom";
     };
 
+    age.secrets.google-calendar-service-account = {
+      file = ../../../config/polybar/google_calendar_service_account.json.age;
+      owner = config.user.name;
+    };
     age.secrets.openweathermap-key = {
       file = ../../../config/polybar/openweathermap.key.age;
       owner = config.user.name;

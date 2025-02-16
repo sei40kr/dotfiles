@@ -1,0 +1,215 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p curl jq openssl
+
+set -euo pipefail
+
+ICON_FONT=0
+
+while [[ "$#" -gt 0 ]]; do
+  case "$1" in
+    --icon-font)
+      ICON_FONT="$2"
+      shift 2
+      ;;
+    *)
+      echo "Error: Invalid option: $1" >&2
+      exit 1
+      ;;
+  esac
+done
+
+readonly CACHE_DIR="${XDG_CACHE_HOME:-${HOME}/.cache}/polybar"
+readonly CACHE_FILE="${CACHE_DIR}/google_calendar_calendar_cache.json"
+readonly EVENT_FILE="${CACHE_DIR}/google_calendar_current_event.json"
+readonly CACHE_MAX_AGE=300
+
+mkdir -p "$CACHE_DIR"
+
+truncate_text() {
+  local text="$1"
+  local max_length=$2
+
+  if [[ ${#text} -gt $max_length ]]; then
+    echo "${text:0:$((max_length - 1))}…"
+  else
+    echo "$text"
+  fi
+}
+
+humanize_time() {
+  local target_time="$1"
+  local now target diff abs_diff
+  now="$(date +%s)"
+  target="$(date -d "${target_time}" +%s)"
+  diff="$((target - now))"
+  abs_diff="${diff#-}"
+
+  if [[ "$diff" -lt 0 ]]; then
+    if [[ "$abs_diff" -lt 3600 ]]; then
+      echo "$((abs_diff / 60))m ago"
+    else
+      echo "$((abs_diff / 3600))h ago"
+    fi
+  else
+    if [[ "$diff" -lt 3600 ]]; then
+      echo "in $((diff / 60))m"
+    else
+      echo "in $((diff / 3600))h"
+    fi
+  fi
+}
+
+update_cache() {
+  local time_min time_max
+  time_min="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+  time_max="$(date -u -d "tomorrow" +"%Y-%m-%dT%H:%M:%SZ")"
+
+  local jwt_header jwt_header_base64
+  jwt_header='{"alg":"RS256","typ":"JWT"}'
+  jwt_header_base64="$(echo -n "${jwt_header}" | base64 -w 0 | tr '+/' '-_' | tr -d '=')"
+
+  local now exp jwt_claim jwt_claim_base64 client_email
+  now="$(date +%s)"
+  exp="$((now + 3600))"
+  client_email="$(jq -r '.client_email' "${SERVICE_ACCOUNT_FILE}")"
+
+  jwt_claim="$(
+    cat <<EOF
+{
+  "iss": "${client_email}",
+  "scope": "https://www.googleapis.com/auth/calendar",
+  "aud": "https://oauth2.googleapis.com/token",
+  "exp": ${exp},
+  "iat": ${now}
+}
+EOF
+  )"
+  jwt_claim_base64="$(echo -n "${jwt_claim}" | base64 -w 0 | tr '+/' '-_' | tr -d '=')"
+
+  local private_key signature jwt
+  private_key="$(jq -r '.private_key' "${SERVICE_ACCOUNT_FILE}")"
+  signature="$(
+    echo -n "${jwt_header_base64}.${jwt_claim_base64}" |
+      openssl dgst -binary -sha256 -sign <(echo "${private_key}") |
+      base64 -w 0 | tr '+/' '-_' | tr -d '='
+  )"
+
+  jwt="${jwt_header_base64}.${jwt_claim_base64}.${signature}"
+
+  local token_response access_token
+  token_response="$(
+    curl -sS -X POST \
+      'https://oauth2.googleapis.com/token' \
+      -d 'grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer' \
+      -d "assertion=${jwt}"
+  )"
+  access_token="$(echo "${token_response}" | jq -r '.access_token')"
+
+  local calendars
+  calendars="$(
+    curl -s \
+      "https://www.googleapis.com/calendar/v3/users/me/calendarList" \
+      -H "Authorization: Bearer ${access_token}"
+  )"
+
+  local calendar_ids
+  calendar_ids="$(jq -r '.items[].id' <<<"$calendars")"
+
+  local all_events="[]"
+  while IFS= read -r calendar_id; do
+    local calendar_events
+    calendar_events="$(
+      curl -s \
+        "https://www.googleapis.com/calendar/v3/calendars/${calendar_id}/events?timeMin=${time_min}&timeMax=${time_max}&singleEvents=true&orderBy=startTime&timeZone=UTC" \
+        -H "Authorization: Bearer ${access_token}"
+    )"
+
+    all_events="$(jq -s --arg cid "$calendar_id" \
+      '.[0] + (.[1].items // [] | map(. + {calendar_id: $cid}))' \
+      <<<"${all_events} ${calendar_events}")"
+  done <<<"$calendar_ids"
+
+  local events
+  events="$(jq -r '{items: .}' <<<"$all_events")"
+
+  jq --argjson calendars "$calendars" '
+    . + {
+      items: (.items // [] | map(select(.status == "confirmed")) | map(
+        .calendar_id as $cid | {
+          start: (.start.dateTime // .start.date),
+          end: (.end.dateTime // .end.date),
+          summary,
+          color: ($calendars.items[] | select(.id == $cid) | .backgroundColor // "#ffffff"),
+        }
+      ))
+    }
+  ' <<<"$events" >"$CACHE_FILE"
+}
+
+update_current_event() {
+  local now
+  now="$(date +%s)"
+
+  jq -r --arg now "$now" '
+    .items | map(
+      . + {
+        start_ts: (if .start | contains("T") then (.start | fromdateiso8601) else (.start + "T00:00:00Z" | fromdateiso8601) end),
+        end_ts: (if .end | contains("T") then (.end | fromdateiso8601) else (.end + "T23:59:59Z" | fromdateiso8601) end),
+      }
+    ) |
+    map(select(.end_ts >= ($now | tonumber))) |
+    sort_by(.start_ts) |
+    first |
+    select(.)
+  ' "$CACHE_FILE" >"$EVENT_FILE" 2>/dev/null || echo '{}' >"$EVENT_FILE"
+}
+
+display_event() {
+  local max_summary_length=20
+  local event_json
+  event_json="$(cat "$EVENT_FILE")"
+
+  if [[ "$event_json" != "{}" ]]; then
+    local start_time end_time summary color
+    while IFS=$'\t' read -r start_time end_time summary color; do
+      local now event_start event_end truncated time_str
+      now="$(date +%s)"
+      event_start="$(date -d "${start_time}" +%s)"
+      event_end="$(date -d "${end_time}" +%s)"
+      truncated="$(truncate_text "$summary" "$max_summary_length")"
+
+      if [[ "$now" -ge "$event_start" && "$now" -le "$event_end" ]]; then
+        time_str="now"
+      else
+        time_str="$(humanize_time "$start_time")"
+      fi
+
+      echo "%{T${ICON_FONT}}󰃭%{T-} %{T${ICON_FONT}}%{F${color}}󰧞%{F-}%{T-} ${truncated} (${time_str})"
+      return
+    done < <(jq -r '[.start, .end, .summary, .color] | @tsv' <<<"$event_json")
+  fi
+
+  echo "%{T${ICON_FONT}}󰃭%{T-} No upcoming events"
+}
+
+last_cache_update=0
+last_event_update=0
+
+while true; do
+  current_time="$(date +%s)"
+
+  if [[ ! -f "$CACHE_FILE" || $((current_time - last_cache_update)) -ge $CACHE_MAX_AGE ]]; then
+    update_cache
+    last_cache_update="$current_time"
+  fi
+
+  if [[ $((current_time - last_event_update)) -ge 60 ]]; then
+    update_current_event
+    last_event_update="$current_time"
+  fi
+
+  display_event
+  sleep 1
+done
+
+# vim: set ft=bash:
