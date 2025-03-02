@@ -53,7 +53,10 @@ let
           pkgs.gnused
           pkgs.makeWrapper
         ];
-        buildInputs = [ pkgs.glib ];
+        buildInputs = [
+          pkgs.glib
+          pkgs.rofi
+        ];
       }
       ''
         mkdir -p $out/bin
@@ -61,7 +64,12 @@ let
         sed -i '1,2c#!/usr/bin/env bash' $out/bin/polybar-gnome-pomodoro
         patchShebangs $out
         wrapProgram $out/bin/polybar-gnome-pomodoro \
-          --prefix PATH : ${makeBinPath [ pkgs.glib ]}
+          --prefix PATH : ${
+            makeBinPath [
+              pkgs.glib
+              pkgs.rofi
+            ]
+          }
       '';
 
   polybar-openweathermap =

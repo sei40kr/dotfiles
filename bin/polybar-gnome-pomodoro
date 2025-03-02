@@ -1,11 +1,15 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i bash -p glib
+#!nix-shell -i bash -p glib rofi
 
 while [[ "$#" -gt 0 ]]; do
   case $1 in
   --icon-font)
     ICON_FONT="$2"
     shift 2
+    ;;
+  --menu)
+    SHOW_MENU=true
+    shift
     ;;
   *)
     echo "Invalid option: $1"
@@ -144,8 +148,83 @@ process_state() {
   echo ''
 }
 
+show_menu() {
+  local state="${current_state['State']}"
+  local is_paused="${current_state['IsPaused']}"
+  local options=''
+  local selection
+
+  if [[ "$state" == ?(pomodoro|short-break|long-break) ]]; then
+    if [[ "$is_paused" == 'true' ]]; then
+      options+='Resume\0icon\x1fmedia-playback-start\n'
+    else
+      options+='Pause\0icon\x1fmedia-playback-pause\n'
+    fi
+    options+='Stop\0icon\x1fmedia-playback-stop\n'
+  fi
+  options+='Pomodoro\n'
+  options+='Short Break\n'
+  options+='Long Break\n'
+
+  selection="$(echo -en "$options" | rofi -dmenu -show-icons -p 'Pomodoro')"
+
+  case "$selection" in
+  Resume)
+    gdbus call --session \
+      --dest org.gnome.Pomodoro \
+      --object-path /org/gnome/Pomodoro \
+      --method org.gnome.Pomodoro.Resume \
+      >/dev/null
+    ;;
+  Pause)
+    gdbus call --session \
+      --dest org.gnome.Pomodoro \
+      --object-path /org/gnome/Pomodoro \
+      --method org.gnome.Pomodoro.Pause \
+      >/dev/null
+    ;;
+  Stop)
+    gdbus call --session \
+      --dest org.gnome.Pomodoro \
+      --object-path /org/gnome/Pomodoro \
+      --method org.gnome.Pomodoro.Stop \
+      >/dev/null
+    ;;
+  Pomodoro)
+    gdbus call --session \
+      --dest org.gnome.Pomodoro \
+      --object-path /org/gnome/Pomodoro \
+      --method org.gnome.Pomodoro.SetState \
+      'pomodoro' 0 \
+      >/dev/null
+    ;;
+  Short\ Break)
+    gdbus call --session \
+      --dest org.gnome.Pomodoro \
+      --object-path /org/gnome/Pomodoro \
+      --method org.gnome.Pomodoro.SetState \
+      'short-break' 0 \
+      >/dev/null
+    ;;
+  Long\ Break)
+    gdbus call --session \
+      --dest org.gnome.Pomodoro \
+      --object-path /org/gnome/Pomodoro \
+      --method org.gnome.Pomodoro.SetState \
+      'long-break' 0 \
+      >/dev/null
+    ;;
+  esac
+}
+
 initial_properties="$(get_initial_properties)"
 update_state_from_properties "$initial_properties"
+
+if [[ "$SHOW_MENU" == true ]]; then
+  show_menu
+  exit 0
+fi
+
 process_state
 
 gdbus monitor --session \
