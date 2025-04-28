@@ -19,7 +19,8 @@ in
     user.packages = with pkgs; [
       (jetbrains.plugins.addPlugins jetbrains.datagrip [
         "acejump"
-        "github-copilot"
+        # FIXME: NixOS/nixpkgs#400317 github-copilot fails to build
+        # "github-copilot"
         "ideavim"
       ])
     ];

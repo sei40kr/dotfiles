@@ -32,7 +32,7 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ kitty ];
 
-    fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; }) ];
+    fonts.packages = with pkgs; [ nerd-fonts.symbols-only ];
 
     home.configFile."kitty/kitty.conf".text = ''
       confirm_os_window_close 0

@@ -134,7 +134,7 @@ nixosSystem "x86_64-linux" (
     modules.dev.tools.jupyter.enable = true;
 
     modules.editors.fonts.code = {
-      package = pkgs.nerdfonts.override { fonts = [ "Iosevka" ]; };
+      package = pkgs.nerd-fonts.iosevka;
       name = "Iosevka NFM";
       size = 17;
     };

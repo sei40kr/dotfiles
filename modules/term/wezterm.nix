@@ -51,7 +51,7 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ wezterm ];
 
-    fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; }) ];
+    fonts.packages = with pkgs; [ nerd-fonts.symbols-only ];
 
     home.configFile."wezterm/wezterm.lua".text = ''
       package.path = package.path .. ";${plugins}/share/wezterm/?.lua;${plugins}/share/wezterm/?/init.lua"

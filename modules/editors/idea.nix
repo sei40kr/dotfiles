@@ -19,7 +19,8 @@ in
     user.packages = with pkgs; [
       (jetbrains.plugins.addPlugins jetbrains.idea-ultimate [
         "acejump"
-        "github-copilot"
+        # FIXME: NixOS/nixpkgs#400317 github-copilot fails to build
+        # "github-copilot"
         "ideavim"
         "python"
         "rust"

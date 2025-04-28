@@ -25,8 +25,8 @@ in
       emmet-language-server
       nodePackages.prettier
       nodePackages.vscode-langservers-extracted
-      nodePackages.vue-language-server
       vtsls
+      vue-language-server
       (mkIf cfg.bun.enable bun)
       (mkIf cfg.deno.enable deno)
     ];

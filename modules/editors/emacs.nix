@@ -31,7 +31,6 @@ let
     if cfg.doom.enable then
       (pkgs.emacs.pkgs.withPackages (epkgs: [
         epkgs.melpaPackages.emacsql
-        epkgs.melpaPackages.emacsql-sqlite
         epkgs.melpaPackages.vterm
         epkgs.melpaPackages.zmq
         default_el

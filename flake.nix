@@ -1,10 +1,10 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -85,15 +85,9 @@
             { inputs', pkgs, ... }:
             nixpkgs.lib.nixosSystem {
               inherit system;
-              specialArgs = {
-                inherit
-                  inputs
-                  inputs'
-                  lib
-                  pkgs
-                  ;
-              };
+              specialArgs = { inherit inputs inputs' lib; };
               modules = [
+                { nixpkgs.pkgs = pkgs; }
                 agenix.nixosModules.default
                 home-manager.nixosModules.home-manager
                 ./modules

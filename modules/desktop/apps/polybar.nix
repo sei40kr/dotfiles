@@ -128,9 +128,7 @@ let
           }
       '';
 
-  configIni = pkgs.substituteAll {
-    src = ../../../config/polybar/config.ini;
-
+  configIni = pkgs.replaceVars ../../../config/polybar/config.ini {
     xdg_utils = "${pkgs.xdg-utils}";
 
     polybar_gnome_pomodoro = "${polybar-gnome-pomodoro}/bin/polybar-gnome-pomodoro";
@@ -157,7 +155,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [ polybarFull ];
 
-    fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; }) ];
+    fonts.packages = with pkgs; [ nerd-fonts.symbols-only ];
 
     systemd.user.services.polybar-top = {
       description = "Polybar top bar as systemd service";

@@ -10,8 +10,7 @@ let
   inherit (config.dotfiles) configDir;
   cfg = config.modules.shell.apps.fastfetch;
 
-  config_jsonc = pkgs.substituteAll {
-    src = ../../../config/fastfetch/config.jsonc;
+  config_jsonc = pkgs.replaceVars ../../../config/fastfetch/config.jsonc {
     logo = "${configDir}/fastfetch/logo.png";
   };
 in

@@ -32,9 +32,8 @@ let
     zoxide init nushell >$out
   '';
 
-  config_nu = pkgs.substituteAll {
+  config_nu = pkgs.replaceVars ../../config/nushell/config.nu {
     inherit atuin_nu zoxide_nu;
-    src = ../../config/nushell/config.nu;
     nu_scripts = "${pkgs.nu_scripts}/share/nu_scripts";
   };
 in

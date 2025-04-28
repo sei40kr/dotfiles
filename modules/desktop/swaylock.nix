@@ -50,8 +50,7 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ swaylock-effects ];
 
-    home.configFile."swaylock/config".source = pkgs.substituteAll {
-      src = ../../config/swaylock-effects/config;
+    home.configFile."swaylock/config".source = pkgs.replaceVars ../../config/swaylock-effects/config {
       inherit backgroundOpts;
       fontName = deCfg.defaultFonts.ui.name;
     };

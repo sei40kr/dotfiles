@@ -18,10 +18,7 @@ in
     services.xserver.enable = true;
     services.xserver.windowManager.xmonad = {
       enable = true;
-      extraPackages = hPkgs: [
-        hPkgs.xmonad-contrib_0_18_1
-        hPkgs.xmonad-extras
-      ];
+      enableContribAndExtras = true;
       config = ../../../config/xmonad/xmonad.hs;
     };
     services.xserver.desktopManager.runXdgAutostartIfNone = true;

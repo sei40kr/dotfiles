@@ -14,8 +14,7 @@ let
   wmCfg = desktopCfg.wm;
   cfg = desktopCfg.apps.waybar;
 
-  style_css = pkgs.substituteAll {
-    src = ../../../config/waybar/style.css;
+  style_css = pkgs.replaceVars ../../../config/waybar/style.css {
     sidePadding = wmCfg.gaps.outer;
   };
 in
