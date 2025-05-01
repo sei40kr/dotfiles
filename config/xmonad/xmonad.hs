@@ -157,6 +157,7 @@ myManageHook =
     , className =? "zoom" --> doShift wsIM
     , className =? "Bitwarden" --> doFloat
     , className =? "fcitx5-config-qt" --> doFloat
+    , className =? "Gcr-prompter" --> doCenterFloat
     , className =? "Gnome-pomodoro" --> doCenterFloat
     ]
  where

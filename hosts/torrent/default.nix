@@ -81,6 +81,8 @@ nixosSystem "x86_64-linux" (
       '';
     };
 
+    programs.gnupg.agent.enable = true;
+
     programs.nix-ld.enable = true;
 
     # This value determines the NixOS release from which the default
