@@ -3,10 +3,7 @@
 nixosSystem "x86_64-linux" (
   { inputs, pkgs, ... }:
   {
-    imports = [
-      "${inputs.nixpkgs}/nixos/modules/profiles/hardened.nix"
-      ./_hardware-configuration.nix
-    ];
+    imports = [ ./_hardware-configuration.nix ];
 
     # Use the systemd-boot EFI boot loader.
     boot.loader.efi = {
@@ -29,9 +26,6 @@ nixosSystem "x86_64-linux" (
       default = "saved";
       efiSupport = true;
     };
-
-    environment.memoryAllocator.provider = "libc";
-    security.unprivilegedUsernsClone = true;
 
     # Set your time zone.
     time.timeZone = "Asia/Tokyo";
