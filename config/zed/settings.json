@@ -1,0 +1,141 @@
+{
+  "active_pane_modifiers": {
+    "inactive_opacity": 0.7
+  },
+  "bottom_dock_layout": "full",
+  "auto_install_extensions": {
+    "basedpyright": true,
+    "biome": true,
+    "dockerfile": true,
+    "haskell": true,
+    "just": true,
+    "nix": true,
+    "ruby": true,
+    "sql": true,
+    "tokyo-night": true,
+    "basher": true,
+    "graphql": true,
+    "html": true,
+    "lua": true,
+    "nu": true,
+    "ruff": true,
+    "terraform": true,
+    "yaml": true
+  },
+  "auto_update": false,
+  "buffer_font_fallbacks": ["Symbols Nerd Font Mono"],
+  "close_on_file_delete": true,
+  "cursor_blink": false,
+  "scrollbar": {
+    "diagnostics": "warning",
+    "axes": {
+      "horizontal": false
+    }
+  },
+  "tab_bar": {
+    "show_nav_history_buttons": false
+  },
+  "tabs": {
+    "file_icons": true,
+    "git_status": true,
+    "show_close_button": "always"
+  },
+  "toolbar": {
+    "quick_actions": false,
+    "selections_menu": false,
+    "agent_review": false
+  },
+  "ensure_final_newline_on_save": false,
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    }
+  },
+  "git": {
+    "inline_blame": {
+      "delay_ms": 500
+    }
+  },
+  "indent_guides": {
+    "coloring": "indent_aware"
+  },
+  "hover_popover_enabled": false,
+  "inlay_hints": {
+    "enabled": true
+  },
+  "languages": {
+    "Nix": {
+      "language_servers": ["nil", "!nixd"],
+      "formatter": {
+        "external": {
+          "command": "nixfmt",
+          "arguments": ["-f", "{buffer_path}"]
+        }
+      }
+    },
+    "Python": {
+      "language_servers": ["basedpyright", "!pyright"]
+    }
+  },
+  "preview_tabs": {
+    "enabled": false
+  },
+  "search": {
+    "regex": true
+  },
+  "seed_search_query_from_cursor": "selection",
+  "use_smartcase_search": true,
+  "show_whitespaces": "none",
+  "soft_wrap": "editor_width",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "terminal": {
+    "env": {
+      "ZED": "1"
+    },
+    "line_height": {
+      "custom": 1
+    },
+    "toolbar": {
+      "breadcrumbs": false
+    },
+    "button": false
+  },
+  "theme": {
+    "mode": "dark",
+    "dark": "Tokyo Night",
+    "light": "One Light"
+  },
+  "vim_mode": true,
+  "project_panel": {
+    "auto_reveal_entries": false
+  },
+  "agent": {
+    "version": "2",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
+    },
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
+    },
+    "commit_message_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
+    },
+    "thread_summary_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4o"
+    },
+    "default_view": "text_thread"
+  },
+  "vim": {
+    "use_smartcase_find": true
+  },
+  "features": {
+    "edit_prediction_provider": "copilot"
+  }
+}
