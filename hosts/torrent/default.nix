@@ -178,5 +178,7 @@ nixosSystem "x86_64-linux" (
     modules.term.colorschemes.active = "tokyo-night";
     modules.term.kitty.enable = true;
     modules.term.wezterm.enable = true;
+
+    environment.systemPackages = with pkgs; [ unstable.claude-code ];
   }
 )
