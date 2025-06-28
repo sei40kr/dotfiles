@@ -38,7 +38,7 @@ in
     environment.systemPackages = with pkgs; [ zed-editor ];
 
     home.configFile."zed/settings.json".text = toJSON settings;
-    home.configFile."zed/keymap.json".source = "${configDir}/zed/keymap.json";
+    home.configFile."zed/keymap.json".source = "${configDir}/zed/keymap.jsonc";
 
     fonts.packages = with pkgs; [ nerd-fonts.symbols-only ];
   };

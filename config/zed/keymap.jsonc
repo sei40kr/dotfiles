@@ -4,15 +4,15 @@
     "bindings": {
       "g s a": "vim::PushAddSurrounds",
       "space c a": "editor::ToggleCodeActions",
-      "space c f": "editor::Format"
-    }
+      "space c f": "editor::Format",
+    },
   },
   {
     "context": "vim_mode == normal",
     "bindings": {
       "g s d": "vim::PushDeleteSurrounds",
-      "g s r": "vim::PushChangeSurrounds"
-    }
+      "g s r": "vim::PushChangeSurrounds",
+    },
   },
   {
     "context": "vim_mode == insert",
@@ -21,8 +21,8 @@
       "ctrl-shift-m": "editor::Newline",
       "ctrl-k": "editor::ShowSignatureHelp",
       "ctrl-h": "editor::Backspace",
-      "j k": "vim::NormalBefore"
-    }
+      "j k": "vim::NormalBefore",
+    },
   },
   {
     "context": "Pane > (!Editor || vim_mode == normal)",
@@ -39,8 +39,8 @@
       "space b l": "pane::CloseItemsToTheLeft",
       "space b p": "pane::TogglePinTab",
       "space b P": "pane::CloseAllItems",
-      "space b r": "pane::CloseItemsToTheRight"
-    }
+      "space b r": "pane::CloseItemsToTheRight",
+    },
   },
   {
     "context": "AgentPanel || GitPanel || ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || (VimControl && vim_mode == normal) || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || DebugPanel",
@@ -74,48 +74,48 @@
       "space u shift-c": "theme_selector::Toggle",
       "space o b": "zed::OpenProjectTasks",
       "space o o": "task::Spawn",
-      "space q q": "zed::Quit"
-    }
+      "space q q": "zed::Quit",
+    },
   },
   {
     "context": "Editor",
     "bindings": {
-      "ctrl-s": "workspace::Save"
-    }
+      "ctrl-s": "workspace::Save",
+    },
   },
   {
     "context": "Editor && edit_prediction",
     "bindings": {
-      "ctrl-i": "editor::AcceptEditPrediction"
-    }
+      "ctrl-i": "editor::AcceptEditPrediction",
+    },
   },
   {
     "context": "Editor && (showing_code_actions || showing_completions)",
     "bindings": {
       "ctrl-j": "editor::ContextMenuNext",
       // FIXME: Conflicts with `editor::CutToEndOfLine`
-      "ctrl-k": "editor::ContextMenuPrevious"
-    }
+      "ctrl-k": "editor::ContextMenuPrevious",
+    },
   },
   {
     "context": "Editor && showing_code_actions",
     "bindings": {
-      "ctrl-m": "editor::ConfirmCodeAction"
-    }
+      "ctrl-m": "editor::ConfirmCodeAction",
+    },
   },
   {
     "context": "Editor && showing_completions",
     "bindings": {
       "ctrl-m": "editor::ConfirmCompletion",
       "ctrl-shift-m": "editor::ConfirmCompletionReplace",
-      "ctrl-i": "editor::ComposeCompletion"
-    }
+      "ctrl-i": "editor::ComposeCompletion",
+    },
   },
   {
     "context": "Editor && renaming",
     "bindings": {
-      "ctrl-m": "editor::ConfirmRename"
-    }
+      "ctrl-m": "editor::ConfirmRename",
+    },
   },
   {
     "context": "Editor && vim_mode == normal",
@@ -141,8 +141,8 @@
       "space c r": "editor::Rename",
       "space shift-e": "pane::RevealInProjectPanel",
       "space f shift-e": "pane::RevealInProjectPanel",
-      "space s s": "outline::Toggle"
-    }
+      "space s s": "outline::Toggle",
+    },
   },
   {
     "context": "GitPanel && ChangesList",
@@ -160,14 +160,14 @@
       "shift-u": "git::UnstageAll",
       "escape": "git_panel::Close",
       "ctrl-[": "git_panel::Close",
-      "q": "git_panel::Close"
-    }
+      "q": "git_panel::Close",
+    },
   },
   {
     "context": "KeyContextView",
     "bindings": {
-      "q": "pane::CloseActiveItem"
-    }
+      "q": "pane::CloseActiveItem",
+    },
   },
   {
     "context": "Picker || menu",
@@ -177,8 +177,8 @@
       "ctrl-[": "menu::Cancel",
       "ctrl-j": "menu::SelectNext",
       // FIXME: Conflicts with `editor::CutToEndOfLine`
-      "ctrl-k": "menu::SelectPrevious"
-    }
+      "ctrl-k": "menu::SelectPrevious",
+    },
   },
   {
     "context": "ProjectPanel && not_editing",
@@ -196,13 +196,13 @@
       "shift-i": "project_panel::ToggleHideGitIgnore",
       "alt-i": "project_panel::ToggleHideGitIgnore",
       "ctrl-[": "project_panel::ToggleFocus",
-      "q": "project_panel::ToggleFocus"
-    }
+      "q": "project_panel::ToggleFocus",
+    },
   },
   {
     "context": "vim_mode == normal && extension == md",
     "bindings": {
-      "space c p": "markdown::OpenPreviewToTheSide"
-    }
-  }
+      "space c p": "markdown::OpenPreviewToTheSide",
+    },
+  },
 ]
