@@ -24,7 +24,16 @@ in
     services.xserver.desktopManager.runXdgAutostartIfNone = true;
     services.picom = {
       enable = true;
+      backend = "glx";
       vSync = true;
+      settings = {
+        unredir-if-possible = true;
+        unredir-if-possible-exclude = [
+          "class_g = 'Google-chrome'"
+          "class_g = 'firefox'"
+          "class_g = 'Vivaldi-stable'"
+        ];
+      };
     };
 
     modules.desktop.apps.feh.enable = true;
