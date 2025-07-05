@@ -48,5 +48,8 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.open = true;
+  hardware.nvidia = {
+    open = true;
+    forceFullCompositionPipeline = true;
+  };
 }
