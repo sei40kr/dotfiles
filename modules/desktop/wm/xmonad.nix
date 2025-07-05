@@ -15,13 +15,17 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.xserver.enable = true;
-    services.xserver.windowManager.xmonad = {
+    services.xserver = {
       enable = true;
-      enableContribAndExtras = true;
-      config = ../../../config/xmonad/xmonad.hs;
+      exportConfiguration = true;
+      enableTearFree = true;
+      windowManager.xmonad = {
+        enable = true;
+        enableContribAndExtras = true;
+        config = ../../../config/xmonad/xmonad.hs;
+      };
+      desktopManager.runXdgAutostartIfNone = true;
     };
-    services.xserver.desktopManager.runXdgAutostartIfNone = true;
     services.picom = {
       enable = true;
       backend = "glx";
