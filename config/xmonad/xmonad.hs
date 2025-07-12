@@ -16,6 +16,7 @@ import XMonad.Layout.Groups (group)
 import XMonad.Layout.Groups.Examples (zoomColumnIn, zoomColumnOut)
 import XMonad.Layout.Groups.Helpers (focusDown, focusGroupDown, focusGroupUp, focusUp, swapDown, swapUp)
 import XMonad.Layout.Groups.Wmii (moveToGroupDown, moveToGroupUp)
+import XMonad.Layout.NoBorders (Ambiguity (OnlyScreenFloat), lessBorders)
 import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed (simpleTabbedAlways)
 import XMonad.Layout.ZoomRow (zoomRow)
@@ -29,7 +30,7 @@ myBorderWidth = 2
 myWorkspaces :: [String]
 myWorkspaces = ["1", "2", "3", "4"]
 
-myLayout = avoidStruts $ group simpleTabbedAlways $ mySpacing 32 16 zoomRow
+myLayout = avoidStruts $ lessBorders OnlyScreenFloat $ group simpleTabbedAlways $ mySpacing 32 16 zoomRow
  where
   mySpacing i j = spacingRaw False (Border i i i i) True (Border j j j j) True
 
