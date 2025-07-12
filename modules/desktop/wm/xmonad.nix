@@ -37,6 +37,8 @@ in
           "class_g = 'firefox'"
           "class_g = 'Vivaldi-stable'"
         ];
+        glx-no-stencil = true;
+        glx-no-rebind-pixmap = true;
       };
     };
 
