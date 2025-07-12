@@ -22,6 +22,7 @@
   ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelParams = [ "split_lock_detect=off" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
