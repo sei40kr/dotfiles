@@ -2,7 +2,8 @@
 
 import Data.Map qualified as M
 import Data.Monoid (All)
-import System.Exit (exitSuccess)
+import System.Posix.User (getEffectiveUserName)
+import System.Process (callProcess)
 import XMonad
 import XMonad.Actions.CopyWindow (copy)
 import XMonad.Actions.CycleWS (nextWS, prevWS, shiftToNext, shiftToPrev)
@@ -39,6 +40,11 @@ myTerminal = "sensible-terminal"
 
 myModMask :: KeyMask
 myModMask = mod4Mask
+
+myExit :: X ()
+myExit = do
+  username <- io getEffectiveUserName
+  io $ callProcess "loginctl" ["terminate-user", username]
 
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys (XConfig{XMonad.modMask = myModMask}) =
@@ -87,7 +93,7 @@ myKeys (XConfig{XMonad.modMask = myModMask}) =
     , -- Session - Exit App
       ((myModMask .|. shiftMask, xK_q), kill)
     , -- Session - Logout
-      ((myModMask .|. shiftMask, xK_e), io exitSuccess)
+      ((myModMask .|. shiftMask, xK_e), myExit)
     , -- Session - Refresh Session
       ((myModMask .|. shiftMask, xK_r), rescreen)
     , -- Session - Restart XMonad
