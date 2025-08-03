@@ -161,6 +161,9 @@ in
         exec = systemctl --user start fcitx5-daemon.service &
       ''}
     '';
+
+    programs.hyprlock.enable = true;
+
     home.configFile."hypr/hyprpaper.conf" = mkIf (deCfg.background.image != null) {
       text = ''
         preload = ${deCfg.background.image.path}
@@ -173,8 +176,6 @@ in
 
     modules.desktop.de.enable = true;
     modules.desktop.de.wayland = true;
-
-    modules.desktop.swaylock.enable = true;
 
     modules.desktop.browsers.sensible.enable = true;
     modules.term.sensible.enable = true;
