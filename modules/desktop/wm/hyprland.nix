@@ -148,7 +148,7 @@ in
       exec-once = ${sync-lid-state}/bin/hyprland-sync-lid-state
       bindl=, switch:Lid Switch, exec, ${sync-lid-state}/bin/hyprland-sync-lid-state
 
-      source = ${configDir}/hyprland/binds.conf
+      source = ${configDir}/hyprland/hyprland.conf
 
       env = WLR_NO_HARDWARE_CURSORS,1
 
