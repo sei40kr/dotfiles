@@ -1,17 +1,17 @@
-{ inputs, lib, ... }:
+{ haumea, inputs, lib, ... }:
 
 with lib;
 let
-  modules = import ./modules.nix {
-    inherit lib;
-    self.attrs = import ./attrs.nix {
-      inherit lib;
-      self = { };
-    };
-  };
-
   mylib = makeExtensible (
-    self: modules.mapModules ./. (file: import file { inherit self lib inputs; })
+    self:
+    let
+      libInputs = { inherit self lib inputs; };
+      loaded = haumea.lib.load {
+        src = ./.;
+        inputs = libInputs;
+      };
+    in
+    removeAttrs loaded [ "default" "modules" ]
   );
 in
 mylib.extend (_: super: foldr (a: b: a // b) { } (attrValues super))

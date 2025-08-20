@@ -57,6 +57,11 @@
       url = "github:sei40kr/wez-status-generator";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    haumea = {
+      url = "github:nix-community/haumea";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -66,6 +71,7 @@
       fenix,
       flake-parts,
       home-manager,
+      haumea,
       nixpkgs,
       nixpkgs-unstable,
       ...
@@ -74,7 +80,6 @@
       inherit (flake-parts.lib) mkFlake;
       lib = nixpkgs.lib.extend (lib: _: { my = self.lib; });
       inherit (lib) attrValues;
-      inherit (lib.my) mapModules;
     in
     mkFlake { inherit inputs; } (
       { withSystem, ... }:
@@ -90,7 +95,7 @@
                 { nixpkgs.pkgs = pkgs; }
                 agenix.nixosModules.default
                 home-manager.nixosModules.home-manager
-                ./modules
+                (import ./modules).modules
                 hostCfg
               ];
             }
@@ -98,11 +103,17 @@
       in
       {
         flake = {
-          lib = import ./lib { inherit inputs lib; };
+          lib = import ./lib { inherit inputs lib haumea; };
 
-          overlays = mapModules ./overlays import;
+          overlays = haumea.lib.load {
+            src = ./overlays;
+            inputs = { inherit inputs lib; };
+          };
 
-          nixosConfigurations = mapModules ./hosts (path: import path { inherit nixosSystem; });
+          nixosConfigurations = haumea.lib.load {
+            src = ./hosts;
+            inputs = { inherit nixosSystem; };
+          };
         };
 
         systems = [ "x86_64-linux" ];
