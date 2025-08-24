@@ -10,6 +10,7 @@ let
     attrValues
     concatStringsSep
     elem
+    floor
     mapAttrs
     ;
   inherit (lib)
@@ -143,10 +144,21 @@ in
         background_color = 0x${removePrefix "#" deCfg.background.color}
       }
 
+      plugin {
+        hy3 {
+          tabs {
+            text_font = ${deCfg.defaultFonts.ui.name}
+            text_height = ${toString (floor deCfg.defaultFonts.ui.size)}
+          }
+        }
+      }
+
       source = ${monitors-conf}
 
       exec-once = ${sync-lid-state}/bin/hyprland-sync-lid-state
       bindl=, switch:Lid Switch, exec, ${sync-lid-state}/bin/hyprland-sync-lid-state
+
+      plugin = ${pkgs.hyprlandPlugins.hy3}/lib/libhy3.so
 
       source = ${configDir}/hyprland/hyprland.conf
 
