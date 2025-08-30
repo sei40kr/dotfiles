@@ -38,6 +38,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     wez-tmux = {
       url = "github:sei40kr/wez-tmux";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,6 +73,7 @@
       home-manager,
       nixpkgs,
       nixpkgs-unstable,
+      treefmt-nix,
       ...
     }@inputs:
     let
@@ -97,6 +103,8 @@
           );
       in
       {
+        imports = [ treefmt-nix.flakeModule ];
+
         flake = {
           lib = import ./lib { inherit inputs lib; };
 
@@ -146,6 +154,11 @@
             };
 
             config.devShells = pkgs.callPackage ./shells { };
+
+            config.treefmt = {
+              projectRootFile = "flake.nix";
+              programs.nixfmt.enable = true;
+            };
           };
       }
     );

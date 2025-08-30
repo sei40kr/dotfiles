@@ -343,6 +343,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "tmux-project": "tmux-project",
+        "treefmt-nix": "treefmt-nix",
         "wez-pain-control": "wez-pain-control",
         "wez-per-project-workspace": "wez-per-project-workspace",
         "wez-status-generator": "wez-status-generator",
@@ -459,6 +460,26 @@
       "original": {
         "owner": "sei40kr",
         "repo": "tmux-project",
+        "type": "github"
+      }
+    },
+    "treefmt-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1755934250,
+        "narHash": "sha256-CsDojnMgYsfshQw3t4zjRUkmMmUdZGthl16bXVWgRYU=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "74e1a52d5bd9430312f8d1b8b0354c92c17453e5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
         "type": "github"
       }
     },
