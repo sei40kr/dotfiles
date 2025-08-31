@@ -23,6 +23,11 @@
 
     flake-parts.url = "github:hercules-ci/flake-parts";
 
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     idea-LazyVim = {
       url = "github:sei40kr/idea-LazyVim";
       flake = false;
@@ -70,6 +75,7 @@
       agenix,
       fenix,
       flake-parts,
+      git-hooks,
       home-manager,
       nixpkgs,
       nixpkgs-unstable,
@@ -103,7 +109,10 @@
           );
       in
       {
-        imports = [ treefmt-nix.flakeModule ];
+        imports = [
+          git-hooks.flakeModule
+          treefmt-nix.flakeModule
+        ];
 
         flake = {
           lib = import ./lib { inherit inputs lib; };
@@ -117,6 +126,7 @@
 
         perSystem =
           {
+            config,
             inputs',
             pkgs,
             self',
@@ -153,7 +163,22 @@
               tmux-project = inputs'.tmux-project.packages.default;
             };
 
-            config.devShells = pkgs.callPackage ./shells { };
+            config.devShells =
+              let
+                shells = pkgs.callPackage ./shells { };
+              in
+              shells
+              // {
+                default = pkgs.mkShell {
+                  shellHook = ''
+                    ${config.pre-commit.installationScript}
+                  '';
+                };
+              };
+
+            config.pre-commit.settings.hooks = {
+              nixfmt-rfc-style.enable = true;
+            };
 
             config.treefmt = {
               projectRootFile = "flake.nix";
