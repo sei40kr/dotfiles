@@ -5,6 +5,7 @@ let
   ];
 in
 {
+  "github/github-pat.age".publicKeys = publicKeys;
   "polybar/openweathermap.key.age".publicKeys = publicKeys;
   "polybar/google_calendar_service_account.json.age".publicKeys = publicKeys;
   "wireguard/wg0/private.age".publicKeys = publicKeys;
