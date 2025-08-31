@@ -27,7 +27,6 @@ in
         sbt
         gradle
         maven
-        metals
         scalafmt
       ]
       ++ (optionals cfg.bloop.enable [ bloop ]);
@@ -40,6 +39,18 @@ in
         Restart = "always";
         Environment = [ "PATH=${makeBinPath [ pkgs.jdk ]}" ];
       };
+    };
+
+    modules.editors.lspServers.metals = rec {
+      package = pkgs.metals;
+      command = "${package}/bin/metals";
+      filetypes = [ "scala" ];
+      rootMarkers = [
+        "build.sbt"
+        "build.sc"
+        "build.gradle"
+        "pom.xml"
+      ];
     };
   };
 }

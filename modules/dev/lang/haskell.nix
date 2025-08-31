@@ -20,7 +20,6 @@ in
       ghc
       stack
       ormolu
-      haskellPackages.haskell-language-server
       haskellPackages.hlint
     ];
 
@@ -32,5 +31,22 @@ in
           copyright: 'Copyright (c) 2021 sei40kr'
           github-username: sei40kr
     '';
+
+    modules.editors.lspServers.hls = rec {
+      package = pkgs.haskellPackages.haskell-language-server;
+      command = "${package}/bin/haskell-language-server-wrapper";
+      args = [ "--lsp" ];
+      filetypes = [
+        "haskell"
+        "lhaskell"
+      ];
+      rootMarkers = [
+        "hie.yaml"
+        "stack.yaml"
+        "cabal.project"
+        "*.cabal"
+        "package.yaml"
+      ];
+    };
   };
 }

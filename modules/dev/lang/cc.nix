@@ -20,7 +20,6 @@ in
     user.packages =
       with pkgs;
       [
-        ccls
         cpplint
       ]
       ++ (optionals pkgs.stdenv.isLinux [
@@ -28,5 +27,22 @@ in
         gdb
         llvm
       ]);
+
+    modules.editors.lspServers.ccls = rec {
+      package = pkgs.ccls;
+      command = "${package}/bin/ccls";
+      filetypes = [
+        "c"
+        "cpp"
+        "objc"
+        "objcpp"
+        "cuda"
+      ];
+      rootMarkers = [
+        "compile_commands.json"
+        ".ccls"
+        ".git"
+      ];
+    };
   };
 }

@@ -29,7 +29,6 @@ in
       dune_3
       ocamlformat
       ocamlPackages.utop
-      ocamlPackages.ocaml-lsp
     ];
 
     # TODO: Extract these colors from a Neovim theme
@@ -54,5 +53,26 @@ in
       #utop_prompt_dummy;;
       UTop.set_show_box false
     '';
+
+    modules.editors.lspServers.ocamllsp = rec {
+      package = pkgs.ocamlPackages.ocaml-lsp;
+      command = "${package}/bin/ocamllsp";
+      filetypes = [
+        "ocaml"
+        "menhir"
+        "ocamlinterface"
+        "ocamllex"
+        "reason"
+        "dune"
+      ];
+      rootMarkers = [
+        "*.opam"
+        "esy.json"
+        "package.json"
+        ".git"
+        "dune-project"
+        "dune-workspace"
+      ];
+    };
   };
 }

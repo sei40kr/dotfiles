@@ -29,9 +29,25 @@ in
     user.packages = with pkgs; [
       patchedPython3
       uv
-      basedpyright
       ruff
     ];
+
+    modules.editors.lspServers.basedpyright = rec {
+      package = pkgs.basedpyright;
+      command = "${package}/bin/basedpyright-langserver";
+      args = [ "--stdio" ];
+      filetypes = [ "python" ];
+      rootMarkers = [
+        "pyproject.toml"
+        "setup.py"
+        "setup.cfg"
+        "requirements.txt"
+        "Pipfile"
+        "pyrightconfig.json"
+        ".git"
+      ];
+    };
+
     env.PATH = [ "\${HOME}/.poetry/bin" ];
 
     modules.shell.zsh.rcInit = ''

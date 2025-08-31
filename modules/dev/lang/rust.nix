@@ -29,5 +29,17 @@ in
       openssl
       (mkIf config.modules.dev.tools.aws.enable cargo-lambda)
     ];
+
+    modules.editors.lspServers.rust_analyzer = rec {
+      package = pkgs.fenix.stable.rust-analyzer;
+      command = "${package}/bin/rust-analyzer";
+      args = [ ];
+      filetypes = [ "rust" ];
+      rootMarkers = [
+        "Cargo.toml"
+        "rust-project.json"
+        ".git"
+      ];
+    };
   };
 }

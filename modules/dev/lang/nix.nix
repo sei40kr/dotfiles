@@ -33,5 +33,15 @@ in
         args = [ ];
       };
     };
+
+    modules.editors.lspServers.nil_ls = rec {
+      package = pkgs.nil;
+      command = "${package}/bin/nil";
+      filetypes = [ "nix" ];
+      rootMarkers = [
+        "flake.nix"
+        ".git"
+      ];
+    };
   };
 }

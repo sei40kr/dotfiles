@@ -15,6 +15,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ hyprls ];
+    modules.editors.lspServers.hyprls = rec {
+      package = pkgs.hyprls;
+      command = "${package}/bin/hyprls";
+      args = [ "--stdio" ];
+      filetypes = [ "hyprlang" ];
+      rootMarkers = [ ".git" ];
+    };
   };
 }

@@ -19,7 +19,22 @@ in
     user.packages = with pkgs; [
       lua
       stylua
-      sumneko-lua-language-server
     ];
+
+    modules.editors.lspServers.lua_ls = rec {
+      package = pkgs.sumneko-lua-language-server;
+      command = "${package}/bin/lua-language-server";
+      filetypes = [ "lua" ];
+      rootMarkers = [
+        ".luarc.json"
+        ".luarc.jsonc"
+        ".luacheckrc"
+        ".stylua.toml"
+        "stylua.toml"
+        "selene.toml"
+        "selene.yml"
+        ".git"
+      ];
+    };
   };
 }

@@ -24,7 +24,6 @@ in
         [
           ruby
           rubocop
-          solargraph
         ]
         ++ optionals cfg.rails.enable [ rubyPackages.rails ]
       );

@@ -15,6 +15,17 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ astro-language-server ];
+    modules.editors.lspServers.astro = rec {
+      package = pkgs.astro-language-server;
+      command = "${package}/bin/astro-ls";
+      args = [ "--stdio" ];
+      filetypes = [ "astro" ];
+      rootMarkers = [
+        "package.json"
+        "tsconfig.json"
+        "jsconfig.json"
+        ".git"
+      ];
+    };
   };
 }

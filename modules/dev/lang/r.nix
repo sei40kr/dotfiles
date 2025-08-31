@@ -46,5 +46,21 @@ in
     '';
 
     modules.shell.aliases.R = "radian -q";
+
+    modules.editors.lspServers.r_language_server = rec {
+      package = pkgs.rPackages.languageserver;
+      command = "${package}/bin/R";
+      args = [
+        "--no-echo"
+        "-e"
+        "languageserver::run()"
+      ];
+      filetypes = [
+        "r"
+        "rmd"
+        "quarto"
+      ];
+      rootMarkers = [ ".git" ];
+    };
   };
 }

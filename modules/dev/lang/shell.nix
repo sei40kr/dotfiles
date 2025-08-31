@@ -17,9 +17,24 @@ in
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      nodePackages.bash-language-server
       shellcheck
       shfmt
     ];
+
+    modules.editors.lspServers.bashls = rec {
+      package = pkgs.nodePackages.bash-language-server;
+      command = "${package}/bin/bash-language-server";
+      args = [ "start" ];
+      filetypes = [
+        "sh"
+        "bash"
+      ];
+      rootMarkers = [ ".git" ];
+      settings = {
+        bashIde = {
+          globPattern = "*@(.sh|.inc|.bash|.command)";
+        };
+      };
+    };
   };
 }

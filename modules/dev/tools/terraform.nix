@@ -18,7 +18,6 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
       terraform
-      terraform-ls
       tflint
     ];
 
@@ -30,6 +29,20 @@ in
       tfi = "terraform init";
       tfp = "terraform plan";
       tfv = "terraform validate";
+    };
+
+    modules.editors.lspServers.terraformls = {
+      package = pkgs.terraform-ls;
+      command = "${package}/bin/terraform-ls";
+      args = [ "serve" ];
+      filetypes = [
+        "terraform"
+        "terraform-vars"
+      ];
+      rootMarkers = [
+        ".terraform"
+        ".git"
+      ];
     };
 
     modules.shell.zsh.rcInit = ''

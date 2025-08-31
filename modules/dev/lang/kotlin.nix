@@ -19,9 +19,22 @@ in
     user.packages = with pkgs; [
       kotlin
       gradle
-      kotlin-language-server
       ktlint
       maven
     ];
+
+    modules.editors.lspServers.kotlin_language_server = rec {
+      package = pkgs.kotlin-language-server;
+      command = "${package}/bin/kotlin-language-server";
+      filetypes = [ "kotlin" ];
+      rootMarkers = [
+        "settings.gradle"
+        "settings.gradle.kts"
+        "build.xml"
+        "pom.xml"
+        "build.gradle"
+        "build.gradle.kts"
+      ];
+    };
   };
 }
