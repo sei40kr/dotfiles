@@ -5,9 +5,9 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkEnableOption mkIf;
+  inherit (lib.my) mkBoolOpt;
   cfg = config.modules.dev.lang.nix;
 in
 {
@@ -21,7 +21,17 @@ in
       nix-melt
       nurl
       nixfmt-rfc-style
-      nil
+      unstable.mcp-nixos
     ];
+
+    # Configure NixOS MCP server
+    modules.ai.mcpServers = {
+      nixos = rec {
+        transport = "stdio";
+        package = pkgs.unstable.mcp-nixos;
+        command = "${package}/bin/mcp-nixos";
+        args = [ ];
+      };
+    };
   };
 }
