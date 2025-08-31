@@ -53,4 +53,6 @@
     open = true;
     forceFullCompositionPipeline = true;
   };
+
+  services.ollama.acceleration = "cuda";
 }

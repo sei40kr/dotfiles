@@ -89,6 +89,8 @@ nixosSystem "x86_64-linux" (
 
     user.name = "sei40kr";
 
+    services.ollama.enable = true;
+
     modules.desktop.wm.sway.enable = true;
     modules.desktop.wm.xmonad.enable = true;
     modules.desktop.theme.active = "whitesur";
