@@ -31,7 +31,16 @@ in
       tfv = "terraform validate";
     };
 
-    modules.editors.lspServers.terraformls = {
+    modules.ai.mcpServers = {
+      terraform = rec {
+        transport = "stdio";
+        package = pkgs.unstable.terraform-mcp-server;
+        command = "${package}/bin/terraform-mcp-server";
+        args = [ ];
+      };
+    };
+
+    modules.editors.lspServers.terraformls = rec {
       package = pkgs.terraform-ls;
       command = "${package}/bin/terraform-ls";
       args = [ "serve" ];
