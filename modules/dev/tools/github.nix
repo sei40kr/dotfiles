@@ -45,7 +45,7 @@ in
           exec "${pkgs.github-mcp-server}/bin/github-mcp-server" "$@"
         '';
         command = "${package}/bin/github-mcp-server-wrapper";
-        args = [ ];
+        args = [ "stdio" ];
       };
     };
   };
