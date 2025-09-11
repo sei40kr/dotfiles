@@ -16,13 +16,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = [
-      (pkgs.google-chrome.override {
-        # Use GTK4 to get IM support on Wayland
-        # https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
-        commandLineArgs = "--gtk-version=4";
-      })
-    ];
+    user.packages = [ pkgs.google-chrome ];
 
     environment.etc."opt/chrome/policies/managed/default.json".text = builtins.toJSON {
       ExtensionInstallForcelist =
