@@ -203,7 +203,6 @@ in
     user.packages = with pkgs; [
       git
       gitAndTools.gitflow
-      gitui
     ];
 
     programs.git = {
@@ -243,8 +242,6 @@ in
       };
       lfs.enable = true;
     };
-
-    home.configFile."gitui/key_bindings.ron".source = "${configDir}/gitui/key_bindings.ron";
 
     modules.shell.aliases = rec {
       # Basic Git commands
