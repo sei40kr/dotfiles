@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 
@@ -14,8 +15,64 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [
+      (makeDesktopItem {
+        name = "firefox-private";
+        desktopName = "Firefox (Private)";
+        genericName = "Web Browser";
+        exec = "firefox -P private %U";
+        icon = "firefox";
+        categories = [
+          "Network"
+          "WebBrowser"
+        ];
+        mimeTypes = [
+          "text/html"
+          "text/xml"
+          "application/xhtml+xml"
+          "application/vnd.mozilla.xul+xml"
+          "x-scheme-handler/http"
+          "x-scheme-handler/https"
+        ];
+        startupNotify = true;
+        startupWMClass = "firefox";
+        terminal = false;
+        type = "Application";
+      })
+      (makeDesktopItem {
+        name = "firefox-work";
+        desktopName = "Firefox (Work)";
+        genericName = "Web Browser";
+        exec = "firefox -P work %U";
+        icon = "firefox";
+        categories = [
+          "Network"
+          "WebBrowser"
+        ];
+        mimeTypes = [
+          "text/html"
+          "text/xml"
+          "application/xhtml+xml"
+          "application/vnd.mozilla.xul+xml"
+          "x-scheme-handler/http"
+          "x-scheme-handler/https"
+        ];
+        startupNotify = true;
+        startupWMClass = "firefox";
+        terminal = false;
+        type = "Application";
+      })
+    ];
+
     programs.firefox = {
       enable = true;
+      package = pkgs.firefox.overrideAttrs (oldAttrs: {
+        buildCommand =
+          (oldAttrs.buildCommand or "")
+          + ''
+            rm -f $out/share/applications/firefox.desktop
+          '';
+      });
       policies = {
         ExtensionSettings =
           {
