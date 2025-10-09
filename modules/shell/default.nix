@@ -11,6 +11,26 @@ let
   cfg = config.modules.shell;
 in
 {
+  imports = [
+    ./bottom.nix
+    ./carapace.nix
+    ./ghq.nix
+    ./git.nix
+    ./hugo.nix
+    ./kaggle.nix
+    ./nushell.nix
+    ./oj.nix
+    ./ranger.nix
+    ./ripgrep.nix
+    ./starship.nix
+    ./strace.nix
+    ./tcpdump.nix
+    ./tmux.nix
+    ./yazi.nix
+    ./zsh
+    ./apps
+  ];
+
   options.modules.shell = with types; {
     enable = mkBoolOpt false;
 

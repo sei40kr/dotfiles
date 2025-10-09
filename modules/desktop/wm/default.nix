@@ -12,6 +12,12 @@ let
   deCfg = config.modules.desktop.de;
 in
 {
+  imports = [
+    ./hyprland.nix
+    ./sway.nix
+    ./xmonad.nix
+  ];
+
   options.modules.desktop.wm = {
     gaps = {
       inner = mkOption {

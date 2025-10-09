@@ -116,6 +116,13 @@ let
   cfg = config.modules.ai;
 in
 {
+  imports = [
+    ./claude-code.nix
+    ./codex.nix
+    ./crush.nix
+    ./gemini-cli.nix
+  ];
+
   options.modules.ai = {
     mcpServers = mkOption {
       type = types.attrsOf mcpServerType;

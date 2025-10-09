@@ -13,6 +13,10 @@ let
   isKvantum = cfg.kvantum.theme != null;
 in
 {
+  imports = [
+    ./kvantum.nix
+  ];
+
   options.modules.desktop.qt = with types; {
     enable = mkBoolOpt false;
   };

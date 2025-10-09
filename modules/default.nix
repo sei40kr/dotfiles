@@ -15,7 +15,20 @@ let
   ];
 in
 {
-  imports = mapModulesRec' (toString ./.) import;
+  imports = [
+    ./agenix.nix
+    ./docker.nix
+    ./options.nix
+    ./xdg.nix
+    ./ai
+    ./desktop
+    ./dev
+    ./editors
+    ./i18n
+    ./services
+    ./shell
+    ./term
+  ];
 
   nix =
     let

@@ -28,6 +28,8 @@ let
     };
 in
 {
+  imports = [ ./tokyo-night.nix ];
+
   options.modules.term.colorschemes = with types; {
     active = mkOption {
       type = enum [ "tokyo-night" ];

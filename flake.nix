@@ -86,7 +86,6 @@
       inherit (flake-parts.lib) mkFlake;
       lib = nixpkgs.lib.extend (lib: _: { my = self.lib; });
       inherit (lib) attrValues;
-      inherit (lib.my) mapModules;
     in
     mkFlake { inherit inputs; } (
       { withSystem, ... }:
@@ -117,9 +116,9 @@
         flake = {
           lib = import ./lib { inherit inputs lib; };
 
-          overlays = mapModules ./overlays import;
+          overlays = import ./overlays;
 
-          nixosConfigurations = mapModules ./hosts (path: import path { inherit nixosSystem; });
+          nixosConfigurations = import ./hosts { inherit nixosSystem; };
         };
 
         systems = [ "x86_64-linux" ];

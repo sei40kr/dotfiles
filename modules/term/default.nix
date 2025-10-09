@@ -15,6 +15,13 @@ let
     };
 in
 {
+  imports = [
+    ./kitty.nix
+    ./sensible.nix
+    ./wezterm.nix
+    ./colorschemes
+  ];
+
   options.modules.term = with types; {
     font = mkOpt fontType {
       name = "monospace";

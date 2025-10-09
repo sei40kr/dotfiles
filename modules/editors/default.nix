@@ -84,6 +84,18 @@ let
   };
 in
 {
+  imports = [
+    ./datagrip.nix
+    ./dataspell.nix
+    ./emacs.nix
+    ./fonts.nix
+    ./helix.nix
+    ./idea.nix
+    ./ideavim.nix
+    ./lazyvim.nix
+    ./zed.nix
+  ];
+
   options.modules.editors = {
     fonts = {
       code = mkOpt fontType {
