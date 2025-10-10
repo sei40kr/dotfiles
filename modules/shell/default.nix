@@ -5,9 +5,17 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf types;
+  inherit (types)
+    attrs
+    attrsOf
+    either
+    nullOr
+    path
+    str
+    ;
+  inherit (lib.my) mkBoolOpt mkOpt;
   cfg = config.modules.shell;
 in
 {
@@ -25,7 +33,7 @@ in
     ./apps
   ];
 
-  options.modules.shell = with types; {
+  options.modules.shell = {
     enable = mkBoolOpt false;
 
     aliases = mkOpt (attrsOf (nullOr (either str path))) { };

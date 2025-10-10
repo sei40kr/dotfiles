@@ -5,10 +5,11 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
   inherit (config.dotfiles) configDir;
+
   cfg = config.modules.shell.ripgrep;
 in
 {

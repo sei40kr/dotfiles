@@ -5,11 +5,10 @@
   ...
 }:
 
-with builtins;
-with lib;
-with lib.my;
 let
-  inherit (pkgs) stdenv;
+  inherit (builtins) toString;
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
   termCfg = config.modules.term;
   cfg = termCfg.kitty;
   inherit (termCfg) font;

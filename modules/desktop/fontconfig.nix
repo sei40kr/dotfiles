@@ -5,18 +5,22 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf types;
+  inherit (lib.my) mkBoolOpt mkOpt;
+  inherit (types)
+    listOf
+    package
+    str
+    submodule
+    ;
   cfg = config.modules.desktop.fontconfig;
-  fontType =
-    with types;
-    submodule {
-      options = {
-        packages = mkOpt (listOf package) [ ];
-        names = mkOpt (listOf str) [ ];
-      };
+  fontType = submodule {
+    options = {
+      packages = mkOpt (listOf package) [ ];
+      names = mkOpt (listOf str) [ ];
     };
+  };
 
   fontPackages =
     cfg.fonts.sansSerif.packages

@@ -5,9 +5,9 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf;
+
   ps = pkgs.rPackages;
   rEnv = pkgs.rWrapper.override {
     packages = with ps; [

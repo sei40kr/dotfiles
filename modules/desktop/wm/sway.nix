@@ -5,10 +5,16 @@
   ...
 }:
 
-with builtins;
-with lib;
-with lib.my;
 let
+  inherit (lib)
+    types
+    mkIf
+    all
+    attrValues
+    mapAttrsToList
+    optionalString
+    ;
+  inherit (lib.my) mkBoolOpt;
   desktopCfg = config.modules.desktop;
   deCfg = desktopCfg.de;
   wmCfg = desktopCfg.wm;
@@ -52,7 +58,7 @@ let
   '';
 in
 {
-  options.modules.desktop.wm.sway = with types; {
+  options.modules.desktop.wm.sway = {
     enable = mkBoolOpt false;
   };
 

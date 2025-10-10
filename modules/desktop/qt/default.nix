@@ -5,9 +5,9 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
   cfg = config.modules.desktop.qt;
 
   isKvantum = cfg.kvantum.theme != null;
@@ -17,7 +17,7 @@ in
     ./kvantum.nix
   ];
 
-  options.modules.desktop.qt = with types; {
+  options.modules.desktop.qt = {
     enable = mkBoolOpt false;
   };
 

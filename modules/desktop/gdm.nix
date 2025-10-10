@@ -1,8 +1,8 @@
 { config, lib, ... }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
   cfg = config.modules.desktop.gdm;
 in
 {

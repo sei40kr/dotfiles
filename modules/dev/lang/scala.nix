@@ -5,9 +5,9 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf optionals makeBinPath;
+  inherit (lib.my) mkBoolOpt;
   cfg = config.modules.dev.lang.scala;
 in
 {

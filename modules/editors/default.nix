@@ -1,54 +1,69 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib)
+    literalExpression
+    mkIf
+    mkOption
+    types
+    ;
+  inherit (types)
+    attrs
+    attrsOf
+    int
+    listOf
+    nullOr
+    package
+    str
+    submodule
+    ;
+  inherit (lib.my) mkOpt;
+
   cfg = config.modules.editors;
 
-  fontType = types.submodule {
+  fontType = submodule {
     options = {
-      package = mkOpt (types.nullOr types.package) null;
-      name = mkOpt types.str null;
-      size = mkOpt types.int null;
+      package = mkOpt (nullOr package) null;
+      name = mkOpt str null;
+      size = mkOpt int null;
     };
   };
 
-  lspServerType = types.submodule {
+  lspServerType = submodule {
     options = {
       package = mkOption {
-        type = types.nullOr types.package;
+        type = nullOr package;
         default = null;
         description = "The package providing the LSP server";
         example = literalExpression "pkgs.rust-analyzer";
       };
 
       command = mkOption {
-        type = types.str;
+        type = str;
         description = "Command to run the LSP server";
         example = "rust-analyzer";
       };
 
       args = mkOption {
-        type = types.listOf types.str;
+        type = listOf str;
         default = [ ];
         description = "Arguments to pass to the LSP server command";
         example = [ "--stdio" ];
       };
 
       filetypes = mkOption {
-        type = types.listOf types.str;
+        type = listOf str;
         default = [ ];
         description = "List of file types the LSP server should attach to";
         example = [ "rust" ];
       };
 
       rootMarkers = mkOption {
-        type = types.listOf types.str;
+        type = listOf str;
         default = [ ".git" ];
         description = "Files or directories that mark the root of a project";
         example = [
@@ -58,7 +73,7 @@ let
       };
 
       initOptions = mkOption {
-        type = types.attrs;
+        type = attrs;
         default = { };
         description = "Initialization options passed to the LSP server";
         example = literalExpression ''
@@ -71,7 +86,7 @@ let
       };
 
       settings = mkOption {
-        type = types.attrs;
+        type = attrs;
         default = { };
         description = "Settings for the LSP server";
         example = literalExpression ''
@@ -109,7 +124,7 @@ in
     };
 
     lspServers = mkOption {
-      type = types.attrsOf lspServerType;
+      type = attrsOf lspServerType;
       default = { };
       description = "LSP server configurations";
       example = literalExpression ''

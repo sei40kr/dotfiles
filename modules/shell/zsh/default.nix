@@ -5,15 +5,17 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf optionalString types;
+  inherit (types) lines;
+  inherit (lib.my) mkBoolOpt mkOpt;
   inherit (config.dotfiles) configDir;
+
   shellCfg = config.modules.shell;
   cfg = shellCfg.zsh;
 in
 {
-  options.modules.shell.zsh = with types; {
+  options.modules.shell.zsh = {
     enable = mkBoolOpt false;
 
     envInit = mkOpt lines "";
@@ -75,7 +77,7 @@ in
         in
         ''
           ${optionalString shellCfg.tmux.autoRun ''
-            if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIMRUNTIME" && -z "$INSIDE_EMACS" && "$TERM_PROGRAM" != 'WezTerm' ]]; then
+            if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIMRUNTIME" && -z "$INSIDE_EMACS" && "$ZED_TERM" != true && "$TERM_PROGRAM" != 'WezTerm' ]]; then
               tmux start-server
 
               if ! tmux has-session 2>/dev/null; then
@@ -221,6 +223,7 @@ in
       fd
       fzf
       navi
+      zinit
       zoxide
 
       # For zinit

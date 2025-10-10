@@ -1,7 +1,5 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
-with lib;
-with lib.my;
 let
   pythonEnv = pkgs.python3.withPackages (
     ps:

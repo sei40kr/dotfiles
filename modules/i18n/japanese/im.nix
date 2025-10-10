@@ -5,9 +5,9 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf;
+
   cfg = config.modules.i18n.japanese;
 
   fcitx5Package = config.i18n.inputMethod.package;

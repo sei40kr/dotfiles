@@ -1,36 +1,41 @@
 { lib, ... }:
 
-with lib;
-with lib.my;
 let
-  statusLineSectionType =
-    with types;
-    submodule {
-      options = {
-        fg = mkOption {
-          type = str;
-          default = null;
-          description = mdDoc ''
-            The color of the status line section foreground.
-          '';
-          visible = false;
-        };
+  inherit (lib)
+    genAttrs
+    mdDoc
+    mkOption
+    toUpper
+    types
+    ;
+  inherit (types) enum submodule str;
 
-        bg = mkOption {
-          type = str;
-          default = null;
-          description = mdDoc ''
-            The color of the status line section background.
-          '';
-          visible = false;
-        };
+  statusLineSectionType = submodule {
+    options = {
+      fg = mkOption {
+        type = str;
+        default = null;
+        description = mdDoc ''
+          The color of the status line section foreground.
+        '';
+        visible = false;
+      };
+
+      bg = mkOption {
+        type = str;
+        default = null;
+        description = mdDoc ''
+          The color of the status line section background.
+        '';
+        visible = false;
       };
     };
+  };
 in
 {
   imports = [ ./tokyo-night.nix ];
 
-  options.modules.term.colorschemes = with types; {
+  options.modules.term.colorschemes = {
     active = mkOption {
       type = enum [ "tokyo-night" ];
       default = null;

@@ -6,9 +6,9 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) filterAttrs mapAttrs mapAttrsToList;
+
   users = [
     "root"
     config.user.name

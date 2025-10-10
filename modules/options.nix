@@ -5,10 +5,28 @@
   ...
 }:
 
-with lib;
-with lib.my;
+let
+  inherit (lib)
+    concatMapStringsSep
+    findFirst
+    mapAttrs
+    mkAliasDefinitions
+    mkOption
+    pathExists
+    types
+    ;
+  inherit (types)
+    attrs
+    either
+    isList
+    oneOf
+    path
+    str
+    ;
+  inherit (lib.my) mkOpt mkOpt';
+in
 {
-  options = with types; {
+  options = {
     user = mkOpt attrs { };
 
     dotfiles =
@@ -27,16 +45,16 @@ with lib.my;
       };
 
     home = {
-      file = mkOpt' attrs { } "Files to place directly in $HOME";
-      configFile = mkOpt' attrs { } "Files to place in $XDG_CONFIG_HOME";
-      dataFile = mkOpt' attrs { } "Files to place in $XDG_DATA_HOME";
+      file = mkOpt' types.attrs { } "Files to place directly in $HOME";
+      configFile = mkOpt' types.attrs { } "Files to place in $XDG_CONFIG_HOME";
+      dataFile = mkOpt' types.attrs { } "Files to place in $XDG_DATA_HOME";
     };
 
     env = mkOption {
-      type = attrsOf (oneOf [
-        str
+      type = types.attrsOf (oneOf [
+        types.str
         path
-        (listOf (either str path))
+        (types.listOf (types.either types.str path))
       ]);
       apply = mapAttrs (_: v: if isList v then concatMapStringsSep ":" toString v else (toString v));
       default = { };

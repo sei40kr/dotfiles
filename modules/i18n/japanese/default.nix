@@ -1,12 +1,13 @@
 { config, lib, ... }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
+
   cfg = config.modules.i18n.japanese;
 in
 {
-  options.modules.i18n.japanese = with types; {
+  options.modules.i18n.japanese = {
     enable = mkBoolOpt false;
   };
 

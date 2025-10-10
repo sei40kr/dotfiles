@@ -5,10 +5,10 @@
   ...
 }:
 
-with builtins;
-with lib;
-with lib.my;
 let
+  inherit (builtins) hashFile;
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
   inherit (config.dotfiles) configDir;
   desktopCfg = config.modules.desktop;
   wmCfg = desktopCfg.wm;

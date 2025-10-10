@@ -1,12 +1,23 @@
 { config, lib, ... }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib)
+    mdDoc
+    member
+    mkIf
+    mkOption
+    types
+    ;
+  inherit (types)
+    bool
+    enum
+    listOf
+    str
+    ;
   cfg = config.modules.services.k8s;
 in
 {
-  options.modules.services.k8s = with types; {
+  options.modules.services.k8s = {
     roles = mkOption {
       type = listOf (enum [
         "master"

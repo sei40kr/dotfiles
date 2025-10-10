@@ -5,9 +5,9 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf makeLibraryPath;
+  inherit (lib.my) mkBoolOpt;
   cfg = config.modules.dev.lang.python;
 
   patchedPython3 = pkgs.symlinkJoin {

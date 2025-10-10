@@ -5,15 +5,17 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) escapeShellArg mkIf types;
+  inherit (types) str;
+  inherit (lib.my) mkBoolOpt mkOpt;
+
   cfg = config.modules.services.google-drive;
 
   package = pkgs.google-drive-ocamlfuse;
 in
 {
-  options.modules.services.google-drive = with types; {
+  options.modules.services.google-drive = {
     enable = mkBoolOpt false;
 
     mountDir = mkOpt str "${config.user.home}/Google Drive";

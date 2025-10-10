@@ -1,8 +1,14 @@
-{ config, lib, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
+
   cfg = config.modules.dev.tools.mutagen;
   dockerCfg = config.modules.services.docker;
 in

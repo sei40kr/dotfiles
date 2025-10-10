@@ -1,7 +1,8 @@
 { lib, ... }:
 
-with builtins;
-with lib;
+let
+  inherit (lib) filterAttrs mapAttrs';
+in
 {
   # mapFilterAttrs ::
   #   (name -> value -> bool)

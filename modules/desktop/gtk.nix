@@ -1,13 +1,22 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (builtins) toString;
+  inherit (lib)
+    mkIf
+    types
+    isBool
+    isString
+    concatStringsSep
+    mapAttrsToList
+    optionalAttrs
+    ;
+  inherit (lib.my) mkBoolOpt mkOpt;
+  inherit (types) nullOr attrs;
   cfg = config.modules.desktop.gtk;
 
   formatGtk2Option =
@@ -32,7 +41,7 @@ let
   };
 in
 {
-  options.modules.desktop.gtk = with types; {
+  options.modules.desktop.gtk = {
     enable = mkBoolOpt false;
 
     font = mkOpt (nullOr attrs) null;
@@ -43,12 +52,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    user.packages = [
       (mkIf (cfg.theme != null) cfg.theme.package)
       (mkIf (cfg.iconTheme != null) cfg.iconTheme.package)
     ];
 
-    fonts.packages = with pkgs; [ (mkIf (cfg.font != null) cfg.font.package) ];
+    fonts.packages = [ (mkIf (cfg.font != null) cfg.font.package) ];
 
     home.configFile = {
       "gtk-2.0/gtkrc".text = concatStringsSep "\n" (

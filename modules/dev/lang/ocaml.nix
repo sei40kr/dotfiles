@@ -5,15 +5,15 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf mkOption types;
+  inherit (types) bool;
   cfg = config.modules.dev.lang.ocaml;
 in
 {
   options.modules.dev.lang.ocaml = {
     enable = mkOption {
-      type = types.bool;
+      type = bool;
       default = false;
       description = ''
         Enable OCaml development environment.

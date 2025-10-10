@@ -5,10 +5,10 @@
   ...
 }:
 
-with builtins;
-with lib;
-with lib.my;
 let
+  inherit (builtins) baseNameOf;
+  inherit (lib) mkIf escapeShellArg strings;
+  inherit (lib.my) mkBoolOpt;
   desktopCfg = config.modules.desktop;
   deCfg = desktopCfg.de;
   cfg = desktopCfg.swaylock;

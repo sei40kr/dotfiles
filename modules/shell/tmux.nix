@@ -5,9 +5,10 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf optional;
+  inherit (lib.my) mkBoolOpt;
+
   cfg = config.modules.shell.tmux;
 in
 {

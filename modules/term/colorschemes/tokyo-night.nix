@@ -1,7 +1,8 @@
 { config, lib, ... }:
 
-with lib;
-with lib.my;
+let
+  inherit (lib) mkIf;
+in
 {
   config = mkIf (config.modules.term.colorschemes.active == "tokyo-night") {
     modules.term.colorschemes.colors = {

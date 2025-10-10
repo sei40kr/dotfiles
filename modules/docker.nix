@@ -1,13 +1,13 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf optionalAttrs;
+  inherit (lib.my) mkBoolOpt;
+
   cfg = config.modules.services.docker;
 in
 {

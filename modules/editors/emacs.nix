@@ -5,9 +5,21 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib)
+    mkIf
+    optionalString
+    optionals
+    types
+    ;
+  inherit (types) str;
+  inherit (lib.my)
+    mkBoolOpt
+    mkOpt
+    generators
+    ;
+  inherit (generators) toEmacsLisp;
+
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.emacs;
 
@@ -58,7 +70,7 @@ let
   };
 in
 {
-  options.modules.editors.emacs = with types; {
+  options.modules.editors.emacs = {
     enable = mkBoolOpt false;
 
     doom = {

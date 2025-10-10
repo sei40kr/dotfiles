@@ -5,9 +5,9 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf types;
+  inherit (lib.my) mkBoolOpt;
   inherit (pkgs) stdenv;
   termCfg = config.modules.term;
   inherit (termCfg.colorschemes.colors)
@@ -44,7 +44,7 @@ let
   };
 in
 {
-  options.modules.term.wezterm = with types; {
+  options.modules.term.wezterm = {
     enable = mkBoolOpt false;
   };
 

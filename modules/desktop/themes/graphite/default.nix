@@ -5,13 +5,15 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf optionalString types;
+  inherit (types) enum;
+  inherit (lib.my) mkOpt;
+
   themeCfg = config.modules.desktop.theme;
   cfg = themeCfg.graphite;
-
   inherit (cfg.variant) color;
+
   Color =
     if cfg.variant.color == "light" then
       "Light"
@@ -23,9 +25,9 @@ let
   gtkTheme = pkgs.graphite-gtk-theme.override { wallpapers = true; };
 in
 {
-  options.modules.desktop.theme.graphite = with types; {
+  options.modules.desktop.theme.graphite = {
     variant = {
-      color = mkOpt (types.enum [
+      color = mkOpt (enum [
         "light"
         "dark"
       ]) "light";

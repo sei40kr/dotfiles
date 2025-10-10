@@ -5,9 +5,10 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf optionalString;
+  inherit (lib.my) mkBoolOpt generators;
+  inherit (generators) toVimScript;
   inherit (inputs) idea-LazyVim;
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.ideavim;

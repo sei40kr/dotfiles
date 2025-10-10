@@ -5,9 +5,10 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
+
   cfg = config.modules.dev.tools.k8s;
 in
 {

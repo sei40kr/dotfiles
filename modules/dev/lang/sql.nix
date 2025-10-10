@@ -5,9 +5,9 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf;
+  inherit (lib.my) mkBoolOpt;
   inherit (config.dotfiles) configDir;
   cfg = config.modules.dev.lang.sql;
 in

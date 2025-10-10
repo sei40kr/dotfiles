@@ -5,10 +5,14 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
-  inherit (config.dotfiles) configDir;
+  inherit (lib)
+    types
+    mdDoc
+    mkIf
+    mkOption
+    ;
+  inherit (lib.my) mkBoolOpt;
   cfg = config.modules.shell.git;
 
   gitignoreFile = pkgs.writeTextFile {
@@ -177,7 +181,7 @@ let
   };
 in
 {
-  options.modules.shell.git = with types; {
+  options.modules.shell.git = {
     enable = mkBoolOpt false;
 
     user = {

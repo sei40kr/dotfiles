@@ -5,9 +5,9 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf;
+
   themeCfg = config.modules.desktop.theme;
 
   orchis-theme = pkgs.orchis-theme.override { withWallpapers = true; };

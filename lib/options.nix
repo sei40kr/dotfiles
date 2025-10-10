@@ -1,7 +1,9 @@
 { lib, ... }:
 
-with lib;
-with types;
+let
+  inherit (lib) mkOption types;
+  inherit (types) bool;
+in
 {
   mkOpt = type: default: mkOption { inherit type default; };
 

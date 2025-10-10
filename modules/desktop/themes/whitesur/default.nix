@@ -5,16 +5,16 @@
   ...
 }:
 
-with lib;
-with lib.my;
 let
+  inherit (lib) mkIf types;
+  inherit (types) enum;
+  inherit (lib.my) mkOpt;
+
   cfg = config.modules.desktop.theme.whitesur;
   themeCfg = config.modules.desktop.theme;
-
-  Variant = toUpper (substring 0 1 cfg.variant) + substring 1 (-1) cfg.variant;
 in
 {
-  options.modules.desktop.theme.whitesur = with types; {
+  options.modules.desktop.theme.whitesur = {
     variant = mkOpt (enum [
       "light"
       "dark"

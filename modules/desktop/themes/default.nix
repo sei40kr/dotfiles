@@ -1,7 +1,9 @@
 { lib, ... }:
 
-with lib;
-with lib.my;
+let
+  inherit (lib.types) enum;
+  inherit (lib.my) mkOpt;
+in
 {
   imports = [
     ./graphite
@@ -10,7 +12,7 @@ with lib.my;
   ];
 
   options.modules.desktop.theme = {
-    active = mkOpt (types.enum [
+    active = mkOpt (enum [
       "graphite"
       "orchis"
       "whitesur"
