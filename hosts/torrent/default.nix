@@ -96,12 +96,9 @@ nixosSystem "x86_64-linux" (
     modules.desktop.theme.active = "whitesur";
 
     modules.desktop.apps.bitwarden.enable = true;
-    modules.desktop.apps.discord.enable = true;
     modules.desktop.apps.gnome.pomodoro.enable = true;
     modules.desktop.apps.polybar.openweathermap.cityId = 1860234;
-    modules.desktop.apps.slack.enable = true;
     modules.desktop.apps.steam.enable = true;
-    modules.desktop.apps.zeal.enable = true;
 
     modules.desktop.browsers.vivaldi.enable = true;
 
@@ -159,12 +156,7 @@ nixosSystem "x86_64-linux" (
     modules.services.ssh.enable = true;
 
     modules.shell.apps.fastfetch.enable = true;
-    modules.shell.bottom.enable = true;
-    modules.shell.ghq.enable = true;
-    modules.shell.strace.enable = true;
-    modules.shell.tcpdump.enable = true;
     modules.shell.git.enable = true;
-    modules.shell.hugo.enable = true;
     modules.shell.oj.enable = true;
     modules.shell.tmux = {
       enable = true;
@@ -181,6 +173,15 @@ nixosSystem "x86_64-linux" (
     modules.term.kitty.enable = true;
     modules.term.wezterm.enable = true;
 
-    environment.systemPackages = with pkgs; [ unstable.claude-code ];
+    environment.systemPackages = with pkgs; [
+      bottom
+      ghq
+      strace
+      tcpdump
+      hugo
+      discord
+      slack
+      zeal
+    ];
   }
 )
