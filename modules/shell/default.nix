@@ -72,9 +72,11 @@ in
     modules.shell.aliases.u = "cd ..";
 
     # bat
-    home-manager.users.${config.user.name}.programs.bat = {
+    programs.bat = {
       enable = true;
-      config.theme = cfg.bat.theme;
+      settings = {
+        theme = cfg.bat.theme;
+      };
     };
     modules.shell.aliases.cat = "bat";
 
