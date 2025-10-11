@@ -144,15 +144,15 @@ nixosSystem "x86_64-linux" (
 
     modules.i18n.japanese.enable = true;
 
+    services.jellyfin = {
+      enable = true;
+      openFirewall = true;
+    };
     modules.services.docker = {
       enable = true;
       compose.enable = true;
     };
     modules.services.google-drive.enable = true;
-    modules.services.jellyfin = {
-      enable = true;
-      openFirewall = true;
-    };
     modules.services.ssh.enable = true;
 
     modules.shell.apps.fastfetch.enable = true;

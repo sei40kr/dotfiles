@@ -118,7 +118,6 @@ in
 {
   imports = [
     ./claude-code.nix
-    ./codex.nix
     ./crush.nix
     ./gemini-cli.nix
   ];
