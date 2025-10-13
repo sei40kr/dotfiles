@@ -7,11 +7,11 @@
 
 let
   inherit (lib) mkIf mkEnableOption;
-  inherit (config.dotfiles) configDir;
+
   cfg = config.modules.shell.apps.fastfetch;
 
   config_jsonc = pkgs.replaceVars ../../../config/fastfetch/config.jsonc {
-    logo = "${configDir}/fastfetch/logo.png";
+    logo = "${../../../config/fastfetch/logo.png}";
   };
 in
 {

@@ -9,7 +9,6 @@ let
   inherit (lib) mkIf optionalString types;
   inherit (types) lines;
   inherit (lib.my) mkBoolOpt mkOpt;
-  inherit (config.dotfiles) configDir;
 
   shellCfg = config.modules.shell;
   cfg = shellCfg.zsh;
@@ -236,7 +235,7 @@ in
     # Create an empty .zshrc to prevent zsh-newuser-install from running on start-up
     home.file.".zshrc".text = "";
 
-    home.configFile."atuin/config.toml".source = "${configDir}/atuin/config.toml";
+    home.configFile."atuin/config.toml".source = ../../../config/atuin/config.toml;
 
     user.shell = pkgs.zsh;
 

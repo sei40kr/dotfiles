@@ -22,7 +22,7 @@ let
     str
     ;
   inherit (lib.my.extraTypes) font;
-  inherit (config.dotfiles) configDir;
+
   desktopCfg = config.modules.desktop;
   deCfg = desktopCfg.de;
   cfg = desktopCfg.apps.rofi;
@@ -307,7 +307,7 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ rofi-wayland ];
 
-    home.configFile."rofi/config.rasi".source = "${configDir}/rofi/rofi.rasi";
+    home.configFile."rofi/config.rasi".source = ../../../config/rofi/rofi.rasi;
     home.configFile."rofi/themes/mytheme.rasi".text = ''
       window {
         width: ${toString cfg.window.width}px;

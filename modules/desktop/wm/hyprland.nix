@@ -20,7 +20,7 @@ let
     optionalString
     removePrefix
     ;
-  inherit (config.dotfiles) configDir;
+
   desktopCfg = config.modules.desktop;
   deCfg = desktopCfg.de;
   wmCfg = desktopCfg.wm;
@@ -148,7 +148,7 @@ in
       exec-once = ${sync-lid-state}/bin/hyprland-sync-lid-state
       bindl=, switch:Lid Switch, exec, ${sync-lid-state}/bin/hyprland-sync-lid-state
 
-      source = ${configDir}/hyprland/hyprland.conf
+      source = ${../../../config/hyprland/hyprland.conf}
 
       env = WLR_NO_HARDWARE_CURSORS,1
 

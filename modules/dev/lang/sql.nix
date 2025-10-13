@@ -8,7 +8,7 @@
 let
   inherit (lib) mkIf;
   inherit (lib.my) mkBoolOpt;
-  inherit (config.dotfiles) configDir;
+
   cfg = config.modules.dev.lang.sql;
 in
 {
@@ -23,10 +23,10 @@ in
       pgcli
     ];
 
-    home.configFile."litecli/config".source = "${configDir}/litecli/config";
+    home.configFile."litecli/config".source = ../../../config/litecli/config;
 
-    home.file.".myclirc".source = "${configDir}/mycli/myclirc";
+    home.file.".myclirc".source = ../../../config/mycli/myclirc;
 
-    home.configFile."pgcli/config".source = "${configDir}/pgcli/config";
+    home.configFile."pgcli/config".source = ../../../config/pgcli/config;
   };
 }

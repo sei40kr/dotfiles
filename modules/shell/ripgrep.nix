@@ -8,7 +8,6 @@
 let
   inherit (lib) mkIf;
   inherit (lib.my) mkBoolOpt;
-  inherit (config.dotfiles) configDir;
 
   cfg = config.modules.shell.ripgrep;
 in
@@ -20,7 +19,7 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [ ripgrep ];
 
-    home.file.".ripgreprc".source = "${configDir}/ripgrep/ripgreprc";
+    home.file.".ripgreprc".source = ../../config/ripgrep/ripgreprc;
 
     modules.shell.aliases = {
       notes = "rg 'TODO|FIXME|HACK|OPTIMIZE|REVIEW'";

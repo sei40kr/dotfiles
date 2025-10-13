@@ -13,12 +13,12 @@ let
     toJSON
     ;
   inherit (lib) mkIf mkEnableOption recursiveUpdate;
-  inherit (config.dotfiles) configDir;
+
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.zed;
   termFont = config.modules.term.font;
 
-  settings = recursiveUpdate (fromJSON (readFile "${configDir}/zed/settings.json")) {
+  settings = recursiveUpdate (fromJSON (readFile ../../config/zed/settings.json)) {
     buffer_font_family = editorsCfg.fonts.code.name;
     buffer_font_size = floor (editorsCfg.fonts.code.size / 72.0 * 96.0);
     ui_font_family = editorsCfg.fonts.ui.name;
@@ -38,7 +38,7 @@ in
     environment.systemPackages = with pkgs; [ zed-editor ];
 
     home.configFile."zed/settings.json".text = toJSON settings;
-    home.configFile."zed/keymap.json".source = "${configDir}/zed/keymap.jsonc";
+    home.configFile."zed/keymap.json".source = ../../config/zed/keymap.jsonc;
 
     fonts.packages = with pkgs; [ nerd-fonts.symbols-only ];
   };

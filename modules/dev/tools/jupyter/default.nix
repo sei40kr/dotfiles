@@ -12,7 +12,7 @@ let
     mkEnableOption
     types
     ;
-  inherit (config.dotfiles) configDir;
+
   inherit (pkgs) stdenv;
   cfg = config.modules.dev.tools.jupyter;
 
@@ -39,7 +39,7 @@ in
     user.packages = with pkgs; [ python3Packages.notebook ];
 
     home.file.".jupyter/jupyter_console_config.py".source =
-      "${configDir}/jupyter/jupyter_console_config.py";
+      ../../../../config/jupyter/jupyter_console_config.py;
     home.dataFile."jupyter/kernels".source = "${kernels}/kernels";
   };
 }

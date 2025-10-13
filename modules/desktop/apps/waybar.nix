@@ -9,7 +9,7 @@ let
   inherit (builtins) hashFile;
   inherit (lib) mkIf;
   inherit (lib.my) mkBoolOpt;
-  inherit (config.dotfiles) configDir;
+
   desktopCfg = config.modules.desktop;
   wmCfg = desktopCfg.wm;
   cfg = desktopCfg.apps.waybar;
@@ -29,7 +29,7 @@ in
     fonts.packages = with pkgs; [ material-design-icons ];
 
     environment.etc = {
-      "xdg/waybar/config".source = "${configDir}/waybar/config.json";
+      "xdg/waybar/config".source = ../../../config/waybar/config.json;
       "xdg/waybar/style.css".source = style_css;
     };
 
@@ -48,7 +48,7 @@ in
       };
       reloadIfChanged = true;
       reloadTriggers = [
-        (hashFile "md5" "${configDir}/waybar/config.json")
+        (hashFile "md5" ../../../config/waybar/config.json)
         style_css
       ];
     };
