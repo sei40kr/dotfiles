@@ -17,7 +17,9 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = [
-      inputs'.lazyvim.packages.default
+      (inputs'.lazyvim.packages.default.override {
+        inherit (pkgs.unstable) neovim-unwrapped wrapNeovimUnstable;
+      })
       # For Snacks dashboard
       pkgs.dwt1-shell-color-scripts
       pkgs.gh
