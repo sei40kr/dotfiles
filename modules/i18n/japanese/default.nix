@@ -7,6 +7,8 @@ let
   cfg = config.modules.i18n.japanese;
 in
 {
+  imports = [ ./im.nix ];
+
   options.modules.i18n.japanese = {
     enable = mkBoolOpt false;
   };
