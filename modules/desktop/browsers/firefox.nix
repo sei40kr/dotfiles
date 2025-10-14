@@ -69,6 +69,7 @@ in
         };
       };
       preferences = {
+        "browser.fullscreen.autohide" = false;
         "browser.profiles.enabled" = true;
         "browser.urlbar.shortcuts.bookmarks" = false;
         "browser.urlbar.shortcuts.history" = false;
