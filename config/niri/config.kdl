@@ -1,0 +1,191 @@
+binds {
+  /// Launch:
+
+  // Application:
+  Mod+Space { spawn "anyrun"; }
+
+  // Hotkey Overlay:
+  Mod+Shift+Slash { show-hotkey-overlay; }
+
+  /// Navigate:
+
+  // Next Workspace
+  Mod+Alt+Down { focus-workspace-down; }
+  Mod+Tab { focus-workspace-down; }
+
+  // Previous Workspace
+  Mod+Alt+Up { focus-workspace-up; }
+  Mod+Shift+Tab { focus-workspace-up; }
+  
+  // Relative Window
+  Mod+h { focus-column-left; }
+  Mod+j { focus-window-down; }
+  Mod+k { focus-window-up; }
+  Mod+l { focus-column-right; }
+  Mod+Left { focus-column-left; }
+  Mod+Down { focus-window-down; }
+  Mod+Up { focus-window-up; }
+  Mod+Right { focus-column-right; }
+
+  // Workspace 1-10
+  Mod+1 { focus-workspace 1; }
+  Mod+2 { focus-workspace 2; }
+  Mod+3 { focus-workspace 3; }
+  Mod+4 { focus-workspace 4; }
+  Mod+5 { focus-workspace 5; }
+  Mod+6 { focus-workspace 6; }
+  Mod+7 { focus-workspace 7; }
+  Mod+8 { focus-workspace 8; }
+  Mod+9 { focus-workspace 9; }
+  Mod+0 { focus-workspace 10; }
+
+  /// Modify:
+
+  // Window Position
+  Mod+Shift+h { consume-or-expel-window-left; }
+  Mod+Shift+j { move-window-down; }
+  Mod+Shift+k { move-window-up; }
+  Mod+Shift+l { consume-or-expel-window-right; }
+  Mod+Shift+Left { consume-or-expel-window-left; }
+  Mod+Shift+Down { move-window-down; }
+  Mod+Shift+Up { move-window-up; }
+  Mod+Shift+Right { consume-or-expel-window-right; }
+
+  // Move Window to Workspace 1-10
+  Mod+Shift+1 { move-window-to-workspace 1; }
+  Mod+Shift+2 { move-window-to-workspace 2; }
+  Mod+Shift+3 { move-window-to-workspace 3; }
+  Mod+Shift+4 { move-window-to-workspace 4; }
+  Mod+Shift+5 { move-window-to-workspace 5; }
+  Mod+Shift+6 { move-window-to-workspace 6; }
+  Mod+Shift+7 { move-window-to-workspace 7; }
+  Mod+Shift+8 { move-window-to-workspace 8; }
+  Mod+Shift+9 { move-window-to-workspace 9; }
+  Mod+Shift+0 { move-window-to-workspace 10; }
+
+  // Window Floating Toggle
+  Mod+Shift+f { toggle-window-floating; }
+
+  // Window Fullscreen Toggle
+  Mod+f { fullscreen-window; }
+
+  // Window Layout Mode
+  Mod+t { toggle-column-tabbed-display; }
+
+  // Resize
+  Mod+r { switch-preset-column-width; }
+  
+  // Logout
+  Mod+Shift+e { quit; }
+
+  // Exit App
+  Mod+Shift+q { close-window; }
+}
+
+hotkey-overlay {
+  skip-at-startup
+}
+
+layout {
+  always-center-single-column
+
+  preset-column-widths {
+    proportion 0.5
+    proportion 1.0
+  }
+
+  focus-ring {
+    width 2
+
+    active-color "#7aa2f7"
+    inactive-color "#414868aa"
+  }
+
+  tab-indicator {
+    width 8
+    gap 8
+    length total-proportion=1.0
+    place-within-column
+  }
+}
+
+workspace "web"
+workspace "code"
+workspace "files"
+workspace "chat"
+workspace "games"
+
+window-rule {
+  geometry-corner-radius 16
+  clip-to-geometry true
+}
+
+window-rule {
+  match is-active=false
+
+  opacity 0.9
+}
+
+window-rule {
+  match app-id="firefox"
+  match app-id="google-chrome"
+  match app-id="Vivaldi-stable"
+
+  open-on-workspace "web"
+}
+
+window-rule {
+  match app-id="jetbrains-idea"
+  match app-id="jetbrains-datagrip"
+  match app-id="jetbrains-dataspell"
+  match app-id="org.zealdocs.zeal"
+  match app-id="kitty"
+  match app-id="org.wezfurlong.wezterm"
+
+  open-on-workspace "code"
+}
+
+window-rule {
+  match app-id="org.pwmt.zathura"
+  match app-id="ristretto"
+  match app-id="Thunar"
+  match app-id="vlc"
+
+  open-on-workspace "files"
+}
+
+window-rule {
+  match app-id="Slack"
+  match app-id="zoom"
+
+  open-on-workspace "chat"
+}
+
+window-rule {
+  match app-id="steam"
+
+  open-on-workspace "games"
+}
+
+window-rule {
+  match app-id="firefox" title="Firefox - Choose a profile"
+  // NOTE: This rule may not work because the window title is not set initially
+  match app-id="firefox" title=r#"^Extension: (Bitwarden Password Manager) - Bitwarden — .* — Mozilla Firefox$"#
+  match app-id=r#"^chrome-nngceckbapebfimnlniiiahkandclblb-"#
+  match app-id="Vivaldi-stable" title=r#"^Bitwarden - "#
+  match app-id="Thunar" title=r#"^Rename "[^"]*"$"#
+  match app-id="steam" title="Friends List"
+  match app-id="steam" title="Recordings & Screenshots"
+  match app-id="steam" title="Steam Settings"
+  match app-id="Bitwarden"
+  match app-id="gnome-pomodoro"
+  match app-id="org.fcitx."
+
+  open-floating true
+}
+
+gestures {
+  hot-corners {
+    off
+  }
+}
