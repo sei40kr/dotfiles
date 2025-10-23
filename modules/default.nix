@@ -30,27 +30,12 @@ in
     ./term
   ];
 
-  nix =
-    let
-      filteredInputs = filterAttrs (n: _: n != "self") inputs;
-      nixPathInputs = mapAttrsToList (n: v: "${n}=${v}") filteredInputs;
-      registryInputs = mapAttrs (_: v: { flake = v; }) filteredInputs;
-    in
-    {
-      package = pkgs.lix;
-      nixPath = nixPathInputs ++ [
-        "nixpkgs-overlays=${config.dotfiles.dir}/overlays"
-        "dotfiles=${config.dotfiles.dir}"
-      ];
-      extraOptions = "experimental-features = nix-command flakes";
-      registry = registryInputs // {
-        dotfiles.flake = inputs.self;
-      };
-      settings = {
-        allowed-users = users;
-        trusted-users = users;
-      };
-    };
+  nix.package = pkgs.lix;
+  nix.extraOptions = "experimental-features = nix-command flakes";
+  nix.settings = {
+    allowed-users = users;
+    trusted-users = users;
+  };
 
   environment.systemPackages = with pkgs; [
     coreutils
