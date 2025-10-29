@@ -10,8 +10,6 @@ let
     mkEnableOption
     mkIf
     mapAttrs
-    head
-    tail
     ;
   aiCfg = config.modules.ai;
   cfg = aiCfg.crush;
@@ -21,25 +19,19 @@ let
     name: server:
     if server.transport == "stdio" then
       {
+        inherit (server) command args env;
         type = "stdio";
-        command = server.command;
-        args = server.args;
-        env = server.env;
       }
     else if server.transport == "sse" || server.transport == "http" then
       {
+        inherit (server) url headers;
         type = server.transport;
-        url = server.url;
-        headers = server.headers;
       }
     else
       throw "Unknown MCP server transport type: ${server.transport} for server ${name}";
 
   # Convert Nix LSP server format to Crush format
-  convertLspServer = name: server: {
-    command = server.command;
-    args = server.args;
-  };
+  convertLspServer = name: server: { inherit (server) command args; };
 in
 {
   options.modules.ai.crush = {

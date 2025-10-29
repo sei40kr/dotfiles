@@ -74,9 +74,7 @@ in
     # bat
     programs.bat = {
       enable = true;
-      settings = {
-        theme = cfg.bat.theme;
-      };
+      settings = { inherit (cfg.bat) theme; };
     };
     modules.shell.aliases.cat = "bat";
 

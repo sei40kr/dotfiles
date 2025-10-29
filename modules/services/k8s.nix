@@ -56,9 +56,8 @@ in
 
   config = mkIf (cfg.roles != [ ]) {
     services.kubernetes = {
-      roles = cfg.roles;
+      inherit (cfg) easyCerts roles;
       masterAddress = cfg.masterHostname;
-      easyCerts = cfg.easyCerts;
     };
   };
 }

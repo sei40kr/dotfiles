@@ -239,10 +239,7 @@ in
         push.default = "current";
         stash.showPatch = true;
         url."ssh://git@github.com/sei40kr".insteadOf = "https://github.com/sei40kr";
-        user = {
-          email = cfg.user.email;
-          name = cfg.user.name;
-        };
+        user = { inherit (cfg.user) email name; };
       };
       lfs.enable = true;
     };

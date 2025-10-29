@@ -7,8 +7,9 @@
 
 runCommand "julia-mono-nf"
   {
+    inherit (julia-mono) version;
+
     pname = "JuliaMono-nf";
-    version = julia-mono.version;
 
     nativeBuildInputs = [
       julia-mono

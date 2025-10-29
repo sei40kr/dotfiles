@@ -2,8 +2,7 @@
 
 let
   inherit (lib) attrValues foldr makeExtensible;
-in
-let
+
   mylib = makeExtensible (self: {
     attrs = import ./attrs.nix { inherit self lib; };
     extra-types = import ./extra-types.nix { inherit self lib; };

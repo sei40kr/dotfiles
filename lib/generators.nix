@@ -1,7 +1,7 @@
 { lib, ... }:
 
 let
-  inherit (builtins) isNull isFloat;
+  inherit (builtins) isFloat;
   inherit (lib)
     concatMapStringsSep
     escape
@@ -57,7 +57,7 @@ in
 rec {
   toEmacsLisp =
     v:
-    if isNull v then
+    if (v == null) then
       "nil"
     else if isFloat v then
       toString v

@@ -58,9 +58,8 @@ let
       global = {
         monitor = 0;
         follow = "mouse";
-        width = cfg.width;
-        height = cfg.height;
-        origin = cfg.position.origin;
+        inherit (cfg) width height;
+        inherit (cfg.position) origin;
         offset = "${toString cfg.position.offset.x}x${toString cfg.position.offset.y}";
         scale = 0;
         notification_limit = 0;
@@ -120,17 +119,17 @@ let
             level = removePrefix "urgency_" name;
           in
           {
+            inherit (cfg.${level}) timeout;
             background = ''"${cfg.${level}.background}"'';
             foreground = ''"${cfg.${level}.foreground}"'';
-            timeout = cfg.${level}.timeout;
             frame_color = ''"${cfg.${level}.borderColor}"'';
           }
         )
-      // ({
+      // {
         experimental = {
           per_monitor_dpi = true;
         };
-      })
+      }
     );
 in
 {

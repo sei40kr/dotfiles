@@ -39,8 +39,7 @@ let
     destination = "/share/emacs/site-lisp/default.el";
   };
 
-  package = (
-    if cfg.doom.enable then
+  package = if cfg.doom.enable then
       (pkgs.emacs.pkgs.withPackages (epkgs: [
         epkgs.melpaPackages.emacsql
         epkgs.melpaPackages.vterm
@@ -48,8 +47,7 @@ let
         default_el
       ]))
     else
-      pkgs.emacs
-  );
+      pkgs.emacs;
 
   vterm_printf = pkgs.writeTextFile {
     name = "vterm_printf";

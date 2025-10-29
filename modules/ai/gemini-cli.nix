@@ -17,20 +17,13 @@ let
   mcpServersConfig = mapAttrs (
     name: server:
     if server.transport == "stdio" then
-      {
-        command = server.command;
-        args = server.args;
-        env = server.env;
-      }
+      { inherit (server) command args env; }
     else if server.transport == "sse" then
-      {
-        url = server.url;
-        headers = server.headers;
-      }
+      { inherit (server) url headers; }
     else if server.transport == "http" then
       {
+        inherit (server) headers;
         httpUrl = server.url;
-        headers = server.headers;
       }
     else
       { }
