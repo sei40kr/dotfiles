@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./anyrun.nix
     ./bitwarden.nix
     ./dunst.nix
     ./feh.nix

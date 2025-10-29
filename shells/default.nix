@@ -1,6 +1,8 @@
 { callPackage }:
 
 {
+  anyrun = callPackage ./anyrun.nix { };
+
   rofi = callPackage ./rofi.nix { };
 
   waybar = callPackage ./waybar.nix { };
