@@ -5,6 +5,14 @@ nixosSystem "x86_64-linux" (
   {
     imports = [ ./_hardware-configuration.nix ];
 
+    # Enable automatic garbage collection
+    nix.gc = {
+      automatic = true;
+      dates = ''
+        *-*-* 03:00:00
+      '';
+    };
+
     # Use the systemd-boot EFI boot loader.
     boot.loader.efi = {
       canTouchEfiVariables = true;
