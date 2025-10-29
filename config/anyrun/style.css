@@ -1,0 +1,64 @@
+@define-color accent #7aa2f7;
+@define-color bg-color #1a1b26;
+@define-color fg-color #c0caf5;
+@define-color desc-color #565f89;
+@define-color border-color #414868;
+@define-color selection-bg #283457;
+
+window {
+  background: transparent;
+}
+
+box.main {
+  border: 2px solid @accent;
+  border-radius: 16px;
+  padding: 8px;
+  background-color: @bg-color;
+}
+
+text {
+  padding: 8px 16px;
+  color: @fg-color;
+  font-size: 16pt;
+}
+
+box.matches {
+  margin: 8px 0 0;
+}
+
+list.plugin {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+row.match {
+  background: transparent;
+  padding: 8px 16px;
+  border-left: 4px solid transparent;
+  border-radius: 8px;
+}
+
+row.match:selected {
+  border-left-color: @accent;
+  background: @selection-bg;
+  animation: fade 0.1s linear;
+}
+
+label.match.title {
+  color: @fg-color;
+  font-size: 12pt;
+}
+
+label.match.description {
+  color: @desc-color;
+  font-size: 10pt;
+}
+
+@keyframes fade {
+  0% {
+    background: transparent;
+  }
+
+  100% {
+    background: @selection-bg;
+  }
+}
