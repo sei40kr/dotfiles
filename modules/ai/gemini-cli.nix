@@ -1,7 +1,7 @@
 {
   config,
+  inputs',
   lib,
-  pkgs,
   ...
 }:
 
@@ -35,7 +35,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ unstable.gemini-cli ];
+    environment.systemPackages = [ inputs'.llm-agents-nix.packages.gemini-cli ];
 
     environment.etc."gemini-cli/settings.json".text = builtins.toJSON {
       general = {

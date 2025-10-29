@@ -1,5 +1,6 @@
 {
   config,
+  inputs',
   lib,
   pkgs,
   ...
@@ -18,7 +19,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ unstable.claude-code ];
+    environment.systemPackages = [ inputs'.llm-agents-nix.packages.claude-code ];
 
     home.file.".claude/settings.json".text = builtins.toJSON {
       env = {

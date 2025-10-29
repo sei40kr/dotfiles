@@ -16,6 +16,8 @@
       };
     };
 
+    llm-agents-nix.url = "github:numtide/llm-agents.nix";
+
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";

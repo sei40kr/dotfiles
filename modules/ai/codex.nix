@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  inputs',
   ...
 }:
 
@@ -16,6 +16,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ unstable.codex ];
+    environment.systemPackages = [ inputs'.llm-agents-nix.packages.codex ];
   };
 }

@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  inputs',
   ...
 }:
 
@@ -39,7 +39,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ unstable.crush ];
+    environment.systemPackages = [ inputs'.llm-agents-nix.packages.crush ];
 
     home.configFile."crush/crush.json".text = builtins.toJSON {
       "$schema" = "https://charm.land/crush.json";
