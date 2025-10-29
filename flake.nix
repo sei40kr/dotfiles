@@ -176,7 +176,9 @@
               };
 
             config.pre-commit.settings.hooks = {
-              nixfmt-rfc-style.enable = true;
+              nil.enable = true;
+              statix.enable = true;
+              treefmt.enable = true;
             };
 
             config.treefmt = {
