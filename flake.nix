@@ -40,6 +40,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-std.url = "github:chessai/nix-std";
+
     tmux-project = {
       url = "github:sei40kr/tmux-project";
       inputs.nixpkgs.follows = "nixpkgs";
