@@ -14,7 +14,7 @@ let
   cfg = config.modules.ai.gemini-cli;
   aiCfg = config.modules.ai;
 
-  mcpServersConfig = mapAttrs (
+  convertMcpServer =
     name: server:
     if server.transport == "stdio" then
       { inherit (server) command args env; }
@@ -22,12 +22,11 @@ let
       { inherit (server) url headers; }
     else if server.transport == "http" then
       {
-        inherit (server) headers;
         httpUrl = server.url;
+        inherit (server) headers;
       }
     else
-      { }
-  ) aiCfg.mcpServers;
+      { };
 in
 {
   options.modules.ai.gemini-cli = {
@@ -41,10 +40,10 @@ in
       general = {
         vimMode = true;
         disableAutoUpdate = true;
-        checkpointing.enable = true;
+        checkpointing.enabled = true;
       };
       ui.showLineNumbers = true;
-      mcpServers = mcpServersConfig;
+      mcpServers = mapAttrs convertMcpServer aiCfg.mcpServers;
     };
   };
 }
