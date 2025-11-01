@@ -34,6 +34,7 @@ let
 
   codexConfig = {
     mcp_servers = mapAttrs convertMcpServer aiCfg.mcpServers;
+    tui.notifications = true;
   };
 in
 {
