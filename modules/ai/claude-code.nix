@@ -10,8 +10,27 @@ let
   inherit (lib)
     mkEnableOption
     mkIf
+    mapAttrs
     ;
   cfg = config.modules.ai.claude-code;
+  mcpCfg = config.modules.ai.mcpServers;
+
+  # Convert MCP server config to Claude Code format
+  convertMcpServer =
+    name:
+    { transport, ... }@server:
+    if transport == "stdio" then
+      {
+        inherit (server) command args env;
+        type = "stdio";
+      }
+    else if transport == "sse" || transport == "http" then
+      {
+        inherit (server) url headers;
+        type = transport;
+      }
+    else
+      throw "Unknown transport type ${transport} for MCP server ${name}";
 in
 {
   options.modules.ai.claude-code = {
@@ -48,6 +67,10 @@ in
           }
         ];
       };
+    };
+
+    environment.etc."claude-code/managed-mcp.json".text = builtins.toJSON {
+      mcpServers = mapAttrs convertMcpServer mcpCfg;
     };
   };
 }
