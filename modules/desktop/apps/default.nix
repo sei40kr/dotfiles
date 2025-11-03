@@ -7,6 +7,7 @@
     ./feh.nix
     ./mangohud.nix
     ./polybar.nix
+    ./quickshell.nix
     ./rofi.nix
     ./steam.nix
     ./swww.nix
