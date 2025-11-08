@@ -1,36 +1,20 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 
 let
-  inherit (builtins) baseNameOf floor toString;
+  inherit (builtins) floor toString;
   inherit (lib)
     mkEnableOption
     mkIf
     ;
-  inherit (lib.strings) sanitizeDerivationName;
 
   cfg = config.modules.desktop.regreet;
   deCfg = config.modules.desktop.de;
   gtkCfg = config.modules.desktop.gtk;
 
-  blurImage =
-    path:
-    let
-      drvName = sanitizeDerivationName "blurred-${baseNameOf path}";
-    in
-    pkgs.runCommand drvName
-      {
-        preferLocalBuild = true;
-        allowSubstitutes = false;
-        buildInputs = with pkgs; [ imagemagick ];
-      }
-      ''
-        convert ${path} -blur 0x60 -modulate 55,100,100 $out
-      '';
   backgroundFit =
     if deCfg.background.image == null then
       "Contain"
@@ -53,7 +37,7 @@ in
       enable = true;
       settings = mkIf (deCfg.background.image != null) {
         background = {
-          path = toString (blurImage deCfg.background.image.path);
+          path = toString deCfg.blurredBackgroundImage;
           fit = backgroundFit;
         };
       };
