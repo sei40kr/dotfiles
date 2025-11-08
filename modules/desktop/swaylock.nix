@@ -6,33 +6,16 @@
 }:
 
 let
-  inherit (builtins) baseNameOf;
-  inherit (lib) mkIf escapeShellArg strings;
+  inherit (lib) mkIf escapeShellArg;
   inherit (lib.my) mkBoolOpt;
   desktopCfg = config.modules.desktop;
   deCfg = desktopCfg.de;
   cfg = desktopCfg.swaylock;
 
-  blurImage =
-    path:
-    let
-      drvName = strings.sanitizeDerivationName "${baseNameOf path}-blurred";
-    in
-    pkgs.runCommand drvName
-      {
-        preferLocalBuild = true;
-        allowSubstitutes = false;
-        buildInputs = with pkgs; [ imagemagick ];
-      }
-      # Same blur & modulate parameters as the GNOME unlock dialog
-      # https://gitlab.gnome.org/GNOME/gnome-shell/-/blob/main/js/ui/unlockDialog.js#L27-28
-      ''
-        convert ${path} -blur 0x60 -modulate 55,100,100 $out
-      '';
   backgroundOpts =
     if deCfg.background.image != null then
       ''
-        image=${blurImage deCfg.background.image.path}
+        image=${deCfg.blurredBackgroundImage}
         scaling=${deCfg.background.image.mode}
         color=${deCfg.background.color}
       ''

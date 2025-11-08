@@ -13,6 +13,7 @@ let
     mkOption
     types
     ;
+  inherit (lib.strings) sanitizeDerivationName;
   inherit (lib.my.extraTypes) font;
   inherit (types)
     attrsOf
@@ -212,6 +213,20 @@ let
       };
     };
   };
+
+  blurImage =
+    path:
+    pkgs.runCommand (sanitizeDerivationName "blurred-${builtins.baseNameOf path}")
+      {
+        preferLocalBuild = true;
+        allowSubstitutes = false;
+        buildInputs = with pkgs; [ imagemagick ];
+      }
+      # Same blur & modulate parameters as the GNOME unlock dialog
+      # https://gitlab.gnome.org/GNOME/gnome-shell/-/blob/main/js/ui/unlockDialog.js#L27-28
+      ''
+        convert ${path} -blur 0x60 -modulate 55,100,100 $out
+      '';
 in
 {
   options.modules.desktop.de = {
@@ -336,6 +351,12 @@ in
           The background color to use.
         '';
       };
+    };
+
+    blurredBackgroundImage = mkOption {
+      type = nullOr path;
+      visible = false;
+      default = if cfg.background.image != null then blurImage cfg.background.image.path else null;
     };
   };
 
