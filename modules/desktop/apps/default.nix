@@ -9,6 +9,7 @@
     ./polybar.nix
     ./rofi.nix
     ./steam.nix
+    ./swww.nix
     ./thunar.nix
     ./waybar.nix
     ./gnome
