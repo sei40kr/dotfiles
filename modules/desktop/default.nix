@@ -6,6 +6,7 @@
     ./fontconfig.nix
     ./gdm.nix
     ./gtk.nix
+    ./regreet.nix
     ./swaylock.nix
     ./apps
     ./browsers
