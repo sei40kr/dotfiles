@@ -18,6 +18,8 @@ in
 
   online-judge-verify-helper = python3Packages.callPackage ./online-judge-verify-helper { };
 
+  qml-niri = callPackage ./qml-niri { };
+
   whitesur-kde = callPackage ./whitesur-kde { };
 
   whitesur-wallpapers = callPackage ./whitesur-wallpapers { };
