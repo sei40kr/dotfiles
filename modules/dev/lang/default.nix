@@ -18,6 +18,7 @@
     ./lua.nix
     ./nix.nix
     ./ocaml.nix
+    ./qml.nix
     ./prisma.nix
     ./python.nix
     ./r.nix
