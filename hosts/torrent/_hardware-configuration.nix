@@ -29,11 +29,11 @@
     device = "/dev/disk/by-uuid/4c3f01ca-3eec-44a0-96dd-9f394971a50c";
     fsType = "ext4";
   };
-
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/3448-B644";
     fsType = "vfat";
   };
+  services.fstrim.enable = true;
 
   swapDevices = [ ];
 
