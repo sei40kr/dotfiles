@@ -71,6 +71,7 @@ in
       preferences = {
         "browser.fullscreen.autohide" = false;
         "browser.profiles.enabled" = true;
+        "browser.tabs.warnOnCloseOtherTabs" = false;
         "browser.urlbar.shortcuts.bookmarks" = false;
         "browser.urlbar.shortcuts.history" = false;
         "browser.urlbar.shortcuts.tabs" = false;
