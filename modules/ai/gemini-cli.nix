@@ -26,7 +26,7 @@ let
         inherit (server) headers;
       }
     else
-      { };
+      throw "Unknown transport type '${server.transport}' for MCP server '${name}'";
 in
 {
   options.modules.ai.gemini-cli = {
