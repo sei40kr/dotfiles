@@ -29,6 +29,11 @@ in
               installation_mode = "normal_installed";
               install_url = "https://addons.mozilla.org/firefox/downloads/latest/amptra@keepa.com/latest.xpi";
             };
+            # YouTube to NotebookLM
+            "yt.to.notebooklm@gmail.com" = {
+              installation_mode = "normal_installed";
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/yt.to.notebooklm@gmail.com/latest.xpi";
+            };
             # アマゾン注文履歴フィルタ
             "{7cf57bd8-e913-4560-95e1-2e7871fe3632}" = {
               installation_mode = "normal_installed";
