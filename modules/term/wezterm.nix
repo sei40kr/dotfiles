@@ -49,7 +49,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ wezterm ];
+    user.packages = with pkgs; [ unstable.wezterm ];
 
     fonts.packages = with pkgs; [ nerd-fonts.symbols-only ];
 
