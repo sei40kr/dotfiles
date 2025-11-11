@@ -40,7 +40,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = [ inputs'.llm-agents-nix.packages.claude-code ];
 
-    home.file.".claude/settings.json".text = builtins.toJSON {
+    environment.etc."claude-code/managed-settings.json".text = builtins.toJSON {
       env = {
         CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL = 1;
         DISABLE_AUTOUPDATER = 1;
@@ -68,7 +68,6 @@ in
         ];
       };
     };
-
     environment.etc."claude-code/managed-mcp.json".text = builtins.toJSON {
       mcpServers = mapAttrs convertMcpServer mcpCfg;
     };
