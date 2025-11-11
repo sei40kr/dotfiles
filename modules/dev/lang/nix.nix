@@ -22,6 +22,7 @@ in
       nurl
       nixfmt-rfc-style
       unstable.mcp-nixos
+      nil
     ];
 
     # Configure NixOS MCP server
