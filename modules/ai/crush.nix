@@ -31,7 +31,16 @@ let
       throw "Unknown MCP server transport type: ${server.transport} for server ${name}";
 
   # Convert Nix LSP server format to Crush format
-  convertLspServer = name: server: { inherit (server) command args; };
+  convertLspServer = name: server: {
+    inherit (server)
+      command
+      args
+      filetypes
+      ;
+    root_markers = server.rootMarkers;
+    init_options = server.initOptions;
+    options = server.settings;
+  };
 in
 {
   options.modules.ai.crush = {
