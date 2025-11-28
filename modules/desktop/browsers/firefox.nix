@@ -24,6 +24,11 @@ in
               installation_mode = "normal_installed";
               install_url = "https://addons.mozilla.org/firefox/downloads/latest/firefox-extension@deepl.com/latest.xpi";
             };
+            # Gesturefy
+            "{506e023c-7f2b-40a3-8066-bc5deb40aebe}" = {
+              installation_mode = "normal_installed";
+              install_url = "https://addons.mozilla.org/firefox/downloads/latest/{506e023c-7f2b-40a3-8066-bc5deb40aebe}/latest.xpi";
+            };
             # Keepa
             "amptra@keepa.com" = {
               installation_mode = "normal_installed";
