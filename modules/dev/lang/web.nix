@@ -22,11 +22,12 @@ in
     # TODO stylelint-cli
     environment.systemPackages = with pkgs; [
       nodejs_20
+      (mkIf cfg.deno.enable deno)
+      (mkIf cfg.bun.enable bun)
+      ni
       emmet-language-server
       nodePackages.prettier
       nodePackages.vscode-langservers-extracted
-      (mkIf cfg.bun.enable bun)
-      (mkIf cfg.deno.enable deno)
     ];
 
     modules.editors.lspServers = {
