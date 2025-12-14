@@ -21,7 +21,7 @@ in
       nix-melt
       nurl
       nixfmt-rfc-style
-      unstable.mcp-nixos
+      mcp-nixos
       nil
       statix
     ];
@@ -30,7 +30,7 @@ in
     modules.ai.mcpServers = {
       nixos = rec {
         transport = "stdio";
-        package = pkgs.unstable.mcp-nixos;
+        package = pkgs.mcp-nixos;
         command = "${package}/bin/mcp-nixos";
         args = [ ];
       };

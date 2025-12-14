@@ -34,7 +34,7 @@ in
     modules.ai.mcpServers = {
       terraform = rec {
         transport = "stdio";
-        package = pkgs.unstable.terraform-mcp-server;
+        package = pkgs.terraform-mcp-server;
         command = "${package}/bin/terraform-mcp-server";
         args = [ ];
       };

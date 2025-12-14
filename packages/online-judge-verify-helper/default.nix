@@ -14,6 +14,7 @@
 buildPythonApplication rec {
   pname = "online-judge-verify-helper";
   version = "5.6.0";
+  pyproject = true;
 
   src = fetchFromGitHub {
     owner = "online-judge-tools";
@@ -22,12 +23,13 @@ buildPythonApplication rec {
     sha256 = "0vv98ns81s0yibagi66g8mr5av1njpnirz0hdp8r1gpwnzz7s55h";
   };
 
+  build-system = [ setuptools ];
+
   propagatedBuildInputs = [
     colorlog
     importlab
     online-judge-tools
     pyyaml
-    setuptools
     toml
   ];
 

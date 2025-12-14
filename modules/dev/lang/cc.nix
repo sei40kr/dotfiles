@@ -23,7 +23,7 @@ in
         cpplint
       ]
       ++ (optionals pkgs.stdenv.isLinux [
-        gcc10
+        gcc
         gdb
         llvm
       ]);

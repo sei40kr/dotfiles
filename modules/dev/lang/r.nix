@@ -28,7 +28,7 @@ in
   config = mkIf cfg.enable {
     user.packages = [
       package
-      pkgs.python3Packages.radian
+      pkgs.radian
     ];
 
     home.file = {

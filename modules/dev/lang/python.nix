@@ -15,7 +15,8 @@ let
     paths = [ pkgs.python3 ];
     nativeBuildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
-      wrapProgram $out/bin/python3.12 \
+      rm -f $out/bin/python3.13
+      makeWrapper ${pkgs.python3}/bin/python3.13 $out/bin/python3.13 \
         --prefix LD_LIBRARY_PATH : "${makeLibraryPath config.programs.nix-ld.libraries}"
     '';
   };

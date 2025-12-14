@@ -28,7 +28,7 @@ in
       jetbrains-mono
       source-code-pro
       source-han-code-jp
-      ubuntu_font_family
+      ubuntu-classic
       victor-mono
     ];
   };

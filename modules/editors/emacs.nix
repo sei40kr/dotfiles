@@ -39,7 +39,8 @@ let
     destination = "/share/emacs/site-lisp/default.el";
   };
 
-  package = if cfg.doom.enable then
+  package =
+    if cfg.doom.enable then
       (pkgs.emacs.pkgs.withPackages (epkgs: [
         epkgs.melpaPackages.emacsql
         epkgs.melpaPackages.vterm
@@ -79,41 +80,40 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages =
+    user.packages = [
+      package
+      pkgs.binutils
+    ]
+    ++ (optionals cfg.doom.enable (
+      with pkgs;
       [
-        package
-        pkgs.binutils
-      ]
-      ++ (optionals cfg.doom.enable (
-        with pkgs;
-        [
-          fd
-          ripgrep
+        fd
+        ripgrep
 
-          # :checkers spell
-          aspell
-          # :input japanese
-          cmigemo
-          # :lang markdown
-          mdl
-          python3Packages.grip
-          # :lang plantuml
-          plantuml
-          # :lang sql
-          python3Packages.sqlparse
-          # :tools editorconfig
-          editorconfig-core-c
-          # :tools lookup
-          sqlite
-          wordnet
-          # :tools lsp
-          nodePackages.dockerfile-language-server-nodejs
-          nodePackages.vscode-langservers-extracted
-          nodePackages.yaml-language-server
-          # :tools vterm
-          vterm_printf
-        ]
-      ));
+        # :checkers spell
+        aspell
+        # :input japanese
+        cmigemo
+        # :lang markdown
+        mdl
+        python3Packages.grip
+        # :lang plantuml
+        plantuml
+        # :lang sql
+        python3Packages.sqlparse
+        # :tools editorconfig
+        editorconfig-core-c
+        # :tools lookup
+        sqlite
+        wordnet
+        # :tools lsp
+        dockerfile-language-server
+        nodePackages.vscode-langservers-extracted
+        nodePackages.yaml-language-server
+        # :tools vterm
+        vterm_printf
+      ]
+    ));
     fonts.packages = with pkgs; [ emacs-all-the-icons-fonts ];
 
     env = mkIf cfg.doom.enable {

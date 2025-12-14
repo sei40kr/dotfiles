@@ -18,7 +18,7 @@ in
 
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
-      unstable.quickshell
+      quickshell
       (mkIf desktopCfg.wm.niri.enable my.qml-niri)
     ];
 
@@ -32,7 +32,7 @@ in
       requisite = [ "graphical-session.target" ];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.unstable.quickshell}/bin/quickshell";
+        ExecStart = "${pkgs.quickshell}/bin/quickshell";
         Restart = "on-failure";
       };
       wantedBy = [ "graphical-session.target" ];
