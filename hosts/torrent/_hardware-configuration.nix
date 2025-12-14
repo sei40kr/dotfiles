@@ -64,6 +64,9 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     open = true;
+    # forceFullCompositionPipeline: Enable full composition pipeline to eliminate screen tearing
+    # by forcing all frames to be synchronized through the GPU's composition pipeline.
+    # Particularly effective for fixing tearing during desktop use, video playback, and scrolling on X11.
     forceFullCompositionPipeline = true;
   };
 
