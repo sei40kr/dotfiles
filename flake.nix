@@ -1,10 +1,10 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -157,7 +157,8 @@
                     (_: _: { wez-pain-control = inputs'.wez-pain-control.packages.default; })
                     (_: _: { wez-per-project-workspace = inputs'.wez-per-project-workspace.packages.default; })
                     (_: _: { wez-status-generator = inputs'.wez-status-generator.packages.default; })
-                  ] ++ attrValues self.overlays;
+                  ]
+                  ++ attrValues self.overlays;
                 };
               in
               pkgs;

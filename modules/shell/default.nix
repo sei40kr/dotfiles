@@ -48,7 +48,7 @@ in
     user.packages = with pkgs; [
       csvlens
       direnv
-      du-dust
+      dust
       fd
       eza
       hexyl

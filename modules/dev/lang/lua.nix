@@ -22,7 +22,7 @@ in
     ];
 
     modules.editors.lspServers.lua_ls = rec {
-      package = pkgs.sumneko-lua-language-server;
+      package = pkgs.lua-language-server;
       command = "${package}/bin/lua-language-server";
       filetypes = [ "lua" ];
       rootMarkers = [

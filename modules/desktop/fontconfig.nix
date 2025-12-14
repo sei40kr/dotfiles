@@ -68,7 +68,7 @@ in
         ];
       };
       emoji = mkOpt fontType {
-        packages = with pkgs; [ noto-fonts-emoji ];
+        packages = with pkgs; [ noto-fonts-color-emoji ];
         names = [ "Noto Color Emoji" ];
       };
     };

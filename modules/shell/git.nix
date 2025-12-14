@@ -206,7 +206,7 @@ in
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
       git
-      gitAndTools.gitflow
+      gitflow
     ];
 
     programs.git = {

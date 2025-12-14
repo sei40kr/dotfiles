@@ -63,13 +63,12 @@ in
       serviceConfig.Type = "oneshot";
       script = ''
         if [ -n "$WAYLAND_DISPLAY" ]; then
-          DISPLAY_NAME=$(basename "$WAYLAND_DISPLAY")
-          SOCKET_NAME="swww-$DISPLAY_NAME"
+          SOCKET_NAME=$(basename "$WAYLAND_DISPLAY")
         else
-          SOCKET_NAME="swww-wayland-0"
+          SOCKET_NAME="wayland-0"
         fi
 
-        SOCKET_PATH="$XDG_RUNTIME_DIR/$SOCKET_NAME.socket"
+        SOCKET_PATH="$XDG_RUNTIME_DIR/$SOCKET_NAME-swww-daemon..sock"
 
         # Wait for socket to be created (max 10 seconds)
         for i in {1..100}; do
