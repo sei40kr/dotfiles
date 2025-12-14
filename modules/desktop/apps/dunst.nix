@@ -51,6 +51,13 @@ let
     };
   };
 
+  playMessageSound = pkgs.writeShellScript "pw-play-message-sound" ''
+    ${pkgs.pipewire}/bin/pw-play --media-role=Notification ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/message.oga
+  '';
+  playCompleteSound = pkgs.writeShellScript "pw-play-complete-sound" ''
+    ${pkgs.pipewire}/bin/pw-play --media-role=Notification ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/complete.oga
+  '';
+
   # NOTE: Wrap hex colors in quotes to prevent them from being interpreted as
   #  comments. e.g. "${color}" -> ''"${color}"''
   dunstrc =
@@ -104,6 +111,16 @@ let
         mouse_left_click = "context";
         mouse_middle_click = "none";
         mouse_right_click = "close_current";
+      };
+
+      play_message_sound_everything = {
+        script = "${playMessageSound}";
+      };
+
+      claude_code_complete = {
+        summary = "Claude Code";
+        body = "Response complete!";
+        script = "${playCompleteSound}";
       };
     }
     // (
@@ -446,7 +463,7 @@ in
       }
     ];
 
-    user.packages = [ cfg.package ];
+    environment.systemPackages = [ cfg.package ];
 
     home.configFile."dunst/dunstrc".text = toINI { } dunstrc;
   };
