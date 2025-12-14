@@ -23,7 +23,14 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.kernelParams = [
-    "split_lock_detect=off"
+    # split_lock_mitigate=0: Disable the performance penalty for split-lock operations
+    # while keeping warnings in kernel logs. Since Linux 5.19, the kernel intentionally
+    # slows down applications that trigger split-locks by adding a 10ms delay, which
+    # severely impacts performance of certain Steam Play games (e.g., God of War).
+    # This parameter (available in Linux 6.2+) disables the penalty without completely
+    # disabling split-lock detection.
+    # https://www.phoronix.com/news/Linux-Splitlock-Hurts-Gaming
+    "split_lock_mitigate=0"
     # nvidia-drm.fbdev=1: Prevent conflicts between nvidia-drm and simpledrm (fbdev)
     # when using Wayland compositors by enabling proper framebuffer management in nvidia-drm.
     # https://download.nvidia.com/XFree86/Linux-x86_64/580.105.08/README/wayland-issues.html
