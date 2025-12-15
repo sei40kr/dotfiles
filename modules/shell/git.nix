@@ -383,8 +383,8 @@ in
       grhh = "git reset --hard";
       grhk = "git reset --keep";
       grhs = "git reset --soft";
-      gpristine = "git reset --hard && git clean --force -dfx";
-      gwipe = "git reset --hard && git clean --force -df";
+      gpristine = "git reset --hard; git clean --force -dfx";
+      gwipe = "git reset --hard; git clean --force -df";
 
       # Restore
       grs = "git restore";
