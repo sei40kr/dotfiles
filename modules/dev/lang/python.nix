@@ -6,20 +6,9 @@
 }:
 
 let
-  inherit (lib) mkIf makeLibraryPath;
+  inherit (lib) mkIf;
   inherit (lib.my) mkBoolOpt;
   cfg = config.modules.dev.lang.python;
-
-  patchedPython3 = pkgs.symlinkJoin {
-    name = "${pkgs.python3.name}-patched";
-    paths = [ pkgs.python3 ];
-    nativeBuildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      rm -f $out/bin/python3.13
-      makeWrapper ${pkgs.python3}/bin/python3.13 $out/bin/python3.13 \
-        --prefix LD_LIBRARY_PATH : "${makeLibraryPath config.programs.nix-ld.libraries}"
-    '';
-  };
 in
 {
   options.modules.dev.lang.python = {
@@ -28,7 +17,7 @@ in
 
   config = mkIf cfg.enable {
     user.packages = with pkgs; [
-      patchedPython3
+      python3
       uv
       ruff
     ];
