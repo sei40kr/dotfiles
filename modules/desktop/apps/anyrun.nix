@@ -8,6 +8,14 @@
 let
   inherit (lib) mkEnableOption mkIf mkPackageOption;
   cfg = config.modules.desktop.apps.anyrun;
+
+  anyrun-dmenu = pkgs.writeShellScriptBin "anyrun-dmenu" ''
+    exec ${cfg.package}/bin/anyrun \
+      --plugins ${cfg.package}/lib/libstdin.so \
+      --show-results-immediately true \
+      --hide-plugin-info true \
+      "$@"
+  '';
 in
 {
   options.modules.desktop.apps.anyrun = {
@@ -23,6 +31,7 @@ in
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       cfg.package
+      anyrun-dmenu
       rink
     ];
 
