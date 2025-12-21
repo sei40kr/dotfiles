@@ -40,6 +40,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    kitty-tmux = {
+      url = "github:sei40kr/kitty-tmux";
+      flake = false;
+    };
+
     nix-std.url = "github:chessai/nix-std";
 
     tmux-project = {
