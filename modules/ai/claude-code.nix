@@ -61,7 +61,7 @@ in
               hooks = [
                 {
                   type = "command";
-                  command = "${pkgs.libnotify}/bin/notify-send 'Claude Code' 'Action required or input idle.'";
+                  command = "${pkgs.libnotify}/bin/notify-send 'Claude Code' 'Action required or input idle.' -h string:x-dunst-stack-tag:claude_code";
                 }
               ];
             }
@@ -71,7 +71,7 @@ in
               hooks = [
                 {
                   type = "command";
-                  command = "${pkgs.libnotify}/bin/notify-send 'Claude Code' 'Response complete!'";
+                  command = "${pkgs.libnotify}/bin/notify-send 'Claude Code' 'Response complete!' -h string:x-dunst-stack-tag:claude_code";
                 }
               ];
             }
