@@ -1,7 +1,11 @@
 { nixosSystem }:
 
 nixosSystem "x86_64-linux" (
-  { inputs, pkgs, ... }:
+  {
+    config,
+    pkgs,
+    ...
+  }:
   {
     imports = [ ./_hardware-configuration.nix ];
 
@@ -45,30 +49,43 @@ nixosSystem "x86_64-linux" (
 
     networking.interfaces.enp0s31f6.useDHCP = true;
 
-    services.xserver.displayManager.setupCommands = "${pkgs.autorandr}/bin/autorandr -c";
-    services.xserver.displayManager.lightdm = {
-      enable = true;
+    services.openvpn.servers.work = {
+      autoStart = false;
+      updateResolvConf = true;
+      config = ''
+        client
+        dev tun
+        proto udp
+        nobind
+        resolv-retry infinite
+        fragment 1472
+        mssfix 1300
+        keepalive 10 60
+        persist-tun
+        persist-key
+        verb 3
+        auth SHAKE256
+        cipher AES-256-GCM
+        remote-cert-tls server
+        ca ${config.age.secrets."work-vpn-ca".path}
+        tls-version-min 1.2
+        tls-cipher TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384
+        tls-crypt /var/lib/openvpn/work-tc.key
+        reneg-sec 0
+        auth-nocache
+        auth-user-pass /var/lib/openvpn/work-auth.txt
+        config ${config.age.secrets."work-vpn-remotes".path}
+      '';
     };
-
-    services.autorandr = {
-      enable = true;
-      profiles = {
-        default = {
-          fingerprint = {
-            DP-0 = "00ffffffffffff0052623f0201010181ff220103806e3e780a0dc9a05747982712484c2108008180010101010101010101010101010108e80030f2705a80b0588a0040846300001e023a801871382d40582c450040846300001e000000fc00544f53484942412d54560a2020000000fd00173d0f793c000a20202020202001d7020364f34e6110202204040302040401625f5d3b097f070f7f071507503507483e1fc04d0200570600677e005f54016d030c002300b83c2f006001030467d85dc401788003e305c301e200d9e3060f01e30f0100eb0100000000000000000000835f0000565e00a0a0a029503020350040846300001a00000000000000000044";
-            HDMI-0 = "00ffffffffffff0009d13580455400002b1f0103803c22782a3355ac524ea026105054a56b80d1c0b300a9c08180810081c001010101565e00a0a0a029503020350055502100001a000000ff005a414d30303431353031390a20000000fd00184c1e873c000a202020202020000000fc0042656e5120504432373035510a015b020344f14f5d5e5f6061101f22212004131203012309070783010000e200cf6d030c001000383c20006001020367d85dc401788003e305c301e30f1800e6060501575748565e00a0a0a029503020350055502100001a00000000000000000000000000000000000000000000000000000000000000000000000000000000007c";
-          };
-          config = {
-            DP-0.enable = false;
-            HDMI-0 = {
-              enable = true;
-              primary = true;
-              mode = "2560x1440";
-              dpi = builtins.floor (96 * 1.2);
-            };
-          };
-        };
-      };
+    age.secrets."work-vpn-ca" = {
+      file = ./secrets/work-vpn-ca.crt.age;
+      owner = "root";
+      mode = "0440";
+    };
+    age.secrets."work-vpn-remotes" = {
+      file = ./secrets/work-vpn-remotes.conf.age;
+      owner = "root";
+      mode = "0440";
     };
 
     # Enable CUPS to print documents
