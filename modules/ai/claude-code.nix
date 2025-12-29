@@ -90,6 +90,8 @@ in
       mcpServers = mapAttrs convertMcpServer mcpCfg;
     };
 
+    home.file.".claude/skills".source = ../../config/ai/skills;
+
     environment.etc."ccstatusline/settings.json" = mkIf cfg.statusline.enable {
       text = builtins.toJSON {
         version = 3;
