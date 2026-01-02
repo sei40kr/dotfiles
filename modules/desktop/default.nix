@@ -4,6 +4,7 @@
   imports = [
     ./dconf.nix
     ./fontconfig.nix
+    ./gammastep.nix
     ./gdm.nix
     ./gtk.nix
     ./regreet.nix
