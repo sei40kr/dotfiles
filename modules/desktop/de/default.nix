@@ -225,7 +225,7 @@ let
       # Same blur & modulate parameters as the GNOME unlock dialog
       # https://gitlab.gnome.org/GNOME/gnome-shell/-/blob/main/js/ui/unlockDialog.js#L27-28
       ''
-        convert ${path} -blur 0x60 -modulate 55,100,100 $out
+        magick ${path} -blur 0x60 -modulate 55,100,100 $out
       '';
 in
 {
