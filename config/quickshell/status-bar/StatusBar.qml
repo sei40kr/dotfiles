@@ -39,12 +39,13 @@ PanelWindow {
             rightMargin: margin
             verticalCenter: parent.verticalCenter
         }
-        spacing: 16
+        spacing: 24
     }
 
     Rectangle {
         anchors.fill: parent
         color: Theme.backgroundColor
+        clip: false
 
         PwObjectTracker {
             objects: [Pipewire.defaultAudioSink]
@@ -68,8 +69,19 @@ PanelWindow {
                 precision: SystemClock.Seconds
             }
 
+            // Group 1: System usage indicators
+            RowLayout {
+                spacing: 16
+
+                CpuUsage {}
+                MemoryUsage {}
+                DiskUsage {}
+            }
+
+            // Group 2: Volume
             VolumeIcon {}
 
+            // Group 3: Clock
             Clock {
                 systemClock: clock
             }

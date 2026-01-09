@@ -20,6 +20,10 @@ in
     environment.systemPackages = with pkgs; [
       quickshell
       (mkIf desktopCfg.wm.niri.enable my.qml-niri)
+      # Commands used by status bar indicators
+      sysstat # mpstat for CPU usage
+      procps # free for memory usage
+      coreutils # df for disk usage
     ];
 
     home.configFile."quickshell".source = ../../../config/quickshell;
