@@ -8,6 +8,12 @@ QtObject {
     readonly property color activeColor: "#82aaff"
     readonly property color inactiveColor: "#636da6"
 
+    // Usage indicator colors
+    readonly property color usageBarBackground: "#414868"
+    readonly property color usageSafe: "#9ece6a"      // Green (0-60%)
+    readonly property color usageWarning: "#e0af68"   // Yellow (60-85%)
+    readonly property color usageDanger: "#f7768e"    // Red (85-100%)
+
     // Fonts
     readonly property string fontFamily: "sans-serif"
     readonly property string iconFontFamily: "Symbols Nerd Font"
