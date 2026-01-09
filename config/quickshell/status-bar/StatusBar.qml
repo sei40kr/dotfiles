@@ -78,8 +78,13 @@ PanelWindow {
                 DiskUsage {}
             }
 
-            // Group 2: Volume
-            VolumeIcon {}
+            // Group 2: VPN and Volume
+            RowLayout {
+                spacing: 16
+
+                VpnIndicator {}
+                VolumeIcon {}
+            }
 
             // Group 3: Clock
             Clock {

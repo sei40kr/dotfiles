@@ -2,4 +2,6 @@ module services
 singleton Memory 1.0 Memory.qml
 singleton Cpu 1.0 Cpu.qml
 singleton Disk 1.0 Disk.qml
+singleton Vpn 1.0 Vpn.qml
 CpuCore 1.0 CpuCore.qml
+VpnConnection 1.0 VpnConnection.qml

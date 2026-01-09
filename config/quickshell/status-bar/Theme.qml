@@ -14,6 +14,9 @@ QtObject {
     readonly property color usageWarning: "#e0af68"   // Yellow (60-85%)
     readonly property color usageDanger: "#f7768e"    // Red (85-100%)
 
+    // VPN indicator colors
+    readonly property color vpnConnected: "#9ece6a"   // Green
+
     // Fonts
     readonly property string fontFamily: "sans-serif"
     readonly property string iconFontFamily: "Symbols Nerd Font"

@@ -10,7 +10,8 @@ Text {
             "volume-high": "\udb81\udd7e",
             "memory": "\uefc5",
             "cpu": "\udb80\udf5b",
-            "disk": "\uf0a0"
+            "disk": "\uf0a0",
+            "vpn": "\udb81\udd82"
         })
 
     color: Theme.foregroundColor
