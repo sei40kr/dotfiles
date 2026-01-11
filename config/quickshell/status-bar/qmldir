@@ -11,3 +11,5 @@ MemoryUsage 1.0 MemoryUsage.qml
 CpuUsage 1.0 CpuUsage.qml
 DiskUsage 1.0 DiskUsage.qml
 VpnIndicator 1.0 VpnIndicator.qml
+PomodoroTimer 1.0 PomodoroTimer.qml
+GnomePomodoroService 1.0 GnomePomodoroService.qml

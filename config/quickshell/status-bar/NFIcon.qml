@@ -11,7 +11,11 @@ Text {
             "memory": "\uefc5",
             "cpu": "\udb80\udf5b",
             "disk": "\uf0a0",
-            "vpn": "\udb81\udd82"
+            "vpn": "\udb81\udd82",
+            "pause": "\udb80\udfe4",
+            "tomato": "\ue003",
+            "coffee": "\udb80\udd76",
+            "bed": "\udb82\udca0"
         })
 
     color: Theme.foregroundColor

@@ -24,6 +24,7 @@ in
       sysstat # mpstat for CPU usage
       procps # free for memory usage
       coreutils # df for disk usage
+      glib # gdbus for Pomodoro timer
     ];
 
     home.configFile."quickshell".source = ../../../config/quickshell;

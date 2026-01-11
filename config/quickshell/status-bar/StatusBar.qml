@@ -69,6 +69,8 @@ PanelWindow {
                 precision: SystemClock.Seconds
             }
 
+            PomodoroTimer {}
+
             // Group 1: System usage indicators
             RowLayout {
                 spacing: 16
