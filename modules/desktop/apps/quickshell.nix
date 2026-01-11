@@ -20,11 +20,6 @@ in
     environment.systemPackages = with pkgs; [
       quickshell
       (mkIf desktopCfg.wm.niri.enable my.qml-niri)
-      # Commands used by status bar indicators
-      sysstat # mpstat for CPU usage
-      procps # free for memory usage
-      coreutils # df for disk usage
-      glib # gdbus for Pomodoro timer
     ];
 
     home.configFile."quickshell".source = ../../../config/quickshell;
@@ -35,6 +30,13 @@ in
       partOf = [ "graphical-session.target" ];
       after = [ "graphical-session.target" ];
       requisite = [ "graphical-session.target" ];
+      # Commands used by status bar indicators
+      path = with pkgs; [
+        sysstat # mpstat for CPU usage
+        procps # free for memory usage
+        coreutils # df for disk usage
+        glib # gdbus for Pomodoro timer
+      ];
       serviceConfig = {
         Type = "simple";
         ExecStart = "${pkgs.quickshell}/bin/quickshell";
