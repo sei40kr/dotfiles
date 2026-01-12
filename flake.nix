@@ -16,6 +16,11 @@
       };
     };
 
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     llm-agents-nix.url = "github:numtide/llm-agents.nix";
 
     fenix = {
@@ -86,6 +91,7 @@
       flake-parts,
       git-hooks,
       home-manager,
+      lanzaboote,
       nixpkgs,
       nixpkgs-unstable,
       treefmt-nix,
@@ -110,6 +116,7 @@
                 { nixpkgs.pkgs = pkgs; }
                 agenix.nixosModules.default
                 home-manager.nixosModules.home-manager
+                lanzaboote.nixosModules.lanzaboote
                 ./modules
                 hostCfg
               ];

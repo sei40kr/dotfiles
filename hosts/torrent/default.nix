@@ -2,10 +2,14 @@
 
 nixosSystem "x86_64-linux" (
   {
+    lib,
     config,
     pkgs,
     ...
   }:
+  let
+    inherit (lib) mkForce;
+  in
   {
     imports = [ ./_hardware-configuration.nix ];
 
@@ -17,26 +21,17 @@ nixosSystem "x86_64-linux" (
       '';
     };
 
-    # Use the systemd-boot EFI boot loader.
+    # Use systemd-boot with Secure Boot via Lanzaboote
+    boot.loader.systemd-boot.enable = mkForce false;
     boot.loader.efi = {
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot";
     };
-    boot.loader.grub = {
+    boot.lanzaboote = {
       enable = true;
-      devices = [ "nodev" ];
-      extraEntries = ''
-        menuentry "Windows 11" {
-          insmod part_gpt
-          insmod fat
-          insmod search_fs_uuid
-          insmod chain
-          search --fs-uuid --set=root 3448-B644
-          chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-        }
-      '';
-      default = "saved";
-      efiSupport = true;
+      pkiBundle = "/var/lib/sbctl";
+      autoGenerateKeys.enable = true;
+      autoEnrollKeys.enable = true;
     };
 
     # Set your time zone.
@@ -199,6 +194,8 @@ nixosSystem "x86_64-linux" (
     modules.term.wezterm.enable = true;
 
     environment.systemPackages = with pkgs; [
+      efibootmgr
+      sbctl
       bottom
       ghq
       strace
