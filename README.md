@@ -31,6 +31,32 @@
    nh os switch
    ```
 
+### Secure Boot Setup (for hosts with Lanzaboote)
+
+Some hosts (e.g., `torrent`) have Secure Boot enabled via Lanzaboote. For these hosts:
+
+1. Before installation, **disable Secure Boot** in your UEFI/BIOS settings.
+
+1. Complete the standard installation steps above.
+
+1. After the first boot, verify Secure Boot keys are generated:
+
+   ```sh
+   sudo sbctl status
+   ```
+
+1. Reboot into UEFI/BIOS settings and enable **Setup Mode** (this clears existing Secure Boot keys).
+
+1. Reboot the system. Lanzaboote will automatically enroll the generated keys.
+
+1. Verify Secure Boot is working:
+
+   ```sh
+   sudo sbctl status
+   ```
+
+   You should see `Secure Boot: ✓ Enabled`.
+
 ## Acknowledgements
 
 - [Flakes - NixOS Wiki](https://nixos.wiki/wiki/Flakes)
