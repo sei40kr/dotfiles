@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (builtins) readFile;
+  inherit (builtins) match readFile;
   inherit (lib)
     concatStringsSep
     mapAttrsToList
@@ -55,7 +55,17 @@ in
       extraConfig = ''
         ${readFile config_nu}
 
-        ${concatStringsSep "\n" (mapAttrsToList (name: value: "alias ${name} = ${value}") shellCfg.aliases)}
+        ${concatStringsSep "\n" (
+          mapAttrsToList (
+            name: value:
+            # Nushell aliases don't support piping or semicolons
+            # Use `def` for complex commands with pipes (|) or semicolons (;)
+            if match ".*(;|\\|).*" value != null then
+              "def ${name} [] { ${value} }"
+            else
+              "alias ${name} = ${value}"
+          ) shellCfg.aliases
+        )}
 
         ${cfg.rcInit}
       '';
