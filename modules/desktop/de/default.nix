@@ -364,6 +364,26 @@ in
     user.packages = with pkgs; [
       (mkIf (!cfg.wayland) xclip)
       (mkIf cfg.wayland wl-clipboard)
+
+      # Desktop entries for system power actions
+      (makeDesktopItem {
+        name = "shutdown";
+        desktopName = "Shutdown";
+        exec = "systemctl poweroff";
+        icon = "shutdown";
+        terminal = false;
+        categories = [ "System" ];
+        comment = "Power off the system";
+      })
+      (makeDesktopItem {
+        name = "reboot";
+        desktopName = "Reboot";
+        exec = "systemctl reboot";
+        icon = "reboot";
+        terminal = false;
+        categories = [ "System" ];
+        comment = "Restart the system";
+      })
     ];
 
     fonts.packages = [
