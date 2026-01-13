@@ -87,12 +87,45 @@ nixosSystem "x86_64-linux" (
     services.printing.enable = true;
 
     # Enable sound
-    hardware.pulseaudio = {
-      enable = false;
-      extraConfig = ''
-        set-default-sink alsa_output.pci-0000_01_00.1.hdmi-stereo
-        set-default-source alsa_input.usb-Razer_Inc_Razer_Seiren_Mini_UC2203L03500294-00.mono-fallback
-      '';
+    services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      pulse.enable = true;
+      wireplumber = {
+        enable = true;
+        extraConfig = {
+          "my-default-devices" = {
+            "monitor.alsa.rules" = [
+              {
+                matches = [
+                  {
+                    "node.name" = "alsa_output.pci-0000_01_00.1.hdmi-stereo";
+                  }
+                ];
+                actions = {
+                  update-props = {
+                    "priority.driver" = 1050;
+                    "priority.session" = 1050;
+                  };
+                };
+              }
+              {
+                matches = [
+                  {
+                    "node.name" = ''~alsa_input\.usb-Razer_Inc_Razer_Seiren_Mini_.*'';
+                  }
+                ];
+                actions = {
+                  update-props = {
+                    "priority.driver" = 1050;
+                    "priority.session" = 1050;
+                  };
+                };
+              }
+            ];
+          };
+        };
+      };
     };
 
     programs.gnupg.agent.enable = true;
