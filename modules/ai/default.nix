@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  inputs,
   pkgs,
   ...
 }:
@@ -200,7 +201,10 @@ in
   };
 
   config = {
-    modules.ai.skillPaths = [ ../../config/ai/skills ];
+    modules.ai.skillPaths = [
+      "${inputs.anthropics-skills}/skills"
+      ../../config/ai/skills
+    ];
 
     environment.systemPackages = lib.flatten (
       lib.mapAttrsToList (

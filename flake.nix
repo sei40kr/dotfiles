@@ -23,6 +23,11 @@
 
     llm-agents-nix.url = "github:numtide/llm-agents.nix";
 
+    anthropics-skills = {
+      url = "github:anthropics/skills";
+      flake = false;
+    };
+
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -25,6 +25,22 @@
         "type": "github"
       }
     },
+    "anthropics-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1766254184,
+        "narHash": "sha256-pllFZoWRdtLliz/5pLWks0V9nKFMzeWoRcmFgu2UWi8=",
+        "owner": "anthropics",
+        "repo": "skills",
+        "rev": "69c0b1a0674149f27b61b2635f935524b6add202",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anthropics",
+        "repo": "skills",
+        "type": "github"
+      }
+    },
     "blueprint": {
       "inputs": {
         "nixpkgs": [
@@ -641,6 +657,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "anthropics-skills": "anthropics-skills",
         "fenix": "fenix",
         "flake-parts": "flake-parts",
         "git-hooks": "git-hooks",
