@@ -117,6 +117,7 @@ let
 in
 {
   imports = [
+    ./agent-browser.nix
     ./claude-code.nix
     ./codex.nix
     ./crush.nix
