@@ -97,6 +97,16 @@ let
       };
     };
   };
+
+  defaultEditor =
+    if cfg.lazyvim.enable then
+      "lazyvim"
+    else if cfg.emacs.enable then
+      "emacs"
+    else if cfg.helix.enable then
+      "hx"
+    else
+      null;
 in
 {
   imports = [
@@ -154,5 +164,9 @@ in
         name: server: lib.optional (server.package != null) server.package
       ) cfg.lspServers
     );
+
+    environment.variables = mkIf (defaultEditor != null) {
+      EDITOR = defaultEditor;
+    };
   };
 }
