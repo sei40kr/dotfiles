@@ -55,6 +55,6 @@ in
       mcp = mapAttrs convertMcpServer aiCfg.mcpServers;
       lsp = mapAttrs convertLspServer config.modules.editors.lspServers;
     };
-    home.configFile."crush/skills".source = ../../config/ai/skills;
+    home.configFile."crush/skills".source = aiCfg._combinedSkillsPath;
   };
 }

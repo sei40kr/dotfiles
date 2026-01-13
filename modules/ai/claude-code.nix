@@ -89,7 +89,7 @@ in
     environment.etc."claude-code/managed-mcp.json".text = builtins.toJSON {
       mcpServers = mapAttrs convertMcpServer mcpCfg;
     };
-    home.file.".claude/skills".source = ../../config/ai/skills;
+    home.file.".claude/skills".source = config.modules.ai._combinedSkillsPath;
 
     home.configFile."ccstatusline/settings.json".text = mkIf cfg.ccstatusline.enable (
       builtins.toJSON {

@@ -174,9 +174,33 @@ in
         };
       };
     };
+
+    skillPaths = mkOption {
+      type = types.listOf (types.either types.path types.str);
+      default = [ ];
+      description = "List of skill directories to be combined and provided to AI tools";
+      example = [
+        ../../config/ai/skills
+        "/home/user/custom-skills"
+      ];
+    };
+
+    # Internal option for the combined skills path
+    _combinedSkillsPath = mkOption {
+      type = types.nullOr types.path;
+      internal = true;
+      readOnly = true;
+      default = pkgs.symlinkJoin {
+        name = "ai-skills";
+        paths = cfg.skillPaths;
+      };
+      description = "Combined skills directory created from skillPaths list";
+    };
   };
 
   config = {
+    modules.ai.skillPaths = [ ../../config/ai/skills ];
+
     environment.systemPackages = lib.flatten (
       lib.mapAttrsToList (
         name: server: lib.optional (server ? package && server.package != null) server.package
