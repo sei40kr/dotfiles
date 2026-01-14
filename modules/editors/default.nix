@@ -97,16 +97,6 @@ let
       };
     };
   };
-
-  defaultEditor =
-    if cfg.lazyvim.enable then
-      "lazyvim"
-    else if cfg.emacs.enable then
-      "emacs"
-    else if cfg.helix.enable then
-      "hx"
-    else
-      null;
 in
 {
   imports = [
@@ -122,6 +112,21 @@ in
   ];
 
   options.modules.editors = {
+    defaultEditor = mkOption {
+      type = nullOr str;
+      readOnly = true;
+      default =
+        if cfg.lazyvim.enable then
+          "lazyvim"
+        else if cfg.emacs.enable then
+          "emacs"
+        else if cfg.helix.enable then
+          "hx"
+        else
+          null;
+      description = "The default editor to use, automatically determined by enabled editor modules";
+    };
+
     fonts = {
       code = mkOpt fontType {
         name = "monospace";
@@ -165,8 +170,8 @@ in
       ) cfg.lspServers
     );
 
-    environment.variables = mkIf (defaultEditor != null) {
-      EDITOR = defaultEditor;
+    environment.variables = mkIf (cfg.defaultEditor != null) {
+      EDITOR = cfg.defaultEditor;
     };
   };
 }
