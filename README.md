@@ -47,8 +47,7 @@ Some hosts (e.g., `torrent`) have Secure Boot enabled via Lanzaboote. For these 
 
 1. Reboot into UEFI/BIOS settings and enable **Setup Mode** (this clears existing Secure Boot keys).
 
-   > [!NOTE]
-   > Some BIOS menus may not have a "Setup Mode" option. In this case, delete all existing Secure Boot keys (PK, KEK, db, dbx) manually to enter Setup Mode.
+   **Note:** Some BIOS menus may not have a "Setup Mode" option. In this case, delete all existing Secure Boot keys (PK, KEK, db, dbx) manually to enter Setup Mode.
 
 1. Reboot the system. Lanzaboote will automatically enroll the generated keys.
 
