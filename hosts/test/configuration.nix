@@ -3,12 +3,18 @@
   # Minimal test host configuration
 
   # Phase 1: Docker module test
+  # Phase 2: SSH and WireGuard modules test
+  # Note: agenix is imported by wireguard module
   imports = [
     inputs.self.nixosModules.docker
+    inputs.self.nixosModules.ssh
+    inputs.self.nixosModules.wireguard
   ];
 
   modules.services.docker.enable = true;
   modules.services.docker.compose.enable = true;
+  modules.services.ssh.enable = true;
+  modules.services.wireguard.enable = true;
 
   # Basic system settings
   networking.hostName = "test";

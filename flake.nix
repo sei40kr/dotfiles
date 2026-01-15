@@ -86,5 +86,27 @@
   };
 
   # Delegate all outputs to blueprint for automatic module detection
-  outputs = inputs: inputs.blueprint { inherit inputs; };
+  outputs =
+    {
+      self,
+      agenix,
+      blueprint,
+      fenix,
+      nixpkgs-unstable,
+      ...
+    }@inputs:
+    blueprint {
+      inherit inputs;
+      nixpkgs.config.allowUnfree = true;
+      nixpkgs.overlays = [
+        (final: _prev: {
+          unstable = import nixpkgs-unstable {
+            inherit (final.stdenv.hostPlatform) system;
+            config.allowUnfree = true;
+          };
+          my = self.packages.${final.stdenv.hostPlatform.system};
+        })
+        fenix.overlays.default
+      ];
+    };
 }

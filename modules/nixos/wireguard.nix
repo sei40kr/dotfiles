@@ -1,17 +1,24 @@
-{ config, lib, ... }:
+{
+  config,
+  inputs,
+  lib,
+  ...
+}:
 
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.services.wireguard;
 in
 {
+  imports = [ inputs.self.nixosModules.agenix ];
+
   options.modules.services.wireguard = {
-    enable = mkEnableOption "WireGuard";
+    enable = mkEnableOption "WireGuard VPN";
   };
 
   config = mkIf cfg.enable {
-    age.secrets.wg0-private.file = ../../config/wireguard/wg0/private.age;
-    age.secrets.wg0-peer1-psk.file = ../../config/wireguard/wg0/peer1-psk.age;
+    age.secrets.wg0-private.file = "${inputs.self}/config/wireguard/wg0/private.age";
+    age.secrets.wg0-peer1-psk.file = "${inputs.self}/config/wireguard/wg0/peer1-psk.age";
 
     networking.wg-quick.interfaces.wg0 = {
       address = [ "100.118.32.138/32" ];

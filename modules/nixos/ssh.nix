@@ -1,14 +1,12 @@
 { config, lib, ... }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.my) mkBoolOpt;
-
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.services.ssh;
 in
 {
   options.modules.services.ssh = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "OpenSSH server";
   };
 
   config = mkIf cfg.enable {
@@ -21,10 +19,8 @@ in
       };
     };
 
-    user.openssh.authorizedKeys.keys =
-      if config.user.name == "sei40kr" then
-        [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK94YRijT3xT+bu3fhfg41Ieu++1VKkqg0xv2mr+hV7C sei40krs-iPad" ]
-      else
-        [ ];
+    users.users.sei40kr.openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK94YRijT3xT+bu3fhfg41Ieu++1VKkqg0xv2mr+hV7C sei40krs-iPad"
+    ];
   };
 }
