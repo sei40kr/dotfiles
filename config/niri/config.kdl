@@ -4,6 +4,9 @@ binds {
   // Application:
   Mod+Space { spawn "anyrun"; }
 
+  // Browser:
+  Mod+Shift+Return { spawn "sensible-browser"; }
+
   // Hotkey Overlay:
   Mod+Shift+Slash { show-hotkey-overlay; }
 
