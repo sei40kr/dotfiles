@@ -2,11 +2,12 @@
 {
   # Minimal home-manager configuration for testing
 
-  # Add home-manager modules incrementally for testing
-  # Start with empty imports
+  # Phase 1: Docker module test
   imports = [
-    # Modules will be added in each phase
+    inputs.self.homeModules.docker
   ];
+
+  modules.dev.tools.docker.enable = true;
 
   home.stateVersion = "23.11";
 }
