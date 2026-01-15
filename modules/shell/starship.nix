@@ -13,7 +13,7 @@ let
     pkgs.runCommandLocal "starship-nerd-font-symbols-preset-${pkgs.starship.version}" { }
       ''
         mkdir -p $out/etc
-        ${pkgs.starship}/bin/starship preset nerd-font-symbols >$out/etc/starship.toml
+        XDG_CACHE_HOME=$(mktemp -d) ${pkgs.starship}/bin/starship preset nerd-font-symbols >$out/etc/starship.toml
       '';
 
   starship_zsh = pkgs.runCommand "starship-zhook" { buildInputs = [ pkgs.starship ]; } ''
