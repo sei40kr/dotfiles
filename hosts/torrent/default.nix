@@ -83,6 +83,9 @@ nixosSystem "x86_64-linux" (
       mode = "0440";
     };
 
+    services.greetd.enable = true;
+    modules.desktop.regreet.enable = true;
+
     # Enable CUPS to print documents
     services.printing.enable = true;
 
