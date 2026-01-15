@@ -177,7 +177,6 @@ in
     modules.desktop.de.enable = true;
     modules.desktop.de.wayland = true;
 
-    modules.desktop.browsers.sensible.enable = true;
     modules.term.sensible.enable = true;
     modules.desktop.apps.dunst.enable = true;
     modules.desktop.apps.rofi.enable = true;
