@@ -147,11 +147,15 @@ nixosSystem "x86_64-linux" (
 
     services.ollama.enable = true;
 
+    modules.desktop.wm.niri.enable = true;
     modules.desktop.theme.active = "whitesur";
 
     modules.desktop.apps.bitwarden.enable = true;
+    modules.desktop.apps.dunst.enable = true;
     modules.desktop.apps.gnome.pomodoro.enable = true;
+    modules.desktop.apps.quickshell.enable = true;
     modules.desktop.apps.steam.enable = true;
+    modules.desktop.apps.swww.enable = true;
 
     modules.desktop.browsers.vivaldi.enable = true;
 
