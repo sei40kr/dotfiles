@@ -1,13 +1,50 @@
-{ lib, ... }:
+{ inputs, ... }:
 
 let
-  inherit (lib) attrValues foldr makeExtensible;
-
-  mylib = makeExtensible (self: {
-    attrs = import ./attrs.nix { inherit self lib; };
-    extra-types = import ./extra-types.nix { inherit self lib; };
-    generators = import ./generators.nix { inherit self lib; };
-    options = import ./options.nix { inherit self lib; };
-  });
+  inherit (inputs.nixpkgs.lib)
+    filterAttrs
+    mapAttrs'
+    mdDoc
+    mkOption
+    types
+    ;
 in
-mylib.extend (_: super: foldr (a: b: a // b) { } (attrValues super))
+{
+  # mapFilterAttrs ::
+  #   (name -> value -> bool)
+  #   (name -> value -> { name = any; value = any; })
+  #   attrs
+  mapFilterAttrs =
+    pred: f: attrs:
+    filterAttrs pred (mapAttrs' f attrs);
+
+  extraTypes = {
+    fontType = types.submodule {
+      options = {
+        package = mkOption {
+          type = types.nullOr types.package;
+          default = null;
+          description = mdDoc ''
+            The font package to use.
+          '';
+        };
+
+        name = mkOption {
+          type = types.str;
+          example = "sans-serif";
+          description = mdDoc ''
+            The font name to use.
+          '';
+        };
+
+        size = mkOption {
+          type = types.int;
+          example = 10;
+          description = mdDoc ''
+            The font size in points.
+          '';
+        };
+      };
+    };
+  };
+}

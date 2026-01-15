@@ -1,10 +1,16 @@
 {
+  description = "NixOS configuration with blueprint";
+
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/25.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-25.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
+
+    # Blueprint framework for automatic module detection
+    blueprint.url = "github:numtide/blueprint";
+    blueprint.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager?ref=release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -33,8 +39,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-parts.url = "github:hercules-ci/flake-parts";
-
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,8 +58,6 @@
       url = "github:sei40kr/kitty-tmux";
       flake = false;
     };
-
-    nix-std.url = "github:chessai/nix-std";
 
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
@@ -87,120 +89,13 @@
     {
       self,
       agenix,
+      blueprint,
       fenix,
-      flake-parts,
-      git-hooks,
-      home-manager,
-      lanzaboote,
-      nixpkgs,
       nixpkgs-unstable,
-      treefmt-nix,
       ...
     }@inputs:
-    let
-      inherit (flake-parts.lib) mkFlake;
-      lib = nixpkgs.lib.extend (lib: _: { my = self.lib; });
-      inherit (lib) attrValues;
-    in
-    mkFlake { inherit inputs; } (
-      { withSystem, ... }:
-      let
-        nixosSystem =
-          system: hostCfg:
-          withSystem system (
-            { inputs', pkgs, ... }:
-            nixpkgs.lib.nixosSystem {
-              inherit system;
-              specialArgs = { inherit inputs inputs' lib; };
-              modules = [
-                { nixpkgs.pkgs = pkgs; }
-                agenix.nixosModules.default
-                home-manager.nixosModules.home-manager
-                lanzaboote.nixosModules.lanzaboote
-                ./modules
-                hostCfg
-              ];
-            }
-          );
-      in
-      {
-        imports = [
-          git-hooks.flakeModule
-          treefmt-nix.flakeModule
-        ];
-
-        flake = {
-          lib = import ./lib { inherit inputs lib; };
-
-          overlays = import ./overlays;
-
-          nixosConfigurations = import ./hosts { inherit nixosSystem; };
-        };
-
-        systems = [ "x86_64-linux" ];
-
-        perSystem =
-          {
-            config,
-            inputs',
-            pkgs,
-            self',
-            system,
-            ...
-          }:
-          {
-            config._module.args.pkgs =
-              let
-                pkgs' = import nixpkgs-unstable {
-                  inherit system;
-                  config.allowUnfree = true;
-                };
-                pkgs = import nixpkgs {
-                  inherit system;
-                  config.allowUnfree = true;
-                  overlays = [
-                    (_: _: {
-                      unstable = pkgs';
-                      my = self'.packages;
-                    })
-                    (_: _: { agenix = inputs'.agenix.packages.default; })
-                    fenix.overlays.default
-                    (_: _: { wez-tmux = inputs'.wez-tmux.packages.default; })
-                    (_: _: { wez-pain-control = inputs'.wez-pain-control.packages.default; })
-                    (_: _: { wez-per-project-workspace = inputs'.wez-per-project-workspace.packages.default; })
-                    (_: _: { wez-status-generator = inputs'.wez-status-generator.packages.default; })
-                  ]
-                  ++ attrValues self.overlays;
-                };
-              in
-              pkgs;
-
-            config.packages = pkgs.callPackage ./packages { };
-
-            config.devShells =
-              let
-                shells = pkgs.callPackage ./shells { };
-              in
-              shells
-              // {
-                default = pkgs.mkShell {
-                  shellHook = ''
-                    ${config.pre-commit.installationScript}
-                  '';
-                };
-              };
-
-            config.pre-commit.settings.hooks = {
-              nil.enable = true;
-              statix.enable = true;
-              treefmt.enable = true;
-            };
-
-            config.treefmt = {
-              projectRootFile = "flake.nix";
-              programs.nixfmt.enable = true;
-            };
-          };
-      }
-    );
+    (blueprint { inherit inputs; })
+    // {
+      overlays = import ./overlays;
+    };
 }
