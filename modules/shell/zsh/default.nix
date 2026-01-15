@@ -75,18 +75,6 @@ in
               '';
         in
         ''
-          ${optionalString shellCfg.tmux.autoRun ''
-            if [[ -z "$TMUX" && -z "$EMACS" && -z "$VIMRUNTIME" && -z "$INSIDE_EMACS" && "$ZED_TERM" != true && "$TERM_PROGRAM" != 'WezTerm' ]]; then
-              tmux start-server
-
-              if ! tmux has-session 2>/dev/null; then
-                tmux new-session -ds main \; set-option -t main destroy-unattached off
-              fi
-
-              exec tmux attach-session -d
-            fi
-          ''}
-
           KEYTIMEOUT=1
           bindkey -e
           bindkey '^u' backward-kill-line
@@ -122,8 +110,6 @@ in
           FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
           FZF_CTRL_T_OPTS="--preview='bat -pp --color=always {}'"
           FZF_ALT_C_OPTS="--preview='eza -la {}'"
-          FZF_TMUX=1
-          FZF_TMUX_OPTS='-p 80%,80%'
           zinit ice bindmap'^R->;\\ec->' multisrc'{completion,key-bindings}.zsh'
           zinit light '${pkgs.fzf}/share/fzf'
           bindkey -M emacs -r '^R'
@@ -136,15 +122,6 @@ in
 
           zinit ice if'[[ "$TERM_PROGRAM" == "WezTerm" ]]'
           zinit light 'sei40kr/zsh-wez-man'
-
-          if [[ -n "$TMUX" ]]; then
-            zinit ice ver'37a3c697461b33dd2f85998431cdfec6d963be37'
-            zinit light 'sei40kr/zsh-tmux-man'
-            # Remove alias run-help=man
-            if [[ ''${+aliases[run-help]} == 1 ]]; then
-              unalias run-help
-            fi
-          fi
 
           zinit ice id-as'OMZP::bgnotify'
           zinit snippet ${omzp "bgnotify/bgnotify.plugin.zsh"}

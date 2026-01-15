@@ -24,10 +24,8 @@ in
     ./git.nix
     ./nushell.nix
     ./oj.nix
-    ./ranger.nix
     ./ripgrep.nix
     ./starship.nix
-    ./tmux.nix
     ./yazi.nix
     ./zsh
     ./apps

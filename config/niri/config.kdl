@@ -139,8 +139,6 @@ window-rule {
 
 window-rule {
   match app-id="jetbrains-idea"
-  match app-id="jetbrains-datagrip"
-  match app-id="jetbrains-dataspell"
   match app-id="org.zealdocs.zeal"
   match app-id="kitty"
   match app-id="org.wezfurlong.wezterm"

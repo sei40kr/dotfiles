@@ -100,8 +100,6 @@ let
 in
 {
   imports = [
-    ./datagrip.nix
-    ./dataspell.nix
     ./emacs.nix
     ./fonts.nix
     ./helix.nix

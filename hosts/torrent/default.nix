@@ -144,13 +144,10 @@ nixosSystem "x86_64-linux" (
 
     services.ollama.enable = true;
 
-    modules.desktop.wm.sway.enable = true;
-    modules.desktop.wm.xmonad.enable = true;
     modules.desktop.theme.active = "whitesur";
 
     modules.desktop.apps.bitwarden.enable = true;
     modules.desktop.apps.gnome.pomodoro.enable = true;
-    modules.desktop.apps.polybar.openweathermap.cityId = 1860234;
     modules.desktop.apps.steam.enable = true;
 
     modules.desktop.browsers.vivaldi.enable = true;
@@ -166,10 +163,6 @@ nixosSystem "x86_64-linux" (
     modules.dev.lang.nix.enable = true;
     modules.dev.lang.python.enable = true;
     modules.dev.lang.rust.enable = true;
-    modules.dev.lang.scala = {
-      enable = true;
-      bloop.enable = true;
-    };
     modules.dev.lang.shell.enable = true;
     modules.dev.lang.sql.enable = true;
     modules.dev.lang.web = {
@@ -186,8 +179,6 @@ nixosSystem "x86_64-linux" (
       name = "Iosevka NFM";
       size = 17;
     };
-    modules.editors.datagrip.enable = true;
-    modules.editors.dataspell.enable = true;
     modules.editors.emacs = {
       enable = true;
       doom.enable = true;
@@ -205,16 +196,11 @@ nixosSystem "x86_64-linux" (
       enable = true;
       compose.enable = true;
     };
-    modules.services.google-drive.enable = true;
     modules.services.ssh.enable = true;
 
     modules.shell.apps.fastfetch.enable = true;
     modules.shell.git.enable = true;
     modules.shell.oj.enable = true;
-    modules.shell.tmux = {
-      enable = true;
-      autoRun = true;
-    };
     modules.shell.zsh.enable = true;
 
     modules.term.font = {

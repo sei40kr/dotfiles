@@ -5,8 +5,6 @@ let
   ];
 in
 {
-  "polybar/openweathermap.key.age".publicKeys = publicKeys;
-  "polybar/google_calendar_service_account.json.age".publicKeys = publicKeys;
   "wireguard/wg0/private.age".publicKeys = publicKeys;
   "wireguard/wg0/peer1-psk.age".publicKeys = publicKeys;
   "wireguard/wg0/peer2-psk.age".publicKeys = publicKeys;

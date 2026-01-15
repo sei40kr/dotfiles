@@ -57,11 +57,6 @@
 
     nix-std.url = "github:chessai/nix-std";
 
-    tmux-project = {
-      url = "github:sei40kr/tmux-project";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -180,9 +175,7 @@
               in
               pkgs;
 
-            config.packages = pkgs.callPackage ./packages {
-              tmux-project = inputs'.tmux-project.packages.default;
-            };
+            config.packages = pkgs.callPackage ./packages { };
 
             config.devShells =
               let

@@ -1,7 +1,0 @@
-indicator
-clock
-timestr=%H:%M
-datestr=%b %e %a
-indicator-radius=100
-@backgroundOpts@
-font=@fontName@
