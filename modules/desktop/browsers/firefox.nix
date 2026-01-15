@@ -17,63 +17,67 @@ in
     programs.firefox = {
       enable = true;
       policies = {
-        ExtensionSettings =
-          {
-            # DeepL翻訳
-            "firefox-extension@deepl.com" = {
-              installation_mode = "normal_installed";
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/firefox-extension@deepl.com/latest.xpi";
-            };
-            # Gesturefy
-            "{506e023c-7f2b-40a3-8066-bc5deb40aebe}" = {
-              installation_mode = "normal_installed";
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/{506e023c-7f2b-40a3-8066-bc5deb40aebe}/latest.xpi";
-            };
-            # Keepa
-            "amptra@keepa.com" = {
-              installation_mode = "normal_installed";
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/amptra@keepa.com/latest.xpi";
-            };
-            # YouTube to NotebookLM
-            "yt.to.notebooklm@gmail.com" = {
-              installation_mode = "normal_installed";
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/yt.to.notebooklm@gmail.com/latest.xpi";
-            };
-            # アマゾン注文履歴フィルタ
-            "{7cf57bd8-e913-4560-95e1-2e7871fe3632}" = {
-              installation_mode = "normal_installed";
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/{7cf57bd8-e913-4560-95e1-2e7871fe3632}/latest.xpi";
-            };
-          }
-          // optionalAttrs config.modules.desktop.apps.bitwarden.enable {
-            # Bitwarden Password Manager
-            "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
-              installation_mode = "normal_installed";
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/{446900e4-71c2-419f-a6a7-df9c091e268b}/latest.xpi";
-            };
-          }
-          // optionalAttrs config.modules.dev.lang.web.enable {
-            # Apollo Client Devtools
-            "{a5260852-8d08-4979-8116-38f1129dfd22}" = {
-              installation_mode = "normal_installed";
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/{a5260852-8d08-4979-8116-38f1129dfd22}/latest.xpi";
-            };
-            # Lighthouse
-            "{cf3dba12-a848-4f68-8e2d-f9fadc0721de}" = {
-              installation_mode = "normal_installed";
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/{cf3dba12-a848-4f68-8e2d-f9fadc0721de}/latest.xpi";
-            };
-            # React Developer Tools
-            "@react-devtools" = {
-              installation_mode = "normal_installed";
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/@react-devtools/latest.xpi";
-            };
-            # Urql Devtools
-            "{c11f3a69-f159-4708-b044-853066c2d2fe}" = {
-              installation_mode = "normal_installed";
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/{c11f3a69-f159-4708-b044-853066c2d2fe}/latest.xpi";
-            };
+        ExtensionSettings = {
+          # DeepL翻訳
+          "firefox-extension@deepl.com" = {
+            installation_mode = "normal_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/firefox-extension@deepl.com/latest.xpi";
           };
+          # Gesturefy
+          "{506e023c-7f2b-40a3-8066-bc5deb40aebe}" = {
+            installation_mode = "normal_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/{506e023c-7f2b-40a3-8066-bc5deb40aebe}/latest.xpi";
+          };
+          # Keepa
+          "amptra@keepa.com" = {
+            installation_mode = "normal_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/amptra@keepa.com/latest.xpi";
+          };
+          # YouTube to NotebookLM
+          "yt.to.notebooklm@gmail.com" = {
+            installation_mode = "normal_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/yt.to.notebooklm@gmail.com/latest.xpi";
+          };
+          # アマゾン注文履歴フィルタ
+          "{7cf57bd8-e913-4560-95e1-2e7871fe3632}" = {
+            installation_mode = "normal_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/{7cf57bd8-e913-4560-95e1-2e7871fe3632}/latest.xpi";
+          };
+          # はてなブックマーク ブックマーク機能
+          "{b635fb0d-80bd-477f-91c8-d6cb60028077}" = {
+            installation_mode = "normal_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/{b635fb0d-80bd-477f-91c8-d6cb60028077}/latest.xpi";
+          };
+        }
+        // optionalAttrs config.modules.desktop.apps.bitwarden.enable {
+          # Bitwarden Password Manager
+          "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+            installation_mode = "normal_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/{446900e4-71c2-419f-a6a7-df9c091e268b}/latest.xpi";
+          };
+        }
+        // optionalAttrs config.modules.dev.lang.web.enable {
+          # Apollo Client Devtools
+          "{a5260852-8d08-4979-8116-38f1129dfd22}" = {
+            installation_mode = "normal_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/{a5260852-8d08-4979-8116-38f1129dfd22}/latest.xpi";
+          };
+          # Lighthouse
+          "{cf3dba12-a848-4f68-8e2d-f9fadc0721de}" = {
+            installation_mode = "normal_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/{cf3dba12-a848-4f68-8e2d-f9fadc0721de}/latest.xpi";
+          };
+          # React Developer Tools
+          "@react-devtools" = {
+            installation_mode = "normal_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/@react-devtools/latest.xpi";
+          };
+          # Urql Devtools
+          "{c11f3a69-f159-4708-b044-853066c2d2fe}" = {
+            installation_mode = "normal_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/{c11f3a69-f159-4708-b044-853066c2d2fe}/latest.xpi";
+          };
+        };
         SearchEngines = {
           Default = "Google";
         };
