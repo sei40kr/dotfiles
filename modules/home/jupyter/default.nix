@@ -7,13 +7,11 @@
 
 let
   inherit (lib)
+    mkEnableOption
     mkIf
     mkOption
-    mkEnableOption
     types
     ;
-
-  inherit (pkgs) stdenv;
   cfg = config.modules.dev.tools.jupyter;
 
   kernels = pkgs.jupyter-kernel.create { definitions = cfg.kernels; };
@@ -36,10 +34,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ python3Packages.notebook ];
+    home.packages = with pkgs; [ python3Packages.notebook ];
 
     home.file.".jupyter/jupyter_console_config.py".source =
-      ../../../../config/jupyter/jupyter_console_config.py;
-    home.dataFile."jupyter/kernels".source = "${kernels}/kernels";
+      ./../../../config/jupyter/jupyter_console_config.py;
+    xdg.dataFile."jupyter/kernels".source = "${kernels}/kernels";
   };
 }

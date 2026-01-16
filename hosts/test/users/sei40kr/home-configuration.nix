@@ -39,6 +39,15 @@
     inputs.self.homeModules.prisma
     inputs.self.homeModules.r
     inputs.self.homeModules.solidity
+    inputs.self.homeModules.ansible
+    inputs.self.homeModules.aws
+    inputs.self.homeModules.azure
+    inputs.self.homeModules.difftastic
+    inputs.self.homeModules.github
+    inputs.self.homeModules.gitu
+    inputs.self.homeModules.jupyter
+    inputs.self.homeModules.k8s
+    inputs.self.homeModules.terraform
   ];
 
   modules.dev.tools.docker.enable = true;
@@ -72,6 +81,21 @@
   modules.dev.lang.prisma.enable = true;
   modules.dev.lang.r.enable = true;
   modules.dev.lang.solidity.enable = true;
+
+  modules.dev.tools.ansible.enable = true;
+  modules.dev.tools.aws.enable = true;
+  modules.dev.tools.aws.cfn.enable = true;
+  modules.dev.tools.aws.copilot.enable = true;
+  # modules.dev.tools.aws.sam.enable = true; # TODO: aws-sam-cli is broken
+  modules.dev.tools.azure.enable = true;
+  modules.dev.tools.azure.kubelogin.enable = true;
+  modules.dev.tools.difftastic.enable = true;
+  modules.dev.tools.github.enable = true;
+  modules.dev.tools.gitu.enable = true;
+  modules.dev.tools.jupyter.enable = true;
+  modules.dev.tools.k8s.enable = true;
+  modules.dev.tools.k8s.helm.enable = true;
+  modules.dev.tools.terraform.enable = true;
 
   home.stateVersion = "23.11";
 }

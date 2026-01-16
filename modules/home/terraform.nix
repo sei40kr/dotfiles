@@ -1,27 +1,32 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.my) mkBoolOpt;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.dev.tools.terraform;
 in
 {
+  imports = [
+    inputs.self.homeModules.ai-shared
+    inputs.self.homeModules.editor-shared
+  ];
+
   options.modules.dev.tools.terraform = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Terraform development tools";
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       terraform
       tflint
     ];
 
-    modules.shell.aliases = {
+    home.shellAliases = {
       tf = "terraform";
       tfa = "terraform apply";
       tfd = "terraform destroy";
@@ -31,13 +36,11 @@ in
       tfv = "terraform validate";
     };
 
-    modules.ai.mcpServers = {
-      terraform = rec {
-        transport = "stdio";
-        package = pkgs.terraform-mcp-server;
-        command = "${package}/bin/terraform-mcp-server";
-        args = [ ];
-      };
+    modules.ai.mcpServers.terraform = rec {
+      transport = "stdio";
+      package = pkgs.terraform-mcp-server;
+      command = "${package}/bin/terraform-mcp-server";
+      args = [ ];
     };
 
     modules.editors.lspServers.terraformls = rec {
@@ -54,9 +57,6 @@ in
       ];
     };
 
-    modules.shell.zsh.rcInit = ''
-      zinit ice as'completion' id-as'OMZP::terraform'
-      zinit snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/terraform/_terraform
-    '';
+    programs.zsh.oh-my-zsh.plugins = [ "terraform" ];
   };
 }

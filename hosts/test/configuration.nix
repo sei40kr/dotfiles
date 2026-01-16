@@ -6,6 +6,7 @@
   # Phase 2: SSH and WireGuard modules test
   # Phase 3: Desktop modules test
   imports = [
+    inputs.self.nixosModules.host-shared
     inputs.self.nixosModules.docker
     inputs.self.nixosModules.ssh
     inputs.self.nixosModules.wireguard
@@ -27,7 +28,6 @@
   time.timeZone = "Asia/Tokyo";
 
   nixpkgs.hostPlatform = "x86_64-linux";
-  nixpkgs.config.allowUnfree = true;
 
   # Bootloader (minimal test configuration)
   boot.loader.grub.enable = false;

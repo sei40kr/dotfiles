@@ -1,15 +1,11 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 
 let
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    ;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.dev.tools.difftastic;
 in
 {
@@ -18,6 +14,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ difftastic ];
+    programs.difftastic.enable = true;
   };
 }

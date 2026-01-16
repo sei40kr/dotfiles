@@ -6,18 +6,16 @@
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.my) mkBoolOpt;
-
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.dev.tools.ansible;
 in
 {
   options.modules.dev.tools.ansible = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Ansible development tools";
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       ansible
       ansible-lint
     ];
