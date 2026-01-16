@@ -1,39 +1,52 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.my) mkBoolOpt;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
   cfg = config.modules.dev.lang.haskell;
 in
 {
+  imports = [
+    inputs.self.homeModules.editor-shared
+  ];
+
   options.modules.dev.lang.haskell = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Haskell development environment";
+    userName = mkOption {
+      type = types.str;
+      default = "sei40kr";
+      description = "Author name for Stack templates";
+    };
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      ghc
+    home.packages = with pkgs; [
+      cabal-install
+      haskell-language-server
+      haskellPackages.ghcid
       stack
-      ormolu
-      haskellPackages.hlint
     ];
 
     home.file.".stack/config.yaml".text = ''
       templates:
         params:
-          author-email: sei40kr@gmail.com
-          author-name: ${config.user.name}
+          author-name: ${cfg.userName}
           copyright: 'Copyright (c) 2021 sei40kr'
           github-username: sei40kr
     '';
 
     modules.editors.lspServers.hls = rec {
-      package = pkgs.haskellPackages.haskell-language-server;
+      package = pkgs.haskell-language-server;
       command = "${package}/bin/haskell-language-server-wrapper";
       args = [ "--lsp" ];
       filetypes = [
@@ -41,11 +54,12 @@ in
         "lhaskell"
       ];
       rootMarkers = [
-        "hie.yaml"
+        "*.cabal"
         "stack.yaml"
         "cabal.project"
-        "*.cabal"
         "package.yaml"
+        "hie.yaml"
+        ".git"
       ];
     };
   };

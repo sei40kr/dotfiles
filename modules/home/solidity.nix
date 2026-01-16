@@ -6,19 +6,17 @@
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.my) mkBoolOpt;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.dev.lang.solidity;
 in
 {
   options.modules.dev.lang.solidity = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Solidity development environment";
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       solc
-      nodePackages.ganache
     ];
   };
 }

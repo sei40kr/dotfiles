@@ -1,16 +1,16 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.my) mkBoolOpt;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.dev.lang.r;
 
-  package =
+  rPackage =
     with pkgs;
     rWrapper.override {
       packages = [
@@ -21,31 +21,31 @@ let
     };
 in
 {
+  imports = [ inputs.self.homeModules.editor-shared ];
+
   options.modules.dev.lang.r = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "R development environment";
   };
 
   config = mkIf cfg.enable {
-    user.packages = [
-      package
+    home.packages = [
+      rPackage
       pkgs.radian
     ];
 
-    home.file = {
-      ".Renviron".text = ''
-        R_LIBS=${package}/library
-      '';
-      ".Rprofile".text = ''
-        options(repos='https://cran.ism.ac.jp');
-      '';
-    };
+    home.file.".Renviron".text = ''
+      R_LIBS=${rPackage}/library
+    '';
+    home.file.".Rprofile".text = ''
+      options(repos='https://cran.ism.ac.jp');
+    '';
 
     # Disable completion because does not work well with a narrow terminal
-    home.configFile."radian/profile".text = ''
+    xdg.configFile."radian/profile".text = ''
       options(radian.complete_while_typing = FALSE)
     '';
 
-    modules.shell.aliases.R = "radian -q";
+    home.shellAliases.R = "radian -q";
 
     modules.editors.lspServers.r_language_server = rec {
       package = pkgs.rPackages.languageserver;

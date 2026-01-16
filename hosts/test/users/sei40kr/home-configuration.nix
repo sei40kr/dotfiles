@@ -5,7 +5,7 @@
   # Phase 1: Docker module test
   # Phase 3: Japanese input method test
   # Phase 4: Shell modules test
-  # Phase 5: Language modules test (Group 1 & Group 2)
+  # Phase 5: Language modules test (Group 1, Group 2 & Group 3)
   imports = [
     inputs.self.homeModules.docker
     inputs.self.homeModules.japanese-im
@@ -32,6 +32,13 @@
     inputs.self.homeModules.sql
     inputs.self.homeModules.cc
     inputs.self.homeModules.qml
+    inputs.self.homeModules.haskell
+    inputs.self.homeModules.julia
+    inputs.self.homeModules.latex
+    inputs.self.homeModules.lean
+    inputs.self.homeModules.prisma
+    inputs.self.homeModules.r
+    inputs.self.homeModules.solidity
   ];
 
   modules.dev.tools.docker.enable = true;
@@ -58,6 +65,13 @@
   modules.dev.lang.sql.enable = true;
   modules.dev.lang.cc.enable = true;
   modules.dev.lang.qml.enable = true;
+  modules.dev.lang.haskell.enable = true;
+  modules.dev.lang.julia.enable = true;
+  modules.dev.lang.latex.enable = true;
+  modules.dev.lang.lean.enable = true;
+  modules.dev.lang.prisma.enable = true;
+  modules.dev.lang.r.enable = true;
+  modules.dev.lang.solidity.enable = true;
 
   home.stateVersion = "23.11";
 }
