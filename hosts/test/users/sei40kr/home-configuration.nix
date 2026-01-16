@@ -8,6 +8,7 @@
   # Phase 5: Language modules test (Group 1, Group 2 & Group 3)
   # Phase 7a: AI modules test
   # Phase 7b: Term modules test
+  # Phase 7d-3: Media modules test
   imports = [
     inputs.self.homeModules.docker
     inputs.self.homeModules.japanese-im
@@ -66,6 +67,11 @@
     inputs.self.homeModules.zed
     inputs.self.homeModules.emacs
     inputs.self.homeModules.idea
+    inputs.self.homeModules.inkscape
+    inputs.self.homeModules.gimp
+    inputs.self.homeModules.obs-studio
+    inputs.self.homeModules.zathura
+    inputs.self.homeModules.foliate
   ];
 
   modules.dev.tools.docker.enable = true;
@@ -136,6 +142,12 @@
   modules.editors.emacs.doom.enable = true;
   modules.editors.emacs.doom.theme = "doom-tokyo-night";
   modules.editors.idea.enable = true;
+
+  modules.desktop.media.inkscape.enable = true;
+  modules.desktop.media.gimp.enable = true;
+  modules.desktop.media.obs-studio.enable = true;
+  modules.desktop.media.zathura.enable = true;
+  modules.desktop.media.foliate.enable = true;
 
   home.stateVersion = "23.11";
 }

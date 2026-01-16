@@ -1,24 +1,28 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.my) mkBoolOpt;
-  cfg = config.modules.desktop.media.documents.ebook;
+  inherit (builtins) toJSON;
+  inherit (lib) mkEnableOption mkIf;
+  cfg = config.modules.desktop.media.foliate;
 in
 {
-  options.modules.desktop.media.documents.ebook = {
-    enable = mkBoolOpt false;
+  options.modules.desktop.media.foliate = {
+    enable = mkEnableOption "Foliate";
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ foliate ];
+    programs.foliate = {
+      enable = true;
+      settings = {
+        restore-last-file = false;
+      };
+    };
 
-    home.dataFile."com.github.johnfactotum.Foliate/catalogs/catalogs.json".text = builtins.toJSON {
+    xdg.dataFile."com.github.johnfactotum.Foliate/catalogs/catalogs.json".text = toJSON {
       catalogs = [
         {
           title = "Calibre-Web";
@@ -36,15 +40,6 @@ in
           preview = "https://www.oreilly.co.jp/ebook/new.opds";
         }
       ];
-    };
-
-    modules.desktop.dconf = {
-      enable = true;
-      settings = {
-        "com/github/johnfactotum/Foliate" = {
-          restore-last-file = false;
-        };
-      };
     };
   };
 }
