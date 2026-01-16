@@ -1,23 +1,27 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 
 let
-  inherit (lib) mkIf optionals;
-  inherit (lib.my) mkBoolOpt;
+  inherit (lib) mkEnableOption mkIf optionals;
   cfg = config.modules.dev.lang.cc;
 in
 {
+  imports = [
+    inputs.self.homeModules.editor-shared
+  ];
+
   options.modules.dev.lang.cc = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "C/C++ development environment";
   };
 
   config = mkIf cfg.enable {
     # TODO Install clang
-    user.packages =
+    home.packages =
       with pkgs;
       [
         cpplint

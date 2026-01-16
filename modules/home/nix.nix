@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -7,16 +8,20 @@
 
 let
   inherit (lib) mkEnableOption mkIf;
-  inherit (lib.my) mkBoolOpt;
   cfg = config.modules.dev.lang.nix;
 in
 {
+  imports = [
+    inputs.self.homeModules.editor-shared
+    inputs.self.homeModules.ai-shared
+  ];
+
   options.modules.dev.lang.nix = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Nix development environment";
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       nix-init
       nix-melt
       nurl
@@ -26,7 +31,6 @@ in
       statix
     ];
 
-    # Configure NixOS MCP server
     modules.ai.mcpServers = {
       nixos = rec {
         transport = "stdio";

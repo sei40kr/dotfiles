@@ -1,22 +1,26 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.my) mkBoolOpt;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.dev.lang.shell;
 in
 {
+  imports = [
+    inputs.self.homeModules.editor-shared
+  ];
+
   options.modules.dev.lang.shell = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Shell script development environment";
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       shellcheck
       shfmt
     ];

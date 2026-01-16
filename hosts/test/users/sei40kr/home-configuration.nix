@@ -5,7 +5,7 @@
   # Phase 1: Docker module test
   # Phase 3: Japanese input method test
   # Phase 4: Shell modules test
-  # Phase 5: Language modules test (Group 1)
+  # Phase 5: Language modules test (Group 1 & Group 2)
   imports = [
     inputs.self.homeModules.docker
     inputs.self.homeModules.japanese-im
@@ -25,6 +25,13 @@
     inputs.self.homeModules.kotlin
     inputs.self.homeModules.javascript
     inputs.self.homeModules.web
+    inputs.self.homeModules.ruby
+    inputs.self.homeModules.lua
+    inputs.self.homeModules.nix
+    inputs.self.homeModules.shell
+    inputs.self.homeModules.sql
+    inputs.self.homeModules.cc
+    inputs.self.homeModules.qml
   ];
 
   modules.dev.tools.docker.enable = true;
@@ -44,6 +51,13 @@
   modules.dev.lang.kotlin.enable = true;
   modules.dev.lang.javascript.enable = true;
   modules.dev.lang.web.enable = true;
+  modules.dev.lang.ruby.enable = true;
+  modules.dev.lang.lua.enable = true;
+  modules.dev.lang.nix.enable = true;
+  modules.dev.lang.shell.enable = true;
+  modules.dev.lang.sql.enable = true;
+  modules.dev.lang.cc.enable = true;
+  modules.dev.lang.qml.enable = true;
 
   home.stateVersion = "23.11";
 }
