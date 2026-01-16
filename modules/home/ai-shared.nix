@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  inputs,
+  pkgs,
   ...
 }:
 
@@ -110,36 +112,74 @@ let
     sseServerType
     httpServerType
   ];
+
+  cfg = config.modules.ai;
 in
 {
-  options.modules.ai.mcpServers = mkOption {
-    type = types.attrsOf mcpServerType;
-    default = { };
-    description = "MCP servers configuration supporting stdio, SSE, and HTTP transports";
-    example = {
-      filesystem = rec {
-        transport = "stdio";
-        package = null;
-        command = "npx";
-        args = [
-          "-y"
-          "@modelcontextprotocol/server-filesystem"
-          "/home/user"
-        ];
-      };
+  options.modules.ai = {
+    mcpServers = mkOption {
+      type = types.attrsOf mcpServerType;
+      default = { };
+      description = "MCP servers configuration supporting stdio, SSE, and HTTP transports";
+      example = {
+        filesystem = {
+          transport = "stdio";
+          package = null;
+          command = "npx";
+          args = [
+            "-y"
+            "@modelcontextprotocol/server-filesystem"
+            "/home/user"
+          ];
+        };
 
-      github = rec {
-        transport = "stdio";
-        package = null;
-        command = "npx";
-        args = [
-          "-y"
-          "@modelcontextprotocol/server-github"
-        ];
-        env = {
-          GITHUB_TOKEN = "ghp_xxxxxxxxxxxx";
+        github = {
+          transport = "stdio";
+          package = null;
+          command = "npx";
+          args = [
+            "-y"
+            "@modelcontextprotocol/server-github"
+          ];
+          env = {
+            GITHUB_TOKEN = "ghp_xxxxxxxxxxxx";
+          };
         };
       };
     };
+
+    skillPaths = mkOption {
+      type = types.listOf (types.either types.path types.str);
+      default = [ ];
+      description = "List of skill directories to be combined and provided to AI tools";
+      example = [
+        ../../config/ai/skills
+        "/home/user/custom-skills"
+      ];
+    };
+
+    _combinedSkillsPath = mkOption {
+      type = types.nullOr types.path;
+      internal = true;
+      readOnly = true;
+      default = pkgs.symlinkJoin {
+        name = "ai-skills";
+        paths = cfg.skillPaths;
+      };
+      description = "Combined skills directory created from skillPaths list";
+    };
+  };
+
+  config = {
+    modules.ai.skillPaths = [
+      "${inputs.anthropics-skills}/skills"
+      ./../../config/ai/skills
+    ];
+
+    home.packages = lib.flatten (
+      lib.mapAttrsToList (
+        name: server: lib.optional (server ? package && server.package != null) server.package
+      ) cfg.mcpServers
+    );
   };
 }

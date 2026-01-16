@@ -1,7 +1,8 @@
 {
   config,
+  inputs,
+  perSystem,
   lib,
-  inputs',
   ...
 }:
 
@@ -14,7 +15,6 @@ let
   aiCfg = config.modules.ai;
   cfg = aiCfg.crush;
 
-  # Convert Nix MCP server format to Crush format
   convertMcpServer =
     name: server:
     if server.transport == "stdio" then
@@ -30,7 +30,6 @@ let
     else
       throw "Unknown MCP server transport type: ${server.transport} for server ${name}";
 
-  # Convert Nix LSP server format to Crush format
   convertLspServer = name: server: {
     inherit (server)
       command
@@ -43,18 +42,23 @@ let
   };
 in
 {
+  imports = [
+    inputs.self.homeModules.ai-shared
+    inputs.self.homeModules.editor-shared
+  ];
+
   options.modules.ai.crush = {
     enable = mkEnableOption "Crush";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ inputs'.llm-agents-nix.packages.crush ];
+    home.packages = [ perSystem.llm-agents-nix.crush ];
 
-    home.configFile."crush/crush.json".text = builtins.toJSON {
+    xdg.configFile."crush/crush.json".text = builtins.toJSON {
       "$schema" = "https://charm.land/crush.json";
       mcp = mapAttrs convertMcpServer aiCfg.mcpServers;
       lsp = mapAttrs convertLspServer config.modules.editors.lspServers;
     };
-    home.configFile."crush/skills".source = aiCfg._combinedSkillsPath;
+    xdg.configFile."crush/skills".source = aiCfg._combinedSkillsPath;
   };
 }

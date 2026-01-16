@@ -1,8 +1,8 @@
 {
   config,
-  lib,
   inputs,
-  inputs',
+  lib,
+  perSystem,
   ...
 }:
 
@@ -12,7 +12,6 @@ let
     mkIf
     mapAttrs
     ;
-  inherit (inputs.nix-std.lib.serde) toTOML;
   aiCfg = config.modules.ai;
   cfg = aiCfg.codex;
 
@@ -27,25 +26,28 @@ let
     else if transport == "http" || transport == "sse" then
       {
         inherit (server) url;
-        http_headers = server.headers or { };
+        http_headers = server.headers;
       }
     else
       throw "Unknown transport type ${transport} for server ${name}";
-
-  codexConfig = {
-    mcp_servers = mapAttrs convertMcpServer aiCfg.mcpServers;
-    tui.notifications = true;
-  };
 in
 {
+  imports = [
+    inputs.self.homeModules.ai-shared
+  ];
+
   options.modules.ai.codex = {
-    enable = mkEnableOption "Codex CLI";
+    enable = mkEnableOption "Codex";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ inputs'.llm-agents-nix.packages.codex ];
-
-    # FIXME: Codex overwrites config on each run, so we need to place it in another location
-    home.file.".codex/config.toml".text = toTOML codexConfig;
+    programs.codex = {
+      enable = true;
+      package = perSystem.llm-agents-nix.codex;
+      settings = {
+        mcp_servers = mapAttrs convertMcpServer aiCfg.mcpServers;
+        tui.notifications = true;
+      };
+    };
   };
 }

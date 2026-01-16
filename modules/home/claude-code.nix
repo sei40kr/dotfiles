@@ -1,6 +1,7 @@
 {
   config,
-  inputs',
+  inputs,
+  perSystem,
   lib,
   pkgs,
   ...
@@ -16,7 +17,6 @@ let
   cfg = config.modules.ai.claude-code;
   mcpCfg = config.modules.ai.mcpServers;
 
-  # Convert MCP server config to Claude Code format
   convertMcpServer =
     name:
     { transport, ... }@server:
@@ -34,23 +34,22 @@ let
       throw "Unknown transport type ${transport} for MCP server ${name}";
 in
 {
+  imports = [ inputs.self.homeModules.ai-shared ];
+
   options.modules.ai.claude-code = {
     enable = mkEnableOption "Claude Code";
 
     ccstatusline = {
       enable = mkEnableOption "ccstatusline for Claude Code";
-      package = mkPackageOption inputs'.llm-agents-nix.packages "ccstatusline" { };
+      package = mkPackageOption perSystem.llm-agents-nix "ccstatusline" { };
     };
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [
-      inputs'.llm-agents-nix.packages.claude-code
-      (mkIf cfg.ccstatusline.enable cfg.ccstatusline.package)
-    ];
-
-    environment.etc."claude-code/managed-settings.json".text = builtins.toJSON (
-      {
+    programs.claude-code = {
+      enable = true;
+      package = perSystem.llm-agents-nix.claude-code;
+      settings = {
         env = {
           CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL = 1;
           DISABLE_AUTOUPDATER = 1;
@@ -84,17 +83,18 @@ in
           command = "${cfg.ccstatusline.package}/bin/ccstatusline";
           padding = 0;
         };
-      }
-    );
-    environment.etc."claude-code/managed-mcp.json".text = builtins.toJSON {
+      };
+      skillsDir = config.modules.ai._combinedSkillsPath;
       mcpServers = mapAttrs convertMcpServer mcpCfg;
     };
-    home.file.".claude/skills".source = config.modules.ai._combinedSkillsPath;
 
-    home.configFile."ccstatusline/settings.json".text = mkIf cfg.ccstatusline.enable (
+    home.packages = [
+      (mkIf cfg.ccstatusline.enable cfg.ccstatusline.package)
+    ];
+
+    xdg.configFile."ccstatusline/settings.json".text = mkIf cfg.ccstatusline.enable (
       builtins.toJSON {
         version = 3;
-        # Model: Claude | Ctx: 18.6k | Ctx(u): 11.6% | Cost: $2.45
         lines = [
           [
             {

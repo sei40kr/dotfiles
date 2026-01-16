@@ -48,6 +48,11 @@
     inputs.self.homeModules.jupyter
     inputs.self.homeModules.k8s
     inputs.self.homeModules.terraform
+    inputs.self.homeModules.agent-browser
+    inputs.self.homeModules.claude-code
+    inputs.self.homeModules.codex
+    inputs.self.homeModules.crush
+    inputs.self.homeModules.gemini-cli
   ];
 
   modules.dev.tools.docker.enable = true;
@@ -96,6 +101,13 @@
   modules.dev.tools.k8s.enable = true;
   modules.dev.tools.k8s.helm.enable = true;
   modules.dev.tools.terraform.enable = true;
+
+  modules.ai.agent-browser.enable = true;
+  modules.ai.claude-code.enable = true;
+  modules.ai.claude-code.ccstatusline.enable = true;
+  modules.ai.codex.enable = true;
+  modules.ai.crush.enable = true;
+  modules.ai.gemini-cli.enable = true;
 
   home.stateVersion = "23.11";
 }

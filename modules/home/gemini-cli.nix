@@ -1,7 +1,8 @@
 {
   config,
-  inputs',
+  inputs,
   lib,
+  perSystem,
   ...
 }:
 
@@ -29,21 +30,27 @@ let
       throw "Unknown transport type '${server.transport}' for MCP server '${name}'";
 in
 {
+  imports = [
+    inputs.self.homeModules.ai-shared
+  ];
+
   options.modules.ai.gemini-cli = {
-    enable = mkEnableOption "Gemini CLI - Google's Gemini AI in your terminal";
+    enable = mkEnableOption "Gemini CLI";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ inputs'.llm-agents-nix.packages.gemini-cli ];
-
-    environment.etc."gemini-cli/settings.json".text = builtins.toJSON {
-      general = {
-        vimMode = true;
-        disableAutoUpdate = true;
-        checkpointing.enabled = true;
+    programs.gemini-cli = {
+      enable = true;
+      package = perSystem.llm-agents-nix.gemini-cli;
+      settings = {
+        general = {
+          vimMode = true;
+          disableAutoUpdate = true;
+          checkpointing.enabled = true;
+        };
+        ui.showLineNumbers = true;
+        mcpServers = mapAttrs convertMcpServer aiCfg.mcpServers;
       };
-      ui.showLineNumbers = true;
-      mcpServers = mapAttrs convertMcpServer aiCfg.mcpServers;
     };
   };
 }
