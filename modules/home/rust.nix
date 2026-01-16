@@ -35,9 +35,9 @@ in
       # TODO: Add cargo-lambda when aws module is enabled
     ];
 
-    modules.editors.lspServers.rust_analyzer = rec {
-      package = perSystem.fenix.stable.rust-analyzer;
-      command = "${package}/bin/rust-analyzer";
+    modules.editors.lspServers.rust_analyzer = {
+      package = null;
+      command = "rust-analyzer";
       args = [ ];
       filetypes = [ "rust" ];
       rootMarkers = [

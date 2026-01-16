@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -7,21 +8,30 @@
 
 let
   inherit (lib)
+    mkEnableOption
     mkIf
+    mkOption
     optionalString
     optionals
     types
     ;
   inherit (types) str;
-  inherit (lib.my)
-    mkBoolOpt
-    mkOpt
-    generators
-    ;
-  inherit (generators) toEmacsLisp;
 
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.emacs;
+
+  toEmacsLisp =
+    value:
+    if builtins.isString value then
+      ''"${value}"''
+    else if builtins.isFloat value then
+      toString value
+    else if builtins.isInt value then
+      toString value
+    else if builtins.isBool value then
+      if value then "t" else "nil"
+    else
+      abort "toEmacsLisp: unsupported type";
 
   default_el = pkgs.writeTextFile {
     name = "default.el";
@@ -69,18 +79,26 @@ let
   };
 in
 {
+  imports = [
+    inputs.self.homeModules.editor-shared
+  ];
+
   options.modules.editors.emacs = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Emacs";
 
     doom = {
-      enable = mkBoolOpt false;
+      enable = mkEnableOption "Doom Emacs";
 
-      theme = mkOpt str "doom-one";
+      theme = mkOption {
+        type = str;
+        default = "doom-one";
+        description = "Doom Emacs theme";
+      };
     };
   };
 
   config = mkIf cfg.enable {
-    user.packages = [
+    home.packages = [
       package
       pkgs.binutils
     ]
@@ -112,22 +130,22 @@ in
         nodePackages.yaml-language-server
         # :tools vterm
         vterm_printf
+
+        # Fonts
+        emacs-all-the-icons-fonts
       ]
     ));
-    fonts.packages = with pkgs; [ emacs-all-the-icons-fonts ];
 
-    env = mkIf cfg.doom.enable {
+    home.sessionVariables = mkIf cfg.doom.enable {
       EMACSDIR = "\${HOME}/.config/emacs";
       DOOMDIR = "\${HOME}/.config/doom";
-      PATH = [ "\${EMACSDIR}/bin" ];
     };
+    home.sessionPath = mkIf cfg.doom.enable [ "\${EMACSDIR}/bin" ];
 
-    modules.editors.fonts.enable = true;
+    # Shell integration
+    home.shellAliases.e = "emacs";
 
-    modules.shell.aliases.e = "emacs";
-
-    # :tools vterm
-    modules.shell.zsh.rcInit = mkIf cfg.doom.enable ''
+    programs.zsh.initContent = mkIf cfg.doom.enable ''
       if [[ "$INSIDE_EMACS" == vterm ]]; then
         autoload -Uz vterm_printf
         alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'

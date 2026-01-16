@@ -6,27 +6,51 @@
 }:
 
 let
-  inherit (lib) mkIf optionalString;
-  inherit (lib.my) mkBoolOpt generators;
-  inherit (generators) toVimScript;
-  inherit (inputs) idea-LazyVim;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    optionalString
+    types
+    ;
+  inherit (types) bool;
+
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.ideavim;
+
+  toVimScript =
+    value:
+    if builtins.isString value then
+      "\"${value}\""
+    else if builtins.isFloat value then
+      toString value
+    else if builtins.isInt value then
+      toString value
+    else if builtins.isBool value then
+      if value then "1" else "0"
+    else
+      abort "toVimScript: unsupported type";
 in
 {
-  options.modules.editors.ideavim = {
-    enable = mkBoolOpt false;
+  imports = [ inputs.self.homeModules.editor-shared ];
 
-    doom.enable = mkBoolOpt editorsCfg.emacs.doom.enable;
+  options.modules.editors.ideavim = {
+    enable = mkEnableOption "IdeaVim";
+
+    doom.enable = mkOption {
+      type = bool;
+      default = editorsCfg.emacs.doom.enable;
+      description = "Enable Doom Emacs-like keybindings";
+    };
   };
 
   config = mkIf cfg.enable {
-    home.configFile."ideavim/ideavimrc".text = ''
+    xdg.configFile."ideavim/ideavimrc".text = ''
       ${optionalString cfg.doom.enable ''
         let g:WhichKey_FontFamily = ${toVimScript editorsCfg.fonts.code.name}
         let g:WhichKey_FontSize = ${toVimScript editorsCfg.fonts.code.size}
 
-        source ${idea-LazyVim}/init.vim
+        source ${inputs.idea-LazyVim}/init.vim
       ''}
 
       " Use system clipboard

@@ -11,6 +11,8 @@ in
 {
   imports = [
     inputs.self.homeModules.term-shared
+    inputs.self.homeModules.editor-shared
+    inputs.self.homeModules.emacs
   ];
 
   config = mkIf (config.modules.term.colorschemes.active == "tokyo-night") {
@@ -93,8 +95,7 @@ in
       };
     };
 
-    # TODO: Enable when emacs module is migrated
-    # modules.editors.emacs.doom.theme = "doom-tokyo-night";
+    modules.editors.emacs.doom.theme = mkIf config.modules.editors.emacs.enable "doom-tokyo-night";
 
     programs.bat.config.theme = "TwoDark";
   };

@@ -59,6 +59,13 @@
     inputs.self.homeModules.wezterm
     inputs.self.homeModules.sensible-terminal
     inputs.self.homeModules.tokyo-night
+    inputs.self.homeModules.editor-shared
+    inputs.self.homeModules.helix
+    inputs.self.homeModules.lazyvim
+    inputs.self.homeModules.ideavim
+    inputs.self.homeModules.zed
+    inputs.self.homeModules.emacs
+    inputs.self.homeModules.idea
   ];
 
   modules.dev.tools.docker.enable = true;
@@ -119,6 +126,16 @@
   modules.term.wezterm.enable = true;
   modules.term.sensible.enable = true;
   modules.term.colorschemes.active = "tokyo-night";
+
+  modules.editors.helix.enable = true;
+  modules.editors.lazyvim.enable = true;
+  modules.editors.ideavim.enable = true;
+  modules.editors.ideavim.doom.enable = true;
+  modules.editors.zed.enable = true;
+  modules.editors.emacs.enable = true;
+  modules.editors.emacs.doom.enable = true;
+  modules.editors.emacs.doom.theme = "doom-tokyo-night";
+  modules.editors.idea.enable = true;
 
   home.stateVersion = "23.11";
 }

@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -12,7 +13,7 @@ let
     readFile
     toJSON
     ;
-  inherit (lib) mkIf mkEnableOption recursiveUpdate;
+  inherit (lib) mkEnableOption mkIf recursiveUpdate;
 
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.zed;
@@ -30,16 +31,22 @@ let
   };
 in
 {
+  imports = [
+    inputs.self.homeModules.editor-shared
+    inputs.self.homeModules.term-shared
+  ];
+
   options.modules.editors.zed = {
     enable = mkEnableOption "Zed";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ zed-editor ];
+    home.packages = with pkgs; [
+      zed-editor
+      nerd-fonts.symbols-only
+    ];
 
-    home.configFile."zed/settings.json".text = toJSON settings;
-    home.configFile."zed/keymap.json".source = ../../config/zed/keymap.jsonc;
-
-    fonts.packages = with pkgs; [ nerd-fonts.symbols-only ];
+    xdg.configFile."zed/settings.json".text = toJSON settings;
+    xdg.configFile."zed/keymap.json".source = ../../config/zed/keymap.jsonc;
   };
 }

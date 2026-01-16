@@ -1,12 +1,15 @@
 {
-  config,
   lib,
+  inputs,
+  config,
+  pkgs,
   ...
 }:
 
 let
   inherit (lib)
     literalExpression
+    mkIf
     mkOption
     types
     ;
@@ -19,6 +22,9 @@ let
     str
     submodule
     ;
+  inherit (inputs.self.lib.extraTypes) fontType;
+
+  cfg = config.modules.editors;
 
   lspServerType = submodule {
     options = {
@@ -86,22 +92,89 @@ let
   };
 in
 {
-  options.modules.editors.lspServers = mkOption {
-    type = attrsOf lspServerType;
-    default = { };
-    description = "LSP server configurations";
-    example = literalExpression ''
-      {
-        rust-analyzer = {
-          package = pkgs.rust-analyzer;
-          command = "rust-analyzer";
-          args = [ ];
-          filetypes = [ "rust" ];
-          settings = {
-            "rust-analyzer.cargo.check.command" = "clippy";
-          };
+  options.modules.editors = {
+    defaultEditor = mkOption {
+      type = nullOr str;
+      readOnly = true;
+      default =
+        if cfg.lazyvim.enable then
+          "lazyvim"
+        else if cfg.emacs.enable then
+          "emacs"
+        else if cfg.helix.enable then
+          "hx"
+        else
+          null;
+      description = "The default editor to use, automatically determined by enabled editor modules";
+    };
+
+    fonts = {
+      code = mkOption {
+        type = fontType;
+        default = {
+          name = "monospace";
+          size = 12;
         };
-      }
-    '';
+        description = "Code font configuration";
+      };
+
+      ui = mkOption {
+        type = fontType;
+        default = {
+          name = "sans-serif";
+          size = 11;
+        };
+        description = "UI font configuration";
+      };
+    };
+
+    lspServers = mkOption {
+      type = attrsOf lspServerType;
+      default = { };
+      description = "LSP server configurations";
+      example = literalExpression ''
+        {
+          rust-analyzer = {
+            package = pkgs.rust-analyzer;
+            command = "rust-analyzer";
+            args = [ ];
+            filetypes = [ "rust" ];
+            settings = {
+              "rust-analyzer.cargo.check.command" = "clippy";
+            };
+          };
+        }
+      '';
+    };
+  };
+
+  config = {
+    home.packages =
+      with pkgs;
+      [
+        anonymousPro
+        fantasque-sans-mono
+        fira-code
+        hack-font
+        hasklig
+        inconsolata
+        # input-fonts
+        jetbrains-mono
+        source-code-pro
+        source-han-code-jp
+        ubuntu-classic
+        victor-mono
+        (mkIf (cfg.fonts.code.package != null) cfg.fonts.code.package)
+        (mkIf (cfg.fonts.ui.package != null) cfg.fonts.ui.package)
+      ]
+      ++ (lib.flatten (
+        lib.mapAttrsToList (
+          name: server: lib.optional (server.package != null) server.package
+        ) cfg.lspServers
+      ));
+
+    home.sessionVariables = mkIf (cfg.defaultEditor != null) {
+      EDITOR = cfg.defaultEditor;
+    };
   };
 }
