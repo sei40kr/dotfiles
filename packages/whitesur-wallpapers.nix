@@ -1,6 +1,6 @@
-{ fetchFromGitHub, lib }:
+{ pkgs }:
 
-fetchFromGitHub {
+pkgs.fetchFromGitHub {
   owner = "vinceliuice";
   repo = "WhiteSur-wallpapers";
   rev = "v2.0";
@@ -15,7 +15,7 @@ fetchFromGitHub {
     rm -rf $HOME
   '';
 
-  meta = with lib; {
+  meta = with pkgs.lib; {
     description = "WhiteSur wallpapers";
     homepage = "https://github.com/vinceliuice/WhiteSur-wallpapers";
     license = licenses.mit;

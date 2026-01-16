@@ -1,5 +1,0 @@
-dialect = "us"
-
-style = "compact"
-
-store_failed = false

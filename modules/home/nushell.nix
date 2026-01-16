@@ -1,27 +1,23 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 
 let
-  inherit (builtins) match readFile;
+  inherit (builtins) match;
   inherit (lib)
     concatStringsSep
     mapAttrsToList
     mkEnableOption
     mkIf
-    mkOption
-    types
     ;
   shellCfg = config.modules.shell;
   cfg = shellCfg.nushell;
 
   atuin_nu = pkgs.runCommandLocal "atuin.nu" { buildInputs = [ pkgs.atuin ]; } ''
-    # HACK: Atuin tries to create a directory in `homeless-shelter/.local/share`
-    #  and fails because it doesn't have permission to create a directory in.
-    #  We can work around this by setting `$HOME` to a temporary directory.
     export HOME=$(mktemp -d)
     mkdir -p $HOME/.local/share/atuin
 
@@ -31,48 +27,49 @@ let
   zoxide_nu = pkgs.runCommandLocal "zoxide.nu" { buildInputs = [ pkgs.zoxide ]; } ''
     zoxide init nushell >$out
   '';
-
-  config_nu = pkgs.replaceVars ../../config/nushell/config.nu {
-    inherit atuin_nu zoxide_nu;
-    nu_scripts = "${pkgs.nu_scripts}/share/nu_scripts";
-  };
 in
 {
+  imports = [
+    inputs.self.homeModules.atuin
+    inputs.self.homeModules.shell-shared
+    inputs.self.homeModules.starship
+  ];
+
   options.modules.shell.nushell = {
     enable = mkEnableOption "Nushell";
-
-    rcInit = mkOption {
-      type = types.lines;
-      default = "";
-    };
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [ atuin ];
-
-    home-manager.users.${config.user.name}.programs.nushell = {
+    programs.nushell = {
       enable = true;
       extraConfig = ''
-        ${readFile config_nu}
+        $env.config = {
+          show_banner: false
+        }
+
+        source ${pkgs.nu_scripts}/share/nu_scripts/modules/data_extraction/ultimate_extractor.nu
+        alias x = extract
+
+        source ${pkgs.nu_scripts}/share/nu_scripts/nu-hooks/nu-hooks/direnv/direnv.nu
+
+        source ${atuin_nu}
+        source ${zoxide_nu}
 
         ${concatStringsSep "\n" (
           mapAttrsToList (
             name: value:
-            # Nushell aliases don't support piping or semicolons
-            # Use `def` for complex commands with pipes (|) or semicolons (;)
             if match ".*(;|\\|).*" value != null then
               "def ${name} [] { ${value} }"
             else
               "alias ${name} = ${value}"
           ) shellCfg.aliases
         )}
-
-        ${cfg.rcInit}
       '';
     };
+    programs.carapace.enable = true;
 
     modules.shell.enable = true;
-    modules.shell.carapace.enable = true;
+    modules.shell.atuin.enable = true;
     modules.shell.starship.enable = true;
   };
 }

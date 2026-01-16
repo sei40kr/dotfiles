@@ -19,18 +19,6 @@ let
   cfg = config.modules.shell;
 in
 {
-  imports = [
-    ./carapace.nix
-    ./git.nix
-    ./nushell.nix
-    ./oj.nix
-    ./ripgrep.nix
-    ./starship.nix
-    ./yazi.nix
-    ./zsh
-    ./apps
-  ];
-
   options.modules.shell = {
     enable = mkBoolOpt false;
 

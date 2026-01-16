@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 
@@ -15,11 +14,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ yazi ];
-
-    home.configFile."yazi/yazi.toml".text = ''
-      [manager]
-      show_hidden = true
-    '';
+    programs.yazi = {
+      enable = true;
+      settings = {
+        manager.show_hidden = true;
+      };
+    };
   };
 }

@@ -1,14 +1,10 @@
-{
-  fetchFromGitHub,
-  lib,
-  stdenv,
-}:
+{ pkgs }:
 
-stdenv.mkDerivation {
+pkgs.stdenv.mkDerivation {
   pname = "whitesur-kde";
   version = "unstable-2023-02-21";
 
-  src = fetchFromGitHub {
+  src = pkgs.fetchFromGitHub {
     owner = "vinceliuice";
     repo = "WhiteSur-kde";
     rev = "a1ff2c2d751d7a475dac7733dd7d4ff3071a0a7b";
@@ -33,7 +29,7 @@ stdenv.mkDerivation {
     runHook postInstall
   '';
 
-  meta = with lib; {
+  meta = with pkgs.lib; {
     description = "MacOS big sur theme for kde plasma";
     homepage = "https://github.com/vinceliuice/WhiteSur-kde";
     license = licenses.gpl3Plus;

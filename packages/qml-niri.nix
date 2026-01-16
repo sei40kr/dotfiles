@@ -1,17 +1,10 @@
-{
-  lib,
-  cmake,
-  fetchFromGitHub,
-  qt6,
-  stdenv,
-  ...
-}:
+{ pkgs }:
 
-stdenv.mkDerivation {
+pkgs.stdenv.mkDerivation {
   pname = "qml-niri";
   version = "unstable-2025-10-15";
 
-  src = fetchFromGitHub {
+  src = pkgs.fetchFromGitHub {
     owner = "imiric";
     repo = "qml-niri";
     rev = "7694e2840032210ba859a62c4b684a1a943244a0";
@@ -19,8 +12,8 @@ stdenv.mkDerivation {
   };
 
   nativeBuildInputs = [
-    cmake
-    qt6.qtdeclarative
+    pkgs.cmake
+    pkgs.qt6.qtdeclarative
   ];
 
   dontWrapQtApps = true;
@@ -40,7 +33,7 @@ stdenv.mkDerivation {
     cp -r Niri $out/lib/qt-6/qml/
   '';
 
-  meta = with lib; {
+  meta = with pkgs.lib; {
     description = "A QML plugin for niri";
     homepage = "https://github.com/imiric/qml-niri";
     license = licenses.mit;

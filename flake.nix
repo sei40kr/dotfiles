@@ -104,7 +104,6 @@
             inherit (final.stdenv.hostPlatform) system;
             config.allowUnfree = true;
           };
-          my = self.packages.${final.stdenv.hostPlatform.system};
         })
         fenix.overlays.default
       ];

@@ -1,16 +1,10 @@
-{
-  fetchFromGitHub,
-  lib,
-  stdenv,
-  ...
-}:
+{ pkgs }:
 
-with lib;
-stdenv.mkDerivation {
+pkgs.stdenv.mkDerivation {
   pname = "zsh-smart-history";
   version = "unstable-2021-06-08";
 
-  src = fetchFromGitHub {
+  src = pkgs.fetchFromGitHub {
     owner = "sei40kr";
     repo = "zsh-smart-history";
     rev = "c8625305797b1d8f822c7575e85b26e5b32560c7";
@@ -24,5 +18,5 @@ stdenv.mkDerivation {
       -T "''${out}/share/zsh/plugins/zsh-smart-history/smart-history.plugin.zsh"
   '';
 
-  meta.platforms = platforms.all;
+  meta.platforms = pkgs.lib.platforms.all;
 }
