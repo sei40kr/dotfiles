@@ -6,22 +6,21 @@
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.my) mkBoolOpt;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.dev.lang.java;
 in
 {
   options.modules.dev.lang.java = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Java development environment";
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       jdk11
       gradle
       maven
     ];
 
-    modules.shell.aliases.mvnag = "mvn archetype:generate";
+    home.shellAliases.mvnag = "mvn archetype:generate";
   };
 }

@@ -1,23 +1,28 @@
 {
   config,
+  inputs,
   lib,
+  perSystem,
   pkgs,
   ...
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.my) mkBoolOpt;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.dev.lang.rust;
 in
 {
+  imports = [
+    inputs.self.homeModules.editor-shared
+  ];
+
   options.modules.dev.lang.rust = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Rust development environment";
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
-      (fenix.stable.withComponents [
+    home.packages = with pkgs; [
+      (perSystem.fenix.stable.withComponents [
         "cargo"
         "clippy"
         "rust-analyzer"
@@ -27,11 +32,11 @@ in
       ])
       pkg-config
       openssl
-      (mkIf config.modules.dev.tools.aws.enable cargo-lambda)
+      # TODO: Add cargo-lambda when aws module is enabled
     ];
 
     modules.editors.lspServers.rust_analyzer = rec {
-      package = pkgs.fenix.stable.rust-analyzer;
+      package = perSystem.fenix.stable.rust-analyzer;
       command = "${package}/bin/rust-analyzer";
       args = [ ];
       filetypes = [ "rust" ];

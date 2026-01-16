@@ -1,22 +1,27 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.my) mkBoolOpt;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.dev.lang.python;
 in
 {
+  imports = [
+    inputs.self.homeModules.editor-shared
+    inputs.self.homeModules.zsh
+  ];
+
   options.modules.dev.lang.python = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Python development environment";
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    home.packages = with pkgs; [
       python3
       uv
       ruff
@@ -38,11 +43,8 @@ in
       ];
     };
 
-    env.PATH = [ "\${HOME}/.poetry/bin" ];
+    home.sessionPath = [ "$HOME/.poetry/bin" ];
 
-    modules.shell.zsh.rcInit = ''
-      zinit ice wait''' lucid as'completion' id-as'OMZP::pip'
-      zinit snippet ${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/pip/_pip
-    '';
+    programs.zsh.oh-my-zsh.plugins = [ "pip" ];
   };
 }

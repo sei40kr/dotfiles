@@ -5,6 +5,7 @@
   # Phase 1: Docker module test
   # Phase 3: Japanese input method test
   # Phase 4: Shell modules test
+  # Phase 5: Language modules test (Group 1)
   imports = [
     inputs.self.homeModules.docker
     inputs.self.homeModules.japanese-im
@@ -17,6 +18,13 @@
     inputs.self.homeModules.zsh
     inputs.self.homeModules.starship
     inputs.self.homeModules.nushell
+    inputs.self.homeModules.python
+    inputs.self.homeModules.rust
+    inputs.self.homeModules.go
+    inputs.self.homeModules.java
+    inputs.self.homeModules.kotlin
+    inputs.self.homeModules.javascript
+    inputs.self.homeModules.web
   ];
 
   modules.dev.tools.docker.enable = true;
@@ -29,6 +37,13 @@
   modules.shell.zsh.enable = true;
   modules.shell.starship.enable = true;
   modules.shell.nushell.enable = true;
+  modules.dev.lang.python.enable = true;
+  modules.dev.lang.rust.enable = true;
+  modules.dev.lang.go.enable = true;
+  modules.dev.lang.java.enable = true;
+  modules.dev.lang.kotlin.enable = true;
+  modules.dev.lang.javascript.enable = true;
+  modules.dev.lang.web.enable = true;
 
   home.stateVersion = "23.11";
 }

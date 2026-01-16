@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -10,6 +11,10 @@ let
   cfg = config.modules.dev.lang.web;
 in
 {
+  imports = [
+    inputs.self.homeModules.editor-shared
+  ];
+
   options.modules.dev.lang.web = {
     enable = mkEnableOption "Web development";
 
@@ -19,8 +24,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    # TODO stylelint-cli
-    environment.systemPackages = with pkgs; [
+    home.packages = with pkgs; [
       nodejs_20
       (mkIf cfg.deno.enable deno)
       (mkIf cfg.bun.enable bun)

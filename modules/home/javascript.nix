@@ -1,25 +1,26 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.my) mkBoolOpt;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.dev.lang.javascript;
 in
 {
+  imports = [
+    inputs.self.homeModules.editor-shared
+  ];
+
   options.modules.dev.lang.javascript = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "JavaScript/TypeScript development environment";
   };
 
   config = mkIf cfg.enable {
-    # TODO gatsby-cli
-    # TODO prettier-eslint-cli
-    user.packages = with pkgs; [
-      nodePackages.create-react-app
+    home.packages = with pkgs; [
       biome
       nodePackages.eslint
       nodePackages.eslint_d
