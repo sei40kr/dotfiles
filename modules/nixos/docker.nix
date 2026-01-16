@@ -38,8 +38,6 @@ in
       ]
       ++ lib.optional cfg.compose.enable docker-compose;
 
-    # Add user to docker group
-    # Note: This assumes the user 'sei40kr' exists, configured in host configuration
     users.users.sei40kr.extraGroups = [ "docker" ];
   };
 }

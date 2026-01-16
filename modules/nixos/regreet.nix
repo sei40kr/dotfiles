@@ -1,19 +1,16 @@
 {
   config,
+  inputs,
   lib,
   ...
 }:
 
 let
   inherit (builtins) floor toString;
-  inherit (lib)
-    mkEnableOption
-    mkIf
-    ;
+  inherit (lib) mkEnableOption mkIf;
 
   cfg = config.modules.desktop.regreet;
   deCfg = config.modules.desktop.de;
-  gtkCfg = config.modules.desktop.gtk;
 
   backgroundFit =
     if deCfg.background.image == null then
@@ -28,8 +25,10 @@ let
       throw "Unsupported background mode '${deCfg.background.image.mode}' for regreet. Supported modes: fill, fit, stretch";
 in
 {
+  imports = [ inputs.self.nixosModules.de ];
+
   options.modules.desktop.regreet = {
-    enable = mkEnableOption false;
+    enable = mkEnableOption "ReGreet greeter";
   };
 
   config = mkIf cfg.enable {
@@ -41,12 +40,13 @@ in
           fit = backgroundFit;
         };
       };
-      theme = mkIf (gtkCfg.theme != null) {
-        inherit (gtkCfg.theme) package name;
-      };
-      iconTheme = mkIf (gtkCfg.iconTheme != null) {
-        inherit (gtkCfg.iconTheme) package name;
-      };
+      # TODO: Add theme and iconTheme configuration in Phase 7d-6
+      # theme = mkIf (gtkCfg.theme != null) {
+      #   inherit (gtkCfg.theme) package name;
+      # };
+      # iconTheme = mkIf (gtkCfg.iconTheme != null) {
+      #   inherit (gtkCfg.iconTheme) package name;
+      # };
       font = {
         inherit (deCfg.defaultFonts.ui) package name;
         size = floor deCfg.defaultFonts.ui.size;

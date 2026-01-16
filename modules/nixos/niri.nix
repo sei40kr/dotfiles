@@ -1,7 +1,7 @@
 {
   config,
+  inputs,
   lib,
-  pkgs,
   ...
 }:
 
@@ -20,7 +20,6 @@ let
   wmCfg = desktopCfg.wm;
   cfg = wmCfg.niri;
 
-  # Transform config values to niri transform strings
   rotationToTransform =
     { degrees, flipped }:
     if flipped then
@@ -46,11 +45,11 @@ let
       ''
         output "${name}" {
           ${optionalString (!enable) "off"}
-          ${optionalString (resolution != null)
-            ''mode "${toString resolution.width}x${toString resolution.height}${
+          ${optionalString (resolution != null) ''
+            mode "${toString resolution.width}x${toString resolution.height}${
               optionalString (refreshRate != null) "@${toString refreshRate}"
-            }"''
-          }
+            }"
+          ''}
           ${optionalString (scale != 1.0) "scale ${toString scale}"}
           ${optionalString (
             rotation.degrees != 0 || rotation.flipped
@@ -63,8 +62,13 @@ let
   );
 in
 {
+  imports = [
+    inputs.self.nixosModules.de
+    inputs.self.nixosModules.wm
+  ];
+
   options.modules.desktop.wm.niri = {
-    enable = mkEnableOption "niri";
+    enable = mkEnableOption "Niri window manager";
   };
 
   config = mkIf cfg.enable {
@@ -84,8 +88,6 @@ in
         gaps ${toString wmCfg.gaps.inner}
 
         struts {
-          // Double horizontal struts for better visibility when scrolling in a tiling WM
-          // This makes it easier to see that there are windows in the scroll direction
           left ${toString ((wmCfg.gaps.outer - wmCfg.gaps.inner) * 2)}
           right ${toString ((wmCfg.gaps.outer - wmCfg.gaps.inner) * 2)}
           top ${toString (wmCfg.gaps.outer - wmCfg.gaps.inner)}
@@ -95,11 +97,9 @@ in
         background-color "${deCfg.background.color}"
       }
 
-      include "${../../../config/niri/config.kdl}"
+      include "${inputs.self}/config/niri/config.kdl"
     '';
 
-    # NVIDIA workaround: Fix high VRAM usage
-    # See https://yalter.github.io/niri/Nvidia.html
     environment.etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json" =
       mkIf config.hardware.nvidia.enabled {
         text = builtins.toJSON {
@@ -128,11 +128,5 @@ in
 
     modules.desktop.de.enable = true;
     modules.desktop.de.wayland = true;
-
-    modules.desktop.fontconfig.enable = true;
-    modules.desktop.gtk.enable = true;
-    modules.desktop.qt.enable = true;
-
-    modules.desktop.apps.anyrun.enable = true;
   };
 }

@@ -1,16 +1,16 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.my) mkBoolOpt;
-
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.i18n.japanese;
 in
 {
-  imports = [ ./im.nix ];
-
   options.modules.i18n.japanese = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Japanese language support";
   };
 
   config = mkIf cfg.enable {

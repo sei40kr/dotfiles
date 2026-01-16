@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  inputs,
+  lib,
+  ...
+}:
 
 let
   inherit (lib)
@@ -7,42 +12,35 @@ let
     mkOption
     types
     ;
-  inherit (lib.my.extraTypes) font;
+  inherit (types) int;
+  inherit (inputs.self.lib.extraTypes) fontType;
+
   cfg = config.modules.desktop.wm;
   deCfg = config.modules.desktop.de;
 in
 {
-  imports = [
-    ./niri.nix
-  ];
+  imports = [ inputs.self.nixosModules.de ];
 
   options.modules.desktop.wm = {
     gaps = {
       inner = mkOption {
-        type = types.int;
+        type = int;
         default = 16;
-        description = mdDoc ''
-          The size of the inner gaps.
-        '';
+        description = mdDoc "The size of the inner gaps.";
       };
 
       outer = mkOption {
-        type = types.int;
+        type = int;
         default = 32;
-        description = mdDoc ''
-          The size of the outer gaps.
-          Must be greater than or equal to the inner gaps.
-        '';
+        description = mdDoc "The size of the outer gaps. Must be greater than or equal to the inner gaps.";
       };
     };
 
     fonts = {
       titleBar = mkOption {
-        type = font;
+        type = fontType;
         default = deCfg.defaultFonts.ui;
-        description = ''
-          The font used for the title bar.
-        '';
+        description = mdDoc "The font used for the title bar.";
       };
     };
   };

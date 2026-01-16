@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -14,7 +15,6 @@ let
     types
     ;
   inherit (lib.strings) sanitizeDerivationName;
-  inherit (lib.my.extraTypes) font;
   inherit (types)
     attrsOf
     bool
@@ -27,6 +27,8 @@ let
     str
     submodule
     ;
+  inherit (inputs.self.lib.extraTypes) fontType;
+
   cfg = config.modules.desktop.de;
 
   monitorResolutionType = submodule {
@@ -222,8 +224,6 @@ let
         allowSubstitutes = false;
         buildInputs = with pkgs; [ imagemagick ];
       }
-      # Same blur & modulate parameters as the GNOME unlock dialog
-      # https://gitlab.gnome.org/GNOME/gnome-shell/-/blob/main/js/ui/unlockDialog.js#L27-28
       ''
         magick ${path} -blur 0x60 -modulate 55,100,100 $out
       '';
@@ -295,11 +295,11 @@ in
 
     defaultFonts = {
       ui = mkOption {
-        type = font;
+        type = fontType;
         default = {
           package = pkgs.cantarell-fonts;
           name = "Cantarell";
-          size = 11.0;
+          size = 11;
         };
         description = mdDoc ''
           The default font to use for UI elements.
@@ -307,11 +307,11 @@ in
       };
 
       fixed = mkOption {
-        type = font;
+        type = fontType;
         default = {
           package = pkgs.source-code-pro;
           name = "Source Code Pro";
-          size = 10.0;
+          size = 10;
         };
         description = mdDoc ''
           The default font to use for fixed width text.
@@ -319,11 +319,11 @@ in
       };
 
       document = mkOption {
-        type = font;
+        type = fontType;
         default = {
           package = pkgs.cantarell-fonts;
           name = "Cantarell";
-          size = 11.0;
+          size = 11;
         };
         description = mdDoc ''
           The default font to use for documents.
@@ -361,11 +361,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    user.packages = with pkgs; [
+    environment.systemPackages = with pkgs; [
       (mkIf (!cfg.wayland) xclip)
       (mkIf cfg.wayland wl-clipboard)
 
-      # Desktop entries for system power actions
       (makeDesktopItem {
         name = "shutdown";
         desktopName = "Shutdown";

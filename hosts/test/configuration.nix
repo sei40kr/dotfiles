@@ -4,17 +4,23 @@
 
   # Phase 1: Docker module test
   # Phase 2: SSH and WireGuard modules test
-  # Note: agenix is imported by wireguard module
+  # Phase 3: Desktop modules test
   imports = [
     inputs.self.nixosModules.docker
     inputs.self.nixosModules.ssh
     inputs.self.nixosModules.wireguard
+    inputs.self.nixosModules.japanese
+    inputs.self.nixosModules.niri
+    inputs.self.nixosModules.regreet
   ];
 
   modules.services.docker.enable = true;
   modules.services.docker.compose.enable = true;
   modules.services.ssh.enable = true;
   modules.services.wireguard.enable = true;
+  modules.i18n.japanese.enable = true;
+  modules.desktop.wm.niri.enable = true;
+  modules.desktop.regreet.enable = true;
 
   # Basic system settings
   networking.hostName = "test";
