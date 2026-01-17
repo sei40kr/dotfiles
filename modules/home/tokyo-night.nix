@@ -1,9 +1,18 @@
-{ config, lib, ... }:
+{
+  config,
+  inputs,
+  lib,
+  ...
+}:
 
 let
   inherit (lib) mkIf;
 in
 {
+  imports = [
+    inputs.self.homeModules.term-shared
+  ];
+
   config = mkIf (config.modules.term.colorschemes.active == "tokyo-night") {
     modules.term.colorschemes.colors = {
       fg = "c0caf5";
@@ -84,8 +93,9 @@ in
       };
     };
 
-    modules.editors.emacs.doom.theme = "doom-tokyo-night";
+    # TODO: Enable when emacs module is migrated
+    # modules.editors.emacs.doom.theme = "doom-tokyo-night";
 
-    modules.shell.bat.theme = "TwoDark";
+    programs.bat.config.theme = "TwoDark";
   };
 }

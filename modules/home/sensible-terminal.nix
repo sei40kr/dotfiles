@@ -1,13 +1,13 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.my) mkBoolOpt;
+  inherit (lib) mkEnableOption mkIf;
 
   termCfg = config.modules.term;
   cfg = termCfg.sensible;
@@ -22,9 +22,13 @@ let
   );
 in
 {
-  options.modules.term.sensible = {
-    enable = mkBoolOpt false;
-  };
+  imports = [
+    inputs.self.homeModules.term-shared
+  ];
 
-  config = mkIf cfg.enable { environment.systemPackages = [ sensible-terminal ]; };
+  options.modules.term.sensible.enable = mkEnableOption "Sensible terminal wrapper";
+
+  config = mkIf cfg.enable {
+    home.packages = [ sensible-terminal ];
+  };
 }

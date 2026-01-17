@@ -6,6 +6,8 @@
   # Phase 3: Japanese input method test
   # Phase 4: Shell modules test
   # Phase 5: Language modules test (Group 1, Group 2 & Group 3)
+  # Phase 7a: AI modules test
+  # Phase 7b: Term modules test
   imports = [
     inputs.self.homeModules.docker
     inputs.self.homeModules.japanese-im
@@ -53,6 +55,10 @@
     inputs.self.homeModules.codex
     inputs.self.homeModules.crush
     inputs.self.homeModules.gemini-cli
+    inputs.self.homeModules.kitty
+    inputs.self.homeModules.wezterm
+    inputs.self.homeModules.sensible-terminal
+    inputs.self.homeModules.tokyo-night
   ];
 
   modules.dev.tools.docker.enable = true;
@@ -108,6 +114,11 @@
   modules.ai.codex.enable = true;
   modules.ai.crush.enable = true;
   modules.ai.gemini-cli.enable = true;
+
+  modules.term.kitty.enable = true;
+  modules.term.wezterm.enable = true;
+  modules.term.sensible.enable = true;
+  modules.term.colorschemes.active = "tokyo-night";
 
   home.stateVersion = "23.11";
 }
