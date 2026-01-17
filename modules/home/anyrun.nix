@@ -1,6 +1,6 @@
 {
-  lib,
   config,
+  lib,
   pkgs,
   ...
 }:
@@ -29,16 +29,16 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
+    home.packages = [
       cfg.package
       anyrun-dmenu
-      rink
+      pkgs.rink
     ];
 
-    home.configFile."anyrun/config.ron".source = pkgs.replaceVars ../../../config/anyrun/config.ron {
+    xdg.configFile."anyrun/config.ron".source = pkgs.replaceVars ../../config/anyrun/config.ron {
       inherit (cfg) package;
     };
-    home.configFile."anyrun/applications.ron".source = ../../../config/anyrun/applications.ron;
-    home.configFile."anyrun/style.css".source = ../../../config/anyrun/style.css;
+    xdg.configFile."anyrun/applications.ron".source = ../../config/anyrun/applications.ron;
+    xdg.configFile."anyrun/style.css".source = ../../config/anyrun/style.css;
   };
 }

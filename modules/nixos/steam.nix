@@ -30,12 +30,9 @@ in
         extraEnv = {
           MANGOHUD = true;
         };
-        # NOTE: Normally this should be set according to the monitor DPI,
-        #  but the default Steam UI font size is too small for me, so I always
-        #  set it to 125%.
         extraArgs = "-forcedesktopscaling 1.25";
       };
-      extraCompatPackages = with pkgs; [ proton-ge-bin ];
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
     };
 
     programs.gamemode = {

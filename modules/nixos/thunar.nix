@@ -6,13 +6,12 @@
 }:
 
 let
-  inherit (lib) mkIf;
-  inherit (lib.my) mkBoolOpt;
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.desktop.apps.thunar;
 in
 {
   options.modules.desktop.apps.thunar = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Thunar file manager";
   };
 
   config = mkIf cfg.enable {
@@ -25,9 +24,8 @@ in
       ];
     };
 
-    # Necessary to generate thumbnails
     services.tumbler.enable = true;
-    user.packages = with pkgs; [ ffmpegthumbnailer ];
+    environment.systemPackages = [ pkgs.ffmpegthumbnailer ];
 
     xdg.mime.defaultApplications."inode/directory" = "thunar.desktop";
   };

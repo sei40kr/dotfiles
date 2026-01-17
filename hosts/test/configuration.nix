@@ -5,6 +5,7 @@
   # Phase 1: Docker module test
   # Phase 2: SSH and WireGuard modules test
   # Phase 3: Desktop modules test
+  # Phase 7d-4: App modules test (nixos)
   imports = [
     inputs.self.nixosModules.host-shared
     inputs.self.nixosModules.docker
@@ -13,6 +14,9 @@
     inputs.self.nixosModules.japanese
     inputs.self.nixosModules.niri
     inputs.self.nixosModules.regreet
+    inputs.self.nixosModules.thunar
+    inputs.self.nixosModules.steam
+    inputs.self.nixosModules.dunst
   ];
 
   modules.services.docker.enable = true;
@@ -22,6 +26,12 @@
   modules.i18n.japanese.enable = true;
   modules.desktop.wm.niri.enable = true;
   modules.desktop.regreet.enable = true;
+  modules.desktop.apps.thunar.enable = true;
+  modules.desktop.apps.steam.enable = true;
+  modules.desktop.apps.dunst.enable = true;
+  # TODO: Remove when theme module is added
+  modules.desktop.apps.dunst.normal.background = "#222222";
+  modules.desktop.apps.dunst.normal.foreground = "#888888";
 
   # Basic system settings
   networking.hostName = "test";

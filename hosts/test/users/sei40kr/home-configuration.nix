@@ -9,6 +9,7 @@
   # Phase 7a: AI modules test
   # Phase 7b: Term modules test
   # Phase 7d-3: Media modules test
+  # Phase 7d-4: App modules test
   imports = [
     inputs.self.homeModules.docker
     inputs.self.homeModules.japanese-im
@@ -72,6 +73,11 @@
     inputs.self.homeModules.obs-studio
     inputs.self.homeModules.zathura
     inputs.self.homeModules.foliate
+    inputs.self.homeModules.bitwarden
+    inputs.self.homeModules.anyrun
+    inputs.self.homeModules.gnome-pomodoro
+    inputs.self.homeModules.quickshell
+    inputs.self.homeModules.swww
   ];
 
   modules.dev.tools.docker.enable = true;
@@ -148,6 +154,12 @@
   modules.desktop.media.obs-studio.enable = true;
   modules.desktop.media.zathura.enable = true;
   modules.desktop.media.foliate.enable = true;
+
+  modules.desktop.apps.bitwarden.enable = true;
+  modules.desktop.apps.anyrun.enable = true;
+  modules.desktop.apps.gnome.pomodoro.enable = true;
+  modules.desktop.apps.quickshell.enable = true;
+  modules.desktop.apps.swww.enable = true;
 
   home.stateVersion = "23.11";
 }
