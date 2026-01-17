@@ -150,6 +150,7 @@ in
     isNormalUser = true;
     group = "users";
     extraGroups = [ "wheel" ];
+    shell = pkgs.zsh;
   };
 
   services.ollama.enable = true;
@@ -160,6 +161,8 @@ in
   modules.desktop.apps.steam.enable = true;
 
   modules.i18n.japanese.enable = true;
+
+  modules.shell.zsh.enable = true;
 
   services.jellyfin = {
     enable = true;

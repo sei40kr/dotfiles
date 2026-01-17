@@ -19,6 +19,7 @@
     inputs.self.nixosModules.whitesur-theme
     inputs.self.nixosModules.wireguard
     inputs.self.nixosModules.wm
+    inputs.self.nixosModules.zsh
   ];
 
   config = {
