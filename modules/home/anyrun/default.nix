@@ -35,10 +35,10 @@ in
       pkgs.rink
     ];
 
-    xdg.configFile."anyrun/config.ron".source = pkgs.replaceVars ../../config/anyrun/config.ron {
+    xdg.configFile."anyrun/config.ron".source = pkgs.replaceVars ./config.ron {
       inherit (cfg) package;
     };
-    xdg.configFile."anyrun/applications.ron".source = ../../config/anyrun/applications.ron;
-    xdg.configFile."anyrun/style.css".source = ../../config/anyrun/style.css;
+    xdg.configFile."anyrun/applications.ron".source = ./applications.ron;
+    xdg.configFile."anyrun/style.css".source = ./style.css;
   };
 }

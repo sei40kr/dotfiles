@@ -36,8 +36,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ python3Packages.notebook ];
 
-    home.file.".jupyter/jupyter_console_config.py".source =
-      ./../../../config/jupyter/jupyter_console_config.py;
+    home.file.".jupyter/jupyter_console_config.py".source = ./jupyter_console_config.py;
     xdg.dataFile."jupyter/kernels".source = "${kernels}/kernels";
   };
 }

@@ -20,7 +20,7 @@ in
   config = mkIf cfg.enable {
     programs.quickshell = {
       enable = true;
-      configs.default = ../../config/quickshell;
+      configs.default = ./default;
       activeConfig = "default";
       systemd.enable = true;
     };

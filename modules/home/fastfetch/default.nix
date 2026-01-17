@@ -20,7 +20,7 @@ in
       settings = {
         logo = {
           type = "kitty-direct";
-          source = ../../config/fastfetch/logo.png;
+          source = ./logo.png;
           # FIXME: kitty-direct type cannot preserve aspect ratio of the image,
           #  so setting both width and height.
           #  Remove the height once the issue is fixed.

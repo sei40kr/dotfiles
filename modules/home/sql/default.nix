@@ -21,10 +21,10 @@ in
       pgcli
     ];
 
-    xdg.configFile."litecli/config".source = ../../config/litecli/config;
+    xdg.configFile."litecli/config".source = ./litecli-config;
 
-    home.file.".myclirc".source = ../../config/mycli/myclirc;
+    home.file.".myclirc".source = ./myclirc;
 
-    xdg.configFile."pgcli/config".source = ../../config/pgcli/config;
+    xdg.configFile."pgcli/config".source = ./pgclirc;
   };
 }

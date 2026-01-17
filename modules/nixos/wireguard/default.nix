@@ -15,8 +15,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    age.secrets.wg0-private.file = "${inputs.self}/config/wireguard/wg0/private.age";
-    age.secrets.wg0-peer1-psk.file = "${inputs.self}/config/wireguard/wg0/peer1-psk.age";
+    age.secrets.wg0-private.file = ./wg0-private.age;
+    age.secrets.wg0-peer1-psk.file = ./wg0-peer1-psk.age;
 
     networking.wg-quick.interfaces.wg0 = {
       address = [ "100.118.32.138/32" ];

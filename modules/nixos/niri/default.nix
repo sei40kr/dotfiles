@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   ...
 }:
@@ -92,7 +91,7 @@ in
         background-color "${deCfg.background.color}"
       }
 
-      include "${inputs.self}/config/niri/config.kdl"
+      include "${./config.kdl}"
     '';
 
     environment.etc."nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json" =

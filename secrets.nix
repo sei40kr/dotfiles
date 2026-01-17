@@ -5,7 +5,7 @@ let
   ];
 in
 {
-  "config/wireguard/wg0/private.age".publicKeys = publicKeys;
-  "config/wireguard/wg0/peer1-psk.age".publicKeys = publicKeys;
-  "config/wireguard/wg0/peer2-psk.age".publicKeys = publicKeys;
+  "modules/nixos/wireguard/wg0-private.age".publicKeys = publicKeys;
+  "modules/nixos/wireguard/wg0-peer1-psk.age".publicKeys = publicKeys;
+  "modules/nixos/wireguard/wg0-peer2-psk.age".publicKeys = publicKeys;
 }

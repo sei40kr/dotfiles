@@ -153,7 +153,7 @@ in
       default = [ ];
       description = "List of skill directories to be combined and provided to AI tools";
       example = [
-        ../../config/ai/skills
+        ./skills
         "/home/user/custom-skills"
       ];
     };
@@ -173,7 +173,7 @@ in
   config = {
     modules.ai.skillPaths = [
       "${inputs.anthropics-skills}/skills"
-      ./../../config/ai/skills
+      ././skills
     ];
 
     home.packages = lib.flatten (
