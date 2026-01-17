@@ -40,9 +40,10 @@ in
   time.timeZone = "Asia/Tokyo";
   time.hardwareClockInLocalTime = true;
 
-  networking.hostName = "torrent";
+  networking.hostName = "torrent"; # Define your hostname.
   networking.networkmanager.enable = true;
   networking.interfaces.enp0s31f6.useDHCP = true;
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   services.openvpn.servers.work = {
     autoStart = false;
@@ -135,32 +136,28 @@ in
 
   programs.nix-ld.enable = true;
 
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11";
 
-  # User definition
   users.users.sei40kr = {
+    uid = 1000;
+    description = "The primary user account";
     isNormalUser = true;
-    description = "Seong Yong-ju";
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-    ];
+    group = "users";
+    extraGroups = [ "wheel" ];
   };
 
   services.ollama.enable = true;
-
-  # NixOS module enablements
-  modules.services.docker = {
-    enable = true;
-    compose.enable = true;
-  };
-  modules.services.ssh.enable = true;
 
   modules.desktop.wm.niri.enable = true;
   modules.desktop.theme.active = "whitesur";
 
   modules.desktop.apps.steam.enable = true;
-  modules.desktop.apps.thunar.enable = true;
 
   modules.i18n.japanese.enable = true;
 
@@ -168,8 +165,11 @@ in
     enable = true;
     openFirewall = true;
   };
-
-  nixpkgs.hostPlatform = "x86_64-linux";
+  modules.services.docker = {
+    enable = true;
+    compose.enable = true;
+  };
+  modules.services.ssh.enable = true;
 
   environment.systemPackages = with pkgs; [
     efibootmgr
