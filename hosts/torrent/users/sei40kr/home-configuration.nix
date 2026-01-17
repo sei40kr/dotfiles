@@ -16,6 +16,11 @@
     '';
   };
 
+  programs.nh = {
+    enable = true;
+    flake = "/etc/dotfiles";
+  };
+
   modules.desktop.apps.bitwarden.enable = true;
   modules.desktop.apps.dunst.enable = true;
   modules.desktop.apps.gnome.pomodoro.enable = true;
