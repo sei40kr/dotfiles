@@ -13,17 +13,6 @@ in
     ./hardware-configuration.nix
     inputs.lanzaboote.nixosModules.lanzaboote
     inputs.self.nixosModules.host-shared
-    inputs.self.nixosModules.agenix
-    inputs.self.nixosModules.docker
-    inputs.self.nixosModules.ssh
-    inputs.self.nixosModules.japanese
-    inputs.self.nixosModules.niri
-    inputs.self.nixosModules.regreet
-    inputs.self.nixosModules.steam
-    inputs.self.nixosModules.dunst
-    inputs.self.nixosModules.thunar
-    inputs.self.nixosModules.theme-shared
-    inputs.self.nixosModules.whitesur-theme
   ];
 
   # Enable automatic garbage collection

@@ -1,28 +1,8 @@
-{ inputs, perSystem, ... }:
+{ inputs, ... }:
 {
   # Minimal test host configuration
 
-  # Phase 1: Docker module test
-  # Phase 2: SSH and WireGuard modules test
-  # Phase 3: Desktop modules test
-  # Phase 7d-4: App modules test (nixos)
-  imports = [
-    inputs.self.nixosModules.host-shared
-    inputs.self.nixosModules.docker
-    inputs.self.nixosModules.ssh
-    inputs.self.nixosModules.wireguard
-    inputs.self.nixosModules.japanese
-    inputs.self.nixosModules.niri
-    inputs.self.nixosModules.regreet
-    inputs.self.nixosModules.thunar
-    inputs.self.nixosModules.steam
-    inputs.self.nixosModules.dunst
-    inputs.self.nixosModules.chrome
-    inputs.self.nixosModules.theme-shared
-    inputs.self.nixosModules.graphite-theme
-    inputs.self.nixosModules.whitesur-theme
-    inputs.self.nixosModules.orchis-theme
-  ];
+  imports = [ inputs.self.nixosModules.host-shared ];
 
   modules.services.docker.enable = true;
   modules.services.docker.compose.enable = true;
