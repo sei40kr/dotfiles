@@ -40,12 +40,14 @@ in
           fit = backgroundFit;
         };
       };
-      # TODO: Add theme and iconTheme configuration in Phase 7d-6
-      # theme = mkIf (gtkCfg.theme != null) {
-      #   inherit (gtkCfg.theme) package name;
+      # TODO: Add regreet module options for theme and iconTheme
+      # theme = {
+      #   package = ...;
+      #   name = ...;
       # };
-      # iconTheme = mkIf (gtkCfg.iconTheme != null) {
-      #   inherit (gtkCfg.iconTheme) package name;
+      # iconTheme = {
+      #   package = ...;
+      #   name = ...;
       # };
       font = {
         inherit (deCfg.defaultFonts.ui) package name;

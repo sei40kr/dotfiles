@@ -79,6 +79,9 @@
     inputs.self.homeModules.quickshell
     inputs.self.homeModules.swww
     inputs.self.homeModules.firefox
+    inputs.self.homeModules.graphite-theme
+    inputs.self.homeModules.whitesur-theme
+    inputs.self.homeModules.orchis-theme
   ];
 
   modules.dev.tools.docker.enable = true;

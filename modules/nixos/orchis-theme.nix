@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -13,20 +14,13 @@ let
   orchis-theme = pkgs.orchis-theme.override { withWallpapers = true; };
 in
 {
-  config = mkIf (themeCfg.active == "orchis") {
-    modules.desktop.fontconfig.fonts.sansSerif = {
-      packages = with pkgs; [
-        roboto
-        noto-fonts
-        noto-fonts-cjk
-      ];
-      names = [
-        "Roboto"
-        "Noto Sans Mono"
-        "Noto Sans Mono CJK JP"
-      ];
-    };
+  imports = [
+    inputs.self.nixosModules.de
+    inputs.self.nixosModules.dunst
+    inputs.self.nixosModules.theme-shared
+  ];
 
+  config = mkIf (themeCfg.active == "orchis") {
     modules.desktop.de.background.image = {
       path = "${orchis-theme}/share/backgrounds/4k.jpg";
       mode = "fill";
@@ -51,22 +45,6 @@ in
       normal = {
         background = "#f5f5f5";
         foreground = "#000000de";
-      };
-    };
-
-    modules.desktop.gtk = {
-      font = {
-        package = pkgs.roboto;
-        name = "sans-serif";
-        size = 11;
-      };
-      iconTheme = {
-        package = pkgs.tela-icon-theme;
-        name = "Tela";
-      };
-      theme = {
-        package = orchis-theme;
-        name = "Orchis";
       };
     };
   };
