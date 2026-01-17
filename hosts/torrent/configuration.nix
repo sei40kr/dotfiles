@@ -85,7 +85,17 @@ in
   };
 
   services.greetd.enable = true;
-  modules.desktop.regreet.enable = true;
+  modules.desktop.regreet = {
+    enable = true;
+    theme = {
+      package = pkgs.whitesur-gtk-theme;
+      name = "WhiteSur-light-solid";
+    };
+    iconTheme = {
+      package = pkgs.whitesur-icon-theme;
+      name = "WhiteSur";
+    };
+  };
 
   # Enable CUPS to print documents
   services.printing.enable = true;

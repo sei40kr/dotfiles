@@ -1,13 +1,23 @@
 {
   config,
-  inputs,
   lib,
   ...
 }:
 
 let
   inherit (builtins) floor toString;
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
+  inherit (types)
+    nullOr
+    package
+    str
+    submodule
+    ;
 
   cfg = config.modules.desktop.regreet;
   deCfg = config.modules.desktop.de;
@@ -27,6 +37,40 @@ in
 {
   options.modules.desktop.regreet = {
     enable = mkEnableOption "ReGreet greeter";
+
+    theme = mkOption {
+      type = nullOr (submodule {
+        options = {
+          package = mkOption {
+            type = package;
+            description = "GTK theme package";
+          };
+          name = mkOption {
+            type = str;
+            description = "GTK theme name";
+          };
+        };
+      });
+      default = null;
+      description = "GTK theme";
+    };
+
+    iconTheme = mkOption {
+      type = nullOr (submodule {
+        options = {
+          package = mkOption {
+            type = package;
+            description = "Icon theme package";
+          };
+          name = mkOption {
+            type = str;
+            description = "Icon theme name";
+          };
+        };
+      });
+      default = null;
+      description = "Icon theme";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -38,15 +82,8 @@ in
           fit = backgroundFit;
         };
       };
-      # TODO: Add regreet module options for theme and iconTheme
-      # theme = {
-      #   package = ...;
-      #   name = ...;
-      # };
-      # iconTheme = {
-      #   package = ...;
-      #   name = ...;
-      # };
+      theme = mkIf (cfg.theme != null) cfg.theme;
+      iconTheme = mkIf (cfg.iconTheme != null) cfg.iconTheme;
       font = {
         inherit (deCfg.defaultFonts.ui) package name;
         size = floor deCfg.defaultFonts.ui.size;
