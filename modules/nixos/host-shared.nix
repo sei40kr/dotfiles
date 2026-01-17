@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
@@ -24,5 +24,12 @@
 
   config = {
     nixpkgs.config.allowUnfree = true;
+
+    environment.systemPackages = with pkgs; [
+      coreutils
+      curl
+      git
+      vim
+    ];
   };
 }
