@@ -17,6 +17,7 @@
     inputs.self.nixosModules.thunar
     inputs.self.nixosModules.steam
     inputs.self.nixosModules.dunst
+    inputs.self.nixosModules.chrome
   ];
 
   modules.services.docker.enable = true;
@@ -32,6 +33,7 @@
   # TODO: Remove when theme module is added
   modules.desktop.apps.dunst.normal.background = "#222222";
   modules.desktop.apps.dunst.normal.foreground = "#888888";
+  modules.desktop.browsers.chrome.enable = true;
 
   # Basic system settings
   networking.hostName = "test";

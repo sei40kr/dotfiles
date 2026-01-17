@@ -78,6 +78,7 @@
     inputs.self.homeModules.gnome-pomodoro
     inputs.self.homeModules.quickshell
     inputs.self.homeModules.swww
+    inputs.self.homeModules.firefox
   ];
 
   modules.dev.tools.docker.enable = true;
@@ -160,6 +161,7 @@
   modules.desktop.apps.gnome.pomodoro.enable = true;
   modules.desktop.apps.quickshell.enable = true;
   modules.desktop.apps.swww.enable = true;
+  modules.desktop.browsers.firefox.enable = true;
 
   home.stateVersion = "23.11";
 }

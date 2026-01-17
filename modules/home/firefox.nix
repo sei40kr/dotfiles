@@ -5,7 +5,7 @@
 }:
 
 let
-  inherit (lib) mkIf mkEnableOption optionalAttrs;
+  inherit (lib) mkEnableOption mkIf optionalAttrs;
   cfg = config.modules.desktop.browsers.firefox;
 in
 {
@@ -82,14 +82,16 @@ in
           Default = "Google";
         };
       };
-      preferences = {
-        "browser.fullscreen.autohide" = false;
-        "browser.profiles.enabled" = true;
-        "browser.tabs.warnOnCloseOtherTabs" = false;
-        "browser.urlbar.shortcuts.bookmarks" = false;
-        "browser.urlbar.shortcuts.history" = false;
-        "browser.urlbar.shortcuts.tabs" = false;
-      };
+      # TODO: home-manager's firefox module doesn't support common preferences across all profiles.
+      #  When declaratively configuring profiles, move these preferences to each profile's settings.
+      # preferences = {
+      #   "browser.fullscreen.autohide" = false;
+      #   "browser.profiles.enabled" = true;
+      #   "browser.tabs.warnOnCloseOtherTabs" = false;
+      #   "browser.urlbar.shortcuts.bookmarks" = false;
+      #   "browser.urlbar.shortcuts.history" = false;
+      #   "browser.urlbar.shortcuts.tabs" = false;
+      # };
     };
   };
 }
