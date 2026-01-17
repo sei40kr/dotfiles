@@ -7,7 +7,14 @@
 {
   imports = [ inputs.self.homeModules.home-shared ];
 
-  # TODO: enable home-manager gc
+  # Enable automatic garbage collection
+  # NOTE: This will only garbage collect the user's profiles
+  nix.gc = {
+    automatic = true;
+    dates = ''
+      *-*-* 03:00:00
+    '';
+  };
 
   # Docker
   modules.dev.tools.docker.enable = true;
