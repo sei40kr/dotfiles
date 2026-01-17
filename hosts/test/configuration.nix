@@ -13,7 +13,6 @@
   modules.desktop.regreet.enable = true;
   modules.desktop.apps.thunar.enable = true;
   modules.desktop.apps.steam.enable = true;
-  modules.desktop.apps.dunst.enable = true;
   modules.desktop.browsers.chrome.enable = true;
   modules.desktop.theme.active = "graphite";
 

@@ -160,7 +160,6 @@ in
   modules.desktop.theme.active = "whitesur";
 
   modules.desktop.apps.steam.enable = true;
-  modules.desktop.apps.dunst.enable = true;
   modules.desktop.apps.thunar.enable = true;
 
   modules.i18n.japanese.enable = true;

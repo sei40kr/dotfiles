@@ -27,5 +27,27 @@ in
         name = "WhiteSur";
       };
     };
+
+    modules.desktop.apps.dunst = {
+      padding = {
+        x = 12;
+        y = 8;
+        textIcon = 8;
+      };
+
+      borderWidth = 0;
+
+      icon.size = {
+        min = 48;
+        max = 48;
+      };
+
+      cornerRadius = 12;
+
+      normal = {
+        background = if cfg.variant == "light" then "#f5f5f5" else "#333333";
+        foreground = if cfg.variant == "light" then "#363636" else "#dadada";
+      };
+    };
   };
 }

@@ -6,7 +6,6 @@
     inputs.self.nixosModules.chrome
     inputs.self.nixosModules.de
     inputs.self.nixosModules.docker
-    inputs.self.nixosModules.dunst
     inputs.self.nixosModules.fontconfig
     inputs.self.nixosModules.graphite-theme
     inputs.self.nixosModules.japanese

@@ -35,5 +35,28 @@ in
         name = "Tela-circle-black${optionalString (color == "dark") "-dark"}";
       };
     };
+
+    modules.desktop.apps.dunst = {
+      padding = {
+        x = 12;
+        y = 6;
+        textIcon = 6;
+      };
+
+      borderWidth = 2;
+
+      icon.size = {
+        min = 48;
+        max = 48;
+      };
+
+      cornerRadius = 12;
+
+      normal = {
+        background = if color == "light" then "#f9fafb" else "#2c2c2c";
+        foreground = if color == "light" then "#000000de" else "#ffffff";
+        borderColor = if color == "light" then "#000000de" else "#ffffff";
+      };
+    };
   };
 }

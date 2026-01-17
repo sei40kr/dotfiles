@@ -19,27 +19,5 @@ in
       path = "${orchis-theme}/share/backgrounds/4k.jpg";
       mode = "fill";
     };
-
-    modules.desktop.apps.dunst = {
-      padding = {
-        x = 18;
-        y = 8;
-        textIcon = 8;
-      };
-
-      borderWidth = 0;
-
-      icon.size = {
-        min = 48;
-        max = 48;
-      };
-
-      cornerRadius = 18;
-
-      normal = {
-        background = "#f5f5f5";
-        foreground = "#000000de";
-      };
-    };
   };
 }

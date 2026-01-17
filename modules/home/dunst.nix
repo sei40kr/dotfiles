@@ -2,6 +2,7 @@
   config,
   inputs,
   lib,
+  osConfig,
   pkgs,
   ...
 }:
@@ -16,7 +17,6 @@ let
     removePrefix
     types
     ;
-  inherit (lib.generators) toINI;
   inherit (inputs.self.lib.extraTypes) fontType;
   inherit (types)
     enum
@@ -27,8 +27,9 @@ let
     submodule
     ;
   cfg = config.modules.desktop.apps.dunst;
-  wmCfg = config.modules.desktop.wm;
-  deCfg = config.modules.desktop.de;
+  wmCfg = osConfig.modules.desktop.wm;
+  deCfg = osConfig.modules.desktop.de;
+  anyrunCfg = config.modules.desktop.apps.anyrun;
 
   separatorType = submodule {
     options = {
@@ -49,6 +50,13 @@ let
       };
     };
   };
+
+  playMessageSound = pkgs.writeShellScript "pw-play-message-sound" ''
+    ${pkgs.pipewire}/bin/pw-play --media-role=Notification ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/message.oga
+  '';
+  playCompleteSound = pkgs.writeShellScript "pw-play-complete-sound" ''
+    ${pkgs.pipewire}/bin/pw-play --media-role=Notification ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/complete.oga
+  '';
 in
 {
   options.modules.desktop.apps.dunst = {
@@ -364,114 +372,93 @@ in
       }
     ];
 
-    environment.systemPackages = [ cfg.package ];
+    services.dunst = {
+      enable = true;
+      settings = {
+        global = {
+          monitor = 0;
+          follow = "mouse";
+          inherit (cfg) width height;
+          inherit (cfg.position) origin;
+          offset = "${toString cfg.position.offset.x}x${toString cfg.position.offset.y}";
+          scale = 0;
+          notification_limit = 0;
+          progress_bar = false;
+          indicate_hidden = "yes";
+          separator_height = if cfg.separator != null then cfg.separator.height else 0;
+          padding = cfg.padding.y;
+          horizontal_padding = cfg.padding.x;
+          text_icon_padding = cfg.padding.textIcon;
+          frame_width = cfg.borderWidth;
+          gap_size = cfg.gap;
+          separator_color = if cfg.separator != null then ''"${cfg.separator.color}"'' else "";
+          sort = "yes";
+          font = "${cfg.font.name} ${toString cfg.font.size}";
+          line_height = if cfg.lineHeight != null then cfg.lineHeight else 0;
+          markup = "full";
+          format = "<b>%s</b>\\n%b";
+          alignment = cfg.alignments.horizontal;
+          vertical_alignment = cfg.alignments.vertical;
+          show_age_threshold = 60;
+          ellipsize = "end";
+          ignore_newline = "no";
+          stack_duplicates = true;
+          hide_duplicate_count = false;
+          show_indicators = "no";
+          enable_recursive_icon_lookup = true;
+          icon_theme = config.gtk.iconTheme.name;
+          icon_position = if cfg.icon.position != null then cfg.icon.position else "off";
+          min_icon_size = cfg.icon.size.min;
+          max_icon_size = cfg.icon.size.max;
+          sticky_history = "yes";
+          history_length = 20;
+          dmenu = if anyrunCfg.enable then "anyrun-dmenu" else "true";
+          browser = "${pkgs.xdg-utils}/bin/xdg-open";
+          always_run_script = true;
+          title = "Dunst";
+          class = "Dunst";
+          corner_radius = cfg.cornerRadius;
+          ignore_dbusclose = false;
+          force_xwayland = false;
+          force_xinerama = false;
+          mouse_left_click = "context";
+          mouse_middle_click = "none";
+          mouse_right_click = "close_current";
+        };
 
-    home-manager.sharedModules = [
-      (
-        { config, pkgs, ... }:
-        let
-          gtkCfg = config.gtk;
-          anyrunCfg = config.modules.desktop.apps.anyrun;
+        experimental = {
+          per_monitor_dpi = true;
+        };
 
-          playMessageSound = pkgs.writeShellScript "pw-play-message-sound" ''
-            ${pkgs.pipewire}/bin/pw-play --media-role=Notification ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/message.oga
-          '';
-          playCompleteSound = pkgs.writeShellScript "pw-play-complete-sound" ''
-            ${pkgs.pipewire}/bin/pw-play --media-role=Notification ${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/complete.oga
-          '';
+        play_message_sound_everything = {
+          script = "${playMessageSound}";
+        };
 
-          # NOTE: Wrap hex colors in quotes to prevent them from being interpreted as
-          #  comments. e.g. "${color}" -> ''"${color}"''
-          dunstrc = {
-            global = {
-              monitor = 0;
-              follow = "mouse";
-              inherit (cfg) width height;
-              inherit (cfg.position) origin;
-              offset = "${toString cfg.position.offset.x}x${toString cfg.position.offset.y}";
-              scale = 0;
-              notification_limit = 0;
-              progress_bar = false;
-              indicate_hidden = "yes";
-              separator_height = if cfg.separator != null then cfg.separator.height else 0;
-              padding = cfg.padding.y;
-              horizontal_padding = cfg.padding.x;
-              text_icon_padding = cfg.padding.textIcon;
-              frame_width = cfg.borderWidth;
-              gap_size = cfg.gap;
-              separator_color = if cfg.separator != null then ''"${cfg.separator.color}"'' else "";
-              sort = "yes";
-              font = "${cfg.font.name} ${toString cfg.font.size}";
-              line_height = if cfg.lineHeight != null then cfg.lineHeight else 0;
-              markup = "full";
-              format = "<b>%s</b>\\n%b";
-              alignment = cfg.alignments.horizontal;
-              vertical_alignment = cfg.alignments.vertical;
-              show_age_threshold = 60;
-              ellipsize = "end";
-              ignore_newline = "no";
-              stack_duplicates = true;
-              hide_duplicate_count = false;
-              show_indicators = "no";
-              enable_recursive_icon_lookup = true;
-              icon_theme = gtkCfg.iconTheme.name or "";
-              icon_position = if cfg.icon.position != null then cfg.icon.position else "off";
-              min_icon_size = cfg.icon.size.min;
-              max_icon_size = cfg.icon.size.max;
-              sticky_history = "yes";
-              history_length = 20;
-              dmenu = if anyrunCfg.enable then "anyrun-dmenu" else "true";
-              browser = "${pkgs.xdg-utils}/bin/xdg-open";
-              always_run_script = true;
-              title = "Dunst";
-              class = "Dunst";
-              corner_radius = cfg.cornerRadius;
-              ignore_dbusclose = false;
-              force_xwayland = false;
-              force_xinerama = false;
-              mouse_left_click = "context";
-              mouse_middle_click = "none";
-              mouse_right_click = "close_current";
-            };
-
-            experimental = {
-              per_monitor_dpi = true;
-            };
-
-            play_message_sound_everything = {
-              script = "${playMessageSound}";
-            };
-
-            claude_code_complete = {
-              summary = "Claude Code";
-              body = "Response complete!";
-              script = "${playCompleteSound}";
-            };
+        claude_code_complete = {
+          summary = "Claude Code";
+          body = "Response complete!";
+          script = "${playCompleteSound}";
+        };
+      }
+      // (genAttrs
+        [
+          "urgency_low"
+          "urgency_normal"
+          "urgency_critical"
+        ]
+        (
+          name:
+          let
+            level = removePrefix "urgency_" name;
+          in
+          {
+            inherit (cfg.${level}) timeout;
+            background = ''"${cfg.${level}.background}"'';
+            foreground = ''"${cfg.${level}.foreground}"'';
+            frame_color = ''"${cfg.${level}.borderColor}"'';
           }
-          // (genAttrs
-            [
-              "urgency_low"
-              "urgency_normal"
-              "urgency_critical"
-            ]
-            (
-              name:
-              let
-                level = removePrefix "urgency_" name;
-              in
-              {
-                inherit (cfg.${level}) timeout;
-                background = ''"${cfg.${level}.background}"'';
-                foreground = ''"${cfg.${level}.foreground}"'';
-                frame_color = ''"${cfg.${level}.borderColor}"'';
-              }
-            )
-          );
-        in
-        {
-          home.configFile."dunst/dunstrc".text = toINI { } dunstrc;
-        }
-      )
-    ];
+        )
+      );
+    };
   };
 }
