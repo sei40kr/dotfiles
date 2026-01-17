@@ -11,11 +11,6 @@ let
   cfg = config.modules.dev.lang.python;
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-    inputs.self.homeModules.zsh
-  ];
-
   options.modules.dev.lang.python = {
     enable = mkEnableOption "Python development environment";
   };

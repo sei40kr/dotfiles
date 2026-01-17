@@ -15,10 +15,6 @@ let
   cfg = config.modules.ai.agent-browser;
 in
 {
-  imports = [
-    inputs.self.homeModules.ai-shared
-  ];
-
   options.modules.ai.agent-browser = {
     enable = mkEnableOption "agent-browser";
     package = mkPackageOption perSystem.llm-agents-nix "agent-browser" { };

@@ -34,8 +34,6 @@ let
       '';
 in
 {
-  imports = [ inputs.self.homeModules.term-shared ];
-
   options.modules.term.kitty = {
     enable = mkEnableOption "Kitty terminal";
   };

@@ -11,11 +11,6 @@ let
   cfg = config.modules.editors.idea;
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-    inputs.self.homeModules.ideavim
-  ];
-
   options.modules.editors.idea = {
     enable = mkEnableOption "IntelliJ IDEA";
   };

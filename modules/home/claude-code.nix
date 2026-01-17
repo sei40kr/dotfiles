@@ -34,8 +34,6 @@ let
       throw "Unknown transport type ${transport} for MCP server ${name}";
 in
 {
-  imports = [ inputs.self.homeModules.ai-shared ];
-
   options.modules.ai.claude-code = {
     enable = mkEnableOption "Claude Code";
 

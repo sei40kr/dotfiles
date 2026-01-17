@@ -42,11 +42,6 @@ let
   };
 in
 {
-  imports = [
-    inputs.self.homeModules.ai-shared
-    inputs.self.homeModules.editor-shared
-  ];
-
   options.modules.ai.crush = {
     enable = mkEnableOption "Crush";
   };

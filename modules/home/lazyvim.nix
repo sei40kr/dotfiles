@@ -12,8 +12,6 @@ let
   cfg = config.modules.editors.lazyvim;
 in
 {
-  imports = [ inputs.self.homeModules.editor-shared ];
-
   options.modules.editors.lazyvim = {
     enable = mkEnableOption "LazyVim";
   };

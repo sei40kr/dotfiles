@@ -32,11 +32,6 @@ let
       abort "toVimScript: unsupported type";
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-    inputs.self.homeModules.emacs
-  ];
-
   options.modules.editors.ideavim = {
     enable = mkEnableOption "IdeaVim";
 

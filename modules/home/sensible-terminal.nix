@@ -22,10 +22,6 @@ let
   );
 in
 {
-  imports = [
-    inputs.self.homeModules.term-shared
-  ];
-
   options.modules.term.sensible.enable = mkEnableOption "Sensible terminal wrapper";
 
   config = mkIf cfg.enable {

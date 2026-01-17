@@ -11,10 +11,6 @@ let
   cfg = config.modules.dev.lang.ruby;
 in
 {
-  imports = [
-    inputs.self.homeModules.zsh
-  ];
-
   options.modules.dev.lang.ruby = {
     enable = mkEnableOption "Ruby development environment";
 

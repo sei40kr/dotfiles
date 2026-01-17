@@ -11,10 +11,6 @@ let
   cfg = config.modules.dev.lang.latex;
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-  ];
-
   options.modules.dev.lang.latex = {
     enable = mkEnableOption "LaTeX development environment";
   };

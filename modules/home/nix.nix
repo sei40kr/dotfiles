@@ -11,11 +11,6 @@ let
   cfg = config.modules.dev.lang.nix;
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-    inputs.self.homeModules.ai-shared
-  ];
-
   options.modules.dev.lang.nix = {
     enable = mkEnableOption "Nix development environment";
   };

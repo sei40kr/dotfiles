@@ -9,12 +9,6 @@ let
   inherit (lib) mkIf;
 in
 {
-  imports = [
-    inputs.self.homeModules.term-shared
-    inputs.self.homeModules.editor-shared
-    inputs.self.homeModules.emacs
-  ];
-
   config = mkIf (config.modules.term.colorschemes.active == "tokyo-night") {
     modules.term.colorschemes.colors = {
       fg = "c0caf5";

@@ -11,10 +11,6 @@ let
   cfg = config.modules.dev.lang.javascript;
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-  ];
-
   options.modules.dev.lang.javascript = {
     enable = mkEnableOption "JavaScript/TypeScript development environment";
   };

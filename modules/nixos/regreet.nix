@@ -25,8 +25,6 @@ let
       throw "Unsupported background mode '${deCfg.background.image.mode}' for regreet. Supported modes: fill, fit, stretch";
 in
 {
-  imports = [ inputs.self.nixosModules.de ];
-
   options.modules.desktop.regreet = {
     enable = mkEnableOption "ReGreet greeter";
   };

@@ -11,10 +11,6 @@ let
   cfg = config.modules.dev.lang.lean;
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-  ];
-
   options.modules.dev.lang.lean = {
     enable = mkEnableOption "Lean development environment";
   };

@@ -11,10 +11,6 @@ let
   cfg = config.modules.dev.lang.lua;
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-  ];
-
   options.modules.dev.lang.lua = {
     enable = mkEnableOption "Lua development environment";
   };

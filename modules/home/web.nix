@@ -11,10 +11,6 @@ let
   cfg = config.modules.dev.lang.web;
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-  ];
-
   options.modules.dev.lang.web = {
     enable = mkEnableOption "Web development";
 

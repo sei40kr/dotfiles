@@ -45,10 +45,6 @@ let
   };
 in
 {
-  imports = [
-    inputs.self.homeModules.term-shared
-  ];
-
   options.modules.term.wezterm = {
     enable = mkEnableOption "WezTerm terminal";
   };

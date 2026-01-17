@@ -11,8 +11,6 @@ let
   cfg = config.modules.editors.helix;
 in
 {
-  imports = [ inputs.self.homeModules.editor-shared ];
-
   options.modules.editors.helix = {
     enable = mkEnableOption "Helix";
   };

@@ -10,8 +10,6 @@ let
   cfg = config.modules.services.wireguard;
 in
 {
-  imports = [ inputs.self.nixosModules.agenix ];
-
   options.modules.services.wireguard = {
     enable = mkEnableOption "WireGuard VPN";
   };

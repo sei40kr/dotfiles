@@ -14,12 +14,6 @@ let
   orchis-theme = pkgs.orchis-theme.override { withWallpapers = true; };
 in
 {
-  imports = [
-    inputs.self.nixosModules.de
-    inputs.self.nixosModules.dunst
-    inputs.self.nixosModules.theme-shared
-  ];
-
   config = mkIf (themeCfg.active == "orchis") {
     modules.desktop.de.background.image = {
       path = "${orchis-theme}/share/backgrounds/4k.jpg";

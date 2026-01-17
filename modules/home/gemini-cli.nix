@@ -30,10 +30,6 @@ let
       throw "Unknown transport type '${server.transport}' for MCP server '${name}'";
 in
 {
-  imports = [
-    inputs.self.homeModules.ai-shared
-  ];
-
   options.modules.ai.gemini-cli = {
     enable = mkEnableOption "Gemini CLI";
   };

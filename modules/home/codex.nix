@@ -32,10 +32,6 @@ let
       throw "Unknown transport type ${transport} for server ${name}";
 in
 {
-  imports = [
-    inputs.self.homeModules.ai-shared
-  ];
-
   options.modules.ai.codex = {
     enable = mkEnableOption "Codex";
   };

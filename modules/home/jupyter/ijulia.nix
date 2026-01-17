@@ -24,10 +24,6 @@ let
   );
 in
 {
-  imports = [
-    inputs.self.homeModules.julia
-  ];
-
   config = mkIf config.modules.dev.lang.julia.enable {
     modules.dev.tools.jupyter.kernels.ijulia = {
       displayName = "Julia ${juliaEnv.julia.version}";

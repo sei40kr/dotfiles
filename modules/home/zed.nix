@@ -15,11 +15,6 @@ let
   termFont = config.modules.term.font;
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-    inputs.self.homeModules.term-shared
-  ];
-
   options.modules.editors.zed = {
     enable = mkEnableOption "Zed";
   };

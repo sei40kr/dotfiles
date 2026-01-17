@@ -79,10 +79,6 @@ let
   };
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-  ];
-
   options.modules.editors.emacs = {
     enable = mkEnableOption "Emacs";
 

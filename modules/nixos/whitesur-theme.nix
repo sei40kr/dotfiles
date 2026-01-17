@@ -14,12 +14,6 @@ let
   cfg = themeCfg.whitesur;
 in
 {
-  imports = [
-    inputs.self.nixosModules.de
-    inputs.self.nixosModules.dunst
-    inputs.self.nixosModules.theme-shared
-  ];
-
   options.modules.desktop.theme.whitesur = {
     variant = mkOption {
       type = enum [

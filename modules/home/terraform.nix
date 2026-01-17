@@ -11,11 +11,6 @@ let
   cfg = config.modules.dev.tools.terraform;
 in
 {
-  imports = [
-    inputs.self.homeModules.ai-shared
-    inputs.self.homeModules.editor-shared
-  ];
-
   options.modules.dev.tools.terraform = {
     enable = mkEnableOption "Terraform development tools";
   };

@@ -11,10 +11,6 @@ let
   cfg = config.modules.dev.lang.qml;
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-  ];
-
   options.modules.dev.lang.qml = {
     enable = mkEnableOption "QML development environment";
   };

@@ -11,10 +11,6 @@ let
   cfg = config.modules.dev.lang.shell;
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-  ];
-
   options.modules.dev.lang.shell = {
     enable = mkEnableOption "Shell script development environment";
   };

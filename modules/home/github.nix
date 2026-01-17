@@ -11,10 +11,6 @@ let
   cfg = config.modules.dev.tools.github;
 in
 {
-  imports = [
-    inputs.self.homeModules.ai-shared
-  ];
-
   options.modules.dev.tools.github = {
     enable = mkEnableOption "GitHub tools";
   };

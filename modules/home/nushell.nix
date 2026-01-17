@@ -29,12 +29,6 @@ let
   '';
 in
 {
-  imports = [
-    inputs.self.homeModules.atuin
-    inputs.self.homeModules.shell-shared
-    inputs.self.homeModules.starship
-  ];
-
   options.modules.shell.nushell = {
     enable = mkEnableOption "Nushell";
   };

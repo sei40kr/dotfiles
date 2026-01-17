@@ -62,11 +62,6 @@ let
   );
 in
 {
-  imports = [
-    inputs.self.nixosModules.de
-    inputs.self.nixosModules.wm
-  ];
-
   options.modules.desktop.wm.niri = {
     enable = mkEnableOption "Niri window manager";
   };

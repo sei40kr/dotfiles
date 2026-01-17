@@ -11,10 +11,6 @@ let
   cfg = config.modules.dev.lang.cc;
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-  ];
-
   options.modules.dev.lang.cc = {
     enable = mkEnableOption "C/C++ development environment";
   };

@@ -21,8 +21,6 @@ let
     };
 in
 {
-  imports = [ inputs.self.homeModules.editor-shared ];
-
   options.modules.dev.lang.r = {
     enable = mkEnableOption "R development environment";
   };

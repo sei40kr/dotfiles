@@ -11,10 +11,6 @@ let
   cfg = config.modules.dev.lang.go;
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-  ];
-
   options.modules.dev.lang.go = {
     enable = mkEnableOption "Go development environment";
   };

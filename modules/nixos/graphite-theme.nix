@@ -25,12 +25,6 @@ let
   gtkTheme = pkgs.graphite-gtk-theme.override { wallpapers = true; };
 in
 {
-  imports = [
-    inputs.self.nixosModules.de
-    inputs.self.nixosModules.dunst
-    inputs.self.nixosModules.theme-shared
-  ];
-
   options.modules.desktop.theme.graphite = {
     variant = {
       color = mkOption {

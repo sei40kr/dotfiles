@@ -16,10 +16,6 @@ let
   cfg = config.modules.dev.lang.haskell;
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-  ];
-
   options.modules.dev.lang.haskell = {
     enable = mkEnableOption "Haskell development environment";
     userName = mkOption {

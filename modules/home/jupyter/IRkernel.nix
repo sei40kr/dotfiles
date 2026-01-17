@@ -37,10 +37,6 @@ let
   };
 in
 {
-  imports = [
-    inputs.self.homeModules.r
-  ];
-
   config = mkIf config.modules.dev.lang.r.enable {
     modules.dev.tools.jupyter.kernels.ir = kernel;
   };

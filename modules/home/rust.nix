@@ -12,10 +12,6 @@ let
   cfg = config.modules.dev.lang.rust;
 in
 {
-  imports = [
-    inputs.self.homeModules.editor-shared
-  ];
-
   options.modules.dev.lang.rust = {
     enable = mkEnableOption "Rust development environment";
   };

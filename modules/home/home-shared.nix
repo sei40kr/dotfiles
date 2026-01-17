@@ -38,6 +38,7 @@
     inputs.self.homeModules.java
     inputs.self.homeModules.javascript
     inputs.self.homeModules.julia
+    inputs.self.homeModules.jupyter
     inputs.self.homeModules.k8s
     inputs.self.homeModules.kitty
     inputs.self.homeModules.kotlin

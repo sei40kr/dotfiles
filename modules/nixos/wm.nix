@@ -19,8 +19,6 @@ let
   deCfg = config.modules.desktop.de;
 in
 {
-  imports = [ inputs.self.nixosModules.de ];
-
   options.modules.desktop.wm = {
     gaps = {
       inner = mkOption {

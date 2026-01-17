@@ -51,11 +51,6 @@ let
   };
 in
 {
-  imports = [
-    inputs.self.nixosModules.wm
-    inputs.self.nixosModules.de
-  ];
-
   options.modules.desktop.apps.dunst = {
     enable = mkEnableOption (mdDoc ''
       Whether to enable Dunst.
