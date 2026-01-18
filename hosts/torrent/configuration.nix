@@ -166,6 +166,7 @@ in
   services.ollama.enable = true;
 
   modules.desktop.wm.niri.enable = true;
+  modules.desktop.fontconfig.enable = true;
   modules.desktop.theme.active = "whitesur";
 
   modules.desktop.apps.steam.enable = true;
