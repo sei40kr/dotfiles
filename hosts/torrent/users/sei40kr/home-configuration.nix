@@ -60,6 +60,9 @@
   modules.editors.idea.enable = true;
   modules.editors.lazyvim.enable = true;
 
+  home.language.ctype = "ja_JP.UTF-8";
+  modules.i18n.fcitx5.enable = true;
+
   modules.shell.apps.fastfetch.enable = true;
   modules.shell.git.enable = true;
   modules.shell.oj.enable = true;

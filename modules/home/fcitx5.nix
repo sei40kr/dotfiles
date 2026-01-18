@@ -1,15 +1,21 @@
 {
   lib,
-  osConfig,
+  config,
   pkgs,
   ...
 }:
 
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkEnableOption mkIf;
+
+  cfg = config.modules.i18n.fcitx5;
 in
 {
-  config = mkIf (osConfig.modules.i18n.japanese.enable && osConfig.modules.desktop.de.enable) {
+  options.modules.i18n.fcitx5 = {
+    enable = mkEnableOption "Japanese input method configuration";
+  };
+
+  config = mkIf cfg.enable {
     i18n.inputMethod = {
       enable = true;
       type = "fcitx5";

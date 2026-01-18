@@ -170,7 +170,7 @@ in
 
   modules.desktop.apps.steam.enable = true;
 
-  modules.i18n.japanese.enable = true;
+  i18n.extraLocaleSettings.LC_CTYPE = "ja_JP.UTF-8";
 
   modules.shell.zsh.enable = true;
 

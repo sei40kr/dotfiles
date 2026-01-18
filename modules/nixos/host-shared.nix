@@ -8,7 +8,6 @@
     inputs.self.nixosModules.docker
     inputs.self.nixosModules.fontconfig
     inputs.self.nixosModules.graphite-theme
-    inputs.self.nixosModules.japanese
     inputs.self.nixosModules.niri
     inputs.self.nixosModules.orchis-theme
     inputs.self.nixosModules.regreet

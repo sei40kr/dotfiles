@@ -20,6 +20,7 @@
     inputs.self.homeModules.editor-shared
     inputs.self.homeModules.emacs
     inputs.self.homeModules.fastfetch
+    inputs.self.homeModules.fcitx5
     inputs.self.homeModules.firefox
     inputs.self.homeModules.foliate
     inputs.self.homeModules.gemini-cli
@@ -35,7 +36,6 @@
     inputs.self.homeModules.idea
     inputs.self.homeModules.ideavim
     inputs.self.homeModules.inkscape
-    inputs.self.homeModules.japanese-im
     inputs.self.homeModules.java
     inputs.self.homeModules.javascript
     inputs.self.homeModules.julia
