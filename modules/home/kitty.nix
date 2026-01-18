@@ -35,7 +35,7 @@ let
 in
 {
   options.modules.term.kitty = {
-    enable = mkEnableOption "Kitty terminal";
+    enable = mkEnableOption "kitty";
   };
 
   config = mkIf cfg.enable {

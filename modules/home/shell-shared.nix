@@ -24,7 +24,7 @@ let
 in
 {
   options.modules.shell = {
-    enable = mkEnableOption "Shell environment";
+    enable = mkEnableOption "Common shell configurations and tools";
 
     aliases = mkOption {
       type = attrsOf (nullOr (either str path));

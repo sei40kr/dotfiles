@@ -10,7 +10,7 @@ let
 in
 {
   options.modules.shell.zsh = {
-    enable = mkEnableOption "Zsh";
+    enable = mkEnableOption "Z Shell";
   };
 
   config = mkIf cfg.enable {

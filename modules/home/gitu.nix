@@ -11,7 +11,7 @@ let
 in
 {
   options.modules.dev.tools.gitu = {
-    enable = mkEnableOption "Gitu";
+    enable = mkEnableOption "gitu";
   };
 
   config = mkIf cfg.enable {

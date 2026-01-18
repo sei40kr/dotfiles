@@ -22,7 +22,7 @@ let
   );
 in
 {
-  options.modules.term.sensible.enable = mkEnableOption "Sensible terminal wrapper";
+  options.modules.term.sensible.enable = mkEnableOption "sensible-terminal";
 
   config = mkIf cfg.enable {
     home.packages = [ sensible-terminal ];

@@ -46,7 +46,7 @@ let
 in
 {
   options.modules.term.wezterm = {
-    enable = mkEnableOption "WezTerm terminal";
+    enable = mkEnableOption "WezTerm";
   };
 
   config = mkIf cfg.enable {

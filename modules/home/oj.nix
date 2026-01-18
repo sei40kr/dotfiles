@@ -13,7 +13,7 @@ let
 in
 {
   options.modules.shell.oj = {
-    enable = mkEnableOption "Online Judge tools";
+    enable = mkEnableOption "online-judge-tools";
   };
 
   config = mkIf cfg.enable {

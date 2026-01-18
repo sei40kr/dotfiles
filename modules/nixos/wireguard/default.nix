@@ -11,7 +11,7 @@ let
 in
 {
   options.modules.services.wireguard = {
-    enable = mkEnableOption "WireGuard VPN";
+    enable = mkEnableOption "WireGuard";
   };
 
   config = mkIf cfg.enable {

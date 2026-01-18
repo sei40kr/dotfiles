@@ -11,9 +11,9 @@ let
 in
 {
   options.modules.dev.tools.azure = {
-    enable = mkEnableOption "Azure CLI tools";
+    enable = mkEnableOption "Azure development tools";
 
-    kubelogin.enable = mkEnableOption "Azure Kubelogin";
+    kubelogin.enable = mkEnableOption "Kubernetes credential plugin implementing Azure authentication";
   };
 
   config = mkIf cfg.enable {

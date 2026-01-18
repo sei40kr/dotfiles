@@ -12,7 +12,7 @@ let
 in
 {
   options.modules.i18n.fcitx5 = {
-    enable = mkEnableOption "Japanese input method configuration";
+    enable = mkEnableOption "Fcitx5";
   };
 
   config = mkIf cfg.enable {

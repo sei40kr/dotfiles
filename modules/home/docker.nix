@@ -11,7 +11,7 @@ let
 in
 {
   options.modules.dev.tools.docker = {
-    enable = mkEnableOption "Docker command aliases";
+    enable = mkEnableOption "Docker development environment";
   };
 
   config = mkIf cfg.enable {

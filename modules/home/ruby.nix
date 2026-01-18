@@ -14,7 +14,7 @@ in
   options.modules.dev.lang.ruby = {
     enable = mkEnableOption "Ruby development environment";
 
-    rails.enable = mkEnableOption "Ruby on Rails";
+    rails.enable = mkEnableOption "Ruby on Rails development tools";
   };
 
   config = mkIf cfg.enable {

@@ -10,7 +10,7 @@ let
 in
 {
   options.modules.desktop.media.zathura = {
-    enable = mkEnableOption "Zathura PDF viewer";
+    enable = mkEnableOption "Zathura";
   };
 
   config = mkIf cfg.enable {

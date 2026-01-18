@@ -38,7 +38,7 @@ in
     enable = mkEnableOption "Claude Code";
 
     ccstatusline = {
-      enable = mkEnableOption "ccstatusline for Claude Code";
+      enable = mkEnableOption "ccstatusline";
       package = mkPackageOption perSystem.llm-agents-nix "ccstatusline" { };
     };
   };

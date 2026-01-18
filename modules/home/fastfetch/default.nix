@@ -11,7 +11,7 @@ let
 in
 {
   options.modules.shell.apps.fastfetch = {
-    enable = mkEnableOption "fastfetch";
+    enable = mkEnableOption "Fastfetch";
   };
 
   config = mkIf cfg.enable {

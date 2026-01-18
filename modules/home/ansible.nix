@@ -11,7 +11,7 @@ let
 in
 {
   options.modules.dev.tools.ansible = {
-    enable = mkEnableOption "Ansible development tools";
+    enable = mkEnableOption "Ansible development environment";
   };
 
   config = mkIf cfg.enable {

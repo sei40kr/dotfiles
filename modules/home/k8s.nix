@@ -11,7 +11,7 @@ let
 in
 {
   options.modules.dev.tools.k8s = {
-    enable = mkEnableOption "Kubernetes tools";
+    enable = mkEnableOption "Kubernetes development environment";
 
     helm.enable = mkEnableOption "Helm";
   };

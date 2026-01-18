@@ -9,20 +9,14 @@ let
   inherit (lib)
     mkEnableOption
     mkIf
-    mkOption
-    types
     ;
   cfg = config.modules.services.docker;
 in
 {
   options.modules.services.docker = {
-    enable = mkEnableOption "Docker container runtime";
+    enable = mkEnableOption "Docker";
 
-    compose.enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Whether to enable Docker Compose";
-    };
+    compose.enable = mkEnableOption "Docker Compose";
   };
 
   config = mkIf cfg.enable {

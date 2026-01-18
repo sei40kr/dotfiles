@@ -11,9 +11,9 @@ let
 in
 {
   options.modules.dev.tools.aws = {
-    enable = mkEnableOption "AWS CLI tools";
+    enable = mkEnableOption "AWS development environment";
 
-    cfn.enable = mkEnableOption "CloudFormation tools (cfn-lint, cfn-nag)";
+    cfn.enable = mkEnableOption "AWS CloudFormation development tools";
 
     copilot.enable = mkEnableOption "AWS Copilot CLI";
 

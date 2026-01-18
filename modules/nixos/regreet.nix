@@ -36,7 +36,7 @@ let
 in
 {
   options.modules.desktop.regreet = {
-    enable = mkEnableOption "ReGreet greeter";
+    enable = mkEnableOption "ReGreet";
 
     theme = mkOption {
       type = nullOr (submodule {

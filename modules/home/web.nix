@@ -12,7 +12,7 @@ let
 in
 {
   options.modules.dev.lang.web = {
-    enable = mkEnableOption "Web development";
+    enable = mkEnableOption "Web development environment";
 
     bun.enable = mkEnableOption "Bun";
 

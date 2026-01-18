@@ -11,7 +11,7 @@ let
 in
 {
   options.modules.desktop.apps.thunar = {
-    enable = mkEnableOption "Thunar file manager";
+    enable = mkEnableOption "Thunar";
   };
 
   config = mkIf cfg.enable {

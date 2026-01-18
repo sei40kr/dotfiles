@@ -62,7 +62,7 @@ let
 in
 {
   options.modules.desktop.wm.niri = {
-    enable = mkEnableOption "Niri window manager";
+    enable = mkEnableOption "niri";
   };
 
   config = mkIf cfg.enable {
