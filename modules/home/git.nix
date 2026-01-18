@@ -269,8 +269,9 @@ in
       grhh = "git reset --hard";
       grhk = "git reset --keep";
       grhs = "git reset --soft";
-      gpristine = "git reset --hard; git clean --force -dfx";
-      gwipe = "git reset --hard; git clean --force -df";
+      # TODO: Uncomment when fixed: nix-community/home-manager#8589
+      # gpristine = "git reset --hard; git clean --force -dfx";
+      # gwipe = "git reset --hard; git clean --force -df";
 
       grs = "git restore";
       grss = "git restore --source";
