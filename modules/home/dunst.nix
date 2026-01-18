@@ -452,10 +452,8 @@ in
             level = removePrefix "urgency_" name;
           in
           {
-            inherit (cfg.${level}) timeout;
-            background = ''"${cfg.${level}.background}"'';
-            foreground = ''"${cfg.${level}.foreground}"'';
-            frame_color = ''"${cfg.${level}.borderColor}"'';
+            inherit (cfg.${level}) background foreground timeout;
+            frame_color = cfg.${level}.borderColor;
           }
         )
       );
