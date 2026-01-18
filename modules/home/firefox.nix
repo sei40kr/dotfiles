@@ -17,6 +17,32 @@ in
     programs.firefox = {
       enable = true;
       policies = {
+        Preferences = {
+          "browser.fullscreen.autohide" = {
+            Value = false;
+            Status = "locked";
+          };
+          "browser.profiles.enabled" = {
+            Value = true;
+            Status = "locked";
+          };
+          "browser.tabs.warnOnCloseOtherTabs" = {
+            Value = false;
+            Status = "locked";
+          };
+          "browser.urlbar.shortcuts.bookmarks" = {
+            Value = false;
+            Status = "locked";
+          };
+          "browser.urlbar.shortcuts.history" = {
+            Value = false;
+            Status = "locked";
+          };
+          "browser.urlbar.shortcuts.tabs" = {
+            Value = false;
+            Status = "locked";
+          };
+        };
         ExtensionSettings = {
           # DeepL翻訳
           "firefox-extension@deepl.com" = {
@@ -82,16 +108,6 @@ in
           Default = "Google";
         };
       };
-      # TODO: home-manager's firefox module doesn't support common preferences across all profiles.
-      #  When declaratively configuring profiles, move these preferences to each profile's settings.
-      # preferences = {
-      #   "browser.fullscreen.autohide" = false;
-      #   "browser.profiles.enabled" = true;
-      #   "browser.tabs.warnOnCloseOtherTabs" = false;
-      #   "browser.urlbar.shortcuts.bookmarks" = false;
-      #   "browser.urlbar.shortcuts.history" = false;
-      #   "browser.urlbar.shortcuts.tabs" = false;
-      # };
     };
   };
 }
