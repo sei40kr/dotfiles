@@ -1,19 +1,12 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
   ...
 }:
 
 let
-  inherit (builtins) match;
-  inherit (lib)
-    concatStringsSep
-    mapAttrsToList
-    mkEnableOption
-    mkIf
-    ;
+  inherit (lib) mkEnableOption mkIf;
   shellCfg = config.modules.shell;
   cfg = shellCfg.nushell;
 

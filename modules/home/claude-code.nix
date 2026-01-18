@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   perSystem,
   lib,
   pkgs,
