@@ -1,6 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, perSystem, ... }:
 
 let
+  package = perSystem.anyrun.anyrun-with-all-plugins;
   anyrun-dev = pkgs.writeShellScriptBin "anyrun" ''
     # Check if we're in the dotfiles root directory
     if [ ! -d "$PWD/modules/home/anyrun" ]; then
@@ -17,7 +18,7 @@ let
     ln -sf "$PWD/modules/home/anyrun/style.css" "$ANYRUN_CONFIG_DIR/style.css"
 
     # Process config.ron (replace @package@ with anyrun path)
-    ${pkgs.gnused}/bin/sed "s|@package@|${pkgs.anyrun}|g" \
+    ${pkgs.gnused}/bin/sed "s|@package@|${package}|g" \
       "$PWD/modules/home/anyrun/config.ron" > "$ANYRUN_CONFIG_DIR/config.ron"
 
     # Copy applications.ron
@@ -26,7 +27,7 @@ let
     echo "Config synced to $ANYRUN_CONFIG_DIR"
 
     # Run anyrun with dev config directory
-    exec ${pkgs.anyrun}/bin/anyrun -c "$ANYRUN_CONFIG_DIR" "$@"
+    exec ${package}/bin/anyrun -c "$ANYRUN_CONFIG_DIR" "$@"
   '';
 in
 pkgs.mkShell {

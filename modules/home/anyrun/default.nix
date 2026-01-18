@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  perSystem,
   pkgs,
   ...
 }:
@@ -21,7 +22,7 @@ in
   options.modules.desktop.apps.anyrun = {
     enable = mkEnableOption "Anyrun";
 
-    package = mkPackageOption pkgs "anyrun" {
+    package = mkPackageOption perSystem.anyrun "anyrun-with-all-plugins" {
       extraDescription = ''
         The Anyrun package to use.
       '';
