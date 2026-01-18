@@ -12,28 +12,12 @@ let
     mkOption
     mkEnableOption
     ;
-  inherit (types)
-    attrs
-    attrsOf
-    either
-    nullOr
-    path
-    str
-    ;
+  inherit (types) nullOr str;
   cfg = config.modules.shell;
 in
 {
   options.modules.shell = {
     enable = mkEnableOption "Common shell configurations and tools";
-
-    aliases = mkOption {
-      type = attrsOf (nullOr (either str path));
-      default = { };
-    };
-    env = mkOption {
-      type = attrs;
-      default = { };
-    };
 
     bat = {
       theme = mkOption {

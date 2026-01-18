@@ -48,16 +48,6 @@ in
 
         source ${atuin_nu}
         source ${zoxide_nu}
-
-        ${concatStringsSep "\n" (
-          mapAttrsToList (
-            name: value:
-            if match ".*(;|\\|).*" value != null then
-              "def ${name} [] { ${value} }"
-            else
-              "alias ${name} = ${value}"
-          ) shellCfg.aliases
-        )}
       '';
     };
     programs.carapace.enable = true;
