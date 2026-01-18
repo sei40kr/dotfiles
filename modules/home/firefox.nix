@@ -17,6 +17,7 @@ in
     programs.firefox = {
       enable = true;
       policies = {
+        DisableAppUpdate = true;
         Preferences = {
           "browser.fullscreen.autohide" = {
             Value = false;
