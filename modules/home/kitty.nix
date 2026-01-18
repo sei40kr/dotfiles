@@ -42,6 +42,8 @@ in
     programs.kitty = {
       enable = true;
       settings = {
+        include = "${my-kitty-tmux-conf}";
+
         confirm_os_window_close = 0;
 
         # Nerd Fonts v2.3.3
@@ -64,8 +66,8 @@ in
 
         # Tab bar
         tab_bar_style = "separator";
-        tab_separator = " ";
-        tab_title_template = " [{index}] {title} ";
+        tab_separator = ''" "'';
+        tab_title_template = ''" [{index}] {title} "'';
         active_tab_foreground = "#${tabBar.activeTab.fg}";
         active_tab_background = "#${tabBar.activeTab.bg}";
         inactive_tab_foreground = "#${tabBar.inactiveTab.fg}";
@@ -111,9 +113,6 @@ in
         clear_all_shortcuts = false;
       };
       font = { inherit (font) name size; };
-      extraConfig = ''
-        include ${my-kitty-tmux-conf}
-      '';
     };
 
     home.packages = with pkgs; [ nerd-fonts.symbols-only ];
