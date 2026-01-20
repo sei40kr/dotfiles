@@ -106,11 +106,11 @@ let
     };
   };
 
-  # Combined MCP server type
+  # Combined MCP server type with addCheck for disambiguation
   mcpServerType = types.oneOf [
-    stdioServerType
-    sseServerType
-    httpServerType
+    (types.addCheck stdioServerType (v: v.transport or "" == "stdio"))
+    (types.addCheck sseServerType (v: v.transport or "" == "sse"))
+    (types.addCheck httpServerType (v: v.transport or "" == "http"))
   ];
 
   cfg = config.modules.ai;
