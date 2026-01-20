@@ -175,10 +175,6 @@ in
 
   modules.shell.zsh.enable = true;
 
-  services.jellyfin = {
-    enable = true;
-    openFirewall = true;
-  };
   modules.services.docker = {
     enable = true;
     compose.enable = true;
