@@ -67,7 +67,10 @@
   modules.i18n.fcitx5.enable = true;
 
   modules.shell.apps.fastfetch.enable = true;
-  modules.shell.git.enable = true;
+  modules.shell.git = {
+    enable = true;
+    signing.key = "6EDD4826A0A2E59D";
+  };
   modules.shell.oj.enable = true;
   modules.shell.zsh.enable = true;
 
