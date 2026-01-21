@@ -69,7 +69,10 @@
   modules.shell.apps.fastfetch.enable = true;
   modules.shell.git = {
     enable = true;
-    signing.key = "6EDD4826A0A2E59D";
+    signing = {
+      key = "6EDD4826A0A2E59D";
+      format = "openpgp";
+    };
   };
   modules.shell.oj.enable = true;
   modules.shell.zsh.enable = true;
