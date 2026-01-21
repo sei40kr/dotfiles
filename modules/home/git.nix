@@ -35,6 +35,29 @@ in
           The email of the user.
         '';
       };
+
+    };
+
+    signing = {
+      key = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+        description = mdDoc ''
+          The signing key to use for commits.
+        '';
+      };
+
+      format = mkOption {
+        type = types.enum [
+          "openpgp"
+          "ssh"
+          "x509"
+        ];
+        default = "openpgp";
+        description = mdDoc ''
+          The signing format to use (gpg, ssh, or x509).
+        '';
+      };
     };
   };
 
@@ -43,6 +66,10 @@ in
 
     programs.git = {
       enable = true;
+      signing = {
+        inherit (cfg.signing) key format;
+        signByDefault = true;
+      };
       settings = {
         branch = {
           autosetuprebase = "always";
