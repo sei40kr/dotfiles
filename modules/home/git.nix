@@ -68,7 +68,7 @@ in
       enable = true;
       signing = {
         inherit (cfg.signing) key format;
-        signByDefault = true;
+        signByDefault = cfg.signing.key != null;
       };
       settings = {
         branch = {
