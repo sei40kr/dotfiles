@@ -62,6 +62,26 @@ Some hosts (e.g., `torrent`) have Secure Boot enabled via Lanzaboote. For these 
 > [!IMPORTANT]
 > When Secure Boot is enabled, GRUB cannot be used. If you have a dual-boot environment, you need to select the OS from the boot menu (typically accessible via F8, F11, or F12 during boot).
 
+### GPG Key Restoration
+
+GPG signing keys are stored in Bitwarden as secure notes named `<hostname>: gpg-private.asc` and `<hostname>: gpg-revoke.asc`.
+
+1. Copy the content of `<hostname>: gpg-private.asc` from Bitwarden
+2. Import the key:
+   ```sh
+   gpg --import
+   # Paste the key content, then press Ctrl+D
+   ```
+3. Trust the key:
+   ```sh
+   gpg --edit-key <KEY_ID>
+   # Type: trust
+   # Select: 5 (ultimate)
+   # Type: quit
+   ```
+
+The revocation certificate (`<hostname>: gpg-revoke.asc`) should only be used if the key is compromised.
+
 ## Acknowledgements
 
 - [Flakes - NixOS Wiki](https://nixos.wiki/wiki/Flakes)
