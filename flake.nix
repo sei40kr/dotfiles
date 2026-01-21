@@ -88,6 +88,11 @@
       url = "github:sei40kr/wez-status-generator";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    zsh-fzf-projects = {
+      url = "github:sei40kr/zsh-fzf-projects";
+      flake = false;
+    };
   };
 
   outputs =

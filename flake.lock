@@ -691,7 +691,8 @@
         "wez-pain-control": "wez-pain-control",
         "wez-per-project-workspace": "wez-per-project-workspace",
         "wez-status-generator": "wez-status-generator",
-        "wez-tmux": "wez-tmux"
+        "wez-tmux": "wez-tmux",
+        "zsh-fzf-projects": "zsh-fzf-projects"
       }
     },
     "rust-analyzer-src": {
@@ -959,6 +960,22 @@
       "original": {
         "owner": "sei40kr",
         "repo": "wez-tmux",
+        "type": "github"
+      }
+    },
+    "zsh-fzf-projects": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1579871888,
+        "narHash": "sha256-jVUFt/J3KDQD7pvNHtNeQEaMjO6IlwNP4WYA2TNTqXM=",
+        "owner": "sei40kr",
+        "repo": "zsh-fzf-projects",
+        "rev": "ce061b33bd3c6c6392e4d4f3aaf90f593d4b404d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sei40kr",
+        "repo": "zsh-fzf-projects",
         "type": "github"
       }
     }

@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -45,6 +46,13 @@ in
         autoload -Uz select-word-style
         select-word-style bash
 
+        # zsh-fzf-projects
+        FZF_PROJECTS_WORKSPACE_DIRS=( ~/ghq )
+        FZF_PROJECTS_WORKSPACE_MAX_DEPTH=3
+        FZF_PROJECTS_KNOWN_PROJECTS=( /etc/dotfiles )
+        zle -N fzf-projects
+        bindkey '^o' fzf-projects
+
         # TODO: Add cd-gitroot plugin (mollifier/cd-gitroot)
         # TODO: Add zsh-wez-man plugin (sei40kr/zsh-wez-man) for WezTerm
 
@@ -89,6 +97,10 @@ in
           name = "F-Sy-H";
           src = pkgs.zsh-f-sy-h;
           file = "share/zsh/site-functions/F-Sy-H.plugin.zsh";
+        }
+        {
+          name = "fzf-projects";
+          src = inputs.zsh-fzf-projects;
         }
       ];
       oh-my-zsh = {
