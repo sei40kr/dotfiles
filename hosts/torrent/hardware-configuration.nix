@@ -70,4 +70,12 @@
   };
 
   services.ollama.acceleration = "cuda";
+
+  # Remap Caps Lock to Left Ctrl for Logitech PRO X TKL keyboard
+  # Logitech PRO X TKL
+  # Vendor ID: 046d, Product ID: c352
+  services.udev.extraHwdb = ''
+    evdev:input:b*v046DpC352*
+      KEYBOARD_KEY_70039=leftctrl
+  '';
 }
