@@ -25,10 +25,13 @@
     nix = {
       package = pkgs.lix;
       extraOptions = "experimental-features = nix-command flakes";
-      settings.trusted-users = [
-        "root"
-        "@wheel"
-      ];
+      settings = {
+        trusted-users = [
+          "root"
+          "@wheel"
+        ];
+        keep-outputs = true;
+      };
     };
 
     nixpkgs.config.allowUnfree = true;
