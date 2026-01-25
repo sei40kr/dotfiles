@@ -439,6 +439,12 @@ in
           body = "Response complete!";
           script = "${playCompleteSound}";
         };
+
+        gemini_cli_complete = {
+          summary = "Gemini CLI";
+          body = "Response complete!";
+          script = "${playCompleteSound}";
+        };
       }
       // (genAttrs
         [

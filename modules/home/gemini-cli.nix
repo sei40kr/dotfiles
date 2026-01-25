@@ -3,6 +3,7 @@
   inputs,
   lib,
   perSystem,
+  pkgs,
   ...
 }:
 
@@ -12,8 +13,14 @@ let
     mkIf
     mapAttrs
     ;
-  cfg = config.modules.ai.gemini-cli;
   aiCfg = config.modules.ai;
+  cfg = aiCfg.gemini-cli;
+  editorsCfg = config.modules.editors;
+
+  notificationScript = pkgs.writeShellScript "gemini-cli-notification" ''
+    message=$(${pkgs.jq}/bin/jq -r '.message' 2>/dev/null || echo "Action required or input idle.")
+    ${pkgs.libnotify}/bin/notify-send 'Gemini CLI' "$message" -h string:x-dunst-stack-tag:gemini_cli
+  '';
 
   convertMcpServer =
     name: server:
@@ -40,13 +47,46 @@ in
       package = perSystem.llm-agents-nix.gemini-cli;
       settings = {
         general = {
-          vimMode = true;
+          preferredEditor = editorsCfg.defaultEditor;
           disableAutoUpdate = true;
           checkpointing.enabled = true;
         };
-        ui.showLineNumbers = true;
+        ui = {
+          showLineNumbers = true;
+          footer.hideContextPercentage = false;
+        };
+        tools.autoAccept = true;
+        experimental.skills = true;
+        hooks = {
+          enabled = true;
+          AfterAgent = [
+            {
+              hooks = [
+                {
+                  name = "completion-notification";
+                  type = "command";
+                  command = "${pkgs.libnotify}/bin/notify-send 'Gemini CLI' 'Response complete!' -h string:x-dunst-stack-tag:gemini_cli";
+                  description = "Send desktop notification when agent response completes";
+                }
+              ];
+            }
+          ];
+          Notification = [
+            {
+              hooks = [
+                {
+                  name = "action-required-notification";
+                  type = "command";
+                  command = "${notificationScript}";
+                  description = "Send desktop notification with message from Gemini CLI";
+                }
+              ];
+            }
+          ];
+        };
         mcpServers = mapAttrs convertMcpServer aiCfg.mcpServers;
       };
     };
+    home.file.".gemini/skills".source = aiCfg._combinedSkillsPath;
   };
 }
