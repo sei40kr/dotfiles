@@ -141,6 +141,31 @@ in
     # Shell integration
     home.shellAliases.e = "emacs";
 
+    programs.git.ignores = [
+      "*~"
+      "\\#*\\#"
+      "/.emacs.desktop"
+      "/.emacs.desktop.lock"
+      "*.elc"
+      "auto-save-list"
+      "tramp"
+      ".\\#*"
+      ".org-id-locations"
+      "*_archive"
+      "*_flymake.*"
+      "/eshell/history"
+      "/eshell/lastdir"
+      "/elpa/"
+      "*.rel"
+      "/auto/"
+      ".cask/"
+      "dist/"
+      "flycheck_*.el"
+      "/server/"
+      ".projectile"
+      ".dir-locals.el"
+    ];
+
     programs.zsh.initContent = mkIf cfg.doom.enable ''
       if [[ "$INSIDE_EMACS" == vterm ]]; then
         autoload -Uz vterm_printf
