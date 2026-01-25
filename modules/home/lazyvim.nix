@@ -24,5 +24,25 @@ in
       pkgs.gh
       pkgs.gh-notify
     ];
+
+    programs.git.ignores = [
+      # Swap
+      "[._]*.s[a-v][a-z]"
+      "!*.svg"
+      "[._]*.sw[a-p]"
+      "[._]s[a-rt-v][a-z]"
+      "[._]ss[a-gi-z]"
+      "[._]sw[a-p]"
+      # Session
+      "Session.vim"
+      "Sessionx.vim"
+      # Temporary
+      ".netrwhist"
+      "*~"
+      # Auto-generated tag files
+      "tags"
+      # Persistent undo
+      "[._]*.un~"
+    ];
   };
 }
