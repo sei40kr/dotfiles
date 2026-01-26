@@ -37,10 +37,42 @@
     nixpkgs.config.allowUnfree = true;
 
     environment.systemPackages = with pkgs; [
-      coreutils
+      # Hardware / System Info
+      usbutils
+      pciutils
+      lshw
+      dmidecode
+      lm_sensors
+      # Monitoring / Process
+      htop
+      btop
+      psmisc
+      lsof
+      iotop
+      sysstat
+      # Network
       curl
-      git
+      wget
+      dig
+      mtr
+      tcpdump
+      ethtool
+      socat
+      # File / Text Utils
+      ripgrep
+      fd
+      tree
+      file
+      unzip
+      zip
+      jq
+      which
+      # Disk
+      ncdu
+      parted
+      # Editors / Version Control
       vim
+      git
     ];
   };
 }
