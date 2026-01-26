@@ -41,5 +41,22 @@ in
     };
     xdg.configFile."anyrun/applications.ron".source = ./applications.ron;
     xdg.configFile."anyrun/style.css".source = ./style.css;
+
+    systemd.user.services.anyrun = {
+      Unit = {
+        Description = "Anyrun daemon";
+        PartOf = "graphical-session.target";
+        After = "graphical-session.target";
+      };
+      Service = {
+        Type = "simple";
+        ExecStart = "${lib.getExe cfg.package} daemon";
+        Restart = "on-failure";
+        KillMode = "process";
+      };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
   };
 }
