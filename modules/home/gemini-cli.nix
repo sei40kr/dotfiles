@@ -48,7 +48,7 @@ in
       settings = {
         general = {
           preferredEditor = editorsCfg.defaultEditor;
-          disableAutoUpdate = true;
+          enableAutoUpdate = false;
           checkpointing.enabled = true;
         };
         ui = {
@@ -58,7 +58,6 @@ in
         tools.autoAccept = true;
         experimental.skills = true;
         hooks = {
-          enabled = true;
           AfterAgent = [
             {
               hooks = [
