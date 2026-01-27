@@ -84,6 +84,7 @@ in
           ];
         };
         mcpServers = mapAttrs convertMcpServer aiCfg.mcpServers;
+        security.auth.selectedType = "oauth-personal";
       };
     };
     home.file.".gemini/skills".source = aiCfg._combinedSkillsPath;
