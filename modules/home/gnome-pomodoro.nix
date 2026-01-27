@@ -52,6 +52,10 @@ in
           name = "Pause/Resume";
           exec = "gnome-pomodoro --pause-resume";
         };
+        skip = {
+          name = "Skip";
+          exec = "gnome-pomodoro --skip";
+        };
       };
     };
 
