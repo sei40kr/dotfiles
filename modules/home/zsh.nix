@@ -115,6 +115,10 @@ in
           HYPHEN_INSENSITIVE=true
         '';
       };
+      zsh-abbr = {
+        enable = true;
+        abbreviations = config.programs.zsh.shellAliases;
+      };
     };
 
     modules.shell.enable = true;
