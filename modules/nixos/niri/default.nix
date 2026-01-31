@@ -57,7 +57,7 @@ let
           ${optionalString vrr "variable-refresh-rate"}
         }
       ''
-    ) deCfg.monitors
+    ) wmCfg.monitors
   );
 in
 {
@@ -68,15 +68,17 @@ in
   config = mkIf cfg.enable {
     programs.niri.enable = true;
 
+    environment.etc."niri/outputs.kdl".text = outputsConfig;
+
     environment.etc."niri/config.kdl".text = ''
       input {
         keyboard {
-          repeat-delay ${toString deCfg.autoRepeat.delay}
-          repeat-rate ${toString deCfg.autoRepeat.interval}
+          repeat-delay ${toString wmCfg.autoRepeat.delay}
+          repeat-rate ${toString wmCfg.autoRepeat.interval}
         }
       }
 
-      ${outputsConfig}
+      include "/etc/niri/outputs.kdl"
 
       layout {
         gaps ${toString wmCfg.gaps.inner}

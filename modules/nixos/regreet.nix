@@ -1,13 +1,16 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 
 let
   inherit (builtins) floor toString;
   inherit (lib)
+    getExe
     mkEnableOption
+    mkForce
     mkIf
     mkOption
     types
@@ -21,6 +24,8 @@ let
 
   cfg = config.modules.desktop.regreet;
   deCfg = config.modules.desktop.de;
+  wmCfg = config.modules.desktop.wm;
+  niriCfg = config.programs.niri;
 
   backgroundFit =
     if deCfg.background.image == null then
@@ -89,5 +94,44 @@ in
         size = floor deCfg.defaultFonts.ui.size;
       };
     };
+
+    environment.etc."niri/greeter.kdl" = mkIf wmCfg.niri.enable {
+      text = ''
+        include "/etc/niri/outputs.kdl"
+
+        input {
+          keyboard {
+            repeat-delay ${toString wmCfg.autoRepeat.delay}
+            repeat-rate ${toString wmCfg.autoRepeat.interval}
+          }
+        }
+
+        hotkey-overlay {
+          skip-at-startup
+        }
+
+        window-rule {
+          geometry-corner-radius 16
+          clip-to-geometry true
+        }
+
+        animations {
+          off
+        }
+
+        recent-windows {
+          off
+        }
+
+        layout {
+          background-color "${deCfg.background.color}"
+        }
+
+        spawn-at-startup "${getExe config.programs.regreet.package}"
+      '';
+    };
+    services.greetd.settings.default_session.command = mkIf wmCfg.niri.enable (
+      mkForce "${pkgs.dbus}/bin/dbus-run-session ${getExe niriCfg.package} -c /etc/niri/greeter.kdl"
+    );
   };
 }
