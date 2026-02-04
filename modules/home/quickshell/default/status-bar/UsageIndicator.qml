@@ -1,4 +1,5 @@
 import QtQuick
+import "../theme"
 
 Rectangle {
     id: root
@@ -19,11 +20,11 @@ Rectangle {
         width: Math.max(0, Math.min(parent.width * (root.percentage / 100), parent.width))
         color: {
             if (root.percentage >= 85) {
-                return Theme.usageDanger;
+                return Theme.dangerColor;
             } else if (root.percentage >= 60) {
-                return Theme.usageWarning;
+                return Theme.warningColor;
             } else {
-                return Theme.usageSafe;
+                return Theme.successColor;
             }
         }
 

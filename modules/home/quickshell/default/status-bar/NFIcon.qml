@@ -1,4 +1,5 @@
 import QtQuick
+import "../theme"
 
 Text {
     required property string name

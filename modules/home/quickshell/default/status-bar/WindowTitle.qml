@@ -1,5 +1,6 @@
 import QtQuick
 import Niri 0.1
+import "../theme"
 
 Text {
     required property Niri niri

@@ -1,0 +1,4 @@
+module notifications
+singleton NotificationRules 1.0 NotificationRules.qml
+NotificationOverlay 1.0 NotificationOverlay.qml
+NotificationPopup 1.0 NotificationPopup.qml

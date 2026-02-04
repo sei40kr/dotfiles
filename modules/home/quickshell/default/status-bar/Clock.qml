@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell
+import "../theme"
 
 Text {
     required property SystemClock systemClock

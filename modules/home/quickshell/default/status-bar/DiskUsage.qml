@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import "../services"
+import "../theme"
 
 RowLayout {
     spacing: 16
