@@ -1,0 +1,52 @@
+{
+  config,
+  lib,
+  ...
+}:
+
+let
+  inherit (lib) mkIf mkEnableOption;
+
+  cfg = config.modules.term.tmux;
+in
+{
+  options.modules.term.tmux = {
+    enable = mkEnableOption "tmux";
+  };
+
+  config = mkIf cfg.enable {
+    programs.tmux = {
+      enable = true;
+      clock24 = true;
+      customPaneNavigationAndResize = true;
+      disableConfirmationPrompt = true;
+      focusEvents = true;
+      escapeTime = 0;
+      keyMode = "vi";
+      newSession = true;
+      sensibleOnTop = true;
+      terminal = "tmux-256color";
+      prefix = "C-t";
+      extraConfig = ''
+        set -g set-clipboard on
+        set -as terminal-features ",*:hyperlinks:RGB:strikethrough"
+        set -g monitor-bell on
+        set -g pane-active-border-style 'bg=#1f2335,fg=#1b1d26'
+        set -g pane-border-style 'bg=#1f2335,fg=#1b1d26'
+        set -g window-status-bell-style default
+        set -g window-active-style 'fg=#c0caf5,bg=#16161e'
+        set -g window-style 'dim,bg=#1a1b26'
+        set -g status-style 'fg=#565f89,bg=#1a1b26'
+        set -g message-style 'fg=#7aa2f7,bg=#1a1b26'
+        set -g mode-style 'fg=#7aa2f7,bg=#3b4261'
+
+        # Vim-like copy mode bindings
+        bind -T copy-mode-vi v send -X begin-selection
+        bind -T copy-mode-vi V send -X select-line
+        bind -T copy-mode-vi C-v send -X begin-selection \; send -X rectangle-toggle
+        bind -T copy-mode-vi y send -X copy-selection-and-cancel
+        bind -T copy-mode-vi Escape send -X cancel
+      '';
+    };
+  };
+}

@@ -71,6 +71,7 @@
     inputs.self.homeModules.term-shared
     inputs.self.homeModules.terraform
     inputs.self.homeModules.tokyo-night
+    inputs.self.homeModules.tmux
     inputs.self.homeModules.web
     inputs.self.homeModules.wezterm
     inputs.self.homeModules.whitesur-theme
