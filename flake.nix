@@ -93,6 +93,11 @@
       url = "github:sei40kr/zsh-fzf-projects";
       flake = false;
     };
+
+    tmux-project = {
+      url = "github:sei40kr/tmux-project";
+      flake = false;
+    };
   };
 
   outputs =

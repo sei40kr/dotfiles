@@ -1,6 +1,8 @@
 {
   config,
+  inputs,
   lib,
+  pkgs,
   ...
 }:
 
@@ -8,6 +10,12 @@ let
   inherit (lib) mkIf mkEnableOption;
 
   cfg = config.modules.term.tmux;
+
+  tmux-project = pkgs.tmuxPlugins.mkTmuxPlugin {
+    pluginName = "project";
+    version = inputs.tmux-project.shortRev;
+    src = inputs.tmux-project;
+  };
 in
 {
   options.modules.term.tmux = {
@@ -27,7 +35,45 @@ in
       sensibleOnTop = true;
       terminal = "tmux-256color";
       prefix = "C-t";
+      plugins = [
+        pkgs.tmuxPlugins.jump
+        {
+          plugin = pkgs.tmuxPlugins.minimal-tmux-status;
+          extraConfig = ''
+            set -g @minimal-tmux-use-arrow true
+            set -g @minimal-tmux-right-arrow ""
+            set -g @minimal-tmux-left-arrow ""
+            set -g @minimal-tmux-window-status-format ' #{?window_bell_flag,#[fg=yellow]•#[default],}#I:#W '
+          '';
+        }
+        pkgs.tmuxPlugins.pain-control
+        {
+          plugin = tmux-project;
+          extraConfig = ''
+            set -g @project-base-dirs "/etc/dotfiles,$HOME/ghq:3:3"
+          '';
+        }
+        {
+          plugin = pkgs.tmuxPlugins.sessionist;
+          extraConfig = ''
+            # Use a non-existent key to effectively unbind the default 'g' binding
+            set -g @sessionist-goto "F20"
+          '';
+        }
+        pkgs.tmuxPlugins.tmux-thumbs
+        {
+          plugin = pkgs.tmuxPlugins.vim-tmux-navigator;
+          extraConfig = ''
+            set -g @vim_navigator_mapping_left "M-h"
+            set -g @vim_navigator_mapping_right "M-l"
+            set -g @vim_navigator_mapping_up "M-k"
+            set -g @vim_navigator_mapping_down "M-j"
+            set -g @vim_navigator_mapping_prev "M-\\"
+          '';
+        }
+      ];
       extraConfig = ''
+        set -g detach-on-destroy no-detached
         set -g set-clipboard on
         set -as terminal-features ",*:hyperlinks:RGB:strikethrough"
         set -g monitor-bell on
