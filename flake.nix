@@ -59,11 +59,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    kitty-tmux = {
-      url = "github:sei40kr/kitty-tmux";
-      flake = false;
-    };
-
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";

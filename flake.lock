@@ -431,22 +431,6 @@
         "type": "github"
       }
     },
-    "kitty-tmux": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1765873585,
-        "narHash": "sha256-d+W0Y23cGrHHQNy1aobD56Lo4cwhLGbUpu4Zk+QHPN0=",
-        "owner": "sei40kr",
-        "repo": "kitty-tmux",
-        "rev": "5f16237a51649d0192352ee7100397623c0c2ddb",
-        "type": "github"
-      },
-      "original": {
-        "owner": "sei40kr",
-        "repo": "kitty-tmux",
-        "type": "github"
-      }
-    },
     "lanzaboote": {
       "inputs": {
         "crane": "crane",
@@ -681,7 +665,6 @@
         "git-hooks": "git-hooks",
         "home-manager": "home-manager",
         "idea-LazyVim": "idea-LazyVim",
-        "kitty-tmux": "kitty-tmux",
         "lanzaboote": "lanzaboote",
         "lazyvim": "lazyvim",
         "llm-agents-nix": "llm-agents-nix",

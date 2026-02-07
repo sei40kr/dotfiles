@@ -22,16 +22,6 @@ let
     paneBorder
     tabBar
     ;
-
-  my-kitty-tmux-conf =
-    pkgs.runCommand "my-kitty-tmux-conf"
-      {
-        nativeBuildInputs = [ pkgs.python3 ];
-      }
-      ''
-        KITTY_TMUX_PREFIX=ctrl+t KITTY_TMUX_PAIN_CONTROL=1 \
-          python3 ${inputs.kitty-tmux}/generate.py >$out
-      '';
 in
 {
   options.modules.term.kitty = {
@@ -42,8 +32,6 @@ in
     programs.kitty = {
       enable = true;
       settings = {
-        include = "${my-kitty-tmux-conf}";
-
         confirm_os_window_close = 0;
 
         # Nerd Fonts v2.3.3
