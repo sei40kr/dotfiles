@@ -7,6 +7,10 @@ Item {
     id: root
 
     property Notification notification
+    onNotificationChanged: {
+        if (notification === null)
+            root.dismissed();
+    }
     property int count
     property date createdAt
 
