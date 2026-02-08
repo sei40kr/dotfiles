@@ -10,6 +10,9 @@ RowLayout {
     }
 
     UsageIndicator {
-        percentage: Cpu.cores.length === 0 ? 0 : Array.from(Cpu.cores).reduce((sum, core) => sum + (100 - core.idle), 0) / Cpu.cores.length
+        percentage: {
+            const validCores = Array.from(Cpu.cores).filter(core => core !== null);
+            return validCores.length === 0 ? 0 : validCores.reduce((sum, core) => sum + (100 - core.idle), 0) / validCores.length;
+        }
     }
 }

@@ -30,7 +30,9 @@ Singleton {
 
     function cleanupOldCores() {
         for (var i = 0; i < root.cores.length; i++) {
-            root.cores[i].destroy();
+            if (root.cores[i]) {
+                root.cores[i].destroy();
+            }
         }
     }
 
