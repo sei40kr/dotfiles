@@ -288,5 +288,20 @@ in
       gbl = "git blame -w";
       gstu = "${gsta} --include-untracked";
     };
+
+    modules.ai.permissions.allowedCommandPrefixes = [
+      "git status"
+      "git log"
+      "git diff"
+      "git show"
+      "git blame"
+      "git shortlog"
+      "git stash list"
+      "git reflog"
+      "git rev-parse"
+      "git ls-files"
+      "git describe"
+      "git whatchanged"
+    ];
   };
 }
