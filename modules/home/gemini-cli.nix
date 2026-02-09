@@ -9,6 +9,8 @@
 
 let
   inherit (lib)
+    flatten
+    mapAttrsToList
     mkEnableOption
     mkIf
     mapAttrs
@@ -21,6 +23,48 @@ let
     message=$(${pkgs.jq}/bin/jq -r '.message' 2>/dev/null || echo "Action required or input idle.")
     ${pkgs.libnotify}/bin/notify-send 'Gemini CLI' "$message" -h string:x-dunst-stack-tag:gemini_cli
   '';
+
+  tomlFormat = pkgs.formats.toml { };
+
+  policyFile =
+    let
+      allowCommandRules = map (cmd: {
+        toolName = "run_shell_command";
+        commandPrefix = "${cmd} ";
+        decision = "allow";
+      }) aiCfg.permissions.allowedCommandPrefixes;
+
+      denyCommandRules = map (cmd: {
+        toolName = "run_shell_command";
+        commandPrefix = "${cmd} ";
+        decision = "deny";
+      }) aiCfg.permissions.deniedCommandPrefixes;
+
+      mcpAllowRules = flatten (
+        mapAttrsToList (
+          name: server:
+          map (tool: {
+            toolName = tool;
+            mcpName = name;
+            decision = "allow";
+          }) server.allowedTools
+        ) aiCfg.mcpServers
+      );
+
+      mcpDenyRules = flatten (
+        mapAttrsToList (
+          name: server:
+          map (tool: {
+            toolName = tool;
+            mcpName = name;
+            decision = "deny";
+          }) server.deniedTools
+        ) aiCfg.mcpServers
+      );
+    in
+    tomlFormat.generate "nix-managed.toml" {
+      rule = allowCommandRules ++ denyCommandRules ++ mcpAllowRules ++ mcpDenyRules;
+    };
 
   convertMcpServer =
     name: server:
@@ -88,5 +132,6 @@ in
       };
     };
     home.file.".gemini/skills".source = aiCfg._combinedSkillsPath;
+    home.file.".gemini/policies/nix-managed.toml".source = policyFile;
   };
 }

@@ -12,6 +12,29 @@ let
     types
     ;
 
+  # Common MCP tool permission options shared across all server types
+  mcpToolPermissionOptions = {
+    allowedTools = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      description = "Tool name patterns that AI agents can use without asking for permission";
+      example = [
+        "search_*"
+        "get_*"
+      ];
+    };
+
+    deniedTools = mkOption {
+      type = types.listOf types.str;
+      default = [ ];
+      description = "Tool name patterns that AI agents should deny without asking for confirmation";
+      example = [
+        "delete_*"
+        "create_*"
+      ];
+    };
+  };
+
   # MCP server type definitions for each transport
   stdioServerType = types.submodule {
     options = {
@@ -53,7 +76,8 @@ let
           GITHUB_TOKEN = "ghp_xxxxxxxxxxxx";
         };
       };
-    };
+    }
+    // mcpToolPermissionOptions;
   };
 
   sseServerType = types.submodule {
@@ -78,7 +102,8 @@ let
           Authorization = "Bearer token123";
         };
       };
-    };
+    }
+    // mcpToolPermissionOptions;
   };
 
   httpServerType = types.submodule {
@@ -103,7 +128,8 @@ let
           Authorization = "Bearer token123";
         };
       };
-    };
+    }
+    // mcpToolPermissionOptions;
   };
 
   # Combined MCP server type with addCheck for disambiguation
@@ -156,6 +182,40 @@ in
         ./skills
         "/home/user/custom-skills"
       ];
+    };
+
+    permissions = {
+      allowedCommandPrefixes = mkOption {
+        type = types.listOf types.str;
+        default = [ ];
+        description = "Shell command prefixes that AI agents can execute without asking for permission. Commands matching any of these prefixes are auto-approved. Consumer modules map these to tool-specific formats.";
+        example = [
+          "git diff"
+          "git log"
+          "npm test"
+        ];
+      };
+
+      deniedCommandPrefixes = mkOption {
+        type = types.listOf types.str;
+        default = [ ];
+        description = "Shell command prefixes that AI agents should deny without asking for confirmation.";
+        example = [
+          "rm -rf"
+          "curl"
+        ];
+      };
+
+      allowedFetchDomains = mkOption {
+        type = types.listOf types.str;
+        default = [ ];
+        description = "Domains that AI agents can fetch without asking for permission";
+        example = [
+          "github.com"
+          "docs.python.org"
+          "developer.mozilla.org"
+        ];
+      };
     };
 
     _combinedSkillsPath = mkOption {

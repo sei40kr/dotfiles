@@ -19,17 +19,24 @@ let
   convertMcpServer =
     name:
     { transport, ... }@server:
-    if transport == "stdio" then
-      {
-        inherit (server) command args env;
-      }
-    else if transport == "http" || transport == "sse" then
-      {
-        inherit (server) url;
-        http_headers = server.headers;
-      }
-    else
-      throw "Unknown transport type ${transport} for server ${name}";
+    let
+      base =
+        if transport == "stdio" then
+          {
+            inherit (server) command args env;
+          }
+        else if transport == "http" || transport == "sse" then
+          {
+            inherit (server) url;
+            http_headers = server.headers;
+          }
+        else
+          throw "Unknown transport type ${transport} for server ${name}";
+      toolPermissions =
+        lib.optionalAttrs (server.allowedTools != [ ]) { enabled_tools = server.allowedTools; }
+        // lib.optionalAttrs (server.deniedTools != [ ]) { disabled_tools = server.deniedTools; };
+    in
+    base // toolPermissions;
 in
 {
   options.modules.ai.codex = {

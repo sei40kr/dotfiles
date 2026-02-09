@@ -8,13 +8,16 @@
 
 let
   inherit (lib)
+    flatten
+    mapAttrs
+    mapAttrsToList
     mkEnableOption
     mkIf
-    mapAttrs
     mkPackageOption
     ;
   cfg = config.modules.ai.claude-code;
-  mcpCfg = config.modules.ai.mcpServers;
+  aiCfg = config.modules.ai;
+  mcpCfg = aiCfg.mcpServers;
 
   convertMcpServer =
     name:
@@ -50,6 +53,19 @@ in
         env = {
           CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL = 1;
           DISABLE_AUTOUPDATER = 1;
+        };
+        permissions = {
+          allow =
+            (map (cmd: "Bash(${cmd} *)") aiCfg.permissions.allowedCommandPrefixes)
+            ++ (map (domain: "WebFetch(domain:${domain})") aiCfg.permissions.allowedFetchDomains)
+            ++ (flatten (
+              mapAttrsToList (name: server: map (tool: "mcp__${name}__${tool}") server.allowedTools) mcpCfg
+            ));
+          deny =
+            (map (cmd: "Bash(${cmd} *)") aiCfg.permissions.deniedCommandPrefixes)
+            ++ (flatten (
+              mapAttrsToList (name: server: map (tool: "mcp__${name}__${tool}") server.deniedTools) mcpCfg
+            ));
         };
         hooks = {
           Notification = [
