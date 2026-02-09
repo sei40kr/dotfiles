@@ -31,6 +31,21 @@ in
       # TODO: Add cargo-lambda when aws module is enabled
     ];
 
+    modules.ai.permissions.allowedCommandPrefixes = [
+      "cargo build"
+      "cargo test"
+      "cargo check"
+      "cargo clippy"
+      "cargo fmt"
+      "cargo doc"
+      "cargo tree"
+      "cargo metadata"
+    ];
+    modules.ai.permissions.allowedFetchDomains = [
+      "docs.rs"
+      "crates.io"
+    ];
+
     modules.editors.lspServers.rust_analyzer = {
       package = null;
       command = "rust-analyzer";
