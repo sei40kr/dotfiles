@@ -36,6 +36,22 @@ in
       '';
       command = "${package}/bin/github-mcp-server-wrapper";
       args = [ "stdio" ];
+      allowedTools = [
+        "get_*"
+        "list_*"
+        "search_*"
+        "actions_get"
+        "actions_list"
+        "issue_read"
+        "pull_request_read"
+        "projects_get"
+        "projects_list"
+      ];
     };
+
+    modules.ai.permissions.allowedFetchDomains = [
+      "github.com"
+      "raw.githubusercontent.com"
+    ];
   };
 }
