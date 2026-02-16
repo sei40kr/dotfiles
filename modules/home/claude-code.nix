@@ -39,6 +39,11 @@ in
   options.modules.ai.claude-code = {
     enable = mkEnableOption "Claude Code";
 
+    claudebox = {
+      enable = mkEnableOption "claudebox";
+      package = mkPackageOption perSystem.llm-agents-nix "claudebox" { };
+    };
+
     ccstatusline = {
       enable = mkEnableOption "ccstatusline";
       package = mkPackageOption perSystem.llm-agents-nix "ccstatusline" { };
@@ -102,6 +107,7 @@ in
     };
 
     home.packages = [
+      (mkIf cfg.claudebox.enable cfg.claudebox.package)
       (mkIf cfg.ccstatusline.enable cfg.ccstatusline.package)
     ];
 
