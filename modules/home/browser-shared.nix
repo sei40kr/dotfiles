@@ -7,7 +7,12 @@
 }:
 
 let
-  inherit (lib) mkIf mkOption types;
+  inherit (lib)
+    attrByPath
+    mkIf
+    mkOption
+    types
+    ;
   inherit (types) nullOr str;
 
   cfg = config.modules.desktop.browsers;
@@ -16,17 +21,19 @@ let
     exec ${defaultBrowserCommand} "$@"
   '';
 
+  chromeEnabled = attrByPath [ "modules" "desktop" "browsers" "chrome" "enable" ] false osConfig;
+
   defaultBrowserCommand =
     if cfg.firefox.enable then
       "firefox"
-    else if osConfig.modules.desktop.browsers.chrome.enable then
+    else if chromeEnabled then
       "google-chrome-stable"
     else
       null;
   defaultBrowserDesktopFile =
     if cfg.firefox.enable then
       "firefox.desktop"
-    else if osConfig.modules.desktop.browsers.chrome.enable then
+    else if chromeEnabled then
       "google-chrome.desktop"
     else
       null;
