@@ -175,10 +175,7 @@ in
 
   modules.shell.zsh.enable = true;
 
-  modules.services.docker = {
-    enable = true;
-    compose.enable = true;
-  };
+  modules.services.docker.enable = true;
   modules.services.ssh.enable = true;
 
   environment.systemPackages = with pkgs; [

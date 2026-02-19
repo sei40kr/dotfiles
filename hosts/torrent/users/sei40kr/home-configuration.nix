@@ -47,6 +47,10 @@
     bun.enable = true;
   };
 
+  modules.dev.tools.docker = {
+    enable = true;
+    compose.enable = true;
+  };
   modules.dev.tools.ansible.enable = true;
   modules.dev.tools.aws.enable = true;
   modules.dev.tools.jupyter.enable = true;
