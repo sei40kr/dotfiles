@@ -9,6 +9,7 @@
 
 let
   inherit (lib)
+    attrByPath
     genAttrs
     mdDoc
     mkEnableOption
@@ -27,8 +28,8 @@ let
     submodule
     ;
   cfg = config.modules.desktop.apps.dunst;
-  wmCfg = osConfig.modules.desktop.wm;
-  deCfg = osConfig.modules.desktop.de;
+  wmCfg = attrByPath [ "modules" "desktop" "wm" ] { } osConfig;
+  deCfg = attrByPath [ "modules" "desktop" "de" ] { } osConfig;
   anyrunCfg = config.modules.desktop.apps.anyrun;
 
   separatorType = submodule {

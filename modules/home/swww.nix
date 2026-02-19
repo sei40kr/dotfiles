@@ -8,6 +8,7 @@
 
 let
   inherit (lib)
+    attrByPath
     escapeShellArg
     mkEnableOption
     mkIf
@@ -15,7 +16,12 @@ let
     ;
 
   cfg = config.modules.desktop.apps.swww;
-  deCfg = osConfig.modules.desktop.de;
+  deCfg = attrByPath [ "modules" "desktop" "de" ] {
+    background = {
+      color = "#000000";
+      image = null;
+    };
+  } osConfig;
 
   bgColor = removePrefix "#" deCfg.background.color;
 

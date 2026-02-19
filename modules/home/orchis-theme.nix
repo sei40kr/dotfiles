@@ -6,9 +6,9 @@
 }:
 
 let
-  inherit (lib) mkIf;
+  inherit (lib) attrByPath mkIf;
 
-  themeCfg = osConfig.modules.desktop.theme;
+  themeCfg = attrByPath [ "modules" "desktop" "theme" ] { active = null; } osConfig;
 
   orchis-theme = pkgs.orchis-theme.override { withWallpapers = true; };
 in

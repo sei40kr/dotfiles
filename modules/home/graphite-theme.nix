@@ -6,10 +6,10 @@
 }:
 
 let
-  inherit (lib) mkIf optionalString;
+  inherit (lib) attrByPath mkIf optionalString;
 
-  themeCfg = osConfig.modules.desktop.theme;
-  cfg = themeCfg.graphite;
+  themeCfg = attrByPath [ "modules" "desktop" "theme" ] { active = null; } osConfig;
+  cfg = themeCfg.graphite or { };
   inherit (cfg.variant) color;
 
   Color =

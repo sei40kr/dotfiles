@@ -8,7 +8,12 @@
 }:
 
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib)
+    attrByPath
+    makeBinPath
+    mkEnableOption
+    mkIf
+    ;
 
   cfg = config.modules.desktop.apps.quickshell;
 in
@@ -27,7 +32,7 @@ in
 
     systemd.user.services.quickshell.Service.Environment = [
       "PATH=${
-        lib.makeBinPath (
+        makeBinPath (
           with pkgs;
           [
             sysstat # mpstat for CPU usage
@@ -39,6 +44,8 @@ in
       }"
     ];
 
-    home.packages = mkIf osConfig.modules.desktop.wm.niri.enable [ perSystem.self.qml-niri ];
+    home.packages = mkIf (attrByPath [ "modules" "desktop" "wm" "niri" "enable" ] false osConfig) [
+      perSystem.self.qml-niri
+    ];
   };
 }

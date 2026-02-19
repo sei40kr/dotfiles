@@ -6,10 +6,10 @@
 }:
 
 let
-  inherit (lib) mkIf;
+  inherit (lib) attrByPath mkIf;
 
-  themeCfg = osConfig.modules.desktop.theme;
-  cfg = themeCfg.whitesur;
+  themeCfg = attrByPath [ "modules" "desktop" "theme" ] { active = null; } osConfig;
+  cfg = themeCfg.whitesur or { };
 in
 {
   config = mkIf (themeCfg.active == "whitesur") {
