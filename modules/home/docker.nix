@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  osConfig,
   ...
 }:
 
@@ -12,6 +11,7 @@ in
 {
   options.modules.dev.tools.docker = {
     enable = mkEnableOption "Docker development environment";
+    compose.enable = mkEnableOption "Docker Compose";
   };
 
   config = mkIf cfg.enable {
@@ -51,7 +51,7 @@ in
       dxc = "docker container exec";
       dxcit = "docker container exec -it";
     }
-    // (optionalAttrs osConfig.modules.services.docker.compose.enable {
+    // (optionalAttrs cfg.compose.enable {
       # Docker Compose aliases
       dco = "docker-compose";
       dcb = "docker-compose build";

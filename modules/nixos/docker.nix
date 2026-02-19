@@ -15,8 +15,6 @@ in
 {
   options.modules.services.docker = {
     enable = mkEnableOption "Docker";
-
-    compose.enable = mkEnableOption "Docker Compose";
   };
 
   config = mkIf cfg.enable {
@@ -25,12 +23,9 @@ in
       autoPrune.enable = true;
     };
 
-    environment.systemPackages =
-      with pkgs;
-      [
-        docker-credential-helpers
-      ]
-      ++ lib.optional cfg.compose.enable docker-compose;
+    environment.systemPackages = with pkgs; [
+      docker-credential-helpers
+    ];
 
     users.users.sei40kr.extraGroups = [ "docker" ];
   };
