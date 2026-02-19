@@ -2,7 +2,16 @@
 
 ![Made with Doom Emacs](https://img.shields.io/github/tag/hlissner/doom-emacs.svg?style=flat-square&label=release&color=58839b)
 
+## Hosts
+
+| Host      | Platform                    | Description          |
+| --------- | --------------------------- | -------------------- |
+| `torrent` | NixOS (x86_64-linux)        | Desktop workstation  |
+| `work`    | nix-darwin (aarch64-darwin) | MacBook Pro for work |
+
 ## Install
+
+### NixOS (torrent)
 
 1. Clone this repository into `/etc/dotfiles`:
 
@@ -29,6 +38,34 @@
 
    ```sh
    nh os switch
+   ```
+
+### macOS (work)
+
+Prerequisites:
+
+- [Nix](https://nixos.org/download/) package manager
+- [Homebrew](https://brew.sh/) (nix-darwin manages Homebrew casks but does not install Homebrew itself)
+
+1. Clone this repository into `/etc/dotfiles`:
+
+   ```sh
+   sudo git clone https://github.com/sei40kr/dotfiles.git /etc/dotfiles
+   sudo chown -R $USER /etc/dotfiles
+   ```
+
+1. Build and switch to the configuration:
+
+   ```sh
+   cd /etc/dotfiles
+   darwin-rebuild switch --flake ".#${HOST}"
+   ```
+
+1. Once you switch to the configuration, you can use `nh` to update the system
+   (you may need to re-login before using `nh`):
+
+   ```sh
+   nh darwin switch
    ```
 
 ### Secure Boot Setup (for hosts with Lanzaboote)
