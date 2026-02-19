@@ -14,6 +14,7 @@ let
     mkEnableOption
     mkIf
     mkPackageOption
+    optionalAttrs
     ;
   cfg = config.modules.ai.claude-code;
   aiCfg = config.modules.ai;
@@ -72,7 +73,7 @@ in
               mapAttrsToList (name: server: map (tool: "mcp__${name}__${tool}") server.deniedTools) mcpCfg
             ));
         };
-        hooks = {
+        hooks = optionalAttrs pkgs.stdenv.isLinux {
           Notification = [
             {
               hooks = [
@@ -95,7 +96,7 @@ in
           ];
         };
       }
-      // lib.optionalAttrs cfg.ccstatusline.enable {
+      // optionalAttrs cfg.ccstatusline.enable {
         statusLine = {
           type = "command";
           command = "${cfg.ccstatusline.package}/bin/ccstatusline";

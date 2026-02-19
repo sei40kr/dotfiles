@@ -14,15 +14,19 @@ let
     mkEnableOption
     mkIf
     mapAttrs
+    optionalAttrs
+    optionalString
     ;
   aiCfg = config.modules.ai;
   cfg = aiCfg.gemini-cli;
   editorsCfg = config.modules.editors;
 
-  notificationScript = pkgs.writeShellScript "gemini-cli-notification" ''
-    message=$(${pkgs.jq}/bin/jq -r '.message' 2>/dev/null || echo "Action required or input idle.")
-    ${pkgs.libnotify}/bin/notify-send 'Gemini CLI' "$message" -h string:x-dunst-stack-tag:gemini_cli
-  '';
+  notificationScript = optionalString pkgs.stdenv.isLinux (
+    pkgs.writeShellScript "gemini-cli-notification" ''
+      message=$(${pkgs.jq}/bin/jq -r '.message' 2>/dev/null || echo "Action required or input idle.")
+      ${pkgs.libnotify}/bin/notify-send 'Gemini CLI' "$message" -h string:x-dunst-stack-tag:gemini_cli
+    ''
+  );
 
   tomlFormat = pkgs.formats.toml { };
 
@@ -101,7 +105,7 @@ in
         };
         tools.autoAccept = true;
         experimental.skills = true;
-        hooks = {
+        hooks = optionalAttrs pkgs.stdenv.isLinux {
           AfterAgent = [
             {
               hooks = [
