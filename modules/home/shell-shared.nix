@@ -37,7 +37,7 @@ in
       hexyl
       htop
       jaq
-      lurk
+      (mkIf pkgs.stdenv.isLinux lurk)
       netscanner
       pik
       prettyping
@@ -50,7 +50,7 @@ in
       xcp
     ];
 
-    services.lorri.enable = true;
+    services.lorri.enable = mkIf pkgs.stdenv.isLinux true;
 
     home.shellAliases = {
       u = "cd ..";
