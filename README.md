@@ -40,35 +40,7 @@
    nh os switch
    ```
 
-### macOS (work)
-
-Prerequisites:
-
-- [Nix](https://nixos.org/download/) package manager
-- [Homebrew](https://brew.sh/) (nix-darwin manages Homebrew casks but does not install Homebrew itself)
-
-1. Clone this repository into `/etc/dotfiles`:
-
-   ```sh
-   sudo git clone https://github.com/sei40kr/dotfiles.git /etc/dotfiles
-   sudo chown -R $USER /etc/dotfiles
-   ```
-
-1. Build and switch to the configuration:
-
-   ```sh
-   cd /etc/dotfiles
-   darwin-rebuild switch --flake ".#${HOST}"
-   ```
-
-1. Once you switch to the configuration, you can use `nh` to update the system
-   (you may need to re-login before using `nh`):
-
-   ```sh
-   nh darwin switch
-   ```
-
-### Secure Boot Setup (for hosts with Lanzaboote)
+#### Secure Boot Setup (for hosts with Lanzaboote)
 
 Some hosts (e.g., `torrent`) have Secure Boot enabled via Lanzaboote. For these hosts:
 
@@ -98,6 +70,34 @@ Some hosts (e.g., `torrent`) have Secure Boot enabled via Lanzaboote. For these 
 
 > [!IMPORTANT]
 > When Secure Boot is enabled, GRUB cannot be used. If you have a dual-boot environment, you need to select the OS from the boot menu (typically accessible via F8, F11, or F12 during boot).
+
+### macOS (work)
+
+Prerequisites:
+
+- [Nix](https://nixos.org/download/) package manager
+- [Homebrew](https://brew.sh/) (nix-darwin manages Homebrew casks but does not install Homebrew itself)
+
+1. Clone this repository into `/etc/dotfiles`:
+
+   ```sh
+   sudo git clone https://github.com/sei40kr/dotfiles.git /etc/dotfiles
+   sudo chown -R $USER /etc/dotfiles
+   ```
+
+1. Build and switch to the configuration:
+
+   ```sh
+   cd /etc/dotfiles
+   darwin-rebuild switch --flake ".#${HOST}"
+   ```
+
+1. Once you switch to the configuration, you can use `nh` to update the system
+   (you may need to re-login before using `nh`):
+
+   ```sh
+   nh darwin switch
+   ```
 
 ### GPG Key Restoration
 
