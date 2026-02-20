@@ -54,6 +54,7 @@
   modules.dev.tools.ansible.enable = true;
   modules.dev.tools.aws.enable = true;
   modules.dev.tools.jupyter.enable = true;
+  modules.dev.tools.workmux.enable = true;
 
   modules.editors.fonts.code = {
     package = pkgs.nerd-fonts.iosevka;

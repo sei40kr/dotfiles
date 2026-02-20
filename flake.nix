@@ -98,6 +98,11 @@
       url = "github:sei40kr/tmux-project";
       flake = false;
     };
+
+    workmux = {
+      url = "github:raine/workmux";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

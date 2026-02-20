@@ -698,6 +698,7 @@
         "wez-per-project-workspace": "wez-per-project-workspace",
         "wez-status-generator": "wez-status-generator",
         "wez-tmux": "wez-tmux",
+        "workmux": "workmux",
         "zsh-fzf-projects": "zsh-fzf-projects"
       }
     },
@@ -982,6 +983,26 @@
       "original": {
         "owner": "sei40kr",
         "repo": "wez-tmux",
+        "type": "github"
+      }
+    },
+    "workmux": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1771533176,
+        "narHash": "sha256-zsoTJHIQAhcnsEfGfar3FAlvJ+kyBfnfznyGg0EnISQ=",
+        "owner": "raine",
+        "repo": "workmux",
+        "rev": "25af3592ceb5d8a3ea9278109dc76a12afb8eb92",
+        "type": "github"
+      },
+      "original": {
+        "owner": "raine",
+        "repo": "workmux",
         "type": "github"
       }
     },

@@ -74,6 +74,7 @@
     inputs.self.homeModules.tmux
     inputs.self.homeModules.web
     inputs.self.homeModules.wezterm
+    inputs.self.homeModules.workmux
     inputs.self.homeModules.whitesur-theme
     inputs.self.homeModules.yazi
     inputs.self.homeModules.zathura
