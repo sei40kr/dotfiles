@@ -1,12 +1,22 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.desktop.apps.vicinae;
+
+  extensionsSrc =
+    pkgs.fetchFromGitHub {
+      owner = "vicinaehq";
+      repo = "extensions";
+      rev = "cf30b80f619282d45b1748eb76e784a4f875bb01";
+      sha256 = "sha256-KwNv+THKbNUey10q26NZPDMSzYTObRHaSDr81QP9CPY=";
+    }
+    + "/extensions";
 in
 {
   options.modules.desktop.apps.vicinae = {
@@ -20,6 +30,22 @@ in
       settings = {
         theme.name = "tokyo-night";
       };
+      extensions =
+        map
+          (
+            name:
+            config.lib.vicinae.mkExtension {
+              inherit name;
+              src = extensionsSrc + "/${name}";
+            }
+          )
+          [
+            "bluetooth"
+            "github"
+            "niri"
+            "nix"
+            "stocks"
+          ];
       themes.tokyo-night = {
         meta = {
           version = 1;
