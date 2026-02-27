@@ -17,6 +17,9 @@ in
     programs.vicinae = {
       enable = true;
       systemd.enable = true;
+      settings = {
+        theme.name = "tokyo-night";
+      };
       themes.tokyo-night = {
         meta = {
           version = 1;
