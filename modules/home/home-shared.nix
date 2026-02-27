@@ -61,6 +61,7 @@
     inputs.self.homeModules.qml
     inputs.self.homeModules.quickshell
     inputs.self.homeModules.r
+    inputs.self.homeModules.raycast
     inputs.self.homeModules.ripgrep
     inputs.self.homeModules.ruby
     inputs.self.homeModules.rust
@@ -75,6 +76,7 @@
     inputs.self.homeModules.terraform
     inputs.self.homeModules.tokyo-night
     inputs.self.homeModules.tmux
+    inputs.self.homeModules.vicinae
     inputs.self.homeModules.web
     inputs.self.homeModules.wezterm
     inputs.self.homeModules.workmux
