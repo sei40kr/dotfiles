@@ -2,7 +2,7 @@ binds {
   /// Launch:
 
   // Application:
-  Mod+Space { spawn "anyrun"; }
+  Mod+Space { spawn "vicinae" "toggle"; }
 
   // Browser:
   Mod+Shift+Return { spawn "sensible-browser"; }
