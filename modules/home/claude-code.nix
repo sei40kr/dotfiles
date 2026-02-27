@@ -107,6 +107,13 @@ in
       mcpServers = mapAttrs convertMcpServer mcpCfg;
     };
 
+    # Enable remote control by overriding the wrapper's telemetry-disabling env vars
+    home.sessionVariables = {
+      CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC = "";
+      DISABLE_NON_ESSENTIAL_MODEL_CALLS = "";
+      DISABLE_TELEMETRY = "";
+    };
+
     home.packages = [
       (mkIf cfg.claudebox.enable cfg.claudebox.package)
       (mkIf cfg.ccstatusline.enable cfg.ccstatusline.package)
