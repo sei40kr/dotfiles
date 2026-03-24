@@ -21,12 +21,12 @@ in
       nix-melt
       nurl
       nixfmt-rfc-style
-      mcp-nixos
+      (mkIf pkgs.stdenv.isLinux mcp-nixos)
       nil
       statix
     ];
 
-    modules.ai.mcpServers = {
+    modules.ai.mcpServers = mkIf pkgs.stdenv.isLinux {
       nixos = rec {
         transport = "stdio";
         package = pkgs.mcp-nixos;
