@@ -85,15 +85,15 @@ Prerequisites:
    sudo chown -R $USER /etc/dotfiles
    ```
 
-1. Build and switch to the configuration:
+1. Build and switch to the configuration (first time):
 
    ```sh
    cd /etc/dotfiles
-   darwin-rebuild switch --flake ".#${HOST}"
+   sudo nix --extra-experimental-features 'nix-command flakes' run nix-darwin -- switch --flake ".#${HOST}"
    ```
 
-1. Once you switch to the configuration, you can use `nh` to update the system
-   (you may need to re-login before using `nh`):
+1. Once you switch to the configuration, `nh` becomes available.
+   From the second time onwards (you may need to re-login):
 
    ```sh
    nh darwin switch
