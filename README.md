@@ -99,7 +99,9 @@ Prerequisites:
    nh darwin switch
    ```
 
-### GPG Key Restoration
+### Commit Signing Setup
+
+#### NixOS (GPG)
 
 GPG signing keys are stored in Bitwarden as secure notes named `<hostname>: gpg-private.asc` and `<hostname>: gpg-revoke.asc`.
 
@@ -118,6 +120,17 @@ GPG signing keys are stored in Bitwarden as secure notes named `<hostname>: gpg-
    ```
 
 The revocation certificate (`<hostname>: gpg-revoke.asc`) should only be used if the key is compromised.
+
+#### macOS (SSH)
+
+Uses SSH key signing via macOS Keychain. SSH keys are stored in Bitwarden as SSH key items named `<hostname>: <key-name>`.
+
+1. Export the SSH key from Bitwarden to `~/.ssh/`.
+2. Register the SSH key with Keychain:
+   ```sh
+   ssh-add --apple-use-keychain ~/.ssh/<private-key>
+   ```
+3. Add the SSH public key to GitHub as a **Signing key** (Settings > SSH and GPG keys > New SSH key, Key type: "Signing key").
 
 ## Acknowledgements
 
