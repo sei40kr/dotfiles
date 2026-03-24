@@ -38,7 +38,7 @@ in
       htop
       jaq
       (mkIf pkgs.stdenv.isLinux lurk)
-      netscanner
+      (mkIf pkgs.stdenv.isLinux netscanner)
       pik
       prettyping
       procs
