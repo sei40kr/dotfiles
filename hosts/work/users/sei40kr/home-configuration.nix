@@ -18,6 +18,8 @@
     ccstatusline.enable = true;
   };
 
+  modules.desktop.aerospace.enable = true;
+
   modules.dev.lang.java.enable = true;
   modules.dev.lang.javascript.enable = true;
   modules.dev.lang.nix.enable = true;
