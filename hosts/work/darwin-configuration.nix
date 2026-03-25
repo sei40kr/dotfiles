@@ -30,14 +30,15 @@
     slack
   ];
 
-  homebrew = {
-    enable = true;
-    onActivation.cleanup = "zap";
-    casks = [
-      "docker"
-      "figma"
-    ];
-  };
+  # TODO: Homebrew doesn't support macOS 26 (Tahoe) yet
+  # homebrew = {
+  #   enable = true;
+  #   onActivation.cleanup = "zap";
+  #   casks = [
+  #     "docker"
+  #     "figma"
+  #   ];
+  # };
 
   system.stateVersion = 6;
 }
