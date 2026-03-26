@@ -2,6 +2,7 @@
 
 {
   imports = [
+    inputs.self.homeModules.agenix
     inputs.self.homeModules.aerospace
     inputs.self.homeModules.agent-browser
     inputs.self.homeModules.ai-shared
