@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  perSystem,
   pkgs,
   ...
 }:
@@ -18,6 +19,8 @@ let
     cursor
     selection
     ;
+
+  ghostty-tmux = perSystem.ghostty-tmux.default.override { prefix = "ctrl+t"; };
 in
 {
   options.modules.term.ghostty = {
@@ -67,6 +70,11 @@ in
         window-padding-y = 12;
 
         macos-option-as-alt = true;
+
+        config-file = [
+          "${ghostty-tmux}/share/ghostty-tmux/tmux"
+          "${ghostty-tmux}/share/ghostty-tmux/pain-control"
+        ];
       };
     };
 
