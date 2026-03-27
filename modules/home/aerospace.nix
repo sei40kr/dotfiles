@@ -46,6 +46,54 @@ in
           outer.right = 32;
         };
 
+        on-window-detected = [
+          # floating
+          {
+            "if".app-id = "com.apple.systempreferences";
+            run = [ "layout floating" ];
+          }
+          # web
+          {
+            "if".app-id = "com.microsoft.edgemac";
+            run = [ "move-node-to-workspace web" ];
+          }
+          # dev
+          {
+            "if".app-id = "com.mitchellh.ghostty";
+            run = [ "move-node-to-workspace dev" ];
+          }
+          # media
+          {
+            "if".app-id = "com.apple.finder";
+            run = [ "move-node-to-workspace media" ];
+          }
+          {
+            "if".app-id = "com.microsoft.Word";
+            run = [ "move-node-to-workspace media" ];
+          }
+          {
+            "if".app-id = "com.microsoft.Excel";
+            run = [ "move-node-to-workspace media" ];
+          }
+          {
+            "if".app-id = "com.microsoft.Powerpoint";
+            run = [ "move-node-to-workspace media" ];
+          }
+          # chat
+          {
+            "if".app-id = "com.microsoft.Outlook";
+            run = [ "move-node-to-workspace chat" ];
+          }
+          {
+            "if".app-id = "com.tinyspeck.slackmacgap";
+            run = [ "move-node-to-workspace chat" ];
+          }
+          {
+            "if".app-id = "com.microsoft.teams2";
+            run = [ "move-node-to-workspace chat" ];
+          }
+        ];
+
         mode.main.binding = {
           # Focus (Regolith: Mod+h/j/k/l)
           "alt-h" = "focus left";
@@ -65,14 +113,14 @@ in
           # Layout (Regolith: Mod+t, Mod+Backspace, Mod+f, Mod+Shift+f)
           "alt-t" = "layout tiles horizontal vertical";
           "alt-backspace" = "layout accordion horizontal vertical";
-          "alt-f" = "fullscreen";
+          "alt-f" = "macos-native-fullscreen";
           "alt-shift-f" = "layout floating tiling";
 
           # Workspace (Regolith: Mod+0-9)
-          "alt-1" = "workspace 1";
-          "alt-2" = "workspace 2";
-          "alt-3" = "workspace 3";
-          "alt-4" = "workspace 4";
+          "alt-1" = "workspace web";
+          "alt-2" = "workspace dev";
+          "alt-3" = "workspace media";
+          "alt-4" = "workspace chat";
           "alt-5" = "workspace 5";
           "alt-6" = "workspace 6";
           "alt-7" = "workspace 7";
@@ -80,10 +128,10 @@ in
           "alt-9" = "workspace 9";
 
           # Move to Workspace (Regolith: Mod+Shift+0-9)
-          "alt-shift-1" = "move-node-to-workspace 1";
-          "alt-shift-2" = "move-node-to-workspace 2";
-          "alt-shift-3" = "move-node-to-workspace 3";
-          "alt-shift-4" = "move-node-to-workspace 4";
+          "alt-shift-1" = "move-node-to-workspace web";
+          "alt-shift-2" = "move-node-to-workspace dev";
+          "alt-shift-3" = "move-node-to-workspace media";
+          "alt-shift-4" = "move-node-to-workspace chat";
           "alt-shift-5" = "move-node-to-workspace 5";
           "alt-shift-6" = "move-node-to-workspace 6";
           "alt-shift-7" = "move-node-to-workspace 7";
