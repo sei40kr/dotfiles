@@ -66,6 +66,17 @@ in
           "15=#${ansi.brightWhite}"
         ];
 
+        # HACK: Ghostty uses the fixterms spec by default, encoding ctrl+key
+        # combos as CSI sequences (e.g. ctrl+[ becomes CSI 91;5u instead of
+        # ^[). Programs that don't activate the Kitty Keyboard Protocol can't
+        # understand these, breaking vi-mode shell navigation.
+        # See: https://github.com/ghostty-org/ghostty/discussions/5071
+        keybind = [
+          "ctrl+m=text:\\r"
+          "ctrl+i=text:\\x09"
+          "ctrl+[=text:\\x1b"
+        ];
+
         window-padding-x = 12;
         window-padding-y = 12;
 
