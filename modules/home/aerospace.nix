@@ -155,5 +155,16 @@ in
         };
       };
     };
+
+    services.jankyborders = {
+      enable = true;
+      settings = {
+        style = "round";
+        width = 6.0;
+        hidpi = "on";
+        active_color = "0xff007aff";
+        inactive_color = "0x00000000";
+      };
+    };
   };
 }
