@@ -6,6 +6,8 @@
 {
   imports = [ inputs.self.homeModules.home-shared ];
 
+  nixpkgs.config.allowUnfree = true;
+
   programs.nh = {
     enable = true;
     flake = "/etc/dotfiles";
