@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   ...
@@ -10,7 +11,7 @@
 
   programs.nh = {
     enable = true;
-    flake = "/etc/dotfiles";
+    flake = "${config.home.homeDirectory}/dotfiles";
   };
 
   modules.ai.agent-browser.enable = true;
