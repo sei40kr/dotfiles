@@ -48,7 +48,6 @@
       size = 16;
     };
   };
-  modules.editors.idea.enable = true;
   modules.editors.ideavim.enable = true;
   modules.editors.lazyvim.enable = true;
 
