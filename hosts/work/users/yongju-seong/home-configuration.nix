@@ -40,7 +40,7 @@
   modules.editors.fonts = {
     code = {
       package = pkgs.nerd-fonts.iosevka;
-      name = "Iosevka NFM";
+      name = "Iosevka Nerd Font Mono";
       size = 18;
     };
     ui = {
@@ -58,7 +58,7 @@
 
   modules.term.font = {
     package = pkgs.nerd-fonts.iosevka;
-    name = "Iosevka NFM";
+    name = "Iosevka Nerd Font Mono";
     size = 18;
   };
   modules.term.colorschemes.active = "tokyo-night";
