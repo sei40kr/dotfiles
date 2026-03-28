@@ -7,6 +7,11 @@
 {
   imports = [ inputs.self.homeModules.home-shared ];
 
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   programs.nh = {
