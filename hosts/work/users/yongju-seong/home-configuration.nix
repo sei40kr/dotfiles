@@ -60,7 +60,15 @@
   modules.editors.lazyvim.enable = true;
 
   modules.shell.apps.fastfetch.enable = true;
-  modules.shell.git.enable = true;
+
+  age.secrets.git-url-rewrites.file = ./secrets/git-url-rewrites.age;
+  modules.shell.git = {
+    enable = true;
+    includes = [
+      { inherit (config.age.secrets.git-url-rewrites) path; }
+    ];
+  };
+
   modules.shell.zsh.enable = true;
 
   modules.term.font = {
