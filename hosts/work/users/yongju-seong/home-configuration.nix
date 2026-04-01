@@ -69,8 +69,8 @@
     size = 18;
   };
   modules.term.colorschemes.active = "tokyo-night";
+  modules.term.ghostty.enable = true;
   modules.term.tmux.enable = true;
-  modules.term.wezterm.enable = true;
 
   home.packages = with pkgs; [
     google-cloud-sdk
