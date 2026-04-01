@@ -72,6 +72,9 @@
   modules.term.ghostty.enable = true;
   modules.term.tmux.enable = true;
 
+  # Add Rancher Desktop executables to PATH
+  home.sessionPath = [ "${config.home.homeDirectory}/.rd/bin" ];
+
   home.packages = with pkgs; [
     google-cloud-sdk
     jq
