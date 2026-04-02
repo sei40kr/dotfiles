@@ -1,7 +1,6 @@
 {
   inputs,
   lib,
-  config,
   pkgs,
   ...
 }:
@@ -44,45 +43,6 @@ in
   networking.networkmanager.enable = true;
   networking.interfaces.enp0s31f6.useDHCP = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  services.openvpn.servers.work = {
-    autoStart = false;
-    updateResolvConf = true;
-    config = ''
-      client
-      dev tun
-      proto udp
-      nobind
-      resolv-retry infinite
-      fragment 1472
-      mssfix 1300
-      keepalive 10 60
-      persist-tun
-      persist-key
-      verb 3
-      auth SHAKE256
-      cipher AES-256-GCM
-      remote-cert-tls server
-      ca ${config.age.secrets."work-vpn-ca".path}
-      tls-version-min 1.2
-      tls-cipher TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384
-      tls-crypt /var/lib/openvpn/work-tc.key
-      reneg-sec 0
-      auth-nocache
-      auth-user-pass /var/lib/openvpn/work-auth.txt
-      config ${config.age.secrets."work-vpn-remotes".path}
-    '';
-  };
-  age.secrets."work-vpn-ca" = {
-    file = ./secrets/work-vpn-ca.crt.age;
-    owner = "root";
-    mode = "0440";
-  };
-  age.secrets."work-vpn-remotes" = {
-    file = ./secrets/work-vpn-remotes.conf.age;
-    owner = "root";
-    mode = "0440";
-  };
 
   services.greetd.enable = true;
   modules.desktop.regreet = {

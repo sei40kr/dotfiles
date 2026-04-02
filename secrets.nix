@@ -9,7 +9,5 @@ in
   "modules/nixos/wireguard/wg0-private.age".publicKeys = publicKeys;
   "modules/nixos/wireguard/wg0-peer1-psk.age".publicKeys = publicKeys;
   "modules/nixos/wireguard/wg0-peer2-psk.age".publicKeys = publicKeys;
-  "hosts/torrent/secrets/work-vpn-ca.crt.age".publicKeys = publicKeys;
-  "hosts/torrent/secrets/work-vpn-remotes.conf.age".publicKeys = publicKeys;
   "hosts/MAC26010003/users/yongju-seong/secrets/git-url-rewrites.age".publicKeys = publicKeys;
 }
