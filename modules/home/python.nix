@@ -40,6 +40,10 @@ in
 
     home.sessionPath = [ "$HOME/.poetry/bin" ];
 
-    programs.zsh.oh-my-zsh.plugins = [ "pip" ];
+    programs.sheldon.settings.plugins.omz-pip = {
+      local = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/pip";
+      use = [ "*.plugin.zsh" ];
+      apply = [ "defer" ];
+    };
   };
 }

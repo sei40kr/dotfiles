@@ -52,6 +52,10 @@ in
       ];
     };
 
-    programs.zsh.oh-my-zsh.plugins = [ "terraform" ];
+    programs.sheldon.settings.plugins.omz-terraform = {
+      local = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/terraform";
+      use = [ "*.plugin.zsh" ];
+      apply = [ "defer" ];
+    };
   };
 }

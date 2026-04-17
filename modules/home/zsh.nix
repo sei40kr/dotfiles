@@ -38,20 +38,11 @@ in
       envExtra = ''
         ${cfg.envInit}
       '';
-      autosuggestion.enable = true;
       defaultKeymap = "emacs";
       initContent = ''
         bindkey '^u' backward-kill-line
-        bindkey -M menuselect '^[[Z' reverse-menu-complete
         autoload -Uz select-word-style
         select-word-style bash
-
-        # zsh-fzf-projects
-        FZF_PROJECTS_WORKSPACE_DIRS=( ~/ghq )
-        FZF_PROJECTS_WORKSPACE_MAX_DEPTH=3
-        FZF_PROJECTS_KNOWN_PROJECTS=( /etc/dotfiles )
-        zle -N fzf-projects
-        bindkey '^o' fzf-projects
 
         # TODO: Add cd-gitroot plugin (mollifier/cd-gitroot)
         # TODO: Add zsh-wez-man plugin (sei40kr/zsh-wez-man) for WezTerm
@@ -87,39 +78,84 @@ in
         ignoreSpace = true;
         share = true;
       };
-      plugins = [
-        {
-          name = "zsh-autopair";
-          src = pkgs.zsh-autopair;
-          file = "share/zsh/zsh-autopair/autopair.zsh";
-        }
-        {
-          name = "F-Sy-H";
-          src = pkgs.zsh-f-sy-h;
-          file = "share/zsh/site-functions/F-Sy-H.plugin.zsh";
-        }
-        {
-          name = "fzf-projects";
-          src = inputs.zsh-fzf-projects;
-        }
-      ];
-      oh-my-zsh = {
-        enable = true;
-        plugins = [
-          "extract"
-          "bgnotify"
-          "git-auto-fetch"
-          "fancy-ctrl-z"
-        ];
-        extraConfig = ''
-          HYPHEN_INSENSITIVE=true
+    };
+
+    programs.sheldon = {
+      enable = true;
+      enableZshIntegration = true;
+      settings = {
+        shell = "zsh";
+        templates.defer = ''
+          {% for file in files %}
+          zsh-defer source "{{ file }}"
+          {% endfor %}
         '';
-      };
-      zsh-abbr = {
-        enable = true;
-        abbreviations = config.programs.zsh.shellAliases;
+        plugins = {
+          "00-zsh-defer" = {
+            local = "${pkgs.zsh-defer}/share/zsh-defer";
+          };
+          "01-omz-lib-completion" = {
+            local = "${pkgs.oh-my-zsh}/share/oh-my-zsh/lib";
+            use = [ "completion.zsh" ];
+            hooks.pre = "HYPHEN_INSENSITIVE=true";
+            hooks.post = "bindkey -M menuselect '^[[Z' reverse-menu-complete";
+          };
+          omz-extract = {
+            local = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/extract";
+            use = [ "*.plugin.zsh" ];
+            apply = [ "defer" ];
+          };
+          omz-bgnotify = {
+            local = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/bgnotify";
+            use = [ "*.plugin.zsh" ];
+            apply = [ "defer" ];
+          };
+          omz-git-auto-fetch = {
+            local = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/git-auto-fetch";
+            use = [ "*.plugin.zsh" ];
+            apply = [ "defer" ];
+          };
+          omz-fancy-ctrl-z = {
+            local = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/fancy-ctrl-z";
+            use = [ "*.plugin.zsh" ];
+            apply = [ "defer" ];
+          };
+          zsh-autopair = {
+            local = "${pkgs.zsh-autopair}/share/zsh/zsh-autopair";
+            apply = [ "defer" ];
+          };
+          zsh-autosuggestions = {
+            local = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
+            apply = [ "defer" ];
+          };
+          zsh-f-sy-h = {
+            local = "${pkgs.zsh-f-sy-h}/share/zsh/site-functions";
+            use = [ "F-Sy-H.plugin.zsh" ];
+            apply = [ "defer" ];
+          };
+          fzf-projects = {
+            local = "${inputs.zsh-fzf-projects}";
+            apply = [ "defer" ];
+            hooks.post = ''
+              FZF_PROJECTS_WORKSPACE_DIRS=( ~/ghq )
+              FZF_PROJECTS_WORKSPACE_MAX_DEPTH=3
+              FZF_PROJECTS_KNOWN_PROJECTS=( /etc/dotfiles )
+              zle -N fzf-projects
+              bindkey '^o' fzf-projects
+            '';
+          };
+          zsh-abbr = {
+            local = "${pkgs.zsh-abbr}/share/zsh/zsh-abbr";
+          };
+        };
       };
     };
+
+    xdg.configFile."zsh-abbr/user-abbreviations".text =
+      lib.concatStringsSep "\n" (
+        lib.mapAttrsToList (k: v: "abbr ${k}=${lib.escapeShellArg v}") config.programs.zsh.shellAliases
+      )
+      + "\n";
 
     modules.shell.enable = true;
     modules.shell.atuin.enable = true;

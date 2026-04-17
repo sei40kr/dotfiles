@@ -27,9 +27,17 @@ in
         ++ optionals cfg.rails.enable [ rubyPackages.rails ]
       );
 
-    programs.zsh.oh-my-zsh.plugins = [
-      "gem"
-      "rake-fast"
-    ];
+    programs.sheldon.settings.plugins = {
+      omz-gem = {
+        local = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/gem";
+        use = [ "*.plugin.zsh" ];
+        apply = [ "defer" ];
+      };
+      omz-rake-fast = {
+        local = "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/rake-fast";
+        use = [ "*.plugin.zsh" ];
+        apply = [ "defer" ];
+      };
+    };
   };
 }
