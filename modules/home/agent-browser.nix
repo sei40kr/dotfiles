@@ -23,6 +23,6 @@ in
   config = mkIf cfg.enable {
     home.packages = [ cfg.package ];
 
-    modules.ai.skillPaths = [ "${cfg.package}/etc/agent-browser/skills" ];
+    modules.ai.skillPaths = [ "${cfg.package}/share/agent-browser/skills" ];
   };
 }
