@@ -6,7 +6,10 @@ in
 inputs.git-hooks.lib.${pkgs.stdenv.hostPlatform.system}.run {
   src = ./..;
   hooks = {
-    nil.enable = true;
+    nil = {
+      enable = true;
+      settings.denyWarnings = true;
+    };
     statix.enable = true;
     treefmt = {
       enable = true;
