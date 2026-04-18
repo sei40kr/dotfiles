@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   perSystem,
   ...
@@ -10,7 +9,8 @@ let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.dev.tools.workmux;
 
-  workmuxBin = "${perSystem.workmux.default}/bin/workmux";
+  inherit (perSystem.llm-agents-nix) workmux;
+  workmuxBin = "${workmux}/bin/workmux";
 in
 {
   options.modules.dev.tools.workmux = {
@@ -18,16 +18,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [
-      perSystem.workmux.default
-    ];
+    home.packages = [ workmux ];
 
     home.shellAliases = {
       wm = "workmux";
     };
 
     modules.ai.skillPaths = [
-      "${inputs.workmux}/skills"
+      "${workmux}/share/workmux/skills"
     ];
 
     modules.ai.permissions.allowedCommandPrefixes = [
