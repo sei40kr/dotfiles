@@ -99,6 +99,11 @@
       flake = false;
     };
 
+    zsh-patina = {
+      url = "github:michel-kraemer/zsh-patina";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     tmux-project = {
       url = "github:sei40kr/tmux-project";
       flake = false;

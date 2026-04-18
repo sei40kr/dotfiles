@@ -806,7 +806,8 @@
         "wez-status-generator": "wez-status-generator",
         "wez-tmux": "wez-tmux",
         "workmux": "workmux",
-        "zsh-fzf-projects": "zsh-fzf-projects"
+        "zsh-fzf-projects": "zsh-fzf-projects",
+        "zsh-patina": "zsh-patina"
       }
     },
     "rust-analyzer-src": {
@@ -1162,6 +1163,26 @@
       "original": {
         "owner": "sei40kr",
         "repo": "zsh-fzf-projects",
+        "type": "github"
+      }
+    },
+    "zsh-patina": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1776498295,
+        "narHash": "sha256-jlAesdwf6rsa71oBdL9QcfcL9FNbqNAArrKj4Xj1xDU=",
+        "owner": "michel-kraemer",
+        "repo": "zsh-patina",
+        "rev": "d0ac3ddf2eab839ca84d28a3fe18c5db712050f8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "michel-kraemer",
+        "repo": "zsh-patina",
         "type": "github"
       }
     }

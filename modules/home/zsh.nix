@@ -2,6 +2,7 @@
   config,
   inputs,
   lib,
+  perSystem,
   pkgs,
   ...
 }:
@@ -128,10 +129,8 @@ in
             local = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
             apply = [ "defer" ];
           };
-          zsh-f-sy-h = {
-            local = "${pkgs.zsh-f-sy-h}/share/zsh/site-functions";
-            use = [ "F-Sy-H.plugin.zsh" ];
-            apply = [ "defer" ];
+          zsh-patina = {
+            inline = ''zsh-defer eval "$(${perSystem.zsh-patina.default}/bin/zsh-patina activate)"'';
           };
           fzf-projects = {
             local = "${inputs.zsh-fzf-projects}";
@@ -156,6 +155,11 @@ in
         lib.mapAttrsToList (k: v: "abbr ${k}=${lib.escapeShellArg v}") config.programs.zsh.shellAliases
       )
       + "\n";
+
+    xdg.configFile."zsh-patina/config.toml".text = ''
+      [highlighting]
+      theme = "tokyonight"
+    '';
 
     modules.shell.enable = true;
     modules.shell.atuin.enable = true;
