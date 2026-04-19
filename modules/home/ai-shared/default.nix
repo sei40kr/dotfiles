@@ -2,6 +2,7 @@
   lib,
   config,
   inputs,
+  perSystem,
   pkgs,
   ...
 }:
@@ -233,10 +234,14 @@ in
   config = {
     modules.ai.skillPaths = [
       "${inputs.anthropics-skills}/skills"
+      "${perSystem.llm-agents-nix.git-surgeon}/share/git-surgeon/skills"
       ././skills
     ];
 
-    home.packages = lib.flatten (
+    home.packages = [
+      perSystem.llm-agents-nix.git-surgeon
+    ]
+    ++ lib.flatten (
       lib.mapAttrsToList (
         name: server: lib.optional (server ? package && server.package != null) server.package
       ) cfg.mcpServers
