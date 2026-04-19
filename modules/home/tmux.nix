@@ -3,6 +3,7 @@
   inputs,
   lib,
   pkgs,
+  perSystem,
   ...
 }:
 
@@ -44,6 +45,12 @@ in
             set -g @minimal-tmux-right-arrow ""
             set -g @minimal-tmux-left-arrow ""
             set -g @minimal-tmux-window-status-format ' #{?window_bell_flag,#[fg=yellow]•#[default],}#I:#W '
+          '';
+        }
+        {
+          plugin = perSystem.self.tmux-agent-usage;
+          extraConfig = ''
+            set -g @agent-usage-providers "claude"
           '';
         }
         pkgs.tmuxPlugins.pain-control
