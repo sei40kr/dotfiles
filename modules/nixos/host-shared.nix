@@ -36,6 +36,8 @@
 
     nixpkgs.config.allowUnfree = true;
 
+    services.earlyoom.enable = true;
+
     environment.systemPackages = with pkgs; [
       # Hardware / System Info
       usbutils
