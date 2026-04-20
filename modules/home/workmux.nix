@@ -24,6 +24,18 @@ in
       wm = "workmux";
     };
 
+    xdg.configFile."workmux/config.yaml" = {
+      force = true;
+      text = ''
+        nerdfont: true
+        mode: session
+
+        panes:
+          - command: <agent>
+            focus: true
+      '';
+    };
+
     modules.ai.skillPaths = [
       "${workmux}/share/workmux/skills"
     ];
