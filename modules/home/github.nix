@@ -22,6 +22,17 @@ in
       github-mcp-server
     ];
 
+    programs.git.settings.credential = {
+      "https://github.com".helper = [
+        ""
+        "!${pkgs.gh}/bin/gh auth git-credential"
+      ];
+      "https://gist.github.com".helper = [
+        ""
+        "!${pkgs.gh}/bin/gh auth git-credential"
+      ];
+    };
+
     # Configure GitHub MCP server
     modules.ai.mcpServers.github = rec {
       transport = "stdio";

@@ -121,7 +121,6 @@ in
         rerere.enabled = true;
         push.default = "current";
         stash.showPatch = true;
-        url."ssh://git@github.com/sei40kr".insteadOf = "https://github.com/sei40kr";
         user = { inherit (cfg.user) email name; };
       };
       inherit (cfg) includes;

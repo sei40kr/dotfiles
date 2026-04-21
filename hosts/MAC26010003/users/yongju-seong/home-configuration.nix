@@ -61,11 +61,14 @@
 
   modules.shell.apps.fastfetch.enable = true;
 
-  age.secrets.git-url-rewrites.file = ./secrets/git-url-rewrites.age;
+  age.secrets.ghe-credential = {
+    file = ./secrets/ghe-credential.age;
+    path = "${config.xdg.configHome}/git/ghe-credential";
+  };
   modules.shell.git = {
     enable = true;
     includes = [
-      { inherit (config.age.secrets.git-url-rewrites) path; }
+      { inherit (config.age.secrets.ghe-credential) path; }
     ];
   };
 
