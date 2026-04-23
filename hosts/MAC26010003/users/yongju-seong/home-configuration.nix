@@ -61,14 +61,18 @@
 
   modules.shell.apps.fastfetch.enable = true;
 
-  age.secrets.ghe-credential = {
-    file = ./secrets/ghe-credential.age;
-    path = "${config.xdg.configHome}/git/ghe-credential";
+  age.secrets.ghe = {
+    file = ./secrets/ghe.age;
+    path = "${config.xdg.configHome}/git/ghe";
+  };
+  age.secrets.ghe-user = {
+    file = ./secrets/ghe-user.age;
+    path = "${config.xdg.configHome}/git/ghe-user";
   };
   modules.shell.git = {
     enable = true;
     includes = [
-      { inherit (config.age.secrets.ghe-credential) path; }
+      { inherit (config.age.secrets.ghe) path; }
     ];
   };
 
