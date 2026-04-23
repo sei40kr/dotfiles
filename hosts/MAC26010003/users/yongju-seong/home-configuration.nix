@@ -25,6 +25,7 @@
     claudebox.enable = true;
     ccstatusline.enable = true;
   };
+  home.shellAliases.claude-private = ''CLAUDE_CONFIG_DIR="$HOME/.claude-private" claude'';
 
   modules.desktop.aerospace.enable = true;
 
