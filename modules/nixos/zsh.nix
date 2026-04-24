@@ -19,5 +19,7 @@ in
       enableCompletion = false;
       enableLsColors = false;
     };
+
+    environment.pathsToLink = [ "/share/zsh" ];
   };
 }
