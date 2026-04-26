@@ -33,6 +33,10 @@ in
         panes:
           - command: <agent>
             focus: true
+
+        files:
+          copy:
+            - .claude/settings.local.json
       '';
     };
 
