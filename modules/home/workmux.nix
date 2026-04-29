@@ -24,6 +24,12 @@ in
       wm = "workmux";
     };
 
+    programs.tmux.extraConfig = ''
+      bind C-s display-popup -h 80% -w 80% -E "${workmuxBin} dashboard"
+      bind C-w display-popup -h 80% -w 80% -E "${workmuxBin} dashboard --tab worktrees"
+      bind C-b run-shell "${workmuxBin} sidebar"
+    '';
+
     xdg.configFile."workmux/config.yaml" = {
       force = true;
       text = ''
