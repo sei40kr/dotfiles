@@ -97,6 +97,8 @@ in
         set -g status-style 'fg=#565f89,bg=#1a1b26'
         set -g message-style 'fg=#7aa2f7,bg=#1a1b26'
         set -g mode-style 'fg=#7aa2f7,bg=#3b4261'
+        set -g popup-border-style 'fg=#589ed7,bg=#1e2030'
+        set -g popup-border-lines rounded
 
         # Vim-like copy mode bindings
         bind -T copy-mode-vi v send -X begin-selection
