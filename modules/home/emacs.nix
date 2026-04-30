@@ -9,15 +9,13 @@ let
   inherit (lib)
     mkEnableOption
     mkIf
-    mkOption
     optionalString
     optionals
-    types
     ;
-  inherit (types) str;
 
   editorsCfg = config.modules.editors;
   cfg = editorsCfg.emacs;
+  termColorschemesCfg = config.modules.term.colorschemes;
 
   toEmacsLisp =
     value:
@@ -42,7 +40,7 @@ let
               doom-variable-pitch-font (font-spec
                 :family ${toEmacsLisp editorsCfg.fonts.ui.name}
                 :size ${toEmacsLisp editorsCfg.fonts.ui.size}.0)
-              doom-theme '${cfg.doom.theme})
+              doom-theme '${termColorschemesCfg.themes.${termColorschemesCfg.active}.doom-emacs})
       ''}
     '';
     destination = "/share/emacs/site-lisp/default.el";
@@ -83,12 +81,6 @@ in
 
     doom = {
       enable = mkEnableOption "Doom Emacs";
-
-      theme = mkOption {
-        type = str;
-        default = "doom-one";
-        description = "Doom Emacs theme";
-      };
     };
   };
 

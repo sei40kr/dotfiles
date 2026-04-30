@@ -8,8 +8,16 @@ let
   inherit (lib) mkIf;
 in
 {
-  config = mkIf (config.modules.term.colorschemes.active == "tokyo-night") {
-    modules.term.colorschemes.colors = {
+  config = {
+    modules.term.colorschemes.themes.tokyo-night = {
+      kitty = "Tokyo_Night";
+      bat = "TwoDark";
+      vicinae = "tokyo-night";
+      zsh-patina = "tokyonight";
+      doom-emacs = "doom-tokyo-night";
+    };
+
+    modules.term.colorschemes.colors = mkIf (config.modules.term.colorschemes.active == "tokyo-night") {
       fg = "c0caf5";
       bg = "1a1b26";
 
@@ -37,17 +45,13 @@ in
         bg = "c0caf5";
       };
 
-      link = "73daca";
-
       selection = {
         fg = "c0caf5";
         bg = "33467c";
       };
 
       paneBorder = {
-        focused = "7aa2f7";
         default = "3b4261";
-        urgent = "3b4261";
       };
 
       tabBar = {
@@ -87,9 +91,5 @@ in
         };
       };
     };
-
-    modules.editors.emacs.doom.theme = mkIf config.modules.editors.emacs.enable "doom-tokyo-night";
-
-    programs.bat.config.theme = "TwoDark";
   };
 }

@@ -6,25 +6,13 @@
 }:
 
 let
-  inherit (lib)
-    mkIf
-    types
-    mkOption
-    mkEnableOption
-    ;
-  inherit (types) nullOr str;
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.modules.shell;
+  termColorschemesCfg = config.modules.term.colorschemes;
 in
 {
   options.modules.shell = {
     enable = mkEnableOption "Common shell configurations and tools";
-
-    bat = {
-      theme = mkOption {
-        type = nullOr str;
-        default = null;
-      };
-    };
   };
 
   config = mkIf cfg.enable {
@@ -67,7 +55,9 @@ in
 
     programs.bat = {
       enable = true;
-      config = mkIf (cfg.bat.theme != null) { inherit (cfg.bat) theme; };
+      config = mkIf (termColorschemesCfg.active != null) {
+        theme = termColorschemesCfg.themes.${termColorschemesCfg.active}.bat;
+      };
     };
 
     home.sessionVariables = {
