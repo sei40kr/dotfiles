@@ -82,7 +82,6 @@ in
       extraConfig = ''
         set -g detach-on-destroy no-detached
         set -g set-clipboard on
-        set -as terminal-features ",xterm-ghostty:hyperlinks:RGB:strikethrough:sync:usstyle:overline:osc7:extkeys:margins"
         set -as terminal-features ",xterm-kitty:hyperlinks:RGB:strikethrough:sync:usstyle:overline:osc7:extkeys"
         set -as terminal-features ",wezterm:hyperlinks:RGB:strikethrough:sync:usstyle:overline:osc7:extkeys:margins:sixel:clipboard:ccolour:cstyle:focus:title"
         set -g monitor-bell on

@@ -57,11 +57,6 @@ in
             "if".app-id = "com.microsoft.edgemac";
             run = [ "move-node-to-workspace web" ];
           }
-          # dev
-          {
-            "if".app-id = "com.mitchellh.ghostty";
-            run = [ "move-node-to-workspace dev" ];
-          }
           # media
           {
             "if".app-id = "com.apple.finder";

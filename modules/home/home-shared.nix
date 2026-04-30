@@ -27,7 +27,6 @@
     inputs.self.homeModules.firefox
     inputs.self.homeModules.foliate
     inputs.self.homeModules.gemini-cli
-    inputs.self.homeModules.ghostty
     inputs.self.homeModules.gimp
     inputs.self.homeModules.git
     inputs.self.homeModules.github
