@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
   ...
@@ -12,7 +11,6 @@ let
 
   themeCfg = config.modules.desktop.theme;
   cfg = themeCfg.graphite;
-  inherit (cfg.variant) color;
 
   Color =
     if cfg.variant.color == "light" then

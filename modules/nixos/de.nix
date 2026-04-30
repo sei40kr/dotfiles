@@ -18,7 +18,6 @@ let
   inherit (types)
     either
     enum
-    int
     nullOr
     path
     str
