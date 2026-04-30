@@ -26,6 +26,8 @@
     ccstatusline.enable = true;
   };
   home.shellAliases.claude-private = ''CLAUDE_CONFIG_DIR="$HOME/.claude-private" claude'';
+  home.file.".claude-private/settings.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.claude/settings.json";
 
   modules.desktop.aerospace.enable = true;
 
