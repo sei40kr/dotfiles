@@ -66,12 +66,24 @@ in
             ++ (map (domain: "WebFetch(domain:${domain})") aiCfg.permissions.allowedFetchDomains)
             ++ (flatten (
               mapAttrsToList (name: server: map (tool: "mcp__${name}__${tool}") server.allowedTools) mcpCfg
-            ));
+            ))
+            ++ [
+              # git commit needs out-of-sandbox access for GPG signing, and a
+              # commit is a reversible, safe operation.
+              "Bash(git commit:*)"
+            ];
           deny =
             (map (cmd: "Bash(${cmd} *)") aiCfg.permissions.deniedCommandPrefixes)
             ++ (flatten (
               mapAttrsToList (name: server: map (tool: "mcp__${name}__${tool}") server.deniedTools) mcpCfg
-            ));
+            ))
+            ++ [
+              # Claude Code tends to reach for `git add .` / `git add -A` and
+              # end up committing files that should not be committed. Force it
+              # to stage files explicitly by name.
+              "Bash(git add .)"
+              "Bash(git add -A)"
+            ];
         };
         hooks = optionalAttrs pkgs.stdenv.isLinux {
           Notification = [
