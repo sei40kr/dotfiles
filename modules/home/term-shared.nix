@@ -7,7 +7,9 @@
 
 let
   inherit (lib)
+    attrNames
     genAttrs
+    hasAttr
     mdDoc
     mkOption
     toUpper
@@ -15,6 +17,7 @@ let
     mkIf
     ;
   inherit (types)
+    attrsOf
     float
     int
     str
@@ -39,6 +42,35 @@ let
         default = null;
         description = mdDoc "The color of the status line section background";
         visible = false;
+      };
+    };
+  };
+
+  # Each colorscheme registers a theme entry whose every field maps to the
+  # bundled-theme name shipped by the tool itself. All fields are required
+  # (no defaults) so adding a new colorscheme without filling every field
+  # fails Nix evaluation — this is the "no-mapping-omission" guarantee.
+  colorschemeThemeType = submodule {
+    options = {
+      kitty = mkOption {
+        type = str;
+        description = mdDoc "kitty-themes file basename without .conf (e.g. \"Tokyo_Night\")";
+      };
+      bat = mkOption {
+        type = str;
+        description = mdDoc "bat --list-themes name (e.g. \"TwoDark\")";
+      };
+      vicinae = mkOption {
+        type = str;
+        description = mdDoc "vicinae bundled theme key (e.g. \"tokyo-night\")";
+      };
+      zsh-patina = mkOption {
+        type = str;
+        description = mdDoc "zsh-patina theme name (e.g. \"tokyonight\")";
+      };
+      doom-emacs = mkOption {
+        type = str;
+        description = mdDoc "doom-emacs theme symbol (e.g. \"doom-tokyo-night\")";
       };
     };
   };
@@ -73,6 +105,17 @@ in
         type = enum [ "tokyo-night" ];
         default = null;
         description = mdDoc "The name of the active colorscheme";
+      };
+
+      themes = mkOption {
+        type = attrsOf colorschemeThemeType;
+        default = { };
+        internal = true;
+        description = mdDoc ''
+          Per-colorscheme registry of bundled-theme names, keyed by
+          colorscheme name. Each entry must populate every field of
+          `colorschemeThemeType`; missing fields fail Nix evaluation.
+        '';
       };
 
       colors = {
@@ -220,13 +263,6 @@ in
           };
         };
 
-        link = mkOption {
-          type = str;
-          default = null;
-          description = mdDoc "The color of the links";
-          visible = false;
-        };
-
         selection = {
           fg = mkOption {
             type = str;
@@ -244,24 +280,10 @@ in
         };
 
         paneBorder = {
-          focused = mkOption {
-            type = str;
-            default = null;
-            description = mdDoc "The color of the active pane border";
-            visible = false;
-          };
-
           default = mkOption {
             type = str;
             default = null;
             description = mdDoc "The color of the default pane border";
-            visible = false;
-          };
-
-          urgent = mkOption {
-            type = str;
-            default = null;
-            description = mdDoc "The color of the urgent pane border";
             visible = false;
           };
         };
@@ -341,6 +363,15 @@ in
       {
         assertion = 0 <= cfg.bgBlur;
         message = "modules.term.bgBlur must be greater than or equal to 0";
+      }
+      {
+        assertion =
+          cfg.colorschemes.active == null || hasAttr cfg.colorschemes.active cfg.colorschemes.themes;
+        message = ''
+          modules.term.colorschemes.active = "${toString cfg.colorschemes.active}" but no
+          modules.term.colorschemes.themes."${toString cfg.colorschemes.active}" entry was registered.
+          Registered colorschemes: ${toString (attrNames cfg.colorschemes.themes)}.
+        '';
       }
     ];
 

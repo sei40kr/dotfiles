@@ -18,6 +18,7 @@ let
 
   shellCfg = config.modules.shell;
   cfg = shellCfg.zsh;
+  termColorschemesCfg = config.modules.term.colorschemes;
 in
 {
   options.modules.shell.zsh = {
@@ -158,7 +159,7 @@ in
 
     xdg.configFile."zsh-patina/config.toml".text = ''
       [highlighting]
-      theme = "tokyonight"
+      theme = "${termColorschemesCfg.themes.${termColorschemesCfg.active}.zsh-patina}"
     '';
 
     modules.shell.enable = true;
