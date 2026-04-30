@@ -47,6 +47,7 @@
   modules.dev.tools.gitu.enable = true;
   modules.dev.tools.k8s.enable = true;
   modules.dev.tools.terraform.enable = true;
+  modules.dev.tools.workmux.enable = true;
 
   modules.editors.fonts = {
     code = {
