@@ -10,7 +10,7 @@ in
 {
   config = {
     modules.term.colorschemes.themes.tokyo-night = {
-      kitty = "Tokyo_Night";
+      kitty = "tokyo_night_night";
       bat = "TwoDark";
       vicinae = "tokyo-night";
       zsh-patina = "tokyonight";

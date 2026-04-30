@@ -54,7 +54,7 @@ let
     options = {
       kitty = mkOption {
         type = str;
-        description = mdDoc "kitty-themes file basename without .conf (e.g. \"Tokyo_Night\")";
+        description = mdDoc "kitty-themes file basename without .conf (e.g. \"tokyo_night_night\")";
       };
       bat = mkOption {
         type = str;
