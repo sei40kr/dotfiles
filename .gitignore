@@ -1,4 +1,6 @@
 /result
+/.direnv
+/.envrc.local
 
 # Created by https://www.gitignore.io/api/tags
 # Edit at https://www.gitignore.io/?templates=tags
