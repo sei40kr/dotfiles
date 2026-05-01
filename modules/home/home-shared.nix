@@ -17,7 +17,6 @@
     inputs.self.homeModules.claude-code
     inputs.self.homeModules.codex
     inputs.self.homeModules.crush
-    inputs.self.homeModules.difftastic
     inputs.self.homeModules.docker
     inputs.self.homeModules.dunst
     inputs.self.homeModules.editor-shared
