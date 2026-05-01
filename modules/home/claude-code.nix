@@ -72,6 +72,11 @@ in
               # commit is a reversible, safe operation.
               "Bash(git commit:*)"
             ];
+          ask = [
+            # git push affects the remote and is hard to reverse, so always
+            # confirm with the user before pushing.
+            "Bash(git push:*)"
+          ];
           deny =
             (map (cmd: "Bash(${cmd} *)") aiCfg.permissions.deniedCommandPrefixes)
             ++ (flatten (
