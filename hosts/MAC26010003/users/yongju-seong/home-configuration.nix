@@ -79,6 +79,10 @@
       { inherit (config.age.secrets.ghe) path; }
     ];
   };
+  programs.difftastic = {
+    enable = true;
+    git.enable = true;
+  };
 
   modules.shell.zsh.enable = true;
 
