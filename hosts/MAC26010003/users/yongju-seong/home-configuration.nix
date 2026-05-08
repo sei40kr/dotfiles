@@ -65,18 +65,18 @@
 
   modules.shell.apps.fastfetch.enable = true;
 
-  age.secrets.ghe = {
-    file = ./secrets/ghe.age;
-    path = "${config.xdg.configHome}/git/ghe";
+  age.secrets.work-git = {
+    file = ./secrets/work-git.age;
+    path = "${config.xdg.configHome}/git/work-git";
   };
-  age.secrets.ghe-user = {
-    file = ./secrets/ghe-user.age;
-    path = "${config.xdg.configHome}/git/ghe-user";
+  age.secrets.work-git-user = {
+    file = ./secrets/work-git-user.age;
+    path = "${config.xdg.configHome}/git/work-git-user";
   };
   modules.shell.git = {
     enable = true;
     includes = [
-      { inherit (config.age.secrets.ghe) path; }
+      { inherit (config.age.secrets.work-git) path; }
     ];
   };
   programs.difftastic = {
