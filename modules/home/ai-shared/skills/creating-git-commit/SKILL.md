@@ -15,10 +15,14 @@ Run `git status` and `git diff --staged` (and `git diff` for unstaged changes) t
 
 Use the `git-surgeon` skill for hunk-level staging/unstaging/splitting. Avoid `git add .` / `git add -A` (the harness denies them) and avoid coarse `git add <file>` when a file contains a mix of related and unrelated hunks. After staging, re-run `git diff --staged` and compare against the user's stated intent — if any hunks are unrelated, surface them and confirm with the user before continuing instead of bundling unrelated work into the commit.
 
-### 3. Commit outside the sandbox
+### 3. Compose the commit message
+
+Base the message on the staged diff itself, not on the user's wording of the request. Treat the reader as someone seeing this commit for the first time with no knowledge of the conversation — include only the information they need to understand what changed and why. Drop instruction-flavored phrasing, task framing, or context that lives only in the prompt.
+
+### 4. Commit outside the sandbox
 
 Execute `git commit` with `dangerouslyDisableSandbox: true`. Commit signing requires access to gpg-agent / signing keys that the sandbox blocks, so a sandboxed commit would either fail or silently produce an unsigned commit.
 
-### 4. Confirm
+### 5. Confirm
 
 Run `git status` to verify the commit landed and the working tree is in the expected state.
