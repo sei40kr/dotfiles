@@ -43,6 +43,7 @@
     enable = true;
     compose.enable = true;
   };
+  services.colima.enable = true;
   modules.dev.tools.github.enable = true;
   modules.dev.tools.gitu.enable = true;
   modules.dev.tools.k8s.enable = true;
