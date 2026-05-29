@@ -21,7 +21,7 @@ in
     ];
 
     modules.editors.lspServers.bashls = rec {
-      package = pkgs.nodePackages.bash-language-server;
+      package = pkgs.bash-language-server;
       command = "${package}/bin/bash-language-server";
       args = [ "start" ];
       filetypes = [

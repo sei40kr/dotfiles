@@ -120,7 +120,7 @@ in
           padding = 0;
         };
       };
-      skillsDir = config.modules.ai._combinedSkillsPath;
+      skills = "${config.modules.ai._combinedSkillsPath}";
       mcpServers = mapAttrs convertMcpServer mcpCfg;
     };
 

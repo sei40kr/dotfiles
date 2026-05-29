@@ -20,13 +20,13 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      nodejs_20
+      nodejs_22
       (mkIf cfg.deno.enable deno)
       (mkIf cfg.bun.enable bun)
       ni
       emmet-language-server
-      nodePackages.prettier
-      nodePackages.vscode-langservers-extracted
+      prettier
+      vscode-langservers-extracted
     ];
 
     modules.editors.lspServers = {

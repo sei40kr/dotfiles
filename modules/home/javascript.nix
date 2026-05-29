@@ -17,14 +17,14 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       biome
-      nodePackages.eslint
-      nodePackages.eslint_d
-      nodePackages.typescript
-      nodePackages.webpack-cli
+      eslint
+      eslint_d
+      typescript
+      webpack-cli
     ];
 
     modules.editors.lspServers.ts_ls = rec {
-      package = pkgs.nodePackages.typescript-language-server;
+      package = pkgs.typescript-language-server;
       command = "${package}/bin/typescript-language-server";
       args = [ "--stdio" ];
       filetypes = [

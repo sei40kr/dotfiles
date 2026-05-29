@@ -25,7 +25,7 @@ in
     programs.aerospace = {
       enable = true;
       launchd.enable = true;
-      userSettings = {
+      settings = {
         after-startup-command = [ ];
 
         # Normalizations

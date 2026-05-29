@@ -19,7 +19,7 @@ in
       nix-init
       nix-melt
       nurl
-      nixfmt-rfc-style
+      nixfmt
       (mkIf pkgs.stdenv.isLinux mcp-nixos)
       nil
       statix

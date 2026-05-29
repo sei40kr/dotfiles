@@ -113,8 +113,8 @@ in
         wordnet
         # :tools lsp
         dockerfile-language-server
-        nodePackages.vscode-langservers-extracted
-        nodePackages.yaml-language-server
+        vscode-langservers-extracted
+        yaml-language-server
         # :tools vterm
         vterm_printf
 

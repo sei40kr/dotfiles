@@ -2,7 +2,7 @@
   description = "NixOS configuration with blueprint";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=release-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs?ref=nixos-unstable";
 
     # Blueprint framework for automatic module detection
@@ -10,7 +10,7 @@
     blueprint.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager = {
-      url = "github:nix-community/home-manager?ref=release-25.11";
+      url = "github:nix-community/home-manager?ref=release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
