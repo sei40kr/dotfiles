@@ -4,6 +4,7 @@
 {
   config,
   lib,
+  pkgs,
   modulesPath,
   ...
 }:
@@ -69,7 +70,7 @@
     forceFullCompositionPipeline = true;
   };
 
-  services.ollama.acceleration = "cuda";
+  services.ollama.package = pkgs.ollama-cuda;
 
   # Remap Caps Lock to Left Ctrl for Logitech PRO X TKL keyboard
   # Logitech PRO X TKL

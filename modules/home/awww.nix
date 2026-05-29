@@ -15,7 +15,7 @@ let
     removePrefix
     ;
 
-  cfg = config.modules.desktop.apps.swww;
+  cfg = config.modules.desktop.apps.awww;
   deCfg = attrByPath [ "modules" "desktop" "de" ] {
     background = {
       color = "#000000";
@@ -35,39 +35,39 @@ let
     else if deCfg.background.image.mode == "center" then
       "--no-resize"
     else
-      throw "Unsupported background mode '${deCfg.background.image.mode}' for swww. Supported modes: fill, fit, center";
+      throw "Unsupported background mode '${deCfg.background.image.mode}' for awww. Supported modes: fill, fit, center";
 
   imgCommand =
     if deCfg.background.image != null then
-      "${pkgs.swww}/bin/swww img ${escapeShellArg deCfg.background.image.path} ${resizeArg}"
+      "${pkgs.awww}/bin/awww img ${escapeShellArg deCfg.background.image.path} ${resizeArg}"
     else
-      "${pkgs.swww}/bin/swww clear ${bgColor}";
+      "${pkgs.awww}/bin/awww clear ${bgColor}";
 in
 {
-  options.modules.desktop.apps.swww = {
-    enable = mkEnableOption "swww";
+  options.modules.desktop.apps.awww = {
+    enable = mkEnableOption "awww";
   };
 
   config = mkIf cfg.enable {
-    services.swww.enable = true;
+    services.awww.enable = true;
 
-    systemd.user.services.swww-set-wallpaper = {
+    systemd.user.services.awww-set-wallpaper = {
       Unit = {
         ConditionEnvironment = "WAYLAND_DISPLAY";
-        Description = "Set wallpaper with swww";
+        Description = "Set wallpaper with awww";
         PartOf = [ config.wayland.systemd.target ];
-        Requires = "swww.service";
+        Requires = "awww.service";
       };
       Service = {
         Type = "oneshot";
-        ExecStart = pkgs.writeShellScript "swww-start" ''
+        ExecStart = pkgs.writeShellScript "awww-start" ''
           if [ -n "$WAYLAND_DISPLAY" ]; then
             SOCKET_NAME=$(basename "$WAYLAND_DISPLAY")
           else
             SOCKET_NAME="wayland-0"
           fi
 
-          SOCKET_PATH="$XDG_RUNTIME_DIR/$SOCKET_NAME-swww-daemon..sock"
+          SOCKET_PATH="$XDG_RUNTIME_DIR/$SOCKET_NAME-awww-daemon.sock"
 
           # Wait for socket to be created (max 10 seconds)
           for i in {1..100}; do
@@ -78,7 +78,7 @@ in
           done
 
           if [ ! -S "$SOCKET_PATH" ]; then
-            echo "swww-daemon socket not found after 10 seconds at $SOCKET_PATH" >&2
+            echo "awww-daemon socket not found after 10 seconds at $SOCKET_PATH" >&2
             exit 1
           fi
 

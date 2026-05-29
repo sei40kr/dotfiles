@@ -10,12 +10,12 @@ let
   cfg = config.modules.desktop.apps.steam;
 
   start = pkgs.writeShellScriptBin "start" ''
-    ${pkgs.xorg.xset}/bin/xset -dpms
-    ${pkgs.xorg.xset}/bin/xset s off
+    ${pkgs.xset}/bin/xset -dpms
+    ${pkgs.xset}/bin/xset s off
   '';
   end = pkgs.writeShellScriptBin "end" ''
-    ${pkgs.xorg.xset}/bin/xset +dpms
-    ${pkgs.xorg.xset}/bin/xset s on
+    ${pkgs.xset}/bin/xset +dpms
+    ${pkgs.xset}/bin/xset s on
   '';
 in
 {

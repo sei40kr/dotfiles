@@ -9,6 +9,7 @@
     inputs.self.homeModules.ansible
     inputs.self.homeModules.anyrun
     inputs.self.homeModules.atuin
+    inputs.self.homeModules.awww
     inputs.self.homeModules.aws
     inputs.self.homeModules.azure
     inputs.self.homeModules.bitwarden
@@ -69,7 +70,6 @@
     inputs.self.homeModules.solidity
     inputs.self.homeModules.sql
     inputs.self.homeModules.starship
-    inputs.self.homeModules.swww
     inputs.self.homeModules.term-shared
     inputs.self.homeModules.terraform
     inputs.self.homeModules.tokyo-night

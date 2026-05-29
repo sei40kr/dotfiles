@@ -28,7 +28,7 @@
   modules.desktop.apps.dunst.enable = true;
   modules.desktop.apps.gnome.pomodoro.enable = true;
   modules.desktop.apps.quickshell.enable = true;
-  modules.desktop.apps.swww.enable = true;
+  modules.desktop.apps.awww.enable = true;
   modules.desktop.apps.vicinae.enable = true;
 
   modules.desktop.media.foliate.enable = true;
