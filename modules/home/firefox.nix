@@ -75,8 +75,6 @@ in
             installation_mode = "normal_installed";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/{b635fb0d-80bd-477f-91c8-d6cb60028077}/latest.xpi";
           };
-        }
-        // optionalAttrs config.modules.desktop.apps.bitwarden.enable {
           # Bitwarden Password Manager
           "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
             installation_mode = "normal_installed";

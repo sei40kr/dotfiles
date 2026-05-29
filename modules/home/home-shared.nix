@@ -12,7 +12,6 @@
     inputs.self.homeModules.awww
     inputs.self.homeModules.aws
     inputs.self.homeModules.azure
-    inputs.self.homeModules.bitwarden
     inputs.self.homeModules.browser-shared
     inputs.self.homeModules.cc
     inputs.self.homeModules.claude-code
