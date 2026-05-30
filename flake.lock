@@ -538,11 +538,11 @@
         "nvim-treesitter-main": "nvim-treesitter-main"
       },
       "locked": {
-        "lastModified": 1762843151,
-        "narHash": "sha256-lxDE7DmRi+40TqHGrtJouZZgfCAZeDlPNvbSLIVda18=",
+        "lastModified": 1778311856,
+        "narHash": "sha256-tec2IpyziotMD24OySFvqne8/B3LfA2Xg95GgF7jssg=",
         "owner": "sei40kr",
         "repo": "nix-lazyvim",
-        "rev": "7b05565ec271998e5598e4105fe521b5511a3dc4",
+        "rev": "0447bb5c38a5fe2de469b15a757c22d75a218436",
         "type": "github"
       },
       "original": {
