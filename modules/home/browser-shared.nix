@@ -24,14 +24,18 @@ let
   chromeEnabled = attrByPath [ "modules" "desktop" "browsers" "chrome" "enable" ] false osConfig;
 
   defaultBrowserCommand =
-    if cfg.firefox.enable then
+    if cfg.edge.enable then
+      "microsoft-edge"
+    else if cfg.firefox.enable then
       "firefox"
     else if chromeEnabled then
       "google-chrome-stable"
     else
       null;
   defaultBrowserDesktopFile =
-    if cfg.firefox.enable then
+    if cfg.edge.enable then
+      "microsoft-edge.desktop"
+    else if cfg.firefox.enable then
       "firefox.desktop"
     else if chromeEnabled then
       "google-chrome.desktop"
@@ -39,7 +43,10 @@ let
       null;
 in
 {
-  imports = [ ./firefox.nix ];
+  imports = [
+    ./firefox.nix
+    ./edge.nix
+  ];
 
   options.modules.desktop.browsers = {
     defaultBrowser = mkOption {
