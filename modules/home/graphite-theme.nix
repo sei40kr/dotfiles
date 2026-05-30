@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   osConfig,
   pkgs,
@@ -30,6 +31,7 @@ in
         package = gtkTheme;
         name = "Graphite-${Color}";
       };
+      gtk4.theme = config.gtk.theme;
       iconTheme = {
         package = pkgs.tela-circle-icon-theme.override { colorVariants = [ "black" ]; };
         name = "Tela-circle-black${optionalString (color == "dark") "-dark"}";

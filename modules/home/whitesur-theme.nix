@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   osConfig,
   pkgs,
@@ -19,6 +20,7 @@ in
         package = pkgs.whitesur-gtk-theme;
         name = "WhiteSur-${cfg.variant}-solid";
       };
+      gtk4.theme = config.gtk.theme;
       iconTheme = {
         package = pkgs.whitesur-icon-theme.override {
           alternativeIcons = true;

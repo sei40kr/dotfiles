@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   osConfig,
   pkgs,
@@ -29,6 +30,7 @@ in
         package = orchis-theme;
         name = "Orchis";
       };
+      gtk4.theme = config.gtk.theme;
     };
 
     modules.desktop.apps.dunst = {
