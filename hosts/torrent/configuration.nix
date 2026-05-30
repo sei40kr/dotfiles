@@ -6,6 +6,7 @@
 }:
 let
   inherit (lib) mkForce;
+  outfit = pkgs.google-fonts.override { fonts = [ "Outfit" ]; };
 in
 {
   imports = [
@@ -126,7 +127,26 @@ in
   services.ollama.enable = true;
 
   modules.desktop.wm.niri.enable = true;
-  modules.desktop.fontconfig.enable = true;
+  modules.desktop.fontconfig = {
+    enable = true;
+    fonts.sansSerif = {
+      packages = [
+        outfit
+        pkgs.noto-fonts-cjk-sans
+      ];
+      names = [
+        "Outfit"
+        "Noto Sans CJK JP"
+      ];
+    };
+  };
+  # name routes through fontconfig (→ Outfit); package is only needed to
+  # satisfy regreet, which requires a non-null font package.
+  modules.desktop.de.defaultFonts.ui = {
+    package = outfit;
+    name = "sans-serif";
+    size = 11;
+  };
   modules.desktop.theme.active = "whitesur";
 
   modules.desktop.apps.steam.enable = true;
