@@ -5,7 +5,7 @@ binds {
   Mod+Space { spawn "vicinae" "toggle"; }
 
   // Browser:
-  Mod+Shift+Return { spawn "sensible-browser"; }
+  Mod+Shift+Return { spawn "sh" "-c" "$BROWSER"; }
 
   // Hotkey Overlay:
   Mod+Shift+Slash { show-hotkey-overlay; }

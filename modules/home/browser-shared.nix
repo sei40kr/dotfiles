@@ -17,10 +17,6 @@ let
 
   cfg = config.modules.desktop.browsers;
 
-  sensible-browser = pkgs.writeShellScriptBin "sensible-browser" ''
-    exec ${defaultBrowserCommand} "$@"
-  '';
-
   chromeEnabled = attrByPath [ "modules" "desktop" "browsers" "chrome" "enable" ] false osConfig;
 
   defaultBrowserCommand =
@@ -58,13 +54,13 @@ in
   };
 
   config = mkIf (cfg.defaultBrowser != null) {
-    home.packages = [ sensible-browser ];
-
     home.sessionVariables = {
-      BROWSER = "sensible-browser";
+      BROWSER = defaultBrowserCommand;
     };
 
-    xdg.mimeApps = {
+    # xdg.mimeApps carries a Linux-only platform assertion in home-manager,
+    # so guard it to keep the module evaluable on darwin (BROWSER stays set).
+    xdg.mimeApps = mkIf pkgs.stdenv.hostPlatform.isLinux {
       enable = true;
       defaultApplications = {
         "text/html" = defaultBrowserDesktopFile;
