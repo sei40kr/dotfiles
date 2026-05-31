@@ -9,7 +9,6 @@
     inputs.self.homeModules.ansible
     inputs.self.homeModules.anyrun
     inputs.self.homeModules.atuin
-    inputs.self.homeModules.awww
     inputs.self.homeModules.aws
     inputs.self.homeModules.azure
     inputs.self.homeModules.browser-shared
@@ -18,7 +17,6 @@
     inputs.self.homeModules.codex
     inputs.self.homeModules.crush
     inputs.self.homeModules.docker
-    inputs.self.homeModules.dunst
     inputs.self.homeModules.editor-shared
     inputs.self.homeModules.emacs
     inputs.self.homeModules.fastfetch
@@ -50,6 +48,7 @@
     inputs.self.homeModules.lean
     inputs.self.homeModules.lua
     inputs.self.homeModules.nix
+    inputs.self.homeModules.noctalia-shell
     inputs.self.homeModules.nushell
     inputs.self.homeModules.obs-studio
     inputs.self.homeModules.oj
@@ -57,7 +56,6 @@
     inputs.self.homeModules.prisma
     inputs.self.homeModules.python
     inputs.self.homeModules.qml
-    inputs.self.homeModules.quickshell
     inputs.self.homeModules.r
     inputs.self.homeModules.raycast
     inputs.self.homeModules.ripgrep
@@ -73,7 +71,6 @@
     inputs.self.homeModules.terraform
     inputs.self.homeModules.tokyo-night
     inputs.self.homeModules.tmux
-    inputs.self.homeModules.vicinae
     inputs.self.homeModules.web
     inputs.self.homeModules.wezterm
     inputs.self.homeModules.workmux

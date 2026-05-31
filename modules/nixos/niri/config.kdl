@@ -2,7 +2,10 @@ binds {
   /// Launch:
 
   // Application:
-  Mod+Space { spawn "vicinae" "toggle"; }
+  Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+
+  // Command:
+  Mod+Shift+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "command"; }
 
   // Browser:
   Mod+Shift+Return { spawn "sh" "-c" "$BROWSER"; }
@@ -19,7 +22,7 @@ binds {
   // Previous Workspace
   Mod+Alt+Up { focus-workspace-up; }
   Mod+Shift+Tab { focus-workspace-up; }
-  
+
   // Relative Window
   Mod+h { focus-column-left; }
   Mod+j { focus-window-down; }
@@ -43,6 +46,21 @@ binds {
   Mod+0 { focus-workspace 10; }
 
   /// Modify:
+
+  // Bluetooth Settings
+  Mod+b { spawn "noctalia-shell" "ipc" "call" "bluetooth" "togglePanel"; }
+
+  // Settings
+  Mod+c { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
+
+  // Toggle Bar
+  Mod+i { spawn "noctalia-shell" "ipc" "call" "bar" "toggle"; }
+
+  // Wifi Settings
+  Mod+w { spawn "noctalia-shell" "ipc" "call" "network" "togglePanel"; }
+
+  // Notification Center
+  Mod+n { spawn "noctalia-shell" "ipc" "call" "notifications" "toggleHistory"; }
 
   // Window Position
   Mod+Shift+h { consume-or-expel-window-left; }
@@ -77,12 +95,37 @@ binds {
 
   // Resize
   Mod+r { switch-preset-column-width; }
-  
+
+  /// Session:
+
+  // Lock Screen
+  Mod+Escape { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+
   // Logout
   Mod+Shift+e { quit; }
 
+  // Sleep — lock then suspend
+  Mod+Shift+s allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "lockAndSuspend"; }
+
   // Exit App
   Mod+Shift+q { close-window; }
+
+  /// Media (routed through noctalia for on-screen display):
+
+  // Volume
+  XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "increase"; }
+  XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }
+  XF86AudioMute allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
+
+  // Brightness
+  XF86MonBrightnessUp allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
+  XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+
+  // Player
+  XF86AudioPlay allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "playPause"; }
+  XF86AudioPause allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "playPause"; }
+  XF86AudioNext allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "next"; }
+  XF86AudioPrev allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "previous"; }
 }
 
 hotkey-overlay {

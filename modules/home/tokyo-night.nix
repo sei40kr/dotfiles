@@ -12,9 +12,10 @@ in
     modules.term.colorschemes.themes.tokyo-night = {
       kitty = "tokyo_night_night";
       bat = "TwoDark";
-      vicinae = "tokyo-night";
       zsh-patina = "tokyonight";
       doom-emacs = "doom-tokyo-night";
+      noctalia = "Tokyo Night";
+      noctaliaDarkMode = true;
     };
 
     modules.term.colorschemes.colors = mkIf (config.modules.term.colorschemes.active == "tokyo-night") {

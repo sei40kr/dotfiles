@@ -18,6 +18,7 @@ let
     ;
   inherit (types)
     attrsOf
+    bool
     float
     int
     str
@@ -60,10 +61,6 @@ let
         type = str;
         description = mdDoc "bat --list-themes name (e.g. \"TwoDark\")";
       };
-      vicinae = mkOption {
-        type = str;
-        description = mdDoc "vicinae bundled theme key (e.g. \"tokyo-night\")";
-      };
       zsh-patina = mkOption {
         type = str;
         description = mdDoc "zsh-patina theme name (e.g. \"tokyonight\")";
@@ -71,6 +68,14 @@ let
       doom-emacs = mkOption {
         type = str;
         description = mdDoc "doom-emacs theme symbol (e.g. \"doom-tokyo-night\")";
+      };
+      noctalia = mkOption {
+        type = str;
+        description = mdDoc "noctalia-shell predefined color scheme name (e.g. \"Tokyo Night\")";
+      };
+      noctaliaDarkMode = mkOption {
+        type = bool;
+        description = mdDoc "Whether noctalia-shell should use the dark variant of the scheme";
       };
     };
   };

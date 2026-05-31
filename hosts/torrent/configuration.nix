@@ -45,6 +45,13 @@ in
   networking.interfaces.enp0s31f6.useDHCP = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  # System services backing Noctalia Shell's control-center features:
+  # NetworkManager (Wi-Fi) above, plus Bluetooth, power-profile switching, and battery.
+  # https://docs.noctalia.dev/v4/getting-started/nixos
+  hardware.bluetooth.enable = true;
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
+
   services.greetd.enable = true;
   modules.desktop.regreet = {
     enable = true;
