@@ -112,6 +112,9 @@ in
             }
           ];
         };
+        # Use the classic main-screen renderer so scrollback stays in the
+        # terminal and can be operated via tmux.
+        tui = "default";
       }
       // optionalAttrs cfg.ccstatusline.enable {
         statusLine = {
