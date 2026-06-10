@@ -132,7 +132,11 @@ in
           dayTemp = "5500";
           nightTemp = "3700";
         };
-        idle.enabled = true;
+        idle = {
+          enabled = true;
+          # Disable automatic suspend (sleep); keep screen-off/lock stages.
+          suspendTimeout = 0;
+        };
       };
     };
 
