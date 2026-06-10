@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  perSystem,
   pkgs,
   ...
 }:
@@ -154,7 +155,13 @@ in
     name = "sans-serif";
     size = 11;
   };
-  modules.desktop.theme.active = "whitesur";
+  # Wallpaper for the login screen (regreet), niri, and Noctalia. Decoupled from
+  # any GTK theme: application theming is now driven by Noctalia (see
+  # modules.desktop.apps.noctalia-shell).
+  modules.desktop.de.background.image = {
+    path = "${perSystem.self.whitesur-wallpapers}/share/backgrounds/WhiteSur-light.png";
+    mode = "fill";
+  };
 
   modules.desktop.apps.steam.enable = true;
 

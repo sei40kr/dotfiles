@@ -18,7 +18,6 @@ let
     ;
   inherit (types)
     attrsOf
-    bool
     float
     int
     str
@@ -68,14 +67,6 @@ let
       doom-emacs = mkOption {
         type = str;
         description = mdDoc "doom-emacs theme symbol (e.g. \"doom-tokyo-night\")";
-      };
-      noctalia = mkOption {
-        type = str;
-        description = mdDoc "noctalia-shell predefined color scheme name (e.g. \"Tokyo Night\")";
-      };
-      noctaliaDarkMode = mkOption {
-        type = bool;
-        description = mdDoc "Whether noctalia-shell should use the dark variant of the scheme";
       };
     };
   };

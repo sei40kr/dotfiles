@@ -30,7 +30,6 @@
     inputs.self.homeModules.gitu
     inputs.self.homeModules.gnome-pomodoro
     inputs.self.homeModules.go
-    inputs.self.homeModules.graphite-theme
     inputs.self.homeModules.haskell
     inputs.self.homeModules.helix
     inputs.self.homeModules.idea
@@ -52,7 +51,6 @@
     inputs.self.homeModules.nushell
     inputs.self.homeModules.obs-studio
     inputs.self.homeModules.oj
-    inputs.self.homeModules.orchis-theme
     inputs.self.homeModules.prisma
     inputs.self.homeModules.python
     inputs.self.homeModules.qml
@@ -74,7 +72,6 @@
     inputs.self.homeModules.web
     inputs.self.homeModules.wezterm
     inputs.self.homeModules.workmux
-    inputs.self.homeModules.whitesur-theme
     inputs.self.homeModules.yazi
     inputs.self.homeModules.zathura
     inputs.self.homeModules.zed

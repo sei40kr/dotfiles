@@ -12,7 +12,6 @@ let
   inherit (lib) attrByPath mkEnableOption mkIf;
 
   cfg = config.modules.desktop.apps.noctalia-shell;
-  termCfg = config.modules.term;
 
   deCfg = attrByPath [ "modules" "desktop" "de" ] { } osConfig;
   bgImage = attrByPath [ "background" "image" ] null deCfg;
@@ -25,8 +24,6 @@ let
     stretch = "stretch";
     tile = "repeat";
   };
-
-  noctaliaTheme = termCfg.colorschemes.themes.${termCfg.colorschemes.active};
 
   messageSound = "${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/bell.oga";
 
@@ -113,9 +110,22 @@ in
         };
         colorSchemes = {
           useWallpaperColors = false;
-          predefinedScheme = noctaliaTheme.noctalia;
-          darkMode = noctaliaTheme.noctaliaDarkMode;
+          predefinedScheme = "Tokyo Night";
+          darkMode = true;
         };
+        # Generate config snippets for GTK and Qt applications from the active
+        # color scheme so they match the shell.
+        # https://docs.noctalia.dev/v4/theming/program-specific/gtk-qt/
+        templates.activeTemplates = [
+          {
+            id = "gtk";
+            enabled = true;
+          }
+          {
+            id = "qt";
+            enabled = true;
+          }
+        ];
         nightLight = {
           enabled = true;
           autoSchedule = true;
@@ -125,6 +135,42 @@ in
         idle.enabled = true;
       };
     };
+
+    # Application-side wiring for Noctalia's GTK/Qt templates.
+    # https://docs.noctalia.dev/v4/theming/program-specific/gtk-qt/
+    #
+    # GTK apps recolor by importing Noctalia's generated CSS on top of a neutral
+    # base theme (adw-gtk3); Qt apps read the generated palette through qt6ct.
+    gtk = {
+      enable = true;
+      theme = {
+        package = pkgs.adw-gtk3;
+        name = "adw-gtk3";
+      };
+      # adw-gtk3 is GTK3-only; GTK4 apps stay on libadwaita and get recolored by
+      # Noctalia's generated gtk-4.0 CSS instead (per the Noctalia docs).
+      gtk4.theme = null;
+      # Also drives the gsettings `org.gnome.desktop.interface font-name` key,
+      # which Chromium-based apps (e.g. Microsoft Edge) read for their UI font
+      # since they don't follow gtk-font-name.
+      font = {
+        inherit (deCfg.defaultFonts.ui) package name size;
+      };
+    };
+
+    qt = {
+      enable = true;
+      platformTheme.name = "qtct";
+    };
+
+    # Select the palette Noctalia generates for the "qt" template.
+    xdg.configFile."qt6ct/qt6ct.conf".text = ''
+      [Appearance]
+      style=Fusion
+      custom_palette=true
+      color_scheme_path=${config.home.homeDirectory}/.config/qt6ct/colors/noctalia.conf
+      standard_dialogs=default
+    '';
 
     home.file.".cache/noctalia/wallpapers.json" = mkIf (bgImage != null) {
       force = true;
@@ -138,6 +184,10 @@ in
     xdg.configFile."niri/config.kdl".text = mkIf niriEnabled ''
       include "/etc/niri/config.kdl"
       spawn-at-startup "noctalia-shell"
+
+      environment {
+          QT_QPA_PLATFORMTHEME "qt6ct"
+      }
     '';
   };
 }

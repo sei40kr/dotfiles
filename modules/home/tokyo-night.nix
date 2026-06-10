@@ -14,8 +14,6 @@ in
       bat = "TwoDark";
       zsh-patina = "tokyonight";
       doom-emacs = "doom-tokyo-night";
-      noctalia = "Tokyo Night";
-      noctaliaDarkMode = true;
     };
 
     modules.term.colorschemes.colors = mkIf (config.modules.term.colorschemes.active == "tokyo-night") {
