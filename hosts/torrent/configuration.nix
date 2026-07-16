@@ -1,7 +1,6 @@
 {
   inputs,
   lib,
-  perSystem,
   pkgs,
   ...
 }:
@@ -159,7 +158,7 @@ in
   # any GTK theme: application theming is now driven by Noctalia (see
   # modules.desktop.apps.noctalia-shell).
   modules.desktop.de.background.image = {
-    path = "${perSystem.self.whitesur-wallpapers}/share/backgrounds/WhiteSur-light.png";
+    path = ./wallpapers/tokyo-night.jpg;
     mode = "fill";
   };
 
