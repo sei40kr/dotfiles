@@ -134,7 +134,8 @@ in
         };
         idle = {
           enabled = true;
-          # Disable automatic suspend (sleep); keep screen-off/lock stages.
+          # Never turn the screen off (DPMS) or suspend on idle; keep the lock stage.
+          screenOffTimeout = 0;
           suspendTimeout = 0;
         };
       };
