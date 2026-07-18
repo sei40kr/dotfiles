@@ -27,7 +27,6 @@
     inputs.self.homeModules.gimp
     inputs.self.homeModules.git
     inputs.self.homeModules.github
-    inputs.self.homeModules.gitu
     inputs.self.homeModules.gnome-pomodoro
     inputs.self.homeModules.go
     inputs.self.homeModules.haskell
@@ -57,6 +56,7 @@
     inputs.self.homeModules.r
     inputs.self.homeModules.raycast
     inputs.self.homeModules.ripgrep
+    inputs.self.homeModules.rugit
     inputs.self.homeModules.ruby
     inputs.self.homeModules.rust
     inputs.self.homeModules.sensible-terminal

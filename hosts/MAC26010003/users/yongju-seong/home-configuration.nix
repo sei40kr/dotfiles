@@ -45,7 +45,7 @@
   };
   services.colima.enable = true;
   modules.dev.tools.github.enable = true;
-  modules.dev.tools.gitu.enable = true;
+  modules.dev.tools.rugit.enable = true;
   modules.dev.tools.k8s.enable = true;
   modules.dev.tools.terraform.enable = true;
   modules.dev.tools.workmux.enable = true;
