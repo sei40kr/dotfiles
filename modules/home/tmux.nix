@@ -88,12 +88,15 @@ in
         set -g pane-border-format ' #{?pane_active,#[fg=#7aa2f7#,bold],#[fg=#565f89]}#{pane_index}: (#{pane_current_command})#{?pane_title, #{pane_title},} '
         set -g pane-border-indicators off
         set -g pane-border-status top
-        set -g pane-active-border-style 'bg=#1f2335,fg=#7aa2f7'
-        set -g pane-border-style 'bg=#1f2335,fg=#1b1d26'
+        # bg=default keeps tmux from painting an opaque background, so kitty's
+        # translucent (blurred) background shows through. Transient overlays
+        # (message/mode/popup) keep a solid bg below for readability.
+        set -g pane-active-border-style 'bg=default,fg=#7aa2f7'
+        set -g pane-border-style 'bg=default,fg=#1b1d26'
         set -g window-status-bell-style default
-        set -g window-active-style 'fg=#c0caf5,bg=#16161e'
-        set -g window-style 'dim,bg=#1a1b26'
-        set -g status-style 'fg=#565f89,bg=#1a1b26'
+        set -g window-active-style 'fg=#c0caf5,bg=default'
+        set -g window-style 'dim,bg=default'
+        set -g status-style 'fg=#565f89,bg=default'
         set -g message-style 'fg=#7aa2f7,bg=#1a1b26'
         set -g mode-style 'fg=#7aa2f7,bg=#3b4261'
         set -g popup-border-style 'fg=#589ed7,bg=#1e2030'
