@@ -878,11 +878,11 @@
         "treefmt": "treefmt"
       },
       "locked": {
-        "lastModified": 1783323850,
-        "narHash": "sha256-0rcyHeIRGPLgwGDU+DCY7kQZqzf0sTgtkpca5tYCsXY=",
+        "lastModified": 1785056665,
+        "narHash": "sha256-GdPwgvsF91YREJjTn2BQ/O3xp5H3h4EbwF3TFsAgH4k=",
         "owner": "sei40kr",
         "repo": "rugit",
-        "rev": "fc5e8f53a5d4a560046d0eb4538d3d5ab0048978",
+        "rev": "01a4e25e42758eff5fa4e4b428237790d9d91bd2",
         "type": "github"
       },
       "original": {
