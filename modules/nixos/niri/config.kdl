@@ -110,6 +110,18 @@ binds {
   // Exit App
   Mod+Shift+q { close-window; }
 
+  // Window Snapshot — pick the window with the mouse
+  // niri has no built-in window picker for screenshots; `pick-window` returns
+  // the clicked window and `screenshot-window --id` captures it. jq -e exits
+  // non-zero when the pick is cancelled, so nothing is captured then.
+  Mod+Print { spawn-sh r#"id=$(niri msg --json pick-window | jq -er .id) && niri msg action screenshot-window --id "$id""#; }
+
+  // Screenshot — interactive region/window selection
+  Mod+Shift+Print { screenshot; }
+
+  // Capture Screen
+  Mod+Ctrl+Shift+Print { screenshot-screen; }
+
   /// Media (routed through noctalia for on-screen display):
 
   // Volume
