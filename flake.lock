@@ -128,6 +128,28 @@
         "type": "github"
       }
     },
+    "blueprint_3": {
+      "inputs": {
+        "nixpkgs": [
+          "zsh-ts-syntax-highlighter",
+          "nixpkgs"
+        ],
+        "systems": "systems_10"
+      },
+      "locked": {
+        "lastModified": 1776249299,
+        "narHash": "sha256-Dt9t1TGRmJFc0xVYhttNBD6QsAgHOHCArqGa0AyjrJY=",
+        "owner": "numtide",
+        "repo": "blueprint",
+        "rev": "56131e8628f173d24a27f6d27c0215eff57e40dd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "blueprint",
+        "type": "github"
+      }
+    },
     "bun2nix": {
       "inputs": {
         "flake-parts": [
@@ -252,6 +274,22 @@
       }
     },
     "flake-compat_3": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767039857,
+        "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
+        "owner": "NixOS",
+        "repo": "flake-compat",
+        "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "flake-compat",
+        "type": "github"
+      }
+    },
+    "flake-compat_4": {
       "flake": false,
       "locked": {
         "lastModified": 1767039857,
@@ -426,6 +464,28 @@
         "flake-compat": "flake-compat_3",
         "nixpkgs": [
           "rugit",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783008725,
+        "narHash": "sha256-jGiy6+sxjNWXSjp25uoJuNfyH9zBK1PEDY0lVoL4ibQ=",
+        "owner": "cachix",
+        "repo": "git-hooks.nix",
+        "rev": "bca82caa46d5ec0f5d422c61fb1e30bc51313cbe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cachix",
+        "repo": "git-hooks.nix",
+        "type": "github"
+      }
+    },
+    "git-hooks_3": {
+      "inputs": {
+        "flake-compat": "flake-compat_4",
+        "nixpkgs": [
+          "zsh-ts-syntax-highlighter",
           "nixpkgs"
         ]
       },
@@ -839,7 +899,7 @@
         "wez-status-generator": "wez-status-generator",
         "wez-tmux": "wez-tmux",
         "zsh-fzf-projects": "zsh-fzf-projects",
-        "zsh-patina": "zsh-patina"
+        "zsh-ts-syntax-highlighter": "zsh-ts-syntax-highlighter"
       }
     },
     "rugit": {
@@ -904,6 +964,21 @@
       }
     },
     "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_10": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
@@ -1138,6 +1213,27 @@
         "type": "github"
       }
     },
+    "treefmt_2": {
+      "inputs": {
+        "nixpkgs": [
+          "zsh-ts-syntax-highlighter",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1780220602,
+        "narHash": "sha256-eynAfOmbmxJnkp7YewvCEbShNnnYJ9gLLqkzsYtBPeM=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "db947814a175b7ca6ded66e21383d938df01c227",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
     "wez-pain-control": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -1238,23 +1334,26 @@
         "type": "github"
       }
     },
-    "zsh-patina": {
+    "zsh-ts-syntax-highlighter": {
       "inputs": {
+        "blueprint": "blueprint_3",
+        "git-hooks": "git-hooks_3",
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "treefmt": "treefmt_2"
       },
       "locked": {
-        "lastModified": 1776498295,
-        "narHash": "sha256-jlAesdwf6rsa71oBdL9QcfcL9FNbqNAArrKj4Xj1xDU=",
-        "owner": "michel-kraemer",
-        "repo": "zsh-patina",
-        "rev": "d0ac3ddf2eab839ca84d28a3fe18c5db712050f8",
+        "lastModified": 1784311640,
+        "narHash": "sha256-IdEcpIEvy+F1N0ThnHY+raZ5SuKa6ZPj6GMx74ZFLno=",
+        "owner": "sei40kr",
+        "repo": "zsh-ts-syntax-highlighter",
+        "rev": "30c2495dfcc2504ce05a669ad9f140401f66d915",
         "type": "github"
       },
       "original": {
-        "owner": "michel-kraemer",
-        "repo": "zsh-patina",
+        "owner": "sei40kr",
+        "repo": "zsh-ts-syntax-highlighter",
         "type": "github"
       }
     }

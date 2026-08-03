@@ -18,7 +18,6 @@ let
 
   shellCfg = config.modules.shell;
   cfg = shellCfg.zsh;
-  termColorschemesCfg = config.modules.term.colorschemes;
 in
 {
   options.modules.shell.zsh = {
@@ -130,9 +129,6 @@ in
             local = "${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions";
             apply = [ "defer" ];
           };
-          zsh-patina = {
-            inline = ''zsh-defer eval "$(${perSystem.zsh-patina.default}/bin/zsh-patina activate)"'';
-          };
           fzf-projects = {
             local = "${inputs.zsh-fzf-projects}";
             apply = [ "defer" ];
@@ -143,6 +139,10 @@ in
               zle -N fzf-projects
               bindkey '^o' fzf-projects
             '';
+          };
+          zsh-ts-syntax-highlighter = {
+            local = "${perSystem.zsh-ts-syntax-highlighter.default}/share/zsh/plugins/zsh-ts-syntax-highlighter";
+            use = [ "*.plugin.zsh" ];
           };
           zsh-abbr = {
             local = "${pkgs.zsh-abbr}/share/zsh/zsh-abbr";
@@ -156,11 +156,6 @@ in
         lib.mapAttrsToList (k: v: "abbr ${k}=${lib.escapeShellArg v}") config.programs.zsh.shellAliases
       )
       + "\n";
-
-    xdg.configFile."zsh-patina/config.toml".text = ''
-      [highlighting]
-      theme = "${termColorschemesCfg.themes.${termColorschemesCfg.active}.zsh-patina}"
-    '';
 
     modules.shell.enable = true;
     modules.shell.atuin.enable = true;

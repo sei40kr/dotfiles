@@ -12,7 +12,6 @@ in
     modules.term.colorschemes.themes.tokyo-night = {
       kitty = "tokyo_night_night";
       bat = "TwoDark";
-      zsh-patina = "tokyonight";
       doom-emacs = "doom-tokyo-night";
     };
 

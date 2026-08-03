@@ -60,10 +60,6 @@ let
         type = str;
         description = mdDoc "bat --list-themes name (e.g. \"TwoDark\")";
       };
-      zsh-patina = mkOption {
-        type = str;
-        description = mdDoc "zsh-patina theme name (e.g. \"tokyonight\")";
-      };
       doom-emacs = mkOption {
         type = str;
         description = mdDoc "doom-emacs theme symbol (e.g. \"doom-tokyo-night\")";

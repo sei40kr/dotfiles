@@ -99,8 +99,8 @@
       flake = false;
     };
 
-    zsh-patina = {
-      url = "github:michel-kraemer/zsh-patina";
+    zsh-ts-syntax-highlighter = {
+      url = "github:sei40kr/zsh-ts-syntax-highlighter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
