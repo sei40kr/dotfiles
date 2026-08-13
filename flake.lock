@@ -1098,11 +1098,11 @@
     "tmux-project": {
       "flake": false,
       "locked": {
-        "lastModified": 1683286217,
-        "narHash": "sha256-xlbLNAKhpByVqSFUUl9ZwJjQjZUo/oWk44U3lwdIZqQ=",
+        "lastModified": 1773551507,
+        "narHash": "sha256-FKiNcckfsamGUdRZdxW7zzqgud5U+Fjn9Meg4pcFHUY=",
         "owner": "sei40kr",
         "repo": "tmux-project",
-        "rev": "fd6d85973888187dd026e1b507726af56fd96468",
+        "rev": "5a1611f78ed0bc50177f5a4a2d3115ec6eae05e6",
         "type": "github"
       },
       "original": {
