@@ -1,5 +1,5 @@
 ---
-name: writing-docs
+name: good-writing
 description: Write concise, rot-resistant documentation. Use when authoring or revising code comments, docstrings, or Markdown docs.
 ---
 
