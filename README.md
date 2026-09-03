@@ -132,6 +132,25 @@ Uses SSH key signing via macOS Keychain. SSH keys are stored in Bitwarden as SSH
    ```
 3. Add the SSH public key to GitHub as a **Signing key** (Settings > SSH and GPG keys > New SSH key, Key type: "Signing key").
 
+## Troubleshooting
+
+### Nix broken after a macOS update
+
+macOS updates may break the Nix installation (e.g., the Nix hook removed
+from `/etc/zshrc`, the Nix Store volume unmounted, or the nix-daemon not
+running). To repair it:
+
+1. Request temporary admin rights via Jamf.
+1. Run the repair script (without `sudo`; it prompts for the sudo password
+   once):
+
+   ```sh
+   ./scripts/repair-nix-macos.sh
+   ```
+
+The script diagnoses the installation and repairs it in place. If the Nix
+store itself is gone, reinstall Nix with the official installer instead.
+
 ## Acknowledgements
 
 - [Flakes - NixOS Wiki](https://nixos.wiki/wiki/Flakes)
