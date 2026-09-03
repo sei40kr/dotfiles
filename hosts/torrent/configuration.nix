@@ -47,7 +47,7 @@ in
 
   # System services backing Noctalia Shell's control-center features:
   # NetworkManager (Wi-Fi) above, plus Bluetooth, power-profile switching, and battery.
-  # https://docs.noctalia.dev/v4/getting-started/nixos
+  # https://docs.noctalia.dev/getting-started/nixos/
   hardware.bluetooth.enable = true;
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
@@ -156,7 +156,7 @@ in
   };
   # Wallpaper for the login screen (regreet), niri, and Noctalia. Decoupled from
   # any GTK theme: application theming is now driven by Noctalia (see
-  # modules.desktop.apps.noctalia-shell).
+  # modules.desktop.apps.noctalia).
   modules.desktop.de.background.image = {
     path = ./wallpapers/tokyo-night.jpg;
     mode = "fill";

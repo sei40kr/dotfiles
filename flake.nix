@@ -34,8 +34,8 @@
 
     llm-agents-nix.url = "github:numtide/llm-agents.nix";
 
-    noctalia-shell = {
-      url = "github:noctalia-dev/noctalia-shell";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

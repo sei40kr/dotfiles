@@ -25,7 +25,7 @@
   qt.enable = true;
 
   modules.desktop.apps.gnome.pomodoro.enable = true;
-  modules.desktop.apps.noctalia-shell.enable = true;
+  modules.desktop.apps.noctalia.enable = true;
 
   modules.desktop.media.foliate.enable = true;
 

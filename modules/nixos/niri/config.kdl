@@ -2,10 +2,12 @@ binds {
   /// Launch:
 
   // Application:
-  Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+  Mod+Space { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
 
-  // Command:
-  Mod+Shift+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "command"; }
+  // Command — opens the launcher pre-filled with the freeform /run provider
+  // (declared in modules.desktop.apps.noctalia; v5 has no built-in command
+  // mode).
+  Mod+Shift+Space { spawn "noctalia" "msg" "panel-toggle" "launcher" "/run "; }
 
   // Browser:
   Mod+Shift+Return { spawn "sh" "-c" "$BROWSER"; }
@@ -48,19 +50,19 @@ binds {
   /// Modify:
 
   // Bluetooth Settings
-  Mod+b { spawn "noctalia-shell" "ipc" "call" "bluetooth" "togglePanel"; }
+  Mod+b { spawn "noctalia" "msg" "panel-toggle" "control-center" "bluetooth"; }
 
   // Settings
-  Mod+c { spawn "noctalia-shell" "ipc" "call" "settings" "toggle"; }
+  Mod+c { spawn "noctalia" "msg" "settings-toggle"; }
 
   // Toggle Bar
-  Mod+i { spawn "noctalia-shell" "ipc" "call" "bar" "toggle"; }
+  Mod+i { spawn "noctalia" "msg" "bar-toggle"; }
 
   // Wifi Settings
-  Mod+w { spawn "noctalia-shell" "ipc" "call" "network" "togglePanel"; }
+  Mod+w { spawn "noctalia" "msg" "panel-toggle" "control-center" "network"; }
 
   // Notification Center
-  Mod+n { spawn "noctalia-shell" "ipc" "call" "notifications" "toggleHistory"; }
+  Mod+n { spawn "noctalia" "msg" "panel-toggle" "control-center" "notifications"; }
 
   // Window Position
   Mod+Shift+h { consume-or-expel-window-left; }
@@ -99,13 +101,13 @@ binds {
   /// Session:
 
   // Lock Screen
-  Mod+Escape { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+  Mod+Escape { spawn "noctalia" "msg" "session" "lock"; }
 
   // Logout
   Mod+Shift+e { quit; }
 
   // Sleep — lock then suspend
-  Mod+Shift+s allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "lockAndSuspend"; }
+  Mod+Shift+s allow-when-locked=true { spawn "noctalia" "msg" "session" "lock-and-suspend"; }
 
   // Exit App
   Mod+Shift+q { close-window; }
@@ -125,19 +127,19 @@ binds {
   /// Media (routed through noctalia for on-screen display):
 
   // Volume
-  XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "increase"; }
-  XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }
-  XF86AudioMute allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
+  XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia" "msg" "volume-up"; }
+  XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia" "msg" "volume-down"; }
+  XF86AudioMute allow-when-locked=true { spawn "noctalia" "msg" "volume-mute"; }
 
   // Brightness
-  XF86MonBrightnessUp allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
-  XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+  XF86MonBrightnessUp allow-when-locked=true { spawn "noctalia" "msg" "brightness-up"; }
+  XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia" "msg" "brightness-down"; }
 
   // Player
-  XF86AudioPlay allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "playPause"; }
-  XF86AudioPause allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "playPause"; }
-  XF86AudioNext allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "next"; }
-  XF86AudioPrev allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "previous"; }
+  XF86AudioPlay allow-when-locked=true { spawn "noctalia" "msg" "media" "toggle"; }
+  XF86AudioPause allow-when-locked=true { spawn "noctalia" "msg" "media" "toggle"; }
+  XF86AudioNext allow-when-locked=true { spawn "noctalia" "msg" "media" "next"; }
+  XF86AudioPrev allow-when-locked=true { spawn "noctalia" "msg" "media" "previous"; }
 }
 
 hotkey-overlay {
@@ -257,6 +259,21 @@ window-rule {
   match app-id="org.fcitx."
 
   open-floating true
+}
+
+// Noctalia's settings is a regular window in v5; float it as upstream
+// recommends. https://docs.noctalia.dev/compositor-settings/niri/
+window-rule {
+  match app-id="dev.noctalia.Noctalia"
+
+  open-floating true
+  default-column-width { fixed 1080; }
+  default-window-height { fixed 920; }
+}
+
+debug {
+  // Allows notification actions and window activation from Noctalia.
+  honor-xdg-activation-with-invalid-serial
 }
 
 gestures {
