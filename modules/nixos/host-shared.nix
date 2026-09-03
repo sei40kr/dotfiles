@@ -8,7 +8,7 @@
     inputs.self.nixosModules.docker
     inputs.self.nixosModules.fontconfig
     inputs.self.nixosModules.niri
-    inputs.self.nixosModules.regreet
+    inputs.self.nixosModules.noctalia-greeter
     inputs.self.nixosModules.ssh
     inputs.self.nixosModules.steam
     inputs.self.nixosModules.thunar

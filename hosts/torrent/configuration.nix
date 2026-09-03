@@ -52,18 +52,7 @@ in
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
 
-  services.greetd.enable = true;
-  modules.desktop.regreet = {
-    enable = true;
-    theme = {
-      package = pkgs.whitesur-gtk-theme;
-      name = "WhiteSur-light-solid";
-    };
-    iconTheme = {
-      package = pkgs.whitesur-icon-theme;
-      name = "WhiteSur";
-    };
-  };
+  modules.desktop.noctalia-greeter.enable = true;
 
   # Enable CUPS to print documents
   services.printing.enable = true;
@@ -147,14 +136,13 @@ in
       ];
     };
   };
-  # name routes through fontconfig (→ Outfit); package is only needed to
-  # satisfy regreet, which requires a non-null font package.
+  # name routes through fontconfig (→ Outfit).
   modules.desktop.de.defaultFonts.ui = {
     package = outfit;
     name = "sans-serif";
     size = 11;
   };
-  # Wallpaper for the login screen (regreet), niri, and Noctalia. Decoupled from
+  # Wallpaper for the login screen (noctalia-greeter), niri, and Noctalia. Decoupled from
   # any GTK theme: application theming is now driven by Noctalia (see
   # modules.desktop.apps.noctalia).
   modules.desktop.de.background.image = {
