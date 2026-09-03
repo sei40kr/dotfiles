@@ -9,6 +9,9 @@ binds {
   // mode).
   Mod+Shift+Space { spawn "noctalia" "msg" "panel-toggle" "launcher" "/run "; }
 
+  // Window:
+  Mod+Ctrl+Space { spawn "noctalia" "msg" "window-switcher"; }
+
   // Browser:
   Mod+Shift+Return { spawn "sh" "-c" "$BROWSER"; }
 
@@ -54,6 +57,15 @@ binds {
 
   // Settings
   Mod+c { spawn "noctalia" "msg" "settings-toggle"; }
+
+  // Display Settings (brightness; resolution/scale live in niri outputs)
+  Mod+d { spawn "noctalia" "msg" "panel-toggle" "control-center" "monitor"; }
+
+  // Reload Noctalia Config
+  Mod+Shift+c { spawn "noctalia" "msg" "config-reload"; }
+
+  // Update Look — rerender the GTK/Qt theme templates
+  Mod+Shift+r { spawn "noctalia" "msg" "templates-apply"; }
 
   // Toggle Bar
   Mod+i { spawn "noctalia" "msg" "bar-toggle"; }
