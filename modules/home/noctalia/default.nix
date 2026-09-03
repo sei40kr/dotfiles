@@ -17,14 +17,6 @@ let
   bgImage = attrByPath [ "background" "image" ] null deCfg;
   bgColor = attrByPath [ "background" "color" ] "#000000" deCfg;
 
-  fillModeMap = {
-    fill = "crop";
-    fit = "fit";
-    center = "center";
-    stretch = "stretch";
-    tile = "repeat";
-  };
-
   messageSound = "${pkgs.sound-theme-freedesktop}/share/sounds/freedesktop/stereo/bell.oga";
 
   niriEnabled = attrByPath [ "modules" "desktop" "wm" "niri" "enable" ] false osConfig;
@@ -89,7 +81,7 @@ in
           if bgImage != null then
             {
               enabled = true;
-              fill_mode = fillModeMap.${bgImage.mode} or "crop";
+              fill_mode = bgImage.mode;
               directory = builtins.dirOf bgImage.path;
               default.path = bgImage.path;
               transition = [ "fade" ];

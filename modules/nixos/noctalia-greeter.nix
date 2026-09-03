@@ -22,14 +22,6 @@ let
   deCfg = config.modules.desktop.de;
   wmCfg = config.modules.desktop.wm;
 
-  fillModeMap = {
-    fill = "crop";
-    fit = "fit";
-    center = "center";
-    stretch = "stretch";
-    tile = "repeat";
-  };
-
   enabledMonitors = filterAttrs (_: monitor: monitor.enable) wmCfg.monitors;
   enabledMonitorNames = attrNames enabledMonitors;
 in
@@ -54,7 +46,7 @@ in
             if deCfg.background.image != null then
               {
                 path = deCfg.background.image.path;
-                fill_mode = fillModeMap.${deCfg.background.image.mode};
+                fill_mode = deCfg.background.image.mode;
               }
             else
               {

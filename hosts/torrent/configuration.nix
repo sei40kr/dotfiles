@@ -147,7 +147,7 @@ in
   # modules.desktop.apps.noctalia).
   modules.desktop.de.background.image = {
     path = ./wallpapers/tokyo-night.jpg;
-    mode = "fill";
+    mode = "crop";
   };
 
   modules.desktop.apps.steam.enable = true;

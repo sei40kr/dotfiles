@@ -39,13 +39,13 @@ let
 
       mode = mkOption {
         type = enum [
-          "stretch"
-          "fill"
+          "crop"
           "fit"
           "center"
-          "tile"
+          "stretch"
+          "repeat"
         ];
-        default = "fill";
+        default = "crop";
         description = mdDoc ''
           The mode to use for the background image.
         '';
@@ -127,7 +127,7 @@ in
         default = null;
         example = {
           path = "/path/to/background.png";
-          mode = "fill";
+          mode = "crop";
         };
         description = mdDoc ''
           The background image to use.
