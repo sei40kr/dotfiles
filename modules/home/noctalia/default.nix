@@ -40,14 +40,25 @@ in
           # accessibility.ui_scale does not cover the bar.
           thickness = 47;
           scale = 1.15;
-          start = [ "workspaces" ];
-          center = [ "active_window" ];
+          start = [
+            "workspaces"
+            "spacer_1"
+            "active_window"
+          ];
+          center = [
+            "clock"
+            "spacer_2"
+            "pomodoro"
+          ];
           end = [
             "media"
-            "tray"
+            "spacer_3"
+            "network"
+            "bluetooth"
+            "spacer_4"
             "notifications"
             "control-center"
-            "clock"
+            "spacer_5"
             "session"
           ];
         };
@@ -55,7 +66,15 @@ in
           # Widen the default cap; grows with content.
           active_window.max_length = 480;
           clock.format = "{:%b %-d %a  %H:%M}";
+          network.show_label = false;
+          spacer_1.type = "spacer";
+          spacer_2.type = "spacer";
+          spacer_3.type = "spacer";
+          spacer_4.type = "spacer";
+          spacer_5.type = "spacer";
+          pomodoro.type = "thepunkoff/pomodoro:widget";
         };
+        plugins.enabled = [ "thepunkoff/pomodoro" ];
         # Global UI scale (0.5–2.5); v5's defaults render smaller than v4 did.
         accessibility.ui_scale = 1.2;
         shell = {
