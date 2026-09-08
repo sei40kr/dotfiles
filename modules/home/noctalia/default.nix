@@ -56,6 +56,7 @@ in
               "pomodoro"
             ];
             end = [
+              "vpn"
               "network"
               "bluetooth"
               "spacer_4"
@@ -94,8 +95,12 @@ in
           spacer_4.type = "spacer";
           spacer_5.type = "spacer";
           pomodoro.type = "thepunkoff/pomodoro:widget";
+          vpn.type = "andrewdems/vpn-manager:bar";
         };
-        plugins.enabled = [ "thepunkoff/pomodoro" ];
+        plugins.enabled = [
+          "thepunkoff/pomodoro"
+          "andrewdems/vpn-manager"
+        ];
         # Global UI scale (0.5–2.5); v5's defaults render smaller than v4 did.
         accessibility.ui_scale = 1.2;
         shell = {
