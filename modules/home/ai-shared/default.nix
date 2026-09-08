@@ -240,6 +240,12 @@ in
           path = "${inputs.mattpocock-skills}/skills/productivity/grilling";
         }
       ])
+      (pkgs.linkFarm "ponytail-skills" [
+        {
+          name = "ponytail";
+          path = "${inputs.ponytail}/skills/ponytail";
+        }
+      ])
       "${perSystem.llm-agents-nix.git-surgeon}/share/git-surgeon/skills"
       ././skills
     ];
