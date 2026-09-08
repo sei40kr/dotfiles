@@ -56,6 +56,8 @@ in
               "pomodoro"
             ];
             end = [
+              "weather"
+              "spacer_3"
               "vpn"
               "network"
               "bluetooth"
@@ -92,10 +94,12 @@ in
           sysmon.stat = "disk_used";
           spacer_1.type = "spacer";
           spacer_2.type = "spacer";
+          spacer_3.type = "spacer";
           spacer_4.type = "spacer";
           spacer_5.type = "spacer";
           pomodoro.type = "thepunkoff/pomodoro:widget";
           vpn.type = "andrewdems/vpn-manager:bar";
+          weather.show_condition = false;
         };
         plugins.enabled = [
           "thepunkoff/pomodoro"
