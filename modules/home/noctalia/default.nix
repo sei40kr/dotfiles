@@ -33,43 +33,64 @@ in
       enable = true;
       package = perSystem.noctalia.default;
       settings = {
-        bar.default = {
-          position = "top";
-          # Match v4's "spacious" density where it exceeds the v5 defaults:
-          # bar height 47 (default 34) and ~16px font (14px base * 1.15).
-          # accessibility.ui_scale does not cover the bar.
-          thickness = 47;
-          scale = 1.15;
-          start = [
-            "workspaces"
-            "spacer_1"
-            "active_window"
+        bar = {
+          order = [
+            "top"
+            "bottom"
           ];
-          center = [
-            "clock"
-            "spacer_2"
-            "pomodoro"
-          ];
-          end = [
-            "media"
-            "spacer_3"
-            "network"
-            "bluetooth"
-            "spacer_4"
-            "notifications"
-            "control-center"
-            "spacer_5"
-            "session"
-          ];
+          top = {
+            position = "top";
+            # Match v4's "spacious" density where it exceeds the v5 defaults:
+            # bar height 47 (default 34) and ~16px font (14px base * 1.15).
+            # accessibility.ui_scale does not cover the bar.
+            thickness = 47;
+            scale = 1.15;
+            start = [
+              "workspaces"
+              "spacer_1"
+              "active_window"
+            ];
+            center = [
+              "clock"
+              "spacer_2"
+              "pomodoro"
+            ];
+            end = [
+              "network"
+              "bluetooth"
+              "spacer_4"
+              "notifications"
+              "control-center"
+              "spacer_5"
+              "session"
+            ];
+          };
+          bottom = {
+            enabled = true;
+            position = "bottom";
+            thickness = 47;
+            scale = 1.15;
+            start = [ "media" ];
+            center = [ ];
+            end = [
+              "cpu"
+              "ram"
+              "sysmon"
+              "network_rx"
+              "network_tx"
+            ];
+          };
         };
         widget = {
           # Widen the default cap; grows with content.
           active_window.max_length = 480;
           clock.format = "{:%b %-d %a  %H:%M}";
+          cpu.visualization = "graph";
           network.show_label = false;
+          ram.visualization = "graph";
+          sysmon.stat = "disk_used";
           spacer_1.type = "spacer";
           spacer_2.type = "spacer";
-          spacer_3.type = "spacer";
           spacer_4.type = "spacer";
           spacer_5.type = "spacer";
           pomodoro.type = "thepunkoff/pomodoro:widget";
