@@ -234,6 +234,12 @@ in
   config = {
     modules.ai.skillPaths = [
       "${inputs.anthropics-skills}/skills"
+      (pkgs.linkFarm "mattpocock-skills" [
+        {
+          name = "grilling";
+          path = "${inputs.mattpocock-skills}/skills/productivity/grilling";
+        }
+      ])
       "${perSystem.llm-agents-nix.git-surgeon}/share/git-surgeon/skills"
       ././skills
     ];
