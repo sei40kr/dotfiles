@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  perSystem,
   pkgs,
   ...
 }:
@@ -99,9 +100,10 @@
   # Add Rancher Desktop executables to PATH
   home.sessionPath = [ "${config.home.homeDirectory}/.rd/bin" ];
 
-  home.packages = with pkgs; [
-    google-cloud-sdk
-    jq
+  home.packages = [
+    pkgs.google-cloud-sdk
+    pkgs.jq
+    perSystem.self.tinycast
   ];
 
   home.stateVersion = "25.11";
