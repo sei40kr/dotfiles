@@ -67,6 +67,7 @@
     inputs.self.homeModules.starship
     inputs.self.homeModules.term-shared
     inputs.self.homeModules.terraform
+    inputs.self.homeModules.tinycast
     inputs.self.homeModules.tokyo-night
     inputs.self.homeModules.tmux
     inputs.self.homeModules.web

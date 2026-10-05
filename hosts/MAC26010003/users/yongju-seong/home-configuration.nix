@@ -1,7 +1,6 @@
 {
   config,
   inputs,
-  perSystem,
   pkgs,
   ...
 }:
@@ -31,6 +30,7 @@
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.claude/settings.json";
 
   modules.desktop.aerospace.enable = true;
+  modules.desktop.apps.tinycast.enable = true;
 
   modules.dev.lang.java.enable = true;
   modules.dev.lang.javascript.enable = true;
@@ -100,22 +100,10 @@
   # Add Rancher Desktop executables to PATH
   home.sessionPath = [ "${config.home.homeDirectory}/.rd/bin" ];
 
-  home.packages = [
-    pkgs.google-cloud-sdk
-    pkgs.jq
-    perSystem.self.tinycast
+  home.packages = with pkgs; [
+    google-cloud-sdk
+    jq
   ];
-
-  launchd.agents.tinycast = {
-    enable = true;
-    config = {
-      ProgramArguments = [
-        "${perSystem.self.tinycast}/Applications/Tinycast Beta.app/Contents/MacOS/Tinycast Beta"
-      ];
-      RunAtLoad = true;
-      KeepAlive = true;
-    };
-  };
 
   home.stateVersion = "25.11";
 }
