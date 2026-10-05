@@ -47,7 +47,7 @@ in
     };
 
     modules.ai.skillPaths = [
-      "${workmux}/share/workmux/skills"
+      "${workmux}/share/skills/workmux"
     ];
 
     modules.ai.permissions.allowedCommandPrefixes = [

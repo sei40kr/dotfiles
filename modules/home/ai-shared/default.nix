@@ -246,7 +246,7 @@ in
           path = "${inputs.ponytail}/skills/ponytail";
         }
       ])
-      "${perSystem.llm-agents-nix.git-surgeon}/share/git-surgeon/skills"
+      "${perSystem.llm-agents-nix.git-surgeon}/share/skills/git-surgeon"
       ././skills
     ];
 
