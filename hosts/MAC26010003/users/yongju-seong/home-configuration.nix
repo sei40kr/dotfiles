@@ -106,5 +106,16 @@
     perSystem.self.tinycast
   ];
 
+  launchd.agents.tinycast = {
+    enable = true;
+    config = {
+      ProgramArguments = [
+        "${perSystem.self.tinycast}/Applications/Tinycast Beta.app/Contents/MacOS/Tinycast Beta"
+      ];
+      RunAtLoad = true;
+      KeepAlive = true;
+    };
+  };
+
   home.stateVersion = "25.11";
 }
