@@ -930,6 +930,7 @@
         "wez-per-project-workspace": "wez-per-project-workspace",
         "wez-status-generator": "wez-status-generator",
         "wez-tmux": "wez-tmux",
+        "yomiyasu": "yomiyasu",
         "zsh-fzf-projects": "zsh-fzf-projects",
         "zsh-ts-syntax-highlighter": "zsh-ts-syntax-highlighter"
       }
@@ -1310,6 +1311,22 @@
       "original": {
         "owner": "sei40kr",
         "repo": "wez-tmux",
+        "type": "github"
+      }
+    },
+    "yomiyasu": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791304463,
+        "narHash": "sha256-TWYspkIkhfEHXDP0Bv/3E/k56ZviKQYCS4MZ1/uBG8I=",
+        "owner": "nanaism",
+        "repo": "yomiyasu",
+        "rev": "8f77b7aa8f19c3f718b511e71a3eee5d06eb3013",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nanaism",
+        "repo": "yomiyasu",
         "type": "github"
       }
     },
