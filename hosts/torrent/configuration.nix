@@ -40,6 +40,8 @@ in
   time.timeZone = "Asia/Tokyo";
   time.hardwareClockInLocalTime = true;
 
+  services.udisks2.enable = true;
+
   networking.hostName = "torrent"; # Define your hostname.
   networking.networkmanager.enable = true;
   networking.interfaces.enp0s31f6.useDHCP = true;
