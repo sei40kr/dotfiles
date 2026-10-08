@@ -41,6 +41,7 @@ in
   time.hardwareClockInLocalTime = true;
 
   services.udisks2.enable = true;
+  services.gvfs.enable = true;
 
   networking.hostName = "torrent"; # Define your hostname.
   networking.networkmanager.enable = true;
