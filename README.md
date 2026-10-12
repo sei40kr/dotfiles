@@ -85,6 +85,22 @@ Prerequisites:
    sudo chown -R $USER /etc/dotfiles
    ```
 
+1. Add the Numtide binary cache to the Nix daemon so that packages from
+   `llm-agents.nix` are downloaded instead of built. Append the following
+   lines to `/etc/nix/nix.conf` (or `/etc/nix/nix.custom.conf` on
+   Determinate Nix):
+
+   ```
+   extra-substituters = https://cache.numtide.com
+   extra-trusted-public-keys = niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=
+   ```
+
+   Then restart the daemon:
+
+   ```sh
+   sudo launchctl kickstart -k system/org.nixos.nix-daemon
+   ```
+
 1. Build and switch to the configuration (first time):
 
    ```sh
