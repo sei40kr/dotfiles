@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  inputs,
   perSystem,
   pkgs,
   ...
@@ -233,35 +232,6 @@ in
 
   config = {
     modules.ai.skillPaths = [
-      "${inputs.anthropics-skills}/skills"
-      "${inputs.skills}/skills"
-      (pkgs.linkFarm "ponytail-skills" [
-        {
-          name = "ponytail";
-          path = "${inputs.ponytail}/skills/ponytail";
-        }
-      ])
-      # yomiyasu keeps SKILL.md at its repo root alongside a test corpus and a
-      # nested skills/ directory, so pick out only what SKILL.md references
-      (pkgs.linkFarm "yomiyasu-skills" [
-        {
-          name = "yomiyasu";
-          path = pkgs.linkFarm "yomiyasu" [
-            {
-              name = "SKILL.md";
-              path = "${inputs.yomiyasu}/SKILL.md";
-            }
-            {
-              name = "references";
-              path = "${inputs.yomiyasu}/references";
-            }
-            {
-              name = "scripts";
-              path = "${inputs.yomiyasu}/scripts";
-            }
-          ];
-        }
-      ])
       "${perSystem.llm-agents-nix.git-surgeon}/share/skills/git-surgeon"
       ././skills
     ];

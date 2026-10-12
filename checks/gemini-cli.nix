@@ -25,7 +25,7 @@ let
           stateVersion = "24.11";
         };
         modules.ai.gemini-cli.enable = true;
-        # Override skillPaths to avoid depending on anthropics-skills
+        # Override skillPaths to keep the shared skill set out of the check
         modules.ai.skillPaths = [ ];
         # Test MCP server configurations
         modules.ai.mcpServers = {

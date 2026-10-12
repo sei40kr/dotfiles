@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   perSystem,
   pkgs,
@@ -134,7 +135,43 @@ in
         security.auth.selectedType = "oauth-personal";
       };
     };
-    home.file.".gemini/skills".source = aiCfg._combinedSkillsPath;
+    # Claude Code gets these skill repos through its plugin marketplace
+    # mechanism instead, so they are wired here rather than into the shared
+    # modules.ai.skillPaths set.
+    home.file.".gemini/skills".source = pkgs.symlinkJoin {
+      name = "gemini-skills";
+      paths = [
+        aiCfg._combinedSkillsPath
+        "${inputs.skills}/skills"
+        (pkgs.linkFarm "ponytail-skills" [
+          {
+            name = "ponytail";
+            path = "${inputs.ponytail}/skills/ponytail";
+          }
+        ])
+        # yomiyasu keeps SKILL.md at its repo root alongside a test corpus and a
+        # nested skills/ directory, so pick out only what SKILL.md references
+        (pkgs.linkFarm "yomiyasu-skills" [
+          {
+            name = "yomiyasu";
+            path = pkgs.linkFarm "yomiyasu" [
+              {
+                name = "SKILL.md";
+                path = "${inputs.yomiyasu}/SKILL.md";
+              }
+              {
+                name = "references";
+                path = "${inputs.yomiyasu}/references";
+              }
+              {
+                name = "scripts";
+                path = "${inputs.yomiyasu}/scripts";
+              }
+            ];
+          }
+        ])
+      ];
+    };
     home.file.".gemini/policies/nix-managed.toml".source = policyFile;
   };
 }

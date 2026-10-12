@@ -59,6 +59,53 @@ in
         env = {
           CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL = 1;
           DISABLE_AUTOUPDATER = 1;
+          # DISABLE_AUTOUPDATER above also turns off the plugin auto-update
+          # pass; this re-enables it for the marketplaces declared below.
+          FORCE_AUTOUPDATE_PLUGINS = 1;
+        };
+        # Skill repos are consumed through Claude Code's plugin mechanism
+        # instead of modules.ai.skillPaths: enabled plugins that aren't cached
+        # yet are fetched automatically after session start, and marketplaces
+        # with autoUpdate follow their repos without a rebuild.
+        extraKnownMarketplaces = {
+          sei40kr = {
+            source = {
+              source = "github";
+              repo = "sei40kr/skills";
+            };
+            autoUpdate = true;
+          };
+          anthropic-agent-skills = {
+            source = {
+              source = "github";
+              repo = "anthropics/skills";
+            };
+            autoUpdate = true;
+          };
+          ponytail = {
+            source = {
+              source = "github";
+              repo = "DietrichGebert/ponytail";
+            };
+            autoUpdate = false;
+          };
+          yomiyasu = {
+            source = {
+              source = "github";
+              repo = "nanaism/yomiyasu";
+            };
+            autoUpdate = false;
+          };
+        };
+        enabledPlugins = {
+          "sei40kr-skills@sei40kr" = true;
+          "document-skills@anthropic-agent-skills" = true;
+          "example-skills@anthropic-agent-skills" = true;
+          "claude-api@anthropic-agent-skills" = true;
+          "academy-guide@anthropic-agent-skills" = false;
+          "discernment-nudge@anthropic-agent-skills" = false;
+          "ponytail@ponytail" = true;
+          "yomiyasu@yomiyasu" = true;
         };
         permissions = {
           allow =
