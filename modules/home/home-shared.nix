@@ -36,6 +36,7 @@
     inputs.self.homeModules.inkscape
     inputs.self.homeModules.java
     inputs.self.homeModules.javascript
+    inputs.self.homeModules.jujutsu
     inputs.self.homeModules.julia
     inputs.self.homeModules.jupyter
     inputs.self.homeModules.k8s
