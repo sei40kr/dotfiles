@@ -44,11 +44,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    anthropics-skills = {
-      url = "github:anthropics/skills";
-      flake = false;
-    };
-
     skills = {
       url = "github:sei40kr/skills";
       flake = false;
