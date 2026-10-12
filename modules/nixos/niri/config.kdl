@@ -2,18 +2,18 @@ binds {
   /// Launch:
 
   // Application:
-  Mod+Space { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+  Mod+Space hotkey-overlay-title="Application" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
 
   // Command — opens the launcher pre-filled with the freeform /run provider
   // (declared in modules.desktop.apps.noctalia; v5 has no built-in command
   // mode).
-  Mod+Shift+Space { spawn "noctalia" "msg" "panel-toggle" "launcher" "/run "; }
+  Mod+Shift+Space hotkey-overlay-title="Command" { spawn "noctalia" "msg" "panel-toggle" "launcher" "/run "; }
 
   // Window:
-  Mod+Ctrl+Space { spawn "noctalia" "msg" "window-switcher"; }
+  Mod+Ctrl+Space hotkey-overlay-title="Window" { spawn "noctalia" "msg" "window-switcher"; }
 
   // Browser:
-  Mod+Shift+Return { spawn "sh" "-c" "$BROWSER"; }
+  Mod+Shift+Return hotkey-overlay-title="Browser" { spawn "sh" "-c" "$BROWSER"; }
 
   // Hotkey Overlay:
   Mod+Shift+Slash { show-hotkey-overlay; }
@@ -53,28 +53,28 @@ binds {
   /// Modify:
 
   // Bluetooth Settings
-  Mod+b { spawn "noctalia" "msg" "panel-toggle" "control-center" "bluetooth"; }
+  Mod+b hotkey-overlay-title="Bluetooth Settings" { spawn "noctalia" "msg" "panel-toggle" "control-center" "bluetooth"; }
 
   // Settings
-  Mod+c { spawn "noctalia" "msg" "settings-toggle"; }
+  Mod+c hotkey-overlay-title="Settings" { spawn "noctalia" "msg" "settings-toggle"; }
 
   // Display Settings (brightness; resolution/scale live in niri outputs)
-  Mod+d { spawn "noctalia" "msg" "panel-toggle" "control-center" "monitor"; }
+  Mod+d hotkey-overlay-title="Display Settings" { spawn "noctalia" "msg" "panel-toggle" "control-center" "monitor"; }
 
   // Reload Noctalia Config
-  Mod+Shift+c { spawn "noctalia" "msg" "config-reload"; }
+  Mod+Shift+c hotkey-overlay-title="Reload Noctalia Config" { spawn "noctalia" "msg" "config-reload"; }
 
   // Update Look — rerender the GTK/Qt theme templates
-  Mod+Shift+r { spawn "noctalia" "msg" "templates-apply"; }
+  Mod+Shift+r hotkey-overlay-title="Update Look" { spawn "noctalia" "msg" "templates-apply"; }
 
   // Toggle Bar
-  Mod+i { spawn "noctalia" "msg" "bar-toggle"; }
+  Mod+i hotkey-overlay-title="Toggle Bar" { spawn "noctalia" "msg" "bar-toggle"; }
 
   // Wifi Settings
-  Mod+w { spawn "noctalia" "msg" "panel-toggle" "control-center" "network"; }
+  Mod+w hotkey-overlay-title="Wifi Settings" { spawn "noctalia" "msg" "panel-toggle" "control-center" "network"; }
 
   // Notification Center
-  Mod+n { spawn "noctalia" "msg" "panel-toggle" "control-center" "notifications"; }
+  Mod+n hotkey-overlay-title="Notification Center" { spawn "noctalia" "msg" "panel-toggle" "control-center" "notifications"; }
 
   // Window Position
   Mod+Shift+h { consume-or-expel-window-left; }
@@ -113,13 +113,13 @@ binds {
   /// Session:
 
   // Lock Screen
-  Mod+Escape { spawn "noctalia" "msg" "session" "lock"; }
+  Mod+Escape hotkey-overlay-title="Lock Screen" { spawn "noctalia" "msg" "session" "lock"; }
 
   // Logout
   Mod+Shift+e { quit; }
 
   // Sleep — lock then suspend
-  Mod+Shift+s allow-when-locked=true { spawn "noctalia" "msg" "session" "lock-and-suspend"; }
+  Mod+Shift+s hotkey-overlay-title="Sleep" allow-when-locked=true { spawn "noctalia" "msg" "session" "lock-and-suspend"; }
 
   // Exit App
   Mod+Shift+q { close-window; }
@@ -128,7 +128,7 @@ binds {
   // niri has no built-in window picker for screenshots; `pick-window` returns
   // the clicked window and `screenshot-window --id` captures it. jq -e exits
   // non-zero when the pick is cancelled, so nothing is captured then.
-  Mod+Print { spawn-sh r#"id=$(niri msg --json pick-window | jq -er .id) && niri msg action screenshot-window --id "$id""#; }
+  Mod+Print hotkey-overlay-title="Window Snapshot" { spawn-sh r#"id=$(niri msg --json pick-window | jq -er .id) && niri msg action screenshot-window --id "$id""#; }
 
   // Screenshot — interactive region/window selection
   Mod+Shift+Print { screenshot; }
