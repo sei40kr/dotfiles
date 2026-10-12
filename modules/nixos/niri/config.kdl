@@ -130,11 +130,11 @@ binds {
   // non-zero when the pick is cancelled, so nothing is captured then.
   Mod+Print hotkey-overlay-title="Window Snapshot" { spawn-sh r#"id=$(niri msg --json pick-window | jq -er .id) && niri msg action screenshot-window --id "$id""#; }
 
-  // Screenshot — interactive region/window selection
-  Mod+Shift+Print { screenshot; }
+  // Screenshot — interactive region selection
+  Mod+Shift+Print hotkey-overlay-title="Screenshot" { spawn "noctalia" "msg" "screenshot-region"; }
 
   // Capture Screen
-  Mod+Ctrl+Shift+Print { screenshot-screen; }
+  Mod+Ctrl+Shift+Print hotkey-overlay-title="Capture Screen" { spawn "noctalia" "msg" "screenshot-fullscreen"; }
 
   /// Media (routed through noctalia for on-screen display):
 

@@ -115,6 +115,8 @@ in
           screen_corners.enabled = true;
           shadow.direction = "center";
           clipboard_enabled = true;
+          # Same folder niri's built-in screenshot action used.
+          screenshot.directory = "~/Pictures/Screenshots";
           # Freeform command runner for the Mod+Shift+Space keybind (see
           # modules/nixos/niri/config.kdl); v5 has no built-in launcher
           # command mode.
