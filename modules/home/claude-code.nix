@@ -174,7 +174,6 @@ in
           padding = 0;
         };
       };
-      skills = "${config.modules.ai._combinedSkillsPath}";
       mcpServers = mapAttrs convertMcpServer mcpCfg;
 
       # Standing version-control rules, written to ~/.claude/CLAUDE.md. The
