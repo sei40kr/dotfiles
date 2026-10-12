@@ -56,6 +56,10 @@ in
       enable = true;
       package = perSystem.llm-agents-nix.claude-code;
       settings = {
+        # Drop Claude Code's built-in commit/PR workflow instructions from the
+        # system prompt; `context` below replaces them with skill dispatch and
+        # the standing rules.
+        includeGitInstructions = false;
         env = {
           CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL = 1;
           DISABLE_AUTOUPDATER = 1;
@@ -172,6 +176,24 @@ in
       };
       skills = "${config.modules.ai._combinedSkillsPath}";
       mcpServers = mapAttrs convertMcpServer mcpCfg;
+
+      # Standing version-control rules, written to ~/.claude/CLAUDE.md. The
+      # commit and PR workflows live in the sei40kr/skills plugin; this block
+      # only dispatches to them and states what must hold even when no skill
+      # is running.
+      context = ''
+        # Version control
+
+        Use `jj` when the repository has a `.jj` directory, even next to `.git`; otherwise `git`.
+
+        Follow the skills instead of improvising: `commit` for commits and amends, `open-pr` for pull requests.
+
+        Whether or not a skill is running:
+        - Commit, amend, push, or rewrite history only when the user explicitly asks. Never rewrite pushed history.
+        - Never run destructive commands (`push --force`, `reset --hard`, `checkout .`, `restore .`, `clean -f`, `branch -D`, `jj abandon`, `jj restore`), change git/jj config, or skip hooks (`--no-verify`, `--no-gpg-sign`) unless the user asks for that exact action. Never force-push main/master; warn if asked.
+        - Never run interactive commands: no `-i` flags, and pass `-m` to every command that would otherwise open an editor.
+        - Never bulk-stage with `git add -A` or `git add .`; the harness denies them.
+      '';
     };
 
     # Enable remote control by overriding the wrapper's telemetry-disabling env vars
