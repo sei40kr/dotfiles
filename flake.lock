@@ -652,22 +652,6 @@
         "type": "github"
       }
     },
-    "mattpocock-skills": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1788511407,
-        "narHash": "sha256-dF5i37jHnqfcXD1IRSVzSSm/pfCYSUmOsEhhs5Zx340=",
-        "owner": "mattpocock",
-        "repo": "skills",
-        "rev": "3cca18b368ae95cdbdebbff572ccafa662551015",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mattpocock",
-        "repo": "skills",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -916,7 +900,6 @@
         "lanzaboote": "lanzaboote",
         "lazyvim": "lazyvim",
         "llm-agents-nix": "llm-agents-nix",
-        "mattpocock-skills": "mattpocock-skills",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
@@ -924,6 +907,7 @@
         "noctalia-greeter": "noctalia-greeter",
         "ponytail": "ponytail",
         "rugit": "rugit",
+        "skills": "skills",
         "tmux-project": "tmux-project",
         "treefmt-nix": "treefmt-nix_2",
         "wez-pain-control": "wez-pain-control",
@@ -993,6 +977,22 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791799966,
+        "narHash": "sha256-VkjmVl2RUR/dwl1NbEdFesHfnJP6VtqOD1G90769zJA=",
+        "owner": "sei40kr",
+        "repo": "skills",
+        "rev": "bcfc41dd54ca8a464c66ae6471e3305770c6fb8a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sei40kr",
+        "repo": "skills",
         "type": "github"
       }
     },

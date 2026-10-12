@@ -49,8 +49,8 @@
       flake = false;
     };
 
-    mattpocock-skills = {
-      url = "github:mattpocock/skills";
+    skills = {
+      url = "github:sei40kr/skills";
       flake = false;
     };
 

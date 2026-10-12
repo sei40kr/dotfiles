@@ -234,12 +234,7 @@ in
   config = {
     modules.ai.skillPaths = [
       "${inputs.anthropics-skills}/skills"
-      (pkgs.linkFarm "mattpocock-skills" [
-        {
-          name = "grilling";
-          path = "${inputs.mattpocock-skills}/skills/productivity/grilling";
-        }
-      ])
+      "${inputs.skills}/skills"
       (pkgs.linkFarm "ponytail-skills" [
         {
           name = "ponytail";
