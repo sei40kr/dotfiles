@@ -7,6 +7,7 @@
 
 let
   inherit (lib)
+    literalExpression
     mdDoc
     mkEnableOption
     mkIf
@@ -15,6 +16,7 @@ let
     types
     ;
   cfg = config.modules.shell.jujutsu;
+  gitCfg = config.modules.shell.git;
 in
 {
   options.modules.shell.jujutsu = {
@@ -23,7 +25,8 @@ in
     user = {
       name = mkOption {
         type = types.str;
-        default = "Seong Yong-ju";
+        default = gitCfg.user.name;
+        defaultText = literalExpression "config.modules.shell.git.user.name";
         description = mdDoc ''
           The name of the user.
         '';
@@ -31,7 +34,8 @@ in
 
       email = mkOption {
         type = types.str;
-        default = "sei40kr@gmail.com";
+        default = gitCfg.user.email;
+        defaultText = literalExpression "config.modules.shell.git.user.email";
         description = mdDoc ''
           The email of the user.
         '';
@@ -41,7 +45,8 @@ in
     signing = {
       key = mkOption {
         type = types.nullOr types.str;
-        default = null;
+        default = gitCfg.signing.key;
+        defaultText = literalExpression "config.modules.shell.git.signing.key";
         description = mdDoc ''
           The signing key to use for commits.
         '';
@@ -52,7 +57,8 @@ in
           "gpg"
           "ssh"
         ];
-        default = "gpg";
+        default = if gitCfg.signing.format == "ssh" then "ssh" else "gpg";
+        defaultText = literalExpression ''if config.modules.shell.git.signing.format == "ssh" then "ssh" else "gpg"'';
         description = mdDoc ''
           The signing backend to use (gpg or ssh).
         '';

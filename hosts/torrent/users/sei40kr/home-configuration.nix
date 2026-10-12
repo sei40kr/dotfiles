@@ -77,10 +77,7 @@
       format = "openpgp";
     };
   };
-  modules.shell.jujutsu = {
-    enable = true;
-    signing.key = "6EDD4826A0A2E59D";
-  };
+  modules.shell.jujutsu.enable = true;
   modules.shell.oj.enable = true;
   modules.shell.zsh.enable = true;
 
