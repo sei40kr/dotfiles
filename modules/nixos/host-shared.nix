@@ -6,6 +6,7 @@
     inputs.self.nixosModules.chrome
     inputs.self.nixosModules.de
     inputs.self.nixosModules.docker
+    inputs.self.nixosModules.edge
     inputs.self.nixosModules.fontconfig
     inputs.self.nixosModules.niri
     inputs.self.nixosModules.noctalia-greeter
@@ -32,7 +33,13 @@
 
     nixpkgs.config.allowUnfree = true;
 
-    services.earlyoom.enable = true;
+    services.earlyoom = {
+      enable = true;
+      extraArgs = [
+        "--prefer"
+        "^(rustc|nix|cargo)$"
+      ];
+    };
 
     environment.systemPackages = with pkgs; [
       # Hardware / System Info
