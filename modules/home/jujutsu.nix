@@ -75,5 +75,7 @@ in
     };
 
     home.packages = [ perSystem.self.jj-hunk-tool ];
+
+    home.shellAliases.rj = "rujutsu";
   };
 }
