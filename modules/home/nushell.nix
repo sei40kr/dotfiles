@@ -37,8 +37,6 @@ in
         source ${pkgs.nu_scripts}/share/nu_scripts/modules/data_extraction/ultimate_extractor.nu
         alias x = extract
 
-        source ${pkgs.nu_scripts}/share/nu_scripts/nu-hooks/nu-hooks/direnv/direnv.nu
-
         source ${atuin_nu}
         source ${zoxide_nu}
       '';
