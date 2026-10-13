@@ -77,6 +77,10 @@
   };
   modules.shell.git = {
     enable = true;
+    signing = {
+      format = "ssh";
+      key = "~/.ssh/id_ed25519.pub";
+    };
     includes = [
       { inherit (config.age.secrets.work-git) path; }
     ];
