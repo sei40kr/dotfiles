@@ -45,17 +45,16 @@ in
     };
     programs.carapace.enable = true;
 
-    # Keep Bash as the login shell so that /etc/profile and ~/.profile set up the Nix and
-    # home-manager environment, then hand interactive sessions over to Nushell.
-    programs.bash = {
-      enable = true;
-      profileExtra = ''
-        [[ $- == *i* && -z $NU_VERSION ]] && exec ${lib.getExe config.programs.nushell.package}
-      '';
-    };
+    # Keep Zsh as the login shell so that its startup files set up the Nix and home-manager
+    # environment, then hand interactive login sessions over to Nushell before the rest of
+    # ~/.zshrc runs.
+    programs.zsh.initContent = lib.mkOrder 0 ''
+      [[ -o login && -z $NU_VERSION ]] && exec ${lib.getExe config.programs.nushell.package}
+    '';
 
     modules.shell.enable = true;
     modules.shell.atuin.enable = true;
     modules.shell.starship.enable = true;
+    modules.shell.zsh.enable = true;
   };
 }

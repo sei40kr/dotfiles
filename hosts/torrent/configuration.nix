@@ -120,6 +120,7 @@ in
     isNormalUser = true;
     group = "users";
     extraGroups = [ "wheel" ];
+    shell = pkgs.zsh;
   };
 
   services.ollama.enable = true;
