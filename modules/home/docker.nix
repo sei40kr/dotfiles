@@ -15,8 +15,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    # Docker command aliases for zsh
-    programs.zsh.shellAliases = {
+    home.shellAliases = {
       # Docker aliases
       dbl = "docker build";
       dcin = "docker container inspect";
