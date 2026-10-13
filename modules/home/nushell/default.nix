@@ -15,6 +15,9 @@ let
     mkdir -p $HOME/.local/share/atuin
 
     atuin init nu >$out
+
+    # config.nu replaces this hook, so fail loudly if atuin renames it.
+    grep -q '^let _atuin_pre_prompt = ' $out
   '';
 
   zoxide_nu = pkgs.runCommandLocal "zoxide.nu" { buildInputs = [ pkgs.zoxide ]; } ''
@@ -38,6 +41,20 @@ in
         alias x = extract
 
         source ${atuin_nu}
+        # atuin ends each history entry from a `job spawn` thread. `job list` reports that
+        # thread until it finishes, so Starship painted a background-job indicator after
+        # every command. Detach the bookkeeping through sh instead, as atuin's zsh
+        # integration does.
+        $env.config = ($env.config? | default {} | upsert hooks.pre_prompt {
+          default []
+          | where {|hook| $hook != $_atuin_pre_prompt }
+          | append {||
+            if "ATUIN_HISTORY_ID" in $env {
+              ^sh -c 'ATUIN_LOG=error atuin history end --exit="$1" -- "$2" >/dev/null 2>&1 &' sh $env.LAST_EXIT_CODE $env.ATUIN_HISTORY_ID
+              hide-env ATUIN_HISTORY_ID
+            }
+          }
+        })
         source ${zoxide_nu}
       '';
     };
