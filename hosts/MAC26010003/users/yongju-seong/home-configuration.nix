@@ -111,6 +111,7 @@
   home.sessionPath = [ "${config.home.homeDirectory}/.rd/bin" ];
 
   home.packages = with pkgs; [
+    ghq
     google-cloud-sdk
     jq
   ];
