@@ -79,6 +79,7 @@
   };
   modules.shell.jujutsu.enable = true;
   modules.shell.oj.enable = true;
+  modules.shell.nushell.enable = true;
   modules.shell.zsh.enable = true;
 
   modules.term.font = {

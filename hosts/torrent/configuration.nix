@@ -120,7 +120,6 @@ in
     isNormalUser = true;
     group = "users";
     extraGroups = [ "wheel" ];
-    shell = pkgs.nushell;
   };
 
   services.ollama.enable = true;
@@ -158,7 +157,6 @@ in
   i18n.extraLocaleSettings.LC_CTYPE = "ja_JP.UTF-8";
 
   modules.shell.zsh.enable = true;
-  environment.shells = [ pkgs.nushell ];
 
   modules.services.docker.enable = true;
   modules.services.ssh.enable = true;

@@ -45,6 +45,15 @@ in
     };
     programs.carapace.enable = true;
 
+    # Keep Bash as the login shell so that /etc/profile and ~/.profile set up the Nix and
+    # home-manager environment, then hand interactive sessions over to Nushell.
+    programs.bash = {
+      enable = true;
+      profileExtra = ''
+        [[ $- == *i* && -z $NU_VERSION ]] && exec ${lib.getExe config.programs.nushell.package}
+      '';
+    };
+
     modules.shell.enable = true;
     modules.shell.atuin.enable = true;
     modules.shell.starship.enable = true;

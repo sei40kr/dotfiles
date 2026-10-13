@@ -86,6 +86,7 @@
     git.enable = true;
   };
 
+  modules.shell.nushell.enable = true;
   modules.shell.zsh.enable = true;
 
   modules.term.font = {
