@@ -52,6 +52,9 @@ in
 
     modules.shell.enable = true;
     modules.shell.atuin.enable = true;
+    # The atuin integration is sourced above; home-manager's copy would register the history
+    # hooks a second time, recording every command twice.
+    programs.atuin.enableNushellIntegration = false;
     modules.shell.starship.enable = true;
     modules.shell.zsh.enable = true;
   };
