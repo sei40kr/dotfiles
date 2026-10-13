@@ -75,6 +75,10 @@
     file = ./secrets/work-git-user.age;
     path = "${config.xdg.configHome}/git/work-git-user";
   };
+  age.secrets.work-jj = {
+    file = ./secrets/work-jj.age;
+    path = "${config.xdg.configHome}/jj/conf.d/work.toml";
+  };
   modules.shell.git = {
     enable = true;
     signing = {
