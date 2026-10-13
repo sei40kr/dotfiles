@@ -2,6 +2,7 @@
   config,
   lib,
   perSystem,
+  pkgs,
   ...
 }:
 
@@ -11,6 +12,13 @@ let
 
   inherit (perSystem.llm-agents-nix) workmux;
   workmuxBin = "${workmux}/bin/workmux";
+
+  # carapace ignores ~/.config on macOS unless XDG_CONFIG_HOME is set.
+  carapaceConfigDir =
+    if pkgs.stdenv.hostPlatform.isDarwin then
+      "${config.home.homeDirectory}/Library/Application Support/carapace"
+    else
+      "${config.xdg.configHome}/carapace";
 in
 {
   options.modules.dev.tools.workmux = {
@@ -43,6 +51,19 @@ in
         files:
           copy:
             - .claude/settings.local.json
+      '';
+    };
+
+    # workmux cannot generate Nushell completions, so carapace bridges them from its zsh ones.
+    home.file = mkIf config.programs.carapace.enable {
+      "${carapaceConfigDir}/specs/workmux.yaml".text = ''
+        name: workmux
+        parsing: disabled
+        completion:
+          positionalany: ["$carapace.bridge.Zsh([workmux])"]
+      '';
+      "${carapaceConfigDir}/bridge/zsh/.zshrc".text = ''
+        fpath=(${workmux}/share/zsh/site-functions $fpath)
       '';
     };
 
