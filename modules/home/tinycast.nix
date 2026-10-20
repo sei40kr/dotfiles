@@ -11,7 +11,7 @@ let
   cfg = config.modules.desktop.apps.tinycast;
   app = "${perSystem.self.tinycast}/Applications/Tinycast.app";
   # Carbon modifier cmd (256).
-  snapHotkey =
+  cmdHotkey =
     keyCode:
     builtins.toJSON {
       combo._0 = {
@@ -46,14 +46,35 @@ in
       };
     };
 
-    # Windows-style snap on cmd+arrows.
     targets.darwin.defaults."com.tinycast.app" = {
+      "hotkey.togglePalette" = cmdHotkey 49;
+
+      # Windows-style snap on cmd+arrows.
       windowManagementEnabled = true;
-      "hotkey.windowCommand.left-half" = snapHotkey 123;
-      "hotkey.windowCommand.right-half" = snapHotkey 124;
-      "hotkey.windowCommand.restore" = snapHotkey 125;
-      "hotkey.windowCommand.maximize" = snapHotkey 126;
+      "hotkey.windowCommand.left-half" = cmdHotkey 123;
+      "hotkey.windowCommand.right-half" = cmdHotkey 124;
+      "hotkey.windowCommand.restore" = cmdHotkey 125;
+      "hotkey.windowCommand.maximize" = cmdHotkey 126;
     };
+
+    # Free cmd+space for Tinycast: input sources on ctrl(+shift)+space, Spotlight off.
+    # defaults import would replace the whole AppleSymbolicHotKeys dict, so patch each entry.
+    home.activation.setSpaceHotkeys =
+      let
+        # IDs: 60/61 previous/next input source, 64 Spotlight, 65 Finder search window.
+        # Modifier flags: shift (131072), ctrl (262144), option (524288), cmd (1048576).
+        setSymbolicHotkey = id: enabled: modifiers: ''
+          run /usr/bin/defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add ${toString id} \
+            '<dict><key>enabled</key><${lib.boolToString enabled}/><key>value</key><dict><key>parameters</key><array><integer>65535</integer><integer>49</integer><integer>${toString modifiers}</integer></array><key>type</key><string>standard</string></dict></dict>'
+        '';
+      in
+      lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        ${setSymbolicHotkey 60 true (262144 + 131072)}
+        ${setSymbolicHotkey 61 true 262144}
+        ${setSymbolicHotkey 64 false 1048576}
+        ${setSymbolicHotkey 65 false (1048576 + 524288)}
+        run /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+      '';
 
     # Tinycast reads hotkeys only at launch, so restart it to pick up the new defaults.
     home.activation.restartTinycast =
