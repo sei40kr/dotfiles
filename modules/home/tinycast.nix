@@ -9,7 +9,7 @@
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.desktop.apps.tinycast;
-  app = "${perSystem.self.tinycast}/Applications/Tinycast Beta.app";
+  app = "${perSystem.self.tinycast}/Applications/Tinycast.app";
   # Carbon modifier cmd (256).
   snapHotkey =
     keyCode:
@@ -40,14 +40,14 @@ in
     launchd.agents.tinycast = {
       enable = true;
       config = {
-        ProgramArguments = [ "${app}/Contents/MacOS/Tinycast Beta" ];
+        ProgramArguments = [ "${app}/Contents/MacOS/Tinycast" ];
         RunAtLoad = true;
         KeepAlive = true;
       };
     };
 
     # Windows-style snap on cmd+arrows.
-    targets.darwin.defaults."com.tinycast.app.beta" = {
+    targets.darwin.defaults."com.tinycast.app" = {
       windowManagementEnabled = true;
       "hotkey.windowCommand.left-half" = snapHotkey 123;
       "hotkey.windowCommand.right-half" = snapHotkey 124;

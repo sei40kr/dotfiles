@@ -1,7 +1,7 @@
 { pkgs }:
 
 let
-  version = "0.10.3-beta.72";
+  version = "0.12.1";
 in
 pkgs.stdenvNoCC.mkDerivation {
   pname = "tinycast";
@@ -9,12 +9,12 @@ pkgs.stdenvNoCC.mkDerivation {
 
   src = pkgs.fetchurl {
     url = "https://github.com/abue-ammar/tinycast/releases/download/v${version}/Tinycast-${version}.dmg";
-    hash = "sha256-MMayl8yMZApInUH2SGzIycmvvgUWAR0E951pqwKEHQY=";
+    hash = "sha256-6dPaLAobs7gTzkHM5Sk0+9B8BJQWic9Ojli6MoT3lsU=";
   };
 
   # Tinycast.dmg is APFS formatted, which is unsupported by undmg.
   nativeBuildInputs = [ pkgs._7zz ];
-  sourceRoot = "Tinycast Beta.app";
+  sourceRoot = "Tinycast.app";
 
   dontPatch = true;
   dontConfigure = true;
@@ -24,8 +24,8 @@ pkgs.stdenvNoCC.mkDerivation {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p "$out/Applications/Tinycast Beta.app"
-    cp -R . "$out/Applications/Tinycast Beta.app"
+    mkdir -p "$out/Applications/Tinycast.app"
+    cp -R . "$out/Applications/Tinycast.app"
 
     runHook postInstall
   '';
