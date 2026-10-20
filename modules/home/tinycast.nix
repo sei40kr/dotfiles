@@ -10,15 +10,15 @@ let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.modules.desktop.apps.tinycast;
   app = "${perSystem.self.tinycast}/Applications/Tinycast.app";
-  # Carbon modifier cmd (256).
-  cmdHotkey =
-    keyCode:
+  # Carbon modifiers: cmd (256), shift (512), option (2048).
+  hotkey =
+    carbonModifiers: carbonKeyCode:
     builtins.toJSON {
-      combo._0 = {
-        carbonModifiers = 256;
-        carbonKeyCode = keyCode;
-      };
+      combo._0 = { inherit carbonModifiers carbonKeyCode; };
     };
+  cmdHotkey = hotkey 256;
+  optHotkey = hotkey 2048;
+  optShiftHotkey = hotkey (2048 + 512);
 in
 {
   options.modules.desktop.apps.tinycast = {
@@ -55,6 +55,11 @@ in
       "hotkey.windowCommand.right-half" = cmdHotkey 124;
       "hotkey.windowCommand.restore" = cmdHotkey 125;
       "hotkey.windowCommand.maximize" = cmdHotkey 126;
+
+      # Carbon hotkeys can't take over cmd+tab from the Dock, so use option+tab (Windows' alt+tab).
+      navigationEnabled = true;
+      "hotkey.command:switch-windows" = optHotkey 48;
+      "hotkey.command:switch-windows-backwards" = optShiftHotkey 48;
     };
 
     # Free cmd+space for Tinycast: input sources on ctrl(+shift)+space, Spotlight off.
