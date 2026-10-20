@@ -29,7 +29,6 @@
   home.file.".claude-private/settings.json".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.claude/settings.json";
 
-  modules.desktop.aerospace.enable = true;
   modules.desktop.apps.tinycast.enable = true;
 
   modules.dev.lang.java.enable = true;
