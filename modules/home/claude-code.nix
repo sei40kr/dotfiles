@@ -190,6 +190,8 @@ in
         Whether or not a skill is running:
         - In a jj repository, commit the changes you made with the `sei40kr-skills:commit` skill as soon as the task is done, without asking; the user reviews your work as that commit's diff. Commit only hunks you wrote this session; leave the user's uncommitted changes in `@` untouched unless they ask.
         - In a git repository, commit only when the user explicitly asks.
+        - End every commit message with a `Co-Authored-By: <your model name> <noreply@anthropic.com>` trailer.
+        - End every pull request body with `🤖 Generated with [Claude Code](https://claude.com/claude-code)`.
         - Push only when the user explicitly asks.
         - Never run destructive commands (`push --force`, `reset --hard`, `checkout .`, `restore .`, `clean -f`, `branch -D`, `jj abandon`, `jj restore`), change git/jj config, or skip hooks (`--no-verify`, `--no-gpg-sign`) unless the user asks for that exact action. Never force-push main/master; warn if asked.
         - Never run interactive commands: no `-i` flags, and pass `-m` to every command that would otherwise open an editor.
