@@ -2,6 +2,7 @@
   config,
   inputs,
   pkgs,
+  raycastExtensions,
   ...
 }:
 {
@@ -29,7 +30,10 @@
   home.file.".claude-private/settings.json".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.claude/settings.json";
 
-  modules.desktop.apps.tinycast.enable = true;
+  modules.desktop.apps.tinycast = {
+    enable = true;
+    extensions = [ raycastExtensions.pomodoro ];
+  };
 
   modules.dev.lang.java.enable = true;
   modules.dev.lang.javascript.enable = true;
