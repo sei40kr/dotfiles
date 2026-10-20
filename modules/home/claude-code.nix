@@ -185,10 +185,10 @@ in
 
         Use `jj` when the repository has a `.jj` directory, even next to `.git`; otherwise `git`.
 
-        Follow the skills instead of improvising: `commit` for commits and amends, `open-pr` for pull requests.
+        Follow the skills instead of improvising: `sei40kr-skills:commit` for commits and amends, `open-pr` for pull requests.
 
         Whether or not a skill is running:
-        - In a jj repository, commit the changes you made with the `commit` skill as soon as the task is done, without asking; the user reviews your work as that commit's diff. Commit only hunks you wrote this session; leave the user's uncommitted changes in `@` untouched unless they ask.
+        - In a jj repository, commit the changes you made with the `sei40kr-skills:commit` skill as soon as the task is done, without asking; the user reviews your work as that commit's diff. Commit only hunks you wrote this session; leave the user's uncommitted changes in `@` untouched unless they ask.
         - In a git repository, commit only when the user explicitly asks.
         - Push only when the user explicitly asks.
         - Never run destructive commands (`push --force`, `reset --hard`, `checkout .`, `restore .`, `clean -f`, `branch -D`, `jj abandon`, `jj restore`), change git/jj config, or skip hooks (`--no-verify`, `--no-gpg-sign`) unless the user asks for that exact action. Never force-push main/master; warn if asked.
