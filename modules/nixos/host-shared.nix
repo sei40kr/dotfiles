@@ -37,6 +37,14 @@
 
     nixpkgs.config.allowUnfree = true;
 
+    # eMudhra intermediate CA key compromise (Oct 2026, CVE-2026-111943).
+    # cacert >= 3.131.1 already drops the emSign root; the build fails on a
+    # blacklisted name that is absent, so remove that entry after updating nixpkgs.
+    security.pki.caCertificateBlacklist = [
+      "emSign ECC Root CA - G3"
+      "Comodo AAA Services root"
+    ];
+
     services.earlyoom = {
       enable = true;
       extraArgs = [
