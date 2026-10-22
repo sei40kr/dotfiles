@@ -31,8 +31,7 @@ in
         python3Packages.cfn-lint
         cfn-nag
       ]
-      ++ optionals cfg.copilot.enable [ copilot-cli ];
-    # TODO: aws-sam-cli is broken
-    # ++ optionals cfg.sam.enable [ aws-sam-cli ]
+      ++ optionals cfg.copilot.enable [ copilot-cli ]
+      ++ optionals cfg.sam.enable [ aws-sam-cli ];
   };
 }
