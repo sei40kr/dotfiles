@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  perSystem,
   pkgs,
   ...
 }:
@@ -22,9 +23,10 @@ in
       maven
     ];
 
-    modules.editors.lspServers.kotlin_language_server = rec {
-      package = pkgs.kotlin-language-server;
-      command = "${package}/bin/kotlin-language-server";
+    modules.editors.lspServers.kotlin_lsp = rec {
+      package = perSystem.self.kotlin-lsp;
+      command = "${package}/bin/intellij-server";
+      args = [ "--stdio" ];
       filetypes = [ "kotlin" ];
       rootMarkers = [
         "settings.gradle"

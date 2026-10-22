@@ -1,0 +1,11 @@
+{
+  "version": "263.7084.0",
+  "aarch64-darwin": {
+    "url": "https://download.jetbrains.com/language-server/kotlin-server/263.7084.0/kotlin-server-263.7084.0-aarch64.sit",
+    "hash": "sha256-tAO/ilS9RY47pnMc+KuzNAvgi0OcA1dt/AKxP682lLg="
+  },
+  "x86_64-darwin": {
+    "url": "https://download.jetbrains.com/language-server/kotlin-server/263.7084.0/kotlin-server-263.7084.0.sit",
+    "hash": "sha256-spw5Ol5UEVPQPWJueUYmhDfjWKZnpfkUoSbbtAB2ZLE="
+  }
+}
