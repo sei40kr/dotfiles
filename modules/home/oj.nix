@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  perSystem,
   ...
 }:
 
@@ -20,7 +19,7 @@ in
     home.packages = [
       pkgs.online-judge-tools
       pkgs.online-judge-template-generator
-      perSystem.self.online-judge-verify-helper
+      pkgs.online-judge-verify-helper
     ];
   };
 }
