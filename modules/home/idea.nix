@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   ...
@@ -15,14 +16,13 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      (jetbrains.plugins.addPlugins jetbrains.idea [
-        "acejump"
-        # FIXME: NixOS/nixpkgs#400317 github-copilot fails to build
-        # "github-copilot"
-        "ideavim"
-        "python"
-        "rust"
+    home.packages = [
+      (inputs.nix-jetbrains-plugins.lib.buildIdeWithPlugins pkgs "idea" [
+        "AceJump"
+        "com.github.copilot"
+        "IdeaVIM"
+        "Pythonid"
+        "com.jetbrains.rust"
       ])
     ];
 
