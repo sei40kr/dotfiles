@@ -22,6 +22,7 @@ in
       (
         [
           ruby
+          ruby-lsp
           rubocop
         ]
         ++ optionals cfg.rails.enable [ rubyPackages.rails ]

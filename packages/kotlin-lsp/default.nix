@@ -30,6 +30,7 @@ pkgs.stdenvNoCC.mkDerivation {
     cp -R . "$out/share/kotlin-lsp"
     # The launcher locates the distribution from its own path, so exec it rather than symlink.
     makeWrapper "$out/share/kotlin-lsp/bin/intellij-server" "$out/bin/intellij-server"
+    makeWrapper "$out/share/kotlin-lsp/bin/intellij-server" "$out/bin/kotlin-lsp"
 
     runHook postInstall
   '';

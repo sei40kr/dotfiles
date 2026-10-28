@@ -10,15 +10,30 @@ let
   inherit (lib)
     flatten
     mapAttrs
+    mapAttrs'
     mapAttrsToList
     mkEnableOption
     mkIf
     mkPackageOption
+    nameValuePair
     optionalAttrs
     ;
   cfg = config.modules.ai.claude-code;
   aiCfg = config.modules.ai;
   mcpCfg = aiCfg.mcpServers;
+
+  # Official LSP plugins per modules.dev.lang.<name>.
+  lspPlugins = {
+    cc = "clangd-lsp";
+    go = "gopls-lsp";
+    java = "jdtls-lsp";
+    javascript = "typescript-lsp";
+    kotlin = "kotlin-lsp";
+    lua = "lua-lsp";
+    python = "pyright-lsp";
+    ruby = "ruby-lsp";
+    rust = "rust-analyzer-lsp";
+  };
 
   convertMcpServer =
     name:
@@ -110,7 +125,11 @@ in
           "discernment-nudge@anthropic-agent-skills" = false;
           "ponytail@ponytail" = true;
           "yomiyasu@yomiyasu" = true;
-        };
+        }
+        // mapAttrs' (
+          lang: plugin:
+          nameValuePair "${plugin}@claude-plugins-official" config.modules.dev.lang.${lang}.enable
+        ) lspPlugins;
         permissions = {
           allow =
             (map (cmd: "Bash(${cmd} *)") aiCfg.permissions.allowedCommandPrefixes)

@@ -19,6 +19,7 @@ in
     home.packages =
       with pkgs;
       [
+        clang-tools
         cpplint
       ]
       ++ (optionals pkgs.stdenv.isLinux [
