@@ -1,8 +1,8 @@
 {
   config,
   inputs,
+  perSystem,
   pkgs,
-  raycastExtensions,
   ...
 }:
 {
@@ -32,7 +32,7 @@
 
   modules.desktop.apps.tinycast = {
     enable = true;
-    extensions = [ raycastExtensions.pomodoro ];
+    extensions = [ perSystem.self.raycastExtensions.pomodoro ];
   };
 
   modules.dev.lang.java.enable = true;
