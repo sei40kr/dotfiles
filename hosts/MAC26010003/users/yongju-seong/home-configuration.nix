@@ -78,6 +78,10 @@
     file = ./secrets/work-git-user.age;
     path = "${config.xdg.configHome}/git/work-git-user";
   };
+  age.secrets.ghe-git-user = {
+    file = ./secrets/ghe-git-user.age;
+    path = "${config.xdg.configHome}/git/ghe-git-user";
+  };
   age.secrets.work-jj = {
     file = ./secrets/work-jj.age;
     path = "${config.xdg.configHome}/jj/conf.d/work.toml";
