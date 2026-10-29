@@ -17,6 +17,7 @@
     inputs.self.homeModules.emacs
     inputs.self.homeModules.fastfetch
     inputs.self.homeModules.fcitx5
+    inputs.self.homeModules.flutter
     inputs.self.homeModules.gemini-cli
     inputs.self.homeModules.git
     inputs.self.homeModules.github
