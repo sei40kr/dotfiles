@@ -6,7 +6,6 @@
     inputs.self.homeModules.agent-browser
     inputs.self.homeModules.ai-shared
     inputs.self.homeModules.ansible
-    inputs.self.homeModules.anyrun
     inputs.self.homeModules.atuin
     inputs.self.homeModules.aws
     inputs.self.homeModules.azure

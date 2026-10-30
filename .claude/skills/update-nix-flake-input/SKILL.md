@@ -36,5 +36,4 @@ Update a specific flake input to its latest version, verify the build, and commi
    Examples:
    - `llm-agents.nix` → `feat(ai): update llm-agents.nix`
    - `lazyvim` → `feat(lazyvim): update lazyvim`
-   - `anyrun` → `feat(anyrun): update anyrun`
    - `fenix` → `feat(rust): update fenix`
