@@ -43,7 +43,6 @@
     inputs.self.homeModules.nix
     inputs.self.homeModules.noctalia
     inputs.self.homeModules.nushell
-    inputs.self.homeModules.prisma
     inputs.self.homeModules.python
     inputs.self.homeModules.qml
     inputs.self.homeModules.r
