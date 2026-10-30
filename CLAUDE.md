@@ -82,6 +82,8 @@ in
 
 Secrets encrypted with age via agenix. Configuration in `secrets.nix`. Encrypted files have `.age` extension in `modules/nixos/wireguard/` and `hosts/torrent/secrets/`.
 
+Before committing anything personal or work-related, follow [docs/security-policy.md](docs/security-policy.md).
+
 ## Code Quality
 
 - **Formatter**: `nixfmt` via treefmt
