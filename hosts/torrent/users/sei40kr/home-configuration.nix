@@ -24,7 +24,6 @@
   gtk.enable = true;
   qt.enable = true;
 
-  modules.desktop.apps.gnome.pomodoro.enable = true;
   modules.desktop.apps.noctalia.enable = true;
 
 

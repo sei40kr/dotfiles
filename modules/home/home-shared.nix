@@ -20,7 +20,6 @@
     inputs.self.homeModules.gemini-cli
     inputs.self.homeModules.git
     inputs.self.homeModules.github
-    inputs.self.homeModules.gnome-pomodoro
     inputs.self.homeModules.go
     inputs.self.homeModules.haskell
     inputs.self.homeModules.helix

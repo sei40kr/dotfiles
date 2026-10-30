@@ -263,7 +263,6 @@ window-rule {
   match app-id="steam" title="Recordings & Screenshots"
   match app-id="steam" title="Steam Settings"
   match app-id="Bitwarden"
-  match app-id="gnome-pomodoro"
   match app-id="org.fcitx."
 
   open-floating true
