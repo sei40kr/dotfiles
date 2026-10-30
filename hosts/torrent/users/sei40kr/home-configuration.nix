@@ -60,7 +60,6 @@
     enable = true;
     doom.enable = true;
   };
-  modules.editors.idea.enable = true;
   modules.editors.lazyvim.enable = true;
 
   home.language.ctype = "ja_JP.UTF-8";

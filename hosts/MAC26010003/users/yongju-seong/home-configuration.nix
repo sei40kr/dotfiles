@@ -65,7 +65,6 @@
       size = 16;
     };
   };
-  modules.editors.ideavim.enable = true;
   modules.editors.lazyvim.enable = true;
 
   modules.shell.apps.fastfetch.enable = true;

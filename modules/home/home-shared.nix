@@ -23,8 +23,6 @@
     inputs.self.homeModules.go
     inputs.self.homeModules.haskell
     inputs.self.homeModules.helix
-    inputs.self.homeModules.idea
-    inputs.self.homeModules.ideavim
     inputs.self.homeModules.inkscape
     inputs.self.homeModules.java
     inputs.self.homeModules.javascript
