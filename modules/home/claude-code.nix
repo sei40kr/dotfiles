@@ -24,47 +24,70 @@ let
   aiCfg = config.modules.ai;
   mcpCfg = aiCfg.mcpServers;
 
-  separator = "  ";
+  # Each module carries its own leading separator so an empty module leaves
+  # no dangling one.
+  separator = "[ │ ](fg:#565F89)";
+  lightGray = "#A9B1D6";
+  thresholds = {
+    warn_threshold = 50.0;
+    warn_style = "fg:#E0AF68";
+    critical_threshold = 80.0;
+    critical_style = "fg:#F7768E";
+  };
+  # usage_limits paints its whole segment in one threshold style, so raw
+  # escapes recolor everything after the percentage.
+  esc = builtins.fromJSON ''"\u001b"'';
+  # nf-oct-git_branch
+  branchIcon = builtins.fromJSON ''""'';
+  usageFormat = "{pct}%${esc}[38;2;169;177;214m ({reset})";
   # Shared by cship and the starship modules it passes through.
   cshipConfig = (pkgs.formats.toml { }).generate "cship.toml" {
     cship = {
       lines = [
-        "$cship.model$cship.context_window.used_tokens$cship.effort$git_branch$custom.jj$git_status"
+        "$cship.model$cship.effort$cship.context_window.used_tokens$git_branch$custom.jj"
+        # usage_limits reserves `format`, so labels and the separator live in the line.
+        # shortcut: labels stay when no usage data arrives, move them into the module if cship gains per-part styles.
+        "[5h: ](fg:${lightGray})$cship.usage_limits.session${separator}[7d: ](fg:${lightGray})$cship.usage_limits.weekly${separator}$cship.account"
       ];
-      model.style = "fg:#7AA2F7";
+      model.style = "fg:${lightGray}";
+      effort = {
+        format = " [$value]($style)";
+        style = "fg:#C0CAF5";
+        low_style = "fg:#E0AF68";
+        medium_style = "fg:#9ECE6A";
+        xhigh_style = "fg:#BB9AF7";
+        max_style = "fg:#F7768E";
+      };
       context_window.used_tokens = {
         format = "${separator}[$value]($style)";
-        style = "fg:#C0CAF5";
-        warn_threshold = 50.0;
-        warn_style = "fg:#E0AF68";
-        critical_threshold = 80.0;
-        critical_style = "fg:#F7768E";
+        style = "fg:${lightGray}";
+      }
+      // thresholds;
+      account = {
+        # TODO: Swap ❋ for nf-cod-claude once nixpkgs ships a Nerd Fonts release with it.
+        format = "❋ {tier}";
+        style = "fg:#D97757";
       };
-      effort = {
-        format = "${separator}[$value]($style)";
-        style = "fg:#BB9AF7";
-      };
+      usage_limits = {
+        five_hour_format = usageFormat;
+        seven_day_format = usageFormat;
+        style = "fg:#9ECE6A";
+      }
+      // thresholds;
     };
     git_branch = {
-      format = "${separator}[$branch]($style)";
-      style = "fg:#9ECE6A";
+      format = "${separator}[${branchIcon} $branch]($style)";
+      style = "fg:#BB9AF7";
       # jj colocated repos keep git HEAD detached; custom.jj covers them.
       only_attached = true;
     };
     custom.jj = {
       when = "jj root --ignore-working-copy";
       command = "jj log -r 'heads(::@ & bookmarks())' --no-graph --ignore-working-copy -T 'bookmarks.map(|b| b.name()).join(\" \")'";
-      format = "${separator}[$output]($style)";
-      style = "fg:#9ECE6A";
+      format = "${separator}[${branchIcon} $output]($style)";
+      style = "fg:#BB9AF7";
       require_repo = false;
       shell = [ "sh" ];
-    };
-    git_status = {
-      format = "( [$all_status$ahead_behind]($style))";
-      style = "fg:#E0AF68";
-      ahead = "↑$count";
-      behind = "↓$count";
-      diverged = "↑$ahead_count↓$behind_count";
     };
   };
 
