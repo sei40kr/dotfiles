@@ -13,7 +13,6 @@
     inputs.self.homeModules.cc
     inputs.self.homeModules.claude-code
     inputs.self.homeModules.codex
-    inputs.self.homeModules.crush
     inputs.self.homeModules.docker
     inputs.self.homeModules.editor-shared
     inputs.self.homeModules.emacs
