@@ -64,7 +64,6 @@
     inputs.self.homeModules.web
     inputs.self.homeModules.wezterm
     inputs.self.homeModules.workmux
-    inputs.self.homeModules.yazi
     inputs.self.homeModules.zathura
     inputs.self.homeModules.zed
     inputs.self.homeModules.zsh
