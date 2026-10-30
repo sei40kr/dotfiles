@@ -216,7 +216,6 @@ window-rule {
 }
 
 window-rule {
-  match app-id="firefox"
   match app-id="google-chrome"
   match app-id="microsoft-edge"
   match app-id="Vivaldi-stable"
@@ -256,9 +255,6 @@ window-rule {
 }
 
 window-rule {
-  match app-id="firefox" title="Firefox - Choose a profile"
-  // NOTE: This rule may not work because the window title is not set initially
-  match app-id="firefox" title=r#"^Extension: (Bitwarden Password Manager) - Bitwarden — .* — Mozilla Firefox$"#
   match app-id=r#"^chrome-nngceckbapebfimnlniiiahkandclblb-"#
   match app-id=r#"^msedge-_jbkfoedolllekgbhcbcoahefnbanhhlh-"#
   match app-id="Vivaldi-stable" title=r#"^Bitwarden - "#

@@ -22,8 +22,6 @@ let
   defaultBrowserCommand =
     if cfg.edge.enable then
       "microsoft-edge"
-    else if cfg.firefox.enable then
-      "firefox"
     else if chromeEnabled then
       "google-chrome-stable"
     else
@@ -31,18 +29,13 @@ let
   defaultBrowserDesktopFile =
     if cfg.edge.enable then
       "microsoft-edge.desktop"
-    else if cfg.firefox.enable then
-      "firefox.desktop"
     else if chromeEnabled then
       "google-chrome.desktop"
     else
       null;
 in
 {
-  imports = [
-    ./firefox.nix
-    ./edge.nix
-  ];
+  imports = [ ./edge.nix ];
 
   options.modules.desktop.browsers = {
     defaultBrowser = mkOption {
