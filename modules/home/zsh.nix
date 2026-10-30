@@ -46,7 +46,6 @@ in
         select-word-style bash
 
         # TODO: Add cd-gitroot plugin (mollifier/cd-gitroot)
-        # TODO: Add zsh-wez-man plugin (sei40kr/zsh-wez-man) for WezTerm
 
         ${cfg.rcInit}
       '';

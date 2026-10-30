@@ -58,7 +58,6 @@
     inputs.self.homeModules.tokyo-night
     inputs.self.homeModules.tmux
     inputs.self.homeModules.web
-    inputs.self.homeModules.wezterm
     inputs.self.homeModules.workmux
     inputs.self.homeModules.zathura
     inputs.self.homeModules.zed

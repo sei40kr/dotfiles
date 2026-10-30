@@ -84,7 +84,6 @@
   };
   modules.term.colorschemes.active = "tokyo-night";
   modules.term.kitty.enable = true;
-  modules.term.wezterm.enable = true;
 
   home.packages = with pkgs; [ vlc ];
 

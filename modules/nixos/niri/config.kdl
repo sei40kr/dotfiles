@@ -226,7 +226,6 @@ window-rule {
 window-rule {
   match app-id="org.zealdocs.zeal"
   match app-id="kitty"
-  match app-id="org.wezfurlong.wezterm"
 
   open-on-workspace "code"
 }
