@@ -27,7 +27,6 @@
   modules.desktop.apps.gnome.pomodoro.enable = true;
   modules.desktop.apps.noctalia.enable = true;
 
-  modules.desktop.media.foliate.enable = true;
 
   modules.dev.lang.cc.enable = true;
   modules.dev.lang.go.enable = true;

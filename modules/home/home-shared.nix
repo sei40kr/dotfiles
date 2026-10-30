@@ -18,7 +18,6 @@
     inputs.self.homeModules.fastfetch
     inputs.self.homeModules.fcitx5
     inputs.self.homeModules.firefox
-    inputs.self.homeModules.foliate
     inputs.self.homeModules.gemini-cli
     inputs.self.homeModules.gimp
     inputs.self.homeModules.git
