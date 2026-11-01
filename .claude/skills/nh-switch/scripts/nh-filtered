@@ -1,0 +1,26 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash -p bash coreutils gnused gawk
+# Run nh with a plain (non-nom) log and print only step lines, warnings and
+# error blocks. The unfiltered log is kept for anything the filter drops.
+set -uo pipefail
+
+# nix-shell points TMPDIR at a directory it deletes on exit.
+log=$(mktemp -p /tmp nh-XXXXXX.log)
+
+# nh prints its own lines on stderr and nix's on stdout; merge both.
+nh "$@" --no-nom 2>&1 |
+  tee "$log" |
+  sed -u 's/\x1b\[[0-9;]*m//g' |
+  awk '
+    /^error \(ignored\)/ { blk = 0; next }
+    /^(error|Error:|Location:|ERROR |The application panicked)/ { blk = 1; print; fflush(); next }
+    blk && (/^[[:space:]]/ || /^$/) { print; fflush(); next }
+    { blk = 0 }
+    /^[>!] / { print; fflush(); next }
+    /^warning: Git tree .* is dirty/ { next }
+    /^(warning|trace):/ { print; fflush(); next }
+  '
+status=${PIPESTATUS[0]}
+
+echo "nh exit=$status full-log=$log"
+exit "$status"
