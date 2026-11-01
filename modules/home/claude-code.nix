@@ -207,8 +207,7 @@ in
         Follow the skills instead of improvising: `sei40kr-skills:commit` for commits and amends, `open-pr` for pull requests.
 
         Whether or not a skill is running:
-        - In a jj repository, commit the changes you made with the `sei40kr-skills:commit` skill as soon as the task is done, without asking; the user reviews your work as that commit's diff. Commit only hunks you wrote this session; leave the user's uncommitted changes in `@` untouched unless they ask.
-        - In a git repository, commit only when the user explicitly asks.
+        - Commit the changes you made with the `sei40kr-skills:commit` skill as soon as the task is done, without asking; the user reviews your work as that commit's diff. Commit only hunks you wrote this session; leave the user's uncommitted changes (in `@` for jj) untouched unless they ask.
         - End every commit message with a `Co-Authored-By: <your model name> <noreply@anthropic.com>` trailer.
         - End every pull request body with `🤖 Generated with [Claude Code](https://claude.com/claude-code)`.
         - Push only when the user explicitly asks.
