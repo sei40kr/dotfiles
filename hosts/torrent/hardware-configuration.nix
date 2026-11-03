@@ -64,6 +64,13 @@
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     open = true;
+    # powerManagement.enable: Install the nvidia-suspend/nvidia-resume/nvidia-hibernate
+    # systemd services that save and restore VRAM across sleep. Without these, the GPU's
+    # video memory is lost on resume, causing failed atomic modesets and an Xid 154
+    # "uvm global fatal error" that requires a reboot to recover (black/garbled display
+    # after waking from suspend).
+    # https://download.nvidia.com/XFree86/Linux-x86_64/595.71.05/README/powermanagement.html
+    powerManagement.enable = true;
     # forceFullCompositionPipeline: Enable full composition pipeline to eliminate screen tearing
     # by forcing all frames to be synchronized through the GPU's composition pipeline.
     # Particularly effective for fixing tearing during desktop use, video playback, and scrolling on X11.
