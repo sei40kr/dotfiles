@@ -9,6 +9,8 @@
 let
   inherit (lib)
     flatten
+    getExe
+    makeBinPath
     mapAttrs
     mapAttrs'
     mapAttrsToList
@@ -21,6 +23,50 @@ let
   cfg = config.modules.ai.claude-code;
   aiCfg = config.modules.ai;
   mcpCfg = aiCfg.mcpServers;
+
+  separator = "  ";
+  # Shared by cship and the starship modules it passes through.
+  cshipConfig = (pkgs.formats.toml { }).generate "cship.toml" {
+    cship = {
+      lines = [
+        "$cship.model$cship.context_window.used_tokens$cship.effort$git_branch$custom.jj$git_status"
+      ];
+      model.style = "fg:#7AA2F7";
+      context_window.used_tokens = {
+        format = "${separator}[$value]($style)";
+        style = "fg:#C0CAF5";
+        warn_threshold = 50.0;
+        warn_style = "fg:#E0AF68";
+        critical_threshold = 80.0;
+        critical_style = "fg:#F7768E";
+      };
+      effort = {
+        format = "${separator}[$value]($style)";
+        style = "fg:#BB9AF7";
+      };
+    };
+    git_branch = {
+      format = "${separator}[$branch]($style)";
+      style = "fg:#9ECE6A";
+      # jj colocated repos keep git HEAD detached; custom.jj covers them.
+      only_attached = true;
+    };
+    custom.jj = {
+      when = "jj root --ignore-working-copy";
+      command = "jj log -r 'heads(::@ & bookmarks())' --no-graph --ignore-working-copy -T 'bookmarks.map(|b| b.name()).join(\" \")'";
+      format = "${separator}[$output]($style)";
+      style = "fg:#9ECE6A";
+      require_repo = false;
+      shell = [ "sh" ];
+    };
+    git_status = {
+      format = "( [$all_status$ahead_behind]($style))";
+      style = "fg:#E0AF68";
+      ahead = "↑$count";
+      behind = "↓$count";
+      diverged = "↑$ahead_count↓$behind_count";
+    };
+  };
 
   # Official LSP plugins per modules.dev.lang.<name>.
   lspPlugins = {
@@ -60,9 +106,9 @@ in
       package = mkPackageOption perSystem.llm-agents-nix "claudebox" { };
     };
 
-    ccstatusline = {
-      enable = mkEnableOption "ccstatusline";
-      package = mkPackageOption perSystem.llm-agents-nix "ccstatusline" { };
+    cship = {
+      enable = mkEnableOption "cship";
+      package = mkPackageOption perSystem.self "cship" { };
     };
   };
 
@@ -169,10 +215,10 @@ in
         # terminal and can be operated via tmux.
         tui = "default";
       }
-      // optionalAttrs cfg.ccstatusline.enable {
+      // optionalAttrs cfg.cship.enable {
         statusLine = {
           type = "command";
-          command = "${cfg.ccstatusline.package}/bin/ccstatusline";
+          command = "STARSHIP_CONFIG=${cshipConfig} STARSHIP_SHELL=unknown PATH=${makeBinPath [ pkgs.starship ]}:$PATH ${getExe cfg.cship.package} --config ${cshipConfig}";
           padding = 0;
         };
       };
@@ -256,64 +302,6 @@ in
 
     home.packages = [
       (mkIf cfg.claudebox.enable cfg.claudebox.package)
-      (mkIf cfg.ccstatusline.enable cfg.ccstatusline.package)
     ];
-
-    xdg.configFile."ccstatusline/settings.json".text = mkIf cfg.ccstatusline.enable (
-      builtins.toJSON {
-        version = 3;
-        lines = [
-          [
-            {
-              id = "1";
-              type = "model";
-              color = "";
-            }
-            {
-              id = "2";
-              type = "separator";
-            }
-            {
-              id = "3";
-              type = "context-length";
-              color = "";
-            }
-            {
-              id = "6";
-              type = "separator";
-            }
-            {
-              id = "162c2f21-371b-48b0-a623-1ddba6c760b3";
-              type = "context-percentage-usable";
-              color = "";
-            }
-            {
-              id = "7d86f33e-a857-484e-8dcc-f7daf6f08397";
-              type = "separator";
-            }
-            {
-              id = "b10d0d0e-ce27-427e-a66c-43d1888d11e5";
-              type = "session-cost";
-              color = "";
-            }
-          ]
-          [ ]
-          [ ]
-        ];
-        flexMode = "full-minus-40";
-        compactThreshold = 60;
-        colorLevel = 2;
-        inheritSeparatorColors = false;
-        globalBold = false;
-        powerline = {
-          enabled = false;
-          separators = [ "" ];
-          separatorInvertBackground = [ false ];
-          startCaps = [ ];
-          endCaps = [ ];
-          autoAlign = false;
-        };
-      }
-    );
   };
 }

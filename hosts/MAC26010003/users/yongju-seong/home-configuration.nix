@@ -24,7 +24,7 @@
   modules.ai.claude-code = {
     enable = true;
     claudebox.enable = true;
-    ccstatusline.enable = true;
+    cship.enable = true;
   };
   home.shellAliases.claude-private = ''CLAUDE_CONFIG_DIR="$HOME/.claude-private" claude'';
   home.file.".claude-private/settings.json".source =
