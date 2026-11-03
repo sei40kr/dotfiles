@@ -39,24 +39,26 @@ in
     };
 
     includes = mkOption {
-      type = types.listOf (types.submodule {
-        options = {
-          condition = mkOption {
-            type = types.nullOr types.str;
-            default = null;
-            description = mdDoc "Include condition.";
+      type = types.listOf (
+        types.submodule {
+          options = {
+            condition = mkOption {
+              type = types.nullOr types.str;
+              default = null;
+              description = mdDoc "Include condition.";
+            };
+            path = mkOption {
+              type = types.either types.str types.path;
+              description = mdDoc "Path to the git config file to include.";
+            };
+            contents = mkOption {
+              type = types.attrs;
+              default = { };
+              description = mdDoc "Inline git config contents.";
+            };
           };
-          path = mkOption {
-            type = types.either types.str types.path;
-            description = mdDoc "Path to the git config file to include.";
-          };
-          contents = mkOption {
-            type = types.attrs;
-            default = { };
-            description = mdDoc "Inline git config contents.";
-          };
-        };
-      });
+        }
+      );
       default = [ ];
       description = mdDoc ''
         List of git config files to include.
