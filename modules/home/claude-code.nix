@@ -163,6 +163,7 @@ in
         # Commit signing talks to gpg-agent and keyboxd over Unix sockets.
         # Linux seccomp cannot allow sockets by path, so allow them all.
         sandbox.network.allowAllUnixSockets = true;
+        theme = "custom:tokyo-night";
         # Use the classic main-screen renderer so scrollback stays in the
         # terminal and can be operated via tmux.
         tui = "default";
@@ -213,6 +214,44 @@ in
         echo "$invalid" >&2
       fi
     '';
+
+    home.file.".claude/themes/tokyo-night.json".text = builtins.toJSON {
+      name = "Tokyo Night";
+      base = "dark";
+      overrides = {
+        claude = "#7AA2F7";
+        claudeShimmer = "#9fbcf9";
+        text = "#C0CAF5";
+        inactive = "#414868";
+        subtle = "#2f344a";
+        suggestion = "#7AA2F7";
+        permission = "#7AA2F7";
+        success = "#9ECE6A";
+        error = "#F7768E";
+        warning = "#E0AF68";
+        diffAdded = "#343f34";
+        diffRemoved = "#462d3b";
+        diffAddedWord = "#4f6341";
+        diffRemovedWord = "#723f50";
+        diffAddedDimmed = "#25292b";
+        diffRemovedDimmed = "#2c222e";
+        promptBorder = "#414868";
+        planMode = "#7DCFFF";
+        autoAccept = "#9ECE6A";
+        bashBorder = "#BB9AF7";
+        fastMode = "#7AA2F7";
+        userMessageBackground = "#24283b";
+        bashMessageBackgroundColor = "#272537";
+        red_FOR_SUBAGENTS_ONLY = "#F7768E";
+        blue_FOR_SUBAGENTS_ONLY = "#7AA2F7";
+        green_FOR_SUBAGENTS_ONLY = "#9ECE6A";
+        yellow_FOR_SUBAGENTS_ONLY = "#E0AF68";
+        purple_FOR_SUBAGENTS_ONLY = "#BB9AF7";
+        orange_FOR_SUBAGENTS_ONLY = "#FF9E64";
+        pink_FOR_SUBAGENTS_ONLY = "#BB9AF7";
+        cyan_FOR_SUBAGENTS_ONLY = "#7DCFFF";
+      };
+    };
 
     home.packages = [
       (mkIf cfg.claudebox.enable cfg.claudebox.package)
