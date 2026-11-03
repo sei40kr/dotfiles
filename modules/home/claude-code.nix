@@ -203,6 +203,15 @@ in
       DISABLE_TELEMETRY = "";
     };
 
+    home.activation.claudeCodeDoctor = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+      invalid=$(cd ~ && ${config.programs.claude-code.finalPackage}/bin/claude doctor </dev/null 2>&1 \
+        | ${pkgs.gawk}/bin/awk '/^Invalid settings$/ { p = 1 } p && /^$/ { exit } p') || true
+      if [[ -n $invalid ]]; then
+        warnEcho "claude doctor found invalid settings:"
+        echo "$invalid" >&2
+      fi
+    '';
+
     home.packages = [
       (mkIf cfg.claudebox.enable cfg.claudebox.package)
       (mkIf cfg.ccstatusline.enable cfg.ccstatusline.package)

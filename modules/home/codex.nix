@@ -2,6 +2,7 @@
   config,
   lib,
   perSystem,
+  pkgs,
   ...
 }:
 
@@ -54,5 +55,15 @@ in
         };
       };
     };
+
+    home.activation.codexDoctor = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+      problem=$(${config.programs.codex.package}/bin/codex doctor --json </dev/null 2>/dev/null \
+        | ${pkgs.jq}/bin/jq -r '.checks["config.load"] | select(.status != "ok")
+            | [.summary, .details.error, .details["startup warning"]] | map(select(.)) | join("\n")') || true
+      if [[ -n $problem ]]; then
+        warnEcho "codex doctor found config problems:"
+        echo "$problem" >&2
+      fi
+    '';
   };
 }
