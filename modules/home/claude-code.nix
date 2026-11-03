@@ -71,6 +71,7 @@ in
       enable = true;
       package = perSystem.llm-agents-nix.claude-code;
       settings = {
+        autoMemoryEnabled = false;
         # Drop Claude Code's built-in commit/PR workflow instructions from the
         # system prompt; `context` below replaces them with skill dispatch and
         # the standing rules.
