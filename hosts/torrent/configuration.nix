@@ -171,6 +171,7 @@ in
 
   modules.services.docker.enable = true;
   modules.services.ssh.enable = true;
+  modules.services.wireguard.enable = true;
 
   environment.systemPackages = with pkgs; [
     efibootmgr
