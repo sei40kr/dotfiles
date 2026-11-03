@@ -29,6 +29,8 @@ in
     canTouchEfiVariables = true;
     efiSysMountPoint = "/boot";
   };
+  # Show the boot menu indefinitely (no auto-boot timeout).
+  boot.loader.timeout = null;
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/var/lib/sbctl";
