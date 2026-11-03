@@ -138,8 +138,7 @@ in
               mapAttrsToList (name: server: map (tool: "mcp__${name}__${tool}") server.allowedTools) mcpCfg
             ))
             ++ [
-              # git commit needs out-of-sandbox access for GPG signing, and a
-              # commit is a reversible, safe operation.
+              # A commit is a reversible, safe operation.
               "Bash(git commit:*)"
             ];
           ask = [
@@ -161,6 +160,9 @@ in
             ];
         };
         preferredNotifChannel = "kitty";
+        # Commit signing talks to gpg-agent and keyboxd over Unix sockets.
+        # Linux seccomp cannot allow sockets by path, so allow them all.
+        sandbox.network.allowAllUnixSockets = true;
         # Use the classic main-screen renderer so scrollback stays in the
         # terminal and can be operated via tmux.
         tui = "default";
