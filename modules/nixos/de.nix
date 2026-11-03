@@ -182,5 +182,7 @@ in
     ];
 
     environment.sessionVariables.NIXOS_OZONE_WL = mkIf cfg.wayland "1";
+
+    security.soteria.enable = true;
   };
 }
