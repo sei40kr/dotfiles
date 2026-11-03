@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 
@@ -67,6 +68,9 @@ in
 
   config = mkIf cfg.enable {
     programs.niri.enable = true;
+
+    # TODO: Remove once wayland.windowManager.niri is enabled; it installs xwayland-satellite by default.
+    environment.systemPackages = [ pkgs.xwayland-satellite ];
 
     environment.etc."niri/outputs.kdl".text = outputsConfig;
 
