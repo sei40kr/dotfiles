@@ -160,28 +160,7 @@ in
               "Bash(git add -A)"
             ];
         };
-        hooks = optionalAttrs pkgs.stdenv.isLinux {
-          Notification = [
-            {
-              hooks = [
-                {
-                  type = "command";
-                  command = "${pkgs.libnotify}/bin/notify-send 'Claude Code' 'Action required or input idle.' -h string:x-dunst-stack-tag:claude_code";
-                }
-              ];
-            }
-          ];
-          Stop = [
-            {
-              hooks = [
-                {
-                  type = "command";
-                  command = "${pkgs.libnotify}/bin/notify-send 'Claude Code' 'Response complete!' -h string:x-dunst-stack-tag:claude_code";
-                }
-              ];
-            }
-          ];
-        };
+        preferredNotifChannel = "kitty";
         # Use the classic main-screen renderer so scrollback stays in the
         # terminal and can be operated via tmux.
         tui = "default";

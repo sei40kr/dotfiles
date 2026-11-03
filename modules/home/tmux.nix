@@ -82,6 +82,7 @@ in
       extraConfig = ''
         set -g detach-on-destroy no-detached
         set -g set-clipboard on
+        set -g allow-passthrough on
         set -as terminal-features ",xterm-kitty:hyperlinks:RGB:strikethrough:sync:usstyle:overline:osc7:extkeys"
         set -g monitor-bell on
         set -g pane-border-format ' #{?pane_active,#[fg=#7aa2f7#,bold],#[fg=#565f89]}#{pane_index}: (#{pane_current_command})#{?pane_title, #{pane_title},} '

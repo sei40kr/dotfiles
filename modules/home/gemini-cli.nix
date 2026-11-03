@@ -14,19 +14,10 @@ let
     mkEnableOption
     mkIf
     mapAttrs
-    optionalAttrs
-    optionalString
     ;
   aiCfg = config.modules.ai;
   cfg = aiCfg.gemini-cli;
   editorsCfg = config.modules.editors;
-
-  notificationScript = optionalString pkgs.stdenv.isLinux (
-    pkgs.writeShellScript "gemini-cli-notification" ''
-      message=$(${pkgs.jq}/bin/jq -r '.message' 2>/dev/null || echo "Action required or input idle.")
-      ${pkgs.libnotify}/bin/notify-send 'Gemini CLI' "$message" -h string:x-dunst-stack-tag:gemini_cli
-    ''
-  );
 
   tomlFormat = pkgs.formats.toml { };
 
@@ -98,6 +89,8 @@ in
           preferredEditor = editorsCfg.defaultEditor;
           enableAutoUpdate = false;
           checkpointing.enabled = true;
+          enableNotifications = true;
+          notificationMethod = "osc9";
         };
         ui = {
           showLineNumbers = true;
@@ -105,32 +98,6 @@ in
         };
         tools.autoAccept = true;
         experimental.skills = true;
-        hooks = optionalAttrs pkgs.stdenv.isLinux {
-          AfterAgent = [
-            {
-              hooks = [
-                {
-                  name = "completion-notification";
-                  type = "command";
-                  command = "${pkgs.libnotify}/bin/notify-send 'Gemini CLI' 'Response complete!' -h string:x-dunst-stack-tag:gemini_cli";
-                  description = "Send desktop notification when agent response completes";
-                }
-              ];
-            }
-          ];
-          Notification = [
-            {
-              hooks = [
-                {
-                  name = "action-required-notification";
-                  type = "command";
-                  command = "${notificationScript}";
-                  description = "Send desktop notification with message from Gemini CLI";
-                }
-              ];
-            }
-          ];
-        };
         mcpServers = mapAttrs convertMcpServer aiCfg.mcpServers;
         security.auth.selectedType = "oauth-personal";
       };

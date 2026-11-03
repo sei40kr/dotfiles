@@ -48,7 +48,10 @@ in
       package = perSystem.llm-agents-nix.codex;
       settings = {
         mcp_servers = mapAttrs convertMcpServer aiCfg.mcpServers;
-        tui.notifications = true;
+        tui = {
+          notifications = true;
+          notification_method = "osc9";
+        };
       };
     };
   };
