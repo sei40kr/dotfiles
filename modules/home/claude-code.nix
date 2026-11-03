@@ -76,11 +76,11 @@ in
         # the standing rules.
         includeGitInstructions = false;
         env = {
-          CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL = 1;
-          DISABLE_AUTOUPDATER = 1;
+          CLAUDE_CODE_IDE_SKIP_AUTO_INSTALL = "1";
+          DISABLE_AUTOUPDATER = "1";
           # DISABLE_AUTOUPDATER above also turns off the plugin auto-update
           # pass; this re-enables it for the marketplaces declared below.
-          FORCE_AUTOUPDATE_PLUGINS = 1;
+          FORCE_AUTOUPDATE_PLUGINS = "1";
         };
         # Skill repos are consumed through Claude Code's plugin mechanism
         # instead of modules.ai.skillPaths: enabled plugins that aren't cached
