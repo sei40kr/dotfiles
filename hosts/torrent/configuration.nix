@@ -127,6 +127,14 @@ in
 
   services.ollama.enable = true;
 
+  modules.desktop.wm.monitors = {
+    "DP-1" = {
+      enable = false;
+    };
+    "HDMI-A-1" = {
+      scale = 1.25;
+    };
+  };
   modules.desktop.wm.niri.enable = true;
   modules.desktop.fontconfig = {
     enable = true;
