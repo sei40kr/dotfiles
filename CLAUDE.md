@@ -4,14 +4,9 @@ This is a NixOS dotfiles repository using the **Blueprint framework** for automa
 
 ## Build and Development Commands
 
+To build and apply the configuration, use the `nh-switch` skill.
+
 ```bash
-# Build and switch system configuration
-sudo nixos-rebuild switch --flake ".#torrent"
-
-# Using nix-helper (preferred after initial setup)
-nh os switch                    # Switch NixOS configuration
-nh home switch                  # Switch home-manager configuration
-
 # Development
 nix develop                     # Enter devshell with pre-commit hooks
 nix flake update               # Update flake.lock dependencies
