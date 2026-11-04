@@ -50,7 +50,10 @@ The new nixpkgs may already ship what a local workaround provides. Check each on
 - `packages/*`: nixpkgs now packages it, at the same or a newer version.
 - `overlays/*`: the patch, fix, or version bump is in nixpkgs now.
 - `overrideAttrs`, `.override`, and the other `override*` functions, wherever they appear: same as overlays. Search the whole repository, since modules and packages call them inline: `git grep -n -e overrideAttrs -e '\.override' -e overridePythonAttrs -e overrideDerivation -- '*.nix'`. Skip overrides that only pick options (`google-fonts.override { fonts = [ ... ]; }`).
-- Substitutes for a broken package, usually marked `FIXME` or `TODO` (e.g. `julia-stable-bin` in `modules/home/jupyter/ijulia.nix`): the original builds again.
+- Marked comments. List every one with `git grep -n -E '(TODO|FIXME|HACK|XXX|shortcut):'`, then check each by its kind:
+  - `TODO:` waiting for an upstream package, option, or fix (e.g. hand-written activation awaiting a home-manager option): it has landed in the new revision. Skip TODOs for planned work that waits on nothing upstream.
+  - `FIXME:`, `HACK:`, `XXX:` around broken behavior (e.g. `julia-stable-bin` substituting for Julia in `modules/home/jupyter/ijulia.nix`): the original builds or works again.
+  - `shortcut:` with a known limit: the condition it names for upgrading is met.
 
 A workaround's comment often names the upstream issue or PR the workaround waits for; check whether it has landed in the new revision. Remove what is obsolete, build again, and commit each removal separately with the `commit` skill, e.g. `chore(overlays): remove certmgr-selfsigned overlay as upstream issue is fixed`. Keep a workaround when you cannot confirm the fix is in, and tell the user which ones you left.
 
