@@ -7,8 +7,16 @@ set -uo pipefail
 # nix-shell points TMPDIR at a directory it deletes on exit.
 log=$(mktemp -p /tmp nh-XXXXXX.log)
 
+# --as-root runs nh itself through run0, so polkit asks for the password once
+# instead of at every step nh elevates.
+nh=(nh)
+if [[ ${1-} == --as-root ]]; then
+  shift
+  nh=(run0 "$(command -v nh)")
+fi
+
 # nh prints its own lines on stderr and nix's on stdout; merge both.
-nh "$@" --no-nom 2>&1 |
+"${nh[@]}" "$@" --no-nom 2>&1 |
   tee "$log" |
   sed -u 's/\x1b\[[0-9;]*m//g' |
   awk '

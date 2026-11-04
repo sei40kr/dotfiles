@@ -42,12 +42,10 @@ Run every command from the repository root with the sandbox disabled; nix needs 
 
    ```bash
    # os: switch the exact closure built in step 1, without re-evaluating
-   .claude/skills/nh-switch/scripts/nh-filtered os switch "$TMPDIR/nh-os-result" --diff never -e run0
+   .claude/skills/nh-switch/scripts/nh-filtered --as-root os switch "$TMPDIR/nh-os-result" --diff never -R
    # home: no root needed; the build is cached, so only evaluation re-runs
    .claude/skills/nh-switch/scripts/nh-filtered home switch . --diff never
    ```
-
-   `-e run0` makes nh elevate through polkit, which shows a GUI password dialog. nh elevates up to three times per `os switch` (activate, set profile, bootloader), so the dialog may appear more than once. Tell the user before running it that a password dialog is coming.
 
 ## Out of memory
 
