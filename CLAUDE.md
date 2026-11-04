@@ -65,11 +65,41 @@ in
     enable = mkEnableOption "<description>";
     # ... additional options
   };
+  # Everything about the program comes first, then related modules.
+  # Separate groups with one blank line; keep each group contiguous.
   config = mkIf cfg.enable {
-    # ... configuration
+    # The main program's module, followed by overrides of what it generates
+    # (e.g. a file an activation writes instead)
+    programs.<name> = { ... };
+    home.file.<generated-path>.enable = false;
+
+    home.packages = [ ... ];
+
+    # Settings: environment and files
+    home.sessionVariables = { ... };
+    home.shellAliases = { ... };
+    home.file.<path>.text = "...";
+    xdg.configFile.<path>.text = "...";
+
+    # Services
+    services.<name> = { ... };
+    launchd.agents.<name> = { ... };
+
+    home.activation.<name> = lib.hm.dag.entryAfter [ "linkGeneration" ] ''...'';
+    home.activation.<other> = lib.hm.dag.entryAfter [ "<name>" ] ''...'';
+
+    # Related modules and programs
+    modules.<other>.enable = true;
+    programs.<other>.enable = true;
   };
 }
 ```
+
+A comment explaining a group goes directly above it.
+
+### Prefer Existing Module Options
+
+Before writing custom logic (activation scripts, hand-written files, wrappers), check whether the upstream NixOS, home-manager, or nix-darwin module already provides it. Search the locked input's module source first, then upstream master: if the option exists only upstream, say so and leave a `TODO:` to switch once the input is updated.
 
 ## Key Technologies
 
