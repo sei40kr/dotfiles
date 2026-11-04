@@ -13,6 +13,7 @@ in
       kitty = "tokyo_night_night";
       bat = "TwoDark";
       doom-emacs = "doom-tokyo-night";
+      helix = "tokyonight";
     };
 
     modules.term.colorschemes.colors = mkIf (config.modules.term.colorschemes.active == "tokyo-night") {

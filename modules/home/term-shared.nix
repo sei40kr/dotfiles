@@ -64,6 +64,10 @@ let
         type = str;
         description = mdDoc "doom-emacs theme symbol (e.g. \"doom-tokyo-night\")";
       };
+      helix = mkOption {
+        type = str;
+        description = mdDoc "Helix bundled theme name (e.g. \"tokyonight\")";
+      };
     };
   };
 in
