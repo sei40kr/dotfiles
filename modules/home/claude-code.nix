@@ -276,7 +276,33 @@ in
       DISABLE_TELEMETRY = "";
     };
 
-    home.activation.claudeCodeDoctor = lib.hm.dag.entryAfter [ "linkGeneration" ] ''
+    # Claude Code writes TUI setting changes back to settings.json, which fails
+    # on a read-only store symlink. Install a writable copy instead, merging
+    # the Nix settings over the existing file so TUI-only keys survive.
+    # shortcut: keys dropped from Nix stay in the file, delete them by hand.
+    # TODO: Replace this with `programs.claude-code.mutableSettings = true` on
+    # the next home-manager update (nix-community/home-manager#10031).
+    home.file."${config.programs.claude-code.configDir}/settings.json".enable = false;
+
+    home.activation.claudeCodeSettings = lib.hm.dag.entryAfter [ "linkGeneration" ] (
+      let
+        settingsFile = config.home.file."${config.programs.claude-code.configDir}/settings.json";
+        target = "${config.programs.claude-code.configDir}/settings.json";
+      in
+      ''
+        current='{}'
+        if [[ -f ${target} ]]; then
+          current=$(cat ${target})
+        fi
+        merged=$(echo "$current" | ${getExe pkgs.jq} -s '.[0] * .[1]' - ${settingsFile.source})
+        run rm -f ${target}
+        run mkdir -p ${dirOf target}
+        if [[ ! -v DRY_RUN ]]; then
+          echo "$merged" > ${target}
+        fi
+      ''
+    );
+    home.activation.claudeCodeDoctor = lib.hm.dag.entryAfter [ "claudeCodeSettings" ] ''
       invalid=$(cd ~ && ${config.programs.claude-code.finalPackage}/bin/claude doctor </dev/null 2>&1 \
         | ${pkgs.gawk}/bin/awk '/^Invalid settings$/ { p = 1 } p && /^$/ { exit } p') || true
       if [[ -n $invalid ]]; then
