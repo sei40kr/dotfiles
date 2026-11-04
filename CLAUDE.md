@@ -4,7 +4,7 @@ This is a NixOS dotfiles repository using the **Blueprint framework** for automa
 
 ## Build and Development Commands
 
-To build and apply the configuration, use the `nh-switch` skill.
+To build and apply the configuration, use the `nh-switch` skill. Once a change is done, apply it without waiting for the user to ask.
 
 ```bash
 # Development
