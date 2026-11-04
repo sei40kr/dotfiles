@@ -285,43 +285,137 @@ in
       fi
     '';
 
-    home.file.".claude/themes/tokyo-night.json".text = builtins.toJSON {
-      name = "Tokyo Night";
-      base = "dark";
-      overrides = {
-        claude = "#7AA2F7";
-        claudeShimmer = "#9fbcf9";
-        text = "#C0CAF5";
-        inactive = "#414868";
-        subtle = "#2f344a";
-        suggestion = "#7AA2F7";
-        permission = "#7AA2F7";
-        success = "#9ECE6A";
-        error = "#F7768E";
-        warning = "#E0AF68";
-        diffAdded = "#343f34";
-        diffRemoved = "#462d3b";
-        diffAddedWord = "#4f6341";
-        diffRemovedWord = "#723f50";
-        diffAddedDimmed = "#25292b";
-        diffRemovedDimmed = "#2c222e";
-        promptBorder = "#414868";
-        planMode = "#7DCFFF";
-        autoAccept = "#9ECE6A";
-        bashBorder = "#BB9AF7";
-        fastMode = "#7AA2F7";
-        userMessageBackground = "#24283b";
-        bashMessageBackgroundColor = "#272537";
-        red_FOR_SUBAGENTS_ONLY = "#F7768E";
-        blue_FOR_SUBAGENTS_ONLY = "#7AA2F7";
-        green_FOR_SUBAGENTS_ONLY = "#9ECE6A";
-        yellow_FOR_SUBAGENTS_ONLY = "#E0AF68";
-        purple_FOR_SUBAGENTS_ONLY = "#BB9AF7";
-        orange_FOR_SUBAGENTS_ONLY = "#FF9E64";
-        pink_FOR_SUBAGENTS_ONLY = "#BB9AF7";
-        cyan_FOR_SUBAGENTS_ONLY = "#7DCFFF";
+    home.file.".claude/themes/tokyo-night.json".text =
+      let
+        # tokyonight.nvim "night" palette, named as in tokyonight.nvim.
+        c = {
+          bg = "#1a1b26";
+          bg_dark = "#16161e";
+          bg_highlight = "#292e42";
+          bg_visual = "#283457";
+          fg = "#c0caf5";
+          fg_dark = "#a9b1d6";
+          fg_gutter = "#3b4261";
+          dark5 = "#737aa2";
+          blue = "#7aa2f7";
+          cyan = "#7dcfff";
+          magenta = "#bb9af7";
+          magenta2 = "#ff007c";
+          purple = "#9d7cd8";
+          orange = "#ff9e64";
+          yellow = "#e0af68";
+          green = "#9ece6a";
+          green1 = "#73daca";
+          red = "#f7768e";
+          diff_add = "#243e4a";
+          diff_delete = "#4a272f";
+          # delta extra's plus/minus-emph-style
+          delta_add = "#2c5a66";
+          delta_delete = "#713137";
+          # terminal.*_bright
+          blue_bright = "#8db0ff";
+          magenta_bright = "#c7a9ff";
+          yellow_bright = "#faba4a";
+          green_bright = "#9fe044";
+          red_bright = "#ff899d";
+        };
+
+        # Not in tokyonight.nvim: tinted 30% toward white.
+        orange_shimmer = "#ffbb92";
+        purple_shimmer = "#baa3e4";
+
+        # The built-in dark theme's brand colors.
+        claude = "#d77757";
+        claude_shimmer = "#eb9f7f";
+      in
+      builtins.toJSON {
+        name = "Tokyo Night";
+        base = "dark";
+        overrides = {
+          text = c.fg;
+          inverseText = c.bg;
+          inactive = c.fg_dark;
+          inactiveShimmer = c.fg;
+          subtle = c.dark5;
+
+          inherit claude;
+          claudeShimmer = claude_shimmer;
+          clawd_body = claude;
+          clawd_background = c.bg;
+          briefLabelClaude = claude;
+          briefLabelYou = c.blue;
+          claudeBlue_FOR_SYSTEM_SPINNER = c.blue;
+          claudeBlueShimmer_FOR_SYSTEM_SPINNER = c.blue_bright;
+
+          permission = c.blue;
+          permissionShimmer = c.blue_bright;
+          suggestion = c.blue;
+          remember = c.blue;
+          professionalBlue = c.blue;
+          ide = c.blue;
+          background = c.cyan;
+          promptBorder = c.blue;
+          promptBorderShimmer = c.blue_bright;
+
+          planMode = c.green1;
+          autoAccept = c.magenta;
+          autoAcceptShimmer = c.magenta_bright;
+          skill = c.magenta;
+          merged = c.magenta;
+          effortUltra = c.magenta;
+          bashBorder = c.magenta2;
+          fastMode = c.orange;
+          fastModeShimmer = orange_shimmer;
+
+          success = c.green;
+          error = c.red;
+          warning = c.yellow;
+          warningShimmer = c.yellow_bright;
+          chromeYellow = c.yellow;
+
+          diffAdded = c.diff_add;
+          diffRemoved = c.diff_delete;
+          diffAddedWord = c.delta_add;
+          diffRemovedWord = c.delta_delete;
+          # green2/red1 blended into bg at 12%
+          diffAddedDimmed = "#1f2c37";
+          diffRemovedDimmed = "#31212a";
+
+          userMessageBackground = c.bg_highlight;
+          userMessageBackgroundHover = c.fg_gutter;
+          composerSidebarBackground = c.bg_dark;
+          selectionBg = c.bg_visual;
+          bashMessageBackgroundColor = "#31182f"; # magenta2 10%
+          memoryBackgroundColor = "#242d3c"; # cyan 10%
+
+          rate_limit_fill = c.blue;
+          rate_limit_empty = c.fg_gutter;
+
+          red_FOR_SUBAGENTS_ONLY = c.red;
+          blue_FOR_SUBAGENTS_ONLY = c.blue;
+          green_FOR_SUBAGENTS_ONLY = c.green;
+          yellow_FOR_SUBAGENTS_ONLY = c.yellow;
+          purple_FOR_SUBAGENTS_ONLY = c.purple;
+          orange_FOR_SUBAGENTS_ONLY = c.orange;
+          pink_FOR_SUBAGENTS_ONLY = c.magenta2;
+          cyan_FOR_SUBAGENTS_ONLY = c.cyan;
+
+          rainbow_red = c.red;
+          rainbow_orange = c.orange;
+          rainbow_yellow = c.yellow;
+          rainbow_green = c.green;
+          rainbow_blue = c.blue;
+          rainbow_indigo = c.purple;
+          rainbow_violet = c.magenta;
+          rainbow_red_shimmer = c.red_bright;
+          rainbow_orange_shimmer = orange_shimmer;
+          rainbow_yellow_shimmer = c.yellow_bright;
+          rainbow_green_shimmer = c.green_bright;
+          rainbow_blue_shimmer = c.blue_bright;
+          rainbow_indigo_shimmer = purple_shimmer;
+          rainbow_violet_shimmer = c.magenta_bright;
+        };
       };
-    };
 
     home.packages = [
       (mkIf cfg.claudebox.enable cfg.claudebox.package)
