@@ -332,10 +332,12 @@ in
           green = "#9ece6a";
           green1 = "#73daca";
           red = "#f7768e";
-          diff_add = "#243e4a";
+          # diff.delete and delta extra's minus-emph-style. Their add sides
+          # blend teal green2, which reads as blue, so green is blended at the
+          # same 25% and 45% instead.
+          diff_add = "#3b4837";
           diff_delete = "#4a272f";
-          # delta extra's plus/minus-emph-style
-          delta_add = "#2c5a66";
+          delta_add = "#556c45";
           delta_delete = "#713137";
           # terminal.*_bright
           blue_bright = "#8db0ff";
@@ -402,8 +404,8 @@ in
           diffRemoved = c.diff_delete;
           diffAddedWord = c.delta_add;
           diffRemovedWord = c.delta_delete;
-          # green2/red1 blended into bg at 12%
-          diffAddedDimmed = "#1f2c37";
+          # green/red1 blended into bg at 12%
+          diffAddedDimmed = "#2a302e";
           diffRemovedDimmed = "#31212a";
 
           userMessageBackground = c.bg_highlight;
