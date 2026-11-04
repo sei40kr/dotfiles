@@ -31,7 +31,7 @@ Run every command from the repository root with the sandbox disabled; nix needs 
 
    ```bash
    # os
-   .claude/skills/nh-switch/scripts/nh-filtered os build . --diff never -o "$TMPDIR/nh-os-result"
+   .claude/skills/nh-switch/scripts/nh-filtered os build . --diff never -o "${TMPDIR:-/tmp}/nh-os-result"
    # home
    .claude/skills/nh-switch/scripts/nh-filtered home build . --diff never
    ```
@@ -42,7 +42,7 @@ Run every command from the repository root with the sandbox disabled; nix needs 
 
    ```bash
    # os: switch the exact closure built in step 1, without re-evaluating
-   .claude/skills/nh-switch/scripts/nh-filtered --as-root os switch "$TMPDIR/nh-os-result" --diff never -R
+   .claude/skills/nh-switch/scripts/nh-filtered --as-root os switch "${TMPDIR:-/tmp}/nh-os-result" --diff never -R
    # home: no root needed; the build is cached, so only evaluation re-runs
    .claude/skills/nh-switch/scripts/nh-filtered home switch . --diff never
    ```
