@@ -39,6 +39,10 @@ in
         { id = "fmkadmapgofadopljbjfkapdkoienihi"; }
         # Urql Devtools
         { id = "jdbinjkmfkbalmhjlbjkfmkmlhpmgcmj"; }
+      ]
+      ++ optionals config.modules.ai.claude-code.enable [
+        # Claude in Chrome
+        { id = "fcoeoabgfenejglbffodgkkbkcdhcgfn"; }
       ];
     };
   };
