@@ -24,6 +24,7 @@
     inputs.self.homeModules.go
     inputs.self.homeModules.haskell
     inputs.self.homeModules.helix
+    inputs.self.homeModules.herdr
     inputs.self.homeModules.inkscape
     inputs.self.homeModules.java
     inputs.self.homeModules.javascript
@@ -31,7 +32,6 @@
     inputs.self.homeModules.julia
     inputs.self.homeModules.jupyter
     inputs.self.homeModules.k8s
-    inputs.self.homeModules.kitty
     inputs.self.homeModules.kotlin
     inputs.self.homeModules.latex
     inputs.self.homeModules.lazyvim
@@ -47,7 +47,6 @@
     inputs.self.homeModules.rugit
     inputs.self.homeModules.ruby
     inputs.self.homeModules.rust
-    inputs.self.homeModules.sensible-terminal
     inputs.self.homeModules.shell
     inputs.self.homeModules.shell-shared
     inputs.self.homeModules.solidity
@@ -57,9 +56,7 @@
     inputs.self.homeModules.terraform
     inputs.self.homeModules.tinycast
     inputs.self.homeModules.tokyo-night
-    inputs.self.homeModules.tmux
     inputs.self.homeModules.web
-    inputs.self.homeModules.workmux
     inputs.self.homeModules.zathura
     inputs.self.homeModules.zed
     inputs.self.homeModules.zsh

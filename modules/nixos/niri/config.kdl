@@ -203,19 +203,6 @@ window-rule {
 }
 
 window-rule {
-  match app-id="kitty"
-
-  // Frosted-glass background even while focused. The blur only shows through
-  // kitty's translucent background (modules.term.bgOpacity < 1).
-  // Without this, the opaque active focus-ring color is drawn behind the
-  // window and covers the blur (see niri FAQ on tinted transparent windows).
-  draw-border-with-background false
-  background-effect {
-    blur true
-  }
-}
-
-window-rule {
   match app-id="google-chrome"
   match app-id="microsoft-edge"
   match app-id="Vivaldi-stable"
@@ -225,7 +212,7 @@ window-rule {
 
 window-rule {
   match app-id="org.zealdocs.zeal"
-  match app-id="kitty"
+  match app-id="herdr-app"
 
   open-on-workspace "code"
 }

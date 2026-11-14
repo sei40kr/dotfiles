@@ -89,11 +89,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    tmux-project = {
-      url = "github:sei40kr/tmux-project";
-      flake = false;
-    };
-
     rugit = {
       url = "github:sei40kr/rugit";
       inputs.nixpkgs.follows = "nixpkgs";

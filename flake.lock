@@ -718,7 +718,6 @@
         "ponytail": "ponytail",
         "rugit": "rugit",
         "skills": "skills",
-        "tmux-project": "tmux-project",
         "treefmt-nix": "treefmt-nix_2",
         "yomiyasu": "yomiyasu",
         "zsh-fzf-projects": "zsh-fzf-projects",
@@ -874,22 +873,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "tmux-project": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1773551507,
-        "narHash": "sha256-FKiNcckfsamGUdRZdxW7zzqgud5U+Fjn9Meg4pcFHUY=",
-        "owner": "sei40kr",
-        "repo": "tmux-project",
-        "rev": "5a1611f78ed0bc50177f5a4a2d3115ec6eae05e6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "sei40kr",
-        "repo": "tmux-project",
         "type": "github"
       }
     },

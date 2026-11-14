@@ -42,6 +42,10 @@ in
       defaultKeymap = "emacs";
       initContent = ''
         bindkey '^u' backward-kill-line
+        # ctrl/alt+left/right as terminals send them, rather than ESC b/f,
+        # which programs in kitty keyboard mode read as Escape, then a letter.
+        bindkey '^[[1;5D' backward-word '^[[1;5C' forward-word
+        bindkey '^[[1;3D' backward-word '^[[1;3C' forward-word
         autoload -Uz select-word-style
         select-word-style bash
 

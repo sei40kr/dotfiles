@@ -49,7 +49,6 @@
   modules.dev.tools.aws.enable = true;
   modules.dev.tools.rugit.enable = true;
   modules.dev.tools.jupyter.enable = true;
-  modules.dev.tools.workmux.enable = true;
 
   modules.editors.fonts.code = {
     package = pkgs.nerd-fonts.iosevka;
@@ -84,7 +83,7 @@
     size = 18;
   };
   modules.term.colorschemes.active = "tokyo-night";
-  modules.term.kitty.enable = true;
+  modules.term.herdr.enable = true;
 
   home.packages = with pkgs; [ vlc ];
 

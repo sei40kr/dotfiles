@@ -52,7 +52,6 @@
   modules.dev.tools.rugit.enable = true;
   modules.dev.tools.k8s.enable = true;
   modules.dev.tools.terraform.enable = true;
-  modules.dev.tools.workmux.enable = true;
 
   modules.editors.fonts = {
     code = {
@@ -110,8 +109,7 @@
     size = 18;
   };
   modules.term.colorschemes.active = "tokyo-night";
-  modules.term.kitty.enable = true;
-  modules.term.tmux.enable = true;
+  modules.term.herdr.enable = true;
 
   # Add Rancher Desktop executables to PATH
   home.sessionPath = [ "${config.home.homeDirectory}/.rd/bin" ];

@@ -10,7 +10,6 @@ in
 {
   config = {
     modules.term.colorschemes.themes.tokyo-night = {
-      kitty = "tokyo_night_night";
       bat = "TwoDark";
       doom-emacs = "doom-tokyo-night";
       helix = "tokyonight";

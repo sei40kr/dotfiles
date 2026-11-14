@@ -229,13 +229,12 @@ in
               "Bash(git add -A)"
             ];
         };
-        preferredNotifChannel = "kitty";
         # Commit signing talks to gpg-agent and keyboxd over Unix sockets.
         # Linux seccomp cannot allow sockets by path, so allow them all.
         sandbox.network.allowAllUnixSockets = true;
         theme = "custom:tokyo-night";
         # Use the classic main-screen renderer so scrollback stays in the
-        # terminal and can be operated via tmux.
+        # terminal.
         tui = "default";
       }
       // optionalAttrs cfg.cship.enable {
