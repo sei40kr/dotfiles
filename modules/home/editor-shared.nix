@@ -97,12 +97,12 @@ in
       type = nullOr str;
       readOnly = true;
       default =
-        if cfg.lazyvim.enable then
+        if cfg.helix.enable then
+          "hx"
+        else if cfg.lazyvim.enable then
           "lazyvim"
         else if cfg.emacs.enable then
           "emacs"
-        else if cfg.helix.enable then
-          "hx"
         else
           null;
       description = "The default editor to use, automatically determined by enabled editor modules";
