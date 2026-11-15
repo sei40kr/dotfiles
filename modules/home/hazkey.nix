@@ -2,17 +2,22 @@
   lib,
   config,
   pkgs,
+  inputs,
+  osConfig ? null,
   ...
 }:
 
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) attrByPath mkEnableOption mkIf;
 
-  cfg = config.modules.i18n.fcitx5;
+  cfg = config.modules.i18n.hazkey;
+  hazkeyPkgs = inputs.nix-hazkey.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
-  options.modules.i18n.fcitx5 = {
-    enable = mkEnableOption "Fcitx5";
+  imports = [ inputs.nix-hazkey.homeModules.hazkey ];
+
+  options.modules.i18n.hazkey = {
+    enable = mkEnableOption "Hazkey (azooKey for Fcitx5)";
   };
 
   config = mkIf cfg.enable {
@@ -20,7 +25,6 @@ in
       enable = true;
       type = "fcitx5";
       fcitx5 = {
-        addons = with pkgs; [ fcitx5-mozc ];
         settings = {
           globalOptions = {
             Hotkey = {
@@ -62,14 +66,14 @@ in
             "Groups/0" = {
               Name = "Default";
               "Default Layout" = "us";
-              DefaultIM = "mozc";
+              DefaultIM = "hazkey";
             };
             "Groups/0/Items/0" = {
               Name = "keyboard-us";
               Layout = "";
             };
             "Groups/0/Items/1" = {
-              Name = "mozc";
+              Name = "hazkey";
               Layout = "";
             };
             "GroupOrder" = {
@@ -78,6 +82,13 @@ in
           };
         };
       };
+    };
+
+    services.hazkey = {
+      enable = true;
+      server.package = mkIf (attrByPath [ "hardware" "graphics" "enable" ] false osConfig) (
+        hazkeyPkgs.hazkey-server.override { enableVulkan = true; }
+      );
     };
   };
 }

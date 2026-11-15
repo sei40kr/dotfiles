@@ -34,6 +34,14 @@
 
     llm-agents-nix.url = "github:numtide/llm-agents.nix";
 
+    nix-hazkey = {
+      url = "github:aster-void/nix-hazkey";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
+
     noctalia = {
       url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";

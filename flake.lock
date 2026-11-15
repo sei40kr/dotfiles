@@ -504,6 +504,29 @@
         "type": "github"
       }
     },
+    "nix-hazkey": {
+      "inputs": {
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790329191,
+        "narHash": "sha256-HYfn+tCtyY4Xl2l0InOGoaYgZMLbFw3LB11ZETjMxp0=",
+        "owner": "aster-void",
+        "repo": "nix-hazkey",
+        "rev": "9524686e361eb1ce9c054f0218e7a4b82091b847",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aster-void",
+        "repo": "nix-hazkey",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1793977579,
@@ -711,6 +734,7 @@
         "lazyvim": "lazyvim",
         "llm-agents-nix": "llm-agents-nix",
         "nix-darwin": "nix-darwin",
+        "nix-hazkey": "nix-hazkey",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "noctalia": "noctalia",

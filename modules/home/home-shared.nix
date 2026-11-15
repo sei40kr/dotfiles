@@ -16,13 +16,13 @@
     inputs.self.homeModules.editor-shared
     inputs.self.homeModules.emacs
     inputs.self.homeModules.fastfetch
-    inputs.self.homeModules.fcitx5
     inputs.self.homeModules.flutter
     inputs.self.homeModules.gemini-cli
     inputs.self.homeModules.git
     inputs.self.homeModules.github
     inputs.self.homeModules.go
     inputs.self.homeModules.haskell
+    inputs.self.homeModules.hazkey
     inputs.self.homeModules.helix
     inputs.self.homeModules.herdr
     inputs.self.homeModules.inkscape
