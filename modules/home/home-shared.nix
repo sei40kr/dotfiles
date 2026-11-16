@@ -7,6 +7,7 @@
     inputs.self.homeModules.ai-shared
     inputs.self.homeModules.atuin
     inputs.self.homeModules.aws
+    inputs.self.homeModules.azookey
     inputs.self.homeModules.azure
     inputs.self.homeModules.browser-shared
     inputs.self.homeModules.cc
