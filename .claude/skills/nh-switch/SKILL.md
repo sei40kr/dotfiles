@@ -1,6 +1,6 @@
 ---
 name: nh-switch
-description: "Build and apply this flake's NixOS or home-manager configuration with nh (`nh os` / `nh home`), asking for the root password through a GUI polkit dialog. Use when asked to switch, apply, rebuild, or activate the configuration."
+description: "Build this flake's NixOS or home-manager configuration with nh (`nh os` / `nh home`), then switch home directly or hand the user the root-requiring `os` switch command. Use when asked to switch, apply, rebuild, or activate the configuration."
 allowed-tools:
   - Bash(hostname)
   - Bash(whoami)
@@ -31,21 +31,26 @@ Run every command from the repository root with the sandbox disabled; nix needs 
 
    ```bash
    # os
-   .claude/skills/nh-switch/scripts/nh-filtered os build . --diff never -o "${TMPDIR:-/tmp}/nh-os-result"
+   .claude/skills/nh-switch/scripts/nh-filtered os build . --diff never -o result
    # home
    .claude/skills/nh-switch/scripts/nh-filtered home build . --diff never
    ```
 
    On failure, fix the cause and rebuild. Do not switch.
 
-2. Switch once the build passes:
+2. Switch once the build passes.
 
-   ```bash
-   # os: switch the exact closure built in step 1, without re-evaluating
-   .claude/skills/nh-switch/scripts/nh-filtered --as-root os switch "${TMPDIR:-/tmp}/nh-os-result" --diff never -R
-   # home: no root needed; the build is cached, so only evaluation re-runs
-   .claude/skills/nh-switch/scripts/nh-filtered home switch . --diff never
-   ```
+   - `os` needs root and an interactive password prompt, so neither you nor a `!` command can run it. Hand the user this command to run in their own terminal; it switches the exact closure built in step 1 without re-evaluating. In a worktree, replace `/etc/dotfiles` with the worktree root:
+
+     ```bash
+     nh os switch /etc/dotfiles/result --diff never
+     ```
+
+   - `home` needs no root; run it yourself. The build is cached, so only evaluation re-runs:
+
+     ```bash
+     .claude/skills/nh-switch/scripts/nh-filtered home switch . --diff never
+     ```
 
 ## Out of memory
 
