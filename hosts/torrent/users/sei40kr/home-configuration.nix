@@ -24,6 +24,7 @@
   gtk.enable = true;
   qt.enable = true;
 
+  modules.desktop.apps.luciole.enable = true;
   modules.desktop.apps.noctalia.enable = true;
 
 
