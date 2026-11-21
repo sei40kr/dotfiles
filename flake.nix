@@ -47,6 +47,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Keeps its own nixpkgs: it needs wayland-protocols >= 1.49, newer than the
+    # stable release ships, and its locked unstable channel is binary-cached.
+    luciole.url = "github:noctalia-dev/luciole";
+
     noctalia-greeter = {
       url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";

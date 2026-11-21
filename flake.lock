@@ -483,6 +483,24 @@
         "type": "github"
       }
     },
+    "luciole": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1795288106,
+        "narHash": "sha256-Qj3yMgSArdoazrugHpwal4h1VhESAJ30Digord9/OLs=",
+        "owner": "noctalia-dev",
+        "repo": "luciole",
+        "rev": "eee6c19e5d0dbd6def9835843c5eb2b290d1d6f7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "luciole",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -572,6 +590,19 @@
       }
     },
     "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1795234589,
+        "narHash": "sha256-pAEASBc6wof0S58XcSEdZoQ2iFQDkCnZwH+wFLrkd1Q=",
+        "rev": "2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
+        "type": "tarball",
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1125864.2786a2a72088/nixexprs.tar.zst?lastModified=1795234589&rev=2786a2a72088ecf32aea5b3ec52099e6a7cff78f"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
+      }
+    },
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1792634388,
         "narHash": "sha256-KxTVAJJ8eQD2BY7vIBsRi/2H+SCdg4VZTRTXfOGTaiw=",
@@ -733,9 +764,10 @@
         "lanzaboote": "lanzaboote",
         "lazyvim": "lazyvim",
         "llm-agents-nix": "llm-agents-nix",
+        "luciole": "luciole",
         "nix-darwin": "nix-darwin",
         "nix-hazkey": "nix-hazkey",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "noctalia": "noctalia",
         "noctalia-greeter": "noctalia-greeter",

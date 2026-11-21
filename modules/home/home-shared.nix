@@ -37,6 +37,7 @@
     inputs.self.homeModules.lazyvim
     inputs.self.homeModules.lean
     inputs.self.homeModules.lua
+    inputs.self.homeModules.luciole
     inputs.self.homeModules.nix
     inputs.self.homeModules.noctalia
     inputs.self.homeModules.nushell
