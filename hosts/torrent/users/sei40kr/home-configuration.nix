@@ -35,6 +35,7 @@
   modules.dev.lang.r.enable = true;
   modules.dev.lang.nix.enable = true;
   modules.dev.lang.python.enable = true;
+  modules.dev.lang.quint.enable = true;
   modules.dev.lang.rust.enable = true;
   modules.dev.lang.shell.enable = true;
   modules.dev.lang.sql.enable = true;
