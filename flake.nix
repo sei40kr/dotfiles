@@ -81,6 +81,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Helix fork with the Steel plugin system (helix-editor/helix#8675)
+    helix = {
+      url = "github:mattwparas/helix/steel-event-system";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     lazyvim = {
       url = "github:sei40kr/nix-lazyvim";
       inputs.nixpkgs.follows = "nixpkgs";

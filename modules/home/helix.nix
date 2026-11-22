@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  pkgs,
+  perSystem,
   ...
 }:
 
@@ -265,7 +265,8 @@ in
   config = mkIf cfg.enable {
     programs.helix = {
       enable = true;
-      package = pkgs.evil-helix;
+      # The fork's flake leaves the plugin system off
+      package = perSystem.helix.default.overrideAttrs { cargoBuildFeatures = [ "steel" ]; };
       settings = {
         theme = termColorschemesCfg.themes.${termColorschemesCfg.active}.helix;
         editor = {
