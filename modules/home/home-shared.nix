@@ -42,6 +42,7 @@
     inputs.self.homeModules.noctalia
     inputs.self.homeModules.nushell
     inputs.self.homeModules.python
+    inputs.self.homeModules.quint
     inputs.self.homeModules.r
     inputs.self.homeModules.raycast
     inputs.self.homeModules.ripgrep

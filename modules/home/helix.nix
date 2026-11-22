@@ -44,6 +44,7 @@ let
     lua = "lua";
     nix = "nix";
     python = "python";
+    quint = "quint";
     r = "r";
     rmd = "rmarkdown";
     rust = "rust";
