@@ -310,6 +310,7 @@ in
     xdg.configFile."helix/init.scm".text = ''
       (require (only-in "helix/keymaps.scm" keymap))
       (require (only-in "preview-hx/preview.scm" preview))
+      (require "auto-reload.scm")
 
       ;; Plugin commands are bound here rather than in config.toml, where the
       ;; key help labels them "Undocumented plugin command"; a Steel keymap
@@ -318,6 +319,7 @@ in
       ;; preview.hx, for the lang.markdown extra's Markdown Preview
       (keymap (global) (normal (space (c (p ":preview")))))
     '';
+    xdg.configFile."helix/auto-reload.scm".source = ./auto-reload.scm;
     xdg.dataFile."steel/cogs/preview-hx".source = inputs.preview-hx;
   };
 }
