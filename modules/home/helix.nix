@@ -279,6 +279,7 @@ in
             insert = "bar";
             select = "block";
           };
+          kitty-keyboard-protocol = "disabled";
           lsp.display-inlay-hints = true;
           # LazyVim: diagnostics as virtual text at the end of every line
           end-of-line-diagnostics = "hint";
