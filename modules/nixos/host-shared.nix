@@ -51,6 +51,7 @@
 
     services.earlyoom = {
       enable = true;
+      enableNotifications = true;
       extraArgs = [
         "--prefer"
         "^(rustc|nix|cargo)$"
