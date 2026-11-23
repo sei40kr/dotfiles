@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   perSystem,
   ...
@@ -300,5 +301,22 @@ in
         }) languageServers;
       };
     };
+
+    xdg.configFile."helix/helix.scm".text = ''
+      (require "preview-hx/preview.scm")
+      (provide preview preview-stop)
+    '';
+    xdg.configFile."helix/init.scm".text = ''
+      (require (only-in "helix/keymaps.scm" keymap))
+      (require (only-in "preview-hx/preview.scm" preview))
+
+      ;; Plugin commands are bound here rather than in config.toml, where the
+      ;; key help labels them "Undocumented plugin command"; a Steel keymap
+      ;; shows the first line of their @doc instead.
+
+      ;; preview.hx, for the lang.markdown extra's Markdown Preview
+      (keymap (global) (normal (space (c (p ":preview")))))
+    '';
+    xdg.dataFile."steel/cogs/preview-hx".source = inputs.preview-hx;
   };
 }

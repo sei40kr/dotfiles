@@ -776,6 +776,22 @@
         "type": "github"
       }
     },
+    "preview-hx": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1795450201,
+        "narHash": "sha256-5VHUt1U3/A5CyFjHZlqlcR8DfRg6jAbf95kYh5RLM48=",
+        "owner": "sei40kr",
+        "repo": "preview.hx",
+        "rev": "61c20397f54508cc2682d32f6830718f265d508c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sei40kr",
+        "repo": "preview.hx",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -795,6 +811,7 @@
         "noctalia": "noctalia",
         "noctalia-greeter": "noctalia-greeter",
         "ponytail": "ponytail",
+        "preview-hx": "preview-hx",
         "rugit": "rugit",
         "skills": "skills",
         "treefmt-nix": "treefmt-nix_2",

@@ -87,6 +87,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    preview-hx = {
+      url = "github:sei40kr/preview.hx";
+      flake = false;
+    };
+
     lazyvim = {
       url = "github:sei40kr/nix-lazyvim";
       inputs.nixpkgs.follows = "nixpkgs";
