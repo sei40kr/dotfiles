@@ -21,6 +21,7 @@ in
     dates = ''
       *-*-* 03:00:00
     '';
+    options = "--delete-older-than 14d";
   };
 
   # Use systemd-boot with Secure Boot via Lanzaboote
