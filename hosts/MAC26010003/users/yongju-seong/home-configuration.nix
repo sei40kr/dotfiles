@@ -67,6 +67,8 @@
   modules.editors.helix.enable = true;
   modules.editors.lazyvim.enable = true;
 
+  modules.i18n.azookey.enable = true;
+
   modules.shell.apps.fastfetch.enable = true;
 
   age.secrets.work-git = {
