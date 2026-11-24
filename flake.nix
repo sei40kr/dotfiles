@@ -116,6 +116,11 @@
       url = "github:sei40kr/rugit";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    rex = {
+      url = "https://pkgs.superlogical.com/rex/nix/preview.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -127,7 +132,10 @@
       nixpkgs-unstable,
       ...
     }@inputs:
-    (blueprint { inherit inputs; })
+    (blueprint {
+      inherit inputs;
+      nixpkgs.config.allowUnfreePredicate = pkg: nixpkgs-unstable.lib.getName pkg == "rex-app";
+    })
     // {
       overlays = import ./overlays;
     };

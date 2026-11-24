@@ -46,6 +46,7 @@
     inputs.self.homeModules.quint
     inputs.self.homeModules.r
     inputs.self.homeModules.raycast
+    inputs.self.homeModules.rex
     inputs.self.homeModules.ripgrep
     inputs.self.homeModules.rugit
     inputs.self.homeModules.ruby
