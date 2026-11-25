@@ -113,6 +113,7 @@
   };
   modules.term.colorschemes.active = "tokyo-night";
   modules.term.herdr.enable = true;
+  modules.term.rex.enable = true;
 
   # Add Rancher Desktop executables to PATH
   home.sessionPath = [ "${config.home.homeDirectory}/.rd/bin" ];
