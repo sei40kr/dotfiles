@@ -2,13 +2,23 @@ local function bind(key, action, args)
   rex.bind("ctrl+t>" .. key, action, args)
 end
 
+-- pane.close keeps a tab's last pane open; tmux closes the window instead.
+-- block.close does, as when the pane's program exits.
+rex.action({
+  name = "close_block",
+  title = "Close Pane",
+  run = function(ctx)
+    rex.call("block.close", { session_id = ctx.session_id, block_id = ctx.block_id })
+  end,
+})
+
 -- tmux defaults
 bind("c", "client.tab.new")
 bind("n", "client.tab.next")
 bind("p", "client.tab.previous")
 bind(",", "client.tab.rename")
 bind("shift+7", "client.tab.close") -- &
-bind("x", "pane.close")
+bind("x", "close_block")
 bind("z", "pane.zoom")
 bind("[", "pane.copy_mode.enter")
 bind("]", "pane.paste")
