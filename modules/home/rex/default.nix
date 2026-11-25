@@ -67,6 +67,7 @@ in
       "Workspace.tabBarEdge" = "bottom";
       "Workspace.showsActivePaneBorder" = true;
       "Workspace.activePaneBorderColor" = "green";
+      "Workspace.terminalOptionKeyBehavior" = "actsAsAlt";
     };
 
     # Rex.app reads this key as data, which targets.darwin.defaults can't write.
