@@ -245,6 +245,9 @@ in
         };
       };
       mcpServers = mapAttrs convertMcpServer mcpCfg;
+      # The skills every agent gets. A string, as the option reads a bare
+      # derivation as an attribute set.
+      skills = "${aiCfg._combinedSkillsPath}";
 
       # Standing version-control rules, written to ~/.claude/CLAUDE.md. The
       # commit and PR workflows live in the sei40kr/skills plugin; this block
