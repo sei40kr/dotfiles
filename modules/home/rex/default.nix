@@ -65,6 +65,8 @@ in
       "Workspace.animationStyle" = "off";
       "Workspace.paneDensity" = "compact";
       "Workspace.tabBarEdge" = "bottom";
+      "Workspace.showsActivePaneBorder" = true;
+      "Workspace.activePaneBorderColor" = "green";
     };
 
     # Rex.app reads this key as data, which targets.darwin.defaults can't write.
