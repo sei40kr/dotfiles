@@ -36,6 +36,38 @@ in
         $env.config = {
           show_banner: false
         }
+        # Extended key codes tell ctrl+m, ctrl+i and ctrl+[ apart from Enter, Tab and Esc,
+        # which share their legacy bytes, so they no longer act as those keys on their own.
+        $env.config.keybindings ++= [
+          {
+            name: ctrl_m_enter
+            modifier: control
+            keycode: char_m
+            mode: [emacs vi_insert vi_normal]
+            event: { send: enter }
+          }
+          {
+            name: ctrl_i_tab
+            modifier: control
+            keycode: char_i
+            mode: [emacs vi_insert vi_normal]
+            # Nushell's default Tab binding
+            event: {
+              until: [
+                { send: menu name: completion_menu }
+                { send: menunext }
+                { edit: complete }
+              ]
+            }
+          }
+          {
+            name: ctrl_lbracket_esc
+            modifier: control
+            keycode: "char_["
+            mode: [emacs vi_insert vi_normal]
+            event: { send: esc }
+          }
+        ]
 
         source ${pkgs.nu_scripts}/share/nu_scripts/modules/data_extraction/ultimate_extractor.nu
         alias x = extract
