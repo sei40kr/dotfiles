@@ -64,6 +64,7 @@ in
       "Workspace.darkThemeID" = theme.id;
       "Workspace.animationStyle" = "off";
       "Workspace.paneDensity" = "compact";
+      "Workspace.tabBarEdge" = "bottom";
     };
 
     # Rex.app reads this key as data, which targets.darwin.defaults can't write.
