@@ -57,3 +57,69 @@ bind("shift+.", "client.tab.move.forward") -- >
 
 -- workmux's agent dashboard: agents by status, to jump to one.
 bind("ctrl+s", "client.sidebar.activity.toggle")
+
+-- Repository picker: open a ghq repository or the dotfiles as a session,
+-- or go to the session already open on it.
+local home = os.getenv("HOME")
+-- `ghq root` is slow too; ghq itself defaults to ~/ghq.
+local ghq_root = os.getenv("GHQ_ROOT") or home .. "/ghq"
+local dotfiles
+for _, dir in ipairs({ "/etc/dotfiles", home .. "/dotfiles" }) do
+  local f = io.open(dir)
+  if f then
+    f:close()
+    dotfiles = dir
+    break
+  end
+end
+
+rex.action({
+  name = "repository_picker",
+  title = "Open Repository…",
+  run = function()
+    local items, labels = {}, {}
+    local function add(dir, label)
+      labels[dir] = label
+      local short = dir:sub(1, #home + 1) == home .. "/" and "~" .. dir:sub(#home + 1) or dir
+      table.insert(items, { id = dir, title = label, subtitle = short, icon = "folder" })
+    end
+
+    if dotfiles then
+      add(dotfiles, "dotfiles")
+    end
+    -- `ghq list` walks into every repository; ghq puts them at host/owner/repo,
+    -- next to workmux's repo__worktrees.
+    local r = rex.exec({
+      "@bfs@", "-s", ghq_root, "-mindepth", "3", "-maxdepth", "3", "-type", "d", "-not", "-name", "*__worktrees",
+    })
+    for dir in (r and r.stdout or ""):gmatch("[^\n]+") do
+      -- owner/repo, so same-named repositories of different owners stay apart.
+      add(dir, dir:match("[^/]+/[^/]+$"))
+    end
+
+    local dir = rex.ui.pick({ title = "Open repository", placeholder = "Filter repositories", items = items })
+    local label = labels[dir]
+    if dir == nil then
+      return
+    end
+
+    local list = rex.call("session.list")
+    for _, s in ipairs(list and list.sessions or {}) do
+      if s.label == label then
+        rex.client.queue("session.select", { session_id = s.session_id })
+        return
+      end
+    end
+    local created, err = rex.call("session.create", {
+      label = label,
+      initial_windows = {
+        { layout = rex.layout.block({ flavor = "com.superlogical.terminal.shell", options = { cwd = dir } }) },
+      },
+    })
+    if created == nil then
+      error(err, 0)
+    end
+    rex.client.queue("session.select", { session_id = created.session_id })
+  end,
+})
+bind("g", "repository_picker")

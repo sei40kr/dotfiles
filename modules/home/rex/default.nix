@@ -10,6 +10,7 @@
 let
   inherit (builtins) toJSON;
   inherit (lib)
+    getExe
     mkEnableOption
     mkIf
     mkOption
@@ -43,7 +44,9 @@ in
     programs.rex = {
       enable = true;
       package = perSystem.self.rex;
-      config = ./init.lua;
+      config = pkgs.replaceVars ./init.lua {
+        bfs = getExe pkgs.bfs;
+      };
       # The guard lives in ~/.ssh/config, which only home-manager's ssh module
       # writes; without it Rex falls back to a TERM that remotes know.
       sshGuard = config.programs.ssh.enable;
