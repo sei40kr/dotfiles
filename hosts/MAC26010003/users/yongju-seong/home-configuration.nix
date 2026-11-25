@@ -112,7 +112,6 @@
     size = 18;
   };
   modules.term.colorschemes.active = "tokyo-night";
-  modules.term.herdr.enable = true;
   modules.term.rex.enable = true;
 
   # Add Rancher Desktop executables to PATH
